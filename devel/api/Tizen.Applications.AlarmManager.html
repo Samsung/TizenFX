@@ -99,7 +99,7 @@ If an application is installed after setting the alarm, your alarm is canceled a
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class AlarmManager : object</code></pre>
+    <pre><code class="lang-csharp hljs">public static class AlarmManager</code></pre>
   </div>
 
   
@@ -138,6 +138,27 @@ If an application is installed after setting the alarm, your alarm is canceled a
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static void CancelAll()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown in case of a permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -149,7 +170,7 @@ If an application is installed after setting the alarm, your alarm is canceled a
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Alarm/Tizen.Applications/AlarmManager.cs/#L261">View Source</a>
   </span>
   <a id="Tizen_Applications_AlarmManager_CreateAlarm_" data-uid="Tizen.Applications.AlarmManager.CreateAlarm*"></a>
-  <h4 id="Tizen_Applications_AlarmManager_CreateAlarm_DateTime_Tizen_Applications_AlarmWeekFlag_Tizen_Applications_AppControl_" data-uid="Tizen.Applications.AlarmManager.CreateAlarm(DateTime,Tizen.Applications.AlarmWeekFlag,Tizen.Applications.AppControl)">CreateAlarm(DateTime, AlarmWeekFlag, AppControl)</h4>
+  <h4 id="Tizen_Applications_AlarmManager_CreateAlarm_System_DateTime_Tizen_Applications_AlarmWeekFlag_Tizen_Applications_AppControl_" data-uid="Tizen.Applications.AlarmManager.CreateAlarm(System.DateTime,Tizen.Applications.AlarmWeekFlag,Tizen.Applications.AppControl)">CreateAlarm(DateTime, AlarmWeekFlag, AppControl)</h4>
   <div class="markdown level1 summary"><p>Sets an alarm to be triggered periodically, starting at a specific time.
 The date describes the time of the first occurrence.
 The weekFlag is the repeat value of the days of the week.
@@ -171,7 +192,7 @@ If the weekFlag is AlarmWeekFlag.Tuesday, the alarm will repeat every Tuesday at
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">DateTime</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></td>
         <td><span class="parametername">value</span></td>
         <td><p>The first active alarm time. </p>
 </td>
@@ -206,13 +227,37 @@ If the weekFlag is AlarmWeekFlag.Tuesday, the alarm will repeat every Tuesday at
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Applications_AlarmManager_CreateAlarm_DateTime_Tizen_Applications_AlarmWeekFlag_Tizen_Applications_AppControl__remarks">Remarks</h5>
+  <h5 id="Tizen_Applications_AlarmManager_CreateAlarm_System_DateTime_Tizen_Applications_AlarmWeekFlag_Tizen_Applications_AppControl__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This operation is permitted with UI application appcontrol only.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown in case of a permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/alarm.set</span></span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
@@ -220,7 +265,7 @@ If the weekFlag is AlarmWeekFlag.Tuesday, the alarm will repeat every Tuesday at
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Alarm/Tizen.Applications/AlarmManager.cs/#L376">View Source</a>
   </span>
   <a id="Tizen_Applications_AlarmManager_CreateAlarm_" data-uid="Tizen.Applications.AlarmManager.CreateAlarm*"></a>
-  <h4 id="Tizen_Applications_AlarmManager_CreateAlarm_DateTime_Tizen_Applications_AlarmWeekFlag_Tizen_Applications_Notifications_Notification_" data-uid="Tizen.Applications.AlarmManager.CreateAlarm(DateTime,Tizen.Applications.AlarmWeekFlag,Tizen.Applications.Notifications.Notification)">CreateAlarm(DateTime, AlarmWeekFlag, Notification)</h4>
+  <h4 id="Tizen_Applications_AlarmManager_CreateAlarm_System_DateTime_Tizen_Applications_AlarmWeekFlag_Tizen_Applications_Notifications_Notification_" data-uid="Tizen.Applications.AlarmManager.CreateAlarm(System.DateTime,Tizen.Applications.AlarmWeekFlag,Tizen.Applications.Notifications.Notification)">CreateAlarm(DateTime, AlarmWeekFlag, Notification)</h4>
   <div class="markdown level1 summary"><p>Sets a notification alarm to be triggered periodically, starting at a specific time.
 The date describes the time of the first occurrence.
 The weekFlag is the repeat value of the days of the week.
@@ -242,7 +287,7 @@ If the weekFlag is AlarmWeekFlag.Tuesday, the alarm will repeat every Tuesday at
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">DateTime</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></td>
         <td><span class="parametername">dateTime</span></td>
         <td><p>The first active alarm time. </p>
 </td>
@@ -278,10 +323,34 @@ If the weekFlag is AlarmWeekFlag.Tuesday, the alarm will repeat every Tuesday at
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown in case of a permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/alarm.set</span><span>http://tizen.org/privilege/notification</span></span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
@@ -289,7 +358,7 @@ If the weekFlag is AlarmWeekFlag.Tuesday, the alarm will repeat every Tuesday at
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Alarm/Tizen.Applications/AlarmManager.cs/#L225">View Source</a>
   </span>
   <a id="Tizen_Applications_AlarmManager_CreateAlarm_" data-uid="Tizen.Applications.AlarmManager.CreateAlarm*"></a>
-  <h4 id="Tizen_Applications_AlarmManager_CreateAlarm_DateTime_Tizen_Applications_AppControl_" data-uid="Tizen.Applications.AlarmManager.CreateAlarm(DateTime,Tizen.Applications.AppControl)">CreateAlarm(DateTime, AppControl)</h4>
+  <h4 id="Tizen_Applications_AlarmManager_CreateAlarm_System_DateTime_Tizen_Applications_AppControl_" data-uid="Tizen.Applications.AlarmManager.CreateAlarm(System.DateTime,Tizen.Applications.AppControl)">CreateAlarm(DateTime, AppControl)</h4>
   <div class="markdown level1 summary"><p>Sets an alarm to be triggered at a specific time.
 The date describes the time of the first occurrence.</p>
 </div>
@@ -309,7 +378,7 @@ The date describes the time of the first occurrence.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">DateTime</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></td>
         <td><span class="parametername">value</span></td>
         <td><p>The first active alarm time. </p>
 </td>
@@ -338,13 +407,37 @@ The date describes the time of the first occurrence.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Applications_AlarmManager_CreateAlarm_DateTime_Tizen_Applications_AppControl__remarks">Remarks</h5>
+  <h5 id="Tizen_Applications_AlarmManager_CreateAlarm_System_DateTime_Tizen_Applications_AppControl__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This operation is permitted with the UI application appcontrol only.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown in case of a permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/alarm.set</span></span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
@@ -352,7 +445,7 @@ The date describes the time of the first occurrence.</p>
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Alarm/Tizen.Applications/AlarmManager.cs/#L312">View Source</a>
   </span>
   <a id="Tizen_Applications_AlarmManager_CreateAlarm_" data-uid="Tizen.Applications.AlarmManager.CreateAlarm*"></a>
-  <h4 id="Tizen_Applications_AlarmManager_CreateAlarm_DateTime_Tizen_Applications_Notifications_Notification_" data-uid="Tizen.Applications.AlarmManager.CreateAlarm(DateTime,Tizen.Applications.Notifications.Notification)">CreateAlarm(DateTime, Notification)</h4>
+  <h4 id="Tizen_Applications_AlarmManager_CreateAlarm_System_DateTime_Tizen_Applications_Notifications_Notification_" data-uid="Tizen.Applications.AlarmManager.CreateAlarm(System.DateTime,Tizen.Applications.Notifications.Notification)">CreateAlarm(DateTime, Notification)</h4>
   <div class="markdown level1 summary"><p>Sets a notification alarm to be triggered at a specific time.
 The date describes the time of the first occurrence.</p>
 </div>
@@ -372,7 +465,7 @@ The date describes the time of the first occurrence.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">DateTime</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></td>
         <td><span class="parametername">dateTime</span></td>
         <td><p>The first active alarm time. </p>
 </td>
@@ -401,10 +494,34 @@ The date describes the time of the first occurrence.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown in case of a permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/alarm.set</span><span>http://tizen.org/privilege/notification</span></span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
@@ -464,6 +581,32 @@ The actual interval is calculated by the OS. The minimum value is 600sec.</p>
       <tr>
         <td><a class="xref" href="Tizen.Applications.Alarm.html">Alarm</a></td>
         <td><p>An alarm instance is created with the set param values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown in case of a permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown in case of any internal error.</p>
 </td>
       </tr>
     </tbody>
@@ -534,6 +677,32 @@ The alarm will first go off delay seconds later and then will go off every certa
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown in case of a permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -596,6 +765,32 @@ The alarm will first go off delay seconds later and then will go off every certa
       <tr>
         <td><a class="xref" href="Tizen.Applications.Alarm.html">Alarm</a></td>
         <td><p>An alarm instance is created with the set param values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown in case of a permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown in case of any internal error.</p>
 </td>
       </tr>
     </tbody>
@@ -666,6 +861,32 @@ The alarm will first go off delay seconds later and then will go off every certa
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown in case of a permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>8</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -722,6 +943,32 @@ The alarm will go off delay seconds later.</p>
       <tr>
         <td><a class="xref" href="Tizen.Applications.Alarm.html">Alarm</a></td>
         <td><p>An alarm instance is created with the set param values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown in case of a permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown in case of any internal error.</p>
 </td>
       </tr>
     </tbody>
@@ -786,6 +1033,32 @@ The alarm will go off delay seconds later.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown in case of a permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -815,8 +1088,29 @@ The alarm will go off delay seconds later.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Applications.Alarm.html">Alarm</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Applications.Alarm.html">Alarm</a>&gt;</td>
         <td><p>List of all alarm instances.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown in case of a permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown in case of any internal error.</p>
 </td>
       </tr>
     </tbody>
@@ -850,8 +1144,24 @@ The alarm will go off delay seconds later.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">DateTime</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></td>
         <td><p>The current system time.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown in case of any internal error.</p>
 </td>
       </tr>
     </tbody>

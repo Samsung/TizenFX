@@ -95,7 +95,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class AppControl : object</code></pre>
+    <pre><code class="lang-csharp hljs">public class AppControl</code></pre>
   </div>
 
   
@@ -146,6 +146,22 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public AppControl()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when failed to create the AppControl handle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -177,6 +193,22 @@
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td><span class="parametername">enableAppStartedResultEvent</span></td>
         <td><p>The flag value to receive an additional launch result event on the launch request.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when failed to create the AppControl handle.</p>
 </td>
       </tr>
     </tbody>
@@ -583,49 +615,6 @@ The callee application can just read it.
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L991">View Source</a>
-  </span>
-  <a id="Tizen_Applications_AppControl_GetDefaultApplicationIds_" data-uid="Tizen.Applications.AppControl.GetDefaultApplicationIds*"></a>
-  <h4 id="Tizen_Applications_AppControl_GetDefaultApplicationIds" data-uid="Tizen.Applications.AppControl.GetDefaultApplicationIds">GetDefaultApplicationIds()</h4>
-  <div class="markdown level1 summary"><p>Gets all default applications.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;string&gt; GetDefaultApplicationIds()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
-        <td><p>ApplicationIds.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_Applications_AppControl_GetDefaultApplicationIds_examples">Examples</h5>
-  <pre><code>IEnumerable&lt;string> applicationIds = AppControl.GetDefaultApplicationIds();
-if (applicationIds != null)
-{
-    foreach (string id in applicationIds)
-    {
-        // ...
-    }
-}</code></pre>
-
-  
-  <h6><strong>API Level</strong>: <span>11</span></h6>
-  
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L534">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl_GetMatchedApplicationIds_" data-uid="Tizen.Applications.AppControl.GetMatchedApplicationIds*"></a>
@@ -665,7 +654,7 @@ if (applicationIds != null)
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
         <td><p>ApplicationIds.</p>
 </td>
       </tr>
@@ -681,6 +670,22 @@ if (applicationIds != null)
     }
 }</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when failed because of an invalid parameter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -710,6 +715,22 @@ if (applicationIds != null)
       <tr>
         <td><a class="xref" href="Tizen.Applications.WindowPosition.html">WindowPosition</a></td>
         <td><p>The window position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when the invalid operation error occurs.</p>
 </td>
       </tr>
     </tbody>
@@ -762,126 +783,6 @@ To launch a service application, an explicit launch request with the application
 appControl.ApplicationId = &quot;org.tizen.calculator&quot;;
 AppControl.SendLaunchRequest(appControl);</code></pre>
 
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/appmanager.launch</span></span></h6>
-  
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L616">View Source</a>
-  </span>
-  <a id="Tizen_Applications_AppControl_SendLaunchRequest_" data-uid="Tizen.Applications.AppControl.SendLaunchRequest*"></a>
-  <h4 id="Tizen_Applications_AppControl_SendLaunchRequest_Tizen_Applications_AppControl_System_UInt32_" data-uid="Tizen.Applications.AppControl.SendLaunchRequest(Tizen.Applications.AppControl,System.UInt32)">SendLaunchRequest(AppControl, UInt32)</h4>
-  <div class="markdown level1 summary"><p>Sends the launch request with setting timeout.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void SendLaunchRequest(AppControl launchRequest, uint timeout)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.Applications.AppControl.html">AppControl</a></td>
-        <td><span class="parametername">launchRequest</span></td>
-        <td><p>The AppControl.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
-        <td><span class="parametername">timeout</span></td>
-        <td><p>The timeout in milliseconds, the timeout range is 5000 to 30000.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_Applications_AppControl_SendLaunchRequest_Tizen_Applications_AppControl_System_UInt32__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The operation is mandatory information for the launch request.
-If the operation is not specified, AppControlOperations.Default is used by default.
-If the operation is AppControlOperations.Default, the application ID is mandatory to explicitly launch the application.<br>
-To launch a service application, an explicit launch request with the application ID given by property ApplicationId MUST be sent.<br>
-It can set receiving timeout interval using timeout parameter.
-If there is an error that is not related to timeout, the error is returned immediately regardless of the timeout value.</p>
-</div>
-  <h5 id="Tizen_Applications_AppControl_SendLaunchRequest_Tizen_Applications_AppControl_System_UInt32__examples">Examples</h5>
-  <pre><code>AppControl appControl = new AppControl();
-appControl.ApplicationId = &quot;org.tizen.calculator&quot;;
-AppControl.SendLaunchRequest(appControl, 10000);</code></pre>
-
-  
-  <h6><strong>API Level</strong>: <span>7.5</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/appmanager.launch</span></span></h6>
-  
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L734">View Source</a>
-  </span>
-  <a id="Tizen_Applications_AppControl_SendLaunchRequest_" data-uid="Tizen.Applications.AppControl.SendLaunchRequest*"></a>
-  <h4 id="Tizen_Applications_AppControl_SendLaunchRequest_Tizen_Applications_AppControl_System_UInt32_Tizen_Applications_AppControlReplyCallback_" data-uid="Tizen.Applications.AppControl.SendLaunchRequest(Tizen.Applications.AppControl,System.UInt32,Tizen.Applications.AppControlReplyCallback)">SendLaunchRequest(AppControl, UInt32, AppControlReplyCallback)</h4>
-  <div class="markdown level1 summary"><p>Sends the launch request with setting timeout</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void SendLaunchRequest(AppControl launchRequest, uint timeout, AppControlReplyCallback replyAfterLaunching)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.Applications.AppControl.html">AppControl</a></td>
-        <td><span class="parametername">launchRequest</span></td>
-        <td><p>The AppControl.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
-        <td><span class="parametername">timeout</span></td>
-        <td><p>The timeout in milliseconds, the timeout range is 5000 to 30000.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.Applications.AppControlReplyCallback.html">AppControlReplyCallback</a></td>
-        <td><span class="parametername">replyAfterLaunching</span></td>
-        <td><p>The callback function to be called when the reply is delivered.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_Applications_AppControl_SendLaunchRequest_Tizen_Applications_AppControl_System_UInt32_Tizen_Applications_AppControlReplyCallback__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The operation is mandatory information for the launch request.
-If the operation is not specified, AppControlOperations.Default is used by default.
-If the operation is AppControlOperations.Default, the application ID is mandatory to explicitly launch the application.<br>
-To launch a service application, an explicit launch request with the application ID given by property ApplicationId MUST be sent.<br>
-It can set receiving timeout interval using timeout parameter.
-If there is an error that is not related to timeout, the error is returned immediately regardless of the timeout value.</p>
-</div>
-  <h5 id="Tizen_Applications_AppControl_SendLaunchRequest_Tizen_Applications_AppControl_System_UInt32_Tizen_Applications_AppControlReplyCallback__examples">Examples</h5>
-  <pre><code>AppControl appControl = new AppControl();
-appControl.ApplicationId = &quot;org.tizen.calculator&quot;;
-AppControl.SendLaunchRequest(appControl, 10000, (launchRequest, replyRequest, result) => {
-    // ...
-});</code></pre>
-
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -892,34 +793,24 @@ AppControl.SendLaunchRequest(appControl, 10000, (launchRequest, replyRequest, re
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.Applications.Exceptions.AppNotFoundException.html">AppNotFoundException</a></td>
-        <td><p>Thrown when the application to run is not found.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p>Thrown when failed because of a null argument.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="Tizen.Applications.Exceptions.LaunchFailedException.html">LaunchFailedException</a></td>
-        <td><p>Thrown when the request failed to launch the application.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when failed because of an invalid operation.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="Tizen.Applications.Exceptions.LaunchRejectedException.html">LaunchRejectedException</a></td>
-        <td><p>Thrown when the launch request is rejected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.Applications.Exceptions.OutOfMemoryException.html">OutOfMemoryException</a></td>
-        <td><p>Thrown when the memory is insufficient.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.Applications.Exceptions.PermissionDeniedException.html">PermissionDeniedException</a></td>
-        <td><p>Thrown when the permission is denied.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timeoutexception">TimeoutException</a></td>
+        <td><p>Thrown when failed because of timeout.</p>
 </td>
       </tr>
     </tbody>
   </table>
   
-  <h6><strong>API Level</strong>: <span>7.5</span></h6>
+  <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
   <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/appmanager.launch</span></span></h6>
   
@@ -986,6 +877,11 @@ AppControl.SendLaunchRequest(appControl, (launchRequest, replyRequest, result) =
     </thead>
     <tbody>
       <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown when failed because of the argument is invalid.</p>
+</td>
+      </tr>
+      <tr>
         <td><a class="xref" href="Tizen.Applications.Exceptions.AppNotFoundException.html">AppNotFoundException</a></td>
         <td><p>Thrown when the application to run is not found.</p>
 </td>
@@ -1008,6 +904,11 @@ AppControl.SendLaunchRequest(appControl, (launchRequest, replyRequest, result) =
       <tr>
         <td><a class="xref" href="Tizen.Applications.Exceptions.PermissionDeniedException.html">PermissionDeniedException</a></td>
         <td><p>Thrown when the permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timeoutexception">TimeoutException</a></td>
+        <td><p>Thrown when failed because of timeout.</p>
 </td>
       </tr>
     </tbody>
@@ -1065,7 +966,7 @@ AppControl.SendLaunchRequest(appControl, (launchRequest, replyRequest, result) =
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span>&lt;<a class="xref" href="Tizen.Applications.AppControlResult.html">AppControlResult</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Tizen.Applications.AppControlResult.html">AppControlResult</a>&gt;</td>
         <td><p>A task with the result of the launch request.</p>
 </td>
       </tr>
@@ -1088,6 +989,11 @@ To launch a service application, an explicit launch request with the application
       </tr>
     </thead>
     <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown when failed because of the argument is invalid.</p>
+</td>
+      </tr>
       <tr>
         <td><a class="xref" href="Tizen.Applications.Exceptions.AppNotFoundException.html">AppNotFoundException</a></td>
         <td><p>Thrown when the application to run is not found.</p>
@@ -1148,46 +1054,6 @@ other applications, which were launched by the callee application as a group mod
 terminateRequest.ApplicationId = &quot;org.tizen.calculator&quot;;
 AppControl.SendTerminateRequest(terminateRequest);</code></pre>
 
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L920">View Source</a>
-  </span>
-  <a id="Tizen_Applications_AppControl_SetAutoRestart_" data-uid="Tizen.Applications.AppControl.SetAutoRestart*"></a>
-  <h4 id="Tizen_Applications_AppControl_SetAutoRestart_Tizen_Applications_AppControl_" data-uid="Tizen.Applications.AppControl.SetAutoRestart(Tizen.Applications.AppControl)">SetAutoRestart(AppControl)</h4>
-  <div class="markdown level1 summary"><p>Sets the auto restart.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void SetAutoRestart(AppControl appControl)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.Applications.AppControl.html">AppControl</a></td>
-        <td><span class="parametername">appControl</span></td>
-        <td><p>The AppControl.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_Applications_AppControl_SetAutoRestart_Tizen_Applications_AppControl__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The functionality of this method only applies to the caller application.
-The auto restart cannot be applied to other applications. The application ID set in the AppControl is ignored.
-This method is only available for platform level signed applications.</p>
-</div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -1198,18 +1064,24 @@ This method is only available for platform level signed applications.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.Applications.Exceptions.PermissionDeniedException.html">PermissionDeniedException</a></td>
-        <td><p>Thrown when the permission is denied.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown when failed because of the argument is invalid.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="Tizen.Applications.Exceptions.OutOfMemoryException.html">OutOfMemoryException</a></td>
-        <td><p>Thrown when the memory is insufficient.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when failed because of an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.timeoutexception">TimeoutException</a></td>
+        <td><p>Thrown when failed because of timeout.</p>
 </td>
       </tr>
     </tbody>
   </table>
   
+  <h6><strong>API Level</strong>: <span>3</span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
@@ -1243,27 +1115,6 @@ This method is only available for platform level signed applications.</p>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>11</span></h6>
-  
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L955">View Source</a>
-  </span>
-  <a id="Tizen_Applications_AppControl_UnsetAutoRestart_" data-uid="Tizen.Applications.AppControl.UnsetAutoRestart*"></a>
-  <h4 id="Tizen_Applications_AppControl_UnsetAutoRestart" data-uid="Tizen.Applications.AppControl.UnsetAutoRestart">UnsetAutoRestart()</h4>
-  <div class="markdown level1 summary"><p>Unsets the auto restart.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void UnsetAutoRestart()</code></pre>
-  </div>
-  <h5 id="Tizen_Applications_AppControl_UnsetAutoRestart_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The functionality of this method only applies to the caller application.
-This method is only available for platform level signed applications.</p>
-</div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -1274,43 +1125,27 @@ This method is only available for platform level signed applications.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.Applications.Exceptions.PermissionDeniedException.html">PermissionDeniedException</a></td>
-        <td><p>Thrown when the permission is denied.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p>Thrown when the argument is null.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="Tizen.Applications.Exceptions.OutOfMemoryException.html">OutOfMemoryException</a></td>
-        <td><p>Thrown when the memory is insufficient.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown when the argument is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when the invalid operation error occurs.</p>
 </td>
       </tr>
     </tbody>
   </table>
   
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
 </article>
           </div>
           

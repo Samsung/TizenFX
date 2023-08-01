@@ -84,6 +84,7 @@
   
   <h1 id="Tizen_WebView_PolicyDecisionEventArgs" data-uid="Tizen.WebView.PolicyDecisionEventArgs" class="text-break">Class PolicyDecisionEventArgs
   </h1>
+  <div class="markdown obsolete" data-id="Tizen_WebView_PolicyDecisionEventArgs">Deprecated since API Level 10. Will be removed in API Level 12.</div>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
   
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.WebView.html">Tizen.WebView</a></dd></dl>
@@ -96,7 +97,8 @@ This class also provides the properties for Policy Decision of WebView.</p>
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class PolicyDecisionEventArgs : EventArgs</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API Level 10. Will be removed in API Level 12.&quot;)]
+public abstract class PolicyDecisionEventArgs : EventArgs</code></pre>
   </div>
 
   
@@ -105,6 +107,7 @@ This class also provides the properties for Policy Decision of WebView.</p>
     <dd>
       <div class="pdl-holder">
         <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
+        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventargs">EventArgs</a></div>
         <div><span class="xref">PolicyDecisionEventArgs</span></div>
       </div>
     </dd>
@@ -128,12 +131,14 @@ This class also provides the properties for Policy Decision of WebView.</p>
   </span>
   <a id="Tizen_WebView_PolicyDecisionEventArgs_Scheme_" data-uid="Tizen.WebView.PolicyDecisionEventArgs.Scheme*"></a>
   <h4 id="Tizen_WebView_PolicyDecisionEventArgs_Scheme" data-uid="Tizen.WebView.PolicyDecisionEventArgs.Scheme">Scheme</h4>
+  <div class="markdown obsolete" data-id="Tizen_WebView_PolicyDecisionEventArgs_Scheme">Deprecated since API Level 10. Will be removed in API Level 12.</div>
   <div class="markdown level1 summary"><p>Gets the scheme.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Scheme { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API Level 10. Will be removed in API Level 12.&quot;)]
+public string Scheme { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -160,12 +165,14 @@ This class also provides the properties for Policy Decision of WebView.</p>
   </span>
   <a id="Tizen_WebView_PolicyDecisionEventArgs_Url_" data-uid="Tizen.WebView.PolicyDecisionEventArgs.Url*"></a>
   <h4 id="Tizen_WebView_PolicyDecisionEventArgs_Url" data-uid="Tizen.WebView.PolicyDecisionEventArgs.Url">Url</h4>
+  <div class="markdown obsolete" data-id="Tizen_WebView_PolicyDecisionEventArgs_Url">Deprecated since API Level 10. Will be removed in API Level 12.</div>
   <div class="markdown level1 summary"><p>Gets the Url.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Url { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API Level 10. Will be removed in API Level 12.&quot;)]
+public string Url { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -194,45 +201,15 @@ This class also provides the properties for Policy Decision of WebView.</p>
   </span>
   <a id="Tizen_WebView_PolicyDecisionEventArgs_Ignore_" data-uid="Tizen.WebView.PolicyDecisionEventArgs.Ignore*"></a>
   <h4 id="Tizen_WebView_PolicyDecisionEventArgs_Ignore" data-uid="Tizen.WebView.PolicyDecisionEventArgs.Ignore">Ignore()</h4>
+  <div class="markdown obsolete" data-id="Tizen_WebView_PolicyDecisionEventArgs_Ignore">Deprecated since API Level 10. Will be removed in API Level 12.</div>
   <div class="markdown level1 summary"><p>Ignores the action which triggers this decision.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Ignore()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API Level 10. Will be removed in API Level 12.&quot;)]
+public void Ignore()</code></pre>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>6</span></h6>
-  
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.WebView/Tizen.WebView/PolicyDecisionEventArgs.cs/#L119">View Source</a>
-  </span>
-  <a id="Tizen_WebView_PolicyDecisionEventArgs_IsMainFrame_" data-uid="Tizen.WebView.PolicyDecisionEventArgs.IsMainFrame*"></a>
-  <h4 id="Tizen_WebView_PolicyDecisionEventArgs_IsMainFrame" data-uid="Tizen.WebView.PolicyDecisionEventArgs.IsMainFrame">IsMainFrame()</h4>
-  <div class="markdown level1 summary"><p>Checks if frame requested in policy decision is main frame.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsMainFrame()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
@@ -243,40 +220,20 @@ This class also provides the properties for Policy Decision of WebView.</p>
   </span>
   <a id="Tizen_WebView_PolicyDecisionEventArgs_Use_" data-uid="Tizen.WebView.PolicyDecisionEventArgs.Use*"></a>
   <h4 id="Tizen_WebView_PolicyDecisionEventArgs_Use" data-uid="Tizen.WebView.PolicyDecisionEventArgs.Use">Use()</h4>
+  <div class="markdown obsolete" data-id="Tizen_WebView_PolicyDecisionEventArgs_Use">Deprecated since API Level 10. Will be removed in API Level 12.</div>
   <div class="markdown level1 summary"><p>Accepts the action which triggers this decision.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Use()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API Level 10. Will be removed in API Level 12.&quot;)]
+public void Use()</code></pre>
   </div>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
 </article>
           </div>
           

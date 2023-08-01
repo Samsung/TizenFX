@@ -95,7 +95,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class Engine : object</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class Engine</code></pre>
   </div>
 
   
@@ -315,6 +315,32 @@ This function is the main function for operating the STT engine.</p>
   <h5 id="Tizen_Uix_SttEngine_Engine_EngineMain_System_Int32_System_String____remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>ServiceAppMain should be used for working the engine after this function.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown in case of permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown in case of not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown in case of an operation failure.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -328,7 +354,7 @@ This function is the main function for operating the STT engine.</p>
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Uix.SttEngine/Tizen.Uix.SttEngine/SttEngine.cs/#L427">View Source</a>
   </span>
   <a id="Tizen_Uix_SttEngine_Engine_ForEachResultTime_" data-uid="Tizen.Uix.SttEngine.Engine.ForEachResultTime*"></a>
-  <h4 id="Tizen_Uix_SttEngine_Engine_ForEachResultTime_IntPtr_Tizen_Uix_SttEngine_Engine_ResultTime_IntPtr_" data-uid="Tizen.Uix.SttEngine.Engine.ForEachResultTime(IntPtr,Tizen.Uix.SttEngine.Engine.ResultTime,IntPtr)">ForEachResultTime(IntPtr, Engine.ResultTime, IntPtr)</h4>
+  <h4 id="Tizen_Uix_SttEngine_Engine_ForEachResultTime_System_IntPtr_Tizen_Uix_SttEngine_Engine_ResultTime_System_IntPtr_" data-uid="Tizen.Uix.SttEngine.Engine.ForEachResultTime(System.IntPtr,Tizen.Uix.SttEngine.Engine.ResultTime,System.IntPtr)">ForEachResultTime(IntPtr, Engine.ResultTime, IntPtr)</h4>
   <div class="markdown level1 summary"><p>Called when the engine service user gets the result time information(stamp).</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -347,7 +373,7 @@ This function is the main function for operating the STT engine.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IntPtr</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">IntPtr</a></td>
         <td><span class="parametername">timeInfo</span></td>
         <td><p>The time information.</p>
 </td>
@@ -359,7 +385,7 @@ This function is the main function for operating the STT engine.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">IntPtr</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">IntPtr</a></td>
         <td><span class="parametername">userData</span></td>
         <td><p>The user data, which must be passed to the callback function ResultTime.</p>
 </td>
@@ -387,7 +413,7 @@ This function is the main function for operating the STT engine.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Uix_SttEngine_Engine_ForEachResultTime_IntPtr_Tizen_Uix_SttEngine_Engine_ResultTime_IntPtr__remarks">Remarks</h5>
+  <h5 id="Tizen_Uix_SttEngine_Engine_ForEachResultTime_System_IntPtr_Tizen_Uix_SttEngine_Engine_ResultTime_System_IntPtr__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>In this function, the engine service user&apos;s callback delegate &apos;ResultTime&apos; is invoked repeatedly for sending the time information to the engine service user
 and user_data must be transferred to &apos;ResultTime&apos;. If &apos;ResultTime&apos; returns false, it should be stopped to call &apos;ResultTime&apos;.
 timeInfo is transferred from SendResult. The type of timeInfo is up to the STT engine developer.</p>
@@ -401,7 +427,7 @@ timeInfo is transferred from SendResult. The type of timeInfo is up to the STT e
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Uix.SttEngine/Tizen.Uix.SttEngine/SttEngine.cs/#L314">View Source</a>
   </span>
   <a id="Tizen_Uix_SttEngine_Engine_ForEachSupportedLanguages_" data-uid="Tizen.Uix.SttEngine.Engine.ForEachSupportedLanguages*"></a>
-  <h4 id="Tizen_Uix_SttEngine_Engine_ForEachSupportedLanguages_Tizen_Uix_SttEngine_Engine_SupportedLanguages_IntPtr_" data-uid="Tizen.Uix.SttEngine.Engine.ForEachSupportedLanguages(Tizen.Uix.SttEngine.Engine.SupportedLanguages,IntPtr)">ForEachSupportedLanguages(Engine.SupportedLanguages, IntPtr)</h4>
+  <h4 id="Tizen_Uix_SttEngine_Engine_ForEachSupportedLanguages_Tizen_Uix_SttEngine_Engine_SupportedLanguages_System_IntPtr_" data-uid="Tizen.Uix.SttEngine.Engine.ForEachSupportedLanguages(Tizen.Uix.SttEngine.Engine.SupportedLanguages,System.IntPtr)">ForEachSupportedLanguages(Engine.SupportedLanguages, IntPtr)</h4>
   <div class="markdown level1 summary"><p>Called when the engine service user gets the whole supported language list.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -426,7 +452,7 @@ timeInfo is transferred from SendResult. The type of timeInfo is up to the STT e
 </td>
       </tr>
       <tr>
-        <td><span class="xref">IntPtr</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">IntPtr</a></td>
         <td><span class="parametername">userData</span></td>
         <td><p>The user data, which must be passed to the callback delegate &apos;SupportedLanguages&apos;.</p>
 </td>
@@ -454,7 +480,7 @@ timeInfo is transferred from SendResult. The type of timeInfo is up to the STT e
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Uix_SttEngine_Engine_ForEachSupportedLanguages_Tizen_Uix_SttEngine_Engine_SupportedLanguages_IntPtr__remarks">Remarks</h5>
+  <h5 id="Tizen_Uix_SttEngine_Engine_ForEachSupportedLanguages_Tizen_Uix_SttEngine_Engine_SupportedLanguages_System_IntPtr__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>In this function, the engine service user&apos;s callback function &apos;SupportedLanguages&apos; is invoked repeatedly for getting all the supported languages
 and user_data must be transferred to &apos;SupportedLanguages&apos;. If &apos;SupportedLanguages&apos; returns false, it should be stopped to call &apos;SupportedLanguages&apos;.</p>
 </div>
@@ -779,6 +805,32 @@ For example, &quot;ko_KR&quot; for Korean, &quot;en_US&quot; for American Englis
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown in case of permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown in case of not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown in case of an operation failure.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/speech.recognition
@@ -790,7 +842,7 @@ For example, &quot;ko_KR&quot; for Korean, &quot;en_US&quot; for American Englis
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Uix.SttEngine/Tizen.Uix.SttEngine/SttEngine.cs/#L599">View Source</a>
   </span>
   <a id="Tizen_Uix_SttEngine_Engine_SendResult_" data-uid="Tizen.Uix.SttEngine.Engine.SendResult*"></a>
-  <h4 id="Tizen_Uix_SttEngine_Engine_SendResult_Tizen_Uix_SttEngine_ResultEvent_System_String_System_String___System_Int32_Tizen_Uix_SttEngine_ResultMessage_IntPtr_" data-uid="Tizen.Uix.SttEngine.Engine.SendResult(Tizen.Uix.SttEngine.ResultEvent,System.String,System.String[],System.Int32,Tizen.Uix.SttEngine.ResultMessage,IntPtr)">SendResult(ResultEvent, String, String[], Int32, ResultMessage, IntPtr)</h4>
+  <h4 id="Tizen_Uix_SttEngine_Engine_SendResult_Tizen_Uix_SttEngine_ResultEvent_System_String_System_String___System_Int32_Tizen_Uix_SttEngine_ResultMessage_System_IntPtr_" data-uid="Tizen.Uix.SttEngine.Engine.SendResult(Tizen.Uix.SttEngine.ResultEvent,System.String,System.String[],System.Int32,Tizen.Uix.SttEngine.ResultMessage,System.IntPtr)">SendResult(ResultEvent, String, String[], Int32, ResultMessage, IntPtr)</h4>
   <div class="markdown level1 summary"><p>Sends the recognition result to the engine service user.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -839,21 +891,49 @@ For example, &quot;ko_KR&quot; for Korean, &quot;en_US&quot; for American Englis
 </td>
       </tr>
       <tr>
-        <td><span class="xref">IntPtr</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">IntPtr</a></td>
         <td><span class="parametername">timeInfo</span></td>
         <td><p>The time information.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Uix_SttEngine_Engine_SendResult_Tizen_Uix_SttEngine_ResultEvent_System_String_System_String___System_Int32_Tizen_Uix_SttEngine_ResultMessage_IntPtr__remarks">Remarks</h5>
+  <h5 id="Tizen_Uix_SttEngine_Engine_SendResult_Tizen_Uix_SttEngine_ResultEvent_System_String_System_String___System_Int32_Tizen_Uix_SttEngine_ResultMessage_System_IntPtr__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This API is used in SetRecordingData() and Stop(), when the STT engine sends the recognition result to the engine service user.
 This function is called in the following situations: 1) After Stop() is called, 2) The end point of speech is detected from recording, or 3) Partial result is occurred.
 The recognition result must be transferred to the engine service user through this function. Also, the timeInfo must be transferred to ForEachResultTime().
 The type of timeInfo is up to the STT engine developer.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown in case of permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown in case of not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown in case of an operation failure.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
+  <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/speech.recognition
+    http://tizen.org/feature/microphone</span></span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
@@ -890,6 +970,32 @@ The type of timeInfo is up to the STT engine developer.</p>
   <h5 id="Tizen_Uix_SttEngine_Engine_SendSpeechStatus_Tizen_Uix_SttEngine_SpeechStatus__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This API is invoked when the STT engine wants to notify the change of the speech status anytime. Note that this API can be invoked for recognizing the speech.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown in case of permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown in case of not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown in case of an operation failure.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/speech.recognition
@@ -934,6 +1040,37 @@ The following error codes can be returned:</p>
 <li>InvalidParameter</li>
 <li>OperationFailed</li>
 </ol>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown in case of permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown in case of not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown in case of an operation failure.</p>
 </td>
       </tr>
     </tbody>
@@ -983,6 +1120,37 @@ The following error codes can be returned:</p>
 <li>InvalidParameter</li>
 <li>OperationFailed</li>
 </ol>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown in case of permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown in case of not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown in case of an operation failure.</p>
 </td>
       </tr>
     </tbody>
@@ -1122,7 +1290,7 @@ If the engine service user sets this option as &apos;TRUE&apos;, the STT engine 
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Uix.SttEngine/Tizen.Uix.SttEngine/SttEngine.cs/#L453">View Source</a>
   </span>
   <a id="Tizen_Uix_SttEngine_Engine_Start_" data-uid="Tizen.Uix.SttEngine.Engine.Start*"></a>
-  <h4 id="Tizen_Uix_SttEngine_Engine_Start_System_String_System_String_System_String_System_String_IntPtr_" data-uid="Tizen.Uix.SttEngine.Engine.Start(System.String,System.String,System.String,System.String,IntPtr)">Start(String, String, String, String, IntPtr)</h4>
+  <h4 id="Tizen_Uix_SttEngine_Engine_Start_System_String_System_String_System_String_System_String_System_IntPtr_" data-uid="Tizen.Uix.SttEngine.Engine.Start(System.String,System.String,System.String,System.String,System.IntPtr)">Start(String, String, String, String, IntPtr)</h4>
   <div class="markdown level1 summary"><p>Called when the engine service user starts to recognize the recording data.
 In this callback function, the STT engine must transfer the recognition result and userData to the engine service user using SendResult().
 Also, if the STT engine needs the application&apos;s credential, it sets the credential granted to the application.</p>
@@ -1168,7 +1336,7 @@ For example, &quot;ko_KR&quot; for Korean, &quot;en_US&quot; for American Englis
 </td>
       </tr>
       <tr>
-        <td><span class="xref">IntPtr</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">IntPtr</a></td>
         <td><span class="parametername">userData</span></td>
         <td><p>The user data to be passed to the callback function.</p>
 </td>
@@ -1339,28 +1507,6 @@ true to support the recognition type, false not to support the recognition type.
   
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
 </article>
           </div>
           

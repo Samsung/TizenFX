@@ -95,7 +95,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class IoTConnectivityServerManager : object</code></pre>
+    <pre><code class="lang-csharp hljs">public static class IoTConnectivityServerManager</code></pre>
   </div>
 
   
@@ -180,6 +180,32 @@ in <code data-dev-comment-type="paramref" class="paramref">filePath</code>. We r
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_Initialize_System_String__examples">Examples</h5>
   <pre><code>    string filePath = &quot;../../res/iotcon-test-svr-db-server.dat&quot;;
     IoTConnectivityServerManager.Initialize(filePath);</code></pre>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown when there is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when an application does not have privilege to access</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_Initialize_System_String__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.IoTConnectivityServerManager.html#Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_Deinitialize">Deinitialize()</a></div>
@@ -232,6 +258,42 @@ in <code data-dev-comment-type="paramref" class="paramref">filePath</code>. We r
     } catch(Exception ex) {
         Console.Log(&quot;Exception caught : &quot; + ex.Message);
     }</code></pre>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown when there is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when the operation is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></td>
+        <td><p>Thrown when there is not enough memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when an application does not have privilege to access.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_RegisterResource_Tizen_Network_IoTConnectivity_Resource__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.Resource.html">Resource</a></div>
@@ -282,6 +344,32 @@ in <code data-dev-comment-type="paramref" class="paramref">filePath</code>. We r
 </div>
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_SetDeviceName_System_String__examples">Examples</h5>
   <pre><code>    IoTConnectivityServerManager.SetDeviceName(&quot;my-tizen&quot;);</code></pre>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when the operation is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when an application does not have privilege to access.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_SetDeviceName_System_String__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.IoTConnectivityClientManager.html#Tizen_Network_IoTConnectivity_IoTConnectivityClientManager_DeviceInformationFound">DeviceInformationFound</a></div>
@@ -336,6 +424,32 @@ Server can call this API when online for the first time or come back from offlin
     } catch(Exception ex) {
         Console.Log(&quot;Exception caught : &quot; + ex.Message);
     }</code></pre>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when the operation is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when an application does not have privilege to access.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_StartSendingPresence_System_UInt32__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.IoTConnectivityClientManager.html#Tizen_Network_IoTConnectivity_IoTConnectivityClientManager_StartReceivingPresence_System_String_System_String_">StartReceivingPresence(String, String)</a></div>
@@ -370,6 +484,32 @@ Server can call this API when terminating, entering to offline or out of network
 </div>
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_StopSendingPresence_examples">Examples</h5>
   <pre><code>    IoTConnectivityServerManager.StopSendingPresence();</code></pre>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when the operation is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when an application does not have privilege to access.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_StopSendingPresence_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.IoTConnectivityClientManager.html#Tizen_Network_IoTConnectivity_IoTConnectivityClientManager_StartReceivingPresence_System_String_System_String_">StartReceivingPresence(String, String)</a></div>
@@ -426,6 +566,27 @@ Server can call this API when terminating, entering to offline or out of network
     } catch(Exception ex) {
         Console.Log(&quot;Exception caught : &quot; + ex.Message);
     }</code></pre>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when an application does not have privilege to access.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_UnregisterResource_Tizen_Network_IoTConnectivity_Resource__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.Resource.html">Resource</a></div>

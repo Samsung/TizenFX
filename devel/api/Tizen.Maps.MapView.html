@@ -84,6 +84,7 @@
   
   <h1 id="Tizen_Maps_MapView" data-uid="Tizen.Maps.MapView" class="text-break">Class MapView
   </h1>
+  <div class="markdown obsolete" data-id="Tizen_Maps_MapView">Deprecated since API10. Might be removed in API12.</div>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
   
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.Maps.html">Tizen.Maps</a></dd></dl>
@@ -95,7 +96,8 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class MapView : Layout, IAccessibleObject, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
+public class MapView : Layout, IAccessibleObject, IDisposable</code></pre>
   </div>
 
   
@@ -120,7 +122,7 @@
     <dt>Implements</dt>
     <dd>
       <div class="pdl"><a class="xref" href="ElmSharp.Accessible.IAccessibleObject.html">IAccessibleObject</a></div>
-      <div class="pdl"><span class="xref">IDisposable</span></div>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     </dd>
   </dl>
   
@@ -131,12 +133,14 @@
   </span>
   <a id="Tizen_Maps_MapView__ctor_" data-uid="Tizen.Maps.MapView.#ctor*"></a>
   <h4 id="Tizen_Maps_MapView__ctor_ElmSharp_EvasObject_Tizen_Maps_MapService_" data-uid="Tizen.Maps.MapView.#ctor(ElmSharp.EvasObject,Tizen.Maps.MapService)">MapView(EvasObject, MapService)</h4>
+  <div class="markdown obsolete" data-id="Tizen_Maps_MapView__ctor_ElmSharp_EvasObject_Tizen_Maps_MapService_">Deprecated since API11. Might be removed in API13.</div>
   <div class="markdown level1 summary"><p>Creates a view and links it to the instance of a map service.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MapView(EvasObject parent, MapService service)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public MapView(EvasObject parent, MapService service)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -162,6 +166,37 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when application does not have some privilege to access this method.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown when parameters are invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when a native operation failed to allocate memory, and connect to the service.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -176,12 +211,14 @@
   </span>
   <a id="Tizen_Maps_MapView_BuildingsEnabled_" data-uid="Tizen.Maps.MapView.BuildingsEnabled*"></a>
   <h4 id="Tizen_Maps_MapView_BuildingsEnabled" data-uid="Tizen.Maps.MapView.BuildingsEnabled">BuildingsEnabled</h4>
+  <div class="markdown obsolete" data-id="Tizen_Maps_MapView_BuildingsEnabled">Deprecated since API10. Might be removed in API12.</div>
   <div class="markdown level1 summary"><p>Indicates whether the map should show the 3D buildings layer.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool BuildingsEnabled { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
+public bool BuildingsEnabled { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -198,6 +235,27 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when application does not have some privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -210,12 +268,14 @@
   </span>
   <a id="Tizen_Maps_MapView_Center_" data-uid="Tizen.Maps.MapView.Center*"></a>
   <h4 id="Tizen_Maps_MapView_Center" data-uid="Tizen.Maps.MapView.Center">Center</h4>
+  <div class="markdown obsolete" data-id="Tizen_Maps_MapView_Center">Deprecated since API10. Might be removed in API12.</div>
   <div class="markdown level1 summary"><p>Gets or sets geographical coordinates for map view&apos;s center.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Geocoordinates Center { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
+public Geocoordinates Center { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -232,6 +292,32 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when application does not have some privilege to access this method.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown when the value is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -244,12 +330,14 @@
   </span>
   <a id="Tizen_Maps_MapView_Children_" data-uid="Tizen.Maps.MapView.Children*"></a>
   <h4 id="Tizen_Maps_MapView_Children" data-uid="Tizen.Maps.MapView.Children">Children</h4>
+  <div class="markdown obsolete" data-id="Tizen_Maps_MapView_Children">Deprecated since API10. Might be removed in API12.</div>
   <div class="markdown level1 summary"><p>Gets a list of the map object added to map view.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IEnumerable&lt;MapObject&gt; Children { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
+public IEnumerable&lt;MapObject&gt; Children { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -261,7 +349,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Maps.MapObject.html">MapObject</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Maps.MapObject.html">MapObject</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -276,12 +364,14 @@
   </span>
   <a id="Tizen_Maps_MapView_Language_" data-uid="Tizen.Maps.MapView.Language*"></a>
   <h4 id="Tizen_Maps_MapView_Language" data-uid="Tizen.Maps.MapView.Language">Language</h4>
+  <div class="markdown obsolete" data-id="Tizen_Maps_MapView_Language">Deprecated since API10. Might be removed in API12.</div>
   <div class="markdown level1 summary"><p>Sets language of map view.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Language { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
+public string Language { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -304,6 +394,32 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when application does not have some privilege to access this method.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown when the value is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -316,12 +432,14 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
   </span>
   <a id="Tizen_Maps_MapView_MapType_" data-uid="Tizen.Maps.MapView.MapType*"></a>
   <h4 id="Tizen_Maps_MapView_MapType" data-uid="Tizen.Maps.MapView.MapType">MapType</h4>
+  <div class="markdown obsolete" data-id="Tizen_Maps_MapView_MapType">Deprecated since API10. Might be removed in API12.</div>
   <div class="markdown level1 summary"><p>Gets or sets theme type of the map view.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MapTypes MapType { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
+public MapTypes MapType { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -338,6 +456,27 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when application does not have some privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -350,12 +489,14 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
   </span>
   <a id="Tizen_Maps_MapView_MaximumZoomLevel_" data-uid="Tizen.Maps.MapView.MaximumZoomLevel*"></a>
   <h4 id="Tizen_Maps_MapView_MaximumZoomLevel" data-uid="Tizen.Maps.MapView.MaximumZoomLevel">MaximumZoomLevel</h4>
+  <div class="markdown obsolete" data-id="Tizen_Maps_MapView_MaximumZoomLevel">Deprecated since API10. Might be removed in API12.</div>
   <div class="markdown level1 summary"><p>Gets or sets the maximum zoom level.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int MaximumZoomLevel { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
+public int MaximumZoomLevel { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -373,6 +514,27 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when application does not have some privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -385,12 +547,14 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
   </span>
   <a id="Tizen_Maps_MapView_MinimumZoomLevel_" data-uid="Tizen.Maps.MapView.MinimumZoomLevel*"></a>
   <h4 id="Tizen_Maps_MapView_MinimumZoomLevel" data-uid="Tizen.Maps.MapView.MinimumZoomLevel">MinimumZoomLevel</h4>
+  <div class="markdown obsolete" data-id="Tizen_Maps_MapView_MinimumZoomLevel">Deprecated since API10. Might be removed in API12.</div>
   <div class="markdown level1 summary"><p>Gets or sets the minimum zoom level.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int MinimumZoomLevel { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
+public int MinimumZoomLevel { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -408,6 +572,27 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when application does not have some privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -420,12 +605,14 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
   </span>
   <a id="Tizen_Maps_MapView_Orientation_" data-uid="Tizen.Maps.MapView.Orientation*"></a>
   <h4 id="Tizen_Maps_MapView_Orientation" data-uid="Tizen.Maps.MapView.Orientation">Orientation</h4>
+  <div class="markdown obsolete" data-id="Tizen_Maps_MapView_Orientation">Deprecated since API10. Might be removed in API12.</div>
   <div class="markdown level1 summary"><p>Gets or sets the orientation on the map view.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public double Orientation { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
+public double Orientation { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -443,6 +630,27 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when application does not have some privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -455,12 +663,14 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
   </span>
   <a id="Tizen_Maps_MapView_PublicTransitEnabled_" data-uid="Tizen.Maps.MapView.PublicTransitEnabled*"></a>
   <h4 id="Tizen_Maps_MapView_PublicTransitEnabled" data-uid="Tizen.Maps.MapView.PublicTransitEnabled">PublicTransitEnabled</h4>
+  <div class="markdown obsolete" data-id="Tizen_Maps_MapView_PublicTransitEnabled">Deprecated since API10. Might be removed in API12.</div>
   <div class="markdown level1 summary"><p>Indicates whether the map should show the public transit layer.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool PublicTransitEnabled { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
+public bool PublicTransitEnabled { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -474,6 +684,27 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when application does not have some privilege to access this method.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -489,12 +720,14 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
   </span>
   <a id="Tizen_Maps_MapView_ScaleBarEnabled_" data-uid="Tizen.Maps.MapView.ScaleBarEnabled*"></a>
   <h4 id="Tizen_Maps_MapView_ScaleBarEnabled" data-uid="Tizen.Maps.MapView.ScaleBarEnabled">ScaleBarEnabled</h4>
+  <div class="markdown obsolete" data-id="Tizen_Maps_MapView_ScaleBarEnabled">Deprecated since API10. Might be removed in API12.</div>
   <div class="markdown level1 summary"><p>Indicates whether the scale-bar is enabled or not.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool ScaleBarEnabled { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
+public bool ScaleBarEnabled { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -508,6 +741,27 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when application does not have some privilege to access this method.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -523,12 +777,14 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
   </span>
   <a id="Tizen_Maps_MapView_TrafficEnabled_" data-uid="Tizen.Maps.MapView.TrafficEnabled*"></a>
   <h4 id="Tizen_Maps_MapView_TrafficEnabled" data-uid="Tizen.Maps.MapView.TrafficEnabled">TrafficEnabled</h4>
+  <div class="markdown obsolete" data-id="Tizen_Maps_MapView_TrafficEnabled">Deprecated since API10. Might be removed in API12.</div>
   <div class="markdown level1 summary"><p>Indicates whether the map should show the traffic layer.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool TrafficEnabled { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
+public bool TrafficEnabled { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -545,6 +801,27 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when application does not have some privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -557,12 +834,14 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
   </span>
   <a id="Tizen_Maps_MapView_ZoomLevel_" data-uid="Tizen.Maps.MapView.ZoomLevel*"></a>
   <h4 id="Tizen_Maps_MapView_ZoomLevel" data-uid="Tizen.Maps.MapView.ZoomLevel">ZoomLevel</h4>
+  <div class="markdown obsolete" data-id="Tizen_Maps_MapView_ZoomLevel">Deprecated since API10. Might be removed in API12.</div>
   <div class="markdown level1 summary"><p>Gets or sets the current zoom level.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int ZoomLevel { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
+public int ZoomLevel { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -576,6 +855,27 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><p>It is an integer value representing the current zoom level.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when application does not have some privilege to access this method.</p>
 </td>
       </tr>
     </tbody>
@@ -594,12 +894,14 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
   </span>
   <a id="Tizen_Maps_MapView_Add_" data-uid="Tizen.Maps.MapView.Add*"></a>
   <h4 id="Tizen_Maps_MapView_Add_Tizen_Maps_MapObject_" data-uid="Tizen.Maps.MapView.Add(Tizen.Maps.MapObject)">Add(MapObject)</h4>
+  <div class="markdown obsolete" data-id="Tizen_Maps_MapView_Add_Tizen_Maps_MapObject_">Deprecated since API10. Might be removed in API12.</div>
   <div class="markdown level1 summary"><p>Adds a map object to map view.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Add(MapObject child)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
+public void Add(MapObject child)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -619,6 +921,37 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when application does not have some privilege to access this method.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown when the value is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when a native operation failed to allocate memory and connect to the service.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -631,12 +964,14 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
   </span>
   <a id="Tizen_Maps_MapView_CaptureSnapshot_" data-uid="Tizen.Maps.MapView.CaptureSnapshot*"></a>
   <h4 id="Tizen_Maps_MapView_CaptureSnapshot_Tizen_Maps_SnapshotType_System_Int32_System_String_" data-uid="Tizen.Maps.MapView.CaptureSnapshot(Tizen.Maps.SnapshotType,System.Int32,System.String)">CaptureSnapshot(SnapshotType, Int32, String)</h4>
+  <div class="markdown obsolete" data-id="Tizen_Maps_MapView_CaptureSnapshot_Tizen_Maps_SnapshotType_System_Int32_System_String_">Deprecated since API10. Might be removed in API12.</div>
   <div class="markdown level1 summary"><p>Captures a snapshot of the map view.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void CaptureSnapshot(SnapshotType type, int quality, string path)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
+public void CaptureSnapshot(SnapshotType type, int quality, string path)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -668,6 +1003,37 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when application does not have some privilege to access this method.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown when the value is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when a native operation failed to allocate memory and connect to the service.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -680,12 +1046,14 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
   </span>
   <a id="Tizen_Maps_MapView_Dispose_" data-uid="Tizen.Maps.MapView.Dispose*"></a>
   <h4 id="Tizen_Maps_MapView_Dispose" data-uid="Tizen.Maps.MapView.Dispose">Dispose()</h4>
+  <div class="markdown obsolete" data-id="Tizen_Maps_MapView_Dispose">Deprecated since API10. Might be removed in API12.</div>
   <div class="markdown level1 summary"><p>Releases all the resources used by this object.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
+public void Dispose()</code></pre>
   </div>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
@@ -697,12 +1065,14 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
   </span>
   <a id="Tizen_Maps_MapView_Dispose_" data-uid="Tizen.Maps.MapView.Dispose*"></a>
   <h4 id="Tizen_Maps_MapView_Dispose_System_Boolean_" data-uid="Tizen.Maps.MapView.Dispose(System.Boolean)">Dispose(Boolean)</h4>
+  <div class="markdown obsolete" data-id="Tizen_Maps_MapView_Dispose_System_Boolean_">Deprecated since API11. Might be removed in API13.</div>
   <div class="markdown level1 summary"><p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+protected virtual void Dispose(bool disposing)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -732,6 +1102,7 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
   </span>
   <a id="Tizen_Maps_MapView_Finalize_" data-uid="Tizen.Maps.MapView.Finalize*"></a>
   <h4 id="Tizen_Maps_MapView_Finalize" data-uid="Tizen.Maps.MapView.Finalize">Finalize()</h4>
+  <div class="markdown obsolete" data-id="Tizen_Maps_MapView_Finalize">Deprecated since API10. Might be removed in API12.</div>
   <div class="markdown level1 summary"><p>Destroy the MapView object.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -748,12 +1119,14 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
   </span>
   <a id="Tizen_Maps_MapView_GeolocationToScreen_" data-uid="Tizen.Maps.MapView.GeolocationToScreen*"></a>
   <h4 id="Tizen_Maps_MapView_GeolocationToScreen_Tizen_Maps_Geocoordinates_" data-uid="Tizen.Maps.MapView.GeolocationToScreen(Tizen.Maps.Geocoordinates)">GeolocationToScreen(Geocoordinates)</h4>
+  <div class="markdown obsolete" data-id="Tizen_Maps_MapView_GeolocationToScreen_Tizen_Maps_Geocoordinates_">Deprecated since API10. Might be removed in API12.</div>
   <div class="markdown level1 summary"><p>Changes the geographical coordinates to screen coordinates.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Point GeolocationToScreen(Geocoordinates coordinates)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
+public Point GeolocationToScreen(Geocoordinates coordinates)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -789,6 +1162,37 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when application does not have some privilege to access this method.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown when the value is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when a native operation failed to allocate memory and connect to the service.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -801,12 +1205,14 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
   </span>
   <a id="Tizen_Maps_MapView_Remove_" data-uid="Tizen.Maps.MapView.Remove*"></a>
   <h4 id="Tizen_Maps_MapView_Remove_Tizen_Maps_MapObject_" data-uid="Tizen.Maps.MapView.Remove(Tizen.Maps.MapObject)">Remove(MapObject)</h4>
+  <div class="markdown obsolete" data-id="Tizen_Maps_MapView_Remove_Tizen_Maps_MapObject_">Deprecated since API10. Might be removed in API12.</div>
   <div class="markdown level1 summary"><p>Removes a map object from the map view.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Remove(MapObject child)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
+public void Remove(MapObject child)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -829,6 +1235,37 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
   <h5 id="Tizen_Maps_MapView_Remove_Tizen_Maps_MapObject__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Once removed, the child object will be become invalid.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when application does not have some privilege to access this method.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown when the value is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when native operation failed to allocate memory and connect to the service.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -841,13 +1278,41 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
   </span>
   <a id="Tizen_Maps_MapView_RemoveAll_" data-uid="Tizen.Maps.MapView.RemoveAll*"></a>
   <h4 id="Tizen_Maps_MapView_RemoveAll" data-uid="Tizen.Maps.MapView.RemoveAll">RemoveAll()</h4>
+  <div class="markdown obsolete" data-id="Tizen_Maps_MapView_RemoveAll">Deprecated since API10. Might be removed in API12.</div>
   <div class="markdown level1 summary"><p>Removes all map objects from the map view.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void RemoveAll()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
+public void RemoveAll()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when application does not have some privilege to access this method.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when a native operation failed to allocate memory and connect to the service.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -860,12 +1325,14 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
   </span>
   <a id="Tizen_Maps_MapView_ScreenToGeolocation_" data-uid="Tizen.Maps.MapView.ScreenToGeolocation*"></a>
   <h4 id="Tizen_Maps_MapView_ScreenToGeolocation_ElmSharp_Point_" data-uid="Tizen.Maps.MapView.ScreenToGeolocation(ElmSharp.Point)">ScreenToGeolocation(Point)</h4>
+  <div class="markdown obsolete" data-id="Tizen_Maps_MapView_ScreenToGeolocation_ElmSharp_Point_">Deprecated since API10. Might be removed in API12.</div>
   <div class="markdown level1 summary"><p>Changes the screen coordinates to geographical coordinates.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Geocoordinates ScreenToGeolocation(Point screenCoordinates)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
+public Geocoordinates ScreenToGeolocation(Point screenCoordinates)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -901,6 +1368,37 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when application does not have some privilege to access this method.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown when the value is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when a native operation failed to allocate memory and connect to the service.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -914,12 +1412,14 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapView.cs/#L146">View Source</a>
   </span>
   <h4 id="Tizen_Maps_MapView_Clicked" data-uid="Tizen.Maps.MapView.Clicked">Clicked</h4>
+  <div class="markdown obsolete" data-id="Tizen_Maps_MapView_Clicked">Deprecated since API10. Might be removed in API12.</div>
   <div class="markdown level1 summary"><p>Adds or removes event handlers to deliver a clicked gesture event.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler&lt;MapGestureEventArgs&gt; Clicked</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
+public event EventHandler&lt;MapGestureEventArgs&gt; Clicked</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -931,8 +1431,24 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Maps.MapGestureEventArgs.html">MapGestureEventArgs</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Maps.MapGestureEventArgs.html">MapGestureEventArgs</a>&gt;</td>
         <td><p>Event handlers to get a clicked gesture event.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the required feature is not supported.</p>
 </td>
       </tr>
     </tbody>
@@ -946,12 +1462,14 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapView.cs/#L174">View Source</a>
   </span>
   <h4 id="Tizen_Maps_MapView_DoubleClicked" data-uid="Tizen.Maps.MapView.DoubleClicked">DoubleClicked</h4>
+  <div class="markdown obsolete" data-id="Tizen_Maps_MapView_DoubleClicked">Deprecated since API10. Might be removed in API12.</div>
   <div class="markdown level1 summary"><p>Adds or removes event handlers to deliver a double-clicked gesture event.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler&lt;MapGestureEventArgs&gt; DoubleClicked</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
+public event EventHandler&lt;MapGestureEventArgs&gt; DoubleClicked</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -963,8 +1481,24 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Maps.MapGestureEventArgs.html">MapGestureEventArgs</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Maps.MapGestureEventArgs.html">MapGestureEventArgs</a>&gt;</td>
         <td><p>Event handlers to get a double-clicked gesture event.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the required feature is not supported.</p>
 </td>
       </tr>
     </tbody>
@@ -978,12 +1512,14 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapView.cs/#L259">View Source</a>
   </span>
   <h4 id="Tizen_Maps_MapView_LongPressed" data-uid="Tizen.Maps.MapView.LongPressed">LongPressed</h4>
+  <div class="markdown obsolete" data-id="Tizen_Maps_MapView_LongPressed">Deprecated since API10. Might be removed in API12.</div>
   <div class="markdown level1 summary"><p>Adds or removes event handlers to deliver a long-pressed gesture event.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler&lt;MapGestureEventArgs&gt; LongPressed</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
+public event EventHandler&lt;MapGestureEventArgs&gt; LongPressed</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -995,8 +1531,24 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Maps.MapGestureEventArgs.html">MapGestureEventArgs</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Maps.MapGestureEventArgs.html">MapGestureEventArgs</a>&gt;</td>
         <td><p>Event handlers to get a long-pressed gesture event.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the required feature is not supported.</p>
 </td>
       </tr>
     </tbody>
@@ -1010,12 +1562,14 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapView.cs/#L90">View Source</a>
   </span>
   <h4 id="Tizen_Maps_MapView_Scrolled" data-uid="Tizen.Maps.MapView.Scrolled">Scrolled</h4>
+  <div class="markdown obsolete" data-id="Tizen_Maps_MapView_Scrolled">Deprecated since API10. Might be removed in API12.</div>
   <div class="markdown level1 summary"><p>Adds or removes event handlers to deliver a scrolled gesture event.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler&lt;MapGestureEventArgs&gt; Scrolled</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
+public event EventHandler&lt;MapGestureEventArgs&gt; Scrolled</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1027,8 +1581,24 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Maps.MapGestureEventArgs.html">MapGestureEventArgs</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Maps.MapGestureEventArgs.html">MapGestureEventArgs</a>&gt;</td>
         <td><p>Event handlers to get a scrolled gesture event.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the required feature is not supported.</p>
 </td>
       </tr>
     </tbody>
@@ -1042,12 +1612,14 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapView.cs/#L202">View Source</a>
   </span>
   <h4 id="Tizen_Maps_MapView_TwoFingerClicked" data-uid="Tizen.Maps.MapView.TwoFingerClicked">TwoFingerClicked</h4>
+  <div class="markdown obsolete" data-id="Tizen_Maps_MapView_TwoFingerClicked">Deprecated since API10. Might be removed in API12.</div>
   <div class="markdown level1 summary"><p>Adds or removes event handlers to deliver a clicked gesture event with two-fingers.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler&lt;MapGestureEventArgs&gt; TwoFingerClicked</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
+public event EventHandler&lt;MapGestureEventArgs&gt; TwoFingerClicked</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1059,8 +1631,24 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Maps.MapGestureEventArgs.html">MapGestureEventArgs</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Maps.MapGestureEventArgs.html">MapGestureEventArgs</a>&gt;</td>
         <td><p>Event handlers to get a clicked gesture event.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the required feature is not supported.</p>
 </td>
       </tr>
     </tbody>
@@ -1074,12 +1662,14 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapView.cs/#L230">View Source</a>
   </span>
   <h4 id="Tizen_Maps_MapView_TwoFingerRotated" data-uid="Tizen.Maps.MapView.TwoFingerRotated">TwoFingerRotated</h4>
+  <div class="markdown obsolete" data-id="Tizen_Maps_MapView_TwoFingerRotated">Deprecated since API10. Might be removed in API12.</div>
   <div class="markdown level1 summary"><p>Adds or removes event handlers to deliver a rotated gesture event.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler&lt;MapGestureEventArgs&gt; TwoFingerRotated</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
+public event EventHandler&lt;MapGestureEventArgs&gt; TwoFingerRotated</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1091,8 +1681,24 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Maps.MapGestureEventArgs.html">MapGestureEventArgs</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Maps.MapGestureEventArgs.html">MapGestureEventArgs</a>&gt;</td>
         <td><p>Event handlers to get a rotated gesture event.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the required feature is not supported.</p>
 </td>
       </tr>
     </tbody>
@@ -1106,12 +1712,14 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapView.cs/#L118">View Source</a>
   </span>
   <h4 id="Tizen_Maps_MapView_TwoFingerZoomed" data-uid="Tizen.Maps.MapView.TwoFingerZoomed">TwoFingerZoomed</h4>
+  <div class="markdown obsolete" data-id="Tizen_Maps_MapView_TwoFingerZoomed">Deprecated since API10. Might be removed in API12.</div>
   <div class="markdown level1 summary"><p>Adds or removes event handlers to deliver a zoomed gesture event.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler&lt;MapGestureEventArgs&gt; TwoFingerZoomed</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
+public event EventHandler&lt;MapGestureEventArgs&gt; TwoFingerZoomed</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1123,8 +1731,24 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Maps.MapGestureEventArgs.html">MapGestureEventArgs</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Maps.MapGestureEventArgs.html">MapGestureEventArgs</a>&gt;</td>
         <td><p>Event handlers to get a zoomed gesture event.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the required feature is not supported.</p>
 </td>
       </tr>
     </tbody>
@@ -1138,12 +1762,14 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapView.cs/#L287">View Source</a>
   </span>
   <h4 id="Tizen_Maps_MapView_ViewReady" data-uid="Tizen.Maps.MapView.ViewReady">ViewReady</h4>
+  <div class="markdown obsolete" data-id="Tizen_Maps_MapView_ViewReady">Deprecated since API10. Might be removed in API12.</div>
   <div class="markdown level1 summary"><p>Adds or removes event handlers to deliver an event representing a view ready to be used.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler ViewReady</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
+public event EventHandler ViewReady</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1155,8 +1781,24 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></td>
         <td><p>Event handlers to get a view ready event.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the required feature is not supported.</p>
 </td>
       </tr>
     </tbody>
@@ -1171,7 +1813,7 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
       <a class="xref" href="ElmSharp.Accessible.IAccessibleObject.html">IAccessibleObject</a>
   </div>
   <div>
-      <span class="xref">IDisposable</span>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
@@ -1185,27 +1827,6 @@ For example, &quot;ko-KR&quot; for Korean, &quot;en-US&quot; for American Englis
   </div>
   <div>
       <a class="xref" href="ElmSharp.Wearable.RotaryEventExtensions.html#ElmSharp_Wearable_RotaryEventExtensions_Deactivate_ElmSharp_EvasObject_">RotaryEventExtensions.Deactivate(EvasObject)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
   </div>
 </article>
           </div>
