@@ -78,7 +78,7 @@ jobs:
     - name: Deploy NuGet packages to Github Packages Registry
       if: github.event.inputs.deploy_to_gpr == 'true'
       run: |
-        gpr push --api-key ${{ secrets.TIZENAPI_GITHUB_TOKEN }} \
+        gpr push --api-key ${{ secrets.GITHUB_TOKEN }} \
                  --repository ${{ github.repository }} \
                  --retries 3 Artifacts/*.nupkg
 
