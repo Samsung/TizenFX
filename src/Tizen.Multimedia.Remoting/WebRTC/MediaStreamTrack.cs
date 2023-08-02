@@ -64,6 +64,8 @@ namespace Tizen.Multimedia.Remoting
         /// If remote track, <see cref="Display"/> must be set in <see cref="WebRTC.TrackAdded"/> event.<br/>
         /// The display is created with <see cref="MediaView"/>.
         /// </remarks>
+        /// <feature>http://tizen.org/feature/display</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed of.</exception>
         /// <exception cref="ArgumentException">The value has already been assigned to another WebRTC.</exception>
         /// <exception cref="InvalidOperationException">
@@ -74,9 +76,22 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 9 </since_tizen>
         public Display Display
         {
-            get => _display;
+            get
+            {
+                if (!Features.IsSupported(WebRTCFeatures.Display))
+                {
+                    throw new NotSupportedException("Display feature is not supported.");
+                }
+
+                return _display;
+            }
             set
             {
+                if (!Features.IsSupported(WebRTCFeatures.Display))
+                {
+                    throw new NotSupportedException("Display feature is not supported.");
+                }
+
                 if (Type != MediaType.Video)
                 {
                     throw new InvalidOperationException("This property is only for video.");
@@ -122,6 +137,8 @@ namespace Tizen.Multimedia.Remoting
         /// <remarks>
         /// This property is meaningful only in overlay or EVAS surface display type.
         /// </remarks>
+        /// <feature>http://tizen.org/feature/display</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <value>A <see cref="WebRTCDisplayMode"/> that specifies the display mode.</value>
         /// <exception cref="ArgumentException">Display mode type is incorrect.</exception>
         /// <exception cref="InvalidOperationException"><see cref="Display"/> is not set.</exception>
@@ -130,6 +147,11 @@ namespace Tizen.Multimedia.Remoting
         {
             get
             {
+                if (!Features.IsSupported(WebRTCFeatures.Display))
+                {
+                    throw new NotSupportedException("Display feature is not supported.");
+                }
+
                 if (Type != MediaType.Video)
                 {
                     throw new InvalidOperationException("This property is only for video.");
@@ -142,6 +164,11 @@ namespace Tizen.Multimedia.Remoting
             }
             set
             {
+                if (!Features.IsSupported(WebRTCFeatures.Display))
+                {
+                    throw new NotSupportedException("Display feature is not supported.");
+                }
+
                 if (Type != MediaType.Video)
                 {
                     throw new InvalidOperationException("This property is only for video.");
@@ -161,12 +188,19 @@ namespace Tizen.Multimedia.Remoting
         /// <remarks>
         /// This property is meaningful only in overlay or EVAS surface display type.
         /// </remarks>
+        /// <feature>http://tizen.org/feature/display</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException"><see cref="Display"/> is not set.</exception>
         /// <since_tizen> 9 </since_tizen>
         public bool DisplayVisible
         {
             get
             {
+                if (!Features.IsSupported(WebRTCFeatures.Display))
+                {
+                    throw new NotSupportedException("Display feature is not supported.");
+                }
+
                 if (Type != MediaType.Video)
                 {
                     throw new InvalidOperationException("This property is only for video.");
@@ -179,6 +213,11 @@ namespace Tizen.Multimedia.Remoting
             }
             set
             {
+                if (!Features.IsSupported(WebRTCFeatures.Display))
+                {
+                    throw new NotSupportedException("Display feature is not supported.");
+                }
+
                 if (Type != MediaType.Video)
                 {
                     throw new InvalidOperationException("This property is only for video.");
