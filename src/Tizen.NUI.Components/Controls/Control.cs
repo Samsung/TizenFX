@@ -153,10 +153,6 @@ namespace Tizen.NUI.Components
                     {
                         Log.Error("NUI", $"[ERROR] Fail to initialize Feedback: {e}");
                     }
-                    catch (NullReferenceException e)
-                    {
-                        Log.Error("NUI", $"[ERROR] Null reference error in Feedback: {e}");
-                    }
                 }
                 else
                 {

@@ -58,13 +58,16 @@ namespace Tizen.NUI.BaseComponents
                     if (heightMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly)
                     {
                         // GetWidthForHeight is not implemented.
-                        totalWidth = Math.Min(Math.Max(naturalSize.Width, minSize.Width), (maxSize.Width < 0 ? Int32.MaxValue : maxSize.Width));
+                        float width = naturalSize != null ? naturalSize.Width : 0;
+                        totalWidth = Math.Min(Math.Max(width, minSize.Width), (maxSize.Width < 0 ? Int32.MaxValue : maxSize.Width));
                         widthMeasureSpec = new MeasureSpecification(new LayoutLength(totalWidth), MeasureSpecification.ModeType.Exactly);
                     }
                     else
                     {
-                        totalWidth = Math.Min(Math.Max(naturalSize.Width, minSize.Width), (maxSize.Width < 0 ? Int32.MaxValue : maxSize.Width));
-                        totalHeight = Math.Min(Math.Max(naturalSize.Height, minSize.Height), (maxSize.Height < 0 ? Int32.MaxValue : maxSize.Height));
+                        float width = naturalSize != null ? naturalSize.Width : 0;
+                        float height = naturalSize != null ? naturalSize.Height : 0;
+                        totalWidth = Math.Min(Math.Max(width, minSize.Width), (maxSize.Width < 0 ? Int32.MaxValue : maxSize.Width));
+                        totalHeight = Math.Min(Math.Max(height, minSize.Height), (maxSize.Height < 0 ? Int32.MaxValue : maxSize.Height));
 
                         heightMeasureSpec = new MeasureSpecification(new LayoutLength(totalHeight), MeasureSpecification.ModeType.Exactly);
                         widthMeasureSpec = new MeasureSpecification(new LayoutLength(totalWidth), MeasureSpecification.ModeType.Exactly);

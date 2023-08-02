@@ -59,7 +59,8 @@ namespace Tizen.NUI
             {
                 if (description == field.Name)
                 {
-                    return (T)field.GetValue(null);
+                    var fvalue = field.GetValue(null);
+                    return fvalue != null ? (T)fvalue : default(T);
                 }
 
                 var attributes = (DescriptionAttribute[])field.GetCustomAttributes(typeof(DescriptionAttribute), true);
@@ -67,12 +68,14 @@ namespace Tizen.NUI
                 {
                     if (description == attributes.First().Description)
                     {
-                        return (T)field.GetValue(null);
+                        var fvalue = field.GetValue(null);
+                        return fvalue != null ? (T)fvalue : default(T);
                     }
                 }
             }
 
-            return (T)type.GetFields(BindingFlags.Public | BindingFlags.Static).FirstOrDefault().GetValue(null);
+            var value = type.GetFields(BindingFlags.Public | BindingFlags.Static).FirstOrDefault().GetValue(null);
+            return value != null ? (T)value : default(T);
             //throw new ArgumentException($"{description} can't be found.", "Description");
         }
 
