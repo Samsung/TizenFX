@@ -76,7 +76,7 @@ namespace Tizen.Multimedia.Remoting
             NativeDataChannel.Create(webRtc.Handle, label, bundle_, out _handle).
                 ThrowIfFailed("Failed to create webrtc data channel");
 
-            Debug.Assert(_handle != null);
+            Debug.Assert(_handle != IntPtr.Zero);
 
             Label = label;
         }
@@ -227,7 +227,7 @@ namespace Tizen.Multimedia.Remoting
                 return;
             }
 
-            if (_handle != null)
+            if (_handle != IntPtr.Zero)
             {
                 NativeDataChannel.Destroy(_handle);
                 _disposed = true;

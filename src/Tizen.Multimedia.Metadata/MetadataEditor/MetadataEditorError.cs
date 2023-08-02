@@ -67,6 +67,10 @@ namespace Tizen.Multimedia
                 case MetadataEditorError.OperationFailed:
                 case MetadataEditorError.UpdateNotPossible:
                     throw new InvalidOperationException(errorMessages);
+
+                default:
+                    Log.Error(typeof(MetadataEditor).FullName, $"Unknown error : {errorCode.ToString()}");
+                    break;
             }
         }
     }

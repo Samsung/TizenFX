@@ -166,6 +166,9 @@ namespace Tizen.Multimedia
 
                 case StreamRecorderVideoCodec.Mpeg4:
                     return RecorderVideoCodec.Mpeg4;
+
+                default:
+                    break;
             }
 
             Debug.Fail("Unknown video codec value.");
@@ -181,6 +184,9 @@ namespace Tizen.Multimedia
 
                 case RecorderVideoCodec.Mpeg4:
                     return StreamRecorderVideoCodec.Mpeg4;
+
+                default:
+                    break;
             }
 
             throw new NotSupportedException($"{value.ToString()} is not supported.");
@@ -199,6 +205,9 @@ namespace Tizen.Multimedia
 
                 case StreamRecorderAudioCodec.Pcm:
                     return RecorderAudioCodec.Pcm;
+
+                default:
+                    break;
             }
 
             Debug.Fail("Unknown audio codec value.");
@@ -218,6 +227,9 @@ namespace Tizen.Multimedia
 
                 case RecorderAudioCodec.Pcm:
                     return StreamRecorderAudioCodec.Pcm;
+
+                default:
+                    break;
             }
 
             throw new NotSupportedException($"{value.ToString()} is not supported.");
@@ -242,6 +254,9 @@ namespace Tizen.Multimedia
 
                 case StreamRecorderFileFormat.Wav:
                     return RecorderFileFormat.Wav;
+
+                default:
+                    break;
             }
 
             Debug.Fail("Unknown file format value.");
@@ -267,6 +282,9 @@ namespace Tizen.Multimedia
 
                 case RecorderFileFormat.Wav:
                     return StreamRecorderFileFormat.Wav;
+
+                default:
+                    break;
             }
 
             throw new NotSupportedException($"{value.ToString()} is not supported.");

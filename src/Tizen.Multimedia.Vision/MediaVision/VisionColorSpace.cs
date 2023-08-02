@@ -99,6 +99,10 @@ namespace Tizen.Multimedia.Vision
                 case VisionColorSpace.Rgb888: return ColorSpace.Rgb888;
 
                 case VisionColorSpace.Rgba: return ColorSpace.Rgba8888;
+
+                default:
+                    Log.Error(MediaVisionLog.Tag, "Not supported color format");
+                    break;
             }
 
             throw new NotSupportedException("Implementation does not support the specified value." + value.ToString());
@@ -134,6 +138,10 @@ namespace Tizen.Multimedia.Vision
                 case ColorSpace.Rgb888: return VisionColorSpace.Rgb888;
 
                 case ColorSpace.Rgba8888: return VisionColorSpace.Rgba;
+
+                default:
+                    Log.Error(MediaVisionLog.Tag, "Not supported color format");
+                    break;
             }
 
             throw new NotSupportedException("Implementation does not support the specified value." + colorSpace.ToString());

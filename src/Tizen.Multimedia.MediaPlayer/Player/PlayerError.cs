@@ -54,36 +54,36 @@ namespace Tizen.Multimedia
 
     internal static class PlayerErrorCodeExtensions
     {
-        internal static void ThrowIfFailed(this PlayerErrorCode err, Player player, string message)
+        internal static void ThrowIfFailed(this PlayerErrorCode errorCode, Player player, string message)
         {
-            if (err == PlayerErrorCode.None)
+            if (errorCode == PlayerErrorCode.None)
             {
                 return;
             }
 
-            var ex = err.GetException(message);
+            var ex = errorCode.GetException(message);
 
             if (ex == null)
             {
                 // Notify only when it can't be handled.
-                player?.NotifyError((int)err, message);
+                player?.NotifyError((int)errorCode, message);
 
-                throw new InvalidOperationException($"{message} : Unknown error({err.ToString()}).");
+                throw new InvalidOperationException($"{message} : Unknown error({errorCode.ToString()}).");
             }
 
             throw ex;
         }
 
-        internal static Exception GetException(this PlayerErrorCode err, string message)
+        internal static Exception GetException(this PlayerErrorCode errorCode, string message)
         {
-            if (err == PlayerErrorCode.None)
+            if (errorCode == PlayerErrorCode.None)
             {
                 return null;
             }
 
-            string msg = $"{ (message ?? "Operation failed") } : { err.ToString() }.";
+            string msg = $"{ (message ?? "Operation failed") } : { errorCode.ToString() }.";
 
-            switch (err)
+            switch (errorCode)
             {
                 case PlayerErrorCode.InvalidArgument:
                 case PlayerErrorCode.InvalidUri:
@@ -133,6 +133,10 @@ namespace Tizen.Multimedia
 
                 case PlayerErrorCode.NotAvailable:
                     throw new NotAvailableException(msg);
+
+                default:
+                    Log.Info(PlayerLog.Tag, "Unknow error: " + errorCode);
+                    break;
             }
 
             return null;
