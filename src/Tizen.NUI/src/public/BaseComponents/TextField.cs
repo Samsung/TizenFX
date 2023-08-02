@@ -2863,12 +2863,14 @@ namespace Tizen.NUI.BaseComponents
 
                 if (widthMeasureSpec.Mode != MeasureSpecification.ModeType.Exactly)
                 {
-                    totalWidth = Math.Min(Math.Max(naturalSize.Width, minSize.Width), maxSize.Width);
+                    float width = naturalSize != null ? naturalSize.Width : 0;
+                    totalWidth = Math.Min(Math.Max(width, minSize.Width), maxSize.Width);
                 }
 
                 if (heightMeasureSpec.Mode != MeasureSpecification.ModeType.Exactly)
                 {
-                    totalHeight = Math.Min(Math.Max(naturalSize.Height, minSize.Height), maxSize.Height);
+                    float height = naturalSize != null ? naturalSize.Height : 0;
+                    totalHeight = Math.Min(Math.Max(height, minSize.Height), maxSize.Height);
                 }
 
                 widthMeasureSpec = new MeasureSpecification(new LayoutLength(totalWidth), MeasureSpecification.ModeType.Exactly);
