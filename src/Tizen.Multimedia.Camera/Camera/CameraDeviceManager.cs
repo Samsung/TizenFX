@@ -114,6 +114,36 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
+        /// Gets the product id for given <param name="device"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">Invalid enumeration.</exception>
+        /// <exception cref="ObjectDisposedException">The CameraDeviceManager already has been disposed.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        public ushort GetProductId(CameraDevice device)
+        {
+            ValidationUtil.ValidateEnum(typeof(CameraDevice), device, nameof(device));
+
+            Native.GetProductId(Handle, out ushort productId).ThrowIfFailed("failed to get product id");
+
+            return productId;
+        }
+
+        /// <summary>
+        /// Gets the vendor id for given <param name="device"/>.
+        /// </summary>
+        /// <exception cref="ArgumentException">Invalid enumeration.</exception>
+        /// <exception cref="ObjectDisposedException">The CameraDeviceManager already has been disposed.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        public ushort GetVendorId(CameraDevice device)
+        {
+            ValidationUtil.ValidateEnum(typeof(CameraDevice), device, nameof(device));
+
+            Native.GetVendorId(Handle, out ushort vendorId).ThrowIfFailed("failed to get vendor id");
+
+            return vendorId;
+        }
+
+        /// <summary>
         /// Gets the current camera device information.
         /// Retrieves all the supported camera devices and returns its information.
         /// </summary>
