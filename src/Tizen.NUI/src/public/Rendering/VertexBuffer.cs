@@ -50,6 +50,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="vertices">The vertex data that will be copied to the buffer.</param>
         /// <exception cref="ArgumentNullException"> Thrown when vertices is null or length of the vertices is 0. </exception>
+        /// <exception cref="OverflowException"> Thrown when length of the vertices is overflow. </exception>
         /// <since_tizen> 8 </since_tizen>
 
         public void SetData<VertexType>(VertexType[] vertices) where VertexType : struct
@@ -60,7 +61,7 @@ namespace Tizen.NUI
             }
 
             int structSize = Marshal.SizeOf<VertexType>();
-            global::System.IntPtr buffer = Marshal.AllocHGlobal(structSize * vertices.Length);
+            global::System.IntPtr buffer = Marshal.AllocHGlobal(checked(structSize * vertices.Length));
 
             for (int i = 0; i < vertices.Length; i++)
             {

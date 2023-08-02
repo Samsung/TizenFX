@@ -1121,7 +1121,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public void ScrollToIndex(int index)
         {
-            if (ContentContainer.ChildCount - 1 < index || index < 0)
+            if ((int)ContentContainer.ChildCount - 1 < index || index < 0)
             {
                 return;
             }
