@@ -114,7 +114,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the product id for given <param name="device"/>.
+        /// Gets the product ID for given <param name="device"/>.
         /// </summary>
         /// <exception cref="ArgumentException">Invalid enumeration.</exception>
         /// <exception cref="ObjectDisposedException">The CameraDeviceManager already has been disposed.</exception>
@@ -123,13 +123,13 @@ namespace Tizen.Multimedia
         {
             ValidationUtil.ValidateEnum(typeof(CameraDevice), device, nameof(device));
 
-            Native.GetProductId(Handle, out ushort productId).ThrowIfFailed("failed to get product id");
+            Native.GetProductId(Handle, out ushort productId).ThrowIfFailed("failed to get product ID");
 
             return productId;
         }
 
         /// <summary>
-        /// Gets the vendor id for given <param name="device"/>.
+        /// Gets the vendor ID for given <param name="device"/>.
         /// </summary>
         /// <exception cref="ArgumentException">Invalid enumeration.</exception>
         /// <exception cref="ObjectDisposedException">The CameraDeviceManager already has been disposed.</exception>
@@ -138,7 +138,7 @@ namespace Tizen.Multimedia
         {
             ValidationUtil.ValidateEnum(typeof(CameraDevice), device, nameof(device));
 
-            Native.GetVendorId(Handle, out ushort vendorId).ThrowIfFailed("failed to get vendor id");
+            Native.GetVendorId(Handle, out ushort vendorId).ThrowIfFailed("failed to get vendor ID");
 
             return vendorId;
         }
