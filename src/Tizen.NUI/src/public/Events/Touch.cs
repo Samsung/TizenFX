@@ -239,12 +239,7 @@ namespace Tizen.NUI
 
         internal static Touch GetTouchFromPtr(global::System.IntPtr cPtr)
         {
-            Touch ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Touch;
-            if (ret == null)
-            {
-                ret = new Touch(cPtr, false);
-            }
-
+            Touch ret = new Touch(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
