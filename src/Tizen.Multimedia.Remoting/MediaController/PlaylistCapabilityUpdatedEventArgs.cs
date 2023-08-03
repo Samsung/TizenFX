@@ -38,7 +38,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Gets the value whether the repeat mode is supported or not.
+        /// Gets the value whether the playlist is supported or not.
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
         public MediaControlCapabilitySupport Support { get; }

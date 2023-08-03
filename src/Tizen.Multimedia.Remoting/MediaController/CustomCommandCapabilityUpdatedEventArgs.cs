@@ -19,18 +19,19 @@ using System;
 namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
-    /// Provides data for the <see cref="MediaController.ClientCustomCapabilityUpdated"/> event.
+    /// Provides data for the <see cref="MediaController.CustomCommandCapabilityUpdated"/> event.
     /// </summary>
     /// <since_tizen> 11 </since_tizen>
-    public class ClientCustomCapabilityUpdatedEventArgs : EventArgs
+    public class CustomCommandCapabilityUpdatedEventArgs : EventArgs
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ClientCustomCapabilityUpdatedEventArgs"/> class.
+        /// Initializes a new instance of the <see cref="CustomCommandCapabilityUpdatedEventArgs"/> class.
         /// </summary>
-        /// <param name="support">The client custom capability.</param>
+        /// <param name="support">The custom command capability.</param>
         /// <exception cref="ArgumentException"><paramref name="support"/> is not valid.</exception>
+        /// <seealso cref="CustomCommand"/>
         /// <since_tizen> 11 </since_tizen>
-        internal ClientCustomCapabilityUpdatedEventArgs(MediaControlCapabilitySupport support)
+        internal CustomCommandCapabilityUpdatedEventArgs(MediaControlCapabilitySupport support)
         {
             ValidationUtil.ValidateEnum(typeof(MediaControlCapabilitySupport), support, nameof(support));
 
@@ -38,7 +39,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Gets the value whether the client custom is supported or not.
+        /// Gets the value whether the custom comamnd is supported or not.
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
         public MediaControlCapabilitySupport Support { get; }

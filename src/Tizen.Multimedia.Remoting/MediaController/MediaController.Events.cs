@@ -281,14 +281,14 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Occurs when the client custom capability is updated.
+        /// Occurs when the custom command capability is updated.
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
-        public event EventHandler<ClientCustomCapabilityUpdatedEventArgs> ClientCustomCapabilityUpdated;
+        public event EventHandler<CustomCommandCapabilityUpdatedEventArgs> CustomCommandCapabilityUpdated;
 
         internal void RaiseClientCustomCapabilityUpdatedEvent(MediaControlCapabilitySupport support)
         {
-            ClientCustomCapabilityUpdated?.Invoke(this, new ClientCustomCapabilityUpdatedEventArgs(support));
+            CustomCommandCapabilityUpdated?.Invoke(this, new CustomCommandCapabilityUpdatedEventArgs(support));
         }
 
         /// <summary>
