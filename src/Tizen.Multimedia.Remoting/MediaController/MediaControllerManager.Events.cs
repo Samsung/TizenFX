@@ -305,8 +305,8 @@ namespace Tizen.Multimedia.Remoting
                     case MediaControlNativeCapabilityCategory.Playlist:
                         GetController(serverName)?.RaisePlaylistCapabilityUpdatedEvent(support);
                         break;
-                    case MediaControlNativeCapabilityCategory.ClientCustom:
-                        GetController(serverName)?.RaiseClientCustomCapabilityUpdatedEvent(support);
+                    case MediaControlNativeCapabilityCategory.CustomCommand:
+                        GetController(serverName)?.RaiseCustomCommandCapabilityUpdatedEvent(support);
                         break;
                     case MediaControlNativeCapabilityCategory.Search:
                         GetController(serverName)?.RaiseSearchCapabilityUpdatedEvent(support);

@@ -722,7 +722,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Gets the value whether the client custom is supported or not.
+        /// Gets the value whether the custom command is supported or not.
         /// </summary>
         /// <returns>A <see cref="MediaControlCapabilitySupport"/>.</returns>
         /// <exception cref="InvalidOperationException">
@@ -732,12 +732,12 @@ namespace Tizen.Multimedia.Remoting
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed.</exception>
         /// <since_tizen> 11 </since_tizen>
-        public MediaControlCapabilitySupport GetClientCustomCapability()
+        public MediaControlCapabilitySupport GetCustomCommandCapability()
         {
             ThrowIfStopped();
 
-            Native.GetSimpleCapability(Manager.Handle, ServerAppId, MediaControlNativeCapabilityCategory.ClientCustom, out MediaControlCapabilitySupport support).
-                ThrowIfError("Failed to get client custom capability");
+            Native.GetSimpleCapability(Manager.Handle, ServerAppId, MediaControlNativeCapabilityCategory.CustomCommand, out MediaControlCapabilitySupport support).
+                ThrowIfError("Failed to get custom command capability");
 
             return support;
         }
