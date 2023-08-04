@@ -59,6 +59,8 @@ namespace Tizen.Multimedia.Remoting
                     throw new ArgumentException(errMessage);
                 case WebRTCErrorCode.PermissionDenied:
                     throw new UnauthorizedAccessException(errMessage);
+                default:
+                    break;
             }
         }
     }
