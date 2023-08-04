@@ -79,8 +79,13 @@ namespace Tizen.Uix.VoiceControlManager
 
                 case ErrorCode.ServiceReset:
                     return new InvalidOperationException("Service reset");
+
+                case ErrorCode.NotSupportedFeature:
+                    return new InvalidOperationException("Feature NotSupported");
+
+                default:
+                    return new Exception($"Unknown error : {err}");
             }
-            return new InvalidOperationException("Unknown error : {err.ToString()}");
         }
     }
 }
