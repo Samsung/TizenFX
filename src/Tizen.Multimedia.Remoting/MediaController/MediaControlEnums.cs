@@ -397,6 +397,7 @@ namespace Tizen.Multimedia.Remoting
                 case MediaControllerNativePlaybackState.Connecting: return MediaControlPlaybackState.Connecting;
                 case MediaControllerNativePlaybackState.Buffering: return MediaControlPlaybackState.Buffering;
                 case MediaControllerNativePlaybackState.Error: return MediaControlPlaybackState.Error;
+                default: break;
             }
 
             Debug.Fail($"Not supported code for playback state{nativeState}.");
@@ -417,6 +418,7 @@ namespace Tizen.Multimedia.Remoting
                 case MediaControlPlaybackState.Connecting: return MediaControllerNativePlaybackState.Connecting;
                 case MediaControlPlaybackState.Buffering: return MediaControllerNativePlaybackState.Buffering;
                 case MediaControlPlaybackState.Error: return MediaControllerNativePlaybackState.Error;
+                default: break;
             }
             return MediaControllerNativePlaybackState.None;
         }
@@ -433,6 +435,7 @@ namespace Tizen.Multimedia.Remoting
                 case MediaControllerNativePlaybackAction.FastForward: return MediaControlPlaybackCommand.FastForward;
                 case MediaControllerNativePlaybackAction.Rewind: return MediaControlPlaybackCommand.Rewind;
                 case MediaControllerNativePlaybackAction.Toggle: return MediaControlPlaybackCommand.Toggle;
+                default: break;
             }
 
             Debug.Fail($"Not supported code for playback command{nativeAction}.");
@@ -451,6 +454,7 @@ namespace Tizen.Multimedia.Remoting
                 case MediaControlPlaybackCommand.FastForward: return MediaControllerNativePlaybackAction.FastForward;
                 case MediaControlPlaybackCommand.Rewind: return MediaControllerNativePlaybackAction.Rewind;
                 case MediaControlPlaybackCommand.Toggle: return MediaControllerNativePlaybackAction.Toggle;
+                default: break;
             }
             return MediaControllerNativePlaybackAction.Play;
         }
@@ -490,6 +494,8 @@ namespace Tizen.Multimedia.Remoting
                 case MediaControlDisplayMode.CroppedFull:
                     nativeMode = MediaControlNativeDisplayMode.CroppedFull;
                     break;
+                default:
+                    break;
             }
             return nativeMode;
         }
@@ -511,6 +517,8 @@ namespace Tizen.Multimedia.Remoting
                     break;
                 case MediaControlNativeDisplayMode.CroppedFull:
                     nativeMode = MediaControlDisplayMode.CroppedFull;
+                    break;
+                default:
                     break;
             }
             return nativeMode;
@@ -550,6 +558,8 @@ namespace Tizen.Multimedia.Remoting
                 case Rotation.Rotate270:
                     nativeMode = MediaControlNativeDisplayRotation.Rotate270;
                     break;
+                default:
+                    break;
             }
             return nativeMode;
         }
@@ -571,6 +581,8 @@ namespace Tizen.Multimedia.Remoting
                     break;
                 case MediaControlNativeDisplayRotation.Rotate270:
                     nativeMode = Rotation.Rotate270;
+                    break;
+                default:
                     break;
             }
             return nativeMode;
