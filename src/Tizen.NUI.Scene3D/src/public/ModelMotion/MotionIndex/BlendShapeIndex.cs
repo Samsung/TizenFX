@@ -26,9 +26,11 @@ namespace Tizen.NUI.Scene3D
     /// Specialized <see cref="MotionIndex"/> to control blend shape.
     /// We can control the blend shape by index (when we set BlendShapeId as IndexKey),
     /// or by name (when we set BlendShapeId as StringKey).
-    ///
+    /// </summary>
+    /// <remarks>
     /// <see cref="MotionValue"/> should be float type.
-    ///
+    /// </remarks>
+    /// <example>
     /// <code>
     /// BlendShapeIndex blendShapeIndex0 = new BlendShapeIndex(new PropertyKey("nodeName"), new PropertyKey(0u));
     /// BlendShapeIndex blendShapeIndex1 = new BlendShapeIndex(new PropertyKey("nodeName"), new PropertyKey("Target_1"));
@@ -38,7 +40,8 @@ namespace Tizen.NUI.Scene3D
     /// blendShapeIndex2.ModelNodeId = new PropertyKey("nodeName");
     /// blendShapeIndex2.BlendShapeId = new PropertyKey("Target_2");
     /// </code>
-    ///
+    /// </example>
+    /// <example>
     /// Specially, if ModelNodeId is invalid and BlendShapeId is StringKey,
     /// It will control all ModelNode that has the inputed blend shape name.
     ///
@@ -50,33 +53,57 @@ namespace Tizen.NUI.Scene3D
     /// BlendShapeIndex blendShapeIndex0 = new BlendShapeIndex(new PropertyKey("node0"), new PropertyKey("Smile"));
     /// BlendShapeIndex blendShapeIndex1 = new BlendShapeIndex(new PropertyKey("node1"), new PropertyKey("Smile"));
     /// </code>
-    /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// </example>
+    /// <since_tizen> 11 </since_tizen>
     public class BlendShapeIndex : MotionIndex
     {
         /// <summary>
         /// Create an initialized blend shape index.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 11 </since_tizen>
         public BlendShapeIndex() : this(Interop.MotionIndex.BlendShapeIndexNew(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Create an initialized blend shape index with invalid node id, and input blend shape id.
+        /// Create an initialized blend shape index with invalid node ID, and given blend shape ID.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="blendShapeId">Blend shape ID for this motion index</param>
+        /// <since_tizen> 11 </since_tizen>
         public BlendShapeIndex(PropertyKey blendShapeId) : this(Interop.MotionIndex.BlendShapeIndexNew(PropertyKey.getCPtr(blendShapeId)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Create an initialized blend shape index with input node id, and input blend shape id.
+        /// Create an initialized blend shape index with given node ID and blend shape ID.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="modelNodeId">Node ID for this motion index</param>
+        /// <param name="blendShapeId">Blend shape ID for this motion index</param>
+        /// <since_tizen> 11 </since_tizen>
         public BlendShapeIndex(PropertyKey modelNodeId, PropertyKey blendShapeId) : this(Interop.MotionIndex.BlendShapeIndexNew(PropertyKey.getCPtr(modelNodeId), PropertyKey.getCPtr(blendShapeId)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Create an initialized blend shape index with invalid node ID, and given blend shape string ID.
+        /// </summary>
+        /// <param name="blendShapeName">Blend shape string ID for this motion index</param>
+        /// <since_tizen> 11 </since_tizen>
+        public BlendShapeIndex(string blendShapeName) : this(Interop.MotionIndex.BlendShapeIndexNew(PropertyKey.getCPtr(new PropertyKey(blendShapeName))), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Create an initialized blend shape index with given node string ID and blend shape string ID.
+        /// </summary>
+        /// <param name="modelNodeName">Node string ID for this motion index</param>
+        /// <param name="blendShapeName">Blend shape string ID for this motion index</param>
+        /// <since_tizen> 11 </since_tizen>
+        public BlendShapeIndex(string modelNodeName, string blendShapeName) : this(Interop.MotionIndex.BlendShapeIndexNew(PropertyKey.getCPtr(new PropertyKey(modelNodeName)), PropertyKey.getCPtr(new PropertyKey(blendShapeName))), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -85,7 +112,7 @@ namespace Tizen.NUI.Scene3D
         /// Copy constructor.
         /// </summary>
         /// <param name="blendShapeIndex">Source object to copy.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 11 </since_tizen>
         public BlendShapeIndex(BlendShapeIndex blendShapeIndex) : this(Interop.MotionIndex.NewBlendShapeIndex(BlendShapeIndex.getCPtr(blendShapeIndex)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -110,7 +137,7 @@ namespace Tizen.NUI.Scene3D
         /// <summary>
         /// The key of blend shape.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 11 </since_tizen>
         public PropertyKey BlendShapeId
         {
             get
