@@ -24,11 +24,12 @@ namespace Tizen.NUI.Scene3D
 {
     /// <summary>
     /// Specialized <see cref="MotionIndex"/> to control transform.
-    /// It will be used when app developer don't care about Property index list,
+    /// It will be used when app developer doesn't care about Property index list,
     /// but want to change the transform properties anyway fast enough.
-    ///
-    /// Each TransformTypes has their own matched <see cref="MotionValue"/> type.
     /// </summary>
+    /// <remarks>
+    /// Each TransformTypes has their own matched <see cref="MotionValue"/> type.
+    /// </remarks>
     /// <example>
     /// <code>
     /// MotionTransformIndex position = new MotionTransformIndex(new PropertyKey("nodeName"), MotionTransformIndex.TransformTypes.Position);
@@ -39,91 +40,103 @@ namespace Tizen.NUI.Scene3D
     /// orientation.TransformType = MotionTransformIndex.TransformTypes.Orientation;
     /// </code>
     /// </example>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 11 </since_tizen>
     public class MotionTransformIndex : MotionIndex
     {
         /// <summary>
-        /// The list of component types what this MotionIndex can control.
+        /// The list of transform property types what this MotionTransformIndex can control.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names")]
+        /// <since_tizen> 11 </since_tizen>
         public enum TransformTypes
         {
             /// <summary>
             /// Invalid type.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 11 </since_tizen>
             Invalid = -1,
 
             /// <summary>
             /// The position of ModelNode. MotionValue should be Vector3.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 11 </since_tizen>
             Position = 0,
 
             /// <summary>
             /// The x position of ModelNode. MotionValue should be float.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 11 </since_tizen>
             PositionX,
 
             /// <summary>
             /// The y position of ModelNode. MotionValue should be float.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 11 </since_tizen>
             PositionY,
 
             /// <summary>
             /// The z position of ModelNode. MotionValue should be float.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 11 </since_tizen>
             PositionZ,
 
             /// <summary>
             /// The orientation of ModelNode. MotionValue should be Rotation.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 11 </since_tizen>
             Orientation,
 
             /// <summary>
             /// The scale of ModelNode. MotionValue should be Vector3.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 11 </since_tizen>
             Scale,
 
             /// <summary>
             /// The x scale of ModelNode. MotionValue should be float.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 11 </since_tizen>
             ScaleX,
 
             /// <summary>
             /// The y scale of ModelNode. MotionValue should be float.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 11 </since_tizen>
             ScaleY,
 
             /// <summary>
             /// The z scale of ModelNode. MotionValue should be float.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 11 </since_tizen>
             ScaleZ,
         }
 
         /// <summary>
-        /// Create an initialized blend shape index.
+        /// Create an initialized motion transform index.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 11 </since_tizen>
         public MotionTransformIndex() : this(Interop.MotionIndex.MotionTransformIndexNew(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Create an initialized blend shape index with input node id, and transform type.
+        /// Create an initialized motion transform index with given node ID and transform type.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="modelNodeId">Node ID for this motion index</param>
+        /// <param name="transformType">Transform property type for this motion index</param>
+        /// <since_tizen> 11 </since_tizen>
         public MotionTransformIndex(PropertyKey modelNodeId, TransformTypes transformType) : this(Interop.MotionIndex.MotionTransformIndexNew(PropertyKey.getCPtr(modelNodeId), (int)transformType), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Create an initialized motion transform index with given node string ID, and transform type.
+        /// </summary>
+        /// <param name="modelNodeName">Node string ID for this motion index</param>
+        /// <param name="transformType">Transform property type for this motion index</param>
+        /// <since_tizen> 11 </since_tizen>
+        public MotionTransformIndex(string modelNodeName, TransformTypes transformType) : this(Interop.MotionIndex.MotionTransformIndexNew(PropertyKey.getCPtr(new PropertyKey(modelNodeName)), (int)transformType), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -132,8 +145,8 @@ namespace Tizen.NUI.Scene3D
         /// Copy constructor.
         /// </summary>
         /// <param name="motionTransformIndex">Source object to copy.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public MotionTransformIndex(BlendShapeIndex motionTransformIndex) : this(Interop.MotionIndex.NewMotionTransformIndex(MotionTransformIndex.getCPtr(motionTransformIndex)), true)
+        /// <since_tizen> 11 </since_tizen>
+        public MotionTransformIndex(MotionTransformIndex motionTransformIndex) : this(Interop.MotionIndex.NewMotionTransformIndex(MotionTransformIndex.getCPtr(motionTransformIndex)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -155,9 +168,9 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
-        /// The component type what this MotionIndex want to control.
+        /// The transform property type what this MotionIndex want to control.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 11 </since_tizen>
         public TransformTypes TransformType
         {
             get
