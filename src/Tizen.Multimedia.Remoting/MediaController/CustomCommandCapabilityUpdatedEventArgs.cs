@@ -39,7 +39,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Gets the value whether the custom comamnd is supported or not.
+        /// Gets the value whether the custom command is supported or not.
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
         public MediaControlCapabilitySupport Support { get; }
