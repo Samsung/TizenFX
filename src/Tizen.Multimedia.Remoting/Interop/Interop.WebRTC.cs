@@ -199,6 +199,12 @@ internal static partial class Interop
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_sound_stream_info")]
         internal static extern WebRTCErrorCode SetAudioStreamPolicy(IntPtr handle, uint trackId, AudioStreamPolicyHandle streamInfo);
 
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_audio_mute")]
+        internal static extern WebRTCErrorCode SetAudioMute(IntPtr handle, uint trackId, bool mute);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_get_audio_mute")]
+        internal static extern WebRTCErrorCode GetAudioMute(IntPtr handle, uint trackId, out bool isMuted);
+
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_display")]
         internal static extern WebRTCErrorCode SetDisplay(IntPtr handle, uint trackId, WebRTCDisplayType type, IntPtr display);
 
