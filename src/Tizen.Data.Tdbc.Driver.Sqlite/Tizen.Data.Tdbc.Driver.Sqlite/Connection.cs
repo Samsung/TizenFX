@@ -94,7 +94,10 @@ namespace Tizen.Data.Tdbc.Driver.Sqlite
             {
                 IRecord record = (operationType != OperationType.Delete ? stmt.ExecuteQuery(sql).FirstOrDefault() : null);
                 RecordChangedEventArgs ev = new RecordChangedEventArgs(operationType, db_name, table_name, record);
-                _recordChanged?.Invoke(this, ev);
+                lock (_lock)
+                {
+                    _recordChanged?.Invoke(this, ev);
+                }
             }
         }
 
