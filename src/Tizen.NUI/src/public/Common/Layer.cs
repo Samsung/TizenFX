@@ -889,7 +889,7 @@ namespace Tizen.NUI
         private void OnVisibilityChanged(IntPtr data, bool visibility, VisibilityChangeType type)
         {
             VisibilityChangedEventArgs e = new VisibilityChangedEventArgs();
-            if (data != null)
+            if (data != IntPtr.Zero)
             {
                 e.Layer = Registry.GetManagedBaseHandleFromNativePtr(data) as Layer;
             }

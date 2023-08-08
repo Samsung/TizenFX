@@ -834,7 +834,7 @@ namespace Tizen.NUI
         {
             ActivatedEventArgs e = new ActivatedEventArgs();
 
-            if (data != null)
+            if (data != IntPtr.Zero)
             {
                 e.InputMethodContext = Registry.GetManagedBaseHandleFromNativePtr(data) as InputMethodContext;
             }
@@ -851,11 +851,11 @@ namespace Tizen.NUI
 
             EventReceivedEventArgs e = new EventReceivedEventArgs();
 
-            if (inputMethodContext != null)
+            if (inputMethodContext != IntPtr.Zero)
             {
                 e.InputMethodContext = Registry.GetManagedBaseHandleFromNativePtr(inputMethodContext) as InputMethodContext;
             }
-            if (eventData != null)
+            if (eventData != IntPtr.Zero)
             {
                 e.EventData = EventData.GetEventDataFromPtr(eventData);
             }

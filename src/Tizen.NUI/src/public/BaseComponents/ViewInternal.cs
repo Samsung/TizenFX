@@ -1200,13 +1200,13 @@ namespace Tizen.NUI.BaseComponents
                 // TODO : Re-open this API when we resolve Animation issue.
                 // Instead, let we call UpdateBackgroundExtraData() synchronously.
                 UpdateBackgroundExtraData();
-                /// if (!backgroundExtraDataUpdateProcessAttachedFlag)
-                /// {
-                ///     backgroundExtraDataUpdateProcessAttachedFlag = true;
-                ///     ProcessorController.Instance.ProcessorOnceEvent += UpdateBackgroundExtraData;
-                ///     // Call process hardly.
-                ///     ProcessorController.Instance.Awake();
-                /// }
+                // if (!backgroundExtraDataUpdateProcessAttachedFlag)
+                // {
+                //     backgroundExtraDataUpdateProcessAttachedFlag = true;
+                //     ProcessorController.Instance.ProcessorOnceEvent += UpdateBackgroundExtraData;
+                //     // Call process hardly.
+                //     ProcessorController.Instance.Awake();
+                // }
             }
         }
 
