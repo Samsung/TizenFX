@@ -29,17 +29,43 @@ namespace Tizen.NUI
 
         public virtual void Add(T handler)
         {
+            if (handlers == null)
+            {
+                handlers = new List<WeakHandler<T>>();
+            }
+
             handlers.Add(new WeakHandler<T>(handler));
+
+            OnCountIncreased();
         }
 
         public virtual void Remove(T handler)
         {
+            if (handlers == null)
+            {
+                return;
+            }
+
+            int count = handlers.Count;
+
             handlers.RemoveAll(item => !item.IsAlive || item.Equals(handler));
+
+            if (count > handlers.Count)
+            {
+                OnCountDicreased();
+            }
         }
 
         public void Invoke(object sender, EventArgs args)
         {
+            if (handlers == null)
+            {
+                return;
+            }
+
             var disposed = new HashSet<WeakHandler<T>>();
+
+            int count = handlers.Count;
 
             foreach (var item in handlers)
             {
@@ -52,6 +78,20 @@ namespace Tizen.NUI
             }
 
             handlers.RemoveAll(disposed.Contains);
+
+            if (count > handlers.Count)
+            {
+                OnCountDicreased();
+            }
+        }
+
+        protected virtual void OnCountIncreased()
+        {
+        }
+
+
+        protected virtual void OnCountDicreased()
+        {
         }
 
         internal class WeakHandler<U>
@@ -91,78 +131,6 @@ namespace Tizen.NUI
                     if (localRefCopied != null) Delegate.CreateDelegate(typeof(U), localRefCopied, methodInfo).DynamicInvoke(args);
                 }
             }
-        }
-    }
-
-    /// <summary>
-    /// Internal class that helps to make a proxy weak event connecting to a normal source event.
-    /// Note that the source event will have a strong reference of the WeakEventProxy instance instead of handler's.
-    /// Please replace it to WeakEventManager after version up.
-    /// </summary>
-    internal abstract class WeakEventProxy<EventArgsT> : WeakEvent<EventHandler<EventArgsT>>
-    {
-        protected abstract void ConnectToEvent(EventHandler<EventArgsT> handler);
-
-        protected abstract void DisconnectToEvent(EventHandler<EventArgsT> handler);
-
-        public override void Add(EventHandler<EventArgsT> handler)
-        {
-            if (Count == 0)
-            {
-                ConnectToEvent(OnEventInvoked);
-            }
-
-            base.Add(handler);
-        }
-
-        public override void Remove(EventHandler<EventArgsT> handler)
-        {
-            base.Remove(handler);
-
-            if (Count == 0)
-            {
-                DisconnectToEvent(OnEventInvoked);
-            }
-        }
-
-        private void OnEventInvoked(object sender, EventArgsT args)
-        {
-            Invoke(sender, args as EventArgs);
-        }
-    }
-
-    /// <summary>
-    /// The non-generic version of <see cref="WeakEventProxy"/>.
-    /// </summary>
-    internal abstract class WeakEventProxy : WeakEvent<EventHandler>
-    {
-        protected abstract void ConnectToEvent(EventHandler handler);
-
-        protected abstract void DisconnectToEvent(EventHandler handler);
-
-        public override void Add(EventHandler handler)
-        {
-            if (Count == 0)
-            {
-                ConnectToEvent(OnEventInvoked);
-            }
-
-            base.Add(handler);
-        }
-
-        public override void Remove(EventHandler handler)
-        {
-            base.Remove(handler);
-
-            if (Count == 0)
-            {
-                DisconnectToEvent(OnEventInvoked);
-            }
-        }
-
-        private void OnEventInvoked(object sender, EventArgs args)
-        {
-            Invoke(sender, args);
         }
     }
 }
