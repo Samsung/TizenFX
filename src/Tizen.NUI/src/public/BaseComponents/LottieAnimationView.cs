@@ -1397,12 +1397,9 @@ namespace Tizen.NUI.BaseComponents
 
         public bool Equals(LottieAnimationViewDynamicProperty other)
         {
-            if (other != null)
+            if (KeyPath == other.KeyPath && Property == other.Property && Callback == other.Callback)
             {
-                if (KeyPath == other.KeyPath && Property == other.Property && Callback == other.Callback)
-                {
-                    return true;
-                }
+                return true;
             }
             return false;
         }
