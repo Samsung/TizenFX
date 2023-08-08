@@ -1760,6 +1760,44 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool PointerConstraintsLockPointer()
+        {
+            bool ret = Interop.Window.PointerConstraintsLockPointer(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool PointerConstraintsUnlockPointer()
+        {
+            bool ret = Interop.Window.PointerConstraintsUnlockPointer(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void LockedPointerRegionSet(int x, int y, int w, int h)
+        {
+            Interop.Window.LockedPointerRegionSet(SwigCPtr, x, y, w, h);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void LockedPointerCursorPositionHintSet(int x, int y)
+        {
+            Interop.Window.LockedPointerCursorPositionHintSet(SwigCPtr, x, y);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool PointerWarp(int x, int y)
+        {
+            bool ret = Interop.Window.PointerWarp(SwigCPtr, x, y);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         /// <summary>
         /// Maximizes window's size.
         /// If this function is called with true, window will be resized with screen size.

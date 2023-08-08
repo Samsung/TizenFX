@@ -52,6 +52,7 @@ namespace Tizen.NUI
         private KeyboardRepeatSettingsChangedEventCallbackType keyboardRepeatSettingsChangedEventCallback;
         private AuxiliaryMessageEventCallbackType auxiliaryMessageEventCallback;
         private WindowMouseInOutEventCallbackType windowMouseInOutEventCallback;
+        private WindowMousePointerGrabEventCallbackType windowMousePointerGrabEventCallback;
         private MoveCompletedEventCallbackType moveCompletedEventCallback;
         private ResizeCompletedEventCallbackType resizeCompletedEventCallback;
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -78,6 +79,8 @@ namespace Tizen.NUI
         private delegate bool InterceptKeyEventDelegateType(IntPtr arg1);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WindowMouseInOutEventCallbackType(IntPtr window, IntPtr mouseEvent);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void WindowMousePointerGrabEventCallbackType(IntPtr window, IntPtr mouseEvent);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void MoveCompletedEventCallbackType(IntPtr window, IntPtr position);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -571,6 +574,31 @@ namespace Tizen.NUI
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<MousePointerGrabEventArgs> MousePointerGrabEvent
+        {
+            add
+            {
+                if (windowMousePointerGrabEventHandler == null)
+                {
+                    windowMousePointerGrabEventCallback = OnWindowMousePointerGrabEvent;
+                    using WindowMousePointerGrabEventSignal signal = new WindowMousePointerGrabEventSignal(Interop.WindowMousePointerGrabEventSignal.GetSignal(SwigCPtr), false);
+                    signal?.Connect(windowMousePointerGrabEventCallback);
+                }
+                windowMousePointerGrabEventHandler += value;
+            }
+            remove
+            {
+                windowMousePointerGrabEventHandler -= value;
+                if (windowMousePointerGrabEventHandler == null && windowMousePointerGrabEventCallback != null)
+                {
+                    using WindowMousePointerGrabEventSignal signal = new WindowMousePointerGrabEventSignal(Interop.WindowMousePointerGrabEventSignal.GetSignal(SwigCPtr), false);
+                    signal?.Disconnect(windowMousePointerGrabEventCallback);
+                    windowMousePointerGrabEventCallback = null;
+                }
+            }
+        }
+
         private event EventHandler<FocusChangedEventArgs> windowFocusChangedEventHandler;
         private event EventHandler<TouchEventArgs> rootLayerTouchDataEventHandler;
         private ReturnTypeEventHandler<object, TouchEventArgs, bool> rootLayerInterceptTouchDataEventHandler;
@@ -587,6 +615,7 @@ namespace Tizen.NUI
         private event EventHandler keyboardRepeatSettingsChangedHandler;
         private event EventHandler<AuxiliaryMessageEventArgs> auxiliaryMessageEventHandler;
         private event EventHandler<MouseInOutEventArgs> windowMouseInOutEventHandler;
+        private event EventHandler<MousePointerGrabEventArgs> windowMousePointerGrabEventHandler;
         private event EventHandler<WindowMoveCompletedEventArgs> moveCompletedHandler;
         private event EventHandler<WindowResizeCompletedEventArgs> resizeCompletedHandler;
 
@@ -851,6 +880,13 @@ namespace Tizen.NUI
                 using WindowMouseInOutEventSignal signal = new WindowMouseInOutEventSignal(Interop.WindowMouseInOutEventSignal.GetSignal(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(windowMouseInOutEventCallback);
                 windowMouseInOutEventCallback = null;
+            }
+
+            if (windowMousePointerGrabEventCallback != null)
+            {
+                using WindowMousePointerGrabEventSignal signal = new WindowMousePointerGrabEventSignal(Interop.WindowMousePointerGrabEventSignal.GetSignal(GetBaseHandleCPtrHandleRef), false);
+                signal?.Disconnect(windowMousePointerGrabEventCallback);
+                windowMousePointerGrabEventCallback = null;
             }
 
             if (moveCompletedEventCallback != null)
@@ -1144,6 +1180,22 @@ namespace Tizen.NUI
             return;
         }
 
+        private void OnWindowMousePointerGrabEvent(IntPtr view, IntPtr mouseEvent)
+        {
+            if (mouseEvent == global::System.IntPtr.Zero)
+            {
+                NUILog.Error("mouseEvent should not be null!");
+                return;
+            }
+
+            if (windowMousePointerGrabEventHandler != null)
+            {
+                MousePointerGrabEventArgs e = new MousePointerGrabEventArgs();
+                e.MousePointerGrab = Tizen.NUI.MousePointerGrab.GetMousePointerGrabFromPtr(mouseEvent);
+                windowMousePointerGrabEventHandler(this, e);
+            }
+        }
+
         /// <summary>
         /// The focus changed event argument.
         /// </summary>
@@ -1275,6 +1327,28 @@ namespace Tizen.NUI
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public MouseInOut MouseInOut
+            {
+                get
+                {
+                    return mouseEvent;
+                }
+                set
+                {
+                    mouseEvent = value;
+                }
+            }
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class MousePointerGrabEventArgs : EventArgs
+        {
+            private MousePointerGrab mouseEvent;
+
+            /// <summary>
+            /// MousePointerGrab event.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public MousePointerGrab MousePointerGrab
             {
                 get
                 {
