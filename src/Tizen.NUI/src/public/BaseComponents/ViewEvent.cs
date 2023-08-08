@@ -1011,7 +1011,7 @@ namespace Tizen.NUI.BaseComponents
         private void OnVisibilityChanged(IntPtr data, bool visibility, VisibilityChangeType type)
         {
             VisibilityChangedEventArgs e = new VisibilityChangedEventArgs();
-            if (data != null)
+            if (data != IntPtr.Zero)
             {
                 e.View = Registry.GetManagedBaseHandleFromNativePtr(data) as View;
             }
@@ -1028,7 +1028,7 @@ namespace Tizen.NUI.BaseComponents
         private void OnLayoutDirectionChanged(IntPtr data, ViewLayoutDirectionType type)
         {
             LayoutDirectionChangedEventArgs e = new LayoutDirectionChangedEventArgs();
-            if (data != null)
+            if (data != IntPtr.Zero)
             {
                 e.View = Registry.GetManagedBaseHandleFromNativePtr(data) as View;
             }

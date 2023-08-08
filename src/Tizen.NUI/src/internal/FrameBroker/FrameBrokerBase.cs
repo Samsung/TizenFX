@@ -346,7 +346,7 @@ namespace Tizen.NUI
             switch (data.Type)
             {
                 case FrameData.FrameType.RemoteSurfaceTbmSurface:
-                    if (data.TbmSurface == null)
+                    if (data.TbmSurface == IntPtr.Zero)
                     {
                         geometry.Dispose();
                         shader.Dispose();
