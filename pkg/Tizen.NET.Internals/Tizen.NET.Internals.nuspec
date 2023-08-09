@@ -16,7 +16,7 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="Artifacts\bin\internal\ref\*.dll"  target="ref\netstandard2.0" />
-    <file src="Artifacts\bin\internal\*.xml"  target="ref\netstandard2.0" />
+    <file src="Artifacts\bin\internal\ref\*.dll"  target="ref\net6.0" />
+    <file src="Artifacts\bin\internal\*.xml"  target="ref\net6.0" />
   </files>
 </package>

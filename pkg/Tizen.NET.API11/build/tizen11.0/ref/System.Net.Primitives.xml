@@ -63,13 +63,13 @@
       <param name="level">A <see cref="T:System.Net.Cache.RequestCacheLevel" /> that specifies the cache behavior for resources obtained using <see cref="T:System.Net.WebRequest" /> objects.</param>
       <exception cref="T:System.ArgumentOutOfRangeException">level is not a valid <see cref="T:System.Net.Cache.RequestCacheLevel" />.value.</exception>
     </member>
-    <member name="P:System.Net.Cache.RequestCachePolicy.Level">
-      <summary>Gets the <see cref="T:System.Net.Cache.RequestCacheLevel" /> value specified when this instance was constructed.</summary>
-      <returns>A <see cref="T:System.Net.Cache.RequestCacheLevel" /> value that specifies the cache behavior for resources obtained using <see cref="T:System.Net.WebRequest" /> objects.</returns>
-    </member>
     <member name="M:System.Net.Cache.RequestCachePolicy.ToString">
       <summary>Returns a string representation of this instance.</summary>
       <returns>A <see cref="T:System.String" /> containing the <see cref="P:System.Net.Cache.RequestCachePolicy.Level" /> for this instance.</returns>
+    </member>
+    <member name="P:System.Net.Cache.RequestCachePolicy.Level">
+      <summary>Gets the <see cref="T:System.Net.Cache.RequestCacheLevel" /> value specified when this instance was constructed.</summary>
+      <returns>A <see cref="T:System.Net.Cache.RequestCacheLevel" /> value that specifies the cache behavior for resources obtained using <see cref="T:System.Net.WebRequest" /> objects.</returns>
     </member>
     <member name="T:System.Net.Cookie">
       <summary>Provides a set of properties and methods that are used to manage cookies. This class cannot be inherited.</summary>
@@ -81,30 +81,46 @@
       <summary>Initializes a new instance of the <see cref="T:System.Net.Cookie" /> class with a specified <see cref="P:System.Net.Cookie.Name" /> and <see cref="P:System.Net.Cookie.Value" />.</summary>
       <param name="name">The name of a <see cref="T:System.Net.Cookie" />. The following characters must not be used inside <paramref name="name" />: equal sign, semicolon, comma, newline (\n), return (\r), tab (\t), and space character. The dollar sign character ("$") cannot be the first character.</param>
       <param name="value">The value of a <see cref="T:System.Net.Cookie" />. The following characters must not be used inside <paramref name="value" />: semicolon, comma.</param>
-      <exception cref="T:System.Net.CookieException">The <paramref name="name" /> parameter is <see langword="null" />.
--or-
-The <paramref name="name" /> parameter is of zero length.
--or-
-The <paramref name="name" /> parameter contains an invalid character.
--or-
-The <paramref name="value" /> parameter is <see langword="null" /> .
--or -
-The <paramref name="value" /> parameter contains a string not enclosed in quotes that contains an invalid character.</exception>
+      <exception cref="T:System.Net.CookieException">The <paramref name="name" /> parameter is <see langword="null" />.  
+  
+ -or-  
+  
+ The <paramref name="name" /> parameter is of zero length.  
+  
+ -or-  
+  
+ The <paramref name="name" /> parameter contains an invalid character.  
+  
+ -or-  
+  
+ The <paramref name="value" /> parameter is <see langword="null" /> .  
+  
+ -or -  
+  
+ The <paramref name="value" /> parameter contains a string not enclosed in quotes that contains an invalid character.</exception>
     </member>
     <member name="M:System.Net.Cookie.#ctor(System.String,System.String,System.String)">
       <summary>Initializes a new instance of the <see cref="T:System.Net.Cookie" /> class with a specified <see cref="P:System.Net.Cookie.Name" />, <see cref="P:System.Net.Cookie.Value" />, and <see cref="P:System.Net.Cookie.Path" />.</summary>
       <param name="name">The name of a <see cref="T:System.Net.Cookie" />. The following characters must not be used inside <paramref name="name" />: equal sign, semicolon, comma, newline (\n), return (\r), tab (\t), and space character. The dollar sign character ("$") cannot be the first character.</param>
       <param name="value">The value of a <see cref="T:System.Net.Cookie" />. The following characters must not be used inside <paramref name="value" />: semicolon, comma.</param>
       <param name="path">The subset of URIs on the origin server to which this <see cref="T:System.Net.Cookie" /> applies. The default value is "/".</param>
-      <exception cref="T:System.Net.CookieException">The <paramref name="name" /> parameter is <see langword="null" />.
--or-
-The <paramref name="name" /> parameter is of zero length.
--or-
-The <paramref name="name" /> parameter contains an invalid character.
--or-
-The <paramref name="value" /> parameter is <see langword="null" /> .
--or -
-The <paramref name="value" /> parameter contains a string not enclosed in quotes that contains an invalid character.</exception>
+      <exception cref="T:System.Net.CookieException">The <paramref name="name" /> parameter is <see langword="null" />.  
+  
+ -or-  
+  
+ The <paramref name="name" /> parameter is of zero length.  
+  
+ -or-  
+  
+ The <paramref name="name" /> parameter contains an invalid character.  
+  
+ -or-  
+  
+ The <paramref name="value" /> parameter is <see langword="null" /> .  
+  
+ -or -  
+  
+ The <paramref name="value" /> parameter contains a string not enclosed in quotes that contains an invalid character.</exception>
     </member>
     <member name="M:System.Net.Cookie.#ctor(System.String,System.String,System.String,System.String)">
       <summary>Initializes a new instance of the <see cref="T:System.Net.Cookie" /> class with a specified <see cref="P:System.Net.Cookie.Name" />, <see cref="P:System.Net.Cookie.Value" />, <see cref="P:System.Net.Cookie.Path" />, and <see cref="P:System.Net.Cookie.Domain" />.</summary>
@@ -112,15 +128,36 @@ The <paramref name="value" /> parameter contains a string not enclosed in quotes
       <param name="value">The value of a <see cref="T:System.Net.Cookie" /> object. The following characters must not be used inside <paramref name="value" />: semicolon, comma.</param>
       <param name="path">The subset of URIs on the origin server to which this <see cref="T:System.Net.Cookie" /> applies. The default value is "/".</param>
       <param name="domain">The optional internet domain for which this <see cref="T:System.Net.Cookie" /> is valid. The default value is the host this <see cref="T:System.Net.Cookie" /> has been received from.</param>
-      <exception cref="T:System.Net.CookieException">The <paramref name="name" /> parameter is <see langword="null" />.
--or-
-The <paramref name="name" /> parameter is of zero length.
--or-
-The <paramref name="name" /> parameter contains an invalid character.
--or-
-The <paramref name="value" /> parameter is <see langword="null" /> .
--or -
-The <paramref name="value" /> parameter contains a string not enclosed in quotes that contains an invalid character.</exception>
+      <exception cref="T:System.Net.CookieException">The <paramref name="name" /> parameter is <see langword="null" />.  
+  
+ -or-  
+  
+ The <paramref name="name" /> parameter is of zero length.  
+  
+ -or-  
+  
+ The <paramref name="name" /> parameter contains an invalid character.  
+  
+ -or-  
+  
+ The <paramref name="value" /> parameter is <see langword="null" /> .  
+  
+ -or -  
+  
+ The <paramref name="value" /> parameter contains a string not enclosed in quotes that contains an invalid character.</exception>
+    </member>
+    <member name="M:System.Net.Cookie.Equals(System.Object)">
+      <summary>Overrides the <see cref="M:System.Object.Equals(System.Object)" /> method.</summary>
+      <param name="comparand">A reference to a <see cref="T:System.Net.Cookie" />.</param>
+      <returns>Returns <see langword="true" /> if the <see cref="T:System.Net.Cookie" /> is equal to <paramref name="comparand" />. Two <see cref="T:System.Net.Cookie" /> instances are equal if their <see cref="P:System.Net.Cookie.Name" />, <see cref="P:System.Net.Cookie.Value" />, <see cref="P:System.Net.Cookie.Path" />, <see cref="P:System.Net.Cookie.Domain" />, and <see cref="P:System.Net.Cookie.Version" /> properties are equal. <see cref="P:System.Net.Cookie.Name" /> and <see cref="P:System.Net.Cookie.Domain" /> string comparisons are case-insensitive.</returns>
+    </member>
+    <member name="M:System.Net.Cookie.GetHashCode">
+      <summary>Overrides the <see cref="M:System.Object.GetHashCode" /> method.</summary>
+      <returns>The 32-bit signed integer hash code for this instance.</returns>
+    </member>
+    <member name="M:System.Net.Cookie.ToString">
+      <summary>Overrides the <see cref="M:System.Object.ToString" /> method.</summary>
+      <returns>Returns a string representation of this <see cref="T:System.Net.Cookie" /> object that is suitable for including in a HTTP Cookie: request header.</returns>
     </member>
     <member name="P:System.Net.Cookie.Comment">
       <summary>Gets or sets a comment that the server can add to a <see cref="T:System.Net.Cookie" />.</summary>
@@ -139,11 +176,6 @@ The <paramref name="value" /> parameter contains a string not enclosed in quotes
       <summary>Gets or sets the URI for which the <see cref="T:System.Net.Cookie" /> is valid.</summary>
       <returns>The URI for which the <see cref="T:System.Net.Cookie" /> is valid.</returns>
     </member>
-    <member name="M:System.Net.Cookie.Equals(System.Object)">
-      <summary>Overrides the <see cref="M:System.Object.Equals(System.Object)" /> method.</summary>
-      <param name="comparand">A reference to a <see cref="T:System.Net.Cookie" />.</param>
-      <returns>Returns <see langword="true" /> if the <see cref="T:System.Net.Cookie" /> is equal to <paramref name="comparand" />. Two <see cref="T:System.Net.Cookie" /> instances are equal if their <see cref="P:System.Net.Cookie.Name" />, <see cref="P:System.Net.Cookie.Value" />, <see cref="P:System.Net.Cookie.Path" />, <see cref="P:System.Net.Cookie.Domain" />, and <see cref="P:System.Net.Cookie.Version" /> properties are equal. <see cref="P:System.Net.Cookie.Name" /> and <see cref="P:System.Net.Cookie.Domain" /> string comparisons are case-insensitive.</returns>
-    </member>
     <member name="P:System.Net.Cookie.Expired">
       <summary>Gets or sets the current state of the <see cref="T:System.Net.Cookie" />.</summary>
       <returns>
@@ -153,20 +185,18 @@ The <paramref name="value" /> parameter contains a string not enclosed in quotes
       <summary>Gets or sets the expiration date and time for the <see cref="T:System.Net.Cookie" /> as a <see cref="T:System.DateTime" />.</summary>
       <returns>The expiration date and time for the <see cref="T:System.Net.Cookie" /> as a <see cref="T:System.DateTime" /> instance.</returns>
     </member>
-    <member name="M:System.Net.Cookie.GetHashCode">
-      <summary>Overrides the <see cref="M:System.Object.GetHashCode" /> method.</summary>
-      <returns>The 32-bit signed integer hash code for this instance.</returns>
-    </member>
     <member name="P:System.Net.Cookie.HttpOnly">
       <summary>Determines whether a page script or other active content can access this cookie.</summary>
       <returns>Boolean value that determines whether a page script or other active content can access this cookie.</returns>
     </member>
     <member name="P:System.Net.Cookie.Name">
       <summary>Gets or sets the name for the <see cref="T:System.Net.Cookie" />.</summary>
-      <returns>The name for the <see cref="T:System.Net.Cookie" />.</returns>
-      <exception cref="T:System.Net.CookieException">The value specified for a set operation is <see langword="null" /> or the empty string
+      <exception cref="T:System.Net.CookieException">The value specified for a set operation is <see langword="null" /> or the empty string  
+  
 -or-
-The value specified for a set operation contained an illegal character. The following characters must not be used inside the <see cref="P:System.Net.Cookie.Name" /> property: equal sign, semicolon, comma, newline (\n), return (\r), tab (\t), and space character. The dollar sign character ("$") cannot be the first character.</exception>
+  
+ The value specified for a set operation contained an illegal character. The following characters must not be used inside the <see cref="P:System.Net.Cookie.Name" /> property: equal sign, semicolon, comma, newline (\n), return (\r), tab (\t), and space character. The dollar sign character ("$") cannot be the first character.</exception>
+      <returns>The name for the <see cref="T:System.Net.Cookie" />.</returns>
     </member>
     <member name="P:System.Net.Cookie.Path">
       <summary>Gets or sets the URIs to which the <see cref="T:System.Net.Cookie" /> applies.</summary>
@@ -174,8 +204,8 @@ The value specified for a set operation contained an illegal character. The foll
     </member>
     <member name="P:System.Net.Cookie.Port">
       <summary>Gets or sets a list of TCP ports that the <see cref="T:System.Net.Cookie" /> applies to.</summary>
-      <returns>The list of TCP ports that the <see cref="T:System.Net.Cookie" /> applies to.</returns>
       <exception cref="T:System.Net.CookieException">The value specified for a set operation could not be parsed or is not enclosed in double quotes.</exception>
+      <returns>The list of TCP ports that the <see cref="T:System.Net.Cookie" /> applies to.</returns>
     </member>
     <member name="P:System.Net.Cookie.Secure">
       <summary>Gets or sets the security level of a <see cref="T:System.Net.Cookie" />.</summary>
@@ -186,18 +216,14 @@ The value specified for a set operation contained an illegal character. The foll
       <summary>Gets the time when the cookie was issued as a <see cref="T:System.DateTime" />.</summary>
       <returns>The time when the cookie was issued as a <see cref="T:System.DateTime" />.</returns>
     </member>
-    <member name="M:System.Net.Cookie.ToString">
-      <summary>Overrides the <see cref="M:System.Object.ToString" /> method.</summary>
-      <returns>Returns a string representation of this <see cref="T:System.Net.Cookie" /> object that is suitable for including in a HTTP Cookie: request header.</returns>
-    </member>
     <member name="P:System.Net.Cookie.Value">
       <summary>Gets or sets the <see cref="P:System.Net.Cookie.Value" /> for the <see cref="T:System.Net.Cookie" />.</summary>
       <returns>The <see cref="P:System.Net.Cookie.Value" /> for the <see cref="T:System.Net.Cookie" />.</returns>
     </member>
     <member name="P:System.Net.Cookie.Version">
       <summary>Gets or sets the version of HTTP state maintenance to which the cookie conforms.</summary>
-      <returns>The version of HTTP state maintenance to which the cookie conforms.</returns>
       <exception cref="T:System.ArgumentOutOfRangeException">The value specified for a version is not allowed.</exception>
+      <returns>The version of HTTP state maintenance to which the cookie conforms.</returns>
     </member>
     <member name="T:System.Net.CookieCollection">
       <summary>Provides a collection container for instances of the <see cref="T:System.Net.Cookie" /> class.</summary>
@@ -235,9 +261,11 @@ The value specified for a set operation contained an illegal character. The foll
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="index" /> is less than zero.</exception>
       <exception cref="T:System.ArgumentException">
-        <paramref name="array" /> is multidimensional.
--or-
-The number of elements in this <see cref="T:System.Net.CookieCollection" /> is greater than the available space from <paramref name="index" /> to the end of the destination <paramref name="array" />.</exception>
+        <paramref name="array" /> is multidimensional.  
+  
+ -or-  
+  
+ The number of elements in this <see cref="T:System.Net.CookieCollection" /> is greater than the available space from <paramref name="index" /> to the end of the destination <paramref name="array" />.</exception>
       <exception cref="T:System.InvalidCastException">The elements in this <see cref="T:System.Net.CookieCollection" /> cannot be cast automatically to the type of the destination <paramref name="array" />.</exception>
     </member>
     <member name="M:System.Net.CookieCollection.CopyTo(System.Net.Cookie[],System.Int32)">
@@ -249,18 +277,30 @@ The number of elements in this <see cref="T:System.Net.CookieCollection" /> is g
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="index" /> is less than zero.</exception>
       <exception cref="T:System.ArgumentException">
-        <paramref name="array" /> is multidimensional.
--or-
-The number of elements in this <see cref="T:System.Net.CookieCollection" /> is greater than the available space from <paramref name="index" /> to the end of the destination <paramref name="array" />.</exception>
+        <paramref name="array" /> is multidimensional.  
+  
+ -or-  
+  
+ The number of elements in this <see cref="T:System.Net.CookieCollection" /> is greater than the available space from <paramref name="index" /> to the end of the destination <paramref name="array" />.</exception>
       <exception cref="T:System.InvalidCastException">The elements in this <see cref="T:System.Net.CookieCollection" /> cannot be cast automatically to the type of the destination <paramref name="array" />.</exception>
-    </member>
-    <member name="P:System.Net.CookieCollection.Count">
-      <summary>Gets the number of cookies contained in a <see cref="T:System.Net.CookieCollection" />.</summary>
-      <returns>The number of cookies contained in a <see cref="T:System.Net.CookieCollection" />.</returns>
     </member>
     <member name="M:System.Net.CookieCollection.GetEnumerator">
       <summary>Gets an enumerator that can iterate through a <see cref="T:System.Net.CookieCollection" />.</summary>
       <returns>An <see cref="T:System.Collections.IEnumerator" /> for this collection.</returns>
+    </member>
+    <member name="M:System.Net.CookieCollection.Remove(System.Net.Cookie)">
+      <summary>Removes the specified cookie from the <see cref="T:System.Net.CookieCollection" />.</summary>
+      <param name="cookie">The cookie to remove from the <see cref="T:System.Net.CookieCollection" />.</param>
+      <returns>
+        <see langword="true" /> if <paramref name="cookie" /> was successfully removed from the <see cref="T:System.Net.CookieCollection" />; otherwise, <see langword="false" />. This method also returns <see langword="false" /> if item is not found in the original collection.</returns>
+    </member>
+    <member name="M:System.Net.CookieCollection.System#Collections#Generic#IEnumerable{System#Net#Cookie}#GetEnumerator">
+      <summary>Gets an enumerator that can iterate through the <see cref="T:System.Net.CookieCollection" />.</summary>
+      <returns>An <see cref="T:System.Collections.Generic.IEnumerator`1" /> for this collection.</returns>
+    </member>
+    <member name="P:System.Net.CookieCollection.Count">
+      <summary>Gets the number of cookies contained in a <see cref="T:System.Net.CookieCollection" />.</summary>
+      <returns>The number of cookies contained in a <see cref="T:System.Net.CookieCollection" />.</returns>
     </member>
     <member name="P:System.Net.CookieCollection.IsReadOnly">
       <summary>Gets a value that indicates whether a <see cref="T:System.Net.CookieCollection" /> is read-only.</summary>
@@ -275,33 +315,32 @@ The number of elements in this <see cref="T:System.Net.CookieCollection" /> is g
     <member name="P:System.Net.CookieCollection.Item(System.Int32)">
       <summary>Gets the <see cref="T:System.Net.Cookie" /> with a specific index from a <see cref="T:System.Net.CookieCollection" />.</summary>
       <param name="index">The zero-based index of the <see cref="T:System.Net.Cookie" /> to be found.</param>
-      <returns>A <see cref="T:System.Net.Cookie" /> with a specific index from a <see cref="T:System.Net.CookieCollection" />.</returns>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="index" /> is less than 0 or <paramref name="index" /> is greater than or equal to <see cref="P:System.Net.CookieCollection.Count" />.</exception>
+      <returns>A <see cref="T:System.Net.Cookie" /> with a specific index from a <see cref="T:System.Net.CookieCollection" />.</returns>
     </member>
     <member name="P:System.Net.CookieCollection.Item(System.String)">
       <summary>Gets the <see cref="T:System.Net.Cookie" /> with a specific name from a <see cref="T:System.Net.CookieCollection" />.</summary>
       <param name="name">The name of the <see cref="T:System.Net.Cookie" /> to be found.</param>
-      <returns>The <see cref="T:System.Net.Cookie" /> with a specific name from a <see cref="T:System.Net.CookieCollection" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="name" /> is <see langword="null" />.</exception>
-    </member>
-    <member name="M:System.Net.CookieCollection.Remove(System.Net.Cookie)">
-      <summary>Removes the specified cookie from the <see cref="T:System.Net.CookieCollection" />.</summary>
-      <param name="cookie">The cookie to remove from the <see cref="T:System.Net.CookieCollection" />.</param>
-      <returns>
-        <see langword="true" /> if <paramref name="cookie" /> was successfully removed from the <see cref="T:System.Net.CookieCollection" />; otherwise, <see langword="false" />. This method also returns <see langword="false" /> if item is not found in the original collection.</returns>
+      <returns>The <see cref="T:System.Net.Cookie" /> with a specific name from a <see cref="T:System.Net.CookieCollection" />.</returns>
     </member>
     <member name="P:System.Net.CookieCollection.SyncRoot">
       <summary>Gets an object to synchronize access to the <see cref="T:System.Net.CookieCollection" />.</summary>
       <returns>An object to synchronize access to the <see cref="T:System.Net.CookieCollection" />.</returns>
     </member>
-    <member name="M:System.Net.CookieCollection.System#Collections#Generic#IEnumerable{System#Net#Cookie}#GetEnumerator">
-      <summary>Gets an enumerator that can iterate through the <see cref="T:System.Net.CookieCollection" />.</summary>
-      <returns>An <see cref="T:System.Collections.Generic.IEnumerator`1" /> for this collection.</returns>
-    </member>
     <member name="T:System.Net.CookieContainer">
       <summary>Provides a container for a collection of <see cref="T:System.Net.CookieCollection" /> objects.</summary>
+    </member>
+    <member name="F:System.Net.CookieContainer.DefaultCookieLengthLimit">
+      <summary>Represents the default maximum size, in bytes, of the <see cref="T:System.Net.Cookie" /> instances that the <see cref="T:System.Net.CookieContainer" /> can hold. This field is constant.</summary>
+    </member>
+    <member name="F:System.Net.CookieContainer.DefaultCookieLimit">
+      <summary>Represents the default maximum number of <see cref="T:System.Net.Cookie" /> instances that the <see cref="T:System.Net.CookieContainer" /> can hold. This field is constant.</summary>
+    </member>
+    <member name="F:System.Net.CookieContainer.DefaultPerDomainCookieLimit">
+      <summary>Represents the default maximum number of <see cref="T:System.Net.Cookie" /> instances that the <see cref="T:System.Net.CookieContainer" /> can reference per domain. This field is constant.</summary>
     </member>
     <member name="M:System.Net.CookieContainer.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Net.CookieContainer" /> class.</summary>
@@ -318,9 +357,11 @@ The number of elements in this <see cref="T:System.Net.CookieCollection" /> is g
       <param name="perDomainCapacity">The number of <see cref="T:System.Net.Cookie" /> instances per domain.</param>
       <param name="maxCookieSize">The maximum size in bytes for any single <see cref="T:System.Net.Cookie" /> in a <see cref="T:System.Net.CookieContainer" />.</param>
       <exception cref="T:System.ArgumentOutOfRangeException">
-        <paramref name="perDomainCapacity" /> is not equal to <see cref="F:System.Int32.MaxValue" />.
-and
-<paramref name="(perDomainCapacity" /> is less than or equal to zero or <paramref name="perDomainCapacity" /> is greater than <paramref name="capacity)" />.</exception>
+        <paramref name="perDomainCapacity" /> is not equal to <see cref="F:System.Int32.MaxValue" />.  
+  
+ and  
+  
+ <paramref name="(perDomainCapacity" /> is less than or equal to zero or <paramref name="perDomainCapacity" /> is greater than <paramref name="capacity)" />.</exception>
       <exception cref="T:System.ArgumentException">
         <paramref name="maxCookieSize" /> is less than or equal to zero.</exception>
     </member>
@@ -331,9 +372,11 @@ and
         <paramref name="cookie" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentException">The domain for <paramref name="cookie" /> is <see langword="null" /> or the empty string ("").</exception>
       <exception cref="T:System.Net.CookieException">
-        <paramref name="cookie" /> is larger than <paramref name="maxCookieSize" />.
--or-
-the domain for <paramref name="cookie" /> is not a valid URI.</exception>
+        <paramref name="cookie" /> is larger than <paramref name="maxCookieSize" />.  
+  
+ -or-  
+  
+ the domain for <paramref name="cookie" /> is not a valid URI.</exception>
     </member>
     <member name="M:System.Net.CookieContainer.Add(System.Net.CookieCollection)">
       <summary>Adds the contents of a <see cref="T:System.Net.CookieCollection" /> to the <see cref="T:System.Net.CookieContainer" />.</summary>
@@ -348,9 +391,11 @@ the domain for <paramref name="cookie" /> is not a valid URI.</exception>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="uri" /> is <see langword="null" /> or <paramref name="cookie" /> is <see langword="null" />.</exception>
       <exception cref="T:System.Net.CookieException">
-        <paramref name="cookie" /> is larger than <paramref name="maxCookieSize" />.
--or-
-The domain for <paramref name="cookie" /> is not a valid URI.</exception>
+        <paramref name="cookie" /> is larger than <paramref name="maxCookieSize" />.  
+  
+ -or-  
+  
+ The domain for <paramref name="cookie" /> is not a valid URI.</exception>
     </member>
     <member name="M:System.Net.CookieContainer.Add(System.Uri,System.Net.CookieCollection)">
       <summary>Adds the contents of a <see cref="T:System.Net.CookieCollection" /> to the <see cref="T:System.Net.CookieContainer" /> for a particular URI.</summary>
@@ -361,52 +406,23 @@ The domain for <paramref name="cookie" /> is not a valid URI.</exception>
       <exception cref="T:System.ArgumentException">The domain for one of the cookies in <paramref name="cookies" /> is <see langword="null" />.</exception>
       <exception cref="T:System.Net.CookieException">One of the cookies in <paramref name="cookies" /> contains an invalid domain.</exception>
     </member>
-    <member name="P:System.Net.CookieContainer.Capacity">
-      <summary>Gets or sets the number of <see cref="T:System.Net.Cookie" /> instances that a <see cref="T:System.Net.CookieContainer" /> can hold.</summary>
-      <returns>The number of <see cref="T:System.Net.Cookie" /> instances that a <see cref="T:System.Net.CookieContainer" /> can hold. This is a hard limit and cannot be exceeded by adding a <see cref="T:System.Net.Cookie" />.</returns>
-      <exception cref="T:System.ArgumentOutOfRangeException">
-        <paramref name="Capacity" /> is less than or equal to zero or (value is less than <see cref="P:System.Net.CookieContainer.PerDomainCapacity" /> and <see cref="P:System.Net.CookieContainer.PerDomainCapacity" /> is not equal to <see cref="F:System.Int32.MaxValue" />).</exception>
-    </member>
-    <member name="P:System.Net.CookieContainer.Count">
-      <summary>Gets the number of <see cref="T:System.Net.Cookie" /> instances that a <see cref="T:System.Net.CookieContainer" /> currently holds.</summary>
-      <returns>The number of <see cref="T:System.Net.Cookie" /> instances that a <see cref="T:System.Net.CookieContainer" /> currently holds. This is the total of <see cref="T:System.Net.Cookie" /> instances in all domains.</returns>
-    </member>
-    <member name="F:System.Net.CookieContainer.DefaultCookieLengthLimit">
-      <summary>Represents the default maximum size, in bytes, of the <see cref="T:System.Net.Cookie" /> instances that the <see cref="T:System.Net.CookieContainer" /> can hold. This field is constant.</summary>
-    </member>
-    <member name="F:System.Net.CookieContainer.DefaultCookieLimit">
-      <summary>Represents the default maximum number of <see cref="T:System.Net.Cookie" /> instances that the <see cref="T:System.Net.CookieContainer" /> can hold. This field is constant.</summary>
-    </member>
-    <member name="F:System.Net.CookieContainer.DefaultPerDomainCookieLimit">
-      <summary>Represents the default maximum number of <see cref="T:System.Net.Cookie" /> instances that the <see cref="T:System.Net.CookieContainer" /> can reference per domain. This field is constant.</summary>
+    <member name="M:System.Net.CookieContainer.GetAllCookies">
+      <summary>Gets a <see cref="T:System.Net.CookieCollection" /> that contains all of the <see cref="T:System.Net.Cookie" /> instances in the container.</summary>
+      <returns>A <see cref="T:System.Net.CookieCollection" /> that contains all of the <see cref="T:System.Net.Cookie" /> instances in the container.</returns>
     </member>
     <member name="M:System.Net.CookieContainer.GetCookieHeader(System.Uri)">
       <summary>Gets the HTTP cookie header that contains the HTTP cookies that represent the <see cref="T:System.Net.Cookie" /> instances that are associated with a specific URI.</summary>
       <param name="uri">The URI of the <see cref="T:System.Net.Cookie" /> instances desired.</param>
-      <returns>An HTTP cookie header, with strings representing <see cref="T:System.Net.Cookie" /> instances delimited by semicolons.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="uri" /> is <see langword="null" />.</exception>
+      <returns>An HTTP cookie header, with strings representing <see cref="T:System.Net.Cookie" /> instances delimited by semicolons.</returns>
     </member>
     <member name="M:System.Net.CookieContainer.GetCookies(System.Uri)">
       <summary>Gets a <see cref="T:System.Net.CookieCollection" /> that contains the <see cref="T:System.Net.Cookie" /> instances that are associated with a specific URI.</summary>
       <param name="uri">The URI of the <see cref="T:System.Net.Cookie" /> instances desired.</param>
-      <returns>A <see cref="T:System.Net.CookieCollection" /> that contains the <see cref="T:System.Net.Cookie" /> instances that are associated with a specific URI.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="uri" /> is <see langword="null" />.</exception>
-    </member>
-    <member name="P:System.Net.CookieContainer.MaxCookieSize">
-      <summary>Represents the maximum allowed length of a <see cref="T:System.Net.Cookie" />.</summary>
-      <returns>The maximum allowed length, in bytes, of a <see cref="T:System.Net.Cookie" />.</returns>
-      <exception cref="T:System.ArgumentOutOfRangeException">
-        <paramref name="MaxCookieSize" /> is less than or equal to zero.</exception>
-    </member>
-    <member name="P:System.Net.CookieContainer.PerDomainCapacity">
-      <summary>Gets or sets the number of <see cref="T:System.Net.Cookie" /> instances that a <see cref="T:System.Net.CookieContainer" /> can hold per domain.</summary>
-      <returns>The number of <see cref="T:System.Net.Cookie" /> instances that are allowed per domain.</returns>
-      <exception cref="T:System.ArgumentOutOfRangeException">
-        <paramref name="PerDomainCapacity" /> is less than or equal to zero.
--or-
-<paramref name="(PerDomainCapacity" /> is greater than the maximum allowable number of cookies instances, 300, and is not equal to <see cref="F:System.Int32.MaxValue" />).</exception>
+      <returns>A <see cref="T:System.Net.CookieCollection" /> that contains the <see cref="T:System.Net.Cookie" /> instances that are associated with a specific URI.</returns>
     </member>
     <member name="M:System.Net.CookieContainer.SetCookies(System.Uri,System.String)">
       <summary>Adds <see cref="T:System.Net.Cookie" /> instances for one or more cookies from an HTTP cookie header to the <see cref="T:System.Net.CookieContainer" /> for a specific URI.</summary>
@@ -414,9 +430,37 @@ The domain for <paramref name="cookie" /> is not a valid URI.</exception>
       <param name="cookieHeader">The contents of an HTTP set-cookie header as returned by a HTTP server, with <see cref="T:System.Net.Cookie" /> instances delimited by commas.</param>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="uri" /> or <paramref name="cookieHeader" /> is <see langword="null" />.</exception>
-      <exception cref="T:System.Net.CookieException">One of the cookies is invalid.
--or-
-An error occurred while adding one of the cookies to the container.</exception>
+      <exception cref="T:System.Net.CookieException">One of the cookies is invalid.  
+  
+ -or-  
+  
+ An error occurred while adding one of the cookies to the container.</exception>
+    </member>
+    <member name="P:System.Net.CookieContainer.Capacity">
+      <summary>Gets or sets the number of <see cref="T:System.Net.Cookie" /> instances that a <see cref="T:System.Net.CookieContainer" /> can hold.</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="Capacity" /> is less than or equal to zero or (value is less than <see cref="P:System.Net.CookieContainer.PerDomainCapacity" /> and <see cref="P:System.Net.CookieContainer.PerDomainCapacity" /> is not equal to <see cref="F:System.Int32.MaxValue" />).</exception>
+      <returns>The number of <see cref="T:System.Net.Cookie" /> instances that a <see cref="T:System.Net.CookieContainer" /> can hold. This is a hard limit and cannot be exceeded by adding a <see cref="T:System.Net.Cookie" />.</returns>
+    </member>
+    <member name="P:System.Net.CookieContainer.Count">
+      <summary>Gets the number of <see cref="T:System.Net.Cookie" /> instances that a <see cref="T:System.Net.CookieContainer" /> currently holds.</summary>
+      <returns>The number of <see cref="T:System.Net.Cookie" /> instances that a <see cref="T:System.Net.CookieContainer" /> currently holds. This is the total of <see cref="T:System.Net.Cookie" /> instances in all domains.</returns>
+    </member>
+    <member name="P:System.Net.CookieContainer.MaxCookieSize">
+      <summary>Represents the maximum allowed length of a <see cref="T:System.Net.Cookie" />.</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="MaxCookieSize" /> is less than or equal to zero.</exception>
+      <returns>The maximum allowed length, in bytes, of a <see cref="T:System.Net.Cookie" />.</returns>
+    </member>
+    <member name="P:System.Net.CookieContainer.PerDomainCapacity">
+      <summary>Gets or sets the number of <see cref="T:System.Net.Cookie" /> instances that a <see cref="T:System.Net.CookieContainer" /> can hold per domain.</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="PerDomainCapacity" /> is less than or equal to zero.  
+  
+ -or-  
+  
+ <paramref name="(PerDomainCapacity" /> is greater than the maximum allowable number of cookies instances, 300, and is not equal to <see cref="F:System.Int32.MaxValue" />).</exception>
+      <returns>The number of <see cref="T:System.Net.Cookie" /> instances that are allowed per domain.</returns>
     </member>
     <member name="T:System.Net.CookieException">
       <summary>The exception that is thrown when an error is made adding a <see cref="T:System.Net.Cookie" /> to a <see cref="T:System.Net.CookieContainer" />.</summary>
@@ -452,9 +496,11 @@ An error occurred while adding one of the cookies to the container.</exception>
       <param name="authenticationType">A <see cref="T:System.String" /> that identifies the authentication scheme used when connecting to <paramref name="host" /> using <paramref name="cred" />.</param>
       <param name="credential">The <see cref="T:System.Net.NetworkCredential" /> to add to the credential cache.</param>
       <exception cref="T:System.ArgumentNullException">
-        <paramref name="host" /> is <see langword="null" />.
--or-
-<paramref name="authType" /> is <see langword="null" />.</exception>
+        <paramref name="host" /> is <see langword="null" />.  
+  
+ -or-  
+  
+ <paramref name="authType" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentException">
         <paramref name="authType" /> not an accepted value.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
@@ -466,43 +512,41 @@ An error occurred while adding one of the cookies to the container.</exception>
       <param name="authType">The authentication scheme used by the resource named in <paramref name="uriPrefix" />.</param>
       <param name="cred">The <see cref="T:System.Net.NetworkCredential" /> to add to the credential cache.</param>
       <exception cref="T:System.ArgumentNullException">
-        <paramref name="uriPrefix" /> is <see langword="null" />.
--or-
-<paramref name="authType" /> is <see langword="null" />.</exception>
+        <paramref name="uriPrefix" /> is <see langword="null" />.  
+  
+ -or-  
+  
+ <paramref name="authType" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentException">The same credentials are added more than once.</exception>
-    </member>
-    <member name="P:System.Net.CredentialCache.DefaultCredentials">
-      <summary>Gets the system credentials of the application.</summary>
-      <returns>An <see cref="T:System.Net.ICredentials" /> that represents the system credentials of the application.</returns>
-    </member>
-    <member name="P:System.Net.CredentialCache.DefaultNetworkCredentials">
-      <summary>Gets the network credentials of the current security context.</summary>
-      <returns>An <see cref="T:System.Net.NetworkCredential" /> that represents the network credentials of the current user or application.</returns>
     </member>
     <member name="M:System.Net.CredentialCache.GetCredential(System.String,System.Int32,System.String)">
       <summary>Returns the <see cref="T:System.Net.NetworkCredential" /> instance associated with the specified host, port, and authentication protocol.</summary>
       <param name="host">A <see cref="T:System.String" /> that identifies the host computer.</param>
       <param name="port">A <see cref="T:System.Int32" /> that specifies the port to connect to on <paramref name="host" />.</param>
       <param name="authenticationType">A <see cref="T:System.String" /> that identifies the authentication scheme used when connecting to <paramref name="host" />.</param>
-      <returns>A <see cref="T:System.Net.NetworkCredential" /> or, if there is no matching credential in the cache, <see langword="null" />.</returns>
       <exception cref="T:System.ArgumentNullException">
-        <paramref name="host" /> is <see langword="null" />.
--or-
-<paramref name="authType" /> is <see langword="null" />.</exception>
+        <paramref name="host" /> is <see langword="null" />.  
+  
+ -or-  
+  
+ <paramref name="authType" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentException">
-        <paramref name="authType" /> not an accepted value.
--or-
-<paramref name="host" /> is equal to the empty string ("").</exception>
+        <paramref name="authType" /> not an accepted value.  
+  
+ -or-  
+  
+ <paramref name="host" /> is equal to the empty string ("").</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="port" /> is less than zero.</exception>
+      <returns>A <see cref="T:System.Net.NetworkCredential" /> or, if there is no matching credential in the cache, <see langword="null" />.</returns>
     </member>
     <member name="M:System.Net.CredentialCache.GetCredential(System.Uri,System.String)">
       <summary>Returns the <see cref="T:System.Net.NetworkCredential" /> instance associated with the specified Uniform Resource Identifier (URI) and authentication type.</summary>
       <param name="uriPrefix">A <see cref="T:System.Uri" /> that specifies the URI prefix of the resources that the credential grants access to.</param>
       <param name="authType">The authentication scheme used by the resource named in <paramref name="uriPrefix" />.</param>
-      <returns>A <see cref="T:System.Net.NetworkCredential" /> or, if there is no matching credential in the cache, <see langword="null" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="uriPrefix" /> or <paramref name="authType" /> is <see langword="null" />.</exception>
+      <returns>A <see cref="T:System.Net.NetworkCredential" /> or, if there is no matching credential in the cache, <see langword="null" />.</returns>
     </member>
     <member name="M:System.Net.CredentialCache.GetEnumerator">
       <summary>Returns an enumerator that can iterate through the <see cref="T:System.Net.CredentialCache" /> instance.</summary>
@@ -518,6 +562,14 @@ An error occurred while adding one of the cookies to the container.</exception>
       <summary>Deletes a <see cref="T:System.Net.NetworkCredential" /> instance from the cache if it is associated with the specified Uniform Resource Identifier (URI) prefix and authentication protocol.</summary>
       <param name="uriPrefix">A <see cref="T:System.Uri" /> that specifies the URI prefix of the resources that the credential is used for.</param>
       <param name="authType">The authentication scheme used by the host named in <paramref name="uriPrefix" />.</param>
+    </member>
+    <member name="P:System.Net.CredentialCache.DefaultCredentials">
+      <summary>Gets the system credentials of the application.</summary>
+      <returns>An <see cref="T:System.Net.ICredentials" /> that represents the system credentials of the application.</returns>
+    </member>
+    <member name="P:System.Net.CredentialCache.DefaultNetworkCredentials">
+      <summary>Gets the network credentials of the current security context.</summary>
+      <returns>An <see cref="T:System.Net.NetworkCredential" /> that represents the network credentials of the current user or application.</returns>
     </member>
     <member name="T:System.Net.DecompressionMethods">
       <summary>Represents the file compression and decompression encoding format to be used to compress the data received in response to an <see cref="T:System.Net.HttpWebRequest" />.</summary>
@@ -547,27 +599,29 @@ An error occurred while adding one of the cookies to the container.</exception>
       <exception cref="T:System.ArgumentException">The <paramref name="host" /> parameter contains an empty string.</exception>
       <exception cref="T:System.ArgumentNullException">The <paramref name="host" /> parameter is a <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
-        <paramref name="port" /> is less than <see cref="F:System.Net.IPEndPoint.MinPort" />.
--or-
-<paramref name="port" /> is greater than <see cref="F:System.Net.IPEndPoint.MaxPort" />.</exception>
+        <paramref name="port" /> is less than <see cref="F:System.Net.IPEndPoint.MinPort" />.  
+  
+ -or-  
+  
+ <paramref name="port" /> is greater than <see cref="F:System.Net.IPEndPoint.MaxPort" />.</exception>
     </member>
     <member name="M:System.Net.DnsEndPoint.#ctor(System.String,System.Int32,System.Net.Sockets.AddressFamily)">
       <summary>Initializes a new instance of the <see cref="T:System.Net.DnsEndPoint" /> class with the host name or string representation of an IP address, a port number, and an address family.</summary>
       <param name="host">The host name or a string representation of the IP address.</param>
       <param name="port">The port number associated with the address, or 0 to specify any available port. <paramref name="port" /> is in host order.</param>
       <param name="addressFamily">One of the <see cref="T:System.Net.Sockets.AddressFamily" /> values.</param>
-      <exception cref="T:System.ArgumentException">The <paramref name="host" /> parameter contains an empty string.
--or-
-<paramref name="addressFamily" /> is <see cref="F:System.Net.Sockets.AddressFamily.Unknown" />.</exception>
+      <exception cref="T:System.ArgumentException">The <paramref name="host" /> parameter contains an empty string.  
+  
+ -or-  
+  
+ <paramref name="addressFamily" /> is <see cref="F:System.Net.Sockets.AddressFamily.Unknown" />.</exception>
       <exception cref="T:System.ArgumentNullException">The <paramref name="host" /> parameter is a <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
-        <paramref name="port" /> is less than <see cref="F:System.Net.IPEndPoint.MinPort" />.
--or-
-<paramref name="port" /> is greater than <see cref="F:System.Net.IPEndPoint.MaxPort" />.</exception>
-    </member>
-    <member name="P:System.Net.DnsEndPoint.AddressFamily">
-      <summary>Gets the Internet Protocol (IP) address family.</summary>
-      <returns>One of the <see cref="T:System.Net.Sockets.AddressFamily" /> values.</returns>
+        <paramref name="port" /> is less than <see cref="F:System.Net.IPEndPoint.MinPort" />.  
+  
+ -or-  
+  
+ <paramref name="port" /> is greater than <see cref="F:System.Net.IPEndPoint.MaxPort" />.</exception>
     </member>
     <member name="M:System.Net.DnsEndPoint.Equals(System.Object)">
       <summary>Compares two <see cref="T:System.Net.DnsEndPoint" /> objects.</summary>
@@ -579,6 +633,14 @@ An error occurred while adding one of the cookies to the container.</exception>
       <summary>Returns a hash value for a <see cref="T:System.Net.DnsEndPoint" />.</summary>
       <returns>An integer hash value for the <see cref="T:System.Net.DnsEndPoint" />.</returns>
     </member>
+    <member name="M:System.Net.DnsEndPoint.ToString">
+      <summary>Returns the host name or string representation of the IP address and port number of the <see cref="T:System.Net.DnsEndPoint" />.</summary>
+      <returns>A string containing the address family, host name or IP address string, and the port number of the specified <see cref="T:System.Net.DnsEndPoint" />.</returns>
+    </member>
+    <member name="P:System.Net.DnsEndPoint.AddressFamily">
+      <summary>Gets the Internet Protocol (IP) address family.</summary>
+      <returns>One of the <see cref="T:System.Net.Sockets.AddressFamily" /> values.</returns>
+    </member>
     <member name="P:System.Net.DnsEndPoint.Host">
       <summary>Gets the host name or string representation of the Internet Protocol (IP) address of the host.</summary>
       <returns>A host name or string representation of an IP address.</returns>
@@ -587,31 +649,27 @@ An error occurred while adding one of the cookies to the container.</exception>
       <summary>Gets the port number of the <see cref="T:System.Net.DnsEndPoint" />.</summary>
       <returns>An integer value in the range 0 to 0xffff indicating the port number of the <see cref="T:System.Net.DnsEndPoint" />.</returns>
     </member>
-    <member name="M:System.Net.DnsEndPoint.ToString">
-      <summary>Returns the host name or string representation of the IP address and port number of the <see cref="T:System.Net.DnsEndPoint" />.</summary>
-      <returns>A string containing the address family, host name or IP address string, and the port number of the specified <see cref="T:System.Net.DnsEndPoint" />.</returns>
-    </member>
     <member name="T:System.Net.EndPoint">
       <summary>Identifies a network address. This is an <see langword="abstract" /> class.</summary>
     </member>
     <member name="M:System.Net.EndPoint.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Net.EndPoint" /> class.</summary>
     </member>
-    <member name="P:System.Net.EndPoint.AddressFamily">
-      <summary>Gets the address family to which the endpoint belongs.</summary>
-      <returns>One of the <see cref="T:System.Net.Sockets.AddressFamily" /> values.</returns>
-      <exception cref="T:System.NotImplementedException">Any attempt is made to get or set the property when the property is not overridden in a descendant class.</exception>
-    </member>
     <member name="M:System.Net.EndPoint.Create(System.Net.SocketAddress)">
       <summary>Creates an <see cref="T:System.Net.EndPoint" /> instance from a <see cref="T:System.Net.SocketAddress" /> instance.</summary>
       <param name="socketAddress">The socket address that serves as the endpoint for a connection.</param>
-      <returns>A new <see cref="T:System.Net.EndPoint" /> instance that is initialized from the specified <see cref="T:System.Net.SocketAddress" /> instance.</returns>
       <exception cref="T:System.NotImplementedException">Any attempt is made to access the method when the method is not overridden in a descendant class.</exception>
+      <returns>A new <see cref="T:System.Net.EndPoint" /> instance that is initialized from the specified <see cref="T:System.Net.SocketAddress" /> instance.</returns>
     </member>
     <member name="M:System.Net.EndPoint.Serialize">
       <summary>Serializes endpoint information into a <see cref="T:System.Net.SocketAddress" /> instance.</summary>
-      <returns>A <see cref="T:System.Net.SocketAddress" /> instance that contains the endpoint information.</returns>
       <exception cref="T:System.NotImplementedException">Any attempt is made to access the method when the method is not overridden in a descendant class.</exception>
+      <returns>A <see cref="T:System.Net.SocketAddress" /> instance that contains the endpoint information.</returns>
+    </member>
+    <member name="P:System.Net.EndPoint.AddressFamily">
+      <summary>Gets the address family to which the endpoint belongs.</summary>
+      <exception cref="T:System.NotImplementedException">Any attempt is made to get or set the property when the property is not overridden in a descendant class.</exception>
+      <returns>One of the <see cref="T:System.Net.Sockets.AddressFamily" /> values.</returns>
     </member>
     <member name="T:System.Net.HttpStatusCode">
       <summary>Contains the values of status codes defined for HTTP.</summary>
@@ -707,7 +765,7 @@ An error occurred while adding one of the cookies to the container.</exception>
       <summary>Equivalent to HTTP status 204. <see cref="F:System.Net.HttpStatusCode.NoContent" /> indicates that the request has been successfully processed and that the response is intentionally blank.</summary>
     </member>
     <member name="F:System.Net.HttpStatusCode.NonAuthoritativeInformation">
-      <summary>Equivalent to HTTP status 203. <see cref="F:System.Net.HttpStatusCode.NonAuthoritativeInformation" /> indicates that the returned metainformation is from a cached copy instead of the origin server and therefore may be incorrect.</summary>
+      <summary>Equivalent to HTTP status 203. <see cref="F:System.Net.HttpStatusCode.NonAuthoritativeInformation" /> indicates that the returned meta information is from a cached copy instead of the origin server and therefore may be incorrect.</summary>
     </member>
     <member name="F:System.Net.HttpStatusCode.NotAcceptable">
       <summary>Equivalent to HTTP status 406. <see cref="F:System.Net.HttpStatusCode.NotAcceptable" /> indicates that the client has indicated with Accept headers that it will not accept any of the available representations of the resource.</summary>
@@ -776,7 +834,7 @@ An error occurred while adding one of the cookies to the container.</exception>
       <summary>Equivalent to HTTP status 205. <see cref="F:System.Net.HttpStatusCode.ResetContent" /> indicates that the client should reset (not reload) the current resource.</summary>
     </member>
     <member name="F:System.Net.HttpStatusCode.SeeOther">
-      <summary>Equivalent to HTTP status 303. <see cref="F:System.Net.HttpStatusCode.SeeOther" /> automatically redirects the client to the URI specified in the Location header as the result of a POST. The request to the resource specified by the Location header will be made with a GET. <c>SeeOther</c> is a synonym for <c>RedirectMethod</c></summary>
+      <summary>Equivalent to HTTP status 303. <see cref="F:System.Net.HttpStatusCode.SeeOther" /> automatically redirects the client to the URI specified in the Location header as the result of a POST. The request to the resource specified by the Location header will be made with a GET. <c>SeeOther</c> is a synonym for <c>RedirectMethod</c>.</summary>
     </member>
     <member name="F:System.Net.HttpStatusCode.ServiceUnavailable">
       <summary>Equivalent to HTTP status 503. <see cref="F:System.Net.HttpStatusCode.ServiceUnavailable" /> indicates that the server is temporarily unavailable, usually due to high load or maintenance.</summary>
@@ -817,14 +875,21 @@ An error occurred while adding one of the cookies to the container.</exception>
     <member name="T:System.Net.HttpVersion">
       <summary>Defines the HTTP version numbers that are supported by the <see cref="T:System.Net.HttpWebRequest" /> and <see cref="T:System.Net.HttpWebResponse" /> classes.</summary>
     </member>
-    <member name="F:System.Net.HttpVersion.Unknown" />
+    <member name="F:System.Net.HttpVersion.Unknown">
+      <summary>Defines a <see cref="T:System.Version" /> instance for an unknown HTTP version.</summary>
+    </member>
     <member name="F:System.Net.HttpVersion.Version10">
       <summary>Defines a <see cref="T:System.Version" /> instance for HTTP 1.0.</summary>
     </member>
     <member name="F:System.Net.HttpVersion.Version11">
       <summary>Defines a <see cref="T:System.Version" /> instance for HTTP 1.1.</summary>
     </member>
-    <member name="F:System.Net.HttpVersion.Version20" />
+    <member name="F:System.Net.HttpVersion.Version20">
+      <summary>Defines a <see cref="T:System.Version" /> instance for HTTP 2.0.</summary>
+    </member>
+    <member name="F:System.Net.HttpVersion.Version30">
+      <summary>Defines a <see cref="T:System.Version" /> instance for HTTP 3.0.</summary>
+    </member>
     <member name="T:System.Net.ICredentials">
       <summary>Provides the base authentication interface for retrieving credentials for Web client authentication.</summary>
     </member>
@@ -847,6 +912,27 @@ An error occurred while adding one of the cookies to the container.</exception>
     <member name="T:System.Net.IPAddress">
       <summary>Provides an Internet Protocol (IP) address.</summary>
     </member>
+    <member name="F:System.Net.IPAddress.Any">
+      <summary>Provides an IP address that indicates that the server must listen for client activity on all network interfaces. This field is read-only.</summary>
+    </member>
+    <member name="F:System.Net.IPAddress.Broadcast">
+      <summary>Provides the IP broadcast address. This field is read-only.</summary>
+    </member>
+    <member name="F:System.Net.IPAddress.IPv6Any">
+      <summary>The <see cref="M:System.Net.Sockets.Socket.Bind(System.Net.EndPoint)" /> method uses the <see cref="F:System.Net.IPAddress.IPv6Any" /> field to indicate that a <see cref="T:System.Net.Sockets.Socket" /> must listen for client activity on all network interfaces.</summary>
+    </member>
+    <member name="F:System.Net.IPAddress.IPv6Loopback">
+      <summary>Provides the IP loopback address. This property is read-only.</summary>
+    </member>
+    <member name="F:System.Net.IPAddress.IPv6None">
+      <summary>Provides an IP address that indicates that no network interface should be used. This property is read-only.</summary>
+    </member>
+    <member name="F:System.Net.IPAddress.Loopback">
+      <summary>Provides the IP loopback address. This field is read-only.</summary>
+    </member>
+    <member name="F:System.Net.IPAddress.None">
+      <summary>Provides an IP address that indicates that no network interface should be used. This field is read-only.</summary>
+    </member>
     <member name="M:System.Net.IPAddress.#ctor(System.Byte[])">
       <summary>Initializes a new instance of the <see cref="T:System.Net.IPAddress" /> class with the address specified as a <see cref="T:System.Byte" /> array.</summary>
       <param name="address">The byte array value of the IP address.</param>
@@ -864,37 +950,36 @@ An error occurred while adding one of the cookies to the container.</exception>
       <exception cref="T:System.ArgumentException">
         <paramref name="address" /> contains a bad IP address.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
-        <paramref name="scopeid" /> &lt; 0 or
-<paramref name="scopeid" /> &gt; 0x00000000FFFFFFFF</exception>
+        <paramref name="scopeid" /> &lt; 0 or  
+  
+ <paramref name="scopeid" /> &gt; 0x00000000FFFFFFFF</exception>
     </member>
     <member name="M:System.Net.IPAddress.#ctor(System.Int64)">
       <summary>Initializes a new instance of the <see cref="T:System.Net.IPAddress" /> class with the address specified as an <see cref="T:System.Int64" />.</summary>
       <param name="newAddress">The long value of the IP address. For example, the value 0x2414188f in big-endian format would be the IP address "143.24.20.36".</param>
       <exception cref="T:System.ArgumentOutOfRangeException">
-        <paramref name="newAddress" /> &lt; 0 or
-<paramref name="newAddress" /> &gt; 0x00000000FFFFFFFF</exception>
+        <paramref name="newAddress" /> &lt; 0 or  
+  
+ <paramref name="newAddress" /> &gt; 0x00000000FFFFFFFF</exception>
     </member>
     <member name="M:System.Net.IPAddress.#ctor(System.ReadOnlySpan{System.Byte})">
-      <param name="address" />
+      <summary>Initializes a new instance of the <see cref="T:System.Net.IPAddress" /> class with the address specified as a byte span.</summary>
+      <param name="address">The byte representation of the IP address, in network byte order, with the most significant byte first in index position 0.</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="address" /> contains a bad IP address.</exception>
     </member>
     <member name="M:System.Net.IPAddress.#ctor(System.ReadOnlySpan{System.Byte},System.Int64)">
-      <param name="address" />
-      <param name="scopeid" />
-    </member>
-    <member name="P:System.Net.IPAddress.Address">
-      <summary>An Internet Protocol (IP) address.</summary>
-      <returns>The long value of the IP address.</returns>
-      <exception cref="T:System.Net.Sockets.SocketException">The address family is <see cref="F:System.Net.Sockets.AddressFamily.InterNetworkV6" />.</exception>
-    </member>
-    <member name="P:System.Net.IPAddress.AddressFamily">
-      <summary>Gets the address family of the IP address.</summary>
-      <returns>Returns <see cref="F:System.Net.Sockets.AddressFamily.InterNetwork" /> for IPv4 or <see cref="F:System.Net.Sockets.AddressFamily.InterNetworkV6" /> for IPv6.</returns>
-    </member>
-    <member name="F:System.Net.IPAddress.Any">
-      <summary>Provides an IP address that indicates that the server must listen for client activity on all network interfaces. This field is read-only.</summary>
-    </member>
-    <member name="F:System.Net.IPAddress.Broadcast">
-      <summary>Provides the IP broadcast address. This field is read-only.</summary>
+      <summary>Initializes a new instance of the <see cref="T:System.Net.IPAddress" /> class with the address specified as a byte span and the specified scope identifier.</summary>
+      <param name="address">The byte span value of the IP address.</param>
+      <param name="scopeid">The long value of the scope identifier.</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="address" /> contains a bad IP address.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="scopeid" /> &lt; 0 
+
+-or-
+
+<paramref name="scopeid" /> &gt; 0x00000000FFFFFFFF</exception>
     </member>
     <member name="M:System.Net.IPAddress.Equals(System.Object)">
       <summary>Compares two IP addresses.</summary>
@@ -925,19 +1010,104 @@ An error occurred while adding one of the cookies to the container.</exception>
       <param name="host">The number to convert, expressed in host byte order.</param>
       <returns>A long value, expressed in network byte order.</returns>
     </member>
-    <member name="F:System.Net.IPAddress.IPv6Any">
-      <summary>The <see cref="M:System.Net.Sockets.Socket.Bind(System.Net.EndPoint)" /> method uses the <see cref="F:System.Net.IPAddress.IPv6Any" /> field to indicate that a <see cref="T:System.Net.Sockets.Socket" /> must listen for client activity on all network interfaces.</summary>
+    <member name="M:System.Net.IPAddress.IsLoopback(System.Net.IPAddress)">
+      <summary>Indicates whether the specified IP address is the loopback address.</summary>
+      <param name="address">An IP address.</param>
+      <returns>
+        <see langword="true" /> if <paramref name="address" /> is the loopback address; otherwise, <see langword="false" />.</returns>
     </member>
-    <member name="F:System.Net.IPAddress.IPv6Loopback">
-      <summary>Provides the IP loopback address. This property is read-only.</summary>
+    <member name="M:System.Net.IPAddress.MapToIPv4">
+      <summary>Maps the <see cref="T:System.Net.IPAddress" /> object to an IPv4 address.</summary>
+      <returns>Returns <see cref="T:System.Net.IPAddress" />.  
+  
+ An IPv4 address.</returns>
     </member>
-    <member name="F:System.Net.IPAddress.IPv6None">
-      <summary>Provides an IP address that indicates that no network interface should be used. This property is read-only.</summary>
+    <member name="M:System.Net.IPAddress.MapToIPv6">
+      <summary>Maps the <see cref="T:System.Net.IPAddress" /> object to an IPv6 address.</summary>
+      <returns>Returns <see cref="T:System.Net.IPAddress" />.  
+  
+ An IPv6 address.</returns>
+    </member>
+    <member name="M:System.Net.IPAddress.NetworkToHostOrder(System.Int16)">
+      <summary>Converts a short value from network byte order to host byte order.</summary>
+      <param name="network">The number to convert, expressed in network byte order.</param>
+      <returns>A short value, expressed in host byte order.</returns>
+    </member>
+    <member name="M:System.Net.IPAddress.NetworkToHostOrder(System.Int32)">
+      <summary>Converts an integer value from network byte order to host byte order.</summary>
+      <param name="network">The number to convert, expressed in network byte order.</param>
+      <returns>An integer value, expressed in host byte order.</returns>
+    </member>
+    <member name="M:System.Net.IPAddress.NetworkToHostOrder(System.Int64)">
+      <summary>Converts a long value from network byte order to host byte order.</summary>
+      <param name="network">The number to convert, expressed in network byte order.</param>
+      <returns>A long value, expressed in host byte order.</returns>
+    </member>
+    <member name="M:System.Net.IPAddress.Parse(System.ReadOnlySpan{System.Char})">
+      <summary>Converts an IP address represented as a character span to an <see cref="T:System.Net.IPAddress" /> instance.</summary>
+      <param name="ipSpan" />
+      <exception cref="T:System.FormatException">
+        <paramref name="ipString" /> is not a valid IP address.</exception>
+      <returns>The converted IP address.</returns>
+    </member>
+    <member name="M:System.Net.IPAddress.Parse(System.String)">
+      <summary>Converts an IP address string to an <see cref="T:System.Net.IPAddress" /> instance.</summary>
+      <param name="ipString">A string that contains an IP address in dotted-quad notation for IPv4 and in colon-hexadecimal notation for IPv6.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="ipString" /> is <see langword="null" />.</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="ipString" /> is not a valid IP address.</exception>
+      <returns>An <see cref="T:System.Net.IPAddress" /> instance.</returns>
+    </member>
+    <member name="M:System.Net.IPAddress.ToString">
+      <summary>Converts an Internet address to its standard notation.</summary>
+      <exception cref="T:System.Net.Sockets.SocketException">The address family is <see cref="F:System.Net.Sockets.AddressFamily.InterNetworkV6" /> and the address is bad.</exception>
+      <returns>A string that contains the IP address in either IPv4 dotted-quad or in IPv6 colon-hexadecimal notation.</returns>
+    </member>
+    <member name="M:System.Net.IPAddress.TryFormat(System.Span{System.Char},System.Int32@)">
+      <summary>Tries to format the current IP address into the provided span.</summary>
+      <param name="destination">When this method returns, the IP address as a span of characters.</param>
+      <param name="charsWritten">When this method returns, the number of characters written into the span.</param>
+      <returns>
+        <see langword="true" /> if the formatting was successful; otherwise, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Net.IPAddress.TryParse(System.ReadOnlySpan{System.Char},System.Net.IPAddress@)">
+      <summary>Determines whether the specified byte span represents a valid IP address.</summary>
+      <param name="address">When this method returns, the <see cref="T:System.Net.IPAddress" /> version of the byte span.</param>
+      <param name="ipSpan" />
+      <returns>
+        <see langword="true" /> if <paramref name="ipString" /> was able to be parsed as an IP address; otherwise, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Net.IPAddress.TryParse(System.String,System.Net.IPAddress@)">
+      <summary>Determines whether a string is a valid IP address.</summary>
+      <param name="ipString">The string to validate.</param>
+      <param name="address">The <see cref="T:System.Net.IPAddress" /> version of the string.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="ipString" /> is <see langword="null" />.</exception>
+      <returns>
+        <see langword="true" /> if <paramref name="ipString" /> was able to be parsed as an IP address; otherwise, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Net.IPAddress.TryWriteBytes(System.Span{System.Byte},System.Int32@)">
+      <summary>Tries to write the current IP address into a span of bytes.</summary>
+      <param name="destination">When this method returns, the IP address as a span of bytes.</param>
+      <param name="bytesWritten">When this method returns, the number of bytes written into the span.</param>
+      <returns>
+        <see langword="true" /> if the IP address is successfully written to the given span; otherwise, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Net.IPAddress.Address">
+      <summary>An Internet Protocol (IP) address.</summary>
+      <exception cref="T:System.Net.Sockets.SocketException">The address family is <see cref="F:System.Net.Sockets.AddressFamily.InterNetworkV6" />.</exception>
+      <returns>The long value of the IP address.</returns>
+    </member>
+    <member name="P:System.Net.IPAddress.AddressFamily">
+      <summary>Gets the address family of the IP address.</summary>
+      <returns>Returns <see cref="F:System.Net.Sockets.AddressFamily.InterNetwork" /> for IPv4 or <see cref="F:System.Net.Sockets.AddressFamily.InterNetworkV6" /> for IPv6.</returns>
     </member>
     <member name="P:System.Net.IPAddress.IsIPv4MappedToIPv6">
       <summary>Gets whether the IP address is an IPv4-mapped IPv6 address.</summary>
-      <returns>Returns <see cref="T:System.Boolean" />.
-<see langword="true" /> if the IP address is an IPv4-mapped IPv6 address; otherwise, <see langword="false" />.</returns>
+      <returns>Returns <see cref="T:System.Boolean" />.  
+  
+ <see langword="true" /> if the IP address is an IPv4-mapped IPv6 address; otherwise, <see langword="false" />.</returns>
     </member>
     <member name="P:System.Net.IPAddress.IsIPv6LinkLocal">
       <summary>Gets whether the address is an IPv6 link local address.</summary>
@@ -959,105 +1129,44 @@ An error occurred while adding one of the cookies to the container.</exception>
       <returns>
         <see langword="true" /> if the IP address is an IPv6 Teredo address; otherwise, <see langword="false" />.</returns>
     </member>
-    <member name="M:System.Net.IPAddress.IsLoopback(System.Net.IPAddress)">
-      <summary>Indicates whether the specified IP address is the loopback address.</summary>
-      <param name="address">An IP address.</param>
-      <returns>
-        <see langword="true" /> if <paramref name="address" /> is the loopback address; otherwise, <see langword="false" />.</returns>
-    </member>
-    <member name="F:System.Net.IPAddress.Loopback">
-      <summary>Provides the IP loopback address. This field is read-only.</summary>
-    </member>
-    <member name="M:System.Net.IPAddress.MapToIPv4">
-      <summary>Maps the <see cref="T:System.Net.IPAddress" /> object to an IPv4 address.</summary>
-      <returns>Returns <see cref="T:System.Net.IPAddress" />.
-An IPv4 address.</returns>
-    </member>
-    <member name="M:System.Net.IPAddress.MapToIPv6">
-      <summary>Maps the <see cref="T:System.Net.IPAddress" /> object to an IPv6 address.</summary>
-      <returns>Returns <see cref="T:System.Net.IPAddress" />.
-An IPv6 address.</returns>
-    </member>
-    <member name="M:System.Net.IPAddress.NetworkToHostOrder(System.Int16)">
-      <summary>Converts a short value from network byte order to host byte order.</summary>
-      <param name="network">The number to convert, expressed in network byte order.</param>
-      <returns>A short value, expressed in host byte order.</returns>
-    </member>
-    <member name="M:System.Net.IPAddress.NetworkToHostOrder(System.Int32)">
-      <summary>Converts an integer value from network byte order to host byte order.</summary>
-      <param name="network">The number to convert, expressed in network byte order.</param>
-      <returns>An integer value, expressed in host byte order.</returns>
-    </member>
-    <member name="M:System.Net.IPAddress.NetworkToHostOrder(System.Int64)">
-      <summary>Converts a long value from network byte order to host byte order.</summary>
-      <param name="network">The number to convert, expressed in network byte order.</param>
-      <returns>A long value, expressed in host byte order.</returns>
-    </member>
-    <member name="F:System.Net.IPAddress.None">
-      <summary>Provides an IP address that indicates that no network interface should be used. This field is read-only.</summary>
-    </member>
-    <member name="M:System.Net.IPAddress.Parse(System.ReadOnlySpan{System.Char})">
-      <param name="ipString" />
-    </member>
-    <member name="M:System.Net.IPAddress.Parse(System.String)">
-      <summary>Converts an IP address string to an <see cref="T:System.Net.IPAddress" /> instance.</summary>
-      <param name="ipString">A string that contains an IP address in dotted-quad notation for IPv4 and in colon-hexadecimal notation for IPv6.</param>
-      <returns>An <see cref="T:System.Net.IPAddress" /> instance.</returns>
-      <exception cref="T:System.ArgumentNullException">
-        <paramref name="ipString" /> is <see langword="null" />.</exception>
-      <exception cref="T:System.FormatException">
-        <paramref name="ipString" /> is not a valid IP address.</exception>
+    <member name="P:System.Net.IPAddress.IsIPv6UniqueLocal">
+      <summary>Gets whether the address is an IPv6 Unique Local address.</summary>
     </member>
     <member name="P:System.Net.IPAddress.ScopeId">
       <summary>Gets or sets the IPv6 address scope identifier.</summary>
-      <returns>A long integer that specifies the scope of the address.</returns>
       <exception cref="T:System.Net.Sockets.SocketException">
         <see langword="AddressFamily" /> = <see langword="InterNetwork" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
-        <paramref name="scopeId" /> &lt; 0
+        <paramref name="scopeId" /> &lt; 0  
+  
 -or-
-
+  
 <paramref name="scopeId" /> &gt; 0x00000000FFFFFFFF</exception>
-    </member>
-    <member name="M:System.Net.IPAddress.ToString">
-      <summary>Converts an Internet address to its standard notation.</summary>
-      <returns>A string that contains the IP address in either IPv4 dotted-quad or in IPv6 colon-hexadecimal notation.</returns>
-      <exception cref="T:System.Net.Sockets.SocketException">The address family is <see cref="F:System.Net.Sockets.AddressFamily.InterNetworkV6" /> and the address is bad.</exception>
-    </member>
-    <member name="M:System.Net.IPAddress.TryFormat(System.Span{System.Char},System.Int32@)">
-      <param name="destination" />
-      <param name="charsWritten" />
-    </member>
-    <member name="M:System.Net.IPAddress.TryParse(System.ReadOnlySpan{System.Char},System.Net.IPAddress@)">
-      <param name="ipString" />
-      <param name="address" />
-    </member>
-    <member name="M:System.Net.IPAddress.TryParse(System.String,System.Net.IPAddress@)">
-      <summary>Determines whether a string is a valid IP address.</summary>
-      <param name="ipString">The string to validate.</param>
-      <param name="address">The <see cref="T:System.Net.IPAddress" /> version of the string.</param>
-      <returns>
-        <see langword="true" /> if <paramref name="ipString" /> was able to be parsed as an IP address; otherwise, <see langword="false" />.</returns>
-      <exception cref="T:System.ArgumentNullException">
-        <paramref name="ipString" /> is null.</exception>
-    </member>
-    <member name="M:System.Net.IPAddress.TryWriteBytes(System.Span{System.Byte},System.Int32@)">
-      <param name="destination" />
-      <param name="bytesWritten" />
+      <returns>A long integer that specifies the scope of the address.</returns>
     </member>
     <member name="T:System.Net.IPEndPoint">
       <summary>Represents a network endpoint as an IP address and a port number.</summary>
     </member>
+    <member name="F:System.Net.IPEndPoint.MaxPort">
+      <summary>Specifies the maximum value that can be assigned to the <see cref="P:System.Net.IPEndPoint.Port" /> property. The MaxPort value is set to 0x0000FFFF. This field is read-only.</summary>
+    </member>
+    <member name="F:System.Net.IPEndPoint.MinPort">
+      <summary>Specifies the minimum value that can be assigned to the <see cref="P:System.Net.IPEndPoint.Port" /> property. This field is read-only.</summary>
+    </member>
     <member name="M:System.Net.IPEndPoint.#ctor(System.Int64,System.Int32)">
       <summary>Initializes a new instance of the <see cref="T:System.Net.IPEndPoint" /> class with the specified address and port number.</summary>
-      <param name="address">The IP address of the Internet host.</param>
+      <param name="address">The IP address of the Internet host. For example, the value 0x2414188f in big-endian format would be the IP address "143.24.20.36".</param>
       <param name="port">The port number associated with the <paramref name="address" />, or 0 to specify any available port. <paramref name="port" /> is in host order.</param>
       <exception cref="T:System.ArgumentOutOfRangeException">
-        <paramref name="port" /> is less than <see cref="F:System.Net.IPEndPoint.MinPort" />.
--or-
-<paramref name="port" /> is greater than <see cref="F:System.Net.IPEndPoint.MaxPort" />.
--or-
-<paramref name="address" /> is less than 0 or greater than 0x00000000FFFFFFFF.</exception>
+        <paramref name="port" /> is less than <see cref="F:System.Net.IPEndPoint.MinPort" />.  
+  
+ -or-  
+  
+ <paramref name="port" /> is greater than <see cref="F:System.Net.IPEndPoint.MaxPort" />.  
+  
+ -or-  
+  
+ <paramref name="address" /> is less than 0 or greater than 0x00000000FFFFFFFF.</exception>
     </member>
     <member name="M:System.Net.IPEndPoint.#ctor(System.Net.IPAddress,System.Int32)">
       <summary>Initializes a new instance of the <see cref="T:System.Net.IPEndPoint" /> class with the specified address and port number.</summary>
@@ -1066,27 +1175,25 @@ An IPv6 address.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="address" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
-        <paramref name="port" /> is less than <see cref="F:System.Net.IPEndPoint.MinPort" />.
--or-
-<paramref name="port" /> is greater than <see cref="F:System.Net.IPEndPoint.MaxPort" />.
--or-
-<paramref name="address" /> is less than 0 or greater than 0x00000000FFFFFFFF.</exception>
-    </member>
-    <member name="P:System.Net.IPEndPoint.Address">
-      <summary>Gets or sets the IP address of the endpoint.</summary>
-      <returns>An <see cref="T:System.Net.IPAddress" /> instance containing the IP address of the endpoint.</returns>
-    </member>
-    <member name="P:System.Net.IPEndPoint.AddressFamily">
-      <summary>Gets the Internet Protocol (IP) address family.</summary>
-      <returns>Returns <see cref="F:System.Net.Sockets.AddressFamily.InterNetwork" />.</returns>
+        <paramref name="port" /> is less than <see cref="F:System.Net.IPEndPoint.MinPort" />.  
+  
+ -or-  
+  
+ <paramref name="port" /> is greater than <see cref="F:System.Net.IPEndPoint.MaxPort" />.  
+  
+ -or-  
+  
+ <paramref name="address" /> is less than 0 or greater than 0x00000000FFFFFFFF.</exception>
     </member>
     <member name="M:System.Net.IPEndPoint.Create(System.Net.SocketAddress)">
       <summary>Creates an endpoint from a socket address.</summary>
       <param name="socketAddress">The <see cref="T:System.Net.SocketAddress" /> to use for the endpoint.</param>
+      <exception cref="T:System.ArgumentException">The AddressFamily of <paramref name="socketAddress" /> is not equal to the AddressFamily of the current instance.  
+  
+ -or-  
+  
+ <paramref name="socketAddress" />.Size &lt; 8.</exception>
       <returns>An <see cref="T:System.Net.EndPoint" /> instance using the specified socket address.</returns>
-      <exception cref="T:System.ArgumentException">The AddressFamily of <paramref name="socketAddress" /> is not equal to the AddressFamily of the current instance.
--or-
-<paramref name="socketAddress" />.Size &lt; 8.</exception>
     </member>
     <member name="M:System.Net.IPEndPoint.Equals(System.Object)">
       <summary>Determines whether the specified <see cref="T:System.Object" /> is equal to the current <see cref="T:System.Object" />.</summary>
@@ -1098,34 +1205,23 @@ An IPv6 address.</returns>
       <summary>Returns a hash value for a <see cref="T:System.Net.IPEndPoint" /> instance.</summary>
       <returns>An integer hash value.</returns>
     </member>
-    <member name="F:System.Net.IPEndPoint.MaxPort">
-      <summary>Specifies the maximum value that can be assigned to the <see cref="P:System.Net.IPEndPoint.Port" /> property. The MaxPort value is set to 0x0000FFFF. This field is read-only.</summary>
-    </member>
-    <member name="F:System.Net.IPEndPoint.MinPort">
-      <summary>Specifies the minimum value that can be assigned to the <see cref="P:System.Net.IPEndPoint.Port" /> property. This field is read-only.</summary>
-    </member>
     <member name="M:System.Net.IPEndPoint.Parse(System.ReadOnlySpan{System.Char})">
       <summary>Converts an IP network endpoint (address and port) represented as a read-only span to an <see cref="T:System.Net.IPEndPoint" /> instance.</summary>
       <param name="s">A read-only span that contains an IP endpoint in dotted-quad notation or network byte order for IPv4 and in colon-hexadecimal notation for IPv6.</param>
-      <returns>The object representation of an IP network endpoint.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="s" /> is <see langword="null" />.</exception>
       <exception cref="T:System.FormatException">
         <paramref name="s" /> is not a valid IP endpoint.</exception>
+      <returns>The object representation of an IP network endpoint.</returns>
     </member>
     <member name="M:System.Net.IPEndPoint.Parse(System.String)">
       <summary>Converts an IP network endpoint (address and port) represented as a string to an <see cref="T:System.Net.IPEndPoint" /> instance.</summary>
       <param name="s">A string that contains an IP endpoint in dotted-quad notation or network byte order for IPv4 and in colon-hexadecimal notation for IPv6.</param>
-      <returns>The object representation of an IP network endpoint.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="s" /> is <see langword="null" />.</exception>
       <exception cref="T:System.FormatException">
         <paramref name="s" /> is not a valid IP endpoint.</exception>
-    </member>
-    <member name="P:System.Net.IPEndPoint.Port">
-      <summary>Gets or sets the port number of the endpoint.</summary>
-      <returns>An integer value in the range <see cref="F:System.Net.IPEndPoint.MinPort" /> to <see cref="F:System.Net.IPEndPoint.MaxPort" /> indicating the port number of the endpoint.</returns>
-      <exception cref="T:System.ArgumentOutOfRangeException">The value that was specified for a set operation is less than <see cref="F:System.Net.IPEndPoint.MinPort" /> or greater than <see cref="F:System.Net.IPEndPoint.MaxPort" />.</exception>
+      <returns>The object representation of an IP network endpoint.</returns>
     </member>
     <member name="M:System.Net.IPEndPoint.Serialize">
       <summary>Serializes endpoint information into a <see cref="T:System.Net.SocketAddress" /> instance.</summary>
@@ -1149,12 +1245,21 @@ An IPv6 address.</returns>
       <returns>
         <see langword="true" /> if <paramref name="s" /> can be parsed as an IP endpoint; otherwise, <see langword="false" />.</returns>
     </member>
+    <member name="P:System.Net.IPEndPoint.Address">
+      <summary>Gets or sets the IP address of the endpoint.</summary>
+      <returns>An <see cref="T:System.Net.IPAddress" /> instance containing the IP address of the endpoint.</returns>
+    </member>
+    <member name="P:System.Net.IPEndPoint.AddressFamily">
+      <summary>Gets the Internet Protocol (IP) address family.</summary>
+      <returns>Returns <see cref="F:System.Net.Sockets.AddressFamily.InterNetwork" />.</returns>
+    </member>
+    <member name="P:System.Net.IPEndPoint.Port">
+      <summary>Gets or sets the port number of the endpoint.</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">The value that was specified for a set operation is less than <see cref="F:System.Net.IPEndPoint.MinPort" /> or greater than <see cref="F:System.Net.IPEndPoint.MaxPort" />.</exception>
+      <returns>An integer value in the range <see cref="F:System.Net.IPEndPoint.MinPort" /> to <see cref="F:System.Net.IPEndPoint.MaxPort" /> indicating the port number of the endpoint.</returns>
+    </member>
     <member name="T:System.Net.IWebProxy">
       <summary>Provides the base interface for implementation of proxy access for the <see cref="T:System.Net.WebRequest" /> class.</summary>
-    </member>
-    <member name="P:System.Net.IWebProxy.Credentials">
-      <summary>The credentials to submit to the proxy server for authentication.</summary>
-      <returns>An <see cref="T:System.Net.ICredentials" /> instance that contains the credentials that are needed to authenticate a request to the proxy server.</returns>
     </member>
     <member name="M:System.Net.IWebProxy.GetProxy(System.Uri)">
       <summary>Returns the URI of a proxy.</summary>
@@ -1166,6 +1271,10 @@ An IPv6 address.</returns>
       <param name="host">The <see cref="T:System.Uri" /> of the host to check for proxy use.</param>
       <returns>
         <see langword="true" /> if the proxy server should not be used for <paramref name="host" />; otherwise, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Net.IWebProxy.Credentials">
+      <summary>The credentials to submit to the proxy server for authentication.</summary>
+      <returns>An <see cref="T:System.Net.ICredentials" /> instance that contains the credentials that are needed to authenticate a request to the proxy server.</returns>
     </member>
     <member name="T:System.Net.NetworkCredential">
       <summary>Provides credentials for password-based authentication schemes such as basic, digest, NTLM, and Kerberos authentication.</summary>
@@ -1197,10 +1306,6 @@ An IPv6 address.</returns>
       <param name="password">The password for the user name associated with the credentials.</param>
       <param name="domain">The domain associated with these credentials.</param>
     </member>
-    <member name="P:System.Net.NetworkCredential.Domain">
-      <summary>Gets or sets the domain or computer name that verifies the credentials.</summary>
-      <returns>The name of the domain associated with the credentials.</returns>
-    </member>
     <member name="M:System.Net.NetworkCredential.GetCredential(System.String,System.Int32,System.String)">
       <summary>Returns an instance of the <see cref="T:System.Net.NetworkCredential" /> class for the specified host, port, and authentication type.</summary>
       <param name="host">The host computer that authenticates the client.</param>
@@ -1211,8 +1316,12 @@ An IPv6 address.</returns>
     <member name="M:System.Net.NetworkCredential.GetCredential(System.Uri,System.String)">
       <summary>Returns an instance of the <see cref="T:System.Net.NetworkCredential" /> class for the specified Uniform Resource Identifier (URI) and authentication type.</summary>
       <param name="uri">The URI that the client provides authentication for.</param>
-      <param name="authType">The type of authentication requested, as defined in the <see cref="P:System.Net.IAuthenticationModule.AuthenticationType" /> property.</param>
+      <param name="authenticationType" />
       <returns>A <see cref="T:System.Net.NetworkCredential" /> object.</returns>
+    </member>
+    <member name="P:System.Net.NetworkCredential.Domain">
+      <summary>Gets or sets the domain or computer name that verifies the credentials.</summary>
+      <returns>The name of the domain associated with the credentials.</returns>
     </member>
     <member name="P:System.Net.NetworkCredential.Password">
       <summary>Gets or sets the password for the user name associated with the credentials.</summary>
@@ -1220,8 +1329,8 @@ An IPv6 address.</returns>
     </member>
     <member name="P:System.Net.NetworkCredential.SecurePassword">
       <summary>Gets or sets the password as a <see cref="T:System.Security.SecureString" /> instance.</summary>
-      <returns>The password for the user name associated with the credentials.</returns>
       <exception cref="T:System.NotSupportedException">The <see cref="T:System.Security.SecureString" /> class is not supported on this platform.</exception>
+      <returns>The password for the user name associated with the credentials.</returns>
     </member>
     <member name="P:System.Net.NetworkCredential.UserName">
       <summary>Gets or sets the user name associated with the credentials.</summary>
@@ -1255,19 +1364,29 @@ An IPv6 address.</returns>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is less than zero.</exception>
       <exception cref="T:System.ArgumentException">
-        <paramref name="array" /> is multidimensional.
+        <paramref name="array" /> is multidimensional.  
 
--or-
+-or-  
+
 The number of elements in this <see cref="T:System.Net.NetworkInformation.IPAddressCollection" /> is greater than the available space from <paramref name="offset" /> to the end of the destination <paramref name="array" />.</exception>
       <exception cref="T:System.InvalidCastException">The elements in this <see cref="T:System.Net.NetworkInformation.IPAddressCollection" /> cannot be cast automatically to the type of the destination <paramref name="array" />.</exception>
-    </member>
-    <member name="P:System.Net.NetworkInformation.IPAddressCollection.Count">
-      <summary>Gets the number of <see cref="T:System.Net.IPAddress" /> types in this collection.</summary>
-      <returns>An <see cref="T:System.Int32" /> value that contains the number of <see cref="T:System.Net.IPAddress" /> types in this collection.</returns>
     </member>
     <member name="M:System.Net.NetworkInformation.IPAddressCollection.GetEnumerator">
       <summary>Returns an object that can be used to iterate through this collection.</summary>
       <returns>An object that implements the <see cref="T:System.Collections.IEnumerator" /> interface and provides access to the <see cref="T:System.Net.NetworkInformation.IPAddressCollection" /> types in this collection.</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPAddressCollection.Remove(System.Net.IPAddress)">
+      <summary>Throws a <see cref="T:System.NotSupportedException" /> because this operation is not supported for this collection.</summary>
+      <param name="address">The object to be removed.</param>
+      <returns>Always throws a <see cref="T:System.NotSupportedException" />.</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPAddressCollection.System#Collections#IEnumerable#GetEnumerator">
+      <summary>Returns an object that can be used to iterate through this collection.</summary>
+      <returns>An object that implements the <see cref="T:System.Collections.IEnumerator" /> interface and provides access to the <see cref="T:System.Net.NetworkInformation.IPAddressCollection" /> types in this collection.</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPAddressCollection.Count">
+      <summary>Gets the number of <see cref="T:System.Net.IPAddress" /> types in this collection.</summary>
+      <returns>An <see cref="T:System.Int32" /> value that contains the number of <see cref="T:System.Net.IPAddress" /> types in this collection.</returns>
     </member>
     <member name="P:System.Net.NetworkInformation.IPAddressCollection.IsReadOnly">
       <summary>Gets a value that indicates whether access to this collection is read-only.</summary>
@@ -1278,15 +1397,6 @@ The number of elements in this <see cref="T:System.Net.NetworkInformation.IPAddr
       <summary>Gets the <see cref="T:System.Net.IPAddress" /> at the specific index of the collection.</summary>
       <param name="index">The index of interest.</param>
       <returns>The <see cref="T:System.Net.IPAddress" /> at the specific index in the collection.</returns>
-    </member>
-    <member name="M:System.Net.NetworkInformation.IPAddressCollection.Remove(System.Net.IPAddress)">
-      <summary>Throws a <see cref="T:System.NotSupportedException" /> because this operation is not supported for this collection.</summary>
-      <param name="address">The object to be removed.</param>
-      <returns>Always throws a <see cref="T:System.NotSupportedException" />.</returns>
-    </member>
-    <member name="M:System.Net.NetworkInformation.IPAddressCollection.System#Collections#IEnumerable#GetEnumerator">
-      <summary>Returns an object that can be used to iterate through this collection.</summary>
-      <returns>An object that implements the <see cref="T:System.Collections.IEnumerator" /> interface and provides access to the <see cref="T:System.Net.NetworkInformation.IPAddressCollection" /> types in this collection.</returns>
     </member>
     <member name="T:System.Net.Security.AuthenticationLevel">
       <summary>Specifies client requirements for authentication and impersonation when using the <see cref="T:System.Net.WebRequest" /> class and derived classes to request a resource.</summary>
@@ -1336,27 +1446,27 @@ The number of elements in this <see cref="T:System.Net.NetworkInformation.IPAddr
       <returns>
         <see langword="true" /> if the specified <see langword="Object" /> is equal to the current <see langword="Object" />; otherwise, <see langword="false" />.</returns>
     </member>
-    <member name="P:System.Net.SocketAddress.Family">
-      <summary>Gets the <see cref="T:System.Net.Sockets.AddressFamily" /> enumerated value of the current <see cref="T:System.Net.SocketAddress" />.</summary>
-      <returns>One of the <see cref="T:System.Net.Sockets.AddressFamily" /> enumerated values.</returns>
-    </member>
     <member name="M:System.Net.SocketAddress.GetHashCode">
       <summary>Serves as a hash function for a particular type, suitable for use in hashing algorithms and data structures like a hash table.</summary>
       <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
     </member>
+    <member name="M:System.Net.SocketAddress.ToString">
+      <summary>Returns information about the socket address.</summary>
+      <returns>A string that contains information about the <see cref="T:System.Net.SocketAddress" />.</returns>
+    </member>
+    <member name="P:System.Net.SocketAddress.Family">
+      <summary>Gets the <see cref="T:System.Net.Sockets.AddressFamily" /> enumerated value of the current <see cref="T:System.Net.SocketAddress" />.</summary>
+      <returns>One of the <see cref="T:System.Net.Sockets.AddressFamily" /> enumerated values.</returns>
+    </member>
     <member name="P:System.Net.SocketAddress.Item(System.Int32)">
       <summary>Gets or sets the specified index element in the underlying buffer.</summary>
       <param name="offset">The array index element of the desired information.</param>
-      <returns>The value of the specified index element in the underlying buffer.</returns>
       <exception cref="T:System.IndexOutOfRangeException">The specified index does not exist in the buffer.</exception>
+      <returns>The value of the specified index element in the underlying buffer.</returns>
     </member>
     <member name="P:System.Net.SocketAddress.Size">
       <summary>Gets the underlying buffer size of the <see cref="T:System.Net.SocketAddress" />.</summary>
       <returns>The underlying buffer size of the <see cref="T:System.Net.SocketAddress" />.</returns>
-    </member>
-    <member name="M:System.Net.SocketAddress.ToString">
-      <summary>Returns information about the socket address.</summary>
-      <returns>A string that contains information about the <see cref="T:System.Net.SocketAddress" />.</returns>
     </member>
     <member name="T:System.Net.Sockets.AddressFamily">
       <summary>Specifies the addressing scheme that an instance of the <see cref="T:System.Net.Sockets.Socket" /> class can use.</summary>
@@ -1479,7 +1589,7 @@ The number of elements in this <see cref="T:System.Net.NetworkInformation.IPAddr
       <summary>The nonblocking <see cref="T:System.Net.Sockets.Socket" /> already has an operation in progress.</summary>
     </member>
     <member name="F:System.Net.Sockets.SocketError.ConnectionAborted">
-      <summary>The connection was aborted by the .NET Framework or the underlying socket provider.</summary>
+      <summary>The connection was aborted by .NET or the underlying socket provider.</summary>
     </member>
     <member name="F:System.Net.Sockets.SocketError.ConnectionRefused">
       <summary>The remote host is actively refusing a connection.</summary>
@@ -1640,9 +1750,9 @@ The number of elements in this <see cref="T:System.Net.NetworkInformation.IPAddr
     <member name="M:System.Net.TransportContext.GetChannelBinding(System.Security.Authentication.ExtendedProtection.ChannelBindingKind)">
       <summary>Retrieves the requested channel binding.</summary>
       <param name="kind">The type of channel binding to retrieve.</param>
-      <returns>The requested <see cref="T:System.Security.Authentication.ExtendedProtection.ChannelBinding" />, or <see langword="null" /> if the channel binding is not supported by the current transport or by the operating system.</returns>
       <exception cref="T:System.NotSupportedException">
         <paramref name="kind" /> is must be <see cref="F:System.Security.Authentication.ExtendedProtection.ChannelBindingKind.Endpoint" /> for use with the <see cref="T:System.Net.TransportContext" /> retrieved from the <see cref="P:System.Net.HttpListenerRequest.TransportContext" /> property.</exception>
+      <returns>The requested <see cref="T:System.Security.Authentication.ExtendedProtection.ChannelBinding" />, or <see langword="null" /> if the channel binding is not supported by the current transport or by the operating system.</returns>
     </member>
     <member name="T:System.Security.Authentication.CipherAlgorithmType">
       <summary>Defines the possible cipher algorithms for the <see cref="T:System.Net.Security.SslStream" /> class.</summary>
@@ -1722,13 +1832,19 @@ The number of elements in this <see cref="T:System.Net.NetworkInformation.IPAddr
       <summary>Specifies the algorithm used for generating message authentication codes (MACs).</summary>
     </member>
     <member name="F:System.Security.Authentication.HashAlgorithmType.Md5">
-      <summary>The Message Digest 5 (MD5) hashing algorithm.</summary>
+      <summary>
+        <para>The Message Digest 5 (MD5) hashing algorithm.</para>
+        <para>Due to collision problems with MD5, Microsoft recommends SHA256.</para>
+      </summary>
     </member>
     <member name="F:System.Security.Authentication.HashAlgorithmType.None">
       <summary>No hashing algorithm is used.</summary>
     </member>
     <member name="F:System.Security.Authentication.HashAlgorithmType.Sha1">
-      <summary>The Secure Hashing Algorithm (SHA1).</summary>
+      <summary>
+        <para>The Secure Hashing Algorithm (SHA1).</para>
+        <para>Due to collision problems with MD5, Microsoft recommends SHA256.</para>
+      </summary>
     </member>
     <member name="F:System.Security.Authentication.HashAlgorithmType.Sha256">
       <summary>The Secure Hashing Algorithm 2 (SHA-2), using a 256-bit digest.</summary>
@@ -1755,7 +1871,7 @@ The number of elements in this <see cref="T:System.Net.NetworkInformation.IPAddr
       <summary>Specifies the SSL 3.0 protocol. SSL 3.0 has been superseded by the TLS protocol and is provided for backward compatibility only.</summary>
     </member>
     <member name="F:System.Security.Authentication.SslProtocols.Tls">
-      <summary>Specifies the TLS 1.0 security protocol. The TLS protocol is defined in IETF RFC 2246.</summary>
+      <summary>Specifies the TLS 1.0 security protocol.  TLS 1.0 is provided for backward compatibility only. The TLS protocol is defined in IETF RFC 2246.</summary>
     </member>
     <member name="F:System.Security.Authentication.SslProtocols.Tls11">
       <summary>Specifies the TLS 1.1 security protocol. The TLS protocol is defined in IETF RFC 4346.</summary>
