@@ -386,6 +386,7 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="source">The media sources to add.</param>
         /// <feature>http://tizen.org/feature/camera</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
+        /// <feature>http://tizen.org/feature/display</feature>
         /// <privilege>http://tizen.org/privilege/camera</privilege>
         /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
         /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
@@ -433,6 +434,7 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="sources">The media sources to add.</param>
         /// <feature>http://tizen.org/feature/camera</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
+        /// <feature>http://tizen.org/feature/display</feature>
         /// <privilege>http://tizen.org/privilege/camera</privilege>
         /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
         /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
