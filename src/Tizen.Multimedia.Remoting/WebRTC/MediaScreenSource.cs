@@ -34,6 +34,11 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Initializes a new instance of the <see cref="MediaScreenSource"/> class.
         /// </summary>
+        /// <feature>http://tizen.org/feature/display</feature>
+        /// <remark>
+        /// If display feature is not supported, NotSupportedException will be thrown
+        /// when MediaScreenSource is added by <see cref="WebRTC.AddSource"/> or <see cref="WebRTC.AddSources"/>.
+        /// </remark>
         /// <since_tizen> 9 </since_tizen>
         public MediaScreenSource() : base(MediaType.Video) {}
 

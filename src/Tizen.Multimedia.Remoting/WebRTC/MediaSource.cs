@@ -615,6 +615,8 @@ namespace Tizen.Multimedia.Remoting
         /// Enables the video loopback. The local video will be diaplayed in <paramref name="display"/>.
         /// </summary>
         /// <param name="display">The <see cref="Display"/> to apply.</param>
+        /// <feature>http://tizen.org/feature/display</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="ArgumentException">The display has already been assigned to another.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="display"/> is null.</exception>
         /// <exception cref="InvalidOperationException">
@@ -628,6 +630,10 @@ namespace Tizen.Multimedia.Remoting
         {
             uint trackId = 0;
 
+            if (!Features.IsSupported(WebRTCFeatures.Display))
+            {
+                throw new NotSupportedException("Display feature is not supported.");
+            }
             if (!SourceId.HasValue)
             {
                 throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
