@@ -21,5 +21,6 @@ namespace Tizen.Multimedia.Remoting
         internal const string Wifi = "http://tizen.org/feature/network.wifi";
         internal const string Telephony = "http://tizen.org/feature/network.telephony";
         internal const string Ethernet = "http://tizen.org/feature/network.ethernet";
+        internal const string Display = "http://tizen.org/feature/display";
     }
 }
