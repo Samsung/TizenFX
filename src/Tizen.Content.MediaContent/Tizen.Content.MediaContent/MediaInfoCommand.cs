@@ -145,6 +145,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API11; Will be removed in API13.")]
         public int CountFaceInfo(string mediaId, CountArguments arguments)
         {
             ValidateDatabase();
@@ -165,6 +166,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API11; Will be removed in API13.")]
         public MediaDataReader<FaceInfo> SelectFaceInfo(string mediaId)
         {
             return SelectFaceInfo(mediaId, null);
@@ -1068,6 +1070,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API11; Will be removed in API13.")]
         public Task<int> DetectFaceAsync(string mediaId)
         {
             return DetectFaceAsync(mediaId, CancellationToken.None);
@@ -1106,6 +1109,7 @@ namespace Tizen.Content.MediaContent
         /// </exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API11; Will be removed in API13.")]
         public Task<int> DetectFaceAsync(string mediaId, CancellationToken cancellationToken)
         {
             if (Features.IsSupported(Features.FaceRecognition) == false)
