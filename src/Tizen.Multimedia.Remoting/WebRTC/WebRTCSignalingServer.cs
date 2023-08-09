@@ -95,7 +95,7 @@ namespace Tizen.Multimedia.Remoting
                 return;
             }
 
-            if (_handle != null)
+            if (_handle != IntPtr.Zero)
             {
                 SignalingServer.Destroy(_handle);
                 _disposed = true;
@@ -243,7 +243,7 @@ namespace Tizen.Multimedia.Remoting
                 return;
             }
 
-            if (_handle != null)
+            if (_handle != IntPtr.Zero)
             {
                 SignalingClient.Disconnect(_handle);
 
