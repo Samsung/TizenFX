@@ -142,7 +142,7 @@ VertexBuffers can be used to provide data to Geometry objects.</p>
   <a id="Tizen_NUI_VertexBuffer_GetSize_" data-uid="Tizen.NUI.VertexBuffer.GetSize*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rendering/VertexBuffer.cs/#L80">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rendering/VertexBuffer.cs/#L81">View Source</a>
     </span>
     <h4 id="Tizen_NUI_VertexBuffer_GetSize" data-uid="Tizen.NUI.VertexBuffer.GetSize">GetSize()</h4>
     <section>
@@ -178,7 +178,7 @@ VertexBuffers can be used to provide data to Geometry objects.</p>
   <a id="Tizen_NUI_VertexBuffer_SetData_" data-uid="Tizen.NUI.VertexBuffer.SetData*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rendering/VertexBuffer.cs/#L55">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Rendering/VertexBuffer.cs/#L56">View Source</a>
     </span>
     <h4 id="Tizen_NUI_VertexBuffer_SetData__1___0___" data-uid="Tizen.NUI.VertexBuffer.SetData``1(``0[])">SetData&lt;VertexType&gt;(VertexType[])</h4>
     <section>
@@ -238,6 +238,11 @@ This function expects an array of structures with the same format that was given
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
         <td><p>Thrown when vertices is null or length of the vertices is 0. </p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.overflowexception">OverflowException</a></td>
+        <td><p>Thrown when length of the vertices is overflow. </p>
 </td>
       </tr>
     </tbody>

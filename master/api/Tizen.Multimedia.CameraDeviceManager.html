@@ -259,7 +259,7 @@
   <a id="Tizen_Multimedia_CameraDeviceManager_Dispose_" data-uid="Tizen.Multimedia.CameraDeviceManager.Dispose*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Camera/Camera/CameraDeviceManager.cs/#L227">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Camera/Camera/CameraDeviceManager.cs/#L257">View Source</a>
     </span>
     <h4 id="Tizen_Multimedia_CameraDeviceManager_Dispose" data-uid="Tizen.Multimedia.CameraDeviceManager.Dispose">Dispose()</h4>
     <section>
@@ -279,7 +279,7 @@
   <a id="Tizen_Multimedia_CameraDeviceManager_Dispose_" data-uid="Tizen.Multimedia.CameraDeviceManager.Dispose*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Camera/Camera/CameraDeviceManager.cs/#L200">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Camera/Camera/CameraDeviceManager.cs/#L230">View Source</a>
     </span>
     <h4 id="Tizen_Multimedia_CameraDeviceManager_Dispose_System_Boolean_" data-uid="Tizen.Multimedia.CameraDeviceManager.Dispose(System.Boolean)">Dispose(Boolean)</h4>
     <section>
@@ -332,12 +332,158 @@
   </div>
   
   
+  
+  <a id="Tizen_Multimedia_CameraDeviceManager_GetProductId_" data-uid="Tizen.Multimedia.CameraDeviceManager.GetProductId*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Camera/Camera/CameraDeviceManager.cs/#L122">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_CameraDeviceManager_GetProductId_Tizen_Multimedia_CameraDevice_" data-uid="Tizen.Multimedia.CameraDeviceManager.GetProductId(Tizen.Multimedia.CameraDevice)">GetProductId(CameraDevice)</h4>
+    <section>
+      <p>Gets the product ID for given <param name="device">.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ushort GetProductId(CameraDevice device)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.CameraDevice.html">CameraDevice</a></td>
+        <td><span class="parametername">device</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">UInt16</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Invalid enumeration.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The CameraDeviceManager already has been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>11</span></h6>
+  
+  
+  <a id="Tizen_Multimedia_CameraDeviceManager_GetVendorId_" data-uid="Tizen.Multimedia.CameraDeviceManager.GetVendorId*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Camera/Camera/CameraDeviceManager.cs/#L137">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_CameraDeviceManager_GetVendorId_Tizen_Multimedia_CameraDevice_" data-uid="Tizen.Multimedia.CameraDeviceManager.GetVendorId(Tizen.Multimedia.CameraDevice)">GetVendorId(CameraDevice)</h4>
+    <section>
+      <p>Gets the vendor ID for given <param name="device">.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ushort GetVendorId(CameraDevice device)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.CameraDevice.html">CameraDevice</a></td>
+        <td><span class="parametername">device</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">UInt16</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Invalid enumeration.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The CameraDeviceManager already has been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>11</span></h6>
+  
   <h2 id="events">Events
   </h2>
   
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Camera/Camera/CameraDeviceManager.cs/#L134">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Camera/Camera/CameraDeviceManager.cs/#L164">View Source</a>
     </span>
     <h4 id="Tizen_Multimedia_CameraDeviceManager_DeviceConnectionChanged" data-uid="Tizen.Multimedia.CameraDeviceManager.DeviceConnectionChanged">DeviceConnectionChanged</h4>
     <section>
