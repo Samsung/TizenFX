@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 
 namespace Tizen.System
@@ -325,6 +326,137 @@ namespace Tizen.System
                     case Interop.Feedback.FeedbackError.OperationFailed:
                     default:
                         throw new InvalidOperationException("Failed to stop pattern");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the count of theme can be used according to feedback type.
+        /// </summary>
+        /// <remarks>
+        /// Now this internal API works for FeedbackType.Sound only, FeedbackType.Vibration is not supported.
+        /// </remarks>
+        /// <since_tizen> 10 </since_tizen>
+        /// <param name="type">The feedback type.</param>
+        /// <returns>The counf of theme can be used according to feedback type.</returns>
+        /// <exception cref="Exception">Thrown when failed because the feedback is not initialized.</exception>
+        /// <exception cref="ArgumentException">Thrown when failed because of an invalid arguament.</exception>
+        /// <exception cref="NotSupportedException">Thrown when failed becuase the device (haptic, sound) is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of a system error.</exception>
+        /// <example>
+        /// <code>
+        /// Feedback feedback = new Feedback();
+        /// uint coundOfTheme = feedback.GetCountOfThemeInternal(FeedbackType.Sound);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint GetCountOfThemeInternal(FeedbackType type)
+        {
+            uint countOfTheme = 0;
+            Interop.Feedback.FeedbackError res;
+
+            res = (Interop.Feedback.FeedbackError)Interop.Feedback.GetCountOfThemeInternal((Interop.Feedback.FeedbackType)type, out countOfTheme);
+
+            if (res != Interop.Feedback.FeedbackError.None)
+            {
+                Log.Warn(LogTag, string.Format("Failed to get count of theme internal. err = {0}", res));
+                switch (res)
+                {
+                    case Interop.Feedback.FeedbackError.NotInitialized:
+                        throw new Exception("Not initialized");
+                    case Interop.Feedback.FeedbackError.InvalidParameter:
+                        throw new ArgumentException("Invalid Arguments");
+                    case Interop.Feedback.FeedbackError.NotSupported:
+                        throw new NotSupportedException("Device is not supported");
+                    case Interop.Feedback.FeedbackError.OperationFailed:
+                    default:
+                        throw new InvalidOperationException("Failed to get count of theme internal");
+                }
+            }
+            return countOfTheme;
+        }
+
+        /// <summary>
+        /// Gets the index of theme selected.
+        /// </summary>
+        /// <remarks>
+        /// Now this internal API works for FeedbackType.Sound only, FeedbackType.Vibration is not supported.
+        /// </remarks>
+        /// <since_tizen> 10 </since_tizen>
+        /// <param name="type">The feedback type.</param>
+        /// <returns>The index of theme selected as default theme according to feedback type.</returns>
+        /// <exception cref="ArgumentException">Thrown when failed because of an invalid arguament.</exception>
+        /// <exception cref="NotSupportedException">Thrown when failed becuase the device (haptic, sound) is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of a system error.</exception>
+        /// <example>
+        /// <code>
+        /// Feedback feedback = new Feedback();
+        /// uint indexOfTheme = feedback. GetThemeIndexInternal(FeedbackType.Sound);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint GetThemeIndexInternal(FeedbackType type)
+        {
+            uint countOfTheme = 0;
+            Interop.Feedback.FeedbackError res;
+
+            res = (Interop.Feedback.FeedbackError)Interop.Feedback.GetThemeIndexInternal((Interop.Feedback.FeedbackType)type, out countOfTheme);
+
+            if (res != Interop.Feedback.FeedbackError.None)
+            {
+                Log.Warn(LogTag, string.Format("Failed to get index of theme internal. err = {0}", res));
+                switch (res)
+                {
+                    case Interop.Feedback.FeedbackError.InvalidParameter:
+                        throw new ArgumentException("Invalid Arguments");
+                    case Interop.Feedback.FeedbackError.NotSupported:
+                        throw new NotSupportedException("Device is not supported");
+                    case Interop.Feedback.FeedbackError.OperationFailed:
+                    default:
+                        throw new InvalidOperationException("Failed to get index of theme internal");
+                }
+            }
+            return countOfTheme;
+        }
+
+        /// <summary>
+        /// Sets the index of theme according to feedback type.
+        /// </summary>
+        /// <remarks>
+        /// Now this internal API works for FeedbackType.Sound only, FeedbackType.Vibration is not supported.
+        /// </remarks>
+        /// <since_tizen> 10 </since_tizen>
+        /// <param name="type">The feedback type.</param>
+        /// <param name="indexOfTheme">The index of theme will be set.</param>
+        /// <exception cref="ArgumentException">Thrown when failed because of an invalid arguament.</exception>
+        /// <exception cref="NotSupportedException">Thrown when failed becuase the device (haptic, sound) is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of a system error.</exception>
+        /// <example>
+        /// <code>
+        /// Feedback feedback = new Feedback();
+        /// uint indexOfTheme = 0;
+        /// feedback.SetThemeIndexInternal(FeedbackType.Sound, indexOfTheme);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetThemeIndexInternal(FeedbackType type, uint indexOfTheme)
+        {
+            Interop.Feedback.FeedbackError res;
+
+            res = (Interop.Feedback.FeedbackError)Interop.Feedback.SetThemeIndexInternal((Interop.Feedback.FeedbackType)type, indexOfTheme);
+
+            if (res != Interop.Feedback.FeedbackError.None)
+            {
+                Log.Warn(LogTag, string.Format("Failed to set index of theme internal. err = {0}", res));
+                switch (res)
+                {
+                    case Interop.Feedback.FeedbackError.InvalidParameter:
+                        throw new ArgumentException("Invalid Arguments");
+                    case Interop.Feedback.FeedbackError.NotSupported:
+                        throw new NotSupportedException("Device is not supported");
+                    case Interop.Feedback.FeedbackError.OperationFailed:
+                    default:
+                        throw new InvalidOperationException("Failed to set index of theme internal");
                 }
             }
         }
