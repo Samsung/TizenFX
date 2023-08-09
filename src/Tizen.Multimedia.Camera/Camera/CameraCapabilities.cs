@@ -70,6 +70,7 @@ namespace Tizen.Multimedia
             IsHueSupported = CheckRangeValid(NativeSettings.GetHueRange);
             IsSaturationSupported = CheckRangeValid(NativeSettings.GetSaturationRange);
             IsSharpnessSupported = CheckRangeValid(NativeSettings.GetSharpnessRange);
+            IsFocusLevelSupported = CheckRangeValid(NativeSettings.GetFocusLevelRange);
             IsGainSupported = CheckRangeValid(NativeSettings.GetGainRange);
             IsWhiteBalanceTemperatureSupported = CheckRangeValid(NativeSettings.GetWhiteBalanceTemperatureRange);
         }
@@ -205,6 +206,13 @@ namespace Tizen.Multimedia
         /// <value>true if supported, otherwise false.</value>
         /// <since_tizen> 11 </since_tizen>
         public bool IsSharpnessSupported { get; }
+
+        /// <summary>
+        /// Gets the manual focus level feature support state.
+        /// </summary>
+        /// <value>true if supported, otherwise false.</value>
+        /// <since_tizen> 11 </since_tizen>
+        public bool IsFocusLevelSupported { get; }
 
         /// <summary>
         /// Gets the gain feature support state.

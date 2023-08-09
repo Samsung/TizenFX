@@ -40,6 +40,7 @@ namespace Tizen.Multimedia
         private readonly Range? _zoomRange;
         private readonly Range? _saturationRange;
         private readonly Range? _sharpnessRange;
+        private readonly Range? _focusLevelRange;
         private readonly Range? _gainRange;
         private readonly Range? _whitebalanceTemperatureRange;
 
@@ -56,6 +57,7 @@ namespace Tizen.Multimedia
             _zoomRange = GetRange(Native.GetZoomRange);
             _saturationRange = GetRange(Native.GetSaturationRange);
             _sharpnessRange = GetRange(Native.GetSharpnessRange);
+            _focusLevelRange = GetRange(Native.GetFocusLevelRange);
             _gainRange = GetRange(Native.GetGainRange);
             _whitebalanceTemperatureRange = GetRange(Native.GetWhiteBalanceTemperatureRange);
         }
@@ -470,6 +472,51 @@ namespace Tizen.Multimedia
             }
         }
         #endregion sharpness
+
+        #region focus level
+        /// <summary>
+        /// Gets or sets the camera manual focus level.
+        /// </summary>
+        /// <remark>If user set this value for manual focus, auto focusing will be stopped.</remark>
+        /// <since_tizen> 11 </since_tizen>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
+        public int FocusLevel
+        {
+            get
+            {
+                Native.GetFocusLevel(_camera.GetHandle(), out int val).
+                    ThrowIfFailed("Failed to get camera manual focus level.");
+
+                return val;
+            }
+            set
+            {
+                Native.SetFocusLevel(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set camera manual focus level.");
+            }
+        }
+
+        /// <summary>
+        /// Gets the available manual focus level range.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        /// <remarks>
+        /// If the minimum value is greater than the maximum value, it means this feature is not supported.
+        /// </remarks>
+        /// <exception cref="NotSupportedException">Focus level is not supported.</exception>
+        public Range FocusLevelRange
+        {
+            get
+            {
+                if (!_focusLevelRange.HasValue)
+                {
+                    throw new NotSupportedException("Focus level is not supported.");
+                }
+
+                return _focusLevelRange.Value;
+            }
+        }
+        #endregion focus level
 
         #region gain
         /// <summary>
