@@ -64,6 +64,8 @@ namespace Tizen.Multimedia.Remoting
         /// If remote track, <see cref="Display"/> must be set in <see cref="WebRTC.TrackAdded"/> event.<br/>
         /// The display is created with <see cref="MediaView"/>.
         /// </remarks>
+        /// <feature>http://tizen.org/feature/display</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed of.</exception>
         /// <exception cref="ArgumentException">The value has already been assigned to another WebRTC.</exception>
         /// <exception cref="InvalidOperationException">
@@ -74,12 +76,25 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 9 </since_tizen>
         public Display Display
         {
-            get => _display;
+            get
+            {
+                if (!Features.IsSupported(WebRTCFeatures.Display))
+                {
+                    throw new NotSupportedException("Display feature is not supported.");
+                }
+
+                return _display;
+            }
             set
             {
+                if (!Features.IsSupported(WebRTCFeatures.Display))
+                {
+                    throw new NotSupportedException("Display feature is not supported.");
+                }
+
                 if (Type != MediaType.Video)
                 {
-                    throw new InvalidOperationException("This property is only for video.");
+                    throw new InvalidOperationException("This property is only for video track.");
                 }
 
                 if (value == null)
@@ -122,6 +137,8 @@ namespace Tizen.Multimedia.Remoting
         /// <remarks>
         /// This property is meaningful only in overlay or EVAS surface display type.
         /// </remarks>
+        /// <feature>http://tizen.org/feature/display</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <value>A <see cref="WebRTCDisplayMode"/> that specifies the display mode.</value>
         /// <exception cref="ArgumentException">Display mode type is incorrect.</exception>
         /// <exception cref="InvalidOperationException"><see cref="Display"/> is not set.</exception>
@@ -130,9 +147,14 @@ namespace Tizen.Multimedia.Remoting
         {
             get
             {
+                if (!Features.IsSupported(WebRTCFeatures.Display))
+                {
+                    throw new NotSupportedException("Display feature is not supported.");
+                }
+
                 if (Type != MediaType.Video)
                 {
-                    throw new InvalidOperationException("This property is only for video.");
+                    throw new InvalidOperationException("This property is only for video track.");
                 }
 
                 NativeWebRTC.GetDisplayMode(_webRtc.Handle, _trackId, out var val).
@@ -142,9 +164,14 @@ namespace Tizen.Multimedia.Remoting
             }
             set
             {
+                if (!Features.IsSupported(WebRTCFeatures.Display))
+                {
+                    throw new NotSupportedException("Display feature is not supported.");
+                }
+
                 if (Type != MediaType.Video)
                 {
-                    throw new InvalidOperationException("This property is only for video.");
+                    throw new InvalidOperationException("This property is only for video track.");
                 }
 
                 ValidationUtil.ValidateEnum(typeof(WebRTCDisplayMode), value, nameof(value));
@@ -161,15 +188,22 @@ namespace Tizen.Multimedia.Remoting
         /// <remarks>
         /// This property is meaningful only in overlay or EVAS surface display type.
         /// </remarks>
+        /// <feature>http://tizen.org/feature/display</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException"><see cref="Display"/> is not set.</exception>
         /// <since_tizen> 9 </since_tizen>
         public bool DisplayVisible
         {
             get
             {
+                if (!Features.IsSupported(WebRTCFeatures.Display))
+                {
+                    throw new NotSupportedException("Display feature is not supported.");
+                }
+
                 if (Type != MediaType.Video)
                 {
-                    throw new InvalidOperationException("This property is only for video.");
+                    throw new InvalidOperationException("This property is only for video track.");
                 }
 
                 NativeWebRTC.GetDisplayVisible(_webRtc.Handle, _trackId, out bool val).
@@ -179,13 +213,51 @@ namespace Tizen.Multimedia.Remoting
             }
             set
             {
+                if (!Features.IsSupported(WebRTCFeatures.Display))
+                {
+                    throw new NotSupportedException("Display feature is not supported.");
+                }
+
                 if (Type != MediaType.Video)
                 {
-                    throw new InvalidOperationException("This property is only for video.");
+                    throw new InvalidOperationException("This property is only for video track.");
                 }
 
                 NativeWebRTC.SetDisplayVisible(_webRtc.Handle, _trackId, value).
                     ThrowIfFailed("Failed to set display status.");
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the mute status of the audio track.
+        /// </summary>
+        /// <value>true if audio is muted, otherwise false. The default value is false.</value>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <exception cref="InvalidOperationException">This MediaStreamTrack is not Audio.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        public bool Mute
+        {
+            get
+            {
+                if (Type != MediaType.Audio)
+                {
+                    throw new InvalidOperationException("This property is only for audio track.");
+                }
+
+                NativeWebRTC.GetAudioMute(_webRtc.Handle, _trackId, out bool val).
+                    ThrowIfFailed("Failed to get audio mute status");
+
+                return val;
+            }
+            set
+            {
+                if (Type != MediaType.Audio)
+                {
+                    throw new InvalidOperationException("This property is only for audio track.");
+                }
+
+                NativeWebRTC.SetAudioMute(_webRtc.Handle, _trackId, value).
+                    ThrowIfFailed("Failed to set audio mute status.");
             }
         }
 
@@ -228,7 +300,7 @@ namespace Tizen.Multimedia.Remoting
 
             if (Type != MediaType.Audio)
             {
-                throw new InvalidOperationException("Should be applied in Audio");
+                throw new InvalidOperationException("This method is only for audio track.");
             }
 
             var ret = NativeWebRTC.SetAudioStreamPolicy(_webRtc.Handle, _trackId, policy.Handle);

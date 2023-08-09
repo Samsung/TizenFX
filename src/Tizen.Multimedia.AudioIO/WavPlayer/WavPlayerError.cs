@@ -51,8 +51,10 @@ namespace Tizen.Multimedia
 
                 case WavPlayerError.InvalidOperation:
                     throw new InvalidOperationException(message);
+
+                default:
+                    break;
             }
         }
     }
-
 }

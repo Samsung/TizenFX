@@ -157,6 +157,15 @@ internal static partial class Interop
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_sharpness_range")]
         internal static extern CameraError GetSharpnessRange(IntPtr handle, out int min, out int max);
 
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_focus_level")]
+        internal static extern CameraError SetFocusLevel(IntPtr handle, int level);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_focus_level")]
+        internal static extern CameraError GetFocusLevel(IntPtr handle, out int level);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_focus_level_range")]
+        internal static extern CameraError GetFocusLevelRange(IntPtr handle, out int min, out int max);
+
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_gain")]
         internal static extern CameraError SetGain(IntPtr handle, int level);
 

@@ -196,34 +196,21 @@ namespace Tizen.Multimedia.Util
             switch (value)
             {
                 case ImageColorSpace.YV12: return ColorSpace.YV12;
-
                 case ImageColorSpace.Uyvy: return ColorSpace.Uyvy;
-
                 case ImageColorSpace.Yuyv: return ColorSpace.Yuyv;
-
                 case ImageColorSpace.Yuv422: return ColorSpace.Yuv422P;
-
                 case ImageColorSpace.I420: return ColorSpace.I420;
-
                 case ImageColorSpace.Rgb565: return ColorSpace.Rgb565;
-
                 case ImageColorSpace.Rgb888: return ColorSpace.Rgb888;
-
                 case ImageColorSpace.Argb8888: return ColorSpace.Argb8888;
-
                 case ImageColorSpace.Bgra8888: return ColorSpace.Bgra8888;
-
                 case ImageColorSpace.Rgba8888: return ColorSpace.Rgba8888;
-
                 case ImageColorSpace.Bgrx8888: return ColorSpace.Bgrx8888;
-
                 case ImageColorSpace.NV12: return ColorSpace.NV12;
-
                 case ImageColorSpace.NV16: return ColorSpace.NV16;
-
                 case ImageColorSpace.NV21: return ColorSpace.NV21;
-
                 case ImageColorSpace.NV61: return ColorSpace.NV61;
+                default: break;
             }
 
             Debug.Fail($"Not supported color space : {value.ToString()}!");
@@ -240,34 +227,21 @@ namespace Tizen.Multimedia.Util
             switch (colorSpace)
             {
                 case ColorSpace.YV12: return ImageColorSpace.YV12;
-
                 case ColorSpace.Uyvy: return ImageColorSpace.Uyvy;
-
                 case ColorSpace.Yuyv: return ImageColorSpace.Yuyv;
-
                 case ColorSpace.Yuv422: return ImageColorSpace.Yuv422;
-
                 case ColorSpace.I420: return ImageColorSpace.I420;
-
                 case ColorSpace.Rgb565: return ImageColorSpace.Rgb565;
-
                 case ColorSpace.Rgb888: return ImageColorSpace.Rgb888;
-
                 case ColorSpace.Argb8888: return ImageColorSpace.Argb8888;
-
                 case ColorSpace.Bgra8888: return ImageColorSpace.Bgra8888;
-
                 case ColorSpace.Rgba8888: return ImageColorSpace.Rgba8888;
-
                 case ColorSpace.Bgrx8888: return ImageColorSpace.Bgrx8888;
-
                 case ColorSpace.NV12: return ImageColorSpace.NV12;
-
                 case ColorSpace.NV16: return ImageColorSpace.NV16;
-
                 case ColorSpace.NV21: return ImageColorSpace.NV21;
-
                 case ColorSpace.NV61: return ImageColorSpace.NV61;
+                default: break;
             }
 
             throw new NotSupportedException($"The ColorSpace.{colorSpace.ToString()} is not supported.");
