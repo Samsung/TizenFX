@@ -166,6 +166,12 @@ internal static partial class Interop
 
             [DllImport(Libraries.MediaVisionCommon, EntryPoint = "mv_source_get_colorspace")]
             internal static extern int GetColorspace(IntPtr /* mv_source_h */ source, out VisionColorSpace colorspace);
+
+            [DllImport(Libraries.MediaVisionCommon, EntryPoint = "mv_source_set_timestamp")]
+            internal static extern int SetTimestamp(IntPtr source, ulong timestamp);
+
+            [DllImport(Libraries.MediaVisionCommon, EntryPoint = "mv_source_get_timestamp")]
+            internal static extern int GetTimestamp(IntPtr source, out ulong timestamp);
         }
 
         /// <summary>
