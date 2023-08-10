@@ -13,6 +13,9 @@
       <param name="key">The metadata key.</param>
       <param name="value">The metadata value.</param>
     </member>
+    <member name="M:System.Diagnostics.Tracing.DiagnosticCounter.Dispose">
+      <summary>Removes the counter from the set that the <see cref="T:System.Diagnostics.Tracing.EventSource" /> will report on.</summary>
+    </member>
     <member name="P:System.Diagnostics.Tracing.DiagnosticCounter.DisplayName">
       <summary>Gets or sets the display name of the counter.</summary>
       <returns>The display name of the counter.</returns>
@@ -20,9 +23,6 @@
     <member name="P:System.Diagnostics.Tracing.DiagnosticCounter.DisplayUnits">
       <summary>Gets or sets the display units of the counter.</summary>
       <returns>The display units of the counter.</returns>
-    </member>
-    <member name="M:System.Diagnostics.Tracing.DiagnosticCounter.Dispose">
-      <summary>Removes the counter from the set that the <see cref="T:System.Diagnostics.Tracing.EventSource" /> will report on.</summary>
     </member>
     <member name="P:System.Diagnostics.Tracing.DiagnosticCounter.EventSource">
       <summary>Gets the EventSource that this counter is attached to.</summary>
@@ -130,14 +130,6 @@
     <member name="T:System.Diagnostics.Tracing.EventCommandEventArgs">
       <summary>Provides the arguments for the <see cref="M:System.Diagnostics.Tracing.EventSource.OnEventCommand(System.Diagnostics.Tracing.EventCommandEventArgs)" /> callback.</summary>
     </member>
-    <member name="P:System.Diagnostics.Tracing.EventCommandEventArgs.Arguments">
-      <summary>Gets the array of arguments for the callback.</summary>
-      <returns>An array of callback arguments.</returns>
-    </member>
-    <member name="P:System.Diagnostics.Tracing.EventCommandEventArgs.Command">
-      <summary>Gets the command for the callback.</summary>
-      <returns>The callback command.</returns>
-    </member>
     <member name="M:System.Diagnostics.Tracing.EventCommandEventArgs.DisableEvent(System.Int32)">
       <summary>Disables the event that have the specified identifier.</summary>
       <param name="eventId">The identifier of the event to disable.</param>
@@ -150,6 +142,14 @@
       <returns>
         <see langword="true" /> if <paramref name="eventId" /> is in range; otherwise, <see langword="false" />.</returns>
     </member>
+    <member name="P:System.Diagnostics.Tracing.EventCommandEventArgs.Arguments">
+      <summary>Gets the array of arguments for the callback.</summary>
+      <returns>An array of callback arguments.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventCommandEventArgs.Command">
+      <summary>Gets the command for the callback.</summary>
+      <returns>The callback command.</returns>
+    </member>
     <member name="T:System.Diagnostics.Tracing.EventCounter">
       <summary>Provides the ability to collect statistics for very frequent events through the  <see cref="T:System.Diagnostics.Tracing.EventSource" /> class.</summary>
     </member>
@@ -158,9 +158,11 @@
       <param name="name">The event counter name.</param>
       <param name="eventSource">The event source.</param>
       <exception cref="T:System.ArgumentNullException">
-        <paramref name="name" /> is <see langword="null" />.
--or-
-<paramref name="eventSource" /> is <see langword="null" />.</exception>
+        <paramref name="name" /> is <see langword="null" />.  
+  
+ -or-  
+  
+ <paramref name="eventSource" /> is <see langword="null" />.</exception>
     </member>
     <member name="M:System.Diagnostics.Tracing.EventCounter.ToString">
       <summary>Returns a string representation of the current event counter instance.</summary>
@@ -291,6 +293,12 @@
     <member name="T:System.Diagnostics.Tracing.EventListener">
       <summary>Provides methods for enabling and disabling events from event sources.</summary>
     </member>
+    <member name="E:System.Diagnostics.Tracing.EventListener.EventSourceCreated">
+      <summary>Occurs when an event source (<see cref="T:System.Diagnostics.Tracing.EventSource" /> object) is attached to the dispatcher.</summary>
+    </member>
+    <member name="E:System.Diagnostics.Tracing.EventListener.EventWritten">
+      <summary>Occurs when an event has been written by an event source (<see cref="T:System.Diagnostics.Tracing.EventSource" /> object) for which the event listener has enabled events.</summary>
+    </member>
     <member name="M:System.Diagnostics.Tracing.EventListener.#ctor">
       <summary>Creates a new instance of the <see cref="T:System.Diagnostics.Tracing.EventListener" /> class.</summary>
     </member>
@@ -319,16 +327,10 @@
       <param name="matchAnyKeyword">The keyword flags necessary to enable the events.</param>
       <param name="arguments">The arguments to be matched to enable the events.</param>
     </member>
-    <member name="E:System.Diagnostics.Tracing.EventListener.EventSourceCreated">
-      <summary>Occurs when an event source (<see cref="T:System.Diagnostics.Tracing.EventSource" /> object) is attached to the dispatcher.</summary>
-    </member>
     <member name="M:System.Diagnostics.Tracing.EventListener.EventSourceIndex(System.Diagnostics.Tracing.EventSource)">
       <summary>Gets a small non-negative number that represents the specified event source.</summary>
       <param name="eventSource">The event source to find the index for.</param>
       <returns>A small non-negative number that represents the specified event source.</returns>
-    </member>
-    <member name="E:System.Diagnostics.Tracing.EventListener.EventWritten">
-      <summary>Occurs when an event has been written by an event source (<see cref="T:System.Diagnostics.Tracing.EventSource" /> object) for which the event listener has enabled events.</summary>
     </member>
     <member name="M:System.Diagnostics.Tracing.EventListener.OnEventSourceCreated(System.Diagnostics.Tracing.EventSource)">
       <summary>Called for all existing event sources when the event listener is created and when a new event source is attached to the listener.</summary>
@@ -393,7 +395,10 @@
       <summary>An event that is published when an activity in an application is suspended.</summary>
     </member>
     <member name="T:System.Diagnostics.Tracing.EventSource">
-      <summary>Provides the ability to create events for event tracing for Windows (ETW).</summary>
+      <summary>Provides the ability to create events for event tracing across platforms.</summary>
+    </member>
+    <member name="E:System.Diagnostics.Tracing.EventSource.EventCommandExecuted">
+      <summary>Occurs when a command comes from an event listener.</summary>
     </member>
     <member name="M:System.Diagnostics.Tracing.EventSource.#ctor">
       <summary>Creates a new instance of the <see cref="T:System.Diagnostics.Tracing.EventSource" /> class.</summary>
@@ -437,14 +442,6 @@
       <exception cref="T:System.ArgumentException">
         <paramref name="traits" /> is not specified in key-value pairs.</exception>
     </member>
-    <member name="P:System.Diagnostics.Tracing.EventSource.ConstructionException">
-      <summary>Gets any exception that was thrown during the construction of the event source.</summary>
-      <returns>The exception that was thrown during the construction of the event source, or <see langword="null" /> if no exception was thrown.</returns>
-    </member>
-    <member name="P:System.Diagnostics.Tracing.EventSource.CurrentThreadActivityId">
-      <summary>Gets the activity ID of the current thread.</summary>
-      <returns>The activity ID of the current thread.</returns>
-    </member>
     <member name="M:System.Diagnostics.Tracing.EventSource.Dispose">
       <summary>Releases all resources used by the current instance of the <see cref="T:System.Diagnostics.Tracing.EventSource" /> class.</summary>
     </member>
@@ -452,20 +449,6 @@
       <summary>Releases the unmanaged resources used by the <see cref="T:System.Diagnostics.Tracing.EventSource" /> class and optionally releases the managed resources.</summary>
       <param name="disposing">
         <see langword="true" /> to release both managed and unmanaged resources; <see langword="false" /> to release only unmanaged resources.</param>
-    </member>
-    <member name="E:System.Diagnostics.Tracing.EventSource.EventCommandExecuted">
-      <summary>Occurs when a command comes from an event listener.</summary>
-    </member>
-    <member name="T:System.Diagnostics.Tracing.EventSource.EventData">
-      <summary>Provides the event data for creating fast <see cref="Overload:System.Diagnostics.Tracing.EventSource.WriteEvent" /> overloads by using the <see cref="M:System.Diagnostics.Tracing.EventSource.WriteEventCore(System.Int32,System.Int32,System.Diagnostics.Tracing.EventSource.EventData*)" /> method.</summary>
-    </member>
-    <member name="P:System.Diagnostics.Tracing.EventSource.EventData.DataPointer">
-      <summary>Gets or sets the pointer to the data for the new <see cref="Overload:System.Diagnostics.Tracing.EventSource.WriteEvent" /> overload.</summary>
-      <returns>The pointer to the data.</returns>
-    </member>
-    <member name="P:System.Diagnostics.Tracing.EventSource.EventData.Size">
-      <summary>Gets or sets the number of payload items in the new <see cref="Overload:System.Diagnostics.Tracing.EventSource.WriteEvent" /> overload.</summary>
-      <returns>The number of payload items in the new overload.</returns>
     </member>
     <member name="M:System.Diagnostics.Tracing.EventSource.Finalize">
       <summary>Allows the <see cref="T:System.Diagnostics.Tracing.EventSource" /> object to attempt to free resources and perform other cleanup operations before the  object is reclaimed by garbage collection.</summary>
@@ -502,10 +485,6 @@
       <param name="key">The key of the trait to get.</param>
       <returns>The trait value associated with the specified key. If the key is not found, returns <see langword="null" />.</returns>
     </member>
-    <member name="P:System.Diagnostics.Tracing.EventSource.Guid">
-      <summary>The unique identifier for the event source.</summary>
-      <returns>A unique identifier for the event source.</returns>
-    </member>
     <member name="M:System.Diagnostics.Tracing.EventSource.IsEnabled">
       <summary>Determines whether the current event source is enabled.</summary>
       <returns>
@@ -524,12 +503,9 @@
       <param name="keywords">The event keywords to check.</param>
       <param name="channel">The event channel to check.</param>
       <returns>
-        <see langword="true" /> if the event source is enabled for the specified event level, keywords and channel; otherwise, <see langword="false" />.
-The result of this method is only an approximation of whether a particular event is active.  Use it to avoid expensive computation for logging when logging is disabled. Event sources may have additional filtering that determines their activity.</returns>
-    </member>
-    <member name="P:System.Diagnostics.Tracing.EventSource.Name">
-      <summary>The friendly name of the class that is derived from the event source.</summary>
-      <returns>The friendly name of the derived class.  The default is the simple name of the class.</returns>
+        <see langword="true" /> if the event source is enabled for the specified event level, keywords and channel; otherwise, <see langword="false" />.  
+  
+ The result of this method is only an approximation of whether a particular event is active.  Use it to avoid expensive computation for logging when logging is disabled. Event sources may have additional filtering that determines their activity.</returns>
     </member>
     <member name="M:System.Diagnostics.Tracing.EventSource.OnEventCommand(System.Diagnostics.Tracing.EventCommandEventArgs)">
       <summary>Called when the current event source is updated by the controller.</summary>
@@ -549,10 +525,6 @@ The result of this method is only an approximation of whether a particular event
       <summary>Sets the activity ID on the current thread, and returns the previous activity ID.</summary>
       <param name="activityId">The current thread's new activity ID, or <see cref="F:System.Guid.Empty" /> to indicate that work on the current thread is not associated with any activity.</param>
       <param name="oldActivityThatWillContinue">When this method returns, contains the previous activity ID on the current thread.</param>
-    </member>
-    <member name="P:System.Diagnostics.Tracing.EventSource.Settings">
-      <summary>Gets the settings applied to this event source.</summary>
-      <returns>The settings applied to this event source.</returns>
     </member>
     <member name="M:System.Diagnostics.Tracing.EventSource.ToString">
       <summary>Obtains a string representation of the current event source instance.</summary>
@@ -723,6 +695,37 @@ The result of this method is only an approximation of whether a particular event
       <param name="relatedActivityId">A pointer to the GUID of the related activity ID.</param>
       <param name="eventDataCount">The number of items in the <paramref name="data" /> field.</param>
       <param name="data">A pointer to the first item in the event data field.</param>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSource.ConstructionException">
+      <summary>Gets any exception that was thrown during the construction of the event source.</summary>
+      <returns>The exception that was thrown during the construction of the event source, or <see langword="null" /> if no exception was thrown.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSource.CurrentThreadActivityId">
+      <summary>Gets the activity ID of the current thread.</summary>
+      <returns>The activity ID of the current thread.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSource.Guid">
+      <summary>The unique identifier for the event source.</summary>
+      <returns>A unique identifier for the event source.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSource.Name">
+      <summary>The friendly name of the class that is derived from the event source.</summary>
+      <returns>The friendly name of the derived class.  The default is the simple name of the class.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSource.Settings">
+      <summary>Gets the settings applied to this event source.</summary>
+      <returns>The settings applied to this event source.</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventSource.EventData">
+      <summary>Provides the event data for creating fast <see cref="Overload:System.Diagnostics.Tracing.EventSource.WriteEvent" /> overloads by using the <see cref="M:System.Diagnostics.Tracing.EventSource.WriteEventCore(System.Int32,System.Int32,System.Diagnostics.Tracing.EventSource.EventData*)" /> method.</summary>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSource.EventData.DataPointer">
+      <summary>Gets or sets the pointer to the data for the new <see cref="Overload:System.Diagnostics.Tracing.EventSource.WriteEvent" /> overload.</summary>
+      <returns>The pointer to the data.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSource.EventData.Size">
+      <summary>Gets or sets the number of payload items in the new <see cref="Overload:System.Diagnostics.Tracing.EventSource.WriteEvent" /> overload.</summary>
+      <returns>The number of payload items in the new overload.</returns>
     </member>
     <member name="T:System.Diagnostics.Tracing.EventSourceAttribute">
       <summary>Allows the event tracing for Windows (ETW) name to be defined independently of the name of the event source class.</summary>
@@ -901,10 +904,6 @@ The result of this method is only an approximation of whether a particular event
       <param name="name">The name for this <see cref="T:System.Diagnostics.Tracing.IncrementingEventCounter" /> instance.</param>
       <param name="eventSource">The event source.</param>
     </member>
-    <member name="P:System.Diagnostics.Tracing.IncrementingEventCounter.DisplayRateTimeScale">
-      <summary>Gets or sets the rate at which this metric should be displayed as.</summary>
-      <returns>Gets or sets the rate at which this metric should be displayed</returns>
-    </member>
     <member name="M:System.Diagnostics.Tracing.IncrementingEventCounter.Increment(System.Double)">
       <summary>Adds a value to a running total that will be published by the counter at the next timer interval.</summary>
       <param name="increment">The value to increment the running total by.</param>
@@ -912,6 +911,10 @@ The result of this method is only an approximation of whether a particular event
     <member name="M:System.Diagnostics.Tracing.IncrementingEventCounter.ToString">
       <summary>Returns a string representation of the current incrementing event counter instance.</summary>
       <returns>The name and increment of the current incrementing event counter.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.IncrementingEventCounter.DisplayRateTimeScale">
+      <summary>Gets or sets the rate at which this metric should be displayed as.</summary>
+      <returns>Gets or sets the rate at which this metric should be displayed.</returns>
     </member>
     <member name="T:System.Diagnostics.Tracing.IncrementingPollingCounter">
       <summary>Provides a variant of <see cref="T:System.Diagnostics.Tracing.EventCounter" /> for variables that are ever-increasing, such as the number of exceptions in the runtime.</summary>
@@ -922,13 +925,13 @@ The result of this method is only an approximation of whether a particular event
       <param name="eventSource">The event source this instance is a part of.</param>
       <param name="totalValueProvider">A method that will be used to poll the value.</param>
     </member>
-    <member name="P:System.Diagnostics.Tracing.IncrementingPollingCounter.DisplayRateTimeScale">
-      <summary>Gets or sets rate at which this metric should be displayed as.</summary>
-      <returns>The rate at which this metric should be displayed.</returns>
-    </member>
     <member name="M:System.Diagnostics.Tracing.IncrementingPollingCounter.ToString">
       <summary>Returns a string representation of the current incrementing polling counter instance.</summary>
       <returns>The name and increment of the current incrementing polling counter.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.IncrementingPollingCounter.DisplayRateTimeScale">
+      <summary>Gets or sets rate at which this metric should be displayed as.</summary>
+      <returns>The rate at which this metric should be displayed.</returns>
     </member>
     <member name="T:System.Diagnostics.Tracing.NonEventAttribute">
       <summary>Identifies a method that is not generating an event.</summary>

@@ -60,18 +60,29 @@
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="count" /> is less than zero.</exception>
       <exception cref="T:System.ArgumentException">
-        <paramref name="array" /> is multidimensional.
--or-
-The number of elements in this <see cref="T:System.Net.NetworkInformation.GatewayIPAddressInformation" /> is greater than the available space from <paramref name="count" /> to the end of the destination <paramref name="array" />.</exception>
+        <paramref name="array" /> is multidimensional.  
+  
+ -or-  
+  
+ The number of elements in this <see cref="T:System.Net.NetworkInformation.GatewayIPAddressInformation" /> is greater than the available space from <paramref name="count" /> to the end of the destination <paramref name="array" />.</exception>
       <exception cref="T:System.InvalidCastException">The elements in this <see cref="T:System.Net.NetworkInformation.GatewayIPAddressInformation" /> cannot be cast automatically to the type of the destination <paramref name="array" />.</exception>
-    </member>
-    <member name="P:System.Net.NetworkInformation.GatewayIPAddressInformationCollection.Count">
-      <summary>Gets the number of <see cref="T:System.Net.NetworkInformation.GatewayIPAddressInformation" /> types in this collection.</summary>
-      <returns>An <see cref="T:System.Int32" /> value that contains the number of <see cref="T:System.Net.NetworkInformation.GatewayIPAddressInformation" /> types in this collection.</returns>
     </member>
     <member name="M:System.Net.NetworkInformation.GatewayIPAddressInformationCollection.GetEnumerator">
       <summary>Returns an object that can be used to iterate through this collection.</summary>
       <returns>An object that implements the <see cref="T:System.Collections.IEnumerator" /> interface and provides access to the <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" /> types in this collection.</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.GatewayIPAddressInformationCollection.Remove(System.Net.NetworkInformation.GatewayIPAddressInformation)">
+      <summary>Throws a <see cref="T:System.NotSupportedException" /> because this operation is not supported for this collection.</summary>
+      <param name="address">The object to be removed.</param>
+      <returns>Always throws a <see cref="T:System.NotSupportedException" />.</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.GatewayIPAddressInformationCollection.System#Collections#IEnumerable#GetEnumerator">
+      <summary>Returns an object that can be used to iterate through this collection.</summary>
+      <returns>An object that implements the <see cref="T:System.Collections.IEnumerator" /> interface and provides access to the <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" /> types in this collection.</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.GatewayIPAddressInformationCollection.Count">
+      <summary>Gets the number of <see cref="T:System.Net.NetworkInformation.GatewayIPAddressInformation" /> types in this collection.</summary>
+      <returns>An <see cref="T:System.Int32" /> value that contains the number of <see cref="T:System.Net.NetworkInformation.GatewayIPAddressInformation" /> types in this collection.</returns>
     </member>
     <member name="P:System.Net.NetworkInformation.GatewayIPAddressInformationCollection.IsReadOnly">
       <summary>Gets a value that indicates whether access to this collection is read-only.</summary>
@@ -82,15 +93,6 @@ The number of elements in this <see cref="T:System.Net.NetworkInformation.Gatewa
       <summary>Gets the <see cref="T:System.Net.NetworkInformation.GatewayIPAddressInformation" /> at the specific index of the collection.</summary>
       <param name="index">The index of interest.</param>
       <returns>The <see cref="T:System.Net.NetworkInformation.GatewayIPAddressInformation" /> at the specific index in the collection.</returns>
-    </member>
-    <member name="M:System.Net.NetworkInformation.GatewayIPAddressInformationCollection.Remove(System.Net.NetworkInformation.GatewayIPAddressInformation)">
-      <summary>Throws a <see cref="T:System.NotSupportedException" /> because this operation is not supported for this collection.</summary>
-      <param name="address">The object to be removed.</param>
-      <returns>Always throws a <see cref="T:System.NotSupportedException" />.</returns>
-    </member>
-    <member name="M:System.Net.NetworkInformation.GatewayIPAddressInformationCollection.System#Collections#IEnumerable#GetEnumerator">
-      <summary>Returns an object that can be used to iterate through this collection.</summary>
-      <returns>An object that implements the <see cref="T:System.Collections.IEnumerator" /> interface and provides access to the <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" /> types in this collection.</returns>
     </member>
     <member name="T:System.Net.NetworkInformation.IcmpV4Statistics">
       <summary>Provides Internet Control Message Protocol for IPv4 (ICMPv4) statistical data for the local computer.</summary>
@@ -381,18 +383,29 @@ The number of elements in this <see cref="T:System.Net.NetworkInformation.Gatewa
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is less than zero.</exception>
       <exception cref="T:System.ArgumentException">
-        <paramref name="array" /> is multidimensional.
--or-
-The number of elements in this <see cref="T:System.Net.NetworkInformation.IPAddressInformation" /> is greater than the available space from <paramref name="offset" /> to the end of the destination <paramref name="array" />.</exception>
+        <paramref name="array" /> is multidimensional.  
+  
+ -or-  
+  
+ The number of elements in this <see cref="T:System.Net.NetworkInformation.IPAddressInformation" /> is greater than the available space from <paramref name="offset" /> to the end of the destination <paramref name="array" />.</exception>
       <exception cref="T:System.InvalidCastException">The elements in this <see cref="T:System.Net.NetworkInformation.IPAddressInformation" /> cannot be cast automatically to the type of the destination <paramref name="array" />.</exception>
-    </member>
-    <member name="P:System.Net.NetworkInformation.IPAddressInformationCollection.Count">
-      <summary>Gets the number of <see cref="T:System.Net.NetworkInformation.IPAddressInformation" /> types in this collection.</summary>
-      <returns>An <see cref="T:System.Int32" /> value that contains the number of <see cref="T:System.Net.NetworkInformation.IPAddressInformation" /> types in this collection.</returns>
     </member>
     <member name="M:System.Net.NetworkInformation.IPAddressInformationCollection.GetEnumerator">
       <summary>Returns an object that can be used to iterate through this collection.</summary>
       <returns>An object that implements the <see cref="T:System.Collections.IEnumerator" /> interface and provides access to the <see cref="T:System.Net.NetworkInformation.IPAddressInformation" /> types in this collection.</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPAddressInformationCollection.Remove(System.Net.NetworkInformation.IPAddressInformation)">
+      <summary>Throws a <see cref="T:System.NotSupportedException" /> because this operation is not supported for this collection.</summary>
+      <param name="address">The object to be removed.</param>
+      <returns>Always throws a <see cref="T:System.NotSupportedException" />.</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPAddressInformationCollection.System#Collections#IEnumerable#GetEnumerator">
+      <summary>Returns an object that can be used to iterate through this collection.</summary>
+      <returns>An object that implements the <see cref="T:System.Collections.IEnumerator" /> interface and provides access to the <see cref="T:System.Net.NetworkInformation.IPAddressInformation" /> types in this collection.</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPAddressInformationCollection.Count">
+      <summary>Gets the number of <see cref="T:System.Net.NetworkInformation.IPAddressInformation" /> types in this collection.</summary>
+      <returns>An <see cref="T:System.Int32" /> value that contains the number of <see cref="T:System.Net.NetworkInformation.IPAddressInformation" /> types in this collection.</returns>
     </member>
     <member name="P:System.Net.NetworkInformation.IPAddressInformationCollection.IsReadOnly">
       <summary>Gets a value that indicates whether access to this collection is read-only.</summary>
@@ -404,15 +417,6 @@ The number of elements in this <see cref="T:System.Net.NetworkInformation.IPAddr
       <param name="index">The zero-based index of the element.</param>
       <returns>The <see cref="T:System.Net.NetworkInformation.IPAddressInformation" /> at the specified location.</returns>
     </member>
-    <member name="M:System.Net.NetworkInformation.IPAddressInformationCollection.Remove(System.Net.NetworkInformation.IPAddressInformation)">
-      <summary>Throws a <see cref="T:System.NotSupportedException" /> because this operation is not supported for this collection.</summary>
-      <param name="address">The object to be removed.</param>
-      <returns>Always throws a <see cref="T:System.NotSupportedException" />.</returns>
-    </member>
-    <member name="M:System.Net.NetworkInformation.IPAddressInformationCollection.System#Collections#IEnumerable#GetEnumerator">
-      <summary>Returns an object that can be used to iterate through this collection.</summary>
-      <returns>An object that implements the <see cref="T:System.Collections.IEnumerator" /> interface and provides access to the <see cref="T:System.Net.NetworkInformation.IPAddressInformation" /> types in this collection.</returns>
-    </member>
     <member name="T:System.Net.NetworkInformation.IPGlobalProperties">
       <summary>Provides information about the network connectivity of the local computer.</summary>
     </member>
@@ -423,53 +427,43 @@ The number of elements in this <see cref="T:System.Net.NetworkInformation.IPAddr
       <summary>Begins an asynchronous request to retrieve the stable unicast IP address table on the local computer.</summary>
       <param name="callback">The <see cref="T:System.AsyncCallback" /> delegate.</param>
       <param name="state">An object that contains state information for this request.</param>
-      <returns>An <see cref="T:System.IAsyncResult" /> that references the asynchronous request.</returns>
       <exception cref="T:System.NotImplementedException">This method is not implemented on the platform. This method uses the native <see langword="NotifyStableUnicastIpAddressTable" /> function that is supported on Windows Vista and later.</exception>
       <exception cref="T:System.ComponentModel.Win32Exception">The call to the native <see langword="NotifyStableUnicastIpAddressTable" /> function failed.</exception>
-    </member>
-    <member name="P:System.Net.NetworkInformation.IPGlobalProperties.DhcpScopeName">
-      <summary>Gets the Dynamic Host Configuration Protocol (DHCP) scope name.</summary>
-      <returns>A <see cref="T:System.String" /> instance that contains the computer's DHCP scope name.</returns>
-      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">A Win32 function call failed.</exception>
-    </member>
-    <member name="P:System.Net.NetworkInformation.IPGlobalProperties.DomainName">
-      <summary>Gets the domain in which the local computer is registered.</summary>
-      <returns>A <see cref="T:System.String" /> instance that contains the computer's domain name. If the computer does not belong to a domain, returns <see cref="F:System.String.Empty" />.</returns>
-      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">A Win32 function call failed.</exception>
+      <returns>An <see cref="T:System.IAsyncResult" /> that references the asynchronous request.</returns>
     </member>
     <member name="M:System.Net.NetworkInformation.IPGlobalProperties.EndGetUnicastAddresses(System.IAsyncResult)">
       <summary>Ends a pending asynchronous request to retrieve the stable unicast IP address table on the local computer.</summary>
       <param name="asyncResult">An <see cref="T:System.IAsyncResult" /> that references the asynchronous request.</param>
-      <returns>An <see cref="T:System.IAsyncResult" /> that stores state information and any user defined data for this asynchronous operation.</returns>
       <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">The call to the native <see langword="GetAdaptersAddresses" /> function failed.</exception>
       <exception cref="T:System.NotImplementedException">This method is not implemented on the platform. This method uses the native <see langword="NotifyStableUnicastIpAddressTable" /> function that is supported on Windows Vista and later.</exception>
       <exception cref="T:System.Security.SecurityException">The caller does not have necessary <see cref="F:System.Net.NetworkInformation.NetworkInformationAccess.Read" /> permission.</exception>
+      <returns>An <see cref="T:System.IAsyncResult" /> that stores state information and any user defined data for this asynchronous operation.</returns>
     </member>
     <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetActiveTcpConnections">
       <summary>Returns information about the Internet Protocol version 4 (IPv4) and IPv6 Transmission Control Protocol (TCP) connections on the local computer.</summary>
-      <returns>A <see cref="T:System.Net.NetworkInformation.TcpConnectionInformation" /> array that contains objects that describe the active TCP connections, or an empty array if no active TCP connections are detected.</returns>
       <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">The Win32 function <see langword="GetTcpTable" /> failed.</exception>
+      <returns>A <see cref="T:System.Net.NetworkInformation.TcpConnectionInformation" /> array that contains objects that describe the active TCP connections, or an empty array if no active TCP connections are detected.</returns>
     </member>
     <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetActiveTcpListeners">
       <summary>Returns endpoint information about the Internet Protocol version 4 (IPv4) and IPv6 Transmission Control Protocol (TCP) listeners on the local computer.</summary>
-      <returns>A <see cref="T:System.Net.IPEndPoint" /> array that contains objects that describe the active TCP listeners, or an empty array, if no active TCP listeners are detected.</returns>
       <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">The Win32 function <see langword="GetTcpTable" /> failed.</exception>
+      <returns>A <see cref="T:System.Net.IPEndPoint" /> array that contains objects that describe the active TCP listeners, or an empty array, if no active TCP listeners are detected.</returns>
     </member>
     <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetActiveUdpListeners">
       <summary>Returns information about the Internet Protocol version 4 (IPv4) and IPv6 User Datagram Protocol (UDP) listeners on the local computer.</summary>
-      <returns>An <see cref="T:System.Net.IPEndPoint" /> array that contains objects that describe the UDP listeners, or an empty array if no UDP listeners are detected.</returns>
       <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">The call to the Win32 function <see langword="GetUdpTable" /> failed.</exception>
+      <returns>An <see cref="T:System.Net.IPEndPoint" /> array that contains objects that describe the UDP listeners, or an empty array if no UDP listeners are detected.</returns>
     </member>
     <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetIcmpV4Statistics">
       <summary>Provides Internet Control Message Protocol (ICMP) version 4 statistical data for the local computer.</summary>
-      <returns>An <see cref="T:System.Net.NetworkInformation.IcmpV4Statistics" /> object that provides ICMP version 4 traffic statistics for the local computer.</returns>
       <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">The Win32 function <see langword="GetIcmpStatistics" /> failed.</exception>
+      <returns>An <see cref="T:System.Net.NetworkInformation.IcmpV4Statistics" /> object that provides ICMP version 4 traffic statistics for the local computer.</returns>
     </member>
     <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetIcmpV6Statistics">
       <summary>Provides Internet Control Message Protocol (ICMP) version 6 statistical data for the local computer.</summary>
-      <returns>An <see cref="T:System.Net.NetworkInformation.IcmpV6Statistics" /> object that provides ICMP version 6 traffic statistics for the local computer.</returns>
       <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">The Win32 function <see langword="GetIcmpStatisticsEx" /> failed.</exception>
       <exception cref="T:System.PlatformNotSupportedException">The local computer's operating system is not Windows XP or later.</exception>
+      <returns>An <see cref="T:System.Net.NetworkInformation.IcmpV6Statistics" /> object that provides ICMP version 6 traffic statistics for the local computer.</returns>
     </member>
     <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetIPGlobalProperties">
       <summary>Gets an object that provides information about the local computer's network connectivity and traffic statistics.</summary>
@@ -477,67 +471,77 @@ The number of elements in this <see cref="T:System.Net.NetworkInformation.IPAddr
     </member>
     <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetIPv4GlobalStatistics">
       <summary>Provides Internet Protocol version 4 (IPv4) statistical data for the local computer.</summary>
-      <returns>An <see cref="T:System.Net.NetworkInformation.IPGlobalStatistics" /> object that provides IPv4 traffic statistics for the local computer.</returns>
       <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">The call to the Win32 function <see langword="GetIpStatistics" /> failed.</exception>
+      <returns>An <see cref="T:System.Net.NetworkInformation.IPGlobalStatistics" /> object that provides IPv4 traffic statistics for the local computer.</returns>
     </member>
     <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetIPv6GlobalStatistics">
       <summary>Provides Internet Protocol version 6 (IPv6) statistical data for the local computer.</summary>
-      <returns>An <see cref="T:System.Net.NetworkInformation.IPGlobalStatistics" /> object that provides IPv6 traffic statistics for the local computer.</returns>
       <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">The call to the Win32 function <see langword="GetIpStatistics" /> failed.</exception>
       <exception cref="T:System.PlatformNotSupportedException">The local computer is not running an operating system that supports IPv6.</exception>
+      <returns>An <see cref="T:System.Net.NetworkInformation.IPGlobalStatistics" /> object that provides IPv6 traffic statistics for the local computer.</returns>
     </member>
     <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetTcpIPv4Statistics">
       <summary>Provides Transmission Control Protocol/Internet Protocol version 4 (TCP/IPv4) statistical data for the local computer.</summary>
-      <returns>A <see cref="T:System.Net.NetworkInformation.TcpStatistics" /> object that provides TCP/IPv4 traffic statistics for the local computer.</returns>
       <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">The call to the Win32 function <see langword="GetTcpStatistics" /> failed.</exception>
+      <returns>A <see cref="T:System.Net.NetworkInformation.TcpStatistics" /> object that provides TCP/IPv4 traffic statistics for the local computer.</returns>
     </member>
     <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetTcpIPv6Statistics">
       <summary>Provides Transmission Control Protocol/Internet Protocol version 6 (TCP/IPv6) statistical data for the local computer.</summary>
-      <returns>A <see cref="T:System.Net.NetworkInformation.TcpStatistics" /> object that provides TCP/IPv6 traffic statistics for the local computer.</returns>
       <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">The call to the Win32 function <see langword="GetTcpStatistics" /> failed.</exception>
       <exception cref="T:System.PlatformNotSupportedException">The local computer is not running an operating system that supports IPv6.</exception>
+      <returns>A <see cref="T:System.Net.NetworkInformation.TcpStatistics" /> object that provides TCP/IPv6 traffic statistics for the local computer.</returns>
     </member>
     <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetUdpIPv4Statistics">
       <summary>Provides User Datagram Protocol/Internet Protocol version 4 (UDP/IPv4) statistical data for the local computer.</summary>
-      <returns>A <see cref="T:System.Net.NetworkInformation.UdpStatistics" /> object that provides UDP/IPv4 traffic statistics for the local computer.</returns>
       <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">The call to the Win32 function GetUdpStatistics failed.</exception>
+      <returns>A <see cref="T:System.Net.NetworkInformation.UdpStatistics" /> object that provides UDP/IPv4 traffic statistics for the local computer.</returns>
     </member>
     <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetUdpIPv6Statistics">
       <summary>Provides User Datagram Protocol/Internet Protocol version 6 (UDP/IPv6) statistical data for the local computer.</summary>
-      <returns>A <see cref="T:System.Net.NetworkInformation.UdpStatistics" /> object that provides UDP/IPv6 traffic statistics for the local computer.</returns>
       <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">The call to the Win32 function <see langword="GetUdpStatistics" /> failed.</exception>
       <exception cref="T:System.PlatformNotSupportedException">The local computer is not running an operating system that supports IPv6.</exception>
+      <returns>A <see cref="T:System.Net.NetworkInformation.UdpStatistics" /> object that provides UDP/IPv6 traffic statistics for the local computer.</returns>
     </member>
     <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetUnicastAddresses">
       <summary>Retrieves the stable unicast IP address table on the local computer.</summary>
-      <returns>A <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformationCollection" /> that contains a list of stable unicast IP addresses on the local computer.</returns>
       <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">The call to the native <see langword="GetAdaptersAddresses" /> function failed.</exception>
       <exception cref="T:System.NotImplementedException">This method is not implemented on the platform. This method uses the native <see langword="NotifyStableUnicastIpAddressTable" /> function that is supported on Windows Vista and later.</exception>
       <exception cref="T:System.Security.SecurityException">The caller does not have necessary <see cref="F:System.Net.NetworkInformation.NetworkInformationAccess.Read" /> permission.</exception>
       <exception cref="T:System.ComponentModel.Win32Exception">The call to the native <see langword="NotifyStableUnicastIpAddressTable" /> function failed.</exception>
+      <returns>A <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformationCollection" /> that contains a list of stable unicast IP addresses on the local computer.</returns>
     </member>
     <member name="M:System.Net.NetworkInformation.IPGlobalProperties.GetUnicastAddressesAsync">
       <summary>Retrieves the stable unicast IP address table on the local computer as an asynchronous operation.</summary>
-      <returns>The task object representing the asynchronous operation.</returns>
       <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">The call to the native <see langword="GetAdaptersAddresses" /> function failed.</exception>
       <exception cref="T:System.Security.SecurityException">The caller does not have necessary <see cref="F:System.Net.NetworkInformation.NetworkInformationAccess.Read" /> permission.</exception>
       <exception cref="T:System.ComponentModel.Win32Exception">The call to the native <see langword="NotifyStableUnicastIpAddressTable" /> function failed.</exception>
+      <returns>The task object representing the asynchronous operation.</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPGlobalProperties.DhcpScopeName">
+      <summary>Gets the Dynamic Host Configuration Protocol (DHCP) scope name.</summary>
+      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">A Win32 function call failed.</exception>
+      <returns>A <see cref="T:System.String" /> instance that contains the computer's DHCP scope name.</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.IPGlobalProperties.DomainName">
+      <summary>Gets the domain in which the local computer is registered.</summary>
+      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">A Win32 function call failed.</exception>
+      <returns>A <see cref="T:System.String" /> instance that contains the computer's domain name. If the computer does not belong to a domain, returns <see cref="F:System.String.Empty" />.</returns>
     </member>
     <member name="P:System.Net.NetworkInformation.IPGlobalProperties.HostName">
       <summary>Gets the host name for the local computer.</summary>
-      <returns>A <see cref="T:System.String" /> instance that contains the computer's NetBIOS name.</returns>
       <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">A Win32 function call failed.</exception>
+      <returns>A <see cref="T:System.String" /> instance that contains the computer's NetBIOS name.</returns>
     </member>
     <member name="P:System.Net.NetworkInformation.IPGlobalProperties.IsWinsProxy">
       <summary>Gets a <see cref="T:System.Boolean" /> value that specifies whether the local computer is acting as a Windows Internet Name Service (WINS) proxy.</summary>
+      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">A Win32 function call failed.</exception>
       <returns>
         <see langword="true" /> if the local computer is a WINS proxy; otherwise, <see langword="false" />.</returns>
-      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">A Win32 function call failed.</exception>
     </member>
     <member name="P:System.Net.NetworkInformation.IPGlobalProperties.NodeType">
       <summary>Gets the Network Basic Input/Output System (NetBIOS) node type of the local computer.</summary>
-      <returns>A <see cref="T:System.Net.NetworkInformation.NetBiosNodeType" /> value.</returns>
       <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">A Win32 function call failed.</exception>
+      <returns>A <see cref="T:System.Net.NetworkInformation.NetBiosNodeType" /> value.</returns>
     </member>
     <member name="T:System.Net.NetworkInformation.IPGlobalStatistics">
       <summary>Provides Internet Protocol (IP) statistical data.</summary>
@@ -639,6 +643,16 @@ The number of elements in this <see cref="T:System.Net.NetworkInformation.IPAddr
     <member name="M:System.Net.NetworkInformation.IPInterfaceProperties.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Net.NetworkInformation.IPInterfaceProperties" /> class.</summary>
     </member>
+    <member name="M:System.Net.NetworkInformation.IPInterfaceProperties.GetIPv4Properties">
+      <summary>Provides Internet Protocol version 4 (IPv4) configuration data for this network interface.</summary>
+      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">The interface does not support the IPv4 protocol.</exception>
+      <returns>An <see cref="T:System.Net.NetworkInformation.IPv4InterfaceProperties" /> object that contains IPv4 configuration data.</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.IPInterfaceProperties.GetIPv6Properties">
+      <summary>Provides Internet Protocol version 6 (IPv6) configuration data for this network interface.</summary>
+      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">The interface does not support the IPv6 protocol.</exception>
+      <returns>An <see cref="T:System.Net.NetworkInformation.IPv6InterfaceProperties" /> object that contains IPv6 configuration data.</returns>
+    </member>
     <member name="P:System.Net.NetworkInformation.IPInterfaceProperties.AnycastAddresses">
       <summary>Gets the anycast IP addresses assigned to this interface.</summary>
       <returns>An <see cref="T:System.Net.NetworkInformation.IPAddressInformationCollection" /> that contains the anycast addresses for this interface.</returns>
@@ -654,21 +668,10 @@ The number of elements in this <see cref="T:System.Net.NetworkInformation.IPAddr
     <member name="P:System.Net.NetworkInformation.IPInterfaceProperties.DnsSuffix">
       <summary>Gets the Domain Name System (DNS) suffix associated with this interface.</summary>
       <returns>A <see cref="T:System.String" /> that contains the DNS suffix for this interface, or <see cref="F:System.String.Empty" /> if there is no DNS suffix for the interface.</returns>
-      <exception cref="T:System.PlatformNotSupportedException">This property is not valid on computers running operating systems earlier than Windows 2000.</exception>
     </member>
     <member name="P:System.Net.NetworkInformation.IPInterfaceProperties.GatewayAddresses">
       <summary>Gets the IPv4 network gateway addresses for this interface.</summary>
       <returns>An <see cref="T:System.Net.NetworkInformation.GatewayIPAddressInformationCollection" /> that contains the address information for network gateways, or an empty array if no gateways are found.</returns>
-    </member>
-    <member name="M:System.Net.NetworkInformation.IPInterfaceProperties.GetIPv4Properties">
-      <summary>Provides Internet Protocol version 4 (IPv4) configuration data for this network interface.</summary>
-      <returns>An <see cref="T:System.Net.NetworkInformation.IPv4InterfaceProperties" /> object that contains IPv4 configuration data, or <see langword="null" /> if no data is available for the interface.</returns>
-      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">The interface does not support the IPv4 protocol.</exception>
-    </member>
-    <member name="M:System.Net.NetworkInformation.IPInterfaceProperties.GetIPv6Properties">
-      <summary>Provides Internet Protocol version 6 (IPv6) configuration data for this network interface.</summary>
-      <returns>An <see cref="T:System.Net.NetworkInformation.IPv6InterfaceProperties" /> object that contains IPv6 configuration data.</returns>
-      <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">The interface does not support the IPv6 protocol.</exception>
     </member>
     <member name="P:System.Net.NetworkInformation.IPInterfaceProperties.IsDnsEnabled">
       <summary>Gets a <see cref="T:System.Boolean" /> value that indicates whether NetBt is configured to use DNS name resolution on this interface.</summary>
@@ -829,7 +832,7 @@ The number of elements in this <see cref="T:System.Net.NetworkInformation.IPAddr
     </member>
     <member name="P:System.Net.NetworkInformation.IPv4InterfaceStatistics.OutputQueueLength">
       <summary>Gets the length of the output queue.</summary>
-      <returns>An <see cref="T:System.Int64" /> value that specifies the total number of packets in the output queue.</returns>
+      <returns>An <see cref="T:System.Int64" /> value that specifies the maximum length of the output queue in packets.</returns>
     </member>
     <member name="P:System.Net.NetworkInformation.IPv4InterfaceStatistics.UnicastPacketsReceived">
       <summary>Gets the number of unicast packets that were received on the interface.</summary>
@@ -866,13 +869,13 @@ The number of elements in this <see cref="T:System.Net.NetworkInformation.IPAddr
     </member>
     <member name="P:System.Net.NetworkInformation.MulticastIPAddressInformation.AddressPreferredLifetime">
       <summary>Gets the number of seconds remaining during which this address is the preferred address.</summary>
-      <returns>An <see cref="T:System.Int64" /> value that specifies the number of seconds left for this address to remain preferred.</returns>
       <exception cref="T:System.PlatformNotSupportedException">This property is not valid on computers running operating systems earlier than Windows XP.</exception>
+      <returns>An <see cref="T:System.Int64" /> value that specifies the number of seconds left for this address to remain preferred.</returns>
     </member>
     <member name="P:System.Net.NetworkInformation.MulticastIPAddressInformation.AddressValidLifetime">
       <summary>Gets the number of seconds remaining during which this address is valid.</summary>
-      <returns>An <see cref="T:System.Int64" /> value that specifies the number of seconds left for this address to remain assigned.</returns>
       <exception cref="T:System.PlatformNotSupportedException">This property is not valid on computers running operating systems earlier than Windows XP.</exception>
+      <returns>An <see cref="T:System.Int64" /> value that specifies the number of seconds left for this address to remain assigned.</returns>
     </member>
     <member name="P:System.Net.NetworkInformation.MulticastIPAddressInformation.DhcpLeaseLifetime">
       <summary>Specifies the amount of time remaining on the Dynamic Host Configuration Protocol (DHCP) lease for this IP address.</summary>
@@ -880,18 +883,18 @@ The number of elements in this <see cref="T:System.Net.NetworkInformation.IPAddr
     </member>
     <member name="P:System.Net.NetworkInformation.MulticastIPAddressInformation.DuplicateAddressDetectionState">
       <summary>Gets a value that indicates the state of the duplicate address detection algorithm.</summary>
-      <returns>One of the <see cref="T:System.Net.NetworkInformation.DuplicateAddressDetectionState" /> values that indicates the progress of the algorithm in determining the uniqueness of this IP address.</returns>
       <exception cref="T:System.PlatformNotSupportedException">This property is not valid on computers running operating systems earlier than Windows XP.</exception>
+      <returns>One of the <see cref="T:System.Net.NetworkInformation.DuplicateAddressDetectionState" /> values that indicates the progress of the algorithm in determining the uniqueness of this IP address.</returns>
     </member>
     <member name="P:System.Net.NetworkInformation.MulticastIPAddressInformation.PrefixOrigin">
       <summary>Gets a value that identifies the source of a Multicast Internet Protocol (IP) address prefix.</summary>
-      <returns>One of the <see cref="T:System.Net.NetworkInformation.PrefixOrigin" /> values that identifies how the prefix information was obtained.</returns>
       <exception cref="T:System.PlatformNotSupportedException">This property is not valid on computers running operating systems earlier than Windows XP.</exception>
+      <returns>One of the <see cref="T:System.Net.NetworkInformation.PrefixOrigin" /> values that identifies how the prefix information was obtained.</returns>
     </member>
     <member name="P:System.Net.NetworkInformation.MulticastIPAddressInformation.SuffixOrigin">
       <summary>Gets a value that identifies the source of a Multicast Internet Protocol (IP) address suffix.</summary>
-      <returns>One of the <see cref="T:System.Net.NetworkInformation.SuffixOrigin" /> values that identifies how the suffix information was obtained.</returns>
       <exception cref="T:System.PlatformNotSupportedException">This property is not valid on computers running operating systems earlier than Windows XP.</exception>
+      <returns>One of the <see cref="T:System.Net.NetworkInformation.SuffixOrigin" /> values that identifies how the suffix information was obtained.</returns>
     </member>
     <member name="T:System.Net.NetworkInformation.MulticastIPAddressInformationCollection">
       <summary>Stores a set of <see cref="T:System.Net.NetworkInformation.MulticastIPAddressInformation" /> types.</summary>
@@ -921,18 +924,29 @@ The number of elements in this <see cref="T:System.Net.NetworkInformation.IPAddr
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="count" /> is less than zero.</exception>
       <exception cref="T:System.ArgumentException">
-        <paramref name="array" /> is multidimensional.
--or-
-The number of elements in this <see cref="T:System.Net.NetworkInformation.MulticastIPAddressInformation" /> is greater than the available space from <paramref name="count" /> to the end of the destination <paramref name="array" />.</exception>
+        <paramref name="array" /> is multidimensional.  
+  
+ -or-  
+  
+ The number of elements in this <see cref="T:System.Net.NetworkInformation.MulticastIPAddressInformation" /> is greater than the available space from <paramref name="count" /> to the end of the destination <paramref name="array" />.</exception>
       <exception cref="T:System.InvalidCastException">The elements in this <see cref="T:System.Net.NetworkInformation.MulticastIPAddressInformation" /> cannot be cast automatically to the type of the destination <paramref name="array" />.</exception>
-    </member>
-    <member name="P:System.Net.NetworkInformation.MulticastIPAddressInformationCollection.Count">
-      <summary>Gets the number of <see cref="T:System.Net.NetworkInformation.MulticastIPAddressInformation" /> types in this collection.</summary>
-      <returns>An <see cref="T:System.Int32" /> value that contains the number of <see cref="T:System.Net.NetworkInformation.MulticastIPAddressInformation" /> types in this collection.</returns>
     </member>
     <member name="M:System.Net.NetworkInformation.MulticastIPAddressInformationCollection.GetEnumerator">
       <summary>Returns an object that can be used to iterate through this collection.</summary>
       <returns>An object that implements the <see cref="T:System.Collections.IEnumerator" /> interface and provides access to the <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" /> types in this collection.</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.MulticastIPAddressInformationCollection.Remove(System.Net.NetworkInformation.MulticastIPAddressInformation)">
+      <summary>Throws a <see cref="T:System.NotSupportedException" /> because the collection is read-only and elements cannot be removed.</summary>
+      <param name="address">The object to be removed.</param>
+      <returns>Always throws a <see cref="T:System.NotSupportedException" />.</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.MulticastIPAddressInformationCollection.System#Collections#IEnumerable#GetEnumerator">
+      <summary>Returns an object that can be used to iterate through this collection.</summary>
+      <returns>An object that implements the <see cref="T:System.Collections.IEnumerator" /> interface and provides access to the <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" /> types in this collection.</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.MulticastIPAddressInformationCollection.Count">
+      <summary>Gets the number of <see cref="T:System.Net.NetworkInformation.MulticastIPAddressInformation" /> types in this collection.</summary>
+      <returns>An <see cref="T:System.Int32" /> value that contains the number of <see cref="T:System.Net.NetworkInformation.MulticastIPAddressInformation" /> types in this collection.</returns>
     </member>
     <member name="P:System.Net.NetworkInformation.MulticastIPAddressInformationCollection.IsReadOnly">
       <summary>Gets a value that indicates whether access to this collection is read-only.</summary>
@@ -943,15 +957,6 @@ The number of elements in this <see cref="T:System.Net.NetworkInformation.Multic
       <summary>Gets the <see cref="T:System.Net.NetworkInformation.MulticastIPAddressInformation" /> at the specific index of the collection.</summary>
       <param name="index">The index of interest.</param>
       <returns>The <see cref="T:System.Net.NetworkInformation.MulticastIPAddressInformation" /> at the specific index in the collection.</returns>
-    </member>
-    <member name="M:System.Net.NetworkInformation.MulticastIPAddressInformationCollection.Remove(System.Net.NetworkInformation.MulticastIPAddressInformation)">
-      <summary>Throws a <see cref="T:System.NotSupportedException" /> because the collection is read-only and elements cannot be removed.</summary>
-      <param name="address">The object to be removed.</param>
-      <returns>Always throws a <see cref="T:System.NotSupportedException" />.</returns>
-    </member>
-    <member name="M:System.Net.NetworkInformation.MulticastIPAddressInformationCollection.System#Collections#IEnumerable#GetEnumerator">
-      <summary>Returns an object that can be used to iterate through this collection.</summary>
-      <returns>An object that implements the <see cref="T:System.Collections.IEnumerator" /> interface and provides access to the <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" /> types in this collection.</returns>
     </member>
     <member name="T:System.Net.NetworkInformation.NetBiosNodeType">
       <summary>Specifies the Network Basic Input/Output System (NetBIOS) node type.</summary>
@@ -992,14 +997,14 @@ The number of elements in this <see cref="T:System.Net.NetworkInformation.Multic
     <member name="T:System.Net.NetworkInformation.NetworkChange">
       <summary>Allows applications to receive notification when the Internet Protocol (IP) address of a network interface, also called a network card or adapter, changes.</summary>
     </member>
-    <member name="M:System.Net.NetworkInformation.NetworkChange.#ctor">
-      <summary>Initializes a new instance of the <see cref="T:System.Net.NetworkInformation.NetworkChange" /> class.</summary>
-    </member>
     <member name="E:System.Net.NetworkInformation.NetworkChange.NetworkAddressChanged">
       <summary>Occurs when the IP address of a network interface changes.</summary>
     </member>
     <member name="E:System.Net.NetworkInformation.NetworkChange.NetworkAvailabilityChanged">
       <summary>Occurs when the availability of the network changes.</summary>
+    </member>
+    <member name="M:System.Net.NetworkInformation.NetworkChange.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:System.Net.NetworkInformation.NetworkChange" /> class.</summary>
     </member>
     <member name="M:System.Net.NetworkInformation.NetworkChange.RegisterNetworkChange(System.Net.NetworkInformation.NetworkChange)">
       <summary>Registers a network change instance to receive network change events.</summary>
@@ -1030,14 +1035,10 @@ The number of elements in this <see cref="T:System.Net.NetworkInformation.Multic
     <member name="M:System.Net.NetworkInformation.NetworkInterface.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Net.NetworkInformation.NetworkInterface" /> class.</summary>
     </member>
-    <member name="P:System.Net.NetworkInformation.NetworkInterface.Description">
-      <summary>Gets the description of the interface.</summary>
-      <returns>A <see cref="T:System.String" /> that describes this interface.</returns>
-    </member>
     <member name="M:System.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces">
       <summary>Returns objects that describe the network interfaces on the local computer.</summary>
-      <returns>A <see cref="T:System.Net.NetworkInformation.NetworkInterface" /> array that contains objects that describe the available network interfaces, or an empty array if no interfaces are detected.</returns>
       <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">A Windows system function call failed.</exception>
+      <returns>A <see cref="T:System.Net.NetworkInformation.NetworkInterface" /> array that contains objects that describe the available network interfaces, or an empty array if no interfaces are detected.</returns>
     </member>
     <member name="M:System.Net.NetworkInformation.NetworkInterface.GetIPProperties">
       <summary>Returns an object that describes the configuration of this network interface.</summary>
@@ -1060,6 +1061,16 @@ The number of elements in this <see cref="T:System.Net.NetworkInformation.Multic
       <summary>Returns the Media Access Control (MAC) or physical address for this adapter.</summary>
       <returns>A <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> object that contains the physical address.</returns>
     </member>
+    <member name="M:System.Net.NetworkInformation.NetworkInterface.Supports(System.Net.NetworkInformation.NetworkInterfaceComponent)">
+      <summary>Gets a <see cref="T:System.Boolean" /> value that indicates whether the interface supports the specified protocol.</summary>
+      <param name="networkInterfaceComponent">A <see cref="T:System.Net.NetworkInformation.NetworkInterfaceComponent" /> value.</param>
+      <returns>
+        <see langword="true" /> if the specified protocol is supported; otherwise, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.NetworkInterface.Description">
+      <summary>Gets the description of the interface.</summary>
+      <returns>A <see cref="T:System.String" /> that describes this interface.</returns>
+    </member>
     <member name="P:System.Net.NetworkInformation.NetworkInterface.Id">
       <summary>Gets the identifier of the network adapter.</summary>
       <returns>A <see cref="T:System.String" /> that contains the identifier.</returns>
@@ -1070,14 +1081,14 @@ The number of elements in this <see cref="T:System.Net.NetworkInformation.Multic
     </member>
     <member name="P:System.Net.NetworkInformation.NetworkInterface.IsReceiveOnly">
       <summary>Gets a <see cref="T:System.Boolean" /> value that indicates whether the network interface is set to only receive data packets.</summary>
+      <exception cref="T:System.PlatformNotSupportedException">This property is not valid on computers running operating systems earlier than Windows XP.</exception>
       <returns>
         <see langword="true" /> if the interface only receives network traffic; otherwise, <see langword="false" />.</returns>
-      <exception cref="T:System.PlatformNotSupportedException">This property is not valid on computers running operating systems earlier than Windows XP.</exception>
     </member>
     <member name="P:System.Net.NetworkInformation.NetworkInterface.LoopbackInterfaceIndex">
       <summary>Gets the index of the IPv4 loopback interface.</summary>
-      <returns>A <see cref="T:System.Int32" /> that contains the index for the IPv4 loopback interface.</returns>
       <exception cref="T:System.Net.NetworkInformation.NetworkInformationException">This property is not valid on computers running only Ipv6.</exception>
+      <returns>A <see cref="T:System.Int32" /> that contains the index for the IPv4 loopback interface.</returns>
     </member>
     <member name="P:System.Net.NetworkInformation.NetworkInterface.Name">
       <summary>Gets the name of the network adapter.</summary>
@@ -1095,17 +1106,11 @@ The number of elements in this <see cref="T:System.Net.NetworkInformation.Multic
       <summary>Gets the speed of the network interface.</summary>
       <returns>A <see cref="T:System.Int64" /> value that specifies the speed in bits per second.</returns>
     </member>
-    <member name="M:System.Net.NetworkInformation.NetworkInterface.Supports(System.Net.NetworkInformation.NetworkInterfaceComponent)">
-      <summary>Gets a <see cref="T:System.Boolean" /> value that indicates whether the interface supports the specified protocol.</summary>
-      <param name="networkInterfaceComponent">A <see cref="T:System.Net.NetworkInformation.NetworkInterfaceComponent" /> value.</param>
-      <returns>
-        <see langword="true" /> if the specified protocol is supported; otherwise, <see langword="false" />.</returns>
-    </member>
     <member name="P:System.Net.NetworkInformation.NetworkInterface.SupportsMulticast">
       <summary>Gets a <see cref="T:System.Boolean" /> value that indicates whether the network interface is enabled to receive multicast packets.</summary>
+      <exception cref="T:System.PlatformNotSupportedException">This property is not valid on computers running operating systems earlier than Windows XP.</exception>
       <returns>
         <see langword="true" /> if the interface receives multicast packets; otherwise, <see langword="false" />.</returns>
-      <exception cref="T:System.PlatformNotSupportedException">This property is not valid on computers running operating systems earlier than Windows XP.</exception>
     </member>
     <member name="T:System.Net.NetworkInformation.NetworkInterfaceComponent">
       <summary>Specifies the Internet Protocol versions that are supported by a network interface.</summary>
@@ -1230,6 +1235,9 @@ The number of elements in this <see cref="T:System.Net.NetworkInformation.Multic
     <member name="T:System.Net.NetworkInformation.PhysicalAddress">
       <summary>Provides the Media Access Control (MAC) address for a network interface (adapter).</summary>
     </member>
+    <member name="F:System.Net.NetworkInformation.PhysicalAddress.None">
+      <summary>Returns a new <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> instance with a zero length address. This field is read-only.</summary>
+    </member>
     <member name="M:System.Net.NetworkInformation.PhysicalAddress.#ctor(System.Byte[])">
       <summary>Initializes a new instance of the <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> class.</summary>
       <param name="address">A <see cref="T:System.Byte" /> array containing the address.</param>
@@ -1248,19 +1256,37 @@ The number of elements in this <see cref="T:System.Net.NetworkInformation.Multic
       <summary>Returns the hash value of a physical address.</summary>
       <returns>An integer hash value.</returns>
     </member>
-    <member name="F:System.Net.NetworkInformation.PhysicalAddress.None">
-      <summary>Returns a new <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> instance with a zero length address. This field is read-only.</summary>
+    <member name="M:System.Net.NetworkInformation.PhysicalAddress.Parse(System.ReadOnlySpan{System.Char})">
+      <summary>Parses the specified span and stores its contents as the address bytes of the <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> returned by this method.</summary>
+      <param name="address">A span containing the address that will be used to initialize the <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> instance returned by this method.</param>
+      <exception cref="T:System.FormatException">
+        <paramref name="address" /> contains an illegal hardware address or contains a string in the incorrect format.</exception>
+      <returns>A <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> instance with the specified address.</returns>
     </member>
     <member name="M:System.Net.NetworkInformation.PhysicalAddress.Parse(System.String)">
       <summary>Parses the specified <see cref="T:System.String" /> and stores its contents as the address bytes of the <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> returned by this method.</summary>
       <param name="address">A <see cref="T:System.String" /> containing the address that will be used to initialize the <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> instance returned by this method.</param>
-      <returns>A <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> instance with the specified address.</returns>
       <exception cref="T:System.FormatException">
         <paramref name="address" /> contains an illegal hardware address or contains a string in the incorrect format.</exception>
+      <returns>A <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> instance with the specified address.</returns>
     </member>
     <member name="M:System.Net.NetworkInformation.PhysicalAddress.ToString">
       <summary>Returns the <see cref="T:System.String" /> representation of the address of this instance.</summary>
       <returns>A <see cref="T:System.String" /> containing the address contained in this instance.</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.PhysicalAddress.TryParse(System.ReadOnlySpan{System.Char},System.Net.NetworkInformation.PhysicalAddress@)">
+      <summary>Tries to convert the span representation of a hardware address to a <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> instance. A return value indicates whether the conversion succeeded.</summary>
+      <param name="address">A span containing the address that will be used to initialize the <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> instance returned by this method.</param>
+      <param name="value">When this method returns, contains the <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> instance equivalent of the address contained in <paramref name="address" />, if the conversion succeeded, or <see langword="null" /> if the conversion failed. This parameter is passed uninitialized; any value originally supplied in <paramref name="result" /> will be overwritten.</param>
+      <returns>
+        <see langword="true" /> if <paramref name="address" /> was converted successfully; otherwise, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.PhysicalAddress.TryParse(System.String,System.Net.NetworkInformation.PhysicalAddress@)">
+      <summary>Tries to convert the string representation of a hardware address to a <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> instance. A return value indicates whether the conversion succeeded.</summary>
+      <param name="address">A string containing the address that will be used to initialize the <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> instance returned by this method.</param>
+      <param name="value">When this method returns, contains the <see cref="T:System.Net.NetworkInformation.PhysicalAddress" /> instance equivalent of the address contained in <paramref name="address" />, if the conversion succeeded, or <see langword="null" /> if the conversion failed. If the <paramref name="address" /> is <see langword="null" /> it contains <see cref="T:System.Net.NetworkInformation.PhysicalAddress.None" />. This parameter is passed uninitialized; any value originally supplied in <paramref name="result" /> will be overwritten.</param>
+      <returns>
+        <see langword="true" /> if <paramref name="address" /> was converted successfully; otherwise, <see langword="false" />.</returns>
     </member>
     <member name="T:System.Net.NetworkInformation.PrefixOrigin">
       <summary>Specifies how an IP address network prefix was located.</summary>
@@ -1484,13 +1510,13 @@ The number of elements in this <see cref="T:System.Net.NetworkInformation.Multic
     </member>
     <member name="P:System.Net.NetworkInformation.UnicastIPAddressInformation.AddressPreferredLifetime">
       <summary>Gets the number of seconds remaining during which this address is the preferred address.</summary>
-      <returns>An <see cref="T:System.Int64" /> value that specifies the number of seconds left for this address to remain preferred.</returns>
       <exception cref="T:System.PlatformNotSupportedException">This property is not valid on computers running operating systems earlier than Windows XP.</exception>
+      <returns>An <see cref="T:System.Int64" /> value that specifies the number of seconds left for this address to remain preferred.</returns>
     </member>
     <member name="P:System.Net.NetworkInformation.UnicastIPAddressInformation.AddressValidLifetime">
       <summary>Gets the number of seconds remaining during which this address is valid.</summary>
-      <returns>An <see cref="T:System.Int64" /> value that specifies the number of seconds left for this address to remain assigned.</returns>
       <exception cref="T:System.PlatformNotSupportedException">This property is not valid on computers running operating systems earlier than Windows XP.</exception>
+      <returns>An <see cref="T:System.Int64" /> value that specifies the number of seconds left for this address to remain assigned.</returns>
     </member>
     <member name="P:System.Net.NetworkInformation.UnicastIPAddressInformation.DhcpLeaseLifetime">
       <summary>Specifies the amount of time remaining on the Dynamic Host Configuration Protocol (DHCP) lease for this IP address.</summary>
@@ -1498,8 +1524,8 @@ The number of elements in this <see cref="T:System.Net.NetworkInformation.Multic
     </member>
     <member name="P:System.Net.NetworkInformation.UnicastIPAddressInformation.DuplicateAddressDetectionState">
       <summary>Gets a value that indicates the state of the duplicate address detection algorithm.</summary>
-      <returns>One of the <see cref="T:System.Net.NetworkInformation.DuplicateAddressDetectionState" /> values that indicates the progress of the algorithm in determining the uniqueness of this IP address.</returns>
       <exception cref="T:System.PlatformNotSupportedException">This property is not valid on computers running operating systems earlier than Windows XP.</exception>
+      <returns>One of the <see cref="T:System.Net.NetworkInformation.DuplicateAddressDetectionState" /> values that indicates the progress of the algorithm in determining the uniqueness of this IP address.</returns>
     </member>
     <member name="P:System.Net.NetworkInformation.UnicastIPAddressInformation.IPv4Mask">
       <summary>Gets the IPv4 mask.</summary>
@@ -1511,13 +1537,13 @@ The number of elements in this <see cref="T:System.Net.NetworkInformation.Multic
     </member>
     <member name="P:System.Net.NetworkInformation.UnicastIPAddressInformation.PrefixOrigin">
       <summary>Gets a value that identifies the source of a unicast Internet Protocol (IP) address prefix.</summary>
-      <returns>One of the <see cref="T:System.Net.NetworkInformation.PrefixOrigin" /> values that identifies how the prefix information was obtained.</returns>
       <exception cref="T:System.PlatformNotSupportedException">This property is not valid on computers running operating systems earlier than Windows XP.</exception>
+      <returns>One of the <see cref="T:System.Net.NetworkInformation.PrefixOrigin" /> values that identifies how the prefix information was obtained.</returns>
     </member>
     <member name="P:System.Net.NetworkInformation.UnicastIPAddressInformation.SuffixOrigin">
       <summary>Gets a value that identifies the source of a unicast Internet Protocol (IP) address suffix.</summary>
-      <returns>One of the <see cref="T:System.Net.NetworkInformation.SuffixOrigin" /> values that identifies how the suffix information was obtained.</returns>
       <exception cref="T:System.PlatformNotSupportedException">This property is not valid on computers running operating systems earlier than Windows XP.</exception>
+      <returns>One of the <see cref="T:System.Net.NetworkInformation.SuffixOrigin" /> values that identifies how the suffix information was obtained.</returns>
     </member>
     <member name="T:System.Net.NetworkInformation.UnicastIPAddressInformationCollection">
       <summary>Stores a set of <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" /> types.</summary>
@@ -1547,18 +1573,29 @@ The number of elements in this <see cref="T:System.Net.NetworkInformation.Multic
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="index" /> is less than zero.</exception>
       <exception cref="T:System.ArgumentException">
-        <paramref name="array" /> is multidimensional.
--or-
-The number of elements in this <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformationCollection" /> is greater than the available space from <paramref name="offset" /> to the end of the destination <paramref name="array" />.</exception>
+        <paramref name="array" /> is multidimensional.  
+  
+ -or-  
+  
+ The number of elements in this <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformationCollection" /> is greater than the available space from <paramref name="offset" /> to the end of the destination <paramref name="array" />.</exception>
       <exception cref="T:System.InvalidCastException">The elements in this <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformationCollection" /> cannot be cast automatically to the type of the destination <paramref name="array" />.</exception>
-    </member>
-    <member name="P:System.Net.NetworkInformation.UnicastIPAddressInformationCollection.Count">
-      <summary>Gets the number of <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" /> types in this collection.</summary>
-      <returns>An <see cref="T:System.Int32" /> value that contains the number of <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" /> types in this collection.</returns>
     </member>
     <member name="M:System.Net.NetworkInformation.UnicastIPAddressInformationCollection.GetEnumerator">
       <summary>Returns an object that can be used to iterate through this collection.</summary>
       <returns>An object that implements the <see cref="T:System.Collections.IEnumerator" /> interface and provides access to the <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" /> types in this collection.</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.UnicastIPAddressInformationCollection.Remove(System.Net.NetworkInformation.UnicastIPAddressInformation)">
+      <summary>Throws a <see cref="T:System.NotSupportedException" /> because the collection is read-only and elements cannot be removed.</summary>
+      <param name="address">The object to be removed.</param>
+      <returns>Always throws a <see cref="T:System.NotSupportedException" />.</returns>
+    </member>
+    <member name="M:System.Net.NetworkInformation.UnicastIPAddressInformationCollection.System#Collections#IEnumerable#GetEnumerator">
+      <summary>Returns an object that can be used to iterate through this collection.</summary>
+      <returns>An object that implements the <see cref="T:System.Collections.IEnumerator" /> interface and provides access to the <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" /> types in this collection.</returns>
+    </member>
+    <member name="P:System.Net.NetworkInformation.UnicastIPAddressInformationCollection.Count">
+      <summary>Gets the number of <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" /> types in this collection.</summary>
+      <returns>An <see cref="T:System.Int32" /> value that contains the number of <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" /> types in this collection.</returns>
     </member>
     <member name="P:System.Net.NetworkInformation.UnicastIPAddressInformationCollection.IsReadOnly">
       <summary>Gets a value that indicates whether access to this collection is read-only.</summary>
@@ -1569,15 +1606,6 @@ The number of elements in this <see cref="T:System.Net.NetworkInformation.Unicas
       <summary>Gets the <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" /> instance at the specified index in the collection.</summary>
       <param name="index">The zero-based index of the element.</param>
       <returns>The <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" /> at the specified location.</returns>
-    </member>
-    <member name="M:System.Net.NetworkInformation.UnicastIPAddressInformationCollection.Remove(System.Net.NetworkInformation.UnicastIPAddressInformation)">
-      <summary>Throws a <see cref="T:System.NotSupportedException" /> because the collection is read-only and elements cannot be removed.</summary>
-      <param name="address">The object to be removed.</param>
-      <returns>Always throws a <see cref="T:System.NotSupportedException" />.</returns>
-    </member>
-    <member name="M:System.Net.NetworkInformation.UnicastIPAddressInformationCollection.System#Collections#IEnumerable#GetEnumerator">
-      <summary>Returns an object that can be used to iterate through this collection.</summary>
-      <returns>An object that implements the <see cref="T:System.Collections.IEnumerator" /> interface and provides access to the <see cref="T:System.Net.NetworkInformation.UnicastIPAddressInformation" /> types in this collection.</returns>
     </member>
   </members>
 </doc>

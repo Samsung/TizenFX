@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>Tizen.NUI.WidgetViewTest</AssemblyName>
     <SignAssembly>true</SignAssembly>
     <PackageId>Tizen.NUI.WidgetViewTest</PackageId>

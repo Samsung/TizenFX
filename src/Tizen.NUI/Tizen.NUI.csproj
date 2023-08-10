@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <NoWarn>$(NoWarn);CS0618;CS0809;CS1591;CA1054;CA1056</NoWarn>
         <LangVersion>8.0</LangVersion>
     </PropertyGroup>

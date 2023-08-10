@@ -161,6 +161,180 @@
       <param name="value">An <see cref="T:System.Object" /> containing the value of the attribute.</param>
       <exception cref="T:System.ArgumentNullException">The <paramref name="name" /> or <paramref name="value" /> parameter is <see langword="null" />.</exception>
     </member>
+    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Boolean">
+      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Boolean" />.</summary>
+      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.Boolean" />.</param>
+      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.Boolean" /> value.</exception>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="attribute" /> parameter is <see langword="null" />.</exception>
+      <returns>A <see cref="T:System.Boolean" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
+    </member>
+    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.DateTime">
+      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.DateTime" />.</summary>
+      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.DateTime" />.</param>
+      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.DateTime" /> value.</exception>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="attribute" /> parameter is <see langword="null" />.</exception>
+      <returns>A <see cref="T:System.DateTime" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
+    </member>
+    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.DateTimeOffset">
+      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.DateTimeOffset" />.</summary>
+      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.DateTimeOffset" />.</param>
+      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.DateTimeOffset" /> value.</exception>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="attribute" /> parameter is <see langword="null" />.</exception>
+      <returns>A <see cref="T:System.DateTimeOffset" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
+    </member>
+    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Decimal">
+      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Decimal" />.</summary>
+      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.Decimal" />.</param>
+      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.Decimal" /> value.</exception>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="attribute" /> parameter is <see langword="null" />.</exception>
+      <returns>A <see cref="T:System.Decimal" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
+    </member>
+    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Double">
+      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Double" />.</summary>
+      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.Double" />.</param>
+      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.Double" /> value.</exception>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="attribute" /> parameter is <see langword="null" />.</exception>
+      <returns>A <see cref="T:System.Double" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
+    </member>
+    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Guid">
+      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Guid" />.</summary>
+      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.Guid" />.</param>
+      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.Guid" /> value.</exception>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="attribute" /> parameter is <see langword="null" />.</exception>
+      <returns>A <see cref="T:System.Guid" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
+    </member>
+    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Int32">
+      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to an <see cref="T:System.Int32" />.</summary>
+      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.Int32" />.</param>
+      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.Int32" /> value.</exception>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="attribute" /> parameter is <see langword="null" />.</exception>
+      <returns>A <see cref="T:System.Int32" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
+    </member>
+    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Int64">
+      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to an <see cref="T:System.Int64" />.</summary>
+      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.Int64" />.</param>
+      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.Int64" /> value.</exception>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="attribute" /> parameter is <see langword="null" />.</exception>
+      <returns>A <see cref="T:System.Int64" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
+    </member>
+    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Nullable{System.Boolean}">
+      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.Boolean" />.</summary>
+      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.Nullable`1" /> of <see cref="T:System.Boolean" />.</param>
+      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.Boolean" /> value.</exception>
+      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.Boolean" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
+    </member>
+    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Nullable{System.DateTime}">
+      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.DateTime" />.</summary>
+      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.DateTime" />.</param>
+      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.DateTime" /> value.</exception>
+      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.DateTime" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
+    </member>
+    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Nullable{System.DateTimeOffset}">
+      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.DateTimeOffset" />.</summary>
+      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.DateTimeOffset" />.</param>
+      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.DateTimeOffset" /> value.</exception>
+      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.DateTimeOffset" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
+    </member>
+    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Nullable{System.Decimal}">
+      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.Decimal" />.</summary>
+      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.Nullable`1" /> of <see cref="T:System.Decimal" />.</param>
+      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.Decimal" /> value.</exception>
+      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.Decimal" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
+    </member>
+    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Nullable{System.Double}">
+      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.Double" />.</summary>
+      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.Nullable`1" /> of <see cref="T:System.Double" />.</param>
+      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.Double" /> value.</exception>
+      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.Double" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
+    </member>
+    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Nullable{System.Guid}">
+      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.Guid" />.</summary>
+      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.Guid" />.</param>
+      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.Guid" /> value.</exception>
+      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.Guid" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
+    </member>
+    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Nullable{System.Int32}">
+      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.Int32" />.</summary>
+      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.Int32" />.</param>
+      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.Int32" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
+    </member>
+    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Nullable{System.Int64}">
+      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.Int64" />.</summary>
+      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.Int64" />.</param>
+      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.Int64" /> value.</exception>
+      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.Int64" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
+    </member>
+    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Nullable{System.Single}">
+      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.Single" />.</summary>
+      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.Nullable`1" /> of <see cref="T:System.Single" />.</param>
+      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.Single" /> value.</exception>
+      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.Single" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
+    </member>
+    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Nullable{System.TimeSpan}">
+      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.TimeSpan" />.</summary>
+      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.TimeSpan" />.</param>
+      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.TimeSpan" /> value.</exception>
+      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.TimeSpan" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
+    </member>
+    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Nullable{System.UInt32}">
+      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.UInt32" />.</summary>
+      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.UInt32" />.</param>
+      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.UInt32" /> value.</exception>
+      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.UInt32" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
+    </member>
+    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Nullable{System.UInt64}">
+      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.UInt64" />.</summary>
+      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.UInt64" />.</param>
+      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.UInt64" /> value.</exception>
+      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.UInt64" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
+    </member>
+    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Single">
+      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Single" />.</summary>
+      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.Single" />.</param>
+      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.Single" /> value.</exception>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="attribute" /> parameter is <see langword="null" />.</exception>
+      <returns>A <see cref="T:System.Single" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
+    </member>
+    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.String">
+      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.String" />.</summary>
+      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.String" />.</param>
+      <returns>A <see cref="T:System.String" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
+    </member>
+    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.TimeSpan">
+      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.TimeSpan" />.</summary>
+      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.TimeSpan" />.</param>
+      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.TimeSpan" /> value.</exception>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="attribute" /> parameter is <see langword="null" />.</exception>
+      <returns>A <see cref="T:System.TimeSpan" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
+    </member>
+    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.UInt32">
+      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.UInt32" />.</summary>
+      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.UInt32" />.</param>
+      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.UInt32" /> value.</exception>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="attribute" /> parameter is <see langword="null" />.</exception>
+      <returns>A <see cref="T:System.UInt32" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
+    </member>
+    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.UInt64">
+      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.UInt64" />.</summary>
+      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.UInt64" />.</param>
+      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.UInt64" /> value.</exception>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="attribute" /> parameter is <see langword="null" />.</exception>
+      <returns>A <see cref="T:System.UInt64" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
+    </member>
+    <member name="M:System.Xml.Linq.XAttribute.Remove">
+      <summary>Removes this attribute from its parent element.</summary>
+      <exception cref="T:System.InvalidOperationException">The parent element is <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Xml.Linq.XAttribute.SetValue(System.Object)">
+      <summary>Sets the value of this attribute.</summary>
+      <param name="value">The value to assign to this attribute.</param>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="value" /> parameter is <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">The <paramref name="value" /> is an <see cref="T:System.Xml.Linq.XObject" />.</exception>
+    </member>
+    <member name="M:System.Xml.Linq.XAttribute.ToString">
+      <summary>Converts the current <see cref="T:System.Xml.Linq.XAttribute" /> object to a string representation.</summary>
+      <returns>A <see cref="T:System.String" /> containing the XML text representation of an attribute and its value.</returns>
+    </member>
     <member name="P:System.Xml.Linq.XAttribute.EmptySequence">
       <summary>Gets an empty collection of attributes.</summary>
       <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1" /> of <see cref="T:System.Xml.Linq.XAttribute" /> containing an empty collection.</returns>
@@ -182,188 +356,14 @@
       <summary>Gets the node type for this node.</summary>
       <returns>The node type. For <see cref="T:System.Xml.Linq.XAttribute" /> objects, this value is <see cref="F:System.Xml.XmlNodeType.Attribute" />.</returns>
     </member>
-    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Boolean">
-      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Boolean" />.</summary>
-      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.Boolean" />.</param>
-      <returns>A <see cref="T:System.Boolean" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
-      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.Boolean" /> value.</exception>
-      <exception cref="T:System.ArgumentNullException">The <paramref name="attribute" /> parameter is <see langword="null" />.</exception>
-    </member>
-    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.DateTime">
-      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.DateTime" />.</summary>
-      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.DateTime" />.</param>
-      <returns>A <see cref="T:System.DateTime" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
-      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.DateTime" /> value.</exception>
-      <exception cref="T:System.ArgumentNullException">The <paramref name="attribute" /> parameter is <see langword="null" />.</exception>
-    </member>
-    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.DateTimeOffset">
-      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.DateTimeOffset" />.</summary>
-      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.DateTimeOffset" />.</param>
-      <returns>A <see cref="T:System.DateTimeOffset" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
-      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.DateTimeOffset" /> value.</exception>
-      <exception cref="T:System.ArgumentNullException">The <paramref name="attribute" /> parameter is <see langword="null" />.</exception>
-    </member>
-    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Decimal">
-      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Decimal" />.</summary>
-      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.Decimal" />.</param>
-      <returns>A <see cref="T:System.Decimal" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
-      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.Decimal" /> value.</exception>
-      <exception cref="T:System.ArgumentNullException">The <paramref name="attribute" /> parameter is <see langword="null" />.</exception>
-    </member>
-    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Double">
-      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Double" />.</summary>
-      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.Double" />.</param>
-      <returns>A <see cref="T:System.Double" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
-      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.Double" /> value.</exception>
-      <exception cref="T:System.ArgumentNullException">The <paramref name="attribute" /> parameter is <see langword="null" />.</exception>
-    </member>
-    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Guid">
-      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Guid" />.</summary>
-      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.Guid" />.</param>
-      <returns>A <see cref="T:System.Guid" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
-      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.Guid" /> value.</exception>
-      <exception cref="T:System.ArgumentNullException">The <paramref name="attribute" /> parameter is <see langword="null" />.</exception>
-    </member>
-    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Int32">
-      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to an <see cref="T:System.Int32" />.</summary>
-      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.Int32" />.</param>
-      <returns>A <see cref="T:System.Int32" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
-      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.Int32" /> value.</exception>
-      <exception cref="T:System.ArgumentNullException">The <paramref name="attribute" /> parameter is <see langword="null" />.</exception>
-    </member>
-    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Int64">
-      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to an <see cref="T:System.Int64" />.</summary>
-      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.Int64" />.</param>
-      <returns>A <see cref="T:System.Int64" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
-      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.Int64" /> value.</exception>
-      <exception cref="T:System.ArgumentNullException">The <paramref name="attribute" /> parameter is <see langword="null" />.</exception>
-    </member>
-    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Nullable{System.Boolean}">
-      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.Boolean" />.</summary>
-      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.Nullable`1" /> of <see cref="T:System.Boolean" />.</param>
-      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.Boolean" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
-      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.Boolean" /> value.</exception>
-    </member>
-    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Nullable{System.DateTime}">
-      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.DateTime" />.</summary>
-      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.DateTime" />.</param>
-      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.DateTime" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
-      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.DateTime" /> value.</exception>
-    </member>
-    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Nullable{System.DateTimeOffset}">
-      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.DateTimeOffset" />.</summary>
-      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.DateTimeOffset" />.</param>
-      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.DateTimeOffset" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
-      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.DateTimeOffset" /> value.</exception>
-    </member>
-    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Nullable{System.Decimal}">
-      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.Decimal" />.</summary>
-      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.Nullable`1" /> of <see cref="T:System.Decimal" />.</param>
-      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.Decimal" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
-      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.Decimal" /> value.</exception>
-    </member>
-    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Nullable{System.Double}">
-      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.Double" />.</summary>
-      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.Nullable`1" /> of <see cref="T:System.Double" />.</param>
-      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.Double" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
-      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.Double" /> value.</exception>
-    </member>
-    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Nullable{System.Guid}">
-      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.Guid" />.</summary>
-      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.Guid" />.</param>
-      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.Guid" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
-      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.Guid" /> value.</exception>
-    </member>
-    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Nullable{System.Int32}">
-      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.Int32" />.</summary>
-      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.Int32" />.</param>
-      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.Int32" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
-    </member>
-    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Nullable{System.Int64}">
-      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.Int64" />.</summary>
-      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.Int64" />.</param>
-      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.Int64" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
-      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.Int64" /> value.</exception>
-    </member>
-    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Nullable{System.Single}">
-      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.Single" />.</summary>
-      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.Nullable`1" /> of <see cref="T:System.Single" />.</param>
-      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.Single" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
-      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.Single" /> value.</exception>
-    </member>
-    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Nullable{System.TimeSpan}">
-      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.TimeSpan" />.</summary>
-      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.TimeSpan" />.</param>
-      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.TimeSpan" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
-      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.TimeSpan" /> value.</exception>
-    </member>
-    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Nullable{System.UInt32}">
-      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.UInt32" />.</summary>
-      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.UInt32" />.</param>
-      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.UInt32" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
-      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.UInt32" /> value.</exception>
-    </member>
-    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Nullable{System.UInt64}">
-      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.UInt64" />.</summary>
-      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.UInt64" />.</param>
-      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.UInt64" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
-      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.UInt64" /> value.</exception>
-    </member>
-    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.Single">
-      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.Single" />.</summary>
-      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.Single" />.</param>
-      <returns>A <see cref="T:System.Single" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
-      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.Single" /> value.</exception>
-      <exception cref="T:System.ArgumentNullException">The <paramref name="attribute" /> parameter is <see langword="null" />.</exception>
-    </member>
-    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.String">
-      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.String" />.</summary>
-      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.String" />.</param>
-      <returns>A <see cref="T:System.String" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
-    </member>
-    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.TimeSpan">
-      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.TimeSpan" />.</summary>
-      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.TimeSpan" />.</param>
-      <returns>A <see cref="T:System.TimeSpan" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
-      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.TimeSpan" /> value.</exception>
-      <exception cref="T:System.ArgumentNullException">The <paramref name="attribute" /> parameter is <see langword="null" />.</exception>
-    </member>
-    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.UInt32">
-      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.UInt32" />.</summary>
-      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.UInt32" />.</param>
-      <returns>A <see cref="T:System.UInt32" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
-      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.UInt32" /> value.</exception>
-      <exception cref="T:System.ArgumentNullException">The <paramref name="attribute" /> parameter is <see langword="null" />.</exception>
-    </member>
-    <member name="M:System.Xml.Linq.XAttribute.op_Explicit(System.Xml.Linq.XAttribute)~System.UInt64">
-      <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.UInt64" />.</summary>
-      <param name="attribute">The <see cref="T:System.Xml.Linq.XAttribute" /> to cast to <see cref="T:System.UInt64" />.</param>
-      <returns>A <see cref="T:System.UInt64" /> that contains the content of this <see cref="T:System.Xml.Linq.XAttribute" />.</returns>
-      <exception cref="T:System.FormatException">The attribute does not contain a valid <see cref="T:System.UInt64" /> value.</exception>
-      <exception cref="T:System.ArgumentNullException">The <paramref name="attribute" /> parameter is <see langword="null" />.</exception>
-    </member>
     <member name="P:System.Xml.Linq.XAttribute.PreviousAttribute">
       <summary>Gets the previous attribute of the parent element.</summary>
       <returns>An <see cref="T:System.Xml.Linq.XAttribute" /> containing the previous attribute of the parent element.</returns>
     </member>
-    <member name="M:System.Xml.Linq.XAttribute.Remove">
-      <summary>Removes this attribute from its parent element.</summary>
-      <exception cref="T:System.InvalidOperationException">The parent element is <see langword="null" />.</exception>
-    </member>
-    <member name="M:System.Xml.Linq.XAttribute.SetValue(System.Object)">
-      <summary>Sets the value of this attribute.</summary>
-      <param name="value">The value to assign to this attribute.</param>
-      <exception cref="T:System.ArgumentNullException">The <paramref name="value" /> parameter is <see langword="null" />.</exception>
-      <exception cref="T:System.ArgumentException">The <paramref name="value" /> is an <see cref="T:System.Xml.Linq.XObject" />.</exception>
-    </member>
-    <member name="M:System.Xml.Linq.XAttribute.ToString">
-      <summary>Converts the current <see cref="T:System.Xml.Linq.XAttribute" /> object to a string representation.</summary>
-      <returns>A <see cref="T:System.String" /> containing the XML text representation of an attribute and its value.</returns>
-    </member>
     <member name="P:System.Xml.Linq.XAttribute.Value">
       <summary>Gets or sets the value of this attribute.</summary>
-      <returns>A <see cref="T:System.String" /> containing the value of this attribute.</returns>
       <exception cref="T:System.ArgumentNullException">When setting, the <paramref name="value" /> is <see langword="null" />.</exception>
+      <returns>A <see cref="T:System.String" /> containing the value of this attribute.</returns>
     </member>
     <member name="T:System.Xml.Linq.XCData">
       <summary>Represents a text node that contains CDATA.</summary>
@@ -376,10 +376,6 @@
       <summary>Initializes a new instance of the <see cref="T:System.Xml.Linq.XCData" /> class.</summary>
       <param name="other">The <see cref="T:System.Xml.Linq.XCData" /> node to copy from.</param>
     </member>
-    <member name="P:System.Xml.Linq.XCData.NodeType">
-      <summary>Gets the node type for this node.</summary>
-      <returns>The node type. For <see cref="T:System.Xml.Linq.XCData" /> objects, this value is <see cref="F:System.Xml.XmlNodeType.CDATA" />.</returns>
-    </member>
     <member name="M:System.Xml.Linq.XCData.WriteTo(System.Xml.XmlWriter)">
       <summary>Writes this CDATA object to an <see cref="T:System.Xml.XmlWriter" />.</summary>
       <param name="writer">An <see cref="T:System.Xml.XmlWriter" /> into which this method will write.</param>
@@ -389,6 +385,10 @@
       <param name="writer">The writer to write this <see cref="T:System.Xml.Linq.XCData" /> to.</param>
       <param name="cancellationToken">A token that can be used to request cancellation of the asynchronous operation.</param>
       <returns>A task representing the asynchronous write operation.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XCData.NodeType">
+      <summary>Gets the node type for this node.</summary>
+      <returns>The node type. For <see cref="T:System.Xml.Linq.XCData" /> objects, this value is <see cref="F:System.Xml.XmlNodeType.CDATA" />.</returns>
     </member>
     <member name="T:System.Xml.Linq.XComment">
       <summary>Represents an XML comment.</summary>
@@ -403,15 +403,6 @@
       <param name="other">The <see cref="T:System.Xml.Linq.XComment" /> node to copy from.</param>
       <exception cref="T:System.ArgumentNullException">The <paramref name="other" /> parameter is <see langword="null" />.</exception>
     </member>
-    <member name="P:System.Xml.Linq.XComment.NodeType">
-      <summary>Gets the node type for this node.</summary>
-      <returns>The node type. For <see cref="T:System.Xml.Linq.XComment" /> objects, this value is <see cref="F:System.Xml.XmlNodeType.Comment" />.</returns>
-    </member>
-    <member name="P:System.Xml.Linq.XComment.Value">
-      <summary>Gets or sets the string value of this comment.</summary>
-      <returns>A <see cref="T:System.String" /> that contains the string value of this comment.</returns>
-      <exception cref="T:System.ArgumentNullException">The <paramref name="value" /> is <see langword="null" />.</exception>
-    </member>
     <member name="M:System.Xml.Linq.XComment.WriteTo(System.Xml.XmlWriter)">
       <summary>Write this comment to an <see cref="T:System.Xml.XmlWriter" />.</summary>
       <param name="writer">An <see cref="T:System.Xml.XmlWriter" /> into which this method will write.</param>
@@ -420,6 +411,16 @@
       <summary>Writes this <see cref="T:System.Xml.Linq.XComment" /> to the specified <see cref="T:System.Xml.XmlWriter" />.</summary>
       <param name="writer">The writer to write this <see cref="T:System.Xml.Linq.XComment" /> to.</param>
       <param name="cancellationToken">A token that can be used to request cancellation of the asynchronous operation.</param>
+      <returns>A task that represents the asynchronous write operation.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XComment.NodeType">
+      <summary>Gets the node type for this node.</summary>
+      <returns>The node type. For <see cref="T:System.Xml.Linq.XComment" /> objects, this value is <see cref="F:System.Xml.XmlNodeType.Comment" />.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XComment.Value">
+      <summary>Gets or sets the string value of this comment.</summary>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="value" /> is <see langword="null" />.</exception>
+      <returns>A <see cref="T:System.String" /> that contains the string value of this comment.</returns>
     </member>
     <member name="T:System.Xml.Linq.XContainer">
       <summary>Represents a node that can contain other nodes.</summary>
@@ -472,14 +473,6 @@
       <param name="name">The <see cref="T:System.Xml.Linq.XName" /> to match.</param>
       <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1" /> of <see cref="T:System.Xml.Linq.XElement" /> containing the children of the <see cref="T:System.Xml.Linq.XContainer" /> that have a matching <see cref="T:System.Xml.Linq.XName" />, in document order.</returns>
     </member>
-    <member name="P:System.Xml.Linq.XContainer.FirstNode">
-      <summary>Gets the first child node of this node.</summary>
-      <returns>An <see cref="T:System.Xml.Linq.XNode" /> containing the first child node of the <see cref="T:System.Xml.Linq.XContainer" />.</returns>
-    </member>
-    <member name="P:System.Xml.Linq.XContainer.LastNode">
-      <summary>Gets the last child node of this node.</summary>
-      <returns>An <see cref="T:System.Xml.Linq.XNode" /> containing the last child node of the <see cref="T:System.Xml.Linq.XContainer" />.</returns>
-    </member>
     <member name="M:System.Xml.Linq.XContainer.Nodes">
       <summary>Returns a collection of the child nodes of this element or document, in document order.</summary>
       <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1" /> of <see cref="T:System.Xml.Linq.XNode" /> containing the contents of this <see cref="T:System.Xml.Linq.XContainer" />, in document order.</returns>
@@ -495,6 +488,14 @@
       <summary>Replaces the children nodes of this document or element with the specified content.</summary>
       <param name="content">A parameter list of content objects.</param>
     </member>
+    <member name="P:System.Xml.Linq.XContainer.FirstNode">
+      <summary>Gets the first child node of this node.</summary>
+      <returns>An <see cref="T:System.Xml.Linq.XNode" /> containing the first child node of the <see cref="T:System.Xml.Linq.XContainer" />.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XContainer.LastNode">
+      <summary>Gets the last child node of this node.</summary>
+      <returns>An <see cref="T:System.Xml.Linq.XNode" /> containing the last child node of the <see cref="T:System.Xml.Linq.XContainer" />.</returns>
+    </member>
     <member name="T:System.Xml.Linq.XDeclaration">
       <summary>Represents an XML declaration.</summary>
     </member>
@@ -508,6 +509,10 @@
       <summary>Initializes a new instance of the <see cref="T:System.Xml.Linq.XDeclaration" /> class from another <see cref="T:System.Xml.Linq.XDeclaration" /> object.</summary>
       <param name="other">The <see cref="T:System.Xml.Linq.XDeclaration" /> used to initialize this <see cref="T:System.Xml.Linq.XDeclaration" /> object.</param>
     </member>
+    <member name="M:System.Xml.Linq.XDeclaration.ToString">
+      <summary>Provides the declaration as a formatted string.</summary>
+      <returns>A <see cref="T:System.String" /> that contains the formatted XML string.</returns>
+    </member>
     <member name="P:System.Xml.Linq.XDeclaration.Encoding">
       <summary>Gets or sets the encoding for this document.</summary>
       <returns>A <see cref="T:System.String" /> containing the code page name for this document.</returns>
@@ -515,10 +520,6 @@
     <member name="P:System.Xml.Linq.XDeclaration.Standalone">
       <summary>Gets or sets the standalone property for this document.</summary>
       <returns>A <see cref="T:System.String" /> containing the standalone property for this document.</returns>
-    </member>
-    <member name="M:System.Xml.Linq.XDeclaration.ToString">
-      <summary>Provides the declaration as a formatted string.</summary>
-      <returns>A <see cref="T:System.String" /> that contains the formatted XML string.</returns>
     </member>
     <member name="P:System.Xml.Linq.XDeclaration.Version">
       <summary>Gets or sets the version property for this document.</summary>
@@ -542,14 +543,6 @@
     <member name="M:System.Xml.Linq.XDocument.#ctor(System.Xml.Linq.XDocument)">
       <summary>Initializes a new instance of the <see cref="T:System.Xml.Linq.XDocument" /> class from an existing <see cref="T:System.Xml.Linq.XDocument" /> object.</summary>
       <param name="other">The <see cref="T:System.Xml.Linq.XDocument" /> object that will be copied.</param>
-    </member>
-    <member name="P:System.Xml.Linq.XDocument.Declaration">
-      <summary>Gets or sets the XML declaration for this document.</summary>
-      <returns>An <see cref="T:System.Xml.Linq.XDeclaration" /> that contains the XML declaration for this document.</returns>
-    </member>
-    <member name="P:System.Xml.Linq.XDocument.DocumentType">
-      <summary>Gets the Document Type Definition (DTD) for this document.</summary>
-      <returns>A <see cref="T:System.Xml.Linq.XDocumentType" /> that contains the DTD for this document.</returns>
     </member>
     <member name="M:System.Xml.Linq.XDocument.Load(System.IO.Stream)">
       <summary>Creates a new <see cref="T:System.Xml.Linq.XDocument" /> instance by using the specified stream.</summary>
@@ -616,10 +609,6 @@
       <param name="cancellationToken">A cancellation token.</param>
       <returns>A new XDocument containing the contents of the specified <see cref="T:System.Xml.XmlReader" />.</returns>
     </member>
-    <member name="P:System.Xml.Linq.XDocument.NodeType">
-      <summary>Gets the node type for this node.</summary>
-      <returns>The node type. For <see cref="T:System.Xml.Linq.XDocument" /> objects, this value is <see cref="F:System.Xml.XmlNodeType.Document" />.</returns>
-    </member>
     <member name="M:System.Xml.Linq.XDocument.Parse(System.String)">
       <summary>Creates a new <see cref="T:System.Xml.Linq.XDocument" /> from a string.</summary>
       <param name="text">A string that contains XML.</param>
@@ -630,10 +619,6 @@
       <param name="text">A string that contains XML.</param>
       <param name="options">A <see cref="T:System.Xml.Linq.LoadOptions" /> that specifies white space behavior, and whether to load base URI and line information.</param>
       <returns>An <see cref="T:System.Xml.Linq.XDocument" /> populated from the string that contains XML.</returns>
-    </member>
-    <member name="P:System.Xml.Linq.XDocument.Root">
-      <summary>Gets the root element of the XML Tree for this document.</summary>
-      <returns>The root <see cref="T:System.Xml.Linq.XElement" /> of the XML tree.</returns>
     </member>
     <member name="M:System.Xml.Linq.XDocument.Save(System.IO.Stream)">
       <summary>Outputs this <see cref="T:System.Xml.Linq.XDocument" /> to the specified <see cref="T:System.IO.Stream" />.</summary>
@@ -696,6 +681,22 @@
       <param name="cancellationToken">A cancellation token.</param>
       <returns>A task representing the asynchronous write operation.</returns>
     </member>
+    <member name="P:System.Xml.Linq.XDocument.Declaration">
+      <summary>Gets or sets the XML declaration for this document.</summary>
+      <returns>An <see cref="T:System.Xml.Linq.XDeclaration" /> that contains the XML declaration for this document.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XDocument.DocumentType">
+      <summary>Gets the Document Type Definition (DTD) for this document.</summary>
+      <returns>A <see cref="T:System.Xml.Linq.XDocumentType" /> that contains the DTD for this document.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XDocument.NodeType">
+      <summary>Gets the node type for this node.</summary>
+      <returns>The node type. For <see cref="T:System.Xml.Linq.XDocument" /> objects, this value is <see cref="F:System.Xml.XmlNodeType.Document" />.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XDocument.Root">
+      <summary>Gets the root element of the XML Tree for this document.</summary>
+      <returns>The root <see cref="T:System.Xml.Linq.XElement" /> of the XML tree.</returns>
+    </member>
     <member name="T:System.Xml.Linq.XDocumentType">
       <summary>Represents an XML Document Type Definition (DTD).</summary>
     </member>
@@ -709,6 +710,16 @@
     <member name="M:System.Xml.Linq.XDocumentType.#ctor(System.Xml.Linq.XDocumentType)">
       <summary>Initializes an instance of the <see cref="T:System.Xml.Linq.XDocumentType" /> class from another <see cref="T:System.Xml.Linq.XDocumentType" /> object.</summary>
       <param name="other">An <see cref="T:System.Xml.Linq.XDocumentType" /> object to copy from.</param>
+    </member>
+    <member name="M:System.Xml.Linq.XDocumentType.WriteTo(System.Xml.XmlWriter)">
+      <summary>Write this <see cref="T:System.Xml.Linq.XDocumentType" /> to an <see cref="T:System.Xml.XmlWriter" />.</summary>
+      <param name="writer">An <see cref="T:System.Xml.XmlWriter" /> into which this method will write.</param>
+    </member>
+    <member name="M:System.Xml.Linq.XDocumentType.WriteToAsync(System.Xml.XmlWriter,System.Threading.CancellationToken)">
+      <summary>Writes this <see cref="T:System.Xml.Linq.XDocumentType" /> to the specified <see cref="T:System.Xml.XmlWriter" />.</summary>
+      <param name="writer">The writer to write this <see cref="T:System.Xml.Linq.XDocumentType" /> to.</param>
+      <param name="cancellationToken">A token that can be used to request cancellation of the asynchronous operation.</param>
+      <returns>A task representing the asynchronous write operation.</returns>
     </member>
     <member name="P:System.Xml.Linq.XDocumentType.InternalSubset">
       <summary>Gets or sets the internal subset for this Document Type Definition (DTD).</summary>
@@ -729,16 +740,6 @@
     <member name="P:System.Xml.Linq.XDocumentType.SystemId">
       <summary>Gets or sets the system identifier for this Document Type Definition (DTD).</summary>
       <returns>A <see cref="T:System.String" /> that contains the system identifier for this Document Type Definition (DTD).</returns>
-    </member>
-    <member name="M:System.Xml.Linq.XDocumentType.WriteTo(System.Xml.XmlWriter)">
-      <summary>Write this <see cref="T:System.Xml.Linq.XDocumentType" /> to an <see cref="T:System.Xml.XmlWriter" />.</summary>
-      <param name="writer">An <see cref="T:System.Xml.XmlWriter" /> into which this method will write.</param>
-    </member>
-    <member name="M:System.Xml.Linq.XDocumentType.WriteToAsync(System.Xml.XmlWriter,System.Threading.CancellationToken)">
-      <summary>Writes this <see cref="T:System.Xml.Linq.XDocumentType" /> to the specified <see cref="T:System.Xml.XmlWriter" />.</summary>
-      <param name="writer">The writer to write this <see cref="T:System.Xml.Linq.XDocumentType" /> to.</param>
-      <param name="cancellationToken">A token that can be used to request cancellation of the asynchronous operation.</param>
-      <returns>A task representing the asynchronous write operation.</returns>
     </member>
     <member name="T:System.Xml.Linq.XElement">
       <summary>Represents an XML element.  See XElement Class Overview and the Remarks section on this page for usage information and examples.</summary>
@@ -784,9 +785,9 @@
       <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1" /> of <see cref="T:System.Xml.Linq.XAttribute" /> of attributes of this element.</returns>
     </member>
     <member name="M:System.Xml.Linq.XElement.Attributes(System.Xml.Linq.XName)">
-      <summary>Returns a filtered collection of attributes of this element. Only elements that have a matching <see cref="T:System.Xml.Linq.XName" /> are included in the collection.</summary>
+      <summary>Returns a filtered collection of attributes of this element. Only attributes that have a matching <see cref="T:System.Xml.Linq.XName" /> are included in the collection.</summary>
       <param name="name">The <see cref="T:System.Xml.Linq.XName" /> to match.</param>
-      <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1" /> of <see cref="T:System.Xml.Linq.XAttribute" /> that contains the attributes of this element. Only elements that have a matching <see cref="T:System.Xml.Linq.XName" /> are included in the collection.</returns>
+      <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1" /> of <see cref="T:System.Xml.Linq.XAttribute" /> that contains the attributes of this element. Only attributes that have a matching <see cref="T:System.Xml.Linq.XName" /> are included in the collection.</returns>
     </member>
     <member name="M:System.Xml.Linq.XElement.DescendantNodesAndSelf">
       <summary>Returns a collection of nodes that contain this element, and all descendant nodes of this element, in document order.</summary>
@@ -801,14 +802,6 @@
       <param name="name">The <see cref="T:System.Xml.Linq.XName" /> to match.</param>
       <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1" /> of <see cref="T:System.Xml.Linq.XElement" /> that contain this element, and all descendant elements of this element, in document order. Only elements that have a matching <see cref="T:System.Xml.Linq.XName" /> are included in the collection.</returns>
     </member>
-    <member name="P:System.Xml.Linq.XElement.EmptySequence">
-      <summary>Gets an empty collection of elements.</summary>
-      <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1" /> of <see cref="T:System.Xml.Linq.XElement" /> that contains an empty collection.</returns>
-    </member>
-    <member name="P:System.Xml.Linq.XElement.FirstAttribute">
-      <summary>Gets the first attribute of this element.</summary>
-      <returns>An <see cref="T:System.Xml.Linq.XAttribute" /> that contains the first attribute of this element.</returns>
-    </member>
     <member name="M:System.Xml.Linq.XElement.GetDefaultNamespace">
       <summary>Gets the default <see cref="T:System.Xml.Linq.XNamespace" /> of this <see cref="T:System.Xml.Linq.XElement" />.</summary>
       <returns>An <see cref="T:System.Xml.Linq.XNamespace" /> that contains the default namespace of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
@@ -822,25 +815,6 @@
       <summary>Gets the prefix associated with a namespace for this <see cref="T:System.Xml.Linq.XElement" />.</summary>
       <param name="ns">An <see cref="T:System.Xml.Linq.XNamespace" /> to look up.</param>
       <returns>A <see cref="T:System.String" /> that contains the namespace prefix.</returns>
-    </member>
-    <member name="P:System.Xml.Linq.XElement.HasAttributes">
-      <summary>Gets a value indicating whether this element has at least one attribute.</summary>
-      <returns>
-        <see langword="true" /> if this element has at least one attribute; otherwise <see langword="false" />.</returns>
-    </member>
-    <member name="P:System.Xml.Linq.XElement.HasElements">
-      <summary>Gets a value indicating whether this element has at least one child element.</summary>
-      <returns>
-        <see langword="true" /> if this element has at least one child element; otherwise <see langword="false" />.</returns>
-    </member>
-    <member name="P:System.Xml.Linq.XElement.IsEmpty">
-      <summary>Gets a value indicating whether this element contains no content.</summary>
-      <returns>
-        <see langword="true" /> if this element contains no content; otherwise <see langword="false" />.</returns>
-    </member>
-    <member name="P:System.Xml.Linq.XElement.LastAttribute">
-      <summary>Gets the last attribute of this element.</summary>
-      <returns>An <see cref="T:System.Xml.Linq.XAttribute" /> that contains the last attribute of this element.</returns>
     </member>
     <member name="M:System.Xml.Linq.XElement.Load(System.IO.Stream)">
       <summary>Creates a new <see cref="T:System.Xml.Linq.XElement" /> instance by using the specified stream.</summary>
@@ -907,148 +881,154 @@
       <param name="cancellationToken">A token that can be used to request cancellation of the asynchronous operation.</param>
       <returns>A new <see cref="T:System.Xml.Linq.XElement" /> containing the contents of the specified reader.</returns>
     </member>
-    <member name="P:System.Xml.Linq.XElement.Name">
-      <summary>Gets or sets the name of this element.</summary>
-      <returns>An <see cref="T:System.Xml.Linq.XName" /> that contains the name of this element.</returns>
-    </member>
-    <member name="P:System.Xml.Linq.XElement.NodeType">
-      <summary>Gets the node type for this node.</summary>
-      <returns>The node type. For <see cref="T:System.Xml.Linq.XElement" /> objects, this value is <see cref="F:System.Xml.XmlNodeType.Element" />.</returns>
-    </member>
     <member name="M:System.Xml.Linq.XElement.op_Explicit(System.Xml.Linq.XElement)~System.Boolean">
       <summary>Cast the value of this <see cref="T:System.Xml.Linq.XElement" /> to a <see cref="T:System.Boolean" />.</summary>
       <param name="element">The <see cref="T:System.Xml.Linq.XElement" /> to cast to <see cref="T:System.Boolean" />.</param>
-      <returns>A <see cref="T:System.Boolean" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
       <exception cref="T:System.FormatException">The element does not contain a valid <see cref="T:System.Boolean" /> value.</exception>
       <exception cref="T:System.ArgumentNullException">The <paramref name="element" /> parameter is <see langword="null" />.</exception>
+      <returns>A <see cref="T:System.Boolean" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
     </member>
     <member name="M:System.Xml.Linq.XElement.op_Explicit(System.Xml.Linq.XElement)~System.DateTime">
       <summary>Cast the value of this <see cref="T:System.Xml.Linq.XElement" /> to a <see cref="T:System.DateTime" />.</summary>
       <param name="element">The <see cref="T:System.Xml.Linq.XElement" /> to cast to <see cref="T:System.DateTime" />.</param>
-      <returns>A <see cref="T:System.DateTime" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
       <exception cref="T:System.FormatException">The element does not contain a valid <see cref="T:System.DateTime" /> value.</exception>
       <exception cref="T:System.ArgumentNullException">The <paramref name="element" /> parameter is <see langword="null" />.</exception>
+      <exception cref="T:System.InvalidOperationException">
+        <paramref name="element" /> is <see langword="null" />.</exception>
+      <returns>A <see cref="T:System.DateTime" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
     </member>
     <member name="M:System.Xml.Linq.XElement.op_Explicit(System.Xml.Linq.XElement)~System.DateTimeOffset">
       <summary>Cast the value of this <see cref="T:System.Xml.Linq.XAttribute" /> to a <see cref="T:System.DateTimeOffset" />.</summary>
       <param name="element">The <see cref="T:System.Xml.Linq.XElement" /> to cast to <see cref="T:System.DateTimeOffset" />.</param>
-      <returns>A <see cref="T:System.DateTimeOffset" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
       <exception cref="T:System.FormatException">The element does not contain a valid <see cref="T:System.DateTimeOffset" /> value.</exception>
       <exception cref="T:System.ArgumentNullException">The <paramref name="element" /> parameter is <see langword="null" />.</exception>
+      <exception cref="T:System.InvalidOperationException">
+        <paramref name="element" /> is <see langword="null" />.</exception>
+      <returns>A <see cref="T:System.DateTimeOffset" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
     </member>
     <member name="M:System.Xml.Linq.XElement.op_Explicit(System.Xml.Linq.XElement)~System.Decimal">
       <summary>Cast the value of this <see cref="T:System.Xml.Linq.XElement" /> to a <see cref="T:System.Decimal" />.</summary>
       <param name="element">The <see cref="T:System.Xml.Linq.XElement" /> to cast to <see cref="T:System.Decimal" />.</param>
-      <returns>A <see cref="T:System.Decimal" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
       <exception cref="T:System.FormatException">The element does not contain a valid <see cref="T:System.Decimal" /> value.</exception>
       <exception cref="T:System.ArgumentNullException">The <paramref name="element" /> parameter is <see langword="null" />.</exception>
+      <exception cref="T:System.InvalidOperationException">
+        <paramref name="element" /> is <see langword="null" />.</exception>
+      <returns>A <see cref="T:System.Decimal" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
     </member>
     <member name="M:System.Xml.Linq.XElement.op_Explicit(System.Xml.Linq.XElement)~System.Double">
       <summary>Cast the value of this <see cref="T:System.Xml.Linq.XElement" /> to a <see cref="T:System.Double" />.</summary>
       <param name="element">The <see cref="T:System.Xml.Linq.XElement" /> to cast to <see cref="T:System.Double" />.</param>
-      <returns>A <see cref="T:System.Double" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
       <exception cref="T:System.FormatException">The element does not contain a valid <see cref="T:System.Double" /> value.</exception>
       <exception cref="T:System.ArgumentNullException">The <paramref name="element" /> parameter is <see langword="null" />.</exception>
+      <exception cref="T:System.InvalidOperationException">
+        <paramref name="element" /> is <see langword="null" />.</exception>
+      <returns>A <see cref="T:System.Double" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
     </member>
     <member name="M:System.Xml.Linq.XElement.op_Explicit(System.Xml.Linq.XElement)~System.Guid">
       <summary>Cast the value of this <see cref="T:System.Xml.Linq.XElement" /> to a <see cref="T:System.Guid" />.</summary>
       <param name="element">The <see cref="T:System.Xml.Linq.XElement" /> to cast to <see cref="T:System.Guid" />.</param>
-      <returns>A <see cref="T:System.Guid" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
       <exception cref="T:System.FormatException">The element does not contain a valid <see cref="T:System.Guid" /> value.</exception>
       <exception cref="T:System.ArgumentNullException">The <paramref name="element" /> parameter is <see langword="null" />.</exception>
+      <exception cref="T:System.InvalidOperationException">
+        <paramref name="element" /> is <see langword="null" />.</exception>
+      <returns>A <see cref="T:System.Guid" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
     </member>
     <member name="M:System.Xml.Linq.XElement.op_Explicit(System.Xml.Linq.XElement)~System.Int32">
       <summary>Cast the value of this <see cref="T:System.Xml.Linq.XElement" /> to an <see cref="T:System.Int32" />.</summary>
       <param name="element">The <see cref="T:System.Xml.Linq.XElement" /> to cast to <see cref="T:System.Int32" />.</param>
-      <returns>A <see cref="T:System.Int32" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
       <exception cref="T:System.FormatException">The element does not contain a valid <see cref="T:System.Int32" /> value.</exception>
       <exception cref="T:System.ArgumentNullException">The <paramref name="element" /> parameter is <see langword="null" />.</exception>
+      <returns>A <see cref="T:System.Int32" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
     </member>
     <member name="M:System.Xml.Linq.XElement.op_Explicit(System.Xml.Linq.XElement)~System.Int64">
       <summary>Cast the value of this <see cref="T:System.Xml.Linq.XElement" /> to an <see cref="T:System.Int64" />.</summary>
       <param name="element">The <see cref="T:System.Xml.Linq.XElement" /> to cast to <see cref="T:System.Int64" />.</param>
-      <returns>A <see cref="T:System.Int64" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
       <exception cref="T:System.FormatException">The element does not contain a valid <see cref="T:System.Int64" /> value.</exception>
       <exception cref="T:System.ArgumentNullException">The <paramref name="element" /> parameter is <see langword="null" />.</exception>
+      <exception cref="T:System.InvalidOperationException">
+        <paramref name="element" /> is <see langword="null" />.</exception>
+      <returns>A <see cref="T:System.Int64" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
     </member>
     <member name="M:System.Xml.Linq.XElement.op_Explicit(System.Xml.Linq.XElement)~System.Nullable{System.Boolean}">
       <summary>Cast the value of this <see cref="T:System.Xml.Linq.XElement" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.Boolean" />.</summary>
       <param name="element">The <see cref="T:System.Xml.Linq.XElement" /> to cast to <see cref="T:System.Nullable`1" /> of <see cref="T:System.Boolean" />.</param>
-      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.Boolean" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
       <exception cref="T:System.FormatException">The element is not <see langword="null" /> and does not contain a valid <see cref="T:System.Boolean" /> value.</exception>
+      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.Boolean" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
     </member>
     <member name="M:System.Xml.Linq.XElement.op_Explicit(System.Xml.Linq.XElement)~System.Nullable{System.DateTime}">
       <summary>Cast the value of this <see cref="T:System.Xml.Linq.XElement" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.DateTime" />.</summary>
       <param name="element">The <see cref="T:System.Xml.Linq.XElement" /> to cast to <see cref="T:System.Nullable`1" /> of <see cref="T:System.DateTime" />.</param>
-      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.DateTime" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
       <exception cref="T:System.FormatException">The element is not <see langword="null" /> and does not contain a valid <see cref="T:System.DateTime" /> value.</exception>
+      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.DateTime" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
     </member>
     <member name="M:System.Xml.Linq.XElement.op_Explicit(System.Xml.Linq.XElement)~System.Nullable{System.DateTimeOffset}">
       <summary>Cast the value of this <see cref="T:System.Xml.Linq.XElement" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.DateTimeOffset" />.</summary>
       <param name="element">The <see cref="T:System.Xml.Linq.XElement" /> to cast to an <see cref="T:System.Nullable`1" /> of <see cref="T:System.DateTimeOffset" />.</param>
-      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.DateTimeOffset" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
       <exception cref="T:System.FormatException">The element is not <see langword="null" /> and does not contain a valid <see cref="T:System.DateTimeOffset" /> value.</exception>
+      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.DateTimeOffset" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
     </member>
     <member name="M:System.Xml.Linq.XElement.op_Explicit(System.Xml.Linq.XElement)~System.Nullable{System.Decimal}">
       <summary>Cast the value of this <see cref="T:System.Xml.Linq.XElement" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.Decimal" />.</summary>
       <param name="element">The <see cref="T:System.Xml.Linq.XElement" /> to cast to <see cref="T:System.Nullable`1" /> of <see cref="T:System.Decimal" />.</param>
-      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.Decimal" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
       <exception cref="T:System.FormatException">The element is not <see langword="null" /> and does not contain a valid <see cref="T:System.Decimal" /> value.</exception>
+      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.Decimal" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
     </member>
     <member name="M:System.Xml.Linq.XElement.op_Explicit(System.Xml.Linq.XElement)~System.Nullable{System.Double}">
       <summary>Cast the value of this <see cref="T:System.Xml.Linq.XElement" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.Double" />.</summary>
       <param name="element">The <see cref="T:System.Xml.Linq.XElement" /> to cast to <see cref="T:System.Nullable`1" /> of <see cref="T:System.Double" />.</param>
-      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.Double" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
       <exception cref="T:System.FormatException">The element is not <see langword="null" /> and does not contain a valid <see cref="T:System.Double" /> value.</exception>
+      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.Double" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
     </member>
     <member name="M:System.Xml.Linq.XElement.op_Explicit(System.Xml.Linq.XElement)~System.Nullable{System.Guid}">
       <summary>Cast the value of this <see cref="T:System.Xml.Linq.XElement" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.Guid" />.</summary>
       <param name="element">The <see cref="T:System.Xml.Linq.XElement" /> to cast to <see cref="T:System.Nullable`1" /> of <see cref="T:System.Guid" />.</param>
-      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.Guid" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
       <exception cref="T:System.FormatException">The element is not <see langword="null" /> and does not contain a valid <see cref="T:System.Guid" /> value.</exception>
+      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.Guid" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
     </member>
     <member name="M:System.Xml.Linq.XElement.op_Explicit(System.Xml.Linq.XElement)~System.Nullable{System.Int32}">
       <summary>Cast the value of this <see cref="T:System.Xml.Linq.XElement" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.Int32" />.</summary>
       <param name="element">The <see cref="T:System.Xml.Linq.XElement" /> to cast to <see cref="T:System.Nullable`1" /> of <see cref="T:System.Int32" />.</param>
-      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.Int32" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
       <exception cref="T:System.FormatException">The element is not <see langword="null" /> and does not contain a valid <see cref="T:System.Int32" /> value.</exception>
+      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.Int32" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
     </member>
     <member name="M:System.Xml.Linq.XElement.op_Explicit(System.Xml.Linq.XElement)~System.Nullable{System.Int64}">
       <summary>Cast the value of this <see cref="T:System.Xml.Linq.XElement" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.Int64" />.</summary>
       <param name="element">The <see cref="T:System.Xml.Linq.XElement" /> to cast to <see cref="T:System.Nullable`1" /> of <see cref="T:System.Int64" />.</param>
-      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.Int64" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
       <exception cref="T:System.FormatException">The element is not <see langword="null" /> and does not contain a valid <see cref="T:System.Int64" /> value.</exception>
+      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.Int64" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
     </member>
     <member name="M:System.Xml.Linq.XElement.op_Explicit(System.Xml.Linq.XElement)~System.Nullable{System.Single}">
       <summary>Cast the value of this <see cref="T:System.Xml.Linq.XElement" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.Single" />.</summary>
       <param name="element">The <see cref="T:System.Xml.Linq.XElement" /> to cast to <see cref="T:System.Nullable`1" /> of <see cref="T:System.Single" />.</param>
-      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.Single" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
       <exception cref="T:System.FormatException">The element is not <see langword="null" /> and does not contain a valid <see cref="T:System.Single" /> value.</exception>
+      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.Single" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
     </member>
     <member name="M:System.Xml.Linq.XElement.op_Explicit(System.Xml.Linq.XElement)~System.Nullable{System.TimeSpan}">
       <summary>Cast the value of this <see cref="T:System.Xml.Linq.XElement" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.TimeSpan" />.</summary>
       <param name="element">The <see cref="T:System.Xml.Linq.XElement" /> to cast to <see cref="T:System.Nullable`1" /> of <see cref="T:System.TimeSpan" />.</param>
-      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.TimeSpan" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
       <exception cref="T:System.FormatException">The element is not <see langword="null" /> and does not contain a valid <see cref="T:System.TimeSpan" /> value.</exception>
+      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.TimeSpan" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
     </member>
     <member name="M:System.Xml.Linq.XElement.op_Explicit(System.Xml.Linq.XElement)~System.Nullable{System.UInt32}">
       <summary>Cast the value of this <see cref="T:System.Xml.Linq.XElement" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.UInt32" />.</summary>
       <param name="element">The <see cref="T:System.Xml.Linq.XElement" /> to cast to <see cref="T:System.Nullable`1" /> of <see cref="T:System.UInt32" />.</param>
-      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.UInt32" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
       <exception cref="T:System.FormatException">The element is not <see langword="null" /> and does not contain a valid <see cref="T:System.UInt32" /> value.</exception>
+      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.UInt32" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
     </member>
     <member name="M:System.Xml.Linq.XElement.op_Explicit(System.Xml.Linq.XElement)~System.Nullable{System.UInt64}">
       <summary>Cast the value of this <see cref="T:System.Xml.Linq.XElement" /> to a <see cref="T:System.Nullable`1" /> of <see cref="T:System.UInt64" />.</summary>
       <param name="element">The <see cref="T:System.Xml.Linq.XElement" /> to cast to <see cref="T:System.Nullable`1" /> of <see cref="T:System.UInt64" />.</param>
-      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.UInt64" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
       <exception cref="T:System.FormatException">The element is not <see langword="null" /> and does not contain a valid <see cref="T:System.UInt64" /> value.</exception>
+      <returns>A <see cref="T:System.Nullable`1" /> of <see cref="T:System.UInt64" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
     </member>
     <member name="M:System.Xml.Linq.XElement.op_Explicit(System.Xml.Linq.XElement)~System.Single">
       <summary>Cast the value of this <see cref="T:System.Xml.Linq.XElement" /> to a <see cref="T:System.Single" />.</summary>
       <param name="element">The <see cref="T:System.Xml.Linq.XElement" /> to cast to <see cref="T:System.Single" />.</param>
-      <returns>A <see cref="T:System.Single" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
       <exception cref="T:System.FormatException">The element does not contain a valid <see cref="T:System.Single" /> value.</exception>
       <exception cref="T:System.ArgumentNullException">The <paramref name="element" /> parameter is <see langword="null" />.</exception>
+      <exception cref="T:System.InvalidOperationException">
+        <paramref name="element" /> is <see langword="null" />.</exception>
+      <returns>A <see cref="T:System.Single" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
     </member>
     <member name="M:System.Xml.Linq.XElement.op_Explicit(System.Xml.Linq.XElement)~System.String">
       <summary>Cast the value of this <see cref="T:System.Xml.Linq.XElement" /> to a <see cref="T:System.String" />.</summary>
@@ -1058,23 +1038,25 @@
     <member name="M:System.Xml.Linq.XElement.op_Explicit(System.Xml.Linq.XElement)~System.TimeSpan">
       <summary>Cast the value of this <see cref="T:System.Xml.Linq.XElement" /> to a <see cref="T:System.TimeSpan" />.</summary>
       <param name="element">The <see cref="T:System.Xml.Linq.XElement" /> to cast to <see cref="T:System.TimeSpan" />.</param>
-      <returns>A <see cref="T:System.TimeSpan" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
       <exception cref="T:System.FormatException">The element does not contain a valid <see cref="T:System.TimeSpan" /> value.</exception>
       <exception cref="T:System.ArgumentNullException">The <paramref name="element" /> parameter is <see langword="null" />.</exception>
+      <returns>A <see cref="T:System.TimeSpan" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
     </member>
     <member name="M:System.Xml.Linq.XElement.op_Explicit(System.Xml.Linq.XElement)~System.UInt32">
       <summary>Cast the value of this <see cref="T:System.Xml.Linq.XElement" /> to a <see cref="T:System.UInt32" />.</summary>
       <param name="element">The <see cref="T:System.Xml.Linq.XElement" /> to cast to <see cref="T:System.UInt32" />.</param>
-      <returns>A <see cref="T:System.UInt32" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
       <exception cref="T:System.FormatException">The element does not contain a valid <see cref="T:System.UInt32" /> value.</exception>
       <exception cref="T:System.ArgumentNullException">The <paramref name="element" /> parameter is <see langword="null" />.</exception>
+      <returns>A <see cref="T:System.UInt32" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
     </member>
     <member name="M:System.Xml.Linq.XElement.op_Explicit(System.Xml.Linq.XElement)~System.UInt64">
       <summary>Cast the value of this <see cref="T:System.Xml.Linq.XElement" /> to a <see cref="T:System.UInt64" />.</summary>
       <param name="element">The <see cref="T:System.Xml.Linq.XElement" /> to cast to <see cref="T:System.UInt64" />.</param>
-      <returns>A <see cref="T:System.UInt64" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
       <exception cref="T:System.FormatException">The element does not contain a valid <see cref="T:System.UInt64" /> value.</exception>
       <exception cref="T:System.ArgumentNullException">The <paramref name="element" /> parameter is <see langword="null" />.</exception>
+      <exception cref="T:System.InvalidOperationException">
+        <paramref name="element" /> is <see langword="null" />.</exception>
+      <returns>A <see cref="T:System.UInt64" /> that contains the content of this <see cref="T:System.Xml.Linq.XElement" />.</returns>
     </member>
     <member name="M:System.Xml.Linq.XElement.Parse(System.String)">
       <summary>Load an <see cref="T:System.Xml.Linq.XElement" /> from a string that contains XML.</summary>
@@ -1190,10 +1172,6 @@
       <summary>Converts an object into its XML representation.</summary>
       <param name="writer">The <see cref="T:System.Xml.XmlWriter" /> to which this object is serialized.</param>
     </member>
-    <member name="P:System.Xml.Linq.XElement.Value">
-      <summary>Gets or sets the concatenated text contents of this element.</summary>
-      <returns>A <see cref="T:System.String" /> that contains all of the text content of this element. If there are multiple text nodes, they will be concatenated.</returns>
-    </member>
     <member name="M:System.Xml.Linq.XElement.WriteTo(System.Xml.XmlWriter)">
       <summary>Write this element to an <see cref="T:System.Xml.XmlWriter" />.</summary>
       <param name="writer">An <see cref="T:System.Xml.XmlWriter" /> into which this method will write.</param>
@@ -1203,6 +1181,45 @@
       <param name="writer">The writer to write this <see cref="T:System.Xml.Linq.XElement" /> to.</param>
       <param name="cancellationToken">A token that can be used to request cancellation of the asynchronous operation.</param>
       <returns>A task representing the asynchronous write operation.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XElement.EmptySequence">
+      <summary>Gets an empty collection of elements.</summary>
+      <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1" /> of <see cref="T:System.Xml.Linq.XElement" /> that contains an empty collection.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XElement.FirstAttribute">
+      <summary>Gets the first attribute of this element.</summary>
+      <returns>An <see cref="T:System.Xml.Linq.XAttribute" /> that contains the first attribute of this element.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XElement.HasAttributes">
+      <summary>Gets a value indicating whether this element has at least one attribute.</summary>
+      <returns>
+        <see langword="true" /> if this element has at least one attribute; otherwise <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XElement.HasElements">
+      <summary>Gets a value indicating whether this element has at least one child element.</summary>
+      <returns>
+        <see langword="true" /> if this element has at least one child element; otherwise <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XElement.IsEmpty">
+      <summary>Gets a value indicating whether this element contains no content.</summary>
+      <returns>
+        <see langword="true" /> if this element contains no content; otherwise <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XElement.LastAttribute">
+      <summary>Gets the last attribute of this element.</summary>
+      <returns>An <see cref="T:System.Xml.Linq.XAttribute" /> that contains the last attribute of this element.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XElement.Name">
+      <summary>Gets or sets the name of this element.</summary>
+      <returns>An <see cref="T:System.Xml.Linq.XName" /> that contains the name of this element.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XElement.NodeType">
+      <summary>Gets the node type for this node.</summary>
+      <returns>The node type. For <see cref="T:System.Xml.Linq.XElement" /> objects, this value is <see cref="F:System.Xml.XmlNodeType.Element" />.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XElement.Value">
+      <summary>Gets or sets the concatenated text contents of this element.</summary>
+      <returns>A <see cref="T:System.String" /> that contains all of the text content of this element. If there are multiple text nodes, they will be concatenated.</returns>
     </member>
     <member name="T:System.Xml.Linq.XName">
       <summary>Represents a name of an XML element or attribute.</summary>
@@ -1227,18 +1244,6 @@
     <member name="M:System.Xml.Linq.XName.GetHashCode">
       <summary>Gets a hash code for this <see cref="T:System.Xml.Linq.XName" />.</summary>
       <returns>An <see cref="T:System.Int32" /> that contains the hash code for the <see cref="T:System.Xml.Linq.XName" />.</returns>
-    </member>
-    <member name="P:System.Xml.Linq.XName.LocalName">
-      <summary>Gets the local (unqualified) part of the name.</summary>
-      <returns>A <see cref="T:System.String" /> that contains the local (unqualified) part of the name.</returns>
-    </member>
-    <member name="P:System.Xml.Linq.XName.Namespace">
-      <summary>Gets the namespace part of the fully qualified name.</summary>
-      <returns>An <see cref="T:System.Xml.Linq.XNamespace" /> that contains the namespace part of the name.</returns>
-    </member>
-    <member name="P:System.Xml.Linq.XName.NamespaceName">
-      <summary>Returns the URI of the <see cref="T:System.Xml.Linq.XNamespace" /> for this <see cref="T:System.Xml.Linq.XName" />.</summary>
-      <returns>The URI of the <see cref="T:System.Xml.Linq.XNamespace" /> for this <see cref="T:System.Xml.Linq.XName" />.</returns>
     </member>
     <member name="M:System.Xml.Linq.XName.op_Equality(System.Xml.Linq.XName,System.Xml.Linq.XName)">
       <summary>Returns a value indicating whether two instances of <see cref="T:System.Xml.Linq.XName" /> are equal.</summary>
@@ -1274,6 +1279,18 @@
       <summary>Returns the expanded XML name in the format <c>{namespace}localname</c>.</summary>
       <returns>A <see cref="T:System.String" /> that contains the expanded XML name in the format <c>{namespace}localname</c>.</returns>
     </member>
+    <member name="P:System.Xml.Linq.XName.LocalName">
+      <summary>Gets the local (unqualified) part of the name.</summary>
+      <returns>A <see cref="T:System.String" /> that contains the local (unqualified) part of the name.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XName.Namespace">
+      <summary>Gets the namespace part of the fully qualified name.</summary>
+      <returns>An <see cref="T:System.Xml.Linq.XNamespace" /> that contains the namespace part of the name.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XName.NamespaceName">
+      <summary>Returns the URI of the <see cref="T:System.Xml.Linq.XNamespace" /> for this <see cref="T:System.Xml.Linq.XName" />.</summary>
+      <returns>The URI of the <see cref="T:System.Xml.Linq.XNamespace" /> for this <see cref="T:System.Xml.Linq.XName" />.</returns>
+    </member>
     <member name="T:System.Xml.Linq.XNamespace">
       <summary>Represents an XML namespace. This class cannot be inherited.</summary>
     </member>
@@ -1295,14 +1312,6 @@
       <summary>Returns an <see cref="T:System.Xml.Linq.XName" /> object created from this <see cref="T:System.Xml.Linq.XNamespace" /> and the specified local name.</summary>
       <param name="localName">A <see cref="T:System.String" /> that contains a local name.</param>
       <returns>An <see cref="T:System.Xml.Linq.XName" /> created from this <see cref="T:System.Xml.Linq.XNamespace" /> and the specified local name.</returns>
-    </member>
-    <member name="P:System.Xml.Linq.XNamespace.NamespaceName">
-      <summary>Gets the Uniform Resource Identifier (URI) of this namespace.</summary>
-      <returns>A <see cref="T:System.String" /> that contains the URI of the namespace.</returns>
-    </member>
-    <member name="P:System.Xml.Linq.XNamespace.None">
-      <summary>Gets the <see cref="T:System.Xml.Linq.XNamespace" /> object that corresponds to no namespace.</summary>
-      <returns>The <see cref="T:System.Xml.Linq.XNamespace" /> that corresponds to no namespace.</returns>
     </member>
     <member name="M:System.Xml.Linq.XNamespace.op_Addition(System.Xml.Linq.XNamespace,System.String)">
       <summary>Combines an <see cref="T:System.Xml.Linq.XNamespace" /> object with a local name to create an <see cref="T:System.Xml.Linq.XName" />.</summary>
@@ -1330,6 +1339,14 @@
     <member name="M:System.Xml.Linq.XNamespace.ToString">
       <summary>Returns the URI of this <see cref="T:System.Xml.Linq.XNamespace" />.</summary>
       <returns>The URI of this <see cref="T:System.Xml.Linq.XNamespace" />.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XNamespace.NamespaceName">
+      <summary>Gets the Uniform Resource Identifier (URI) of this namespace.</summary>
+      <returns>A <see cref="T:System.String" /> that contains the URI of the namespace.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XNamespace.None">
+      <summary>Gets the <see cref="T:System.Xml.Linq.XNamespace" /> object that corresponds to no namespace.</summary>
+      <returns>The <see cref="T:System.Xml.Linq.XNamespace" /> that corresponds to no namespace.</returns>
     </member>
     <member name="P:System.Xml.Linq.XNamespace.Xml">
       <summary>Gets the <see cref="T:System.Xml.Linq.XNamespace" /> object that corresponds to the XML URI (<c>http://www.w3.org/XML/1998/namespace</c>).</summary>
@@ -1369,16 +1386,18 @@
     <member name="M:System.Xml.Linq.XNode.Ancestors(System.Xml.Linq.XName)">
       <summary>Returns a filtered collection of the ancestor elements of this node. Only elements that have a matching <see cref="T:System.Xml.Linq.XName" /> are included in the collection.</summary>
       <param name="name">The <see cref="T:System.Xml.Linq.XName" /> to match.</param>
-      <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1" /> of <see cref="T:System.Xml.Linq.XElement" /> of the ancestor elements of this node. Only elements that have a matching <see cref="T:System.Xml.Linq.XName" /> are included in the collection.
-The nodes in the returned collection are in reverse document order.
-This method uses deferred execution.</returns>
+      <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1" /> of <see cref="T:System.Xml.Linq.XElement" /> of the ancestor elements of this node. Only elements that have a matching <see cref="T:System.Xml.Linq.XName" /> are included in the collection.  
+  
+ The nodes in the returned collection are in reverse document order.  
+  
+ This method uses deferred execution.</returns>
     </member>
     <member name="M:System.Xml.Linq.XNode.CompareDocumentOrder(System.Xml.Linq.XNode,System.Xml.Linq.XNode)">
       <summary>Compares two nodes to determine their relative XML document order.</summary>
       <param name="n1">First <see cref="T:System.Xml.Linq.XNode" /> to compare.</param>
       <param name="n2">Second <see cref="T:System.Xml.Linq.XNode" /> to compare.</param>
-      <returns>An <see langword="int" /> containing 0 if the nodes are equal; -1 if <paramref name="n1" /> is before <paramref name="n2" />; 1 if <paramref name="n1" /> is after <paramref name="n2" />.</returns>
       <exception cref="T:System.InvalidOperationException">The two nodes do not share a common ancestor.</exception>
+      <returns>An <see langword="int" /> containing 0 if the nodes are equal; -1 if <paramref name="n1" /> is before <paramref name="n2" />; 1 if <paramref name="n1" /> is after <paramref name="n2" />.</returns>
     </member>
     <member name="M:System.Xml.Linq.XNode.CreateReader">
       <summary>Creates an <see cref="T:System.Xml.XmlReader" /> for this node.</summary>
@@ -1395,10 +1414,6 @@ This method uses deferred execution.</returns>
       <param name="n2">The second <see cref="T:System.Xml.Linq.XNode" /> to compare.</param>
       <returns>
         <see langword="true" /> if the nodes are equal; otherwise <see langword="false" />.</returns>
-    </member>
-    <member name="P:System.Xml.Linq.XNode.DocumentOrderComparer">
-      <summary>Gets a comparer that can compare the relative position of two nodes.</summary>
-      <returns>An <see cref="T:System.Xml.Linq.XNodeDocumentOrderComparer" /> that can compare the relative position of two nodes.</returns>
     </member>
     <member name="M:System.Xml.Linq.XNode.ElementsAfterSelf">
       <summary>Returns a collection of the sibling elements after this node, in document order.</summary>
@@ -1418,10 +1433,6 @@ This method uses deferred execution.</returns>
       <param name="name">The <see cref="T:System.Xml.Linq.XName" /> to match.</param>
       <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1" /> of <see cref="T:System.Xml.Linq.XElement" /> of the sibling elements before this node, in document order. Only elements that have a matching <see cref="T:System.Xml.Linq.XName" /> are included in the collection.</returns>
     </member>
-    <member name="P:System.Xml.Linq.XNode.EqualityComparer">
-      <summary>Gets a comparer that can compare two nodes for value equality.</summary>
-      <returns>A <see cref="T:System.Xml.Linq.XNodeEqualityComparer" /> that can compare two nodes for value equality.</returns>
-    </member>
     <member name="M:System.Xml.Linq.XNode.IsAfter(System.Xml.Linq.XNode)">
       <summary>Determines if the current node appears after a specified node in terms of document order.</summary>
       <param name="node">The <see cref="T:System.Xml.Linq.XNode" /> to compare for document order.</param>
@@ -1434,10 +1445,6 @@ This method uses deferred execution.</returns>
       <returns>
         <see langword="true" /> if this node appears before the specified node; otherwise <see langword="false" />.</returns>
     </member>
-    <member name="P:System.Xml.Linq.XNode.NextNode">
-      <summary>Gets the next sibling node of this node.</summary>
-      <returns>The <see cref="T:System.Xml.Linq.XNode" /> that contains the next sibling node.</returns>
-    </member>
     <member name="M:System.Xml.Linq.XNode.NodesAfterSelf">
       <summary>Returns a collection of the sibling nodes after this node, in document order.</summary>
       <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1" /> of <see cref="T:System.Xml.Linq.XNode" /> of the sibling nodes after this node, in document order.</returns>
@@ -1446,23 +1453,19 @@ This method uses deferred execution.</returns>
       <summary>Returns a collection of the sibling nodes before this node, in document order.</summary>
       <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1" /> of <see cref="T:System.Xml.Linq.XNode" /> of the sibling nodes before this node, in document order.</returns>
     </member>
-    <member name="P:System.Xml.Linq.XNode.PreviousNode">
-      <summary>Gets the previous sibling node of this node.</summary>
-      <returns>The <see cref="T:System.Xml.Linq.XNode" /> that contains the previous sibling node.</returns>
-    </member>
     <member name="M:System.Xml.Linq.XNode.ReadFrom(System.Xml.XmlReader)">
       <summary>Creates an <see cref="T:System.Xml.Linq.XNode" /> from an <see cref="T:System.Xml.XmlReader" />.</summary>
       <param name="reader">An <see cref="T:System.Xml.XmlReader" /> positioned at the node to read into this <see cref="T:System.Xml.Linq.XNode" />.</param>
-      <returns>An <see cref="T:System.Xml.Linq.XNode" /> that contains the node and its descendant nodes that were read from the reader. The runtime type of the node is determined by the node type (<see cref="P:System.Xml.Linq.XObject.NodeType" />) of the first node encountered in the reader.</returns>
       <exception cref="T:System.InvalidOperationException">The <see cref="T:System.Xml.XmlReader" /> is not positioned on a recognized node type.</exception>
       <exception cref="T:System.Xml.XmlException">The underlying <see cref="T:System.Xml.XmlReader" /> throws an exception.</exception>
+      <returns>An <see cref="T:System.Xml.Linq.XNode" /> that contains the node and its descendant nodes that were read from the reader. The runtime type of the node is determined by the node type (<see cref="P:System.Xml.Linq.XObject.NodeType" />) of the first node encountered in the reader.</returns>
     </member>
     <member name="M:System.Xml.Linq.XNode.ReadFromAsync(System.Xml.XmlReader,System.Threading.CancellationToken)">
       <summary>Creates an <see cref="T:System.Xml.Linq.XNode" /> from an <see cref="T:System.Xml.XmlReader" />. The runtime type of the node is determined by the <see cref="P:System.Xml.Linq.XObject.NodeType" /> of the first node encountered in the reader.</summary>
       <param name="reader">A reader positioned at the node to read into this <see cref="T:System.Xml.Linq.XNode" />.</param>
       <param name="cancellationToken">A token that can be used to request cancellation of the asynchronous operation.</param>
-      <returns>An XNode that contains the nodes read from the reader.</returns>
       <exception cref="T:System.InvalidOperationException">The <see cref="T:System.Xml.XmlReader" /> is not positioned on a recognized node type.</exception>
+      <returns>An XNode that contains the nodes read from the reader.</returns>
     </member>
     <member name="M:System.Xml.Linq.XNode.Remove">
       <summary>Removes this node from its parent.</summary>
@@ -1495,6 +1498,22 @@ This method uses deferred execution.</returns>
       <param name="cancellationToken">A token that can be used to request cancellation of the asynchronous operation.</param>
       <returns>A task representing the asynchronous write operation.</returns>
     </member>
+    <member name="P:System.Xml.Linq.XNode.DocumentOrderComparer">
+      <summary>Gets a comparer that can compare the relative position of two nodes.</summary>
+      <returns>An <see cref="T:System.Xml.Linq.XNodeDocumentOrderComparer" /> that can compare the relative position of two nodes.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XNode.EqualityComparer">
+      <summary>Gets a comparer that can compare two nodes for value equality.</summary>
+      <returns>A <see cref="T:System.Xml.Linq.XNodeEqualityComparer" /> that can compare two nodes for value equality.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XNode.NextNode">
+      <summary>Gets the next sibling node of this node.</summary>
+      <returns>The <see cref="T:System.Xml.Linq.XNode" /> that contains the next sibling node.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XNode.PreviousNode">
+      <summary>Gets the previous sibling node of this node.</summary>
+      <returns>The <see cref="T:System.Xml.Linq.XNode" /> that contains the previous sibling node.</returns>
+    </member>
     <member name="T:System.Xml.Linq.XNodeDocumentOrderComparer">
       <summary>Contains functionality to compare nodes for their document order. This class cannot be inherited.</summary>
     </member>
@@ -1505,16 +1524,16 @@ This method uses deferred execution.</returns>
       <summary>Compares two nodes to determine their relative document order.</summary>
       <param name="x">The first <see cref="T:System.Xml.Linq.XNode" /> to compare.</param>
       <param name="y">The second <see cref="T:System.Xml.Linq.XNode" /> to compare.</param>
-      <returns>An <see cref="T:System.Int32" /> that contains 0 if the nodes are equal; -1 if <paramref name="x" /> is before <paramref name="y" />; 1 if <paramref name="x" /> is after <paramref name="y" />.</returns>
       <exception cref="T:System.InvalidOperationException">The two nodes do not share a common ancestor.</exception>
+      <returns>An <see cref="T:System.Int32" /> that contains 0 if the nodes are equal; -1 if <paramref name="x" /> is before <paramref name="y" />; 1 if <paramref name="x" /> is after <paramref name="y" />.</returns>
     </member>
     <member name="M:System.Xml.Linq.XNodeDocumentOrderComparer.System#Collections#IComparer#Compare(System.Object,System.Object)">
       <summary>Compares two nodes to determine their relative document order.</summary>
       <param name="x">The first <see cref="T:System.Xml.Linq.XNode" /> to compare.</param>
       <param name="y">The second <see cref="T:System.Xml.Linq.XNode" /> to compare.</param>
-      <returns>An <see cref="T:System.Int32" /> that contains 0 if the nodes are equal; -1 if <paramref name="x" /> is before <paramref name="y" />; 1 if <paramref name="x" /> is after <paramref name="y" />.</returns>
       <exception cref="T:System.InvalidOperationException">The two nodes do not share a common ancestor.</exception>
       <exception cref="T:System.ArgumentException">The two nodes are not derived from <see cref="T:System.Xml.Linq.XNode" />.</exception>
+      <returns>An <see cref="T:System.Int32" /> that contains 0 if the nodes are equal; -1 if <paramref name="x" /> is before <paramref name="y" />; 1 if <paramref name="x" /> is after <paramref name="y" />.</returns>
     </member>
     <member name="T:System.Xml.Linq.XNodeEqualityComparer">
       <summary>Compares nodes to determine whether they are equal. This class cannot be inherited.</summary>
@@ -1548,6 +1567,12 @@ This method uses deferred execution.</returns>
     <member name="T:System.Xml.Linq.XObject">
       <summary>Represents a node or an attribute in an XML tree.</summary>
     </member>
+    <member name="E:System.Xml.Linq.XObject.Changed">
+      <summary>Raised when this <see cref="T:System.Xml.Linq.XObject" /> or any of its descendants have changed.</summary>
+    </member>
+    <member name="E:System.Xml.Linq.XObject.Changing">
+      <summary>Raised when this <see cref="T:System.Xml.Linq.XObject" /> or any of its descendants are about to change.</summary>
+    </member>
     <member name="M:System.Xml.Linq.XObject.AddAnnotation(System.Object)">
       <summary>Adds an object to the annotation list of this <see cref="T:System.Xml.Linq.XObject" />.</summary>
       <param name="annotation">An object that contains the annotation to add.</param>
@@ -1572,28 +1597,6 @@ This method uses deferred execution.</returns>
       <typeparam name="T">The type of the annotations to retrieve.</typeparam>
       <returns>An <see cref="T:System.Collections.Generic.IEnumerable`1" /> that contains the annotations for this <see cref="T:System.Xml.Linq.XObject" />.</returns>
     </member>
-    <member name="P:System.Xml.Linq.XObject.BaseUri">
-      <summary>Gets the base URI for this <see cref="T:System.Xml.Linq.XObject" />.</summary>
-      <returns>A <see cref="T:System.String" /> that contains the base URI for this <see cref="T:System.Xml.Linq.XObject" />.</returns>
-    </member>
-    <member name="E:System.Xml.Linq.XObject.Changed">
-      <summary>Raised when this <see cref="T:System.Xml.Linq.XObject" /> or any of its descendants have changed.</summary>
-    </member>
-    <member name="E:System.Xml.Linq.XObject.Changing">
-      <summary>Raised when this <see cref="T:System.Xml.Linq.XObject" /> or any of its descendants are about to change.</summary>
-    </member>
-    <member name="P:System.Xml.Linq.XObject.Document">
-      <summary>Gets the <see cref="T:System.Xml.Linq.XDocument" /> for this <see cref="T:System.Xml.Linq.XObject" />.</summary>
-      <returns>The <see cref="T:System.Xml.Linq.XDocument" /> for this <see cref="T:System.Xml.Linq.XObject" />.</returns>
-    </member>
-    <member name="P:System.Xml.Linq.XObject.NodeType">
-      <summary>Gets the node type for this <see cref="T:System.Xml.Linq.XObject" />.</summary>
-      <returns>The node type for this <see cref="T:System.Xml.Linq.XObject" />.</returns>
-    </member>
-    <member name="P:System.Xml.Linq.XObject.Parent">
-      <summary>Gets the parent <see cref="T:System.Xml.Linq.XElement" /> of this <see cref="T:System.Xml.Linq.XObject" />.</summary>
-      <returns>The parent <see cref="T:System.Xml.Linq.XElement" /> of this <see cref="T:System.Xml.Linq.XObject" />.</returns>
-    </member>
     <member name="M:System.Xml.Linq.XObject.RemoveAnnotations(System.Type)">
       <summary>Removes the annotations of the specified type from this <see cref="T:System.Xml.Linq.XObject" />.</summary>
       <param name="type">The type of annotations to remove.</param>
@@ -1606,6 +1609,22 @@ This method uses deferred execution.</returns>
       <summary>Gets a value indicating whether or not this <see cref="T:System.Xml.Linq.XObject" /> has line information.</summary>
       <returns>
         <see langword="true" /> if the <see cref="T:System.Xml.Linq.XObject" /> has line information; otherwise, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XObject.BaseUri">
+      <summary>Gets the base URI for this <see cref="T:System.Xml.Linq.XObject" />.</summary>
+      <returns>A <see cref="T:System.String" /> that contains the base URI for this <see cref="T:System.Xml.Linq.XObject" />.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XObject.Document">
+      <summary>Gets the <see cref="T:System.Xml.Linq.XDocument" /> for this <see cref="T:System.Xml.Linq.XObject" />.</summary>
+      <returns>The <see cref="T:System.Xml.Linq.XDocument" /> for this <see cref="T:System.Xml.Linq.XObject" />.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XObject.NodeType">
+      <summary>Gets the node type for this <see cref="T:System.Xml.Linq.XObject" />.</summary>
+      <returns>The node type for this <see cref="T:System.Xml.Linq.XObject" />.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XObject.Parent">
+      <summary>Gets the parent <see cref="T:System.Xml.Linq.XElement" /> of this <see cref="T:System.Xml.Linq.XObject" />.</summary>
+      <returns>The parent <see cref="T:System.Xml.Linq.XElement" /> of this <see cref="T:System.Xml.Linq.XObject" />.</returns>
     </member>
     <member name="P:System.Xml.Linq.XObject.System#Xml#IXmlLineInfo#LineNumber">
       <summary>Gets the line number that the underlying <see cref="T:System.Xml.XmlReader" /> reported for this <see cref="T:System.Xml.Linq.XObject" />.</summary>
@@ -1633,25 +1652,25 @@ This method uses deferred execution.</returns>
     <member name="T:System.Xml.Linq.XObjectChangeEventArgs">
       <summary>Provides data for the <see cref="E:System.Xml.Linq.XObject.Changing" /> and <see cref="E:System.Xml.Linq.XObject.Changed" /> events.</summary>
     </member>
-    <member name="M:System.Xml.Linq.XObjectChangeEventArgs.#ctor(System.Xml.Linq.XObjectChange)">
-      <summary>Initializes a new instance of the <see cref="T:System.Xml.Linq.XObjectChangeEventArgs" /> class.</summary>
-      <param name="objectChange">An <see cref="T:System.Xml.Linq.XObjectChange" /> that contains the event arguments for LINQ to XML events.</param>
-    </member>
     <member name="F:System.Xml.Linq.XObjectChangeEventArgs.Add">
       <summary>Event argument for an <see cref="F:System.Xml.Linq.XObjectChange.Add" /> change event.</summary>
     </member>
     <member name="F:System.Xml.Linq.XObjectChangeEventArgs.Name">
       <summary>Event argument for a <see cref="F:System.Xml.Linq.XObjectChange.Name" /> change event.</summary>
     </member>
-    <member name="P:System.Xml.Linq.XObjectChangeEventArgs.ObjectChange">
-      <summary>Gets the type of change.</summary>
-      <returns>An <see cref="T:System.Xml.Linq.XObjectChange" /> that contains the type of change.</returns>
-    </member>
     <member name="F:System.Xml.Linq.XObjectChangeEventArgs.Remove">
       <summary>Event argument for a <see cref="F:System.Xml.Linq.XObjectChange.Remove" /> change event.</summary>
     </member>
     <member name="F:System.Xml.Linq.XObjectChangeEventArgs.Value">
       <summary>Event argument for a <see cref="F:System.Xml.Linq.XObjectChange.Value" /> change event.</summary>
+    </member>
+    <member name="M:System.Xml.Linq.XObjectChangeEventArgs.#ctor(System.Xml.Linq.XObjectChange)">
+      <summary>Initializes a new instance of the <see cref="T:System.Xml.Linq.XObjectChangeEventArgs" /> class.</summary>
+      <param name="objectChange">An <see cref="T:System.Xml.Linq.XObjectChange" /> that contains the event arguments for LINQ to XML events.</param>
+    </member>
+    <member name="P:System.Xml.Linq.XObjectChangeEventArgs.ObjectChange">
+      <summary>Gets the type of change.</summary>
+      <returns>An <see cref="T:System.Xml.Linq.XObjectChange" /> that contains the type of change.</returns>
     </member>
     <member name="T:System.Xml.Linq.XProcessingInstruction">
       <summary>Represents an XML processing instruction.</summary>
@@ -1667,21 +1686,6 @@ This method uses deferred execution.</returns>
       <summary>Initializes a new instance of the <see cref="T:System.Xml.Linq.XProcessingInstruction" /> class.</summary>
       <param name="other">The <see cref="T:System.Xml.Linq.XProcessingInstruction" /> node to copy from.</param>
     </member>
-    <member name="P:System.Xml.Linq.XProcessingInstruction.Data">
-      <summary>Gets or sets the string value of this processing instruction.</summary>
-      <returns>A <see cref="T:System.String" /> that contains the string value of this processing instruction.</returns>
-      <exception cref="T:System.ArgumentNullException">The string <paramref name="value" /> is <see langword="null" />.</exception>
-    </member>
-    <member name="P:System.Xml.Linq.XProcessingInstruction.NodeType">
-      <summary>Gets the node type for this node.</summary>
-      <returns>The node type. For <see cref="T:System.Xml.Linq.XProcessingInstruction" /> objects, this value is <see cref="F:System.Xml.XmlNodeType.ProcessingInstruction" />.</returns>
-    </member>
-    <member name="P:System.Xml.Linq.XProcessingInstruction.Target">
-      <summary>Gets or sets a string containing the target application for this processing instruction.</summary>
-      <returns>A <see cref="T:System.String" /> containing the target application for this processing instruction.</returns>
-      <exception cref="T:System.ArgumentNullException">The string <paramref name="value" /> is <see langword="null" />.</exception>
-      <exception cref="T:System.ArgumentException">The <paramref name="target" /> does not follow the constraints of an XML name.</exception>
-    </member>
     <member name="M:System.Xml.Linq.XProcessingInstruction.WriteTo(System.Xml.XmlWriter)">
       <summary>Writes this processing instruction to an <see cref="T:System.Xml.XmlWriter" />.</summary>
       <param name="writer">The <see cref="T:System.Xml.XmlWriter" /> to write this processing instruction to.</param>
@@ -1691,6 +1695,21 @@ This method uses deferred execution.</returns>
       <param name="writer">The writer to write this <see cref="T:System.Xml.Linq.XProcessingInstruction" /> to.</param>
       <param name="cancellationToken">A token that can be used to request cancellation of the asynchronous operation.</param>
       <returns>A task representing the asynchronous write operation.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XProcessingInstruction.Data">
+      <summary>Gets or sets the string value of this processing instruction.</summary>
+      <exception cref="T:System.ArgumentNullException">The string <paramref name="value" /> is <see langword="null" />.</exception>
+      <returns>A <see cref="T:System.String" /> that contains the string value of this processing instruction.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XProcessingInstruction.NodeType">
+      <summary>Gets the node type for this node.</summary>
+      <returns>The node type. For <see cref="T:System.Xml.Linq.XProcessingInstruction" /> objects, this value is <see cref="F:System.Xml.XmlNodeType.ProcessingInstruction" />.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XProcessingInstruction.Target">
+      <summary>Gets or sets a string containing the target application for this processing instruction.</summary>
+      <exception cref="T:System.ArgumentNullException">The string <paramref name="value" /> is <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">The <paramref name="target" /> does not follow the constraints of an XML name.</exception>
+      <returns>A <see cref="T:System.String" /> containing the target application for this processing instruction.</returns>
     </member>
     <member name="T:System.Xml.Linq.XStreamingElement">
       <summary>Represents elements in an XML tree that supports deferred streaming output.</summary>
@@ -1716,10 +1735,6 @@ This method uses deferred execution.</returns>
     <member name="M:System.Xml.Linq.XStreamingElement.Add(System.Object[])">
       <summary>Adds the specified content as children to this <see cref="T:System.Xml.Linq.XStreamingElement" />.</summary>
       <param name="content">Content to be added to the streaming element.</param>
-    </member>
-    <member name="P:System.Xml.Linq.XStreamingElement.Name">
-      <summary>Gets or sets the name of this streaming element.</summary>
-      <returns>An <see cref="T:System.Xml.Linq.XName" /> that contains the name of this streaming element.</returns>
     </member>
     <member name="M:System.Xml.Linq.XStreamingElement.Save(System.IO.Stream)">
       <summary>Outputs this <see cref="T:System.Xml.Linq.XStreamingElement" /> to the specified <see cref="T:System.IO.Stream" />.</summary>
@@ -1765,6 +1780,10 @@ This method uses deferred execution.</returns>
       <summary>Writes this streaming element to an <see cref="T:System.Xml.XmlWriter" />.</summary>
       <param name="writer">An <see cref="T:System.Xml.XmlWriter" /> into which this method will write.</param>
     </member>
+    <member name="P:System.Xml.Linq.XStreamingElement.Name">
+      <summary>Gets or sets the name of this streaming element.</summary>
+      <returns>An <see cref="T:System.Xml.Linq.XName" /> that contains the name of this streaming element.</returns>
+    </member>
     <member name="T:System.Xml.Linq.XText">
       <summary>Represents a text node.</summary>
     </member>
@@ -1776,14 +1795,6 @@ This method uses deferred execution.</returns>
       <summary>Initializes a new instance of the <see cref="T:System.Xml.Linq.XText" /> class from another <see cref="T:System.Xml.Linq.XText" /> object.</summary>
       <param name="other">The <see cref="T:System.Xml.Linq.XText" /> node to copy from.</param>
     </member>
-    <member name="P:System.Xml.Linq.XText.NodeType">
-      <summary>Gets the node type for this node.</summary>
-      <returns>The node type. For <see cref="T:System.Xml.Linq.XText" /> objects, this value is <see cref="F:System.Xml.XmlNodeType.Text" />.</returns>
-    </member>
-    <member name="P:System.Xml.Linq.XText.Value">
-      <summary>Gets or sets the value of this node.</summary>
-      <returns>A <see cref="T:System.String" /> that contains the value of this node.</returns>
-    </member>
     <member name="M:System.Xml.Linq.XText.WriteTo(System.Xml.XmlWriter)">
       <summary>Writes this node to an <see cref="T:System.Xml.XmlWriter" />.</summary>
       <param name="writer">An <see cref="T:System.Xml.XmlWriter" /> into which this method will write.</param>
@@ -1793,6 +1804,14 @@ This method uses deferred execution.</returns>
       <param name="writer">The writer to write this <see cref="T:System.Xml.Linq.XText" /> to.</param>
       <param name="cancellationToken">A token that can be used to request cancellation of the asynchronous operation.</param>
       <returns>A task representing the asynchronous write operation.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XText.NodeType">
+      <summary>Gets the node type for this node.</summary>
+      <returns>The node type. For <see cref="T:System.Xml.Linq.XText" /> objects, this value is <see cref="F:System.Xml.XmlNodeType.Text" />.</returns>
+    </member>
+    <member name="P:System.Xml.Linq.XText.Value">
+      <summary>Gets or sets the value of this node.</summary>
+      <returns>A <see cref="T:System.String" /> that contains the value of this node.</returns>
     </member>
     <member name="T:System.Xml.Schema.Extensions">
       <summary>This class contains the LINQ to XML extension methods for XSD validation.</summary>

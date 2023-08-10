@@ -87,6 +87,23 @@
       <param name="identity">The intended subject of the new claim.</param>
       <returns>The new claim object.</returns>
     </member>
+    <member name="M:System.Security.Claims.Claim.ToString">
+      <summary>Returns a string representation of this <see cref="T:System.Security.Claims.Claim" /> object.</summary>
+      <returns>The string representation of this <see cref="T:System.Security.Claims.Claim" /> object.</returns>
+    </member>
+    <member name="M:System.Security.Claims.Claim.WriteTo(System.IO.BinaryWriter)">
+      <summary>Writes this <see cref="T:System.Security.Claims.Claim" /> to the writer.</summary>
+      <param name="writer">The writer to use for data storage.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="writer" /> is <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.Claims.Claim.WriteTo(System.IO.BinaryWriter,System.Byte[])">
+      <summary>Writes this <see cref="T:System.Security.Claims.Claim" /> to the writer.</summary>
+      <param name="writer">The writer to write this claim.</param>
+      <param name="userData">The user data to claim.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="writer" /> is <see langword="null" />.</exception>
+    </member>
     <member name="P:System.Security.Claims.Claim.CustomSerializationData">
       <summary>Contains any additional data provided by a derived type.</summary>
       <returns>A <see cref="T:System.Byte" /> array representing the additional serialized data.</returns>
@@ -107,10 +124,6 @@
       <summary>Gets the subject of the claim.</summary>
       <returns>The subject of the claim.</returns>
     </member>
-    <member name="M:System.Security.Claims.Claim.ToString">
-      <summary>Returns a string representation of this <see cref="T:System.Security.Claims.Claim" /> object.</summary>
-      <returns>The string representation of this <see cref="T:System.Security.Claims.Claim" /> object.</returns>
-    </member>
     <member name="P:System.Security.Claims.Claim.Type">
       <summary>Gets the claim type of the claim.</summary>
       <returns>The claim type.</returns>
@@ -123,21 +136,17 @@
       <summary>Gets the value type of the claim.</summary>
       <returns>The claim value type.</returns>
     </member>
-    <member name="M:System.Security.Claims.Claim.WriteTo(System.IO.BinaryWriter)">
-      <summary>Writes this <see cref="T:System.Security.Claims.Claim" /> to the writer.</summary>
-      <param name="writer">The writer to use for data storage.</param>
-      <exception cref="T:System.ArgumentNullException">
-        <paramref name="writer" /> is <see langword="null" />.</exception>
-    </member>
-    <member name="M:System.Security.Claims.Claim.WriteTo(System.IO.BinaryWriter,System.Byte[])">
-      <summary>Writes this <see cref="T:System.Security.Claims.Claim" /> to the writer.</summary>
-      <param name="writer">The writer to write this claim.</param>
-      <param name="userData">The user data to claim.</param>
-      <exception cref="T:System.ArgumentNullException">
-        <paramref name="writer" /> is <see langword="null" />.</exception>
-    </member>
     <member name="T:System.Security.Claims.ClaimsIdentity">
       <summary>Represents a claims-based identity.</summary>
+    </member>
+    <member name="F:System.Security.Claims.ClaimsIdentity.DefaultIssuer">
+      <summary>The default issuer; "LOCAL AUTHORITY".</summary>
+    </member>
+    <member name="F:System.Security.Claims.ClaimsIdentity.DefaultNameClaimType">
+      <summary>The default name claim type; <see cref="F:System.Security.Claims.ClaimTypes.Name" />.</summary>
+    </member>
+    <member name="F:System.Security.Claims.ClaimsIdentity.DefaultRoleClaimType">
+      <summary>The default role claim type; <see cref="F:System.Security.Claims.ClaimTypes.Role" />.</summary>
     </member>
     <member name="M:System.Security.Claims.ClaimsIdentity.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Security.Claims.ClaimsIdentity" /> class with an empty claims collection.</summary>
@@ -175,13 +184,13 @@
       <param name="info">The serialized data.</param>
       <param name="context">The context for serialization.</param>
       <exception cref="T:System.ArgumentNullException">
-        <paramref name="info" /> is null.</exception>
+        <paramref name="info" /> is <see langword="null" />.</exception>
     </member>
     <member name="M:System.Security.Claims.ClaimsIdentity.#ctor(System.Security.Claims.ClaimsIdentity)">
       <summary>Initializes a new instance of the <see cref="T:System.Security.Claims.ClaimsIdentity" /> class from an existing <see cref="T:System.Security.Claims.ClaimsIdentity" /> instance.</summary>
       <param name="other">The <see cref="T:System.Security.Claims.ClaimsIdentity" /> to copy.</param>
       <exception cref="T:System.ArgumentNullException">
-        <paramref name="other" /> is null.</exception>
+        <paramref name="other" /> is <see langword="null" />.</exception>
     </member>
     <member name="M:System.Security.Claims.ClaimsIdentity.#ctor(System.Security.Principal.IIdentity)">
       <summary>Initializes a new instance of the <see cref="T:System.Security.Claims.ClaimsIdentity" /> class using the name and authentication type from the specified <see cref="T:System.Security.Principal.IIdentity" />.</summary>
@@ -212,11 +221,6 @@
       <param name="nameType">The claim type to use for name claims.</param>
       <param name="roleType">The claim type to use for role claims.</param>
     </member>
-    <member name="P:System.Security.Claims.ClaimsIdentity.Actor">
-      <summary>Gets or sets the identity of the calling party that was granted delegation rights.</summary>
-      <returns>The calling party that was granted delegation rights.</returns>
-      <exception cref="T:System.InvalidOperationException">An attempt to set the property to the current instance occurs.</exception>
-    </member>
     <member name="M:System.Security.Claims.ClaimsIdentity.AddClaim(System.Security.Claims.Claim)">
       <summary>Adds a single claim to this claims identity.</summary>
       <param name="claim">The claim to add.</param>
@@ -229,18 +233,6 @@
       <exception cref="T:System.ArgumentNullException">
         <paramref name="claims" /> is <see langword="null" />.</exception>
     </member>
-    <member name="P:System.Security.Claims.ClaimsIdentity.AuthenticationType">
-      <summary>Gets the authentication type.</summary>
-      <returns>The authentication type.</returns>
-    </member>
-    <member name="P:System.Security.Claims.ClaimsIdentity.BootstrapContext">
-      <summary>Gets or sets the token that was used to create this claims identity.</summary>
-      <returns>The bootstrap context.</returns>
-    </member>
-    <member name="P:System.Security.Claims.ClaimsIdentity.Claims">
-      <summary>Gets the claims associated with this claims identity.</summary>
-      <returns>The collection of claims associated with this claims identity.</returns>
-    </member>
     <member name="M:System.Security.Claims.ClaimsIdentity.Clone">
       <summary>Returns a new <see cref="T:System.Security.Claims.ClaimsIdentity" /> copied from this claims identity.</summary>
       <returns>A copy of the current instance.</returns>
@@ -248,50 +240,37 @@
     <member name="M:System.Security.Claims.ClaimsIdentity.CreateClaim(System.IO.BinaryReader)">
       <summary>Provides an extensibility point for derived types to create a custom <see cref="T:System.Security.Claims.Claim" />.</summary>
       <param name="reader">The <see cref="T:System.IO.BinaryReader" /> that points to the claim.</param>
-      <returns>A new <see cref="T:System.Security.Claims.Claim" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="reader" /> is <see langword="null" />.</exception>
-    </member>
-    <member name="P:System.Security.Claims.ClaimsIdentity.CustomSerializationData">
-      <summary>Contains any additional data provided by a derived type. Typically set when calling <see cref="M:System.Security.Claims.ClaimsIdentity.WriteTo(System.IO.BinaryWriter,System.Byte[])" />.</summary>
-      <returns>A <see cref="T:System.Byte" /> array representing the additional serialized data.</returns>
-    </member>
-    <member name="F:System.Security.Claims.ClaimsIdentity.DefaultIssuer">
-      <summary>The default issuer; "LOCAL AUTHORITY".</summary>
-    </member>
-    <member name="F:System.Security.Claims.ClaimsIdentity.DefaultNameClaimType">
-      <summary>The default name claim type; <see cref="F:System.Security.Claims.ClaimTypes.Name" />.</summary>
-    </member>
-    <member name="F:System.Security.Claims.ClaimsIdentity.DefaultRoleClaimType">
-      <summary>The default role claim type; <see cref="F:System.Security.Claims.ClaimTypes.Role" />.</summary>
+      <returns>A new <see cref="T:System.Security.Claims.Claim" />.</returns>
     </member>
     <member name="M:System.Security.Claims.ClaimsIdentity.FindAll(System.Predicate{System.Security.Claims.Claim})">
       <summary>Retrieves all of the claims that are matched by the specified predicate.</summary>
       <param name="match">The function that performs the matching logic.</param>
-      <returns>The matching claims. The list is read-only.</returns>
       <exception cref="T:System.ArgumentNullException">
-        <paramref name="match" /> is null.</exception>
+        <paramref name="match" /> is <see langword="null" />.</exception>
+      <returns>The matching claims. The list is read-only.</returns>
     </member>
     <member name="M:System.Security.Claims.ClaimsIdentity.FindAll(System.String)">
       <summary>Retrieves all of the claims that have the specified claim type.</summary>
       <param name="type">The claim type against which to match claims.</param>
-      <returns>The matching claims. The list is read-only.</returns>
       <exception cref="T:System.ArgumentNullException">
-        <paramref name="type" /> is null.</exception>
+        <paramref name="type" /> is <see langword="null" />.</exception>
+      <returns>The matching claims. The list is read-only.</returns>
     </member>
     <member name="M:System.Security.Claims.ClaimsIdentity.FindFirst(System.Predicate{System.Security.Claims.Claim})">
       <summary>Retrieves the first claim that is matched by the specified predicate.</summary>
       <param name="match">The function that performs the matching logic.</param>
-      <returns>The first matching claim or <see langword="null" /> if no match is found.</returns>
       <exception cref="T:System.ArgumentNullException">
-        <paramref name="match" /> is null.</exception>
+        <paramref name="match" /> is <see langword="null" />.</exception>
+      <returns>The first matching claim or <see langword="null" /> if no match is found.</returns>
     </member>
     <member name="M:System.Security.Claims.ClaimsIdentity.FindFirst(System.String)">
       <summary>Retrieves the first claim with the specified claim type.</summary>
       <param name="type">The claim type to match.</param>
-      <returns>The first matching claim or <see langword="null" /> if no match is found.</returns>
       <exception cref="T:System.ArgumentNullException">
-        <paramref name="type" /> is null.</exception>
+        <paramref name="type" /> is <see langword="null" />.</exception>
+      <returns>The first matching claim or <see langword="null" /> if no match is found.</returns>
     </member>
     <member name="M:System.Security.Claims.ClaimsIdentity.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
       <summary>Populates the <see cref="T:System.Runtime.Serialization.SerializationInfo" /> with data needed to serialize the current <see cref="T:System.Security.Claims.ClaimsIdentity" /> object.</summary>
@@ -303,47 +282,24 @@
     <member name="M:System.Security.Claims.ClaimsIdentity.HasClaim(System.Predicate{System.Security.Claims.Claim})">
       <summary>Determines whether this claims identity has a claim that is matched by the specified predicate.</summary>
       <param name="match">The function that performs the matching logic.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="match" /> is <see langword="null" />.</exception>
       <returns>
         <see langword="true" /> if a matching claim exists; otherwise, <see langword="false" />.</returns>
-      <exception cref="T:System.ArgumentNullException">
-        <paramref name="match" /> is null.</exception>
     </member>
     <member name="M:System.Security.Claims.ClaimsIdentity.HasClaim(System.String,System.String)">
       <summary>Determines whether this claims identity has a claim with the specified claim type and value.</summary>
       <param name="type">The type of the claim to match.</param>
       <param name="value">The value of the claim to match.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="type" /> or  <paramref name="value" /> is  <see langword="null" />.</exception>
       <returns>
         <see langword="true" /> if a match is found; otherwise, <see langword="false" />.</returns>
-      <exception cref="T:System.ArgumentNullException">
-        <paramref name="type" /> is null.
--or-
-<paramref name="value" /> is null.</exception>
-    </member>
-    <member name="P:System.Security.Claims.ClaimsIdentity.IsAuthenticated">
-      <summary>Gets a value that indicates whether the identity has been authenticated.</summary>
-      <returns>
-        <see langword="true" /> if the identity has been authenticated; otherwise, <see langword="false" />.</returns>
-    </member>
-    <member name="P:System.Security.Claims.ClaimsIdentity.Label">
-      <summary>Gets or sets the label for this claims identity.</summary>
-      <returns>The label.</returns>
-    </member>
-    <member name="P:System.Security.Claims.ClaimsIdentity.Name">
-      <summary>Gets the name of this claims identity.</summary>
-      <returns>The name or <see langword="null" />.</returns>
-    </member>
-    <member name="P:System.Security.Claims.ClaimsIdentity.NameClaimType">
-      <summary>Gets the claim type that is used to determine which claims provide the value for the <see cref="P:System.Security.Claims.ClaimsIdentity.Name" /> property of this claims identity.</summary>
-      <returns>The name claim type.</returns>
     </member>
     <member name="M:System.Security.Claims.ClaimsIdentity.RemoveClaim(System.Security.Claims.Claim)">
       <summary>Attempts to remove a claim from the claims identity.</summary>
       <param name="claim">The claim to remove.</param>
       <exception cref="T:System.InvalidOperationException">The claim cannot be removed.</exception>
-    </member>
-    <member name="P:System.Security.Claims.ClaimsIdentity.RoleClaimType">
-      <summary>Gets the claim type that will be interpreted as a .NET Framework role among the claims in this claims identity.</summary>
-      <returns>The role claim type.</returns>
     </member>
     <member name="M:System.Security.Claims.ClaimsIdentity.TryRemoveClaim(System.Security.Claims.Claim)">
       <summary>Attempts to remove a claim from the claims identity.</summary>
@@ -364,6 +320,52 @@
       <exception cref="T:System.ArgumentNullException">
         <paramref name="writer" /> is <see langword="null" />.</exception>
     </member>
+    <member name="P:System.Security.Claims.ClaimsIdentity.Actor">
+      <summary>Gets or sets the identity of the calling party that was granted delegation rights.</summary>
+      <exception cref="T:System.InvalidOperationException">An attempt was made to set the property to the current instance.
+
+-or-
+
+<see langword="value" /> results in a circular reference back to <see langword="this" />.</exception>
+      <returns>The calling party that was granted delegation rights.</returns>
+    </member>
+    <member name="P:System.Security.Claims.ClaimsIdentity.AuthenticationType">
+      <summary>Gets the authentication type.</summary>
+      <returns>The authentication type.</returns>
+    </member>
+    <member name="P:System.Security.Claims.ClaimsIdentity.BootstrapContext">
+      <summary>Gets or sets the token that was used to create this claims identity.</summary>
+      <returns>The bootstrap context.</returns>
+    </member>
+    <member name="P:System.Security.Claims.ClaimsIdentity.Claims">
+      <summary>Gets the claims associated with this claims identity.</summary>
+      <returns>The collection of claims associated with this claims identity.</returns>
+    </member>
+    <member name="P:System.Security.Claims.ClaimsIdentity.CustomSerializationData">
+      <summary>Contains any additional data provided by a derived type. Typically set when calling <see cref="M:System.Security.Claims.ClaimsIdentity.WriteTo(System.IO.BinaryWriter,System.Byte[])" />.</summary>
+      <returns>A <see cref="T:System.Byte" /> array representing the additional serialized data.</returns>
+    </member>
+    <member name="P:System.Security.Claims.ClaimsIdentity.IsAuthenticated">
+      <summary>Gets a value that indicates whether the identity has been authenticated.</summary>
+      <returns>
+        <see langword="true" /> if the identity has been authenticated; otherwise, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Security.Claims.ClaimsIdentity.Label">
+      <summary>Gets or sets the label for this claims identity.</summary>
+      <returns>The label.</returns>
+    </member>
+    <member name="P:System.Security.Claims.ClaimsIdentity.Name">
+      <summary>Gets the name of this claims identity.</summary>
+      <returns>The name or <see langword="null" />.</returns>
+    </member>
+    <member name="P:System.Security.Claims.ClaimsIdentity.NameClaimType">
+      <summary>Gets the claim type that is used to determine which claims provide the value for the <see cref="P:System.Security.Claims.ClaimsIdentity.Name" /> property of this claims identity.</summary>
+      <returns>The name claim type.</returns>
+    </member>
+    <member name="P:System.Security.Claims.ClaimsIdentity.RoleClaimType">
+      <summary>Gets the claim type that will be interpreted as a .NET role among the claims in this claims identity.</summary>
+      <returns>The role claim type.</returns>
+    </member>
     <member name="T:System.Security.Claims.ClaimsPrincipal">
       <summary>An <see cref="T:System.Security.Principal.IPrincipal" /> implementation that supports multiple claims-based identities.</summary>
     </member>
@@ -374,7 +376,7 @@
       <summary>Initializes a new instance of the <see cref="T:System.Security.Claims.ClaimsPrincipal" /> class using the specified claims identities.</summary>
       <param name="identities">The identities from which to initialize the new claims principal.</param>
       <exception cref="T:System.ArgumentNullException">
-        <paramref name="identities" /> is null.</exception>
+        <paramref name="identities" /> is <see langword="null" />.</exception>
     </member>
     <member name="M:System.Security.Claims.ClaimsPrincipal.#ctor(System.IO.BinaryReader)">
       <summary>Initializes an instance of <see cref="T:System.Security.Claims.ClaimsPrincipal" /> with the specified <see cref="T:System.IO.BinaryReader" />.</summary>
@@ -393,33 +395,25 @@
       <summary>Initializes a new instance of the <see cref="T:System.Security.Claims.ClaimsPrincipal" /> class from the specified identity.</summary>
       <param name="identity">The identity from which to initialize the new claims principal.</param>
       <exception cref="T:System.ArgumentNullException">
-        <paramref name="identity" /> is null.</exception>
+        <paramref name="identity" /> is <see langword="null" />.</exception>
     </member>
     <member name="M:System.Security.Claims.ClaimsPrincipal.#ctor(System.Security.Principal.IPrincipal)">
       <summary>Initializes a new instance of the <see cref="T:System.Security.Claims.ClaimsPrincipal" /> class from the specified principal.</summary>
       <param name="principal">The principal from which to initialize the new claims principal.</param>
       <exception cref="T:System.ArgumentNullException">
-        <paramref name="principal" /> is null.</exception>
+        <paramref name="principal" /> is <see langword="null" />.</exception>
     </member>
     <member name="M:System.Security.Claims.ClaimsPrincipal.AddIdentities(System.Collections.Generic.IEnumerable{System.Security.Claims.ClaimsIdentity})">
       <summary>Adds the specified claims identities to this claims principal.</summary>
       <param name="identities">The claims identities to add.</param>
       <exception cref="T:System.ArgumentNullException">
-        <paramref name="identities" /> is null.</exception>
+        <paramref name="identities" /> is <see langword="null" />.</exception>
     </member>
     <member name="M:System.Security.Claims.ClaimsPrincipal.AddIdentity(System.Security.Claims.ClaimsIdentity)">
       <summary>Adds the specified claims identity to this claims principal.</summary>
       <param name="identity">The claims identity to add.</param>
       <exception cref="T:System.ArgumentNullException">
-        <paramref name="identity" /> is null.</exception>
-    </member>
-    <member name="P:System.Security.Claims.ClaimsPrincipal.Claims">
-      <summary>Gets a collection that contains all of the claims from all of the claims identities associated with this claims principal.</summary>
-      <returns>The claims associated with this principal.</returns>
-    </member>
-    <member name="P:System.Security.Claims.ClaimsPrincipal.ClaimsPrincipalSelector">
-      <summary>Gets or sets the delegate used to select the claims principal returned by the <see cref="P:System.Security.Claims.ClaimsPrincipal.Current" /> property.</summary>
-      <returns>The delegate. The default is <see langword="null" />.</returns>
+        <paramref name="identity" /> is <see langword="null" />.</exception>
     </member>
     <member name="M:System.Security.Claims.ClaimsPrincipal.Clone">
       <summary>Returns a copy of this instance.</summary>
@@ -428,45 +422,37 @@
     <member name="M:System.Security.Claims.ClaimsPrincipal.CreateClaimsIdentity(System.IO.BinaryReader)">
       <summary>Creates a new claims identity.</summary>
       <param name="reader">The binary reader.</param>
-      <returns>The created claims identity.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="reader" /> is <see langword="null" />.</exception>
-    </member>
-    <member name="P:System.Security.Claims.ClaimsPrincipal.Current">
-      <summary>Gets the current claims principal.</summary>
-      <returns>The current claims principal.</returns>
-    </member>
-    <member name="P:System.Security.Claims.ClaimsPrincipal.CustomSerializationData">
-      <summary>Contains any additional data provided by a derived type. Typically set when calling <see cref="M:System.Security.Claims.ClaimsIdentity.WriteTo(System.IO.BinaryWriter,System.Byte[])" />.</summary>
-      <returns>A <see cref="T:System.Byte" /> array representing the additional serialized data.</returns>
+      <returns>The created claims identity.</returns>
     </member>
     <member name="M:System.Security.Claims.ClaimsPrincipal.FindAll(System.Predicate{System.Security.Claims.Claim})">
       <summary>Retrieves all of the claims that are matched by the specified predicate.</summary>
       <param name="match">The function that performs the matching logic.</param>
-      <returns>The matching claims.</returns>
       <exception cref="T:System.ArgumentNullException">
-        <paramref name="match" /> is null.</exception>
+        <paramref name="match" /> is <see langword="null" />.</exception>
+      <returns>The matching claims.</returns>
     </member>
     <member name="M:System.Security.Claims.ClaimsPrincipal.FindAll(System.String)">
       <summary>Retrieves all or the claims that have the specified claim type.</summary>
       <param name="type">The claim type against which to match claims.</param>
-      <returns>The matching claims.</returns>
       <exception cref="T:System.ArgumentNullException">
-        <paramref name="type" /> is null.</exception>
+        <paramref name="type" /> is <see langword="null" />.</exception>
+      <returns>The matching claims.</returns>
     </member>
     <member name="M:System.Security.Claims.ClaimsPrincipal.FindFirst(System.Predicate{System.Security.Claims.Claim})">
       <summary>Retrieves the first claim that is matched by the specified predicate.</summary>
       <param name="match">The function that performs the matching logic.</param>
-      <returns>The first matching claim or <see langword="null" /> if no match is found.</returns>
       <exception cref="T:System.ArgumentNullException">
-        <paramref name="match" /> is null.</exception>
+        <paramref name="match" /> is <see langword="null" />.</exception>
+      <returns>The first matching claim or <see langword="null" /> if no match is found.</returns>
     </member>
     <member name="M:System.Security.Claims.ClaimsPrincipal.FindFirst(System.String)">
       <summary>Retrieves the first claim with the specified claim type.</summary>
       <param name="type">The claim type to match.</param>
-      <returns>The first matching claim or <see langword="null" /> if no match is found.</returns>
       <exception cref="T:System.ArgumentNullException">
-        <paramref name="type" /> is null.</exception>
+        <paramref name="type" /> is <see langword="null" />.</exception>
+      <returns>The first matching claim or <see langword="null" /> if no match is found.</returns>
     </member>
     <member name="M:System.Security.Claims.ClaimsPrincipal.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
       <summary>Populates the <see cref="T:System.Runtime.Serialization.SerializationInfo" /> with data needed to serialize the current <see cref="T:System.Security.Claims.ClaimsPrincipal" /> object.</summary>
@@ -478,39 +464,25 @@
     <member name="M:System.Security.Claims.ClaimsPrincipal.HasClaim(System.Predicate{System.Security.Claims.Claim})">
       <summary>Determines whether any of the claims identities associated with this claims principal contains a claim that is matched by the specified predicate.</summary>
       <param name="match">The function that performs the matching logic.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="match" /> is <see langword="null" />.</exception>
       <returns>
         <see langword="true" /> if a matching claim exists; otherwise, <see langword="false" />.</returns>
-      <exception cref="T:System.ArgumentNullException">
-        <paramref name="match" /> is null.</exception>
     </member>
     <member name="M:System.Security.Claims.ClaimsPrincipal.HasClaim(System.String,System.String)">
       <summary>Determines whether any of the claims identities associated with this claims principal contains a claim with the specified claim type and value.</summary>
       <param name="type">The type of the claim to match.</param>
       <param name="value">The value of the claim to match.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="type" /> or <paramref name="value" /> is <see langword="null" />.</exception>
       <returns>
         <see langword="true" /> if a matching claim exists; otherwise, <see langword="false" />.</returns>
-      <exception cref="T:System.ArgumentNullException">
-        <paramref name="type" /> is null.
--or-
-<paramref name="value" /> is null.</exception>
-    </member>
-    <member name="P:System.Security.Claims.ClaimsPrincipal.Identities">
-      <summary>Gets a collection that contains all of the claims identities associated with this claims principal.</summary>
-      <returns>The collection of claims identities.</returns>
-    </member>
-    <member name="P:System.Security.Claims.ClaimsPrincipal.Identity">
-      <summary>Gets the primary claims identity associated with this claims principal.</summary>
-      <returns>The primary claims identity associated with this claims principal.</returns>
     </member>
     <member name="M:System.Security.Claims.ClaimsPrincipal.IsInRole(System.String)">
       <summary>Returns a value that indicates whether the entity (user) represented by this claims principal is in the specified role.</summary>
       <param name="role">The role for which to check.</param>
       <returns>
         <see langword="true" /> if claims principal is in the specified role; otherwise, <see langword="false" />.</returns>
-    </member>
-    <member name="P:System.Security.Claims.ClaimsPrincipal.PrimaryIdentitySelector">
-      <summary>Gets or sets the delegate used to select the claims identity returned by the <see cref="P:System.Security.Claims.ClaimsPrincipal.Identity" /> property.</summary>
-      <returns>The delegate. The default is <see langword="null" />.</returns>
     </member>
     <member name="M:System.Security.Claims.ClaimsPrincipal.WriteTo(System.IO.BinaryWriter)">
       <summary>Serializes using a <see cref="T:System.IO.BinaryWriter" />.</summary>
@@ -524,6 +496,34 @@
       <param name="userData">Additional data provided by the derived type.</param>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="writer" /> is <see langword="null" />.</exception>
+    </member>
+    <member name="P:System.Security.Claims.ClaimsPrincipal.Claims">
+      <summary>Gets a collection that contains all of the claims from all of the claims identities associated with this claims principal.</summary>
+      <returns>The claims associated with this principal.</returns>
+    </member>
+    <member name="P:System.Security.Claims.ClaimsPrincipal.ClaimsPrincipalSelector">
+      <summary>Gets or sets the delegate used to select the claims principal returned by the <see cref="P:System.Security.Claims.ClaimsPrincipal.Current" /> property.</summary>
+      <returns>The delegate. The default is <see langword="null" />.</returns>
+    </member>
+    <member name="P:System.Security.Claims.ClaimsPrincipal.Current">
+      <summary>Gets the current claims principal.</summary>
+      <returns>The current claims principal.</returns>
+    </member>
+    <member name="P:System.Security.Claims.ClaimsPrincipal.CustomSerializationData">
+      <summary>Contains any additional data provided by a derived type. Typically set when calling <see cref="M:System.Security.Claims.ClaimsIdentity.WriteTo(System.IO.BinaryWriter,System.Byte[])" />.</summary>
+      <returns>A <see cref="T:System.Byte" /> array representing the additional serialized data.</returns>
+    </member>
+    <member name="P:System.Security.Claims.ClaimsPrincipal.Identities">
+      <summary>Gets a collection that contains all of the claims identities associated with this claims principal.</summary>
+      <returns>The collection of claims identities.</returns>
+    </member>
+    <member name="P:System.Security.Claims.ClaimsPrincipal.Identity">
+      <summary>Gets the primary claims identity associated with this claims principal.</summary>
+      <returns>The primary claims identity associated with this claims principal.</returns>
+    </member>
+    <member name="P:System.Security.Claims.ClaimsPrincipal.PrimaryIdentitySelector">
+      <summary>Gets or sets the delegate used to select the claims identity returned by the <see cref="P:System.Security.Claims.ClaimsPrincipal.Identity" /> property.</summary>
+      <returns>The delegate. The default is <see langword="null" />.</returns>
     </member>
     <member name="T:System.Security.Claims.ClaimTypes">
       <summary>Defines constants for the well-known claim types that can be assigned to a subject. This class cannot be inherited.</summary>
@@ -798,9 +798,15 @@
       <summary>Initializes a new instance of the <see cref="T:System.Security.Principal.GenericIdentity" /> class representing the user with the specified name and authentication type.</summary>
       <param name="name">The name of the user on whose behalf the code is running.</param>
       <param name="type">The type of authentication used to identify the user.</param>
-      <exception cref="T:System.ArgumentNullException">The <paramref name="name" /> parameter is <see langword="null" />.
--or-
-The <paramref name="type" /> parameter is <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="name" /> parameter is <see langword="null" />.  
+  
+ -or-  
+  
+ The <paramref name="type" /> parameter is <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.Principal.GenericIdentity.Clone">
+      <summary>Creates a new object that is a copy of the current instance.</summary>
+      <returns>A copy of the current instance.</returns>
     </member>
     <member name="P:System.Security.Principal.GenericIdentity.AuthenticationType">
       <summary>Gets the type of authentication used to identify the user.</summary>
@@ -809,10 +815,6 @@ The <paramref name="type" /> parameter is <see langword="null" />.</exception>
     <member name="P:System.Security.Principal.GenericIdentity.Claims">
       <summary>Gets all claims for the user represented by this generic identity.</summary>
       <returns>A collection of claims for this <see cref="T:System.Security.Principal.GenericIdentity" /> object.</returns>
-    </member>
-    <member name="M:System.Security.Principal.GenericIdentity.Clone">
-      <summary>Creates a new object that is a copy of the current instance.</summary>
-      <returns>A copy of the current instance.</returns>
     </member>
     <member name="P:System.Security.Principal.GenericIdentity.IsAuthenticated">
       <summary>Gets a value indicating whether the user has been authenticated.</summary>
@@ -832,15 +834,15 @@ The <paramref name="type" /> parameter is <see langword="null" />.</exception>
       <param name="roles">An array of role names to which the user represented by the <paramref name="identity" /> parameter belongs.</param>
       <exception cref="T:System.ArgumentNullException">The <paramref name="identity" /> parameter is <see langword="null" />.</exception>
     </member>
-    <member name="P:System.Security.Principal.GenericPrincipal.Identity">
-      <summary>Gets the <see cref="T:System.Security.Principal.GenericIdentity" /> of the user represented by the current <see cref="T:System.Security.Principal.GenericPrincipal" />.</summary>
-      <returns>The <see cref="T:System.Security.Principal.GenericIdentity" /> of the user represented by the <see cref="T:System.Security.Principal.GenericPrincipal" />.</returns>
-    </member>
     <member name="M:System.Security.Principal.GenericPrincipal.IsInRole(System.String)">
       <summary>Determines whether the current <see cref="T:System.Security.Principal.GenericPrincipal" /> belongs to the specified role.</summary>
       <param name="role">The name of the role for which to check membership.</param>
       <returns>
         <see langword="true" /> if the current <see cref="T:System.Security.Principal.GenericPrincipal" /> is a member of the specified role; otherwise, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Security.Principal.GenericPrincipal.Identity">
+      <summary>Gets the <see cref="T:System.Security.Principal.GenericIdentity" /> of the user represented by the current <see cref="T:System.Security.Principal.GenericPrincipal" />.</summary>
+      <returns>The <see cref="T:System.Security.Principal.GenericIdentity" /> of the user represented by the <see cref="T:System.Security.Principal.GenericPrincipal" />.</returns>
     </member>
   </members>
 </doc>
