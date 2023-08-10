@@ -83,12 +83,6 @@
 
   
   
-  <dl class="attribute-list">
-    <dt>Implements</dt>
-    <dd>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
-    </dd>
-  </dl>
   
   
   <h2 id="properties">Properties
@@ -122,23 +116,6 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
         <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the BT/BTLE is not enabled
-or when the remote device is disconnected.</p>
-</td>
       </tr>
     </tbody>
   </table>
@@ -192,29 +169,8 @@ or when the remote device is disconnected.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><span class="xref">Task</span></td>
         <td><p>A task indicating whether the method is done or not.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>Thrown when the BT/BTLE is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the create GATT client fails.</p>
 </td>
       </tr>
     </tbody>
@@ -276,27 +232,6 @@ or when the remote device is disconnected.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>Thrown when the BT/BTLE is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the create GATT client fails.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/network.bluetooth.le.gatt.client</span></span></h6>
@@ -307,7 +242,7 @@ or when the remote device is disconnected.</p>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothGatt.cs/#L457">View Source</a>
     </span>
-    <h4 id="Tizen_Network_Bluetooth_BluetoothGattClient_DestroyClient" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.DestroyClient" data-obsolete="Deprecated since API level 6. Please use Dispose() method on BluetoothGattClient." class="obsolete">DestroyClient()</h4>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothGattClient_DestroyClient" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.DestroyClient">DestroyClient()</h4>
     <section>
       <p>Destroy Bluetooth GATT client</p>
 
@@ -316,8 +251,7 @@ or when the remote device is disconnected.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 6. Please use Dispose() method on BluetoothGattClient.&quot;)]
-public void DestroyClient()</code></pre>
+    <pre><code class="lang-csharp hljs">public void DestroyClient()</code></pre>
   </div>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
@@ -349,29 +283,8 @@ public void DestroyClient()</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><span class="xref">Task</span></td>
         <td><p>A task indicating whether the method is done or not.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>Thrown when the BT/BTLE is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the create GATT client fails.</p>
 </td>
       </tr>
     </tbody>
@@ -461,6 +374,42 @@ public void DestroyClient()</code></pre>
   
   
   
+  <a id="Tizen_Network_Bluetooth_BluetoothGattClient_GetAttMtu_" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.GetAttMtu*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothGatt.cs/#L566">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothGattClient_GetAttMtu" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.GetAttMtu">GetAttMtu()</h4>
+    <section>
+      <p>Gets the value of the ATT MTU(Maximum Transmission Unit) for the connection.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int GetAttMtu()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><p>The MTU value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>8</span></h6>
+  
+  
   <a id="Tizen_Network_Bluetooth_BluetoothGattClient_GetService_" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.GetService*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
@@ -511,23 +460,6 @@ public void DestroyClient()</code></pre>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the BT/BTLE is not enabled
-or when the remote device is disconnected, or when the get service fails.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -558,25 +490,8 @@ or when the remote device is disconnected, or when the get service fails.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Network.Bluetooth.BluetoothGattService.html">BluetoothGattService</a>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Network.Bluetooth.BluetoothGattService.html">BluetoothGattService</a>&gt;</td>
         <td><p>The list of services that belongs to the remote device.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the BT/BTLE is not enabled
-or when the remote device is disconnected, or when the get service fails.</p>
 </td>
       </tr>
     </tbody>
@@ -629,25 +544,8 @@ or when the remote device is disconnected, or when the get service fails.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
         <td><p>true on success, false otherwise.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the BT/BTLE is not enabled
-or when the remote device is disconnected, or when the read attribute value fails.</p>
 </td>
       </tr>
     </tbody>
@@ -700,31 +598,52 @@ or when the remote device is disconnected, or when the read attribute value fail
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
         <td><p>true on success, false otherwise.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the BT/BTLE is not enabled
-or when the remote device is disconnected, or when the read attribute value fails.</p>
 </td>
       </tr>
     </tbody>
   </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
+  
+  
+  <a id="Tizen_Network_Bluetooth_BluetoothGattClient_SetAttMtu_" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.SetAttMtu*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothGatt.cs/#L580">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothGattClient_SetAttMtu_System_Int32_" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.SetAttMtu(System.Int32)">SetAttMtu(Int32)</h4>
+    <section>
+      <p>Sets the value of the ATT MTU(Maximum Transmission Unit) for the connection.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetAttMtu(int mtu)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">mtu</span></td>
+        <td><p>The MTU value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>8</span></h6>
   
   
   <a id="Tizen_Network_Bluetooth_BluetoothGattClient_WriteValueAsync_" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.WriteValueAsync*"></a>
@@ -771,25 +690,8 @@ or when the remote device is disconnected, or when the read attribute value fail
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
         <td><p>true on success, false otherwise.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the BT/BTLE is not enabled
-or when the remote device is disconnected or when the write attribute value fails.</p>
 </td>
       </tr>
     </tbody>
@@ -842,25 +744,8 @@ or when the remote device is disconnected or when the write attribute value fail
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
         <td><p>true on success, false otherwise.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the BT/BTLE is not enabled
-or when the remote device is disconnected, or when the write attribute value fails.</p>
 </td>
       </tr>
     </tbody>
@@ -870,6 +755,40 @@ or when the remote device is disconnected, or when the write attribute value fai
   
   <h2 id="events">Events
   </h2>
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothGatt.cs/#L591">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothGattClient_AttMtuChanged" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.AttMtuChanged">AttMtuChanged</h4>
+    <section>
+      <p>The AttMtuChanged event is raised when the MTU value changed.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;AttMtuChangedEventArgs&gt; AttMtuChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Network.Bluetooth.AttMtuChangedEventArgs.html">AttMtuChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>8</span></h6>
+  
   
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
@@ -896,7 +815,7 @@ or when the remote device is disconnected, or when the write attribute value fai
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Network.Bluetooth.GattConnectionStateChangedEventArgs.html">GattConnectionStateChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Network.Bluetooth.GattConnectionStateChangedEventArgs.html">GattConnectionStateChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -930,7 +849,7 @@ or when the remote device is disconnected, or when the write attribute value fai
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Network.Bluetooth.ServiceChangedEventArgs.html">ServiceChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Network.Bluetooth.ServiceChangedEventArgs.html">ServiceChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -939,9 +858,27 @@ or when the remote device is disconnected, or when the write attribute value fai
   <h6><strong>API Level</strong>: <span>9</span></h6>
   <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/network.bluetooth.le.gatt.client</span></span></h6>
   
-  <h2 id="implements">Implements</h2>
+  <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
   </div>
   </div></section>
             </div>

@@ -68,7 +68,7 @@ Keys are always text strings and the value can be any one of the four types: int
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class Preference</code></pre>
+    <pre><code class="lang-csharp hljs">public static class Preference : object</code></pre>
   </div>
 
   
@@ -115,7 +115,7 @@ Keys are always text strings and the value can be any one of the four types: int
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
         <td><p>The list of keys.</p>
 </td>
       </tr>
@@ -196,27 +196,6 @@ Keys are always text strings and the value can be any one of the four types: int
         Console.WriteLine(&quot;user {0}&quot;, value);
     }</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Thrown if the key is an invalid parameter.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
-        <td><p>Thrown when the method failed due to an internal I/O error.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -296,32 +275,6 @@ Note that this is a generic method.</p>
         Console.WriteLine(&quot;user {0}&quot;, value);
     }</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keynotfoundexception">KeyNotFoundException</a></td>
-        <td><p>Thrown if the key is not found.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Thrown if the key is an invalid parameter.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
-        <td><p>Thrown when the method failed due to an internal I/O error.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -370,7 +323,7 @@ Note that this is a generic method.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.weakreference-1">WeakReference</a>&lt;<a class="xref" href="Tizen.Applications.Preference.EventContext.html">Preference.EventContext</a>&gt;</td>
+        <td><span class="xref">WeakReference</span>&lt;<a class="xref" href="Tizen.Applications.Preference.EventContext.html">Preference.EventContext</a>&gt;</td>
         <td><p>The event context of respective key.</p>
 </td>
       </tr>
@@ -397,27 +350,6 @@ Note that this is a generic method.</p>
         context.Changed -= Preference_PreferenceChanged;
     }</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keynotfoundexception">KeyNotFoundException</a></td>
-        <td><p>Thrown if the key is not found.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Thrown if the key is invalid parameter.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <div class="seealso">
     <h5 id="Tizen_Applications_Preference_GetEventContext_System_String__seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Applications.Preference.EventContext.html">Preference.EventContext</a></div>
@@ -467,27 +399,6 @@ Note that this is a generic method.</p>
         string value = Preference.Remove(&quot;active_user&quot;);
     }</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keynotfoundexception">KeyNotFoundException</a></td>
-        <td><p>Thrown if the key is not found.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
-        <td><p>Thrown when the method failed due to an internal I/O error.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -515,22 +426,6 @@ Note that this is a generic method.</p>
     Preference.Set(&quot;brightness&quot;, &quot;0.6&quot;);
     Preference.RemoveAll();</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
-        <td><p>Thrown when the method failed due to an internal I/O error.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -585,27 +480,6 @@ Data types for supported values are: integer, double, string, and bool.</p>
     Preference.Set(&quot;default_volume&quot;, 10);
     Preference.Set(&quot;brightness&quot;, &quot;0.6&quot;);</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Thrown if the key is an invalid parameter.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
-        <td><p>Thrown when the method failed due to an internal I/O error.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   

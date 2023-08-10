@@ -49,7 +49,7 @@
   <div class="entity">
   
   <div class="entity-header w-100 d-flex justify-content-between">
-    <h1 id="Tizen_Applications_ComponentBased_Default_EFLComponentBasedApplication" data-uid="Tizen.Applications.ComponentBased.Default.EFLComponentBasedApplication" data-obsolete="Deprecated since API10. Will be removed in API12." class="mt-0 text-break obsolete"><span class="entity-type">Class</span>
+    <h1 id="Tizen_Applications_ComponentBased_Default_EFLComponentBasedApplication" data-uid="Tizen.Applications.ComponentBased.Default.EFLComponentBasedApplication" class="mt-0 text-break"><span class="entity-type">Class</span>
   EFLComponentBasedApplication
   </h1>
       <div class="contribution align-self-end">
@@ -67,8 +67,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
-public class EFLComponentBasedApplication : ComponentBasedApplication, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class EFLComponentBasedApplication : ComponentBasedApplication</code></pre>
   </div>
 
   
@@ -86,12 +85,6 @@ public class EFLComponentBasedApplication : ComponentBasedApplication, IDisposab
 
   
   
-  <dl class="attribute-list">
-    <dt>Implements</dt>
-    <dd>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
-    </dd>
-  </dl>
   
   
   <h2 id="constructors">Constructors
@@ -102,7 +95,7 @@ public class EFLComponentBasedApplication : ComponentBasedApplication, IDisposab
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.ComponentBased.Default/Tizen.Applications.ComponentBased.Default/EFLComponentBasedApplication.cs/#L25">View Source</a>
     </span>
-    <h4 id="Tizen_Applications_ComponentBased_Default_EFLComponentBasedApplication__ctor_System_Collections_Generic_IDictionary_System_Type_System_String__" data-uid="Tizen.Applications.ComponentBased.Default.EFLComponentBasedApplication.#ctor(System.Collections.Generic.IDictionary{System.Type,System.String})" data-obsolete="Deprecated since API10. Will be removed in API12." class="obsolete">EFLComponentBasedApplication(IDictionary&lt;Type, String&gt;)</h4>
+    <h4 id="Tizen_Applications_ComponentBased_Default_EFLComponentBasedApplication__ctor_IDictionary_Type_System_String__" data-uid="Tizen.Applications.ComponentBased.Default.EFLComponentBasedApplication.#ctor(IDictionary{Type,System.String})">EFLComponentBasedApplication(IDictionary&lt;Type, String&gt;)</h4>
     <section>
       <p>Initializes the ComponentBasedApplication class.</p>
 
@@ -111,8 +104,7 @@ public class EFLComponentBasedApplication : ComponentBasedApplication, IDisposab
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
-public EFLComponentBasedApplication(IDictionary&lt;Type, string&gt; typeInfo)</code></pre>
+    <pre><code class="lang-csharp hljs">public EFLComponentBasedApplication(IDictionary&lt;Type, string&gt; typeInfo)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -125,7 +117,7 @@ public EFLComponentBasedApplication(IDictionary&lt;Type, string&gt; typeInfo)</c
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><span class="xref">IDictionary</span>&lt;<span class="xref">Type</span>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
         <td><span class="parametername">typeInfo</span></td>
         <td><p>The component type information.
 The key should be a class type of BaseComponent subclass.
@@ -145,7 +137,7 @@ The value should be a component id which is declared in tizen-manifest.xml.</p>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.ComponentBased.Default/Tizen.Applications.ComponentBased.Default/EFLComponentBasedApplication.cs/#L86">View Source</a>
     </span>
-    <h4 id="Tizen_Applications_ComponentBased_Default_EFLComponentBasedApplication_OnExit" data-uid="Tizen.Applications.ComponentBased.Default.EFLComponentBasedApplication.OnExit" data-obsolete="Deprecated since API10. Will be removed in API12." class="obsolete">OnExit()</h4>
+    <h4 id="Tizen_Applications_ComponentBased_Default_EFLComponentBasedApplication_OnExit" data-uid="Tizen.Applications.ComponentBased.Default.EFLComponentBasedApplication.OnExit">OnExit()</h4>
     <section>
       <p>This method will be called to exit main-loop</p>
 
@@ -154,8 +146,7 @@ The value should be a component id which is declared in tizen-manifest.xml.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
-protected override void OnExit()</code></pre>
+    <pre><code class="lang-csharp hljs">protected override void OnExit()</code></pre>
   </div>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="Tizen.Applications.ComponentBased.Common.ComponentBasedApplication.html#Tizen_Applications_ComponentBased_Common_ComponentBasedApplication_OnExit">ComponentBasedApplication.OnExit()</a></div>
@@ -168,7 +159,7 @@ protected override void OnExit()</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.ComponentBased.Default/Tizen.Applications.ComponentBased.Default/EFLComponentBasedApplication.cs/#L61">View Source</a>
     </span>
-    <h4 id="Tizen_Applications_ComponentBased_Default_EFLComponentBasedApplication_OnFinished" data-uid="Tizen.Applications.ComponentBased.Default.EFLComponentBasedApplication.OnFinished" data-obsolete="Deprecated since API10. Will be removed in API12." class="obsolete">OnFinished()</h4>
+    <h4 id="Tizen_Applications_ComponentBased_Default_EFLComponentBasedApplication_OnFinished" data-uid="Tizen.Applications.ComponentBased.Default.EFLComponentBasedApplication.OnFinished">OnFinished()</h4>
     <section>
       <p>This method will be called after exiting main-loop</p>
 
@@ -177,8 +168,7 @@ protected override void OnExit()</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
-protected override void OnFinished()</code></pre>
+    <pre><code class="lang-csharp hljs">protected override void OnFinished()</code></pre>
   </div>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="Tizen.Applications.ComponentBased.Common.ComponentBasedApplication.html#Tizen_Applications_ComponentBased_Common_ComponentBasedApplication_OnFinished">ComponentBasedApplication.OnFinished()</a></div>
@@ -191,7 +181,7 @@ protected override void OnFinished()</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.ComponentBased.Default/Tizen.Applications.ComponentBased.Default/EFLComponentBasedApplication.cs/#L35">View Source</a>
     </span>
-    <h4 id="Tizen_Applications_ComponentBased_Default_EFLComponentBasedApplication_OnInit_System_String___" data-uid="Tizen.Applications.ComponentBased.Default.EFLComponentBasedApplication.OnInit(System.String[])" data-obsolete="Deprecated since API10. Will be removed in API12." class="obsolete">OnInit(String[])</h4>
+    <h4 id="Tizen_Applications_ComponentBased_Default_EFLComponentBasedApplication_OnInit_System_String___" data-uid="Tizen.Applications.ComponentBased.Default.EFLComponentBasedApplication.OnInit(System.String[])">OnInit(String[])</h4>
     <section>
       <p>This method will be called before running main-loop</p>
 
@@ -200,8 +190,7 @@ protected override void OnFinished()</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
-protected override void OnInit(string[] args)</code></pre>
+    <pre><code class="lang-csharp hljs">protected override void OnInit(string[] args)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -231,7 +220,7 @@ protected override void OnInit(string[] args)</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.ComponentBased.Default/Tizen.Applications.ComponentBased.Default/EFLComponentBasedApplication.cs/#L76">View Source</a>
     </span>
-    <h4 id="Tizen_Applications_ComponentBased_Default_EFLComponentBasedApplication_OnRun" data-uid="Tizen.Applications.ComponentBased.Default.EFLComponentBasedApplication.OnRun" data-obsolete="Deprecated since API10. Will be removed in API12." class="obsolete">OnRun()</h4>
+    <h4 id="Tizen_Applications_ComponentBased_Default_EFLComponentBasedApplication_OnRun" data-uid="Tizen.Applications.ComponentBased.Default.EFLComponentBasedApplication.OnRun">OnRun()</h4>
     <section>
       <p>This method will be called to start main-loop</p>
 
@@ -240,17 +229,34 @@ protected override void OnInit(string[] args)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
-protected override void OnRun()</code></pre>
+    <pre><code class="lang-csharp hljs">protected override void OnRun()</code></pre>
   </div>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="Tizen.Applications.ComponentBased.Common.ComponentBasedApplication.html#Tizen_Applications_ComponentBased_Common_ComponentBasedApplication_OnRun">ComponentBasedApplication.OnRun()</a></div>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
-  <h2 id="implements">Implements</h2>
+  <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
   </div>
   </div></section>
             </div>

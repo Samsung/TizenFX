@@ -67,7 +67,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Progress : Control, INotifyPropertyChanged, IDynamicResourceHandler, IElement, INameScope, IElementController, IDisposable, IResourcesProvider, IAtspiValue</code></pre>
+    <pre><code class="lang-csharp hljs">public class Progress : Control, IDynamicResourceHandler, IElement, INameScope, IElementController, System.IDisposable, IResourcesProvider, IAtspiValue</code></pre>
   </div>
 
   
@@ -77,7 +77,7 @@
       <div class="pdl-holder">
         <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
@@ -85,7 +85,7 @@
         <div class="pdl"><a class="xref" href="Tizen.NUI.ViewWrapper.html">ViewWrapper</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.CustomView.html">CustomView</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.VisualView.html">VisualView</a></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Components.Control</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Control.html">Control</a></div>
         <div><span class="xref">Progress</span></div>
       </div>
     </dd>
@@ -96,8 +96,11 @@
   <dl class="attribute-list">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Accessibility.IAtspiValue.html">IAtspiValue</a></div>
     </dd>
   </dl>
   
@@ -199,6 +202,404 @@
   </table>
   
   <h6><strong>API Level</strong>: <span>8</span></h6>
+  
+  <h2 id="fields">Fields
+  </h2>
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/ProgressBindableProperty.cs/#L120">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Progress_BufferColorProperty" data-uid="Tizen.NUI.Components.Progress.BufferColorProperty">BufferColorProperty</h4>
+    <section>
+      <p>BufferColorProperty</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty BufferColorProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/ProgressBindableProperty.cs/#L48">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Progress_BufferImageURLProperty" data-uid="Tizen.NUI.Components.Progress.BufferImageURLProperty">BufferImageURLProperty</h4>
+    <section>
+      <p>BufferImageURLProperty</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty BufferImageURLProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Progress.cs/#L100">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Progress_BufferValueProperty" data-uid="Tizen.NUI.Components.Progress.BufferValueProperty">BufferValueProperty</h4>
+    <section>
+      <p>BufferValueProperty</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty BufferValueProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Progress.cs/#L77">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Progress_CurrentValueProperty" data-uid="Tizen.NUI.Components.Progress.CurrentValueProperty">CurrentValueProperty</h4>
+    <section>
+      <p>CurrentValueProperty</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty CurrentValueProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/ProgressBindableProperty.cs/#L66">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Progress_IndeterminateImageUrlProperty" data-uid="Tizen.NUI.Components.Progress.IndeterminateImageUrlProperty">IndeterminateImageUrlProperty</h4>
+    <section>
+      <p>IndeterminateImageUrlProperty</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty IndeterminateImageUrlProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Progress.cs/#L39">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Progress_MaxValueProperty" data-uid="Tizen.NUI.Components.Progress.MaxValueProperty">MaxValueProperty</h4>
+    <section>
+      <p>MaxValueProperty</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty MaxValueProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Progress.cs/#L58">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Progress_MinValueProperty" data-uid="Tizen.NUI.Components.Progress.MinValueProperty">MinValueProperty</h4>
+    <section>
+      <p>MinValueProperty</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty MinValueProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/ProgressBindableProperty.cs/#L102">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Progress_ProgressColorProperty" data-uid="Tizen.NUI.Components.Progress.ProgressColorProperty">ProgressColorProperty</h4>
+    <section>
+      <p>ProgressColorProperty</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty ProgressColorProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/ProgressBindableProperty.cs/#L30">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Progress_ProgressImageURLProperty" data-uid="Tizen.NUI.Components.Progress.ProgressImageURLProperty">ProgressImageURLProperty</h4>
+    <section>
+      <p>ProgressImageURLProperty</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty ProgressImageURLProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Progress.cs/#L123">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Progress_ProgressStateProperty" data-uid="Tizen.NUI.Components.Progress.ProgressStateProperty">ProgressStateProperty</h4>
+    <section>
+      <p>ProgressStateProperty</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty ProgressStateProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/ProgressBindableProperty.cs/#L84">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Progress_TrackColorProperty" data-uid="Tizen.NUI.Components.Progress.TrackColorProperty">TrackColorProperty</h4>
+    <section>
+      <p>TrackColorProperty</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty TrackColorProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/ProgressBindableProperty.cs/#L12">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Progress_TrackImageURLProperty" data-uid="Tizen.NUI.Components.Progress.TrackImageURLProperty">TrackImageURLProperty</h4>
+    <section>
+      <p>TrackImageURLProperty</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty TrackImageURLProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
   
   <h2 id="properties">Properties
   </h2>
@@ -371,22 +772,6 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
         <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.nullreferenceexception">NullReferenceException</a></td>
-        <td><p>Thrown when setting null value.</p>
-</td>
       </tr>
     </tbody>
   </table>
@@ -679,6 +1064,45 @@
   <h2 id="methods">Methods
   </h2>
   
+  <a id="Tizen_NUI_Components_Progress_ApplyStyle_" data-uid="Tizen.NUI.Components.Progress.ApplyStyle*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Progress.cs/#L493">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Progress_ApplyStyle_Tizen_NUI_BaseComponents_ViewStyle_" data-uid="Tizen.NUI.Components.Progress.ApplyStyle(Tizen.NUI.BaseComponents.ViewStyle)">ApplyStyle(ViewStyle)</h4>
+    <section>
+      <p>Apply style instance to the view.
+Basically it sets the bindable property to the value of the bindable property with same name in the style.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void ApplyStyle(ViewStyle style)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.ViewStyle.html">ViewStyle</a></td>
+        <td><span class="parametername">style</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_ApplyStyle_Tizen_NUI_BaseComponents_ViewStyle_">View.ApplyStyle(ViewStyle)</a></div>
+  
+  
+  
   <a id="Tizen_NUI_Components_Progress_ChangeImageState_" data-uid="Tizen.NUI.Components.Progress.ChangeImageState*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
@@ -750,7 +1174,7 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Tizen.NUI.Components.Control.CreateViewStyle()</span></div>
+  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_CreateViewStyle">Control.CreateViewStyle()</a></div>
   
   <h6><strong>API Level</strong>: <span>8</span></h6>
   
@@ -790,16 +1214,376 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Tizen.NUI.Components.Control.Dispose(Tizen.NUI.DisposeTypes)</span></div>
+  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_Dispose_Tizen_NUI_DisposeTypes_">Control.Dispose(DisposeTypes)</a></div>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
+  
+  <a id="Tizen_NUI_Components_Progress_OnEnabled_" data-uid="Tizen.NUI.Components.Progress.OnEnabled*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Progress.cs/#L783">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Progress_OnEnabled_System_Boolean_" data-uid="Tizen.NUI.Components.Progress.OnEnabled(System.Boolean)">OnEnabled(Boolean)</h4>
+    <section>
+      <p>Internal callback of enabled property changes.
+Inherited view can override this method to implements enabled property changes.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnEnabled(bool enabled)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">enabled</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_OnEnabled_System_Boolean_">View.OnEnabled(Boolean)</a></div>
+  
+  
+  
+  <a id="Tizen_NUI_Components_Progress_OnInitialize_" data-uid="Tizen.NUI.Components.Progress.OnInitialize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Progress.cs/#L477">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Progress_OnInitialize" data-uid="Tizen.NUI.Components.Progress.OnInitialize">OnInitialize()</h4>
+    <section>
+      <p>Overrides the parent method.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void OnInitialize()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_OnInitialize">Control.OnInitialize()</a></div>
+  
+  
+  
+  <a id="Tizen_NUI_Components_Progress_OnRelayout_" data-uid="Tizen.NUI.Components.Progress.OnRelayout*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Progress.cs/#L623">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Progress_OnRelayout_Tizen_NUI_Vector2_Tizen_NUI_RelayoutContainer_" data-uid="Tizen.NUI.Components.Progress.OnRelayout(Tizen.NUI.Vector2,Tizen.NUI.RelayoutContainer)">OnRelayout(Vector2, RelayoutContainer)</h4>
+    <section>
+      <p>Called after the size negotiation has been finished for this control.<br>
+The control is expected to assign this given size to itself or its children.<br>
+Should be overridden by derived classes if they need to layout views differently after certain operations like add or remove views, resize, or after changing specific properties.<br>
+As this function is called from inside the size negotiation algorithm, you cannot call RequestRelayout (the call would just be ignored).<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void OnRelayout(Vector2 size, RelayoutContainer container)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector2.html">Vector2</a></td>
+        <td><span class="parametername">size</span></td>
+        <td><p>The allocated size.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.RelayoutContainer.html">RelayoutContainer</a></td>
+        <td><span class="parametername">container</span></td>
+        <td><p>The control should add views to this container that it is not able to allocate a size for.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_OnRelayout_Tizen_NUI_Vector2_Tizen_NUI_RelayoutContainer_">Control.OnRelayout(Vector2, RelayoutContainer)</a></div>
+  
+  
+  <h2 id="eii">Explicit Interface Implementations
+  </h2>
+  
+  <a id="Tizen_NUI_Components_Progress_Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetCurrent_" data-uid="Tizen.NUI.Components.Progress.Tizen#NUI#Accessibility#IAtspiValue#AccessibilityGetCurrent*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Progress.cs/#L535">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Progress_Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetCurrent" data-uid="Tizen.NUI.Components.Progress.Tizen#NUI#Accessibility#IAtspiValue#AccessibilityGetCurrent">IAtspiValue.AccessibilityGetCurrent()</h4>
+    <section>
+      <p>Gets the current value for Accessibility.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">double IAtspiValue.AccessibilityGetCurrent()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_Components_Progress_Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetMaximum_" data-uid="Tizen.NUI.Components.Progress.Tizen#NUI#Accessibility#IAtspiValue#AccessibilityGetMaximum*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Progress.cs/#L566">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Progress_Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetMaximum" data-uid="Tizen.NUI.Components.Progress.Tizen#NUI#Accessibility#IAtspiValue#AccessibilityGetMaximum">IAtspiValue.AccessibilityGetMaximum()</h4>
+    <section>
+      <p>Gets maximum value for Accessibility.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">double IAtspiValue.AccessibilityGetMaximum()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_Components_Progress_Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetMinimum_" data-uid="Tizen.NUI.Components.Progress.Tizen#NUI#Accessibility#IAtspiValue#AccessibilityGetMinimum*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Progress.cs/#L519">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Progress_Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetMinimum" data-uid="Tizen.NUI.Components.Progress.Tizen#NUI#Accessibility#IAtspiValue#AccessibilityGetMinimum">IAtspiValue.AccessibilityGetMinimum()</h4>
+    <section>
+      <p>Gets minimum value for Accessibility.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">double IAtspiValue.AccessibilityGetMinimum()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_Components_Progress_Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetMinimumIncrement_" data-uid="Tizen.NUI.Components.Progress.Tizen#NUI#Accessibility#IAtspiValue#AccessibilityGetMinimumIncrement*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Progress.cs/#L579">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Progress_Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetMinimumIncrement" data-uid="Tizen.NUI.Components.Progress.Tizen#NUI#Accessibility#IAtspiValue#AccessibilityGetMinimumIncrement">IAtspiValue.AccessibilityGetMinimumIncrement()</h4>
+    <section>
+      
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">double IAtspiValue.AccessibilityGetMinimumIncrement()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_Components_Progress_Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetValueText_" data-uid="Tizen.NUI.Components.Progress.Tizen#NUI#Accessibility#IAtspiValue#AccessibilityGetValueText*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Progress.cs/#L551">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Progress_Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetValueText" data-uid="Tizen.NUI.Components.Progress.Tizen#NUI#Accessibility#IAtspiValue#AccessibilityGetValueText">IAtspiValue.AccessibilityGetValueText()</h4>
+    <section>
+      <p>Formatted current value.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string IAtspiValue.AccessibilityGetValueText()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_Components_Progress_Tizen_NUI_Accessibility_IAtspiValue_AccessibilitySetCurrent_" data-uid="Tizen.NUI.Components.Progress.Tizen#NUI#Accessibility#IAtspiValue#AccessibilitySetCurrent*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Progress.cs/#L557">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Progress_Tizen_NUI_Accessibility_IAtspiValue_AccessibilitySetCurrent_System_Double_" data-uid="Tizen.NUI.Components.Progress.Tizen#NUI#Accessibility#IAtspiValue#AccessibilitySetCurrent(System.Double)">IAtspiValue.AccessibilitySetCurrent(Double)</h4>
+    <section>
+      
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IAtspiValue.AccessibilitySetCurrent(double value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><span class="parametername">value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
   <h2 id="implements">Implements</h2>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">System.ComponentModel.INotifyPropertyChanged</a>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
   </div>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Accessibility.IAtspiValue.html">IAtspiValue</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
   </div>
   </div></section>
             </div>

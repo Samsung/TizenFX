@@ -873,7 +873,7 @@ To actually start playing any image object&apos;s animation, <a class="xref" hre
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">IntPtr</a></td>
+        <td><span class="xref">IntPtr</span></td>
         <td><p>The new object, otherwise null if it cannot be created.</p>
 </td>
       </tr>
@@ -944,9 +944,63 @@ To actually start playing any image object&apos;s animation, <a class="xref" hre
   <a id="ElmSharp_Image_Load_" data-uid="ElmSharp.Image.Load*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/ElmSharp/ElmSharp/Image.cs/#L484">View Source</a>
+    </span>
+    <h4 id="ElmSharp_Image_Load_Stream_" data-uid="ElmSharp.Image.Load(Stream)">Load(Stream)</h4>
+    <section>
+      <p>Sets the stream that is used as the image&apos;s source.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Load(Stream stream)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Stream</span></td>
+        <td><span class="parametername">stream</span></td>
+        <td><p>The stream that is used as an image source.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>(true = success, false = error)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>preview</span></h6>
+  
+  
+  <a id="ElmSharp_Image_Load_" data-uid="ElmSharp.Image.Load*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/ElmSharp/ElmSharp/Image.cs/#L467">View Source</a>
     </span>
-    <h4 id="ElmSharp_Image_Load_System_Byte__System_Int64_" data-uid="ElmSharp.Image.Load(System.Byte*,System.Int64)" data-obsolete="This method will be removed. Use Load(Stream stream) instead." class="obsolete">Load(Byte*, Int64)</h4>
+    <h4 id="ElmSharp_Image_Load_System_Byte__System_Int64_" data-uid="ElmSharp.Image.Load(System.Byte*,System.Int64)">Load(Byte*, Int64)</h4>
     <section>
       <p>Sets a location in the memory to be used as an image object&apos;s source bitmap.</p>
 
@@ -955,8 +1009,7 @@ To actually start playing any image object&apos;s animation, <a class="xref" hre
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This method will be removed. Use Load(Stream stream) instead.&quot;)]
-public bool Load(byte *img, long size)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool Load(byte *img, long size)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -1003,60 +1056,6 @@ public bool Load(byte *img, long size)</code></pre>
 the format string should be something like &quot;png&quot;, &quot;jpg&quot;, &quot;tga&quot;, &quot;tiff&quot;, &quot;bmp&quot; etc, when provided (null, on the contrary).
 This improves the loader performance as it tries the &quot;correct&quot; loader first, before trying a range of other possible loaders until one succeeds.</p>
 </div>
-  
-  <h6><strong>API Level</strong>: <span>preview</span></h6>
-  
-  
-  <a id="ElmSharp_Image_Load_" data-uid="ElmSharp.Image.Load*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/ElmSharp/ElmSharp/Image.cs/#L484">View Source</a>
-    </span>
-    <h4 id="ElmSharp_Image_Load_System_IO_Stream_" data-uid="ElmSharp.Image.Load(System.IO.Stream)">Load(Stream)</h4>
-    <section>
-      <p>Sets the stream that is used as the image&apos;s source.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Load(Stream stream)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
-        <td><span class="parametername">stream</span></td>
-        <td><p>The stream that is used as an image source.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td><p>(true = success, false = error)</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>preview</span></h6>
   
@@ -1120,7 +1119,7 @@ This improves the loader performance as it tries the &quot;correct&quot; loader 
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/ElmSharp/ElmSharp/Image.cs/#L447">View Source</a>
     </span>
-    <h4 id="ElmSharp_Image_Load_System_Uri_" data-uid="ElmSharp.Image.Load(System.Uri)">Load(Uri)</h4>
+    <h4 id="ElmSharp_Image_Load_Uri_" data-uid="ElmSharp.Image.Load(Uri)">Load(Uri)</h4>
     <section>
       <p>Sets the URI that is used as the image&apos;s source.</p>
 
@@ -1142,7 +1141,7 @@ This improves the loader performance as it tries the &quot;correct&quot; loader 
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uri">Uri</a></td>
+        <td><span class="xref">Uri</span></td>
         <td><span class="parametername">uri</span></td>
         <td><p>The URI to the file that is used as an image source.</p>
 </td>
@@ -1174,7 +1173,7 @@ This improves the loader performance as it tries the &quot;correct&quot; loader 
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/ElmSharp/ElmSharp/Image.cs/#L583">View Source</a>
     </span>
-    <h4 id="ElmSharp_Image_LoadAsync_System_IO_Stream_System_Threading_CancellationToken_" data-uid="ElmSharp.Image.LoadAsync(System.IO.Stream,System.Threading.CancellationToken)">LoadAsync(Stream, CancellationToken)</h4>
+    <h4 id="ElmSharp_Image_LoadAsync_Stream_CancellationToken_" data-uid="ElmSharp.Image.LoadAsync(Stream,CancellationToken)">LoadAsync(Stream, CancellationToken)</h4>
     <section>
       <p>Sets the stream that is used as the image&apos;s source with async.</p>
 
@@ -1183,7 +1182,7 @@ This improves the loader performance as it tries the &quot;correct&quot; loader 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; LoadAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; LoadAsync(Stream stream, CancellationToken cancellationToken = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -1196,13 +1195,13 @@ This improves the loader performance as it tries the &quot;correct&quot; loader 
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><span class="xref">Stream</span></td>
         <td><span class="parametername">stream</span></td>
         <td><p>The stream that is used as an image source.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="xref">CancellationToken</span></td>
         <td><span class="parametername">cancellationToken</span></td>
         <td><p>The cancellation token.</p>
 </td>
@@ -1219,7 +1218,7 @@ This improves the loader performance as it tries the &quot;correct&quot; loader 
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
         <td><p>(true = success, false = error)</p>
 </td>
       </tr>
@@ -1234,7 +1233,7 @@ This improves the loader performance as it tries the &quot;correct&quot; loader 
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/ElmSharp/ElmSharp/Image.cs/#L510">View Source</a>
     </span>
-    <h4 id="ElmSharp_Image_LoadAsync_System_String_System_Threading_CancellationToken_" data-uid="ElmSharp.Image.LoadAsync(System.String,System.Threading.CancellationToken)">LoadAsync(String, CancellationToken)</h4>
+    <h4 id="ElmSharp_Image_LoadAsync_System_String_CancellationToken_" data-uid="ElmSharp.Image.LoadAsync(System.String,CancellationToken)">LoadAsync(String, CancellationToken)</h4>
     <section>
       <p>Sets the file that is used as the image&apos;s source with async.</p>
 
@@ -1243,7 +1242,7 @@ This improves the loader performance as it tries the &quot;correct&quot; loader 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; LoadAsync(string file, CancellationToken cancellationToken = default(CancellationToken))</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; LoadAsync(string file, CancellationToken cancellationToken = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -1262,7 +1261,7 @@ This improves the loader performance as it tries the &quot;correct&quot; loader 
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="xref">CancellationToken</span></td>
         <td><span class="parametername">cancellationToken</span></td>
         <td><p>The cancellation token.</p>
 </td>
@@ -1279,7 +1278,7 @@ This improves the loader performance as it tries the &quot;correct&quot; loader 
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
         <td><p>(true = success, false = error)</p>
 </td>
       </tr>
@@ -1294,7 +1293,7 @@ This improves the loader performance as it tries the &quot;correct&quot; loader 
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/ElmSharp/ElmSharp/Image.cs/#L568">View Source</a>
     </span>
-    <h4 id="ElmSharp_Image_LoadAsync_System_Uri_System_Threading_CancellationToken_" data-uid="ElmSharp.Image.LoadAsync(System.Uri,System.Threading.CancellationToken)">LoadAsync(Uri, CancellationToken)</h4>
+    <h4 id="ElmSharp_Image_LoadAsync_Uri_CancellationToken_" data-uid="ElmSharp.Image.LoadAsync(Uri,CancellationToken)">LoadAsync(Uri, CancellationToken)</h4>
     <section>
       <p>Sets the URI that is used as the image&apos;s source with async.</p>
 
@@ -1303,7 +1302,7 @@ This improves the loader performance as it tries the &quot;correct&quot; loader 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; LoadAsync(Uri uri, CancellationToken cancellationToken = default(CancellationToken))</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; LoadAsync(Uri uri, CancellationToken cancellationToken = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -1316,13 +1315,13 @@ This improves the loader performance as it tries the &quot;correct&quot; loader 
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uri">Uri</a></td>
+        <td><span class="xref">Uri</span></td>
         <td><span class="parametername">uri</span></td>
         <td><p>The URI to the file that is used as an image source.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="xref">CancellationToken</span></td>
         <td><span class="parametername">cancellationToken</span></td>
         <td><p>The cancellation token.</p>
 </td>
@@ -1339,7 +1338,7 @@ This improves the loader performance as it tries the &quot;correct&quot; loader 
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
         <td><p>(true = success, false = error)</p>
 </td>
       </tr>
@@ -1478,7 +1477,7 @@ This improves the loader performance as it tries the &quot;correct&quot; loader 
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></td>
+        <td><span class="xref">EventHandler</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -1512,7 +1511,7 @@ This improves the loader performance as it tries the &quot;correct&quot; loader 
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></td>
+        <td><span class="xref">EventHandler</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -1546,7 +1545,7 @@ This improves the loader performance as it tries the &quot;correct&quot; loader 
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></td>
+        <td><span class="xref">EventHandler</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -1570,6 +1569,27 @@ This improves the loader performance as it tries the &quot;correct&quot; loader 
   </div>
   <div>
       <a class="xref" href="ElmSharp.Wearable.RotaryEventExtensions.html#ElmSharp_Wearable_RotaryEventExtensions_Deactivate_ElmSharp_EvasObject_">RotaryEventExtensions.Deactivate(EvasObject)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
   </div>
   </div></section>
             </div>

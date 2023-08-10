@@ -69,7 +69,7 @@ This class is accessed by using a constructor to create a new instance of this o
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Attributes : IDictionary&lt;string, object&gt;, ICollection&lt;KeyValuePair&lt;string, object&gt;&gt;, IEnumerable&lt;KeyValuePair&lt;string, object&gt;&gt;, IEnumerable, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class Attributes : IDictionary&lt;string, object&gt;, IDisposable</code></pre>
   </div>
 
   
@@ -88,11 +88,7 @@ This class is accessed by using a constructor to create a new instance of this o
   <dl class="attribute-list">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a>&gt;</div>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a>&gt;&gt;</div>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a>&gt;&gt;</div>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">IEnumerable</a></div>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+      <div class="pdl"><span class="xref">IDisposable</span></div>
     </dd>
   </dl>
   
@@ -118,27 +114,6 @@ This class is accessed by using a constructor to create a new instance of this o
   </div>
   <h5 id="Tizen_Network_IoTConnectivity_Attributes__ctor_examples">Examples</h5>
   <pre><code>    Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes();</code></pre>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>Thrown when the iotcon is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></td>
-        <td><p>Thrown when there is not enough memory.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/iot.ocf</span></span></h6>
@@ -314,7 +289,7 @@ This class is accessed by using a constructor to create a new instance of this o
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><span class="xref">ICollection</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
         <td><p>All the attribute keys.</p>
 </td>
       </tr>
@@ -357,7 +332,7 @@ This class is accessed by using a constructor to create a new instance of this o
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a>&gt;</td>
+        <td><span class="xref">ICollection</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a>&gt;</td>
         <td><p>All the attribute values.</p>
 </td>
       </tr>
@@ -381,7 +356,7 @@ This class is accessed by using a constructor to create a new instance of this o
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/Attributes.cs/#L197">View Source</a>
     </span>
-    <h4 id="Tizen_Network_IoTConnectivity_Attributes_Add_System_Collections_Generic_KeyValuePair_System_String_System_Object__" data-uid="Tizen.Network.IoTConnectivity.Attributes.Add(System.Collections.Generic.KeyValuePair{System.String,System.Object})">Add(KeyValuePair&lt;String, Object&gt;)</h4>
+    <h4 id="Tizen_Network_IoTConnectivity_Attributes_Add_KeyValuePair_System_String_System_Object__" data-uid="Tizen.Network.IoTConnectivity.Attributes.Add(KeyValuePair{System.String,System.Object})">Add(KeyValuePair&lt;String, Object&gt;)</h4>
     <section>
       <p>Adds the attribute key and a value as a key value pair.</p>
 
@@ -403,19 +378,18 @@ This class is accessed by using a constructor to create a new instance of this o
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a>&gt;</td>
+        <td><span class="xref">KeyValuePair</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a>&gt;</td>
         <td><span class="parametername">item</span></td>
         <td><p>The key value pair to add.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Network_IoTConnectivity_Attributes_Add_System_Collections_Generic_KeyValuePair_System_String_System_Object___examples">Examples</h5>
+  <h5 id="Tizen_Network_IoTConnectivity_Attributes_Add_KeyValuePair_System_String_System_Object___examples">Examples</h5>
   <pre><code>    Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes();
     attributes.Add(new KeyValuePair&lt;string, object> (&quot;state&quot;, &quot;ON&quot;));</code></pre>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
-  <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/iot.ocf</span></span></h6>
   
   
   <a id="Tizen_Network_IoTConnectivity_Attributes_Add_" data-uid="Tizen.Network.IoTConnectivity.Attributes.Add*"></a>
@@ -486,27 +460,6 @@ This class is accessed by using a constructor to create a new instance of this o
   <pre><code>    Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes();
     attributes.Add(&quot;brightness&quot;, 50);
     attributes.Clear();</code></pre>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>Thrown when the iotcon is not supported</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the operation is invalid</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/iot.ocf</span></span></h6>
@@ -517,7 +470,7 @@ This class is accessed by using a constructor to create a new instance of this o
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/Attributes.cs/#L335">View Source</a>
     </span>
-    <h4 id="Tizen_Network_IoTConnectivity_Attributes_Contains_System_Collections_Generic_KeyValuePair_System_String_System_Object__" data-uid="Tizen.Network.IoTConnectivity.Attributes.Contains(System.Collections.Generic.KeyValuePair{System.String,System.Object})">Contains(KeyValuePair&lt;String, Object&gt;)</h4>
+    <h4 id="Tizen_Network_IoTConnectivity_Attributes_Contains_KeyValuePair_System_String_System_Object__" data-uid="Tizen.Network.IoTConnectivity.Attributes.Contains(KeyValuePair{System.String,System.Object})">Contains(KeyValuePair&lt;String, Object&gt;)</h4>
     <section>
       <p>Checks whether the given key value pair exists in attributes collection.</p>
 
@@ -539,7 +492,7 @@ This class is accessed by using a constructor to create a new instance of this o
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a>&gt;</td>
+        <td><span class="xref">KeyValuePair</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a>&gt;</td>
         <td><span class="parametername">item</span></td>
         <td><p>The status key value pair.</p>
 </td>
@@ -562,7 +515,7 @@ This class is accessed by using a constructor to create a new instance of this o
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Network_IoTConnectivity_Attributes_Contains_System_Collections_Generic_KeyValuePair_System_String_System_Object___examples">Examples</h5>
+  <h5 id="Tizen_Network_IoTConnectivity_Attributes_Contains_KeyValuePair_System_String_System_Object___examples">Examples</h5>
   <pre><code>    Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes() {
         { &quot;state&quot;, &quot;ON&quot; },
         { &quot;dim&quot;, 10 }
@@ -639,7 +592,7 @@ This class is accessed by using a constructor to create a new instance of this o
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/Attributes.cs/#L375">View Source</a>
     </span>
-    <h4 id="Tizen_Network_IoTConnectivity_Attributes_CopyTo_System_Collections_Generic_KeyValuePair_System_String_System_Object____System_Int32_" data-uid="Tizen.Network.IoTConnectivity.Attributes.CopyTo(System.Collections.Generic.KeyValuePair{System.String,System.Object}[],System.Int32)">CopyTo(KeyValuePair&lt;String, Object&gt;[], Int32)</h4>
+    <h4 id="Tizen_Network_IoTConnectivity_Attributes_CopyTo_KeyValuePair_System_String_System_Object____System_Int32_" data-uid="Tizen.Network.IoTConnectivity.Attributes.CopyTo(KeyValuePair{System.String,System.Object}[],System.Int32)">CopyTo(KeyValuePair&lt;String, Object&gt;[], Int32)</h4>
     <section>
       <p>Copies the elements of the attributes to an array, starting at a particular index.</p>
 
@@ -661,7 +614,7 @@ This class is accessed by using a constructor to create a new instance of this o
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a>&gt;[]</td>
+        <td><span class="xref">KeyValuePair</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a>&gt;[]</td>
         <td><span class="parametername">array</span></td>
         <td><p>The destination array.</p>
 </td>
@@ -674,7 +627,7 @@ This class is accessed by using a constructor to create a new instance of this o
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Network_IoTConnectivity_Attributes_CopyTo_System_Collections_Generic_KeyValuePair_System_String_System_Object____System_Int32__examples">Examples</h5>
+  <h5 id="Tizen_Network_IoTConnectivity_Attributes_CopyTo_KeyValuePair_System_String_System_Object____System_Int32__examples">Examples</h5>
   <pre><code>    Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes() {
         { &quot;state&quot;, &quot;ON&quot; },
         { &quot;dim&quot;, 10 }
@@ -792,7 +745,7 @@ This class is accessed by using a constructor to create a new instance of this o
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1">IEnumerator</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a>&gt;&gt;</td>
+        <td><span class="xref">IEnumerator</span>&lt;<span class="xref">KeyValuePair</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a>&gt;&gt;</td>
         <td><p>An enumerator that can be used to iterate through the collection.</p>
 </td>
       </tr>
@@ -816,7 +769,7 @@ This class is accessed by using a constructor to create a new instance of this o
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/Attributes.cs/#L418">View Source</a>
     </span>
-    <h4 id="Tizen_Network_IoTConnectivity_Attributes_Remove_System_Collections_Generic_KeyValuePair_System_String_System_Object__" data-uid="Tizen.Network.IoTConnectivity.Attributes.Remove(System.Collections.Generic.KeyValuePair{System.String,System.Object})">Remove(KeyValuePair&lt;String, Object&gt;)</h4>
+    <h4 id="Tizen_Network_IoTConnectivity_Attributes_Remove_KeyValuePair_System_String_System_Object__" data-uid="Tizen.Network.IoTConnectivity.Attributes.Remove(KeyValuePair{System.String,System.Object})">Remove(KeyValuePair&lt;String, Object&gt;)</h4>
     <section>
       <p>Removes an attribute from collection.</p>
 
@@ -838,7 +791,7 @@ This class is accessed by using a constructor to create a new instance of this o
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a>&gt;</td>
+        <td><span class="xref">KeyValuePair</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a>&gt;</td>
         <td><span class="parametername">item</span></td>
         <td><p>The attributes element to remove.</p>
 </td>
@@ -861,42 +814,15 @@ This class is accessed by using a constructor to create a new instance of this o
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Network_IoTConnectivity_Attributes_Remove_System_Collections_Generic_KeyValuePair_System_String_System_Object___examples">Examples</h5>
+  <h5 id="Tizen_Network_IoTConnectivity_Attributes_Remove_KeyValuePair_System_String_System_Object___examples">Examples</h5>
   <pre><code>    Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes() {
         { &quot;state&quot;, &quot;ON&quot; },
         { &quot;dim&quot;, 10 }
     };
     if (attributes.Remove(new KeyValuePair&lt;string, object>(&quot;dim&quot;, 10)))
         Console.WriteLine(&quot;Remove was successful&quot;);</code></pre>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>Thrown when the iotcon is not supported</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Thrown when there is an invalid parameter</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the operation is invalid</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
-  <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/iot.ocf</span></span></h6>
   
   
   <a id="Tizen_Network_IoTConnectivity_Attributes_Remove_" data-uid="Tizen.Network.IoTConnectivity.Attributes.Remove*"></a>
@@ -956,32 +882,6 @@ This class is accessed by using a constructor to create a new instance of this o
     };
     if (attributes.Remove(&quot;state&quot;))
         Console.WriteLine(&quot;Remove was successful&quot;);</code></pre>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>Thrown when the iotcon is not supported</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Thrown when there is an invalid parameter</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the operation is invalid</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/iot.ocf</span></span></h6>
@@ -1054,58 +954,31 @@ This class is accessed by using a constructor to create a new instance of this o
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
-  <h2 id="eii">Explicit Interface Implementations
-  </h2>
-  
-  <a id="Tizen_Network_IoTConnectivity_Attributes_System_Collections_IEnumerable_GetEnumerator_" data-uid="Tizen.Network.IoTConnectivity.Attributes.System#Collections#IEnumerable#GetEnumerator*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/Attributes.cs/#L480">View Source</a>
-    </span>
-    <h4 id="Tizen_Network_IoTConnectivity_Attributes_System_Collections_IEnumerable_GetEnumerator" data-uid="Tizen.Network.IoTConnectivity.Attributes.System#Collections#IEnumerable#GetEnumerator">IEnumerable.GetEnumerator()</h4>
-    <section>
-      <p>Returns an enumerator that iterates through the collection.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IEnumerator IEnumerable.GetEnumerator()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
   <h2 id="implements">Implements</h2>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">System.Collections.Generic.IDictionary&lt;TKey,TValue&gt;</a>
+      <span class="xref">IDisposable</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
   </div>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">System.Collections.Generic.ICollection&lt;T&gt;</a>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
   </div>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">System.Collections.Generic.IEnumerable&lt;T&gt;</a>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
   </div>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">System.Collections.IEnumerable</a>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
   </div>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
   </div>
   </div></section>
             </div>

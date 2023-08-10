@@ -89,7 +89,7 @@ return new Spin();
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class CustomViewRegistry</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class CustomViewRegistry : object</code></pre>
   </div>
 
   
@@ -151,7 +151,7 @@ return new Spin();
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/CustomView/CustomViewRegistry.cs/#L253">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_CustomViewRegistry_Register_System_Func_Tizen_NUI_BaseComponents_CustomView__Tizen_System_Type_" data-uid="Tizen.NUI.CustomViewRegistry.Register(System.Func{Tizen.NUI.BaseComponents.CustomView},Tizen.System.Type)">Register(Func&lt;CustomView&gt;, Type)</h4>
+    <h4 id="Tizen_NUI_CustomViewRegistry_Register_Func_Tizen_NUI_BaseComponents_CustomView__Tizen_System_Type_" data-uid="Tizen.NUI.CustomViewRegistry.Register(Func{Tizen.NUI.BaseComponents.CustomView},Tizen.System.Type)">Register(Func&lt;CustomView&gt;, Type)</h4>
     <section>
       <p>The function which registers a view and all it&apos;s scriptable properties with DALi&apos;s type registry.
 Means the view can be created or configured from a JSON script.</p>
@@ -183,7 +183,7 @@ ViewRegistry.Instance.Register(CreateInstance, typeof(Spin) );
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="Tizen.NUI.BaseComponents.CustomView.html">CustomView</a>&gt;</td>
+        <td><span class="xref">Func</span>&lt;<a class="xref" href="Tizen.NUI.BaseComponents.CustomView.html">CustomView</a>&gt;</td>
         <td><span class="parametername">createFunction</span></td>
         <td></td>
       </tr>
@@ -194,25 +194,31 @@ ViewRegistry.Instance.Register(CreateInstance, typeof(Spin) );
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p>Thrown when viewType is null. </p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
   </div></section>
             </div>
           </main>

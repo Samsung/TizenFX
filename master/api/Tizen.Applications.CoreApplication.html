@@ -67,7 +67,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class CoreApplication : Application, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class CoreApplication : Application</code></pre>
   </div>
 
   
@@ -90,18 +90,13 @@
       <div class="pdl"><a class="xref" href="Tizen.Applications.WatchApplication.html">WatchApplication</a></div>
       <div class="pdl"><a class="xref" href="Tizen.Applications.WidgetApplication.html">WidgetApplication</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.NUIApplication.html">NUIApplication</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.NUIComponentApplication.html">NUIComponentApplication</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.NUIWatchApplication.html">NUIWatchApplication</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.NUIWidgetApplication.html">NUIWidgetApplication</a></div>
     </dd>
   </dl>
   
   
-  <dl class="attribute-list">
-    <dt>Implements</dt>
-    <dd>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
-    </dd>
-  </dl>
   
   
   <h2 id="constructors">Constructors
@@ -143,6 +138,50 @@
   </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
+  
+  
+  <a id="Tizen_Applications_CoreApplication__ctor_" data-uid="Tizen.Applications.CoreApplication.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/CoreApplication.cs/#L57">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_CoreApplication__ctor_Tizen_Applications_CoreBackend_ICoreBackend_Tizen_Applications_ICoreTask_" data-uid="Tizen.Applications.CoreApplication.#ctor(Tizen.Applications.CoreBackend.ICoreBackend,Tizen.Applications.ICoreTask)">CoreApplication(ICoreBackend, ICoreTask)</h4>
+    <section>
+      <p>Initializes the CoreApplication class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CoreApplication(ICoreBackend backend, ICoreTask task)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.CoreBackend.ICoreBackend.html">ICoreBackend</a></td>
+        <td><span class="parametername">backend</span></td>
+        <td><p>The backend instance implementing ICoreBackend interface.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.ICoreTask.html">ICoreTask</a></td>
+        <td><span class="parametername">task</span></td>
+        <td><p>The backend instance implmenting ICoreTask interface.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>10</span></h6>
   
   <h2 id="properties">Properties
   </h2>
@@ -521,6 +560,122 @@ If base.OnTerminate() is not called, the event &apos;Terminated&apos; will not b
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
   
+  <a id="Tizen_Applications_CoreApplication_Post_" data-uid="Tizen.Applications.CoreApplication.Post*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/CoreApplication.cs/#L290">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_CoreApplication_Post_Action_" data-uid="Tizen.Applications.CoreApplication.Post(Action)">Post(Action)</h4>
+    <section>
+      <p>Dispatches an asynchronous message to a main loop of the CoreApplication.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Post(Action runner)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Action</span></td>
+        <td><span class="parametername">runner</span></td>
+        <td><p>The runner callaback.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_CoreApplication_Post_Action__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If an application uses UI thread App Model, the asynchronous message will be delivered to the UI thread.
+If not, the asynchronous message will be delivered to the main thread.</p>
+</div>
+  
+  <h6><strong>API Level</strong>: <span>3</span></h6>
+  
+  
+  <a id="Tizen_Applications_CoreApplication_Post_" data-uid="Tizen.Applications.CoreApplication.Post*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/CoreApplication.cs/#L313">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_CoreApplication_Post__1_Func___0__" data-uid="Tizen.Applications.CoreApplication.Post``1(Func{``0})">Post&lt;T&gt;(Func&lt;T&gt;)</h4>
+    <section>
+      <p>Dispatches an asynchronous message to a main loop of the CoreApplication.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;T&gt; Post&lt;T&gt;(Func&lt;T&gt; runner)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func</span>&lt;T&gt;</td>
+        <td><span class="parametername">runner</span></td>
+        <td><p>The runner callback.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span>&lt;T&gt;</td>
+        <td><p>A task with the result.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of the result.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_CoreApplication_Post__1_Func___0___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If an application uses UI thread App Model, the asynchronous message will be delivered to the UI thread.
+If not, the asynchronous message will be delivered to the main thread.</p>
+</div>
+  
+  <h6><strong>API Level</strong>: <span>3</span></h6>
+  
+  
   <a id="Tizen_Applications_CoreApplication_Run_" data-uid="Tizen.Applications.CoreApplication.Run*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
@@ -588,7 +743,7 @@ If base.OnTerminate() is not called, the event &apos;Terminated&apos; will not b
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Applications.AppControlReceivedEventArgs.html">AppControlReceivedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Applications.AppControlReceivedEventArgs.html">AppControlReceivedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -622,7 +777,7 @@ If base.OnTerminate() is not called, the event &apos;Terminated&apos; will not b
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></td>
+        <td><span class="xref">EventHandler</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -656,7 +811,7 @@ If base.OnTerminate() is not called, the event &apos;Terminated&apos; will not b
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Applications.DeviceOrientationEventArgs.html">DeviceOrientationEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Applications.DeviceOrientationEventArgs.html">DeviceOrientationEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -690,7 +845,7 @@ If base.OnTerminate() is not called, the event &apos;Terminated&apos; will not b
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Applications.LocaleChangedEventArgs.html">LocaleChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Applications.LocaleChangedEventArgs.html">LocaleChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -724,7 +879,7 @@ If base.OnTerminate() is not called, the event &apos;Terminated&apos; will not b
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Applications.LowBatteryEventArgs.html">LowBatteryEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Applications.LowBatteryEventArgs.html">LowBatteryEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -758,7 +913,7 @@ If base.OnTerminate() is not called, the event &apos;Terminated&apos; will not b
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Applications.LowMemoryEventArgs.html">LowMemoryEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Applications.LowMemoryEventArgs.html">LowMemoryEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -792,7 +947,7 @@ If base.OnTerminate() is not called, the event &apos;Terminated&apos; will not b
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Applications.RegionFormatChangedEventArgs.html">RegionFormatChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Applications.RegionFormatChangedEventArgs.html">RegionFormatChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -826,7 +981,7 @@ If base.OnTerminate() is not called, the event &apos;Terminated&apos; will not b
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></td>
+        <td><span class="xref">EventHandler</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -834,9 +989,27 @@ If base.OnTerminate() is not called, the event &apos;Terminated&apos; will not b
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
-  <h2 id="implements">Implements</h2>
+  <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
   </div>
   </div></section>
             </div>

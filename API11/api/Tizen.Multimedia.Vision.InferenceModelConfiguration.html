@@ -69,7 +69,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class InferenceModelConfiguration : EngineConfiguration, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class InferenceModelConfiguration : EngineConfiguration</code></pre>
   </div>
 
   
@@ -86,12 +86,6 @@
 
   
   
-  <dl class="attribute-list">
-    <dt>Implements</dt>
-    <dd>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
-    </dd>
-  </dl>
   
   <h5 id="Tizen_Multimedia_Vision_InferenceModelConfiguration_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>&apos;Inference model&apos; means pre-learned data, which is represented by <a class="xref" href="Tizen.Multimedia.Vision.InferenceModelConfiguration.html#Tizen_Multimedia_Vision_InferenceModelConfiguration_ConfigurationFilePath">ConfigurationFilePath</a> and
@@ -119,22 +113,6 @@ Please refer Tizen guide page(<a href="https://developer.tizen.org/development/g
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public InferenceModelConfiguration()</code></pre>
   </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>The feature is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/vision.inference.face</span><span>http://tizen.org/feature/vision.inference.image</span></span></h6>
@@ -176,27 +154,6 @@ Please refer Tizen guide page(<a href="https://developer.tizen.org/development/g
   <h5 id="Tizen_Multimedia_Vision_InferenceModelConfiguration_Backend_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The default backend type is <a class="xref" href="Tizen.Multimedia.Vision.InferenceBackendType.html#Tizen_Multimedia_Vision_InferenceBackendType_OpenCV">OpenCV</a></p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is not valid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>The engine type is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <div class="seealso">
     <h5 id="Tizen_Multimedia_Vision_InferenceModelConfiguration_Backend_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Vision.InferenceModelConfiguration.html#Tizen_Multimedia_Vision_InferenceModelConfiguration_SupportedBackend">SupportedBackend</a></div>
@@ -239,22 +196,6 @@ Please refer Tizen guide page(<a href="https://developer.tizen.org/development/g
   <h5 id="Tizen_Multimedia_Vision_InferenceModelConfiguration_CategoryFilePath_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This value should be set to use <a class="xref" href="Tizen.Multimedia.Vision.ImageClassifier.html">ImageClassifier</a> or <a class="xref" href="Tizen.Multimedia.Vision.ObjectDetector.html">ObjectDetector</a>.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p>Input file path is null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
@@ -264,7 +205,7 @@ Please refer Tizen guide page(<a href="https://developer.tizen.org/development/g
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/InferenceModelConfiguration.cs/#L576">View Source</a>
     </span>
-    <h4 id="Tizen_Multimedia_Vision_InferenceModelConfiguration_ConfidenceThreshold" data-uid="Tizen.Multimedia.Vision.InferenceModelConfiguration.ConfidenceThreshold" data-obsolete="Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead." class="obsolete">ConfidenceThreshold</h4>
+    <h4 id="Tizen_Multimedia_Vision_InferenceModelConfiguration_ConfidenceThreshold" data-uid="Tizen.Multimedia.Vision.InferenceModelConfiguration.ConfidenceThreshold">ConfidenceThreshold</h4>
     <section>
       <p>Gets or sets the threshold of confidence.</p>
 
@@ -273,8 +214,7 @@ Please refer Tizen guide page(<a href="https://developer.tizen.org/development/g
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead.&quot;)]
-public double ConfidenceThreshold { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public double ConfidenceThreshold { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -295,22 +235,6 @@ public double ConfidenceThreshold { get; set; }</code></pre>
   <div class="markdown level1 remarks"><p>The vaild range is greater than or equal to 0.0 and less than or equal to 1.0.<br>
 The value 1.0 means maximum accuracy.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code>is out of range.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
@@ -346,22 +270,6 @@ The value 1.0 means maximum accuracy.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p>Input file path is null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
@@ -371,7 +279,7 @@ The value 1.0 means maximum accuracy.</p>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/InferenceModelConfiguration.cs/#L483">View Source</a>
     </span>
-    <h4 id="Tizen_Multimedia_Vision_InferenceModelConfiguration_DataType" data-uid="Tizen.Multimedia.Vision.InferenceModelConfiguration.DataType" data-obsolete="Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead." class="obsolete">DataType</h4>
+    <h4 id="Tizen_Multimedia_Vision_InferenceModelConfiguration_DataType" data-uid="Tizen.Multimedia.Vision.InferenceModelConfiguration.DataType">DataType</h4>
     <section>
       <p>Gets or sets the type of data used for inference model.</p>
 
@@ -380,8 +288,7 @@ The value 1.0 means maximum accuracy.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead.&quot;)]
-public InferenceDataType DataType { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public InferenceDataType DataType { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -402,22 +309,6 @@ public InferenceDataType DataType { get; set; }</code></pre>
   <div class="markdown level1 remarks"><p>For example, this value should be set to <a class="xref" href="Tizen.Multimedia.Vision.InferenceDataType.html#Tizen_Multimedia_Vision_InferenceDataType_Float32">Float32</a> for a model data supporting float32.<br>
 <a class="xref" href="Tizen.Multimedia.Vision.InferenceDataType.html#Tizen_Multimedia_Vision_InferenceDataType_Float32">Float32</a> will be used internally if a user doesn&apos;t set the value.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is not valid.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>8</span></h6>
   
@@ -458,22 +349,6 @@ public InferenceDataType DataType { get; set; }</code></pre>
 If a device doesn&apos;t support <a class="xref" href="Tizen.Multimedia.Vision.InferenceTargetDevice.html#Tizen_Multimedia_Vision_InferenceTargetDevice_GPU">GPU</a> and <a class="xref" href="Tizen.Multimedia.Vision.InferenceTargetDevice.html#Tizen_Multimedia_Vision_InferenceTargetDevice_Custom">Custom</a>,
 <a class="xref" href="Tizen.Multimedia.Vision.InferenceTargetDevice.html#Tizen_Multimedia_Vision_InferenceTargetDevice_CPU">CPU</a> will be used internally, despite the user&apos;s choice.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is not valid.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>8</span></h6>
   
@@ -483,7 +358,7 @@ If a device doesn&apos;t support <a class="xref" href="Tizen.Multimedia.Vision.I
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/InferenceModelConfiguration.cs/#L503">View Source</a>
     </span>
-    <h4 id="Tizen_Multimedia_Vision_InferenceModelConfiguration_InputNodeName" data-uid="Tizen.Multimedia.Vision.InferenceModelConfiguration.InputNodeName" data-obsolete="Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead." class="obsolete">InputNodeName</h4>
+    <h4 id="Tizen_Multimedia_Vision_InferenceModelConfiguration_InputNodeName" data-uid="Tizen.Multimedia.Vision.InferenceModelConfiguration.InputNodeName">InputNodeName</h4>
     <section>
       <p>Gets or sets the name of an input node</p>
 
@@ -492,8 +367,7 @@ If a device doesn&apos;t support <a class="xref" href="Tizen.Multimedia.Vision.I
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead.&quot;)]
-public string InputNodeName { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string InputNodeName { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -510,22 +384,6 @@ public string InputNodeName { get; set; }</code></pre>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
@@ -535,7 +393,7 @@ public string InputNodeName { get; set; }</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/InferenceModelConfiguration.cs/#L554">View Source</a>
     </span>
-    <h4 id="Tizen_Multimedia_Vision_InferenceModelConfiguration_MaxOutputNumber" data-uid="Tizen.Multimedia.Vision.InferenceModelConfiguration.MaxOutputNumber" data-obsolete="Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead." class="obsolete">MaxOutputNumber</h4>
+    <h4 id="Tizen_Multimedia_Vision_InferenceModelConfiguration_MaxOutputNumber" data-uid="Tizen.Multimedia.Vision.InferenceModelConfiguration.MaxOutputNumber">MaxOutputNumber</h4>
     <section>
       <p>Gets or sets the maximum output number of detection or classification.</p>
 
@@ -544,8 +402,7 @@ public string InputNodeName { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead.&quot;)]
-public int MaxOutputNumber { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public int MaxOutputNumber { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -575,7 +432,7 @@ This value can be used to decide the size of <a class="xref" href="Tizen.Multime
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/InferenceModelConfiguration.cs/#L281">View Source</a>
     </span>
-    <h4 id="Tizen_Multimedia_Vision_InferenceModelConfiguration_MeanValue" data-uid="Tizen.Multimedia.Vision.InferenceModelConfiguration.MeanValue" data-obsolete="Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead." class="obsolete">MeanValue</h4>
+    <h4 id="Tizen_Multimedia_Vision_InferenceModelConfiguration_MeanValue" data-uid="Tizen.Multimedia.Vision.InferenceModelConfiguration.MeanValue">MeanValue</h4>
     <section>
       <p>Gets or sets the inference model&apos;s mean value.</p>
 
@@ -584,8 +441,7 @@ This value can be used to decide the size of <a class="xref" href="Tizen.Multime
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead.&quot;)]
-public double MeanValue { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public double MeanValue { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -605,22 +461,6 @@ public double MeanValue { get; set; }</code></pre>
   <h5 id="Tizen_Multimedia_Vision_InferenceModelConfiguration_MeanValue_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>It should be greater than or equal to 0.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p>The value is invalid.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
@@ -659,22 +499,6 @@ public double MeanValue { get; set; }</code></pre>
   <h5 id="Tizen_Multimedia_Vision_InferenceModelConfiguration_MetadataFilePath_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This value should be set to use <a class="xref" href="Tizen.Multimedia.Vision.ImageClassifier.html">ImageClassifier</a> or <a class="xref" href="Tizen.Multimedia.Vision.ObjectDetector.html">ObjectDetector</a>.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p>Metadata file path is null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>9</span></h6>
   
@@ -684,7 +508,7 @@ public double MeanValue { get; set; }</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/InferenceModelConfiguration.cs/#L526">View Source</a>
     </span>
-    <h4 id="Tizen_Multimedia_Vision_InferenceModelConfiguration_OutputNodeName" data-uid="Tizen.Multimedia.Vision.InferenceModelConfiguration.OutputNodeName" data-obsolete="Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead." class="obsolete">OutputNodeName</h4>
+    <h4 id="Tizen_Multimedia_Vision_InferenceModelConfiguration_OutputNodeName" data-uid="Tizen.Multimedia.Vision.InferenceModelConfiguration.OutputNodeName">OutputNodeName</h4>
     <section>
       <p>Gets or sets the name of an output node</p>
 
@@ -693,8 +517,7 @@ public double MeanValue { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead.&quot;)]
-public IList&lt;string&gt; OutputNodeName { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public IList&lt;string&gt; OutputNodeName { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -706,24 +529,8 @@ public IList&lt;string&gt; OutputNodeName { get; set; }</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><span class="xref">IList</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
         <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is null.</p>
-</td>
       </tr>
     </tbody>
   </table>
@@ -765,28 +572,6 @@ public IList&lt;string&gt; OutputNodeName { get; set; }</code></pre>
   <h5 id="Tizen_Multimedia_Vision_InferenceModelConfiguration_Roi_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Default value is null. If Roi is null, the entire region of <a class="xref" href="Tizen.Multimedia.Vision.MediaVisionSource.html">MediaVisionSource</a> will be analyzed.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p>The width of <code data-dev-comment-type="paramref" class="paramref">value</code> is less than or equal to zero.<br>
--or-<br>
-The height of <code data-dev-comment-type="paramref" class="paramref">value</code> is less than or equal to zero.<br>
--or-<br>
-The x position of <code data-dev-comment-type="paramref" class="paramref">value</code> is less than zero.<br>
--or-<br>
-The y position of <code data-dev-comment-type="paramref" class="paramref">value</code> is less than zero.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <div class="seealso">
     <h5 id="Tizen_Multimedia_Vision_InferenceModelConfiguration_Roi_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Vision.InferenceModelConfiguration.html#Tizen_Multimedia_Vision_InferenceModelConfiguration_MaxOutputNumber">MaxOutputNumber</a></div>
@@ -800,7 +585,7 @@ The y position of <code data-dev-comment-type="paramref" class="paramref">value<
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/InferenceModelConfiguration.cs/#L306">View Source</a>
     </span>
-    <h4 id="Tizen_Multimedia_Vision_InferenceModelConfiguration_StdValue" data-uid="Tizen.Multimedia.Vision.InferenceModelConfiguration.StdValue" data-obsolete="Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead." class="obsolete">StdValue</h4>
+    <h4 id="Tizen_Multimedia_Vision_InferenceModelConfiguration_StdValue" data-uid="Tizen.Multimedia.Vision.InferenceModelConfiguration.StdValue">StdValue</h4>
     <section>
       <p>Gets or sets the inference model&apos;s STD(Standard deviation) value.</p>
 
@@ -809,8 +594,7 @@ The y position of <code data-dev-comment-type="paramref" class="paramref">value<
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead.&quot;)]
-public double StdValue { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public double StdValue { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -830,22 +614,6 @@ public double StdValue { get; set; }</code></pre>
   <h5 id="Tizen_Multimedia_Vision_InferenceModelConfiguration_StdValue_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>It should be greater than or equal to 0.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p>The value is invalid.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
@@ -876,7 +644,7 @@ public double StdValue { get; set; }</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Multimedia.Vision.InferenceBackendType.html">InferenceBackendType</a>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Multimedia.Vision.InferenceBackendType.html">InferenceBackendType</a>&gt;</td>
         <td><p>If there&apos;s no supported backend, empty collection will be returned.</p>
 </td>
       </tr>
@@ -891,7 +659,7 @@ public double StdValue { get; set; }</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/InferenceModelConfiguration.cs/#L363">View Source</a>
     </span>
-    <h4 id="Tizen_Multimedia_Vision_InferenceModelConfiguration_Target" data-uid="Tizen.Multimedia.Vision.InferenceModelConfiguration.Target" data-obsolete="Deprecated since API8. Will be removed in API10. Please use Device instead." class="obsolete">Target</h4>
+    <h4 id="Tizen_Multimedia_Vision_InferenceModelConfiguration_Target" data-uid="Tizen.Multimedia.Vision.InferenceModelConfiguration.Target">Target</h4>
     <section>
       <p>Gets or sets the inference model&apos;s target.</p>
 
@@ -900,8 +668,7 @@ public double StdValue { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API8. Will be removed in API10. Please use Device instead.&quot;)]
-public InferenceTargetType Target { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public InferenceTargetType Target { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -923,22 +690,6 @@ public InferenceTargetType Target { get; set; }</code></pre>
 If target doesn&apos;t support <a class="xref" href="Tizen.Multimedia.Vision.InferenceTargetType.html#Tizen_Multimedia_Vision_InferenceTargetType_GPU">GPU</a> and <a class="xref" href="Tizen.Multimedia.Vision.InferenceTargetType.html#Tizen_Multimedia_Vision_InferenceTargetType_Custom">Custom</a>,
 <a class="xref" href="Tizen.Multimedia.Vision.InferenceTargetType.html#Tizen_Multimedia_Vision_InferenceTargetType_CPU">CPU</a> will be used internally, despite the user&apos;s choice.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is not valid.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
@@ -948,7 +699,7 @@ If target doesn&apos;t support <a class="xref" href="Tizen.Multimedia.Vision.Inf
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/InferenceModelConfiguration.cs/#L456">View Source</a>
     </span>
-    <h4 id="Tizen_Multimedia_Vision_InferenceModelConfiguration_TensorChannels" data-uid="Tizen.Multimedia.Vision.InferenceModelConfiguration.TensorChannels" data-obsolete="Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead." class="obsolete">TensorChannels</h4>
+    <h4 id="Tizen_Multimedia_Vision_InferenceModelConfiguration_TensorChannels" data-uid="Tizen.Multimedia.Vision.InferenceModelConfiguration.TensorChannels">TensorChannels</h4>
     <section>
       <p>Gets or sets the number of inference model&apos;s tensor channel.</p>
 
@@ -957,8 +708,7 @@ If target doesn&apos;t support <a class="xref" href="Tizen.Multimedia.Vision.Inf
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead.&quot;)]
-public int TensorChannels { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public int TensorChannels { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -979,22 +729,6 @@ public int TensorChannels { get; set; }</code></pre>
   <div class="markdown level1 remarks"><p>For example, for RGB colorspace this value should be set to 3<br>
 It should be greater than 0.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p>The value is invalid.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
@@ -1004,7 +738,7 @@ It should be greater than 0.</p>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/InferenceModelConfiguration.cs/#L413">View Source</a>
     </span>
-    <h4 id="Tizen_Multimedia_Vision_InferenceModelConfiguration_TensorSize" data-uid="Tizen.Multimedia.Vision.InferenceModelConfiguration.TensorSize" data-obsolete="Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead." class="obsolete">TensorSize</h4>
+    <h4 id="Tizen_Multimedia_Vision_InferenceModelConfiguration_TensorSize" data-uid="Tizen.Multimedia.Vision.InferenceModelConfiguration.TensorSize">TensorSize</h4>
     <section>
       <p>Gets or sets the size of inference model&apos;s tensor.</p>
 
@@ -1013,8 +747,7 @@ It should be greater than 0.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead.&quot;)]
-public Size TensorSize { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Size TensorSize { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -1035,27 +768,6 @@ public Size TensorSize { get; set; }</code></pre>
   <div class="markdown level1 remarks"><p>Both width and height of tensor should be greater than 0.<br>
 &apos;Size(-1, -1) is allowed when the intention is to use original image source size as TensorSize.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Only one of <code data-dev-comment-type="paramref" class="paramref">value.Width.Width</code> or <code data-dev-comment-type="paramref" class="paramref">value.Height.Height</code> have -1.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p>The value is invalid.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
@@ -1088,22 +800,6 @@ public Size TensorSize { get; set; }</code></pre>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
         <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p>Input file path is null.</p>
-</td>
       </tr>
     </tbody>
   </table>
@@ -1183,30 +879,8 @@ The properties set after calling this method will not be affected in the result.
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filenotfoundexception">FileNotFoundException</a></td>
-        <td><p><a class="xref" href="Tizen.Multimedia.Vision.InferenceModelConfiguration.html#Tizen_Multimedia_Vision_InferenceModelConfiguration_ConfigurationFilePath">ConfigurationFilePath</a>, <a class="xref" href="Tizen.Multimedia.Vision.InferenceModelConfiguration.html#Tizen_Multimedia_Vision_InferenceModelConfiguration_WeightFilePath">WeightFilePath</a> or <a class="xref" href="Tizen.Multimedia.Vision.InferenceModelConfiguration.html#Tizen_Multimedia_Vision_InferenceModelConfiguration_CategoryFilePath">CategoryFilePath</a> have invalid path.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Multimedia.FileFormatException.html">FileFormatException</a></td>
         <td><p>Invalid data type is used in inference model data.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.invaliddataexception">InvalidDataException</a></td>
-        <td><p>Inference model data contains unsupported operations in current backend version.
--or-<br>
-Invalid data type is used in inference model data.<br></p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Internal operation error.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>The caller has no required privilege.</p>
 </td>
       </tr>
     </tbody>
@@ -1217,9 +891,27 @@ Invalid data type is used in inference model data.<br></p>
   <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/mediastorage</span><span>http://tizen.org/privilege/externalstorage</span></span></h6>
   <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/vision.inference.face</span><span>http://tizen.org/feature/vision.inference.image</span></span></h6>
   
-  <h2 id="implements">Implements</h2>
+  <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
   </div>
   </div></section>
             </div>

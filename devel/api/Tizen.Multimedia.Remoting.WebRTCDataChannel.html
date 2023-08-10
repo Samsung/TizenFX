@@ -83,12 +83,6 @@
 
   
   
-  <dl class="attribute-list">
-    <dt>Implements</dt>
-    <dd>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
-    </dd>
-  </dl>
   
   
   <h2 id="constructors">Constructors
@@ -134,22 +128,6 @@
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p>The webRtc or label is null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>9</span></h6>
   
@@ -159,7 +137,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/WebRTCDataChannel.cs/#L63">View Source</a>
     </span>
-    <h4 id="Tizen_Multimedia_Remoting_WebRTCDataChannel__ctor_Tizen_Multimedia_Remoting_WebRTC_System_String_Tizen_Applications_Bundle_" data-uid="Tizen.Multimedia.Remoting.WebRTCDataChannel.#ctor(Tizen.Multimedia.Remoting.WebRTC,System.String,Tizen.Applications.Bundle)">WebRTCDataChannel(WebRTC, String, Bundle)</h4>
+    <h4 id="Tizen_Multimedia_Remoting_WebRTCDataChannel__ctor_Tizen_Multimedia_Remoting_WebRTC_System_String_Bundle_" data-uid="Tizen.Multimedia.Remoting.WebRTCDataChannel.#ctor(Tizen.Multimedia.Remoting.WebRTC,System.String,Bundle)">WebRTCDataChannel(WebRTC, String, Bundle)</h4>
     <section>
       <p>Initializes a new instance of the <a class="xref" href="Tizen.Multimedia.Remoting.WebRTCDataChannel.html">WebRTCDataChannel</a> class.</p>
 
@@ -193,16 +171,16 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="Tizen.Applications.Bundle.html">Bundle</a></td>
+        <td><span class="xref">Bundle</span></td>
         <td><span class="parametername">bundle</span></td>
         <td><p>The data channel option.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Remoting_WebRTCDataChannel__ctor_Tizen_Multimedia_Remoting_WebRTC_System_String_Tizen_Applications_Bundle__remarks">Remarks</h5>
+  <h5 id="Tizen_Multimedia_Remoting_WebRTCDataChannel__ctor_Tizen_Multimedia_Remoting_WebRTC_System_String_Bundle__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The bundle is similar format as the RTCDataChannelInit members outlined <a href="https://www.w3.org/TR/webrtc/#dom-rtcdatachannelinit">https://www.w3.org/TR/webrtc/#dom-rtcdatachannelinit</a>.<br>
-The following attributes can be set to options by using <a class="xref" href="Tizen.Applications.Bundle.html">Bundle</a> API:<br>
+The following attributes can be set to options by using <see cref="!:Bundle"></see> API:<br>
 &apos;ordered&apos; of type bool            : Whether the channel will send data with guaranteed ordering. The default value is true.<br>
 &apos;max-packet-lifetime&apos; of type int : The time in milliseconds to attempt transmitting unacknowledged data. -1 for unset. The default value is -1.<br>
 &apos;max-retransmits&apos; of type int     : The number of times data will be attempted to be transmitted without acknowledgement before dropping. The default value is -1.<br>
@@ -210,22 +188,6 @@ The following attributes can be set to options by using <a class="xref" href="Ti
 &apos;id&apos; of type int                  : Override the default identifier selection of this channel. The default value is -1.<br>
 &apos;priority&apos; of type int            : The priority to use for this channel(1:very low, 2:low, 3:medium, 4:high). The default value is 2.<br></p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p>The webRtc or label is null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>9</span></h6>
   
@@ -264,22 +226,6 @@ The following attributes can be set to options by using <a class="xref" href="Ti
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The WebRTCDataChannel has already been disposed.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>10</span></h6>
   
@@ -314,22 +260,6 @@ The default value is 0, which means <a class="xref" href="Tizen.Multimedia.Remot
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
         <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The WebRTCDataChannel has already been disposed.</p>
-</td>
       </tr>
     </tbody>
   </table>
@@ -395,6 +325,44 @@ The default value is 0, which means <a class="xref" href="Tizen.Multimedia.Remot
   <h6><strong>API Level</strong>: <span>9</span></h6>
   
   
+  <a id="Tizen_Multimedia_Remoting_WebRTCDataChannel_Dispose_" data-uid="Tizen.Multimedia.Remoting.WebRTCDataChannel.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/WebRTCDataChannel.cs/#L222">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_WebRTCDataChannel_Dispose_System_Boolean_" data-uid="Tizen.Multimedia.Remoting.WebRTCDataChannel.Dispose(System.Boolean)">Dispose(Boolean)</h4>
+    <section>
+      <p>Releases the unmanaged resources used by the <a class="xref" href="Tizen.Multimedia.Remoting.WebRTCDataChannel.html">WebRTCDataChannel</a>.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>true to release both managed and unmanaged resources;
+false to release only unmanaged resources.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
   <a id="Tizen_Multimedia_Remoting_WebRTCDataChannel_Send_" data-uid="Tizen.Multimedia.Remoting.WebRTCDataChannel.Send*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
@@ -425,22 +393,6 @@ The default value is 0, which means <a class="xref" href="Tizen.Multimedia.Remot
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">Byte</a>[]</td>
         <td><span class="parametername">data</span></td>
         <td><p>The byte data to send</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The WebRTCDataChannel has already been disposed.</p>
 </td>
       </tr>
     </tbody>
@@ -483,22 +435,6 @@ The default value is 0, which means <a class="xref" href="Tizen.Multimedia.Remot
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The WebRTCDataChannel has already been disposed.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>9</span></h6>
   
@@ -531,7 +467,7 @@ If <a class="xref" href="Tizen.Multimedia.Remoting.WebRTCDataChannel.html#Tizen_
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventargs">EventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<span class="xref">EventArgs</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -565,7 +501,7 @@ If <a class="xref" href="Tizen.Multimedia.Remoting.WebRTCDataChannel.html#Tizen_
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventargs">EventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<span class="xref">EventArgs</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -599,7 +535,7 @@ If <a class="xref" href="Tizen.Multimedia.Remoting.WebRTCDataChannel.html#Tizen_
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.WebRTCDataChannelErrorOccurredEventArgs.html">WebRTCDataChannelErrorOccurredEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.WebRTCDataChannelErrorOccurredEventArgs.html">WebRTCDataChannelErrorOccurredEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -633,7 +569,7 @@ If <a class="xref" href="Tizen.Multimedia.Remoting.WebRTCDataChannel.html#Tizen_
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.WebRTCDataChannelMessageReceivedEventArgs.html">WebRTCDataChannelMessageReceivedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.WebRTCDataChannelMessageReceivedEventArgs.html">WebRTCDataChannelMessageReceivedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -667,7 +603,7 @@ If <a class="xref" href="Tizen.Multimedia.Remoting.WebRTCDataChannel.html#Tizen_
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventargs">EventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<span class="xref">EventArgs</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -675,9 +611,27 @@ If <a class="xref" href="Tizen.Multimedia.Remoting.WebRTCDataChannel.html#Tizen_
   
   <h6><strong>API Level</strong>: <span>9</span></h6>
   
-  <h2 id="implements">Implements</h2>
+  <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
   </div>
   </div></section>
             </div>

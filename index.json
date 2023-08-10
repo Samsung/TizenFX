@@ -13809,6 +13809,11 @@
     "title": "Enum KeyboardMode",
     "keywords": ""
   },
+  "API11/api/ElmSharp.KeyGrabMode.html": {
+    "href": "API11/api/ElmSharp.KeyGrabMode.html",
+    "title": "Enum KeyGrabMode",
+    "keywords": ""
+  },
   "API11/api/ElmSharp.Label.html": {
     "href": "API11/api/ElmSharp.Label.html",
     "title": "Class Label",
@@ -13932,6 +13937,11 @@
   "API11/api/ElmSharp.PopupOrientation.html": {
     "href": "API11/api/ElmSharp.PopupOrientation.html",
     "title": "Enum PopupOrientation",
+    "keywords": ""
+  },
+  "API11/api/ElmSharp.PreloadedWindow.html": {
+    "href": "API11/api/ElmSharp.PreloadedWindow.html",
+    "title": "Class PreloadedWindow",
     "keywords": ""
   },
   "API11/api/ElmSharp.ProgressBar.html": {
@@ -14979,9 +14989,19 @@
     "title": "Interface ICoreBackend",
     "keywords": ""
   },
+  "API11/api/Tizen.Applications.CoreBackend.ICoreTaskBackend.html": {
+    "href": "API11/api/Tizen.Applications.CoreBackend.ICoreTaskBackend.html",
+    "title": "Interface ICoreTaskBackend",
+    "keywords": ""
+  },
   "API11/api/Tizen.Applications.CoreBackend.WatchEventType.html": {
     "href": "API11/api/Tizen.Applications.CoreBackend.WatchEventType.html",
     "title": "Class WatchEventType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Applications.CoreTask.html": {
+    "href": "API11/api/Tizen.Applications.CoreTask.html",
+    "title": "Class CoreTask",
     "keywords": ""
   },
   "API11/api/Tizen.Applications.CoreUIApplication.html": {
@@ -15304,6 +15324,11 @@
     "title": "Namespace Tizen.Applications",
     "keywords": ""
   },
+  "API11/api/Tizen.Applications.ICoreTask.html": {
+    "href": "API11/api/Tizen.Applications.ICoreTask.html",
+    "title": "Interface ICoreTask",
+    "keywords": ""
+  },
   "API11/api/Tizen.Applications.InstallationMode.html": {
     "href": "API11/api/Tizen.Applications.InstallationMode.html",
     "title": "Enum InstallationMode",
@@ -15449,6 +15474,11 @@
     "title": "Enum ProgressCategory",
     "keywords": ""
   },
+  "API11/api/Tizen.Applications.NotificationEventListener.UserEventType.html": {
+    "href": "API11/api/Tizen.Applications.NotificationEventListener.UserEventType.html",
+    "title": "Enum UserEventType",
+    "keywords": ""
+  },
   "API11/api/Tizen.Applications.Notifications.AccessoryOption.html": {
     "href": "API11/api/Tizen.Applications.Notifications.AccessoryOption.html",
     "title": "Enum AccessoryOption",
@@ -15494,6 +15524,11 @@
     "title": "Class Notification.LockStyle",
     "keywords": ""
   },
+  "API11/api/Tizen.Applications.Notifications.Notification.MakerBase.html": {
+    "href": "API11/api/Tizen.Applications.Notifications.Notification.MakerBase.html",
+    "title": "Class Notification.MakerBase",
+    "keywords": ""
+  },
   "API11/api/Tizen.Applications.Notifications.Notification.ProgressType.html": {
     "href": "API11/api/Tizen.Applications.Notifications.Notification.ProgressType.html",
     "title": "Class Notification.ProgressType",
@@ -15522,6 +15557,21 @@
   "API11/api/Tizen.Applications.Notifications.NotificationProperty.html": {
     "href": "API11/api/Tizen.Applications.Notifications.NotificationProperty.html",
     "title": "Enum NotificationProperty",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Applications.Notifications.NotificationResponseEventArgs.html": {
+    "href": "API11/api/Tizen.Applications.Notifications.NotificationResponseEventArgs.html",
+    "title": "Class NotificationResponseEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Applications.Notifications.NotificationResponseEventType.html": {
+    "href": "API11/api/Tizen.Applications.Notifications.NotificationResponseEventType.html",
+    "title": "Enum NotificationResponseEventType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Applications.Notifications.NotificationSafeHandle.html": {
+    "href": "API11/api/Tizen.Applications.Notifications.NotificationSafeHandle.html",
+    "title": "Class NotificationSafeHandle",
     "keywords": ""
   },
   "API11/api/Tizen.Applications.Notifications.ProgressCategory.html": {
@@ -15627,6 +15677,16 @@
   "API11/api/Tizen.Applications.ReceivedAppControl.html": {
     "href": "API11/api/Tizen.Applications.ReceivedAppControl.html",
     "title": "Class ReceivedAppControl",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Applications.RecentApplicationControl.html": {
+    "href": "API11/api/Tizen.Applications.RecentApplicationControl.html",
+    "title": "Class RecentApplicationControl",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Applications.RecentApplicationInfo.html": {
+    "href": "API11/api/Tizen.Applications.RecentApplicationInfo.html",
+    "title": "Class RecentApplicationInfo",
     "keywords": ""
   },
   "API11/api/Tizen.Applications.RegionFormatChangedEventArgs.html": {
@@ -15839,6 +15899,26 @@
     "title": "Class SuspendedStateEventArgs",
     "keywords": ""
   },
+  "API11/api/Tizen.Applications.ThemeManager.html": {
+    "href": "API11/api/Tizen.Applications.ThemeManager.html",
+    "title": "Namespace Tizen.Applications.ThemeManager",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Applications.ThemeManager.Theme.html": {
+    "href": "API11/api/Tizen.Applications.ThemeManager.Theme.html",
+    "title": "Class Theme",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Applications.ThemeManager.ThemeEventArgs.html": {
+    "href": "API11/api/Tizen.Applications.ThemeManager.ThemeEventArgs.html",
+    "title": "Class ThemeEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Applications.ThemeManager.ThemeLoader.html": {
+    "href": "API11/api/Tizen.Applications.ThemeManager.ThemeLoader.html",
+    "title": "Class ThemeLoader",
+    "keywords": ""
+  },
   "API11/api/Tizen.Applications.TimeEventArgs.html": {
     "href": "API11/api/Tizen.Applications.TimeEventArgs.html",
     "title": "Class TimeEventArgs",
@@ -15854,9 +15934,24 @@
     "title": "Class TizenSynchronizationContext",
     "keywords": ""
   },
+  "API11/api/Tizen.Applications.TizenUISynchronizationContext.html": {
+    "href": "API11/api/Tizen.Applications.TizenUISynchronizationContext.html",
+    "title": "Class TizenUISynchronizationContext",
+    "keywords": ""
+  },
   "API11/api/Tizen.Applications.ToastMessage.html": {
     "href": "API11/api/Tizen.Applications.ToastMessage.html",
     "title": "Class ToastMessage",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Applications.UIEventArgs.html": {
+    "href": "API11/api/Tizen.Applications.UIEventArgs.html",
+    "title": "Class UIEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Applications.UIEventStatus.html": {
+    "href": "API11/api/Tizen.Applications.UIEventStatus.html",
+    "title": "Enum UIEventStatus",
     "keywords": ""
   },
   "API11/api/Tizen.Applications.WatchApplication.html": {
@@ -16379,6 +16474,16 @@
     "title": "Class ConnectionUriBuilder",
     "keywords": ""
   },
+  "API11/api/Tizen.Data.Tdbc.Driver.Sqlite.html": {
+    "href": "API11/api/Tizen.Data.Tdbc.Driver.Sqlite.html",
+    "title": "Namespace Tizen.Data.Tdbc.Driver.Sqlite",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Data.Tdbc.Driver.Sqlite.Statement.html": {
+    "href": "API11/api/Tizen.Data.Tdbc.Driver.Sqlite.Statement.html",
+    "title": "Class Statement",
+    "keywords": ""
+  },
   "API11/api/Tizen.Data.Tdbc.DriverManager.html": {
     "href": "API11/api/Tizen.Data.Tdbc.DriverManager.html",
     "title": "Class DriverManager",
@@ -16434,6 +16539,11 @@
     "title": "Namespace Tizen",
     "keywords": ""
   },
+  "API11/api/Tizen.InternalLog.html": {
+    "href": "API11/api/Tizen.InternalLog.html",
+    "title": "Class InternalLog",
+    "keywords": ""
+  },
   "API11/api/Tizen.Internals.Errors.ErrorCode.html": {
     "href": "API11/api/Tizen.Internals.Errors.ErrorCode.html",
     "title": "Enum ErrorCode",
@@ -16447,6 +16557,21 @@
   "API11/api/Tizen.Internals.Errors.html": {
     "href": "API11/api/Tizen.Internals.Errors.html",
     "title": "Namespace Tizen.Internals.Errors",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Internals.html": {
+    "href": "API11/api/Tizen.Internals.html",
+    "title": "Namespace Tizen.Internals",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Internals.NativeStructArch.html": {
+    "href": "API11/api/Tizen.Internals.NativeStructArch.html",
+    "title": "Enum NativeStructArch",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Internals.NativeStructAttribute.html": {
+    "href": "API11/api/Tizen.Internals.NativeStructAttribute.html",
+    "title": "Class NativeStructAttribute",
     "keywords": ""
   },
   "API11/api/Tizen.Location.BoundaryState.html": {
@@ -18284,6 +18409,11 @@
     "title": "Class MediaControlServerStoppedEventArgs",
     "keywords": ""
   },
+  "API11/api/Tizen.Multimedia.Remoting.MediaCustomSource.html": {
+    "href": "API11/api/Tizen.Multimedia.Remoting.MediaCustomSource.html",
+    "title": "Class MediaCustomSource",
+    "keywords": ""
+  },
   "API11/api/Tizen.Multimedia.Remoting.MediaFileSource.html": {
     "href": "API11/api/Tizen.Multimedia.Remoting.MediaFileSource.html",
     "title": "Class MediaFileSource",
@@ -18519,6 +18649,11 @@
     "title": "Class ShuffleModeUpdatedEventArgs",
     "keywords": ""
   },
+  "API11/api/Tizen.Multimedia.Remoting.SignalingMessageType.html": {
+    "href": "API11/api/Tizen.Multimedia.Remoting.SignalingMessageType.html",
+    "title": "Enum SignalingMessageType",
+    "keywords": ""
+  },
   "API11/api/Tizen.Multimedia.Remoting.SubtitleModeCommand.html": {
     "href": "API11/api/Tizen.Multimedia.Remoting.SubtitleModeCommand.html",
     "title": "Class SubtitleModeCommand",
@@ -18632,6 +18767,21 @@
   "API11/api/Tizen.Multimedia.Remoting.WebRTCPeerConnectionStateChangedEventArgs.html": {
     "href": "API11/api/Tizen.Multimedia.Remoting.WebRTCPeerConnectionStateChangedEventArgs.html",
     "title": "Class WebRTCPeerConnectionStateChangedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Multimedia.Remoting.WebRTCSignalingClient.html": {
+    "href": "API11/api/Tizen.Multimedia.Remoting.WebRTCSignalingClient.html",
+    "title": "Class WebRTCSignalingClient",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Multimedia.Remoting.WebRTCSignalingEventArgs.html": {
+    "href": "API11/api/Tizen.Multimedia.Remoting.WebRTCSignalingEventArgs.html",
+    "title": "Class WebRTCSignalingEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Multimedia.Remoting.WebRTCSignalingServer.html": {
+    "href": "API11/api/Tizen.Multimedia.Remoting.WebRTCSignalingServer.html",
+    "title": "Class WebRTCSignalingServer",
     "keywords": ""
   },
   "API11/api/Tizen.Multimedia.Remoting.WebRTCSignalingState.html": {
@@ -19379,6 +19529,16 @@
     "title": "Class AdvertisingStateChangedEventArgs",
     "keywords": ""
   },
+  "API11/api/Tizen.Network.Bluetooth.AgScoStateChangedEventArgs.html": {
+    "href": "API11/api/Tizen.Network.Bluetooth.AgScoStateChangedEventArgs.html",
+    "title": "Class AgScoStateChangedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Network.Bluetooth.AttMtuChangedEventArgs.html": {
+    "href": "API11/api/Tizen.Network.Bluetooth.AttMtuChangedEventArgs.html",
+    "title": "Class AttMtuChangedEventArgs",
+    "keywords": ""
+  },
   "API11/api/Tizen.Network.Bluetooth.AudioConnectionStateChangedEventArgs.html": {
     "href": "API11/api/Tizen.Network.Bluetooth.AudioConnectionStateChangedEventArgs.html",
     "title": "Class AudioConnectionStateChangedEventArgs",
@@ -19412,6 +19572,11 @@
   "API11/api/Tizen.Network.Bluetooth.BluetoothAudioProfileType.html": {
     "href": "API11/api/Tizen.Network.Bluetooth.BluetoothAudioProfileType.html",
     "title": "Enum BluetoothAudioProfileType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Network.Bluetooth.BluetoothAudioRole.html": {
+    "href": "API11/api/Tizen.Network.Bluetooth.BluetoothAudioRole.html",
+    "title": "Enum BluetoothAudioRole",
     "keywords": ""
   },
   "API11/api/Tizen.Network.Bluetooth.BluetoothAuthorizationType.html": {
@@ -19532,6 +19697,36 @@
   "API11/api/Tizen.Network.Bluetooth.BluetoothHid.html": {
     "href": "API11/api/Tizen.Network.Bluetooth.BluetoothHid.html",
     "title": "Class BluetoothHid",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Network.Bluetooth.BluetoothHidDevice.html": {
+    "href": "API11/api/Tizen.Network.Bluetooth.BluetoothHidDevice.html",
+    "title": "Class BluetoothHidDevice",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Network.Bluetooth.BluetoothHidDeviceReceivedData.html": {
+    "href": "API11/api/Tizen.Network.Bluetooth.BluetoothHidDeviceReceivedData.html",
+    "title": "Class BluetoothHidDeviceReceivedData",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Network.Bluetooth.BluetoothHidHeaderType.html": {
+    "href": "API11/api/Tizen.Network.Bluetooth.BluetoothHidHeaderType.html",
+    "title": "Enum BluetoothHidHeaderType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Network.Bluetooth.BluetoothHidKeyData.html": {
+    "href": "API11/api/Tizen.Network.Bluetooth.BluetoothHidKeyData.html",
+    "title": "Class BluetoothHidKeyData",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Network.Bluetooth.BluetoothHidMouseData.html": {
+    "href": "API11/api/Tizen.Network.Bluetooth.BluetoothHidMouseData.html",
+    "title": "Class BluetoothHidMouseData",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Network.Bluetooth.BluetoothHidParamType.html": {
+    "href": "API11/api/Tizen.Network.Bluetooth.BluetoothHidParamType.html",
+    "title": "Enum BluetoothHidParamType",
     "keywords": ""
   },
   "API11/api/Tizen.Network.Bluetooth.BluetoothLeAdvertiseData.html": {
@@ -19704,6 +19899,16 @@
     "title": "Class HidConnectionStateChangedEventArgs",
     "keywords": ""
   },
+  "API11/api/Tizen.Network.Bluetooth.HidDeviceConnectionStateChangedEventArgs.html": {
+    "href": "API11/api/Tizen.Network.Bluetooth.HidDeviceConnectionStateChangedEventArgs.html",
+    "title": "Class HidDeviceConnectionStateChangedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Network.Bluetooth.HidDeviceDataReceivedEventArgs.html": {
+    "href": "API11/api/Tizen.Network.Bluetooth.HidDeviceDataReceivedEventArgs.html",
+    "title": "Class HidDeviceDataReceivedEventArgs",
+    "keywords": ""
+  },
   "API11/api/Tizen.Network.Bluetooth.html": {
     "href": "API11/api/Tizen.Network.Bluetooth.html",
     "title": "Namespace Tizen.Network.Bluetooth",
@@ -19827,6 +20032,11 @@
   "API11/api/Tizen.Network.Bluetooth.SocketConnection.html": {
     "href": "API11/api/Tizen.Network.Bluetooth.SocketConnection.html",
     "title": "Class SocketConnection",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Network.Bluetooth.SocketConnectionRequestedEventArgs.html": {
+    "href": "API11/api/Tizen.Network.Bluetooth.SocketConnectionRequestedEventArgs.html",
+    "title": "Class SocketConnectionRequestedEventArgs",
     "keywords": ""
   },
   "API11/api/Tizen.Network.Bluetooth.SocketConnectionStateChangedEventArgs.html": {
@@ -20042,6 +20252,11 @@
   "API11/api/Tizen.Network.Connection.ProxyType.html": {
     "href": "API11/api/Tizen.Network.Connection.ProxyType.html",
     "title": "Enum ProxyType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Network.Connection.SafeConnectionHandle.html": {
+    "href": "API11/api/Tizen.Network.Connection.SafeConnectionHandle.html",
+    "title": "Class SafeConnectionHandle",
     "keywords": ""
   },
   "API11/api/Tizen.Network.Connection.StatisticsType.html": {
@@ -20494,6 +20709,11 @@
     "title": "Class NetworkStatistics",
     "keywords": ""
   },
+  "API11/api/Tizen.Network.Stc.SafeStcHandle.html": {
+    "href": "API11/api/Tizen.Network.Stc.SafeStcHandle.html",
+    "title": "Class SafeStcHandle",
+    "keywords": ""
+  },
   "API11/api/Tizen.Network.Stc.StatisticsFilter.html": {
     "href": "API11/api/Tizen.Network.Stc.StatisticsFilter.html",
     "title": "Class StatisticsFilter",
@@ -20537,6 +20757,11 @@
   "API11/api/Tizen.Network.WiFi.RssiLevelChangedEventArgs.html": {
     "href": "API11/api/Tizen.Network.WiFi.RssiLevelChangedEventArgs.html",
     "title": "Class RssiLevelChangedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Network.WiFi.SafeWiFiManagerHandle.html": {
+    "href": "API11/api/Tizen.Network.WiFi.SafeWiFiManagerHandle.html",
+    "title": "Class SafeWiFiManagerHandle",
     "keywords": ""
   },
   "API11/api/Tizen.Network.WiFi.ScanStateChangedEventArgs.html": {
@@ -20784,6 +21009,91 @@
     "title": "Class AbsoluteLayout",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Accessibility.Accessibility.html": {
+    "href": "API11/api/Tizen.NUI.Accessibility.Accessibility.html",
+    "title": "Class Accessibility",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Accessibility.Accessibility.SayFinishedState.html": {
+    "href": "API11/api/Tizen.NUI.Accessibility.Accessibility.SayFinishedState.html",
+    "title": "Enum Accessibility.SayFinishedState",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Accessibility.AccessibilityManager.AccessibilityAttribute.html": {
+    "href": "API11/api/Tizen.NUI.Accessibility.AccessibilityManager.AccessibilityAttribute.html",
+    "title": "Enum AccessibilityManager.AccessibilityAttribute",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Accessibility.AccessibilityManager.FocusChangedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.Accessibility.AccessibilityManager.FocusChangedEventArgs.html",
+    "title": "Class AccessibilityManager.FocusChangedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Accessibility.AccessibilityManager.FocusedViewActivatedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.Accessibility.AccessibilityManager.FocusedViewActivatedEventArgs.html",
+    "title": "Class AccessibilityManager.FocusedViewActivatedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Accessibility.AccessibilityManager.FocusOvershotDirection.html": {
+    "href": "API11/api/Tizen.NUI.Accessibility.AccessibilityManager.FocusOvershotDirection.html",
+    "title": "Enum AccessibilityManager.FocusOvershotDirection",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Accessibility.AccessibilityManager.FocusOvershotEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.Accessibility.AccessibilityManager.FocusOvershotEventArgs.html",
+    "title": "Class AccessibilityManager.FocusOvershotEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Accessibility.AccessibilityManager.html": {
+    "href": "API11/api/Tizen.NUI.Accessibility.AccessibilityManager.html",
+    "title": "Class AccessibilityManager",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Accessibility.html": {
+    "href": "API11/api/Tizen.NUI.Accessibility.html",
+    "title": "Namespace Tizen.NUI.Accessibility",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Accessibility.IAtspiEditableText.html": {
+    "href": "API11/api/Tizen.NUI.Accessibility.IAtspiEditableText.html",
+    "title": "Interface IAtspiEditableText",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Accessibility.IAtspiSelection.html": {
+    "href": "API11/api/Tizen.NUI.Accessibility.IAtspiSelection.html",
+    "title": "Interface IAtspiSelection",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Accessibility.IAtspiTable.html": {
+    "href": "API11/api/Tizen.NUI.Accessibility.IAtspiTable.html",
+    "title": "Interface IAtspiTable",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Accessibility.IAtspiTableCell.html": {
+    "href": "API11/api/Tizen.NUI.Accessibility.IAtspiTableCell.html",
+    "title": "Interface IAtspiTableCell",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Accessibility.IAtspiText.html": {
+    "href": "API11/api/Tizen.NUI.Accessibility.IAtspiText.html",
+    "title": "Interface IAtspiText",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Accessibility.IAtspiValue.html": {
+    "href": "API11/api/Tizen.NUI.Accessibility.IAtspiValue.html",
+    "title": "Interface IAtspiValue",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Accessibility.SayFinishedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.Accessibility.SayFinishedEventArgs.html",
+    "title": "Class SayFinishedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.AccessibilityDoGestureSignal.html": {
+    "href": "API11/api/Tizen.NUI.AccessibilityDoGestureSignal.html",
+    "title": "Class AccessibilityDoGestureSignal",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Adaptor.html": {
     "href": "API11/api/Tizen.NUI.Adaptor.html",
     "title": "Class Adaptor",
@@ -20802,6 +21112,11 @@
   "API11/api/Tizen.NUI.AlphaFunction.Modes.html": {
     "href": "API11/api/Tizen.NUI.AlphaFunction.Modes.html",
     "title": "Enum AlphaFunction.Modes",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.AnchorPoint.html": {
+    "href": "API11/api/Tizen.NUI.AnchorPoint.html",
+    "title": "Struct AnchorPoint",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Animatable.Capability.html": {
@@ -20849,14 +21164,159 @@
     "title": "Enum Animation.States",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.ApplicationTransitionManager.AnimationEventHandler.html": {
+    "href": "API11/api/Tizen.NUI.ApplicationTransitionManager.AnimationEventHandler.html",
+    "title": "Delegate ApplicationTransitionManager.AnimationEventHandler",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.ApplicationTransitionManager.html": {
+    "href": "API11/api/Tizen.NUI.ApplicationTransitionManager.html",
+    "title": "Class ApplicationTransitionManager",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.ArcVisual.CapType.html": {
+    "href": "API11/api/Tizen.NUI.ArcVisual.CapType.html",
+    "title": "Enum ArcVisual.CapType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.ArcVisual.html": {
+    "href": "API11/api/Tizen.NUI.ArcVisual.html",
+    "title": "Class ArcVisual",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.AutofillContainer.AuthenticationEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.AutofillContainer.AuthenticationEventArgs.html",
+    "title": "Class AutofillContainer.AuthenticationEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.AutofillContainer.html": {
+    "href": "API11/api/Tizen.NUI.AutofillContainer.html",
+    "title": "Class AutofillContainer",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.AutofillContainer.ItemHint.html": {
+    "href": "API11/api/Tizen.NUI.AutofillContainer.ItemHint.html",
+    "title": "Enum AutofillContainer.ItemHint",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.AutofillContainer.ListEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.AutofillContainer.ListEventArgs.html",
+    "title": "Class AutofillContainer.ListEventArgs",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.AutoScrollStopMode.html": {
     "href": "API11/api/Tizen.NUI.AutoScrollStopMode.html",
     "title": "Enum AutoScrollStopMode",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.AuxiliaryMessageEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.AuxiliaryMessageEventArgs.html",
+    "title": "Class AuxiliaryMessageEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BackKeyManager.html": {
+    "href": "API11/api/Tizen.NUI.BackKeyManager.html",
+    "title": "Class BackKeyManager",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.AccessibilityCoordinateType.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.AccessibilityCoordinateType.html",
+    "title": "Enum AccessibilityCoordinateType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.AccessibilityEvent.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.AccessibilityEvent.html",
+    "title": "Enum AccessibilityEvent",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.AccessibilityEvents.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.AccessibilityEvents.html",
+    "title": "Class AccessibilityEvents",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.AccessibilityGesture.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.AccessibilityGesture.html",
+    "title": "Enum AccessibilityGesture",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.AccessibilityGestureState.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.AccessibilityGestureState.html",
+    "title": "Enum AccessibilityGestureState",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.AccessibilityPropertyChangeEvent.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.AccessibilityPropertyChangeEvent.html",
+    "title": "Enum AccessibilityPropertyChangeEvent",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.AccessibilityRange.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.AccessibilityRange.html",
+    "title": "Class AccessibilityRange",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.AccessibilityReadingInfoTypes.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.AccessibilityReadingInfoTypes.html",
+    "title": "Enum AccessibilityReadingInfoTypes",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.AccessibilityRelationType.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.AccessibilityRelationType.html",
+    "title": "Enum AccessibilityRelationType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.AccessibilityState.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.AccessibilityState.html",
+    "title": "Enum AccessibilityState",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.AccessibilityStates.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.AccessibilityStates.html",
+    "title": "Class AccessibilityStates",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.AccessibilityStatesNotifyMode.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.AccessibilityStatesNotifyMode.html",
+    "title": "Enum AccessibilityStatesNotifyMode",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.AccessibilityTextBoundary.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.AccessibilityTextBoundary.html",
+    "title": "Enum AccessibilityTextBoundary",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.BaseComponents.AnchorClickedEventArgs.html": {
     "href": "API11/api/Tizen.NUI.BaseComponents.AnchorClickedEventArgs.html",
     "title": "Class AnchorClickedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.AnimatedImageView.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.AnimatedImageView.html",
+    "title": "Class AnimatedImageView",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.AnimatedImageView.StopBehaviorType.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.AnimatedImageView.StopBehaviorType.html",
+    "title": "Enum AnimatedImageView.StopBehaviorType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.AnimatedVectorImageView.AnimationStates.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.AnimatedVectorImageView.AnimationStates.html",
+    "title": "Enum AnimatedVectorImageView.AnimationStates",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.AnimatedVectorImageView.EndActions.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.AnimatedVectorImageView.EndActions.html",
+    "title": "Enum AnimatedVectorImageView.EndActions",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.AnimatedVectorImageView.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.AnimatedVectorImageView.html",
+    "title": "Class AnimatedVectorImageView",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.AnimatedVectorImageView.RepeatModes.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.AnimatedVectorImageView.RepeatModes.html",
+    "title": "Enum AnimatedVectorImageView.RepeatModes",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.BaseComponents.CameraView.DisplayType.html": {
@@ -20877,6 +21337,41 @@
   "API11/api/Tizen.NUI.BaseComponents.CustomView.html": {
     "href": "API11/api/Tizen.NUI.BaseComponents.CustomView.html",
     "title": "Class CustomView",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.DirectRenderingGLView.ColorFormat.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.DirectRenderingGLView.ColorFormat.html",
+    "title": "Enum DirectRenderingGLView.ColorFormat",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.DirectRenderingGLView.GLInitializeDelegate.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.DirectRenderingGLView.GLInitializeDelegate.html",
+    "title": "Delegate DirectRenderingGLView.GLInitializeDelegate",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.DirectRenderingGLView.GLRenderFrameDelegate.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.DirectRenderingGLView.GLRenderFrameDelegate.html",
+    "title": "Delegate DirectRenderingGLView.GLRenderFrameDelegate",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.DirectRenderingGLView.GLTerminateDelegate.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.DirectRenderingGLView.GLTerminateDelegate.html",
+    "title": "Delegate DirectRenderingGLView.GLTerminateDelegate",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.DirectRenderingGLView.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.DirectRenderingGLView.html",
+    "title": "Class DirectRenderingGLView",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.DirectRenderingGLView.RenderCallbackInput.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.DirectRenderingGLView.RenderCallbackInput.html",
+    "title": "Class DirectRenderingGLView.RenderCallbackInput",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.EmbeddedItemInfo.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.EmbeddedItemInfo.html",
+    "title": "Class EmbeddedItemInfo",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.BaseComponents.FlexContainer.Alignment.html": {
@@ -20907,6 +21402,26 @@
   "API11/api/Tizen.NUI.BaseComponents.FlexContainer.WrapType.html": {
     "href": "API11/api/Tizen.NUI.BaseComponents.FlexContainer.WrapType.html",
     "title": "Enum FlexContainer.WrapType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.GestureInfoEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.GestureInfoEventArgs.html",
+    "title": "Class GestureInfoEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.GestureInfoType.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.GestureInfoType.html",
+    "title": "Struct GestureInfoType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.GetDescriptionEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.GetDescriptionEventArgs.html",
+    "title": "Class GetDescriptionEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.GetNameEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.GetNameEventArgs.html",
+    "title": "Class GetNameEventArgs",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.BaseComponents.GLView.ColorFormat.html": {
@@ -20954,9 +21469,19 @@
     "title": "Enum ImageView.LoadingStatusType",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.BaseComponents.ImageView.MaskingModeType.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.ImageView.MaskingModeType.html",
+    "title": "Enum ImageView.MaskingModeType",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.BaseComponents.ImageView.ResourceReadyEventArgs.html": {
     "href": "API11/api/Tizen.NUI.BaseComponents.ImageView.ResourceReadyEventArgs.html",
     "title": "Class ImageView.ResourceReadyEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.ImageViewStyle.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.ImageViewStyle.html",
+    "title": "Class ImageViewStyle",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.BaseComponents.InputFilteredEventArgs.html": {
@@ -20967,6 +21492,11 @@
   "API11/api/Tizen.NUI.BaseComponents.LayoutParamPolicies.html": {
     "href": "API11/api/Tizen.NUI.BaseComponents.LayoutParamPolicies.html",
     "title": "Class LayoutParamPolicies",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.LottieAnimationView.DynamicPropertyCallbackType.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.LottieAnimationView.DynamicPropertyCallbackType.html",
+    "title": "Delegate LottieAnimationView.DynamicPropertyCallbackType",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.BaseComponents.LottieAnimationView.html": {
@@ -20987,6 +21517,36 @@
   "API11/api/Tizen.NUI.BaseComponents.LottieAnimationView.StopBehaviorType.html": {
     "href": "API11/api/Tizen.NUI.BaseComponents.LottieAnimationView.StopBehaviorType.html",
     "title": "Enum LottieAnimationView.StopBehaviorType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.LottieAnimationView.VectorProperty.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.LottieAnimationView.VectorProperty.html",
+    "title": "Enum LottieAnimationView.VectorProperty",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.LottieAnimationViewDynamicProperty.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.LottieAnimationViewDynamicProperty.html",
+    "title": "Struct LottieAnimationViewDynamicProperty",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.LottieFrameInfo.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.LottieFrameInfo.html",
+    "title": "Class LottieFrameInfo",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.RendererParameters.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.RendererParameters.html",
+    "title": "Class RendererParameters",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.Role.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.Role.html",
+    "title": "Enum Role",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.SafeNativePlayerHandle.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.SafeNativePlayerHandle.html",
+    "title": "Class SafeNativePlayerHandle",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.BaseComponents.Scrollable.CompletedEventArgs.html": {
@@ -21014,9 +21574,19 @@
     "title": "Class Selector<T>",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.BaseComponents.SelectorExtensions.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.SelectorExtensions.html",
+    "title": "Class SelectorExtensions",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.BaseComponents.SelectorItem-1.html": {
     "href": "API11/api/Tizen.NUI.BaseComponents.SelectorItem-1.html",
     "title": "Class SelectorItem<T>",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.ShadowParameters.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.ShadowParameters.html",
+    "title": "Class ShadowParameters",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.BaseComponents.TableView.CellPosition.html": {
@@ -21039,6 +21609,11 @@
     "title": "Class TextEditor",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.BaseComponents.TextEditor.MaxLengthReachedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.TextEditor.MaxLengthReachedEventArgs.html",
+    "title": "Class TextEditor.MaxLengthReachedEventArgs",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.BaseComponents.TextEditor.ScrollStateChangedEventArgs.html": {
     "href": "API11/api/Tizen.NUI.BaseComponents.TextEditor.ScrollStateChangedEventArgs.html",
     "title": "Class TextEditor.ScrollStateChangedEventArgs",
@@ -21047,6 +21622,11 @@
   "API11/api/Tizen.NUI.BaseComponents.TextEditor.TextChangedEventArgs.html": {
     "href": "API11/api/Tizen.NUI.BaseComponents.TextEditor.TextChangedEventArgs.html",
     "title": "Class TextEditor.TextChangedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.TextEditorStyle.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.TextEditorStyle.html",
+    "title": "Class TextEditorStyle",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.BaseComponents.TextField.html": {
@@ -21064,9 +21644,39 @@
     "title": "Class TextField.TextChangedEventArgs",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.BaseComponents.TextFieldStyle.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.TextFieldStyle.html",
+    "title": "Class TextFieldStyle",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.TextGeometry.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.TextGeometry.html",
+    "title": "Class TextGeometry",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.BaseComponents.TextLabel.html": {
     "href": "API11/api/Tizen.NUI.BaseComponents.TextLabel.html",
     "title": "Class TextLabel",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.TextLabelStyle.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.TextLabelStyle.html",
+    "title": "Class TextLabelStyle",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.TextMapHelper.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.TextMapHelper.html",
+    "title": "Class TextMapHelper",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.TextUtils.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.TextUtils.html",
+    "title": "Class TextUtils",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.TriggerableSelector-1.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.TriggerableSelector-1.html",
+    "title": "Class TriggerableSelector<T>",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.BaseComponents.VectorGraphics.CanvasView.html": {
@@ -21164,6 +21774,11 @@
     "title": "Class VideoView",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.BaseComponents.View.AccessibilityValueTextRequestedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.View.AccessibilityValueTextRequestedEventArgs.html",
+    "title": "Class View.AccessibilityValueTextRequestedEventArgs",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.BaseComponents.View.ChildAddedEventArgs.html": {
     "href": "API11/api/Tizen.NUI.BaseComponents.View.ChildAddedEventArgs.html",
     "title": "Class View.ChildAddedEventArgs",
@@ -21172,6 +21787,11 @@
   "API11/api/Tizen.NUI.BaseComponents.View.ChildRemovedEventArgs.html": {
     "href": "API11/api/Tizen.NUI.BaseComponents.View.ChildRemovedEventArgs.html",
     "title": "Class View.ChildRemovedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.View.ControlStateChangedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.View.ControlStateChangedEventArgs.html",
+    "title": "Class View.ControlStateChangedEventArgs",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.BaseComponents.View.FocusDirection.html": {
@@ -21209,6 +21829,11 @@
     "title": "Class View.TouchEventArgs",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.BaseComponents.View.ViewAccessibilityMode.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.View.ViewAccessibilityMode.html",
+    "title": "Enum View.ViewAccessibilityMode",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.BaseComponents.View.VisibilityChangedEventArgs.html": {
     "href": "API11/api/Tizen.NUI.BaseComponents.View.VisibilityChangedEventArgs.html",
     "title": "Class View.VisibilityChangedEventArgs",
@@ -21229,14 +21854,74 @@
     "title": "Class ViewStyle",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.BaseComponents.ViewStyleExtension.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.ViewStyleExtension.html",
+    "title": "Class ViewStyleExtension",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.BaseComponents.VisualView.html": {
     "href": "API11/api/Tizen.NUI.BaseComponents.VisualView.html",
     "title": "Class VisualView",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.BaseComponents.WebView.FindOption.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.WebView.FindOption.html",
+    "title": "Enum WebView.FindOption",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.WebView.GeolocationPermissionCallback.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.WebView.GeolocationPermissionCallback.html",
+    "title": "Delegate WebView.GeolocationPermissionCallback",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.WebView.HitTestFinishedCallback.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.WebView.HitTestFinishedCallback.html",
+    "title": "Delegate WebView.HitTestFinishedCallback",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.WebView.HitTestMode.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.WebView.HitTestMode.html",
+    "title": "Enum WebView.HitTestMode",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.BaseComponents.WebView.html": {
     "href": "API11/api/Tizen.NUI.BaseComponents.WebView.html",
     "title": "Class WebView",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.WebView.JavaScriptAlertCallback.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.WebView.JavaScriptAlertCallback.html",
+    "title": "Delegate WebView.JavaScriptAlertCallback",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.WebView.JavaScriptConfirmCallback.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.WebView.JavaScriptConfirmCallback.html",
+    "title": "Delegate WebView.JavaScriptConfirmCallback",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.WebView.JavaScriptMessageHandler.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.WebView.JavaScriptMessageHandler.html",
+    "title": "Delegate WebView.JavaScriptMessageHandler",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.WebView.JavaScriptPromptCallback.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.WebView.JavaScriptPromptCallback.html",
+    "title": "Delegate WebView.JavaScriptPromptCallback",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.WebView.PlainTextReceivedCallback.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.WebView.PlainTextReceivedCallback.html",
+    "title": "Delegate WebView.PlainTextReceivedCallback",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.WebView.ScreenshotAcquiredCallback.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.WebView.ScreenshotAcquiredCallback.html",
+    "title": "Delegate WebView.ScreenshotAcquiredCallback",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BaseComponents.WebView.VideoPlayingCallback.html": {
+    "href": "API11/api/Tizen.NUI.BaseComponents.WebView.VideoPlayingCallback.html",
+    "title": "Delegate WebView.VideoPlayingCallback",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.BaseHandle.FocusRequestArgs.html": {
@@ -21249,9 +21934,114 @@
     "title": "Class BaseHandle",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Binding.Behavior.html": {
+    "href": "API11/api/Tizen.NUI.Binding.Behavior.html",
+    "title": "Class Behavior",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.Behavior-1.html": {
+    "href": "API11/api/Tizen.NUI.Binding.Behavior-1.html",
+    "title": "Class Behavior<T>",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Binding.BindableObject.html": {
     "href": "API11/api/Tizen.NUI.Binding.BindableObject.html",
     "title": "Class BindableObject",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.BindableObjectExtensions.html": {
+    "href": "API11/api/Tizen.NUI.Binding.BindableObjectExtensions.html",
+    "title": "Class BindableObjectExtensions",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.BindableProperty.BindingPropertyChangedDelegate.html": {
+    "href": "API11/api/Tizen.NUI.Binding.BindableProperty.BindingPropertyChangedDelegate.html",
+    "title": "Delegate BindableProperty.BindingPropertyChangedDelegate",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.BindableProperty.BindingPropertyChangedDelegate-1.html": {
+    "href": "API11/api/Tizen.NUI.Binding.BindableProperty.BindingPropertyChangedDelegate-1.html",
+    "title": "Delegate BindableProperty.BindingPropertyChangedDelegate<TPropertyType>",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.BindableProperty.BindingPropertyChangingDelegate.html": {
+    "href": "API11/api/Tizen.NUI.Binding.BindableProperty.BindingPropertyChangingDelegate.html",
+    "title": "Delegate BindableProperty.BindingPropertyChangingDelegate",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.BindableProperty.BindingPropertyChangingDelegate-1.html": {
+    "href": "API11/api/Tizen.NUI.Binding.BindableProperty.BindingPropertyChangingDelegate-1.html",
+    "title": "Delegate BindableProperty.BindingPropertyChangingDelegate<TPropertyType>",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.BindableProperty.CoerceValueDelegate.html": {
+    "href": "API11/api/Tizen.NUI.Binding.BindableProperty.CoerceValueDelegate.html",
+    "title": "Delegate BindableProperty.CoerceValueDelegate",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.BindableProperty.CoerceValueDelegate-1.html": {
+    "href": "API11/api/Tizen.NUI.Binding.BindableProperty.CoerceValueDelegate-1.html",
+    "title": "Delegate BindableProperty.CoerceValueDelegate<TPropertyType>",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.BindableProperty.CreateDefaultValueDelegate.html": {
+    "href": "API11/api/Tizen.NUI.Binding.BindableProperty.CreateDefaultValueDelegate.html",
+    "title": "Delegate BindableProperty.CreateDefaultValueDelegate",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.BindableProperty.CreateDefaultValueDelegate-2.html": {
+    "href": "API11/api/Tizen.NUI.Binding.BindableProperty.CreateDefaultValueDelegate-2.html",
+    "title": "Delegate BindableProperty.CreateDefaultValueDelegate<TDeclarer, TPropertyType>",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.BindableProperty.html": {
+    "href": "API11/api/Tizen.NUI.Binding.BindableProperty.html",
+    "title": "Class BindableProperty",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.BindableProperty.ValidateValueDelegate.html": {
+    "href": "API11/api/Tizen.NUI.Binding.BindableProperty.ValidateValueDelegate.html",
+    "title": "Delegate BindableProperty.ValidateValueDelegate",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.BindableProperty.ValidateValueDelegate-1.html": {
+    "href": "API11/api/Tizen.NUI.Binding.BindableProperty.ValidateValueDelegate-1.html",
+    "title": "Delegate BindableProperty.ValidateValueDelegate<TPropertyType>",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.BindablePropertyConverter.html": {
+    "href": "API11/api/Tizen.NUI.Binding.BindablePropertyConverter.html",
+    "title": "Class BindablePropertyConverter",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.BindablePropertyKey.html": {
+    "href": "API11/api/Tizen.NUI.Binding.BindablePropertyKey.html",
+    "title": "Class BindablePropertyKey",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.Binding.html": {
+    "href": "API11/api/Tizen.NUI.Binding.Binding.html",
+    "title": "Class Binding",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.BindingBase.html": {
+    "href": "API11/api/Tizen.NUI.Binding.BindingBase.html",
+    "title": "Class BindingBase",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.BindingCondition.html": {
+    "href": "API11/api/Tizen.NUI.Binding.BindingCondition.html",
+    "title": "Class BindingCondition",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.BindingMode.html": {
+    "href": "API11/api/Tizen.NUI.Binding.BindingMode.html",
+    "title": "Enum BindingMode",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.BindingTypeConverter.html": {
+    "href": "API11/api/Tizen.NUI.Binding.BindingTypeConverter.html",
+    "title": "Class BindingTypeConverter",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Binding.CollectionSynchronizationCallback.html": {
@@ -21259,9 +22049,34 @@
     "title": "Delegate CollectionSynchronizationCallback",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Binding.ColorTypeConverter.html": {
+    "href": "API11/api/Tizen.NUI.Binding.ColorTypeConverter.html",
+    "title": "Class ColorTypeConverter",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.Command.html": {
+    "href": "API11/api/Tizen.NUI.Binding.Command.html",
+    "title": "Class Command",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.Command-1.html": {
+    "href": "API11/api/Tizen.NUI.Binding.Command-1.html",
+    "title": "Class Command<T>",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.Condition.html": {
+    "href": "API11/api/Tizen.NUI.Binding.Condition.html",
+    "title": "Class Condition",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Binding.DataTemplate.html": {
     "href": "API11/api/Tizen.NUI.Binding.DataTemplate.html",
     "title": "Class DataTemplate",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.DataTemplateExtensions.html": {
+    "href": "API11/api/Tizen.NUI.Binding.DataTemplateExtensions.html",
+    "title": "Class DataTemplateExtensions",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Binding.DataTemplateSelector.html": {
@@ -21269,14 +22084,249 @@
     "title": "Class DataTemplateSelector",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Binding.DataTrigger.html": {
+    "href": "API11/api/Tizen.NUI.Binding.DataTrigger.html",
+    "title": "Class DataTrigger",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.Element.html": {
+    "href": "API11/api/Tizen.NUI.Binding.Element.html",
+    "title": "Class Element",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.ElementEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.Binding.ElementEventArgs.html",
+    "title": "Class ElementEventArgs",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Binding.ElementTemplate.html": {
     "href": "API11/api/Tizen.NUI.Binding.ElementTemplate.html",
     "title": "Class ElementTemplate",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Binding.EventTrigger.html": {
+    "href": "API11/api/Tizen.NUI.Binding.EventTrigger.html",
+    "title": "Class EventTrigger",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.FloatGraphicsTypeConverter.html": {
+    "href": "API11/api/Tizen.NUI.Binding.FloatGraphicsTypeConverter.html",
+    "title": "Class FloatGraphicsTypeConverter",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Binding.html": {
     "href": "API11/api/Tizen.NUI.Binding.html",
     "title": "Namespace Tizen.NUI.Binding",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.IDataTemplate.html": {
+    "href": "API11/api/Tizen.NUI.Binding.IDataTemplate.html",
+    "title": "Interface IDataTemplate",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.ImageShadowTypeConverter.html": {
+    "href": "API11/api/Tizen.NUI.Binding.ImageShadowTypeConverter.html",
+    "title": "Class ImageShadowTypeConverter",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.Internals.DynamicResource.html": {
+    "href": "API11/api/Tizen.NUI.Binding.Internals.DynamicResource.html",
+    "title": "Class DynamicResource",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.Internals.html": {
+    "href": "API11/api/Tizen.NUI.Binding.Internals.html",
+    "title": "Namespace Tizen.NUI.Binding.Internals",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html": {
+    "href": "API11/api/Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html",
+    "title": "Interface IDynamicResourceHandler",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.Internals.INameScope.html": {
+    "href": "API11/api/Tizen.NUI.Binding.Internals.INameScope.html",
+    "title": "Interface INameScope",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.Internals.NameScope.html": {
+    "href": "API11/api/Tizen.NUI.Binding.Internals.NameScope.html",
+    "title": "Class NameScope",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.Internals.Registrar.html": {
+    "href": "API11/api/Tizen.NUI.Binding.Internals.Registrar.html",
+    "title": "Class Registrar",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.Internals.Registrar-1.html": {
+    "href": "API11/api/Tizen.NUI.Binding.Internals.Registrar-1.html",
+    "title": "Class Registrar<TRegistrable>",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.Internals.SetValueFlags.html": {
+    "href": "API11/api/Tizen.NUI.Binding.Internals.SetValueFlags.html",
+    "title": "Enum SetValueFlags",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.Internals.TypedBindingBase.html": {
+    "href": "API11/api/Tizen.NUI.Binding.Internals.TypedBindingBase.html",
+    "title": "Class TypedBindingBase",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.IntGraphicsTypeConverter.html": {
+    "href": "API11/api/Tizen.NUI.Binding.IntGraphicsTypeConverter.html",
+    "title": "Class IntGraphicsTypeConverter",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.IResourcesProvider.html": {
+    "href": "API11/api/Tizen.NUI.Binding.IResourcesProvider.html",
+    "title": "Interface IResourcesProvider",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.IValueConverter.html": {
+    "href": "API11/api/Tizen.NUI.Binding.IValueConverter.html",
+    "title": "Interface IValueConverter",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.MultiTrigger.html": {
+    "href": "API11/api/Tizen.NUI.Binding.MultiTrigger.html",
+    "title": "Class MultiTrigger",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.NameScopeExtensions.html": {
+    "href": "API11/api/Tizen.NUI.Binding.NameScopeExtensions.html",
+    "title": "Class NameScopeExtensions",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.PointSizeTypeConverter.html": {
+    "href": "API11/api/Tizen.NUI.Binding.PointSizeTypeConverter.html",
+    "title": "Class PointSizeTypeConverter",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.Position2DTypeConverter.html": {
+    "href": "API11/api/Tizen.NUI.Binding.Position2DTypeConverter.html",
+    "title": "Class Position2DTypeConverter",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.PositionTypeConverter.html": {
+    "href": "API11/api/Tizen.NUI.Binding.PositionTypeConverter.html",
+    "title": "Class PositionTypeConverter",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.RectangleTypeConverter.html": {
+    "href": "API11/api/Tizen.NUI.Binding.RectangleTypeConverter.html",
+    "title": "Class RectangleTypeConverter",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.RelativeVector2TypeConverter.html": {
+    "href": "API11/api/Tizen.NUI.Binding.RelativeVector2TypeConverter.html",
+    "title": "Class RelativeVector2TypeConverter",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.RelativeVector3TypeConverter.html": {
+    "href": "API11/api/Tizen.NUI.Binding.RelativeVector3TypeConverter.html",
+    "title": "Class RelativeVector3TypeConverter",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.RelativeVector4TypeConverter.html": {
+    "href": "API11/api/Tizen.NUI.Binding.RelativeVector4TypeConverter.html",
+    "title": "Class RelativeVector4TypeConverter",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.ResourceDictionary.html": {
+    "href": "API11/api/Tizen.NUI.Binding.ResourceDictionary.html",
+    "title": "Class ResourceDictionary",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.RotationTypeConverter.html": {
+    "href": "API11/api/Tizen.NUI.Binding.RotationTypeConverter.html",
+    "title": "Class RotationTypeConverter",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.Setter.html": {
+    "href": "API11/api/Tizen.NUI.Binding.Setter.html",
+    "title": "Class Setter",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.ShadowTypeConverter.html": {
+    "href": "API11/api/Tizen.NUI.Binding.ShadowTypeConverter.html",
+    "title": "Class ShadowTypeConverter",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.Size2DTypeConverter.html": {
+    "href": "API11/api/Tizen.NUI.Binding.Size2DTypeConverter.html",
+    "title": "Class Size2DTypeConverter",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.SizeTypeConverter.html": {
+    "href": "API11/api/Tizen.NUI.Binding.SizeTypeConverter.html",
+    "title": "Class SizeTypeConverter",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.Trigger.html": {
+    "href": "API11/api/Tizen.NUI.Binding.Trigger.html",
+    "title": "Class Trigger",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.TriggerAction.html": {
+    "href": "API11/api/Tizen.NUI.Binding.TriggerAction.html",
+    "title": "Class TriggerAction",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.TriggerBase.html": {
+    "href": "API11/api/Tizen.NUI.Binding.TriggerBase.html",
+    "title": "Class TriggerBase",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.TypeConverter.html": {
+    "href": "API11/api/Tizen.NUI.Binding.TypeConverter.html",
+    "title": "Class TypeConverter",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.TypeTypeConverter.html": {
+    "href": "API11/api/Tizen.NUI.Binding.TypeTypeConverter.html",
+    "title": "Class TypeTypeConverter",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.Vector2TypeConverter.html": {
+    "href": "API11/api/Tizen.NUI.Binding.Vector2TypeConverter.html",
+    "title": "Class Vector2TypeConverter",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.Vector3TypeConverter.html": {
+    "href": "API11/api/Tizen.NUI.Binding.Vector3TypeConverter.html",
+    "title": "Class Vector3TypeConverter",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.Vector4TypeConverter.html": {
+    "href": "API11/api/Tizen.NUI.Binding.Vector4TypeConverter.html",
+    "title": "Class Vector4TypeConverter",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.XamlPropertyCondition.html": {
+    "href": "API11/api/Tizen.NUI.Binding.XamlPropertyCondition.html",
+    "title": "Class XamlPropertyCondition",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Binding.XamlStyle.html": {
+    "href": "API11/api/Tizen.NUI.Binding.XamlStyle.html",
+    "title": "Class XamlStyle",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BlendEquationType.html": {
+    "href": "API11/api/Tizen.NUI.BlendEquationType.html",
+    "title": "Enum BlendEquationType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BlendFactorType.html": {
+    "href": "API11/api/Tizen.NUI.BlendFactorType.html",
+    "title": "Enum BlendFactorType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.BlendModeType.html": {
+    "href": "API11/api/Tizen.NUI.BlendModeType.html",
+    "title": "Enum BlendModeType",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.BorderVisual.html": {
@@ -21289,9 +22339,49 @@
     "title": "Struct BorderVisualProperty",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.CacheModel.html": {
+    "href": "API11/api/Tizen.NUI.CacheModel.html",
+    "title": "Enum CacheModel",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Camera.html": {
+    "href": "API11/api/Tizen.NUI.Camera.html",
+    "title": "Class Camera",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.CameraType.html": {
     "href": "API11/api/Tizen.NUI.CameraType.html",
     "title": "Enum CameraType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Capture.html": {
+    "href": "API11/api/Tizen.NUI.Capture.html",
+    "title": "Class Capture",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.CaptureFinishedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.CaptureFinishedEventArgs.html",
+    "title": "Class CaptureFinishedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.CircularAlignment.html": {
+    "href": "API11/api/Tizen.NUI.CircularAlignment.html",
+    "title": "Enum CircularAlignment",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Clipboard.ClipboardCallback.html": {
+    "href": "API11/api/Tizen.NUI.Clipboard.ClipboardCallback.html",
+    "title": "Delegate Clipboard.ClipboardCallback",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Clipboard.html": {
+    "href": "API11/api/Tizen.NUI.Clipboard.html",
+    "title": "Class Clipboard",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.ClipEvent.html": {
+    "href": "API11/api/Tizen.NUI.ClipEvent.html",
+    "title": "Struct ClipEvent",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.ClippingModeType.html": {
@@ -21302,6 +22392,11 @@
   "API11/api/Tizen.NUI.Color.html": {
     "href": "API11/api/Tizen.NUI.Color.html",
     "title": "Class Color",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.ColorBlendingMode.html": {
+    "href": "API11/api/Tizen.NUI.ColorBlendingMode.html",
+    "title": "Enum ColorBlendingMode",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.ColorMode.html": {
@@ -21339,6 +22434,11 @@
     "title": "Class AppBarStyle",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Components.BackNavigationEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.Components.BackNavigationEventArgs.html",
+    "title": "Class BackNavigationEventArgs",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Components.Button.ClickEventArgs.html": {
     "href": "API11/api/Tizen.NUI.Components.Button.ClickEventArgs.html",
     "title": "Class Button.ClickEventArgs",
@@ -21359,6 +22459,11 @@
     "title": "Class Button.StateChangedEventArgs",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Components.ButtonGroup.html": {
+    "href": "API11/api/Tizen.NUI.Components.ButtonGroup.html",
+    "title": "Class ButtonGroup",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Components.ButtonStyle.html": {
     "href": "API11/api/Tizen.NUI.Components.ButtonStyle.html",
     "title": "Class ButtonStyle",
@@ -21367,6 +22472,11 @@
   "API11/api/Tizen.NUI.Components.CheckBox.html": {
     "href": "API11/api/Tizen.NUI.Components.CheckBox.html",
     "title": "Class CheckBox",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.CheckBoxGroup.html": {
+    "href": "API11/api/Tizen.NUI.Components.CheckBoxGroup.html",
+    "title": "Class CheckBoxGroup",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Components.ClickedEventArgs.html": {
@@ -21384,9 +22494,29 @@
     "title": "Enum CollectionView.ItemScrollTo",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Components.ColorSelector.html": {
+    "href": "API11/api/Tizen.NUI.Components.ColorSelector.html",
+    "title": "Class ColorSelector",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Components.ContentPage.html": {
     "href": "API11/api/Tizen.NUI.Components.ContentPage.html",
     "title": "Class ContentPage",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.Control.html": {
+    "href": "API11/api/Tizen.NUI.Components.Control.html",
+    "title": "Class Control",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.ControlStates.html": {
+    "href": "API11/api/Tizen.NUI.Components.ControlStates.html",
+    "title": "Enum ControlStates",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.ControlStyle.html": {
+    "href": "API11/api/Tizen.NUI.Components.ControlStyle.html",
+    "title": "Class ControlStyle",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Components.DateChangedEventArgs.html": {
@@ -21399,6 +22529,46 @@
     "title": "Class DatePicker",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Components.DatePickerStyle.html": {
+    "href": "API11/api/Tizen.NUI.Components.DatePickerStyle.html",
+    "title": "Class DatePickerStyle",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.DefaultGridItem.html": {
+    "href": "API11/api/Tizen.NUI.Components.DefaultGridItem.html",
+    "title": "Class DefaultGridItem",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.DefaultGridItem.LabelOrientation.html": {
+    "href": "API11/api/Tizen.NUI.Components.DefaultGridItem.LabelOrientation.html",
+    "title": "Enum DefaultGridItem.LabelOrientation",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.DefaultGridItemStyle.html": {
+    "href": "API11/api/Tizen.NUI.Components.DefaultGridItemStyle.html",
+    "title": "Class DefaultGridItemStyle",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.DefaultLinearItem.html": {
+    "href": "API11/api/Tizen.NUI.Components.DefaultLinearItem.html",
+    "title": "Class DefaultLinearItem",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.DefaultLinearItemStyle.html": {
+    "href": "API11/api/Tizen.NUI.Components.DefaultLinearItemStyle.html",
+    "title": "Class DefaultLinearItemStyle",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.DefaultTitleItem.html": {
+    "href": "API11/api/Tizen.NUI.Components.DefaultTitleItem.html",
+    "title": "Class DefaultTitleItem",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.DefaultTitleItemStyle.html": {
+    "href": "API11/api/Tizen.NUI.Components.DefaultTitleItemStyle.html",
+    "title": "Class DefaultTitleItemStyle",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Components.Dialog.html": {
     "href": "API11/api/Tizen.NUI.Components.Dialog.html",
     "title": "Class Dialog",
@@ -21409,9 +22579,99 @@
     "title": "Class DialogPage",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Components.Extension.ButtonExtension.html": {
+    "href": "API11/api/Tizen.NUI.Components.Extension.ButtonExtension.html",
+    "title": "Class ButtonExtension",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.Extension.html": {
+    "href": "API11/api/Tizen.NUI.Components.Extension.html",
+    "title": "Namespace Tizen.NUI.Components.Extension",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.Extension.ILottieButtonStyle.html": {
+    "href": "API11/api/Tizen.NUI.Components.Extension.ILottieButtonStyle.html",
+    "title": "Interface ILottieButtonStyle",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.Extension.LottieButtonExtension.html": {
+    "href": "API11/api/Tizen.NUI.Components.Extension.LottieButtonExtension.html",
+    "title": "Class LottieButtonExtension",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.Extension.LottieButtonStyle.html": {
+    "href": "API11/api/Tizen.NUI.Components.Extension.LottieButtonStyle.html",
+    "title": "Class LottieButtonStyle",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.Extension.LottieSwitchExtension.html": {
+    "href": "API11/api/Tizen.NUI.Components.Extension.LottieSwitchExtension.html",
+    "title": "Class LottieSwitchExtension",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.Extension.LottieSwitchStyle.html": {
+    "href": "API11/api/Tizen.NUI.Components.Extension.LottieSwitchStyle.html",
+    "title": "Class LottieSwitchStyle",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.Extension.SwitchExtension.html": {
+    "href": "API11/api/Tizen.NUI.Components.Extension.SwitchExtension.html",
+    "title": "Class SwitchExtension",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.FlexibleView.html": {
+    "href": "API11/api/Tizen.NUI.Components.FlexibleView.html",
+    "title": "Class FlexibleView",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.FlexibleViewAdapter.html": {
+    "href": "API11/api/Tizen.NUI.Components.FlexibleViewAdapter.html",
+    "title": "Class FlexibleViewAdapter",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.FlexibleViewItemClickedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.Components.FlexibleViewItemClickedEventArgs.html",
+    "title": "Class FlexibleViewItemClickedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.FlexibleViewItemTouchEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.Components.FlexibleViewItemTouchEventArgs.html",
+    "title": "Class FlexibleViewItemTouchEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.FlexibleViewLayoutManager.Direction.html": {
+    "href": "API11/api/Tizen.NUI.Components.FlexibleViewLayoutManager.Direction.html",
+    "title": "Enum FlexibleViewLayoutManager.Direction",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.FlexibleViewLayoutManager.html": {
+    "href": "API11/api/Tizen.NUI.Components.FlexibleViewLayoutManager.html",
+    "title": "Class FlexibleViewLayoutManager",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.FlexibleViewRecycler.html": {
+    "href": "API11/api/Tizen.NUI.Components.FlexibleViewRecycler.html",
+    "title": "Class FlexibleViewRecycler",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.FlexibleViewViewHolder.html": {
+    "href": "API11/api/Tizen.NUI.Components.FlexibleViewViewHolder.html",
+    "title": "Class FlexibleViewViewHolder",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.FloatSelector.html": {
+    "href": "API11/api/Tizen.NUI.Components.FloatSelector.html",
+    "title": "Class FloatSelector",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Components.GridLayouter.html": {
     "href": "API11/api/Tizen.NUI.Components.GridLayouter.html",
     "title": "Class GridLayouter",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.GridLayoutManager.html": {
+    "href": "API11/api/Tizen.NUI.Components.GridLayoutManager.html",
+    "title": "Class GridLayoutManager",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Components.html": {
@@ -21419,9 +22679,39 @@
     "title": "Namespace Tizen.NUI.Components",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Components.ICollectionChangedNotifier.html": {
+    "href": "API11/api/Tizen.NUI.Components.ICollectionChangedNotifier.html",
+    "title": "Interface ICollectionChangedNotifier",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.IGroupableItemSource.html": {
+    "href": "API11/api/Tizen.NUI.Components.IGroupableItemSource.html",
+    "title": "Interface IGroupableItemSource",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.IItemSource.html": {
+    "href": "API11/api/Tizen.NUI.Components.IItemSource.html",
+    "title": "Interface IItemSource",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.IntSelector.html": {
+    "href": "API11/api/Tizen.NUI.Components.IntSelector.html",
+    "title": "Class IntSelector",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Components.ItemSelectionMode.html": {
     "href": "API11/api/Tizen.NUI.Components.ItemSelectionMode.html",
     "title": "Enum ItemSelectionMode",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.ItemSizingStrategy.html": {
+    "href": "API11/api/Tizen.NUI.Components.ItemSizingStrategy.html",
+    "title": "Enum ItemSizingStrategy",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.ItemsLayouter.GroupInfo.html": {
+    "href": "API11/api/Tizen.NUI.Components.ItemsLayouter.GroupInfo.html",
+    "title": "Class ItemsLayouter.GroupInfo",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Components.ItemsLayouter.html": {
@@ -21432,6 +22722,11 @@
   "API11/api/Tizen.NUI.Components.LinearLayouter.html": {
     "href": "API11/api/Tizen.NUI.Components.LinearLayouter.html",
     "title": "Class LinearLayouter",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.LinearLayoutManager.html": {
+    "href": "API11/api/Tizen.NUI.Components.LinearLayoutManager.html",
+    "title": "Class LinearLayoutManager",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Components.Loading.html": {
@@ -21459,6 +22754,16 @@
     "title": "Class MenuItem",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Components.MenuItemGroup.html": {
+    "href": "API11/api/Tizen.NUI.Components.MenuItemGroup.html",
+    "title": "Class MenuItemGroup",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.MenuStyle.html": {
+    "href": "API11/api/Tizen.NUI.Components.MenuStyle.html",
+    "title": "Class MenuStyle",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Components.Navigator.html": {
     "href": "API11/api/Tizen.NUI.Components.Navigator.html",
     "title": "Class Navigator",
@@ -21467,6 +22772,16 @@
   "API11/api/Tizen.NUI.Components.Notification.html": {
     "href": "API11/api/Tizen.NUI.Components.Notification.html",
     "title": "Class Notification",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.NUIWindowExtentions.html": {
+    "href": "API11/api/Tizen.NUI.Components.NUIWindowExtentions.html",
+    "title": "Class NUIWindowExtentions",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.OverlayAnimationButtonStyle.html": {
+    "href": "API11/api/Tizen.NUI.Components.OverlayAnimationButtonStyle.html",
+    "title": "Class OverlayAnimationButtonStyle",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Components.Page.html": {
@@ -21482,6 +22797,11 @@
   "API11/api/Tizen.NUI.Components.PageAppearingEventArgs.html": {
     "href": "API11/api/Tizen.NUI.Components.PageAppearingEventArgs.html",
     "title": "Class PageAppearingEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.PageBackNavigationEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.Components.PageBackNavigationEventArgs.html",
+    "title": "Class PageBackNavigationEventArgs",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Components.PageDisappearedEventArgs.html": {
@@ -21509,6 +22829,11 @@
     "title": "Class Picker",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Components.PickerStyle.html": {
+    "href": "API11/api/Tizen.NUI.Components.PickerStyle.html",
+    "title": "Class PickerStyle",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Components.PoppedEventArgs.html": {
     "href": "API11/api/Tizen.NUI.Components.PoppedEventArgs.html",
     "title": "Class PoppedEventArgs",
@@ -21522,6 +22847,11 @@
   "API11/api/Tizen.NUI.Components.Popup.html": {
     "href": "API11/api/Tizen.NUI.Components.Popup.html",
     "title": "Class Popup",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.PopupStyle.html": {
+    "href": "API11/api/Tizen.NUI.Components.PopupStyle.html",
+    "title": "Class PopupStyle",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Components.Progress.html": {
@@ -21542,6 +22872,16 @@
   "API11/api/Tizen.NUI.Components.RadioButton.html": {
     "href": "API11/api/Tizen.NUI.Components.RadioButton.html",
     "title": "Class RadioButton",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.RadioButtonGroup.html": {
+    "href": "API11/api/Tizen.NUI.Components.RadioButtonGroup.html",
+    "title": "Class RadioButtonGroup",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.RectangleSelector.html": {
+    "href": "API11/api/Tizen.NUI.Components.RectangleSelector.html",
+    "title": "Class RectangleSelector",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Components.RecyclerView.html": {
@@ -21574,9 +22914,29 @@
     "title": "Enum ScrollBar.DirectionType",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Components.Scrollbar.html": {
+    "href": "API11/api/Tizen.NUI.Components.Scrollbar.html",
+    "title": "Class Scrollbar",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Components.ScrollBar.html": {
     "href": "API11/api/Tizen.NUI.Components.ScrollBar.html",
     "title": "Class ScrollBar",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.ScrollbarBase.html": {
+    "href": "API11/api/Tizen.NUI.Components.ScrollbarBase.html",
+    "title": "Class ScrollbarBase",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.ScrollbarStyle.html": {
+    "href": "API11/api/Tizen.NUI.Components.ScrollbarStyle.html",
+    "title": "Class ScrollbarStyle",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.ScrollBarStyle.html": {
+    "href": "API11/api/Tizen.NUI.Components.ScrollBarStyle.html",
+    "title": "Class ScrollBarStyle",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Components.ScrollEventArgs.html": {
@@ -21584,9 +22944,29 @@
     "title": "Class ScrollEventArgs",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Components.ScrollOutOfBoundEventArgs.Direction.html": {
+    "href": "API11/api/Tizen.NUI.Components.ScrollOutOfBoundEventArgs.Direction.html",
+    "title": "Enum ScrollOutOfBoundEventArgs.Direction",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.ScrollOutOfBoundEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.Components.ScrollOutOfBoundEventArgs.html",
+    "title": "Class ScrollOutOfBoundEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.SelectButton.html": {
+    "href": "API11/api/Tizen.NUI.Components.SelectButton.html",
+    "title": "Class SelectButton",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Components.SelectedChangedEventArgs.html": {
     "href": "API11/api/Tizen.NUI.Components.SelectedChangedEventArgs.html",
     "title": "Class SelectedChangedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.SelectGroup.html": {
+    "href": "API11/api/Tizen.NUI.Components.SelectGroup.html",
+    "title": "Class SelectGroup",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Components.SelectionChangedEventArgs.html": {
@@ -21629,9 +23009,24 @@
     "title": "Class SliderValueChangedEventArgs",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Components.StringSelector.html": {
+    "href": "API11/api/Tizen.NUI.Components.StringSelector.html",
+    "title": "Class StringSelector",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Components.StyleBase.html": {
     "href": "API11/api/Tizen.NUI.Components.StyleBase.html",
     "title": "Class StyleBase",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.StyleManager.html": {
+    "href": "API11/api/Tizen.NUI.Components.StyleManager.html",
+    "title": "Class StyleManager",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.StyleManager.ThemeChangeEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.Components.StyleManager.ThemeChangeEventArgs.html",
+    "title": "Class StyleManager.ThemeChangeEventArgs",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Components.Switch.html": {
@@ -21674,9 +23069,34 @@
     "title": "Class TabButton",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Components.TabButtonGroup.html": {
+    "href": "API11/api/Tizen.NUI.Components.TabButtonGroup.html",
+    "title": "Class TabButtonGroup",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.TabButtonSelectedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.Components.TabButtonSelectedEventArgs.html",
+    "title": "Class TabButtonSelectedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.TabButtonStyle.html": {
+    "href": "API11/api/Tizen.NUI.Components.TabButtonStyle.html",
+    "title": "Class TabButtonStyle",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Components.TabContent.html": {
     "href": "API11/api/Tizen.NUI.Components.TabContent.html",
     "title": "Class TabContent",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.TabItem.html": {
+    "href": "API11/api/Tizen.NUI.Components.TabItem.html",
+    "title": "Class TabItem",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.TabStyle.html": {
+    "href": "API11/api/Tizen.NUI.Components.TabStyle.html",
+    "title": "Class TabStyle",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Components.TabView.html": {
@@ -21694,14 +23114,34 @@
     "title": "Class TimePicker",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Components.TimePickerStyle.html": {
+    "href": "API11/api/Tizen.NUI.Components.TimePickerStyle.html",
+    "title": "Class TimePickerStyle",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.Title.html": {
+    "href": "API11/api/Tizen.NUI.Components.Title.html",
+    "title": "Class Title",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Components.Toast.html": {
     "href": "API11/api/Tizen.NUI.Components.Toast.html",
     "title": "Class Toast",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Components.ToastStyle.html": {
+    "href": "API11/api/Tizen.NUI.Components.ToastStyle.html",
+    "title": "Class ToastStyle",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Components.ValueChangedEventArgs.html": {
     "href": "API11/api/Tizen.NUI.Components.ValueChangedEventArgs.html",
     "title": "Class ValueChangedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Components.Vector2Selector.html": {
+    "href": "API11/api/Tizen.NUI.Components.Vector2Selector.html",
+    "title": "Class Vector2Selector",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Constants.Direction.html": {
@@ -21754,6 +23194,36 @@
     "title": "Class Container",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.CookieAcceptPolicy.html": {
+    "href": "API11/api/Tizen.NUI.CookieAcceptPolicy.html",
+    "title": "Enum CookieAcceptPolicy",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.CubeTransitionCrossEffect.html": {
+    "href": "API11/api/Tizen.NUI.CubeTransitionCrossEffect.html",
+    "title": "Class CubeTransitionCrossEffect",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.CubeTransitionEffect.html": {
+    "href": "API11/api/Tizen.NUI.CubeTransitionEffect.html",
+    "title": "Class CubeTransitionEffect",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.CubeTransitionEffect.TransitionCompletedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.CubeTransitionEffect.TransitionCompletedEventArgs.html",
+    "title": "Class CubeTransitionEffect.TransitionCompletedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.CubeTransitionFoldEffect.html": {
+    "href": "API11/api/Tizen.NUI.CubeTransitionFoldEffect.html",
+    "title": "Class CubeTransitionFoldEffect",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.CubeTransitionWaveEffect.html": {
+    "href": "API11/api/Tizen.NUI.CubeTransitionWaveEffect.html",
+    "title": "Class CubeTransitionWaveEffect",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.CustomViewBehaviour.html": {
     "href": "API11/api/Tizen.NUI.CustomViewBehaviour.html",
     "title": "Enum CustomViewBehaviour",
@@ -21774,9 +23244,44 @@
     "title": "Delegate DaliEventHandlerWithReturnType<T, U, R>",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.DefaultBorder.html": {
+    "href": "API11/api/Tizen.NUI.DefaultBorder.html",
+    "title": "Class DefaultBorder",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.DefaultItemLayoutProperty.html": {
+    "href": "API11/api/Tizen.NUI.DefaultItemLayoutProperty.html",
+    "title": "Enum DefaultItemLayoutProperty",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.DefaultItemLayoutType.html": {
+    "href": "API11/api/Tizen.NUI.DefaultItemLayoutType.html",
+    "title": "Enum DefaultItemLayoutType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.DefaultRuler.html": {
+    "href": "API11/api/Tizen.NUI.DefaultRuler.html",
+    "title": "Class DefaultRuler",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Degree.html": {
     "href": "API11/api/Tizen.NUI.Degree.html",
     "title": "Class Degree",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.DepthFunctionType.html": {
+    "href": "API11/api/Tizen.NUI.DepthFunctionType.html",
+    "title": "Enum DepthFunctionType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.DepthTestModeType.html": {
+    "href": "API11/api/Tizen.NUI.DepthTestModeType.html",
+    "title": "Enum DepthTestModeType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.DepthWriteModeType.html": {
+    "href": "API11/api/Tizen.NUI.DepthWriteModeType.html",
+    "title": "Enum DepthWriteModeType",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.DeviceClassType.html": {
@@ -21807,6 +23312,11 @@
   "API11/api/Tizen.NUI.DisposeTypes.html": {
     "href": "API11/api/Tizen.NUI.DisposeTypes.html",
     "title": "Enum DisposeTypes",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.DpTypeConverter.html": {
+    "href": "API11/api/Tizen.NUI.DpTypeConverter.html",
+    "title": "Class DpTypeConverter",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.DragAndDrop.DragAndDropEventHandler.html": {
@@ -21854,9 +23364,44 @@
     "title": "Enum EllipsisPosition",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.EncodedImageBuffer.html": {
+    "href": "API11/api/Tizen.NUI.EncodedImageBuffer.html",
+    "title": "Class EncodedImageBuffer",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.EnvironmentVariable.html": {
+    "href": "API11/api/Tizen.NUI.EnvironmentVariable.html",
+    "title": "Class EnvironmentVariable",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.EventHandlerWithReturnType-3.html": {
     "href": "API11/api/Tizen.NUI.EventHandlerWithReturnType-3.html",
     "title": "Delegate EventHandlerWithReturnType<T, U, R>",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Events.GestureDetectorManager.GestureListener.html": {
+    "href": "API11/api/Tizen.NUI.Events.GestureDetectorManager.GestureListener.html",
+    "title": "Class GestureDetectorManager.GestureListener",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Events.GestureDetectorManager.html": {
+    "href": "API11/api/Tizen.NUI.Events.GestureDetectorManager.html",
+    "title": "Class GestureDetectorManager",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Events.html": {
+    "href": "API11/api/Tizen.NUI.Events.html",
+    "title": "Namespace Tizen.NUI.Events",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.EXaml.EXamlExtensions.html": {
+    "href": "API11/api/Tizen.NUI.EXaml.EXamlExtensions.html",
+    "title": "Class EXamlExtensions",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.EXaml.html": {
+    "href": "API11/api/Tizen.NUI.EXaml.html",
+    "title": "Namespace Tizen.NUI.EXaml",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Extension.html": {
@@ -21879,6 +23424,11 @@
     "title": "Class Extents",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.FaceCullingModeType.html": {
+    "href": "API11/api/Tizen.NUI.FaceCullingModeType.html",
+    "title": "Enum FaceCullingModeType",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.FadeTransition.html": {
     "href": "API11/api/Tizen.NUI.FadeTransition.html",
     "title": "Class FadeTransition",
@@ -21892,6 +23442,11 @@
   "API11/api/Tizen.NUI.FittingModeType.html": {
     "href": "API11/api/Tizen.NUI.FittingModeType.html",
     "title": "Enum FittingModeType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.FixedRuler.html": {
+    "href": "API11/api/Tizen.NUI.FixedRuler.html",
+    "title": "Class FixedRuler",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.FlexLayout.AlignmentType.html": {
@@ -21939,6 +23494,11 @@
     "title": "Class FocusManager.FocusedViewActivatedEventArgs",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.FocusManager.FocusedViewEnterKeyEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.FocusManager.FocusedViewEnterKeyEventArgs.html",
+    "title": "Class FocusManager.FocusedViewEnterKeyEventArgs",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.FocusManager.FocusGroupChangedEventArgs.html": {
     "href": "API11/api/Tizen.NUI.FocusManager.FocusGroupChangedEventArgs.html",
     "title": "Class FocusManager.FocusGroupChangedEventArgs",
@@ -21964,9 +23524,19 @@
     "title": "Class FontClient",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.FontFamily.html": {
+    "href": "API11/api/Tizen.NUI.FontFamily.html",
+    "title": "Struct FontFamily",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.FontSizeScale.html": {
     "href": "API11/api/Tizen.NUI.FontSizeScale.html",
     "title": "Struct FontSizeScale",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.FontSizeType.html": {
+    "href": "API11/api/Tizen.NUI.FontSizeType.html",
+    "title": "Enum FontSizeType",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.FontSlantType.html": {
@@ -21982,6 +23552,41 @@
   "API11/api/Tizen.NUI.FontWidthType.html": {
     "href": "API11/api/Tizen.NUI.FontWidthType.html",
     "title": "Enum FontWidthType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.FrameBuffer.Attachment.html": {
+    "href": "API11/api/Tizen.NUI.FrameBuffer.Attachment.html",
+    "title": "Class FrameBuffer.Attachment",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.FrameBuffer.Attachment.Mask.html": {
+    "href": "API11/api/Tizen.NUI.FrameBuffer.Attachment.Mask.html",
+    "title": "Enum FrameBuffer.Attachment.Mask",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.FrameBuffer.html": {
+    "href": "API11/api/Tizen.NUI.FrameBuffer.html",
+    "title": "Class FrameBuffer",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.FrameError.html": {
+    "href": "API11/api/Tizen.NUI.FrameError.html",
+    "title": "Enum FrameError",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.FrameType.html": {
+    "href": "API11/api/Tizen.NUI.FrameType.html",
+    "title": "Enum FrameType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.FrameUpdateCallbackInterface.html": {
+    "href": "API11/api/Tizen.NUI.FrameUpdateCallbackInterface.html",
+    "title": "Class FrameUpdateCallbackInterface",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.GaussianBlurView.html": {
+    "href": "API11/api/Tizen.NUI.GaussianBlurView.html",
+    "title": "Class GaussianBlurView",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Geometry.html": {
@@ -22004,9 +23609,34 @@
     "title": "Class Gesture",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Gesture.SourceDataType.html": {
+    "href": "API11/api/Tizen.NUI.Gesture.SourceDataType.html",
+    "title": "Enum Gesture.SourceDataType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Gesture.SourceType.html": {
+    "href": "API11/api/Tizen.NUI.Gesture.SourceType.html",
+    "title": "Enum Gesture.SourceType",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Gesture.StateType.html": {
     "href": "API11/api/Tizen.NUI.Gesture.StateType.html",
     "title": "Enum Gesture.StateType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.GestureDetector.html": {
+    "href": "API11/api/Tizen.NUI.GestureDetector.html",
+    "title": "Class GestureDetector",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.GestureOptions.html": {
+    "href": "API11/api/Tizen.NUI.GestureOptions.html",
+    "title": "Class GestureOptions",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.GestureSourceType.html": {
+    "href": "API11/api/Tizen.NUI.GestureSourceType.html",
+    "title": "Enum GestureSourceType",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.GetResourcesProvider.html": {
@@ -22022,6 +23652,56 @@
   "API11/api/Tizen.NUI.GLRenderingMode.html": {
     "href": "API11/api/Tizen.NUI.GLRenderingMode.html",
     "title": "Enum GLRenderingMode",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.GLWindow.FocusChangedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.GLWindow.FocusChangedEventArgs.html",
+    "title": "Class GLWindow.FocusChangedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.GLWindow.GLInitializeCallbackType.html": {
+    "href": "API11/api/Tizen.NUI.GLWindow.GLInitializeCallbackType.html",
+    "title": "Delegate GLWindow.GLInitializeCallbackType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.GLWindow.GLRenderFrameCallbackType.html": {
+    "href": "API11/api/Tizen.NUI.GLWindow.GLRenderFrameCallbackType.html",
+    "title": "Delegate GLWindow.GLRenderFrameCallbackType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.GLWindow.GLTerminateCallbackType.html": {
+    "href": "API11/api/Tizen.NUI.GLWindow.GLTerminateCallbackType.html",
+    "title": "Delegate GLWindow.GLTerminateCallbackType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.GLWindow.GLWindowOrientation.html": {
+    "href": "API11/api/Tizen.NUI.GLWindow.GLWindowOrientation.html",
+    "title": "Enum GLWindow.GLWindowOrientation",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.GLWindow.html": {
+    "href": "API11/api/Tizen.NUI.GLWindow.html",
+    "title": "Class GLWindow",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.GLWindow.KeyEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.GLWindow.KeyEventArgs.html",
+    "title": "Class GLWindow.KeyEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.GLWindow.ResizedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.GLWindow.ResizedEventArgs.html",
+    "title": "Class GLWindow.ResizedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.GLWindow.TouchEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.GLWindow.TouchEventArgs.html",
+    "title": "Class GLWindow.TouchEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.GLWindow.VisibilityChangedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.GLWindow.VisibilityChangedEventArgs.html",
+    "title": "Class GLWindow.VisibilityChangedEventArgs",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.GlyphType.html": {
@@ -22047,6 +23727,36 @@
   "API11/api/Tizen.NUI.GradientVisualUnitsType.html": {
     "href": "API11/api/Tizen.NUI.GradientVisualUnitsType.html",
     "title": "Enum GradientVisualUnitsType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Graphics.BackendType.html": {
+    "href": "API11/api/Tizen.NUI.Graphics.BackendType.html",
+    "title": "Enum Graphics.BackendType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Graphics.html": {
+    "href": "API11/api/Tizen.NUI.Graphics.html",
+    "title": "Class Graphics",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.GraphicsCapabilities.html": {
+    "href": "API11/api/Tizen.NUI.GraphicsCapabilities.html",
+    "title": "Class GraphicsCapabilities",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.GraphicsTypeConverter.html": {
+    "href": "API11/api/Tizen.NUI.GraphicsTypeConverter.html",
+    "title": "Class GraphicsTypeConverter",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.GraphicsTypeExtensions.html": {
+    "href": "API11/api/Tizen.NUI.GraphicsTypeExtensions.html",
+    "title": "Class GraphicsTypeExtensions",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.GraphicsTypeManager.html": {
+    "href": "API11/api/Tizen.NUI.GraphicsTypeManager.html",
+    "title": "Class GraphicsTypeManager",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.GridLayout.Alignment.html": {
@@ -22099,6 +23809,16 @@
     "title": "Namespace Tizen.NUI",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.IBorderInterface.html": {
+    "href": "API11/api/Tizen.NUI.IBorderInterface.html",
+    "title": "Interface IBorderInterface",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.ICustomAwareDeviceFocusAlgorithm.html": {
+    "href": "API11/api/Tizen.NUI.ICustomAwareDeviceFocusAlgorithm.html",
+    "title": "Interface ICustomAwareDeviceFocusAlgorithm",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.ILayoutParent.html": {
     "href": "API11/api/Tizen.NUI.ILayoutParent.html",
     "title": "Interface ILayoutParent",
@@ -22107,6 +23827,21 @@
   "API11/api/Tizen.NUI.ImageLoader.html": {
     "href": "API11/api/Tizen.NUI.ImageLoader.html",
     "title": "Class ImageLoader",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.ImageLoading.html": {
+    "href": "API11/api/Tizen.NUI.ImageLoading.html",
+    "title": "Class ImageLoading",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.ImageShadow.html": {
+    "href": "API11/api/Tizen.NUI.ImageShadow.html",
+    "title": "Class ImageShadow",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.ImageUrl.html": {
+    "href": "API11/api/Tizen.NUI.ImageUrl.html",
+    "title": "Class ImageUrl",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.ImageVisual.html": {
@@ -22174,6 +23909,11 @@
     "title": "Class InputMethodContext.CallbackData",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.InputMethodContext.ContentReceivedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.InputMethodContext.ContentReceivedEventArgs.html",
+    "title": "Class InputMethodContext.ContentReceivedEventArgs",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.InputMethodContext.EventData.html": {
     "href": "API11/api/Tizen.NUI.InputMethodContext.EventData.html",
     "title": "Class InputMethodContext.EventData",
@@ -22234,6 +23974,66 @@
     "title": "Enum InputMethodContext.TextDirection",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Item.html": {
+    "href": "API11/api/Tizen.NUI.Item.html",
+    "title": "Class Item",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.ItemCollection.html": {
+    "href": "API11/api/Tizen.NUI.ItemCollection.html",
+    "title": "Class ItemCollection",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.ItemCollection.ItemCollectionEnumerator.html": {
+    "href": "API11/api/Tizen.NUI.ItemCollection.ItemCollectionEnumerator.html",
+    "title": "Class ItemCollection.ItemCollectionEnumerator",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.ItemFactory.html": {
+    "href": "API11/api/Tizen.NUI.ItemFactory.html",
+    "title": "Class ItemFactory",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.ItemFactory.SwigDelegateItemFactory_0.html": {
+    "href": "API11/api/Tizen.NUI.ItemFactory.SwigDelegateItemFactory_0.html",
+    "title": "Delegate ItemFactory.SwigDelegateItemFactory_0",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.ItemFactory.SwigDelegateItemFactory_1.html": {
+    "href": "API11/api/Tizen.NUI.ItemFactory.SwigDelegateItemFactory_1.html",
+    "title": "Delegate ItemFactory.SwigDelegateItemFactory_1",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.ItemFactory.SwigDelegateItemFactory_2.html": {
+    "href": "API11/api/Tizen.NUI.ItemFactory.SwigDelegateItemFactory_2.html",
+    "title": "Delegate ItemFactory.SwigDelegateItemFactory_2",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.ItemIdCollection.html": {
+    "href": "API11/api/Tizen.NUI.ItemIdCollection.html",
+    "title": "Class ItemIdCollection",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.ItemIdCollection.ItemIdCollectionEnumerator.html": {
+    "href": "API11/api/Tizen.NUI.ItemIdCollection.ItemIdCollectionEnumerator.html",
+    "title": "Class ItemIdCollection.ItemIdCollectionEnumerator",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.ItemLayout.html": {
+    "href": "API11/api/Tizen.NUI.ItemLayout.html",
+    "title": "Class ItemLayout",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.ItemRange.html": {
+    "href": "API11/api/Tizen.NUI.ItemRange.html",
+    "title": "Class ItemRange",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.ItemView.html": {
+    "href": "API11/api/Tizen.NUI.ItemView.html",
+    "title": "Class ItemView",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Key.html": {
     "href": "API11/api/Tizen.NUI.Key.html",
     "title": "Class Key",
@@ -22262,6 +24062,11 @@
   "API11/api/Tizen.NUI.Layer.LayerBehavior.html": {
     "href": "API11/api/Tizen.NUI.Layer.LayerBehavior.html",
     "title": "Enum Layer.LayerBehavior",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Layer.VisibilityChangedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.Layer.VisibilityChangedEventArgs.html",
+    "title": "Class Layer.VisibilityChangedEventArgs",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.LayoutGroup.html": {
@@ -22314,6 +24119,26 @@
     "title": "Class LongPressGesture",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.LongPressGestureDetector.DetectedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.LongPressGestureDetector.DetectedEventArgs.html",
+    "title": "Class LongPressGestureDetector.DetectedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.LongPressGestureDetector.html": {
+    "href": "API11/api/Tizen.NUI.LongPressGestureDetector.html",
+    "title": "Class LongPressGestureDetector",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Matrix.html": {
+    "href": "API11/api/Tizen.NUI.Matrix.html",
+    "title": "Class Matrix",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Matrix3.html": {
+    "href": "API11/api/Tizen.NUI.Matrix3.html",
+    "title": "Class Matrix3",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.MeasuredSize.html": {
     "href": "API11/api/Tizen.NUI.MeasuredSize.html",
     "title": "Struct MeasuredSize",
@@ -22349,6 +24174,46 @@
     "title": "Enum MeshVisualShadingModeValue",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.MouseButton.html": {
+    "href": "API11/api/Tizen.NUI.MouseButton.html",
+    "title": "Enum MouseButton",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.MouseInOut.html": {
+    "href": "API11/api/Tizen.NUI.MouseInOut.html",
+    "title": "Class MouseInOut",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.MouseInOut.StateType.html": {
+    "href": "API11/api/Tizen.NUI.MouseInOut.StateType.html",
+    "title": "Enum MouseInOut.StateType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.NativeImageInterface.html": {
+    "href": "API11/api/Tizen.NUI.NativeImageInterface.html",
+    "title": "Class NativeImageInterface",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.NativeImageQueue.ColorFormat.html": {
+    "href": "API11/api/Tizen.NUI.NativeImageQueue.ColorFormat.html",
+    "title": "Enum NativeImageQueue.ColorFormat",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.NativeImageQueue.html": {
+    "href": "API11/api/Tizen.NUI.NativeImageQueue.html",
+    "title": "Class NativeImageQueue",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.NativeImageSource.ColorDepth.html": {
+    "href": "API11/api/Tizen.NUI.NativeImageSource.ColorDepth.html",
+    "title": "Enum NativeImageSource.ColorDepth",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.NativeImageSource.html": {
+    "href": "API11/api/Tizen.NUI.NativeImageSource.html",
+    "title": "Class NativeImageSource",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.NotificationLevel.html": {
     "href": "API11/api/Tizen.NUI.NotificationLevel.html",
     "title": "Enum NotificationLevel",
@@ -22369,14 +24234,69 @@
     "title": "Class NUIApplication",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.NUIApplication.ThemeOptions.html": {
+    "href": "API11/api/Tizen.NUI.NUIApplication.ThemeOptions.html",
+    "title": "Enum NUIApplication.ThemeOptions",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.NUIApplication.WindowMode.html": {
     "href": "API11/api/Tizen.NUI.NUIApplication.WindowMode.html",
     "title": "Enum NUIApplication.WindowMode",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.NUIApplication.XamlLoadedHandler.html": {
+    "href": "API11/api/Tizen.NUI.NUIApplication.XamlLoadedHandler.html",
+    "title": "Delegate NUIApplication.XamlLoadedHandler",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.NUIComponentApplication.html": {
+    "href": "API11/api/Tizen.NUI.NUIComponentApplication.html",
+    "title": "Class NUIComponentApplication",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.NUIEventType.html": {
     "href": "API11/api/Tizen.NUI.NUIEventType.html",
     "title": "Class NUIEventType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.NUIFrameComponent.html": {
+    "href": "API11/api/Tizen.NUI.NUIFrameComponent.html",
+    "title": "Class NUIFrameComponent",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.NUIGadget.html": {
+    "href": "API11/api/Tizen.NUI.NUIGadget.html",
+    "title": "Class NUIGadget",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.NUIGadgetInfo.html": {
+    "href": "API11/api/Tizen.NUI.NUIGadgetInfo.html",
+    "title": "Class NUIGadgetInfo",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.NUIGadgetLifecycleChangedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.NUIGadgetLifecycleChangedEventArgs.html",
+    "title": "Class NUIGadgetLifecycleChangedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.NUIGadgetLifecycleState.html": {
+    "href": "API11/api/Tizen.NUI.NUIGadgetLifecycleState.html",
+    "title": "Enum NUIGadgetLifecycleState",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.NUIGadgetManager.html": {
+    "href": "API11/api/Tizen.NUI.NUIGadgetManager.html",
+    "title": "Class NUIGadgetManager",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.NUIGadgetResourceManager.html": {
+    "href": "API11/api/Tizen.NUI.NUIGadgetResourceManager.html",
+    "title": "Class NUIGadgetResourceManager",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.NUIGadgetType.html": {
+    "href": "API11/api/Tizen.NUI.NUIGadgetType.html",
+    "title": "Enum NUIGadgetType",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.NUIWatchApplication.AmbientChangedEventArgs.html": {
@@ -22404,6 +24324,11 @@
     "title": "Class NUIWidgetApplication",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Offset.html": {
+    "href": "API11/api/Tizen.NUI.Offset.html",
+    "title": "Struct Offset",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.PaddingType.html": {
     "href": "API11/api/Tizen.NUI.PaddingType.html",
     "title": "Class PaddingType",
@@ -22424,6 +24349,16 @@
     "title": "Class PanGesture",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.PanGestureDetector.DetectedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.PanGestureDetector.DetectedEventArgs.html",
+    "title": "Class PanGestureDetector.DetectedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.PanGestureDetector.html": {
+    "href": "API11/api/Tizen.NUI.PanGestureDetector.html",
+    "title": "Class PanGestureDetector",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.ParentOrigin.html": {
     "href": "API11/api/Tizen.NUI.ParentOrigin.html",
     "title": "Struct ParentOrigin",
@@ -22439,9 +24374,34 @@
     "title": "Class PinchGesture",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.PinchGestureDetector.DetectedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.PinchGestureDetector.DetectedEventArgs.html",
+    "title": "Class PinchGestureDetector.DetectedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.PinchGestureDetector.html": {
+    "href": "API11/api/Tizen.NUI.PinchGestureDetector.html",
+    "title": "Class PinchGestureDetector",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.PivotPoint.html": {
     "href": "API11/api/Tizen.NUI.PivotPoint.html",
     "title": "Struct PivotPoint",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.PixelBuffer.html": {
+    "href": "API11/api/Tizen.NUI.PixelBuffer.html",
+    "title": "Class PixelBuffer",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.PixelData.html": {
+    "href": "API11/api/Tizen.NUI.PixelData.html",
+    "title": "Class PixelData",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.PixelData.ReleaseFunction.html": {
+    "href": "API11/api/Tizen.NUI.PixelData.ReleaseFunction.html",
+    "title": "Enum PixelData.ReleaseFunction",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.PixelFormat.html": {
@@ -22452,6 +24412,11 @@
   "API11/api/Tizen.NUI.PointStateType.html": {
     "href": "API11/api/Tizen.NUI.PointStateType.html",
     "title": "Enum PointStateType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.PointTypeConverter.html": {
+    "href": "API11/api/Tizen.NUI.PointTypeConverter.html",
+    "title": "Class PointTypeConverter",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Position.html": {
@@ -22559,6 +24524,11 @@
     "title": "Class Rectangle",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.RefObject.html": {
+    "href": "API11/api/Tizen.NUI.RefObject.html",
+    "title": "Class RefObject",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.RelativeLayout.Alignment.html": {
     "href": "API11/api/Tizen.NUI.RelativeLayout.Alignment.html",
     "title": "Enum RelativeLayout.Alignment",
@@ -22599,9 +24569,34 @@
     "title": "Class Renderer",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Renderer.Ranges.html": {
+    "href": "API11/api/Tizen.NUI.Renderer.Ranges.html",
+    "title": "Class Renderer.Ranges",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.RenderingBehaviorType.html": {
     "href": "API11/api/Tizen.NUI.RenderingBehaviorType.html",
     "title": "Enum RenderingBehaviorType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.RenderModeType.html": {
+    "href": "API11/api/Tizen.NUI.RenderModeType.html",
+    "title": "Enum RenderModeType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.RenderTask.html": {
+    "href": "API11/api/Tizen.NUI.RenderTask.html",
+    "title": "Class RenderTask",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.RenderTask.RefreshRate.html": {
+    "href": "API11/api/Tizen.NUI.RenderTask.RefreshRate.html",
+    "title": "Enum RenderTask.RefreshRate",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.RenderTaskList.html": {
+    "href": "API11/api/Tizen.NUI.RenderTaskList.html",
+    "title": "Class RenderTaskList",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.ResizePolicyType.html": {
@@ -22609,9 +24604,54 @@
     "title": "Enum ResizePolicyType",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.ReturnTypeEventHandler-3.html": {
+    "href": "API11/api/Tizen.NUI.ReturnTypeEventHandler-3.html",
+    "title": "Delegate ReturnTypeEventHandler<TSource, TEvent, TReturn>",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Rotation.html": {
     "href": "API11/api/Tizen.NUI.Rotation.html",
     "title": "Class Rotation",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.RotationGesture.html": {
+    "href": "API11/api/Tizen.NUI.RotationGesture.html",
+    "title": "Class RotationGesture",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.RotationGestureDetector.DetectedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.RotationGestureDetector.DetectedEventArgs.html",
+    "title": "Class RotationGestureDetector.DetectedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.RotationGestureDetector.html": {
+    "href": "API11/api/Tizen.NUI.RotationGestureDetector.html",
+    "title": "Class RotationGestureDetector",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Ruler.html": {
+    "href": "API11/api/Tizen.NUI.Ruler.html",
+    "title": "Class Ruler",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Ruler.RulerType.html": {
+    "href": "API11/api/Tizen.NUI.Ruler.RulerType.html",
+    "title": "Enum Ruler.RulerType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.RulerDomain.html": {
+    "href": "API11/api/Tizen.NUI.RulerDomain.html",
+    "title": "Class RulerDomain",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.RulerPtr.html": {
+    "href": "API11/api/Tizen.NUI.RulerPtr.html",
+    "title": "Class RulerPtr",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.SafeFrameBrokerHandle.html": {
+    "href": "API11/api/Tizen.NUI.SafeFrameBrokerHandle.html",
+    "title": "Class SafeFrameBrokerHandle",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Sampler.html": {
@@ -22629,9 +24669,19 @@
     "title": "Class ScaleTransition",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Scene3D.BlendShapeIndex.html": {
+    "href": "API11/api/Tizen.NUI.Scene3D.BlendShapeIndex.html",
+    "title": "Class BlendShapeIndex",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Scene3D.Camera.html": {
     "href": "API11/api/Tizen.NUI.Scene3D.Camera.html",
     "title": "Class Camera",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Scene3D.Camera.ProjectionDirectionType.html": {
+    "href": "API11/api/Tizen.NUI.Scene3D.Camera.ProjectionDirectionType.html",
+    "title": "Enum Camera.ProjectionDirectionType",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Scene3D.Camera.ProjectionModeType.html": {
@@ -22644,9 +24694,74 @@
     "title": "Namespace Tizen.NUI.Scene3D",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Scene3D.Light.html": {
+    "href": "API11/api/Tizen.NUI.Scene3D.Light.html",
+    "title": "Class Light",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Scene3D.Material.html": {
+    "href": "API11/api/Tizen.NUI.Scene3D.Material.html",
+    "title": "Class Material",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Scene3D.MaterialAlphaModeType.html": {
+    "href": "API11/api/Tizen.NUI.Scene3D.MaterialAlphaModeType.html",
+    "title": "Enum MaterialAlphaModeType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Scene3D.MaterialTextureType.html": {
+    "href": "API11/api/Tizen.NUI.Scene3D.MaterialTextureType.html",
+    "title": "Enum MaterialTextureType",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Scene3D.Model.html": {
     "href": "API11/api/Tizen.NUI.Scene3D.Model.html",
     "title": "Class Model",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Scene3D.ModelNode.html": {
+    "href": "API11/api/Tizen.NUI.Scene3D.ModelNode.html",
+    "title": "Class ModelNode",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Scene3D.ModelPrimitive.html": {
+    "href": "API11/api/Tizen.NUI.Scene3D.ModelPrimitive.html",
+    "title": "Class ModelPrimitive",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Scene3D.MotionData.html": {
+    "href": "API11/api/Tizen.NUI.Scene3D.MotionData.html",
+    "title": "Class MotionData",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Scene3D.MotionIndex.html": {
+    "href": "API11/api/Tizen.NUI.Scene3D.MotionIndex.html",
+    "title": "Class MotionIndex",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Scene3D.MotionPropertyIndex.html": {
+    "href": "API11/api/Tizen.NUI.Scene3D.MotionPropertyIndex.html",
+    "title": "Class MotionPropertyIndex",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Scene3D.MotionTransformIndex.html": {
+    "href": "API11/api/Tizen.NUI.Scene3D.MotionTransformIndex.html",
+    "title": "Class MotionTransformIndex",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Scene3D.MotionTransformIndex.TransformTypes.html": {
+    "href": "API11/api/Tizen.NUI.Scene3D.MotionTransformIndex.TransformTypes.html",
+    "title": "Enum MotionTransformIndex.TransformTypes",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Scene3D.MotionValue.html": {
+    "href": "API11/api/Tizen.NUI.Scene3D.MotionValue.html",
+    "title": "Class MotionValue",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Scene3D.MotionValue.ValueType.html": {
+    "href": "API11/api/Tizen.NUI.Scene3D.MotionValue.ValueType.html",
+    "title": "Enum MotionValue.ValueType",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Scene3D.SceneView.html": {
@@ -22679,9 +24794,39 @@
     "title": "Enum ScrollState",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.ScrollView.html": {
+    "href": "API11/api/Tizen.NUI.ScrollView.html",
+    "title": "Class ScrollView",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.ScrollView.Property.html": {
+    "href": "API11/api/Tizen.NUI.ScrollView.Property.html",
+    "title": "Class ScrollView.Property",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.ScrollView.SnapEvent.html": {
+    "href": "API11/api/Tizen.NUI.ScrollView.SnapEvent.html",
+    "title": "Class ScrollView.SnapEvent",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.ScrollView.SnapStartedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.ScrollView.SnapStartedEventArgs.html",
+    "title": "Class ScrollView.SnapStartedEventArgs",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.ScrollViewEffect.html": {
     "href": "API11/api/Tizen.NUI.ScrollViewEffect.html",
     "title": "Class ScrollViewEffect",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.ScrollViewPagePathEffect.html": {
+    "href": "API11/api/Tizen.NUI.ScrollViewPagePathEffect.html",
+    "title": "Class ScrollViewPagePathEffect",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.SelectionPopupStyleProperty.html": {
+    "href": "API11/api/Tizen.NUI.SelectionPopupStyleProperty.html",
+    "title": "Struct SelectionPopupStyleProperty",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Shader.Hint.html": {
@@ -22729,9 +24874,34 @@
     "title": "Class SlideTransition",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.SlideTransitionDirection.html": {
+    "href": "API11/api/Tizen.NUI.SlideTransitionDirection.html",
+    "title": "Struct SlideTransitionDirection",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Spin.html": {
     "href": "API11/api/Tizen.NUI.Spin.html",
     "title": "Class Spin",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.SpTypeConverter.html": {
+    "href": "API11/api/Tizen.NUI.SpTypeConverter.html",
+    "title": "Class SpTypeConverter",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.StencilFunctionType.html": {
+    "href": "API11/api/Tizen.NUI.StencilFunctionType.html",
+    "title": "Enum StencilFunctionType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.StencilOperationType.html": {
+    "href": "API11/api/Tizen.NUI.StencilOperationType.html",
+    "title": "Enum StencilOperationType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.StringToVoidSignal.html": {
+    "href": "API11/api/Tizen.NUI.StringToVoidSignal.html",
+    "title": "Class StringToVoidSignal",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.StyleChangeType.html": {
@@ -22759,6 +24929,31 @@
     "title": "Class TapGesture",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.TapGestureDetector.DetectedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.TapGestureDetector.DetectedEventArgs.html",
+    "title": "Class TapGestureDetector.DetectedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.TapGestureDetector.html": {
+    "href": "API11/api/Tizen.NUI.TapGestureDetector.html",
+    "title": "Class TapGestureDetector",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Text.FontInfo.html": {
+    "href": "API11/api/Tizen.NUI.Text.FontInfo.html",
+    "title": "Struct FontInfo",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Text.FontStyle.html": {
+    "href": "API11/api/Tizen.NUI.Text.FontStyle.html",
+    "title": "Struct FontStyle",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Text.HiddenInput.html": {
+    "href": "API11/api/Tizen.NUI.Text.HiddenInput.html",
+    "title": "Struct HiddenInput",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Text.html": {
     "href": "API11/api/Tizen.NUI.Text.html",
     "title": "Namespace Tizen.NUI.Text",
@@ -22769,9 +24964,54 @@
     "title": "Struct InputFilter",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Text.Outline.html": {
+    "href": "API11/api/Tizen.NUI.Text.Outline.html",
+    "title": "Struct Outline",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Text.Placeholder.html": {
+    "href": "API11/api/Tizen.NUI.Text.Placeholder.html",
+    "title": "Struct Placeholder",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Text.SelectionHandleImage.html": {
+    "href": "API11/api/Tizen.NUI.Text.SelectionHandleImage.html",
+    "title": "Struct SelectionHandleImage",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Text.Shadow.html": {
+    "href": "API11/api/Tizen.NUI.Text.Shadow.html",
+    "title": "Struct Shadow",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Text.Strikethrough.html": {
+    "href": "API11/api/Tizen.NUI.Text.Strikethrough.html",
+    "title": "Struct Strikethrough",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Text.TextFit.html": {
+    "href": "API11/api/Tizen.NUI.Text.TextFit.html",
+    "title": "Struct TextFit",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Text.Underline.html": {
+    "href": "API11/api/Tizen.NUI.Text.Underline.html",
+    "title": "Struct Underline",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.TextDirection.html": {
     "href": "API11/api/Tizen.NUI.TextDirection.html",
     "title": "Enum TextDirection",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.TextLayout.html": {
+    "href": "API11/api/Tizen.NUI.TextLayout.html",
+    "title": "Enum TextLayout",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.TextShadow.html": {
+    "href": "API11/api/Tizen.NUI.TextShadow.html",
+    "title": "Class TextShadow",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Texture.html": {
@@ -22859,6 +25099,11 @@
     "title": "Class TransitionData",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.TransitionGroup.html": {
+    "href": "API11/api/Tizen.NUI.TransitionGroup.html",
+    "title": "Class TransitionGroup",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.TransitionList.html": {
     "href": "API11/api/Tizen.NUI.TransitionList.html",
     "title": "Class TransitionList",
@@ -22892,6 +25137,26 @@
   "API11/api/Tizen.NUI.TypeInfo.html": {
     "href": "API11/api/Tizen.NUI.TypeInfo.html",
     "title": "Class TypeInfo",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.TypeRegistry.html": {
+    "href": "API11/api/Tizen.NUI.TypeRegistry.html",
+    "title": "Class TypeRegistry",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.UnderlineType.html": {
+    "href": "API11/api/Tizen.NUI.UnderlineType.html",
+    "title": "Enum UnderlineType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Utility.html": {
+    "href": "API11/api/Tizen.NUI.Utility.html",
+    "title": "Namespace Tizen.NUI.Utility",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Utility.TextPageUtil.html": {
+    "href": "API11/api/Tizen.NUI.Utility.TextPageUtil.html",
+    "title": "Class TextPageUtil",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Vector2.html": {
@@ -23004,6 +25269,256 @@
     "title": "Class WatchTime",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Wearable.CircularPagination.html": {
+    "href": "API11/api/Tizen.NUI.Wearable.CircularPagination.html",
+    "title": "Class CircularPagination",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Wearable.CircularPaginationStyle.html": {
+    "href": "API11/api/Tizen.NUI.Wearable.CircularPaginationStyle.html",
+    "title": "Class CircularPaginationStyle",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Wearable.CircularProgress.html": {
+    "href": "API11/api/Tizen.NUI.Wearable.CircularProgress.html",
+    "title": "Class CircularProgress",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Wearable.CircularProgressStyle.html": {
+    "href": "API11/api/Tizen.NUI.Wearable.CircularProgressStyle.html",
+    "title": "Class CircularProgressStyle",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Wearable.CircularScrollbar.html": {
+    "href": "API11/api/Tizen.NUI.Wearable.CircularScrollbar.html",
+    "title": "Class CircularScrollbar",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Wearable.CircularScrollbarStyle.html": {
+    "href": "API11/api/Tizen.NUI.Wearable.CircularScrollbarStyle.html",
+    "title": "Class CircularScrollbarStyle",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Wearable.CircularSlider.html": {
+    "href": "API11/api/Tizen.NUI.Wearable.CircularSlider.html",
+    "title": "Class CircularSlider",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Wearable.CircularSliderStyle.html": {
+    "href": "API11/api/Tizen.NUI.Wearable.CircularSliderStyle.html",
+    "title": "Class CircularSliderStyle",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Wearable.CircularSliderValueChangedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.Wearable.CircularSliderValueChangedEventArgs.html",
+    "title": "Class CircularSliderValueChangedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Wearable.GridRecycleLayoutManager.html": {
+    "href": "API11/api/Tizen.NUI.Wearable.GridRecycleLayoutManager.html",
+    "title": "Class GridRecycleLayoutManager",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Wearable.html": {
+    "href": "API11/api/Tizen.NUI.Wearable.html",
+    "title": "Namespace Tizen.NUI.Wearable",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Wearable.IPopupAnimation.html": {
+    "href": "API11/api/Tizen.NUI.Wearable.IPopupAnimation.html",
+    "title": "Interface IPopupAnimation",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Wearable.LinearRecycleLayoutManager.html": {
+    "href": "API11/api/Tizen.NUI.Wearable.LinearRecycleLayoutManager.html",
+    "title": "Class LinearRecycleLayoutManager",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Wearable.Popup.ButtonPosition.html": {
+    "href": "API11/api/Tizen.NUI.Wearable.Popup.ButtonPosition.html",
+    "title": "Enum Popup.ButtonPosition",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Wearable.Popup.html": {
+    "href": "API11/api/Tizen.NUI.Wearable.Popup.html",
+    "title": "Class Popup",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Wearable.PopupStyle.html": {
+    "href": "API11/api/Tizen.NUI.Wearable.PopupStyle.html",
+    "title": "Class PopupStyle",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Wearable.RecycleAdapter.html": {
+    "href": "API11/api/Tizen.NUI.Wearable.RecycleAdapter.html",
+    "title": "Class RecycleAdapter",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Wearable.RecycleItem.html": {
+    "href": "API11/api/Tizen.NUI.Wearable.RecycleItem.html",
+    "title": "Class RecycleItem",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Wearable.RecycleLayoutManager.html": {
+    "href": "API11/api/Tizen.NUI.Wearable.RecycleLayoutManager.html",
+    "title": "Class RecycleLayoutManager",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Wearable.RecycleLayoutManager.Orientation.html": {
+    "href": "API11/api/Tizen.NUI.Wearable.RecycleLayoutManager.Orientation.html",
+    "title": "Enum RecycleLayoutManager.Orientation",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Wearable.RecyclerView.html": {
+    "href": "API11/api/Tizen.NUI.Wearable.RecyclerView.html",
+    "title": "Class RecyclerView",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Wearable.WatchView.html": {
+    "href": "API11/api/Tizen.NUI.Wearable.WatchView.html",
+    "title": "Class WatchView",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Wearable.WearableList.html": {
+    "href": "API11/api/Tizen.NUI.Wearable.WearableList.html",
+    "title": "Class WearableList",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebBackForwardList.html": {
+    "href": "API11/api/Tizen.NUI.WebBackForwardList.html",
+    "title": "Class WebBackForwardList",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebBackForwardListItem.html": {
+    "href": "API11/api/Tizen.NUI.WebBackForwardListItem.html",
+    "title": "Class WebBackForwardListItem",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebCertificate.html": {
+    "href": "API11/api/Tizen.NUI.WebCertificate.html",
+    "title": "Class WebCertificate",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebConsoleMessage.html": {
+    "href": "API11/api/Tizen.NUI.WebConsoleMessage.html",
+    "title": "Class WebConsoleMessage",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebConsoleMessage.SeverityLevel.html": {
+    "href": "API11/api/Tizen.NUI.WebConsoleMessage.SeverityLevel.html",
+    "title": "Enum WebConsoleMessage.SeverityLevel",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebContext.ApplicationType.html": {
+    "href": "API11/api/Tizen.NUI.WebContext.ApplicationType.html",
+    "title": "Enum WebContext.ApplicationType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebContext.CacheModelType.html": {
+    "href": "API11/api/Tizen.NUI.WebContext.CacheModelType.html",
+    "title": "Enum WebContext.CacheModelType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebContext.DownloadStartedCallback.html": {
+    "href": "API11/api/Tizen.NUI.WebContext.DownloadStartedCallback.html",
+    "title": "Delegate WebContext.DownloadStartedCallback",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebContext.html": {
+    "href": "API11/api/Tizen.NUI.WebContext.html",
+    "title": "Class WebContext",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebContext.HttpRequestInterceptedCallback.html": {
+    "href": "API11/api/Tizen.NUI.WebContext.HttpRequestInterceptedCallback.html",
+    "title": "Delegate WebContext.HttpRequestInterceptedCallback",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebContext.MimeOverriddenCallback.html": {
+    "href": "API11/api/Tizen.NUI.WebContext.MimeOverriddenCallback.html",
+    "title": "Delegate WebContext.MimeOverriddenCallback",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebContext.PasswordDataListAcquiredCallback.html": {
+    "href": "API11/api/Tizen.NUI.WebContext.PasswordDataListAcquiredCallback.html",
+    "title": "Delegate WebContext.PasswordDataListAcquiredCallback",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebContext.SecurityOriginListAcquiredCallback.html": {
+    "href": "API11/api/Tizen.NUI.WebContext.SecurityOriginListAcquiredCallback.html",
+    "title": "Delegate WebContext.SecurityOriginListAcquiredCallback",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebContext.StorageUsageAcquiredCallback.html": {
+    "href": "API11/api/Tizen.NUI.WebContext.StorageUsageAcquiredCallback.html",
+    "title": "Delegate WebContext.StorageUsageAcquiredCallback",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebContextMenu.html": {
+    "href": "API11/api/Tizen.NUI.WebContextMenu.html",
+    "title": "Class WebContextMenu",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebContextMenuItem.html": {
+    "href": "API11/api/Tizen.NUI.WebContextMenuItem.html",
+    "title": "Class WebContextMenuItem",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebContextMenuItem.ItemTag.html": {
+    "href": "API11/api/Tizen.NUI.WebContextMenuItem.ItemTag.html",
+    "title": "Enum WebContextMenuItem.ItemTag",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebContextMenuItem.ItemType.html": {
+    "href": "API11/api/Tizen.NUI.WebContextMenuItem.ItemType.html",
+    "title": "Enum WebContextMenuItem.ItemType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebCookieManager.CookieAcceptPolicyType.html": {
+    "href": "API11/api/Tizen.NUI.WebCookieManager.CookieAcceptPolicyType.html",
+    "title": "Enum WebCookieManager.CookieAcceptPolicyType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebCookieManager.CookiePersistentStorageType.html": {
+    "href": "API11/api/Tizen.NUI.WebCookieManager.CookiePersistentStorageType.html",
+    "title": "Enum WebCookieManager.CookiePersistentStorageType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebCookieManager.html": {
+    "href": "API11/api/Tizen.NUI.WebCookieManager.html",
+    "title": "Class WebCookieManager",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebFormRepostPolicyDecisionMaker.html": {
+    "href": "API11/api/Tizen.NUI.WebFormRepostPolicyDecisionMaker.html",
+    "title": "Class WebFormRepostPolicyDecisionMaker",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebFrame.html": {
+    "href": "API11/api/Tizen.NUI.WebFrame.html",
+    "title": "Class WebFrame",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebHitTestResult.html": {
+    "href": "API11/api/Tizen.NUI.WebHitTestResult.html",
+    "title": "Class WebHitTestResult",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebHitTestResult.ResultContext.html": {
+    "href": "API11/api/Tizen.NUI.WebHitTestResult.ResultContext.html",
+    "title": "Enum WebHitTestResult.ResultContext",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebHttpAuthHandler.html": {
+    "href": "API11/api/Tizen.NUI.WebHttpAuthHandler.html",
+    "title": "Class WebHttpAuthHandler",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebHttpRequestInterceptor.html": {
+    "href": "API11/api/Tizen.NUI.WebHttpRequestInterceptor.html",
+    "title": "Class WebHttpRequestInterceptor",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.WebPageLoadError.ErrorCode.html": {
     "href": "API11/api/Tizen.NUI.WebPageLoadError.ErrorCode.html",
     "title": "Enum WebPageLoadError.ErrorCode",
@@ -23019,6 +25534,66 @@
     "title": "Class WebPageLoadError",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.WebPasswordData.html": {
+    "href": "API11/api/Tizen.NUI.WebPasswordData.html",
+    "title": "Class WebPasswordData",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebPolicyDecisionMaker.DecisionType.html": {
+    "href": "API11/api/Tizen.NUI.WebPolicyDecisionMaker.DecisionType.html",
+    "title": "Enum WebPolicyDecisionMaker.DecisionType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebPolicyDecisionMaker.html": {
+    "href": "API11/api/Tizen.NUI.WebPolicyDecisionMaker.html",
+    "title": "Class WebPolicyDecisionMaker",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebPolicyDecisionMaker.NavigationType.html": {
+    "href": "API11/api/Tizen.NUI.WebPolicyDecisionMaker.NavigationType.html",
+    "title": "Enum WebPolicyDecisionMaker.NavigationType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebSecurityOrigin.html": {
+    "href": "API11/api/Tizen.NUI.WebSecurityOrigin.html",
+    "title": "Class WebSecurityOrigin",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebSettings.html": {
+    "href": "API11/api/Tizen.NUI.WebSettings.html",
+    "title": "Class WebSettings",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebViewCertificateReceivedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.WebViewCertificateReceivedEventArgs.html",
+    "title": "Class WebViewCertificateReceivedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebViewConsoleMessageReceivedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.WebViewConsoleMessageReceivedEventArgs.html",
+    "title": "Class WebViewConsoleMessageReceivedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebViewContextMenuHiddenEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.WebViewContextMenuHiddenEventArgs.html",
+    "title": "Class WebViewContextMenuHiddenEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebViewContextMenuShownEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.WebViewContextMenuShownEventArgs.html",
+    "title": "Class WebViewContextMenuShownEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebViewFormRepostPolicyDecidedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.WebViewFormRepostPolicyDecidedEventArgs.html",
+    "title": "Class WebViewFormRepostPolicyDecidedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebViewHttpAuthRequestedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.WebViewHttpAuthRequestedEventArgs.html",
+    "title": "Class WebViewHttpAuthRequestedEventArgs",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.WebViewPageLoadErrorEventArgs.html": {
     "href": "API11/api/Tizen.NUI.WebViewPageLoadErrorEventArgs.html",
     "title": "Class WebViewPageLoadErrorEventArgs",
@@ -23027,6 +25602,26 @@
   "API11/api/Tizen.NUI.WebViewPageLoadEventArgs.html": {
     "href": "API11/api/Tizen.NUI.WebViewPageLoadEventArgs.html",
     "title": "Class WebViewPageLoadEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebViewPolicyDecidedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.WebViewPolicyDecidedEventArgs.html",
+    "title": "Class WebViewPolicyDecidedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebViewScrollEdgeReachedEventArgs.Edge.html": {
+    "href": "API11/api/Tizen.NUI.WebViewScrollEdgeReachedEventArgs.Edge.html",
+    "title": "Enum WebViewScrollEdgeReachedEventArgs.Edge",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebViewScrollEdgeReachedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.WebViewScrollEdgeReachedEventArgs.html",
+    "title": "Class WebViewScrollEdgeReachedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WebViewUrlChangedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.WebViewUrlChangedEventArgs.html",
+    "title": "Class WebViewUrlChangedEventArgs",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Wheel.html": {
@@ -23064,9 +25659,49 @@
     "title": "Class WidgetViewManager",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Window.AccessibilityHighlightEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.Window.AccessibilityHighlightEventArgs.html",
+    "title": "Class Window.AccessibilityHighlightEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Window.BorderDirection.html": {
+    "href": "API11/api/Tizen.NUI.Window.BorderDirection.html",
+    "title": "Enum Window.BorderDirection",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Window.BorderResizePolicyType.html": {
+    "href": "API11/api/Tizen.NUI.Window.BorderResizePolicyType.html",
+    "title": "Enum Window.BorderResizePolicyType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Window.EffectState.html": {
+    "href": "API11/api/Tizen.NUI.Window.EffectState.html",
+    "title": "Enum Window.EffectState",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Window.EffectStates.html": {
+    "href": "API11/api/Tizen.NUI.Window.EffectStates.html",
+    "title": "Enum Window.EffectStates",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Window.EffectType.html": {
+    "href": "API11/api/Tizen.NUI.Window.EffectType.html",
+    "title": "Enum Window.EffectType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Window.EffectTypes.html": {
+    "href": "API11/api/Tizen.NUI.Window.EffectTypes.html",
+    "title": "Enum Window.EffectTypes",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Window.FocusChangedEventArgs.html": {
     "href": "API11/api/Tizen.NUI.Window.FocusChangedEventArgs.html",
     "title": "Class Window.FocusChangedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Window.FrameCallbackType.html": {
+    "href": "API11/api/Tizen.NUI.Window.FrameCallbackType.html",
+    "title": "Delegate Window.FrameCallbackType",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Window.html": {
@@ -23084,9 +25719,19 @@
     "title": "Enum Window.KeyGrabMode",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Window.MouseInOutEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.Window.MouseInOutEventArgs.html",
+    "title": "Class Window.MouseInOutEventArgs",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Window.ResizedEventArgs.html": {
     "href": "API11/api/Tizen.NUI.Window.ResizedEventArgs.html",
     "title": "Class Window.ResizedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Window.ResizeDirection.html": {
+    "href": "API11/api/Tizen.NUI.Window.ResizeDirection.html",
+    "title": "Enum Window.ResizeDirection",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Window.SafeNativeWindowHandle.html": {
@@ -23099,14 +25744,59 @@
     "title": "Class Window.TouchEventArgs",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Window.TransitionEffectEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.Window.TransitionEffectEventArgs.html",
+    "title": "Class Window.TransitionEffectEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Window.VisibilityChangedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.Window.VisibilityChangedEventArgs.html",
+    "title": "Class Window.VisibilityChangedEventArgs",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Window.WheelEventArgs.html": {
     "href": "API11/api/Tizen.NUI.Window.WheelEventArgs.html",
     "title": "Class Window.WheelEventArgs",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Window.WindowFocusChangedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.Window.WindowFocusChangedEventArgs.html",
+    "title": "Class Window.WindowFocusChangedEventArgs",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Window.WindowOrientation.html": {
     "href": "API11/api/Tizen.NUI.Window.WindowOrientation.html",
     "title": "Enum Window.WindowOrientation",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WindowData.html": {
+    "href": "API11/api/Tizen.NUI.WindowData.html",
+    "title": "Class WindowData",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WindowLayoutType.html": {
+    "href": "API11/api/Tizen.NUI.WindowLayoutType.html",
+    "title": "Enum WindowLayoutType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WindowMoveCompletedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.WindowMoveCompletedEventArgs.html",
+    "title": "Class WindowMoveCompletedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WindowMovedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.WindowMovedEventArgs.html",
+    "title": "Class WindowMovedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WindowOrientationChangedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.WindowOrientationChangedEventArgs.html",
+    "title": "Class WindowOrientationChangedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WindowResizeCompletedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.WindowResizeCompletedEventArgs.html",
+    "title": "Class WindowResizeCompletedEventArgs",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.WindowSystem.Shell.html": {
@@ -23134,6 +25824,61 @@
     "title": "Enum QuickPanelClient.VisibleState",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.WindowSystem.Shell.QuickPanelService.EffectType.html": {
+    "href": "API11/api/Tizen.NUI.WindowSystem.Shell.QuickPanelService.EffectType.html",
+    "title": "Enum QuickPanelService.EffectType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WindowSystem.Shell.QuickPanelService.html": {
+    "href": "API11/api/Tizen.NUI.WindowSystem.Shell.QuickPanelService.html",
+    "title": "Class QuickPanelService",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WindowSystem.Shell.QuickPanelService.Types.html": {
+    "href": "API11/api/Tizen.NUI.WindowSystem.Shell.QuickPanelService.Types.html",
+    "title": "Enum QuickPanelService.Types",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WindowSystem.Shell.SoftkeyClient.html": {
+    "href": "API11/api/Tizen.NUI.WindowSystem.Shell.SoftkeyClient.html",
+    "title": "Class SoftkeyClient",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WindowSystem.Shell.SoftkeyExpandState.html": {
+    "href": "API11/api/Tizen.NUI.WindowSystem.Shell.SoftkeyExpandState.html",
+    "title": "Enum SoftkeyExpandState",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WindowSystem.Shell.SoftkeyOpacityState.html": {
+    "href": "API11/api/Tizen.NUI.WindowSystem.Shell.SoftkeyOpacityState.html",
+    "title": "Enum SoftkeyOpacityState",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WindowSystem.Shell.SoftkeyService.html": {
+    "href": "API11/api/Tizen.NUI.WindowSystem.Shell.SoftkeyService.html",
+    "title": "Class SoftkeyService",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WindowSystem.Shell.SoftkeyVisibleState.html": {
+    "href": "API11/api/Tizen.NUI.WindowSystem.Shell.SoftkeyVisibleState.html",
+    "title": "Enum SoftkeyVisibleState",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WindowSystem.Shell.TaskbarService.html": {
+    "href": "API11/api/Tizen.NUI.WindowSystem.Shell.TaskbarService.html",
+    "title": "Class TaskbarService",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WindowSystem.Shell.TaskbarService.PlaceType.html": {
+    "href": "API11/api/Tizen.NUI.WindowSystem.Shell.TaskbarService.PlaceType.html",
+    "title": "Enum TaskbarService.PlaceType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WindowSystem.Shell.TizenRegion.html": {
+    "href": "API11/api/Tizen.NUI.WindowSystem.Shell.TizenRegion.html",
+    "title": "Class TizenRegion",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.WindowSystem.Shell.TizenShell.html": {
     "href": "API11/api/Tizen.NUI.WindowSystem.Shell.TizenShell.html",
     "title": "Class TizenShell",
@@ -23149,9 +25894,44 @@
     "title": "Enum WrapModeType",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Xaml.AcceptEmptyServiceProviderAttribute.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.AcceptEmptyServiceProviderAttribute.html",
+    "title": "Class AcceptEmptyServiceProviderAttribute",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.ApplicationResourcePathExtension.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.ApplicationResourcePathExtension.html",
+    "title": "Class ApplicationResourcePathExtension",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.ArrayExtension.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.ArrayExtension.html",
+    "title": "Class ArrayExtension",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.BindingExtension.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.BindingExtension.html",
+    "title": "Class BindingExtension",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Xaml.Build.Tasks.CecilExtensions.html": {
     "href": "API11/api/Tizen.NUI.Xaml.Build.Tasks.CecilExtensions.html",
     "title": "Class CecilExtensions",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.Build.Tasks.CssGTask.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.Build.Tasks.CssGTask.html",
+    "title": "Class CssGTask",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.Build.Tasks.DebugXamlCTask.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.Build.Tasks.DebugXamlCTask.html",
+    "title": "Class DebugXamlCTask",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.Build.Tasks.GetTasksAbi.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.Build.Tasks.GetTasksAbi.html",
+    "title": "Class GetTasksAbi",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Xaml.Build.Tasks.html": {
@@ -23159,9 +25939,194 @@
     "title": "Namespace Tizen.NUI.Xaml.Build.Tasks",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Xaml.Build.Tasks.Logger.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.Build.Tasks.Logger.html",
+    "title": "Class Logger",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.Build.Tasks.NUIXamlCTask.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.Build.Tasks.NUIXamlCTask.html",
+    "title": "Class NUIXamlCTask",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.Build.Tasks.NUIXamlGTask.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.Build.Tasks.NUIXamlGTask.html",
+    "title": "Class NUIXamlGTask",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Xaml.Build.Tasks.XamlTask.html": {
     "href": "API11/api/Tizen.NUI.Xaml.Build.Tasks.XamlTask.html",
     "title": "Class XamlTask",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.DynamicResourceExtension.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.DynamicResourceExtension.html",
+    "title": "Class DynamicResourceExtension",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.Extensions.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.Extensions.html",
+    "title": "Class Extensions",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.html",
+    "title": "Namespace Tizen.NUI.Xaml",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.IMarkupExtension.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.IMarkupExtension.html",
+    "title": "Interface IMarkupExtension",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.IMarkupExtension-1.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.IMarkupExtension-1.html",
+    "title": "Interface IMarkupExtension<T>",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.Internals.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.Internals.html",
+    "title": "Namespace Tizen.NUI.Xaml.Internals",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.Internals.XamlLoader.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.Internals.XamlLoader.html",
+    "title": "Class XamlLoader",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.IProvideValueTarget.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.IProvideValueTarget.html",
+    "title": "Interface IProvideValueTarget",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.IReferenceProvider.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.IReferenceProvider.html",
+    "title": "Interface IReferenceProvider",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.IValueProvider.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.IValueProvider.html",
+    "title": "Interface IValueProvider",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.IXamlTypeResolver.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.IXamlTypeResolver.html",
+    "title": "Interface IXamlTypeResolver",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.IXmlLineInfoProvider.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.IXmlLineInfoProvider.html",
+    "title": "Interface IXmlLineInfoProvider",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.NameScopeProvider.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.NameScopeProvider.html",
+    "title": "Class NameScopeProvider",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.NUIResourcePathExtension.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.NUIResourcePathExtension.html",
+    "title": "Class NUIResourcePathExtension",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.NullExtension.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.NullExtension.html",
+    "title": "Class NullExtension",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.ReferenceExtension.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.ReferenceExtension.html",
+    "title": "Class ReferenceExtension",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.ResourcePathExtension.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.ResourcePathExtension.html",
+    "title": "Class ResourcePathExtension",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.SimpleValueTargetProvider.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.SimpleValueTargetProvider.html",
+    "title": "Class SimpleValueTargetProvider",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.StaticExtension.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.StaticExtension.html",
+    "title": "Class StaticExtension",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.StaticResourceExtension.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.StaticResourceExtension.html",
+    "title": "Class StaticResourceExtension",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.TemplateBindingExtension.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.TemplateBindingExtension.html",
+    "title": "Class TemplateBindingExtension",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.ThemeResourcePathExtension.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.ThemeResourcePathExtension.html",
+    "title": "Class ThemeResourcePathExtension",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.TypeConversionAttribute.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.TypeConversionAttribute.html",
+    "title": "Class TypeConversionAttribute",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.XamlCompilationAttribute.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.XamlCompilationAttribute.html",
+    "title": "Class XamlCompilationAttribute",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.XamlCompilationOptions.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.XamlCompilationOptions.html",
+    "title": "Enum XamlCompilationOptions",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.XamlFilePathAttribute.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.XamlFilePathAttribute.html",
+    "title": "Class XamlFilePathAttribute",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.XamlParseException.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.XamlParseException.html",
+    "title": "Class XamlParseException",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.XamlResourceIdAttribute.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.XamlResourceIdAttribute.html",
+    "title": "Class XamlResourceIdAttribute",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.XamlServiceProvider.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.XamlServiceProvider.html",
+    "title": "Class XamlServiceProvider",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.XamlTypeResolver.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.XamlTypeResolver.html",
+    "title": "Class XamlTypeResolver",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.XmlLineInfo.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.XmlLineInfo.html",
+    "title": "Class XmlLineInfo",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.XmlLineInfoProvider.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.XmlLineInfoProvider.html",
+    "title": "Class XmlLineInfoProvider",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Xaml.XmlNamespaceResolver.html": {
+    "href": "API11/api/Tizen.NUI.Xaml.XmlNamespaceResolver.html",
+    "title": "Class XmlNamespaceResolver",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.XmlnsDefinitionAttribute.html": {
+    "href": "API11/api/Tizen.NUI.XmlnsDefinitionAttribute.html",
+    "title": "Class XmlnsDefinitionAttribute",
     "keywords": ""
   },
   "API11/api/Tizen.PhonenumberUtils.html": {
@@ -23827,6 +26792,11 @@
   "API11/api/Tizen.Pims.Contacts.ParseCallback.html": {
     "href": "API11/api/Tizen.Pims.Contacts.ParseCallback.html",
     "title": "Delegate ParseCallback",
+    "keywords": ""
+  },
+  "API11/api/Tizen.SecureLog.html": {
+    "href": "API11/api/Tizen.SecureLog.html",
+    "title": "Class SecureLog",
     "keywords": ""
   },
   "API11/api/Tizen.Security.CallCause.html": {
@@ -24594,6 +27564,11 @@
     "title": "Class AccessibilityTtsSettingChangedEventArgs",
     "keywords": ""
   },
+  "API11/api/Tizen.System.AddUserEventArgs.html": {
+    "href": "API11/api/Tizen.System.AddUserEventArgs.html",
+    "title": "Class AddUserEventArgs",
+    "keywords": ""
+  },
   "API11/api/Tizen.System.AdsIdChangedEventArgs.html": {
     "href": "API11/api/Tizen.System.AdsIdChangedEventArgs.html",
     "title": "Class AdsIdChangedEventArgs",
@@ -24632,6 +27607,21 @@
   "API11/api/Tizen.System.BatteryPercentChangedEventArgs.html": {
     "href": "API11/api/Tizen.System.BatteryPercentChangedEventArgs.html",
     "title": "Class BatteryPercentChangedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.System.CpuBoostingFlag.html": {
+    "href": "API11/api/Tizen.System.CpuBoostingFlag.html",
+    "title": "Enum CpuBoostingFlag",
+    "keywords": ""
+  },
+  "API11/api/Tizen.System.CpuBoostingLevel.html": {
+    "href": "API11/api/Tizen.System.CpuBoostingLevel.html",
+    "title": "Enum CpuBoostingLevel",
+    "keywords": ""
+  },
+  "API11/api/Tizen.System.CpuBoostingLevelInfo.html": {
+    "href": "API11/api/Tizen.System.CpuBoostingLevelInfo.html",
+    "title": "Struct CpuBoostingLevelInfo",
     "keywords": ""
   },
   "API11/api/Tizen.System.Data3GNetworkSettingChangedEventArgs.html": {
@@ -24804,6 +27794,21 @@
     "title": "Class NetworkWifiNotificationSettingChangedEventArgs",
     "keywords": ""
   },
+  "API11/api/Tizen.System.PerformanceController.html": {
+    "href": "API11/api/Tizen.System.PerformanceController.html",
+    "title": "Class PerformanceController",
+    "keywords": ""
+  },
+  "API11/api/Tizen.System.PerformanceControlType.html": {
+    "href": "API11/api/Tizen.System.PerformanceControlType.html",
+    "title": "Class PerformanceControlType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.System.PlatformConfig.html": {
+    "href": "API11/api/Tizen.System.PlatformConfig.html",
+    "title": "Class PlatformConfig",
+    "keywords": ""
+  },
   "API11/api/Tizen.System.Power.html": {
     "href": "API11/api/Tizen.System.Power.html",
     "title": "Class Power",
@@ -24834,6 +27839,21 @@
     "title": "Class ProcessMemoryUsage",
     "keywords": ""
   },
+  "API11/api/Tizen.System.RemoveUserEventArgs.html": {
+    "href": "API11/api/Tizen.System.RemoveUserEventArgs.html",
+    "title": "Class RemoveUserEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.System.Resource.html": {
+    "href": "API11/api/Tizen.System.Resource.html",
+    "title": "Class Resource",
+    "keywords": ""
+  },
+  "API11/api/Tizen.System.ResourcePidInfo.html": {
+    "href": "API11/api/Tizen.System.ResourcePidInfo.html",
+    "title": "Struct ResourcePidInfo",
+    "keywords": ""
+  },
   "API11/api/Tizen.System.RotaryEventEnabledChangedEventArgs.html": {
     "href": "API11/api/Tizen.System.RotaryEventEnabledChangedEventArgs.html",
     "title": "Class RotaryEventEnabledChangedEventArgs",
@@ -24847,6 +27867,11 @@
   "API11/api/Tizen.System.ScreenBacklightTimeChangedEventArgs.html": {
     "href": "API11/api/Tizen.System.ScreenBacklightTimeChangedEventArgs.html",
     "title": "Class ScreenBacklightTimeChangedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.System.Session.html": {
+    "href": "API11/api/Tizen.System.Session.html",
+    "title": "Class Session",
     "keywords": ""
   },
   "API11/api/Tizen.System.SoundLockSettingChangedEventArgs.html": {
@@ -24899,9 +27924,34 @@
     "title": "Enum StorageState",
     "keywords": ""
   },
+  "API11/api/Tizen.System.SubsessionEventArgs.html": {
+    "href": "API11/api/Tizen.System.SubsessionEventArgs.html",
+    "title": "Class SubsessionEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.System.SwitchUserCompletionEventArgs.html": {
+    "href": "API11/api/Tizen.System.SwitchUserCompletionEventArgs.html",
+    "title": "Class SwitchUserCompletionEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.System.SwitchUserEventArgs.html": {
+    "href": "API11/api/Tizen.System.SwitchUserEventArgs.html",
+    "title": "Class SwitchUserEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.System.SwitchUserWaitEventArgs.html": {
+    "href": "API11/api/Tizen.System.SwitchUserWaitEventArgs.html",
+    "title": "Class SwitchUserWaitEventArgs",
+    "keywords": ""
+  },
   "API11/api/Tizen.System.SystemCpuUsage.html": {
     "href": "API11/api/Tizen.System.SystemCpuUsage.html",
     "title": "Class SystemCpuUsage",
+    "keywords": ""
+  },
+  "API11/api/Tizen.System.SystemInfo.html": {
+    "href": "API11/api/Tizen.System.SystemInfo.html",
+    "title": "Class SystemInfo",
     "keywords": ""
   },
   "API11/api/Tizen.System.SystemMemoryUsage.html": {
@@ -25989,9 +29039,19 @@
     "title": "Class Chromium",
     "keywords": ""
   },
+  "API11/api/Tizen.WebView.Context.DownloadRequestDelegate.html": {
+    "href": "API11/api/Tizen.WebView.Context.DownloadRequestDelegate.html",
+    "title": "Delegate Context.DownloadRequestDelegate",
+    "keywords": ""
+  },
   "API11/api/Tizen.WebView.Context.html": {
     "href": "API11/api/Tizen.WebView.Context.html",
     "title": "Class Context",
+    "keywords": ""
+  },
+  "API11/api/Tizen.WebView.Context.InterceptRequestDelegate.html": {
+    "href": "API11/api/Tizen.WebView.Context.InterceptRequestDelegate.html",
+    "title": "Delegate Context.InterceptRequestDelegate",
     "keywords": ""
   },
   "API11/api/Tizen.WebView.ContextMenu.html": {
@@ -26082,6 +29142,11 @@
   "API11/api/Tizen.WebView.PolicyDecisionEventArgs.html": {
     "href": "API11/api/Tizen.WebView.PolicyDecisionEventArgs.html",
     "title": "Class PolicyDecisionEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.WebView.RequestInterceptor.html": {
+    "href": "API11/api/Tizen.WebView.RequestInterceptor.html",
+    "title": "Class RequestInterceptor",
     "keywords": ""
   },
   "API11/api/Tizen.WebView.ResponsePolicyEventArgs.html": {

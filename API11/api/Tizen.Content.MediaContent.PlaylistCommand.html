@@ -123,27 +123,6 @@
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">database</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">database</code> has already been disposed.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   
@@ -219,33 +198,8 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">playlistId</code> is less than or equal to zero.</p>
 </td>
       </tr>
     </tbody>
@@ -259,7 +213,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/PlaylistCommand.cs/#L647">View Source</a>
     </span>
-    <h4 id="Tizen_Content_MediaContent_PlaylistCommand_AddMembers_System_Int32_System_Collections_Generic_IEnumerable_System_String__" data-uid="Tizen.Content.MediaContent.PlaylistCommand.AddMembers(System.Int32,System.Collections.Generic.IEnumerable{System.String})">AddMembers(Int32, IEnumerable&lt;String&gt;)</h4>
+    <h4 id="Tizen_Content_MediaContent_PlaylistCommand_AddMembers_System_Int32_IEnumerable_System_String__" data-uid="Tizen.Content.MediaContent.PlaylistCommand.AddMembers(System.Int32,IEnumerable{System.String})">AddMembers(Int32, IEnumerable&lt;String&gt;)</h4>
     <section>
       <p>Adds the media set to the playlist.</p>
 
@@ -287,7 +241,7 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
         <td><span class="parametername">mediaIds</span></td>
         <td><p>The collection of media ID to add to the playlist.</p>
 </td>
@@ -310,7 +264,7 @@
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Content_MediaContent_PlaylistCommand_AddMembers_System_Int32_System_Collections_Generic_IEnumerable_System_String___remarks">Remarks</h5>
+  <h5 id="Tizen_Content_MediaContent_PlaylistCommand_AddMembers_System_Int32_IEnumerable_System_String___remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The invalid media IDs will be ignored.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
@@ -323,37 +277,8 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaIds</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaIds</code> has no element.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">mediaIds</code> contains null value.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">mediaIds</code> contains a zero-length string or white space.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">playlistId</code> is less than or equal to zero.</p>
 </td>
       </tr>
     </tbody>
@@ -403,16 +328,6 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
       <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
@@ -484,16 +399,6 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
 </td>
@@ -564,23 +469,8 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">playlistId</code> is less than or equal to zero.</p>
 </td>
       </tr>
     </tbody>
@@ -655,23 +545,8 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">playlistId</code> is less than or equal to zero.</p>
 </td>
       </tr>
     </tbody>
@@ -740,28 +615,8 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">playlistId</code> is less than or equal to zero.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>The caller has no required privilege.</p>
 </td>
       </tr>
     </tbody>
@@ -828,43 +683,13 @@ If you want to access an external storage, you should add privilege <a href="htt
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">path</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">path</code> is a zero-length string, contains only white space.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">playlistId</code> is less than or equal to zero.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.RecordNotFoundException.html">RecordNotFoundException</a></td>
         <td><p>No matching playlist exists.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>The caller has no required privilege.</p>
 </td>
       </tr>
     </tbody>
@@ -941,33 +766,8 @@ If you want to access an external storage, you should add privilege <a href="htt
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">playlistId</code> is less than or equal to zero.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
 </td>
       </tr>
     </tbody>
@@ -1042,25 +842,8 @@ If you want to access an external storage, you should add privilege <a href="htt
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">playlistId</code> is less than or equal to zero.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">memberId</code> is less than or equal to zero.</p>
 </td>
       </tr>
     </tbody>
@@ -1129,33 +912,8 @@ If you want to access an external storage, you should add privilege <a href="htt
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">name</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">name</code> is a zero-length string.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>The caller has no required privilege.</p>
 </td>
       </tr>
     </tbody>
@@ -1232,33 +990,8 @@ If you want to access an external storage, you should add privilege <a href="htt
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">name</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">name</code> is a zero-length string.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>The caller has no required privilege.</p>
 </td>
       </tr>
     </tbody>
@@ -1339,42 +1072,8 @@ If you want to access an external storage, you should add privilege <a href="htt
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">name</code> is null.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">path</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">name</code> is a zero-length string.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">path</code> is a zero-length string, contains only white space.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filenotfoundexception">FileNotFoundException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">path</code> does not exists.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>The caller has no required privilege.</p>
 </td>
       </tr>
     </tbody>
@@ -1454,25 +1153,8 @@ If you want to access an external storage, you should add privilege <a href="htt
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">playlistId</code> is less than or equal to zero.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">memberId</code> is less than or equal to zero.</p>
 </td>
       </tr>
     </tbody>
@@ -1486,7 +1168,7 @@ If you want to access an external storage, you should add privilege <a href="htt
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/PlaylistCommand.cs/#L750">View Source</a>
     </span>
-    <h4 id="Tizen_Content_MediaContent_PlaylistCommand_RemoveMembers_System_Int32_System_Collections_Generic_IEnumerable_System_Int32__" data-uid="Tizen.Content.MediaContent.PlaylistCommand.RemoveMembers(System.Int32,System.Collections.Generic.IEnumerable{System.Int32})">RemoveMembers(Int32, IEnumerable&lt;Int32&gt;)</h4>
+    <h4 id="Tizen_Content_MediaContent_PlaylistCommand_RemoveMembers_System_Int32_IEnumerable_System_Int32__" data-uid="Tizen.Content.MediaContent.PlaylistCommand.RemoveMembers(System.Int32,IEnumerable{System.Int32})">RemoveMembers(Int32, IEnumerable&lt;Int32&gt;)</h4>
     <section>
       <p>Removes a media set from the playlist.</p>
 
@@ -1514,7 +1196,7 @@ If you want to access an external storage, you should add privilege <a href="htt
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
         <td><span class="parametername">memberIds</span></td>
         <td><p>The collection of member ID to remove from to the playlist.</p>
 </td>
@@ -1537,7 +1219,7 @@ If you want to access an external storage, you should add privilege <a href="htt
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Content_MediaContent_PlaylistCommand_RemoveMembers_System_Int32_System_Collections_Generic_IEnumerable_System_Int32___remarks">Remarks</h5>
+  <h5 id="Tizen_Content_MediaContent_PlaylistCommand_RemoveMembers_System_Int32_IEnumerable_System_Int32___remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The invalid IDs will be ignored.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
@@ -1550,35 +1232,8 @@ If you want to access an external storage, you should add privilege <a href="htt
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">memberIds</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">memberIds</code> has no element.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">memberIds</code> contains a value which is less than or equal to zero.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">playlistId</code> is less than or equal to zero.</p>
 </td>
       </tr>
     </tbody>
@@ -1628,16 +1283,6 @@ If you want to access an external storage, you should add privilege <a href="htt
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
       <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
@@ -1709,23 +1354,8 @@ If you want to access an external storage, you should add privilege <a href="htt
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">playlistId</code> is less than or equal to zero.</p>
 </td>
       </tr>
     </tbody>
@@ -1793,16 +1423,6 @@ If you want to access an external storage, you should add privilege <a href="htt
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
       <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
@@ -1874,23 +1494,8 @@ If you want to access an external storage, you should add privilege <a href="htt
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">playlistId</code> is less than or equal to zero.</p>
 </td>
       </tr>
     </tbody>
@@ -1965,23 +1570,8 @@ If you want to access an external storage, you should add privilege <a href="htt
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">playlistId</code> is less than or equal to zero.</p>
 </td>
       </tr>
     </tbody>
@@ -2059,33 +1649,8 @@ If you want to access an external storage, you should add privilege <a href="htt
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">values</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">playlistId</code> is less than or equal to zero.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>The caller has no required privilege.</p>
 </td>
       </tr>
     </tbody>
@@ -2165,28 +1730,8 @@ If you want to access an external storage, you should add privilege <a href="htt
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">playOrder</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">playlistId</code> is less than or equal to zero.</p>
 </td>
       </tr>
     </tbody>
@@ -2200,7 +1745,7 @@ If you want to access an external storage, you should add privilege <a href="htt
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/PlaylistCommand.cs/#L844">View Source</a>
     </span>
-    <h4 id="Tizen_Content_MediaContent_PlaylistCommand_UpdatePlayOrders_System_Int32_System_Collections_Generic_IEnumerable_Tizen_Content_MediaContent_PlayOrder__" data-uid="Tizen.Content.MediaContent.PlaylistCommand.UpdatePlayOrders(System.Int32,System.Collections.Generic.IEnumerable{Tizen.Content.MediaContent.PlayOrder})">UpdatePlayOrders(Int32, IEnumerable&lt;PlayOrder&gt;)</h4>
+    <h4 id="Tizen_Content_MediaContent_PlaylistCommand_UpdatePlayOrders_System_Int32_IEnumerable_Tizen_Content_MediaContent_PlayOrder__" data-uid="Tizen.Content.MediaContent.PlaylistCommand.UpdatePlayOrders(System.Int32,IEnumerable{Tizen.Content.MediaContent.PlayOrder})">UpdatePlayOrders(Int32, IEnumerable&lt;PlayOrder&gt;)</h4>
     <section>
       <p>Updates play orders of the playlist.</p>
 
@@ -2228,7 +1773,7 @@ If you want to access an external storage, you should add privilege <a href="htt
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Content.MediaContent.PlayOrder.html">PlayOrder</a>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Content.MediaContent.PlayOrder.html">PlayOrder</a>&gt;</td>
         <td><span class="parametername">orders</span></td>
         <td><p>The collection of the <a class="xref" href="Tizen.Content.MediaContent.PlayOrder.html">PlayOrder</a> to apply.</p>
 </td>
@@ -2251,7 +1796,7 @@ If you want to access an external storage, you should add privilege <a href="htt
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Content_MediaContent_PlaylistCommand_UpdatePlayOrders_System_Int32_System_Collections_Generic_IEnumerable_Tizen_Content_MediaContent_PlayOrder___remarks">Remarks</h5>
+  <h5 id="Tizen_Content_MediaContent_PlaylistCommand_UpdatePlayOrders_System_Int32_IEnumerable_Tizen_Content_MediaContent_PlayOrder___remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The <a class="xref" href="Tizen.Content.MediaContent.PlayOrder.html#Tizen_Content_MediaContent_PlayOrder_MemberId">MemberId</a> that is invalid will be ignored.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
@@ -2264,35 +1809,8 @@ If you want to access an external storage, you should add privilege <a href="htt
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">orders</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">orders</code> has no element.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">orders</code> contains a null value.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">playlistId</code> is less than or equal to zero.</p>
 </td>
       </tr>
     </tbody>
@@ -2300,6 +1818,28 @@ If you want to access an external storage, you should add privilege <a href="htt
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
   <h3 id="seealso">See Also</h3>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Content.MediaContent.Playlist.html">Playlist</a></div>

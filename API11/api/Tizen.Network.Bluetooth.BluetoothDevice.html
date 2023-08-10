@@ -70,7 +70,7 @@ The BluetoothDevice class is used to search for services available on remote dev
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class BluetoothDevice</code></pre>
+    <pre><code class="lang-csharp hljs">public class BluetoothDevice : object</code></pre>
   </div>
 
   
@@ -87,6 +87,45 @@ The BluetoothDevice class is used to search for services available on remote dev
   
   
   
+  
+  <h2 id="constructors">Constructors
+  </h2>
+  
+  <a id="Tizen_Network_Bluetooth_BluetoothDevice__ctor_" data-uid="Tizen.Network.Bluetooth.BluetoothDevice.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothDevice.cs/#L70">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_Bluetooth_BluetoothDevice__ctor_Tizen_Network_Bluetooth_BluetoothLeDevice_" data-uid="Tizen.Network.Bluetooth.BluetoothDevice.#ctor(Tizen.Network.Bluetooth.BluetoothLeDevice)">BluetoothDevice(BluetoothLeDevice)</h4>
+    <section>
+      <p>The constructor</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BluetoothDevice(BluetoothLeDevice leDevice)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Bluetooth.BluetoothLeDevice.html">BluetoothLeDevice</a></td>
+        <td><span class="parametername">leDevice</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
   
   <h2 id="properties">Properties
   </h2>
@@ -502,7 +541,7 @@ The BluetoothDevice class is used to search for services available on remote dev
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -532,23 +571,6 @@ The BluetoothDevice class is used to search for services available on remote dev
   <h5 id="Tizen_Network_Bluetooth_BluetoothDevice_CancelBonding_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Bonding must be in progress by CreateBond().</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the BT/BTLE is not enabled
-or when the cancel bonding procedure to remote device fails.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -573,23 +595,6 @@ or when the cancel bonding procedure to remote device fails.</p>
   <div class="markdown level1 remarks"><p>The Bluetooth must be enabled and the remote device must be discoverable by StartDiscovery(). The bond can be destroyed by DestroyBond().
 The bonding request can be cancelled by CancelBonding(). If this succeeds, the BondCreated event will be invoked.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the BT/BTLE is not enabled
-or when the create bonding process to the remote device fails.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -668,23 +673,6 @@ or when the create bonding process to the remote device fails.</p>
   <div class="markdown level1 remarks"><p>The Bluetooth must be enabled and the bond must be created by CreateBond().
 If this succeeds, the BondDestroyed event will be invoked.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the BT/BTLE is not enabled
-or when the destroy bonding procedure fails.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -715,7 +703,7 @@ or when the destroy bonding procedure fails.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Network.Bluetooth.BluetoothProfileType.html">BluetoothProfileType</a>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Network.Bluetooth.BluetoothProfileType.html">BluetoothProfileType</a>&gt;</td>
         <td><p>The connected Bluetooth profiles.</p>
 </td>
       </tr>
@@ -724,23 +712,6 @@ or when the destroy bonding procedure fails.</p>
   <h5 id="Tizen_Network_Bluetooth_BluetoothDevice_GetConnectedProfiles_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The Bluetooth must be enabled.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the BT/BTLE is not enabled
-or when there is no BT connection.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -791,23 +762,6 @@ or when there is no BT connection.</p>
       <tr>
         <td><a class="xref" href="Tizen.Network.Bluetooth.BluetoothServiceClassType.html">BluetoothServiceClassType</a></td>
         <td><p>The service mask list converted from the given UUID list.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the BT/BTLE is not enabled
-or when the get Mask from UUID fails.</p>
 </td>
       </tr>
     </tbody>
@@ -924,23 +878,6 @@ or when the get Mask from UUID fails.</p>
   <h5 id="Tizen_Network_Bluetooth_BluetoothDevice_IsProfileConnected_Tizen_Network_Bluetooth_BluetoothProfileType__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The Bluetooth must be enabled.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the BT/BTLE is not enabled
-or when there is no BT connection.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -982,23 +919,6 @@ or when there is no BT connection.</p>
   <h5 id="Tizen_Network_Bluetooth_BluetoothDevice_SetAlias_System_String__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The Bluetooth must be enabled and the bond must be created by CreateBond().</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the BT/BTLE is not enabled
-or when the set alias name to remote device fails.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -1041,23 +961,6 @@ or when the set alias name to remote device fails.</p>
   <div class="markdown level1 remarks"><p>The Bluetooth must be enabled and the bond must be created by CreateBond().
 If this succeeds, the AuthorizationChanged event will be invoked.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the BT/BTLE is not enabled
-or when the set authorization to remote device fails.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -1082,23 +985,6 @@ or when the set authorization to remote device fails.</p>
   <div class="markdown level1 remarks"><p>The Bluetooth must be enabled and remote device must be discoverable by StartDiscovery(). The bond must be created by CreateBond().
 If this succeeds, the ServiceSearched event will be invoked.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the BT/BTLE is not enabled
-or when the remote device service search fails.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -1130,7 +1016,7 @@ or when the remote device service search fails.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Network.Bluetooth.AuthorizationChangedEventArgs.html">AuthorizationChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Network.Bluetooth.AuthorizationChangedEventArgs.html">AuthorizationChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1164,7 +1050,7 @@ or when the remote device service search fails.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Network.Bluetooth.BondCreatedEventArgs.html">BondCreatedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Network.Bluetooth.BondCreatedEventArgs.html">BondCreatedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1198,7 +1084,7 @@ or when the remote device service search fails.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Network.Bluetooth.BondDestroyedEventArgs.html">BondDestroyedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Network.Bluetooth.BondDestroyedEventArgs.html">BondDestroyedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1232,7 +1118,7 @@ or when the remote device service search fails.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Network.Bluetooth.DeviceConnectionStateChangedEventArgs.html">DeviceConnectionStateChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Network.Bluetooth.DeviceConnectionStateChangedEventArgs.html">DeviceConnectionStateChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1266,7 +1152,7 @@ or when the remote device service search fails.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Network.Bluetooth.ServiceSearchedEventArgs.html">ServiceSearchedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Network.Bluetooth.ServiceSearchedEventArgs.html">ServiceSearchedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1274,6 +1160,28 @@ or when the remote device service search fails.</p>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
   </div></section>
             </div>
           </main>

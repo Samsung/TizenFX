@@ -67,7 +67,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class EcoreAnimator</code></pre>
+    <pre><code class="lang-csharp hljs">public static class EcoreAnimator : object</code></pre>
   </div>
 
   
@@ -93,7 +93,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/ElmSharp/ElmSharp/EcoreAnimator.cs/#L55">View Source</a>
     </span>
-    <h4 id="ElmSharp_EcoreAnimator_AddAnimator_System_Func_System_Boolean__" data-uid="ElmSharp.EcoreAnimator.AddAnimator(System.Func{System.Boolean})">AddAnimator(Func&lt;Boolean&gt;)</h4>
+    <h4 id="ElmSharp_EcoreAnimator_AddAnimator_Func_System_Boolean__" data-uid="ElmSharp.EcoreAnimator.AddAnimator(Func{System.Boolean})">AddAnimator(Func&lt;Boolean&gt;)</h4>
     <section>
       <p>Adds an animator to call <code data-dev-comment-type="paramref" class="paramref">handler</code> at every animation tick during the main loop execution.</p>
 
@@ -115,7 +115,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
+        <td><span class="xref">Func</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
         <td><span class="parametername">handler</span></td>
         <td><p>The function to call when it ticks off.</p>
 </td>
@@ -132,7 +132,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">IntPtr</a></td>
+        <td><span class="xref">IntPtr</span></td>
         <td><p>A handle to the new animator.</p>
 </td>
       </tr>
@@ -183,7 +183,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/ElmSharp/ElmSharp/EcoreAnimator.cs/#L66">View Source</a>
     </span>
-    <h4 id="ElmSharp_EcoreAnimator_RemoveAnimator_System_IntPtr_" data-uid="ElmSharp.EcoreAnimator.RemoveAnimator(System.IntPtr)">RemoveAnimator(IntPtr)</h4>
+    <h4 id="ElmSharp_EcoreAnimator_RemoveAnimator_IntPtr_" data-uid="ElmSharp.EcoreAnimator.RemoveAnimator(IntPtr)">RemoveAnimator(IntPtr)</h4>
     <section>
       <p>Removes the specified animator from the animator list.</p>
 
@@ -205,7 +205,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">IntPtr</a></td>
+        <td><span class="xref">IntPtr</span></td>
         <td><span class="parametername">anim</span></td>
         <td><p>The specified animator handle.</p>
 </td>

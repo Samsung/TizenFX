@@ -49,7 +49,7 @@
   <div class="entity">
   
   <div class="entity-header w-100 d-flex justify-content-between">
-    <h1 id="Tizen_NUI_Components_Tab" data-uid="Tizen.NUI.Components.Tab" data-obsolete="Deprecated in API8; Will be removed in API10" class="mt-0 text-break obsolete"><span class="entity-type">Class</span>
+    <h1 id="Tizen_NUI_Components_Tab" data-uid="Tizen.NUI.Components.Tab" class="mt-0 text-break"><span class="entity-type">Class</span>
   Tab
   </h1>
       <div class="contribution align-self-end">
@@ -68,8 +68,7 @@ User can handle Tab by adding/inserting/deleting TabItem.</p>
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public class Tab : Control, INotifyPropertyChanged, IDynamicResourceHandler, IElement, INameScope, IElementController, IDisposable, IResourcesProvider</code></pre>
+    <pre><code class="lang-csharp hljs">public class Tab : Control, IDynamicResourceHandler, IElement, INameScope, IElementController, System.IDisposable, IResourcesProvider</code></pre>
   </div>
 
   
@@ -79,7 +78,7 @@ public class Tab : Control, INotifyPropertyChanged, IDynamicResourceHandler, IEl
       <div class="pdl-holder">
         <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
@@ -87,7 +86,7 @@ public class Tab : Control, INotifyPropertyChanged, IDynamicResourceHandler, IEl
         <div class="pdl"><a class="xref" href="Tizen.NUI.ViewWrapper.html">ViewWrapper</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.CustomView.html">CustomView</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.VisualView.html">VisualView</a></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Components.Control</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Control.html">Control</a></div>
         <div><span class="xref">Tab</span></div>
       </div>
     </dd>
@@ -98,8 +97,10 @@ public class Tab : Control, INotifyPropertyChanged, IDynamicResourceHandler, IEl
   <dl class="attribute-list">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a></div>
     </dd>
   </dl>
   
@@ -112,7 +113,7 @@ public class Tab : Control, INotifyPropertyChanged, IDynamicResourceHandler, IEl
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L47">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_Components_Tab__ctor" data-uid="Tizen.NUI.Components.Tab.#ctor" data-obsolete="Deprecated in API8; Will be removed in API10" class="obsolete">Tab()</h4>
+    <h4 id="Tizen_NUI_Components_Tab__ctor" data-uid="Tizen.NUI.Components.Tab.#ctor">Tab()</h4>
     <section>
       <p>Creates a new instance of a Tab.</p>
 
@@ -121,11 +122,449 @@ public class Tab : Control, INotifyPropertyChanged, IDynamicResourceHandler, IEl
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public Tab()</code></pre>
+    <pre><code class="lang-csharp hljs">public Tab()</code></pre>
   </div>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
+  
+  
+  <a id="Tizen_NUI_Components_Tab__ctor_" data-uid="Tizen.NUI.Components.Tab.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L57">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Tab__ctor_System_String_" data-uid="Tizen.NUI.Components.Tab.#ctor(System.String)">Tab(String)</h4>
+    <section>
+      <p>Creates a new instance of a Tab with style.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Tab(string style)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">style</span></td>
+        <td><p>Create Tab by special style defined in UX.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_Components_Tab__ctor_" data-uid="Tizen.NUI.Components.Tab.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L67">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Tab__ctor_Tizen_NUI_Components_TabStyle_" data-uid="Tizen.NUI.Components.Tab.#ctor(Tizen.NUI.Components.TabStyle)">Tab(TabStyle)</h4>
+    <section>
+      <p>Creates a new instance of a Tab with style.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Tab(TabStyle tabStyle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.TabStyle.html">TabStyle</a></td>
+        <td><span class="parametername">tabStyle</span></td>
+        <td><p>Create Tab by style customized by user.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h2 id="fields">Fields
+  </h2>
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/TabBindableProperty.cs/#L156">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Tab_FontFamilyProperty" data-uid="Tizen.NUI.Components.Tab.FontFamilyProperty">FontFamilyProperty</h4>
+    <section>
+      <p>FontFamilyProperty</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty FontFamilyProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/TabBindableProperty.cs/#L84">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Tab_ItemPaddingProperty" data-uid="Tizen.NUI.Components.Tab.ItemPaddingProperty">ItemPaddingProperty</h4>
+    <section>
+      <p>ItemPaddingProperty</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty ItemPaddingProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/TabBindableProperty.cs/#L48">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Tab_ItemSpaceProperty" data-uid="Tizen.NUI.Components.Tab.ItemSpaceProperty">ItemSpaceProperty</h4>
+    <section>
+      <p>ItemSpaceProperty</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty ItemSpaceProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/TabBindableProperty.cs/#L138">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Tab_PointSizeProperty" data-uid="Tizen.NUI.Components.Tab.PointSizeProperty">PointSizeProperty</h4>
+    <section>
+      <p>PointSizeProperty</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty PointSizeProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/TabBindableProperty.cs/#L12">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Tab_SelectedItemIndexProperty" data-uid="Tizen.NUI.Components.Tab.SelectedItemIndexProperty">SelectedItemIndexProperty</h4>
+    <section>
+      <p>SelectedItemIndexProperty</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty SelectedItemIndexProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/TabBindableProperty.cs/#L66">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Tab_SpaceProperty" data-uid="Tizen.NUI.Components.Tab.SpaceProperty">SpaceProperty</h4>
+    <section>
+      <p>SpaceProperty</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty SpaceProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/TabBindableProperty.cs/#L174">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Tab_TextColorProperty" data-uid="Tizen.NUI.Components.Tab.TextColorProperty">TextColorProperty</h4>
+    <section>
+      <p>TextColorProperty</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty TextColorProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/TabBindableProperty.cs/#L192">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Tab_TextColorSelectorProperty" data-uid="Tizen.NUI.Components.Tab.TextColorSelectorProperty">TextColorSelectorProperty</h4>
+    <section>
+      <p>TextColorSelectorProperty</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty TextColorSelectorProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/TabBindableProperty.cs/#L120">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Tab_UnderLineBackgroundColorProperty" data-uid="Tizen.NUI.Components.Tab.UnderLineBackgroundColorProperty">UnderLineBackgroundColorProperty</h4>
+    <section>
+      <p>UnderLineBackgroundColorProperty</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty UnderLineBackgroundColorProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/TabBindableProperty.cs/#L102">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Tab_UnderLineSizeProperty" data-uid="Tizen.NUI.Components.Tab.UnderLineSizeProperty">UnderLineSizeProperty</h4>
+    <section>
+      <p>UnderLineSizeProperty</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty UnderLineSizeProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/TabBindableProperty.cs/#L30">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Tab_UseTextNaturalSizeProperty" data-uid="Tizen.NUI.Components.Tab.UseTextNaturalSizeProperty">UseTextNaturalSizeProperty</h4>
+    <section>
+      <p>UseTextNaturalSizeProperty</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty UseTextNaturalSizeProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
   
   <h2 id="properties">Properties
   </h2>
@@ -135,7 +574,7 @@ public Tab()</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L397">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_Components_Tab_FontFamily" data-uid="Tizen.NUI.Components.Tab.FontFamily" data-obsolete="Deprecated in API8; Will be removed in API10" class="obsolete">FontFamily</h4>
+    <h4 id="Tizen_NUI_Components_Tab_FontFamily" data-uid="Tizen.NUI.Components.Tab.FontFamily">FontFamily</h4>
     <section>
       <p>Text font family in Tab.</p>
 
@@ -144,8 +583,7 @@ public Tab()</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public string FontFamily { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string FontFamily { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -166,12 +604,47 @@ public string FontFamily { get; set; }</code></pre>
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
   
+  <a id="Tizen_NUI_Components_Tab_ItemPadding_" data-uid="Tizen.NUI.Components.Tab.ItemPadding*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L248">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Tab_ItemPadding" data-uid="Tizen.NUI.Components.Tab.ItemPadding">ItemPadding</h4>
+    <section>
+      <p>Item paddings in Tab. Sequence as Left, Right, Top, Bottom</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Extents ItemPadding { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Extents.html">Extents</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>6</span></h6>
+  
+  
   <a id="Tizen_NUI_Components_Tab_ItemSpace_" data-uid="Tizen.NUI.Components.Tab.ItemSpace*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L185">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_Components_Tab_ItemSpace" data-uid="Tizen.NUI.Components.Tab.ItemSpace" data-obsolete="Deprecated in API8; Will be removed in API10" class="obsolete">ItemSpace</h4>
+    <h4 id="Tizen_NUI_Components_Tab_ItemSpace" data-uid="Tizen.NUI.Components.Tab.ItemSpace">ItemSpace</h4>
     <section>
       <p>Gap between items.</p>
 
@@ -180,8 +653,7 @@ public string FontFamily { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public int ItemSpace { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public int ItemSpace { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -207,7 +679,7 @@ public int ItemSpace { get; set; }</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L364">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_Components_Tab_PointSize" data-uid="Tizen.NUI.Components.Tab.PointSize" data-obsolete="Deprecated in API8; Will be removed in API10" class="obsolete">PointSize</h4>
+    <h4 id="Tizen_NUI_Components_Tab_PointSize" data-uid="Tizen.NUI.Components.Tab.PointSize">PointSize</h4>
     <section>
       <p>Text point size in Tab.</p>
 
@@ -216,8 +688,7 @@ public int ItemSpace { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public float PointSize { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public float PointSize { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -243,7 +714,7 @@ public float PointSize { get; set; }</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L119">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_Components_Tab_SelectedItemIndex" data-uid="Tizen.NUI.Components.Tab.SelectedItemIndex" data-obsolete="Deprecated in API8; Will be removed in API10" class="obsolete">SelectedItemIndex</h4>
+    <h4 id="Tizen_NUI_Components_Tab_SelectedItemIndex" data-uid="Tizen.NUI.Components.Tab.SelectedItemIndex">SelectedItemIndex</h4>
     <section>
       <p>Selected item&apos;s index in Tab.</p>
 
@@ -252,8 +723,7 @@ public float PointSize { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public int SelectedItemIndex { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public int SelectedItemIndex { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -279,7 +749,7 @@ public int SelectedItemIndex { get; set; }</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L218">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_Components_Tab_Space" data-uid="Tizen.NUI.Components.Tab.Space" data-obsolete="Deprecated in API8; Will be removed in API10" class="obsolete">Space</h4>
+    <h4 id="Tizen_NUI_Components_Tab_Space" data-uid="Tizen.NUI.Components.Tab.Space">Space</h4>
     <section>
       <p>Space in Tab. Sequence as Left, Right, Top, Bottom</p>
 
@@ -288,8 +758,7 @@ public int SelectedItemIndex { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public Extents Space { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Extents Space { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -315,7 +784,7 @@ public Extents Space { get; set; }</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L87">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_Components_Tab_Style" data-uid="Tizen.NUI.Components.Tab.Style" data-obsolete="Deprecated in API8; Will be removed in API10" class="obsolete">Style</h4>
+    <h4 id="Tizen_NUI_Components_Tab_Style" data-uid="Tizen.NUI.Components.Tab.Style">Style</h4>
     <section>
       <p>Return currently applied style.</p>
 
@@ -336,7 +805,7 @@ public Extents Space { get; set; }</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Tizen.NUI.Components.TabStyle</span></td>
+        <td><a class="xref" href="Tizen.NUI.Components.TabStyle.html">TabStyle</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -353,7 +822,7 @@ public Extents Space { get; set; }</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L430">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_Components_Tab_TextColor" data-uid="Tizen.NUI.Components.Tab.TextColor" data-obsolete="Deprecated in API8; Will be removed in API10" class="obsolete">TextColor</h4>
+    <h4 id="Tizen_NUI_Components_Tab_TextColor" data-uid="Tizen.NUI.Components.Tab.TextColor">TextColor</h4>
     <section>
       <p>Text color in Tab.</p>
 
@@ -362,8 +831,7 @@ public Extents Space { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public Color TextColor { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Color TextColor { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -389,7 +857,7 @@ public Color TextColor { get; set; }</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L464">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_Components_Tab_TextColorSelector" data-uid="Tizen.NUI.Components.Tab.TextColorSelector" data-obsolete="Deprecated in API8; Will be removed in API10" class="obsolete">TextColorSelector</h4>
+    <h4 id="Tizen_NUI_Components_Tab_TextColorSelector" data-uid="Tizen.NUI.Components.Tab.TextColorSelector">TextColorSelector</h4>
     <section>
       <p>Text color selector in Tab.</p>
 
@@ -398,8 +866,7 @@ public Color TextColor { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public ColorSelector TextColorSelector { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ColorSelector TextColorSelector { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -411,7 +878,7 @@ public ColorSelector TextColorSelector { get; set; }</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Tizen.NUI.Components.ColorSelector</span></td>
+        <td><a class="xref" href="Tizen.NUI.Components.ColorSelector.html">ColorSelector</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -420,12 +887,46 @@ public ColorSelector TextColorSelector { get; set; }</code></pre>
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
   
+  <a id="Tizen_NUI_Components_Tab_Underline_" data-uid="Tizen.NUI.Components.Tab.Underline*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L92">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Tab_Underline" data-uid="Tizen.NUI.Components.Tab.Underline">Underline</h4>
+    <section>
+      <p>Get underline of Tab.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public View Underline { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
   <a id="Tizen_NUI_Components_Tab_UnderLineBackgroundColor_" data-uid="Tizen.NUI.Components.Tab.UnderLineBackgroundColor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L331">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_Components_Tab_UnderLineBackgroundColor" data-uid="Tizen.NUI.Components.Tab.UnderLineBackgroundColor" data-obsolete="Deprecated in API8; Will be removed in API10" class="obsolete">UnderLineBackgroundColor</h4>
+    <h4 id="Tizen_NUI_Components_Tab_UnderLineBackgroundColor" data-uid="Tizen.NUI.Components.Tab.UnderLineBackgroundColor">UnderLineBackgroundColor</h4>
     <section>
       <p>UnderLine view&apos;s background in Tab.</p>
 
@@ -434,8 +935,7 @@ public ColorSelector TextColorSelector { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public Color UnderLineBackgroundColor { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Color UnderLineBackgroundColor { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -461,7 +961,7 @@ public Color UnderLineBackgroundColor { get; set; }</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L298">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_Components_Tab_UnderLineSize" data-uid="Tizen.NUI.Components.Tab.UnderLineSize" data-obsolete="Deprecated in API8; Will be removed in API10" class="obsolete">UnderLineSize</h4>
+    <h4 id="Tizen_NUI_Components_Tab_UnderLineSize" data-uid="Tizen.NUI.Components.Tab.UnderLineSize">UnderLineSize</h4>
     <section>
       <p>UnderLine view&apos;s size in Tab.</p>
 
@@ -470,8 +970,7 @@ public Color UnderLineBackgroundColor { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public Size UnderLineSize { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Size UnderLineSize { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -497,7 +996,7 @@ public Size UnderLineSize { get; set; }</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L152">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_Components_Tab_UseTextNaturalSize" data-uid="Tizen.NUI.Components.Tab.UseTextNaturalSize" data-obsolete="Deprecated in API8; Will be removed in API10" class="obsolete">UseTextNaturalSize</h4>
+    <h4 id="Tizen_NUI_Components_Tab_UseTextNaturalSize" data-uid="Tizen.NUI.Components.Tab.UseTextNaturalSize">UseTextNaturalSize</h4>
     <section>
       <p>Flag to decide if TabItem is adjusted by text&apos;s natural width.
 If true, TabItem&apos;s width will be equal as text&apos;s natural width, if false, it will be decided by Tab&apos;s width and tab item count.</p>
@@ -507,8 +1006,7 @@ If true, TabItem&apos;s width will be equal as text&apos;s natural width, if fal
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public bool UseTextNaturalSize { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool UseTextNaturalSize { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -536,7 +1034,7 @@ public bool UseTextNaturalSize { get; set; }</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L502">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_Components_Tab_AddItem_Tizen_NUI_Components_Tab_TabItemData_" data-uid="Tizen.NUI.Components.Tab.AddItem(Tizen.NUI.Components.Tab.TabItemData)" data-obsolete="Deprecated in API8; Will be removed in API10" class="obsolete">AddItem(Tab.TabItemData)</h4>
+    <h4 id="Tizen_NUI_Components_Tab_AddItem_Tizen_NUI_Components_Tab_TabItemData_" data-uid="Tizen.NUI.Components.Tab.AddItem(Tizen.NUI.Components.Tab.TabItemData)">AddItem(Tab.TabItemData)</h4>
     <section>
       <p>Add tab item by item data. The added item will be added to end of all items automatically.</p>
 
@@ -545,8 +1043,7 @@ public bool UseTextNaturalSize { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public void AddItem(Tab.TabItemData itemData)</code></pre>
+    <pre><code class="lang-csharp hljs">public void AddItem(Tab.TabItemData itemData)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -570,12 +1067,88 @@ public void AddItem(Tab.TabItemData itemData)</code></pre>
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
   
+  <a id="Tizen_NUI_Components_Tab_ApplyStyle_" data-uid="Tizen.NUI.Components.Tab.ApplyStyle*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L549">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Tab_ApplyStyle_Tizen_NUI_BaseComponents_ViewStyle_" data-uid="Tizen.NUI.Components.Tab.ApplyStyle(Tizen.NUI.BaseComponents.ViewStyle)">ApplyStyle(ViewStyle)</h4>
+    <section>
+      <p>Apply style to tab.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void ApplyStyle(ViewStyle viewStyle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.ViewStyle.html">ViewStyle</a></td>
+        <td><span class="parametername">viewStyle</span></td>
+        <td><p>The style to apply.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_ApplyStyle_Tizen_NUI_BaseComponents_ViewStyle_">View.ApplyStyle(ViewStyle)</a></div>
+  
+  
+  
+  <a id="Tizen_NUI_Components_Tab_CreateViewStyle_" data-uid="Tizen.NUI.Components.Tab.CreateViewStyle*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L621">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Tab_CreateViewStyle" data-uid="Tizen.NUI.Components.Tab.CreateViewStyle">CreateViewStyle()</h4>
+    <section>
+      <p>Get Tab style.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override ViewStyle CreateViewStyle()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.ViewStyle.html">ViewStyle</a></td>
+        <td><p>The default tab style.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_CreateViewStyle">Control.CreateViewStyle()</a></div>
+  
+  
+  
   <a id="Tizen_NUI_Components_Tab_DeleteItem_" data-uid="Tizen.NUI.Components.Tab.DeleteItem*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L525">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_Components_Tab_DeleteItem_System_Int32_" data-uid="Tizen.NUI.Components.Tab.DeleteItem(System.Int32)" data-obsolete="Deprecated in API8; Will be removed in API10" class="obsolete">DeleteItem(Int32)</h4>
+    <h4 id="Tizen_NUI_Components_Tab_DeleteItem_System_Int32_" data-uid="Tizen.NUI.Components.Tab.DeleteItem(System.Int32)">DeleteItem(Int32)</h4>
     <section>
       <p>Delete tab item by index.</p>
 
@@ -584,8 +1157,7 @@ public void AddItem(Tab.TabItemData itemData)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public void DeleteItem(int itemIndex)</code></pre>
+    <pre><code class="lang-csharp hljs">public void DeleteItem(int itemIndex)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -614,7 +1186,7 @@ public void DeleteItem(int itemIndex)</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L568">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_Components_Tab_Dispose_Tizen_NUI_DisposeTypes_" data-uid="Tizen.NUI.Components.Tab.Dispose(Tizen.NUI.DisposeTypes)" data-obsolete="Deprecated in API8; Will be removed in API10" class="obsolete">Dispose(DisposeTypes)</h4>
+    <h4 id="Tizen_NUI_Components_Tab_Dispose_Tizen_NUI_DisposeTypes_" data-uid="Tizen.NUI.Components.Tab.Dispose(Tizen.NUI.DisposeTypes)">Dispose(DisposeTypes)</h4>
     <section>
       <p>Dispose Tab and all children on it.</p>
 
@@ -623,8 +1195,7 @@ public void DeleteItem(int itemIndex)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-protected override void Dispose(DisposeTypes type)</code></pre>
+    <pre><code class="lang-csharp hljs">protected override void Dispose(DisposeTypes type)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -645,7 +1216,7 @@ protected override void Dispose(DisposeTypes type)</code></pre>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Tizen.NUI.Components.Control.Dispose(Tizen.NUI.DisposeTypes)</span></div>
+  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_Dispose_Tizen_NUI_DisposeTypes_">Control.Dispose(DisposeTypes)</a></div>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
@@ -655,7 +1226,7 @@ protected override void Dispose(DisposeTypes type)</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L514">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_Components_Tab_InsertItem_Tizen_NUI_Components_Tab_TabItemData_System_Int32_" data-uid="Tizen.NUI.Components.Tab.InsertItem(Tizen.NUI.Components.Tab.TabItemData,System.Int32)" data-obsolete="Deprecated in API8; Will be removed in API10" class="obsolete">InsertItem(Tab.TabItemData, Int32)</h4>
+    <h4 id="Tizen_NUI_Components_Tab_InsertItem_Tizen_NUI_Components_Tab_TabItemData_System_Int32_" data-uid="Tizen.NUI.Components.Tab.InsertItem(Tizen.NUI.Components.Tab.TabItemData,System.Int32)">InsertItem(Tab.TabItemData, Int32)</h4>
     <section>
       <p>Insert tab item by item data. The inserted item will be added to the special position by index automatically.</p>
 
@@ -664,8 +1235,7 @@ protected override void Dispose(DisposeTypes type)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public void InsertItem(Tab.TabItemData itemData, int index)</code></pre>
+    <pre><code class="lang-csharp hljs">public void InsertItem(Tab.TabItemData itemData, int index)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -694,6 +1264,48 @@ public void InsertItem(Tab.TabItemData itemData, int index)</code></pre>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
+  
+  <a id="Tizen_NUI_Components_Tab_LayoutChild_" data-uid="Tizen.NUI.Components.Tab.LayoutChild*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L632">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Tab_LayoutChild" data-uid="Tizen.NUI.Components.Tab.LayoutChild">LayoutChild()</h4>
+    <section>
+      <p>Layout child in Tab and it can be override by user.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void LayoutChild()</code></pre>
+  </div>
+  
+  <h6><strong>API Level</strong>: <span>6</span></h6>
+  
+  
+  <a id="Tizen_NUI_Components_Tab_OnUpdate_" data-uid="Tizen.NUI.Components.Tab.OnUpdate*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L611">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Tab_OnUpdate" data-uid="Tizen.NUI.Components.Tab.OnUpdate">OnUpdate()</h4>
+    <section>
+      <p>Update Tab.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnUpdate()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_OnUpdate">Control.OnUpdate()</a></div>
+  
+  <h6><strong>API Level</strong>: <span>6</span></h6>
+  
   <h2 id="events">Events
   </h2>
   
@@ -701,7 +1313,7 @@ public void InsertItem(Tab.TabItemData itemData, int index)</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Tab.cs/#L78">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_Components_Tab_ItemChangedEvent" data-uid="Tizen.NUI.Components.Tab.ItemChangedEvent" data-obsolete="Deprecated in API8; Will be removed in API10" class="obsolete">ItemChangedEvent</h4>
+    <h4 id="Tizen_NUI_Components_Tab_ItemChangedEvent" data-uid="Tizen.NUI.Components.Tab.ItemChangedEvent">ItemChangedEvent</h4>
     <section>
       <p>An event for the item changed signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br></p>
 
@@ -710,8 +1322,7 @@ public void InsertItem(Tab.TabItemData itemData, int index)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public event EventHandler&lt;Tab.ItemChangedEventArgs&gt; ItemChangedEvent</code></pre>
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;Tab.ItemChangedEventArgs&gt; ItemChangedEvent</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table">
@@ -723,7 +1334,7 @@ public event EventHandler&lt;Tab.ItemChangedEventArgs&gt; ItemChangedEvent</code
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.NUI.Components.Tab.ItemChangedEventArgs.html">Tab.ItemChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.Components.Tab.ItemChangedEventArgs.html">Tab.ItemChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -733,10 +1344,38 @@ public event EventHandler&lt;Tab.ItemChangedEventArgs&gt; ItemChangedEvent</code
   
   <h2 id="implements">Implements</h2>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">System.ComponentModel.INotifyPropertyChanged</a>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
   </div>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
   </div>
   </div></section>
             </div>

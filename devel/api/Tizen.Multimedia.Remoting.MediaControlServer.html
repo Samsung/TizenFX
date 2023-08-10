@@ -67,7 +67,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class MediaControlServer</code></pre>
+    <pre><code class="lang-csharp hljs">public static class MediaControlServer : object</code></pre>
   </div>
 
   
@@ -157,26 +157,8 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
         <td><p>the activated client ids.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server is not running .<br>
--or-<br>
-An internal error occurs.</p>
 </td>
       </tr>
     </tbody>
@@ -222,29 +204,6 @@ An internal error occurs.</p>
   <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_RemovePlaylist_Tizen_Multimedia_Remoting_MediaControlPlaylist__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Currently, only server can remove the playlist.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">playlist</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server is not running .<br>
--or-<br>
-An internal error occurs.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>5</span></h6>
   
@@ -254,7 +213,7 @@ An internal error occurs.</p>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L847">View Source</a>
     </span>
-    <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_RequestAsync_Tizen_Multimedia_Remoting_Command_System_String_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.RequestAsync(Tizen.Multimedia.Remoting.Command,System.String)" data-obsolete="Deprecated since API8; Will be removed in API10. Please use RequestCommandAsync(Command command) instead." class="obsolete">RequestAsync(Command, String)</h4>
+    <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_RequestAsync_Tizen_Multimedia_Remoting_Command_System_String_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.RequestAsync(Tizen.Multimedia.Remoting.Command,System.String)">RequestAsync(Command, String)</h4>
     <section>
       <p>Requests commands to the client.</p>
 
@@ -263,8 +222,7 @@ An internal error occurs.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API8; Will be removed in API10. Please use RequestCommandAsync(Command command) instead.&quot;)]
-public static Task&lt;Bundle&gt; RequestAsync(Command command, string clientId)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;Bundle&gt; RequestAsync(Command command, string clientId)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -300,31 +258,8 @@ public static Task&lt;Bundle&gt; RequestAsync(Command command, string clientId)<
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Tizen.Applications.Bundle.html">Bundle</a>&gt;</td>
-        <td><p><a class="xref" href="Tizen.Applications.Bundle.html">Bundle</a> represents the extra data from client and it can be null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">command</code> or <code data-dev-comment-type="paramref" class="paramref">clientId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server has already been stopped.<br>
--or-<br>
-An internal error occurs.</p>
+        <td><span class="xref">Task</span>&lt;<span class="xref">Bundle</span>&gt;</td>
+        <td><p><see cref="!:Bundle"></see> represents the extra data from client and it can be null.</p>
 </td>
       </tr>
     </tbody>
@@ -387,38 +322,10 @@ An internal error occurs.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<a class="xref" href="Tizen.Applications.Bundle.html">Bundle</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;&gt;</td>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.valuetuple-2">ValueTuple</a>&lt;<span class="xref">Bundle</span>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;&gt;</td>
         <td><p>The type of return value is Tuple.<br>
-First item of Tuple represents the <a class="xref" href="Tizen.Applications.Bundle.html">Bundle</a> and it represents the extra data from client. It can be null.<br>
+First item of Tuple represents the <see cref="!:Bundle"></see> and it represents the extra data from client. It can be null.<br>
 Second item of Tuple represents the result of each request(command).</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">command</code> or <code data-dev-comment-type="paramref" class="paramref">clientId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server has already been stopped.<br>
--or-<br>
-An internal error occurs.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notimplementedexception">NotImplementedException</a></td>
-        <td><p>The command which is not supported is used.</p>
 </td>
       </tr>
     </tbody>
@@ -471,29 +378,6 @@ An internal error occurs.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">command</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server is not running .<br>
--or-<br>
-An internal error occurs.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>5</span></h6>
   
@@ -503,7 +387,7 @@ An internal error occurs.</p>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L903">View Source</a>
     </span>
-    <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_Response_Tizen_Multimedia_Remoting_Command_System_Int32_Tizen_Applications_Bundle_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.Response(Tizen.Multimedia.Remoting.Command,System.Int32,Tizen.Applications.Bundle)">Response(Command, Int32, Bundle)</h4>
+    <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_Response_Tizen_Multimedia_Remoting_Command_System_Int32_Bundle_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.Response(Tizen.Multimedia.Remoting.Command,System.Int32,Bundle)">Response(Command, Int32, Bundle)</h4>
     <section>
       <p>Sends the result of each command.</p>
 
@@ -537,38 +421,15 @@ An internal error occurs.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="Tizen.Applications.Bundle.html">Bundle</a></td>
+        <td><span class="xref">Bundle</span></td>
         <td><span class="parametername">bundle</span></td>
         <td><p>The extra data.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">command</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server is not running .<br>
--or-<br>
-An internal error occurs.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
-  <h6><strong>API Level</strong>: <span>5</span></h6>
+  <h6><strong>API Level</strong>: <span>4</span></h6>
   
   
   <a id="Tizen_Multimedia_Remoting_MediaControlServer_Response_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.Response*"></a>
@@ -611,29 +472,6 @@ An internal error occurs.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">command</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server is not running .<br>
--or-<br>
-An internal error occurs.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>8</span></h6>
   
@@ -643,7 +481,7 @@ An internal error occurs.</p>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L943">View Source</a>
     </span>
-    <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_Response_Tizen_Multimedia_Remoting_Command_Tizen_Multimedia_Remoting_MediaControlResult_Tizen_Applications_Bundle_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.Response(Tizen.Multimedia.Remoting.Command,Tizen.Multimedia.Remoting.MediaControlResult,Tizen.Applications.Bundle)">Response(Command, MediaControlResult, Bundle)</h4>
+    <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_Response_Tizen_Multimedia_Remoting_Command_Tizen_Multimedia_Remoting_MediaControlResult_Bundle_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.Response(Tizen.Multimedia.Remoting.Command,Tizen.Multimedia.Remoting.MediaControlResult,Bundle)">Response(Command, MediaControlResult, Bundle)</h4>
     <section>
       <p>Sends the result of each command.</p>
 
@@ -677,38 +515,15 @@ An internal error occurs.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="Tizen.Applications.Bundle.html">Bundle</a></td>
+        <td><span class="xref">Bundle</span></td>
         <td><span class="parametername">bundle</span></td>
         <td><p>The extra data.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">command</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server is not running .<br>
--or-<br>
-An internal error occurs.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
-  <h6><strong>API Level</strong>: <span>8</span></h6>
+  <h6><strong>API Level</strong>: <span>4</span></h6>
   
   
   <a id="Tizen_Multimedia_Remoting_MediaControlServer_SetAgeRating_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.SetAgeRating*"></a>
@@ -742,29 +557,6 @@ An internal error occurs.</p>
         <td><span class="parametername">ageRating</span></td>
         <td><p>The Age rating of latest played media. The valid range is 0 to 19, inclusive.
 Especially, 0 means that media is suitable for all ages.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p>The specified <code data-dev-comment-type="paramref" class="paramref">ageRating</code> is not valid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server is not running .<br>
--or-<br>
-An internal error occurs.</p>
 </td>
       </tr>
     </tbody>
@@ -807,24 +599,6 @@ An internal error occurs.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server is not running .<br>
--or-<br>
-An internal error occurs.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
@@ -834,7 +608,7 @@ An internal error occurs.</p>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L674">View Source</a>
     </span>
-    <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_SetDisplayModeCapabilities_System_Collections_Generic_IDictionary_Tizen_Multimedia_Remoting_MediaControlDisplayMode_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport__" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.SetDisplayModeCapabilities(System.Collections.Generic.IDictionary{Tizen.Multimedia.Remoting.MediaControlDisplayMode,Tizen.Multimedia.Remoting.MediaControlCapabilitySupport})">SetDisplayModeCapabilities(IDictionary&lt;MediaControlDisplayMode, MediaControlCapabilitySupport&gt;)</h4>
+    <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_SetDisplayModeCapabilities_IDictionary_Tizen_Multimedia_Remoting_MediaControlDisplayMode_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport__" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.SetDisplayModeCapabilities(IDictionary{Tizen.Multimedia.Remoting.MediaControlDisplayMode,Tizen.Multimedia.Remoting.MediaControlCapabilitySupport})">SetDisplayModeCapabilities(IDictionary&lt;MediaControlDisplayMode, MediaControlCapabilitySupport&gt;)</h4>
     <section>
       <p>Sets the supported list of <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlDisplayMode.html">MediaControlDisplayMode</a>.</p>
 
@@ -856,42 +630,19 @@ An internal error occurs.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.MediaControlDisplayMode.html">MediaControlDisplayMode</a>, <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlCapabilitySupport.html">MediaControlCapabilitySupport</a>&gt;</td>
+        <td><span class="xref">IDictionary</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.MediaControlDisplayMode.html">MediaControlDisplayMode</a>, <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlCapabilitySupport.html">MediaControlCapabilitySupport</a>&gt;</td>
         <td><span class="parametername">capabilities</span></td>
         <td><p>The supported list of <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlDisplayMode.html">MediaControlDisplayMode</a>.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetDisplayModeCapabilities_System_Collections_Generic_IDictionary_Tizen_Multimedia_Remoting_MediaControlDisplayMode_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport___remarks">Remarks</h5>
+  <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetDisplayModeCapabilities_IDictionary_Tizen_Multimedia_Remoting_MediaControlDisplayMode_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport___remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p><a class="xref" href="Tizen.Multimedia.Remoting.MediaControlCapabilitySupport.html#Tizen_Multimedia_Remoting_MediaControlCapabilitySupport_NotDecided">NotDecided</a> is not allowed in display mode capability.
 The default value of each <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlDisplayMode.html">MediaControlDisplayMode</a> is not supported.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server is not running .<br>
--or-<br>
-An internal error occurs.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">capabilities</code> is invalid.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
-  <h6><strong>API Level</strong>: <span>6</span></h6>
+  <h6><strong>API Level</strong>: <span>4</span></h6>
   
   
   <a id="Tizen_Multimedia_Remoting_MediaControlServer_SetDisplayModeCapability_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.SetDisplayModeCapability*"></a>
@@ -938,29 +689,6 @@ An internal error occurs.</p>
   <div class="markdown level1 remarks"><p><a class="xref" href="Tizen.Multimedia.Remoting.MediaControlCapabilitySupport.html#Tizen_Multimedia_Remoting_MediaControlCapabilitySupport_NotDecided">NotDecided</a> is not allowed in display mode capability.<br>
 The default value of each <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlDisplayMode.html">MediaControlDisplayMode</a> is not supported.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server is not running .<br>
--or-<br>
-An internal error occurs.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mode</code> or <code data-dev-comment-type="paramref" class="paramref">support</code> is invalid.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
@@ -999,24 +727,6 @@ An internal error occurs.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server is not running .<br>
--or-<br>
-An internal error occurs.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
@@ -1026,7 +736,7 @@ An internal error occurs.</p>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L727">View Source</a>
     </span>
-    <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_SetDisplayRotationCapabilities_System_Collections_Generic_IDictionary_Tizen_Multimedia_Rotation_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport__" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.SetDisplayRotationCapabilities(System.Collections.Generic.IDictionary{Tizen.Multimedia.Rotation,Tizen.Multimedia.Remoting.MediaControlCapabilitySupport})">SetDisplayRotationCapabilities(IDictionary&lt;Rotation, MediaControlCapabilitySupport&gt;)</h4>
+    <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_SetDisplayRotationCapabilities_IDictionary_Tizen_Multimedia_Rotation_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport__" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.SetDisplayRotationCapabilities(IDictionary{Tizen.Multimedia.Rotation,Tizen.Multimedia.Remoting.MediaControlCapabilitySupport})">SetDisplayRotationCapabilities(IDictionary&lt;Rotation, MediaControlCapabilitySupport&gt;)</h4>
     <section>
       <p>Sets the supported list of <a class="xref" href="Tizen.Multimedia.Rotation.html">Rotation</a>.</p>
 
@@ -1048,42 +758,19 @@ An internal error occurs.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;<a class="xref" href="Tizen.Multimedia.Rotation.html">Rotation</a>, <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlCapabilitySupport.html">MediaControlCapabilitySupport</a>&gt;</td>
+        <td><span class="xref">IDictionary</span>&lt;<a class="xref" href="Tizen.Multimedia.Rotation.html">Rotation</a>, <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlCapabilitySupport.html">MediaControlCapabilitySupport</a>&gt;</td>
         <td><span class="parametername">capabilities</span></td>
         <td><p>The supported list of <a class="xref" href="Tizen.Multimedia.Rotation.html">Rotation</a>.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetDisplayRotationCapabilities_System_Collections_Generic_IDictionary_Tizen_Multimedia_Rotation_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport___remarks">Remarks</h5>
+  <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetDisplayRotationCapabilities_IDictionary_Tizen_Multimedia_Rotation_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport___remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p><a class="xref" href="Tizen.Multimedia.Remoting.MediaControlCapabilitySupport.html#Tizen_Multimedia_Remoting_MediaControlCapabilitySupport_NotDecided">NotDecided</a> is not allowed in display rotation capability.<br>
 The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">Rotation</a> is not supported.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server is not running .<br>
--or-<br>
-An internal error occurs.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">capabilities</code> is invalid.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
-  <h6><strong>API Level</strong>: <span>6</span></h6>
+  <h6><strong>API Level</strong>: <span>4</span></h6>
   
   
   <a id="Tizen_Multimedia_Remoting_MediaControlServer_SetDisplayRotationCapability_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.SetDisplayRotationCapability*"></a>
@@ -1130,29 +817,6 @@ An internal error occurs.</p>
   <div class="markdown level1 remarks"><p><a class="xref" href="Tizen.Multimedia.Remoting.MediaControlCapabilitySupport.html#Tizen_Multimedia_Remoting_MediaControlCapabilitySupport_NotDecided">NotDecided</a> is not allowed in display rotation capability.<br>
 The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">Rotation</a> is not supported.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server is not running .<br>
--or-<br>
-An internal error occurs.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">rotation</code> or <code data-dev-comment-type="paramref" class="paramref">support</code> is invalid.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
@@ -1191,29 +855,6 @@ An internal error occurs.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server is not running .<br>
--or-<br>
-An internal error occurs.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">path</code> is invalid.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>5</span></h6>
   
@@ -1223,7 +864,7 @@ An internal error occurs.</p>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L436">View Source</a>
     </span>
-    <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_SetIndexOfCurrentPlayingMedia_System_String_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.SetIndexOfCurrentPlayingMedia(System.String)" data-obsolete="Please do not use! This will be deprecated. Please use SetInfoOfCurrentPlayingMedia instead." class="obsolete">SetIndexOfCurrentPlayingMedia(String)</h4>
+    <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_SetIndexOfCurrentPlayingMedia_System_String_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.SetIndexOfCurrentPlayingMedia(System.String)">SetIndexOfCurrentPlayingMedia(String)</h4>
     <section>
       <p>Sets the index of current playing media.</p>
 
@@ -1232,8 +873,7 @@ An internal error occurs.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Please do not use! This will be deprecated. Please use SetInfoOfCurrentPlayingMedia instead.&quot;)]
-public static void SetIndexOfCurrentPlayingMedia(string index)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void SetIndexOfCurrentPlayingMedia(string index)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -1249,29 +889,6 @@ public static void SetIndexOfCurrentPlayingMedia(string index)</code></pre>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
         <td><span class="parametername">index</span></td>
         <td><p>The index of current playing media.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">index</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server is not running .<br>
--or-<br>
-An internal error occurs.</p>
 </td>
       </tr>
     </tbody>
@@ -1320,29 +937,6 @@ An internal error occurs.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">playlistName</code> or <code data-dev-comment-type="paramref" class="paramref">index</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server is not running .<br>
--or-<br>
-An internal error occurs.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>5</span></h6>
   
@@ -1377,29 +971,6 @@ An internal error occurs.</p>
         <td><a class="xref" href="Tizen.Multimedia.Remoting.MediaControlMetadata.html">MediaControlMetadata</a></td>
         <td><span class="parametername">metadata</span></td>
         <td><p>The metadata to update.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">metadata</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server is not running .<br>
--or-<br>
-An internal error occurs.</p>
 </td>
       </tr>
     </tbody>
@@ -1442,24 +1013,6 @@ An internal error occurs.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server is not running .<br>
--or-<br>
-An internal error occurs.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
@@ -1498,29 +1051,6 @@ An internal error occurs.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server is not running .<br>
--or-<br>
-An internal error occurs.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">support</code> is invalid.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
@@ -1530,7 +1060,7 @@ An internal error occurs.</p>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L546">View Source</a>
     </span>
-    <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_SetPlaybackCapabilities_System_Collections_Generic_Dictionary_Tizen_Multimedia_Remoting_MediaControlPlaybackCommand_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport__" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.SetPlaybackCapabilities(System.Collections.Generic.Dictionary{Tizen.Multimedia.Remoting.MediaControlPlaybackCommand,Tizen.Multimedia.Remoting.MediaControlCapabilitySupport})">SetPlaybackCapabilities(Dictionary&lt;MediaControlPlaybackCommand, MediaControlCapabilitySupport&gt;)</h4>
+    <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_SetPlaybackCapabilities_Dictionary_Tizen_Multimedia_Remoting_MediaControlPlaybackCommand_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport__" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.SetPlaybackCapabilities(Dictionary{Tizen.Multimedia.Remoting.MediaControlPlaybackCommand,Tizen.Multimedia.Remoting.MediaControlCapabilitySupport})">SetPlaybackCapabilities(Dictionary&lt;MediaControlPlaybackCommand, MediaControlCapabilitySupport&gt;)</h4>
     <section>
       <p>Sets the capabilities by <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlPlaybackCommand.html">MediaControlPlaybackCommand</a>.</p>
 
@@ -1552,38 +1082,15 @@ An internal error occurs.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.MediaControlPlaybackCommand.html">MediaControlPlaybackCommand</a>, <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlCapabilitySupport.html">MediaControlCapabilitySupport</a>&gt;</td>
+        <td><span class="xref">Dictionary</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.MediaControlPlaybackCommand.html">MediaControlPlaybackCommand</a>, <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlCapabilitySupport.html">MediaControlCapabilitySupport</a>&gt;</td>
         <td><span class="parametername">capabilities</span></td>
         <td><p>The set of <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlPlaybackCommand.html">MediaControlPlaybackCommand</a> and <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlCapabilitySupport.html">MediaControlCapabilitySupport</a>.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server is not running .<br>
--or-<br>
-An internal error occurs.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">capabilities</code> is invalid.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
-  <h6><strong>API Level</strong>: <span>5</span></h6>
+  <h6><strong>API Level</strong>: <span>4</span></h6>
   
   
   <a id="Tizen_Multimedia_Remoting_MediaControlServer_SetPlaybackCapability_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.SetPlaybackCapability*"></a>
@@ -1626,29 +1133,6 @@ An internal error occurs.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server is not running .<br>
--or-<br>
-An internal error occurs.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">action</code> or <code data-dev-comment-type="paramref" class="paramref">support</code> is invalid.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>5</span></h6>
   
@@ -1683,29 +1167,6 @@ An internal error occurs.</p>
         <td><a class="xref" href="Tizen.Multimedia.Remoting.MediaControlContentType.html">MediaControlContentType</a></td>
         <td><span class="parametername">type</span></td>
         <td><p>A value indicating the content type of the latest played media.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server is not running .<br>
--or-<br>
-An internal error occurs.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">type</code> is invalid.</p>
 </td>
       </tr>
     </tbody>
@@ -1754,34 +1215,6 @@ An internal error occurs.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">state</code> is not valid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">position</code> is less than zero.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server is not running .<br>
--or-<br>
-An internal error occurs.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   
@@ -1816,29 +1249,6 @@ An internal error occurs.</p>
         <td><a class="xref" href="Tizen.Multimedia.Remoting.MediaControlRepeatMode.html">MediaControlRepeatMode</a></td>
         <td><span class="parametername">mode</span></td>
         <td><p>A value indicating the repeat mode.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server is not running .<br>
--or-<br>
-An internal error occurs.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mode</code> is invalid.</p>
 </td>
       </tr>
     </tbody>
@@ -1881,29 +1291,6 @@ An internal error occurs.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server is not running .<br>
--or-<br>
-An internal error occurs.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">support</code> is invalid.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>5</span></h6>
   
@@ -1938,29 +1325,6 @@ An internal error occurs.</p>
         <td><a class="xref" href="Tizen.Multimedia.Remoting.MediaControlCapabilitySupport.html">MediaControlCapabilitySupport</a></td>
         <td><span class="parametername">support</span></td>
         <td><p>A value indicating whether the shuffle mode is supported or not.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server is not running .<br>
--or-<br>
-An internal error occurs.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">support</code> is invalid.</p>
 </td>
       </tr>
     </tbody>
@@ -2003,24 +1367,6 @@ An internal error occurs.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server is not running .<br>
--or-<br>
-An internal error occurs.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   
@@ -2055,24 +1401,6 @@ An internal error occurs.</p>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td><span class="parametername">isEnabled</span></td>
         <td><p>A value indicating whether the subtitle mode is enabled.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server is not running .<br>
--or-<br>
-An internal error occurs.</p>
 </td>
       </tr>
     </tbody>
@@ -2115,29 +1443,6 @@ An internal error occurs.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server is not running .<br>
--or-<br>
-An internal error occurs.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">support</code> is invalid.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
@@ -2161,27 +1466,6 @@ An internal error occurs.</p>
   <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_Start_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>When the server starts, <a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html#Tizen_Multimedia_Remoting_MediaControllerManager_ServerStarted">ServerStarted</a> will be raised.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>An internal error occurs.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>Caller does not have required privilege.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <div class="seealso">
     <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_Start_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html#Tizen_Multimedia_Remoting_MediaControllerManager_ServerStarted">ServerStarted</a></div>
@@ -2211,24 +1495,6 @@ An internal error occurs.</p>
   <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_Stop_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>When the server stops, <a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html#Tizen_Multimedia_Remoting_MediaControllerManager_ServerStopped">ServerStopped</a> will be raised.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The server is not running .<br>
--or-<br>
-An internal error occurs.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <div class="seealso">
     <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_Stop_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html#Tizen_Multimedia_Remoting_MediaControllerManager_ServerStopped">ServerStopped</a></div>
@@ -2264,7 +1530,7 @@ An internal error occurs.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.CustomCommandReceivedEventArgs.html">CustomCommandReceivedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.CustomCommandReceivedEventArgs.html">CustomCommandReceivedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2298,7 +1564,7 @@ An internal error occurs.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.DisplayModeCommandReceivedEventArgs.html">DisplayModeCommandReceivedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.DisplayModeCommandReceivedEventArgs.html">DisplayModeCommandReceivedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2332,7 +1598,7 @@ An internal error occurs.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.DisplayRotationCommandReceivedEventArgs.html">DisplayRotationCommandReceivedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.DisplayRotationCommandReceivedEventArgs.html">DisplayRotationCommandReceivedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2366,7 +1632,7 @@ An internal error occurs.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.Mode360CommandReceivedEventArgs.html">Mode360CommandReceivedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.Mode360CommandReceivedEventArgs.html">Mode360CommandReceivedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2400,7 +1666,7 @@ An internal error occurs.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.PlaybackActionCommandReceivedEventArgs.html">PlaybackActionCommandReceivedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.PlaybackActionCommandReceivedEventArgs.html">PlaybackActionCommandReceivedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2413,7 +1679,7 @@ An internal error occurs.</p>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.Events.cs/#L46">View Source</a>
     </span>
-    <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_PlaybackCommandReceived" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.PlaybackCommandReceived" data-obsolete="Please do not use! This will be deprecated. Please use PlaybackActionCommandReceived instead." class="obsolete">PlaybackCommandReceived</h4>
+    <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_PlaybackCommandReceived" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.PlaybackCommandReceived">PlaybackCommandReceived</h4>
     <section>
       <p>Occurs when a client sends playback command.</p>
 
@@ -2422,8 +1688,7 @@ An internal error occurs.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Please do not use! This will be deprecated. Please use PlaybackActionCommandReceived instead.&quot;)]
-public static event EventHandler&lt;PlaybackCommandReceivedEventArgs&gt; PlaybackCommandReceived</code></pre>
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;PlaybackCommandReceivedEventArgs&gt; PlaybackCommandReceived</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table">
@@ -2435,7 +1700,7 @@ public static event EventHandler&lt;PlaybackCommandReceivedEventArgs&gt; Playbac
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.PlaybackCommandReceivedEventArgs.html">PlaybackCommandReceivedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.PlaybackCommandReceivedEventArgs.html">PlaybackCommandReceivedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2469,7 +1734,7 @@ public static event EventHandler&lt;PlaybackCommandReceivedEventArgs&gt; Playbac
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.PlaybackPositionCommandReceivedEventArgs.html">PlaybackPositionCommandReceivedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.PlaybackPositionCommandReceivedEventArgs.html">PlaybackPositionCommandReceivedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2503,7 +1768,7 @@ public static event EventHandler&lt;PlaybackCommandReceivedEventArgs&gt; Playbac
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.PlaylistCommandReceivedEventArgs.html">PlaylistCommandReceivedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.PlaylistCommandReceivedEventArgs.html">PlaylistCommandReceivedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2537,7 +1802,7 @@ public static event EventHandler&lt;PlaybackCommandReceivedEventArgs&gt; Playbac
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.RepeatModeCommandReceivedEventArgs.html">RepeatModeCommandReceivedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.RepeatModeCommandReceivedEventArgs.html">RepeatModeCommandReceivedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2571,7 +1836,7 @@ public static event EventHandler&lt;PlaybackCommandReceivedEventArgs&gt; Playbac
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.SearchCommandReceivedEventArgs.html">SearchCommandReceivedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.SearchCommandReceivedEventArgs.html">SearchCommandReceivedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2605,7 +1870,7 @@ public static event EventHandler&lt;PlaybackCommandReceivedEventArgs&gt; Playbac
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.ShuffleModeCommandReceivedEventArgs.html">ShuffleModeCommandReceivedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.ShuffleModeCommandReceivedEventArgs.html">ShuffleModeCommandReceivedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2639,7 +1904,7 @@ public static event EventHandler&lt;PlaybackCommandReceivedEventArgs&gt; Playbac
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.SubtitleModeCommandReceivedEventArgs.html">SubtitleModeCommandReceivedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.SubtitleModeCommandReceivedEventArgs.html">SubtitleModeCommandReceivedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
