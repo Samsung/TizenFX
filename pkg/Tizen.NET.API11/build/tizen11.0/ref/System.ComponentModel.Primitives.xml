@@ -7,18 +7,19 @@
     <member name="T:System.ComponentModel.BrowsableAttribute">
       <summary>Specifies whether a property or event should be displayed in a Properties window.</summary>
     </member>
+    <member name="F:System.ComponentModel.BrowsableAttribute.Default">
+      <summary>Specifies the default value for the <see cref="T:System.ComponentModel.BrowsableAttribute" />, which is <see cref="F:System.ComponentModel.BrowsableAttribute.Yes" />. This <see langword="static" /> field is read-only.</summary>
+    </member>
+    <member name="F:System.ComponentModel.BrowsableAttribute.No">
+      <summary>Specifies that a property or event cannot be modified at design time. This <see langword="static" /> field is read-only.</summary>
+    </member>
+    <member name="F:System.ComponentModel.BrowsableAttribute.Yes">
+      <summary>Specifies that a property or event can be modified at design time. This <see langword="static" /> field is read-only.</summary>
+    </member>
     <member name="M:System.ComponentModel.BrowsableAttribute.#ctor(System.Boolean)">
       <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.BrowsableAttribute" /> class.</summary>
       <param name="browsable">
         <see langword="true" /> if a property or event can be modified at design time; otherwise, <see langword="false" />. The default is <see langword="true" />.</param>
-    </member>
-    <member name="P:System.ComponentModel.BrowsableAttribute.Browsable">
-      <summary>Gets a value indicating whether an object is browsable.</summary>
-      <returns>
-        <see langword="true" /> if the object is browsable; otherwise, <see langword="false" />.</returns>
-    </member>
-    <member name="F:System.ComponentModel.BrowsableAttribute.Default">
-      <summary>Specifies the default value for the <see cref="T:System.ComponentModel.BrowsableAttribute" />, which is <see cref="F:System.ComponentModel.BrowsableAttribute.Yes" />. This <see langword="static" /> field is read-only.</summary>
     </member>
     <member name="M:System.ComponentModel.BrowsableAttribute.Equals(System.Object)">
       <summary>Indicates whether this instance and a specified object are equal.</summary>
@@ -35,11 +36,10 @@
       <returns>
         <see langword="true" /> if the attribute is the default value for this attribute class; otherwise, <see langword="false" />.</returns>
     </member>
-    <member name="F:System.ComponentModel.BrowsableAttribute.No">
-      <summary>Specifies that a property or event cannot be modified at design time. This <see langword="static" /> field is read-only.</summary>
-    </member>
-    <member name="F:System.ComponentModel.BrowsableAttribute.Yes">
-      <summary>Specifies that a property or event can be modified at design time. This <see langword="static" /> field is read-only.</summary>
+    <member name="P:System.ComponentModel.BrowsableAttribute.Browsable">
+      <summary>Gets a value indicating whether an object is browsable.</summary>
+      <returns>
+        <see langword="true" /> if the object is browsable; otherwise, <see langword="false" />.</returns>
     </member>
     <member name="T:System.ComponentModel.CategoryAttribute">
       <summary>Specifies the name of the category in which to group the property or event when displayed in a <see cref="T:System.Windows.Forms.PropertyGrid" /> control set to Categorized mode.</summary>
@@ -50,6 +50,26 @@
     <member name="M:System.ComponentModel.CategoryAttribute.#ctor(System.String)">
       <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.CategoryAttribute" /> class using the specified category name.</summary>
       <param name="category">The name of the category.</param>
+    </member>
+    <member name="M:System.ComponentModel.CategoryAttribute.Equals(System.Object)">
+      <summary>Returns whether the value of the given object is equal to the current <see cref="T:System.ComponentModel.CategoryAttribute" />.</summary>
+      <param name="obj">The object to test the value equality of.</param>
+      <returns>
+        <see langword="true" /> if the value of the given object is equal to that of the current; otherwise, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.ComponentModel.CategoryAttribute.GetHashCode">
+      <summary>Returns the hash code for this attribute.</summary>
+      <returns>A 32-bit signed integer hash code.</returns>
+    </member>
+    <member name="M:System.ComponentModel.CategoryAttribute.GetLocalizedString(System.String)">
+      <summary>Looks up the localized name of the specified category.</summary>
+      <param name="value">The identifer for the category to look up.</param>
+      <returns>The localized name of the category, or <see langword="null" /> if a localized name does not exist.</returns>
+    </member>
+    <member name="M:System.ComponentModel.CategoryAttribute.IsDefaultAttribute">
+      <summary>Determines if this attribute is the default.</summary>
+      <returns>
+        <see langword="true" /> if the attribute is the default value for this attribute class; otherwise, <see langword="false" />.</returns>
     </member>
     <member name="P:System.ComponentModel.CategoryAttribute.Action">
       <summary>Gets a <see cref="T:System.ComponentModel.CategoryAttribute" /> representing the Action category.</summary>
@@ -87,12 +107,6 @@
       <summary>Gets a <see cref="T:System.ComponentModel.CategoryAttribute" /> representing the DragDrop category.</summary>
       <returns>A <see cref="T:System.ComponentModel.CategoryAttribute" /> for the drag-and-drop category.</returns>
     </member>
-    <member name="M:System.ComponentModel.CategoryAttribute.Equals(System.Object)">
-      <summary>Returns whether the value of the given object is equal to the current <see cref="T:System.ComponentModel.CategoryAttribute" />.</summary>
-      <param name="obj">The object to test the value equality of.</param>
-      <returns>
-        <see langword="true" /> if the value of the given object is equal to that of the current; otherwise, <see langword="false" />.</returns>
-    </member>
     <member name="P:System.ComponentModel.CategoryAttribute.Focus">
       <summary>Gets a <see cref="T:System.ComponentModel.CategoryAttribute" /> representing the Focus category.</summary>
       <returns>A <see cref="T:System.ComponentModel.CategoryAttribute" /> for the focus category.</returns>
@@ -100,20 +114,6 @@
     <member name="P:System.ComponentModel.CategoryAttribute.Format">
       <summary>Gets a <see cref="T:System.ComponentModel.CategoryAttribute" /> representing the Format category.</summary>
       <returns>A <see cref="T:System.ComponentModel.CategoryAttribute" /> for the format category.</returns>
-    </member>
-    <member name="M:System.ComponentModel.CategoryAttribute.GetHashCode">
-      <summary>Returns the hash code for this attribute.</summary>
-      <returns>A 32-bit signed integer hash code.</returns>
-    </member>
-    <member name="M:System.ComponentModel.CategoryAttribute.GetLocalizedString(System.String)">
-      <summary>Looks up the localized name of the specified category.</summary>
-      <param name="value">The identifer for the category to look up.</param>
-      <returns>The localized name of the category, or <see langword="null" /> if a localized name does not exist.</returns>
-    </member>
-    <member name="M:System.ComponentModel.CategoryAttribute.IsDefaultAttribute">
-      <summary>Determines if this attribute is the default.</summary>
-      <returns>
-        <see langword="true" /> if the attribute is the default value for this attribute class; otherwise, <see langword="false" />.</returns>
     </member>
     <member name="P:System.ComponentModel.CategoryAttribute.Key">
       <summary>Gets a <see cref="T:System.ComponentModel.CategoryAttribute" /> representing the Key category.</summary>
@@ -134,8 +134,31 @@
     <member name="T:System.ComponentModel.Component">
       <summary>Provides the base implementation for the <see cref="T:System.ComponentModel.IComponent" /> interface and enables object sharing between applications.</summary>
     </member>
+    <member name="E:System.ComponentModel.Component.Disposed">
+      <summary>Occurs when the component is disposed by a call to the <see cref="M:System.ComponentModel.Component.Dispose" /> method.</summary>
+    </member>
     <member name="M:System.ComponentModel.Component.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.Component" /> class.</summary>
+    </member>
+    <member name="M:System.ComponentModel.Component.Dispose">
+      <summary>Releases all resources used by the <see cref="T:System.ComponentModel.Component" />.</summary>
+    </member>
+    <member name="M:System.ComponentModel.Component.Dispose(System.Boolean)">
+      <summary>Releases the unmanaged resources used by the <see cref="T:System.ComponentModel.Component" /> and optionally releases the managed resources.</summary>
+      <param name="disposing">
+        <see langword="true" /> to release both managed and unmanaged resources; <see langword="false" /> to release only unmanaged resources.</param>
+    </member>
+    <member name="M:System.ComponentModel.Component.Finalize">
+      <summary>Releases unmanaged resources and performs other cleanup operations before the <see cref="T:System.ComponentModel.Component" /> is reclaimed by garbage collection.</summary>
+    </member>
+    <member name="M:System.ComponentModel.Component.GetService(System.Type)">
+      <summary>Returns an object that represents a service provided by the <see cref="T:System.ComponentModel.Component" /> or by its <see cref="T:System.ComponentModel.Container" />.</summary>
+      <param name="service">A service provided by the <see cref="T:System.ComponentModel.Component" />.</param>
+      <returns>An <see cref="T:System.Object" /> that represents a service provided by the <see cref="T:System.ComponentModel.Component" />, or <see langword="null" /> if the <see cref="T:System.ComponentModel.Component" /> does not provide the specified service.</returns>
+    </member>
+    <member name="M:System.ComponentModel.Component.ToString">
+      <summary>Returns a <see cref="T:System.String" /> containing the name of the <see cref="T:System.ComponentModel.Component" />, if any. This method should not be overridden.</summary>
+      <returns>A <see cref="T:System.String" /> containing the name of the <see cref="T:System.ComponentModel.Component" />, if any, or <see langword="null" /> if the <see cref="T:System.ComponentModel.Component" /> is unnamed.</returns>
     </member>
     <member name="P:System.ComponentModel.Component.CanRaiseEvents">
       <summary>Gets a value indicating whether the component can raise an event.</summary>
@@ -151,36 +174,13 @@
       <returns>
         <see langword="true" /> if the <see cref="T:System.ComponentModel.Component" /> is in design mode; otherwise, <see langword="false" />.</returns>
     </member>
-    <member name="M:System.ComponentModel.Component.Dispose">
-      <summary>Releases all resources used by the <see cref="T:System.ComponentModel.Component" />.</summary>
-    </member>
-    <member name="M:System.ComponentModel.Component.Dispose(System.Boolean)">
-      <summary>Releases the unmanaged resources used by the <see cref="T:System.ComponentModel.Component" /> and optionally releases the managed resources.</summary>
-      <param name="disposing">
-        <see langword="true" /> to release both managed and unmanaged resources; <see langword="false" /> to release only unmanaged resources.</param>
-    </member>
-    <member name="E:System.ComponentModel.Component.Disposed">
-      <summary>Occurs when the component is disposed by a call to the <see cref="M:System.ComponentModel.Component.Dispose" /> method.</summary>
-    </member>
     <member name="P:System.ComponentModel.Component.Events">
       <summary>Gets the list of event handlers that are attached to this <see cref="T:System.ComponentModel.Component" />.</summary>
       <returns>An <see cref="T:System.ComponentModel.EventHandlerList" /> that provides the delegates for this component.</returns>
     </member>
-    <member name="M:System.ComponentModel.Component.Finalize">
-      <summary>Releases unmanaged resources and performs other cleanup operations before the <see cref="T:System.ComponentModel.Component" /> is reclaimed by garbage collection.</summary>
-    </member>
-    <member name="M:System.ComponentModel.Component.GetService(System.Type)">
-      <summary>Returns an object that represents a service provided by the <see cref="T:System.ComponentModel.Component" /> or by its <see cref="T:System.ComponentModel.Container" />.</summary>
-      <param name="service">A service provided by the <see cref="T:System.ComponentModel.Component" />.</param>
-      <returns>An <see cref="T:System.Object" /> that represents a service provided by the <see cref="T:System.ComponentModel.Component" />, or <see langword="null" /> if the <see cref="T:System.ComponentModel.Component" /> does not provide the specified service.</returns>
-    </member>
     <member name="P:System.ComponentModel.Component.Site">
       <summary>Gets or sets the <see cref="T:System.ComponentModel.ISite" /> of the <see cref="T:System.ComponentModel.Component" />.</summary>
       <returns>The <see cref="T:System.ComponentModel.ISite" /> associated with the <see cref="T:System.ComponentModel.Component" />, or <see langword="null" /> if the <see cref="T:System.ComponentModel.Component" /> is not encapsulated in an <see cref="T:System.ComponentModel.IContainer" />, the <see cref="T:System.ComponentModel.Component" /> does not have an <see cref="T:System.ComponentModel.ISite" /> associated with it, or the <see cref="T:System.ComponentModel.Component" /> is removed from its <see cref="T:System.ComponentModel.IContainer" />.</returns>
-    </member>
-    <member name="M:System.ComponentModel.Component.ToString">
-      <summary>Returns a <see cref="T:System.String" /> containing the name of the <see cref="T:System.ComponentModel.Component" />, if any. This method should not be overridden.</summary>
-      <returns>A <see cref="T:System.String" /> containing the name of the <see cref="T:System.ComponentModel.Component" />, if any, or <see langword="null" /> if the <see cref="T:System.ComponentModel.Component" /> is unnamed.</returns>
     </member>
     <member name="T:System.ComponentModel.ComponentCollection">
       <summary>Provides a read-only container for a collection of <see cref="T:System.ComponentModel.IComponent" /> objects.</summary>
@@ -197,8 +197,8 @@
     <member name="P:System.ComponentModel.ComponentCollection.Item(System.Int32)">
       <summary>Gets the <see cref="T:System.ComponentModel.Component" /> in the collection at the specified collection index.</summary>
       <param name="index">The collection index of the <see cref="T:System.ComponentModel.Component" /> to get.</param>
-      <returns>The <see cref="T:System.ComponentModel.IComponent" /> at the specified index.</returns>
       <exception cref="T:System.ArgumentOutOfRangeException">If the specified index is not within the index range of the collection.</exception>
+      <returns>The <see cref="T:System.ComponentModel.IComponent" /> at the specified index.</returns>
     </member>
     <member name="P:System.ComponentModel.ComponentCollection.Item(System.String)">
       <summary>Gets any component in the collection matching the specified name.</summary>
@@ -208,23 +208,15 @@
     <member name="T:System.ComponentModel.DescriptionAttribute">
       <summary>Specifies a description for a property or event.</summary>
     </member>
+    <member name="F:System.ComponentModel.DescriptionAttribute.Default">
+      <summary>Specifies the default value for the <see cref="T:System.ComponentModel.DescriptionAttribute" />, which is an empty string (""). This <see langword="static" /> field is read-only.</summary>
+    </member>
     <member name="M:System.ComponentModel.DescriptionAttribute.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.DescriptionAttribute" /> class with no parameters.</summary>
     </member>
     <member name="M:System.ComponentModel.DescriptionAttribute.#ctor(System.String)">
       <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.DescriptionAttribute" /> class with a description.</summary>
       <param name="description">The description text.</param>
-    </member>
-    <member name="F:System.ComponentModel.DescriptionAttribute.Default">
-      <summary>Specifies the default value for the <see cref="T:System.ComponentModel.DescriptionAttribute" />, which is an empty string (""). This <see langword="static" /> field is read-only.</summary>
-    </member>
-    <member name="P:System.ComponentModel.DescriptionAttribute.Description">
-      <summary>Gets the description stored in this attribute.</summary>
-      <returns>The description stored in this attribute.</returns>
-    </member>
-    <member name="P:System.ComponentModel.DescriptionAttribute.DescriptionValue">
-      <summary>Gets or sets the string stored as the description.</summary>
-      <returns>The string stored as the description. The default value is an empty string ("").</returns>
     </member>
     <member name="M:System.ComponentModel.DescriptionAttribute.Equals(System.Object)">
       <summary>Returns whether the value of the given object is equal to the current <see cref="T:System.ComponentModel.DescriptionAttribute" />.</summary>
@@ -241,8 +233,106 @@
       <returns>
         <see langword="true" />, if this is the default <see cref="T:System.ComponentModel.DescriptionAttribute" /> instance; otherwise, <see langword="false" />.</returns>
     </member>
+    <member name="P:System.ComponentModel.DescriptionAttribute.Description">
+      <summary>Gets the description stored in this attribute.</summary>
+      <returns>The description stored in this attribute.</returns>
+    </member>
+    <member name="P:System.ComponentModel.DescriptionAttribute.DescriptionValue">
+      <summary>Gets or sets the string stored as the description.</summary>
+      <returns>The string stored as the description. The default value is an empty string ("").</returns>
+    </member>
+    <member name="T:System.ComponentModel.Design.Serialization.DesignerSerializerAttribute">
+      <summary>Indicates a serializer for the serialization manager to use to serialize the values of the type this attribute is applied to. This class cannot be inherited.</summary>
+    </member>
+    <member name="M:System.ComponentModel.Design.Serialization.DesignerSerializerAttribute.#ctor(System.String,System.String)">
+      <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.Design.Serialization.DesignerSerializerAttribute" /> class.</summary>
+      <param name="serializerTypeName">The fully qualified name of the data type of the serializer.</param>
+      <param name="baseSerializerTypeName">The fully qualified name of the base data type of the serializer. Multiple serializers can be supplied for a class as long as the serializers have different base types.</param>
+    </member>
+    <member name="M:System.ComponentModel.Design.Serialization.DesignerSerializerAttribute.#ctor(System.String,System.Type)">
+      <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.Design.Serialization.DesignerSerializerAttribute" /> class.</summary>
+      <param name="serializerTypeName">The fully qualified name of the data type of the serializer.</param>
+      <param name="baseSerializerType">The base data type of the serializer. Multiple serializers can be supplied for a class as long as the serializers have different base types.</param>
+    </member>
+    <member name="M:System.ComponentModel.Design.Serialization.DesignerSerializerAttribute.#ctor(System.Type,System.Type)">
+      <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.Design.Serialization.DesignerSerializerAttribute" /> class.</summary>
+      <param name="serializerType">The data type of the serializer.</param>
+      <param name="baseSerializerType">The base data type of the serializer. Multiple serializers can be supplied for a class as long as the serializers have different base types.</param>
+    </member>
+    <member name="P:System.ComponentModel.Design.Serialization.DesignerSerializerAttribute.SerializerBaseTypeName">
+      <summary>Gets the fully qualified type name of the serializer base type.</summary>
+      <returns>The fully qualified type name of the serializer base type.</returns>
+    </member>
+    <member name="P:System.ComponentModel.Design.Serialization.DesignerSerializerAttribute.SerializerTypeName">
+      <summary>Gets the fully qualified type name of the serializer.</summary>
+      <returns>The fully qualified type name of the serializer.</returns>
+    </member>
+    <member name="P:System.ComponentModel.Design.Serialization.DesignerSerializerAttribute.TypeId">
+      <summary>Indicates a unique ID for this attribute type.</summary>
+      <returns>A unique ID for this attribute type.</returns>
+    </member>
+    <member name="T:System.ComponentModel.DesignerAttribute">
+      <summary>Specifies the class used to implement design-time services for a component.</summary>
+    </member>
+    <member name="M:System.ComponentModel.DesignerAttribute.#ctor(System.String)">
+      <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.DesignerAttribute" /> class using the name of the type that provides design-time services.</summary>
+      <param name="designerTypeName">The concatenation of the fully qualified name of the type that provides design-time services for the component this attribute is bound to, and the name of the assembly this type resides in.</param>
+    </member>
+    <member name="M:System.ComponentModel.DesignerAttribute.#ctor(System.String,System.String)">
+      <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.DesignerAttribute" /> class using the designer type and the base class for the designer.</summary>
+      <param name="designerTypeName">The concatenation of the fully qualified name of the type that provides design-time services for the component this attribute is bound to, and the name of the assembly this type resides in.</param>
+      <param name="designerBaseTypeName">The fully qualified name of the base class to associate with the designer class.</param>
+    </member>
+    <member name="M:System.ComponentModel.DesignerAttribute.#ctor(System.String,System.Type)">
+      <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.DesignerAttribute" /> class, using the name of the designer class and the base class for the designer.</summary>
+      <param name="designerTypeName">The concatenation of the fully qualified name of the type that provides design-time services for the component this attribute is bound to, and the name of the assembly this type resides in.</param>
+      <param name="designerBaseType">A <see cref="T:System.Type" /> that represents the base class to associate with the <paramref name="designerTypeName" />.</param>
+    </member>
+    <member name="M:System.ComponentModel.DesignerAttribute.#ctor(System.Type)">
+      <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.DesignerAttribute" /> class using the type that provides design-time services.</summary>
+      <param name="designerType">A <see cref="T:System.Type" /> that represents the class that provides design-time services for the component this attribute is bound to.</param>
+    </member>
+    <member name="M:System.ComponentModel.DesignerAttribute.#ctor(System.Type,System.Type)">
+      <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.DesignerAttribute" /> class using the types of the designer and designer base class.</summary>
+      <param name="designerType">A <see cref="T:System.Type" /> that represents the class that provides design-time services for the component this attribute is bound to.</param>
+      <param name="designerBaseType">A <see cref="T:System.Type" /> that represents the base class to associate with the <paramref name="designerType" />.</param>
+    </member>
+    <member name="M:System.ComponentModel.DesignerAttribute.Equals(System.Object)">
+      <summary>Returns whether the value of the given object is equal to the current <see cref="T:System.ComponentModel.DesignerAttribute" />.</summary>
+      <param name="obj">The object to test the value equality of.</param>
+      <returns>
+        <see langword="true" /> if the value of the given object is equal to that of the current; otherwise, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.ComponentModel.DesignerAttribute.GetHashCode">
+      <summary>Returns the hash code for this instance.</summary>
+      <returns>A 32-bit signed integer hash code.</returns>
+    </member>
+    <member name="P:System.ComponentModel.DesignerAttribute.DesignerBaseTypeName">
+      <summary>Gets the name of the base type of this designer.</summary>
+      <returns>The name of the base type of this designer.</returns>
+    </member>
+    <member name="P:System.ComponentModel.DesignerAttribute.DesignerTypeName">
+      <summary>Gets the name of the designer type associated with this designer attribute.</summary>
+      <returns>The name of the designer type associated with this designer attribute.</returns>
+    </member>
+    <member name="P:System.ComponentModel.DesignerAttribute.TypeId">
+      <summary>Gets a unique ID for this attribute type.</summary>
+      <returns>A unique ID for this attribute type.</returns>
+    </member>
     <member name="T:System.ComponentModel.DesignerCategoryAttribute">
       <summary>Specifies that the designer for a class belongs to a certain category.</summary>
+    </member>
+    <member name="F:System.ComponentModel.DesignerCategoryAttribute.Component">
+      <summary>Specifies that a component marked with this category use a component designer. This field is read-only.</summary>
+    </member>
+    <member name="F:System.ComponentModel.DesignerCategoryAttribute.Default">
+      <summary>Specifies that a component marked with this category cannot use a visual designer. This <see langword="static" /> field is read-only.</summary>
+    </member>
+    <member name="F:System.ComponentModel.DesignerCategoryAttribute.Form">
+      <summary>Specifies that a component marked with this category use a form designer. This <see langword="static" /> field is read-only.</summary>
+    </member>
+    <member name="F:System.ComponentModel.DesignerCategoryAttribute.Generic">
+      <summary>Specifies that a component marked with this category use a generic designer. This <see langword="static" /> field is read-only.</summary>
     </member>
     <member name="M:System.ComponentModel.DesignerCategoryAttribute.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.DesignerCategoryAttribute" /> class with an empty string ("").</summary>
@@ -251,27 +341,11 @@
       <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.DesignerCategoryAttribute" /> class with the given category name.</summary>
       <param name="category">The name of the category.</param>
     </member>
-    <member name="P:System.ComponentModel.DesignerCategoryAttribute.Category">
-      <summary>Gets the name of the category.</summary>
-      <returns>The name of the category.</returns>
-    </member>
-    <member name="F:System.ComponentModel.DesignerCategoryAttribute.Component">
-      <summary>Specifies that a component marked with this category use a component designer. This field is read-only.</summary>
-    </member>
-    <member name="F:System.ComponentModel.DesignerCategoryAttribute.Default">
-      <summary>Specifies that a component marked with this category cannot use a visual designer. This <see langword="static" /> field is read-only.</summary>
-    </member>
     <member name="M:System.ComponentModel.DesignerCategoryAttribute.Equals(System.Object)">
       <summary>Returns whether the value of the given object is equal to the current <see cref="T:System.ComponentModel.DesignOnlyAttribute" />.</summary>
       <param name="obj">The object to test the value equality of.</param>
       <returns>
         <see langword="true" /> if the value of the given object is equal to that of the current; otherwise, <see langword="false" />.</returns>
-    </member>
-    <member name="F:System.ComponentModel.DesignerCategoryAttribute.Form">
-      <summary>Specifies that a component marked with this category use a form designer. This <see langword="static" /> field is read-only.</summary>
-    </member>
-    <member name="F:System.ComponentModel.DesignerCategoryAttribute.Generic">
-      <summary>Specifies that a component marked with this category use a generic designer. This <see langword="static" /> field is read-only.</summary>
     </member>
     <member name="M:System.ComponentModel.DesignerCategoryAttribute.GetHashCode">
       <summary>Returns the hash code for this instance.</summary>
@@ -281,6 +355,10 @@
       <summary>Determines if this attribute is the default.</summary>
       <returns>
         <see langword="true" /> if the attribute is the default value for this attribute class; otherwise, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.ComponentModel.DesignerCategoryAttribute.Category">
+      <summary>Gets the name of the category.</summary>
+      <returns>The name of the category.</returns>
     </member>
     <member name="P:System.ComponentModel.DesignerCategoryAttribute.TypeId">
       <summary>Gets a unique identifier for this attribute.</summary>
@@ -301,15 +379,21 @@
     <member name="T:System.ComponentModel.DesignerSerializationVisibilityAttribute">
       <summary>Specifies the type of persistence to use when serializing a property on a component at design time.</summary>
     </member>
-    <member name="M:System.ComponentModel.DesignerSerializationVisibilityAttribute.#ctor(System.ComponentModel.DesignerSerializationVisibility)">
-      <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.DesignerSerializationVisibilityAttribute" /> class using the specified <see cref="T:System.ComponentModel.DesignerSerializationVisibility" /> value.</summary>
-      <param name="visibility">One of the <see cref="T:System.ComponentModel.DesignerSerializationVisibility" /> values.</param>
-    </member>
     <member name="F:System.ComponentModel.DesignerSerializationVisibilityAttribute.Content">
       <summary>Specifies that a serializer should serialize the contents of the property, rather than the property itself. This field is read-only.</summary>
     </member>
     <member name="F:System.ComponentModel.DesignerSerializationVisibilityAttribute.Default">
       <summary>Specifies the default value, which is <see cref="F:System.ComponentModel.DesignerSerializationVisibilityAttribute.Visible" />, that is, a visual designer uses default rules to generate the value of a property. This <see langword="static" /> field is read-only.</summary>
+    </member>
+    <member name="F:System.ComponentModel.DesignerSerializationVisibilityAttribute.Hidden">
+      <summary>Specifies that a serializer should not serialize the value of the property. This <see langword="static" /> field is read-only.</summary>
+    </member>
+    <member name="F:System.ComponentModel.DesignerSerializationVisibilityAttribute.Visible">
+      <summary>Specifies that a serializer should be allowed to serialize the value of the property. This <see langword="static" /> field is read-only.</summary>
+    </member>
+    <member name="M:System.ComponentModel.DesignerSerializationVisibilityAttribute.#ctor(System.ComponentModel.DesignerSerializationVisibility)">
+      <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.DesignerSerializationVisibilityAttribute" /> class using the specified <see cref="T:System.ComponentModel.DesignerSerializationVisibility" /> value.</summary>
+      <param name="visibility">One of the <see cref="T:System.ComponentModel.DesignerSerializationVisibility" /> values.</param>
     </member>
     <member name="M:System.ComponentModel.DesignerSerializationVisibilityAttribute.Equals(System.Object)">
       <summary>Indicates whether this instance and a specified object are equal.</summary>
@@ -321,9 +405,6 @@
       <summary>Returns the hash code for this object.</summary>
       <returns>A 32-bit signed integer hash code.</returns>
     </member>
-    <member name="F:System.ComponentModel.DesignerSerializationVisibilityAttribute.Hidden">
-      <summary>Specifies that a serializer should not serialize the value of the property. This <see langword="static" /> field is read-only.</summary>
-    </member>
     <member name="M:System.ComponentModel.DesignerSerializationVisibilityAttribute.IsDefaultAttribute">
       <summary>Gets a value indicating whether the current value of the attribute is the default value for the attribute.</summary>
       <returns>
@@ -333,19 +414,22 @@
       <summary>Gets a value indicating the basic serialization mode a serializer should use when determining whether and how to persist the value of a property.</summary>
       <returns>One of the <see cref="T:System.ComponentModel.DesignerSerializationVisibility" /> values. The default is <see cref="F:System.ComponentModel.DesignerSerializationVisibility.Visible" />.</returns>
     </member>
-    <member name="F:System.ComponentModel.DesignerSerializationVisibilityAttribute.Visible">
-      <summary>Specifies that a serializer should be allowed to serialize the value of the property. This <see langword="static" /> field is read-only.</summary>
-    </member>
     <member name="T:System.ComponentModel.DesignOnlyAttribute">
       <summary>Specifies whether a property can only be set at design time.</summary>
+    </member>
+    <member name="F:System.ComponentModel.DesignOnlyAttribute.Default">
+      <summary>Specifies the default value for the <see cref="T:System.ComponentModel.DesignOnlyAttribute" />, which is <see cref="F:System.ComponentModel.DesignOnlyAttribute.No" />. This <see langword="static" /> field is read-only.</summary>
+    </member>
+    <member name="F:System.ComponentModel.DesignOnlyAttribute.No">
+      <summary>Specifies that a property can be set at design time or at run time. This <see langword="static" /> field is read-only.</summary>
+    </member>
+    <member name="F:System.ComponentModel.DesignOnlyAttribute.Yes">
+      <summary>Specifies that a property can be set only at design time. This <see langword="static" /> field is read-only.</summary>
     </member>
     <member name="M:System.ComponentModel.DesignOnlyAttribute.#ctor(System.Boolean)">
       <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.DesignOnlyAttribute" /> class.</summary>
       <param name="isDesignOnly">
         <see langword="true" /> if a property can be set only at design time; <see langword="false" /> if the property can be set at design time and at run time.</param>
-    </member>
-    <member name="F:System.ComponentModel.DesignOnlyAttribute.Default">
-      <summary>Specifies the default value for the <see cref="T:System.ComponentModel.DesignOnlyAttribute" />, which is <see cref="F:System.ComponentModel.DesignOnlyAttribute.No" />. This <see langword="static" /> field is read-only.</summary>
     </member>
     <member name="M:System.ComponentModel.DesignOnlyAttribute.Equals(System.Object)">
       <summary>Returns whether the value of the given object is equal to the current <see cref="T:System.ComponentModel.DesignOnlyAttribute" />.</summary>
@@ -367,14 +451,11 @@
       <returns>
         <see langword="true" /> if a property can be set only at design time; otherwise, <see langword="false" />.</returns>
     </member>
-    <member name="F:System.ComponentModel.DesignOnlyAttribute.No">
-      <summary>Specifies that a property can be set at design time or at run time. This <see langword="static" /> field is read-only.</summary>
-    </member>
-    <member name="F:System.ComponentModel.DesignOnlyAttribute.Yes">
-      <summary>Specifies that a property can be set only at design time. This <see langword="static" /> field is read-only.</summary>
-    </member>
     <member name="T:System.ComponentModel.DisplayNameAttribute">
       <summary>Specifies the display name for a property, event, or public void method which takes no arguments.</summary>
+    </member>
+    <member name="F:System.ComponentModel.DisplayNameAttribute.Default">
+      <summary>Specifies the default value for the <see cref="T:System.ComponentModel.DisplayNameAttribute" />. This field is read-only.</summary>
     </member>
     <member name="M:System.ComponentModel.DisplayNameAttribute.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.DisplayNameAttribute" /> class.</summary>
@@ -382,17 +463,6 @@
     <member name="M:System.ComponentModel.DisplayNameAttribute.#ctor(System.String)">
       <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.DisplayNameAttribute" /> class using the display name.</summary>
       <param name="displayName">The display name.</param>
-    </member>
-    <member name="F:System.ComponentModel.DisplayNameAttribute.Default">
-      <summary>Specifies the default value for the <see cref="T:System.ComponentModel.DisplayNameAttribute" />. This field is read-only.</summary>
-    </member>
-    <member name="P:System.ComponentModel.DisplayNameAttribute.DisplayName">
-      <summary>Gets the display name for a property, event, or public void method that takes no arguments stored in this attribute.</summary>
-      <returns>The display name.</returns>
-    </member>
-    <member name="P:System.ComponentModel.DisplayNameAttribute.DisplayNameValue">
-      <summary>Gets or sets the display name.</summary>
-      <returns>The display name.</returns>
     </member>
     <member name="M:System.ComponentModel.DisplayNameAttribute.Equals(System.Object)">
       <summary>Determines whether two <see cref="T:System.ComponentModel.DisplayNameAttribute" /> instances are equal.</summary>
@@ -408,6 +478,57 @@
       <summary>Determines if this attribute is the default.</summary>
       <returns>
         <see langword="true" /> if the attribute is the default value for this attribute class; otherwise, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.ComponentModel.DisplayNameAttribute.DisplayName">
+      <summary>Gets the display name for a property, event, or public void method that takes no arguments stored in this attribute.</summary>
+      <returns>The display name.</returns>
+    </member>
+    <member name="P:System.ComponentModel.DisplayNameAttribute.DisplayNameValue">
+      <summary>Gets or sets the display name.</summary>
+      <returns>The display name.</returns>
+    </member>
+    <member name="T:System.ComponentModel.EditorAttribute">
+      <summary>Specifies the editor to use to change a property. This class cannot be inherited.</summary>
+    </member>
+    <member name="M:System.ComponentModel.EditorAttribute.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.EditorAttribute" /> class with the default editor, which is no editor.</summary>
+    </member>
+    <member name="M:System.ComponentModel.EditorAttribute.#ctor(System.String,System.String)">
+      <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.EditorAttribute" /> class with the type name and base type name of the editor.</summary>
+      <param name="typeName">The fully qualified type name of the editor.</param>
+      <param name="baseTypeName">The fully qualified type name of the base class or interface to use as a lookup key for the editor. This class must be or derive from <see cref="T:System.Drawing.Design.UITypeEditor" />.</param>
+    </member>
+    <member name="M:System.ComponentModel.EditorAttribute.#ctor(System.String,System.Type)">
+      <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.EditorAttribute" /> class with the type name and the base type.</summary>
+      <param name="typeName">The fully qualified type name of the editor.</param>
+      <param name="baseType">The <see cref="T:System.Type" /> of the base class or interface to use as a lookup key for the editor. This class must be or derive from <see cref="T:System.Drawing.Design.UITypeEditor" />.</param>
+    </member>
+    <member name="M:System.ComponentModel.EditorAttribute.#ctor(System.Type,System.Type)">
+      <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.EditorAttribute" /> class with the type and the base type.</summary>
+      <param name="type">A <see cref="T:System.Type" /> that represents the type of the editor.</param>
+      <param name="baseType">The <see cref="T:System.Type" /> of the base class or interface to use as a lookup key for the editor. This class must be or derive from <see cref="T:System.Drawing.Design.UITypeEditor" />.</param>
+    </member>
+    <member name="M:System.ComponentModel.EditorAttribute.Equals(System.Object)">
+      <summary>Returns whether the value of the given object is equal to the current <see cref="T:System.ComponentModel.EditorAttribute" />.</summary>
+      <param name="obj">The object to test the value equality of.</param>
+      <returns>
+        <see langword="true" /> if the value of the given object is equal to that of the current object; otherwise, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.ComponentModel.EditorAttribute.GetHashCode">
+      <summary>Returns the hash code for this instance.</summary>
+      <returns>A 32-bit signed integer hash code.</returns>
+    </member>
+    <member name="P:System.ComponentModel.EditorAttribute.EditorBaseTypeName">
+      <summary>Gets the name of the base class or interface serving as a lookup key for this editor.</summary>
+      <returns>The name of the base class or interface serving as a lookup key for this editor.</returns>
+    </member>
+    <member name="P:System.ComponentModel.EditorAttribute.EditorTypeName">
+      <summary>Gets the name of the editor class in the <see cref="P:System.Type.AssemblyQualifiedName" /> format.</summary>
+      <returns>The name of the editor class in the <see cref="P:System.Type.AssemblyQualifiedName" /> format.</returns>
+    </member>
+    <member name="P:System.ComponentModel.EditorAttribute.TypeId">
+      <summary>Gets a unique ID for this attribute type.</summary>
+      <returns>A unique ID for this attribute type.</returns>
     </member>
     <member name="T:System.ComponentModel.EventHandlerList">
       <summary>Provides a simple list of delegates. This class cannot be inherited.</summary>
@@ -427,15 +548,15 @@
     <member name="M:System.ComponentModel.EventHandlerList.Dispose">
       <summary>Disposes the delegate list.</summary>
     </member>
-    <member name="P:System.ComponentModel.EventHandlerList.Item(System.Object)">
-      <summary>Gets or sets the delegate for the specified object.</summary>
-      <param name="key">An object to find in the list.</param>
-      <returns>The delegate for the specified key, or <see langword="null" /> if a delegate does not exist.</returns>
-    </member>
     <member name="M:System.ComponentModel.EventHandlerList.RemoveHandler(System.Object,System.Delegate)">
       <summary>Removes a delegate from the list.</summary>
       <param name="key">The object that owns the event.</param>
       <param name="value">The delegate to remove from the list.</param>
+    </member>
+    <member name="P:System.ComponentModel.EventHandlerList.Item(System.Object)">
+      <summary>Gets or sets the delegate for the specified object.</summary>
+      <param name="key">An object to find in the list.</param>
+      <returns>The delegate for the specified key, or <see langword="null" /> if a delegate does not exist.</returns>
     </member>
     <member name="T:System.ComponentModel.IComponent">
       <summary>Provides functionality required by all components.</summary>
@@ -457,28 +578,36 @@
     <member name="M:System.ComponentModel.IContainer.Add(System.ComponentModel.IComponent,System.String)">
       <summary>Adds the specified <see cref="T:System.ComponentModel.IComponent" /> to the <see cref="T:System.ComponentModel.IContainer" /> at the end of the list, and assigns a name to the component.</summary>
       <param name="component">The <see cref="T:System.ComponentModel.IComponent" /> to add.</param>
-      <param name="name">The unique, case-insensitive name to assign to the component.
--or-
-<see langword="null" /> that leaves the component unnamed.</param>
-    </member>
-    <member name="P:System.ComponentModel.IContainer.Components">
-      <summary>Gets all the components in the <see cref="T:System.ComponentModel.IContainer" />.</summary>
-      <returns>A collection of <see cref="T:System.ComponentModel.IComponent" /> objects that represents all the components in the <see cref="T:System.ComponentModel.IContainer" />.</returns>
+      <param name="name">The unique, case-insensitive name to assign to the component.  
+  
+ -or-  
+  
+ <see langword="null" /> that leaves the component unnamed.</param>
     </member>
     <member name="M:System.ComponentModel.IContainer.Remove(System.ComponentModel.IComponent)">
       <summary>Removes a component from the <see cref="T:System.ComponentModel.IContainer" />.</summary>
       <param name="component">The <see cref="T:System.ComponentModel.IComponent" /> to remove.</param>
     </member>
+    <member name="P:System.ComponentModel.IContainer.Components">
+      <summary>Gets all the components in the <see cref="T:System.ComponentModel.IContainer" />.</summary>
+      <returns>A collection of <see cref="T:System.ComponentModel.IComponent" /> objects that represents all the components in the <see cref="T:System.ComponentModel.IContainer" />.</returns>
+    </member>
     <member name="T:System.ComponentModel.ImmutableObjectAttribute">
       <summary>Specifies that an object has no subproperties capable of being edited. This class cannot be inherited.</summary>
+    </member>
+    <member name="F:System.ComponentModel.ImmutableObjectAttribute.Default">
+      <summary>Represents the default value for <see cref="T:System.ComponentModel.ImmutableObjectAttribute" />.</summary>
+    </member>
+    <member name="F:System.ComponentModel.ImmutableObjectAttribute.No">
+      <summary>Specifies that an object has at least one editable subproperty. This <see langword="static" /> field is read-only.</summary>
+    </member>
+    <member name="F:System.ComponentModel.ImmutableObjectAttribute.Yes">
+      <summary>Specifies that an object has no subproperties that can be edited. This <see langword="static" /> field is read-only.</summary>
     </member>
     <member name="M:System.ComponentModel.ImmutableObjectAttribute.#ctor(System.Boolean)">
       <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.ImmutableObjectAttribute" /> class.</summary>
       <param name="immutable">
         <see langword="true" /> if the object is immutable; otherwise, <see langword="false" />.</param>
-    </member>
-    <member name="F:System.ComponentModel.ImmutableObjectAttribute.Default">
-      <summary>Represents the default value for <see cref="T:System.ComponentModel.ImmutableObjectAttribute" />.</summary>
     </member>
     <member name="M:System.ComponentModel.ImmutableObjectAttribute.Equals(System.Object)">
       <summary>Returns a value that indicates whether this instance is equal to a specified object.</summary>
@@ -490,21 +619,15 @@
       <summary>Returns the hash code for this instance.</summary>
       <returns>A hash code for the current <see cref="T:System.ComponentModel.ImmutableObjectAttribute" />.</returns>
     </member>
-    <member name="P:System.ComponentModel.ImmutableObjectAttribute.Immutable">
-      <summary>Gets whether the object is immutable.</summary>
-      <returns>
-        <see langword="true" /> if the object is immutable; otherwise, <see langword="false" />.</returns>
-    </member>
     <member name="M:System.ComponentModel.ImmutableObjectAttribute.IsDefaultAttribute">
       <summary>Indicates whether the value of this instance is the default value.</summary>
       <returns>
         <see langword="true" /> if this instance is the default attribute for the class; otherwise, <see langword="false" />.</returns>
     </member>
-    <member name="F:System.ComponentModel.ImmutableObjectAttribute.No">
-      <summary>Specifies that an object has at least one editable subproperty. This <see langword="static" /> field is read-only.</summary>
-    </member>
-    <member name="F:System.ComponentModel.ImmutableObjectAttribute.Yes">
-      <summary>Specifies that an object has no subproperties that can be edited. This <see langword="static" /> field is read-only.</summary>
+    <member name="P:System.ComponentModel.ImmutableObjectAttribute.Immutable">
+      <summary>Gets whether the object is immutable.</summary>
+      <returns>
+        <see langword="true" /> if the object is immutable; otherwise, <see langword="false" />.</returns>
     </member>
     <member name="T:System.ComponentModel.InitializationEventAttribute">
       <summary>Specifies which event is raised on initialization. This class cannot be inherited.</summary>
@@ -618,15 +741,21 @@
         <see langword="true" /> if the caller must call <see cref="M:System.ComponentModel.ISynchronizeInvoke.Invoke(System.Delegate,System.Object[])" />; otherwise, <see langword="false" />.</returns>
     </member>
     <member name="T:System.ComponentModel.LocalizableAttribute">
-      <summary>Specifies whether a property should be localized. This class cannot be inherited.</summary>
+      <summary>Specifies whether a property or parameter should be localized. This class cannot be inherited.</summary>
+    </member>
+    <member name="F:System.ComponentModel.LocalizableAttribute.Default">
+      <summary>Specifies the default value, which is <see cref="F:System.ComponentModel.LocalizableAttribute.No" />. This <see langword="static" /> field is read-only.</summary>
+    </member>
+    <member name="F:System.ComponentModel.LocalizableAttribute.No">
+      <summary>Specifies that a property should not be localized. This <see langword="static" /> field is read-only.</summary>
+    </member>
+    <member name="F:System.ComponentModel.LocalizableAttribute.Yes">
+      <summary>Specifies that a property should be localized. This <see langword="static" /> field is read-only.</summary>
     </member>
     <member name="M:System.ComponentModel.LocalizableAttribute.#ctor(System.Boolean)">
       <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.LocalizableAttribute" /> class.</summary>
       <param name="isLocalizable">
         <see langword="true" /> if a property should be localized; otherwise, <see langword="false" />.</param>
-    </member>
-    <member name="F:System.ComponentModel.LocalizableAttribute.Default">
-      <summary>Specifies the default value, which is <see cref="F:System.ComponentModel.LocalizableAttribute.No" />. This <see langword="static" /> field is read-only.</summary>
     </member>
     <member name="M:System.ComponentModel.LocalizableAttribute.Equals(System.Object)">
       <summary>Returns whether the value of the given object is equal to the current <see cref="T:System.ComponentModel.LocalizableAttribute" />.</summary>
@@ -648,27 +777,22 @@
       <returns>
         <see langword="true" /> if a property should be localized; otherwise, <see langword="false" />.</returns>
     </member>
-    <member name="F:System.ComponentModel.LocalizableAttribute.No">
-      <summary>Specifies that a property should not be localized. This <see langword="static" /> field is read-only.</summary>
-    </member>
-    <member name="F:System.ComponentModel.LocalizableAttribute.Yes">
-      <summary>Specifies that a property should be localized. This <see langword="static" /> field is read-only.</summary>
-    </member>
     <member name="T:System.ComponentModel.MergablePropertyAttribute">
       <summary>Specifies that this property can be combined with properties belonging to other objects in a Properties window.</summary>
+    </member>
+    <member name="F:System.ComponentModel.MergablePropertyAttribute.Default">
+      <summary>Specifies the default value, which is <see cref="F:System.ComponentModel.MergablePropertyAttribute.Yes" />, that is a property can be combined with properties belonging to other objects in a Properties window. This <see langword="static" /> field is read-only.</summary>
+    </member>
+    <member name="F:System.ComponentModel.MergablePropertyAttribute.No">
+      <summary>Specifies that a property cannot be combined with properties belonging to other objects in a Properties window. This <see langword="static" /> field is read-only.</summary>
+    </member>
+    <member name="F:System.ComponentModel.MergablePropertyAttribute.Yes">
+      <summary>Specifies that a property can be combined with properties belonging to other objects in a Properties window. This <see langword="static" /> field is read-only.</summary>
     </member>
     <member name="M:System.ComponentModel.MergablePropertyAttribute.#ctor(System.Boolean)">
       <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.MergablePropertyAttribute" /> class.</summary>
       <param name="allowMerge">
         <see langword="true" /> if this property can be combined with properties belonging to other objects in a Properties window; otherwise, <see langword="false" />.</param>
-    </member>
-    <member name="P:System.ComponentModel.MergablePropertyAttribute.AllowMerge">
-      <summary>Gets a value indicating whether this property can be combined with properties belonging to other objects in a Properties window.</summary>
-      <returns>
-        <see langword="true" /> if this property can be combined with properties belonging to other objects in a Properties window; otherwise, <see langword="false" />.</returns>
-    </member>
-    <member name="F:System.ComponentModel.MergablePropertyAttribute.Default">
-      <summary>Specifies the default value, which is <see cref="F:System.ComponentModel.MergablePropertyAttribute.Yes" />, that is a property can be combined with properties belonging to other objects in a Properties window. This <see langword="static" /> field is read-only.</summary>
     </member>
     <member name="M:System.ComponentModel.MergablePropertyAttribute.Equals(System.Object)">
       <summary>Indicates whether this instance and a specified object are equal.</summary>
@@ -685,22 +809,27 @@
       <returns>
         <see langword="true" /> if the attribute is the default value for this attribute class; otherwise, <see langword="false" />.</returns>
     </member>
-    <member name="F:System.ComponentModel.MergablePropertyAttribute.No">
-      <summary>Specifies that a property cannot be combined with properties belonging to other objects in a Properties window. This <see langword="static" /> field is read-only.</summary>
-    </member>
-    <member name="F:System.ComponentModel.MergablePropertyAttribute.Yes">
-      <summary>Specifies that a property can be combined with properties belonging to other objects in a Properties window. This <see langword="static" /> field is read-only.</summary>
+    <member name="P:System.ComponentModel.MergablePropertyAttribute.AllowMerge">
+      <summary>Gets a value indicating whether this property can be combined with properties belonging to other objects in a Properties window.</summary>
+      <returns>
+        <see langword="true" /> if this property can be combined with properties belonging to other objects in a Properties window; otherwise, <see langword="false" />.</returns>
     </member>
     <member name="T:System.ComponentModel.NotifyParentPropertyAttribute">
       <summary>Indicates that the parent property is notified when the value of the property that this attribute is applied to is modified. This class cannot be inherited.</summary>
+    </member>
+    <member name="F:System.ComponentModel.NotifyParentPropertyAttribute.Default">
+      <summary>Indicates the default attribute state, that the property should not notify the parent property of changes to its value. This field is read-only.</summary>
+    </member>
+    <member name="F:System.ComponentModel.NotifyParentPropertyAttribute.No">
+      <summary>Indicates that the parent property is not be notified of changes to the value of the property. This field is read-only.</summary>
+    </member>
+    <member name="F:System.ComponentModel.NotifyParentPropertyAttribute.Yes">
+      <summary>Indicates that the parent property is notified of changes to the value of the property. This field is read-only.</summary>
     </member>
     <member name="M:System.ComponentModel.NotifyParentPropertyAttribute.#ctor(System.Boolean)">
       <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.NotifyParentPropertyAttribute" /> class, using the specified value to determine whether the parent property is notified of changes to the value of the property.</summary>
       <param name="notifyParent">
         <see langword="true" /> if the parent should be notified of changes; otherwise, <see langword="false" />.</param>
-    </member>
-    <member name="F:System.ComponentModel.NotifyParentPropertyAttribute.Default">
-      <summary>Indicates the default attribute state, that the property should not notify the parent property of changes to its value. This field is read-only.</summary>
     </member>
     <member name="M:System.ComponentModel.NotifyParentPropertyAttribute.Equals(System.Object)">
       <summary>Gets a value indicating whether the specified object is the same as the current object.</summary>
@@ -717,19 +846,16 @@
       <returns>
         <see langword="true" /> if the current value of the attribute is the default value of the attribute; otherwise, <see langword="false" />.</returns>
     </member>
-    <member name="F:System.ComponentModel.NotifyParentPropertyAttribute.No">
-      <summary>Indicates that the parent property is not be notified of changes to the value of the property. This field is read-only.</summary>
-    </member>
     <member name="P:System.ComponentModel.NotifyParentPropertyAttribute.NotifyParent">
       <summary>Gets or sets a value indicating whether the parent property should be notified of changes to the value of the property.</summary>
       <returns>
         <see langword="true" /> if the parent property should be notified of changes; otherwise, <see langword="false" />.</returns>
     </member>
-    <member name="F:System.ComponentModel.NotifyParentPropertyAttribute.Yes">
-      <summary>Indicates that the parent property is notified of changes to the value of the property. This field is read-only.</summary>
-    </member>
     <member name="T:System.ComponentModel.ParenthesizePropertyNameAttribute">
       <summary>Indicates whether the name of the associated property is displayed with parentheses in the Properties window. This class cannot be inherited.</summary>
+    </member>
+    <member name="F:System.ComponentModel.ParenthesizePropertyNameAttribute.Default">
+      <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.ParenthesizePropertyNameAttribute" /> class with a default value that indicates that the associated property should not be shown with parentheses. This field is read-only.</summary>
     </member>
     <member name="M:System.ComponentModel.ParenthesizePropertyNameAttribute.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.ParenthesizePropertyNameAttribute" /> class that indicates that the associated property should not be shown with parentheses.</summary>
@@ -739,12 +865,9 @@
       <param name="needParenthesis">
         <see langword="true" /> if the name should be enclosed in parentheses; otherwise, <see langword="false" />.</param>
     </member>
-    <member name="F:System.ComponentModel.ParenthesizePropertyNameAttribute.Default">
-      <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.ParenthesizePropertyNameAttribute" /> class with a default value that indicates that the associated property should not be shown with parentheses. This field is read-only.</summary>
-    </member>
     <member name="M:System.ComponentModel.ParenthesizePropertyNameAttribute.Equals(System.Object)">
       <summary>Compares the specified object to this object and tests for equality.</summary>
-      <param name="o">The object to be compared.</param>
+      <param name="obj" />
       <returns>
         <see langword="true" /> if equal; otherwise, <see langword="false" />.</returns>
     </member>
@@ -765,13 +888,19 @@
     <member name="T:System.ComponentModel.ReadOnlyAttribute">
       <summary>Specifies whether the property this attribute is bound to is read-only or read/write. This class cannot be inherited.</summary>
     </member>
+    <member name="F:System.ComponentModel.ReadOnlyAttribute.Default">
+      <summary>Specifies the default value for the <see cref="T:System.ComponentModel.ReadOnlyAttribute" />, which is <see cref="F:System.ComponentModel.ReadOnlyAttribute.No" /> (that is, the property this attribute is bound to is read/write). This <see langword="static" /> field is read-only.</summary>
+    </member>
+    <member name="F:System.ComponentModel.ReadOnlyAttribute.No">
+      <summary>Specifies that the property this attribute is bound to is read/write and can be modified. This <see langword="static" /> field is read-only.</summary>
+    </member>
+    <member name="F:System.ComponentModel.ReadOnlyAttribute.Yes">
+      <summary>Specifies that the property this attribute is bound to is read-only and cannot be modified in the server explorer. This <see langword="static" /> field is read-only.</summary>
+    </member>
     <member name="M:System.ComponentModel.ReadOnlyAttribute.#ctor(System.Boolean)">
       <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.ReadOnlyAttribute" /> class.</summary>
       <param name="isReadOnly">
         <see langword="true" /> to show that the property this attribute is bound to is read-only; <see langword="false" /> to show that the property is read/write.</param>
-    </member>
-    <member name="F:System.ComponentModel.ReadOnlyAttribute.Default">
-      <summary>Specifies the default value for the <see cref="T:System.ComponentModel.ReadOnlyAttribute" />, which is <see cref="F:System.ComponentModel.ReadOnlyAttribute.No" /> (that is, the property this attribute is bound to is read/write). This <see langword="static" /> field is read-only.</summary>
     </member>
     <member name="M:System.ComponentModel.ReadOnlyAttribute.Equals(System.Object)">
       <summary>Indicates whether this instance and a specified object are equal.</summary>
@@ -793,12 +922,6 @@
       <returns>
         <see langword="true" /> if the property this attribute is bound to is read-only; <see langword="false" /> if the property is read/write.</returns>
     </member>
-    <member name="F:System.ComponentModel.ReadOnlyAttribute.No">
-      <summary>Specifies that the property this attribute is bound to is read/write and can be modified. This <see langword="static" /> field is read-only.</summary>
-    </member>
-    <member name="F:System.ComponentModel.ReadOnlyAttribute.Yes">
-      <summary>Specifies that the property this attribute is bound to is read-only and cannot be modified in the server explorer. This <see langword="static" /> field is read-only.</summary>
-    </member>
     <member name="T:System.ComponentModel.RefreshProperties">
       <summary>Defines identifiers that indicate the type of a refresh of the Properties window.</summary>
     </member>
@@ -814,19 +937,22 @@
     <member name="T:System.ComponentModel.RefreshPropertiesAttribute">
       <summary>Indicates that the property grid should refresh when the associated property value changes. This class cannot be inherited.</summary>
     </member>
-    <member name="M:System.ComponentModel.RefreshPropertiesAttribute.#ctor(System.ComponentModel.RefreshProperties)">
-      <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.RefreshPropertiesAttribute" /> class.</summary>
-      <param name="refresh">A <see cref="T:System.ComponentModel.RefreshProperties" /> value indicating the nature of the refresh.</param>
-    </member>
     <member name="F:System.ComponentModel.RefreshPropertiesAttribute.All">
       <summary>Indicates that all properties are queried again and refreshed if the property value is changed. This field is read-only.</summary>
     </member>
     <member name="F:System.ComponentModel.RefreshPropertiesAttribute.Default">
       <summary>Indicates that no other properties are refreshed if the property value is changed. This field is read-only.</summary>
     </member>
+    <member name="F:System.ComponentModel.RefreshPropertiesAttribute.Repaint">
+      <summary>Indicates that all properties are repainted if the property value is changed. This field is read-only.</summary>
+    </member>
+    <member name="M:System.ComponentModel.RefreshPropertiesAttribute.#ctor(System.ComponentModel.RefreshProperties)">
+      <summary>Initializes a new instance of the <see cref="T:System.ComponentModel.RefreshPropertiesAttribute" /> class.</summary>
+      <param name="refresh">A <see cref="T:System.ComponentModel.RefreshProperties" /> value indicating the nature of the refresh.</param>
+    </member>
     <member name="M:System.ComponentModel.RefreshPropertiesAttribute.Equals(System.Object)">
       <summary>Overrides the object's <see cref="Overload:System.Object.Equals" /> method.</summary>
-      <param name="value">The object to test for equality.</param>
+      <param name="obj" />
       <returns>
         <see langword="true" /> if the specified object is the same; otherwise, <see langword="false" />.</returns>
     </member>
@@ -842,9 +968,6 @@
     <member name="P:System.ComponentModel.RefreshPropertiesAttribute.RefreshProperties">
       <summary>Gets the refresh properties for the member.</summary>
       <returns>A <see cref="T:System.ComponentModel.RefreshProperties" /> that indicates the current refresh properties for the member.</returns>
-    </member>
-    <member name="F:System.ComponentModel.RefreshPropertiesAttribute.Repaint">
-      <summary>Indicates that all properties are repainted if the property value is changed. This field is read-only.</summary>
     </member>
   </members>
 </doc>

@@ -78,19 +78,6 @@
       <param name="rootName">An <see cref="T:System.Xml.XmlDictionaryString" /> that contains the root element name of the content.</param>
       <param name="knownTypes">An <see cref="T:System.Collections.Generic.IEnumerable`1" /> of <see cref="T:System.Type" /> that contains the types that may be present in the object graph.</param>
     </member>
-    <member name="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.DateTimeFormat">
-      <summary>Gets the format of the date and time type items in object graph.</summary>
-      <returns>The format of the date and time type items in object graph.</returns>
-    </member>
-    <member name="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.EmitTypeInformation">
-      <summary>Gets or sets the data contract JSON serializer settings to emit type information.</summary>
-      <returns>The data contract JSON serializer settings to emit type information.</returns>
-    </member>
-    <member name="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.IgnoreExtensionDataObject">
-      <summary>Gets a value that specifies whether unknown data is ignored on deserialization and whether the <see cref="T:System.Runtime.Serialization.IExtensibleDataObject" /> interface is ignored on serialization.</summary>
-      <returns>
-        <see langword="true" /> to ignore unknown data and <see cref="T:System.Runtime.Serialization.IExtensibleDataObject" />; otherwise, <see langword="false" />.</returns>
-    </member>
     <member name="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.IsStartObject(System.Xml.XmlDictionaryReader)">
       <summary>Gets a value that specifies whether the <see cref="T:System.Xml.XmlDictionaryReader" /> is positioned over an XML element that represents an object the serializer can deserialize from.</summary>
       <param name="reader">The <see cref="T:System.Xml.XmlDictionaryReader" /> used to read the XML stream mapped from JSON.</param>
@@ -102,15 +89,6 @@
       <param name="reader">The <see cref="T:System.Xml.XmlReader" /> used to read the XML stream.</param>
       <returns>
         <see langword="true" /> if the reader is positioned correctly; otherwise, <see langword="false" />.</returns>
-    </member>
-    <member name="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.KnownTypes">
-      <summary>Gets a collection of types that may be present in the object graph serialized using this instance of the <see cref="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" />.</summary>
-      <returns>A <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1" /> that contains the expected types passed in as known types to the <see cref="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" /> constructor.</returns>
-    </member>
-    <member name="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.MaxItemsInObjectGraph">
-      <summary>Gets the maximum number of items in an object graph that the serializer serializes or deserializes in one read or write call.</summary>
-      <returns>The maximum number of items to serialize or deserialize.</returns>
-      <exception cref="T:System.ArgumentOutOfRangeException">The number of items exceeds the maximum value.</exception>
     </member>
     <member name="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.ReadObject(System.IO.Stream)">
       <summary>Reads a document stream in the JSON (JavaScript Object Notation) format and returns the deserialized object.</summary>
@@ -140,16 +118,6 @@
       <param name="verifyObjectName">
         <see langword="true" /> to check whether the enclosing XML element name and namespace correspond to the expected name and namespace; otherwise, <see langword="false" />, which skips the verification. The default is <see langword="true" />.</param>
       <returns>The deserialized object.</returns>
-    </member>
-    <member name="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.SerializeReadOnlyTypes">
-      <summary>Gets or sets a value that specifies whether to serialize read only types.</summary>
-      <returns>
-        <see langword="true" /> to serialize read only types; otherwise <see langword="false" />.</returns>
-    </member>
-    <member name="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.UseSimpleDictionaryFormat">
-      <summary>Gets a value that specifies whether to use a simple dictionary format.</summary>
-      <returns>
-        <see langword="true" /> to use a simple dictionary format; otherwise, <see langword="false" />.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.Json.DataContractJsonSerializer.WriteEndObject(System.Xml.XmlDictionaryWriter)">
       <summary>Writes the closing XML element to an XML document, using an <see cref="T:System.Xml.XmlDictionaryWriter" />, which can be mapped to JavaScript Object Notation (JSON).</summary>
@@ -208,6 +176,38 @@
       <summary>Writes the opening XML element for serializing an object to XML that can be mapped to JavaScript Object Notation (JSON) using an <see cref="T:System.Xml.XmlWriter" />.</summary>
       <param name="writer">The <see cref="T:System.Xml.XmlWriter" /> used to write the XML start element.</param>
       <param name="graph">The object to write.</param>
+    </member>
+    <member name="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.DateTimeFormat">
+      <summary>Gets the format of the date and time type items in object graph.</summary>
+      <returns>The format of the date and time type items in object graph.</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.EmitTypeInformation">
+      <summary>Gets or sets the data contract JSON serializer settings to emit type information.</summary>
+      <returns>The data contract JSON serializer settings to emit type information.</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.IgnoreExtensionDataObject">
+      <summary>Gets a value that specifies whether unknown data is ignored on deserialization and whether the <see cref="T:System.Runtime.Serialization.IExtensibleDataObject" /> interface is ignored on serialization.</summary>
+      <returns>
+        <see langword="true" /> to ignore unknown data and <see cref="T:System.Runtime.Serialization.IExtensibleDataObject" />; otherwise, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.KnownTypes">
+      <summary>Gets a collection of types that may be present in the object graph serialized using this instance of the <see cref="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" />.</summary>
+      <returns>A <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1" /> that contains the expected types passed in as known types to the <see cref="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" /> constructor.</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.MaxItemsInObjectGraph">
+      <summary>Gets the maximum number of items in an object graph that the serializer serializes or deserializes in one read or write call.</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">The number of items exceeds the maximum value.</exception>
+      <returns>The maximum number of items to serialize or deserialize.</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.SerializeReadOnlyTypes">
+      <summary>Gets or sets a value that specifies whether to serialize read only types.</summary>
+      <returns>
+        <see langword="true" /> to serialize read only types; otherwise <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Json.DataContractJsonSerializer.UseSimpleDictionaryFormat">
+      <summary>Gets a value that specifies whether to use a simple dictionary format.</summary>
+      <returns>
+        <see langword="true" /> to use a simple dictionary format; otherwise, <see langword="false" />.</returns>
     </member>
     <member name="T:System.Runtime.Serialization.Json.DataContractJsonSerializerSettings">
       <summary>Specifies <see cref="T:System.Runtime.Serialization.Json.DataContractJsonSerializer" /> settings.</summary>

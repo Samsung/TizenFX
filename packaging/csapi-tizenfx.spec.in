@@ -12,6 +12,7 @@
 
 %define TIZEN_NET_RUNTIME_IDENTIFIERS @rid_version@
 %define TIZEN_NET_TARGET_FRAMEWORK_MONIKERS @tfm_support@
+%define DOTNET_CORE_RUNTIME_VERSION @dotnet_core_version@
 
 %define UPGRADE_SCRIPT_PATH /usr/share/upgrade/scripts
 
@@ -218,6 +219,7 @@ install -p -m 755 packaging/500.tizenfx_upgrade.sh %{buildroot}%{UPGRADE_SCRIPT_
 /usr/bin/vconftool set -t string db/dotnet/tizen_api_path %{DOTNET_ASSEMBLY_PATH} -f
 /usr/bin/vconftool set -t string db/dotnet/tizen_rid_version %{TIZEN_NET_RUNTIME_IDENTIFIERS} -f
 /usr/bin/vconftool set -t string db/dotnet/tizen_tfm_support %{TIZEN_NET_TARGET_FRAMEWORK_MONIKERS} -f
+/usr/bin/vconftool set -t string db/dotnet/runtime_version %{DOTNET_CORE_RUNTIME_VERSION} -f
 
 %files
 %license LICENSE

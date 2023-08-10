@@ -10,41 +10,35 @@
     <member name="M:System.Net.AuthenticationManager.Authenticate(System.String,System.Net.WebRequest,System.Net.ICredentials)">
       <summary>Calls each registered authentication module to find the first module that can respond to the authentication request.</summary>
       <param name="challenge">The challenge returned by the Internet resource.</param>
-      <param name="request">The <see cref="T:System.Net.WebRequest" /> that initiated the authentication challenge.</param>
-      <param name="credentials">The <see cref="T:System.Net.ICredentials" /> associated with this request.</param>
-      <returns>An instance of the <see cref="T:System.Net.Authorization" /> class containing the result of the authorization attempt. If there is no authentication module to respond to the challenge, this method returns <see langword="null" />.</returns>
+      <param name="request">The request that initiated the authentication challenge.</param>
+      <param name="credentials">The credentials associated with this request.</param>
+      <exception cref="T:System.PlatformNotSupportedException">.NET Core and .NET 5+ only: In all cases.</exception>
       <exception cref="T:System.ArgumentNullException">
-        <paramref name="challenge" /> is <see langword="null" />.
--or-
-<paramref name="request" /> is <see langword="null" />.
--or-
-<paramref name="credentials" /> is <see langword="null" />.</exception>
-    </member>
-    <member name="P:System.Net.AuthenticationManager.CredentialPolicy">
-      <summary>Gets or sets the credential policy to be used for resource requests made using the <see cref="T:System.Net.HttpWebRequest" /> class.</summary>
-      <returns>An object that implements the <see cref="T:System.Net.ICredentialPolicy" /> interface that determines whether credentials are sent with requests. The default value is <see langword="null" />.</returns>
-    </member>
-    <member name="P:System.Net.AuthenticationManager.CustomTargetNameDictionary">
-      <summary>Gets the dictionary that contains Service Principal Names (SPNs) that are used to identify hosts during Kerberos authentication for requests made using <see cref="T:System.Net.WebRequest" /> and its derived classes.</summary>
-      <returns>A writable <see cref="T:System.Collections.Specialized.StringDictionary" /> that contains the SPN values for keys composed of host information.</returns>
+        <paramref name="challenge" /> is <see langword="null" />.  
+  
+ -or-  
+  
+ <paramref name="request" /> is <see langword="null" />.  
+  
+ -or-  
+  
+ <paramref name="credentials" /> is <see langword="null" />.</exception>
+      <returns>An instance of the <see cref="T:System.Net.Authorization" /> class containing the result of the authorization attempt. If there is no authentication module to respond to the challenge, this method returns <see langword="null" />.</returns>
     </member>
     <member name="M:System.Net.AuthenticationManager.PreAuthenticate(System.Net.WebRequest,System.Net.ICredentials)">
       <summary>Preauthenticates a request.</summary>
-      <param name="request">A <see cref="T:System.Net.WebRequest" /> to an Internet resource.</param>
-      <param name="credentials">The <see cref="T:System.Net.ICredentials" /> associated with the request.</param>
-      <returns>An instance of the <see cref="T:System.Net.Authorization" /> class if the request can be preauthenticated; otherwise, <see langword="null" />. If <paramref name="credentials" /> is <see langword="null" />, this method returns <see langword="null" />.</returns>
+      <param name="request">A request to an internet resource.</param>
+      <param name="credentials">The credentials associated with the request.</param>
+      <exception cref="T:System.PlatformNotSupportedException">.NET Core and .NET 5+ only: In all cases.</exception>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="request" /> is <see langword="null" />.</exception>
+      <returns>An instance of the <see cref="T:System.Net.Authorization" /> class if the request can be preauthenticated; otherwise, <see langword="null" />. If <paramref name="credentials" /> is <see langword="null" />, this method returns <see langword="null" />.</returns>
     </member>
     <member name="M:System.Net.AuthenticationManager.Register(System.Net.IAuthenticationModule)">
       <summary>Registers an authentication module with the authentication manager.</summary>
       <param name="authenticationModule">The <see cref="T:System.Net.IAuthenticationModule" /> to register with the authentication manager.</param>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="authenticationModule" /> is <see langword="null" />.</exception>
-    </member>
-    <member name="P:System.Net.AuthenticationManager.RegisteredModules">
-      <summary>Gets a list of authentication modules that are registered with the authentication manager.</summary>
-      <returns>An <see cref="T:System.Collections.IEnumerator" /> that enables the registered authentication modules to be read.</returns>
     </member>
     <member name="M:System.Net.AuthenticationManager.Unregister(System.Net.IAuthenticationModule)">
       <summary>Removes the specified authentication module from the list of registered modules.</summary>
@@ -59,6 +53,18 @@
       <exception cref="T:System.ArgumentNullException">
         <paramref name="authenticationScheme" /> is <see langword="null" />.</exception>
       <exception cref="T:System.InvalidOperationException">A module for this authentication scheme is not registered.</exception>
+    </member>
+    <member name="P:System.Net.AuthenticationManager.CredentialPolicy">
+      <summary>Gets or sets the credential policy to be used for resource requests made using the <see cref="T:System.Net.HttpWebRequest" /> class.</summary>
+      <returns>An object that implements the <see cref="T:System.Net.ICredentialPolicy" /> interface that determines whether credentials are sent with requests. The default value is <see langword="null" />.</returns>
+    </member>
+    <member name="P:System.Net.AuthenticationManager.CustomTargetNameDictionary">
+      <summary>Gets the dictionary that contains Service Principal Names (SPNs) that are used to identify hosts during Kerberos authentication for requests made using <see cref="T:System.Net.WebRequest" /> and its derived classes.</summary>
+      <returns>A writable <see cref="T:System.Collections.Specialized.StringDictionary" /> that contains the SPN values for keys composed of host information.</returns>
+    </member>
+    <member name="P:System.Net.AuthenticationManager.RegisteredModules">
+      <summary>Gets a list of authentication modules that are registered with the authentication manager.</summary>
+      <returns>An <see cref="T:System.Collections.IEnumerator" /> that enables the registered authentication modules to be read.</returns>
     </member>
     <member name="T:System.Net.Authorization">
       <summary>Contains an authentication message for an Internet server.</summary>
@@ -187,6 +193,10 @@
       <summary>Initializes a new instance of the <see cref="T:System.Net.Cache.HttpRequestCachePolicy" /> class using the specified cache policy.</summary>
       <param name="level">An <see cref="T:System.Net.Cache.HttpRequestCacheLevel" /> value.</param>
     </member>
+    <member name="M:System.Net.Cache.HttpRequestCachePolicy.ToString">
+      <summary>Returns a string representation of this instance.</summary>
+      <returns>A <see cref="T:System.String" /> value that contains the property values for this instance.</returns>
+    </member>
     <member name="P:System.Net.Cache.HttpRequestCachePolicy.CacheSyncDate">
       <summary>Gets the cache synchronization date for this instance.</summary>
       <returns>A <see cref="T:System.DateTime" /> value set to the date specified when this instance was created. If no date was specified, this property's value is <see cref="F:System.DateTime.MinValue" />.</returns>
@@ -207,10 +217,6 @@
       <summary>Gets the minimum freshness that is permitted for a resource returned from the cache.</summary>
       <returns>A <see cref="T:System.TimeSpan" /> value that specifies the minimum freshness specified when this instance was created. If no date was specified, this property's value is <see cref="F:System.DateTime.MinValue" />.</returns>
     </member>
-    <member name="M:System.Net.Cache.HttpRequestCachePolicy.ToString">
-      <summary>Returns a string representation of this instance.</summary>
-      <returns>A <see cref="T:System.String" /> value that contains the property values for this instance.</returns>
-    </member>
     <member name="T:System.Net.FileWebRequest">
       <summary>Provides a file system implementation of the <see cref="T:System.Net.WebRequest" /> class.</summary>
     </member>
@@ -226,19 +232,70 @@
       <summary>Begins an asynchronous request for a <see cref="T:System.IO.Stream" /> object to use to write data.</summary>
       <param name="callback">The <see cref="T:System.AsyncCallback" /> delegate.</param>
       <param name="state">An object that contains state information for this request.</param>
-      <returns>An <see cref="T:System.IAsyncResult" /> that references the asynchronous request.</returns>
       <exception cref="T:System.Net.ProtocolViolationException">The <see cref="P:System.Net.FileWebRequest.Method" /> property is <c>GET</c> and the application writes to the stream.</exception>
       <exception cref="T:System.InvalidOperationException">The stream is being used by a previous call to <see cref="M:System.Net.FileWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" />.</exception>
       <exception cref="T:System.ApplicationException">No write stream is available.</exception>
       <exception cref="T:System.Net.WebException">The <see cref="T:System.Net.FileWebRequest" /> was aborted.</exception>
+      <returns>An <see cref="T:System.IAsyncResult" /> that references the asynchronous request.</returns>
     </member>
     <member name="M:System.Net.FileWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)">
       <summary>Begins an asynchronous request for a file system resource.</summary>
       <param name="callback">The <see cref="T:System.AsyncCallback" /> delegate.</param>
       <param name="state">An object that contains state information for this request.</param>
-      <returns>An <see cref="T:System.IAsyncResult" /> that references the asynchronous request.</returns>
       <exception cref="T:System.InvalidOperationException">The stream is already in use by a previous call to <see cref="M:System.Net.FileWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" />.</exception>
       <exception cref="T:System.Net.WebException">The <see cref="T:System.Net.FileWebRequest" /> was aborted.</exception>
+      <returns>An <see cref="T:System.IAsyncResult" /> that references the asynchronous request.</returns>
+    </member>
+    <member name="M:System.Net.FileWebRequest.EndGetRequestStream(System.IAsyncResult)">
+      <summary>Ends an asynchronous request for a <see cref="T:System.IO.Stream" /> instance that the application uses to write data.</summary>
+      <param name="asyncResult">An <see cref="T:System.IAsyncResult" /> that references the pending request for a stream.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="asyncResult" /> is <see langword="null" />.</exception>
+      <returns>A <see cref="T:System.IO.Stream" /> object that the application uses to write data.</returns>
+    </member>
+    <member name="M:System.Net.FileWebRequest.EndGetResponse(System.IAsyncResult)">
+      <summary>Ends an asynchronous request for a file system resource.</summary>
+      <param name="asyncResult">An <see cref="T:System.IAsyncResult" /> that references the pending request for a response.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="asyncResult" /> is <see langword="null" />.</exception>
+      <returns>A <see cref="T:System.Net.WebResponse" /> that contains the response from the file system resource.</returns>
+    </member>
+    <member name="M:System.Net.FileWebRequest.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo" /> with the data needed to serialize the target object.</summary>
+      <param name="serializationInfo">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> to populate with data.</param>
+      <param name="streamingContext">A <see cref="T:System.Runtime.Serialization.StreamingContext" /> that specifies the destination for this serialization.</param>
+    </member>
+    <member name="M:System.Net.FileWebRequest.GetRequestStream">
+      <summary>Returns a <see cref="T:System.IO.Stream" /> object for writing data to the file system resource.</summary>
+      <exception cref="T:System.Net.WebException">The request times out.</exception>
+      <returns>A <see cref="T:System.IO.Stream" /> for writing data to the file system resource.</returns>
+    </member>
+    <member name="M:System.Net.FileWebRequest.GetRequestStreamAsync">
+      <summary>Returns a stream for writing data to the file system resource as an asynchronous operation.</summary>
+      <exception cref="T:System.InvalidOperationException">The stream is being used by a previous call to <see cref="M:System.Net.FileWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" />.
+
+-or-
+
+The stream already received a response previous to your request.</exception>
+      <exception cref="T:System.Net.ProtocolViolationException">The <see cref="P:System.Net.FileWebRequest.Method" /> property is GET or HEAD.</exception>
+      <exception cref="T:System.Net.WebException">The <see cref="T:System.Net.FileWebRequest" /> was aborted.</exception>
+      <returns>The task object representing the asynchronous operation.</returns>
+    </member>
+    <member name="M:System.Net.FileWebRequest.GetResponse">
+      <summary>Returns a response to a file system request.</summary>
+      <exception cref="T:System.Net.WebException">The request timed out.</exception>
+      <returns>A <see cref="T:System.Net.WebResponse" /> that contains the response from the file system resource.</returns>
+    </member>
+    <member name="M:System.Net.FileWebRequest.GetResponseAsync">
+      <summary>Returns a response to a file system request as an asynchronous operation.</summary>
+      <exception cref="T:System.InvalidOperationException">The stream is already in use by a previous call to <see cref="M:System.Net.FileWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" />.</exception>
+      <exception cref="T:System.Net.WebException">The <see cref="T:System.Net.FileWebRequest" /> was aborted.</exception>
+      <returns>The task object representing the asynchronous operation.</returns>
+    </member>
+    <member name="M:System.Net.FileWebRequest.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo" /> object with the required data to serialize the <see cref="T:System.Net.FileWebRequest" />.</summary>
+      <param name="serializationInfo">A <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized data for the <see cref="T:System.Net.FileWebRequest" />.</param>
+      <param name="streamingContext">A <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains the destination of the serialized stream that is associated with the new <see cref="T:System.Net.FileWebRequest" />.</param>
     </member>
     <member name="P:System.Net.FileWebRequest.ConnectionGroupName">
       <summary>Gets or sets the name of the connection group for the request. This property is reserved for future use.</summary>
@@ -246,9 +303,9 @@
     </member>
     <member name="P:System.Net.FileWebRequest.ContentLength">
       <summary>Gets or sets the content length of the data being sent.</summary>
-      <returns>The number of bytes of request data being sent.</returns>
       <exception cref="T:System.ArgumentException">
         <see cref="P:System.Net.FileWebRequest.ContentLength" /> is less than 0.</exception>
+      <returns>The number of bytes of request data being sent.</returns>
     </member>
     <member name="P:System.Net.FileWebRequest.ContentType">
       <summary>Gets or sets the content type of the data being sent. This property is reserved for future use.</summary>
@@ -258,62 +315,22 @@
       <summary>Gets or sets the credentials that are associated with this request. This property is reserved for future use.</summary>
       <returns>An <see cref="T:System.Net.ICredentials" /> that contains the authentication credentials that are associated with this request. The default is <see langword="null" />.</returns>
     </member>
-    <member name="M:System.Net.FileWebRequest.EndGetRequestStream(System.IAsyncResult)">
-      <summary>Ends an asynchronous request for a <see cref="T:System.IO.Stream" /> instance that the application uses to write data.</summary>
-      <param name="asyncResult">An <see cref="T:System.IAsyncResult" /> that references the pending request for a stream.</param>
-      <returns>A <see cref="T:System.IO.Stream" /> object that the application uses to write data.</returns>
-      <exception cref="T:System.ArgumentNullException">
-        <paramref name="asyncResult" /> is <see langword="null" />.</exception>
-    </member>
-    <member name="M:System.Net.FileWebRequest.EndGetResponse(System.IAsyncResult)">
-      <summary>Ends an asynchronous request for a file system resource.</summary>
-      <param name="asyncResult">An <see cref="T:System.IAsyncResult" /> that references the pending request for a response.</param>
-      <returns>A <see cref="T:System.Net.WebResponse" /> that contains the response from the file system resource.</returns>
-      <exception cref="T:System.ArgumentNullException">
-        <paramref name="asyncResult" /> is <see langword="null" />.</exception>
-    </member>
-    <member name="M:System.Net.FileWebRequest.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-      <summary>Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo" /> with the data needed to serialize the target object.</summary>
-      <param name="serializationInfo">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> to populate with data.</param>
-      <param name="streamingContext">A <see cref="T:System.Runtime.Serialization.StreamingContext" /> that specifies the destination for this serialization.</param>
-    </member>
-    <member name="M:System.Net.FileWebRequest.GetRequestStream">
-      <summary>Returns a <see cref="T:System.IO.Stream" /> object for writing data to the file system resource.</summary>
-      <returns>A <see cref="T:System.IO.Stream" /> for writing data to the file system resource.</returns>
-      <exception cref="T:System.Net.WebException">The request times out.</exception>
-    </member>
-    <member name="M:System.Net.FileWebRequest.GetRequestStreamAsync">
-      <summary>Returns a stream for writing data to the file system resource as an asynchronous operation.</summary>
-      <returns>The task object representing the asynchronous operation.</returns>
-      <exception cref="T:System.InvalidOperationException">The stream is being used by a previous call to <see cref="M:System.Net.FileWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" />.
--or-
-The stream already received a response previous to your request.</exception>
-      <exception cref="T:System.Net.ProtocolViolationException">The <see cref="P:System.Net.FileWebRequest.Method" /> property is GET or HEAD.</exception>
-      <exception cref="T:System.Net.WebException">The <see cref="T:System.Net.FileWebRequest" /> was aborted.</exception>
-    </member>
-    <member name="M:System.Net.FileWebRequest.GetResponse">
-      <summary>Returns a response to a file system request.</summary>
-      <returns>A <see cref="T:System.Net.WebResponse" /> that contains the response from the file system resource.</returns>
-      <exception cref="T:System.Net.WebException">The request timed out.</exception>
-    </member>
-    <member name="M:System.Net.FileWebRequest.GetResponseAsync">
-      <summary>Returns a response to a file system request as an asynchronous operation.</summary>
-      <returns>The task object representing the asynchronous operation.</returns>
-      <exception cref="T:System.InvalidOperationException">The stream is already in use by a previous call to <see cref="M:System.Net.FileWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" />.</exception>
-      <exception cref="T:System.Net.WebException">The <see cref="T:System.Net.FileWebRequest" /> was aborted.</exception>
-    </member>
     <member name="P:System.Net.FileWebRequest.Headers">
       <summary>Gets a collection of the name/value pairs that are associated with the request. This property is reserved for future use.</summary>
       <returns>A <see cref="T:System.Net.WebHeaderCollection" /> that contains header name/value pairs associated with this request.</returns>
     </member>
     <member name="P:System.Net.FileWebRequest.Method">
       <summary>Gets or sets the protocol method used for the request. This property is reserved for future use.</summary>
+      <exception cref="T:System.ArgumentException">The method is invalid.  
+  
+-or-
+  
+ The method is not supported.  
+  
+-or-
+  
+ Multiple methods were specified.</exception>
       <returns>The protocol method to use in this request.</returns>
-      <exception cref="T:System.ArgumentException">The method is invalid.
--or-
-The method is not supported.
--or-
-Multiple methods were specified.</exception>
     </member>
     <member name="P:System.Net.FileWebRequest.PreAuthenticate">
       <summary>Gets or sets a value that indicates whether to preauthenticate a request. This property is reserved for future use.</summary>
@@ -328,20 +345,15 @@ Multiple methods were specified.</exception>
       <summary>Gets the Uniform Resource Identifier (URI) of the request.</summary>
       <returns>A <see cref="T:System.Uri" /> that contains the URI of the request.</returns>
     </member>
-    <member name="M:System.Net.FileWebRequest.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-      <summary>Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo" /> object with the required data to serialize the <see cref="T:System.Net.FileWebRequest" />.</summary>
-      <param name="serializationInfo">A <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that holds the serialized data for the <see cref="T:System.Net.FileWebRequest" />.</param>
-      <param name="streamingContext">A <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains the destination of the serialized stream that is associated with the new <see cref="T:System.Net.FileWebRequest" />.</param>
-    </member>
     <member name="P:System.Net.FileWebRequest.Timeout">
       <summary>Gets or sets the length of time until the request times out.</summary>
-      <returns>The time, in milliseconds, until the request times out, or the value <see cref="F:System.Threading.Timeout.Infinite" /> to indicate that the request does not time out.</returns>
       <exception cref="T:System.ArgumentOutOfRangeException">The value specified is less than or equal to zero and is not <see cref="F:System.Threading.Timeout.Infinite" />.</exception>
+      <returns>The time, in milliseconds, until the request times out, or the value <see cref="F:System.Threading.Timeout.Infinite" /> to indicate that the request does not time out.</returns>
     </member>
     <member name="P:System.Net.FileWebRequest.UseDefaultCredentials">
       <summary>Always throws a <see cref="T:System.NotSupportedException" />.</summary>
-      <returns>Always throws a <see cref="T:System.NotSupportedException" />.</returns>
       <exception cref="T:System.NotSupportedException">Default credentials are not supported for file Uniform Resource Identifiers (URIs).</exception>
+      <returns>Always throws a <see cref="T:System.NotSupportedException" />.</returns>
     </member>
     <member name="T:System.Net.FileWebResponse">
       <summary>Provides a file system implementation of the <see cref="T:System.Net.WebResponse" /> class.</summary>
@@ -354,14 +366,6 @@ Multiple methods were specified.</exception>
     <member name="M:System.Net.FileWebResponse.Close">
       <summary>Closes the response stream.</summary>
     </member>
-    <member name="P:System.Net.FileWebResponse.ContentLength">
-      <summary>Gets the length of the content in the file system resource.</summary>
-      <returns>The number of bytes returned from the file system resource.</returns>
-    </member>
-    <member name="P:System.Net.FileWebResponse.ContentType">
-      <summary>Gets the content type of the file system resource.</summary>
-      <returns>The value "binary/octet-stream".</returns>
-    </member>
     <member name="M:System.Net.FileWebResponse.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
       <summary>Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo" /> with the data needed to serialize the target object.</summary>
       <param name="serializationInfo">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> to populate with data.</param>
@@ -370,6 +374,19 @@ Multiple methods were specified.</exception>
     <member name="M:System.Net.FileWebResponse.GetResponseStream">
       <summary>Returns the data stream from the file system resource.</summary>
       <returns>A <see cref="T:System.IO.Stream" /> for reading data from the file system resource.</returns>
+    </member>
+    <member name="M:System.Net.FileWebResponse.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo" /> instance with the data needed to serialize the <see cref="T:System.Net.FileWebResponse" />.</summary>
+      <param name="serializationInfo">A <see cref="T:System.Runtime.Serialization.SerializationInfo" /> , which will hold the serialized data for the <see cref="T:System.Net.FileWebResponse" />.</param>
+      <param name="streamingContext">A <see cref="T:System.Runtime.Serialization.StreamingContext" /> containing the destination of the serialized stream associated with the new <see cref="T:System.Net.FileWebResponse" />.</param>
+    </member>
+    <member name="P:System.Net.FileWebResponse.ContentLength">
+      <summary>Gets the length of the content in the file system resource.</summary>
+      <returns>The number of bytes returned from the file system resource.</returns>
+    </member>
+    <member name="P:System.Net.FileWebResponse.ContentType">
+      <summary>Gets the content type of the file system resource.</summary>
+      <returns>The value "binary/octet-stream".</returns>
     </member>
     <member name="P:System.Net.FileWebResponse.Headers">
       <summary>Gets a collection of header name/value pairs associated with the response.</summary>
@@ -383,11 +400,6 @@ Multiple methods were specified.</exception>
       <summary>Gets a value that indicates whether the <see cref="P:System.Net.FileWebResponse.Headers" /> property is supported by the <see cref="T:System.Net.FileWebResponse" /> instance.</summary>
       <returns>
         <see langword="true" /> if the <see cref="P:System.Net.FileWebResponse.Headers" /> property is supported by the <see cref="T:System.Net.FileWebResponse" /> instance; otherwise, <see langword="false" />.</returns>
-    </member>
-    <member name="M:System.Net.FileWebResponse.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-      <summary>Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo" /> instance with the data needed to serialize the <see cref="T:System.Net.FileWebResponse" />.</summary>
-      <param name="serializationInfo">A <see cref="T:System.Runtime.Serialization.SerializationInfo" /> , which will hold the serialized data for the <see cref="T:System.Net.FileWebResponse" />.</param>
-      <param name="streamingContext">A <see cref="T:System.Runtime.Serialization.StreamingContext" /> containing the destination of the serialized stream associated with the new <see cref="T:System.Net.FileWebResponse" />.</param>
     </member>
     <member name="T:System.Net.FtpStatusCode">
       <summary>Specifies the status codes returned for a File Transfer Protocol (FTP) operation.</summary>
@@ -513,28 +525,77 @@ Multiple methods were specified.</exception>
       <summary>Begins asynchronously opening a request's content stream for writing.</summary>
       <param name="callback">An <see cref="T:System.AsyncCallback" /> delegate that references the method to invoke when the operation is complete.</param>
       <param name="state">A user-defined object that contains information about the operation. This object is passed to the <paramref name="callback" /> delegate when the operation completes.</param>
-      <returns>An <see cref="T:System.IAsyncResult" /> instance that indicates the status of the operation.</returns>
       <exception cref="T:System.InvalidOperationException">A previous call to this method or <see cref="M:System.Net.FtpWebRequest.GetRequestStream" /> has not yet completed.</exception>
       <exception cref="T:System.Net.WebException">A connection to the FTP server could not be established.</exception>
       <exception cref="T:System.Net.ProtocolViolationException">The <see cref="P:System.Net.FtpWebRequest.Method" /> property is not set to <see cref="F:System.Net.WebRequestMethods.Ftp.UploadFile" />.</exception>
+      <returns>An <see cref="T:System.IAsyncResult" /> instance that indicates the status of the operation.</returns>
     </member>
     <member name="M:System.Net.FtpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)">
       <summary>Begins sending a request and receiving a response from an FTP server asynchronously.</summary>
       <param name="callback">An <see cref="T:System.AsyncCallback" /> delegate that references the method to invoke when the operation is complete.</param>
       <param name="state">A user-defined object that contains information about the operation. This object is passed to the <paramref name="callback" /> delegate when the operation completes.</param>
-      <returns>An <see cref="T:System.IAsyncResult" /> instance that indicates the status of the operation.</returns>
       <exception cref="T:System.InvalidOperationException">
         <see cref="M:System.Net.FtpWebRequest.GetResponse" /> or <see cref="M:System.Net.FtpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" /> has already been called for this instance.</exception>
+      <returns>An <see cref="T:System.IAsyncResult" /> instance that indicates the status of the operation.</returns>
+    </member>
+    <member name="M:System.Net.FtpWebRequest.EndGetRequestStream(System.IAsyncResult)">
+      <summary>Ends a pending asynchronous operation started with <see cref="M:System.Net.FtpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" />.</summary>
+      <param name="asyncResult">The <see cref="T:System.IAsyncResult" /> object that was returned when the operation started.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="asyncResult" /> is <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="asyncResult" /> was not obtained by calling <see cref="M:System.Net.FtpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" />.</exception>
+      <exception cref="T:System.InvalidOperationException">This method was already called for the operation identified by <paramref name="asyncResult" />.</exception>
+      <returns>A writable <see cref="T:System.IO.Stream" /> instance associated with this instance.</returns>
+    </member>
+    <member name="M:System.Net.FtpWebRequest.EndGetResponse(System.IAsyncResult)">
+      <summary>Ends a pending asynchronous operation started with <see cref="M:System.Net.FtpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" />.</summary>
+      <param name="asyncResult">The <see cref="T:System.IAsyncResult" /> that was returned when the operation started.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="asyncResult" /> is <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="asyncResult" /> was not obtained by calling <see cref="M:System.Net.FtpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" />.</exception>
+      <exception cref="T:System.InvalidOperationException">This method was already called for the operation identified by <paramref name="asyncResult" />.</exception>
+      <exception cref="T:System.Net.WebException">An error occurred using an HTTP proxy.</exception>
+      <returns>A <see cref="T:System.Net.WebResponse" /> reference that contains an <see cref="T:System.Net.FtpWebResponse" /> instance. This object contains the FTP server's response to the request.</returns>
+    </member>
+    <member name="M:System.Net.FtpWebRequest.GetRequestStream">
+      <summary>Retrieves the stream used to upload data to an FTP server.</summary>
+      <exception cref="T:System.InvalidOperationException">
+        <see cref="M:System.Net.FtpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" /> has been called and has not completed.  
+  
+-or-
+  
+ An HTTP proxy is enabled, and you attempted to use an FTP command other than <see cref="F:System.Net.WebRequestMethods.Ftp.DownloadFile" />, <see cref="F:System.Net.WebRequestMethods.Ftp.ListDirectory" />, or <see cref="F:System.Net.WebRequestMethods.Ftp.ListDirectoryDetails" />.</exception>
+      <exception cref="T:System.Net.WebException">A connection to the FTP server could not be established.</exception>
+      <exception cref="T:System.Net.ProtocolViolationException">The <see cref="P:System.Net.FtpWebRequest.Method" /> property is not set to <see cref="F:System.Net.WebRequestMethods.Ftp.UploadFile" /> or <see cref="F:System.Net.WebRequestMethods.Ftp.AppendFile" />.</exception>
+      <returns>A writable <see cref="T:System.IO.Stream" /> instance used to store data to be sent to the server by the current request.</returns>
+    </member>
+    <member name="M:System.Net.FtpWebRequest.GetResponse">
+      <summary>Returns the FTP server response.</summary>
+      <exception cref="T:System.InvalidOperationException">
+        <see cref="M:System.Net.FtpWebRequest.GetResponse" /> or <see cref="M:System.Net.FtpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" /> has already been called for this instance.  
+  
+-or-
+  
+ An HTTP proxy is enabled, and you attempted to use an FTP command other than <see cref="F:System.Net.WebRequestMethods.Ftp.DownloadFile" />, <see cref="F:System.Net.WebRequestMethods.Ftp.ListDirectory" />, or <see cref="F:System.Net.WebRequestMethods.Ftp.ListDirectoryDetails" />.</exception>
+      <exception cref="T:System.Net.WebException">
+        <see cref="P:System.Net.FtpWebRequest.EnableSsl" /> is set to <see langword="true" />, but the server does not support this feature.  
+  
+-or-
+  
+ A <see cref="P:System.Net.FtpWebRequest.Timeout" /> was specified and the timeout has expired.</exception>
+      <returns>A <see cref="T:System.Net.WebResponse" /> reference that contains an <see cref="T:System.Net.FtpWebResponse" /> instance. This object contains the FTP server's response to the request.</returns>
     </member>
     <member name="P:System.Net.FtpWebRequest.ClientCertificates">
       <summary>Gets or sets the certificates used for establishing an encrypted connection to the FTP server.</summary>
-      <returns>An <see cref="T:System.Security.Cryptography.X509Certificates.X509CertificateCollection" /> object that contains the client certificates.</returns>
       <exception cref="T:System.ArgumentNullException">The value specified for a set operation is <see langword="null" />.</exception>
+      <returns>An <see cref="T:System.Security.Cryptography.X509Certificates.X509CertificateCollection" /> object that contains the client certificates.</returns>
     </member>
     <member name="P:System.Net.FtpWebRequest.ConnectionGroupName">
       <summary>Gets or sets the name of the connection group that contains the service point used to send the current request.</summary>
-      <returns>A <see cref="T:System.String" /> value that contains a connection group name.</returns>
       <exception cref="T:System.InvalidOperationException">A new value was specified for this property for a request that is already in progress.</exception>
+      <returns>A <see cref="T:System.String" /> value that contains a connection group name.</returns>
     </member>
     <member name="P:System.Net.FtpWebRequest.ContentLength">
       <summary>Gets or sets a value that is ignored by the <see cref="T:System.Net.FtpWebRequest" /> class.</summary>
@@ -542,75 +603,32 @@ Multiple methods were specified.</exception>
     </member>
     <member name="P:System.Net.FtpWebRequest.ContentOffset">
       <summary>Gets or sets a byte offset into the file being downloaded by this request.</summary>
-      <returns>An <see cref="T:System.Int64" /> instance that specifies the file offset, in bytes. The default value is zero.</returns>
       <exception cref="T:System.InvalidOperationException">A new value was specified for this property for a request that is already in progress.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">The value specified for this property is less than zero.</exception>
+      <returns>An <see cref="T:System.Int64" /> instance that specifies the file offset, in bytes. The default value is zero.</returns>
     </member>
     <member name="P:System.Net.FtpWebRequest.ContentType">
       <summary>Always throws a <see cref="T:System.NotSupportedException" />.</summary>
-      <returns>Always throws a <see cref="T:System.NotSupportedException" />.</returns>
       <exception cref="T:System.NotSupportedException">Content type information is not supported for FTP.</exception>
+      <returns>Always throws a <see cref="T:System.NotSupportedException" />.</returns>
     </member>
     <member name="P:System.Net.FtpWebRequest.Credentials">
       <summary>Gets or sets the credentials used to communicate with the FTP server.</summary>
-      <returns>An <see cref="T:System.Net.ICredentials" /> instance; otherwise, <see langword="null" /> if the property has not been set.</returns>
       <exception cref="T:System.ArgumentNullException">The value specified for a set operation is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentException">An <see cref="T:System.Net.ICredentials" /> of a type other than <see cref="T:System.Net.NetworkCredential" /> was specified for a set operation.</exception>
       <exception cref="T:System.InvalidOperationException">A new value was specified for this property for a request that is already in progress.</exception>
+      <returns>An <see cref="T:System.Net.ICredentials" /> instance; otherwise, <see langword="null" /> if the property has not been set.</returns>
     </member>
     <member name="P:System.Net.FtpWebRequest.DefaultCachePolicy">
       <summary>Defines the default cache policy for all FTP requests.</summary>
-      <returns>A <see cref="T:System.Net.Cache.RequestCachePolicy" /> that defines the cache policy for FTP requests.</returns>
       <exception cref="T:System.ArgumentNullException">The caller tried to set this property to <see langword="null" />.</exception>
+      <returns>A <see cref="T:System.Net.Cache.RequestCachePolicy" /> that defines the cache policy for FTP requests.</returns>
     </member>
     <member name="P:System.Net.FtpWebRequest.EnableSsl">
       <summary>Gets or sets a <see cref="T:System.Boolean" /> that specifies that an SSL connection should be used.</summary>
+      <exception cref="T:System.InvalidOperationException">The connection to the FTP server has already been established.</exception>
       <returns>
         <see langword="true" /> if control and data transmissions are encrypted; otherwise, <see langword="false" />. The default value is <see langword="false" />.</returns>
-      <exception cref="T:System.InvalidOperationException">The connection to the FTP server has already been established.</exception>
-    </member>
-    <member name="M:System.Net.FtpWebRequest.EndGetRequestStream(System.IAsyncResult)">
-      <summary>Ends a pending asynchronous operation started with <see cref="M:System.Net.FtpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" />.</summary>
-      <param name="asyncResult">The <see cref="T:System.IAsyncResult" /> object that was returned when the operation started.</param>
-      <returns>A writable <see cref="T:System.IO.Stream" /> instance associated with this instance.</returns>
-      <exception cref="T:System.ArgumentNullException">
-        <paramref name="asyncResult" /> is <see langword="null" />.</exception>
-      <exception cref="T:System.ArgumentException">
-        <paramref name="asyncResult" /> was not obtained by calling <see cref="M:System.Net.FtpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" />.</exception>
-      <exception cref="T:System.InvalidOperationException">This method was already called for the operation identified by <paramref name="asyncResult" />.</exception>
-    </member>
-    <member name="M:System.Net.FtpWebRequest.EndGetResponse(System.IAsyncResult)">
-      <summary>Ends a pending asynchronous operation started with <see cref="M:System.Net.FtpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" />.</summary>
-      <param name="asyncResult">The <see cref="T:System.IAsyncResult" /> that was returned when the operation started.</param>
-      <returns>A <see cref="T:System.Net.WebResponse" /> reference that contains an <see cref="T:System.Net.FtpWebResponse" /> instance. This object contains the FTP server's response to the request.</returns>
-      <exception cref="T:System.ArgumentNullException">
-        <paramref name="asyncResult" /> is <see langword="null" />.</exception>
-      <exception cref="T:System.ArgumentException">
-        <paramref name="asyncResult" /> was not obtained by calling <see cref="M:System.Net.FtpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" />.</exception>
-      <exception cref="T:System.InvalidOperationException">This method was already called for the operation identified by <paramref name="asyncResult" />.</exception>
-      <exception cref="T:System.Net.WebException">An error occurred using an HTTP proxy.</exception>
-    </member>
-    <member name="M:System.Net.FtpWebRequest.GetRequestStream">
-      <summary>Retrieves the stream used to upload data to an FTP server.</summary>
-      <returns>A writable <see cref="T:System.IO.Stream" /> instance used to store data to be sent to the server by the current request.</returns>
-      <exception cref="T:System.InvalidOperationException">
-        <see cref="M:System.Net.FtpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" /> has been called and has not completed.
--or-
-An HTTP proxy is enabled, and you attempted to use an FTP command other than <see cref="F:System.Net.WebRequestMethods.Ftp.DownloadFile" />, <see cref="F:System.Net.WebRequestMethods.Ftp.ListDirectory" />, or <see cref="F:System.Net.WebRequestMethods.Ftp.ListDirectoryDetails" />.</exception>
-      <exception cref="T:System.Net.WebException">A connection to the FTP server could not be established.</exception>
-      <exception cref="T:System.Net.ProtocolViolationException">The <see cref="P:System.Net.FtpWebRequest.Method" /> property is not set to <see cref="F:System.Net.WebRequestMethods.Ftp.UploadFile" /> or <see cref="F:System.Net.WebRequestMethods.Ftp.AppendFile" />.</exception>
-    </member>
-    <member name="M:System.Net.FtpWebRequest.GetResponse">
-      <summary>Returns the FTP server response.</summary>
-      <returns>A <see cref="T:System.Net.WebResponse" /> reference that contains an <see cref="T:System.Net.FtpWebResponse" /> instance. This object contains the FTP server's response to the request.</returns>
-      <exception cref="T:System.InvalidOperationException">
-        <see cref="M:System.Net.FtpWebRequest.GetResponse" /> or <see cref="M:System.Net.FtpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" /> has already been called for this instance.
--or-
-An HTTP proxy is enabled, and you attempted to use an FTP command other than <see cref="F:System.Net.WebRequestMethods.Ftp.DownloadFile" />, <see cref="F:System.Net.WebRequestMethods.Ftp.ListDirectory" />, or <see cref="F:System.Net.WebRequestMethods.Ftp.ListDirectoryDetails" />.</exception>
-      <exception cref="T:System.Net.WebException">
-        <see cref="P:System.Net.FtpWebRequest.EnableSsl" /> is set to <see langword="true" />, but the server does not support this feature.
--or-
-A <see cref="P:System.Net.FtpWebRequest.Timeout" /> was specified and the timeout has expired.</exception>
     </member>
     <member name="P:System.Net.FtpWebRequest.Headers">
       <summary>Gets an empty <see cref="T:System.Net.WebHeaderCollection" /> object.</summary>
@@ -618,42 +636,46 @@ A <see cref="P:System.Net.FtpWebRequest.Timeout" /> was specified and the timeou
     </member>
     <member name="P:System.Net.FtpWebRequest.KeepAlive">
       <summary>Gets or sets a <see cref="T:System.Boolean" /> value that specifies whether the control connection to the FTP server is closed after the request completes.</summary>
+      <exception cref="T:System.InvalidOperationException">A new value was specified for this property for a request that is already in progress.</exception>
       <returns>
         <see langword="true" /> if the connection to the server should not be destroyed; otherwise, <see langword="false" />. The default value is <see langword="true" />.</returns>
-      <exception cref="T:System.InvalidOperationException">A new value was specified for this property for a request that is already in progress.</exception>
     </member>
     <member name="P:System.Net.FtpWebRequest.Method">
       <summary>Gets or sets the command to send to the FTP server.</summary>
-      <returns>A <see cref="T:System.String" /> value that contains the FTP command to send to the server. The default value is <see cref="F:System.Net.WebRequestMethods.Ftp.DownloadFile" />.</returns>
       <exception cref="T:System.InvalidOperationException">A new value was specified for this property for a request that is already in progress.</exception>
-      <exception cref="T:System.ArgumentException">The method is invalid.
+      <exception cref="T:System.ArgumentException">The method is invalid.  
+  
 -or-
-The method is not supported.
+  
+ The method is not supported.  
+  
 -or-
-Multiple methods were specified.</exception>
+  
+ Multiple methods were specified.</exception>
+      <returns>A <see cref="T:System.String" /> value that contains the FTP command to send to the server. The default value is <see cref="F:System.Net.WebRequestMethods.Ftp.DownloadFile" />.</returns>
     </member>
     <member name="P:System.Net.FtpWebRequest.PreAuthenticate">
       <summary>Always throws a <see cref="T:System.NotSupportedException" />.</summary>
-      <returns>Always throws a <see cref="T:System.NotSupportedException" />.</returns>
       <exception cref="T:System.NotSupportedException">Preauthentication is not supported for FTP.</exception>
+      <returns>Always throws a <see cref="T:System.NotSupportedException" />.</returns>
     </member>
     <member name="P:System.Net.FtpWebRequest.Proxy">
       <summary>Gets or sets the proxy used to communicate with the FTP server.</summary>
-      <returns>An <see cref="T:System.Net.IWebProxy" /> instance responsible for communicating with the FTP server. On .NET Core, its value is <see langword="null" />.</returns>
       <exception cref="T:System.ArgumentNullException">This property cannot be set to <see langword="null" />.</exception>
       <exception cref="T:System.InvalidOperationException">A new value was specified for this property for a request that is already in progress.</exception>
+      <returns>An <see cref="T:System.Net.IWebProxy" /> instance responsible for communicating with the FTP server. On .NET Core, its value is <see langword="null" />.</returns>
     </member>
     <member name="P:System.Net.FtpWebRequest.ReadWriteTimeout">
       <summary>Gets or sets a time-out when reading from or writing to a stream.</summary>
-      <returns>The number of milliseconds before the reading or writing times out. The default value is 300,000 milliseconds (5 minutes).</returns>
       <exception cref="T:System.InvalidOperationException">The request has already been sent.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">The value specified for a set operation is less than or equal to zero and is not equal to <see cref="F:System.Threading.Timeout.Infinite" />.</exception>
+      <returns>The number of milliseconds before the reading or writing times out. The default value is 300,000 milliseconds (5 minutes).</returns>
     </member>
     <member name="P:System.Net.FtpWebRequest.RenameTo">
       <summary>Gets or sets the new name of a file being renamed.</summary>
-      <returns>The new name of the file being renamed.</returns>
       <exception cref="T:System.ArgumentException">The value specified for a set operation is <see langword="null" /> or an empty string.</exception>
       <exception cref="T:System.InvalidOperationException">A new value was specified for this property for a request that is already in progress.</exception>
+      <returns>The new name of the file being renamed.</returns>
     </member>
     <member name="P:System.Net.FtpWebRequest.RequestUri">
       <summary>Gets the URI requested by this instance.</summary>
@@ -665,50 +687,49 @@ Multiple methods were specified.</exception>
     </member>
     <member name="P:System.Net.FtpWebRequest.Timeout">
       <summary>Gets or sets the number of milliseconds to wait for a request.</summary>
-      <returns>An <see cref="T:System.Int32" /> value that contains the number of milliseconds to wait before a request times out. The default value is <see cref="F:System.Threading.Timeout.Infinite" />.</returns>
       <exception cref="T:System.ArgumentOutOfRangeException">The value specified is less than zero and is not <see cref="F:System.Threading.Timeout.Infinite" />.</exception>
       <exception cref="T:System.InvalidOperationException">A new value was specified for this property for a request that is already in progress.</exception>
+      <returns>An <see cref="T:System.Int32" /> value that contains the number of milliseconds to wait before a request times out. The default value is <see cref="F:System.Threading.Timeout.Infinite" />.</returns>
     </member>
     <member name="P:System.Net.FtpWebRequest.UseBinary">
       <summary>Gets or sets a <see cref="T:System.Boolean" /> value that specifies the data type for file transfers.</summary>
+      <exception cref="T:System.InvalidOperationException">A new value was specified for this property for a request that is already in progress.</exception>
       <returns>
         <see langword="true" /> to indicate to the server that the data to be transferred is binary; <see langword="false" /> to indicate that the data is text. The default value is <see langword="true" />.</returns>
-      <exception cref="T:System.InvalidOperationException">A new value was specified for this property for a request that is already in progress.</exception>
     </member>
     <member name="P:System.Net.FtpWebRequest.UseDefaultCredentials">
       <summary>Always throws a <see cref="T:System.NotSupportedException" />.</summary>
-      <returns>Always throws a <see cref="T:System.NotSupportedException" />.</returns>
       <exception cref="T:System.NotSupportedException">Default credentials are not supported for FTP.</exception>
+      <returns>Always throws a <see cref="T:System.NotSupportedException" />.</returns>
     </member>
     <member name="P:System.Net.FtpWebRequest.UsePassive">
       <summary>Gets or sets the behavior of a client application's data transfer process.</summary>
+      <exception cref="T:System.InvalidOperationException">A new value was specified for this property for a request that is already in progress.</exception>
       <returns>
         <see langword="false" /> if the client application's data transfer process listens for a connection on the data port; otherwise, <see langword="true" /> if the client should initiate a connection on the data port. The default value is <see langword="true" />.</returns>
-      <exception cref="T:System.InvalidOperationException">A new value was specified for this property for a request that is already in progress.</exception>
     </member>
     <member name="T:System.Net.FtpWebResponse">
       <summary>Encapsulates a File Transfer Protocol (FTP) server's response to a request.</summary>
+    </member>
+    <member name="M:System.Net.FtpWebResponse.Close">
+      <summary>Frees the resources held by the response.</summary>
+    </member>
+    <member name="M:System.Net.FtpWebResponse.GetResponseStream">
+      <summary>Retrieves the stream that contains response data sent from an FTP server.</summary>
+      <exception cref="T:System.InvalidOperationException">The response did not return a data stream.</exception>
+      <returns>A readable <see cref="T:System.IO.Stream" /> instance that contains data returned with the response; otherwise, <see cref="F:System.IO.Stream.Null" /> if no response data was returned by the server.</returns>
     </member>
     <member name="P:System.Net.FtpWebResponse.BannerMessage">
       <summary>Gets the message sent by the FTP server when a connection is established prior to logon.</summary>
       <returns>A <see cref="T:System.String" /> that contains the banner message sent by the server; otherwise, <see cref="F:System.String.Empty" /> if no message is sent.</returns>
     </member>
-    <member name="M:System.Net.FtpWebResponse.Close">
-      <summary>Frees the resources held by the response.</summary>
-    </member>
     <member name="P:System.Net.FtpWebResponse.ContentLength">
       <summary>Gets the length of the data received from the FTP server.</summary>
       <returns>An <see cref="T:System.Int64" /> value that contains the number of bytes of data received from the FTP server.</returns>
     </member>
-    <member name="P:System.Net.FtpWebResponse.ContentType" />
     <member name="P:System.Net.FtpWebResponse.ExitMessage">
       <summary>Gets the message sent by the server when the FTP session is ending.</summary>
       <returns>A <see cref="T:System.String" /> that contains the exit message sent by the server; otherwise, <see cref="F:System.String.Empty" /> if no message is sent.</returns>
-    </member>
-    <member name="M:System.Net.FtpWebResponse.GetResponseStream">
-      <summary>Retrieves the stream that contains response data sent from an FTP server.</summary>
-      <returns>A readable <see cref="T:System.IO.Stream" /> instance that contains data returned with the response; otherwise, <see cref="F:System.IO.Stream.Null" /> if no response data was returned by the server.</returns>
-      <exception cref="T:System.InvalidOperationException">The response did not return a data stream.</exception>
     </member>
     <member name="P:System.Net.FtpWebResponse.Headers">
       <summary>Gets an empty <see cref="T:System.Net.WebHeaderCollection" /> object.</summary>
@@ -732,8 +753,9 @@ Multiple methods were specified.</exception>
     </member>
     <member name="P:System.Net.FtpWebResponse.SupportsHeaders">
       <summary>Gets a value that indicates whether the <see cref="P:System.Net.FtpWebResponse.Headers" /> property is supported by the <see cref="T:System.Net.FtpWebResponse" /> instance.</summary>
-      <returns>Returns <see cref="T:System.Boolean" />.
-<see langword="true" /> if the <see cref="P:System.Net.FtpWebResponse.Headers" /> property is supported by the <see cref="T:System.Net.FtpWebResponse" /> instance; otherwise, <see langword="false" />.</returns>
+      <returns>Returns <see cref="T:System.Boolean" />.  
+  
+ <see langword="true" /> if the <see cref="P:System.Net.FtpWebResponse.Headers" /> property is supported by the <see cref="T:System.Net.FtpWebResponse" /> instance; otherwise, <see langword="false" />.</returns>
     </member>
     <member name="P:System.Net.FtpWebResponse.WelcomeMessage">
       <summary>Gets the message sent by the FTP server when authentication is complete.</summary>
@@ -751,9 +773,9 @@ Multiple methods were specified.</exception>
     </member>
     <member name="P:System.Net.GlobalProxySelection.Select">
       <summary>Gets or sets the global HTTP proxy.</summary>
-      <returns>An <see cref="T:System.Net.IWebProxy" /> that every call to <see cref="M:System.Net.HttpWebRequest.GetResponse" /> uses.</returns>
       <exception cref="T:System.ArgumentNullException">The value specified for a set operation was <see langword="null" />.</exception>
       <exception cref="T:System.Security.SecurityException">The caller does not have permission for the requested operation.</exception>
+      <returns>An <see cref="T:System.Net.IWebProxy" /> that every call to <see cref="M:System.Net.HttpWebRequest.GetResponse" /> uses.</returns>
     </member>
     <member name="T:System.Net.HttpContinueDelegate">
       <summary>Represents the method that notifies callers when a continue response is received by the client.</summary>
@@ -771,10 +793,6 @@ Multiple methods were specified.</exception>
     <member name="M:System.Net.HttpWebRequest.Abort">
       <summary>Cancels a request to an Internet resource.</summary>
     </member>
-    <member name="P:System.Net.HttpWebRequest.Accept">
-      <summary>Gets or sets the value of the <see langword="Accept" /> HTTP header.</summary>
-      <returns>The value of the <see langword="Accept" /> HTTP header. The default value is <see langword="null" />.</returns>
-    </member>
     <member name="M:System.Net.HttpWebRequest.AddRange(System.Int32)">
       <summary>Adds a byte range header to a request for a specific range from the beginning or end of the requested data.</summary>
       <param name="range">The starting or ending point of the range.</param>
@@ -789,9 +807,11 @@ Multiple methods were specified.</exception>
       <exception cref="T:System.ArgumentException">
         <paramref name="rangeSpecifier" /> is invalid.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
-        <paramref name="from" /> is greater than <paramref name="to" />
--or-
-<paramref name="from" /> or <paramref name="to" /> is less than 0.</exception>
+        <paramref name="from" /> is greater than <paramref name="to" />  
+  
+ -or-  
+  
+ <paramref name="from" /> or <paramref name="to" /> is less than 0.</exception>
       <exception cref="T:System.InvalidOperationException">The range header could not be added.</exception>
     </member>
     <member name="M:System.Net.HttpWebRequest.AddRange(System.Int64)">
@@ -808,9 +828,11 @@ Multiple methods were specified.</exception>
       <exception cref="T:System.ArgumentException">
         <paramref name="rangeSpecifier" /> is invalid.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
-        <paramref name="from" /> is greater than <paramref name="to" />
--or-
-<paramref name="from" /> or <paramref name="to" /> is less than 0.</exception>
+        <paramref name="from" /> is greater than <paramref name="to" />  
+  
+ -or-  
+  
+ <paramref name="from" /> or <paramref name="to" /> is less than 0.</exception>
       <exception cref="T:System.InvalidOperationException">The range header could not be added.</exception>
     </member>
     <member name="M:System.Net.HttpWebRequest.AddRange(System.String,System.Int32)">
@@ -831,9 +853,11 @@ Multiple methods were specified.</exception>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="rangeSpecifier" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
-        <paramref name="from" /> is greater than <paramref name="to" />
--or-
-<paramref name="from" /> or <paramref name="to" /> is less than 0.</exception>
+        <paramref name="from" /> is greater than <paramref name="to" />  
+  
+ -or-  
+  
+ <paramref name="from" /> or <paramref name="to" /> is less than 0.</exception>
       <exception cref="T:System.ArgumentException">
         <paramref name="rangeSpecifier" /> is invalid.</exception>
       <exception cref="T:System.InvalidOperationException">The range header could not be added.</exception>
@@ -856,12 +880,225 @@ Multiple methods were specified.</exception>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="rangeSpecifier" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
-        <paramref name="from" /> is greater than <paramref name="to" />
--or-
-<paramref name="from" /> or <paramref name="to" /> is less than 0.</exception>
+        <paramref name="from" /> is greater than <paramref name="to" />  
+  
+ -or-  
+  
+ <paramref name="from" /> or <paramref name="to" /> is less than 0.</exception>
       <exception cref="T:System.ArgumentException">
         <paramref name="rangeSpecifier" /> is invalid.</exception>
       <exception cref="T:System.InvalidOperationException">The range header could not be added.</exception>
+    </member>
+    <member name="M:System.Net.HttpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)">
+      <summary>Begins an asynchronous request for a <see cref="T:System.IO.Stream" /> object to use to write data.</summary>
+      <param name="callback">The <see cref="T:System.AsyncCallback" /> delegate.</param>
+      <param name="state">The state object for this request.</param>
+      <exception cref="T:System.Net.ProtocolViolationException">The <see cref="P:System.Net.HttpWebRequest.Method" /> property is GET or HEAD.  
+  
+ -or-  
+  
+ <see cref="P:System.Net.HttpWebRequest.KeepAlive" /> is <see langword="true" />, <see cref="P:System.Net.HttpWebRequest.AllowWriteStreamBuffering" /> is <see langword="false" />, <see cref="P:System.Net.HttpWebRequest.ContentLength" /> is -1, <see cref="P:System.Net.HttpWebRequest.SendChunked" /> is <see langword="false" />, and <see cref="P:System.Net.HttpWebRequest.Method" /> is POST or PUT.</exception>
+      <exception cref="T:System.InvalidOperationException">The stream is being used by a previous call to <see cref="M:System.Net.HttpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" />  
+  
+ -or-  
+  
+ <see cref="P:System.Net.HttpWebRequest.TransferEncoding" /> is set to a value and <see cref="P:System.Net.HttpWebRequest.SendChunked" /> is <see langword="false" />.  
+  
+ -or-  
+  
+ The thread pool is running out of threads.</exception>
+      <exception cref="T:System.NotSupportedException">The request cache validator indicated that the response for this request can be served from the cache; however, requests that write data must not use the cache. This exception can occur if you are using a custom cache validator that is incorrectly implemented.</exception>
+      <exception cref="T:System.Net.WebException">
+        <see cref="M:System.Net.HttpWebRequest.Abort" /> was previously called.</exception>
+      <exception cref="T:System.ObjectDisposedException">In a .NET Compact Framework application, a request stream with zero content length was not obtained and closed correctly. For more information about handling zero content length requests, see Network Programming in the .NET Compact Framework.</exception>
+      <returns>An <see cref="T:System.IAsyncResult" /> that references the asynchronous request.</returns>
+    </member>
+    <member name="M:System.Net.HttpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)">
+      <summary>Begins an asynchronous request to an Internet resource.</summary>
+      <param name="callback">The <see cref="T:System.AsyncCallback" /> delegate.</param>
+      <param name="state">The state object for this request.</param>
+      <exception cref="T:System.InvalidOperationException">The stream is already in use by a previous call to <see cref="M:System.Net.HttpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" />  
+  
+ -or-  
+  
+ <see cref="P:System.Net.HttpWebRequest.TransferEncoding" /> is set to a value and <see cref="P:System.Net.HttpWebRequest.SendChunked" /> is <see langword="false" />.  
+  
+ -or-  
+  
+ The thread pool is running out of threads.</exception>
+      <exception cref="T:System.Net.ProtocolViolationException">
+        <see cref="P:System.Net.HttpWebRequest.Method" /> is GET or HEAD, and either <see cref="P:System.Net.HttpWebRequest.ContentLength" /> is greater than zero or <see cref="P:System.Net.HttpWebRequest.SendChunked" /> is <see langword="true" />.  
+  
+ -or-  
+  
+ <see cref="P:System.Net.HttpWebRequest.KeepAlive" /> is <see langword="true" />, <see cref="P:System.Net.HttpWebRequest.AllowWriteStreamBuffering" /> is <see langword="false" />, and either <see cref="P:System.Net.HttpWebRequest.ContentLength" /> is -1, <see cref="P:System.Net.HttpWebRequest.SendChunked" /> is <see langword="false" /> and <see cref="P:System.Net.HttpWebRequest.Method" /> is POST or PUT.  
+  
+ -or-  
+  
+ The <see cref="T:System.Net.HttpWebRequest" /> has an entity body but the <see cref="M:System.Net.HttpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" /> method is called without calling the <see cref="M:System.Net.HttpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" /> method.  
+  
+ -or-  
+  
+ The <see cref="P:System.Net.HttpWebRequest.ContentLength" /> is greater than zero, but the application does not write all of the promised data.</exception>
+      <exception cref="T:System.Net.WebException">
+        <see cref="M:System.Net.HttpWebRequest.Abort" /> was previously called.</exception>
+      <returns>An <see cref="T:System.IAsyncResult" /> that references the asynchronous request for a response.</returns>
+    </member>
+    <member name="M:System.Net.HttpWebRequest.EndGetRequestStream(System.IAsyncResult)">
+      <summary>Ends an asynchronous request for a <see cref="T:System.IO.Stream" /> object to use to write data.</summary>
+      <param name="asyncResult">The pending request for a stream.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="asyncResult" /> is <see langword="null" />.</exception>
+      <exception cref="T:System.IO.IOException">The request did not complete, and no stream is available.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="asyncResult" /> was not returned by the current instance from a call to <see cref="M:System.Net.HttpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" />.</exception>
+      <exception cref="T:System.InvalidOperationException">This method was called previously using <paramref name="asyncResult" />.</exception>
+      <exception cref="T:System.Net.WebException">
+        <see cref="M:System.Net.HttpWebRequest.Abort" /> was previously called.  
+  
+ -or-  
+  
+ An error occurred while processing the request.</exception>
+      <returns>A <see cref="T:System.IO.Stream" /> to use to write request data.</returns>
+    </member>
+    <member name="M:System.Net.HttpWebRequest.EndGetRequestStream(System.IAsyncResult,System.Net.TransportContext@)">
+      <summary>Ends an asynchronous request for a <see cref="T:System.IO.Stream" /> object to use to write data and outputs the <see cref="T:System.Net.TransportContext" /> associated with the stream.</summary>
+      <param name="asyncResult">The pending request for a stream.</param>
+      <param name="context">The <see cref="T:System.Net.TransportContext" /> for the <see cref="T:System.IO.Stream" />.</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="asyncResult" /> was not returned by the current instance from a call to <see cref="M:System.Net.HttpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" />.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="asyncResult" /> is <see langword="null" />.</exception>
+      <exception cref="T:System.InvalidOperationException">This method was called previously using <paramref name="asyncResult" />.</exception>
+      <exception cref="T:System.IO.IOException">The request did not complete, and no stream is available.</exception>
+      <exception cref="T:System.Net.WebException">
+        <see cref="M:System.Net.HttpWebRequest.Abort" /> was previously called.  
+  
+ -or-  
+  
+ An error occurred while processing the request.</exception>
+      <returns>A <see cref="T:System.IO.Stream" /> to use to write request data.</returns>
+    </member>
+    <member name="M:System.Net.HttpWebRequest.EndGetResponse(System.IAsyncResult)">
+      <summary>Ends an asynchronous request to an Internet resource.</summary>
+      <param name="asyncResult">The pending request for a response.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="asyncResult" /> is <see langword="null" />.</exception>
+      <exception cref="T:System.InvalidOperationException">This method was called previously using <paramref name="asyncResult" />.  
+  
+ -or-  
+  
+ The <see cref="P:System.Net.HttpWebRequest.ContentLength" /> property is greater than 0 but the data has not been written to the request stream.</exception>
+      <exception cref="T:System.Net.WebException">
+        <see cref="M:System.Net.HttpWebRequest.Abort" /> was previously called.  
+  
+ -or-  
+  
+ An error occurred while processing the request.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="asyncResult" /> was not returned by the current instance from a call to <see cref="M:System.Net.HttpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" />.</exception>
+      <returns>A <see cref="T:System.Net.WebResponse" /> that contains the response from the Internet resource.</returns>
+    </member>
+    <member name="M:System.Net.HttpWebRequest.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo" /> with the data required to serialize the target object.</summary>
+      <param name="serializationInfo">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> to populate with data.</param>
+      <param name="streamingContext">A <see cref="T:System.Runtime.Serialization.StreamingContext" /> that specifies the destination for this serialization.</param>
+    </member>
+    <member name="M:System.Net.HttpWebRequest.GetRequestStream">
+      <summary>Gets a <see cref="T:System.IO.Stream" /> object to use to write request data.</summary>
+      <exception cref="T:System.Net.ProtocolViolationException">The <see cref="P:System.Net.HttpWebRequest.Method" /> property is GET or HEAD.  
+  
+ -or-  
+  
+ <see cref="P:System.Net.HttpWebRequest.KeepAlive" /> is <see langword="true" />, <see cref="P:System.Net.HttpWebRequest.AllowWriteStreamBuffering" /> is <see langword="false" />, <see cref="P:System.Net.HttpWebRequest.ContentLength" /> is -1, <see cref="P:System.Net.HttpWebRequest.SendChunked" /> is <see langword="false" />, and <see cref="P:System.Net.HttpWebRequest.Method" /> is POST or PUT.</exception>
+      <exception cref="T:System.InvalidOperationException">The <see cref="M:System.Net.HttpWebRequest.GetRequestStream" /> method is called more than once.  
+  
+ -or-  
+  
+ <see cref="P:System.Net.HttpWebRequest.TransferEncoding" /> is set to a value and <see cref="P:System.Net.HttpWebRequest.SendChunked" /> is <see langword="false" />.</exception>
+      <exception cref="T:System.NotSupportedException">The request cache validator indicated that the response for this request can be served from the cache; however, requests that write data must not use the cache. This exception can occur if you are using a custom cache validator that is incorrectly implemented.</exception>
+      <exception cref="T:System.Net.WebException">
+        <see cref="M:System.Net.HttpWebRequest.Abort" /> was previously called.  
+  
+ -or-  
+  
+ The time-out period for the request expired.  
+  
+ -or-  
+  
+ An error occurred while processing the request.</exception>
+      <exception cref="T:System.ObjectDisposedException">In a .NET Compact Framework application, a request stream with zero content length was not obtained and closed correctly. For more information about handling zero content length requests, see Network Programming in the .NET Compact Framework.</exception>
+      <returns>A <see cref="T:System.IO.Stream" /> to use to write request data.</returns>
+    </member>
+    <member name="M:System.Net.HttpWebRequest.GetRequestStream(System.Net.TransportContext@)">
+      <summary>Gets a <see cref="T:System.IO.Stream" /> object to use to write request data and outputs the <see cref="T:System.Net.TransportContext" /> associated with the stream.</summary>
+      <param name="context">The <see cref="T:System.Net.TransportContext" /> for the <see cref="T:System.IO.Stream" />.</param>
+      <exception cref="T:System.Exception">The <see cref="M:System.Net.HttpWebRequest.GetRequestStream" /> method was unable to obtain the <see cref="T:System.IO.Stream" />.</exception>
+      <exception cref="T:System.InvalidOperationException">The <see cref="M:System.Net.HttpWebRequest.GetRequestStream" /> method is called more than once.  
+  
+ -or-  
+  
+ <see cref="P:System.Net.HttpWebRequest.TransferEncoding" /> is set to a value and <see cref="P:System.Net.HttpWebRequest.SendChunked" /> is <see langword="false" />.</exception>
+      <exception cref="T:System.NotSupportedException">The request cache validator indicated that the response for this request can be served from the cache; however, requests that write data must not use the cache. This exception can occur if you are using a custom cache validator that is incorrectly implemented.</exception>
+      <exception cref="T:System.Net.ProtocolViolationException">The <see cref="P:System.Net.HttpWebRequest.Method" /> property is GET or HEAD.  
+  
+ -or-  
+  
+ <see cref="P:System.Net.HttpWebRequest.KeepAlive" /> is <see langword="true" />, <see cref="P:System.Net.HttpWebRequest.AllowWriteStreamBuffering" /> is <see langword="false" />, <see cref="P:System.Net.HttpWebRequest.ContentLength" /> is -1, <see cref="P:System.Net.HttpWebRequest.SendChunked" /> is <see langword="false" />, and <see cref="P:System.Net.HttpWebRequest.Method" /> is POST or PUT.</exception>
+      <exception cref="T:System.Net.WebException">
+        <see cref="M:System.Net.HttpWebRequest.Abort" /> was previously called.  
+  
+ -or-  
+  
+ The time-out period for the request expired.  
+  
+ -or-  
+  
+ An error occurred while processing the request.</exception>
+      <returns>A <see cref="T:System.IO.Stream" /> to use to write request data.</returns>
+    </member>
+    <member name="M:System.Net.HttpWebRequest.GetResponse">
+      <summary>Returns a response from an Internet resource.</summary>
+      <exception cref="T:System.InvalidOperationException">The stream is already in use by a previous call to <see cref="M:System.Net.HttpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" />.  
+  
+ -or-  
+  
+ <see cref="P:System.Net.HttpWebRequest.TransferEncoding" /> is set to a value and <see cref="P:System.Net.HttpWebRequest.SendChunked" /> is <see langword="false" />.</exception>
+      <exception cref="T:System.Net.ProtocolViolationException">
+        <see cref="P:System.Net.HttpWebRequest.Method" /> is GET or HEAD, and either <see cref="P:System.Net.HttpWebRequest.ContentLength" /> is greater or equal to zero or <see cref="P:System.Net.HttpWebRequest.SendChunked" /> is <see langword="true" />.  
+  
+ -or-  
+  
+ <see cref="P:System.Net.HttpWebRequest.KeepAlive" /> is <see langword="true" />, <see cref="P:System.Net.HttpWebRequest.AllowWriteStreamBuffering" /> is <see langword="false" />, <see cref="P:System.Net.HttpWebRequest.ContentLength" /> is -1, <see cref="P:System.Net.HttpWebRequest.SendChunked" /> is <see langword="false" />, and <see cref="P:System.Net.HttpWebRequest.Method" /> is POST or PUT.  
+  
+ -or-  
+  
+ The <see cref="T:System.Net.HttpWebRequest" /> has an entity body but the <see cref="M:System.Net.HttpWebRequest.GetResponse" /> method is called without calling the <see cref="M:System.Net.HttpWebRequest.GetRequestStream" /> method.  
+  
+ -or-  
+  
+ The <see cref="P:System.Net.HttpWebRequest.ContentLength" /> is greater than zero, but the application does not write all of the promised data.</exception>
+      <exception cref="T:System.NotSupportedException">The request cache validator indicated that the response for this request can be served from the cache; however, this request includes data to be sent to the server. Requests that send data must not use the cache. This exception can occur if you are using a custom cache validator that is incorrectly implemented.</exception>
+      <exception cref="T:System.Net.WebException">
+        <see cref="M:System.Net.HttpWebRequest.Abort" /> was previously called.  
+  
+ -or-  
+  
+ The time-out period for the request expired.  
+  
+ -or-  
+  
+ An error occurred while processing the request.</exception>
+      <returns>A <see cref="T:System.Net.WebResponse" /> that contains the response from the Internet resource.</returns>
+    </member>
+    <member name="M:System.Net.HttpWebRequest.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo" /> with the data needed to serialize the target object.</summary>
+      <param name="serializationInfo">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> to populate with data.</param>
+      <param name="streamingContext">A <see cref="T:System.Runtime.Serialization.StreamingContext" /> that specifies the destination for this serialization.</param>
+    </member>
+    <member name="P:System.Net.HttpWebRequest.Accept">
+      <summary>Gets or sets the value of the <see langword="Accept" /> HTTP header.</summary>
+      <returns>The value of the <see langword="Accept" /> HTTP header. The default value is <see langword="null" />.</returns>
     </member>
     <member name="P:System.Net.HttpWebRequest.Address">
       <summary>Gets the Uniform Resource Identifier (URI) of the Internet resource that actually responds to the request.</summary>
@@ -884,57 +1121,18 @@ Multiple methods were specified.</exception>
     </member>
     <member name="P:System.Net.HttpWebRequest.AutomaticDecompression">
       <summary>Gets or sets the type of decompression that is used.</summary>
-      <returns>A <see cref="T:System.Net.DecompressionMethods" /> object that indicates the type of decompression that is used.</returns>
       <exception cref="T:System.InvalidOperationException">The object's current state does not allow this property to be set.</exception>
-    </member>
-    <member name="M:System.Net.HttpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)">
-      <summary>Begins an asynchronous request for a <see cref="T:System.IO.Stream" /> object to use to write data.</summary>
-      <param name="callback">The <see cref="T:System.AsyncCallback" /> delegate.</param>
-      <param name="state">The state object for this request.</param>
-      <returns>An <see cref="T:System.IAsyncResult" /> that references the asynchronous request.</returns>
-      <exception cref="T:System.Net.ProtocolViolationException">The <see cref="P:System.Net.HttpWebRequest.Method" /> property is GET or HEAD.
--or-
-<see cref="P:System.Net.HttpWebRequest.KeepAlive" /> is <see langword="true" />, <see cref="P:System.Net.HttpWebRequest.AllowWriteStreamBuffering" /> is <see langword="false" />, <see cref="P:System.Net.HttpWebRequest.ContentLength" /> is -1, <see cref="P:System.Net.HttpWebRequest.SendChunked" /> is <see langword="false" />, and <see cref="P:System.Net.HttpWebRequest.Method" /> is POST or PUT.</exception>
-      <exception cref="T:System.InvalidOperationException">The stream is being used by a previous call to <see cref="M:System.Net.HttpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" />
--or-
-<see cref="P:System.Net.HttpWebRequest.TransferEncoding" /> is set to a value and <see cref="P:System.Net.HttpWebRequest.SendChunked" /> is <see langword="false" />.
--or-
-The thread pool is running out of threads.</exception>
-      <exception cref="T:System.NotSupportedException">The request cache validator indicated that the response for this request can be served from the cache; however, requests that write data must not use the cache. This exception can occur if you are using a custom cache validator that is incorrectly implemented.</exception>
-      <exception cref="T:System.Net.WebException">
-        <see cref="M:System.Net.HttpWebRequest.Abort" /> was previously called.</exception>
-      <exception cref="T:System.ObjectDisposedException">In a .NET Compact Framework application, a request stream with zero content length was not obtained and closed correctly. For more information about handling zero content length requests, see Network Programming in the .NET Compact Framework.</exception>
-    </member>
-    <member name="M:System.Net.HttpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)">
-      <summary>Begins an asynchronous request to an Internet resource.</summary>
-      <param name="callback">The <see cref="T:System.AsyncCallback" /> delegate</param>
-      <param name="state">The state object for this request.</param>
-      <returns>An <see cref="T:System.IAsyncResult" /> that references the asynchronous request for a response.</returns>
-      <exception cref="T:System.InvalidOperationException">The stream is already in use by a previous call to <see cref="M:System.Net.HttpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" />
--or-
-<see cref="P:System.Net.HttpWebRequest.TransferEncoding" /> is set to a value and <see cref="P:System.Net.HttpWebRequest.SendChunked" /> is <see langword="false" />.
--or-
-The thread pool is running out of threads.</exception>
-      <exception cref="T:System.Net.ProtocolViolationException">
-        <see cref="P:System.Net.HttpWebRequest.Method" /> is GET or HEAD, and either <see cref="P:System.Net.HttpWebRequest.ContentLength" /> is greater than zero or <see cref="P:System.Net.HttpWebRequest.SendChunked" /> is <see langword="true" />.
--or-
-<see cref="P:System.Net.HttpWebRequest.KeepAlive" /> is <see langword="true" />, <see cref="P:System.Net.HttpWebRequest.AllowWriteStreamBuffering" /> is <see langword="false" />, and either <see cref="P:System.Net.HttpWebRequest.ContentLength" /> is -1, <see cref="P:System.Net.HttpWebRequest.SendChunked" /> is <see langword="false" /> and <see cref="P:System.Net.HttpWebRequest.Method" /> is POST or PUT.
--or-
-The <see cref="T:System.Net.HttpWebRequest" /> has an entity body but the <see cref="M:System.Net.HttpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" /> method is called without calling the <see cref="M:System.Net.HttpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" /> method.
--or-
-The <see cref="P:System.Net.HttpWebRequest.ContentLength" /> is greater than zero, but the application does not write all of the promised data.</exception>
-      <exception cref="T:System.Net.WebException">
-        <see cref="M:System.Net.HttpWebRequest.Abort" /> was previously called.</exception>
+      <returns>A <see cref="T:System.Net.DecompressionMethods" /> object that indicates the type of decompression that is used.</returns>
     </member>
     <member name="P:System.Net.HttpWebRequest.ClientCertificates">
       <summary>Gets or sets the collection of security certificates that are associated with this request.</summary>
-      <returns>The <see cref="T:System.Security.Cryptography.X509Certificates.X509CertificateCollection" /> that contains the security certificates associated with this request.</returns>
       <exception cref="T:System.ArgumentNullException">The value specified for a set operation is <see langword="null" />.</exception>
+      <returns>The <see cref="T:System.Security.Cryptography.X509Certificates.X509CertificateCollection" /> that contains the security certificates associated with this request.</returns>
     </member>
     <member name="P:System.Net.HttpWebRequest.Connection">
       <summary>Gets or sets the value of the <see langword="Connection" /> HTTP header.</summary>
-      <returns>The value of the <see langword="Connection" /> HTTP header. The default value is <see langword="null" />.</returns>
       <exception cref="T:System.ArgumentException">The value of <see cref="P:System.Net.HttpWebRequest.Connection" /> is set to Keep-alive or Close.</exception>
+      <returns>The value of the <see langword="Connection" /> HTTP header. The default value is <see langword="null" />.</returns>
     </member>
     <member name="P:System.Net.HttpWebRequest.ConnectionGroupName">
       <summary>Gets or sets the name of the connection group for the request.</summary>
@@ -942,9 +1140,9 @@ The <see cref="P:System.Net.HttpWebRequest.ContentLength" /> is greater than zer
     </member>
     <member name="P:System.Net.HttpWebRequest.ContentLength">
       <summary>Gets or sets the <see langword="Content-length" /> HTTP header.</summary>
-      <returns>The number of bytes of data to send to the Internet resource. The default is -1, which indicates the property has not been set and that there is no request data to send.</returns>
       <exception cref="T:System.InvalidOperationException">The request has been started by calling the <see cref="M:System.Net.HttpWebRequest.GetRequestStream" />, <see cref="M:System.Net.HttpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" />, <see cref="M:System.Net.HttpWebRequest.GetResponse" />, or <see cref="M:System.Net.HttpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" /> method.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">The new <see cref="P:System.Net.HttpWebRequest.ContentLength" /> value is less than 0.</exception>
+      <returns>The number of bytes of data to send to the Internet resource. The default is -1, which indicates the property has not been set and that there is no request data to send.</returns>
     </member>
     <member name="P:System.Net.HttpWebRequest.ContentType">
       <summary>Gets or sets the value of the <see langword="Content-type" /> HTTP header.</summary>
@@ -976,132 +1174,19 @@ The <see cref="P:System.Net.HttpWebRequest.ContentLength" /> is greater than zer
     </member>
     <member name="P:System.Net.HttpWebRequest.DefaultMaximumErrorResponseLength">
       <summary>Gets or sets the default maximum length of an HTTP error response.</summary>
-      <returns>The default maximum length of an HTTP error response.</returns>
       <exception cref="T:System.ArgumentOutOfRangeException">The value is less than 0 and is not equal to -1.</exception>
+      <returns>The default maximum length of an HTTP error response.</returns>
     </member>
     <member name="P:System.Net.HttpWebRequest.DefaultMaximumResponseHeadersLength">
       <summary>Gets or sets the default for the <see cref="P:System.Net.HttpWebRequest.MaximumResponseHeadersLength" /> property.</summary>
-      <returns>The length, in kilobytes (1024 bytes), of the default maximum for response headers received. The default configuration file sets this value to 64 kilobytes.</returns>
       <exception cref="T:System.ArgumentOutOfRangeException">The value is not equal to -1 and is less than zero.</exception>
-    </member>
-    <member name="M:System.Net.HttpWebRequest.EndGetRequestStream(System.IAsyncResult)">
-      <summary>Ends an asynchronous request for a <see cref="T:System.IO.Stream" /> object to use to write data.</summary>
-      <param name="asyncResult">The pending request for a stream.</param>
-      <returns>A <see cref="T:System.IO.Stream" /> to use to write request data.</returns>
-      <exception cref="T:System.ArgumentNullException">
-        <paramref name="asyncResult" /> is <see langword="null" />.</exception>
-      <exception cref="T:System.IO.IOException">The request did not complete, and no stream is available.</exception>
-      <exception cref="T:System.ArgumentException">
-        <paramref name="asyncResult" /> was not returned by the current instance from a call to <see cref="M:System.Net.HttpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" />.</exception>
-      <exception cref="T:System.InvalidOperationException">This method was called previously using <paramref name="asyncResult" />.</exception>
-      <exception cref="T:System.Net.WebException">
-        <see cref="M:System.Net.HttpWebRequest.Abort" /> was previously called.
--or-
-An error occurred while processing the request.</exception>
-    </member>
-    <member name="M:System.Net.HttpWebRequest.EndGetRequestStream(System.IAsyncResult,System.Net.TransportContext@)">
-      <summary>Ends an asynchronous request for a <see cref="T:System.IO.Stream" /> object to use to write data and outputs the <see cref="T:System.Net.TransportContext" /> associated with the stream.</summary>
-      <param name="asyncResult">The pending request for a stream.</param>
-      <param name="context">The <see cref="T:System.Net.TransportContext" /> for the <see cref="T:System.IO.Stream" />.</param>
-      <returns>A <see cref="T:System.IO.Stream" /> to use to write request data.</returns>
-      <exception cref="T:System.ArgumentException">
-        <paramref name="asyncResult" /> was not returned by the current instance from a call to <see cref="M:System.Net.HttpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" />.</exception>
-      <exception cref="T:System.ArgumentNullException">
-        <paramref name="asyncResult" /> is <see langword="null" />.</exception>
-      <exception cref="T:System.InvalidOperationException">This method was called previously using <paramref name="asyncResult" />.</exception>
-      <exception cref="T:System.IO.IOException">The request did not complete, and no stream is available.</exception>
-      <exception cref="T:System.Net.WebException">
-        <see cref="M:System.Net.HttpWebRequest.Abort" /> was previously called.
--or-
-An error occurred while processing the request.</exception>
-    </member>
-    <member name="M:System.Net.HttpWebRequest.EndGetResponse(System.IAsyncResult)">
-      <summary>Ends an asynchronous request to an Internet resource.</summary>
-      <param name="asyncResult">The pending request for a response.</param>
-      <returns>A <see cref="T:System.Net.WebResponse" /> that contains the response from the Internet resource.</returns>
-      <exception cref="T:System.ArgumentNullException">
-        <paramref name="asyncResult" /> is <see langword="null" />.</exception>
-      <exception cref="T:System.InvalidOperationException">This method was called previously using <paramref name="asyncResult." />
--or-
-The <see cref="P:System.Net.HttpWebRequest.ContentLength" /> property is greater than 0 but the data has not been written to the request stream.</exception>
-      <exception cref="T:System.Net.WebException">
-        <see cref="M:System.Net.HttpWebRequest.Abort" /> was previously called.
--or-
-An error occurred while processing the request.</exception>
-      <exception cref="T:System.ArgumentException">
-        <paramref name="asyncResult" /> was not returned by the current instance from a call to <see cref="M:System.Net.HttpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" />.</exception>
+      <returns>The length, in kilobytes (1024 bytes), of the default maximum for response headers received. The default configuration file sets this value to 64 kilobytes.</returns>
     </member>
     <member name="P:System.Net.HttpWebRequest.Expect">
       <summary>Gets or sets the value of the <see langword="Expect" /> HTTP header.</summary>
-      <returns>The contents of the <see langword="Expect" /> HTTP header. The default value is <see langword="null" />.
-
-The value for this property is stored in <see cref="T:System.Net.WebHeaderCollection" />. If WebHeaderCollection is set, the property value is lost.</returns>
       <exception cref="T:System.ArgumentException">
         <see langword="Expect" /> is set to a string that contains "100-continue" as a substring.</exception>
-    </member>
-    <member name="M:System.Net.HttpWebRequest.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-      <summary>Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo" /> with the data required to serialize the target object.</summary>
-      <param name="serializationInfo">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> to populate with data.</param>
-      <param name="streamingContext">A <see cref="T:System.Runtime.Serialization.StreamingContext" /> that specifies the destination for this serialization.</param>
-    </member>
-    <member name="M:System.Net.HttpWebRequest.GetRequestStream">
-      <summary>Gets a <see cref="T:System.IO.Stream" /> object to use to write request data.</summary>
-      <returns>A <see cref="T:System.IO.Stream" /> to use to write request data.</returns>
-      <exception cref="T:System.Net.ProtocolViolationException">The <see cref="P:System.Net.HttpWebRequest.Method" /> property is GET or HEAD.
--or-
-<see cref="P:System.Net.HttpWebRequest.KeepAlive" /> is <see langword="true" />, <see cref="P:System.Net.HttpWebRequest.AllowWriteStreamBuffering" /> is <see langword="false" />, <see cref="P:System.Net.HttpWebRequest.ContentLength" /> is -1, <see cref="P:System.Net.HttpWebRequest.SendChunked" /> is <see langword="false" />, and <see cref="P:System.Net.HttpWebRequest.Method" /> is POST or PUT.</exception>
-      <exception cref="T:System.InvalidOperationException">The <see cref="M:System.Net.HttpWebRequest.GetRequestStream" /> method is called more than once.
--or-
-<see cref="P:System.Net.HttpWebRequest.TransferEncoding" /> is set to a value and <see cref="P:System.Net.HttpWebRequest.SendChunked" /> is <see langword="false" />.</exception>
-      <exception cref="T:System.NotSupportedException">The request cache validator indicated that the response for this request can be served from the cache; however, requests that write data must not use the cache. This exception can occur if you are using a custom cache validator that is incorrectly implemented.</exception>
-      <exception cref="T:System.Net.WebException">
-        <see cref="M:System.Net.HttpWebRequest.Abort" /> was previously called.
--or-
-The time-out period for the request expired.
--or-
-An error occurred while processing the request.</exception>
-      <exception cref="T:System.ObjectDisposedException">In a .NET Compact Framework application, a request stream with zero content length was not obtained and closed correctly. For more information about handling zero content length requests, see Network Programming in the .NET Compact Framework.</exception>
-    </member>
-    <member name="M:System.Net.HttpWebRequest.GetRequestStream(System.Net.TransportContext@)">
-      <summary>Gets a <see cref="T:System.IO.Stream" /> object to use to write request data and outputs the <see cref="T:System.Net.TransportContext" /> associated with the stream.</summary>
-      <param name="context">The <see cref="T:System.Net.TransportContext" /> for the <see cref="T:System.IO.Stream" />.</param>
-      <returns>A <see cref="T:System.IO.Stream" /> to use to write request data.</returns>
-      <exception cref="T:System.Exception">The <see cref="M:System.Net.HttpWebRequest.GetRequestStream" /> method was unable to obtain the <see cref="T:System.IO.Stream" />.</exception>
-      <exception cref="T:System.InvalidOperationException">The <see cref="M:System.Net.HttpWebRequest.GetRequestStream" /> method is called more than once.
--or-
-<see cref="P:System.Net.HttpWebRequest.TransferEncoding" /> is set to a value and <see cref="P:System.Net.HttpWebRequest.SendChunked" /> is <see langword="false" />.</exception>
-      <exception cref="T:System.NotSupportedException">The request cache validator indicated that the response for this request can be served from the cache; however, requests that write data must not use the cache. This exception can occur if you are using a custom cache validator that is incorrectly implemented.</exception>
-      <exception cref="T:System.Net.ProtocolViolationException">The <see cref="P:System.Net.HttpWebRequest.Method" /> property is GET or HEAD.
--or-
-<see cref="P:System.Net.HttpWebRequest.KeepAlive" /> is <see langword="true" />, <see cref="P:System.Net.HttpWebRequest.AllowWriteStreamBuffering" /> is <see langword="false" />, <see cref="P:System.Net.HttpWebRequest.ContentLength" /> is -1, <see cref="P:System.Net.HttpWebRequest.SendChunked" /> is <see langword="false" />, and <see cref="P:System.Net.HttpWebRequest.Method" /> is POST or PUT.</exception>
-      <exception cref="T:System.Net.WebException">
-        <see cref="M:System.Net.HttpWebRequest.Abort" /> was previously called.
--or-
-The time-out period for the request expired.
--or-
-An error occurred while processing the request.</exception>
-    </member>
-    <member name="M:System.Net.HttpWebRequest.GetResponse">
-      <summary>Returns a response from an Internet resource.</summary>
-      <returns>A <see cref="T:System.Net.WebResponse" /> that contains the response from the Internet resource.</returns>
-      <exception cref="T:System.InvalidOperationException">The stream is already in use by a previous call to <see cref="M:System.Net.HttpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" />.
--or-
-<see cref="P:System.Net.HttpWebRequest.TransferEncoding" /> is set to a value and <see cref="P:System.Net.HttpWebRequest.SendChunked" /> is <see langword="false" />.</exception>
-      <exception cref="T:System.Net.ProtocolViolationException">
-        <see cref="P:System.Net.HttpWebRequest.Method" /> is GET or HEAD, and either <see cref="P:System.Net.HttpWebRequest.ContentLength" /> is greater or equal to zero or <see cref="P:System.Net.HttpWebRequest.SendChunked" /> is <see langword="true" />.
--or-
-<see cref="P:System.Net.HttpWebRequest.KeepAlive" /> is <see langword="true" />, <see cref="P:System.Net.HttpWebRequest.AllowWriteStreamBuffering" /> is <see langword="false" />, <see cref="P:System.Net.HttpWebRequest.ContentLength" /> is -1, <see cref="P:System.Net.HttpWebRequest.SendChunked" /> is <see langword="false" />, and <see cref="P:System.Net.HttpWebRequest.Method" /> is POST or PUT.
--or-
-The <see cref="T:System.Net.HttpWebRequest" /> has an entity body but the <see cref="M:System.Net.HttpWebRequest.GetResponse" /> method is called without calling the <see cref="M:System.Net.HttpWebRequest.GetRequestStream" /> method.
--or-
-The <see cref="P:System.Net.HttpWebRequest.ContentLength" /> is greater than zero, but the application does not write all of the promised data.</exception>
-      <exception cref="T:System.NotSupportedException">The request cache validator indicated that the response for this request can be served from the cache; however, this request includes data to be sent to the server. Requests that send data must not use the cache. This exception can occur if you are using a custom cache validator that is incorrectly implemented.</exception>
-      <exception cref="T:System.Net.WebException">
-        <see cref="M:System.Net.HttpWebRequest.Abort" /> was previously called.
--or-
-The time-out period for the request expired.
--or-
-An error occurred while processing the request.</exception>
+      <returns>The contents of the <see langword="Expect" /> HTTP header. The default value is <see langword="null" />.</returns>
     </member>
     <member name="P:System.Net.HttpWebRequest.HaveResponse">
       <summary>Gets a value that indicates whether a response has been received from an Internet resource.</summary>
@@ -1110,19 +1195,19 @@ An error occurred while processing the request.</exception>
     </member>
     <member name="P:System.Net.HttpWebRequest.Headers">
       <summary>Specifies a collection of the name/value pairs that make up the HTTP headers.</summary>
-      <returns>A <see cref="T:System.Net.WebHeaderCollection" /> that contains the name/value pairs that make up the headers for the HTTP request.</returns>
       <exception cref="T:System.InvalidOperationException">The request has been started by calling the <see cref="M:System.Net.HttpWebRequest.GetRequestStream" />, <see cref="M:System.Net.HttpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" />, <see cref="M:System.Net.HttpWebRequest.GetResponse" />, or <see cref="M:System.Net.HttpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" /> method.</exception>
+      <returns>A <see cref="T:System.Net.WebHeaderCollection" /> that contains the name/value pairs that make up the headers for the HTTP request.</returns>
     </member>
     <member name="P:System.Net.HttpWebRequest.Host">
       <summary>Gets or sets the Host header value to use in an HTTP request independent from the request URI.</summary>
-      <returns>The Host header value in the HTTP request.</returns>
       <exception cref="T:System.ArgumentNullException">The Host header cannot be set to <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentException">The Host header cannot be set to an invalid value.</exception>
       <exception cref="T:System.InvalidOperationException">The Host header cannot be set after the <see cref="T:System.Net.HttpWebRequest" /> has already started to be sent.</exception>
+      <returns>The Host header value in the HTTP request.</returns>
     </member>
     <member name="P:System.Net.HttpWebRequest.IfModifiedSince">
-      <summary>Gets or sets the value of the <see langword="If-Modified-Since" /> HTTP header.</summary>
-      <returns>A <see cref="T:System.DateTime" /> that contains the contents of the <see langword="If-Modified-Since" /> HTTP header. The default value is the current date and time.</returns>
+      <summary>Gets or sets the value of the <c>If-Modified-Since</c> HTTP header.</summary>
+      <returns>A <see cref="T:System.DateTime" /> that contains the contents of the <see langword="If-Modified-Since" /> HTTP header.</returns>
     </member>
     <member name="P:System.Net.HttpWebRequest.KeepAlive">
       <summary>Gets or sets a value that indicates whether to make a persistent connection to the Internet resource.</summary>
@@ -1131,14 +1216,14 @@ An error occurred while processing the request.</exception>
     </member>
     <member name="P:System.Net.HttpWebRequest.MaximumAutomaticRedirections">
       <summary>Gets or sets the maximum number of redirects that the request follows.</summary>
-      <returns>The maximum number of redirection responses that the request follows. The default value is 50.</returns>
       <exception cref="T:System.ArgumentException">The value is set to 0 or less.</exception>
+      <returns>The maximum number of redirection responses that the request follows. The default value is 50.</returns>
     </member>
     <member name="P:System.Net.HttpWebRequest.MaximumResponseHeadersLength">
       <summary>Gets or sets the maximum allowed length of the response headers.</summary>
-      <returns>The length, in kilobytes (1024 bytes), of the response headers.</returns>
       <exception cref="T:System.InvalidOperationException">The property is set after the request has already been submitted.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">The value is less than 0 and is not equal to -1.</exception>
+      <returns>The length, in kilobytes (1024 bytes), of the response headers.</returns>
     </member>
     <member name="P:System.Net.HttpWebRequest.MediaType">
       <summary>Gets or sets the media type of the request.</summary>
@@ -1146,10 +1231,12 @@ An error occurred while processing the request.</exception>
     </member>
     <member name="P:System.Net.HttpWebRequest.Method">
       <summary>Gets or sets the method for the request.</summary>
+      <exception cref="T:System.ArgumentException">No method is supplied.  
+  
+ -or-  
+  
+ The method string contains invalid characters.</exception>
       <returns>The request method to use to contact the Internet resource. The default value is GET.</returns>
-      <exception cref="T:System.ArgumentException">No method is supplied.
--or-
-The method string contains invalid characters.</exception>
     </member>
     <member name="P:System.Net.HttpWebRequest.Pipelined">
       <summary>Gets or sets a value that indicates whether to pipeline the request to the Internet resource.</summary>
@@ -1163,22 +1250,22 @@ The method string contains invalid characters.</exception>
     </member>
     <member name="P:System.Net.HttpWebRequest.ProtocolVersion">
       <summary>Gets or sets the version of HTTP to use for the request.</summary>
-      <returns>The HTTP version to use for the request. The default is <see cref="F:System.Net.HttpVersion.Version11" />.</returns>
       <exception cref="T:System.ArgumentException">The HTTP version is set to a value other than 1.0 or 1.1.</exception>
+      <returns>The HTTP version to use for the request. The default is <see cref="F:System.Net.HttpVersion.Version11" />.</returns>
     </member>
     <member name="P:System.Net.HttpWebRequest.Proxy">
       <summary>Gets or sets proxy information for the request.</summary>
-      <returns>The <see cref="T:System.Net.IWebProxy" /> object to use to proxy the request. The default value is set by calling the <see cref="P:System.Net.GlobalProxySelection.Select" /> property.</returns>
       <exception cref="T:System.ArgumentNullException">
         <see cref="P:System.Net.HttpWebRequest.Proxy" /> is set to <see langword="null" />.</exception>
       <exception cref="T:System.InvalidOperationException">The request has been started by calling <see cref="M:System.Net.HttpWebRequest.GetRequestStream" />, <see cref="M:System.Net.HttpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" />, <see cref="M:System.Net.HttpWebRequest.GetResponse" />, or <see cref="M:System.Net.HttpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" />.</exception>
       <exception cref="T:System.Security.SecurityException">The caller does not have permission for the requested operation.</exception>
+      <returns>The <see cref="T:System.Net.IWebProxy" /> object to use to proxy the request. The default value is set by calling the <see cref="P:System.Net.GlobalProxySelection.Select" /> property.</returns>
     </member>
     <member name="P:System.Net.HttpWebRequest.ReadWriteTimeout">
       <summary>Gets or sets a time-out in milliseconds when writing to or reading from a stream.</summary>
-      <returns>The number of milliseconds before the writing or reading times out. The default value is 300,000 milliseconds (5 minutes).</returns>
       <exception cref="T:System.InvalidOperationException">The request has already been sent.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">The value specified for a set operation is less than or equal to zero and is not equal to <see cref="F:System.Threading.Timeout.Infinite" /></exception>
+      <returns>The number of milliseconds before the writing or reading times out. The default value is 300,000 milliseconds (5 minutes).</returns>
     </member>
     <member name="P:System.Net.HttpWebRequest.Referer">
       <summary>Gets or sets the value of the <see langword="Referer" /> HTTP header.</summary>
@@ -1190,9 +1277,9 @@ The method string contains invalid characters.</exception>
     </member>
     <member name="P:System.Net.HttpWebRequest.SendChunked">
       <summary>Gets or sets a value that indicates whether to send data in segments to the Internet resource.</summary>
+      <exception cref="T:System.InvalidOperationException">The request has been started by calling the <see cref="M:System.Net.HttpWebRequest.GetRequestStream" />, <see cref="M:System.Net.HttpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" />, <see cref="M:System.Net.HttpWebRequest.GetResponse" />, or <see cref="M:System.Net.HttpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" /> method.</exception>
       <returns>
         <see langword="true" /> to send data to the Internet resource in segments; otherwise, <see langword="false" />. The default value is <see langword="false" />.</returns>
-      <exception cref="T:System.InvalidOperationException">The request has been started by calling the <see cref="M:System.Net.HttpWebRequest.GetRequestStream" />, <see cref="M:System.Net.HttpWebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)" />, <see cref="M:System.Net.HttpWebRequest.GetResponse" />, or <see cref="M:System.Net.HttpWebRequest.BeginGetResponse(System.AsyncCallback,System.Object)" /> method.</exception>
     </member>
     <member name="P:System.Net.HttpWebRequest.ServerCertificateValidationCallback">
       <summary>Gets or sets a callback function to validate the server certificate.</summary>
@@ -1207,23 +1294,18 @@ The method string contains invalid characters.</exception>
       <returns>
         <see langword="true" /> if the request provides support for a <see cref="T:System.Net.CookieContainer" />; otherwise, <see langword="false" />.</returns>
     </member>
-    <member name="M:System.Net.HttpWebRequest.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-      <summary>Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo" /> with the data needed to serialize the target object.</summary>
-      <param name="serializationInfo">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> to populate with data.</param>
-      <param name="streamingContext">A <see cref="T:System.Runtime.Serialization.StreamingContext" /> that specifies the destination for this serialization.</param>
-    </member>
     <member name="P:System.Net.HttpWebRequest.Timeout">
       <summary>Gets or sets the time-out value in milliseconds for the <see cref="M:System.Net.HttpWebRequest.GetResponse" /> and <see cref="M:System.Net.HttpWebRequest.GetRequestStream" /> methods.</summary>
-      <returns>The number of milliseconds to wait before the request times out. The default value is 100,000 milliseconds (100 seconds).</returns>
       <exception cref="T:System.ArgumentOutOfRangeException">The value specified is less than zero and is not <see cref="F:System.Threading.Timeout.Infinite" />.</exception>
+      <returns>The number of milliseconds to wait before the request times out. The default value is 100,000 milliseconds (100 seconds).</returns>
     </member>
     <member name="P:System.Net.HttpWebRequest.TransferEncoding">
       <summary>Gets or sets the value of the <see langword="Transfer-encoding" /> HTTP header.</summary>
-      <returns>The value of the <see langword="Transfer-encoding" /> HTTP header. The default value is <see langword="null" />.</returns>
       <exception cref="T:System.InvalidOperationException">
         <see cref="P:System.Net.HttpWebRequest.TransferEncoding" /> is set when <see cref="P:System.Net.HttpWebRequest.SendChunked" /> is <see langword="false" />.</exception>
       <exception cref="T:System.ArgumentException">
         <see cref="P:System.Net.HttpWebRequest.TransferEncoding" /> is set to the value "Chunked".</exception>
+      <returns>The value of the <see langword="Transfer-encoding" /> HTTP header. The default value is <see langword="null" />.</returns>
     </member>
     <member name="P:System.Net.HttpWebRequest.UnsafeAuthenticatedConnectionSharing">
       <summary>Gets or sets a value that indicates whether to allow high-speed NTLM-authenticated connection sharing.</summary>
@@ -1232,15 +1314,13 @@ The method string contains invalid characters.</exception>
     </member>
     <member name="P:System.Net.HttpWebRequest.UseDefaultCredentials">
       <summary>Gets or sets a <see cref="T:System.Boolean" /> value that controls whether default credentials are sent with requests.</summary>
+      <exception cref="T:System.InvalidOperationException">You attempted to set this property after the request was sent.</exception>
       <returns>
         <see langword="true" /> if the default credentials are used; otherwise, <see langword="false" />. The default value is <see langword="false" />.</returns>
-      <exception cref="T:System.InvalidOperationException">You attempted to set this property after the request was sent.</exception>
     </member>
     <member name="P:System.Net.HttpWebRequest.UserAgent">
       <summary>Gets or sets the value of the <see langword="User-agent" /> HTTP header.</summary>
-      <returns>The value of the <see langword="User-agent" /> HTTP header. The default value is <see langword="null" />.
-
-The value for this property is stored in <see cref="T:System.Net.WebHeaderCollection" />. If WebHeaderCollection is set, the property value is lost.</returns>
+      <returns>The value of the <see langword="User-agent" /> HTTP header. The default value is <see langword="null" />.</returns>
     </member>
     <member name="T:System.Net.HttpWebResponse">
       <summary>Provides an HTTP-specific implementation of the <see cref="T:System.Net.WebResponse" /> class.</summary>
@@ -1253,34 +1333,9 @@ The value for this property is stored in <see cref="T:System.Net.WebHeaderCollec
       <param name="serializationInfo">A <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that contains the information required to serialize the new <see cref="T:System.Net.HttpWebRequest" />.</param>
       <param name="streamingContext">A <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains the source of the serialized stream that is associated with the new <see cref="T:System.Net.HttpWebRequest" />.</param>
     </member>
-    <member name="P:System.Net.HttpWebResponse.CharacterSet">
-      <summary>Gets the character set of the response.</summary>
-      <returns>A string that contains the character set of the response.</returns>
-      <exception cref="T:System.ObjectDisposedException">The current instance has been disposed.</exception>
-    </member>
     <member name="M:System.Net.HttpWebResponse.Close">
       <summary>Closes the response stream.</summary>
       <exception cref="T:System.ObjectDisposedException">.NET Core only: This <see cref="T:System.Net.HttpWebResponse" /> object has been disposed.</exception>
-    </member>
-    <member name="P:System.Net.HttpWebResponse.ContentEncoding">
-      <summary>Gets the method that is used to encode the body of the response.</summary>
-      <returns>A string that describes the method that is used to encode the body of the response.</returns>
-      <exception cref="T:System.ObjectDisposedException">The current instance has been disposed.</exception>
-    </member>
-    <member name="P:System.Net.HttpWebResponse.ContentLength">
-      <summary>Gets the length of the content returned by the request.</summary>
-      <returns>The number of bytes returned by the request. Content length does not include header information.</returns>
-      <exception cref="T:System.ObjectDisposedException">The current instance has been disposed.</exception>
-    </member>
-    <member name="P:System.Net.HttpWebResponse.ContentType">
-      <summary>Gets the content type of the response.</summary>
-      <returns>A string that contains the content type of the response.</returns>
-      <exception cref="T:System.ObjectDisposedException">The current instance has been disposed.</exception>
-    </member>
-    <member name="P:System.Net.HttpWebResponse.Cookies">
-      <summary>Gets or sets the cookies that are associated with this response.</summary>
-      <returns>A <see cref="T:System.Net.CookieCollection" /> that contains the cookies that are associated with this response.</returns>
-      <exception cref="T:System.ObjectDisposedException">The current instance has been disposed.</exception>
     </member>
     <member name="M:System.Net.HttpWebResponse.Dispose(System.Boolean)">
       <summary>Releases the unmanaged resources used by the <see cref="T:System.Net.HttpWebResponse" />, and optionally disposes of the managed resources.</summary>
@@ -1295,70 +1350,95 @@ The value for this property is stored in <see cref="T:System.Net.WebHeaderCollec
     <member name="M:System.Net.HttpWebResponse.GetResponseHeader(System.String)">
       <summary>Gets the contents of a header that was returned with the response.</summary>
       <param name="headerName">The header value to return.</param>
-      <returns>The contents of the specified header.</returns>
       <exception cref="T:System.ObjectDisposedException">The current instance has been disposed.</exception>
+      <returns>The contents of the specified header.</returns>
     </member>
     <member name="M:System.Net.HttpWebResponse.GetResponseStream">
       <summary>Gets the stream that is used to read the body of the response from the server.</summary>
-      <returns>A <see cref="T:System.IO.Stream" /> containing the body of the response.</returns>
       <exception cref="T:System.Net.ProtocolViolationException">There is no response stream.</exception>
       <exception cref="T:System.ObjectDisposedException">The current instance has been disposed.</exception>
-    </member>
-    <member name="P:System.Net.HttpWebResponse.Headers">
-      <summary>Gets the headers that are associated with this response from the server.</summary>
-      <returns>A <see cref="T:System.Net.WebHeaderCollection" /> that contains the header information returned with the response.</returns>
-      <exception cref="T:System.ObjectDisposedException">The current instance has been disposed.</exception>
-    </member>
-    <member name="P:System.Net.HttpWebResponse.IsMutuallyAuthenticated">
-      <summary>Gets a <see cref="T:System.Boolean" /> value that indicates whether both client and server were authenticated.</summary>
-      <returns>
-        <see langword="true" /> if mutual authentication occurred; otherwise, <see langword="false" />.</returns>
-      <exception cref="T:System.ObjectDisposedException">The current instance has been disposed.</exception>
-    </member>
-    <member name="P:System.Net.HttpWebResponse.LastModified">
-      <summary>Gets the last date and time that the contents of the response were modified.</summary>
-      <returns>A <see cref="T:System.DateTime" /> that contains the date and time that the contents of the response were modified.</returns>
-      <exception cref="T:System.ObjectDisposedException">The current instance has been disposed.</exception>
-    </member>
-    <member name="P:System.Net.HttpWebResponse.Method">
-      <summary>Gets the method that is used to return the response.</summary>
-      <returns>A string that contains the HTTP method that is used to return the response.</returns>
-      <exception cref="T:System.ObjectDisposedException">The current instance has been disposed.</exception>
-    </member>
-    <member name="P:System.Net.HttpWebResponse.ProtocolVersion">
-      <summary>Gets the version of the HTTP protocol that is used in the response.</summary>
-      <returns>A <see cref="T:System.Version" /> that contains the HTTP protocol version of the response.</returns>
-      <exception cref="T:System.ObjectDisposedException">The current instance has been disposed.</exception>
-    </member>
-    <member name="P:System.Net.HttpWebResponse.ResponseUri">
-      <summary>Gets the URI of the Internet resource that responded to the request.</summary>
-      <returns>The URI of the Internet resource that responded to the request.</returns>
-      <exception cref="T:System.ObjectDisposedException">The current instance has been disposed.</exception>
-    </member>
-    <member name="P:System.Net.HttpWebResponse.Server">
-      <summary>Gets the name of the server that sent the response.</summary>
-      <returns>A string that contains the name of the server that sent the response.</returns>
-      <exception cref="T:System.ObjectDisposedException">The current instance has been disposed.</exception>
-    </member>
-    <member name="P:System.Net.HttpWebResponse.StatusCode">
-      <summary>Gets the status of the response.</summary>
-      <returns>One of the <see cref="T:System.Net.HttpStatusCode" /> values.</returns>
-      <exception cref="T:System.ObjectDisposedException">The current instance has been disposed.</exception>
-    </member>
-    <member name="P:System.Net.HttpWebResponse.StatusDescription">
-      <summary>Gets the status description returned with the response.</summary>
-      <returns>A string that describes the status of the response.</returns>
-      <exception cref="T:System.ObjectDisposedException">The current instance has been disposed.</exception>
-    </member>
-    <member name="P:System.Net.HttpWebResponse.SupportsHeaders">
-      <summary>Gets a value that indicates whether headers are supported.</summary>
-      <returns>
-        <see langword="true" /> if headers are supported; otherwise, <see langword="false" />. Always returns <see langword="true" />.</returns>
+      <returns>A <see cref="T:System.IO.Stream" /> containing the body of the response.</returns>
     </member>
     <member name="M:System.Net.HttpWebResponse.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
       <summary>Serializes this instance into the specified <see cref="T:System.Runtime.Serialization.SerializationInfo" /> object.</summary>
       <param name="serializationInfo">The object into which this <see cref="T:System.Net.HttpWebResponse" /> will be serialized.</param>
       <param name="streamingContext">The destination of the serialization.</param>
+    </member>
+    <member name="P:System.Net.HttpWebResponse.CharacterSet">
+      <summary>Gets the character set of the response.</summary>
+      <exception cref="T:System.ObjectDisposedException">The current instance has been disposed.</exception>
+      <returns>A string that contains the character set of the response.</returns>
+    </member>
+    <member name="P:System.Net.HttpWebResponse.ContentEncoding">
+      <summary>Gets the method that is used to encode the body of the response.</summary>
+      <exception cref="T:System.ObjectDisposedException">The current instance has been disposed.</exception>
+      <returns>A string that describes the method that is used to encode the body of the response.</returns>
+    </member>
+    <member name="P:System.Net.HttpWebResponse.ContentLength">
+      <summary>Gets the length of the content returned by the request.</summary>
+      <exception cref="T:System.ObjectDisposedException">The current instance has been disposed.</exception>
+      <returns>The number of bytes returned by the request. Content length does not include header information.</returns>
+    </member>
+    <member name="P:System.Net.HttpWebResponse.ContentType">
+      <summary>Gets the content type of the response.</summary>
+      <exception cref="T:System.ObjectDisposedException">The current instance has been disposed.</exception>
+      <returns>A string that contains the content type of the response.</returns>
+    </member>
+    <member name="P:System.Net.HttpWebResponse.Cookies">
+      <summary>Gets or sets the cookies that are associated with this response.</summary>
+      <exception cref="T:System.ObjectDisposedException">The current instance has been disposed.</exception>
+      <returns>A <see cref="T:System.Net.CookieCollection" /> that contains the cookies that are associated with this response.</returns>
+    </member>
+    <member name="P:System.Net.HttpWebResponse.Headers">
+      <summary>Gets the headers that are associated with this response from the server.</summary>
+      <exception cref="T:System.ObjectDisposedException">The current instance has been disposed.</exception>
+      <returns>A <see cref="T:System.Net.WebHeaderCollection" /> that contains the header information returned with the response.</returns>
+    </member>
+    <member name="P:System.Net.HttpWebResponse.IsMutuallyAuthenticated">
+      <summary>Gets a <see cref="T:System.Boolean" /> value that indicates whether both client and server were authenticated.</summary>
+      <exception cref="T:System.ObjectDisposedException">The current instance has been disposed.</exception>
+      <returns>
+        <see langword="true" /> if mutual authentication occurred; otherwise, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Net.HttpWebResponse.LastModified">
+      <summary>Gets the last date and time that the contents of the response were modified.</summary>
+      <exception cref="T:System.ObjectDisposedException">The current instance has been disposed.</exception>
+      <returns>A <see cref="T:System.DateTime" /> that contains the date and time that the contents of the response were modified.</returns>
+    </member>
+    <member name="P:System.Net.HttpWebResponse.Method">
+      <summary>Gets the method that is used to return the response.</summary>
+      <exception cref="T:System.ObjectDisposedException">The current instance has been disposed.</exception>
+      <returns>A string that contains the HTTP method that is used to return the response.</returns>
+    </member>
+    <member name="P:System.Net.HttpWebResponse.ProtocolVersion">
+      <summary>Gets the version of the HTTP protocol that is used in the response.</summary>
+      <exception cref="T:System.ObjectDisposedException">The current instance has been disposed.</exception>
+      <returns>A <see cref="T:System.Version" /> that contains the HTTP protocol version of the response.</returns>
+    </member>
+    <member name="P:System.Net.HttpWebResponse.ResponseUri">
+      <summary>Gets the URI of the Internet resource that responded to the request.</summary>
+      <exception cref="T:System.ObjectDisposedException">The current instance has been disposed.</exception>
+      <returns>The URI of the Internet resource that responded to the request.</returns>
+    </member>
+    <member name="P:System.Net.HttpWebResponse.Server">
+      <summary>Gets the name of the server that sent the response.</summary>
+      <exception cref="T:System.ObjectDisposedException">The current instance has been disposed.</exception>
+      <returns>A string that contains the name of the server that sent the response.</returns>
+    </member>
+    <member name="P:System.Net.HttpWebResponse.StatusCode">
+      <summary>Gets the status of the response.</summary>
+      <exception cref="T:System.ObjectDisposedException">The current instance has been disposed.</exception>
+      <returns>One of the <see cref="T:System.Net.HttpStatusCode" /> values.</returns>
+    </member>
+    <member name="P:System.Net.HttpWebResponse.StatusDescription">
+      <summary>Gets the status description returned with the response.</summary>
+      <exception cref="T:System.ObjectDisposedException">The current instance has been disposed.</exception>
+      <returns>A string that describes the status of the response.</returns>
+    </member>
+    <member name="P:System.Net.HttpWebResponse.SupportsHeaders">
+      <summary>Gets a value that indicates whether headers are supported.</summary>
+      <returns>
+        <see langword="true" /> if headers are supported; otherwise, <see langword="false" />. Always returns <see langword="true" />.</returns>
     </member>
     <member name="T:System.Net.IAuthenticationModule">
       <summary>Provides the base authentication interface for Web client authentication modules.</summary>
@@ -1370,6 +1450,12 @@ The value for this property is stored in <see cref="T:System.Net.WebHeaderCollec
       <param name="credentials">The credentials associated with the challenge.</param>
       <returns>An <see cref="T:System.Net.Authorization" /> instance containing the authorization message for the request, or <see langword="null" /> if the challenge cannot be handled.</returns>
     </member>
+    <member name="M:System.Net.IAuthenticationModule.PreAuthenticate(System.Net.WebRequest,System.Net.ICredentials)">
+      <summary>Returns an instance of the <see cref="T:System.Net.Authorization" /> class for an authentication request to a server.</summary>
+      <param name="request">The <see cref="T:System.Net.WebRequest" /> instance associated with the authentication request.</param>
+      <param name="credentials">The credentials associated with the authentication request.</param>
+      <returns>An <see cref="T:System.Net.Authorization" /> instance containing the authorization message for the request.</returns>
+    </member>
     <member name="P:System.Net.IAuthenticationModule.AuthenticationType">
       <summary>Gets the authentication type provided by this authentication module.</summary>
       <returns>A string indicating the authentication type provided by this authentication module.</returns>
@@ -1378,12 +1464,6 @@ The value for this property is stored in <see cref="T:System.Net.WebHeaderCollec
       <summary>Gets a value indicating whether the authentication module supports preauthentication.</summary>
       <returns>
         <see langword="true" /> if the authorization module supports preauthentication; otherwise <see langword="false" />.</returns>
-    </member>
-    <member name="M:System.Net.IAuthenticationModule.PreAuthenticate(System.Net.WebRequest,System.Net.ICredentials)">
-      <summary>Returns an instance of the <see cref="T:System.Net.Authorization" /> class for an authentication request to a server.</summary>
-      <param name="request">The <see cref="T:System.Net.WebRequest" /> instance associated with the authentication request.</param>
-      <param name="credentials">The credentials associated with the authentication request.</param>
-      <returns>An <see cref="T:System.Net.Authorization" /> instance containing the authorization message for the request.</returns>
     </member>
     <member name="T:System.Net.ICredentialPolicy">
       <summary>Defines the credential policy to be used for resource requests that are made using <see cref="T:System.Net.WebRequest" /> and its derived classes.</summary>
@@ -1403,16 +1483,13 @@ The value for this property is stored in <see cref="T:System.Net.WebHeaderCollec
     <member name="M:System.Net.IWebRequestCreate.Create(System.Uri)">
       <summary>Creates a <see cref="T:System.Net.WebRequest" /> instance.</summary>
       <param name="uri">The uniform resource identifier (URI) of the Web resource.</param>
-      <returns>A <see cref="T:System.Net.WebRequest" /> instance.</returns>
       <exception cref="T:System.NotSupportedException">The request scheme specified in <paramref name="uri" /> is not supported by this <see cref="T:System.Net.IWebRequestCreate" /> instance.</exception>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="uri" /> is <see langword="null" />.</exception>
-      <exception cref="T:System.UriFormatException">In the .NET for Windows Store apps or the Portable Class Library, catch the base class exception, <see cref="T:System.FormatException" />, instead.  
-  
+      <exception cref="T:System.UriFormatException">The URI specified in <paramref name="uri" /> is not a valid URI.
 
-            
-  
- The URI specified in <paramref name="uri" /> is not a valid URI.</exception>
+Note: In .NET for Windows Store apps or the Portable Class Library, catch the base class exception, <see cref="T:System.FormatException" />, instead.</exception>
+      <returns>A <see cref="T:System.Net.WebRequest" /> instance.</returns>
     </member>
     <member name="T:System.Net.ProtocolViolationException">
       <summary>The exception that is thrown when an error is made while using a network protocol.</summary>
@@ -1457,12 +1534,12 @@ The value for this property is stored in <see cref="T:System.Net.WebHeaderCollec
     <member name="M:System.Net.WebException.#ctor(System.String,System.Exception)">
       <summary>Initializes a new instance of the <see cref="T:System.Net.WebException" /> class with the specified error message and nested exception.</summary>
       <param name="message">The text of the error message.</param>
-      <param name="inner">A nested exception.</param>
+      <param name="innerException">A nested exception.</param>
     </member>
     <member name="M:System.Net.WebException.#ctor(System.String,System.Exception,System.Net.WebExceptionStatus,System.Net.WebResponse)">
       <summary>Initializes a new instance of the <see cref="T:System.Net.WebException" /> class with the specified error message, nested exception, status, and response.</summary>
       <param name="message">The text of the error message.</param>
-      <param name="inner">A nested exception.</param>
+      <param name="innerException">A nested exception.</param>
       <param name="status">One of the <see cref="T:System.Net.WebExceptionStatus" /> values.</param>
       <param name="response">A <see cref="T:System.Net.WebResponse" /> instance that contains the response from the remote host.</param>
     </member>
@@ -1476,6 +1553,11 @@ The value for this property is stored in <see cref="T:System.Net.WebHeaderCollec
       <param name="serializationInfo">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> to be used.</param>
       <param name="streamingContext">The <see cref="T:System.Runtime.Serialization.StreamingContext" /> to be used.</param>
     </member>
+    <member name="M:System.Net.WebException.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>Serializes this instance into the specified <see cref="T:System.Runtime.Serialization.SerializationInfo" /> object.</summary>
+      <param name="serializationInfo">The object into which this <see cref="T:System.Net.WebException" /> will be serialized.</param>
+      <param name="streamingContext">The destination of the serialization.</param>
+    </member>
     <member name="P:System.Net.WebException.Response">
       <summary>Gets the response that the remote host returned.</summary>
       <returns>If a response is available from the Internet resource, a <see cref="T:System.Net.WebResponse" /> instance that contains the error response from an Internet resource; otherwise, <see langword="null" />.</returns>
@@ -1483,11 +1565,6 @@ The value for this property is stored in <see cref="T:System.Net.WebHeaderCollec
     <member name="P:System.Net.WebException.Status">
       <summary>Gets the status of the response.</summary>
       <returns>One of the <see cref="T:System.Net.WebExceptionStatus" /> values.</returns>
-    </member>
-    <member name="M:System.Net.WebException.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-      <summary>Serializes this instance into the specified <see cref="T:System.Runtime.Serialization.SerializationInfo" /> object.</summary>
-      <param name="serializationInfo">The object into which this <see cref="T:System.Net.WebException" /> will be serialized.</param>
-      <param name="streamingContext">The destination of the serialization.</param>
     </member>
     <member name="T:System.Net.WebExceptionStatus">
       <summary>Defines status codes for the <see cref="T:System.Net.WebException" /> class.</summary>
@@ -1563,7 +1640,7 @@ The value for this property is stored in <see cref="T:System.Net.WebHeaderCollec
     </member>
     <member name="M:System.Net.WebRequest.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
       <summary>Initializes a new instance of the <see cref="T:System.Net.WebRequest" /> class from the specified instances of the <see cref="T:System.Runtime.Serialization.SerializationInfo" /> and <see cref="T:System.Runtime.Serialization.StreamingContext" /> classes.</summary>
-      <param name="serializationInfo">A <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that contains the information required to serialize the new <see cref="T:System.Net.WebRequest" /> instance.</param>
+      <param name="serializationInfo">The information required to serialize the new <see cref="T:System.Net.WebRequest" /> instance.</param>
       <param name="streamingContext">A <see cref="T:System.Runtime.Serialization.StreamingContext" /> that indicates the source of the serialized stream associated with the new <see cref="T:System.Net.WebRequest" /> instance.</param>
       <exception cref="T:System.NotImplementedException">Any attempt is made to access the constructor, when the constructor is not overridden in a descendant class.</exception>
     </member>
@@ -1571,123 +1648,81 @@ The value for this property is stored in <see cref="T:System.Net.WebHeaderCollec
       <summary>Aborts the request.</summary>
       <exception cref="T:System.NotImplementedException">Any attempt is made to access the method, when the method is not overridden in a descendant class.</exception>
     </member>
-    <member name="P:System.Net.WebRequest.AuthenticationLevel">
-      <summary>Gets or sets values indicating the level of authentication and impersonation used for this request.</summary>
-      <returns>A bitwise combination of the <see cref="T:System.Net.Security.AuthenticationLevel" /> values. The default value is <see cref="F:System.Net.Security.AuthenticationLevel.MutualAuthRequested" />.
-In mutual authentication, both the client and server present credentials to establish their identity. The <see cref="F:System.Net.Security.AuthenticationLevel.MutualAuthRequired" /> and <see cref="F:System.Net.Security.AuthenticationLevel.MutualAuthRequested" /> values are relevant for Kerberos authentication. Kerberos authentication can be supported directly, or can be used if the Negotiate security protocol is used to select the actual security protocol. For more information about authentication protocols, see Internet Authentication.
-To determine whether mutual authentication occurred, check the <see cref="P:System.Net.WebResponse.IsMutuallyAuthenticated" /> property.
-If you specify the <see cref="F:System.Net.Security.AuthenticationLevel.MutualAuthRequired" /> authentication flag value and mutual authentication does not occur, your application will receive an <see cref="T:System.IO.IOException" /> with a <see cref="T:System.Net.ProtocolViolationException" /> inner exception indicating that mutual authentication failed.</returns>
-    </member>
     <member name="M:System.Net.WebRequest.BeginGetRequestStream(System.AsyncCallback,System.Object)">
       <summary>When overridden in a descendant class, provides an asynchronous version of the <see cref="M:System.Net.WebRequest.GetRequestStream" /> method.</summary>
       <param name="callback">The <see cref="T:System.AsyncCallback" /> delegate.</param>
       <param name="state">An object containing state information for this asynchronous request.</param>
-      <returns>An <see cref="T:System.IAsyncResult" /> that references the asynchronous request.</returns>
       <exception cref="T:System.NotImplementedException">Any attempt is made to access the method, when the method is not overridden in a descendant class.</exception>
+      <returns>An <see cref="T:System.IAsyncResult" /> that references the asynchronous request.</returns>
     </member>
     <member name="M:System.Net.WebRequest.BeginGetResponse(System.AsyncCallback,System.Object)">
       <summary>When overridden in a descendant class, begins an asynchronous request for an Internet resource.</summary>
       <param name="callback">The <see cref="T:System.AsyncCallback" /> delegate.</param>
       <param name="state">An object containing state information for this asynchronous request.</param>
-      <returns>An <see cref="T:System.IAsyncResult" /> that references the asynchronous request.</returns>
       <exception cref="T:System.NotImplementedException">Any attempt is made to access the method, when the method is not overridden in a descendant class.</exception>
-    </member>
-    <member name="P:System.Net.WebRequest.CachePolicy">
-      <summary>Gets or sets the cache policy for this request.</summary>
-      <returns>A <see cref="T:System.Net.Cache.RequestCachePolicy" /> object that defines a cache policy.</returns>
-    </member>
-    <member name="P:System.Net.WebRequest.ConnectionGroupName">
-      <summary>When overridden in a descendant class, gets or sets the name of the connection group for the request.</summary>
-      <returns>The name of the connection group for the request.</returns>
-      <exception cref="T:System.NotImplementedException">Any attempt is made to get or set the property, when the property is not overridden in a descendant class.</exception>
-    </member>
-    <member name="P:System.Net.WebRequest.ContentLength">
-      <summary>When overridden in a descendant class, gets or sets the content length of the request data being sent.</summary>
-      <returns>The number of bytes of request data being sent.</returns>
-      <exception cref="T:System.NotImplementedException">Any attempt is made to get or set the property, when the property is not overridden in a descendant class.</exception>
-    </member>
-    <member name="P:System.Net.WebRequest.ContentType">
-      <summary>When overridden in a descendant class, gets or sets the content type of the request data being sent.</summary>
-      <returns>The content type of the request data.</returns>
-      <exception cref="T:System.NotImplementedException">Any attempt is made to get or set the property, when the property is not overridden in a descendant class.</exception>
+      <returns>An <see cref="T:System.IAsyncResult" /> that references the asynchronous request.</returns>
     </member>
     <member name="M:System.Net.WebRequest.Create(System.String)">
       <summary>Initializes a new <see cref="T:System.Net.WebRequest" /> instance for the specified URI scheme.</summary>
       <param name="requestUriString">The URI that identifies the Internet resource.</param>
-      <returns>A <see cref="T:System.Net.WebRequest" /> descendant for the specific URI scheme.</returns>
       <exception cref="T:System.NotSupportedException">The request scheme specified in <paramref name="requestUriString" /> has not been registered.</exception>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="requestUriString" /> is <see langword="null" />.</exception>
       <exception cref="T:System.Security.SecurityException">The caller does not have <see cref="T:System.Net.WebPermissionAttribute" /> permission to connect to the requested URI or a URI that the request is redirected to.</exception>
-      <exception cref="T:System.UriFormatException">In the .NET for Windows Store apps or the Portable Class Library, catch the base class exception, <see cref="T:System.FormatException" />, instead.  
-  
+      <exception cref="T:System.UriFormatException">The URI specified in <paramref name="requestUriString" /> is not a valid URI.
 
-            
-  
- The URI specified in <paramref name="requestUriString" /> is not a valid URI.</exception>
+Note: In .NET for Windows Store apps or the Portable Class Library, catch the base class exception, <see cref="T:System.FormatException" />, instead.</exception>
+      <returns>A <see cref="T:System.Net.WebRequest" /> descendant for the specific URI scheme.</returns>
     </member>
     <member name="M:System.Net.WebRequest.Create(System.Uri)">
       <summary>Initializes a new <see cref="T:System.Net.WebRequest" /> instance for the specified URI scheme.</summary>
       <param name="requestUri">A <see cref="T:System.Uri" /> containing the URI of the requested resource.</param>
-      <returns>A <see cref="T:System.Net.WebRequest" /> descendant for the specified URI scheme.</returns>
       <exception cref="T:System.NotSupportedException">The request scheme specified in <paramref name="requestUri" /> is not registered.</exception>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="requestUri" /> is <see langword="null" />.</exception>
       <exception cref="T:System.Security.SecurityException">The caller does not have <see cref="T:System.Net.WebPermissionAttribute" /> permission to connect to the requested URI or a URI that the request is redirected to.</exception>
+      <returns>A <see cref="T:System.Net.WebRequest" /> descendant for the specified URI scheme.</returns>
     </member>
     <member name="M:System.Net.WebRequest.CreateDefault(System.Uri)">
       <summary>Initializes a new <see cref="T:System.Net.WebRequest" /> instance for the specified URI scheme.</summary>
       <param name="requestUri">A <see cref="T:System.Uri" /> containing the URI of the requested resource.</param>
-      <returns>A <see cref="T:System.Net.WebRequest" /> descendant for the specified URI scheme.</returns>
       <exception cref="T:System.NotSupportedException">The request scheme specified in <paramref name="requestUri" /> is not registered.</exception>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="requestUri" /> is <see langword="null" />.</exception>
       <exception cref="T:System.Security.SecurityException">The caller does not have <see cref="T:System.Net.WebPermissionAttribute" /> permission to connect to the requested URI or a URI that the request is redirected to.</exception>
+      <returns>A <see cref="T:System.Net.WebRequest" /> descendant for the specified URI scheme.</returns>
     </member>
     <member name="M:System.Net.WebRequest.CreateHttp(System.String)">
       <summary>Initializes a new <see cref="T:System.Net.HttpWebRequest" /> instance for the specified URI string.</summary>
       <param name="requestUriString">A URI string that identifies the Internet resource.</param>
-      <returns>An <see cref="T:System.Net.HttpWebRequest" /> instance for the specific URI string.</returns>
       <exception cref="T:System.NotSupportedException">The request scheme specified in <paramref name="requestUriString" /> is the http or https scheme.</exception>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="requestUriString" /> is <see langword="null" />.</exception>
       <exception cref="T:System.Security.SecurityException">The caller does not have <see cref="T:System.Net.WebPermissionAttribute" /> permission to connect to the requested URI or a URI that the request is redirected to.</exception>
       <exception cref="T:System.UriFormatException">The URI specified in <paramref name="requestUriString" /> is not a valid URI.</exception>
+      <returns>An <see cref="T:System.Net.HttpWebRequest" /> instance for the specific URI string.</returns>
     </member>
     <member name="M:System.Net.WebRequest.CreateHttp(System.Uri)">
       <summary>Initializes a new <see cref="T:System.Net.HttpWebRequest" /> instance for the specified URI.</summary>
       <param name="requestUri">A URI that identifies the Internet resource.</param>
-      <returns>An <see cref="T:System.Net.HttpWebRequest" /> instance for the specific URI string.</returns>
       <exception cref="T:System.NotSupportedException">The request scheme specified in <paramref name="requestUri" /> is the http or https scheme.</exception>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="requestUri" /> is <see langword="null" />.</exception>
       <exception cref="T:System.Security.SecurityException">The caller does not have <see cref="T:System.Net.WebPermissionAttribute" /> permission to connect to the requested URI or a URI that the request is redirected to.</exception>
       <exception cref="T:System.UriFormatException">The URI specified in <paramref name="requestUri" /> is not a valid URI.</exception>
-    </member>
-    <member name="P:System.Net.WebRequest.Credentials">
-      <summary>When overridden in a descendant class, gets or sets the network credentials used for authenticating the request with the Internet resource.</summary>
-      <returns>An <see cref="T:System.Net.ICredentials" /> containing the authentication credentials associated with the request. The default is <see langword="null" />.</returns>
-      <exception cref="T:System.NotImplementedException">Any attempt is made to get or set the property, when the property is not overridden in a descendant class.</exception>
-    </member>
-    <member name="P:System.Net.WebRequest.DefaultCachePolicy">
-      <summary>Gets or sets the default cache policy for this request.</summary>
-      <returns>A <see cref="T:System.Net.Cache.HttpRequestCachePolicy" /> that specifies the cache policy in effect for this request when no other policy is applicable.</returns>
-    </member>
-    <member name="P:System.Net.WebRequest.DefaultWebProxy">
-      <summary>Gets or sets the global HTTP proxy.</summary>
-      <returns>An <see cref="T:System.Net.IWebProxy" /> used by every call to instances of <see cref="T:System.Net.WebRequest" />.</returns>
+      <returns>An <see cref="T:System.Net.HttpWebRequest" /> instance for the specific URI string.</returns>
     </member>
     <member name="M:System.Net.WebRequest.EndGetRequestStream(System.IAsyncResult)">
       <summary>When overridden in a descendant class, returns a <see cref="T:System.IO.Stream" /> for writing data to the Internet resource.</summary>
       <param name="asyncResult">An <see cref="T:System.IAsyncResult" /> that references a pending request for a stream.</param>
-      <returns>A <see cref="T:System.IO.Stream" /> to write data to.</returns>
       <exception cref="T:System.NotImplementedException">Any attempt is made to access the method, when the method is not overridden in a descendant class.</exception>
+      <returns>A <see cref="T:System.IO.Stream" /> to write data to.</returns>
     </member>
     <member name="M:System.Net.WebRequest.EndGetResponse(System.IAsyncResult)">
       <summary>When overridden in a descendant class, returns a <see cref="T:System.Net.WebResponse" />.</summary>
       <param name="asyncResult">An <see cref="T:System.IAsyncResult" /> that references a pending request for a response.</param>
-      <returns>A <see cref="T:System.Net.WebResponse" /> that contains a response to the Internet request.</returns>
       <exception cref="T:System.NotImplementedException">Any attempt is made to access the method, when the method is not overridden in a descendant class.</exception>
+      <returns>A <see cref="T:System.Net.WebResponse" /> that contains a response to the Internet request.</returns>
     </member>
     <member name="M:System.Net.WebRequest.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
       <summary>Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo" /> with the data needed to serialize the target object.</summary>
@@ -1696,8 +1731,8 @@ If you specify the <see cref="F:System.Net.Security.AuthenticationLevel.MutualAu
     </member>
     <member name="M:System.Net.WebRequest.GetRequestStream">
       <summary>When overridden in a descendant class, returns a <see cref="T:System.IO.Stream" /> for writing data to the Internet resource.</summary>
-      <returns>A <see cref="T:System.IO.Stream" /> for writing data to the Internet resource.</returns>
       <exception cref="T:System.NotImplementedException">Any attempt is made to access the method, when the method is not overridden in a descendant class.</exception>
+      <returns>A <see cref="T:System.IO.Stream" /> for writing data to the Internet resource.</returns>
     </member>
     <member name="M:System.Net.WebRequest.GetRequestStreamAsync">
       <summary>When overridden in a descendant class, returns a <see cref="T:System.IO.Stream" /> for writing data to the Internet resource as an asynchronous operation.</summary>
@@ -1705,8 +1740,8 @@ If you specify the <see cref="F:System.Net.Security.AuthenticationLevel.MutualAu
     </member>
     <member name="M:System.Net.WebRequest.GetResponse">
       <summary>When overridden in a descendant class, returns a response to an Internet request.</summary>
-      <returns>A <see cref="T:System.Net.WebResponse" /> containing the response to the Internet request.</returns>
       <exception cref="T:System.NotImplementedException">Any attempt is made to access the method, when the method is not overridden in a descendant class.</exception>
+      <returns>A <see cref="T:System.Net.WebResponse" /> containing the response to the Internet request.</returns>
     </member>
     <member name="M:System.Net.WebRequest.GetResponseAsync">
       <summary>When overridden in a descendant class, returns a response to an Internet request as an asynchronous operation.</summary>
@@ -1716,46 +1751,18 @@ If you specify the <see cref="F:System.Net.Security.AuthenticationLevel.MutualAu
       <summary>Returns a proxy configured with the Internet Explorer settings of the currently impersonated user.</summary>
       <returns>An <see cref="T:System.Net.IWebProxy" /> used by every call to instances of <see cref="T:System.Net.WebRequest" />.</returns>
     </member>
-    <member name="P:System.Net.WebRequest.Headers">
-      <summary>When overridden in a descendant class, gets or sets the collection of header name/value pairs associated with the request.</summary>
-      <returns>A <see cref="T:System.Net.WebHeaderCollection" /> containing the header name/value pairs associated with this request.</returns>
-      <exception cref="T:System.NotImplementedException">Any attempt is made to get or set the property, when the property is not overridden in a descendant class.</exception>
-    </member>
-    <member name="P:System.Net.WebRequest.ImpersonationLevel">
-      <summary>Gets or sets the impersonation level for the current request.</summary>
-      <returns>A <see cref="T:System.Security.Principal.TokenImpersonationLevel" /> value.</returns>
-    </member>
-    <member name="P:System.Net.WebRequest.Method">
-      <summary>When overridden in a descendant class, gets or sets the protocol method to use in this request.</summary>
-      <returns>The protocol method to use in this request.</returns>
-      <exception cref="T:System.NotImplementedException">If the property is not overridden in a descendant class, any attempt is made to get or set the property.</exception>
-    </member>
-    <member name="P:System.Net.WebRequest.PreAuthenticate">
-      <summary>When overridden in a descendant class, indicates whether to pre-authenticate the request.</summary>
-      <returns>
-        <see langword="true" /> to pre-authenticate; otherwise, <see langword="false" />.</returns>
-      <exception cref="T:System.NotImplementedException">Any attempt is made to get or set the property, when the property is not overridden in a descendant class.</exception>
-    </member>
-    <member name="P:System.Net.WebRequest.Proxy">
-      <summary>When overridden in a descendant class, gets or sets the network proxy to use to access this Internet resource.</summary>
-      <returns>The <see cref="T:System.Net.IWebProxy" /> to use to access the Internet resource.</returns>
-      <exception cref="T:System.NotImplementedException">Any attempt is made to get or set the property, when the property is not overridden in a descendant class.</exception>
-    </member>
     <member name="M:System.Net.WebRequest.RegisterPrefix(System.String,System.Net.IWebRequestCreate)">
       <summary>Registers a <see cref="T:System.Net.WebRequest" /> descendant for the specified URI.</summary>
       <param name="prefix">The complete URI or URI prefix that the <see cref="T:System.Net.WebRequest" /> descendant services.</param>
       <param name="creator">The create method that the <see cref="T:System.Net.WebRequest" /> calls to create the <see cref="T:System.Net.WebRequest" /> descendant.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="prefix" /> is <see langword="null" />  
+  
+ -or-  
+  
+ <paramref name="creator" /> is <see langword="null" />.</exception>
       <returns>
         <see langword="true" /> if registration is successful; otherwise, <see langword="false" />.</returns>
-      <exception cref="T:System.ArgumentNullException">
-        <paramref name="prefix" /> is <see langword="null" />
--or-
-<paramref name="creator" /> is <see langword="null" />.</exception>
-    </member>
-    <member name="P:System.Net.WebRequest.RequestUri">
-      <summary>When overridden in a descendant class, gets the URI of the Internet resource associated with the request.</summary>
-      <returns>A <see cref="T:System.Uri" /> representing the resource associated with the request</returns>
-      <exception cref="T:System.NotImplementedException">Any attempt is made to get or set the property, when the property is not overridden in a descendant class.</exception>
     </member>
     <member name="M:System.Net.WebRequest.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
       <summary>When overridden in a descendant class, populates a <see cref="T:System.Runtime.Serialization.SerializationInfo" /> instance with the data needed to serialize the <see cref="T:System.Net.WebRequest" />.</summary>
@@ -1763,17 +1770,89 @@ If you specify the <see cref="F:System.Net.Security.AuthenticationLevel.MutualAu
       <param name="streamingContext">A <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains the destination of the serialized stream associated with the new <see cref="T:System.Net.WebRequest" />.</param>
       <exception cref="T:System.NotImplementedException">An attempt is made to serialize the object, when the interface is not overridden in a descendant class.</exception>
     </member>
+    <member name="P:System.Net.WebRequest.AuthenticationLevel">
+      <summary>Gets or sets values indicating the level of authentication and impersonation used for this request.</summary>
+      <returns>A bitwise combination of the <see cref="T:System.Net.Security.AuthenticationLevel" /> values. The default value is <see cref="F:System.Net.Security.AuthenticationLevel.MutualAuthRequested" />.  
+  
+ In mutual authentication, both the client and server present credentials to establish their identity. The <see cref="F:System.Net.Security.AuthenticationLevel.MutualAuthRequired" /> and <see cref="F:System.Net.Security.AuthenticationLevel.MutualAuthRequested" /> values are relevant for Kerberos authentication. Kerberos authentication can be supported directly, or can be used if the Negotiate security protocol is used to select the actual security protocol. For more information about authentication protocols, see Internet Authentication.  
+  
+ To determine whether mutual authentication occurred, check the <see cref="P:System.Net.WebResponse.IsMutuallyAuthenticated" /> property.  
+  
+ If you specify the <see cref="F:System.Net.Security.AuthenticationLevel.MutualAuthRequired" /> authentication flag value and mutual authentication does not occur, your application will receive an <see cref="T:System.IO.IOException" /> with a <see cref="T:System.Net.ProtocolViolationException" /> inner exception indicating that mutual authentication failed.</returns>
+    </member>
+    <member name="P:System.Net.WebRequest.CachePolicy">
+      <summary>Gets or sets the cache policy for this request.</summary>
+      <returns>A <see cref="T:System.Net.Cache.RequestCachePolicy" /> object that defines a cache policy.</returns>
+    </member>
+    <member name="P:System.Net.WebRequest.ConnectionGroupName">
+      <summary>When overridden in a descendant class, gets or sets the name of the connection group for the request.</summary>
+      <exception cref="T:System.NotImplementedException">Any attempt is made to get or set the property, when the property is not overridden in a descendant class.</exception>
+      <returns>The name of the connection group for the request.</returns>
+    </member>
+    <member name="P:System.Net.WebRequest.ContentLength">
+      <summary>When overridden in a descendant class, gets or sets the content length of the request data being sent.</summary>
+      <exception cref="T:System.NotImplementedException">Any attempt is made to get or set the property, when the property is not overridden in a descendant class.</exception>
+      <returns>The number of bytes of request data being sent.</returns>
+    </member>
+    <member name="P:System.Net.WebRequest.ContentType">
+      <summary>When overridden in a descendant class, gets or sets the content type of the request data being sent.</summary>
+      <exception cref="T:System.NotImplementedException">Any attempt is made to get or set the property, when the property is not overridden in a descendant class.</exception>
+      <returns>The content type of the request data.</returns>
+    </member>
+    <member name="P:System.Net.WebRequest.Credentials">
+      <summary>When overridden in a descendant class, gets or sets the network credentials used for authenticating the request with the Internet resource.</summary>
+      <exception cref="T:System.NotImplementedException">Any attempt is made to get or set the property, when the property is not overridden in a descendant class.</exception>
+      <returns>An <see cref="T:System.Net.ICredentials" /> containing the authentication credentials associated with the request. The default is <see langword="null" />.</returns>
+    </member>
+    <member name="P:System.Net.WebRequest.DefaultCachePolicy">
+      <summary>Gets or sets the default cache policy for this request.</summary>
+      <returns>A <see cref="T:System.Net.Cache.HttpRequestCachePolicy" /> that specifies the cache policy in effect for this request when no other policy is applicable.</returns>
+    </member>
+    <member name="P:System.Net.WebRequest.DefaultWebProxy">
+      <summary>Gets or sets the global HTTP proxy.</summary>
+      <returns>An <see cref="T:System.Net.IWebProxy" /> used by every call to instances of <see cref="T:System.Net.WebRequest" />.</returns>
+    </member>
+    <member name="P:System.Net.WebRequest.Headers">
+      <summary>When overridden in a descendant class, gets or sets the collection of header name/value pairs associated with the request.</summary>
+      <exception cref="T:System.NotImplementedException">Any attempt is made to get or set the property, when the property is not overridden in a descendant class.</exception>
+      <returns>A <see cref="T:System.Net.WebHeaderCollection" /> containing the header name/value pairs associated with this request.</returns>
+    </member>
+    <member name="P:System.Net.WebRequest.ImpersonationLevel">
+      <summary>Gets or sets the impersonation level for the current request.</summary>
+      <returns>A <see cref="T:System.Security.Principal.TokenImpersonationLevel" /> value.</returns>
+    </member>
+    <member name="P:System.Net.WebRequest.Method">
+      <summary>When overridden in a descendant class, gets or sets the protocol method to use in this request.</summary>
+      <exception cref="T:System.NotImplementedException">If the property is not overridden in a descendant class, any attempt is made to get or set the property.</exception>
+      <returns>The protocol method to use in this request.</returns>
+    </member>
+    <member name="P:System.Net.WebRequest.PreAuthenticate">
+      <summary>When overridden in a descendant class, indicates whether to pre-authenticate the request.</summary>
+      <exception cref="T:System.NotImplementedException">Any attempt is made to get or set the property, when the property is not overridden in a descendant class.</exception>
+      <returns>
+        <see langword="true" /> to pre-authenticate; otherwise, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Net.WebRequest.Proxy">
+      <summary>When overridden in a descendant class, gets or sets the network proxy to use to access this Internet resource.</summary>
+      <exception cref="T:System.NotImplementedException">Any attempt is made to get or set the property, when the property is not overridden in a descendant class.</exception>
+      <returns>The <see cref="T:System.Net.IWebProxy" /> to use to access the Internet resource.</returns>
+    </member>
+    <member name="P:System.Net.WebRequest.RequestUri">
+      <summary>When overridden in a descendant class, gets the URI of the Internet resource associated with the request.</summary>
+      <exception cref="T:System.NotImplementedException">Any attempt is made to get or set the property, when the property is not overridden in a descendant class.</exception>
+      <returns>A <see cref="T:System.Uri" /> representing the resource associated with the request.</returns>
+    </member>
     <member name="P:System.Net.WebRequest.Timeout">
       <summary>Gets or sets the length of time, in milliseconds, before the request times out.</summary>
-      <returns>The length of time, in milliseconds, until the request times out, or the value <see cref="F:System.Threading.Timeout.Infinite" /> to indicate that the request does not time out. The default value is defined by the descendant class.</returns>
       <exception cref="T:System.NotImplementedException">Any attempt is made to get or set the property, when the property is not overridden in a descendant class.</exception>
+      <returns>The length of time, in milliseconds, until the request times out, or the value <see cref="F:System.Threading.Timeout.Infinite" /> to indicate that the request does not time out. The default value is defined by the descendant class.</returns>
     </member>
     <member name="P:System.Net.WebRequest.UseDefaultCredentials">
       <summary>When overridden in a descendant class, gets or sets a <see cref="T:System.Boolean" /> value that controls whether <see cref="P:System.Net.CredentialCache.DefaultCredentials" /> are sent with requests.</summary>
-      <returns>
-        <see langword="true" /> if the default credentials are used; otherwise <see langword="false" />. The default value is <see langword="false" />.</returns>
       <exception cref="T:System.InvalidOperationException">You attempted to set this property after the request was sent.</exception>
       <exception cref="T:System.NotImplementedException">Any attempt is made to access the property, when the property is not overridden in a descendant class.</exception>
+      <returns>
+        <see langword="true" /> if the default credentials are used; otherwise <see langword="false" />. The default value is <see langword="false" />.</returns>
     </member>
     <member name="T:System.Net.WebRequestMethods">
       <summary>Container class for <see cref="T:System.Net.WebRequestMethods.Ftp" />, <see cref="T:System.Net.WebRequestMethods.File" />, and <see cref="T:System.Net.WebRequestMethods.Http" /> classes. This class cannot be inherited.</summary>
@@ -1866,16 +1945,6 @@ If you specify the <see cref="F:System.Net.Security.AuthenticationLevel.MutualAu
       <summary>When overridden by a descendant class, closes the response stream.</summary>
       <exception cref="T:System.NotSupportedException">Any attempt is made to access the method, when the method is not overridden in a descendant class.</exception>
     </member>
-    <member name="P:System.Net.WebResponse.ContentLength">
-      <summary>When overridden in a descendant class, gets or sets the content length of data being received.</summary>
-      <returns>The number of bytes returned from the Internet resource.</returns>
-      <exception cref="T:System.NotSupportedException">Any attempt is made to get or set the property, when the property is not overridden in a descendant class.</exception>
-    </member>
-    <member name="P:System.Net.WebResponse.ContentType">
-      <summary>When overridden in a derived class, gets or sets the content type of the data being received.</summary>
-      <returns>A string that contains the content type of the response.</returns>
-      <exception cref="T:System.NotSupportedException">Any attempt is made to get or set the property, when the property is not overridden in a descendant class.</exception>
-    </member>
     <member name="M:System.Net.WebResponse.Dispose">
       <summary>Releases the unmanaged resources used by the <see cref="T:System.Net.WebResponse" /> object.</summary>
     </member>
@@ -1891,13 +1960,28 @@ If you specify the <see cref="F:System.Net.Security.AuthenticationLevel.MutualAu
     </member>
     <member name="M:System.Net.WebResponse.GetResponseStream">
       <summary>When overridden in a descendant class, returns the data stream from the Internet resource.</summary>
-      <returns>An instance of the <see cref="T:System.IO.Stream" /> class for reading data from the Internet resource.</returns>
       <exception cref="T:System.NotSupportedException">Any attempt is made to access the method, when the method is not overridden in a descendant class.</exception>
+      <returns>An instance of the <see cref="T:System.IO.Stream" /> class for reading data from the Internet resource.</returns>
+    </member>
+    <member name="M:System.Net.WebResponse.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo" /> instance with the data that is needed to serialize <see cref="T:System.Net.WebResponse" />.</summary>
+      <param name="serializationInfo">A <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that will hold the serialized data for the <see cref="T:System.Net.WebResponse" />.</param>
+      <param name="streamingContext">A <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains the destination of the serialized stream that is associated with the new <see cref="T:System.Net.WebResponse" />.</param>
+    </member>
+    <member name="P:System.Net.WebResponse.ContentLength">
+      <summary>When overridden in a descendant class, gets or sets the content length of data being received.</summary>
+      <exception cref="T:System.NotSupportedException">Any attempt is made to get or set the property, when the property is not overridden in a descendant class.</exception>
+      <returns>The number of bytes returned from the Internet resource.</returns>
+    </member>
+    <member name="P:System.Net.WebResponse.ContentType">
+      <summary>When overridden in a derived class, gets or sets the content type of the data being received.</summary>
+      <exception cref="T:System.NotSupportedException">Any attempt is made to get or set the property, when the property is not overridden in a descendant class.</exception>
+      <returns>A string that contains the content type of the response.</returns>
     </member>
     <member name="P:System.Net.WebResponse.Headers">
       <summary>When overridden in a derived class, gets a collection of header name-value pairs associated with this request.</summary>
-      <returns>An instance of the <see cref="T:System.Net.WebHeaderCollection" /> class that contains header values associated with this response.</returns>
       <exception cref="T:System.NotSupportedException">Any attempt is made to get or set the property, when the property is not overridden in a descendant class.</exception>
+      <returns>An instance of the <see cref="T:System.Net.WebHeaderCollection" /> class that contains header values associated with this response.</returns>
     </member>
     <member name="P:System.Net.WebResponse.IsFromCache">
       <summary>Gets a <see cref="T:System.Boolean" /> value that indicates whether this response was obtained from the cache.</summary>
@@ -1911,18 +1995,14 @@ If you specify the <see cref="F:System.Net.Security.AuthenticationLevel.MutualAu
     </member>
     <member name="P:System.Net.WebResponse.ResponseUri">
       <summary>When overridden in a derived class, gets the URI of the Internet resource that actually responded to the request.</summary>
-      <returns>An instance of the <see cref="T:System.Uri" /> class that contains the URI of the Internet resource that actually responded to the request.</returns>
       <exception cref="T:System.NotSupportedException">Any attempt is made to get or set the property, when the property is not overridden in a descendant class.</exception>
+      <returns>An instance of the <see cref="T:System.Uri" /> class that contains the URI of the Internet resource that actually responded to the request.</returns>
     </member>
     <member name="P:System.Net.WebResponse.SupportsHeaders">
       <summary>Gets a value that indicates if headers are supported.</summary>
-      <returns>Returns <see cref="T:System.Boolean" />.
-<see langword="true" /> if headers are supported; otherwise, <see langword="false" />.</returns>
-    </member>
-    <member name="M:System.Net.WebResponse.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
-      <summary>Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo" /> instance with the data that is needed to serialize <see cref="T:System.Net.WebResponse" />.</summary>
-      <param name="serializationInfo">A <see cref="T:System.Runtime.Serialization.SerializationInfo" /> that will hold the serialized data for the <see cref="T:System.Net.WebResponse" />.</param>
-      <param name="streamingContext">A <see cref="T:System.Runtime.Serialization.StreamingContext" /> that contains the destination of the serialized stream that is associated with the new <see cref="T:System.Net.WebResponse" />.</param>
+      <returns>Returns <see cref="T:System.Boolean" />.  
+  
+ <see langword="true" /> if headers are supported; otherwise, <see langword="false" />.</returns>
     </member>
   </members>
 </doc>

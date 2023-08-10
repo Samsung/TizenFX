@@ -242,14 +242,14 @@
       <summary>Inserts the specified header with the specified value into the collection.</summary>
       <param name="header">The header to add to the collection.</param>
       <param name="value">The content of the header.</param>
-      <exception cref="T:System.ArgumentOutOfRangeException">The length of <paramref name="value" /> is greater than 65535.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">.NET Framework and .NET Core versions 2.0 - 3.1 only: The length of <paramref name="value" /> is greater than 65535.</exception>
       <exception cref="T:System.InvalidOperationException">This <see cref="T:System.Net.WebHeaderCollection" /> instance does not allow instances of <see cref="T:System.Net.HttpRequestHeader" />.</exception>
     </member>
     <member name="M:System.Net.WebHeaderCollection.Add(System.Net.HttpResponseHeader,System.String)">
       <summary>Inserts the specified header with the specified value into the collection.</summary>
       <param name="header">The header to add to the collection.</param>
       <param name="value">The content of the header.</param>
-      <exception cref="T:System.ArgumentOutOfRangeException">The length of <paramref name="value" /> is greater than 65535.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">.NET Framework and .NET Core versions 2.0 - 3.1 only: The length of <paramref name="value" /> is greater than 65535.</exception>
       <exception cref="T:System.InvalidOperationException">This <see cref="T:System.Net.WebHeaderCollection" /> instance does not allow instances of <see cref="T:System.Net.HttpResponseHeader" />.</exception>
     </member>
     <member name="M:System.Net.WebHeaderCollection.Add(System.String)">
@@ -258,58 +258,65 @@
       <exception cref="T:System.ArgumentNullException">
         <paramref name="header" /> is <see langword="null" /> or <see cref="F:System.String.Empty" />.</exception>
       <exception cref="T:System.ArgumentException">
-        <paramref name="header" /> does not contain a colon (:) character.
-The length of <paramref name="value" /> is greater than 65535.
--or-
-The name part of <paramref name="header" /> is <see cref="F:System.String.Empty" /> or contains invalid characters.
--or-
-<paramref name="header" /> is a restricted header that should be set with a property.
--or-
-The value part of <paramref name="header" /> contains invalid characters.</exception>
-      <exception cref="T:System.ArgumentOutOfRangeException">The length the string after the colon (:) is greater than 65535.</exception>
+        <paramref name="header" /> does not contain a colon (:) character.  
+  
+ The length of <paramref name="value" /> is greater than 65535.  
+  
+ -or-  
+  
+ The name part of <paramref name="header" /> is <see cref="F:System.String.Empty" /> or contains invalid characters.  
+  
+ -or-  
+  
+ <paramref name="header" /> is a restricted header that should be set with a property.  
+  
+ -or-  
+  
+ The value part of <paramref name="header" /> contains invalid characters.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">.NET Framework and .NET Core versions 2.0 - 3.1 only: The length of the string after the colon (:) is greater than 65535.</exception>
     </member>
     <member name="M:System.Net.WebHeaderCollection.Add(System.String,System.String)">
       <summary>Inserts a header with the specified name and value into the collection.</summary>
       <param name="name">The header to add to the collection.</param>
       <param name="value">The content of the header.</param>
       <exception cref="T:System.ArgumentException">
-        <paramref name="name" /> is <see langword="null" />, <see cref="F:System.String.Empty" />, or contains invalid characters.
--or-
-<paramref name="name" /> is a restricted header that must be set with a property setting.
--or-
-<paramref name="value" /> contains invalid characters.</exception>
-      <exception cref="T:System.ArgumentOutOfRangeException">The length of <paramref name="value" /> is greater than 65535.</exception>
+        <paramref name="name" /> is <see langword="null" />, <see cref="F:System.String.Empty" />, or contains invalid characters.  
+  
+ -or-  
+  
+ <paramref name="name" /> is a restricted header that must be set with a property setting.  
+  
+ -or-  
+  
+ <paramref name="value" /> contains invalid characters.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">.NET Framework and .NET Core versions 2.0 - 3.1 only: The length of <paramref name="value" /> is greater than 65535.</exception>
     </member>
     <member name="M:System.Net.WebHeaderCollection.AddWithoutValidate(System.String,System.String)">
       <summary>Inserts a header into the collection without checking whether the header is on the restricted header list.</summary>
       <param name="headerName">The header to add to the collection.</param>
       <param name="headerValue">The content of the header.</param>
       <exception cref="T:System.ArgumentException">
-        <paramref name="headerName" /> is <see langword="null" />, <see cref="F:System.String.Empty" />, or contains invalid characters.
--or-
-<paramref name="headerValue" /> contains invalid characters.</exception>
+        <paramref name="headerName" /> is <see langword="null" />, <see cref="F:System.String.Empty" />, or contains invalid characters.  
+  
+ -or-  
+  
+ <paramref name="headerValue" /> contains invalid characters.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
-        <paramref name="headerName" /> is not <see langword="null" /> and the length of <paramref name="headerValue" /> is too long (greater than 65,535 characters).</exception>
-    </member>
-    <member name="P:System.Net.WebHeaderCollection.AllKeys">
-      <summary>Gets all header names (keys) in the collection.</summary>
-      <returns>An array of type <see cref="T:System.String" /> containing all header names in a Web request.</returns>
+          .NET Framework and .NET Core only: <paramref name="headerName" /> is not <see langword="null" /> and the length of <paramref name="headerValue" /> is too long (greater than 65,535 characters).</exception>
     </member>
     <member name="M:System.Net.WebHeaderCollection.Clear">
       <summary>Removes all headers from the collection.</summary>
     </member>
-    <member name="P:System.Net.WebHeaderCollection.Count">
-      <summary>Gets the number of headers in the collection.</summary>
-      <returns>An <see cref="T:System.Int32" /> indicating the number of headers in a request.</returns>
-    </member>
     <member name="M:System.Net.WebHeaderCollection.Get(System.Int32)">
       <summary>Gets the value of a particular header in the collection, specified by an index into the collection.</summary>
       <param name="index">The zero-based index of the key to get from the collection.</param>
-      <returns>A <see cref="T:System.String" /> containing the value of the specified header.</returns>
       <exception cref="T:System.ArgumentOutOfRangeException">
-        <paramref name="index" /> is negative.
--or-
-<paramref name="index" /> exceeds the size of the collection.</exception>
+        <paramref name="index" /> is negative.  
+  
+ -or-  
+  
+ <paramref name="index" /> exceeds the size of the collection.</exception>
+      <returns>A <see cref="T:System.String" /> containing the value of the specified header.</returns>
     </member>
     <member name="M:System.Net.WebHeaderCollection.Get(System.String)">
       <summary>Gets the value of a particular header in the collection, specified by the name of the header.</summary>
@@ -323,11 +330,13 @@ The value part of <paramref name="header" /> contains invalid characters.</excep
     <member name="M:System.Net.WebHeaderCollection.GetKey(System.Int32)">
       <summary>Gets the header name at the specified position in the collection.</summary>
       <param name="index">The zero-based index of the key to get from the collection.</param>
-      <returns>A <see cref="T:System.String" /> holding the header name.</returns>
       <exception cref="T:System.ArgumentOutOfRangeException">
-        <paramref name="index" /> is negative.
--or-
-<paramref name="index" /> exceeds the size of the collection.</exception>
+        <paramref name="index" /> is negative.  
+  
+ -or-  
+  
+ <paramref name="index" /> exceeds the size of the collection.</exception>
+      <returns>A <see cref="T:System.String" /> holding the header name.</returns>
     </member>
     <member name="M:System.Net.WebHeaderCollection.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
       <summary>Populates a <see cref="T:System.Runtime.Serialization.SerializationInfo" /> with the data needed to serialize the target object.</summary>
@@ -347,43 +356,24 @@ The value part of <paramref name="header" /> contains invalid characters.</excep
     <member name="M:System.Net.WebHeaderCollection.IsRestricted(System.String)">
       <summary>Tests whether the specified HTTP header can be set for the request.</summary>
       <param name="headerName">The header to test.</param>
-      <returns>
-        <see langword="true" /> if the header is restricted; otherwise <see langword="false" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="headerName" /> is <see langword="null" /> or <see cref="F:System.String.Empty" />.</exception>
       <exception cref="T:System.ArgumentException">
         <paramref name="headerName" /> contains invalid characters.</exception>
+      <returns>
+        <see langword="true" /> if the header is restricted; otherwise <see langword="false" />.</returns>
     </member>
     <member name="M:System.Net.WebHeaderCollection.IsRestricted(System.String,System.Boolean)">
       <summary>Tests whether the specified HTTP header can be set for the request or the response.</summary>
       <param name="headerName">The header to test.</param>
-      <param name="response">Does the Framework test the response or the request?</param>
-      <returns>
-        <see langword="true" /> if the header is restricted; otherwise, <see langword="false" />.</returns>
+      <param name="response">
+        <see langword="true" /> to test the response; <see langword="false" /> to test the request.</param>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="headerName" /> is <see langword="null" /> or <see cref="F:System.String.Empty" />.</exception>
       <exception cref="T:System.ArgumentException">
         <paramref name="headerName" /> contains invalid characters.</exception>
-    </member>
-    <member name="P:System.Net.WebHeaderCollection.Item(System.Net.HttpRequestHeader)">
-      <summary>Gets or sets the specified request header.</summary>
-      <param name="header">The request header value.</param>
-      <returns>A <see cref="T:System.String" /> instance containing the specified header value.</returns>
-      <exception cref="T:System.InvalidOperationException">This <see cref="T:System.Net.WebHeaderCollection" /> instance does not allow instances of <see cref="T:System.Net.HttpRequestHeader" />.</exception>
-    </member>
-    <member name="P:System.Net.WebHeaderCollection.Item(System.Net.HttpResponseHeader)">
-      <summary>Gets or sets the specified response header.</summary>
-      <param name="header">The response header value.</param>
-      <returns>A <see cref="T:System.String" /> instance containing the specified header.</returns>
-      <exception cref="T:System.ArgumentOutOfRangeException">The length of <paramref name="value" /> is greater than 65535.</exception>
-      <exception cref="T:System.InvalidOperationException">This <see cref="T:System.Net.WebHeaderCollection" /> instance does not allow instances of <see cref="T:System.Net.HttpResponseHeader" />.</exception>
-    </member>
-    <member name="P:System.Net.WebHeaderCollection.Item(System.String)">
-      <param name="name" />
-    </member>
-    <member name="P:System.Net.WebHeaderCollection.Keys">
-      <summary>Gets the collection of header names (keys) in the collection.</summary>
-      <returns>A <see cref="T:System.Collections.Specialized.NameObjectCollectionBase.KeysCollection" /> containing all header names in a Web request.</returns>
+      <returns>
+        <see langword="true" /> if the header is restricted; otherwise, <see langword="false" />.</returns>
     </member>
     <member name="M:System.Net.WebHeaderCollection.OnDeserialization(System.Object)">
       <summary>Implements the <see cref="T:System.Runtime.Serialization.ISerializable" /> interface and raises the deserialization event when the deserialization is complete.</summary>
@@ -405,22 +395,24 @@ The value part of <paramref name="header" /> contains invalid characters.</excep
       <exception cref="T:System.ArgumentNullException">
         <paramref name="name" /> is <see langword="null" /><see cref="F:System.String.Empty" />.</exception>
       <exception cref="T:System.ArgumentException">
-        <paramref name="name" /> is a restricted header.
--or-
-<paramref name="name" /> contains invalid characters.</exception>
+        <paramref name="name" /> is a restricted header.  
+  
+ -or-  
+  
+ <paramref name="name" /> contains invalid characters.</exception>
     </member>
     <member name="M:System.Net.WebHeaderCollection.Set(System.Net.HttpRequestHeader,System.String)">
       <summary>Sets the specified header to the specified value.</summary>
       <param name="header">The <see cref="T:System.Net.HttpRequestHeader" /> value to set.</param>
       <param name="value">The content of the header to set.</param>
-      <exception cref="T:System.ArgumentOutOfRangeException">The length of <paramref name="value" /> is greater than 65535.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">.NET Framework and .NET Core versions 2.0 - 3.1 only: The length of <paramref name="value" /> is greater than 65535.</exception>
       <exception cref="T:System.InvalidOperationException">This <see cref="T:System.Net.WebHeaderCollection" /> instance does not allow instances of <see cref="T:System.Net.HttpRequestHeader" />.</exception>
     </member>
     <member name="M:System.Net.WebHeaderCollection.Set(System.Net.HttpResponseHeader,System.String)">
       <summary>Sets the specified header to the specified value.</summary>
       <param name="header">The <see cref="T:System.Net.HttpResponseHeader" /> value to set.</param>
       <param name="value">The content of the header to set.</param>
-      <exception cref="T:System.ArgumentOutOfRangeException">The length of <paramref name="value" /> is greater than 65535.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">.NET Framework and .NET Core versions 2.0 - 3.1 only: The length of <paramref name="value" /> is greater than 65535.</exception>
       <exception cref="T:System.InvalidOperationException">This <see cref="T:System.Net.WebHeaderCollection" /> instance does not allow instances of <see cref="T:System.Net.HttpResponseHeader" />.</exception>
     </member>
     <member name="M:System.Net.WebHeaderCollection.Set(System.String,System.String)">
@@ -429,11 +421,13 @@ The value part of <paramref name="header" /> contains invalid characters.</excep
       <param name="value">The content of the header to set.</param>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="name" /> is <see langword="null" /> or <see cref="F:System.String.Empty" />.</exception>
-      <exception cref="T:System.ArgumentOutOfRangeException">The length of <paramref name="value" /> is greater than 65535.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">.NET Framework and .NET Core versions 2.0 - 3.1 only: The length of <paramref name="value" /> is greater than 65535.</exception>
       <exception cref="T:System.ArgumentException">
-        <paramref name="name" /> is a restricted header.
--or-
-<paramref name="name" /> or <paramref name="value" /> contain invalid characters.</exception>
+        <paramref name="name" /> is a restricted header.  
+  
+ -or-  
+  
+ <paramref name="name" /> or <paramref name="value" /> contain invalid characters.</exception>
     </member>
     <member name="M:System.Net.WebHeaderCollection.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
       <summary>Serializes this instance into the specified <see cref="T:System.Runtime.Serialization.SerializationInfo" /> object.</summary>
@@ -447,6 +441,31 @@ The value part of <paramref name="header" /> contains invalid characters.</excep
     <member name="M:System.Net.WebHeaderCollection.ToString">
       <summary>This method is obsolete.</summary>
       <returns>The <see cref="T:System.String" /> representation of the collection.</returns>
+    </member>
+    <member name="P:System.Net.WebHeaderCollection.AllKeys">
+      <summary>Gets all header names (keys) in the collection.</summary>
+      <returns>An array of type <see cref="T:System.String" /> containing all header names in a Web request.</returns>
+    </member>
+    <member name="P:System.Net.WebHeaderCollection.Count">
+      <summary>Gets the number of headers in the collection.</summary>
+      <returns>An <see cref="T:System.Int32" /> indicating the number of headers in a request.</returns>
+    </member>
+    <member name="P:System.Net.WebHeaderCollection.Item(System.Net.HttpRequestHeader)">
+      <summary>Gets or sets the specified request header.</summary>
+      <param name="header">The request header value.</param>
+      <exception cref="T:System.InvalidOperationException">This <see cref="T:System.Net.WebHeaderCollection" /> instance does not allow instances of <see cref="T:System.Net.HttpRequestHeader" />.</exception>
+      <returns>A <see cref="T:System.String" /> instance containing the specified header value.</returns>
+    </member>
+    <member name="P:System.Net.WebHeaderCollection.Item(System.Net.HttpResponseHeader)">
+      <summary>Gets or sets the specified response header.</summary>
+      <param name="header">The response header value.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">.NET Framework and .NET Core versions 2.0 - 3.1 only: The length of <paramref name="value" /> is greater than 65535.</exception>
+      <exception cref="T:System.InvalidOperationException">This <see cref="T:System.Net.WebHeaderCollection" /> instance does not allow instances of <see cref="T:System.Net.HttpResponseHeader" />.</exception>
+      <returns>A <see cref="T:System.String" /> instance containing the specified header.</returns>
+    </member>
+    <member name="P:System.Net.WebHeaderCollection.Keys">
+      <summary>Gets the collection of header names (keys) in the collection.</summary>
+      <returns>A <see cref="T:System.Collections.Specialized.NameObjectCollectionBase.KeysCollection" /> containing all header names in a Web request.</returns>
     </member>
   </members>
 </doc>
