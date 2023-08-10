@@ -14,12 +14,15 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace Tizen.Account.FidoClient
 {
     /// <summary>
     /// Authenticator's supported algorithm and encoding
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public enum AuthenticationAlgorithm
     {
         /// <summary>
@@ -63,6 +66,7 @@ namespace Tizen.Account.FidoClient
     /// Authenticator's supported user verification method type.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public enum UserVerificationMethod
     {
         /// <summary>
@@ -135,6 +139,7 @@ namespace Tizen.Account.FidoClient
     /// Authenticator's supported key protection method type.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public enum KeyProtectionType
     {
         /// <summary>
@@ -172,6 +177,7 @@ namespace Tizen.Account.FidoClient
     /// Authenticator's supported matcher protection type.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public enum MatcherProtectionType
     {
         /// <summary>
@@ -197,6 +203,7 @@ namespace Tizen.Account.FidoClient
     /// Authenticator's supproted method to communicate to FIDO user device.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public enum AuthenticatorAttachmentHint
     {
         /// <summary>
@@ -258,6 +265,7 @@ namespace Tizen.Account.FidoClient
     /// Authenticator's supported Attestation type.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public enum AuthenticatorAttestationType
     {
         /// <summary>
@@ -277,6 +285,7 @@ namespace Tizen.Account.FidoClient
     /// Transaction confirmation display capability type.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public enum TransactionConfirmationDisplayType
     {
         /// <summary>
