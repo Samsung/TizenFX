@@ -7,13 +7,15 @@
     <member name="T:System.Diagnostics.StackFrame">
       <summary>Provides information about a <see cref="T:System.Diagnostics.StackFrame" />, which represents a function call on the call stack for the current thread.</summary>
     </member>
+    <member name="F:System.Diagnostics.StackFrame.OFFSET_UNKNOWN">
+      <summary>Defines the value that is returned from the <see cref="M:System.Diagnostics.StackFrame.GetNativeOffset" /> or <see cref="M:System.Diagnostics.StackFrame.GetILOffset" /> method when the native or Microsoft intermediate language (MSIL) offset is unknown. This field is constant.</summary>
+    </member>
     <member name="M:System.Diagnostics.StackFrame.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Diagnostics.StackFrame" /> class.</summary>
     </member>
     <member name="M:System.Diagnostics.StackFrame.#ctor(System.Boolean)">
       <summary>Initializes a new instance of the <see cref="T:System.Diagnostics.StackFrame" /> class, optionally capturing source information.</summary>
-      <param name="fNeedFileInfo">
-        <see langword="true" /> to capture the file name, line number, and column number of the stack frame; otherwise, <see langword="false" />.</param>
+      <param name="needFileInfo" />
     </member>
     <member name="M:System.Diagnostics.StackFrame.#ctor(System.Int32)">
       <summary>Initializes a new instance of the <see cref="T:System.Diagnostics.StackFrame" /> class that corresponds to a frame above the current stack frame.</summary>
@@ -22,8 +24,7 @@
     <member name="M:System.Diagnostics.StackFrame.#ctor(System.Int32,System.Boolean)">
       <summary>Initializes a new instance of the <see cref="T:System.Diagnostics.StackFrame" /> class that corresponds to a frame above the current stack frame, optionally capturing source information.</summary>
       <param name="skipFrames">The number of frames up the stack to skip.</param>
-      <param name="fNeedFileInfo">
-        <see langword="true" /> to capture the file name, line number, and column number of the stack frame; otherwise, <see langword="false" />.</param>
+      <param name="needFileInfo" />
     </member>
     <member name="M:System.Diagnostics.StackFrame.#ctor(System.String,System.Int32)">
       <summary>Initializes a new instance of the <see cref="T:System.Diagnostics.StackFrame" /> class that contains only the given file name and line number.</summary>
@@ -59,9 +60,6 @@
     <member name="M:System.Diagnostics.StackFrame.GetNativeOffset">
       <summary>Gets the offset from the start of the native just-in-time (JIT)-compiled code for the method that is being executed. The generation of this debugging information is controlled by the <see cref="T:System.Diagnostics.DebuggableAttribute" /> class.</summary>
       <returns>The offset from the start of the JIT-compiled code for the method that is being executed.</returns>
-    </member>
-    <member name="F:System.Diagnostics.StackFrame.OFFSET_UNKNOWN">
-      <summary>Defines the value that is returned from the <see cref="M:System.Diagnostics.StackFrame.GetNativeOffset" /> or <see cref="M:System.Diagnostics.StackFrame.GetILOffset" /> method when the native or Microsoft intermediate language (MSIL) offset is unknown. This field is constant.</summary>
     </member>
     <member name="M:System.Diagnostics.StackFrame.ToString">
       <summary>Builds a readable representation of the stack trace.</summary>
@@ -107,6 +105,9 @@
     <member name="T:System.Diagnostics.StackTrace">
       <summary>Represents a stack trace, which is an ordered collection of one or more stack frames.</summary>
     </member>
+    <member name="F:System.Diagnostics.StackTrace.METHODS_TO_SKIP">
+      <summary>Defines the default for the number of methods to omit from the stack trace. This field is constant.</summary>
+    </member>
     <member name="M:System.Diagnostics.StackTrace.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Diagnostics.StackTrace" /> class from the caller's frame.</summary>
     </member>
@@ -126,8 +127,8 @@
     </member>
     <member name="M:System.Diagnostics.StackTrace.#ctor(System.Exception,System.Boolean)">
       <summary>Initializes a new instance of the <see cref="T:System.Diagnostics.StackTrace" /> class, using the provided exception object and optionally capturing source information.</summary>
-      <param name="exception">The exception object from which to construct the stack trace.</param>
-      <param name="needFileInfo">
+      <param name="e">The exception object from which to construct the stack trace.</param>
+      <param name="fNeedFileInfo">
         <see langword="true" /> to capture the file name, line number, and column number; otherwise, <see langword="false" />.</param>
       <exception cref="T:System.ArgumentNullException">The parameter <paramref name="e" /> is <see langword="null" />.</exception>
     </member>
@@ -159,10 +160,6 @@
         <see langword="true" /> to capture the file name, line number, and column number; otherwise, <see langword="false" />.</param>
       <exception cref="T:System.ArgumentOutOfRangeException">The <paramref name="skipFrames" /> parameter is negative.</exception>
     </member>
-    <member name="P:System.Diagnostics.StackTrace.FrameCount">
-      <summary>Gets the number of frames in the stack trace.</summary>
-      <returns>The number of frames in the stack trace.</returns>
-    </member>
     <member name="M:System.Diagnostics.StackTrace.GetFrame(System.Int32)">
       <summary>Gets the specified stack frame.</summary>
       <param name="index">The index of the stack frame requested.</param>
@@ -172,12 +169,13 @@
       <summary>Returns a copy of all stack frames in the current stack trace.</summary>
       <returns>An array of type <see cref="T:System.Diagnostics.StackFrame" /> representing the function calls in the stack trace.</returns>
     </member>
-    <member name="F:System.Diagnostics.StackTrace.METHODS_TO_SKIP">
-      <summary>Defines the default for the number of methods to omit from the stack trace. This field is constant.</summary>
-    </member>
     <member name="M:System.Diagnostics.StackTrace.ToString">
       <summary>Builds a readable representation of the stack trace.</summary>
       <returns>A readable representation of the stack trace.</returns>
+    </member>
+    <member name="P:System.Diagnostics.StackTrace.FrameCount">
+      <summary>Gets the number of frames in the stack trace.</summary>
+      <returns>The number of frames in the stack trace.</returns>
     </member>
     <member name="T:System.Diagnostics.SymbolStore.ISymbolBinder">
       <summary>Represents a symbol binder for managed code.</summary>
@@ -202,14 +200,6 @@
     <member name="T:System.Diagnostics.SymbolStore.ISymbolDocument">
       <summary>Represents a document referenced by a symbol store.</summary>
     </member>
-    <member name="P:System.Diagnostics.SymbolStore.ISymbolDocument.CheckSumAlgorithmId">
-      <summary>Gets the checksum algorithm identifier.</summary>
-      <returns>A GUID identifying the checksum algorithm. The value is all zeros, if there is no checksum.</returns>
-    </member>
-    <member name="P:System.Diagnostics.SymbolStore.ISymbolDocument.DocumentType">
-      <summary>Gets the type of the current document.</summary>
-      <returns>The type of the current document.</returns>
-    </member>
     <member name="M:System.Diagnostics.SymbolStore.ISymbolDocument.FindClosestLine(System.Int32)">
       <summary>Returns the closest line that is a sequence point, given a line in the current document that might or might not be a sequence point.</summary>
       <param name="line">The specified line in the document.</param>
@@ -226,6 +216,14 @@
       <param name="endLine">The ending line in the current document.</param>
       <param name="endColumn">The ending column in the current document.</param>
       <returns>The document source for the specified range.</returns>
+    </member>
+    <member name="P:System.Diagnostics.SymbolStore.ISymbolDocument.CheckSumAlgorithmId">
+      <summary>Gets the checksum algorithm identifier.</summary>
+      <returns>A GUID identifying the checksum algorithm. The value is all zeros, if there is no checksum.</returns>
+    </member>
+    <member name="P:System.Diagnostics.SymbolStore.ISymbolDocument.DocumentType">
+      <summary>Gets the type of the current document.</summary>
+      <returns>The type of the current document.</returns>
     </member>
     <member name="P:System.Diagnostics.SymbolStore.ISymbolDocument.HasEmbeddedSource">
       <summary>Checks whether the current document is stored in the symbol store.</summary>
@@ -393,10 +391,6 @@
     <member name="T:System.Diagnostics.SymbolStore.ISymbolScope">
       <summary>Represents a lexical scope within <see cref="T:System.Diagnostics.SymbolStore.ISymbolMethod" />, providing access to the start and end offsets of the scope, as well as its child and parent scopes.</summary>
     </member>
-    <member name="P:System.Diagnostics.SymbolStore.ISymbolScope.EndOffset">
-      <summary>Gets the end offset of the current lexical scope.</summary>
-      <returns>The end offset of the current lexical scope.</returns>
-    </member>
     <member name="M:System.Diagnostics.SymbolStore.ISymbolScope.GetChildren">
       <summary>Gets the child lexical scopes of the current lexical scope.</summary>
       <returns>The child lexical scopes that of the current lexical scope.</returns>
@@ -408,6 +402,10 @@
     <member name="M:System.Diagnostics.SymbolStore.ISymbolScope.GetNamespaces">
       <summary>Gets the namespaces that are used within the current scope.</summary>
       <returns>The namespaces that are used within the current scope.</returns>
+    </member>
+    <member name="P:System.Diagnostics.SymbolStore.ISymbolScope.EndOffset">
+      <summary>Gets the end offset of the current lexical scope.</summary>
+      <returns>The end offset of the current lexical scope.</returns>
     </member>
     <member name="P:System.Diagnostics.SymbolStore.ISymbolScope.Method">
       <summary>Gets the method that contains the current lexical scope.</summary>
@@ -423,6 +421,10 @@
     </member>
     <member name="T:System.Diagnostics.SymbolStore.ISymbolVariable">
       <summary>Represents a variable within a symbol store.</summary>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.ISymbolVariable.GetSignature">
+      <summary>Gets the variable signature.</summary>
+      <returns>The variable signature as an opaque blob.</returns>
     </member>
     <member name="P:System.Diagnostics.SymbolStore.ISymbolVariable.AddressField1">
       <summary>Gets the first address of a variable.</summary>
@@ -447,10 +449,6 @@
     <member name="P:System.Diagnostics.SymbolStore.ISymbolVariable.EndOffset">
       <summary>Gets the end offset of a variable within the scope of the variable.</summary>
       <returns>The end offset of the variable.</returns>
-    </member>
-    <member name="M:System.Diagnostics.SymbolStore.ISymbolVariable.GetSignature">
-      <summary>Gets the variable signature.</summary>
-      <returns>The variable signature as an opaque blob.</returns>
     </member>
     <member name="P:System.Diagnostics.SymbolStore.ISymbolVariable.Name">
       <summary>Gets the name of the variable.</summary>
@@ -666,17 +664,14 @@
     <member name="T:System.Diagnostics.SymbolStore.SymDocumentType">
       <summary>Holds the public GUIDs for document types to be used with the symbol store.</summary>
     </member>
-    <member name="M:System.Diagnostics.SymbolStore.SymDocumentType.#ctor">
-      <summary>Initializes a new instance of the <see cref="T:System.Diagnostics.SymbolStore.SymDocumentType" /> class.</summary>
-    </member>
     <member name="F:System.Diagnostics.SymbolStore.SymDocumentType.Text">
       <summary>Specifies the GUID of the document type to be used with the symbol store.</summary>
     </member>
+    <member name="M:System.Diagnostics.SymbolStore.SymDocumentType.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:System.Diagnostics.SymbolStore.SymDocumentType" /> class.</summary>
+    </member>
     <member name="T:System.Diagnostics.SymbolStore.SymLanguageType">
       <summary>Holds the public GUIDs for language types to be used with the symbol store.</summary>
-    </member>
-    <member name="M:System.Diagnostics.SymbolStore.SymLanguageType.#ctor">
-      <summary>Initializes a new instance of the <see cref="T:System.Diagnostics.SymbolStore.SymLanguageType" /> class.</summary>
     </member>
     <member name="F:System.Diagnostics.SymbolStore.SymLanguageType.Basic">
       <summary>Specifies the GUID of the Basic language type to be used with the symbol store.</summary>
@@ -711,14 +706,17 @@
     <member name="F:System.Diagnostics.SymbolStore.SymLanguageType.SMC">
       <summary>Specifies the GUID of the SMC language type to be used with the symbol store.</summary>
     </member>
+    <member name="M:System.Diagnostics.SymbolStore.SymLanguageType.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:System.Diagnostics.SymbolStore.SymLanguageType" /> class.</summary>
+    </member>
     <member name="T:System.Diagnostics.SymbolStore.SymLanguageVendor">
       <summary>Holds the public GUIDs for language vendors to be used with the symbol store.</summary>
     </member>
-    <member name="M:System.Diagnostics.SymbolStore.SymLanguageVendor.#ctor">
-      <summary>Initializes a new instance of the <see cref="T:System.Diagnostics.SymbolStore.SymLanguageVendor" /> class.</summary>
-    </member>
     <member name="F:System.Diagnostics.SymbolStore.SymLanguageVendor.Microsoft">
       <summary>Specifies the GUID of the Microsoft language vendor.</summary>
+    </member>
+    <member name="M:System.Diagnostics.SymbolStore.SymLanguageVendor.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:System.Diagnostics.SymbolStore.SymLanguageVendor" /> class.</summary>
     </member>
   </members>
 </doc>

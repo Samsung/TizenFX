@@ -30,3 +30,6 @@ python $SCRIPT_DIR/makerid.py
 
 # Update TFM
 python $SCRIPT_DIR/maketfm.py
+
+# Update Runtime Version
+python $SCRIPT_DIR/makeruntimeversion.py

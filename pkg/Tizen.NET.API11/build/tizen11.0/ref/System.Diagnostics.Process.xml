@@ -7,13 +7,15 @@
     <member name="T:Microsoft.Win32.SafeHandles.SafeProcessHandle">
       <summary>Provides a managed wrapper for a process handle.</summary>
     </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeProcessHandle.#ctor">
+      <summary>Creates a <see cref="T:Microsoft.Win32.SafeHandles.SafeProcessHandle" />.</summary>
+    </member>
     <member name="M:Microsoft.Win32.SafeHandles.SafeProcessHandle.#ctor(System.IntPtr,System.Boolean)">
       <summary>Initializes a new instance of the <see cref="T:Microsoft.Win32.SafeHandles.SafeProcessHandle" /> class from the specified handle, indicating whether to release the handle during the finalization phase.</summary>
       <param name="existingHandle">The handle to be wrapped.</param>
       <param name="ownsHandle">
         <see langword="true" /> to reliably let <see cref="T:Microsoft.Win32.SafeHandles.SafeProcessHandle" /> release the handle during the finalization phase; otherwise, <see langword="false" />.</param>
     </member>
-    <member name="P:Microsoft.Win32.SafeHandles.SafeProcessHandle.IsInvalid" />
     <member name="T:System.Diagnostics.DataReceivedEventArgs">
       <summary>Provides data for the <see cref="E:System.Diagnostics.Process.OutputDataReceived" /> and <see cref="E:System.Diagnostics.Process.ErrorDataReceived" /> events.</summary>
     </member>
@@ -40,31 +42,41 @@
     <member name="T:System.Diagnostics.Process">
       <summary>Provides access to local and remote processes and enables you to start and stop local system processes.</summary>
     </member>
+    <member name="E:System.Diagnostics.Process.ErrorDataReceived">
+      <summary>Occurs when an application writes to its redirected <see cref="P:System.Diagnostics.Process.StandardError" /> stream.</summary>
+    </member>
+    <member name="E:System.Diagnostics.Process.Exited">
+      <summary>Occurs when a process exits.</summary>
+    </member>
+    <member name="E:System.Diagnostics.Process.OutputDataReceived">
+      <summary>Occurs each time an application writes a line to its redirected <see cref="P:System.Diagnostics.Process.StandardOutput" /> stream.</summary>
+    </member>
     <member name="M:System.Diagnostics.Process.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Diagnostics.Process" /> class.</summary>
     </member>
-    <member name="P:System.Diagnostics.Process.BasePriority">
-      <summary>Gets the base priority of the associated process.</summary>
-      <returns>The base priority, which is computed from the <see cref="P:System.Diagnostics.Process.PriorityClass" /> of the associated process.</returns>
-      <exception cref="T:System.InvalidOperationException">The process has exited.
--or-
-The process has not started, so there is no process ID.</exception>
-    </member>
     <member name="M:System.Diagnostics.Process.BeginErrorReadLine">
       <summary>Begins asynchronous read operations on the redirected <see cref="P:System.Diagnostics.Process.StandardError" /> stream of the application.</summary>
-      <exception cref="T:System.InvalidOperationException">The <see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardError" /> property is <see langword="false" />.
+      <exception cref="T:System.InvalidOperationException">The <see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardError" /> property is <see langword="false" />.  
+  
 -or-
-An asynchronous read operation is already in progress on the <see cref="P:System.Diagnostics.Process.StandardError" /> stream.
+  
+ An asynchronous read operation is already in progress on the <see cref="P:System.Diagnostics.Process.StandardError" /> stream.  
+  
 -or-
-The <see cref="P:System.Diagnostics.Process.StandardError" /> stream has been used by a synchronous read operation.</exception>
+  
+ The <see cref="P:System.Diagnostics.Process.StandardError" /> stream has been used by a synchronous read operation.</exception>
     </member>
     <member name="M:System.Diagnostics.Process.BeginOutputReadLine">
       <summary>Begins asynchronous read operations on the redirected <see cref="P:System.Diagnostics.Process.StandardOutput" /> stream of the application.</summary>
-      <exception cref="T:System.InvalidOperationException">The <see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardOutput" /> property is <see langword="false" />.
+      <exception cref="T:System.InvalidOperationException">The <see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardOutput" /> property is <see langword="false" />.  
+  
 -or-
-An asynchronous read operation is already in progress on the <see cref="P:System.Diagnostics.Process.StandardOutput" /> stream.
+  
+ An asynchronous read operation is already in progress on the <see cref="P:System.Diagnostics.Process.StandardOutput" /> stream.  
+  
 -or-
-The <see cref="P:System.Diagnostics.Process.StandardOutput" /> stream has been used by a synchronous read operation.</exception>
+  
+ The <see cref="P:System.Diagnostics.Process.StandardOutput" /> stream has been used by a synchronous read operation.</exception>
     </member>
     <member name="M:System.Diagnostics.Process.CancelErrorRead">
       <summary>Cancels the asynchronous read operation on the redirected <see cref="P:System.Diagnostics.Process.StandardError" /> stream of an application.</summary>
@@ -79,43 +91,21 @@ The <see cref="P:System.Diagnostics.Process.StandardOutput" /> stream has been u
     </member>
     <member name="M:System.Diagnostics.Process.CloseMainWindow">
       <summary>Closes a process that has a user interface by sending a close message to its main window.</summary>
+      <exception cref="T:System.InvalidOperationException">The process has already exited.  
+  
+ -or-  
+  
+ No process is associated with this <see cref="T:System.Diagnostics.Process" /> object.</exception>
       <returns>
         <see langword="true" /> if the close message was successfully sent; <see langword="false" /> if the associated process does not have a main window or if the main window is disabled (for example if a modal dialog is being shown).</returns>
-      <exception cref="T:System.InvalidOperationException">The process has already exited.
--or-
-No process is associated with this <see cref="T:System.Diagnostics.Process" /> object.</exception>
     </member>
     <member name="M:System.Diagnostics.Process.Dispose(System.Boolean)">
       <summary>Release all resources used by this process.</summary>
       <param name="disposing">
         <see langword="true" /> to release both managed and unmanaged resources; <see langword="false" /> to release only unmanaged resources.</param>
     </member>
-    <member name="P:System.Diagnostics.Process.EnableRaisingEvents">
-      <summary>Gets or sets whether the <see cref="E:System.Diagnostics.Process.Exited" /> event should be raised when the process terminates.</summary>
-      <returns>
-        <see langword="true" /> if the <see cref="E:System.Diagnostics.Process.Exited" /> event should be raised when the associated process is terminated (through either an exit or a call to <see cref="M:System.Diagnostics.Process.Kill" />); otherwise, <see langword="false" />. The default is <see langword="false" />. Note that the <see cref="E:System.Diagnostics.Process.Exited" /> event is raised even if the value of <see cref="P:System.Diagnostics.Process.EnableRaisingEvents" /> is <see langword="false" /> when the process exits during or before the user performs a <see cref="P:System.Diagnostics.Process.HasExited" /> check.</returns>
-    </member>
     <member name="M:System.Diagnostics.Process.EnterDebugMode">
       <summary>Puts a <see cref="T:System.Diagnostics.Process" /> component in state to interact with operating system processes that run in a special mode by enabling the native property <see langword="SeDebugPrivilege" /> on the current thread.</summary>
-    </member>
-    <member name="E:System.Diagnostics.Process.ErrorDataReceived">
-      <summary>Occurs when an application writes to its redirected <see cref="P:System.Diagnostics.Process.StandardError" /> stream.</summary>
-    </member>
-    <member name="P:System.Diagnostics.Process.ExitCode">
-      <summary>Gets the value that the associated process specified when it terminated.</summary>
-      <returns>The code that the associated process specified when it terminated.</returns>
-      <exception cref="T:System.InvalidOperationException">The process has not exited.
--or-
-The process <see cref="P:System.Diagnostics.Process.Handle" /> is not valid.</exception>
-      <exception cref="T:System.NotSupportedException">You are trying to access the <see cref="P:System.Diagnostics.Process.ExitCode" /> property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.</exception>
-    </member>
-    <member name="E:System.Diagnostics.Process.Exited">
-      <summary>Occurs when a process exits.</summary>
-    </member>
-    <member name="P:System.Diagnostics.Process.ExitTime">
-      <summary>Gets the time that the associated process exited.</summary>
-      <returns>A <see cref="T:System.DateTime" /> that indicates when the associated process was terminated.</returns>
-      <exception cref="T:System.NotSupportedException">You are trying to access the <see cref="P:System.Diagnostics.Process.ExitTime" /> property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.</exception>
     </member>
     <member name="M:System.Diagnostics.Process.GetCurrentProcess">
       <summary>Gets a new <see cref="T:System.Diagnostics.Process" /> component and associates it with the currently active process.</summary>
@@ -124,20 +114,22 @@ The process <see cref="P:System.Diagnostics.Process.Handle" /> is not valid.</ex
     <member name="M:System.Diagnostics.Process.GetProcessById(System.Int32)">
       <summary>Returns a new <see cref="T:System.Diagnostics.Process" /> component, given the identifier of a process on the local computer.</summary>
       <param name="processId">The system-unique identifier of a process resource.</param>
-      <returns>A <see cref="T:System.Diagnostics.Process" /> component that is associated with the local process resource identified by the <paramref name="processId" /> parameter.</returns>
       <exception cref="T:System.ArgumentException">The process specified by the <paramref name="processId" /> parameter is not running. The identifier might be expired.</exception>
       <exception cref="T:System.InvalidOperationException">The process was not started by this object.</exception>
+      <returns>A <see cref="T:System.Diagnostics.Process" /> component that is associated with the local process resource identified by the <paramref name="processId" /> parameter.</returns>
     </member>
     <member name="M:System.Diagnostics.Process.GetProcessById(System.Int32,System.String)">
       <summary>Returns a new <see cref="T:System.Diagnostics.Process" /> component, given a process identifier and the name of a computer on the network.</summary>
       <param name="processId">The system-unique identifier of a process resource.</param>
       <param name="machineName">The name of a computer on the network.</param>
-      <returns>A <see cref="T:System.Diagnostics.Process" /> component that is associated with a remote process resource identified by the <paramref name="processId" /> parameter.</returns>
-      <exception cref="T:System.ArgumentException">The process specified by the <paramref name="processId" /> parameter is not running. The identifier might be expired.
--or-
-The <paramref name="machineName" /> parameter syntax is invalid. The name might have length zero (0).</exception>
+      <exception cref="T:System.ArgumentException">The process specified by the <paramref name="processId" /> parameter is not running. The identifier might be expired.  
+  
+ -or-  
+  
+ The <paramref name="machineName" /> parameter syntax is invalid. The name might have length zero (0).</exception>
       <exception cref="T:System.ArgumentNullException">The <paramref name="machineName" /> parameter is <see langword="null" />.</exception>
       <exception cref="T:System.InvalidOperationException">The process was not started by this object.</exception>
+      <returns>A <see cref="T:System.Diagnostics.Process" /> component that is associated with a remote process resource identified by the <paramref name="processId" /> parameter.</returns>
     </member>
     <member name="M:System.Diagnostics.Process.GetProcesses">
       <summary>Creates a new <see cref="T:System.Diagnostics.Process" /> component for each process resource on the local computer.</summary>
@@ -146,39 +138,297 @@ The <paramref name="machineName" /> parameter syntax is invalid. The name might 
     <member name="M:System.Diagnostics.Process.GetProcesses(System.String)">
       <summary>Creates a new <see cref="T:System.Diagnostics.Process" /> component for each process resource on the specified computer.</summary>
       <param name="machineName">The computer from which to read the list of processes.</param>
-      <returns>An array of type <see cref="T:System.Diagnostics.Process" /> that represents all the process resources running on the specified computer.</returns>
       <exception cref="T:System.ArgumentException">The <paramref name="machineName" /> parameter syntax is invalid. It might have length zero (0).</exception>
       <exception cref="T:System.ArgumentNullException">The <paramref name="machineName" /> parameter is <see langword="null" />.</exception>
       <exception cref="T:System.PlatformNotSupportedException">The operating system platform does not support this operation on remote computers.</exception>
-      <exception cref="T:System.InvalidOperationException">There are problems accessing the performance counter API's used to get process information. This exception is specific to Windows NT, Windows 2000, and Windows XP.</exception>
+      <exception cref="T:System.InvalidOperationException">There are problems accessing the performance counter APIs used to get process information. This exception is specific to Windows NT, Windows 2000, and Windows XP.</exception>
       <exception cref="T:System.ComponentModel.Win32Exception">A problem occurred accessing an underlying system API.</exception>
+      <returns>An array of type <see cref="T:System.Diagnostics.Process" /> that represents all the process resources running on the specified computer.</returns>
     </member>
     <member name="M:System.Diagnostics.Process.GetProcessesByName(System.String)">
       <summary>Creates an array of new <see cref="T:System.Diagnostics.Process" /> components and associates them with all the process resources on the local computer that share the specified process name.</summary>
       <param name="processName">The friendly name of the process.</param>
+      <exception cref="T:System.InvalidOperationException">There are problems accessing the performance counter APIs used to get process information. This exception is specific to Windows NT, Windows 2000, and Windows XP.</exception>
       <returns>An array of type <see cref="T:System.Diagnostics.Process" /> that represents the process resources running the specified application or file.</returns>
-      <exception cref="T:System.InvalidOperationException">There are problems accessing the performance counter API's used to get process information. This exception is specific to Windows NT, Windows 2000, and Windows XP.</exception>
     </member>
     <member name="M:System.Diagnostics.Process.GetProcessesByName(System.String,System.String)">
       <summary>Creates an array of new <see cref="T:System.Diagnostics.Process" /> components and associates them with all the process resources on a remote computer that share the specified process name.</summary>
       <param name="processName">The friendly name of the process.</param>
       <param name="machineName">The name of a computer on the network.</param>
-      <returns>An array of type <see cref="T:System.Diagnostics.Process" /> that represents the process resources running the specified application or file.</returns>
       <exception cref="T:System.ArgumentException">The <paramref name="machineName" /> parameter syntax is invalid. It might have length zero (0).</exception>
       <exception cref="T:System.ArgumentNullException">The <paramref name="machineName" /> parameter is <see langword="null" />.</exception>
       <exception cref="T:System.PlatformNotSupportedException">The operating system platform does not support this operation on remote computers.</exception>
       <exception cref="T:System.InvalidOperationException">The attempt to connect to <paramref name="machineName" /> has failed.
--or-
-There are problems accessing the performance counter API's used to get process information. This exception is specific to Windows NT, Windows 2000, and Windows XP.</exception>
+
+ -or- 
+        
+There are problems accessing the performance counter APIs used to get process information. This exception is specific to Windows NT, Windows 2000, and Windows XP.</exception>
       <exception cref="T:System.ComponentModel.Win32Exception">A problem occurred accessing an underlying system API.</exception>
+      <returns>An array of type <see cref="T:System.Diagnostics.Process" /> that represents the process resources running the specified application or file.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Process.Kill">
+      <summary>Immediately stops the associated process.</summary>
+      <exception cref="T:System.ComponentModel.Win32Exception">The associated process could not be terminated.</exception>
+      <exception cref="T:System.NotSupportedException">You are attempting to call <see cref="M:System.Diagnostics.Process.Kill" /> for a process that is running on a remote computer. The method is available only for processes running on the local computer.</exception>
+      <exception cref="T:System.InvalidOperationException">There is no process associated with this <see cref="T:System.Diagnostics.Process" /> object.</exception>
+    </member>
+    <member name="M:System.Diagnostics.Process.Kill(System.Boolean)">
+      <summary>Immediately stops the associated process, and optionally its child/descendent processes.</summary>
+      <param name="entireProcessTree">
+        <see langword="true" /> to kill the associated process and its descendants; <see langword="false" /> to kill only the associated process.</param>
+      <exception cref="T:System.ComponentModel.Win32Exception">The associated process could not be terminated.  
+  
+ -or-  
+  
+ The process is terminating.</exception>
+      <exception cref="T:System.NotSupportedException">You are attempting to call <see cref="M:System.Diagnostics.Process.Kill" /> for a process that is running on a remote computer. The method is available only for processes running on the local computer.</exception>
+      <exception cref="T:System.InvalidOperationException">The process has already exited.  
+  
+-or-  
+
+There is no process associated with this <see cref="T:System.Diagnostics.Process" /> object.
+
+-or-
+
+The calling process is a member of the associated process' descendant tree.</exception>
+      <exception cref="T:System.AggregateException">Not all processes in the associated process' descendant tree could be terminated.</exception>
+    </member>
+    <member name="M:System.Diagnostics.Process.LeaveDebugMode">
+      <summary>Takes a <see cref="T:System.Diagnostics.Process" /> component out of the state that lets it interact with operating system processes that run in a special mode.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Process.OnExited">
+      <summary>Raises the <see cref="E:System.Diagnostics.Process.Exited" /> event.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Process.Refresh">
+      <summary>Discards any information about the associated process that has been cached inside the process component.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Process.Start">
+      <summary>Starts (or reuses) the process resource that is specified by the <see cref="P:System.Diagnostics.Process.StartInfo" /> property of this <see cref="T:System.Diagnostics.Process" /> component and associates it with the component.</summary>
+      <exception cref="T:System.InvalidOperationException">No file name was specified in the <see cref="T:System.Diagnostics.Process" /> component's <see cref="P:System.Diagnostics.Process.StartInfo" />.
+
+-or-
+
+The <see cref="P:System.Diagnostics.ProcessStartInfo.UseShellExecute" /> member of the <see cref="P:System.Diagnostics.Process.StartInfo" /> property is <see langword="true" /> while <see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardInput" />, <see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardOutput" />, or <see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardError" /> is <see langword="true" />.</exception>
+      <exception cref="T:System.ComponentModel.Win32Exception">There was an error in opening the associated file.</exception>
+      <exception cref="T:System.ObjectDisposedException">The process object has already been disposed.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Method not supported on operating systems without shell support such as Nano Server (.NET Core only).</exception>
+      <returns>
+        <see langword="true" /> if a process resource is started; <see langword="false" /> if no new process resource is started (for example, if an existing process is reused).</returns>
+    </member>
+    <member name="M:System.Diagnostics.Process.Start(System.Diagnostics.ProcessStartInfo)">
+      <summary>Starts the process resource that is specified by the parameter containing process start information (for example, the file name of the process to start) and associates the resource with a new <see cref="T:System.Diagnostics.Process" /> component.</summary>
+      <param name="startInfo">The <see cref="T:System.Diagnostics.ProcessStartInfo" /> that contains the information that is used to start the process, including the file name and any command-line arguments.</param>
+      <exception cref="T:System.InvalidOperationException">No file name was specified in the <paramref name="startInfo" /> parameter's <see cref="P:System.Diagnostics.ProcessStartInfo.FileName" /> property.  
+  
+ -or-  
+  
+ The <see cref="P:System.Diagnostics.ProcessStartInfo.UseShellExecute" /> property of the <paramref name="startInfo" /> parameter is <see langword="true" /> and the <see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardInput" />, <see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardOutput" />, or <see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardError" /> property is also <see langword="true" />.  
+  
+ -or-  
+  
+ The <see cref="P:System.Diagnostics.ProcessStartInfo.UseShellExecute" /> property of the <paramref name="startInfo" /> parameter is <see langword="true" /> and the <see cref="P:System.Diagnostics.ProcessStartInfo.UserName" /> property is not <see langword="null" /> or empty or the <see cref="P:System.Diagnostics.ProcessStartInfo.Password" /> property is not <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="startInfo" /> parameter is <see langword="null" />.</exception>
+      <exception cref="T:System.ObjectDisposedException">The process object has already been disposed.</exception>
+      <exception cref="T:System.ComponentModel.Win32Exception">An error occurred when opening the associated file.  
+
+ -or-
+          
+ The file specified in the <paramref name="startInfo" /> parameter's <see cref="P:System.Diagnostics.ProcessStartInfo.FileName" /> property could not be found.
+          
+ -or-  
+  
+ The sum of the length of the arguments and the length of the full path to the process exceeds 2080. The error message associated with this exception can be one of the following: "The data area passed to a system call is too small." or "Access is denied."</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Method not supported on operating systems without shell support such as Nano Server (.NET Core only).</exception>
+      <returns>A new <see cref="T:System.Diagnostics.Process" /> that is associated with the process resource, or <see langword="null" /> if no process resource is started. Note that a new process that's started alongside already running instances of the same process will be independent from the others. In addition, Start may return a non-null Process with its <see cref="P:System.Diagnostics.Process.HasExited" /> property already set to <see langword="true" />. In this case, the started process may have activated an existing instance of itself and then exited.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Process.Start(System.String)">
+      <summary>Starts a process resource by specifying the name of a document or application file and associates the resource with a new <see cref="T:System.Diagnostics.Process" /> component.</summary>
+      <param name="fileName">The name of a document or application file to run in the process.</param>
+      <exception cref="T:System.ComponentModel.Win32Exception">An error occurred when opening the associated file.
+
+-or-
+
+The file specified in the <paramref name="fileName" /> could not be found.</exception>
+      <exception cref="T:System.ObjectDisposedException">The process object has already been disposed.</exception>
+      <exception cref="T:System.IO.FileNotFoundException">The PATH environment variable has a string containing quotes.</exception>
+      <returns>A new <see cref="T:System.Diagnostics.Process" /> that is associated with the process resource, or <see langword="null" /> if no process resource is started. Note that a new process that's started alongside already running instances of the same process will be independent from the others. In addition, Start may return a non-null Process with its <see cref="P:System.Diagnostics.Process.HasExited" /> property already set to <see langword="true" />. In this case, the started process may have activated an existing instance of itself and then exited.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Process.Start(System.String,System.Collections.Generic.IEnumerable{System.String})">
+      <summary>Starts a process resource by specifying the name of an application and a set of command line arguments.</summary>
+      <param name="fileName">The name of a document or application file to run in the process.</param>
+      <param name="arguments">The command-line arguments to pass when starting the process.</param>
+      <returns>A new <see cref="T:System.Diagnostics.Process" /> that is associated with the process resource, or <see langword="null" /> if no process resource is started.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Process.Start(System.String,System.String)">
+      <summary>Starts a process resource by specifying the name of an application and a set of command-line arguments, and associates the resource with a new <see cref="T:System.Diagnostics.Process" /> component.</summary>
+      <param name="fileName">The name of an application file to run in the process.</param>
+      <param name="arguments">Command-line arguments to pass when starting the process.</param>
+      <exception cref="T:System.InvalidOperationException">The <paramref name="fileName" /> or <paramref name="arguments" /> parameter is <see langword="null" />.</exception>
+      <exception cref="T:System.ComponentModel.Win32Exception">An error occurred when opening the associated file.  
+
+-or-
+
+The file specified in the <paramref name="fileName" /> could not be found.
+  
+ -or-  
+  
+ The sum of the length of the arguments and the length of the full path to the process exceeds 2080. The error message associated with this exception can be one of the following: "The data area passed to a system call is too small." or "Access is denied."</exception>
+      <exception cref="T:System.ObjectDisposedException">The process object has already been disposed.</exception>
+      <exception cref="T:System.IO.FileNotFoundException">The PATH environment variable has a string containing quotes.</exception>
+      <returns>A new <see cref="T:System.Diagnostics.Process" /> that is associated with the process resource, or <see langword="null" /> if no process resource is started. Note that a new process that's started alongside already running instances of the same process will be independent from the others. In addition, Start may return a non-null Process with its <see cref="P:System.Diagnostics.Process.HasExited" /> property already set to <see langword="true" />. In this case, the started process may have activated an existing instance of itself and then exited.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Process.Start(System.String,System.String,System.Security.SecureString,System.String)">
+      <summary>Starts a process resource by specifying the name of an application, a user name, a password, and a domain and associates the resource with a new <see cref="T:System.Diagnostics.Process" /> component.</summary>
+      <param name="fileName">The name of an application file to run in the process.</param>
+      <param name="userName">The user name to use when starting the process.</param>
+      <param name="password">A <see cref="T:System.Security.SecureString" /> that contains the password to use when starting the process.</param>
+      <param name="domain">The domain to use when starting the process.</param>
+      <exception cref="T:System.InvalidOperationException">No file name was specified.</exception>
+      <exception cref="T:System.ComponentModel.Win32Exception">There was an error in opening the associated file.
+
+-or-
+
+The file specified in the <paramref name="fileName" /> could not be found.</exception>
+      <exception cref="T:System.ObjectDisposedException">The process object has already been disposed.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">This member is not supported on Linux or macOS (.NET Core only).</exception>
+      <returns>A new <see cref="T:System.Diagnostics.Process" /> that is associated with the process resource, or <see langword="null" /> if no process resource is started. Note that a new process that's started alongside already running instances of the same process will be independent from the others. In addition, Start may return a non-null Process with its <see cref="P:System.Diagnostics.Process.HasExited" /> property already set to <see langword="true" />. In this case, the started process may have activated an existing instance of itself and then exited.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Process.Start(System.String,System.String,System.String,System.Security.SecureString,System.String)">
+      <summary>Starts a process resource by specifying the name of an application, a set of command-line arguments, a user name, a password, and a domain and associates the resource with a new <see cref="T:System.Diagnostics.Process" /> component.</summary>
+      <param name="fileName">The name of an application file to run in the process.</param>
+      <param name="arguments">Command-line arguments to pass when starting the process.</param>
+      <param name="userName">The user name to use when starting the process.</param>
+      <param name="password">A <see cref="T:System.Security.SecureString" /> that contains the password to use when starting the process.</param>
+      <param name="domain">The domain to use when starting the process.</param>
+      <exception cref="T:System.InvalidOperationException">No file name was specified.</exception>
+      <exception cref="T:System.ComponentModel.Win32Exception">An error occurred when opening the associated file.  
+
+-or-
+
+The file specified in the <paramref name="fileName" /> could not be found.
+  
+ -or-  
+  
+ The sum of the length of the arguments and the length of the full path to the associated file exceeds 2080. The error message associated with this exception can be one of the following: "The data area passed to a system call is too small." or "Access is denied."</exception>
+      <exception cref="T:System.ObjectDisposedException">The process object has already been disposed.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">This member is not supported on Linux or macOS (.NET Core only).</exception>
+      <returns>A new <see cref="T:System.Diagnostics.Process" /> that is associated with the process resource, or <see langword="null" /> if no process resource is started. Note that a new process that's started alongside already running instances of the same process will be independent from the others. In addition, Start may return a non-null Process with its <see cref="P:System.Diagnostics.Process.HasExited" /> property already set to <see langword="true" />. In this case, the started process may have activated an existing instance of itself and then exited.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Process.ToString">
+      <summary>Formats the process's name as a string, combined with the parent component type, if applicable.</summary>
+      <returns>The <see cref="P:System.Diagnostics.Process.ProcessName" />, combined with the base component's <see cref="M:System.Object.ToString" /> return value.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Process.WaitForExit">
+      <summary>Instructs the <see cref="T:System.Diagnostics.Process" /> component to wait indefinitely for the associated process to exit.</summary>
+      <exception cref="T:System.ComponentModel.Win32Exception">The wait setting could not be accessed.</exception>
+      <exception cref="T:System.SystemException">No process <see cref="P:System.Diagnostics.Process.Id" /> has been set, and a <see cref="P:System.Diagnostics.Process.Handle" /> from which the <see cref="P:System.Diagnostics.Process.Id" /> property can be determined does not exist.  
+  
+ -or-  
+  
+ There is no process associated with this <see cref="T:System.Diagnostics.Process" /> object.  
+  
+ -or-  
+  
+ You are attempting to call <see cref="M:System.Diagnostics.Process.WaitForExit" /> for a process that is running on a remote computer. This method is available only for processes that are running on the local computer.</exception>
+    </member>
+    <member name="M:System.Diagnostics.Process.WaitForExit(System.Int32)">
+      <summary>Instructs the <see cref="T:System.Diagnostics.Process" /> component to wait the specified number of milliseconds for the associated process to exit.</summary>
+      <param name="milliseconds">The amount of time, in milliseconds, to wait for the associated process to exit. A value of 0 specifies an immediate return, and a value of -1 specifies an infinite wait.</param>
+      <exception cref="T:System.ComponentModel.Win32Exception">The wait setting could not be accessed.</exception>
+      <exception cref="T:System.SystemException">No process <see cref="P:System.Diagnostics.Process.Id" /> has been set, and a <see cref="P:System.Diagnostics.Process.Handle" /> from which the <see cref="P:System.Diagnostics.Process.Id" /> property can be determined does not exist.  
+  
+ -or-  
+  
+ There is no process associated with this <see cref="T:System.Diagnostics.Process" /> object.  
+  
+ -or-  
+  
+ You are attempting to call <see cref="M:System.Diagnostics.Process.WaitForExit(System.Int32)" /> for a process that is running on a remote computer. This method is available only for processes that are running on the local computer.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="milliseconds" /> is a negative number other than -1, which represents an infinite time-out.</exception>
+      <returns>
+        <see langword="true" /> if the associated process has exited; otherwise, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Process.WaitForExitAsync(System.Threading.CancellationToken)">
+      <summary>Instructs the process component to wait for the associated process to exit, or for the <paramref name="cancellationToken" /> to be cancelled.</summary>
+      <param name="cancellationToken">An optional token to cancel the asynchronous operation.</param>
+      <returns>A task that will complete when the process has exited, cancellation has been requested, or an error occurs.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Process.WaitForInputIdle">
+      <summary>Causes the <see cref="T:System.Diagnostics.Process" /> component to wait indefinitely for the associated process to enter an idle state. This overload applies only to processes with a user interface and, therefore, a message loop.</summary>
+      <exception cref="T:System.InvalidOperationException">The process does not have a graphical interface.  
+  
+ -or-  
+  
+ An unknown error occurred. The process failed to enter an idle state.  
+  
+ -or-  
+  
+ The process has already exited.  
+  
+ -or-  
+  
+ No process is associated with this <see cref="T:System.Diagnostics.Process" /> object.</exception>
+      <returns>
+        <see langword="true" /> if the associated process has reached an idle state.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Process.WaitForInputIdle(System.Int32)">
+      <summary>Causes the <see cref="T:System.Diagnostics.Process" /> component to wait the specified number of milliseconds for the associated process to enter an idle state. This overload applies only to processes with a user interface and, therefore, a message loop.</summary>
+      <param name="milliseconds">A value of 1 to <see cref="F:System.Int32.MaxValue" /> that specifies the amount of time, in milliseconds, to wait for the associated process to become idle. A value of 0 specifies an immediate return, and a value of -1 specifies an infinite wait.</param>
+      <exception cref="T:System.InvalidOperationException">The process does not have a graphical interface.  
+  
+ -or-  
+  
+ An unknown error occurred. The process failed to enter an idle state.  
+  
+ -or-  
+  
+ The process has already exited.  
+  
+ -or-  
+  
+ No process is associated with this <see cref="T:System.Diagnostics.Process" /> object.</exception>
+      <returns>
+        <see langword="true" /> if the associated process has reached an idle state; otherwise, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Process.BasePriority">
+      <summary>Gets the base priority of the associated process.</summary>
+      <exception cref="T:System.InvalidOperationException">The process has exited.  
+  
+ -or-  
+  
+ The process has not started, so there is no process ID.</exception>
+      <returns>The base priority, which is computed from the <see cref="P:System.Diagnostics.Process.PriorityClass" /> of the associated process.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Process.EnableRaisingEvents">
+      <summary>Gets or sets whether the <see cref="E:System.Diagnostics.Process.Exited" /> event should be raised when the process terminates.</summary>
+      <returns>
+        <see langword="true" /> if the <see cref="E:System.Diagnostics.Process.Exited" /> event should be raised when the associated process is terminated (through either an exit or a call to <see cref="M:System.Diagnostics.Process.Kill" />); otherwise, <see langword="false" />. The default is <see langword="false" />. Note that the <see cref="E:System.Diagnostics.Process.Exited" /> event is raised even if the value of <see cref="P:System.Diagnostics.Process.EnableRaisingEvents" /> is <see langword="false" /> when the process exits during or before the user performs a <see cref="P:System.Diagnostics.Process.HasExited" /> check.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Process.ExitCode">
+      <summary>Gets the value that the associated process specified when it terminated.</summary>
+      <exception cref="T:System.InvalidOperationException">The process has not exited.  
+  
+ -or-  
+  
+ The process <see cref="P:System.Diagnostics.Process.Handle" /> is not valid.</exception>
+      <exception cref="T:System.NotSupportedException">You are trying to access the <see cref="P:System.Diagnostics.Process.ExitCode" /> property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.</exception>
+      <returns>The code that the associated process specified when it terminated.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Process.ExitTime">
+      <summary>Gets the time that the associated process exited.</summary>
+      <exception cref="T:System.NotSupportedException">You are trying to access the <see cref="P:System.Diagnostics.Process.ExitTime" /> property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.</exception>
+      <returns>A <see cref="T:System.DateTime" /> that indicates when the associated process was terminated.</returns>
     </member>
     <member name="P:System.Diagnostics.Process.Handle">
       <summary>Gets the native handle of the associated process.</summary>
-      <returns>The handle that the operating system assigned to the associated process when the process was started. The system uses this handle to keep track of process attributes.</returns>
-      <exception cref="T:System.InvalidOperationException">The process has not been started or has exited. The <see cref="P:System.Diagnostics.Process.Handle" /> property cannot be read because there is no process associated with this <see cref="T:System.Diagnostics.Process" /> instance.
--or-
-The <see cref="T:System.Diagnostics.Process" /> instance has been attached to a running process but you do not have the necessary permissions to get a handle with full access rights.</exception>
+      <exception cref="T:System.InvalidOperationException">The process has not been started or has exited. The <see cref="P:System.Diagnostics.Process.Handle" /> property cannot be read because there is no process associated with this <see cref="T:System.Diagnostics.Process" /> instance.  
+  
+ -or-  
+  
+ The <see cref="T:System.Diagnostics.Process" /> instance has been attached to a running process but you do not have the necessary permissions to get a handle with full access rights.</exception>
       <exception cref="T:System.NotSupportedException">You are trying to access the <see cref="P:System.Diagnostics.Process.Handle" /> property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.</exception>
+      <returns>The handle that the operating system assigned to the associated process when the process was started. The system uses this handle to keep track of process attributes.</returns>
     </member>
     <member name="P:System.Diagnostics.Process.HandleCount">
       <summary>Gets the number of handles opened by the process.</summary>
@@ -186,103 +436,87 @@ The <see cref="T:System.Diagnostics.Process" /> instance has been attached to a 
     </member>
     <member name="P:System.Diagnostics.Process.HasExited">
       <summary>Gets a value indicating whether the associated process has been terminated.</summary>
-      <returns>
-        <see langword="true" /> if the operating system process referenced by the <see cref="T:System.Diagnostics.Process" /> component has terminated; otherwise, <see langword="false" />.</returns>
       <exception cref="T:System.InvalidOperationException">There is no process associated with the object.</exception>
       <exception cref="T:System.ComponentModel.Win32Exception">The exit code for the process could not be retrieved.</exception>
       <exception cref="T:System.NotSupportedException">You are trying to access the <see cref="P:System.Diagnostics.Process.HasExited" /> property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.</exception>
+      <returns>
+        <see langword="true" /> if the operating system process referenced by the <see cref="T:System.Diagnostics.Process" /> component has terminated; otherwise, <see langword="false" />.</returns>
     </member>
     <member name="P:System.Diagnostics.Process.Id">
       <summary>Gets the unique identifier for the associated process.</summary>
+      <exception cref="T:System.InvalidOperationException">The process's <see cref="P:System.Diagnostics.Process.Id" /> property has not been set.  
+  
+ -or-  
+  
+ There is no process associated with this <see cref="T:System.Diagnostics.Process" /> object.</exception>
       <returns>The system-generated unique identifier of the process that is referenced by this <see cref="T:System.Diagnostics.Process" /> instance.</returns>
-      <exception cref="T:System.InvalidOperationException">The process's <see cref="P:System.Diagnostics.Process.Id" /> property has not been set.
--or-
-There is no process associated with this <see cref="T:System.Diagnostics.Process" /> object.</exception>
-    </member>
-    <member name="M:System.Diagnostics.Process.Kill">
-      <summary>Immediately stops the associated process.</summary>
-      <exception cref="T:System.ComponentModel.Win32Exception">The associated process could not be terminated.
--or-
-The process is terminating.</exception>
-      <exception cref="T:System.NotSupportedException">You are attempting to call <see cref="M:System.Diagnostics.Process.Kill" /> for a process that is running on a remote computer. The method is available only for processes running on the local computer.</exception>
-      <exception cref="T:System.InvalidOperationException">The process has already exited.
--or-
-There is no process associated with this <see cref="T:System.Diagnostics.Process" /> object.</exception>
-    </member>
-    <member name="M:System.Diagnostics.Process.Kill(System.Boolean)">
-      <summary>Immediately stops the associated process, and optionally its child/descendent processes.</summary>
-      <param name="entireProcessTree">
-        <see langword="true" /> to kill the associated process and its descendants; <see langword="false" /> to kill only the associated process.</param>
-      <exception cref="T:System.ComponentModel.Win32Exception">The associated process could not be terminated.
--or-
-The process is terminating.</exception>
-      <exception cref="T:System.NotSupportedException">You are attempting to call <see cref="M:System.Diagnostics.Process.Kill" /> for a process that is running on a remote computer. The method is available only for processes running on the local computer.</exception>
-      <exception cref="T:System.InvalidOperationException">The process has already exited.
--or-
-There is no process associated with this <see cref="T:System.Diagnostics.Process" /> object.
--or-
-The calling process is a member of the associated process' descendant tree.</exception>
-      <exception cref="T:System.AggregateException">Not all processes in the associated process' descendant tree could be terminated.</exception>
-    </member>
-    <member name="M:System.Diagnostics.Process.LeaveDebugMode">
-      <summary>Takes a <see cref="T:System.Diagnostics.Process" /> component out of the state that lets it interact with operating system processes that run in a special mode.</summary>
     </member>
     <member name="P:System.Diagnostics.Process.MachineName">
       <summary>Gets the name of the computer the associated process is running on.</summary>
-      <returns>The name of the computer that the associated process is running on.</returns>
       <exception cref="T:System.InvalidOperationException">There is no process associated with this <see cref="T:System.Diagnostics.Process" /> object.</exception>
+      <returns>The name of the computer that the associated process is running on.</returns>
     </member>
     <member name="P:System.Diagnostics.Process.MainModule">
       <summary>Gets the main module for the associated process.</summary>
-      <returns>The <see cref="T:System.Diagnostics.ProcessModule" /> that was used to start the process.</returns>
       <exception cref="T:System.NotSupportedException">You are trying to access the <see cref="P:System.Diagnostics.Process.MainModule" /> property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.</exception>
       <exception cref="T:System.ComponentModel.Win32Exception">A 32-bit process is trying to access the modules of a 64-bit process.</exception>
-      <exception cref="T:System.InvalidOperationException">The process <see cref="P:System.Diagnostics.Process.Id" /> is not available.
--or-
-The process has exited.</exception>
+      <exception cref="T:System.InvalidOperationException">The process <see cref="P:System.Diagnostics.Process.Id" /> is not available.  
+  
+ -or-  
+  
+ The process has exited.</exception>
+      <returns>The <see cref="T:System.Diagnostics.ProcessModule" /> that was used to start the process.</returns>
     </member>
     <member name="P:System.Diagnostics.Process.MainWindowHandle">
       <summary>Gets the window handle of the main window of the associated process.</summary>
-      <returns>The system-generated window handle of the main window of the associated process.</returns>
       <exception cref="T:System.InvalidOperationException">The <see cref="P:System.Diagnostics.Process.MainWindowHandle" /> is not defined because the process has exited.</exception>
       <exception cref="T:System.NotSupportedException">You are trying to access the <see cref="P:System.Diagnostics.Process.MainWindowHandle" /> property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.</exception>
+      <returns>The system-generated window handle of the main window of the associated process.</returns>
     </member>
     <member name="P:System.Diagnostics.Process.MainWindowTitle">
       <summary>Gets the caption of the main window of the process.</summary>
-      <returns>The main window title of the process.</returns>
       <exception cref="T:System.InvalidOperationException">The <see cref="P:System.Diagnostics.Process.MainWindowTitle" /> property is not defined because the process has exited.</exception>
       <exception cref="T:System.NotSupportedException">You are trying to access the <see cref="P:System.Diagnostics.Process.MainWindowTitle" /> property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.</exception>
+      <returns>The main window title of the process.</returns>
     </member>
     <member name="P:System.Diagnostics.Process.MaxWorkingSet">
       <summary>Gets or sets the maximum allowable working set size, in bytes, for the associated process.</summary>
-      <returns>The maximum working set size that is allowed in memory for the process, in bytes.</returns>
       <exception cref="T:System.ArgumentException">The maximum working set size is invalid. It must be greater than or equal to the minimum working set size.</exception>
-      <exception cref="T:System.ComponentModel.Win32Exception">Working set information cannot be retrieved from the associated process resource.
--or-
-The process identifier or process handle is zero because the process has not been started.</exception>
+      <exception cref="T:System.ComponentModel.Win32Exception">Working set information cannot be retrieved from the associated process resource.  
+  
+ -or-  
+  
+ The process identifier or process handle is zero because the process has not been started.</exception>
       <exception cref="T:System.NotSupportedException">You are trying to access the <see cref="P:System.Diagnostics.Process.MaxWorkingSet" /> property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.</exception>
-      <exception cref="T:System.InvalidOperationException">The process <see cref="P:System.Diagnostics.Process.Id" /> is not available.
--or-
-The process has exited.</exception>
+      <exception cref="T:System.InvalidOperationException">The process <see cref="P:System.Diagnostics.Process.Id" /> is not available.  
+  
+ -or-  
+  
+ The process has exited.</exception>
+      <returns>The maximum working set size that is allowed in memory for the process, in bytes.</returns>
     </member>
     <member name="P:System.Diagnostics.Process.MinWorkingSet">
       <summary>Gets or sets the minimum allowable working set size, in bytes, for the associated process.</summary>
-      <returns>The minimum working set size that is required in memory for the process, in bytes.</returns>
       <exception cref="T:System.ArgumentException">The minimum working set size is invalid. It must be less than or equal to the maximum working set size.</exception>
-      <exception cref="T:System.ComponentModel.Win32Exception">Working set information cannot be retrieved from the associated process resource.
--or-
-The process identifier or process handle is zero because the process has not been started.</exception>
+      <exception cref="T:System.ComponentModel.Win32Exception">Working set information cannot be retrieved from the associated process resource.  
+  
+ -or-  
+  
+ The process identifier or process handle is zero because the process has not been started.</exception>
       <exception cref="T:System.NotSupportedException">You are trying to access the <see cref="P:System.Diagnostics.Process.MinWorkingSet" /> property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.</exception>
-      <exception cref="T:System.InvalidOperationException">The process <see cref="P:System.Diagnostics.Process.Id" /> is not available.
--or-
-The process has exited.</exception>
+      <exception cref="T:System.InvalidOperationException">The process <see cref="P:System.Diagnostics.Process.Id" /> is not available.  
+  
+ -or-  
+  
+ The process has exited.</exception>
+      <returns>The minimum working set size that is required in memory for the process, in bytes.</returns>
     </member>
     <member name="P:System.Diagnostics.Process.Modules">
       <summary>Gets the modules that have been loaded by the associated process.</summary>
-      <returns>An array of type <see cref="T:System.Diagnostics.ProcessModule" /> that represents the modules that have been loaded by the associated process.</returns>
       <exception cref="T:System.NotSupportedException">You are attempting to access the <see cref="P:System.Diagnostics.Process.Modules" /> property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.</exception>
       <exception cref="T:System.InvalidOperationException">The process <see cref="P:System.Diagnostics.Process.Id" /> is not available.</exception>
       <exception cref="T:System.ComponentModel.Win32Exception">You are attempting to access the <see cref="P:System.Diagnostics.Process.Modules" /> property for either the system process or the idle process. These processes do not have modules.</exception>
+      <returns>An array of type <see cref="T:System.Diagnostics.ProcessModule" /> that represents the modules that have been loaded by the associated process.</returns>
     </member>
     <member name="P:System.Diagnostics.Process.NonpagedSystemMemorySize">
       <summary>Gets the amount of nonpaged system memory, in bytes, allocated for the associated process.</summary>
@@ -291,12 +525,6 @@ The process has exited.</exception>
     <member name="P:System.Diagnostics.Process.NonpagedSystemMemorySize64">
       <summary>Gets the amount of nonpaged system memory, in bytes, allocated for the associated process.</summary>
       <returns>The amount of system memory, in bytes, allocated for the associated process that cannot be written to the virtual memory paging file.</returns>
-    </member>
-    <member name="M:System.Diagnostics.Process.OnExited">
-      <summary>Raises the <see cref="E:System.Diagnostics.Process.Exited" /> event.</summary>
-    </member>
-    <member name="E:System.Diagnostics.Process.OutputDataReceived">
-      <summary>Occurs each time an application writes a line to its redirected <see cref="P:System.Diagnostics.Process.StandardOutput" /> stream.</summary>
     </member>
     <member name="P:System.Diagnostics.Process.PagedMemorySize">
       <summary>Gets the amount of paged memory, in bytes, allocated for the associated process.</summary>
@@ -340,22 +568,24 @@ The process has exited.</exception>
     </member>
     <member name="P:System.Diagnostics.Process.PriorityBoostEnabled">
       <summary>Gets or sets a value indicating whether the associated process priority should temporarily be boosted by the operating system when the main window has the focus.</summary>
-      <returns>
-        <see langword="true" /> if dynamic boosting of the process priority should take place for a process when it is taken out of the wait state; otherwise, <see langword="false" />. The default is <see langword="false" />.</returns>
       <exception cref="T:System.ComponentModel.Win32Exception">Priority boost information could not be retrieved from the associated process resource.</exception>
       <exception cref="T:System.PlatformNotSupportedException">The process identifier or process handle is zero. (The process has not been started.)</exception>
       <exception cref="T:System.NotSupportedException">You are attempting to access the <see cref="P:System.Diagnostics.Process.PriorityBoostEnabled" /> property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.</exception>
       <exception cref="T:System.InvalidOperationException">The process <see cref="P:System.Diagnostics.Process.Id" /> is not available.</exception>
+      <returns>
+        <see langword="true" /> if dynamic boosting of the process priority should take place for a process when it is taken out of the wait state; otherwise, <see langword="false" />. The default is <see langword="false" />.</returns>
     </member>
     <member name="P:System.Diagnostics.Process.PriorityClass">
       <summary>Gets or sets the overall priority category for the associated process.</summary>
-      <returns>The priority category for the associated process, from which the <see cref="P:System.Diagnostics.Process.BasePriority" /> of the process is calculated.</returns>
-      <exception cref="T:System.ComponentModel.Win32Exception">Process priority information could not be set or retrieved from the associated process resource.
--or-
-The process identifier or process handle is zero. (The process has not been started.)</exception>
+      <exception cref="T:System.ComponentModel.Win32Exception">Process priority information could not be set or retrieved from the associated process resource.  
+  
+ -or-  
+  
+ The process identifier or process handle is zero. (The process has not been started.)</exception>
       <exception cref="T:System.NotSupportedException">You are attempting to access the <see cref="P:System.Diagnostics.Process.PriorityClass" /> property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.</exception>
       <exception cref="T:System.InvalidOperationException">The process <see cref="P:System.Diagnostics.Process.Id" /> is not available.</exception>
       <exception cref="T:System.ComponentModel.InvalidEnumArgumentException">Priority class cannot be set because it does not use a valid value, as defined in the <see cref="T:System.Diagnostics.ProcessPriorityClass" /> enumeration.</exception>
+      <returns>The priority category for the associated process, from which the <see cref="P:System.Diagnostics.Process.BasePriority" /> of the process is calculated.</returns>
     </member>
     <member name="P:System.Diagnostics.Process.PrivateMemorySize">
       <summary>Gets the amount of private memory, in bytes, allocated for the associated process.</summary>
@@ -367,38 +597,41 @@ The process identifier or process handle is zero. (The process has not been star
     </member>
     <member name="P:System.Diagnostics.Process.PrivilegedProcessorTime">
       <summary>Gets the privileged processor time for this process.</summary>
-      <returns>A <see cref="T:System.TimeSpan" /> that indicates the amount of time that the process has spent running code inside the operating system core.</returns>
       <exception cref="T:System.NotSupportedException">You are attempting to access the <see cref="P:System.Diagnostics.Process.PrivilegedProcessorTime" /> property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.</exception>
+      <returns>A <see cref="T:System.TimeSpan" /> that indicates the amount of time that the process has spent running code inside the operating system core.</returns>
     </member>
     <member name="P:System.Diagnostics.Process.ProcessName">
       <summary>Gets the name of the process.</summary>
-      <returns>The name that the system uses to identify the process to the user.</returns>
-      <exception cref="T:System.InvalidOperationException">The process does not have an identifier, or no process is associated with the <see cref="T:System.Diagnostics.Process" />.
--or-
-The associated process has exited.</exception>
+      <exception cref="T:System.InvalidOperationException">The process does not have an identifier, or no process is associated with the <see cref="T:System.Diagnostics.Process" />.  
+  
+ -or-  
+  
+ The associated process has exited.</exception>
       <exception cref="T:System.NotSupportedException">The process is not on this computer.</exception>
+      <returns>The name that the system uses to identify the process to the user.</returns>
     </member>
     <member name="P:System.Diagnostics.Process.ProcessorAffinity">
       <summary>Gets or sets the processors on which the threads in this process can be scheduled to run.</summary>
-      <returns>A bitmask representing the processors that the threads in the associated process can run on. The default depends on the number of processors on the computer. The default value is 2 n -1, where n is the number of processors.</returns>
       <exception cref="T:System.ComponentModel.Win32Exception">
-        <see cref="P:System.Diagnostics.Process.ProcessorAffinity" /> information could not be set or retrieved from the associated process resource.
--or-
-The process identifier or process handle is zero. (The process has not been started.)</exception>
+        <see cref="P:System.Diagnostics.Process.ProcessorAffinity" /> information could not be set or retrieved from the associated process resource.  
+  
+ -or-  
+  
+ The process identifier or process handle is zero. (The process has not been started.)</exception>
       <exception cref="T:System.NotSupportedException">You are attempting to access the <see cref="P:System.Diagnostics.Process.ProcessorAffinity" /> property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.</exception>
-      <exception cref="T:System.InvalidOperationException">The process <see cref="P:System.Diagnostics.Process.Id" /> was not available.
--or-
-The process has exited.</exception>
-    </member>
-    <member name="M:System.Diagnostics.Process.Refresh">
-      <summary>Discards any information about the associated process that has been cached inside the process component.</summary>
+      <exception cref="T:System.InvalidOperationException">The process <see cref="P:System.Diagnostics.Process.Id" /> was not available.  
+  
+ -or-  
+  
+ The process has exited.</exception>
+      <returns>A bitmask representing the processors that the threads in the associated process can run on. The default depends on the number of processors on the computer. The default value is 2 n -1, where n is the number of processors.</returns>
     </member>
     <member name="P:System.Diagnostics.Process.Responding">
       <summary>Gets a value indicating whether the user interface of the process is responding.</summary>
-      <returns>
-        <see langword="true" /> if the user interface of the associated process is responding to the system; otherwise, <see langword="false" />.</returns>
       <exception cref="T:System.InvalidOperationException">There is no process associated with this <see cref="T:System.Diagnostics.Process" /> object.</exception>
       <exception cref="T:System.NotSupportedException">You are attempting to access the <see cref="P:System.Diagnostics.Process.Responding" /> property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.</exception>
+      <returns>
+        <see langword="true" /> if the user interface of the associated process is responding to the system; otherwise, <see langword="false" />.</returns>
     </member>
     <member name="P:System.Diagnostics.Process.SafeHandle">
       <summary>Gets the native handle to this process.</summary>
@@ -406,120 +639,53 @@ The process has exited.</exception>
     </member>
     <member name="P:System.Diagnostics.Process.SessionId">
       <summary>Gets the Terminal Services session identifier for the associated process.</summary>
-      <returns>The Terminal Services session identifier for the associated process.</returns>
       <exception cref="T:System.NullReferenceException">There is no session associated with this process.</exception>
-      <exception cref="T:System.InvalidOperationException">There is no process associated with this session identifier.
--or-
-The associated process is not on this machine.</exception>
+      <exception cref="T:System.InvalidOperationException">There is no process associated with this session identifier.  
+  
+ -or-  
+  
+ The associated process is not on this machine.</exception>
+      <returns>The Terminal Services session identifier for the associated process.</returns>
     </member>
     <member name="P:System.Diagnostics.Process.StandardError">
       <summary>Gets a stream used to read the error output of the application.</summary>
-      <returns>A <see cref="T:System.IO.StreamReader" /> that can be used to read the standard error stream of the application.</returns>
-      <exception cref="T:System.InvalidOperationException">The <see cref="P:System.Diagnostics.Process.StandardError" /> stream has not been defined for redirection; ensure <see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardError" /> is set to <see langword="true" /> and <see cref="P:System.Diagnostics.ProcessStartInfo.UseShellExecute" /> is set to <see langword="false" />.
+      <exception cref="T:System.InvalidOperationException">The <see cref="P:System.Diagnostics.Process.StandardError" /> stream has not been defined for redirection; ensure <see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardError" /> is set to <see langword="true" /> and <see cref="P:System.Diagnostics.ProcessStartInfo.UseShellExecute" /> is set to <see langword="false" />.  
+  
 -or-
-The <see cref="P:System.Diagnostics.Process.StandardError" /> stream has been opened for asynchronous read operations with <see cref="M:System.Diagnostics.Process.BeginErrorReadLine" />.</exception>
+  
+ The <see cref="P:System.Diagnostics.Process.StandardError" /> stream has been opened for asynchronous read operations with <see cref="M:System.Diagnostics.Process.BeginErrorReadLine" />.</exception>
+      <returns>A <see cref="T:System.IO.StreamReader" /> that can be used to read the standard error stream of the application.</returns>
     </member>
     <member name="P:System.Diagnostics.Process.StandardInput">
       <summary>Gets a stream used to write the input of the application.</summary>
-      <returns>A <see cref="T:System.IO.StreamWriter" /> that can be used to write the standard input stream of the application.</returns>
       <exception cref="T:System.InvalidOperationException">The <see cref="P:System.Diagnostics.Process.StandardInput" /> stream has not been defined because <see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardInput" /> is set to <see langword="false" />.</exception>
+      <returns>A <see cref="T:System.IO.StreamWriter" /> that can be used to write the standard input stream of the application.</returns>
     </member>
     <member name="P:System.Diagnostics.Process.StandardOutput">
       <summary>Gets a stream used to read the textual output of the application.</summary>
+      <exception cref="T:System.InvalidOperationException">The <see cref="P:System.Diagnostics.Process.StandardOutput" /> stream has not been defined for redirection; ensure <see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardOutput" /> is set to <see langword="true" /> and <see cref="P:System.Diagnostics.ProcessStartInfo.UseShellExecute" /> is set to <see langword="false" />.  
+  
+-or-
+  
+ The <see cref="P:System.Diagnostics.Process.StandardOutput" /> stream has been opened for asynchronous read operations with <see cref="M:System.Diagnostics.Process.BeginOutputReadLine" />.</exception>
       <returns>A <see cref="T:System.IO.StreamReader" /> that can be used to read the standard output stream of the application.</returns>
-      <exception cref="T:System.InvalidOperationException">The <see cref="P:System.Diagnostics.Process.StandardOutput" /> stream has not been defined for redirection; ensure <see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardOutput" /> is set to <see langword="true" /> and <see cref="P:System.Diagnostics.ProcessStartInfo.UseShellExecute" /> is set to <see langword="false" />.
--or-
-The <see cref="P:System.Diagnostics.Process.StandardOutput" /> stream has been opened for asynchronous read operations with <see cref="M:System.Diagnostics.Process.BeginOutputReadLine" />.</exception>
-    </member>
-    <member name="M:System.Diagnostics.Process.Start">
-      <summary>Starts (or reuses) the process resource that is specified by the <see cref="P:System.Diagnostics.Process.StartInfo" /> property of this <see cref="T:System.Diagnostics.Process" /> component and associates it with the component.</summary>
-      <returns>
-        <see langword="true" /> if a process resource is started; <see langword="false" /> if no new process resource is started (for example, if an existing process is reused).</returns>
-      <exception cref="T:System.InvalidOperationException">No file name was specified in the <see cref="T:System.Diagnostics.Process" /> component's <see cref="P:System.Diagnostics.Process.StartInfo" />.
--or-
-The <see cref="P:System.Diagnostics.ProcessStartInfo.UseShellExecute" /> member of the <see cref="P:System.Diagnostics.Process.StartInfo" /> property is <see langword="true" /> while <see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardInput" />, <see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardOutput" />, or <see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardError" /> is <see langword="true" />.</exception>
-      <exception cref="T:System.ComponentModel.Win32Exception">There was an error in opening the associated file.</exception>
-      <exception cref="T:System.ObjectDisposedException">The process object has already been disposed.</exception>
-      <exception cref="T:System.PlatformNotSupportedException">Method not supported on operating systems without shell support such as Nano Server (.NET Core only).</exception>
-    </member>
-    <member name="M:System.Diagnostics.Process.Start(System.Diagnostics.ProcessStartInfo)">
-      <summary>Starts the process resource that is specified by the parameter containing process start information (for example, the file name of the process to start) and associates the resource with a new <see cref="T:System.Diagnostics.Process" /> component.</summary>
-      <param name="startInfo">The <see cref="T:System.Diagnostics.ProcessStartInfo" /> that contains the information that is used to start the process, including the file name and any command-line arguments.</param>
-      <returns>A new <see cref="T:System.Diagnostics.Process" /> that is associated with the process resource, or <see langword="null" /> if no process resource is started. Note that a new process that's started alongside already running instances of the same process will be independent from the others. In addition, Start may return a non-null Process with its <see cref="P:System.Diagnostics.Process.HasExited" /> property already set to <see langword="true" />. In this case, the started process may have activated an existing instance of itself and then exited.</returns>
-      <exception cref="T:System.InvalidOperationException">No file name was specified in the <paramref name="startInfo" /> parameter's <see cref="P:System.Diagnostics.ProcessStartInfo.FileName" /> property.
--or-
-The <see cref="P:System.Diagnostics.ProcessStartInfo.UseShellExecute" /> property of the <paramref name="startInfo" /> parameter is <see langword="true" /> and the <see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardInput" />, <see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardOutput" />, or <see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardError" /> property is also <see langword="true" />.
--or-
-The <see cref="P:System.Diagnostics.ProcessStartInfo.UseShellExecute" /> property of the <paramref name="startInfo" /> parameter is <see langword="true" /> and the <see cref="P:System.Diagnostics.ProcessStartInfo.UserName" /> property is not <see langword="null" /> or empty or the <see cref="P:System.Diagnostics.ProcessStartInfo.Password" /> property is not <see langword="null" />.</exception>
-      <exception cref="T:System.ArgumentNullException">The <paramref name="startInfo" /> parameter is <see langword="null" />.</exception>
-      <exception cref="T:System.ObjectDisposedException">The process object has already been disposed.</exception>
-      <exception cref="T:System.IO.FileNotFoundException">The file specified in the <paramref name="startInfo" /> parameter's <see cref="P:System.Diagnostics.ProcessStartInfo.FileName" /> property could not be found.</exception>
-      <exception cref="T:System.ComponentModel.Win32Exception">An error occurred when opening the associated file.
--or-
-The sum of the length of the arguments and the length of the full path to the process exceeds 2080. The error message associated with this exception can be one of the following: "The data area passed to a system call is too small." or "Access is denied."</exception>
-      <exception cref="T:System.PlatformNotSupportedException">Method not supported on operating systems without shell support such as Nano Server (.NET Core only).</exception>
-    </member>
-    <member name="M:System.Diagnostics.Process.Start(System.String)">
-      <summary>Starts a process resource by specifying the name of a document or application file and associates the resource with a new <see cref="T:System.Diagnostics.Process" /> component.</summary>
-      <param name="fileName">The name of a document or application file to run in the process.</param>
-      <returns>A new <see cref="T:System.Diagnostics.Process" /> that is associated with the process resource, or <see langword="null" /> if no process resource is started. Note that a new process that's started alongside already running instances of the same process will be independent from the others. In addition, Start may return a non-null Process with its <see cref="P:System.Diagnostics.Process.HasExited" /> property already set to <see langword="true" />. In this case, the started process may have activated an existing instance of itself and then exited.</returns>
-      <exception cref="T:System.ComponentModel.Win32Exception">An error occurred when opening the associated file.</exception>
-      <exception cref="T:System.ObjectDisposedException">The process object has already been disposed.</exception>
-      <exception cref="T:System.IO.FileNotFoundException">The PATH environment variable has a string containing quotes.</exception>
-    </member>
-    <member name="M:System.Diagnostics.Process.Start(System.String,System.String)">
-      <summary>Starts a process resource by specifying the name of an application and a set of command-line arguments, and associates the resource with a new <see cref="T:System.Diagnostics.Process" /> component.</summary>
-      <param name="fileName">The name of an application file to run in the process.</param>
-      <param name="arguments">Command-line arguments to pass when starting the process.</param>
-      <returns>A new <see cref="T:System.Diagnostics.Process" /> that is associated with the process resource, or <see langword="null" /> if no process resource is started. Note that a new process that's started alongside already running instances of the same process will be independent from the others. In addition, Start may return a non-null Process with its <see cref="P:System.Diagnostics.Process.HasExited" /> property already set to <see langword="true" />. In this case, the started process may have activated an existing instance of itself and then exited.</returns>
-      <exception cref="T:System.InvalidOperationException">The <paramref name="fileName" /> or <paramref name="arguments" /> parameter is <see langword="null" />.</exception>
-      <exception cref="T:System.ComponentModel.Win32Exception">An error occurred when opening the associated file.
--or-
-The sum of the length of the arguments and the length of the full path to the process exceeds 2080. The error message associated with this exception can be one of the following: "The data area passed to a system call is too small." or "Access is denied."</exception>
-      <exception cref="T:System.ObjectDisposedException">The process object has already been disposed.</exception>
-      <exception cref="T:System.IO.FileNotFoundException">The PATH environment variable has a string containing quotes.</exception>
-    </member>
-    <member name="M:System.Diagnostics.Process.Start(System.String,System.String,System.Security.SecureString,System.String)">
-      <summary>Starts a process resource by specifying the name of an application, a user name, a password, and a domain and associates the resource with a new <see cref="T:System.Diagnostics.Process" /> component.</summary>
-      <param name="fileName">The name of an application file to run in the process.</param>
-      <param name="userName">The user name to use when starting the process.</param>
-      <param name="password">A <see cref="T:System.Security.SecureString" /> that contains the password to use when starting the process.</param>
-      <param name="domain">The domain to use when starting the process.</param>
-      <returns>A new <see cref="T:System.Diagnostics.Process" /> that is associated with the process resource, or <see langword="null" /> if no process resource is started. Note that a new process that's started alongside already running instances of the same process will be independent from the others. In addition, Start may return a non-null Process with its <see cref="P:System.Diagnostics.Process.HasExited" /> property already set to <see langword="true" />. In this case, the started process may have activated an existing instance of itself and then exited.</returns>
-      <exception cref="T:System.InvalidOperationException">No file name was specified.</exception>
-      <exception cref="T:System.ComponentModel.Win32Exception">There was an error in opening the associated file.</exception>
-      <exception cref="T:System.ObjectDisposedException">The process object has already been disposed.</exception>
-      <exception cref="T:System.PlatformNotSupportedException">This member is not supported on Linux or macOS (.NET Core only).</exception>
-    </member>
-    <member name="M:System.Diagnostics.Process.Start(System.String,System.String,System.String,System.Security.SecureString,System.String)">
-      <summary>Starts a process resource by specifying the name of an application, a set of command-line arguments, a user name, a password, and a domain and associates the resource with a new <see cref="T:System.Diagnostics.Process" /> component.</summary>
-      <param name="fileName">The name of an application file to run in the process.</param>
-      <param name="arguments">Command-line arguments to pass when starting the process.</param>
-      <param name="userName">The user name to use when starting the process.</param>
-      <param name="password">A <see cref="T:System.Security.SecureString" /> that contains the password to use when starting the process.</param>
-      <param name="domain">The domain to use when starting the process.</param>
-      <returns>A new <see cref="T:System.Diagnostics.Process" /> that is associated with the process resource, or <see langword="null" /> if no process resource is started. Note that a new process that's started alongside already running instances of the same process will be independent from the others. In addition, Start may return a non-null Process with its <see cref="P:System.Diagnostics.Process.HasExited" /> property already set to <see langword="true" />. In this case, the started process may have activated an existing instance of itself and then exited.</returns>
-      <exception cref="T:System.InvalidOperationException">No file name was specified.</exception>
-      <exception cref="T:System.ComponentModel.Win32Exception">An error occurred when opening the associated file.
--or-
-The sum of the length of the arguments and the length of the full path to the associated file exceeds 2080. The error message associated with this exception can be one of the following: "The data area passed to a system call is too small." or "Access is denied."</exception>
-      <exception cref="T:System.ObjectDisposedException">The process object has already been disposed.</exception>
-      <exception cref="T:System.PlatformNotSupportedException">This member is not supported on Linux or macOS (.NET Core only).</exception>
     </member>
     <member name="P:System.Diagnostics.Process.StartInfo">
       <summary>Gets or sets the properties to pass to the <see cref="M:System.Diagnostics.Process.Start" /> method of the <see cref="T:System.Diagnostics.Process" />.</summary>
-      <returns>The <see cref="T:System.Diagnostics.ProcessStartInfo" /> that represents the data with which to start the process. These arguments include the name of the executable file or document used to start the process.</returns>
       <exception cref="T:System.ArgumentNullException">The value that specifies the <see cref="P:System.Diagnostics.Process.StartInfo" /> is <see langword="null" />.</exception>
-      <exception cref="T:System.InvalidOperationException">The <see cref="M:System.Diagnostics.Process.Start" /> method was not used to start the process.</exception>
+      <exception cref="T:System.InvalidOperationException">.NET Core and .NET 5+ only: The <see cref="M:System.Diagnostics.Process.Start" /> method was not used to start the process.</exception>
+      <returns>The <see cref="T:System.Diagnostics.ProcessStartInfo" /> that represents the data with which to start the process. These arguments include the name of the executable file or document used to start the process.</returns>
     </member>
     <member name="P:System.Diagnostics.Process.StartTime">
       <summary>Gets the time that the associated process was started.</summary>
-      <returns>An object  that indicates when the process started. An exception is thrown if the process is not running.</returns>
       <exception cref="T:System.NotSupportedException">You are attempting to access the <see cref="P:System.Diagnostics.Process.StartTime" /> property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.</exception>
-      <exception cref="T:System.InvalidOperationException">The process has exited.
--or-
-The process has not been started.</exception>
+      <exception cref="T:System.InvalidOperationException">The process has exited.  
+  
+ -or-  
+  
+ The process has not been started.</exception>
       <exception cref="T:System.ComponentModel.Win32Exception">An error occurred in the call to the Windows function.</exception>
+      <returns>An object  that indicates when the process started. An exception is thrown if the process is not running.</returns>
     </member>
     <member name="P:System.Diagnostics.Process.SynchronizingObject">
       <summary>Gets or sets the object used to marshal the event handler calls that are issued as a result of a process exit event.</summary>
@@ -527,24 +693,22 @@ The process has not been started.</exception>
     </member>
     <member name="P:System.Diagnostics.Process.Threads">
       <summary>Gets the set of threads that are running in the associated process.</summary>
+      <exception cref="T:System.SystemException">The process does not have an <see cref="P:System.Diagnostics.Process.Id" />, or no process is associated with the <see cref="T:System.Diagnostics.Process" /> instance.  
+  
+ -or-  
+  
+ The associated process has exited.</exception>
       <returns>An array of type <see cref="T:System.Diagnostics.ProcessThread" /> representing the operating system threads currently running in the associated process.</returns>
-      <exception cref="T:System.SystemException">The process does not have an <see cref="P:System.Diagnostics.Process.Id" />, or no process is associated with the <see cref="T:System.Diagnostics.Process" /> instance.
--or-
-The associated process has exited.</exception>
-    </member>
-    <member name="M:System.Diagnostics.Process.ToString">
-      <summary>Formats the process's name as a string, combined with the parent component type, if applicable.</summary>
-      <returns>The <see cref="P:System.Diagnostics.Process.ProcessName" />, combined with the base component's <see cref="M:System.Object.ToString" /> return value.</returns>
     </member>
     <member name="P:System.Diagnostics.Process.TotalProcessorTime">
       <summary>Gets the total processor time for this process.</summary>
-      <returns>A <see cref="T:System.TimeSpan" /> that indicates the amount of time that the associated process has spent utilizing the CPU. This value is the sum of the <see cref="P:System.Diagnostics.Process.UserProcessorTime" /> and the <see cref="P:System.Diagnostics.Process.PrivilegedProcessorTime" />.</returns>
       <exception cref="T:System.NotSupportedException">You are attempting to access the <see cref="P:System.Diagnostics.Process.TotalProcessorTime" /> property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.</exception>
+      <returns>A <see cref="T:System.TimeSpan" /> that indicates the amount of time that the associated process has spent utilizing the CPU. This value is the sum of the <see cref="P:System.Diagnostics.Process.UserProcessorTime" /> and the <see cref="P:System.Diagnostics.Process.PrivilegedProcessorTime" />.</returns>
     </member>
     <member name="P:System.Diagnostics.Process.UserProcessorTime">
       <summary>Gets the user processor time for this process.</summary>
-      <returns>A <see cref="T:System.TimeSpan" /> that indicates the amount of time that the associated process has spent running code inside the application portion of the process (not inside the operating system core).</returns>
       <exception cref="T:System.NotSupportedException">You are attempting to access the <see cref="P:System.Diagnostics.Process.UserProcessorTime" /> property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.</exception>
+      <returns>A <see cref="T:System.TimeSpan" /> that indicates the amount of time that the associated process has spent running code inside the application portion of the process (not inside the operating system core).</returns>
     </member>
     <member name="P:System.Diagnostics.Process.VirtualMemorySize">
       <summary>Gets the size of the process's virtual memory, in bytes.</summary>
@@ -553,54 +717,6 @@ The associated process has exited.</exception>
     <member name="P:System.Diagnostics.Process.VirtualMemorySize64">
       <summary>Gets the amount of the virtual memory, in bytes, allocated for the associated process.</summary>
       <returns>The amount of virtual memory, in bytes, allocated for the associated process.</returns>
-    </member>
-    <member name="M:System.Diagnostics.Process.WaitForExit">
-      <summary>Instructs the <see cref="T:System.Diagnostics.Process" /> component to wait indefinitely for the associated process to exit.</summary>
-      <exception cref="T:System.ComponentModel.Win32Exception">The wait setting could not be accessed.</exception>
-      <exception cref="T:System.SystemException">No process <see cref="P:System.Diagnostics.Process.Id" /> has been set, and a <see cref="P:System.Diagnostics.Process.Handle" /> from which the <see cref="P:System.Diagnostics.Process.Id" /> property can be determined does not exist.
--or-
-There is no process associated with this <see cref="T:System.Diagnostics.Process" /> object.
--or-
-You are attempting to call <see cref="M:System.Diagnostics.Process.WaitForExit" /> for a process that is running on a remote computer. This method is available only for processes that are running on the local computer.</exception>
-    </member>
-    <member name="M:System.Diagnostics.Process.WaitForExit(System.Int32)">
-      <summary>Instructs the <see cref="T:System.Diagnostics.Process" /> component to wait the specified number of milliseconds for the associated process to exit.</summary>
-      <param name="milliseconds">The amount of time, in milliseconds, to wait for the associated process to exit. The maximum is the largest possible value of a 32-bit integer, which represents infinity to the operating system.</param>
-      <returns>
-        <see langword="true" /> if the associated process has exited; otherwise, <see langword="false" />.</returns>
-      <exception cref="T:System.ComponentModel.Win32Exception">The wait setting could not be accessed.</exception>
-      <exception cref="T:System.SystemException">No process <see cref="P:System.Diagnostics.Process.Id" /> has been set, and a <see cref="P:System.Diagnostics.Process.Handle" /> from which the <see cref="P:System.Diagnostics.Process.Id" /> property can be determined does not exist.
--or-
-There is no process associated with this <see cref="T:System.Diagnostics.Process" /> object.
--or-
-You are attempting to call <see cref="M:System.Diagnostics.Process.WaitForExit(System.Int32)" /> for a process that is running on a remote computer. This method is available only for processes that are running on the local computer.</exception>
-      <exception cref="T:System.ArgumentOutOfRangeException">
-        <paramref name="milliseconds" /> is a negative number other than -1, which represents an infinite time-out.</exception>
-    </member>
-    <member name="M:System.Diagnostics.Process.WaitForInputIdle">
-      <summary>Causes the <see cref="T:System.Diagnostics.Process" /> component to wait indefinitely for the associated process to enter an idle state. This overload applies only to processes with a user interface and, therefore, a message loop.</summary>
-      <returns>
-        <see langword="true" /> if the associated process has reached an idle state.</returns>
-      <exception cref="T:System.InvalidOperationException">The process does not have a graphical interface.
--or-
-An unknown error occurred. The process failed to enter an idle state.
--or-
-The process has already exited.
--or-
-No process is associated with this <see cref="T:System.Diagnostics.Process" /> object.</exception>
-    </member>
-    <member name="M:System.Diagnostics.Process.WaitForInputIdle(System.Int32)">
-      <summary>Causes the <see cref="T:System.Diagnostics.Process" /> component to wait the specified number of milliseconds for the associated process to enter an idle state. This overload applies only to processes with a user interface and, therefore, a message loop.</summary>
-      <param name="milliseconds">A value of 1 to <see cref="F:System.Int32.MaxValue" /> that specifies the amount of time, in milliseconds, to wait for the associated process to become idle. A value of 0 specifies an immediate return, and a value of -1 specifies an infinite wait.</param>
-      <returns>
-        <see langword="true" /> if the associated process has reached an idle state; otherwise, <see langword="false" />.</returns>
-      <exception cref="T:System.InvalidOperationException">The process does not have a graphical interface.
--or-
-An unknown error occurred. The process failed to enter an idle state.
--or-
-The process has already exited.
--or-
-No process is associated with this <see cref="T:System.Diagnostics.Process" /> object.</exception>
     </member>
     <member name="P:System.Diagnostics.Process.WorkingSet">
       <summary>Gets the associated process's physical memory usage, in bytes.</summary>
@@ -612,6 +728,10 @@ No process is associated with this <see cref="T:System.Diagnostics.Process" /> o
     </member>
     <member name="T:System.Diagnostics.ProcessModule">
       <summary>Represents a.dll or .exe file that is loaded into a particular process.</summary>
+    </member>
+    <member name="M:System.Diagnostics.ProcessModule.ToString">
+      <summary>Converts the name of the module to a string.</summary>
+      <returns>The value of the <see cref="P:System.Diagnostics.ProcessModule.ModuleName" /> property.</returns>
     </member>
     <member name="P:System.Diagnostics.ProcessModule.BaseAddress">
       <summary>Gets the memory address where the module was loaded.</summary>
@@ -636,10 +756,6 @@ No process is associated with this <see cref="T:System.Diagnostics.Process" /> o
     <member name="P:System.Diagnostics.ProcessModule.ModuleName">
       <summary>Gets the name of the process module.</summary>
       <returns>The name of the module.</returns>
-    </member>
-    <member name="M:System.Diagnostics.ProcessModule.ToString">
-      <summary>Converts the name of the module to a string.</summary>
-      <returns>The value of the <see cref="P:System.Diagnostics.ProcessModule.ModuleName" /> property.</returns>
     </member>
     <member name="T:System.Diagnostics.ProcessModuleCollection">
       <summary>Provides a strongly typed collection of <see cref="T:System.Diagnostics.ProcessModule" /> objects.</summary>
@@ -670,7 +786,7 @@ No process is associated with this <see cref="T:System.Diagnostics.Process" /> o
     <member name="P:System.Diagnostics.ProcessModuleCollection.Item(System.Int32)">
       <summary>Gets an index for iterating over the set of process modules.</summary>
       <param name="index">The zero-based index value of the module in the collection.</param>
-      <returns>A <see cref="T:System.Diagnostics.ProcessModule" /> that indexes the modules in the collection</returns>
+      <returns>A <see cref="T:System.Diagnostics.ProcessModule" /> that indexes the modules in the collection.</returns>
     </member>
     <member name="T:System.Diagnostics.ProcessPriorityClass">
       <summary>Indicates the priority that the system associates with a process. This value, together with the priority value of each thread of the process, determines each thread's base priority level.</summary>
@@ -682,7 +798,7 @@ No process is associated with this <see cref="T:System.Diagnostics.Process" /> o
       <summary>Specifies that the process has priority above <see langword="Idle" /> but below <see langword="Normal" />.</summary>
     </member>
     <member name="F:System.Diagnostics.ProcessPriorityClass.High">
-      <summary>Specifies that the process performs time-critical tasks that must be executed immediately, such as the <see langword="Task List" /> dialog, which must respond quickly when called by the user, regardless of the load on the operating system. The threads of the process preempt the threads of normal or idle priority class processes. Use extreme care when specifying <see langword="High" /> for the process's priority class, because a high priority class application can use nearly all available processor time.</summary>
+      <summary>Specifies that the process performs time-critical tasks that must be executed immediately, such as the <see langword="Task List" /> dialog, which must respond quickly when called by the user, regardless of the load on the operating system. The threads of the process preempt the threads of normal or idle priority class processes. <br />Use extreme care when specifying <see langword="High" /> for the process's priority class, because a high priority class application can use nearly all available processor time.</summary>
     </member>
     <member name="F:System.Diagnostics.ProcessPriorityClass.Idle">
       <summary>Specifies that the threads of this process run only when the system is idle, such as a screen saver. The threads of the process are preempted by the threads of any process running in a higher priority class. This priority class is inherited by child processes.</summary>
@@ -691,7 +807,7 @@ No process is associated with this <see cref="T:System.Diagnostics.Process" /> o
       <summary>Specifies that the process has no special scheduling needs.</summary>
     </member>
     <member name="F:System.Diagnostics.ProcessPriorityClass.RealTime">
-      <summary>Specifies that the process has the highest possible priority. The threads of a process with <see langword="RealTime" /> priority preempt the threads of all other processes, including operating system processes performing important tasks. Thus, a <see langword="RealTime" /> priority process that executes for more than a very brief interval can cause disk caches not to flush or cause the mouse to be unresponsive.</summary>
+      <summary>Specifies that the process has the highest possible priority. <br />The threads of a process with <see langword="RealTime" /> priority preempt the threads of all other processes, including operating system processes performing important tasks. Thus, a <see langword="RealTime" /> priority process that executes for more than a very brief interval can cause disk caches not to flush or cause the mouse to be unresponsive.</summary>
     </member>
     <member name="T:System.Diagnostics.ProcessStartInfo">
       <summary>Specifies a set of values that are used when you start a process.</summary>
@@ -709,7 +825,7 @@ No process is associated with this <see cref="T:System.Diagnostics.Process" /> o
       <param name="arguments">Command-line arguments to pass to the application when the process starts.</param>
     </member>
     <member name="P:System.Diagnostics.ProcessStartInfo.ArgumentList">
-      <summary>Gets a collection of command-line arguments to use when starting the application.</summary>
+      <summary>Gets a collection of command-line arguments to use when starting the application. Strings added to the list don't need to be previously escaped.</summary>
       <returns>A collection of command-line arguments.</returns>
     </member>
     <member name="P:System.Diagnostics.ProcessStartInfo.Arguments">
@@ -778,7 +894,10 @@ No process is associated with this <see cref="T:System.Diagnostics.Process" /> o
       <summary>Gets or sets the preferred encoding for error output.</summary>
       <returns>An object that represents the preferred encoding for error output. The default is <see langword="null" />.</returns>
     </member>
-    <member name="P:System.Diagnostics.ProcessStartInfo.StandardInputEncoding" />
+    <member name="P:System.Diagnostics.ProcessStartInfo.StandardInputEncoding">
+      <summary>Gets or sets the preferred encoding for standard input.</summary>
+      <returns>An object that represents the preferred encoding for standard input. The default is <see langword="null" />.</returns>
+    </member>
     <member name="P:System.Diagnostics.ProcessStartInfo.StandardOutputEncoding">
       <summary>Gets or sets the preferred encoding for standard output.</summary>
       <returns>An object that represents the preferred encoding for standard output. The default is <see langword="null" />.</returns>
@@ -789,9 +908,9 @@ No process is associated with this <see cref="T:System.Diagnostics.Process" /> o
     </member>
     <member name="P:System.Diagnostics.ProcessStartInfo.UseShellExecute">
       <summary>Gets or sets a value indicating whether to use the operating system shell to start the process.</summary>
+      <exception cref="T:System.PlatformNotSupportedException">An attempt to set the value to <see langword="true" /> on Universal Windows Platform (UWP) apps occurs.</exception>
       <returns>
         <see langword="true" /> if the shell should be used when starting the process; <see langword="false" /> if the process should be created directly from the executable file. The default is <see langword="true" /> on .NET Framework apps and <see langword="false" /> on .NET Core apps.</returns>
-      <exception cref="T:System.PlatformNotSupportedException">An attempt to set the value to <see langword="true" /> on Universal Windows Platform (UWP) apps occurs.</exception>
     </member>
     <member name="P:System.Diagnostics.ProcessStartInfo.Verb">
       <summary>Gets or sets the verb to use when opening the application or document specified by the <see cref="P:System.Diagnostics.ProcessStartInfo.FileName" /> property.</summary>
@@ -803,8 +922,8 @@ No process is associated with this <see cref="T:System.Diagnostics.Process" /> o
     </member>
     <member name="P:System.Diagnostics.ProcessStartInfo.WindowStyle">
       <summary>Gets or sets the window state to use when the process is started.</summary>
-      <returns>One of the enumeration values that indicates whether the process is started in a window that is maximized, minimized, normal (neither maximized nor minimized), or not visible. The default is <see langword="Normal" />.</returns>
       <exception cref="T:System.ComponentModel.InvalidEnumArgumentException">The window style is not one of the <see cref="T:System.Diagnostics.ProcessWindowStyle" /> enumeration members.</exception>
+      <returns>One of the enumeration values that indicates whether the process is started in a window that is maximized, minimized, normal (neither maximized nor minimized), or not visible. The default is <see langword="Normal" />.</returns>
     </member>
     <member name="P:System.Diagnostics.ProcessStartInfo.WorkingDirectory">
       <summary>When the <see cref="P:System.Diagnostics.ProcessStartInfo.UseShellExecute" /> property is <see langword="false" />, gets or sets the working directory for the process to be started. When <see cref="P:System.Diagnostics.ProcessStartInfo.UseShellExecute" /> is <see langword="true" />, gets or sets the directory that contains the process to be started.</summary>
@@ -812,6 +931,11 @@ No process is associated with this <see cref="T:System.Diagnostics.Process" /> o
     </member>
     <member name="T:System.Diagnostics.ProcessThread">
       <summary>Represents an operating system process thread.</summary>
+    </member>
+    <member name="M:System.Diagnostics.ProcessThread.ResetIdealProcessor">
+      <summary>Resets the ideal processor for this thread to indicate that there is no single ideal processor. In other words, so that any processor is ideal.</summary>
+      <exception cref="T:System.ComponentModel.Win32Exception">The ideal processor could not be reset.</exception>
+      <exception cref="T:System.NotSupportedException">The process is on a remote computer.</exception>
     </member>
     <member name="P:System.Diagnostics.ProcessThread.BasePriority">
       <summary>Gets the base priority of the thread.</summary>
@@ -827,77 +951,76 @@ No process is associated with this <see cref="T:System.Diagnostics.Process" /> o
     </member>
     <member name="P:System.Diagnostics.ProcessThread.IdealProcessor">
       <summary>Sets the preferred processor for this thread to run on.</summary>
-      <returns>The preferred processor for the thread, used when the system schedules threads, to determine which processor to run the thread on.</returns>
       <exception cref="T:System.ComponentModel.Win32Exception">The system could not set the thread to start on the specified processor.</exception>
       <exception cref="T:System.NotSupportedException">The process is on a remote computer.</exception>
+      <returns>The preferred processor for the thread, used when the system schedules threads, to determine which processor to run the thread on.</returns>
     </member>
     <member name="P:System.Diagnostics.ProcessThread.PriorityBoostEnabled">
       <summary>Gets or sets a value indicating whether the operating system should temporarily boost the priority of the associated thread whenever the main window of the thread's process receives the focus.</summary>
+      <exception cref="T:System.ComponentModel.Win32Exception">The priority boost information could not be retrieved.  
+  
+ -or-  
+  
+ The priority boost information could not be set.</exception>
+      <exception cref="T:System.NotSupportedException">The process is on a remote computer.</exception>
       <returns>
         <see langword="true" /> to boost the thread's priority when the user interacts with the process's interface; otherwise, <see langword="false" />. The default is <see langword="false" />.</returns>
-      <exception cref="T:System.ComponentModel.Win32Exception">The priority boost information could not be retrieved.
--or-
-The priority boost information could not be set.</exception>
-      <exception cref="T:System.NotSupportedException">The process is on a remote computer.</exception>
     </member>
     <member name="P:System.Diagnostics.ProcessThread.PriorityLevel">
       <summary>Gets or sets the priority level of the thread.</summary>
-      <returns>One of the <see cref="T:System.Diagnostics.ThreadPriorityLevel" /> values, specifying a range that bounds the thread's priority.</returns>
-      <exception cref="T:System.ComponentModel.Win32Exception">The thread priority level information could not be retrieved.
--or-
-The thread priority level could not be set.</exception>
+      <exception cref="T:System.ComponentModel.Win32Exception">The thread priority level information could not be retrieved.  
+  
+ -or-  
+  
+ The thread priority level could not be set.</exception>
       <exception cref="T:System.NotSupportedException">The process is on a remote computer.</exception>
+      <returns>One of the <see cref="T:System.Diagnostics.ThreadPriorityLevel" /> values, specifying a range that bounds the thread's priority.</returns>
     </member>
     <member name="P:System.Diagnostics.ProcessThread.PrivilegedProcessorTime">
       <summary>Gets the amount of time that the thread has spent running code inside the operating system core.</summary>
-      <returns>A <see cref="T:System.TimeSpan" /> indicating the amount of time that the thread has spent running code inside the operating system core.</returns>
       <exception cref="T:System.ComponentModel.Win32Exception">The thread time could not be retrieved.</exception>
       <exception cref="T:System.NotSupportedException">The process is on a remote computer.</exception>
+      <returns>A <see cref="T:System.TimeSpan" /> indicating the amount of time that the thread has spent running code inside the operating system core.</returns>
     </member>
     <member name="P:System.Diagnostics.ProcessThread.ProcessorAffinity">
       <summary>Sets the processors on which the associated thread can run.</summary>
-      <returns>An <see cref="T:System.IntPtr" /> that points to a set of bits, each of which represents a processor that the thread can run on.</returns>
       <exception cref="T:System.ComponentModel.Win32Exception">The processor affinity could not be set.</exception>
       <exception cref="T:System.NotSupportedException">The process is on a remote computer.</exception>
-    </member>
-    <member name="M:System.Diagnostics.ProcessThread.ResetIdealProcessor">
-      <summary>Resets the ideal processor for this thread to indicate that there is no single ideal processor. In other words, so that any processor is ideal.</summary>
-      <exception cref="T:System.ComponentModel.Win32Exception">The ideal processor could not be reset.</exception>
-      <exception cref="T:System.NotSupportedException">The process is on a remote computer.</exception>
+      <returns>An <see cref="T:System.IntPtr" /> that points to a set of bits, each of which represents a processor that the thread can run on.</returns>
     </member>
     <member name="P:System.Diagnostics.ProcessThread.StartAddress">
       <summary>Gets the memory address of the function that the operating system called that started this thread.</summary>
-      <returns>The thread's starting address, which points to the application-defined function that the thread executes.</returns>
       <exception cref="T:System.NotSupportedException">The process is on a remote computer.</exception>
+      <returns>The thread's starting address, which points to the application-defined function that the thread executes.</returns>
     </member>
     <member name="P:System.Diagnostics.ProcessThread.StartTime">
       <summary>Gets the time that the operating system started the thread.</summary>
-      <returns>A <see cref="T:System.DateTime" /> representing the time that was on the system when the operating system started the thread.</returns>
       <exception cref="T:System.ComponentModel.Win32Exception">The thread time could not be retrieved.</exception>
       <exception cref="T:System.NotSupportedException">The process is on a remote computer.</exception>
+      <returns>A <see cref="T:System.DateTime" /> representing the time that was on the system when the operating system started the thread.</returns>
     </member>
     <member name="P:System.Diagnostics.ProcessThread.ThreadState">
       <summary>Gets the current state of this thread.</summary>
-      <returns>A <see cref="T:System.Diagnostics.ThreadState" /> that indicates the thread's execution, for example, running, waiting, or terminated.</returns>
       <exception cref="T:System.NotSupportedException">The process is on a remote computer.</exception>
+      <returns>A <see cref="T:System.Diagnostics.ThreadState" /> that indicates the thread's execution, for example, running, waiting, or terminated.</returns>
     </member>
     <member name="P:System.Diagnostics.ProcessThread.TotalProcessorTime">
       <summary>Gets the total amount of time that this thread has spent using the processor.</summary>
-      <returns>A <see cref="T:System.TimeSpan" /> that indicates the amount of time that the thread has had control of the processor.</returns>
       <exception cref="T:System.ComponentModel.Win32Exception">The thread time could not be retrieved.</exception>
       <exception cref="T:System.NotSupportedException">The process is on a remote computer.</exception>
+      <returns>A <see cref="T:System.TimeSpan" /> that indicates the amount of time that the thread has had control of the processor.</returns>
     </member>
     <member name="P:System.Diagnostics.ProcessThread.UserProcessorTime">
       <summary>Gets the amount of time that the associated thread has spent running code inside the application.</summary>
-      <returns>A <see cref="T:System.TimeSpan" /> indicating the amount of time that the thread has spent running code inside the application, as opposed to inside the operating system core.</returns>
       <exception cref="T:System.ComponentModel.Win32Exception">The thread time could not be retrieved.</exception>
       <exception cref="T:System.NotSupportedException">The process is on a remote computer.</exception>
+      <returns>A <see cref="T:System.TimeSpan" /> indicating the amount of time that the thread has spent running code inside the application, as opposed to inside the operating system core.</returns>
     </member>
     <member name="P:System.Diagnostics.ProcessThread.WaitReason">
       <summary>Gets the reason that the thread is waiting.</summary>
-      <returns>A <see cref="T:System.Diagnostics.ThreadWaitReason" /> representing the reason that the thread is in the wait state.</returns>
       <exception cref="T:System.InvalidOperationException">The thread is not in the wait state.</exception>
       <exception cref="T:System.NotSupportedException">The process is on a remote computer.</exception>
+      <returns>A <see cref="T:System.Diagnostics.ThreadWaitReason" /> representing the reason that the thread is in the wait state.</returns>
     </member>
     <member name="T:System.Diagnostics.ProcessThreadCollection">
       <summary>Provides a strongly typed collection of <see cref="T:System.Diagnostics.ProcessThread" /> objects.</summary>
@@ -935,14 +1058,14 @@ The thread priority level could not be set.</exception>
       <param name="index">The zero-based index indicating the location at which to insert the thread.</param>
       <param name="thread">The thread to insert into the collection.</param>
     </member>
+    <member name="M:System.Diagnostics.ProcessThreadCollection.Remove(System.Diagnostics.ProcessThread)">
+      <summary>Deletes a process thread from the collection.</summary>
+      <param name="thread">The thread to remove from the collection.</param>
+    </member>
     <member name="P:System.Diagnostics.ProcessThreadCollection.Item(System.Int32)">
       <summary>Gets an index for iterating over the set of process threads.</summary>
       <param name="index">The zero-based index value of the thread in the collection.</param>
       <returns>A <see cref="T:System.Diagnostics.ProcessThread" /> that indexes the threads in the collection.</returns>
-    </member>
-    <member name="M:System.Diagnostics.ProcessThreadCollection.Remove(System.Diagnostics.ProcessThread)">
-      <summary>Deletes a process thread from the collection.</summary>
-      <param name="thread">The thread to remove from the collection.</param>
     </member>
     <member name="T:System.Diagnostics.ProcessWindowStyle">
       <summary>Specified how a new window should appear when the system starts a process.</summary>
