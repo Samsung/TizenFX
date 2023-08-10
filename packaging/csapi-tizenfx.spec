@@ -1,7 +1,7 @@
 # Auto-generated from csapi-tizenfx.spec.in by makespec.sh
 
 %define TIZEN_NET_API_VERSION 11
-%define TIZEN_NET_RPM_VERSION 11.0.0.999+nui22237
+%define TIZEN_NET_RPM_VERSION 11.0.0.999+nui22238
 %define TIZEN_NET_NUGET_VERSION 11.0.0.99999
 
 %define DOTNET_ASSEMBLY_PATH /usr/share/dotnet.tizen/framework
@@ -11,8 +11,9 @@
 %define DOTNET_PRELOAD_PATH /usr/share/dotnet.tizen/preload
 %define DOTNET_NUGET_SOURCE /nuget
 
-%define TIZEN_NET_RUNTIME_IDENTIFIERS 4.0.0:5.0.0:5.5.0:6.0.0:6.5.0:7.0.0
-%define TIZEN_NET_TARGET_FRAMEWORK_MONIKERS tizen10.0:tizen90:tizen80:tizen70:tizen60:tizen50:tizen40
+%define TIZEN_NET_RUNTIME_IDENTIFIERS 4.0.0:5.0.0:5.5.0:6.0.0:6.5.0:7.0.0:8.0.0
+%define TIZEN_NET_TARGET_FRAMEWORK_MONIKERS tizen11.0:tizen10.0:tizen90:tizen80:tizen70:tizen60:tizen50:tizen40
+%define DOTNET_CORE_RUNTIME_VERSION 6.0
 
 %define UPGRADE_SCRIPT_PATH /usr/share/upgrade/scripts
 
@@ -219,6 +220,7 @@ install -p -m 755 packaging/500.tizenfx_upgrade.sh %{buildroot}%{UPGRADE_SCRIPT_
 /usr/bin/vconftool set -t string db/dotnet/tizen_api_path %{DOTNET_ASSEMBLY_PATH} -f
 /usr/bin/vconftool set -t string db/dotnet/tizen_rid_version %{TIZEN_NET_RUNTIME_IDENTIFIERS} -f
 /usr/bin/vconftool set -t string db/dotnet/tizen_tfm_support %{TIZEN_NET_TARGET_FRAMEWORK_MONIKERS} -f
+/usr/bin/vconftool set -t string db/dotnet/runtime_version %{DOTNET_CORE_RUNTIME_VERSION} -f
 
 %files
 %license LICENSE

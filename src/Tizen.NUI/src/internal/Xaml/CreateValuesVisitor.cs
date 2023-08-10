@@ -203,7 +203,7 @@ namespace Tizen.NUI.Xaml
                 Values[node] = value;
             }
 
-            if (value is BindableObject)
+            if (value != null && value is BindableObject)
                 NameScope.SetNameScope(value as BindableObject, node.Namescope);
         }
 

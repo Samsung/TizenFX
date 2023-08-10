@@ -7,6 +7,9 @@
     <member name="T:System.Diagnostics.Contracts.Contract">
       <summary>Contains static methods for representing program contracts such as preconditions, postconditions, and object invariants.</summary>
     </member>
+    <member name="E:System.Diagnostics.Contracts.Contract.ContractFailed">
+      <summary>Occurs when a contract fails.</summary>
+    </member>
     <member name="M:System.Diagnostics.Contracts.Contract.Assert(System.Boolean)">
       <summary>Checks for a condition; if the condition is <see langword="false" />, follows the escalation policy set for the analyzer.</summary>
       <param name="condition">The conditional expression to test.</param>
@@ -24,9 +27,6 @@
       <summary>Instructs code analysis tools to assume that a condition is <see langword="true" />, even if it cannot be statically proven to always be <see langword="true" />, and displays a message if the assumption fails.</summary>
       <param name="condition">The conditional expression to assume <see langword="true" />.</param>
       <param name="userMessage">The message to post if the assumption fails.</param>
-    </member>
-    <member name="E:System.Diagnostics.Contracts.Contract.ContractFailed">
-      <summary>Occurs when a contract fails.</summary>
     </member>
     <member name="M:System.Diagnostics.Contracts.Contract.EndContractBlock">
       <summary>Marks the end of the contract section when a method's contracts contain only preconditions in the <see langword="if" />-<see langword="then" />-<see langword="throw" /> form.</summary>
@@ -56,44 +56,44 @@
       <param name="fromInclusive">The first integer to pass to <paramref name="predicate" />.</param>
       <param name="toExclusive">One more than the last integer to pass to <paramref name="predicate" />.</param>
       <param name="predicate">The function to evaluate for any value of the integer in the specified range.</param>
-      <returns>
-        <see langword="true" /> if <paramref name="predicate" /> returns <see langword="true" /> for any integer starting from <paramref name="fromInclusive" /> to <paramref name="toExclusive" /> - 1.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="predicate" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentException">
         <paramref name="toExclusive" /> is less than <paramref name="fromInclusive" />.</exception>
+      <returns>
+        <see langword="true" /> if <paramref name="predicate" /> returns <see langword="true" /> for any integer starting from <paramref name="fromInclusive" /> to <paramref name="toExclusive" /> - 1.</returns>
     </member>
     <member name="M:System.Diagnostics.Contracts.Contract.Exists``1(System.Collections.Generic.IEnumerable{``0},System.Predicate{``0})">
       <summary>Determines whether an element within a collection of elements exists within a function.</summary>
       <param name="collection">The collection from which elements of type <c>T</c> will be drawn to pass to <paramref name="predicate" />.</param>
       <param name="predicate">The function to evaluate for an element in <paramref name="collection" />.</param>
       <typeparam name="T">The type that is contained in <paramref name="collection" />.</typeparam>
-      <returns>
-        <see langword="true" /> if and only if <paramref name="predicate" /> returns <see langword="true" /> for any element of type <paramref name="T" /> in <paramref name="collection" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="collection" /> or <paramref name="predicate" /> is <see langword="null" />.</exception>
+      <returns>
+        <see langword="true" /> if and only if <paramref name="predicate" /> returns <see langword="true" /> for any element of type <paramref name="T" /> in <paramref name="collection" />.</returns>
     </member>
     <member name="M:System.Diagnostics.Contracts.Contract.ForAll(System.Int32,System.Int32,System.Predicate{System.Int32})">
       <summary>Determines whether a particular condition is valid for all integers in a specified range.</summary>
       <param name="fromInclusive">The first integer to pass to <paramref name="predicate" />.</param>
       <param name="toExclusive">One more than the last integer to pass to <paramref name="predicate" />.</param>
       <param name="predicate">The function to evaluate for the existence of the integers in the specified range.</param>
-      <returns>
-        <see langword="true" /> if <paramref name="predicate" /> returns <see langword="true" /> for all integers starting from <paramref name="fromInclusive" /> to <paramref name="toExclusive" /> - 1.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="predicate" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentException">
         <paramref name="toExclusive" /> is less than <paramref name="fromInclusive" />.</exception>
+      <returns>
+        <see langword="true" /> if <paramref name="predicate" /> returns <see langword="true" /> for all integers starting from <paramref name="fromInclusive" /> to <paramref name="toExclusive" /> - 1.</returns>
     </member>
     <member name="M:System.Diagnostics.Contracts.Contract.ForAll``1(System.Collections.Generic.IEnumerable{``0},System.Predicate{``0})">
       <summary>Determines whether all the elements in a collection exist within a function.</summary>
       <param name="collection">The collection from which elements of type <c>T</c> will be drawn to pass to <paramref name="predicate" />.</param>
       <param name="predicate">The function to evaluate for the existence of all the elements in <paramref name="collection" />.</param>
       <typeparam name="T">The type that is contained in <paramref name="collection" />.</typeparam>
-      <returns>
-        <see langword="true" /> if and only if <paramref name="predicate" /> returns <see langword="true" /> for all elements of type <paramref name="T" /> in <paramref name="collection" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="collection" /> or <paramref name="predicate" /> is <see langword="null" />.</exception>
+      <returns>
+        <see langword="true" /> if and only if <paramref name="predicate" /> returns <see langword="true" /> for all elements of type <paramref name="T" /> in <paramref name="collection" />.</returns>
     </member>
     <member name="M:System.Diagnostics.Contracts.Contract.Invariant(System.Boolean)">
       <summary>Specifies an invariant contract for the enclosing method or property.</summary>
@@ -185,6 +185,12 @@
       <param name="condition">The condition for the event.</param>
       <param name="originalException">The exception that caused the event.</param>
     </member>
+    <member name="M:System.Diagnostics.Contracts.ContractFailedEventArgs.SetHandled">
+      <summary>Sets the <see cref="P:System.Diagnostics.Contracts.ContractFailedEventArgs.Handled" /> property to <see langword="true" />.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Contracts.ContractFailedEventArgs.SetUnwind">
+      <summary>Sets the <see cref="P:System.Diagnostics.Contracts.ContractFailedEventArgs.Unwind" /> property to <see langword="true" />.</summary>
+    </member>
     <member name="P:System.Diagnostics.Contracts.ContractFailedEventArgs.Condition">
       <summary>Gets the condition for the failure of the contract.</summary>
       <returns>The condition for the failure.</returns>
@@ -205,12 +211,6 @@
     <member name="P:System.Diagnostics.Contracts.ContractFailedEventArgs.OriginalException">
       <summary>Gets the original exception that caused the <see cref="E:System.Diagnostics.Contracts.Contract.ContractFailed" /> event.</summary>
       <returns>The exception that caused the event.</returns>
-    </member>
-    <member name="M:System.Diagnostics.Contracts.ContractFailedEventArgs.SetHandled">
-      <summary>Sets the <see cref="P:System.Diagnostics.Contracts.ContractFailedEventArgs.Handled" /> property to <see langword="true" />.</summary>
-    </member>
-    <member name="M:System.Diagnostics.Contracts.ContractFailedEventArgs.SetUnwind">
-      <summary>Sets the <see cref="P:System.Diagnostics.Contracts.ContractFailedEventArgs.Unwind" /> property to <see langword="true" />.</summary>
     </member>
     <member name="P:System.Diagnostics.Contracts.ContractFailedEventArgs.Unwind">
       <summary>Indicates whether the code contract escalation policy should be applied.</summary>
@@ -328,9 +328,9 @@
       <param name="userMessage">Additional user information.</param>
       <param name="conditionText">The description of the condition that caused the failure.</param>
       <param name="innerException">The inner exception that caused the current exception.</param>
-      <returns>A null reference (<see langword="Nothing" /> in Visual Basic) if the event was handled and should not trigger a failure; otherwise, returns the localized failure message.</returns>
       <exception cref="T:System.ArgumentException">
         <paramref name="failureKind" /> is not a valid <see cref="T:System.Diagnostics.Contracts.ContractFailureKind" /> value.</exception>
+      <returns>A null reference (<see langword="Nothing" /> in Visual Basic) if the event was handled and should not trigger a failure; otherwise, returns the localized failure message.</returns>
     </member>
     <member name="M:System.Runtime.CompilerServices.ContractHelper.TriggerFailure(System.Diagnostics.Contracts.ContractFailureKind,System.String,System.String,System.String,System.Exception)">
       <summary>Triggers the default failure behavior.</summary>

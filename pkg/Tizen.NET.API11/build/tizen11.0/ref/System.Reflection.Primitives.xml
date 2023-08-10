@@ -49,17 +49,9 @@
       <returns>
         <see langword="true" /> if the value of <paramref name="obj" /> is equal to the value of the current instance; otherwise, <see langword="false" />.</returns>
     </member>
-    <member name="P:System.Reflection.Emit.OpCode.FlowControl">
-      <summary>The flow control characteristics of the intermediate language (IL) instruction.</summary>
-      <returns>Read-only. The type of flow control.</returns>
-    </member>
     <member name="M:System.Reflection.Emit.OpCode.GetHashCode">
       <summary>Returns the generated hash code for this <see langword="Opcode" />.</summary>
       <returns>The hash code for this instance.</returns>
-    </member>
-    <member name="P:System.Reflection.Emit.OpCode.Name">
-      <summary>The name of the intermediate language (IL) instruction.</summary>
-      <returns>Read-only. The name of the IL instruction.</returns>
     </member>
     <member name="M:System.Reflection.Emit.OpCode.op_Equality(System.Reflection.Emit.OpCode,System.Reflection.Emit.OpCode)">
       <summary>Indicates whether two <see cref="T:System.Reflection.Emit.OpCode" /> structures are equal.</summary>
@@ -74,6 +66,18 @@
       <param name="b">The <see cref="T:System.Reflection.Emit.OpCode" /> to compare to <paramref name="a" />.</param>
       <returns>
         <see langword="true" /> if <paramref name="a" /> is not equal to <paramref name="b" />; otherwise, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.OpCode.ToString">
+      <summary>Returns this <see langword="Opcode" /> as a <see cref="T:System.String" />.</summary>
+      <returns>A string containing the name of this <see langword="Opcode" />.</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.OpCode.FlowControl">
+      <summary>The flow control characteristics of the intermediate language (IL) instruction.</summary>
+      <returns>Read-only. The type of flow control.</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.OpCode.Name">
+      <summary>The name of the intermediate language (IL) instruction.</summary>
+      <returns>Read-only. The name of the IL instruction.</returns>
     </member>
     <member name="P:System.Reflection.Emit.OpCode.OpCodeType">
       <summary>The type of intermediate language (IL) instruction.</summary>
@@ -94,10 +98,6 @@
     <member name="P:System.Reflection.Emit.OpCode.StackBehaviourPush">
       <summary>How the intermediate language (IL) instruction pushes operand onto the stack.</summary>
       <returns>Read-only. The way the IL instruction pushes operand onto the stack.</returns>
-    </member>
-    <member name="M:System.Reflection.Emit.OpCode.ToString">
-      <summary>Returns this <see langword="Opcode" /> as a <see cref="T:System.String" />.</summary>
-      <returns>A string containing the name of this <see langword="Opcode" />.</returns>
     </member>
     <member name="P:System.Reflection.Emit.OpCode.Value">
       <summary>Gets the numeric value of the intermediate language (IL) instruction.</summary>
@@ -341,7 +341,7 @@
       <summary>Copies a specified number bytes from a source address to a destination address.</summary>
     </member>
     <member name="F:System.Reflection.Emit.OpCodes.Cpobj">
-      <summary>Copies the value type located at the address of an object (type <see langword="&amp;" />, <see langword="" /> or <see langword="native int" />) to the address of the destination object (type <see langword="&amp;" />, <see langword="" /> or <see langword="native int" />).</summary>
+      <summary>Copies the value type located at the address of an object (type <see langword="&amp;" />, <see langword="*" /> or <see langword="native int" />) to the address of the destination object (type <see langword="&amp;" />, <see langword="*" /> or <see langword="native int" />).</summary>
     </member>
     <member name="F:System.Reflection.Emit.OpCodes.Div">
       <summary>Divides two values and pushes the result as a floating-point (type <see langword="F" />) or quotient (type <see langword="int32" />) onto the evaluation stack.</summary>
@@ -728,22 +728,22 @@
       <summary>Stores a object reference value at a supplied address.</summary>
     </member>
     <member name="F:System.Reflection.Emit.OpCodes.Stloc">
-      <summary>Pops the current value from the top of the evaluation stack and stores it in a the local variable list at a specified index.</summary>
+      <summary>Pops the current value from the top of the evaluation stack and stores it in the local variable list at a specified index.</summary>
     </member>
     <member name="F:System.Reflection.Emit.OpCodes.Stloc_0">
-      <summary>Pops the current value from the top of the evaluation stack and stores it in a the local variable list at index 0.</summary>
+      <summary>Pops the current value from the top of the evaluation stack and stores it in the local variable list at index 0.</summary>
     </member>
     <member name="F:System.Reflection.Emit.OpCodes.Stloc_1">
-      <summary>Pops the current value from the top of the evaluation stack and stores it in a the local variable list at index 1.</summary>
+      <summary>Pops the current value from the top of the evaluation stack and stores it in the local variable list at index 1.</summary>
     </member>
     <member name="F:System.Reflection.Emit.OpCodes.Stloc_2">
-      <summary>Pops the current value from the top of the evaluation stack and stores it in a the local variable list at index 2.</summary>
+      <summary>Pops the current value from the top of the evaluation stack and stores it in the local variable list at index 2.</summary>
     </member>
     <member name="F:System.Reflection.Emit.OpCodes.Stloc_3">
-      <summary>Pops the current value from the top of the evaluation stack and stores it in a the local variable list at index 3.</summary>
+      <summary>Pops the current value from the top of the evaluation stack and stores it in the local variable list at index 3.</summary>
     </member>
     <member name="F:System.Reflection.Emit.OpCodes.Stloc_S">
-      <summary>Pops the current value from the top of the evaluation stack and stores it in a the local variable list at <paramref name="index" /> (short form).</summary>
+      <summary>Pops the current value from the top of the evaluation stack and stores it in the local variable list at <paramref name="index" /> (short form).</summary>
     </member>
     <member name="F:System.Reflection.Emit.OpCodes.Stobj">
       <summary>Copies a value of a specified type from the evaluation stack into a supplied memory address.</summary>
@@ -766,12 +766,6 @@
     <member name="F:System.Reflection.Emit.OpCodes.Tailcall">
       <summary>Performs a postfixed method call instruction such that the current method's stack frame is removed before the actual call instruction is executed.</summary>
     </member>
-    <member name="M:System.Reflection.Emit.OpCodes.TakesSingleByteArgument(System.Reflection.Emit.OpCode)">
-      <summary>Returns true or false if the supplied opcode takes a single byte argument.</summary>
-      <param name="inst">An instance of an Opcode object.</param>
-      <returns>
-        <see langword="true" /> or <see langword="false" />.</returns>
-    </member>
     <member name="F:System.Reflection.Emit.OpCodes.Throw">
       <summary>Throws the exception object currently on the evaluation stack.</summary>
     </member>
@@ -789,6 +783,12 @@
     </member>
     <member name="F:System.Reflection.Emit.OpCodes.Xor">
       <summary>Computes the bitwise XOR of the top two values on the evaluation stack, pushing the result onto the evaluation stack.</summary>
+    </member>
+    <member name="M:System.Reflection.Emit.OpCodes.TakesSingleByteArgument(System.Reflection.Emit.OpCode)">
+      <summary>Returns true or false if the supplied opcode takes a single byte argument.</summary>
+      <param name="inst">An instance of an Opcode object.</param>
+      <returns>
+        <see langword="true" /> or <see langword="false" />.</returns>
     </member>
     <member name="T:System.Reflection.Emit.OpCodeType">
       <summary>Describes the types of the Microsoft intermediate language (MSIL) instructions.</summary>

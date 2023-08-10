@@ -66,6 +66,7 @@ namespace Tizen.NUI.BaseComponents
             ImageVisualProperty.WrapModeU,
             ImageVisualProperty.WrapModeV,
             ImageVisualProperty.SynchronousLoading,
+            Visual.Property.MixColor,
             Visual.Property.PremultipliedAlpha,
             ImageVisualProperty.OrientationCorrection,
             ImageVisualProperty.FastTrackUploading,
@@ -1278,6 +1279,39 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// The mixed color value for the image.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// The property cascade chaining set is not recommended.
+        /// </para>
+        /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
+        /// <code>
+        /// var imageView = new ImageView();
+        /// imageView.ImageColor = new Color(0.5f, 0.1f, 0.0f, 1.0f);
+        /// </code>
+        /// This way to set the property is prohibited
+        /// <code>
+        /// imageView.ImageColor.R = 0.5f; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color ImageColor
+        {
+            get
+            {
+                return (Color)GetValue(ImageColorProperty);
+            }
+            set
+            {
+                SetValue(ImageColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
         internal Selector<string> ResourceUrlSelector
         {
             get => GetSelector<string>(resourceUrlSelector, ImageView.ResourceUrlProperty);
@@ -1344,13 +1378,15 @@ namespace Tizen.NUI.BaseComponents
 
             if (backgroundExtraData == null) return;
 
-
             // Update corner radius properties to image by ActionUpdateProperty
-            if (backgroundExtraData.CornerRadius != null)
+            if (backgroundExtraDataUpdatedFlag.HasFlag(BackgroundExtraDataUpdatedFlag.ContentsCornerRadius))
             {
-                Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
+                if (backgroundExtraData.CornerRadius != null)
+                {
+                    Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
+                }
+                Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
             }
-            Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
         }
 
         internal override void ApplyBorderline()
@@ -1359,11 +1395,13 @@ namespace Tizen.NUI.BaseComponents
 
             if (backgroundExtraData == null) return;
 
-
-            // Update borderline properties to image by ActionUpdateProperty
-            Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.BorderlineWidth, backgroundExtraData.BorderlineWidth);
-            Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.BorderlineColor, Vector4.getCPtr(backgroundExtraData.BorderlineColor ?? Color.Black));
-            Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.BorderlineOffset, backgroundExtraData.BorderlineOffset);
+            if (backgroundExtraDataUpdatedFlag.HasFlag(BackgroundExtraDataUpdatedFlag.ContentsBorderline))
+            {
+                // Update borderline properties to image by ActionUpdateProperty
+                Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.BorderlineWidth, backgroundExtraData.BorderlineWidth);
+                Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.BorderlineColor, Vector4.getCPtr(backgroundExtraData.BorderlineColor ?? Color.Black));
+                Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.BorderlineOffset, backgroundExtraData.BorderlineOffset);
+            }
         }
 
         internal ResourceLoadingStatusType GetResourceStatus()
@@ -1632,6 +1670,10 @@ namespace Tizen.NUI.BaseComponents
                     cachedImagePropertyMap[Visual.Property.BorderlineOffset] = borderlineOffset;
                 }
             }
+
+            // We already applied background extra data now.
+            backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.ContentsCornerRadius;
+            backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.ContentsBorderline;
 
             // Do Fitting Buffer when desired dimension is set
             // TODO : Couldn't we do this job in dali-engine side.
