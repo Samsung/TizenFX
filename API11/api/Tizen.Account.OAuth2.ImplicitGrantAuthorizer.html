@@ -84,7 +84,6 @@
   
   <h1 id="Tizen_Account_OAuth2_ImplicitGrantAuthorizer" data-uid="Tizen.Account.OAuth2.ImplicitGrantAuthorizer" class="text-break">Class ImplicitGrantAuthorizer
   </h1>
-  <div class="markdown obsolete" data-id="Tizen_Account_OAuth2_ImplicitGrantAuthorizer">Obsolete</div>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
   
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.Account.OAuth2.html">Tizen.Account.OAuth2</a></dd></dl>
@@ -96,8 +95,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete]
-public class ImplicitGrantAuthorizer : Authorizer, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class ImplicitGrantAuthorizer : Authorizer</code></pre>
   </div>
 
   
@@ -114,12 +112,6 @@ public class ImplicitGrantAuthorizer : Authorizer, IDisposable</code></pre>
 
   
   
-  <dl class="attribute-list stack">
-    <dt>Implements</dt>
-    <dd>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
-    </dd>
-  </dl>
   
   <h3 id="constructors">Constructors
   </h3>
@@ -128,14 +120,12 @@ public class ImplicitGrantAuthorizer : Authorizer, IDisposable</code></pre>
   </span>
   <a id="Tizen_Account_OAuth2_ImplicitGrantAuthorizer__ctor_" data-uid="Tizen.Account.OAuth2.ImplicitGrantAuthorizer.#ctor*"></a>
   <h4 id="Tizen_Account_OAuth2_ImplicitGrantAuthorizer__ctor" data-uid="Tizen.Account.OAuth2.ImplicitGrantAuthorizer.#ctor">ImplicitGrantAuthorizer()</h4>
-  <div class="markdown obsolete" data-id="Tizen_Account_OAuth2_ImplicitGrantAuthorizer__ctor">Obsolete</div>
   <div class="markdown level1 summary"><p>The constructor</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete]
-public ImplicitGrantAuthorizer()</code></pre>
+    <pre><code class="lang-csharp hljs">public ImplicitGrantAuthorizer()</code></pre>
   </div>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
@@ -149,14 +139,12 @@ public ImplicitGrantAuthorizer()</code></pre>
   </span>
   <a id="Tizen_Account_OAuth2_ImplicitGrantAuthorizer_GetAccessTokenAsync_" data-uid="Tizen.Account.OAuth2.ImplicitGrantAuthorizer.GetAccessTokenAsync*"></a>
   <h4 id="Tizen_Account_OAuth2_ImplicitGrantAuthorizer_GetAccessTokenAsync_Tizen_Account_OAuth2_TokenRequest_" data-uid="Tizen.Account.OAuth2.ImplicitGrantAuthorizer.GetAccessTokenAsync(Tizen.Account.OAuth2.TokenRequest)">GetAccessTokenAsync(TokenRequest)</h4>
-  <div class="markdown obsolete" data-id="Tizen_Account_OAuth2_ImplicitGrantAuthorizer_GetAccessTokenAsync_Tizen_Account_OAuth2_TokenRequest_">Obsolete</div>
   <div class="markdown level1 summary"><p>Access token can be retreived implicitly using <a class="xref" href="Tizen.Account.OAuth2.ClientCredentialsAuthorizer.html#Tizen_Account_OAuth2_ClientCredentialsAuthorizer_AuthorizeAsync_Tizen_Account_OAuth2_AuthorizationRequest_">AuthorizeAsync(AuthorizationRequest)</a> in this flow.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete]
-public Task&lt;TokenResponse&gt; GetAccessTokenAsync(TokenRequest request)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;TokenResponse&gt; GetAccessTokenAsync(TokenRequest request)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -185,24 +173,8 @@ public Task&lt;TokenResponse&gt; GetAccessTokenAsync(TokenRequest request)</code
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Tizen.Account.OAuth2.TokenResponse.html">TokenResponse</a>&gt;</td>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="Tizen.Account.OAuth2.TokenResponse.html">TokenResponse</a>&gt;</td>
         <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the operation is not supported</p>
-</td>
       </tr>
     </tbody>
   </table>
@@ -216,14 +188,12 @@ public Task&lt;TokenResponse&gt; GetAccessTokenAsync(TokenRequest request)</code
   </span>
   <a id="Tizen_Account_OAuth2_ImplicitGrantAuthorizer_RefreshAccessTokenAsync_" data-uid="Tizen.Account.OAuth2.ImplicitGrantAuthorizer.RefreshAccessTokenAsync*"></a>
   <h4 id="Tizen_Account_OAuth2_ImplicitGrantAuthorizer_RefreshAccessTokenAsync_Tizen_Account_OAuth2_RefreshTokenRequest_" data-uid="Tizen.Account.OAuth2.ImplicitGrantAuthorizer.RefreshAccessTokenAsync(Tizen.Account.OAuth2.RefreshTokenRequest)">RefreshAccessTokenAsync(RefreshTokenRequest)</h4>
-  <div class="markdown obsolete" data-id="Tizen_Account_OAuth2_ImplicitGrantAuthorizer_RefreshAccessTokenAsync_Tizen_Account_OAuth2_RefreshTokenRequest_">Obsolete</div>
   <div class="markdown level1 summary"><p>Refreshing access token is not supported in this flow.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete]
-public override Task&lt;TokenResponse&gt; RefreshAccessTokenAsync(RefreshTokenRequest request)</code></pre>
+    <pre><code class="lang-csharp hljs">public override Task&lt;TokenResponse&gt; RefreshAccessTokenAsync(RefreshTokenRequest request)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -252,37 +222,39 @@ public override Task&lt;TokenResponse&gt; RefreshAccessTokenAsync(RefreshTokenRe
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Tizen.Account.OAuth2.TokenResponse.html">TokenResponse</a>&gt;</td>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="Tizen.Account.OAuth2.TokenResponse.html">TokenResponse</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="Tizen.Account.OAuth2.Authorizer.html#Tizen_Account_OAuth2_Authorizer_RefreshAccessTokenAsync_Tizen_Account_OAuth2_RefreshTokenRequest_">Authorizer.RefreshAccessTokenAsync(RefreshTokenRequest)</a></div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the operation is not supported</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="implements">Implements</h3>
+  <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
   </div>
 </article>
           </div>

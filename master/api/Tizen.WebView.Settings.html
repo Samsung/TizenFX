@@ -84,7 +84,6 @@
   
   <h1 id="Tizen_WebView_Settings" data-uid="Tizen.WebView.Settings" class="text-break">Class Settings
   </h1>
-  <div class="markdown obsolete" data-id="Tizen_WebView_Settings">Deprecated since API Level 10. Will be removed in API Level 12.</div>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
   
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.WebView.html">Tizen.WebView</a></dd></dl>
@@ -96,8 +95,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API Level 10. Will be removed in API Level 12.&quot;)]
-public class Settings</code></pre>
+    <pre><code class="lang-csharp hljs">public class Settings : object</code></pre>
   </div>
 
   
@@ -121,14 +119,12 @@ public class Settings</code></pre>
   </span>
   <a id="Tizen_WebView_Settings_DefaultFontSize_" data-uid="Tizen.WebView.Settings.DefaultFontSize*"></a>
   <h4 id="Tizen_WebView_Settings_DefaultFontSize" data-uid="Tizen.WebView.Settings.DefaultFontSize">DefaultFontSize</h4>
-  <div class="markdown obsolete" data-id="Tizen_WebView_Settings_DefaultFontSize">Deprecated since API Level 10. Will be removed in API Level 12.</div>
   <div class="markdown level1 summary"><p>The default font size of a pixel.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API Level 10. Will be removed in API Level 12.&quot;)]
-public int DefaultFontSize { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public int DefaultFontSize { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -155,14 +151,12 @@ public int DefaultFontSize { get; set; }</code></pre>
   </span>
   <a id="Tizen_WebView_Settings_DefaultTextEncodingName_" data-uid="Tizen.WebView.Settings.DefaultTextEncodingName*"></a>
   <h4 id="Tizen_WebView_Settings_DefaultTextEncodingName" data-uid="Tizen.WebView.Settings.DefaultTextEncodingName">DefaultTextEncodingName</h4>
-  <div class="markdown obsolete" data-id="Tizen_WebView_Settings_DefaultTextEncodingName">Deprecated since API Level 10. Will be removed in API Level 12.</div>
   <div class="markdown level1 summary"><p>The default text encoding name.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API Level 10. Will be removed in API Level 12.&quot;)]
-public string DefaultTextEncodingName { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string DefaultTextEncodingName { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -185,18 +179,48 @@ public string DefaultTextEncodingName { get; set; }</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.WebView/Tizen.WebView/Settings.cs/#L130">View Source</a>
+  </span>
+  <a id="Tizen_WebView_Settings_ForceZoom_" data-uid="Tizen.WebView.Settings.ForceZoom*"></a>
+  <h4 id="Tizen_WebView_Settings_ForceZoom" data-uid="Tizen.WebView.Settings.ForceZoom">ForceZoom</h4>
+  <div class="markdown level1 summary"><p>Enable or Disable force zoom.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ForceZoom { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>6</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.WebView/Tizen.WebView/Settings.cs/#L40">View Source</a>
   </span>
   <a id="Tizen_WebView_Settings_JavaScriptEnabled_" data-uid="Tizen.WebView.Settings.JavaScriptEnabled*"></a>
   <h4 id="Tizen_WebView_Settings_JavaScriptEnabled" data-uid="Tizen.WebView.Settings.JavaScriptEnabled">JavaScriptEnabled</h4>
-  <div class="markdown obsolete" data-id="Tizen_WebView_Settings_JavaScriptEnabled">Deprecated since API Level 10. Will be removed in API Level 12.</div>
   <div class="markdown level1 summary"><p>Whether the JavaScript can be executed.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API Level 10. Will be removed in API Level 12.&quot;)]
-public bool JavaScriptEnabled { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool JavaScriptEnabled { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -223,14 +247,12 @@ public bool JavaScriptEnabled { get; set; }</code></pre>
   </span>
   <a id="Tizen_WebView_Settings_LoadImageAutomatically_" data-uid="Tizen.WebView.Settings.LoadImageAutomatically*"></a>
   <h4 id="Tizen_WebView_Settings_LoadImageAutomatically" data-uid="Tizen.WebView.Settings.LoadImageAutomatically">LoadImageAutomatically</h4>
-  <div class="markdown obsolete" data-id="Tizen_WebView_Settings_LoadImageAutomatically">Deprecated since API Level 10. Will be removed in API Level 12.</div>
   <div class="markdown level1 summary"><p>Whether the images can be loaded automatically.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API Level 10. Will be removed in API Level 12.&quot;)]
-public bool LoadImageAutomatically { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool LoadImageAutomatically { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -257,14 +279,12 @@ public bool LoadImageAutomatically { get; set; }</code></pre>
   </span>
   <a id="Tizen_WebView_Settings_ScriptsCanOpenWindows_" data-uid="Tizen.WebView.Settings.ScriptsCanOpenWindows*"></a>
   <h4 id="Tizen_WebView_Settings_ScriptsCanOpenWindows" data-uid="Tizen.WebView.Settings.ScriptsCanOpenWindows">ScriptsCanOpenWindows</h4>
-  <div class="markdown obsolete" data-id="Tizen_WebView_Settings_ScriptsCanOpenWindows">Deprecated since API Level 10. Will be removed in API Level 12.</div>
   <div class="markdown level1 summary"><p>Whether the scripts can open windows.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API Level 10. Will be removed in API Level 12.&quot;)]
-public bool ScriptsCanOpenWindows { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool ScriptsCanOpenWindows { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -286,6 +306,220 @@ public bool ScriptsCanOpenWindows { get; set; }</code></pre>
   
   <div style="margin-bottom: 15px"></div>
 
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.WebView/Tizen.WebView/Settings.cs/#L149">View Source</a>
+  </span>
+  <a id="Tizen_WebView_Settings_TextAutosizing_" data-uid="Tizen.WebView.Settings.TextAutosizing*"></a>
+  <h4 id="Tizen_WebView_Settings_TextAutosizing" data-uid="Tizen.WebView.Settings.TextAutosizing">TextAutosizing</h4>
+  <div class="markdown level1 summary"><p>Enable or Disable text autosizing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TextAutosizing { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>6</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.WebView/Tizen.WebView/Settings.cs/#L168">View Source</a>
+  </span>
+  <a id="Tizen_WebView_Settings_TextZoom_" data-uid="Tizen.WebView.Settings.TextZoom*"></a>
+  <h4 id="Tizen_WebView_Settings_TextZoom" data-uid="Tizen.WebView.Settings.TextZoom">TextZoom</h4>
+  <div class="markdown level1 summary"><p>Enable or Disable text zoom.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TextZoom { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>6</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.WebView/Tizen.WebView/Settings.cs/#L187">View Source</a>
+  </span>
+  <a id="Tizen_WebView_Settings_UseKeypadWithoutUserAction_" data-uid="Tizen.WebView.Settings.UseKeypadWithoutUserAction*"></a>
+  <h4 id="Tizen_WebView_Settings_UseKeypadWithoutUserAction" data-uid="Tizen.WebView.Settings.UseKeypadWithoutUserAction">UseKeypadWithoutUserAction</h4>
+  <div class="markdown level1 summary"><p>Enable or Disable the usage of keypad without user action.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool UseKeypadWithoutUserAction { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>6</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.WebView/Tizen.WebView/Settings.cs/#L223">View Source</a>
+  </span>
+  <a id="Tizen_WebView_Settings_GetExtraFeatureStatus_" data-uid="Tizen.WebView.Settings.GetExtraFeatureStatus*"></a>
+  <h4 id="Tizen_WebView_Settings_GetExtraFeatureStatus_System_String_" data-uid="Tizen.WebView.Settings.GetExtraFeatureStatus(System.String)">GetExtraFeatureStatus(String)</h4>
+  <div class="markdown level1 summary"><p>Get status of Extra feature such as &quot;edge,enable&quot;, &quot;zoom,enable&quot;, &quot;longpress,enable&quot;
+&quot;doubletap,enable&quot; and &quot;selection,magnifier&quot;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool GetExtraFeatureStatus(string name)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>The name of the feature user wants to know status.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>Status true or false is returned.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>6</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.WebView/Tizen.WebView/Settings.cs/#L209">View Source</a>
+  </span>
+  <a id="Tizen_WebView_Settings_SetExtraFeature_" data-uid="Tizen.WebView.Settings.SetExtraFeature*"></a>
+  <h4 id="Tizen_WebView_Settings_SetExtraFeature_System_String_System_Boolean_" data-uid="Tizen.WebView.Settings.SetExtraFeature(System.String,System.Boolean)">SetExtraFeature(String, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Enable or Disable Extra feature such as &quot;edge,enable&quot;, &quot;zoom,enable&quot;, &quot;longpress,enable&quot;
+&quot;doubletap,enable&quot; and &quot;selection,magnifier&quot;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetExtraFeature(string name, bool enable)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>The name of the feature user wants to set or reset.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">enable</span></td>
+        <td><p>The boolean value to set or reset.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>6</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
 </article>
           </div>
           

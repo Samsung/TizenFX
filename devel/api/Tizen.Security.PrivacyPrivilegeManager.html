@@ -84,7 +84,6 @@
   
   <h1 id="Tizen_Security_PrivacyPrivilegeManager" data-uid="Tizen.Security.PrivacyPrivilegeManager" class="text-break">Class PrivacyPrivilegeManager
   </h1>
-  <div class="markdown obsolete" data-id="Tizen_Security_PrivacyPrivilegeManager">Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.</div>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
   
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.Security.html">Tizen.Security</a></dd></dl>
@@ -96,8 +95,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.&quot;)]
-public static class PrivacyPrivilegeManager</code></pre>
+    <pre><code class="lang-csharp hljs">public static class PrivacyPrivilegeManager : object</code></pre>
   </div>
 
   
@@ -121,14 +119,12 @@ public static class PrivacyPrivilegeManager</code></pre>
   </span>
   <a id="Tizen_Security_PrivacyPrivilegeManager_CheckPermission_" data-uid="Tizen.Security.PrivacyPrivilegeManager.CheckPermission*"></a>
   <h4 id="Tizen_Security_PrivacyPrivilegeManager_CheckPermission_System_String_" data-uid="Tizen.Security.PrivacyPrivilegeManager.CheckPermission(System.String)">CheckPermission(String)</h4>
-  <div class="markdown obsolete" data-id="Tizen_Security_PrivacyPrivilegeManager_CheckPermission_System_String_">Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.</div>
   <div class="markdown level1 summary"><p>Gets the status of a privacy privilege permission.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.&quot;)]
-public static CheckResult CheckPermission(string privilege)</code></pre>
+    <pre><code class="lang-csharp hljs">public static CheckResult CheckPermission(string privilege)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -180,32 +176,6 @@ public static CheckResult CheckPermission(string privilege)</code></pre>
             break;
     }</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Thrown when an invalid parameter is passed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></td>
-        <td><p>Thrown when a memory error occurred.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
-        <td><p>Thrown when the method failed due to an internal I/O error.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   
@@ -215,15 +185,13 @@ public static CheckResult CheckPermission(string privilege)</code></pre>
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.PrivacyPrivilegeManager/Tizen.Security/PrivacyPrivilegeManager.cs/#L163">View Source</a>
   </span>
   <a id="Tizen_Security_PrivacyPrivilegeManager_CheckPermissions_" data-uid="Tizen.Security.PrivacyPrivilegeManager.CheckPermissions*"></a>
-  <h4 id="Tizen_Security_PrivacyPrivilegeManager_CheckPermissions_System_Collections_Generic_IEnumerable_System_String__" data-uid="Tizen.Security.PrivacyPrivilegeManager.CheckPermissions(System.Collections.Generic.IEnumerable{System.String})">CheckPermissions(IEnumerable&lt;String&gt;)</h4>
-  <div class="markdown obsolete" data-id="Tizen_Security_PrivacyPrivilegeManager_CheckPermissions_System_Collections_Generic_IEnumerable_System_String__">Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.</div>
+  <h4 id="Tizen_Security_PrivacyPrivilegeManager_CheckPermissions_IEnumerable_System_String__" data-uid="Tizen.Security.PrivacyPrivilegeManager.CheckPermissions(IEnumerable{System.String})">CheckPermissions(IEnumerable&lt;String&gt;)</h4>
   <div class="markdown level1 summary"><p>Gets the status of a privacy privileges permission.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.&quot;)]
-public static IEnumerable&lt;CheckResult&gt; CheckPermissions(IEnumerable&lt;string&gt; privileges)</code></pre>
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;CheckResult&gt; CheckPermissions(IEnumerable&lt;string&gt; privileges)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -236,7 +204,7 @@ public static IEnumerable&lt;CheckResult&gt; CheckPermissions(IEnumerable&lt;str
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
         <td><span class="parametername">privileges</span></td>
         <td><p>The privacy privileges to be checked.</p>
 </td>
@@ -253,13 +221,13 @@ public static IEnumerable&lt;CheckResult&gt; CheckPermissions(IEnumerable&lt;str
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Security.CheckResult.html">CheckResult</a>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Security.CheckResult.html">CheckResult</a>&gt;</td>
         <td><p>The permission setting for a respective privileges.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Security_PrivacyPrivilegeManager_CheckPermissions_System_Collections_Generic_IEnumerable_System_String___examples">Examples</h5>
+  <h5 id="Tizen_Security_PrivacyPrivilegeManager_CheckPermissions_IEnumerable_System_String___examples">Examples</h5>
   <pre><code>    string[] privileges = new [] {&quot;http://tizen.org/privilege/account.read&quot;,
                                   &quot;http://tizen.org/privilege/alarm&quot;};
     CheckResult[] results = PrivacyPrivilegeManager.CheckPermissions(privileges).ToArray();
@@ -282,34 +250,8 @@ public static IEnumerable&lt;CheckResult&gt; CheckPermissions(IEnumerable&lt;str
     }
     PrivacyPrivilegeManager.RequestPermissions(privilegesWithAskStatus);</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Thrown when an invalid parameter is passed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></td>
-        <td><p>Thrown when a memory error occurred.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
-        <td><p>Thrown when the method failed due to an internal I/O error.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
-  <h6><strong>API Level</strong>: <span>6</span></h6>
+  <h6><strong>API Level</strong>: <span>4</span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
@@ -318,14 +260,12 @@ public static IEnumerable&lt;CheckResult&gt; CheckPermissions(IEnumerable&lt;str
   </span>
   <a id="Tizen_Security_PrivacyPrivilegeManager_GetResponseContext_" data-uid="Tizen.Security.PrivacyPrivilegeManager.GetResponseContext*"></a>
   <h4 id="Tizen_Security_PrivacyPrivilegeManager_GetResponseContext_System_String_" data-uid="Tizen.Security.PrivacyPrivilegeManager.GetResponseContext(System.String)">GetResponseContext(String)</h4>
-  <div class="markdown obsolete" data-id="Tizen_Security_PrivacyPrivilegeManager_GetResponseContext_System_String_">Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.</div>
   <div class="markdown level1 summary"><p>Gets the response context for a given privilege.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.&quot;)]
-public static WeakReference&lt;PrivacyPrivilegeManager.ResponseContext&gt; GetResponseContext(string privilege)</code></pre>
+    <pre><code class="lang-csharp hljs">public static WeakReference&lt;PrivacyPrivilegeManager.ResponseContext&gt; GetResponseContext(string privilege)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -355,7 +295,7 @@ public static WeakReference&lt;PrivacyPrivilegeManager.ResponseContext&gt; GetRe
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.weakreference-1">WeakReference</a>&lt;<a class="xref" href="Tizen.Security.PrivacyPrivilegeManager.ResponseContext.html">PrivacyPrivilegeManager.ResponseContext</a>&gt;</td>
+        <td><span class="xref">WeakReference</span>&lt;<a class="xref" href="Tizen.Security.PrivacyPrivilegeManager.ResponseContext.html">PrivacyPrivilegeManager.ResponseContext</a>&gt;</td>
         <td><p>The response context of a respective privilege.</p>
 </td>
       </tr>
@@ -402,22 +342,6 @@ public static WeakReference&lt;PrivacyPrivilegeManager.ResponseContext&gt; GetRe
         context.ResponseFetched -= PPM_RequestResponse;
     }</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Thrown if the key is an invalid parameter.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Security_PrivacyPrivilegeManager_GetResponseContext_System_String__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Security.PrivacyPrivilegeManager.ResponseContext.html">PrivacyPrivilegeManager.ResponseContext</a></div>
@@ -432,14 +356,12 @@ public static WeakReference&lt;PrivacyPrivilegeManager.ResponseContext&gt; GetRe
   </span>
   <a id="Tizen_Security_PrivacyPrivilegeManager_RequestPermission_" data-uid="Tizen.Security.PrivacyPrivilegeManager.RequestPermission*"></a>
   <h4 id="Tizen_Security_PrivacyPrivilegeManager_RequestPermission_System_String_" data-uid="Tizen.Security.PrivacyPrivilegeManager.RequestPermission(System.String)">RequestPermission(String)</h4>
-  <div class="markdown obsolete" data-id="Tizen_Security_PrivacyPrivilegeManager_RequestPermission_System_String_">Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.</div>
   <div class="markdown level1 summary"><p>Triggers the permission request for a user.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.&quot;)]
-public static void RequestPermission(string privilege)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void RequestPermission(string privilege)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -475,32 +397,6 @@ public static void RequestPermission(string privilege)</code></pre>
             break;
     }</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Thrown when an invalid parameter is passed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></td>
-        <td><p>Thrown when a memory error occurred.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
-        <td><p>Thrown when the method failed due to an internal I/O error.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   
@@ -510,15 +406,13 @@ public static void RequestPermission(string privilege)</code></pre>
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.PrivacyPrivilegeManager/Tizen.Security/PrivacyPrivilegeManager.cs/#L264">View Source</a>
   </span>
   <a id="Tizen_Security_PrivacyPrivilegeManager_RequestPermissions_" data-uid="Tizen.Security.PrivacyPrivilegeManager.RequestPermissions*"></a>
-  <h4 id="Tizen_Security_PrivacyPrivilegeManager_RequestPermissions_System_Collections_Generic_IEnumerable_System_String__" data-uid="Tizen.Security.PrivacyPrivilegeManager.RequestPermissions(System.Collections.Generic.IEnumerable{System.String})">RequestPermissions(IEnumerable&lt;String&gt;)</h4>
-  <div class="markdown obsolete" data-id="Tizen_Security_PrivacyPrivilegeManager_RequestPermissions_System_Collections_Generic_IEnumerable_System_String__">Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.</div>
+  <h4 id="Tizen_Security_PrivacyPrivilegeManager_RequestPermissions_IEnumerable_System_String__" data-uid="Tizen.Security.PrivacyPrivilegeManager.RequestPermissions(IEnumerable{System.String})">RequestPermissions(IEnumerable&lt;String&gt;)</h4>
   <div class="markdown level1 summary"><p>Triggers the permissions request for a user.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.&quot;)]
-public static Task&lt;RequestMultipleResponseEventArgs&gt; RequestPermissions(IEnumerable&lt;string&gt; privileges)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;RequestMultipleResponseEventArgs&gt; RequestPermissions(IEnumerable&lt;string&gt; privileges)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -531,7 +425,7 @@ public static Task&lt;RequestMultipleResponseEventArgs&gt; RequestPermissions(IE
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
         <td><span class="parametername">privileges</span></td>
         <td><p>The privacy privileges to be requested.</p>
 </td>
@@ -548,13 +442,13 @@ public static Task&lt;RequestMultipleResponseEventArgs&gt; RequestPermissions(IE
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Tizen.Security.RequestMultipleResponseEventArgs.html">RequestMultipleResponseEventArgs</a>&gt;</td>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="Tizen.Security.RequestMultipleResponseEventArgs.html">RequestMultipleResponseEventArgs</a>&gt;</td>
         <td><p>Permission request Task</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Security_PrivacyPrivilegeManager_RequestPermissions_System_Collections_Generic_IEnumerable_System_String___examples">Examples</h5>
+  <h5 id="Tizen_Security_PrivacyPrivilegeManager_RequestPermissions_IEnumerable_System_String___examples">Examples</h5>
   <pre><code>    string[] privileges = new [] {&quot;http://tizen.org/privilege/account.read&quot;,
                                   &quot;http://tizen.org/privilege/alarm&quot;};
     CheckResult[] results = PrivacyPrivilegeManager.CheckPermissions(privileges).ToArray();
@@ -578,34 +472,8 @@ public static Task&lt;RequestMultipleResponseEventArgs&gt; RequestPermissions(IE
     IEnumerable&lt;PermissionRequestResponse> responses = PrivacyPrivilegeManager.RequestPermissions(privilegesWithAskStatus).Result;
     //handle responses</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Thrown when an invalid parameter is passed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></td>
-        <td><p>Thrown when a memory error occurred.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
-        <td><p>Thrown when the method failed due to an internal I/O error.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
-  <h6><strong>API Level</strong>: <span>6</span></h6>
+  <h6><strong>API Level</strong>: <span>4</span></h6>
   
   <div style="margin-bottom: 15px"></div>
 

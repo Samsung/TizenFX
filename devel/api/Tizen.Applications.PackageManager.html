@@ -95,7 +95,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class PackageManager</code></pre>
+    <pre><code class="lang-csharp hljs">public static class PackageManager : object</code></pre>
   </div>
 
   
@@ -130,37 +130,6 @@ You can also retrieve information related to the packages that are installed on 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static void ClearAllCacheDirectory()</code></pre>
   </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></td>
-        <td><p>Thrown when there is not enough memory to continue the execution of the method.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
-        <td><p>Thrown when the method fails due to an internal IO error.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>Thrown when an application does not have the privilege to access this method.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.systemexception">SystemException</a></td>
-        <td><p>Thrown when the method failed due to an internal system error.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: <span>platform</span></h6>
@@ -194,37 +163,6 @@ You can also retrieve information related to the packages that are installed on 
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
         <td><span class="parametername">packageId</span></td>
         <td><p>ID of the package.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></td>
-        <td><p>Thrown when there is not enough memory to continue the execution of the method.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
-        <td><p>Thrown when the method fails due to an internal I/O error.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>Thrown when an application does not have the privilege to access this method.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.systemexception">SystemException</a></td>
-        <td><p>Thrown when the method failed due to an internal system error.</p>
 </td>
       </tr>
     </tbody>
@@ -270,37 +208,6 @@ You can also retrieve information related to the packages that are installed on 
   <div class="markdown level1 remarks"><p>All files under data, shared/data, and shared/trusted in the internal storage are removed.
 And, if the external storage exists, then all files under data and shared/trusted in the external storage are removed.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></td>
-        <td><p>Thrown when there is not enough memory to continue the execution of the method.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
-        <td><p>Thrown when the method failed due to an internal IO error.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>Thrown when an application does not have the privilege to access this method.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.systemexception">SystemException</a></td>
-        <td><p>Thrown when the method failed due to an internal system error.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: <span>platform</span></h6>
@@ -340,37 +247,6 @@ And, if the external storage exists, then all files under data and shared/truste
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
         <td><span class="parametername">path</span></td>
         <td><p>The path of the file or directory in the package user data folder.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></td>
-        <td><p>Thrown when there is not enough memory to continue the execution of the method.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
-        <td><p>Thrown when the method failed due to an internal IO error.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>Thrown when an application does not have the privilege to access this method.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.systemexception">SystemException</a></td>
-        <td><p>Thrown when the method failed due to an internal system error.</p>
 </td>
       </tr>
     </tbody>
@@ -434,27 +310,6 @@ And, if the external storage exists, then all files under data and shared/truste
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Thrown when the failed input package ID is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
-        <td><p>Thrown when the method failed due to an internal I/O error.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -512,29 +367,88 @@ And, if the external storage exists, then all files under data and shared/truste
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
+  
+  <h6><strong>API Level</strong>: <span>3</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L1247">View Source</a>
+  </span>
+  <a id="Tizen_Applications_PackageManager_DisablePackage_" data-uid="Tizen.Applications.PackageManager.DisablePackage*"></a>
+  <h4 id="Tizen_Applications_PackageManager_DisablePackage_System_String_" data-uid="Tizen.Applications.PackageManager.DisablePackage(System.String)">DisablePackage(String)</h4>
+  <div class="markdown level1 summary"><p>Disable the given package.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void DisablePackage(string packageId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Condition</th>
+        <th>Name</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Thrown when the failed input package ID is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
-        <td><p>Thrown when the method failed due to an internal I/O error.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">packageId</span></td>
+        <td><p>The ID of the package.</p>
 </td>
       </tr>
     </tbody>
   </table>
+  <h5 id="Tizen_Applications_PackageManager_DisablePackage_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This API is for inhouse app only.</p>
+</div>
   
-  <h6><strong>API Level</strong>: <span>3</span></h6>
+  <h6><strong>API Level</strong>: <span>11</span></h6>
+  <h6><strong>Privilege Level</strong>: <span>platform</span></h6>
+  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/packagemanager.admin</span></span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L1212">View Source</a>
+  </span>
+  <a id="Tizen_Applications_PackageManager_EnablePackage_" data-uid="Tizen.Applications.PackageManager.EnablePackage*"></a>
+  <h4 id="Tizen_Applications_PackageManager_EnablePackage_System_String_" data-uid="Tizen.Applications.PackageManager.EnablePackage(System.String)">EnablePackage(String)</h4>
+  <div class="markdown level1 summary"><p>Enable the given package.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void EnablePackage(string packageId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">packageId</span></td>
+        <td><p>The ID of the package.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_PackageManager_EnablePackage_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This API is for inhouse app only.</p>
+</div>
+  
+  <h6><strong>API Level</strong>: <span>11</span></h6>
+  <h6><strong>Privilege Level</strong>: <span>platform</span></h6>
+  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/packagemanager.admin</span></span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
@@ -580,37 +494,6 @@ And, if the external storage exists, then all files under data and shared/truste
       <tr>
         <td><a class="xref" href="Tizen.Applications.Package.html">Package</a></td>
         <td><p>Returns the package information for the given package ID.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Thrown when the failed input package ID is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></td>
-        <td><p>Thrown when there is not enough memory to continue the execution of the method.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
-        <td><p>Thrown when the method fails due to an internal I/O error.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>Thrown when an application does not have the privilege to access this method.</p>
 </td>
       </tr>
     </tbody>
@@ -671,27 +554,6 @@ And, if the external storage exists, then all files under data and shared/truste
   <h5 id="Tizen_Applications_PackageManager_GetPackageArchive_System_String__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Regular 3rd party apps do not need to use this API</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Thrown when the failed input package ID is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
-        <td><p>Thrown when the method fails due to an internal I/O error.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
@@ -746,32 +608,6 @@ And, if the external storage exists, then all files under data and shared/truste
   <h5 id="Tizen_Applications_PackageManager_GetPackageIdByApplicationId_System_String__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>It returns null if the input is null.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Thrown when input application ID does not exist.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></td>
-        <td><p>Thrown when there is not enough memory to continue the execution of the method.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>Thrown when an application does not have the privilege to access this method.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -801,7 +637,7 @@ And, if the external storage exists, then all files under data and shared/truste
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Applications.Package.html">Package</a>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Applications.Package.html">Package</a>&gt;</td>
         <td><p>Returns the list of packages.</p>
 </td>
       </tr>
@@ -854,7 +690,7 @@ And, if the external storage exists, then all files under data and shared/truste
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Applications.Package.html">Package</a>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Applications.Package.html">Package</a>&gt;</td>
         <td><p>Returns the list of packages.</p>
 </td>
       </tr>
@@ -913,27 +749,6 @@ And, if the external storage exists, then all files under data and shared/truste
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Thrown when the failed input package ID is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>Thrown when an application does not have the privilege to access this method.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -963,7 +778,7 @@ And, if the external storage exists, then all files under data and shared/truste
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Tizen.Applications.PackageSizeInformation.html">PackageSizeInformation</a>&gt;</td>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="Tizen.Applications.PackageSizeInformation.html">PackageSizeInformation</a>&gt;</td>
         <td><p>Returns the total package size information asynchronously.</p>
 </td>
       </tr>
@@ -980,7 +795,7 @@ And, if the external storage exists, then all files under data and shared/truste
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L665">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_Install_" data-uid="Tizen.Applications.PackageManager.Install*"></a>
-  <h4 id="Tizen_Applications_PackageManager_Install_System_Collections_Generic_List_System_String__Tizen_Applications_InstallationMode_" data-uid="Tizen.Applications.PackageManager.Install(System.Collections.Generic.List{System.String},Tizen.Applications.InstallationMode)">Install(List&lt;String&gt;, InstallationMode)</h4>
+  <h4 id="Tizen_Applications_PackageManager_Install_List_System_String__Tizen_Applications_InstallationMode_" data-uid="Tizen.Applications.PackageManager.Install(List{System.String},Tizen.Applications.InstallationMode)">Install(List&lt;String&gt;, InstallationMode)</h4>
   <div class="markdown level1 summary"><p>Installs the packages located at the given path.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -999,7 +814,7 @@ And, if the external storage exists, then all files under data and shared/truste
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
         <td><span class="parametername">packagePaths</span></td>
         <td><p>Absolute paths for the package to be installed.</p>
 </td>
@@ -1028,14 +843,12 @@ And, if the external storage exists, then all files under data and shared/truste
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Applications_PackageManager_Install_System_Collections_Generic_List_System_String__Tizen_Applications_InstallationMode__remarks">Remarks</h5>
+  <h5 id="Tizen_Applications_PackageManager_Install_List_System_String__Tizen_Applications_InstallationMode__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The &apos;true&apos; means that the request for installation is successful.
 To check the result of installation, the caller should check the progress using the InstallProgressChanged event or eventCallback.</p>
 </div>
   
-  <h6><strong>API Level</strong>: <span>8</span></h6>
-  <h6><strong>Privilege Level</strong>: <span>platform</span></h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/packagemanager.admin</span></span></h6>
+  <h6><strong>API Level</strong>: <span>3</span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
@@ -1043,7 +856,7 @@ To check the result of installation, the caller should check the progress using 
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.PackageManager/Tizen.Applications/PackageManager.cs/#L684">View Source</a>
   </span>
   <a id="Tizen_Applications_PackageManager_Install_" data-uid="Tizen.Applications.PackageManager.Install*"></a>
-  <h4 id="Tizen_Applications_PackageManager_Install_System_Collections_Generic_List_System_String__Tizen_Applications_PackageManager_RequestEventCallback_Tizen_Applications_InstallationMode_" data-uid="Tizen.Applications.PackageManager.Install(System.Collections.Generic.List{System.String},Tizen.Applications.PackageManager.RequestEventCallback,Tizen.Applications.InstallationMode)">Install(List&lt;String&gt;, PackageManager.RequestEventCallback, InstallationMode)</h4>
+  <h4 id="Tizen_Applications_PackageManager_Install_List_System_String__Tizen_Applications_PackageManager_RequestEventCallback_Tizen_Applications_InstallationMode_" data-uid="Tizen.Applications.PackageManager.Install(List{System.String},Tizen.Applications.PackageManager.RequestEventCallback,Tizen.Applications.InstallationMode)">Install(List&lt;String&gt;, PackageManager.RequestEventCallback, InstallationMode)</h4>
   <div class="markdown level1 summary"><p>Installs the packages located at the given path.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1062,7 +875,7 @@ To check the result of installation, the caller should check the progress using 
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><span class="xref">List</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
         <td><span class="parametername">packagePaths</span></td>
         <td><p>Absolute paths for the package to be installed.</p>
 </td>
@@ -1097,14 +910,12 @@ To check the result of installation, the caller should check the progress using 
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Applications_PackageManager_Install_System_Collections_Generic_List_System_String__Tizen_Applications_PackageManager_RequestEventCallback_Tizen_Applications_InstallationMode__remarks">Remarks</h5>
+  <h5 id="Tizen_Applications_PackageManager_Install_List_System_String__Tizen_Applications_PackageManager_RequestEventCallback_Tizen_Applications_InstallationMode__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The &apos;true&apos; means that the request for installation is successful.
 To check the result of installation, the caller should check the progress using the InstallProgressChanged event or eventCallback.</p>
 </div>
   
-  <h6><strong>API Level</strong>: <span>8</span></h6>
-  <h6><strong>Privilege Level</strong>: <span>platform</span></h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/packagemanager.admin</span></span></h6>
+  <h6><strong>API Level</strong>: <span>3</span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
@@ -1730,27 +1541,6 @@ To check the result of installation, the caller should check the progress using 
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Thrown when the failed input package ID is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>Thrown when an application does not have the privilege to access this method.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -2309,7 +2099,7 @@ To check the result of uninstallation, the caller should check the progress usin
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Applications.PackageManagerEventArgs.html">PackageManagerEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Applications.PackageManagerEventArgs.html">PackageManagerEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2340,7 +2130,7 @@ To check the result of uninstallation, the caller should check the progress usin
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Applications.PackageManagerEventArgs.html">PackageManagerEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Applications.PackageManagerEventArgs.html">PackageManagerEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2371,7 +2161,7 @@ To check the result of uninstallation, the caller should check the progress usin
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Applications.PackageManagerEventArgs.html">PackageManagerEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Applications.PackageManagerEventArgs.html">PackageManagerEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2402,7 +2192,7 @@ To check the result of uninstallation, the caller should check the progress usin
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Applications.PackageManagerEventArgs.html">PackageManagerEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Applications.PackageManagerEventArgs.html">PackageManagerEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2433,7 +2223,7 @@ To check the result of uninstallation, the caller should check the progress usin
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Applications.PackageManagerEventArgs.html">PackageManagerEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Applications.PackageManagerEventArgs.html">PackageManagerEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>

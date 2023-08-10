@@ -95,7 +95,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class VideoRecorder : Recorder, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class VideoRecorder : Recorder</code></pre>
   </div>
 
   
@@ -112,12 +112,6 @@
 
   
   
-  <dl class="attribute-list stack">
-    <dt>Implements</dt>
-    <dd>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
-    </dd>
-  </dl>
   
   <h3 id="constructors">Constructors
   </h3>
@@ -177,54 +171,6 @@ the <a class="xref" href="Tizen.Multimedia.CameraSettings.html#Tizen_Multimedia_
 The initial state of the Recorder will be <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Ready">Ready</a>
 if the state of <a class="xref" href="Tizen.Multimedia.Camera.html">Camera</a> is <a class="xref" href="Tizen.Multimedia.CameraState.html#Tizen_Multimedia_CameraState_Preview">Preview</a> or <a class="xref" href="Tizen.Multimedia.CameraState.html#Tizen_Multimedia_CameraState_Captured">Captured</a>.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>An internal error occurred.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>A required feature is not supported.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">videoCodec</code> is not supported.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">audioCodec</code> is not supported.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">fileFormat</code> is not supported with the specified video codec.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">fileFormat</code> is not supported with the specified audio codec.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">videoCodec</code> is not valid.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">audioCodec</code> is not valid.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">fileFormat</code> is not valid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">camera</code> has been disposed of.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">camera</code> is null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Multimedia_VideoRecorder__ctor_Tizen_Multimedia_Camera_Tizen_Multimedia_RecorderVideoCodec_Tizen_Multimedia_RecorderAudioCodec_Tizen_Multimedia_RecorderFileFormat__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Recorder.html#Tizen_Multimedia_Recorder_GetSupportedAudioCodecs">GetSupportedAudioCodecs</a>()</div>
@@ -291,50 +237,6 @@ the <a class="xref" href="Tizen.Multimedia.CameraSettings.html#Tizen_Multimedia_
 The initial state of the Recorder will be <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Ready">Ready</a>
 if the state of <a class="xref" href="Tizen.Multimedia.Camera.html">Camera</a> is <a class="xref" href="Tizen.Multimedia.CameraState.html#Tizen_Multimedia_CameraState_Preview">Preview</a> or <a class="xref" href="Tizen.Multimedia.CameraState.html#Tizen_Multimedia_CameraState_Captured">Captured</a>.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>An internal error occurred.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>A required feature is not supported.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">videoCodec</code> is not supported.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">fileFormat</code> is not supported with the specified video codec.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">videoCodec</code> is not valid.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">fileFormat</code> is not valid.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">camera</code> is being used by another object.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">camera</code> has been disposed of.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">camera</code> is null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Multimedia_VideoRecorder__ctor_Tizen_Multimedia_Camera_Tizen_Multimedia_RecorderVideoCodec_Tizen_Multimedia_RecorderFileFormat__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.VideoRecorder.html#Tizen_Multimedia_VideoRecorder_GetSupportedVideoCodecs">GetSupportedVideoCodecs()</a></div>
@@ -381,32 +283,6 @@ if the state of <a class="xref" href="Tizen.Multimedia.Camera.html">Camera</a> i
   <h5 id="Tizen_Multimedia_VideoRecorder_VideoBitRate_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>To set, the recorder must be in the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Idle">Idle</a> or <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Ready">Ready</a> state.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is less than or equal to zero.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The recorder is not in the valid state.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The recorder already has been disposed of.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   
@@ -478,32 +354,6 @@ If the rate is greater than 1, the video is recorded in a fast motion mode.<br>
 <br>
 To set, the recorder must be in the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Idle">Idle</a> or the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Ready">Ready</a> state.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p>The <code data-dev-comment-type="paramref" class="paramref">value</code> is less than or equal to 0.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The recorder is not in the valid state.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The recorder already has been disposed of.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   
@@ -533,27 +383,6 @@ To set, the recorder must be in the <a class="xref" href="Tizen.Multimedia.Recor
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.Rotation.html">Rotation</a></td>
         <td><p>A <a class="xref" href="Tizen.Multimedia.Rotation.html">Rotation</a> that specifies the type of orientation.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is not valid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The recorder already has been disposed of.</p>
 </td>
       </tr>
     </tbody>
@@ -593,37 +422,6 @@ To set, the recorder must be in the <a class="xref" href="Tizen.Multimedia.Recor
   <h5 id="Tizen_Multimedia_VideoRecorder_VideoResolution_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>To set, the recorder must be in the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Idle">Idle</a> or the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Ready">Ready</a> state.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p>Width or height of <code data-dev-comment-type="paramref" class="paramref">value</code> is less than or equal to zero.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The recorder is not in the valid state.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The recorder already has been disposed of.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Multimedia_VideoRecorder_VideoResolution_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.VideoRecorder.html#Tizen_Multimedia_VideoRecorder_GetSupportedVideoResolutions_Tizen_Multimedia_CameraDevice_">GetSupportedVideoResolutions(CameraDevice)</a></div>
@@ -657,24 +455,8 @@ To set, the recorder must be in the <a class="xref" href="Tizen.Multimedia.Recor
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Multimedia.RecorderVideoCodec.html">RecorderVideoCodec</a>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Multimedia.RecorderVideoCodec.html">RecorderVideoCodec</a>&gt;</td>
         <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>A required feature is not supported.</p>
-</td>
       </tr>
     </tbody>
   </table>
@@ -724,29 +506,8 @@ To set, the recorder must be in the <a class="xref" href="Tizen.Multimedia.Recor
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Multimedia.Size.html">Size</a>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Multimedia.Size.html">Size</a>&gt;</td>
         <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>A required feature is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">device</code> is invalid.</p>
-</td>
       </tr>
     </tbody>
   </table>
@@ -794,37 +555,6 @@ To set, the recorder must be in the <a class="xref" href="Tizen.Multimedia.Recor
         <td><a class="xref" href="Tizen.Multimedia.RecorderFileFormat.html">RecorderFileFormat</a></td>
         <td><span class="parametername">fileFormat</span></td>
         <td><p>The format of result file.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">videoCodec</code> is not supported.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">audioCodec</code> is not supported.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">fileFormat</code> is not supported with the specified video codec.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">fileFormat</code> is not supported with the specified audio codec.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">videoCodec</code> is not valid.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">audioCodec</code> is not valid.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">fileFormat</code> is not valid.</p>
 </td>
       </tr>
     </tbody>
@@ -880,31 +610,6 @@ To set, the recorder must be in the <a class="xref" href="Tizen.Multimedia.Recor
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">videoCodec</code> is not supported.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">fileFormat</code> is not supported with the specified video codec.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">videoCodec</code> is not valid.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">fileFormat</code> is not valid.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Multimedia_VideoRecorder_SetFormatAndCodec_Tizen_Multimedia_RecorderVideoCodec_Tizen_Multimedia_RecorderFileFormat__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.VideoRecorder.html#Tizen_Multimedia_VideoRecorder_GetSupportedVideoCodecs">GetSupportedVideoCodecs()</a></div>
@@ -918,9 +623,27 @@ To set, the recorder must be in the <a class="xref" href="Tizen.Multimedia.Recor
   
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="implements">Implements</h3>
+  <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
   </div>
 </article>
           </div>

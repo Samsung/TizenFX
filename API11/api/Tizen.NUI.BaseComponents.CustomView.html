@@ -95,7 +95,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class CustomView : ViewWrapper, INotifyPropertyChanged, IDynamicResourceHandler, IElement, INameScope, IElementController, IDisposable, IResourcesProvider</code></pre>
+    <pre><code class="lang-csharp hljs">public class CustomView : ViewWrapper, IDynamicResourceHandler, IElement, INameScope, IElementController, System.IDisposable, IResourcesProvider</code></pre>
   </div>
 
   
@@ -105,7 +105,7 @@
       <div class="pdl-holder">
         <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
@@ -128,8 +128,10 @@
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a></div>
     </dd>
   </dl>
   
@@ -173,6 +175,112 @@
   </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L67">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_CustomView__ctor_" data-uid="Tizen.NUI.BaseComponents.CustomView.#ctor*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_CustomView__ctor_System_String_Tizen_NUI_CustomViewBehaviour_Tizen_NUI_BaseComponents_ViewStyle_" data-uid="Tizen.NUI.BaseComponents.CustomView.#ctor(System.String,Tizen.NUI.CustomViewBehaviour,Tizen.NUI.BaseComponents.ViewStyle)">CustomView(String, CustomViewBehaviour, ViewStyle)</h4>
+  <div class="markdown level1 summary"><p>Create an instance of customView.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CustomView(string typeName, CustomViewBehaviour behaviour, ViewStyle viewStyle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">typeName</span></td>
+        <td><p>typename</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.CustomViewBehaviour.html">CustomViewBehaviour</a></td>
+        <td><span class="parametername">behaviour</span></td>
+        <td><p>CustomView Behaviour</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.ViewStyle.html">ViewStyle</a></td>
+        <td><span class="parametername">viewStyle</span></td>
+        <td><p>CustomView ViewStyle</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L47">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_CustomView_FocusGroupProperty" data-uid="Tizen.NUI.BaseComponents.CustomView.FocusGroupProperty">FocusGroupProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty FocusGroupProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L31">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_CustomView_FocusNavigationSupportProperty" data-uid="Tizen.NUI.BaseComponents.CustomView.FocusNavigationSupportProperty">FocusNavigationSupportProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty FocusNavigationSupportProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
   
   <div style="margin-bottom: 15px"></div>
 
@@ -531,15 +639,13 @@ For managing the object lifecycle, do not store the returned visual as a member 
   </span>
   <a id="Tizen_NUI_BaseComponents_CustomView_GetHeightForWidth_" data-uid="Tizen.NUI.BaseComponents.CustomView.GetHeightForWidth*"></a>
   <h4 id="Tizen_NUI_BaseComponents_CustomView_GetHeightForWidth_System_Single_" data-uid="Tizen.NUI.BaseComponents.CustomView.GetHeightForWidth(System.Single)">GetHeightForWidth(Single)</h4>
-  <div class="markdown obsolete" data-id="Tizen_NUI_BaseComponents_CustomView_GetHeightForWidth_System_Single_">This has been deprecated in API9 and will be removed in API11. Use HeightForWidth property instead.</div>
   <div class="markdown level1 summary"><p>This method is called during size negotiation when a height is required for a given width.<br>
 Derived classes should override this if they wish to customize the height returned.<br></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API9 and will be removed in API11. Use HeightForWidth property instead.&quot;)]
-public virtual float GetHeightForWidth(float width)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual float GetHeightForWidth(float width)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -785,15 +891,13 @@ For managing the object lifecycle, do not store the returned visual as a member 
   </span>
   <a id="Tizen_NUI_BaseComponents_CustomView_GetWidthForHeight_" data-uid="Tizen.NUI.BaseComponents.CustomView.GetWidthForHeight*"></a>
   <h4 id="Tizen_NUI_BaseComponents_CustomView_GetWidthForHeight_System_Single_" data-uid="Tizen.NUI.BaseComponents.CustomView.GetWidthForHeight(System.Single)">GetWidthForHeight(Single)</h4>
-  <div class="markdown obsolete" data-id="Tizen_NUI_BaseComponents_CustomView_GetWidthForHeight_System_Single_">This has been deprecated since API9 and will be removed in API11. Use WidthForHeight property instead.</div>
   <div class="markdown level1 summary"><p>This method is called during size negotiation when a width is required for a given height.<br>
 Derived classes should override this if they wish to customize the width returned.<br></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated since API9 and will be removed in API11. Use WidthForHeight property instead.&quot;)]
-public virtual float GetWidthForHeight(float height)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual float GetWidthForHeight(float height)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -934,6 +1038,41 @@ For managing the object lifecycle, do not store the returned visual as a member 
   </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/CustomView.cs/#L501">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_CustomView_OnAccessibilityActivated_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnAccessibilityActivated*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_CustomView_OnAccessibilityActivated" data-uid="Tizen.NUI.BaseComponents.CustomView.OnAccessibilityActivated">OnAccessibilityActivated()</h4>
+  <div class="markdown level1 summary"><p>This method is called when the control accessibility is activated.<br>
+Derived classes should override this to perform custom accessibility activation.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override bool OnAccessibilityActivated()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if this control can perform accessibility activation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_OnAccessibilityActivated">View.OnAccessibilityActivated()</a></div>
+  
   
   <div style="margin-bottom: 15px"></div>
 
@@ -1612,7 +1751,6 @@ When the parent of a set of views is disconnected to the scene, then all of the 
   </span>
   <a id="Tizen_NUI_BaseComponents_CustomView_OnStageConnection_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnStageConnection*"></a>
   <h4 id="Tizen_NUI_BaseComponents_CustomView_OnStageConnection_System_Int32_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnStageConnection(System.Int32)">OnStageConnection(Int32)</h4>
-  <div class="markdown obsolete" data-id="Tizen_NUI_BaseComponents_CustomView_OnStageConnection_System_Int32_">This has been deprecated since API8 and will be removed in API10. Use OnSceneConnection instead.</div>
   <div class="markdown level1 summary"><p>Called after the view has been connected to the stage.<br>
 When a view is connected, it will be directly or indirectly parented to the root view.<br>
 The root view is provided automatically by Tizen.NUI.Stage, and is always considered to be connected.<br>
@@ -1621,8 +1759,7 @@ When the parent of a set of views is connected to the stage, then all of the chi
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated since API8 and will be removed in API10. Use OnSceneConnection instead.&quot;)]
-public virtual void OnStageConnection(int depth)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual void OnStageConnection(int depth)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1652,7 +1789,6 @@ public virtual void OnStageConnection(int depth)</code></pre>
   </span>
   <a id="Tizen_NUI_BaseComponents_CustomView_OnStageDisconnection_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnStageDisconnection*"></a>
   <h4 id="Tizen_NUI_BaseComponents_CustomView_OnStageDisconnection" data-uid="Tizen.NUI.BaseComponents.CustomView.OnStageDisconnection">OnStageDisconnection()</h4>
-  <div class="markdown obsolete" data-id="Tizen_NUI_BaseComponents_CustomView_OnStageDisconnection">This has been deprecated since API8 and will be removed in API10. Use OnSceneDisconnection instead.</div>
   <div class="markdown level1 summary"><p>Called after the view has been disconnected from the stage.<br>
 If a view is disconnected, it either has no parent, or is parented to a disconnected view.<br>
 When the parent of a set of views is disconnected to the stage, then all of the children will receive this callback, starting with the leaf views.<br></p>
@@ -1660,8 +1796,7 @@ When the parent of a set of views is disconnected to the stage, then all of the 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated since API8 and will be removed in API10. Use OnSceneDisconnection instead.&quot;)]
-public virtual void OnStageDisconnection()</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual void OnStageDisconnection()</code></pre>
   </div>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
@@ -1673,14 +1808,12 @@ public virtual void OnStageDisconnection()</code></pre>
   </span>
   <a id="Tizen_NUI_BaseComponents_CustomView_OnStyleChange_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnStyleChange*"></a>
   <h4 id="Tizen_NUI_BaseComponents_CustomView_OnStyleChange_Tizen_NUI_StyleManager_Tizen_NUI_StyleChangeType_" data-uid="Tizen.NUI.BaseComponents.CustomView.OnStyleChange(Tizen.NUI.StyleManager,Tizen.NUI.StyleChangeType)">OnStyleChange(StyleManager, StyleChangeType)</h4>
-  <div class="markdown obsolete" data-id="Tizen_NUI_BaseComponents_CustomView_OnStyleChange_Tizen_NUI_StyleManager_Tizen_NUI_StyleChangeType_">Deprecated in API9, Will be removed in API11.</div>
   <div class="markdown level1 summary"><p>This method should be overridden by deriving classes requiring notifications when the style changes.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, Will be removed in API11.&quot;)]
-public virtual void OnStyleChange(StyleManager styleManager, StyleChangeType change)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual void OnStyleChange(StyleManager styleManager, StyleChangeType change)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2205,10 +2338,44 @@ It can be called multiple times; the size negotiation is still only performed on
 
   <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">System.ComponentModel.INotifyPropertyChanged</a>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
   </div>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.BindableObjectExtensions.html#Tizen_NUI_Binding_BindableObjectExtensions_SetBinding_Tizen_NUI_Binding_BindableObject_Tizen_NUI_Binding_BindableProperty_System_String_Tizen_NUI_Binding_BindingMode_Tizen_NUI_Binding_IValueConverter_System_String_">BindableObjectExtensions.SetBinding(BindableObject, BindableProperty, String, BindingMode, IValueConverter, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.NameScopeExtensions.html#Tizen_NUI_Binding_NameScopeExtensions_FindByName__1_Tizen_NUI_Binding_Element_System_String_">NameScopeExtensions.FindByName&lt;T&gt;(Element, String)</a>
   </div>
 </article>
           </div>

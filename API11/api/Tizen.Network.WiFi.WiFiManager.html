@@ -96,7 +96,7 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class WiFiManager</code></pre>
+    <pre><code class="lang-csharp hljs">public static class WiFiManager : object</code></pre>
   </div>
 
   
@@ -312,7 +312,7 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><span class="xref">Task</span></td>
         <td><p>A task indicating whether the activate method is done or not.</p>
 </td>
       </tr>
@@ -328,23 +328,8 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>Thrown when the Wi-Fi is not supported.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Network.WiFi.NowInProgressException.html">NowInProgressException</a></td>
         <td><p>Thrown when the Wi-Fi activation is now in progress.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>Thrown when the permission is denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the method failed due to an invalid operation.</p>
 </td>
       </tr>
     </tbody>
@@ -379,7 +364,7 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><span class="xref">Task</span></td>
         <td><p>A task indicating whether the ActivateWithPicker method is done or not.</p>
 </td>
       </tr>
@@ -395,23 +380,8 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>Thrown when the Wi-Fi is not supported.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Network.WiFi.NowInProgressException.html">NowInProgressException</a></td>
         <td><p>Thrown when the Wi-Fi activation is now in progress.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>Thrown when the permission is denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the method failed due to an invalid operation.</p>
 </td>
       </tr>
     </tbody>
@@ -446,7 +416,7 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><span class="xref">Task</span></td>
         <td><p>A task indicating whether the BssidScanAsync method is done or not.</p>
 </td>
       </tr>
@@ -455,32 +425,6 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
   <h5 id="Tizen_Network_WiFi_WiFiManager_BssidScanAsync_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This method must be called from MainThread.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>Thrown when the Wi-Fi is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>Thrown when the permission is denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the method failed due to an invalid operation.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>5</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -511,7 +455,7 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><span class="xref">Task</span></td>
         <td><p>A task indicating whether the deactivate method is done or not.</p>
 </td>
       </tr>
@@ -527,23 +471,8 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>Thrown when the Wi-Fi is not supported.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Network.WiFi.NowInProgressException.html">NowInProgressException</a></td>
         <td><p>Thrown when the Wi-Fi deactivation is now in progress.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>Thrown when the permission is denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the method failed due to an invalid operation.</p>
 </td>
       </tr>
     </tbody>
@@ -584,37 +513,6 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>Thrown when the Wi-Fi is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>Thrown when the permission is denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></td>
-        <td><p>Thrown when system is out of memory.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the method failed due to an invalid operation.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -645,34 +543,8 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Network.WiFi.WiFiAP.html">WiFiAP</a>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Network.WiFi.WiFiAP.html">WiFiAP</a>&gt;</td>
         <td><p>A list of the WiFiAP objects.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>Thrown when the Wi-Fi is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>Thrown when the permission is denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the method failed due to an invalid operation.</p>
 </td>
       </tr>
     </tbody>
@@ -707,34 +579,8 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Network.WiFi.WiFiAP.html">WiFiAP</a>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Network.WiFi.WiFiAP.html">WiFiAP</a>&gt;</td>
         <td><p>A list of the WiFiAP objects.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>Thrown when the Wi-Fi is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>Thrown when the permission is denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the method failed due to an invalid operation.</p>
 </td>
       </tr>
     </tbody>
@@ -769,34 +615,8 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Network.WiFi.WiFiAP.html">WiFiAP</a>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Network.WiFi.WiFiAP.html">WiFiAP</a>&gt;</td>
         <td><p>A list containing the WiFiAP objects.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>Thrown when the Wi-Fi is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>Thrown when the permission is denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the method failed due to an invalid operation.</p>
 </td>
       </tr>
     </tbody>
@@ -831,39 +651,8 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Network.WiFi.WiFiConfiguration.html">WiFiConfiguration</a>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Network.WiFi.WiFiConfiguration.html">WiFiConfiguration</a>&gt;</td>
         <td><p>A list containing the WiFiConfiguration objects.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>Thrown when the Wi-Fi is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>Thrown when the permission is denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></td>
-        <td><p>Thrown when system is out of memory.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the method failed due to an invalid operation.</p>
 </td>
       </tr>
     </tbody>
@@ -872,6 +661,42 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
   <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/network.profile</span></span></h6>
+  <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/network.wifi</span></span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Network.WiFi/Tizen.Network.WiFi/WiFiManager.cs/#L245">View Source</a>
+  </span>
+  <a id="Tizen_Network_WiFi_WiFiManager_GetWiFiHandle_" data-uid="Tizen.Network.WiFi.WiFiManager.GetWiFiHandle*"></a>
+  <h4 id="Tizen_Network_WiFi_WiFiManager_GetWiFiHandle" data-uid="Tizen.Network.WiFi.WiFiManager.GetWiFiHandle">GetWiFiHandle()</h4>
+  <div class="markdown level1 summary"><p>Gets the Wi-Fi safe handle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static SafeWiFiManagerHandle GetWiFiHandle()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.WiFi.SafeWiFiManagerHandle.html">SafeWiFiManagerHandle</a></td>
+        <td><p>The instance of the SafeWiFiManagerHandle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>3</span></h6>
+  <h6><strong>Privilege Level</strong>: public</h6>
+  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/network.get</span></span></h6>
   <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/network.wifi</span></span></h6>
   
   <div style="margin-bottom: 15px"></div>
@@ -906,42 +731,6 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>Thrown when the Wi-Fi is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>Thrown when the permission is denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p>Thrown when WiFiConfiguration is passed as null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Thrown when the method failed due to an invalid parameter.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the method failed due to an invalid operation.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -972,34 +761,8 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><span class="xref">Task</span></td>
         <td><p>A task indicating whether the scan method is done or not.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>Thrown when the Wi-Fi is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>Thrown when the permission is denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the method failed due to an invalid operation.</p>
 </td>
       </tr>
     </tbody>
@@ -1052,39 +815,8 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><span class="xref">Task</span></td>
         <td><p>A task indicating whether the ScanSpecificAP method is done or not.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>Thrown when the Wi-Fi is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>Thrown when the permission is denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Thrown when the method failed due to an invalid parameter.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the method failed due to an invalid operation.</p>
 </td>
       </tr>
     </tbody>
@@ -1121,7 +853,7 @@ The background scan starts automatically when Wi-Fi is activated. The callback w
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></td>
+        <td><span class="xref">EventHandler</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -1155,7 +887,7 @@ The background scan starts automatically when Wi-Fi is activated. The callback w
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Network.WiFi.ConnectionStateChangedEventArgs.html">ConnectionStateChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Network.WiFi.ConnectionStateChangedEventArgs.html">ConnectionStateChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1189,7 +921,7 @@ The background scan starts automatically when Wi-Fi is activated. The callback w
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Network.WiFi.DeviceStateChangedEventArgs.html">DeviceStateChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Network.WiFi.DeviceStateChangedEventArgs.html">DeviceStateChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1223,7 +955,7 @@ The background scan starts automatically when Wi-Fi is activated. The callback w
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Network.WiFi.RssiLevelChangedEventArgs.html">RssiLevelChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Network.WiFi.RssiLevelChangedEventArgs.html">RssiLevelChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1257,7 +989,7 @@ The background scan starts automatically when Wi-Fi is activated. The callback w
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Network.WiFi.ScanStateChangedEventArgs.html">ScanStateChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Network.WiFi.ScanStateChangedEventArgs.html">ScanStateChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
