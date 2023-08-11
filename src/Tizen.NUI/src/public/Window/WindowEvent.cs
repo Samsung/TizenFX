@@ -56,31 +56,31 @@ namespace Tizen.NUI
         private ResizeCompletedEventCallbackType resizeCompletedEventCallback;
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WindowFocusChangedEventCallbackType(IntPtr window, bool focusGained);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool RootLayerTouchDataCallbackType(IntPtr view, IntPtr touchData);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool WheelEventCallbackType(IntPtr view, IntPtr wheelEvent);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WindowResizeEventCallbackType(IntPtr window, IntPtr windowSize);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WindowFocusChangedEventCallbackType2(IntPtr window, bool focusGained);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void TransitionEffectEventCallbackType(IntPtr window, int state, int type);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void MovedEventCallbackType(IntPtr window, IntPtr position);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void OrientationChangedEventCallbackType(IntPtr window, int orientation);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void KeyboardRepeatSettingsChangedEventCallbackType();
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void AuxiliaryMessageEventCallbackType(IntPtr kData, IntPtr vData, IntPtr optionsArray);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool InterceptKeyEventDelegateType(IntPtr arg1);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WindowMouseInOutEventCallbackType(IntPtr window, IntPtr mouseEvent);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void MoveCompletedEventCallbackType(IntPtr window, IntPtr position);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void ResizeCompletedEventCallbackType(IntPtr window, IntPtr size);
 
 
@@ -1390,7 +1390,7 @@ namespace Tizen.NUI
 
         private EventHandler<WheelEventArgs> DetentEventHandler;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void DetentEventCallbackType(IntPtr arg1);
 
         private DetentEventCallbackType DetentEventCallback;
@@ -1444,7 +1444,7 @@ namespace Tizen.NUI
             }
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void VisibilityChangedEventCallbackType(IntPtr window, bool visibility);
         private VisibilityChangedEventCallbackType VisibilityChangedEventCallback;
         private event EventHandler<VisibilityChangedEventArgs> VisibilityChangedEventHandler;
@@ -1588,7 +1588,7 @@ namespace Tizen.NUI
             }
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void AccessibilityHighlightEventCallbackType(IntPtr window, bool highlight);
         private AccessibilityHighlightEventCallbackType AccessibilityHighlightEventCallback;
         private event EventHandler<AccessibilityHighlightEventArgs> AccessibilityHighlightEventHandler;

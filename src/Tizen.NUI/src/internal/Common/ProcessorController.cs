@@ -50,7 +50,7 @@ namespace Tizen.NUI
             Interop.ProcessorController.SetCallback(SwigCPtr, processorCallback);
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ProcessorEventHandler();
 
         private ProcessorEventHandler processorCallback = null;

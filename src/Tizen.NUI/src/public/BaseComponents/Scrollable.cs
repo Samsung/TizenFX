@@ -219,13 +219,13 @@ namespace Tizen.NUI.BaseComponents
         {
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void StartedCallbackDelegate(IntPtr vector2);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void UpdatedCallbackDelegate(IntPtr vector2);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void CompletedCallbackDelegate(IntPtr vector2);
 
         /// <summary>
