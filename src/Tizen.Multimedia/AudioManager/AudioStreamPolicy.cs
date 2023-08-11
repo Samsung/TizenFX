@@ -421,6 +421,26 @@ namespace Tizen.Multimedia
             return isOn;
         }
 
+        // public void SetAudioEffect(AudioDevice device, AudioEffectWithReference effect)
+        // {
+        //     //TBD
+        // }
+
+        // public void SetAudioEffect(AudioEffect effect)
+        // {
+        //     //TBD
+        // }
+
+        // public (AudioDevice device, AudioEffectWithReference effect) GetAudioEffect()
+        // {
+        //     //TBD
+        // }
+
+        // public (AudioDevice device, AudioEffectWithReference effect) GetAudioEffect()
+        // {
+        //     //TBD
+        // }
+
         /// <summary>
         /// Releases all resources used by the <see cref="AudioStreamPolicy"/>.
         /// </summary>
