@@ -873,7 +873,7 @@ namespace Tizen.NUI.Components
 
         private Animation scrollAnimation;
         // Declare user alpha function delegate
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate float UserAlphaFunctionDelegate(float progress);
         private UserAlphaFunctionDelegate customScrollAlphaFunction;
         private float velocityOfLastPan = 0.0f;
