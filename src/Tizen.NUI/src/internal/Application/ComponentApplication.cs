@@ -85,7 +85,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate IntPtr NUIComponentApplicationCreatenativeEventCallbackDelegate();
 
         public delegate IntPtr CreateNativeEventHandler();

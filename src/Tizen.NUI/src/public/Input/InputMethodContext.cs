@@ -50,7 +50,7 @@ namespace Tizen.NUI
         {
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void ActivatedEventCallbackType(IntPtr data);
         private delegate IntPtr EventReceivedEventCallbackType(IntPtr inputMethodContext, IntPtr eventData);
         private delegate void StatusChangedEventCallbackType(bool statusChanged);
