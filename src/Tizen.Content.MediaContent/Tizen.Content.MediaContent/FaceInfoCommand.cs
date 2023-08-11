@@ -23,6 +23,7 @@ namespace Tizen.Content.MediaContent
     /// </summary>
     /// <seealso cref="Album"/>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API11; Will be removed in API13.")]
     public class FaceInfoCommand : MediaCommand
     {
         /// <summary>
@@ -32,6 +33,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentNullException"><paramref name="database"/> is null.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="database"/> has already been disposed.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API11; Will be removed in API13.")]
         public FaceInfoCommand(MediaDatabase database) : base(database)
         {
         }
@@ -49,6 +51,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentException"><paramref name="faceInfoId"/> is a zero-length string, contains only white space.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API11; Will be removed in API13.")]
         public bool Delete(string faceInfoId)
         {
             ValidateDatabase();
@@ -74,6 +77,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API11; Will be removed in API13.")]
         public MediaDataReader<FaceInfo> Select()
         {
             return Select(null);
@@ -88,6 +92,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API11; Will be removed in API13.")]
         public MediaDataReader<FaceInfo> Select(SelectArguments filter)
         {
             ValidateDatabase();
@@ -109,6 +114,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentException"><paramref name="faceInfoId"/> is a zero-length string, contains only white space.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API11; Will be removed in API13.")]
         public bool UpdateTag(string faceInfoId, string tag)
         {
             ValidateDatabase();
@@ -160,6 +166,7 @@ namespace Tizen.Content.MediaContent
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API11; Will be removed in API13.")]
         public FaceInfo Insert(string mediaId, Rectangle area, Orientation orientation)
         {
             return Insert(mediaId, area, orientation, null);
@@ -185,6 +192,7 @@ namespace Tizen.Content.MediaContent
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API11; Will be removed in API13.")]
         public FaceInfo Insert(string mediaId, Rectangle area, Orientation orientation, string tag)
         {
             ValidateDatabase();
