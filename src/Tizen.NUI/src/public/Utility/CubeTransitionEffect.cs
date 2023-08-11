@@ -33,7 +33,7 @@ namespace Tizen.NUI
         private EventHandler<TransitionCompletedEventArgs> transitionCompletedEventHandler;
         private TransitionCompletedCallbackDelegate _transitionCompletedCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void TransitionCompletedCallbackDelegate(IntPtr cubeTransition, IntPtr cubeTexture);
 
         /// <summary>

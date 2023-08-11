@@ -1175,7 +1175,7 @@ namespace Tizen.NUI.BaseComponents
             NUILog.Debug($"<[{GetId()}] onVisualEventSignal()! visualIndex={visualIndex}, signalId={signalId}>");
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void VisualEventSignalCallbackType(IntPtr targetView, int visualIndex, int signalId);
 
         private VisualEventSignalCallbackType visualEventSignalCallback;

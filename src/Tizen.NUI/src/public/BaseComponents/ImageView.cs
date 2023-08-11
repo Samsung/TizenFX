@@ -196,9 +196,9 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void ResourceReadyEventCallbackType(IntPtr data);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void _resourceLoadedCallbackType(IntPtr view);
 
         /// <summary>
