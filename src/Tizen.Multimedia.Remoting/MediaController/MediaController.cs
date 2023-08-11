@@ -680,6 +680,90 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
+        /// Gets the value whether the playback position is supported or not.
+        /// </summary>
+        /// <returns>A <see cref="MediaControlCapabilitySupport"/>.</returns>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        public MediaControlCapabilitySupport GetPlaybackPositionCapability()
+        {
+            ThrowIfStopped();
+
+            Native.GetSimpleCapability(Manager.Handle, ServerAppId, MediaControlNativeCapabilityCategory.PlaybackPosition, out MediaControlCapabilitySupport support).
+                ThrowIfError("Failed to get playback position capability");
+
+            return support;
+        }
+
+        /// <summary>
+        /// Gets the value whether the playlist is supported or not.
+        /// </summary>
+        /// <returns>A <see cref="MediaControlCapabilitySupport"/>.</returns>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        public MediaControlCapabilitySupport GetPlaylistCapability()
+        {
+            ThrowIfStopped();
+
+            Native.GetSimpleCapability(Manager.Handle, ServerAppId, MediaControlNativeCapabilityCategory.Playlist, out MediaControlCapabilitySupport support).
+                ThrowIfError("Failed to get playlist capability");
+
+            return support;
+        }
+
+        /// <summary>
+        /// Gets the value whether the custom command is supported or not.
+        /// </summary>
+        /// <returns>A <see cref="MediaControlCapabilitySupport"/>.</returns>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        public MediaControlCapabilitySupport GetCustomCommandCapability()
+        {
+            ThrowIfStopped();
+
+            Native.GetSimpleCapability(Manager.Handle, ServerAppId, MediaControlNativeCapabilityCategory.CustomCommand, out MediaControlCapabilitySupport support).
+                ThrowIfError("Failed to get custom command capability");
+
+            return support;
+        }
+
+        /// <summary>
+        /// Gets the value whether the search is supported or not.
+        /// </summary>
+        /// <returns>A <see cref="MediaControlCapabilitySupport"/>.</returns>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        public MediaControlCapabilitySupport GetSearchCapability()
+        {
+            ThrowIfStopped();
+
+            Native.GetSimpleCapability(Manager.Handle, ServerAppId, MediaControlNativeCapabilityCategory.Search, out MediaControlCapabilitySupport support).
+                ThrowIfError("Failed to get search capability");
+
+            return support;
+        }
+
+        /// <summary>
         /// Gets the value whether the repeat mode is supported or not.
         /// </summary>
         /// <returns>

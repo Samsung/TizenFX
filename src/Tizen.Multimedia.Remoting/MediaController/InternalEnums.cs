@@ -92,7 +92,7 @@ namespace Tizen.Multimedia.Remoting
         Repeat,
         PlaybackPosition,
         Playlist,
-        ClientCustom,
+        CustomCommand, // The same as CLIENT_CUSTOM of native fw
         Search,
         Subtitle,
         Mode360
