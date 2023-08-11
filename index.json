@@ -18259,6 +18259,11 @@
     "title": "Class CustomCommand",
     "keywords": ""
   },
+  "API11/api/Tizen.Multimedia.Remoting.CustomCommandCapabilityUpdatedEventArgs.html": {
+    "href": "API11/api/Tizen.Multimedia.Remoting.CustomCommandCapabilityUpdatedEventArgs.html",
+    "title": "Class CustomCommandCapabilityUpdatedEventArgs",
+    "keywords": ""
+  },
   "API11/api/Tizen.Multimedia.Remoting.CustomCommandReceivedEventArgs.html": {
     "href": "API11/api/Tizen.Multimedia.Remoting.CustomCommandReceivedEventArgs.html",
     "title": "Class CustomCommandReceivedEventArgs",
@@ -18479,6 +18484,11 @@
     "title": "Class MetadataUpdatedEventArgs",
     "keywords": ""
   },
+  "API11/api/Tizen.Multimedia.Remoting.Mode360CapabilityUpdatedEventArgs.html": {
+    "href": "API11/api/Tizen.Multimedia.Remoting.Mode360CapabilityUpdatedEventArgs.html",
+    "title": "Class Mode360CapabilityUpdatedEventArgs",
+    "keywords": ""
+  },
   "API11/api/Tizen.Multimedia.Remoting.Mode360Command.html": {
     "href": "API11/api/Tizen.Multimedia.Remoting.Mode360Command.html",
     "title": "Class Mode360Command",
@@ -18514,6 +18524,11 @@
     "title": "Class PlaybackCommandReceivedEventArgs",
     "keywords": ""
   },
+  "API11/api/Tizen.Multimedia.Remoting.PlaybackPositionCapabilityUpdatedEventArgs.html": {
+    "href": "API11/api/Tizen.Multimedia.Remoting.PlaybackPositionCapabilityUpdatedEventArgs.html",
+    "title": "Class PlaybackPositionCapabilityUpdatedEventArgs",
+    "keywords": ""
+  },
   "API11/api/Tizen.Multimedia.Remoting.PlaybackPositionCommand.html": {
     "href": "API11/api/Tizen.Multimedia.Remoting.PlaybackPositionCommand.html",
     "title": "Class PlaybackPositionCommand",
@@ -18527,6 +18542,11 @@
   "API11/api/Tizen.Multimedia.Remoting.PlaybackStateUpdatedEventArgs.html": {
     "href": "API11/api/Tizen.Multimedia.Remoting.PlaybackStateUpdatedEventArgs.html",
     "title": "Class PlaybackStateUpdatedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Multimedia.Remoting.PlaylistCapabilityUpdatedEventArgs.html": {
+    "href": "API11/api/Tizen.Multimedia.Remoting.PlaylistCapabilityUpdatedEventArgs.html",
+    "title": "Class PlaylistCapabilityUpdatedEventArgs",
     "keywords": ""
   },
   "API11/api/Tizen.Multimedia.Remoting.PlaylistCommand.html": {
@@ -18614,6 +18634,11 @@
     "title": "Class ScreenMirroringVideoInfo",
     "keywords": ""
   },
+  "API11/api/Tizen.Multimedia.Remoting.SearchCapabilityUpdatedEventArgs.html": {
+    "href": "API11/api/Tizen.Multimedia.Remoting.SearchCapabilityUpdatedEventArgs.html",
+    "title": "Class SearchCapabilityUpdatedEventArgs",
+    "keywords": ""
+  },
   "API11/api/Tizen.Multimedia.Remoting.SearchCommand.html": {
     "href": "API11/api/Tizen.Multimedia.Remoting.SearchCommand.html",
     "title": "Class SearchCommand",
@@ -18652,6 +18677,11 @@
   "API11/api/Tizen.Multimedia.Remoting.SignalingMessageType.html": {
     "href": "API11/api/Tizen.Multimedia.Remoting.SignalingMessageType.html",
     "title": "Enum SignalingMessageType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Multimedia.Remoting.SubtitleCapabilityUpdatedEventArgs.html": {
+    "href": "API11/api/Tizen.Multimedia.Remoting.SubtitleCapabilityUpdatedEventArgs.html",
+    "title": "Class SubtitleCapabilityUpdatedEventArgs",
     "keywords": ""
   },
   "API11/api/Tizen.Multimedia.Remoting.SubtitleModeCommand.html": {
