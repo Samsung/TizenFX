@@ -293,11 +293,32 @@ namespace Tizen.Multimedia.Remoting
             {
                 switch (category)
                 {
+                    case MediaControlNativeCapabilityCategory.Shuffle:
+                        GetController(serverName)?.RaiseShuffleModeCapabilityUpdatedEvent(support);
+                        break;
                     case MediaControlNativeCapabilityCategory.Repeat:
                         GetController(serverName)?.RaiseRepeatModeCapabilityUpdatedEvent(support);
                         break;
-                    case MediaControlNativeCapabilityCategory.Shuffle:
-                        GetController(serverName)?.RaiseShuffleModeCapabilityUpdatedEvent(support);
+                    case MediaControlNativeCapabilityCategory.PlaybackPosition:
+                        GetController(serverName)?.RaisePlaybackPositionCapabilityUpdatedEvent(support);
+                        break;
+                    case MediaControlNativeCapabilityCategory.Playlist:
+                        GetController(serverName)?.RaisePlaylistCapabilityUpdatedEvent(support);
+                        break;
+                    case MediaControlNativeCapabilityCategory.CustomCommand:
+                        GetController(serverName)?.RaiseCustomCommandCapabilityUpdatedEvent(support);
+                        break;
+                    case MediaControlNativeCapabilityCategory.Search:
+                        GetController(serverName)?.RaiseSearchCapabilityUpdatedEvent(support);
+                        break;
+                    case MediaControlNativeCapabilityCategory.Subtitle:
+                        GetController(serverName)?.RaiseSubtitleCapabilityUpdatedEvent(support);
+                        break;
+                    case MediaControlNativeCapabilityCategory.Mode360:
+                        GetController(serverName)?.RaiseMode360CapabilityUpdatedEvent(support);
+                        break;
+                    default:
+                        Log.Info(GetType().FullName, $"There's no category : {category}");
                         break;
                 }
             };
