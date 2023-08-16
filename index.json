@@ -24219,6 +24219,16 @@
     "title": "Enum MouseInOut.StateType",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.MouseRelative.html": {
+    "href": "API11/api/Tizen.NUI.MouseRelative.html",
+    "title": "Class MouseRelative",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.MouseRelative.StateType.html": {
+    "href": "API11/api/Tizen.NUI.MouseRelative.StateType.html",
+    "title": "Enum MouseRelative.StateType",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.NativeImageInterface.html": {
     "href": "API11/api/Tizen.NUI.NativeImageInterface.html",
     "title": "Class NativeImageInterface",
@@ -25752,6 +25762,11 @@
   "API11/api/Tizen.NUI.Window.MouseInOutEventArgs.html": {
     "href": "API11/api/Tizen.NUI.Window.MouseInOutEventArgs.html",
     "title": "Class Window.MouseInOutEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Window.MouseRelativeEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.Window.MouseRelativeEventArgs.html",
+    "title": "Class Window.MouseRelativeEventArgs",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Window.ResizedEventArgs.html": {
