@@ -199,7 +199,7 @@ namespace Tizen.NUI.BaseComponents
         {
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void FinishedCallbackDelegate(IntPtr data);
 
         /// <summary>

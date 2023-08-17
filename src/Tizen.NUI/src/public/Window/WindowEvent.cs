@@ -52,35 +52,38 @@ namespace Tizen.NUI
         private KeyboardRepeatSettingsChangedEventCallbackType keyboardRepeatSettingsChangedEventCallback;
         private AuxiliaryMessageEventCallbackType auxiliaryMessageEventCallback;
         private WindowMouseInOutEventCallbackType windowMouseInOutEventCallback;
+        private WindowMouseRelativeEventCallbackType windowMouseRelativeEventCallback;
         private MoveCompletedEventCallbackType moveCompletedEventCallback;
         private ResizeCompletedEventCallbackType resizeCompletedEventCallback;
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WindowFocusChangedEventCallbackType(IntPtr window, bool focusGained);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool RootLayerTouchDataCallbackType(IntPtr view, IntPtr touchData);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool WheelEventCallbackType(IntPtr view, IntPtr wheelEvent);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WindowResizeEventCallbackType(IntPtr window, IntPtr windowSize);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WindowFocusChangedEventCallbackType2(IntPtr window, bool focusGained);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void TransitionEffectEventCallbackType(IntPtr window, int state, int type);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void MovedEventCallbackType(IntPtr window, IntPtr position);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void OrientationChangedEventCallbackType(IntPtr window, int orientation);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void KeyboardRepeatSettingsChangedEventCallbackType();
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void AuxiliaryMessageEventCallbackType(IntPtr kData, IntPtr vData, IntPtr optionsArray);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool InterceptKeyEventDelegateType(IntPtr arg1);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WindowMouseInOutEventCallbackType(IntPtr window, IntPtr mouseEvent);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void WindowMouseRelativeEventCallbackType(IntPtr window, IntPtr mouseEvent);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void MoveCompletedEventCallbackType(IntPtr window, IntPtr position);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void ResizeCompletedEventCallbackType(IntPtr window, IntPtr size);
 
 
@@ -571,6 +574,34 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Emits the event when relative mouse movement occurs in the window.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<MouseRelativeEventArgs> MouseRelativeEvent
+        {
+            add
+            {
+                if (windowMouseRelativeEventHandler == null)
+                {
+                    windowMouseRelativeEventCallback = OnWindowMouseRelativeEvent;
+                    using WindowMouseRelativeEventSignal signal = new WindowMouseRelativeEventSignal(Interop.WindowMouseRelativeEventSignal.GetSignal(SwigCPtr), false);
+                    signal?.Connect(windowMouseRelativeEventCallback);
+                }
+                windowMouseRelativeEventHandler += value;
+            }
+            remove
+            {
+                windowMouseRelativeEventHandler -= value;
+                if (windowMouseRelativeEventHandler == null && windowMouseRelativeEventCallback != null)
+                {
+                    using WindowMouseRelativeEventSignal signal = new WindowMouseRelativeEventSignal(Interop.WindowMouseRelativeEventSignal.GetSignal(SwigCPtr), false);
+                    signal?.Disconnect(windowMouseRelativeEventCallback);
+                    windowMouseRelativeEventCallback = null;
+                }
+            }
+        }
+
         private event EventHandler<FocusChangedEventArgs> windowFocusChangedEventHandler;
         private event EventHandler<TouchEventArgs> rootLayerTouchDataEventHandler;
         private ReturnTypeEventHandler<object, TouchEventArgs, bool> rootLayerInterceptTouchDataEventHandler;
@@ -587,6 +618,7 @@ namespace Tizen.NUI
         private event EventHandler keyboardRepeatSettingsChangedHandler;
         private event EventHandler<AuxiliaryMessageEventArgs> auxiliaryMessageEventHandler;
         private event EventHandler<MouseInOutEventArgs> windowMouseInOutEventHandler;
+        private event EventHandler<MouseRelativeEventArgs> windowMouseRelativeEventHandler;
         private event EventHandler<WindowMoveCompletedEventArgs> moveCompletedHandler;
         private event EventHandler<WindowResizeCompletedEventArgs> resizeCompletedHandler;
 
@@ -851,6 +883,13 @@ namespace Tizen.NUI
                 using WindowMouseInOutEventSignal signal = new WindowMouseInOutEventSignal(Interop.WindowMouseInOutEventSignal.GetSignal(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(windowMouseInOutEventCallback);
                 windowMouseInOutEventCallback = null;
+            }
+
+            if (windowMouseRelativeEventCallback != null)
+            {
+                using WindowMouseRelativeEventSignal signal = new WindowMouseRelativeEventSignal(Interop.WindowMouseRelativeEventSignal.GetSignal(GetBaseHandleCPtrHandleRef), false);
+                signal?.Disconnect(windowMouseRelativeEventCallback);
+                windowMouseRelativeEventCallback = null;
             }
 
             if (moveCompletedEventCallback != null)
@@ -1144,6 +1183,22 @@ namespace Tizen.NUI
             return;
         }
 
+        private void OnWindowMouseRelativeEvent(IntPtr view, IntPtr mouseEvent)
+        {
+            if (mouseEvent == global::System.IntPtr.Zero)
+            {
+                NUILog.Error("mouseEvent should not be null!");
+                return;
+            }
+
+            if (windowMouseRelativeEventHandler != null)
+            {
+                MouseRelativeEventArgs e = new MouseRelativeEventArgs();
+                e.MouseRelative = Tizen.NUI.MouseRelative.GetMouseRelativeFromPtr(mouseEvent);
+                windowMouseRelativeEventHandler(this, e);
+            }
+        }
+
         /// <summary>
         /// The focus changed event argument.
         /// </summary>
@@ -1288,6 +1343,31 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// MouseRelative evnet arguments.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class MouseRelativeEventArgs : EventArgs
+        {
+            private MouseRelative mouseEvent;
+
+            /// <summary>
+            /// MouseRelative event.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public MouseRelative MouseRelative
+            {
+                get
+                {
+                    return mouseEvent;
+                }
+                set
+                {
+                    mouseEvent = value;
+                }
+            }
+        }
+
+        /// <summary>
         /// Do not use this, that will be deprecated.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1390,7 +1470,7 @@ namespace Tizen.NUI
 
         private EventHandler<WheelEventArgs> DetentEventHandler;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void DetentEventCallbackType(IntPtr arg1);
 
         private DetentEventCallbackType DetentEventCallback;
@@ -1444,7 +1524,7 @@ namespace Tizen.NUI
             }
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void VisibilityChangedEventCallbackType(IntPtr window, bool visibility);
         private VisibilityChangedEventCallbackType VisibilityChangedEventCallback;
         private event EventHandler<VisibilityChangedEventArgs> VisibilityChangedEventHandler;
@@ -1588,7 +1668,7 @@ namespace Tizen.NUI
             }
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void AccessibilityHighlightEventCallbackType(IntPtr window, bool highlight);
         private AccessibilityHighlightEventCallbackType AccessibilityHighlightEventCallback;
         private event EventHandler<AccessibilityHighlightEventArgs> AccessibilityHighlightEventHandler;

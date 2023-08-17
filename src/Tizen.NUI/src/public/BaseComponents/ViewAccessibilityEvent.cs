@@ -94,7 +94,7 @@ namespace Tizen.NUI.BaseComponents
         /// <returns>True if equal GestureInfoType, otherwise false</returns>
         public bool Equals(GestureInfoType other)
         {
-            if ((other == null) || !this.GetType().Equals(other.GetType()))
+            if (!this.GetType().Equals(other.GetType()))
             {
                 return false;
             }

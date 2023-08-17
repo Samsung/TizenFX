@@ -184,17 +184,17 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WidgetAddedEventCallbackType(IntPtr data);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WidgetContentUpdatedEventCallbackType(IntPtr data);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WidgetDeletedEventCallbackType(IntPtr data);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WidgetCreationAbortedEventCallbackType(IntPtr data);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WidgetUpdatePeriodChangedEventCallbackType(IntPtr data);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WidgetFaultedEventCallbackType(IntPtr data);
 
         /// <summary>
@@ -895,7 +895,7 @@ namespace Tizen.NUI
         private void OnWidgetAdded(IntPtr data)
         {
             WidgetViewEventArgs e = new WidgetViewEventArgs();
-            if (data != null)
+            if (data != IntPtr.Zero)
             {
                 e.WidgetView = WidgetView.GetWidgetViewFromPtr(data);
             }
@@ -910,7 +910,7 @@ namespace Tizen.NUI
         private void OnWidgetDeleted(IntPtr data)
         {
             WidgetViewEventArgs e = new WidgetViewEventArgs();
-            if (data != null)
+            if (data != IntPtr.Zero)
             {
                 e.WidgetView = WidgetView.GetWidgetViewFromPtr(data);
             }
@@ -925,7 +925,7 @@ namespace Tizen.NUI
         private void OnWidgetCreationAborted(IntPtr data)
         {
             WidgetViewEventArgs e = new WidgetViewEventArgs();
-            if (data != null)
+            if (data != IntPtr.Zero)
             {
                 e.WidgetView = WidgetView.GetWidgetViewFromPtr(data);
             }
@@ -942,7 +942,7 @@ namespace Tizen.NUI
         private void OnWidgetContentUpdated(IntPtr data)
         {
             WidgetViewEventArgs e = new WidgetViewEventArgs();
-            if (data != null)
+            if (data != IntPtr.Zero)
             {
                 e.WidgetView = WidgetView.GetWidgetViewFromPtr(data);
             }
@@ -957,7 +957,7 @@ namespace Tizen.NUI
         private void OnWidgetUpdatePeriodChanged(IntPtr data)
         {
             WidgetViewEventArgs e = new WidgetViewEventArgs();
-            if (data != null)
+            if (data != IntPtr.Zero)
             {
                 e.WidgetView = WidgetView.GetWidgetViewFromPtr(data);
             }
@@ -972,7 +972,7 @@ namespace Tizen.NUI
         private void OnWidgetFaulted(IntPtr data)
         {
             WidgetViewEventArgs e = new WidgetViewEventArgs();
-            if (data != null)
+            if (data != IntPtr.Zero)
             {
                 e.WidgetView = WidgetView.GetWidgetViewFromPtr(data);
             }

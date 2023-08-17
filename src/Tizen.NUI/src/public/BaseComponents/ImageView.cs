@@ -196,9 +196,9 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void ResourceReadyEventCallbackType(IntPtr data);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void _resourceLoadedCallbackType(IntPtr view);
 
         /// <summary>
@@ -1461,7 +1461,7 @@ namespace Tizen.NUI.BaseComponents
             }
 
             ResourceReadyEventArgs e = new ResourceReadyEventArgs();
-            if (data != null)
+            if (data != IntPtr.Zero)
             {
                 e.View = Registry.GetManagedBaseHandleFromNativePtr(data) as View;
             }

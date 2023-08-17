@@ -31,7 +31,7 @@ namespace Tizen.NUI
         private int layoutCount = 0;
         private EventHandler<VisibilityChangedEventArgs> visibilityChangedEventHandler;
         private VisibilityChangedEventCallbackType visibilityChangedEventCallback;
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void VisibilityChangedEventCallbackType(IntPtr data, bool visibility, VisibilityChangeType type);
 
         /// <summary>
@@ -889,7 +889,7 @@ namespace Tizen.NUI
         private void OnVisibilityChanged(IntPtr data, bool visibility, VisibilityChangeType type)
         {
             VisibilityChangedEventArgs e = new VisibilityChangedEventArgs();
-            if (data != null)
+            if (data != IntPtr.Zero)
             {
                 e.Layer = Registry.GetManagedBaseHandleFromNativePtr(data) as Layer;
             }
