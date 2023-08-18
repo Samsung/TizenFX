@@ -15,7 +15,9 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Tizen.Multimedia
 {
@@ -421,25 +423,89 @@ namespace Tizen.Multimedia
             return isOn;
         }
 
-        // public void SetAudioEffect(AudioDevice device, AudioEffectWithReference effect)
-        // {
-        //     //TBD
-        // }
+        /// <summary>
+        /// Sets the audio effect with reference device.
+        /// </summary>
+        /// <param name="effect">A audio effect.</param>
+        /// <param name="referenceDevice">A reference device for audio effect.</param>
+        /// <exception cref="ArgumentException">Invalid input enum type.</exception>
+        /// <exception cref="ArgumentNullException">A reference device is null.</exception>
+        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
+        /// <exception cref="AudioPolicyException">A device is not supported by this <see cref="AudioStreamPolicy"/> instance.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        public void SetAudioEffect(AudioEffectWithReference effect, AudioDevice referenceDevice)
+        {
+            ValidationUtil.ValidateEnum(typeof(AudioEffectWithReference), effect, nameof(effect));
 
-        // public void SetAudioEffect(AudioEffect effect)
-        // {
-        //     //TBD
-        // }
+            if (referenceDevice == null)
+            {
+                throw new ArgumentNullException(nameof(referenceDevice));
+            }
 
-        // public (AudioDevice device, AudioEffectWithReference effect) GetAudioEffect()
-        // {
-        //     //TBD
-        // }
+            Interop.AudioStreamPolicy.SetEffectWithReference(Handle, effect, referenceDevice.Id).
+                ThrowIfError("Failed to set audio effect with reference");
+        }
 
-        // public (AudioDevice device, AudioEffectWithReference effect) GetAudioEffect()
-        // {
-        //     //TBD
-        // }
+        /// <summary>
+        /// Sets the audio effect.
+        /// </summary>
+        /// <param name="effect">A audio effect.</param>
+        /// <remarks><paramref name="effect"/> can be combined with bitwise 'or'.</remarks>
+        /// <exception cref="ArgumentException">Invalid input enum type.</exception>
+        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
+        /// <exception cref="AudioPolicyException">A device is not supported by this <see cref="AudioStreamPolicy"/> instance.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        public void SetAudioEffect(AudioEffect effect)
+        {
+            ValidationUtil.ValidateEnum(typeof(AudioEffect), effect, nameof(effect));
+
+            Interop.AudioStreamPolicy.SetEffect(Handle, (int)effect).
+                ThrowIfError("Failed to set audio effect with reference");
+        }
+
+        /// <summary>
+        /// Gets the audio effect with reference.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">
+        /// There's no audio effect with reference<br/>
+        /// - or -<br/>
+        /// There's no matched AudioDevice.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        public (AudioEffectWithReference, AudioDevice) GetAudioEffectWithReference()
+        {
+            var ret = Interop.AudioStreamPolicy.GetEffectWithReference(Handle, out AudioEffectWithReference effect, out int deviceId);
+            if (ret == AudioManagerError.InvalidParameter)
+            {
+                throw new InvalidOperationException("There's no audio effect with reference");
+            }
+
+            ret.ThrowIfError("Failed to get audio effect with reference");
+
+            return (effect, AudioManager.GetConnectedDevices().Where(d => d.Id == deviceId).Single());
+        }
+
+        /// <summary>
+        /// Gets the audio effect.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">There's no audio effect with reference</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        public AudioEffect GetAudioEffect()
+        {
+            var ret = Interop.AudioStreamPolicy.GetEffect(Handle, out int effect);
+            if (ret == AudioManagerError.InvalidParameter)
+            {
+                throw new InvalidOperationException("There's no audio effect");
+            }
+
+            ret.ThrowIfError("Failed to get audio effect");
+
+            return (AudioEffect)effect;
+        }
 
         /// <summary>
         /// Releases all resources used by the <see cref="AudioStreamPolicy"/>.

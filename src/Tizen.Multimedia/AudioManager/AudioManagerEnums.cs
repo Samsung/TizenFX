@@ -384,12 +384,12 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Noise suppression for voice call.
         /// </summary>
-        NoiseSuppression,
+        NoiseSuppression = 1,
 
         /// <summary>
         /// Auto Gain Control for normal capturing.
         /// </summary>
-        AutoGainControl
+        AutoGainControl = 2
     }
 
     /// <summary>
@@ -404,7 +404,7 @@ namespace Tizen.Multimedia
         /// <remarks>
         /// This effect should be used with reference device.
         /// </remarks>
-        ReferenceCopy,
+        ReferenceCopy = 1,
 
         /// <summary>
         /// AEC(Acoustic Echo Cancellation) with speex.
@@ -412,7 +412,7 @@ namespace Tizen.Multimedia
         /// <remarks>
         /// This effect should be used with reference device.
         /// </remarks>
-        AecSpeex,
+        AecSpeex = 2,
 
         /// <summary>
         /// AEC(Acoustic Echo Cancellation) with webrtc.
@@ -420,23 +420,7 @@ namespace Tizen.Multimedia
         /// <remarks>
         /// This effect should be used with reference device.
         /// </remarks>
-        AecWebrtc
-    }
-
-    internal enum AudioEffectNative
-    {
-        // These effects can be set together
-        NoiseSuppression = 0x0001,
-        AutoGainControl = 0x0002,
-        // Public enum - AudioEffect - doesn't have All for future expandability.
-        All = NoiseSuppression | AutoGainControl
-    }
-
-    internal enum AudioEffectNativeWithReference
-    {
-        ReferenceCopy = 0x0001,
-        AecSpeex = 0x0002,
-        AecWebrtc = 0x0004
+        AecWebrtc = 4
     }
 
     internal static class AudioManagerEnumExtensions
@@ -453,50 +437,6 @@ namespace Tizen.Multimedia
             int mask = (int)(AudioStreamBehaviors.NoResume | AudioStreamBehaviors.Fading);
 
             return ((~mask) & (int)value) == 0;
-        }
-
-        internal static AudioEffect ToPublic(this AudioEffectNative nativeEffect)
-        {
-            AudioEffect effect = AudioEffect.NoiseSuppression;
-
-            switch (nativeEffect)
-            {
-                case AudioEffectNative.NoiseSuppression:
-                    effect = AudioEffect.NoiseSuppression;
-                    break;
-                case AudioEffectNative.AutoGainControl:
-                    effect = AudioEffect.AutoGainControl;
-                    break;
-                case AudioEffectNative.All:
-                    effect = AudioEffect.NoiseSuppression | AudioEffect.AutoGainControl;
-                    break;
-                default:
-                    break;
-            }
-
-            return effect;
-        }
-
-        internal static AudioEffectWithReference ToPublic(this AudioEffectNativeWithReference nativeEffect)
-        {
-            AudioEffectWithReference effect = AudioEffectWithReference.ReferenceCopy;
-
-            switch (nativeEffect)
-            {
-                case AudioEffectNativeWithReference.ReferenceCopy:
-                    effect = AudioEffectWithReference.ReferenceCopy;
-                    break;
-                case AudioEffectNativeWithReference.AecSpeex:
-                    effect = AudioEffectWithReference.AecSpeex;
-                    break;
-                case AudioEffectNativeWithReference.AecWebrtc:
-                    effect = AudioEffectWithReference.AecWebrtc;
-                    break;
-                default:
-                    break;
-            }
-
-            return effect;
         }
     }
 }
