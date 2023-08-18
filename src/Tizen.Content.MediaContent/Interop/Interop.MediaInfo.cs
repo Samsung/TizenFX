@@ -33,7 +33,7 @@ internal static partial class Interop
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_insert_batch_to_db")]
         internal static extern MediaContentError BatchInsert(string[] filePathArray, int arrayLength,
-            InsertCompletedCallback callback, IntPtr userData = default(IntPtr));
+            InsertCompletedCallback callback, IntPtr userData = default);
 
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_destroy")]
@@ -44,28 +44,28 @@ internal static partial class Interop
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_foreach_media_from_db")]
         internal static extern MediaContentError ForeachMedia(FilterHandle filter, Common.ItemCallback callback,
-            IntPtr userData = default(IntPtr));
+            IntPtr userData = default);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_tag_count_from_db")]
         internal static extern MediaContentError GetTagCount(string mediaId, FilterHandle filter, out int tagCount);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_foreach_tag_from_db")]
         internal static extern MediaContentError ForeachTags(string mediaId, FilterHandle filter,
-            Common.ItemCallback callback, IntPtr userData = default(IntPtr));
+            Common.ItemCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_bookmark_count_from_db")]
         internal static extern MediaContentError GetBookmarkCount(string mediaId, FilterHandle filter, out int bookmarkCount);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_foreach_bookmark_from_db")]
         internal static extern MediaContentError ForeachBookmarks(string mediaId, FilterHandle filter,
-            Common.ItemCallback callback, IntPtr userData = default(IntPtr));
+            Common.ItemCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_face_count_from_db")]
-        internal static extern MediaContentError GetFaceCount(string mediaId, FilterHandle filter, out int bookmarkCount);
+        internal static extern MediaContentError GetFaceCount(string mediaId, FilterHandle filter, out int bookmarkCount); // Deprecated
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_foreach_face_from_db")]
-        internal static extern MediaContentError ForeachFaces(string mediaId, FilterHandle filter,
-            Common.ItemCallback callback, IntPtr userData = default(IntPtr));
+        internal static extern MediaContentError ForeachFaces(string mediaId, FilterHandle filter, // Deprecated
+            Common.ItemCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_image")]
         internal static extern MediaContentError GetImage(MediaInfoHandle handle, out IntPtr imageHandle);
@@ -149,11 +149,11 @@ internal static partial class Interop
         internal static extern MediaContentError GenerateThumbnail(MediaInfoHandle handle);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_start_face_detection")]
-        internal static extern MediaContentError StartFaceDetection(MediaInfoHandle handle,
-            FaceDetectionCompletedCallback callback, IntPtr userData = default(IntPtr));
+        internal static extern MediaContentError StartFaceDetection(MediaInfoHandle handle, // Deprecated
+            FaceDetectionCompletedCallback callback, IntPtr userData = default);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_cancel_face_detection")]
-        internal static extern MediaContentError CancelFaceDetection(MediaInfoHandle handle);
+        internal static extern MediaContentError CancelFaceDetection(MediaInfoHandle handle); // Deprecated
     }
 
     internal sealed class MediaInfoHandle : SafeHandle

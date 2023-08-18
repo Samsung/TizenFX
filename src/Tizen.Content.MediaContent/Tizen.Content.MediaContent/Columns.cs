@@ -614,6 +614,7 @@ namespace Tizen.Content.MediaContent
     /// <seealso cref="MediaInfoCommand.CountFaceInfo(string, CountArguments)"/>
     /// <seealso cref="MediaInfoCommand.SelectFaceInfo(string, SelectArguments)"/>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API11; Will be removed in API13.")]
     public static class FaceInfoColumns
     {
         /// <summary>
@@ -625,6 +626,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="FaceInfo.Tag"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API11; Will be removed in API13.")]
         public static string Tag => "MEDIA_FACE_TAG";
 
         /// <summary>
@@ -636,6 +638,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="FaceInfo.Id"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API11; Will be removed in API13.")]
         public static string Id => "MEDIA_FACE_ID";
     }
 }
