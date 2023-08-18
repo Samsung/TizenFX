@@ -308,7 +308,7 @@ namespace Tizen.NUI.BaseComponents
                 var view = (View)bindable;
 
                 // Sync as current properties
-                view?.UpdateBackgroundExtraData();
+                view.UpdateBackgroundExtraData();
 
                 PropertyMap tmp = new PropertyMap();
                 var propertyValue = Object.GetProperty(view.SwigCPtr, Property.BACKGROUND);
@@ -1889,7 +1889,7 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
 
             // Sync as current properties
-            view?.UpdateBackgroundExtraData();
+            view.UpdateBackgroundExtraData();
 
             PropertyMap map = new PropertyMap();
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SHADOW).Get(map);
@@ -1923,7 +1923,7 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
 
             // Sync as current properties
-            view?.UpdateBackgroundExtraData();
+            view.UpdateBackgroundExtraData();
 
             PropertyMap map = new PropertyMap();
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SHADOW).Get(map);
