@@ -34,7 +34,7 @@ namespace Tizen.NUI
         private event EventHandler<AuthenticationEventArgs> authenticationEventHandler;
         private event EventHandler<ListEventArgs> listEventHandler;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void AuthenticationEventCallbackType(IntPtr autofillContainer);
         private delegate void ListEventCallbackType(IntPtr control);
 

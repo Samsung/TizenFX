@@ -1175,7 +1175,7 @@ namespace Tizen.NUI.BaseComponents
             NUILog.Debug($"<[{GetId()}] onVisualEventSignal()! visualIndex={visualIndex}, signalId={signalId}>");
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void VisualEventSignalCallbackType(IntPtr targetView, int visualIndex, int signalId);
 
         private VisualEventSignalCallbackType visualEventSignalCallback;
@@ -1397,12 +1397,9 @@ namespace Tizen.NUI.BaseComponents
 
         public bool Equals(LottieAnimationViewDynamicProperty other)
         {
-            if (other != null)
+            if (KeyPath == other.KeyPath && Property == other.Property && Callback == other.Callback)
             {
-                if (KeyPath == other.KeyPath && Property == other.Property && Callback == other.Callback)
-                {
-                    return true;
-                }
+                return true;
             }
             return false;
         }

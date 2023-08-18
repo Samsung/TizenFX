@@ -29,11 +29,11 @@ namespace Tizen.NUI
         private EventCallbackDelegateType1 windowKeyCallbackDelegate;
         private WindowResizedEventCallbackType windowResizedEventCallback;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void FocusChangedEventCallbackType(IntPtr window, bool focusGained);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool GLWindowTouchDataCallbackType(IntPtr touchData);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WindowResizedEventCallbackType(IntPtr windowSize);
 
         /// <summary>
@@ -393,7 +393,7 @@ namespace Tizen.NUI
             }
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void GLVisibilityChangedEventCallbackType(IntPtr window, bool visibility);
         private GLVisibilityChangedEventCallbackType glVisibilityChangedEventCallback;
         private event EventHandler<VisibilityChangedEventArgs> visibilityChangedEventHandler;

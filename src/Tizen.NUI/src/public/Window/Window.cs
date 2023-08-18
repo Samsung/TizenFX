@@ -1761,6 +1761,70 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Sets the pointer constraints lock.
+        /// </summary>
+        /// <returns>True if PointerConstraintsLock succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool PointerConstraintsLock()
+        {
+            bool ret = Interop.Window.PointerConstraintsLock(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Sets the pointer constraints unlock.
+        /// </summary>
+        /// <returns>True if PointerConstraintsUnlock succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool PointerConstraintsUnlock()
+        {
+            bool ret = Interop.Window.PointerConstraintsUnlock(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Sets the locked pointer region.
+        /// </summary>
+        /// <param name="x">The x position.</param>
+        /// <param name="y">The y position.</param>
+        /// <param name="width">The width.</param>
+        /// <param name="height">The height.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void LockedPointerRegionSet(int x, int y, int width, int height)
+        {
+            Interop.Window.LockedPointerRegionSet(SwigCPtr, x, y, width, height);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Sets the locked pointer cursor position hintset
+        /// </summary>
+        /// <param name="x">The x position.</param>
+        /// <param name="y">The y position.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void LockedPointerCursorPositionHintSet(int x, int y)
+        {
+            Interop.Window.LockedPointerCursorPositionHintSet(SwigCPtr, x, y);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Sets the pointer warp. The pointer moves to the set coordinates.
+        /// </summary>
+        /// <param name="x">The x position.</param>
+        /// <param name="y">The y position.</param>
+        /// <returns>True if PointerWarp succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool PointerWarp(int x, int y)
+        {
+            bool ret = Interop.Window.PointerWarp(SwigCPtr, x, y);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Maximizes window's size.
         /// If this function is called with true, window will be resized with screen size.
         /// Otherwise window will be resized with previous size.

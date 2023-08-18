@@ -68,7 +68,7 @@ namespace Tizen.NUI
         private EventHandler<ClipboardEventArgs> clipboardDataReceivedEventHandler;
         private ClipboardDataReceivedCallback clipboardDataReceivedCallback;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void ClipboardDataReceivedCallback(uint id, string mimeType, string data);
 
         private event EventHandler<ClipboardEventArgs> ClipboardDataReceived

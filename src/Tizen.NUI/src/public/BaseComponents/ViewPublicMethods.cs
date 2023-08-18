@@ -617,7 +617,7 @@ namespace Tizen.NUI.BaseComponents
             IntPtr cPtr = Interop.Actor.GetRendererAt(SwigCPtr, index);
             HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             Renderer ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as Renderer;
-            if (cPtr != null && ret == null)
+            if (cPtr != IntPtr.Zero && ret == null)
             {
                 ret = new Renderer(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)

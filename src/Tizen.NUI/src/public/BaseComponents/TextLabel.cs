@@ -84,6 +84,9 @@ namespace Tizen.NUI.BaseComponents
 
         static TextLabel() { }
 
+        private static SystemFontTypeChanged systemFontTypeChanged = new SystemFontTypeChanged();
+        private static SystemFontSizeChanged systemFontSizeChanged = new SystemFontSizeChanged();
+        private static SystemLocaleLanguageChanged systemLocaleLanguageChanged = new SystemLocaleLanguageChanged();
         static private string defaultStyleName = "Tizen.NUI.BaseComponents.TextLabel";
         static private string defaultFontFamily = "BreezeSans";
         private string textLabelSid = null;
@@ -216,7 +219,7 @@ namespace Tizen.NUI.BaseComponents
                     Text = translatableText;
                     if (hasSystemLanguageChanged == false)
                     {
-                        SystemSettings.LocaleLanguageChanged += SystemSettingsLocaleLanguageChanged;
+                        systemLocaleLanguageChanged.Add(SystemSettingsLocaleLanguageChanged);
                         hasSystemLanguageChanged = true;
                     }
                 }
@@ -1566,7 +1569,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (hasSystemLanguageChanged)
             {
-                SystemSettings.LocaleLanguageChanged -= SystemSettingsLocaleLanguageChanged;
+                systemLocaleLanguageChanged.Remove(SystemSettingsLocaleLanguageChanged);
             }
 
             RemoveSystemSettingsFontTypeChanged();
@@ -1637,7 +1640,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 try
                 {
-                    SystemSettings.FontSizeChanged += SystemSettingsFontSizeChanged;
+                    systemFontSizeChanged.Add(SystemSettingsFontSizeChanged);
                     hasSystemFontSizeChanged = true;
                 }
                 catch (Exception e)
@@ -1654,7 +1657,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 try
                 {
-                    SystemSettings.FontSizeChanged -= SystemSettingsFontSizeChanged;
+                    systemFontSizeChanged.Remove(SystemSettingsFontSizeChanged);
                     hasSystemFontSizeChanged = false;
                 }
                 catch (Exception e)
@@ -1676,7 +1679,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 try
                 {
-                    SystemSettings.FontTypeChanged += SystemSettingsFontTypeChanged;
+                    systemFontTypeChanged.Add(SystemSettingsFontTypeChanged);
                     hasSystemFontTypeChanged = true;
                 }
                 catch (Exception e)
@@ -1693,7 +1696,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 try
                 {
-                    SystemSettings.FontTypeChanged -= SystemSettingsFontTypeChanged;
+                    systemFontTypeChanged.Remove(SystemSettingsFontTypeChanged);
                     hasSystemFontTypeChanged = false;
                 }
                 catch (Exception e)
