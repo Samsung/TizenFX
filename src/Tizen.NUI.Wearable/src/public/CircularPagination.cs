@@ -694,7 +694,8 @@ namespace Tizen.NUI.Wearable
         private void UpdateVisual()
         {
             if (null == circularPaginationStyle.IndicatorSize) return;
-            if (null == circularPaginationStyle.IndicatorImageURL) return;
+            var indicatorImageURL = circularPaginationStyle.IndicatorImageURL;
+            if (null == indicatorImageURL) return;
             if (indicatorCount <= 0) return;
 
             for (int i = 0; i < indicatorList.Count; i++)
@@ -713,7 +714,7 @@ namespace Tizen.NUI.Wearable
                     }
                     else
                     {
-                        indicator.URL = circularPaginationStyle.IndicatorImageURL.Selected;
+                        indicator.URL = indicatorImageURL.Selected;
                     }
                     indicator.Opacity = 1.0f;
                 }
@@ -726,7 +727,7 @@ namespace Tizen.NUI.Wearable
                     }
                     else
                     {
-                        indicator.URL = circularPaginationStyle.IndicatorImageURL.Normal;
+                        indicator.URL = indicatorImageURL.Normal;
                     }
                     indicator.Opacity = 0.5f;
                 }
@@ -753,7 +754,8 @@ namespace Tizen.NUI.Wearable
         private void UpdateAsymmetry()
         {
             if (null == circularPaginationStyle.IndicatorSize) return;
-            if (null == circularPaginationStyle.IndicatorImageURL) return;
+            var indicatorImageURL = circularPaginationStyle.IndicatorImageURL;
+            if (null == indicatorImageURL) return;
 
             int listCount = indicatorList.Count;
 
@@ -778,7 +780,7 @@ namespace Tizen.NUI.Wearable
                 }
                 else
                 {
-                    newOne.URL = circularPaginationStyle.IndicatorImageURL.Normal;
+                    newOne.URL = indicatorImageURL.Normal;
                 }
                 newOne.Opacity = 0.5f;
                 container.AddVisual("Indicator" + i, newOne);
@@ -798,7 +800,7 @@ namespace Tizen.NUI.Wearable
             }
             else
             {
-                indicatorList[selectedIndex].URL = circularPaginationStyle.IndicatorImageURL.Selected;
+                indicatorList[selectedIndex].URL = indicatorImageURL.Selected;
                 indicatorList[selectedIndex].Opacity = 1.0f;
             }
         }
