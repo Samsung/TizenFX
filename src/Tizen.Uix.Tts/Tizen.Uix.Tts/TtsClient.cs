@@ -231,7 +231,7 @@ namespace Tizen.Uix.Tts
     };
 
     /// <summary>
-    /// Enumeration for the playing mode of TTS.
+    /// Enumeration for the playing modes of TTS.
     /// </summary>
     /// <since_tizen> 11 </since_tizen>
     public enum PlayingMode
@@ -248,7 +248,7 @@ namespace Tizen.Uix.Tts
     };
 
     /// <summary>
-    /// Enumeration for the audio type.
+    /// Enumeration for the audio types.
     /// </summary>
     /// <since_tizen> 11 </since_tizen>
     public enum AudioType
@@ -265,28 +265,28 @@ namespace Tizen.Uix.Tts
     };
 
     /// <summary>
-    /// Enumeration for the synthesized pcm event.
+    /// Enumeration for the synthesized PCM events.
     /// </summary>
     /// <since_tizen> 11 </since_tizen>
     public enum SynthesizedPcmEvent
     {
         /// <summary>
-        /// Event when the synthesized PCM is failed.
+        /// The PCM synthesis failed.
         /// </summary>
         Fail = -1,
 
         /// <summary>
-        /// Event when the synthesized PCM is received at first.
+        /// Received initial synthesized PCM data for an utterance.
         /// </summary>
         Start = 1,
 
         /// <summary>
-        /// Event when the synthesized PCM is received, not first and not last.
+        /// Received synthesized PCM data, not the first and last in the stream.
         /// </summary>
         Continue = 2,
 
         /// <summary>
-        /// Event when the synthesized PCM is received finally.
+        /// Received the final synthesized PCM data.
         /// </summary>
         Finish = 3
     };
@@ -729,7 +729,7 @@ namespace Tizen.Uix.Tts
         }
 
         /// <summary>
-        /// Event to be invoked when the synthesized pcm data is come from the engine.
+        /// Event to be invoked when the synthesized pcm data comes from the engine.
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
         public event EventHandler<SynthesizedPcmEventArgs> SynthesizedPcm
@@ -974,7 +974,7 @@ namespace Tizen.Uix.Tts
         /// <pre>
         /// The Client must be in the <see cref="State.Created"/> state.
         /// </pre>
-        public PlayingMode CurrentPlayingMode
+        public PlayingMode PlayingMode
         {
             set
             {
