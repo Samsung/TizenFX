@@ -335,6 +335,7 @@ namespace Tizen.System
         /// </summary>
         /// <remarks>
         /// Now this internal API works for FeedbackType.Sound only, FeedbackType.Vibration is not supported.
+        /// To get the counf of theme for Sound type, the application should have http://tizen.org/privilege/internal/default/public privilege.
         /// </remarks>
         /// <since_tizen> 10 </since_tizen>
         /// <param name="type">The feedback type.</param>
@@ -342,6 +343,7 @@ namespace Tizen.System
         /// <exception cref="Exception">Thrown when failed because the feedback is not initialized.</exception>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid arguament.</exception>
         /// <exception cref="NotSupportedException">Thrown when failed becuase the device (haptic, sound) is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when failed because the access is not granted(No privilege)</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of a system error.</exception>
         /// <example>
         /// <code>
@@ -368,6 +370,8 @@ namespace Tizen.System
                         throw new ArgumentException("Invalid Arguments");
                     case Interop.Feedback.FeedbackError.NotSupported:
                         throw new NotSupportedException("Device is not supported");
+                    case Interop.Feedback.FeedbackError.PermissionDenied:
+                        throw new UnauthorizedAccessException("Access is not granted");
                     case Interop.Feedback.FeedbackError.OperationFailed:
                     default:
                         throw new InvalidOperationException("Failed to get count of theme internal");
@@ -381,12 +385,14 @@ namespace Tizen.System
         /// </summary>
         /// <remarks>
         /// Now this internal API works for FeedbackType.Sound only, FeedbackType.Vibration is not supported.
+        /// To get the index of theme for Sound type, the application should have http://tizen.org/privilege/internal/default/public privilege.
         /// </remarks>
         /// <since_tizen> 10 </since_tizen>
         /// <param name="type">The feedback type.</param>
         /// <returns>The index of theme selected as default theme according to feedback type.</returns>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid arguament.</exception>
         /// <exception cref="NotSupportedException">Thrown when failed becuase the device (haptic, sound) is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when failed because the access is not granted (No privilege).</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of a system error.</exception>
         /// <example>
         /// <code>
@@ -411,6 +417,8 @@ namespace Tizen.System
                         throw new ArgumentException("Invalid Arguments");
                     case Interop.Feedback.FeedbackError.NotSupported:
                         throw new NotSupportedException("Device is not supported");
+                    case Interop.Feedback.FeedbackError.PermissionDenied:
+                        throw new UnauthorizedAccessException("Access is not granted");
                     case Interop.Feedback.FeedbackError.OperationFailed:
                     default:
                         throw new InvalidOperationException("Failed to get index of theme internal");
@@ -424,12 +432,14 @@ namespace Tizen.System
         /// </summary>
         /// <remarks>
         /// Now this internal API works for FeedbackType.Sound only, FeedbackType.Vibration is not supported.
+        /// To set the index of theme for Sound type, the application should have http://tizen.org/privilege/systemsettings.admin privilege.
         /// </remarks>
         /// <since_tizen> 10 </since_tizen>
         /// <param name="type">The feedback type.</param>
         /// <param name="indexOfTheme">The index of theme will be set.</param>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid arguament.</exception>
         /// <exception cref="NotSupportedException">Thrown when failed becuase the device (haptic, sound) is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when failed because the access is not granted(No privilege)</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of a system error.</exception>
         /// <example>
         /// <code>
@@ -454,6 +464,8 @@ namespace Tizen.System
                         throw new ArgumentException("Invalid Arguments");
                     case Interop.Feedback.FeedbackError.NotSupported:
                         throw new NotSupportedException("Device is not supported");
+                    case Interop.Feedback.FeedbackError.PermissionDenied:
+                        throw new UnauthorizedAccessException("Access is not granted");
                     case Interop.Feedback.FeedbackError.OperationFailed:
                     default:
                         throw new InvalidOperationException("Failed to set index of theme internal");
