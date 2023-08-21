@@ -98,6 +98,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_New_WithWindowData")]
             public static extern global::System.IntPtr New(int argc, string argv, string styleSheet, bool uiThread, global::System.Runtime.InteropServices.HandleRef windowData);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_FlushUpdateMessages")]
+            public static extern void FlushUpdateMessages(global::System.Runtime.InteropServices.HandleRef jarg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetScreenSize")]
             public static extern global::System.IntPtr GetScreenSize();
         }

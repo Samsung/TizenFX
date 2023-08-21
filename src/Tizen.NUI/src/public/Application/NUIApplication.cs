@@ -469,6 +469,20 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Flush render/update thread messages synchronously.
+        /// </summary>
+        /// <remarks>
+        /// This function will relayout forcibily.
+        /// This function is used for advanced developer. It will make main-thread overhead if you call this function frequencely.
+        /// </remarks>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void FlushUpdateMessages()
+        {
+            ApplicationHandle.FlushUpdateMessages();
+        }
+
+        /// <summary>
         /// Sets the number of frames per render.
         /// </summary>
         /// <param name="numberOfVSyncsPerRender">The number of vsyncs between successive renders.</param>
