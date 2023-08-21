@@ -49,7 +49,8 @@ namespace Tizen.NUI
 
             Directory.CreateDirectory(logFolderPath);
 
-            var id = Process.GetCurrentProcess().Id;
+            using var process = Process.GetCurrentProcess();
+            var id = process.Id;
             filePath = logFolderPath + id.ToString();
             file = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.ReadWrite);
         }

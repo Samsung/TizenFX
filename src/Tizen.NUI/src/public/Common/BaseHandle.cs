@@ -336,15 +336,16 @@ namespace Tizen.NUI
                 //Throw exception if Dispose() is called in separate thread.
                 if (!Window.IsInstalled())
                 {
-                    var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
+                    using var process = global::System.Diagnostics.Process.GetCurrentProcess();
+                    var processId = process.Id;
                     var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
                     var me = this.GetType().FullName;
 
                     DebugFileLogging.Instance.WriteLog("[NUI][BaseHandle] This API called from separate thread. This API must be called from MainThread. \n" +
-                        $" process:{process} thread:{thread}, disposing:{disposing}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
+                        $" process:{processId} thread:{thread}, disposing:{disposing}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
 
                     Tizen.Log.Fatal("NUI", $"[NUI][BaseHandle] This API called from separate thread. This API must be called from MainThread. \n" +
-                        $" process:{process} thread:{thread}, disposing:{disposing}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
+                        $" process:{processId} thread:{thread}, disposing:{disposing}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
 
                     //to fix ArtApp black screen issue. this will be enabled after talking with ArtApp team and fixing it.
                     // throw new global::System.InvalidOperationException("[NUI][BaseHandle] This API called from separate thread. This API must be called from MainThread. \n" +
@@ -602,13 +603,14 @@ namespace Tizen.NUI
             {
                 if (swigCPtr.Handle == IntPtr.Zero)
                 {
-                    var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
+                    using var process = global::System.Diagnostics.Process.GetCurrentProcess();
+                    var processId = process.Id;
                     var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
                     var me = this.GetType().FullName;
 
                     Tizen.Log.Fatal("NUI", $"SwigCPtr Error! NUI's native dali object is already disposed. " +
                         $"OR the native dali object handle of NUI becomes null! \n" +
-                        $" process:{process} thread:{thread}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
+                        $" process:{processId} thread:{thread}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
 
                     Tizen.Log.Fatal("NUI", $"[ERROR] back trace!");
                     global::System.Diagnostics.StackTrace st = new global::System.Diagnostics.StackTrace(true);
