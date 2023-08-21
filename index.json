@@ -25849,6 +25849,11 @@
     "title": "Namespace Tizen.NUI.WindowSystem.Shell",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.WindowSystem.Shell.KVMService.html": {
+    "href": "API11/api/Tizen.NUI.WindowSystem.Shell.KVMService.html",
+    "title": "Class KVMService",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.WindowSystem.Shell.QuickPanelClient.html": {
     "href": "API11/api/Tizen.NUI.WindowSystem.Shell.QuickPanelClient.html",
     "title": "Class QuickPanelClient",
