@@ -76,6 +76,11 @@ namespace Tizen.NUI.Samples
                 string exceptionMessage = "Unknown!";
                 try
                 {
+                    // Hard coding to set NUIApplication into IExample
+                    if(name == "Tizen.NUI.Samples.FlushApplicationMessageSample")
+                    {
+                        (example as FlushApplicationMessageSample)?.SetCurrentApplication(this);
+                    }
                     example.Activate();
                 }
                 catch (Exception e)

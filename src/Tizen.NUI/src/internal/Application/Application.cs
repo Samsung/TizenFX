@@ -1845,6 +1845,12 @@ namespace Tizen.NUI
             return ret;
         }
 
+        public void FlushUpdateMessages()
+        {
+            Interop.Application.FlushUpdateMessages(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static List<Window> GetWindowList()
         {
