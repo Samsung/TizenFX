@@ -1120,6 +1120,62 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Sets the keyboard repeat information of horizontal way.
+        /// </summary>
+        /// <param name="rate">The key repeat rate value in seconds.</param>
+        /// <param name="delay">The key repeat delay value in seconds.</param>
+        /// <returns>True if setting the keyboard repeat succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool SetKeyboardHorizentalRepeatInfo(float rate, float delay)
+        {
+            bool ret = Interop.Window.SetKeyboardHorizentalRepeatInfo(rate, delay);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets the keyboard repeat information of horizontal way.
+        /// </summary>
+        /// <param name="rate">The key repeat rate value in seconds.</param>
+        /// <param name="delay">The key repeat delay value in seconds.</param>
+        /// <returns>True if setting the keyboard repeat succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool GetKeyboardHorizentalRepeatInfo(out float rate, out float delay)
+        {
+            bool ret = Interop.Window.GetKeyboardHorizentalRepeatInfo(out rate, out delay);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Sets the keyboard repeat information of vertical way.
+        /// </summary>
+        /// <param name="rate">The key repeat rate value in seconds.</param>
+        /// <param name="delay">The key repeat delay value in seconds.</param>
+        /// <returns>True if setting the keyboard repeat succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool SetKeyboardVerticalRepeatInfo(float rate, float delay)
+        {
+            bool ret = Interop.Window.SetKeyboardVerticalRepeatInfo(rate, delay);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets the keyboard repeat information of vertical way.
+        /// </summary>
+        /// <param name="rate">The key repeat rate value in seconds.</param>
+        /// <param name="delay">The key repeat delay value in seconds.</param>
+        /// <returns>True if setting the keyboard repeat succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool GetKeyboardVerticalRepeatInfo(out float rate, out float delay)
+        {
+            bool ret = Interop.Window.GetKeyboardVerticalRepeatInfo(out rate, out delay);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Adds a layer to the stage.
         /// </summary>
         /// <param name="layer">Layer to add.</param>
