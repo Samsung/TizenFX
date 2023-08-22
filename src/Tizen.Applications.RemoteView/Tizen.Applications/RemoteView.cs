@@ -124,31 +124,34 @@ namespace Tizen.Applications
 
         internal static void CheckException(Interop.WidgetViewerEvas.ErrorCode err)
         {
-            switch (err)
+            if (err != Interop.WidgetViewerEvas.ErrorCode.None)
             {
-                case Interop.WidgetViewerEvas.ErrorCode.Fault:
-                    throw new InvalidOperationException("Fault at unmanaged code");
+                switch (err)
+                {
+                    case Interop.WidgetViewerEvas.ErrorCode.Fault:
+                        throw new InvalidOperationException("Fault at unmanaged code");
 
-                case Interop.WidgetViewerEvas.ErrorCode.PermissionDenied:
-                    throw new UnauthorizedAccessException();
+                    case Interop.WidgetViewerEvas.ErrorCode.PermissionDenied:
+                        throw new UnauthorizedAccessException();
 
-                case Interop.WidgetViewerEvas.ErrorCode.NotSupported:
-                    throw new NotSupportedException();
+                    case Interop.WidgetViewerEvas.ErrorCode.NotSupported:
+                        throw new NotSupportedException();
 
-                case Interop.WidgetViewerEvas.ErrorCode.InvalidParameter:
-                    throw new InvalidOperationException("Invalid parameter error at unmanaged code");
+                    case Interop.WidgetViewerEvas.ErrorCode.InvalidParameter:
+                        throw new InvalidOperationException("Invalid parameter error at unmanaged code");
 
-                case Interop.WidgetViewerEvas.ErrorCode.AlreadyExist:
-                    throw new InvalidOperationException("Already exist");
+                    case Interop.WidgetViewerEvas.ErrorCode.AlreadyExist:
+                        throw new InvalidOperationException("Already exist");
 
-                case Interop.WidgetViewerEvas.ErrorCode.MaxExceeded:
-                    throw new InvalidOperationException("Max exceeded");
+                    case Interop.WidgetViewerEvas.ErrorCode.MaxExceeded:
+                        throw new InvalidOperationException("Max exceeded");
 
-                case Interop.WidgetViewerEvas.ErrorCode.Disabled:
-                    throw new InvalidOperationException("Disabled");
+                    case Interop.WidgetViewerEvas.ErrorCode.Disabled:
+                        throw new InvalidOperationException("Disabled");
 
-                default:
-                    throw new InvalidOperationException("Invalid Operation");
+                    default:
+                        throw new InvalidOperationException("Invalid Operation");
+                }
             }
         }
 
