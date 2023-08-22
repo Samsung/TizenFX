@@ -132,9 +132,9 @@
     </member>
     <member name="P:System.Runtime.Serialization.DataMemberAttribute.IsRequired">
       <summary>Gets or sets a value that instructs the serialization engine that the member must be present when reading or deserializing.</summary>
+      <exception cref="T:System.Runtime.Serialization.SerializationException">the member is not present.</exception>
       <returns>
         <see langword="true" />, if the member is required; otherwise, <see langword="false" />.</returns>
-      <exception cref="T:System.Runtime.Serialization.SerializationException">the member is not present.</exception>
     </member>
     <member name="P:System.Runtime.Serialization.DataMemberAttribute.Name">
       <summary>Gets or sets a data member name.</summary>

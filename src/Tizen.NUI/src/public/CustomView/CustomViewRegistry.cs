@@ -211,13 +211,13 @@ namespace Tizen.NUI
             propertyRangeManager = new PropertyRangeManager();
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate IntPtr CreateControlDelegate(IntPtr cPtrControlName);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate IntPtr GetPropertyDelegate(IntPtr controlPtr, IntPtr propertyName);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void SetPropertyDelegate(IntPtr controlPtr, IntPtr propertyName, IntPtr propertyValue);
 
         /// <since_tizen> 3 </since_tizen>

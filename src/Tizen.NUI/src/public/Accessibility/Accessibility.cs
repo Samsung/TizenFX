@@ -315,7 +315,7 @@ namespace Tizen.NUI.Accessibility
 
         #region Private
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void SayFinishedEventCallbackType(int result);
 
         private static SayFinishedEventCallbackType callback = SayFinishedEventCallback;

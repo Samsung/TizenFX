@@ -7,16 +7,14 @@
     <member name="T:System.Runtime.Serialization.Formatter">
       <summary>Provides base functionality for the common language runtime serialization formatters.</summary>
     </member>
+    <member name="F:System.Runtime.Serialization.Formatter.m_idGenerator">
+      <summary>Contains the <see cref="T:System.Runtime.Serialization.ObjectIDGenerator" /> used with the current formatter.</summary>
+    </member>
+    <member name="F:System.Runtime.Serialization.Formatter.m_objectQueue">
+      <summary>Contains a <see cref="T:System.Collections.Queue" /> of the objects left to serialize.</summary>
+    </member>
     <member name="M:System.Runtime.Serialization.Formatter.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Runtime.Serialization.Formatter" /> class.</summary>
-    </member>
-    <member name="P:System.Runtime.Serialization.Formatter.Binder">
-      <summary>When overridden in a derived class, gets or sets the <see cref="T:System.Runtime.Serialization.SerializationBinder" /> used with the current formatter.</summary>
-      <returns>The <see cref="T:System.Runtime.Serialization.SerializationBinder" /> used with the current formatter.</returns>
-    </member>
-    <member name="P:System.Runtime.Serialization.Formatter.Context">
-      <summary>When overridden in a derived class, gets or sets the <see cref="T:System.Runtime.Serialization.StreamingContext" /> used for the current serialization.</summary>
-      <returns>The <see cref="T:System.Runtime.Serialization.StreamingContext" /> used for the current serialization.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.Formatter.Deserialize(System.IO.Stream)">
       <summary>When overridden in a derived class, deserializes the stream attached to the formatter when it was created, creating a graph of objects identical to the graph originally serialized into that stream.</summary>
@@ -26,14 +24,8 @@
     <member name="M:System.Runtime.Serialization.Formatter.GetNext(System.Int64@)">
       <summary>Returns the next object to serialize, from the formatter's internal work queue.</summary>
       <param name="objID">The ID assigned to the current object during serialization.</param>
-      <returns>The next object to serialize.</returns>
       <exception cref="T:System.Runtime.Serialization.SerializationException">The next object retrieved from the work queue did not have an assigned ID.</exception>
-    </member>
-    <member name="F:System.Runtime.Serialization.Formatter.m_idGenerator">
-      <summary>Contains the <see cref="T:System.Runtime.Serialization.ObjectIDGenerator" /> used with the current formatter.</summary>
-    </member>
-    <member name="F:System.Runtime.Serialization.Formatter.m_objectQueue">
-      <summary>Contains a <see cref="T:System.Collections.Queue" /> of the objects left to serialize.</summary>
+      <returns>The next object to serialize.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.Formatter.Schedule(System.Object)">
       <summary>Schedules an object for later serialization.</summary>
@@ -44,10 +36,6 @@
       <summary>When overridden in a derived class, serializes the graph of objects with the specified root to the stream already attached to the formatter.</summary>
       <param name="serializationStream">The stream to which the objects are serialized.</param>
       <param name="graph">The object at the root of the graph to serialize.</param>
-    </member>
-    <member name="P:System.Runtime.Serialization.Formatter.SurrogateSelector">
-      <summary>When overridden in a derived class, gets or sets the <see cref="T:System.Runtime.Serialization.ISurrogateSelector" /> used with the current formatter.</summary>
-      <returns>The <see cref="T:System.Runtime.Serialization.ISurrogateSelector" /> used with the current formatter.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.Formatter.WriteArray(System.Object,System.String,System.Type)">
       <summary>When overridden in a derived class, writes an array to the stream already attached to the formatter.</summary>
@@ -147,6 +135,18 @@
       <param name="name">The name of the member.</param>
       <param name="memberType">The <see cref="T:System.Type" /> of the value type.</param>
     </member>
+    <member name="P:System.Runtime.Serialization.Formatter.Binder">
+      <summary>When overridden in a derived class, gets or sets the <see cref="T:System.Runtime.Serialization.SerializationBinder" /> used with the current formatter.</summary>
+      <returns>The <see cref="T:System.Runtime.Serialization.SerializationBinder" /> used with the current formatter.</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Formatter.Context">
+      <summary>When overridden in a derived class, gets or sets the <see cref="T:System.Runtime.Serialization.StreamingContext" /> used for the current serialization.</summary>
+      <returns>The <see cref="T:System.Runtime.Serialization.StreamingContext" /> used for the current serialization.</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Formatter.SurrogateSelector">
+      <summary>When overridden in a derived class, gets or sets the <see cref="T:System.Runtime.Serialization.ISurrogateSelector" /> used with the current formatter.</summary>
+      <returns>The <see cref="T:System.Runtime.Serialization.ISurrogateSelector" /> used with the current formatter.</returns>
+    </member>
     <member name="T:System.Runtime.Serialization.FormatterConverter">
       <summary>Represents a base implementation of the <see cref="T:System.Runtime.Serialization.IFormatterConverter" /> interface that uses the <see cref="T:System.Convert" /> class and the <see cref="T:System.IConvertible" /> interface.</summary>
     </member>
@@ -157,105 +157,105 @@
       <summary>Converts a value to the given <see cref="T:System.Type" />.</summary>
       <param name="value">The object to convert.</param>
       <param name="type">The <see cref="T:System.Type" /> into which <paramref name="value" /> is converted.</param>
-      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
       <exception cref="T:System.ArgumentNullException">The <paramref name="value" /> parameter is <see langword="null" />.</exception>
+      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.FormatterConverter.Convert(System.Object,System.TypeCode)">
       <summary>Converts a value to the given <see cref="T:System.TypeCode" />.</summary>
       <param name="value">The object to convert.</param>
       <param name="typeCode">The <see cref="T:System.TypeCode" /> into which <paramref name="value" /> is converted.</param>
-      <returns>The converted <paramref name="value" />, or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
       <exception cref="T:System.ArgumentNullException">The <paramref name="value" /> parameter is <see langword="null" />.</exception>
+      <returns>The converted <paramref name="value" />, or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.FormatterConverter.ToBoolean(System.Object)">
       <summary>Converts a value to a <see cref="T:System.Boolean" />.</summary>
       <param name="value">The object to convert.</param>
-      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
       <exception cref="T:System.ArgumentNullException">The <paramref name="value" /> parameter is <see langword="null" />.</exception>
+      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.FormatterConverter.ToByte(System.Object)">
       <summary>Converts a value to an 8-bit unsigned integer.</summary>
       <param name="value">The object to convert.</param>
-      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
       <exception cref="T:System.ArgumentNullException">The <paramref name="value" /> parameter is <see langword="null" />.</exception>
+      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.FormatterConverter.ToChar(System.Object)">
       <summary>Converts a value to a Unicode character.</summary>
       <param name="value">The object to convert.</param>
-      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
       <exception cref="T:System.ArgumentNullException">The <paramref name="value" /> parameter is <see langword="null" />.</exception>
+      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.FormatterConverter.ToDateTime(System.Object)">
       <summary>Converts a value to a <see cref="T:System.DateTime" />.</summary>
       <param name="value">The object to convert.</param>
-      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
       <exception cref="T:System.ArgumentNullException">The <paramref name="value" /> parameter is <see langword="null" />.</exception>
+      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.FormatterConverter.ToDecimal(System.Object)">
       <summary>Converts a value to a <see cref="T:System.Decimal" />.</summary>
       <param name="value">The object to convert.</param>
-      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
       <exception cref="T:System.ArgumentNullException">The <paramref name="value" /> parameter is <see langword="null" />.</exception>
+      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.FormatterConverter.ToDouble(System.Object)">
       <summary>Converts a value to a double-precision floating-point number.</summary>
       <param name="value">The object to convert.</param>
-      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
       <exception cref="T:System.ArgumentNullException">The <paramref name="value" /> parameter is <see langword="null" />.</exception>
+      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.FormatterConverter.ToInt16(System.Object)">
       <summary>Converts a value to a 16-bit signed integer.</summary>
       <param name="value">The object to convert.</param>
-      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
       <exception cref="T:System.ArgumentNullException">The <paramref name="value" /> parameter is <see langword="null" />.</exception>
+      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.FormatterConverter.ToInt32(System.Object)">
       <summary>Converts a value to a 32-bit signed integer.</summary>
       <param name="value">The object to convert.</param>
-      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
       <exception cref="T:System.ArgumentNullException">The <paramref name="value" /> parameter is <see langword="null" />.</exception>
+      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.FormatterConverter.ToInt64(System.Object)">
       <summary>Converts a value to a 64-bit signed integer.</summary>
       <param name="value">The object to convert.</param>
-      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
       <exception cref="T:System.ArgumentNullException">The <paramref name="value" /> parameter is <see langword="null" />.</exception>
+      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.FormatterConverter.ToSByte(System.Object)">
       <summary>Converts a value to a <see cref="T:System.SByte" />.</summary>
       <param name="value">The object to convert.</param>
-      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
       <exception cref="T:System.ArgumentNullException">The <paramref name="value" /> parameter is <see langword="null" />.</exception>
+      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.FormatterConverter.ToSingle(System.Object)">
       <summary>Converts a value to a single-precision floating-point number.</summary>
       <param name="value">The object to convert.</param>
-      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
       <exception cref="T:System.ArgumentNullException">The <paramref name="value" /> parameter is <see langword="null" />.</exception>
+      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.FormatterConverter.ToString(System.Object)">
       <summary>Converts the specified object to a <see cref="T:System.String" />.</summary>
       <param name="value">The object to convert.</param>
-      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
       <exception cref="T:System.ArgumentNullException">The <paramref name="value" /> parameter is <see langword="null" />.</exception>
+      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.FormatterConverter.ToUInt16(System.Object)">
       <summary>Converts a value to a 16-bit unsigned integer.</summary>
       <param name="value">The object to convert.</param>
-      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
       <exception cref="T:System.ArgumentNullException">The <paramref name="value" /> parameter is <see langword="null" />.</exception>
+      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.FormatterConverter.ToUInt32(System.Object)">
       <summary>Converts a value to a 32-bit unsigned integer.</summary>
       <param name="value">The object to convert.</param>
-      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
       <exception cref="T:System.ArgumentNullException">The <paramref name="value" /> parameter is <see langword="null" />.</exception>
+      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.FormatterConverter.ToUInt64(System.Object)">
       <summary>Converts a value to a 64-bit unsigned integer.</summary>
       <param name="value">The object to convert.</param>
-      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
       <exception cref="T:System.ArgumentNullException">The <paramref name="value" /> parameter is <see langword="null" />.</exception>
+      <returns>The converted <paramref name="value" /> or <see langword="null" /> if the <paramref name="type" /> parameter is <see langword="null" />.</returns>
     </member>
     <member name="T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter">
       <summary>Serializes and deserializes an object, or an entire graph of connected objects, in binary format.</summary>
@@ -268,41 +268,53 @@
       <param name="selector">The <see cref="T:System.Runtime.Serialization.ISurrogateSelector" /> to use. Can be <see langword="null" />.</param>
       <param name="context">The source and destination for the serialized data.</param>
     </member>
+    <member name="M:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.Deserialize(System.IO.Stream)">
+      <summary>Deserializes the specified stream into an object graph.</summary>
+      <param name="serializationStream">The stream from which to deserialize the object graph.</param>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="serializationStream" /> is <see langword="null" />.</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException">The <paramref name="serializationStream" /> supports seeking, but its length is 0.  
+  
+ -or-  
+  
+The input stream does not represent a well-formed <see cref="T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter" /> serialized payload.
+          
+-or-
+          
+An error occurred while deserializing an object from the input stream.
+          
+The <see langword="InnerException" /> property may contain more information about the root cause.</exception>
+      <exception cref="T:System.Security.SecurityException">The caller does not have the required permission.</exception>
+      <exception cref="T:System.NotSupportedException">ASP.NET Core 5 and later: Always thrown unless <see cref="T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter" /> functionality is re-enabled in the project file. For more information, see Resolving BinaryFormatter obsoletion and disablement errors.</exception>
+      <returns>The top (root) of the object graph.</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.Serialize(System.IO.Stream,System.Object)">
+      <summary>Serializes the object, or graph of objects with the specified top (root), to the given stream.</summary>
+      <param name="serializationStream">The stream to which the graph is to be serialized.</param>
+      <param name="graph">The object at the root of the graph to serialize.</param>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="serializationStream" /> is <see langword="null" />.  
+  
+ -or-  
+  
+ The <paramref name="graph" /> is null.</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException">An error has occurred during serialization, such as if an object in the <paramref name="graph" /> parameter is not marked as serializable.</exception>
+      <exception cref="T:System.Security.SecurityException">The caller does not have the required permission.</exception>
+      <exception cref="T:System.NotSupportedException">ASP.NET Core 5 and later: Always thrown unless <see cref="T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter" /> functionality is re-enabled in the project file. For more information, see Resolving BinaryFormatter obsoletion and disablement errors.</exception>
+    </member>
     <member name="P:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.AssemblyFormat">
       <summary>Gets or sets the behavior of the deserializer with regards to finding and loading assemblies.</summary>
       <returns>One of the <see cref="T:System.Runtime.Serialization.Formatters.FormatterAssemblyStyle" /> values that specifies the deserializer behavior.</returns>
     </member>
     <member name="P:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.Binder">
-      <summary>Gets or sets an object of type <see cref="T:System.Runtime.Serialization.SerializationBinder" /> that controls the binding of a serialized object to a type.</summary>
+      <summary>(Insecure) Gets or sets an object of type <see cref="T:System.Runtime.Serialization.SerializationBinder" /> that controls the binding of a serialized object to a type.</summary>
       <returns>The serialization binder to use with this formatter.</returns>
     </member>
     <member name="P:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.Context">
       <summary>Gets or sets the <see cref="T:System.Runtime.Serialization.StreamingContext" /> for this formatter.</summary>
       <returns>The streaming context to use with this formatter.</returns>
     </member>
-    <member name="M:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.Deserialize(System.IO.Stream)">
-      <summary>Deserializes the specified stream into an object graph.</summary>
-      <param name="serializationStream">The stream from which to deserialize the object graph.</param>
-      <returns>The top (root) of the object graph.</returns>
-      <exception cref="T:System.ArgumentNullException">The <paramref name="serializationStream" /> is <see langword="null" />.</exception>
-      <exception cref="T:System.Runtime.Serialization.SerializationException">The <paramref name="serializationStream" /> supports seeking, but its length is 0.
--or-
-The target type is a <see cref="T:System.Decimal" />, but the value is out of range of the <see cref="T:System.Decimal" /> type.</exception>
-      <exception cref="T:System.Security.SecurityException">The caller does not have the required permission.</exception>
-    </member>
     <member name="P:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.FilterLevel">
       <summary>Gets or sets the <see cref="T:System.Runtime.Serialization.Formatters.TypeFilterLevel" /> of automatic deserialization the <see cref="T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter" /> performs.</summary>
       <returns>The <see cref="T:System.Runtime.Serialization.Formatters.TypeFilterLevel" /> that represents the current automatic deserialization level.</returns>
-    </member>
-    <member name="M:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.Serialize(System.IO.Stream,System.Object)">
-      <summary>Serializes the object, or graph of objects with the specified top (root), to the given stream.</summary>
-      <param name="serializationStream">The stream to which the graph is to be serialized.</param>
-      <param name="graph">The object at the root of the graph to serialize.</param>
-      <exception cref="T:System.ArgumentNullException">The <paramref name="serializationStream" /> is <see langword="null" />.
--or-
-The <paramref name="graph" /> is null.</exception>
-      <exception cref="T:System.Runtime.Serialization.SerializationException">An error has occurred during serialization, such as if an object in the <paramref name="graph" /> parameter is not marked as serializable.</exception>
-      <exception cref="T:System.Security.SecurityException">The caller does not have the required permission.</exception>
     </member>
     <member name="P:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.SurrogateSelector">
       <summary>Gets or sets a <see cref="T:System.Runtime.Serialization.ISurrogateSelector" /> that controls type substitution during serialization and deserialization.</summary>
@@ -338,13 +350,13 @@ The <paramref name="graph" /> is null.</exception>
     </member>
     <member name="P:System.Runtime.Serialization.Formatters.IFieldInfo.FieldNames">
       <summary>Gets or sets the field names of serialized objects.</summary>
-      <returns>The field names of serialized objects.</returns>
       <exception cref="T:System.Security.SecurityException">The caller does not have the required permission.</exception>
+      <returns>The field names of serialized objects.</returns>
     </member>
     <member name="P:System.Runtime.Serialization.Formatters.IFieldInfo.FieldTypes">
       <summary>Gets or sets the field types of the serialized objects.</summary>
-      <returns>The field types of the serialized objects.</returns>
       <exception cref="T:System.Security.SecurityException">The caller does not have the required permission.</exception>
+      <returns>The field types of the serialized objects.</returns>
     </member>
     <member name="T:System.Runtime.Serialization.Formatters.TypeFilterLevel">
       <summary>Specifies the level of automatic deserialization for .NET Framework remoting.</summary>
@@ -368,33 +380,34 @@ The <paramref name="graph" /> is null.</exception>
       <summary>Extracts the data from the specified object and returns it as an array of objects.</summary>
       <param name="obj">The object to write to the formatter.</param>
       <param name="members">The members to extract from the object.</param>
-      <returns>An array of <see cref="T:System.Object" /> that contains data stored in <paramref name="members" /> and associated with <paramref name="obj" />.</returns>
-      <exception cref="T:System.ArgumentNullException">The <paramref name="obj" /> or <paramref name="members" /> parameter is <see langword="null" />.
-An element of <paramref name="members" /> is <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="obj" /> or <paramref name="members" /> parameter is <see langword="null" />.  
+  
+ An element of <paramref name="members" /> is <see langword="null" />.</exception>
       <exception cref="T:System.Runtime.Serialization.SerializationException">An element of <paramref name="members" /> does not represent a field.</exception>
+      <returns>An array of <see cref="T:System.Object" /> that contains data stored in <paramref name="members" /> and associated with <paramref name="obj" />.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.FormatterServices.GetSafeUninitializedObject(System.Type)">
       <summary>Creates a new instance of the specified object type.</summary>
       <param name="type">The type of object to create.</param>
-      <returns>A zeroed object of the specified type.</returns>
       <exception cref="T:System.ArgumentNullException">The <paramref name="type" /> parameter is <see langword="null" />.</exception>
       <exception cref="T:System.Runtime.Serialization.SerializationException">The <paramref name="type" /> parameter is not a valid common language runtime type.</exception>
       <exception cref="T:System.Security.SecurityException">The caller does not have the required permission.</exception>
+      <returns>A zeroed object of the specified type.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.FormatterServices.GetSerializableMembers(System.Type)">
       <summary>Gets all the serializable members for a class of the specified <see cref="T:System.Type" />.</summary>
       <param name="type">The type being serialized.</param>
-      <returns>An array of type <see cref="T:System.Reflection.MemberInfo" /> of the non-transient, non-static members.</returns>
       <exception cref="T:System.ArgumentNullException">The <paramref name="type" /> parameter is <see langword="null" />.</exception>
       <exception cref="T:System.Security.SecurityException">The caller does not have the required permission.</exception>
+      <returns>An array of type <see cref="T:System.Reflection.MemberInfo" /> of the non-transient, non-static members.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.FormatterServices.GetSerializableMembers(System.Type,System.Runtime.Serialization.StreamingContext)">
       <summary>Gets all the serializable members for a class of the specified <see cref="T:System.Type" /> and in the provided <see cref="T:System.Runtime.Serialization.StreamingContext" />.</summary>
       <param name="type">The type being serialized or cloned.</param>
       <param name="context">The context where the serialization occurs.</param>
-      <returns>An array of type <see cref="T:System.Reflection.MemberInfo" /> of the non-transient, non-static members.</returns>
       <exception cref="T:System.ArgumentNullException">The <paramref name="type" /> parameter is <see langword="null" />.</exception>
       <exception cref="T:System.Security.SecurityException">The caller does not have the required permission.</exception>
+      <returns>An array of type <see cref="T:System.Reflection.MemberInfo" /> of the non-transient, non-static members.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.FormatterServices.GetSurrogateForCyclicalReference(System.Runtime.Serialization.ISerializationSurrogate)">
       <summary>Returns a serialization surrogate for the specified <see cref="T:System.Runtime.Serialization.ISerializationSurrogate" />.</summary>
@@ -405,39 +418,32 @@ An element of <paramref name="members" /> is <see langword="null" />.</exception
       <summary>Looks up the <see cref="T:System.Type" /> of the specified object in the provided <see cref="T:System.Reflection.Assembly" />.</summary>
       <param name="assem">The assembly where you want to look up the object.</param>
       <param name="name">The name of the object.</param>
-      <returns>The <see cref="T:System.Type" /> of the named object.</returns>
       <exception cref="T:System.ArgumentNullException">The <paramref name="assem" /> parameter is <see langword="null" />.</exception>
       <exception cref="T:System.Security.SecurityException">The caller does not have the required permission.</exception>
+      <returns>The <see cref="T:System.Type" /> of the named object.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.FormatterServices.GetUninitializedObject(System.Type)">
       <summary>Creates a new instance of the specified object type.</summary>
       <param name="type">The type of object to create.</param>
-      <returns>A zeroed object of the specified type.</returns>
       <exception cref="T:System.ArgumentNullException">The <paramref name="type" /> parameter is <see langword="null" />.</exception>
       <exception cref="T:System.Security.SecurityException">The caller does not have the required permission.</exception>
+      <returns>A zeroed object of the specified type.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.FormatterServices.PopulateObjectMembers(System.Object,System.Reflection.MemberInfo[],System.Object[])">
       <summary>Populates the specified object with values for each field drawn from the data array of objects.</summary>
       <param name="obj">The object to populate.</param>
       <param name="members">An array of <see cref="T:System.Reflection.MemberInfo" /> that describes which fields and properties to populate.</param>
       <param name="data">An array of <see cref="T:System.Object" /> that specifies the values for each field and property to populate.</param>
-      <returns>The newly populated object.</returns>
-      <exception cref="T:System.ArgumentNullException">The <paramref name="obj" />, <paramref name="members" />, or <paramref name="data" /> parameter is <see langword="null" />.
-An element of <paramref name="members" /> is <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentNullException">The <paramref name="obj" />, <paramref name="members" />, or <paramref name="data" /> parameter is <see langword="null" />.  
+  
+ An element of <paramref name="members" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentException">The length of <paramref name="members" /> does not match the length of <paramref name="data" />.</exception>
       <exception cref="T:System.Runtime.Serialization.SerializationException">An element of <paramref name="members" /> is not an instance of <see cref="T:System.Reflection.FieldInfo" />.</exception>
       <exception cref="T:System.Security.SecurityException">The caller does not have the required permission.</exception>
+      <returns>The newly populated object.</returns>
     </member>
     <member name="T:System.Runtime.Serialization.IFormatter">
       <summary>Provides functionality for formatting serialized objects.</summary>
-    </member>
-    <member name="P:System.Runtime.Serialization.IFormatter.Binder">
-      <summary>Gets or sets the <see cref="T:System.Runtime.Serialization.SerializationBinder" /> that performs type lookups during deserialization.</summary>
-      <returns>The <see cref="T:System.Runtime.Serialization.SerializationBinder" /> that performs type lookups during deserialization.</returns>
-    </member>
-    <member name="P:System.Runtime.Serialization.IFormatter.Context">
-      <summary>Gets or sets the <see cref="T:System.Runtime.Serialization.StreamingContext" /> used for serialization and deserialization.</summary>
-      <returns>The <see cref="T:System.Runtime.Serialization.StreamingContext" /> used for serialization and deserialization.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.IFormatter.Deserialize(System.IO.Stream)">
       <summary>Deserializes the data on the provided stream and reconstitutes the graph of objects.</summary>
@@ -448,6 +454,14 @@ An element of <paramref name="members" /> is <see langword="null" />.</exception
       <summary>Serializes an object, or graph of objects with the given root to the provided stream.</summary>
       <param name="serializationStream">The stream where the formatter puts the serialized data. This stream can reference a variety of backing stores (such as files, network, memory, and so on).</param>
       <param name="graph">The object, or root of the object graph, to serialize. All child objects of this root object are automatically serialized.</param>
+    </member>
+    <member name="P:System.Runtime.Serialization.IFormatter.Binder">
+      <summary>Gets or sets the <see cref="T:System.Runtime.Serialization.SerializationBinder" /> that performs type lookups during deserialization.</summary>
+      <returns>The <see cref="T:System.Runtime.Serialization.SerializationBinder" /> that performs type lookups during deserialization.</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.IFormatter.Context">
+      <summary>Gets or sets the <see cref="T:System.Runtime.Serialization.StreamingContext" /> used for serialization and deserialization.</summary>
+      <returns>The <see cref="T:System.Runtime.Serialization.StreamingContext" /> used for serialization and deserialization.</returns>
     </member>
     <member name="P:System.Runtime.Serialization.IFormatter.SurrogateSelector">
       <summary>Gets or sets the <see cref="T:System.Runtime.Serialization.SurrogateSelector" /> used by the current formatter.</summary>
@@ -469,8 +483,8 @@ An element of <paramref name="members" /> is <see langword="null" />.</exception
       <param name="info">The information to populate the object.</param>
       <param name="context">The source from which the object is deserialized.</param>
       <param name="selector">The surrogate selector where the search for a compatible surrogate begins.</param>
-      <returns>The populated deserialized object.</returns>
       <exception cref="T:System.Security.SecurityException">The caller does not have the required permission.</exception>
+      <returns>The populated deserialized object.</returns>
     </member>
     <member name="T:System.Runtime.Serialization.ISurrogateSelector">
       <summary>Indicates a serialization surrogate selector class.</summary>
@@ -482,16 +496,16 @@ An element of <paramref name="members" /> is <see langword="null" />.</exception
     </member>
     <member name="M:System.Runtime.Serialization.ISurrogateSelector.GetNextSelector">
       <summary>Returns the next surrogate selector in the chain.</summary>
-      <returns>The next surrogate selector in the chain or <see langword="null" />.</returns>
       <exception cref="T:System.Security.SecurityException">The caller does not have the required permission.</exception>
+      <returns>The next surrogate selector in the chain or <see langword="null" />.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.ISurrogateSelector.GetSurrogate(System.Type,System.Runtime.Serialization.StreamingContext,System.Runtime.Serialization.ISurrogateSelector@)">
       <summary>Finds the surrogate that represents the specified object's type, starting with the specified surrogate selector for the specified serialization context.</summary>
       <param name="type">The <see cref="T:System.Type" /> of object (class) that needs a surrogate.</param>
       <param name="context">The source or destination context for the current serialization.</param>
       <param name="selector">When this method returns, contains a <see cref="T:System.Runtime.Serialization.ISurrogateSelector" /> that holds a reference to the surrogate selector where the appropriate surrogate was found. This parameter is passed uninitialized.</param>
-      <returns>The appropriate surrogate for the given type in the given context.</returns>
       <exception cref="T:System.Security.SecurityException">The caller does not have the required permission.</exception>
+      <returns>The appropriate surrogate for the given type in the given context.</returns>
     </member>
     <member name="T:System.Runtime.Serialization.ObjectIDGenerator">
       <summary>Generates IDs for objects.</summary>
@@ -504,17 +518,17 @@ An element of <paramref name="members" /> is <see langword="null" />.</exception
       <param name="obj">The object you want an ID for.</param>
       <param name="firstTime">
         <see langword="true" /> if <paramref name="obj" /> was not previously known to the <see cref="T:System.Runtime.Serialization.ObjectIDGenerator" />; otherwise, <see langword="false" />.</param>
-      <returns>The object's ID is used for serialization. <paramref name="firstTime" /> is set to <see langword="true" /> if this is the first time the object has been identified; otherwise, it is set to <see langword="false" />.</returns>
       <exception cref="T:System.ArgumentNullException">The <paramref name="obj" /> parameter is <see langword="null" />.</exception>
       <exception cref="T:System.Runtime.Serialization.SerializationException">The <see cref="T:System.Runtime.Serialization.ObjectIDGenerator" /> has been asked to keep track of too many objects.</exception>
+      <returns>The object's ID is used for serialization. <paramref name="firstTime" /> is set to <see langword="true" /> if this is the first time the object has been identified; otherwise, it is set to <see langword="false" />.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.ObjectIDGenerator.HasId(System.Object,System.Boolean@)">
       <summary>Determines whether an object has already been assigned an ID.</summary>
       <param name="obj">The object you are asking for.</param>
       <param name="firstTime">
         <see langword="true" /> if <paramref name="obj" /> was not previously known to the <see cref="T:System.Runtime.Serialization.ObjectIDGenerator" />; otherwise, <see langword="false" />.</param>
-      <returns>The object ID of <paramref name="obj" /> if previously known to the <see cref="T:System.Runtime.Serialization.ObjectIDGenerator" />; otherwise, zero.</returns>
       <exception cref="T:System.ArgumentNullException">The <paramref name="obj" /> parameter is <see langword="null" />.</exception>
+      <returns>The object ID of <paramref name="obj" /> if previously known to the <see cref="T:System.Runtime.Serialization.ObjectIDGenerator" />; otherwise, zero.</returns>
     </member>
     <member name="T:System.Runtime.Serialization.ObjectManager">
       <summary>Keeps track of objects as they are deserialized.</summary>
@@ -532,8 +546,8 @@ An element of <paramref name="members" /> is <see langword="null" />.</exception
     <member name="M:System.Runtime.Serialization.ObjectManager.GetObject(System.Int64)">
       <summary>Returns the object with the specified object ID.</summary>
       <param name="objectID">The ID of the requested object.</param>
-      <returns>The object with the specified object ID if it has been previously stored or <see langword="null" /> if no such object has been registered.</returns>
       <exception cref="T:System.ArgumentOutOfRangeException">The <paramref name="objectID" /> parameter is less than or equal to zero.</exception>
+      <returns>The object with the specified object ID if it has been previously stored or <see langword="null" /> if no such object has been registered.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.ObjectManager.RaiseDeserializationEvent">
       <summary>Raises the deserialization event to any registered object that implements <see cref="T:System.Runtime.Serialization.IDeserializationCallback" />.</summary>
@@ -670,17 +684,17 @@ An element of <paramref name="members" /> is <see langword="null" />.</exception
     </member>
     <member name="M:System.Runtime.Serialization.SurrogateSelector.GetNextSelector">
       <summary>Returns the next selector on the chain of selectors.</summary>
-      <returns>The next <see cref="T:System.Runtime.Serialization.ISurrogateSelector" /> on the chain of selectors.</returns>
       <exception cref="T:System.Security.SecurityException">The caller does not have the required permission.</exception>
+      <returns>The next <see cref="T:System.Runtime.Serialization.ISurrogateSelector" /> on the chain of selectors.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.SurrogateSelector.GetSurrogate(System.Type,System.Runtime.Serialization.StreamingContext,System.Runtime.Serialization.ISurrogateSelector@)">
       <summary>Returns the surrogate for a particular type.</summary>
       <param name="type">The <see cref="T:System.Type" /> for which the surrogate is requested.</param>
       <param name="context">The streaming context.</param>
       <param name="selector">The surrogate to use.</param>
-      <returns>The surrogate for a particular type.</returns>
       <exception cref="T:System.ArgumentNullException">The <paramref name="type" /> parameter is <see langword="null" />.</exception>
       <exception cref="T:System.Security.SecurityException">The caller does not have the required permission.</exception>
+      <returns>The surrogate for a particular type.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.SurrogateSelector.RemoveSurrogate(System.Type,System.Runtime.Serialization.StreamingContext)">
       <summary>Removes the surrogate associated with a given type.</summary>
