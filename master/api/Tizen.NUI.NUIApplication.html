@@ -1066,6 +1066,29 @@ It is the only way to create an IME window.</p>
   <h6><strong>API Level</strong>: <span>4</span></h6>
   
   
+  <a id="Tizen_NUI_NUIApplication_FlushUpdateMessages_" data-uid="Tizen.NUI.NUIApplication.FlushUpdateMessages*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L479">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_NUIApplication_FlushUpdateMessages" data-uid="Tizen.NUI.NUIApplication.FlushUpdateMessages">FlushUpdateMessages()</h4>
+    <section>
+      <p>Flush render/update thread messages synchronously.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FlushUpdateMessages()</code></pre>
+  </div>
+  <h5 id="Tizen_NUI_NUIApplication_FlushUpdateMessages_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This function will relayout forcibily.
+This function is used for advanced developer. It will make main-thread overhead if you call this function frequencely.</p>
+</div>
+  
+  
+  
   <a id="Tizen_NUI_NUIApplication_GetDefaultWindow_" data-uid="Tizen.NUI.NUIApplication.GetDefaultWindow*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
@@ -1105,7 +1128,7 @@ It is the only way to create an IME window.</p>
   <a id="Tizen_NUI_NUIApplication_GetScreenSize_" data-uid="Tizen.NUI.NUIApplication.GetScreenSize*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L494">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L508">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication_GetScreenSize" data-uid="Tizen.NUI.NUIApplication.GetScreenSize">GetScreenSize()</h4>
     <section>
@@ -1140,7 +1163,7 @@ It is the only way to create an IME window.</p>
   <a id="Tizen_NUI_NUIApplication_OnAppControlReceived_" data-uid="Tizen.NUI.NUIApplication.OnAppControlReceived*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L599">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L613">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication_OnAppControlReceived_Tizen_Applications_AppControlReceivedEventArgs_" data-uid="Tizen.NUI.NUIApplication.OnAppControlReceived(Tizen.Applications.AppControlReceivedEventArgs)">OnAppControlReceived(AppControlReceivedEventArgs)</h4>
     <section>
@@ -1179,7 +1202,7 @@ It is the only way to create an IME window.</p>
   <a id="Tizen_NUI_NUIApplication_OnCreate_" data-uid="Tizen.NUI.NUIApplication.OnCreate*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L613">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L627">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication_OnCreate" data-uid="Tizen.NUI.NUIApplication.OnCreate">OnCreate()</h4>
     <section>
@@ -1201,7 +1224,7 @@ It is the only way to create an IME window.</p>
   <a id="Tizen_NUI_NUIApplication_OnDeviceOrientationChanged_" data-uid="Tizen.NUI.NUIApplication.OnDeviceOrientationChanged*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L546">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L560">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication_OnDeviceOrientationChanged_Tizen_Applications_DeviceOrientationEventArgs_" data-uid="Tizen.NUI.NUIApplication.OnDeviceOrientationChanged(Tizen.Applications.DeviceOrientationEventArgs)">OnDeviceOrientationChanged(DeviceOrientationEventArgs)</h4>
     <section>
@@ -1243,7 +1266,7 @@ The window orientation event is for per a window and occurs when some flags shou
   <a id="Tizen_NUI_NUIApplication_OnLocaleChanged_" data-uid="Tizen.NUI.NUIApplication.OnLocaleChanged*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L506">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L520">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication_OnLocaleChanged_Tizen_Applications_LocaleChangedEventArgs_" data-uid="Tizen.NUI.NUIApplication.OnLocaleChanged(Tizen.Applications.LocaleChangedEventArgs)">OnLocaleChanged(LocaleChangedEventArgs)</h4>
     <section>
@@ -1282,7 +1305,7 @@ The window orientation event is for per a window and occurs when some flags shou
   <a id="Tizen_NUI_NUIApplication_OnLowBattery_" data-uid="Tizen.NUI.NUIApplication.OnLowBattery*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L515">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L529">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication_OnLowBattery_Tizen_Applications_LowBatteryEventArgs_" data-uid="Tizen.NUI.NUIApplication.OnLowBattery(Tizen.Applications.LowBatteryEventArgs)">OnLowBattery(LowBatteryEventArgs)</h4>
     <section>
@@ -1321,7 +1344,7 @@ The window orientation event is for per a window and occurs when some flags shou
   <a id="Tizen_NUI_NUIApplication_OnLowMemory_" data-uid="Tizen.NUI.NUIApplication.OnLowMemory*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L524">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L538">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication_OnLowMemory_Tizen_Applications_LowMemoryEventArgs_" data-uid="Tizen.NUI.NUIApplication.OnLowMemory(Tizen.Applications.LowMemoryEventArgs)">OnLowMemory(LowMemoryEventArgs)</h4>
     <section>
@@ -1360,7 +1383,7 @@ The window orientation event is for per a window and occurs when some flags shou
   <a id="Tizen_NUI_NUIApplication_OnPause_" data-uid="Tizen.NUI.NUIApplication.OnPause*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L565">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L579">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication_OnPause" data-uid="Tizen.NUI.NUIApplication.OnPause">OnPause()</h4>
     <section>
@@ -1380,7 +1403,7 @@ The window orientation event is for per a window and occurs when some flags shou
   <a id="Tizen_NUI_NUIApplication_OnPreCreate_" data-uid="Tizen.NUI.NUIApplication.OnPreCreate*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L583">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L597">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication_OnPreCreate" data-uid="Tizen.NUI.NUIApplication.OnPreCreate">OnPreCreate()</h4>
     <section>
@@ -1400,7 +1423,7 @@ The window orientation event is for per a window and occurs when some flags shou
   <a id="Tizen_NUI_NUIApplication_OnRegionFormatChanged_" data-uid="Tizen.NUI.NUIApplication.OnRegionFormatChanged*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L533">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L547">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication_OnRegionFormatChanged_Tizen_Applications_RegionFormatChangedEventArgs_" data-uid="Tizen.NUI.NUIApplication.OnRegionFormatChanged(Tizen.Applications.RegionFormatChangedEventArgs)">OnRegionFormatChanged(RegionFormatChangedEventArgs)</h4>
     <section>
@@ -1439,7 +1462,7 @@ The window orientation event is for per a window and occurs when some flags shou
   <a id="Tizen_NUI_NUIApplication_OnResume_" data-uid="Tizen.NUI.NUIApplication.OnResume*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L574">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L588">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication_OnResume" data-uid="Tizen.NUI.NUIApplication.OnResume">OnResume()</h4>
     <section>
@@ -1459,7 +1482,7 @@ The window orientation event is for per a window and occurs when some flags shou
   <a id="Tizen_NUI_NUIApplication_OnTerminate_" data-uid="Tizen.NUI.NUIApplication.OnTerminate*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L556">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L570">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication_OnTerminate" data-uid="Tizen.NUI.NUIApplication.OnTerminate">OnTerminate()</h4>
     <section>
@@ -1481,7 +1504,7 @@ The window orientation event is for per a window and occurs when some flags shou
   <a id="Tizen_NUI_NUIApplication_Preload_" data-uid="Tizen.NUI.NUIApplication.Preload*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L625">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L639">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication_Preload" data-uid="Tizen.NUI.NUIApplication.Preload">Preload()</h4>
     <section>
@@ -1577,7 +1600,7 @@ The window orientation event is for per a window and occurs when some flags shou
   <a id="Tizen_NUI_NUIApplication_SetRenderRefreshRate_" data-uid="Tizen.NUI.NUIApplication.SetRenderRefreshRate*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L484">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Application/NUIApplication.cs/#L498">View Source</a>
     </span>
     <h4 id="Tizen_NUI_NUIApplication_SetRenderRefreshRate_System_UInt32_" data-uid="Tizen.NUI.NUIApplication.SetRenderRefreshRate(System.UInt32)">SetRenderRefreshRate(UInt32)</h4>
     <section>

@@ -25749,6 +25749,21 @@
     "title": "Class Window",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Window.InsetsChangedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.Window.InsetsChangedEventArgs.html",
+    "title": "Class Window.InsetsChangedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Window.InsetsPartState.html": {
+    "href": "API11/api/Tizen.NUI.Window.InsetsPartState.html",
+    "title": "Enum Window.InsetsPartState",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Window.InsetsPartType.html": {
+    "href": "API11/api/Tizen.NUI.Window.InsetsPartType.html",
+    "title": "Enum Window.InsetsPartType",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Window.KeyEventArgs.html": {
     "href": "API11/api/Tizen.NUI.Window.KeyEventArgs.html",
     "title": "Class Window.KeyEventArgs",
