@@ -1881,6 +1881,18 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Sets visibility on/off of cursor
+        /// </summary>
+        /// <param name="visible">The visibility of cursor.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void CursorVisibleSet(bool visible)
+        {
+            Interop.Window.CursorVisibleSet(SwigCPtr, visible);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+
+        /// <summary>
         /// Maximizes window's size.
         /// If this function is called with true, window will be resized with screen size.
         /// Otherwise window will be resized with previous size.
