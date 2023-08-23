@@ -63,7 +63,14 @@ namespace Tizen.Applications
             Interop.Package.PackageInfoCertificateInfoCallback certificateInfoCb = (handle, certType, certValue, userData) =>
             {
                 if (certValue == null) certValue = string.Empty;
-                nativeCertificates.Add(certType, certValue);
+                try
+                {
+                    nativeCertificates.Add(certType, certValue);
+                }
+                catch (ArgumentException ex)
+                {
+                    Log.Warn(LogTag, string.Format("Failed to add cert value. certType = {0}, err = {1}", certType, ex.Message));
+                }
                 return true;
             };
 
