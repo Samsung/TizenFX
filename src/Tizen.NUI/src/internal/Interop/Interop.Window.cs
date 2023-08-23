@@ -376,6 +376,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_PointerWarp")]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool PointerWarp(global::System.Runtime.InteropServices.HandleRef window, int x, int y);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_CursorVisibleSet")]
+            public static extern void CursorVisibleSet(global::System.Runtime.InteropServices.HandleRef window, bool visible);
         }
     }
 }
