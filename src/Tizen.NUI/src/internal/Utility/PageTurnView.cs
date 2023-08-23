@@ -154,22 +154,22 @@ namespace Tizen.NUI
 
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void PagePanStartedCallbackDelegate(IntPtr page);
         private DaliEventHandler<object, PagePanStartedEventArgs> pageTurnViewPagePanStartedEventHandler;
         private PagePanStartedCallbackDelegate pageTurnViewPagePanStartedCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void PagePanFinishedCallbackDelegate(IntPtr page);
         private DaliEventHandler<object, PagePanFinishedEventArgs> pageTurnViewPagePanFinishedEventHandler;
         private PagePanFinishedCallbackDelegate pageTurnViewPagePanFinishedCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void PageTurnStartedCallbackDelegate(IntPtr page, uint pageIndex, bool isTurningForward);
         private DaliEventHandler<object, PageTurnStartedEventArgs> pageTurnViewPageTurnStartedEventHandler;
         private PageTurnStartedCallbackDelegate pageTurnViewPageTurnStartedCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void PageTurnFinishedCallbackDelegate(IntPtr page, uint pageIndex, bool isTurningForward);
         private DaliEventHandler<object, PageTurnFinishedEventArgs> pageTurnViewPageTurnFinishedEventHandler;
         private PageTurnFinishedCallbackDelegate pageTurnViewPageTurnFinishedCallbackDelegate;

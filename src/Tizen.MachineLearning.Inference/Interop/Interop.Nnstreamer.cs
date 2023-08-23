@@ -235,6 +235,10 @@ internal static partial class Interop
         [DllImport(Libraries.MlCommon, EntryPoint = "ml_tensors_info_create", CallingConvention = CallingConvention.Cdecl)]
         internal static extern NNStreamerError CreateTensorsInfo(out IntPtr info);
 
+        /* int ml_tensors_info_create_extended (ml_tensors_info_h *info) */
+        [DllImport(Libraries.MlCommon, EntryPoint = "ml_tensors_info_create_extended", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern NNStreamerError CreateTensorsInfoExtended(out IntPtr info);
+
         /* int ml_tensors_info_destroy (ml_tensors_info_h info) */
         [DllImport(Libraries.MlCommon, EntryPoint = "ml_tensors_info_destroy", CallingConvention = CallingConvention.Cdecl)]
         internal static extern NNStreamerError DestroyTensorsInfo(IntPtr info);

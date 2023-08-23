@@ -54,31 +54,31 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<InputFilteredEventArgs> textEditorInputFilteredEventHandler;
         private InputFilteredCallbackDelegate textEditorInputFilteredCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void TextChangedCallbackDelegate(IntPtr textEditor);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void ScrollStateChangedCallbackDelegate(IntPtr textEditor, ScrollState state);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void CursorPositionChangedCallbackDelegate(IntPtr textEditor, uint oldPosition);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void MaxLengthReachedCallbackDelegate(IntPtr textEditor);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void SelectionClearedCallbackDelegate(IntPtr textEditor);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void SelectionStartedCallbackDelegate(IntPtr textEditor);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void AnchorClickedCallbackDelegate(IntPtr textEditor, IntPtr href, uint hrefLength);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void SelectionChangedCallbackDelegate(IntPtr textEditor, uint oldStart, uint oldEnd);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void InputFilteredCallbackDelegate(IntPtr textEditor, InputFilterType type);
 
         private bool invokeTextChanged = true;

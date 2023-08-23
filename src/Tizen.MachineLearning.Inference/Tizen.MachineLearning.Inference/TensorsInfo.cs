@@ -95,7 +95,9 @@ namespace Tizen.MachineLearning.Inference
             if (idx >= Tensor.SizeLimit) {
                 throw new IndexOutOfRangeException("Max size of the tensors is " + Tensor.SizeLimit);
             }
-            _infoList.Add(new TensorInfo(name, type, dimension));
+
+            int[] dim = ConvertDimension(dimension);
+            _infoList.Add(new TensorInfo(name, type, dim));
 
             if (_handle != IntPtr.Zero)
             {
@@ -104,7 +106,7 @@ namespace Tizen.MachineLearning.Inference
                 ret = Interop.Util.SetTensorsCount(_handle, _infoList.Count);
                 NNStreamer.CheckException(ret, "Failed to set the number of tensors");
 
-                UpdateInfoHandle(_handle, idx, name, type, dimension);
+                UpdateInfoHandle(_handle, idx, name, type, dim);
             }
         }
 
@@ -204,12 +206,15 @@ namespace Tizen.MachineLearning.Inference
             NNStreamer.CheckNNStreamerSupport();
 
             CheckIndexBoundary(idx);
-            _infoList[idx].SetDimension(dimension);
+
+            int[] dim = ConvertDimension(dimension);
+
+            _infoList[idx].SetDimension(dim);
 
             if (_handle != IntPtr.Zero)
             {
                 NNStreamerError ret = NNStreamerError.None;
-                ret = Interop.Util.SetTensorDimension(_handle, idx, dimension);
+                ret = Interop.Util.SetTensorDimension(_handle, idx, dim);
                 NNStreamer.CheckException(ret, "unable to set the dimension of tensor: " + idx.ToString());
             }
         }
@@ -412,7 +417,7 @@ namespace Tizen.MachineLearning.Inference
             NNStreamer.CheckException(ret, "number of Tensor in TensorsInfo is invalid: " + _infoList.Count);
 
             /* Create TensorsInfo object */
-            ret = Interop.Util.CreateTensorsInfo(out ret_handle);
+            ret = Interop.Util.CreateTensorsInfoExtended(out ret_handle);
             NNStreamer.CheckException(ret, "fail to create TensorsInfo object");
 
             /* Set the number of tensors */
@@ -469,6 +474,29 @@ namespace Tizen.MachineLearning.Inference
             _disposed = true;
         }
 
+        private static int[] ConvertDimension(int[] dimension)
+        {
+            if (dimension == null) {
+                throw NNStreamerExceptionFactory.CreateException(NNStreamerError.InvalidParameter, "The dimension is null, it should be a valid array.");
+            }
+
+            if (dimension.Length > Tensor.RankLimit) {
+                throw new IndexOutOfRangeException("Max rank limit is " + Tensor.RankLimit);
+            }
+
+            int[] dim = new int[Tensor.RankLimit];
+            int i;
+
+            for (i = 0 ; i < dimension.Length ; i++) {
+                dim[i] = dimension[i];
+            }
+            for (; i < Tensor.RankLimit ; i++) {
+                dim[i] = 0;
+            }
+
+            return dim;
+        }
+
         private void UpdateInfoHandle(IntPtr handle, int idx, string name, TensorType type, int[] dimension)
         {
             if (handle != IntPtr.Zero)
@@ -513,11 +541,11 @@ namespace Tizen.MachineLearning.Inference
             public void SetDimension(int[] dimension)
             {
                 if (dimension == null) {
-                    throw new ArgumentException("Max size of the tensor rank is" + Tensor.RankLimit);
+                    throw new ArgumentException("The dimension is null, it should be a valid array.");
                 }
 
-                if (dimension.Length > Tensor.RankLimit) {
-                    throw new ArgumentException("Max size of the tensor rank is" + Tensor.RankLimit);
+                if (dimension.Length != Tensor.RankLimit) {
+                    throw new ArgumentException("The length of the dimension should be " + Tensor.RankLimit);
                 }
                 Dimension = (int[])dimension.Clone();
             }
@@ -555,6 +583,8 @@ namespace Tizen.MachineLearning.Inference
                 }
                 for (int i = 0; i < Tensor.RankLimit; ++i)
                 {
+                    if (Dimension[i] == 0)
+                        break;
                     size *= Dimension[i];
                 }
                 return size;
