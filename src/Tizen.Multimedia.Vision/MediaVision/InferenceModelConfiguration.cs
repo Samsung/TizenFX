@@ -60,9 +60,11 @@ namespace Tizen.Multimedia.Vision
         // The following strings are fixed in native and will not be changed.
         private const string _backendTypeOpenCV = "opencv";
         private const string _backendTypeTFLite = "tflite";
-        private const string _backendTypeArmNN = "armnn";
-        private const string _backendTypeMLApi = "mlapi";
+        private const string _backendTypeArmNN = "armnn"; // Deprecated
+        private const string _backendTypeMLApi = "mlapi"; // Deprecated
         private const string _backendTypeOne = "one";
+        private const string _backendTypeNNTrainer = "nntrainer";
+        private const string _backendTypeSnpe = "snpe";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InferenceModelConfiguration"/> class.
@@ -158,13 +160,21 @@ namespace Tizen.Multimedia.Vision
                             supportedBackend.Add(InferenceBackendType.TFLite);
                             break;
                         case _backendTypeArmNN:
-                            supportedBackend.Add(InferenceBackendType.ArmNN);
+                            supportedBackend.Add(InferenceBackendType.ArmNN); // Deprecated
                             break;
                         case _backendTypeMLApi:
-                            supportedBackend.Add(InferenceBackendType.MLApi);
+                            supportedBackend.Add(InferenceBackendType.MLApi); // Deprecated
                             break;
                         case _backendTypeOne:
                             supportedBackend.Add(InferenceBackendType.One);
+                            break;
+                        case _backendTypeNNTrainer:
+                            supportedBackend.Add(InferenceBackendType.NNTrainer);
+                            break;
+                        case _backendTypeSnpe:
+                            supportedBackend.Add(InferenceBackendType.Snpe);
+                            break;
+                        default:
                             break;
                     }
                 }
