@@ -267,7 +267,7 @@ namespace Tizen.MachineLearning.Inference
         /// <summary>
         /// The maximum rank that NNStreamer supports with Tizen APIs.
         /// </summary>
-        internal const int RankLimit = 4;
+        internal const int RankLimit = 16;
 
         /// <summary>
         /// The maximum number of other/tensor instances that other/tensors may have.

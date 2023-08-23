@@ -49,10 +49,6 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 7 </since_tizen>
         public LottieAnimationView(float scale = 1.0f, bool shown = true) : base()
         {
-            ActionPlay = Interop.LottieAnimationView.AnimatedVectorImageVisualActionPlayGet();
-            ActionPause = Interop.LottieAnimationView.AnimatedVectorImageVisualActionPauseGet();
-            ActionStop = Interop.LottieAnimationView.AnimatedVectorImageVisualActionStopGet();
-
             NUILog.Debug($"< constructor GetId={GetId()} >");
             currentStates.url = "";
             currentStates.loopCount = 1;
@@ -63,6 +59,8 @@ namespace Tizen.NUI.BaseComponents
             currentStates.totalFrame = -1;
             currentStates.scale = scale;
             currentStates.redrawInScalingDown = true;
+            currentStates.desiredWidth = 0;
+            currentStates.desiredHeight = 0;
 
             // Set changed flag as true when initalized state.
             // After some properties change, LottieAnimationView.UpdateImage will apply these inital values.
@@ -129,6 +127,22 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// Set or Get resource URL of Lottie file.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new string ResourceUrl
+        {
+            get
+            {
+                return URL;
+            }
+            set
+            {
+                URL = value;
+            }
+        }
+
         private string InternalURL
         {
             set
@@ -161,6 +175,18 @@ namespace Tizen.NUI.BaseComponents
                     .Add(ImageVisualProperty.StopBehavior, stopAction)
                     .Add(ImageVisualProperty.LoopingMode, loopMode)
                     .Add(ImageVisualProperty.RedrawInScalingDown, redrawInScalingDown);
+
+                if (currentStates.desiredWidth > 0)
+                {
+                    using PropertyValue desiredWidth = new PropertyValue((int)currentStates.desiredWidth);
+                    map.Add(ImageVisualProperty.DesiredWidth, desiredWidth);
+                }
+                if (currentStates.desiredHeight > 0)
+                {
+                    using PropertyValue desiredHeight = new PropertyValue((int)currentStates.desiredHeight);
+                    map.Add(ImageVisualProperty.DesiredHeight, desiredHeight);
+                }
+
                 Image = map;
 
                 // All states applied well.
@@ -178,6 +204,40 @@ namespace Tizen.NUI.BaseComponents
                 NUILog.Debug($"<[{GetId()}] GET");
                 NUILog.Debug($"gotten url={ret} >");
                 return ret;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the desired image width for LottieAnimationView<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new int DesiredWidth
+        {
+            get
+            {
+                return currentStates.desiredWidth;
+            }
+            set
+            {
+                currentStates.desiredWidth = value;
+                base.DesiredWidth = currentStates.desiredWidth;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the desired image height for LottieAnimationView<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new int DesiredHeight
+        {
+            get
+            {
+                return currentStates.desiredHeight;
+            }
+            set
+            {
+                currentStates.desiredHeight = value;
+                base.DesiredHeight = currentStates.desiredHeight;
             }
         }
 
@@ -442,18 +502,6 @@ namespace Tizen.NUI.BaseComponents
                 return currentStates.redrawInScalingDown;
             }
         }
-
-
-        /// <summary>
-        /// Actions property value to Jump to the specified frame.
-        /// This property can be redefined by child class if it use different value.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected int ActionJumpTo { get; set; } = Interop.LottieAnimationView.AnimatedVectorImageVisualActionJumpToGet();
-
-        // This is used for internal purpose. hidden API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected int ActionSetDynamicProperty { get; set; } = Interop.LottieAnimationView.AnimatedVectorImageVisualActionSetDynamicProperty();
         #endregion Property
 
 
@@ -916,6 +964,14 @@ namespace Tizen.NUI.BaseComponents
 
 
         #region Internal
+        /// <summary>
+        /// Actions property value to Jump to the specified frame.
+        /// </summary>
+        internal static readonly int ActionJumpTo = Interop.LottieAnimationView.AnimatedVectorImageVisualActionJumpToGet();
+
+        // This is used for internal purpose.
+        internal static readonly int ActionSetDynamicProperty = Interop.LottieAnimationView.AnimatedVectorImageVisualActionSetDynamicProperty();
+
         internal class VisualEventSignalArgs : EventArgs
         {
             public int VisualIndex
@@ -1081,6 +1137,7 @@ namespace Tizen.NUI.BaseComponents
             internal List<Tuple<string, int, int>> contentInfo;
             internal string mark1, mark2;
             internal bool redrawInScalingDown;
+            internal int desiredWidth, desiredHeight;
             internal bool changed;
         };
         private states currentStates;
@@ -1118,7 +1175,7 @@ namespace Tizen.NUI.BaseComponents
             NUILog.Debug($"<[{GetId()}] onVisualEventSignal()! visualIndex={visualIndex}, signalId={signalId}>");
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void VisualEventSignalCallbackType(IntPtr targetView, int visualIndex, int signalId);
 
         private VisualEventSignalCallbackType visualEventSignalCallback;
@@ -1340,12 +1397,9 @@ namespace Tizen.NUI.BaseComponents
 
         public bool Equals(LottieAnimationViewDynamicProperty other)
         {
-            if (other != null)
+            if (KeyPath == other.KeyPath && Property == other.Property && Callback == other.Callback)
             {
-                if (KeyPath == other.KeyPath && Property == other.Property && Callback == other.Callback)
-                {
-                    return true;
-                }
+                return true;
             }
             return false;
         }

@@ -873,7 +873,7 @@ namespace Tizen.NUI.Components
 
         private Animation scrollAnimation;
         // Declare user alpha function delegate
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate float UserAlphaFunctionDelegate(float progress);
         private UserAlphaFunctionDelegate customScrollAlphaFunction;
         private float velocityOfLastPan = 0.0f;
@@ -1121,7 +1121,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public void ScrollToIndex(int index)
         {
-            if (ContentContainer.ChildCount - 1 < index || index < 0)
+            if ((int)ContentContainer.ChildCount - 1 < index || index < 0)
             {
                 return;
             }

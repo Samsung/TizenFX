@@ -180,109 +180,109 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The callback function that is invoked when the message is received from the script.
         /// </summary>
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void JavaScriptMessageHandler(string message);
 
         /// <summary>
         /// The callback function that is invoked when the message is received from the script.
         /// </summary>
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void JavaScriptAlertCallback(string message);
 
         /// <summary>
         /// The callback function that is invoked when the message is received from the script.
         /// </summary>
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void JavaScriptConfirmCallback(string message);
 
         /// <summary>
         /// The callback function that is invoked when the message is received from the script.
         /// </summary>
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void JavaScriptPromptCallback(string message1, string message2);
 
         /// <summary>
         /// The callback function that is invoked when screen shot is acquired asynchronously.
         /// </summary>
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void ScreenshotAcquiredCallback(ImageView image);
 
         /// <summary>
         /// The callback function that is invoked when video playing is checked asynchronously.
         /// </summary>
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void VideoPlayingCallback(bool isPlaying);
 
         /// <summary>
         /// The callback function that is invoked when geolocation permission is requested.
         /// </summary>
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void GeolocationPermissionCallback(string host, string protocol);
 
         /// <summary>
         /// The callback function that is invoked when hit test is finished.
         /// </summary>
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void HitTestFinishedCallback(WebHitTestResult test);
 
         /// <summary>
         /// The callback function that is invoked when the plain text of the current page is received.
         /// </summary>
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void PlainTextReceivedCallback(string plainText);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewPageLoadCallback(string pageUrl);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewPageLoadErrorCallback(IntPtr error);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewScrollEdgeReachedCallback(int edge);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewUrlChangedCallback(string pageUrl);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewFormRepostPolicyDecidedCallback(IntPtr maker);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewFrameRenderedCallback();
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewScreenshotAcquiredProxyCallback(IntPtr data);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewHitTestFinishedProxyCallback(IntPtr data);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewPolicyDecidedCallback(IntPtr maker);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewNewWindowCreatedCallback(out IntPtr outView);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewCertificateReceivedCallback(IntPtr certificate);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewHttpAuthRequestedCallback(IntPtr handler);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewConsoleMessageReceivedCallback(IntPtr message);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewContextMenuShownCallback(IntPtr menu);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewContextMenuHiddenCallback(IntPtr menu);
 
         /// <summary>

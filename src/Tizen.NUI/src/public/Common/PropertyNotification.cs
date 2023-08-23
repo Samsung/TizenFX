@@ -54,7 +54,7 @@ namespace Tizen.NUI
         {
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void NotifyEventCallbackDelegate(IntPtr propertyNotification);
 
         ///<summary>

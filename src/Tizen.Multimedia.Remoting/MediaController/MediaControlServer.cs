@@ -638,6 +638,82 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
+        /// Sets the <see cref="MediaControlCapabilitySupport"/> indicating playback position is supported or not.
+        /// </summary>
+        /// <param name="support">A value indicating whether the playback position is supported or not.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="support"/> is invalid.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        public static void SetPlaybackPositionCapability(MediaControlCapabilitySupport support)
+        {
+            ValidationUtil.ValidateEnum(typeof(MediaControlCapabilitySupport), support, nameof(support));
+
+            Native.SetSimpleCapability(Handle, MediaControlNativeCapabilityCategory.PlaybackPosition, support).
+                ThrowIfError("Failed to set playback position capability.");
+        }
+
+        /// <summary>
+        /// Sets the <see cref="MediaControlCapabilitySupport"/> indicating playlist is supported or not.
+        /// </summary>
+        /// <param name="support">A value indicating whether the playlist is supported or not.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="support"/> is invalid.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        public static void SetPlaylistCapability(MediaControlCapabilitySupport support)
+        {
+            ValidationUtil.ValidateEnum(typeof(MediaControlCapabilitySupport), support, nameof(support));
+
+            Native.SetSimpleCapability(Handle, MediaControlNativeCapabilityCategory.Playlist, support).
+                ThrowIfError("Failed to set playlist capability.");
+        }
+
+        /// <summary>
+        /// Sets the <see cref="MediaControlCapabilitySupport"/> indicating custom command is supported or not.
+        /// </summary>
+        /// <param name="support">A value indicating whether the custom command is supported or not.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="support"/> is invalid.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        public static void SetCustomCommandCapability(MediaControlCapabilitySupport support)
+        {
+            ValidationUtil.ValidateEnum(typeof(MediaControlCapabilitySupport), support, nameof(support));
+
+            Native.SetSimpleCapability(Handle, MediaControlNativeCapabilityCategory.CustomCommand, support).
+                ThrowIfError("Failed to set custom command capability.");
+        }
+
+        /// <summary>
+        /// Sets the <see cref="MediaControlCapabilitySupport"/> indicating search is supported or not.
+        /// </summary>
+        /// <param name="support">A value indicating whether the search is supported or not.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="support"/> is invalid.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        public static void SetSearchCapability(MediaControlCapabilitySupport support)
+        {
+            ValidationUtil.ValidateEnum(typeof(MediaControlCapabilitySupport), support, nameof(support));
+
+            Native.SetSimpleCapability(Handle, MediaControlNativeCapabilityCategory.Search, support).
+                ThrowIfError("Failed to set search capability.");
+        }
+
+        /// <summary>
         /// Sets the <see cref="MediaControlCapabilitySupport"/> indicating whether subtitle mode is supported or not.
         /// </summary>
         /// <param name="support">A value indicating whether the subtitle mode is supported or not.</param>

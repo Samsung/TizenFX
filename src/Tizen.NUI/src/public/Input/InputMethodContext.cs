@@ -50,7 +50,7 @@ namespace Tizen.NUI
         {
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void ActivatedEventCallbackType(IntPtr data);
         private delegate IntPtr EventReceivedEventCallbackType(IntPtr inputMethodContext, IntPtr eventData);
         private delegate void StatusChangedEventCallbackType(bool statusChanged);
@@ -834,7 +834,7 @@ namespace Tizen.NUI
         {
             ActivatedEventArgs e = new ActivatedEventArgs();
 
-            if (data != null)
+            if (data != IntPtr.Zero)
             {
                 e.InputMethodContext = Registry.GetManagedBaseHandleFromNativePtr(data) as InputMethodContext;
             }
@@ -851,11 +851,11 @@ namespace Tizen.NUI
 
             EventReceivedEventArgs e = new EventReceivedEventArgs();
 
-            if (inputMethodContext != null)
+            if (inputMethodContext != IntPtr.Zero)
             {
                 e.InputMethodContext = Registry.GetManagedBaseHandleFromNativePtr(inputMethodContext) as InputMethodContext;
             }
-            if (eventData != null)
+            if (eventData != IntPtr.Zero)
             {
                 e.EventData = EventData.GetEventDataFromPtr(eventData);
             }

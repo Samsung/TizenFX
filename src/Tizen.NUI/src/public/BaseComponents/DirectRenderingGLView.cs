@@ -178,13 +178,14 @@ namespace Tizen.NUI.BaseComponents
         /// You can get the bind IDs in RenderCallbackInput in the glRenderFrame callback.
         /// </summary>
         /// <param name="textures">List of Textures</param>
+        /// <exception cref="OverflowException"> Thrown when length of textures list is overflow. </exception>
         public void BindTextureResources(List<Texture> textures)
         {
             unsafe
             {
-                if (textures != null && textures.Count > 0)
+                if (textures != null && sizeof(IntPtr) * textures.Count > 0)
                 {
-                    IntPtr unmanagedPointer = Marshal.AllocHGlobal(sizeof(IntPtr) * textures.Count);
+                    IntPtr unmanagedPointer = Marshal.AllocHGlobal(checked(sizeof(IntPtr) * textures.Count));
                     IntPtr[] texturesArray = new IntPtr[textures.Count];
                     for (int i = 0; i < textures.Count; i++)
                     {

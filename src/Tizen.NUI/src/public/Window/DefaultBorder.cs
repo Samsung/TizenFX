@@ -67,11 +67,7 @@ namespace Tizen.NUI
         private float preScale = 0;
 
         private View windowView = null;
-        private bool isWinGestures = false;
-        private Timer timer;
         private Timer overlayTimer;
-
-        private CurrentGesture currentGesture = CurrentGesture.None;
 
         private uint borderLineThickness;
         private Size2D minSize;
@@ -85,13 +81,6 @@ namespace Tizen.NUI
         #endregion //Events
 
         #region Enums
-        private enum CurrentGesture
-        {
-          None = 0,
-          TapGesture = 1,
-          PanGesture = 2,
-          PinchGesture = 3,
-        }
         #endregion //Enums
 
         #region Methods
@@ -950,7 +939,6 @@ namespace Tizen.NUI
                 closeIcon?.Dispose();
                 leftCornerIcon?.Dispose();
                 rightCornerIcon?.Dispose();
-                timer?.Dispose();
                 overlayTimer?.Dispose();
             }
             disposed = true;

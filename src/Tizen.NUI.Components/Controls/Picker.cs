@@ -850,14 +850,14 @@ namespace Tizen.NUI.Components
                     startScrollOffset = (int)pickerStyle.StartScrollOffset.Height;
                 }
 
-                if (pickerStyle.ItemTextLabel?.Size != null)
+                if (pickerStyle.ItemTextLabel?.Size is var itemSize && itemSize != null)
                 {
-                    itemHeight = (int)pickerStyle.ItemTextLabel.Size.Height;
+                    itemHeight = (int)itemSize.Height;
                 }
 
-                if (pickerStyle.Size != null)
+                if (pickerStyle.Size is var pSize && pSize != null)
                 {
-                    Size = new Size(-1, pickerStyle.Size.Height);
+                    Size = new Size(-1, pSize.Height);
                 }
             }
 

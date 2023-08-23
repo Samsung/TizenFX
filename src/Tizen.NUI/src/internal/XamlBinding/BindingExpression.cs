@@ -99,19 +99,19 @@ namespace Tizen.NUI.Binding
             object sourceObject;
             if (_weakSource != null && _weakSource.TryGetTarget(out sourceObject))
             {
-                if (_parts.Count > 1)
+                for (var i = 0; i < _parts.Count; i++)
                 {
-                    for (var i = 0; i < _parts.Count - 1; i++)
+                    if (i + 1 == _parts.Count) //do not handle the last.
+                        break;
+
+                    BindingExpressionPart part = _parts[i];
+
+                    if (!part.IsSelf)
                     {
-                        BindingExpressionPart part = _parts[i];
-
-                        if (!part.IsSelf)
-                        {
-                            part.TryGetValue(sourceObject, out sourceObject);
-                        }
-
-                        part.Unsubscribe();
+                        part.TryGetValue(sourceObject, out sourceObject);
                     }
+
+                    part.Unsubscribe();
                 }
             }
 

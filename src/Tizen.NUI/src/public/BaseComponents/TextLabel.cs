@@ -58,13 +58,16 @@ namespace Tizen.NUI.BaseComponents
                     if (heightMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly)
                     {
                         // GetWidthForHeight is not implemented.
-                        totalWidth = Math.Min(Math.Max(naturalSize.Width, minSize.Width), (maxSize.Width < 0 ? Int32.MaxValue : maxSize.Width));
+                        float width = naturalSize != null ? naturalSize.Width : 0;
+                        totalWidth = Math.Min(Math.Max(width, minSize.Width), (maxSize.Width < 0 ? Int32.MaxValue : maxSize.Width));
                         widthMeasureSpec = new MeasureSpecification(new LayoutLength(totalWidth), MeasureSpecification.ModeType.Exactly);
                     }
                     else
                     {
-                        totalWidth = Math.Min(Math.Max(naturalSize.Width, minSize.Width), (maxSize.Width < 0 ? Int32.MaxValue : maxSize.Width));
-                        totalHeight = Math.Min(Math.Max(naturalSize.Height, minSize.Height), (maxSize.Height < 0 ? Int32.MaxValue : maxSize.Height));
+                        float width = naturalSize != null ? naturalSize.Width : 0;
+                        float height = naturalSize != null ? naturalSize.Height : 0;
+                        totalWidth = Math.Min(Math.Max(width, minSize.Width), (maxSize.Width < 0 ? Int32.MaxValue : maxSize.Width));
+                        totalHeight = Math.Min(Math.Max(height, minSize.Height), (maxSize.Height < 0 ? Int32.MaxValue : maxSize.Height));
 
                         heightMeasureSpec = new MeasureSpecification(new LayoutLength(totalHeight), MeasureSpecification.ModeType.Exactly);
                         widthMeasureSpec = new MeasureSpecification(new LayoutLength(totalWidth), MeasureSpecification.ModeType.Exactly);
@@ -81,6 +84,9 @@ namespace Tizen.NUI.BaseComponents
 
         static TextLabel() { }
 
+        private static SystemFontTypeChanged systemFontTypeChanged = new SystemFontTypeChanged();
+        private static SystemFontSizeChanged systemFontSizeChanged = new SystemFontSizeChanged();
+        private static SystemLocaleLanguageChanged systemLocaleLanguageChanged = new SystemLocaleLanguageChanged();
         static private string defaultStyleName = "Tizen.NUI.BaseComponents.TextLabel";
         static private string defaultFontFamily = "BreezeSans";
         private string textLabelSid = null;
@@ -213,7 +219,7 @@ namespace Tizen.NUI.BaseComponents
                     Text = translatableText;
                     if (hasSystemLanguageChanged == false)
                     {
-                        SystemSettings.LocaleLanguageChanged += SystemSettingsLocaleLanguageChanged;
+                        systemLocaleLanguageChanged.Add(SystemSettingsLocaleLanguageChanged);
                         hasSystemLanguageChanged = true;
                     }
                 }
@@ -1563,7 +1569,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (hasSystemLanguageChanged)
             {
-                SystemSettings.LocaleLanguageChanged -= SystemSettingsLocaleLanguageChanged;
+                systemLocaleLanguageChanged.Remove(SystemSettingsLocaleLanguageChanged);
             }
 
             RemoveSystemSettingsFontTypeChanged();
@@ -1634,7 +1640,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 try
                 {
-                    SystemSettings.FontSizeChanged += SystemSettingsFontSizeChanged;
+                    systemFontSizeChanged.Add(SystemSettingsFontSizeChanged);
                     hasSystemFontSizeChanged = true;
                 }
                 catch (Exception e)
@@ -1651,7 +1657,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 try
                 {
-                    SystemSettings.FontSizeChanged -= SystemSettingsFontSizeChanged;
+                    systemFontSizeChanged.Remove(SystemSettingsFontSizeChanged);
                     hasSystemFontSizeChanged = false;
                 }
                 catch (Exception e)
@@ -1673,7 +1679,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 try
                 {
-                    SystemSettings.FontTypeChanged += SystemSettingsFontTypeChanged;
+                    systemFontTypeChanged.Add(SystemSettingsFontTypeChanged);
                     hasSystemFontTypeChanged = true;
                 }
                 catch (Exception e)
@@ -1690,7 +1696,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 try
                 {
-                    SystemSettings.FontTypeChanged -= SystemSettingsFontTypeChanged;
+                    systemFontTypeChanged.Remove(SystemSettingsFontTypeChanged);
                     hasSystemFontTypeChanged = false;
                 }
                 catch (Exception e)

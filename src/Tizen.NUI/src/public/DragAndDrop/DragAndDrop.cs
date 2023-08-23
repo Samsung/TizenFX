@@ -125,6 +125,15 @@ namespace Tizen.NUI
 
             if (mDragWindow)
             {
+                //Set Window Orientation Available
+                List<Window.WindowOrientation> list = new List<Window.WindowOrientation>();
+                list.Add(Window.WindowOrientation.Landscape);
+                list.Add(Window.WindowOrientation.LandscapeInverse);
+                list.Add(Window.WindowOrientation.NoOrientationPreference);
+                list.Add(Window.WindowOrientation.Portrait);
+                list.Add(Window.WindowOrientation.PortraitInverse);
+                mDragWindow.SetAvailableOrientations(list);
+
                 //Initialize Drag Window Size based on Shadow View Size,
                 //Don't set Drag Window Posiiton, Window Server sets Position Internally
                 mDragWindow.SetWindowSize(new Size(shadowWidth, shadowHeight));

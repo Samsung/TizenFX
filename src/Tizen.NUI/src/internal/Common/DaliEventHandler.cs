@@ -22,7 +22,7 @@ using System.Runtime.InteropServices;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    /// [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -32,7 +32,7 @@ namespace Tizen.NUI
     public delegate R DaliEventHandlerWithReturnType<T, U, R>(T source, U e);
 
     /// <summary>
-    /// [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    /// [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -42,7 +42,7 @@ namespace Tizen.NUI
     internal delegate void EventCallbackDelegateType1(IntPtr arg1);
 
     /// <summary>
-    /// [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    /// [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     /// this should be removed with EventHandler from .NET
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
@@ -53,7 +53,7 @@ namespace Tizen.NUI
     public delegate void DaliEventHandler<T, U>(T source, U e);
 
     /// <summary>
-    /// [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    /// [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -63,9 +63,9 @@ namespace Tizen.NUI
     public delegate R EventHandlerWithReturnType<T, U, R>(T source, U e);
 
     /// <summary>
-    /// [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    /// [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     /// </summary>
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public delegate TReturn ReturnTypeEventHandler<TSource, TEvent, TReturn>(TSource source, TEvent e);
 }

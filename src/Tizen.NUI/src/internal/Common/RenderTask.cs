@@ -15,7 +15,9 @@
  *
  */
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
@@ -48,7 +50,7 @@ namespace Tizen.NUI
                 return;
             }
 
-            foreach (var window in Application.GetWindowList())
+            foreach (var window in Application.GetWindowList() ?? Enumerable.Empty<Window>())
             {
                 window.GetRenderTaskList().RemoveTask(this);
             }

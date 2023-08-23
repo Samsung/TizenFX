@@ -25,28 +25,73 @@ namespace Tizen.NUI
     {
         private List<WeakHandler<T>> handlers = new List<WeakHandler<T>>();
 
-        public void Add(T handler)
+        protected int Count => handlers.Count;
+
+        public virtual void Add(T handler)
         {
+            if (handlers == null)
+            {
+                handlers = new List<WeakHandler<T>>();
+            }
+
             handlers.Add(new WeakHandler<T>(handler));
+
+            OnCountIncreased();
         }
 
-        public void Remove(T handler)
+        public virtual void Remove(T handler)
         {
+            if (handlers == null)
+            {
+                return;
+            }
+
+            int count = handlers.Count;
+
             handlers.RemoveAll(item => !item.IsAlive || item.Equals(handler));
+
+            if (count > handlers.Count)
+            {
+                OnCountDicreased();
+            }
         }
 
         public void Invoke(object sender, EventArgs args)
         {
-            var copied = handlers.ToArray();
-            foreach (var item in copied)
+            if (handlers == null)
+            {
+                return;
+            }
+
+            var disposed = new HashSet<WeakHandler<T>>();
+
+            int count = handlers.Count;
+
+            foreach (var item in handlers)
             {
                 if (item.IsAlive)
                 {
                     item.Invoke(sender, args);
                     continue;
                 }
-                handlers.Remove(item);
+                disposed.Add(item);
             }
+
+            handlers.RemoveAll(disposed.Contains);
+
+            if (count > handlers.Count)
+            {
+                OnCountDicreased();
+            }
+        }
+
+        protected virtual void OnCountIncreased()
+        {
+        }
+
+
+        protected virtual void OnCountDicreased()
+        {
         }
 
         internal class WeakHandler<U>

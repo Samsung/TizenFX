@@ -53,6 +53,9 @@ namespace Tizen.Multimedia
                 case RecorderVideoCodec.Theora:
                     yield return RecorderFileFormat.Ogg;
                     break;
+
+                default:
+                    break;
             }
         }
 
@@ -92,6 +95,9 @@ namespace Tizen.Multimedia
 
                 case RecorderAudioCodec.Pcm:
                     yield return RecorderFileFormat.Wav;
+                    break;
+
+                default:
                     break;
             }
         }
