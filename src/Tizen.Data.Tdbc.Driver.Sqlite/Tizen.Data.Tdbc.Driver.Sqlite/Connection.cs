@@ -89,13 +89,17 @@ namespace Tizen.Data.Tdbc.Driver.Sqlite
                     break;
             }
 
+            if (operationType == OperationType.Delete)
+                return;
+
             Sql sql = new Sql(string.Format("SELECT * from {0} WHERE rowid = {1}", table_name, rowid));
             using (IStatement stmt = CreateStatement())
+            using (IResultSet resultSet = stmt.ExecuteQuery(sql))
             {
-                IRecord record = (operationType != OperationType.Delete ? stmt.ExecuteQuery(sql).FirstOrDefault() : null);
-                RecordChangedEventArgs ev = new RecordChangedEventArgs(operationType, db_name, table_name, record);
+                IRecord record = resultSet.FirstOrDefault();
                 lock (_lock)
                 {
+                    RecordChangedEventArgs ev = new RecordChangedEventArgs(operationType, db_name, table_name, record);
                     _recordChanged?.Invoke(this, ev);
                 }
             }
