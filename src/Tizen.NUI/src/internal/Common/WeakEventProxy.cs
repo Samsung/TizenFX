@@ -101,15 +101,42 @@ namespace Tizen.NUI
 
     internal class SystemFontSizeChanged : WeakEventProxy<FontSizeChangedEventArgs>
     {
+        /// <summary>
+        /// An event invoked when system font size change is finished.
+        /// This can be used by applications to update layout after all font size changes are applied.
+        /// </summary>
+        public static event EventHandler<FontSizeChangedEventArgs> Finished
+        {
+            add
+            {
+                fontSizeChangeFinished += value;
+            }
+            remove
+            {
+                fontSizeChangeFinished -= value;
+            }
+        }
+
         protected override void ConnectToEvent(EventHandler<FontSizeChangedEventArgs> handler)
         {
             SystemSettings.FontSizeChanged += handler;
+            // To invoke Finished after all FontSizeChanged event handlers are invoked.
+            SystemSettings.FontSizeChanged -= FontSizeChangeFinished;
+            SystemSettings.FontSizeChanged += FontSizeChangeFinished;
         }
 
         protected override void DisconnectToEvent(EventHandler<FontSizeChangedEventArgs> handler)
         {
             SystemSettings.FontSizeChanged -= handler;
+            SystemSettings.FontSizeChanged -= FontSizeChangeFinished;
         }
+
+        private static void FontSizeChangeFinished(object sender, FontSizeChangedEventArgs args)
+        {
+            fontSizeChangeFinished?.Invoke(sender, args);
+        }
+
+        private static EventHandler<FontSizeChangedEventArgs> fontSizeChangeFinished;
     }
 
     internal class SystemLocaleLanguageChanged : WeakEventProxy<LocaleLanguageChangedEventArgs>
