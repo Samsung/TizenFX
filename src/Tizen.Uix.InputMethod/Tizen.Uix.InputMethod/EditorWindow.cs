@@ -25,6 +25,7 @@ namespace Tizen.Uix.InputMethod
     /// The editor window class.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API10. Will be removed in API12. Use NUIApplication.GetDefaultWindow() to get window in NUI application")]
     public class EditorWindow : Window
     {
         internal static IntPtr _handle = IntPtr.Zero;
@@ -41,6 +42,7 @@ namespace Tizen.Uix.InputMethod
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return _handle;
@@ -51,6 +53,7 @@ namespace Tizen.Uix.InputMethod
         /// </summary>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public IntPtr GetHandle()
         {
             return _handle;
@@ -66,12 +69,11 @@ namespace Tizen.Uix.InputMethod
         /// <param name="portraitHeight">The height in the portrait mode.</param>
         /// <param name="landscapeWidth">The width in the landscape mode.</param>
         /// <param name="landscapeHeight">The height in the landscape mode.</param>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop has not started yet.
-        /// </exception>
+        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="InvalidOperationException">The IME main loop has not started yet.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public static void SetSize(int portraitWidth, int portraitHeight, int landscapeWidth, int landscapeHeight)
         {
             ErrorCode error = ImeSetSize(portraitWidth, portraitHeight, landscapeWidth, landscapeHeight);

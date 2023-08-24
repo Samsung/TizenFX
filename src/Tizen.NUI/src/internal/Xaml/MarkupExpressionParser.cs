@@ -1,3 +1,20 @@
+/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 //
 // MarkupExpressionParser.cs
 //
@@ -166,7 +183,7 @@ namespace Tizen.NUI.Xaml
                     if (remaining[end] == stringTerminator)
                     {
                         inString = false;
-                        end ++;
+                        end++;
                         break;
                     }
                 }
@@ -176,7 +193,7 @@ namespace Tizen.NUI.Xaml
                     {
                         inString = true;
                         stringTerminator = remaining[end];
-                        end ++;
+                        end++;
                         continue;
                     }
                 }
@@ -184,7 +201,7 @@ namespace Tizen.NUI.Xaml
                 // If this is an escape char, consume it and append the next char to our piece.
                 if (remaining[end] == '\\')
                 {
-                    end ++;
+                    end++;
                     if (end == remaining.Length)
                         break;
                 }
@@ -210,7 +227,7 @@ namespace Tizen.NUI.Xaml
             // Whitespace is trimmed from the end of the piece before stripping
             // quote chars from the start/end of the string. 
             while (piece.Length > 0 && char.IsWhiteSpace(piece[piece.Length - 1]))
-                piece.Length --;
+                piece.Length--;
 
             if (piece.Length >= 2)
             {

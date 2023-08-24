@@ -33,7 +33,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <param name="database">A <see cref="MediaDatabase"/> that the commands run on.</param>
         /// <exception cref="ArgumentNullException"><paramref name="database"/> is null.</exception>
-        /// <exception cref="ObjectDisposedException"><paramref name="database"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException"><paramref name="database"/> has already been disposed.</exception>
         /// <since_tizen> 4 </since_tizen>
         public PlaylistCommand(MediaDatabase database) : base(database)
         {
@@ -44,7 +44,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <returns>The number of playlists.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <since_tizen> 4 </since_tizen>
         public int Count()
@@ -58,7 +58,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="arguments">The criteria to use to filter. This value can be null.</param>
         /// <returns>The number of playlists.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <since_tizen> 4 </since_tizen>
         public int Count(CountArguments arguments)
@@ -75,7 +75,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="memberId">The member ID of the playlist.</param>
         /// <returns>The order of the member in the playlist.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="playlistId"/> is less than or equal to zero.<br/>
@@ -111,7 +111,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="playlistId">The playlist ID to delete.</param>
         /// <returns>true if the matched record was found and deleted, otherwise false.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="playlistId"/> is less than or equal to zero.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
@@ -149,7 +149,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="path">The path to a M3U file to import.</param>
         /// <returns>The <see cref="Playlist"/> instance that contains the record information inserted.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException">
         ///     <paramref name="name"/> is null.<br/>
@@ -214,7 +214,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="playlistId">The playlist ID to export.</param>
         /// <param name="path">The path to a M3U file.</param>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="path"/> is a zero-length string, contains only white space.</exception>
@@ -262,7 +262,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="name">The name of the playlist.</param>
         /// <returns>The <see cref="Playlist"/> instance that contains the record information inserted.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="name"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="name"/> is a zero-length string.</exception>
@@ -281,7 +281,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="thumbnailPath">The path of the thumbnail for the playlist. This value can be null.</param>
         /// <returns>The <see cref="Playlist"/> instance that contains the record information inserted.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="name"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="name"/> is a zero-length string.</exception>
@@ -330,7 +330,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <since_tizen> 4 </since_tizen>
         public MediaDataReader<Playlist> Select()
@@ -344,7 +344,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="filter">The criteria to use to filter. This value can be null.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <since_tizen> 4 </since_tizen>
         public MediaDataReader<Playlist> Select(SelectArguments filter)
@@ -361,7 +361,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="playlistId">The playlist ID to select.</param>
         /// <returns>The <see cref="Playlist"/> instance if the matched record was found in the database, otherwise null.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="playlistId"/> is less than or equal to zero.</exception>
         /// <since_tizen> 4 </since_tizen>
@@ -403,7 +403,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="playlistId">The playlist ID to count media added to the playlist.</param>
         /// <returns>The number of media information.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="playlistId"/> is less than or equal to zero.</exception>
         /// <since_tizen> 4 </since_tizen>
@@ -419,7 +419,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="arguments">The criteria to use to filter. This value can be null.</param>
         /// <returns>The number of media information.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="playlistId"/> is less than or equal to zero.</exception>
         /// <since_tizen> 4 </since_tizen>
@@ -475,7 +475,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="mediaId">The media ID.</param>
         /// <returns>The member ID if the member was found in the playlist, otherwise -1.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="playlistId"/> is less than or equal to zero.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
@@ -508,7 +508,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="playlistId">The playlist ID to query with.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="playlistId"/> is less than or equal to zero.</exception>
         /// <since_tizen> 4 </since_tizen>
@@ -524,7 +524,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="filter">The criteria to use to filter. This value can be null.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="playlistId"/> is less than or equal to zero.</exception>
         /// <since_tizen> 4 </since_tizen>
@@ -550,7 +550,7 @@ namespace Tizen.Content.MediaContent
         /// <returns>true if the matched record was found and updated, otherwise false.</returns>
         /// <remarks>Only values set in the <see cref="PlaylistUpdateValues"/> are updated.</remarks>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="values"/> is null.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="playlistId"/> is less than or equal to zero.</exception>
@@ -611,7 +611,7 @@ namespace Tizen.Content.MediaContent
         /// <returns>true if the matched record was found and updated, otherwise false.</returns>
         /// <remarks>The invalid media ID will be ignored.</remarks>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
@@ -632,7 +632,7 @@ namespace Tizen.Content.MediaContent
         /// <returns>true if the matched record was found and updated, otherwise false.</returns>
         /// <remarks>The invalid media IDs will be ignored.</remarks>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaIds"/> is null.</exception>
         /// <exception cref="ArgumentException">
@@ -710,7 +710,7 @@ namespace Tizen.Content.MediaContent
         /// <returns>true if the matched record was found and updated, otherwise false.</returns>
         /// <remarks>The invalid ID will be ignored.</remarks>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="playlistId"/> is less than or equal to zero.<br/>
@@ -737,7 +737,7 @@ namespace Tizen.Content.MediaContent
         /// <returns>true if the matched record was found and updated, otherwise false.</returns>
         /// <remarks>The invalid IDs will be ignored.</remarks>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="memberIds"/> is null.</exception>
         /// <exception cref="ArgumentException">
@@ -809,7 +809,7 @@ namespace Tizen.Content.MediaContent
         /// <returns>true if the matched record was found and updated, otherwise false.</returns>
         /// <remarks>The <see cref="PlayOrder.MemberId"/> that is invalid will be ignored.</remarks>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="playOrder"/> is null.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="playlistId"/> is less than or equal to zero.</exception>
@@ -831,7 +831,7 @@ namespace Tizen.Content.MediaContent
         /// <returns>true if the matched record was found and updated, otherwise false.</returns>
         /// <remarks>The <see cref="PlayOrder.MemberId"/> that is invalid will be ignored.</remarks>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="orders"/> is null.</exception>
         /// <exception cref="ArgumentException">

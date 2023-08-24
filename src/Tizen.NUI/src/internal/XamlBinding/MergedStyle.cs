@@ -11,19 +11,19 @@ namespace Tizen.NUI.Binding
     {
         ////If the base type is one of these, stop registering dynamic resources further
         ////The last one (typeof(Element)) is a safety guard as we might be creating VisualElement directly in internal code
-        static readonly IList<Type> s_stopAtTypes = new List<Type> { typeof(View), typeof(Layout<>), typeof(Element) };
+        static readonly IList<Type> stopAtTypes = new List<Type> { typeof(View), typeof(Element) };
 
-        IList<BindableProperty> _classStyleProperties;
+        IList<BindableProperty> classStyleProperties;
 
-        readonly List<BindableProperty> _implicitStyles = new List<BindableProperty>();
+        readonly List<BindableProperty> implicitStyles = new List<BindableProperty>();
 
-        IList<Style> _classStyles;
+        IList<XamlStyle> classStyles;
 
-        IStyle _implicitStyle;
+        IStyle implicitStyle;
 
-        IStyle _style;
+        IStyle style;
 
-        IList<string> _styleClass;
+        IList<string> styleClass;
 
         public MergedStyle(Type targetType, BindableObject target)
         {
@@ -35,31 +35,40 @@ namespace Tizen.NUI.Binding
 
         public IStyle Style
         {
-            get { return _style; }
-            set { SetStyle(ImplicitStyle, ClassStyles, value); }
+            get { return style; }
+            set
+            {
+                if (style == value)
+                    return;
+                if (value != null && !value.TargetType.IsAssignableFrom(TargetType))
+                    NUILog.Error($"Style TargetType {value.TargetType.FullName} is not compatible with element target type {TargetType}");
+                SetStyle(ImplicitStyle, ClassStyles, value);
+            }
         }
 
         public IList<string> StyleClass
         {
-            get { return _styleClass; }
+            get { return styleClass; }
             set
             {
-                if (_styleClass == value)
+                if (styleClass == value)
                     return;
 
-                if (_styleClass != null && _classStyles != null)
-                    foreach (var classStyleProperty in _classStyleProperties)
+                if (styleClass != null && classStyleProperties != null)
+                    foreach (var classStyleProperty in classStyleProperties)
                         Target.RemoveDynamicResource(classStyleProperty);
 
-                _styleClass = value;
+                styleClass = value;
 
-                if (_styleClass != null) {
-                    _classStyleProperties = new List<BindableProperty> ();
-                    foreach (var styleClass in _styleClass) {
-                        var classStyleProperty = BindableProperty.Create ("ClassStyle", typeof(IList<Style>), typeof(View), default(IList<Style>),
-                            propertyChanged: (bindable, oldvalue, newvalue) => ((View)bindable)._mergedStyle.OnClassStyleChanged());
-                        _classStyleProperties.Add (classStyleProperty);
-                        Target.OnSetDynamicResource (classStyleProperty, Tizen.NUI.Binding.Style.StyleClassPrefix + styleClass);
+                if (styleClass != null)
+                {
+                    classStyleProperties = new List<BindableProperty>();
+                    foreach (var styleClass in styleClass)
+                    {
+                        var classStyleProperty = BindableProperty.Create("ClassStyle", typeof(IList<XamlStyle>), typeof(View), default(IList<XamlStyle>),
+                            propertyChanged: (bindable, oldvalue, newvalue) => ((View)bindable).MergedStyle.OnClassStyleChanged());
+                        classStyleProperties.Add(classStyleProperty);
+                        Target.OnSetDynamicResource(classStyleProperty, Tizen.NUI.Binding.XamlStyle.StyleClassPrefix + styleClass);
                     }
                 }
             }
@@ -67,15 +76,15 @@ namespace Tizen.NUI.Binding
 
         public BindableObject Target { get; }
 
-        IList<Style> ClassStyles
+        IList<XamlStyle> ClassStyles
         {
-            get { return _classStyles; }
+            get { return classStyles; }
             set { SetStyle(ImplicitStyle, value, Style); }
         }
 
         IStyle ImplicitStyle
         {
-            get { return _implicitStyle; }
+            get { return implicitStyle; }
             set { SetStyle(value, ClassStyles, Style); }
         }
 
@@ -101,15 +110,15 @@ namespace Tizen.NUI.Binding
 
         void OnClassStyleChanged()
         {
-            ClassStyles = _classStyleProperties.Select (p => (Target.GetValue (p) as IList<Style>)?.FirstOrDefault (s => s.CanBeAppliedTo (TargetType))).ToList ();
+            ClassStyles = classStyleProperties.Select(p => (Target.GetValue(p) as IList<XamlStyle>)?.FirstOrDefault(s => s.CanBeAppliedTo(TargetType))).ToList();
         }
 
         void OnImplicitStyleChanged()
         {
             var first = true;
-            foreach (BindableProperty implicitStyleProperty in _implicitStyles)
+            foreach (BindableProperty implicitStyleProperty in implicitStyles)
             {
-                var implicitStyle = (Style)Target.GetValue(implicitStyleProperty);
+                var implicitStyle = (XamlStyle)Target.GetValue(implicitStyleProperty);
                 if (implicitStyle != null)
                 {
                     if (first || implicitStyle.ApplyToDerivedTypes)
@@ -125,22 +134,27 @@ namespace Tizen.NUI.Binding
         void RegisterImplicitStyles()
         {
             Type type = TargetType;
-            while (true) {
-                BindableProperty implicitStyleProperty = BindableProperty.Create("ImplicitStyle", typeof(Style), typeof(View), default(Style),
-                        propertyChanged: (bindable, oldvalue, newvalue) => OnImplicitStyleChanged());
-                _implicitStyles.Add(implicitStyleProperty);
-                Target.SetDynamicResource(implicitStyleProperty, type.FullName);
-                type = type.GetTypeInfo().BaseType;
-                if (s_stopAtTypes.Contains(type))
+            while (true)
+            {
+                if (type != null)
+                {
+                    BindableProperty implicitStyleProperty = BindableProperty.Create(nameof(ImplicitStyle), typeof(XamlStyle), typeof(View), default(XamlStyle),
+                            propertyChanged: (bindable, oldvalue, newvalue) => OnImplicitStyleChanged());
+                    implicitStyles.Add(implicitStyleProperty);
+                    Target.SetDynamicResource(implicitStyleProperty, type.FullName);
+                    type = type.GetTypeInfo().BaseType;
+                }
+
+                if (type == null || stopAtTypes.Contains(type))
                     return;
             }
         }
 
-        void SetStyle(IStyle implicitStyle, IList<Style> classStyles, IStyle style)
+        void SetStyle(IStyle implicitStyle, IList<XamlStyle> classStyles, IStyle style)
         {
             bool shouldReApplyStyle = implicitStyle != ImplicitStyle || classStyles != ClassStyles || Style != style;
             bool shouldReApplyClassStyle = implicitStyle != ImplicitStyle || classStyles != ClassStyles;
-            bool shouldReApplyImplicitStyle = implicitStyle != ImplicitStyle && (Style as Style == null || ((Style)Style).CanCascade);
+            bool shouldReApplyImplicitStyle = implicitStyle != ImplicitStyle && (Style as XamlStyle == null || ((XamlStyle)Style).CanCascade);
 
             if (shouldReApplyStyle)
                 Style?.UnApply(Target);
@@ -150,9 +164,9 @@ namespace Tizen.NUI.Binding
             if (shouldReApplyImplicitStyle)
                 ImplicitStyle?.UnApply(Target);
 
-            _implicitStyle = implicitStyle;
-            _classStyles = classStyles;
-            _style = style;
+            this.implicitStyle = implicitStyle;
+            this.classStyles = classStyles;
+            this.style = style;
 
             if (shouldReApplyImplicitStyle)
                 ImplicitStyle?.Apply(Target);

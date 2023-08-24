@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Tizen\Tizen.csproj" />
+    <ProjectReference Include="..\..\..\src\Tizen.Log\Tizen.Log.csproj" />
+    <ProjectReference Include="..\..\..\src\Tizen.Applications.Common\Tizen.Applications.Common.csproj" />
+  </ItemGroup>
+
+</Project>

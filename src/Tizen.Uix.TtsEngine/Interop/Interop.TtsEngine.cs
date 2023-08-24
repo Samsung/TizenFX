@@ -17,6 +17,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen.Internals;
 using Tizen.Uix.TtsEngine;
 using static Tizen.Uix.TtsEngine.Engine;
 
@@ -91,6 +92,7 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate Error PrivateDataRequestedCb(string key, out string data);
 
+        [NativeStruct("ttse_request_callback_s", Include="ttse.h", PkgConfig="tts-engine")]
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         internal struct RequestCallbackStruct
         {

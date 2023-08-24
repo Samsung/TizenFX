@@ -27,6 +27,7 @@ namespace Tizen.Multimedia
         /// Occurs when <see cref="StreamRecorder"/> state is changed.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public event EventHandler<StreamRecorderStateChangedEventArgs> StateChanged;
 
 
@@ -34,24 +35,28 @@ namespace Tizen.Multimedia
         /// Occurs when a buffer had consumed completely.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public event EventHandler<StreamRecorderBufferConsumedEventArgs> BufferConsumed;
 
         /// <summary>
         /// Occurs when recording status is changed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public event EventHandler<RecordingStatusChangedEventArgs> RecordingStatusChanged;
 
         /// <summary>
         /// Occurs when recording limit is reached.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public event EventHandler<RecordingLimitReachedEventArgs> RecordingLimitReached;
 
         /// <summary>
         /// Occurs when an error occurred during a recorder operation.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public event EventHandler<StreamRecorderErrorOccurredEventArgs> ErrorOccurred;
 
         private Native.RecordingLimitReachedCallback _recordingLimitReachedCallback;

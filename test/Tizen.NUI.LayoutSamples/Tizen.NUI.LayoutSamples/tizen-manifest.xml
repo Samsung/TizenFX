@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="5.5" package="org.tizen.example.Tizen.NUI.LayoutSamples" version="1.0.0">
+  <profile name="common" />
+  <ui-application appid="org.tizen.example.Tizen.NUI.LayoutSamples"
+					exec="Tizen.NUI.LayoutSamples.dll"
+					type="dotnet-nui"
+					multiple="false"
+					taskmanage="true"
+					nodisplay="false"
+					launch_mode="single"
+					api-version="6">
+    <label>Tizen.NUI.LayoutSamples</label>
+    <icon>Tizen.NUI.LayoutSamples.png</icon>
+    <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+  </ui-application>
+	<privileges>
+        <privilege>http://tizen.org/privilege/camera</privilege>
+  </privileges>
+</manifest>

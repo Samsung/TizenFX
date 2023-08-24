@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<View x:Class="Tizen.NUI.Examples.LayoutPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:l="clr-namespace:Tizen.NUI.Examples;"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      Size="400,600" BackgroundColor="Red" ParentOrigin="Center" PivotPoint="Center" PositionUsesPivotPoint="true">
+    <View.Layout>
+        <LinearLayout LinearOrientation="Vertical" CellPadding="50,50" LinearAlignment="Center"/>
+    </View.Layout>
+    <TextLabel Text="ABCDE" HorizontalAlignment="Center" VerticalAlignment="Center"  Size="300, 50" BackgroundColor="Cyan"/>
+    <TextLabel Text="HIJKL"  HorizontalAlignment="Center" VerticalAlignment="Center" Size="300, 50" BackgroundColor="Cyan"/>
+    <TextLabel Text="UVXYZ" HorizontalAlignment="Center" VerticalAlignment="Center" Size="300,50" BackgroundColor="Cyan"/>
+</View>

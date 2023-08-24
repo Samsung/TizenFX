@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Tizen.System
 {
@@ -190,6 +191,14 @@ namespace Tizen.System
             }
 
             RuntimeInfo.UnsetCallback(runtimeFeature, callback);
+        }
+
+        // for internal use only
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static void Preload()
+        {
+            TryGetValue("http://tizen.org/feature/screen.width", out int width);
+            TryGetValue("http://tizen.org/feature/screen.height", out int height);
         }
     }
 }

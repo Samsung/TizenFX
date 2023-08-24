@@ -21,7 +21,7 @@ using System.Text;
 namespace Tizen.Applications.WatchfaceComplication
 {
     /// <summary>
-    /// Represents the LongTextData class for the LongText type complication.
+    /// Represents the long text data for a complication.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public class LongTextData : ComplicationData

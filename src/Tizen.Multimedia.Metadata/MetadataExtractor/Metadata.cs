@@ -196,7 +196,9 @@ namespace Tizen.Multimedia
             Album = extractor.GetMetadata(MetadataExtractorAttr.Album);
             AlbumArtist = extractor.GetMetadata(MetadataExtractorAttr.AlbumArtist);
             Genre = extractor.GetMetadata(MetadataExtractorAttr.Genre);
+#pragma warning disable CS0618 // Type or member is obsolete
             Author = extractor.GetMetadata(MetadataExtractorAttr.Composer);
+#pragma warning restore CS0618 // Type or member is obsolete
             Composer = extractor.GetMetadata(MetadataExtractorAttr.Composer);
             Copyright = extractor.GetMetadata(MetadataExtractorAttr.Copyright);
             DateReleased = extractor.GetMetadata(MetadataExtractorAttr.ReleaseDate);

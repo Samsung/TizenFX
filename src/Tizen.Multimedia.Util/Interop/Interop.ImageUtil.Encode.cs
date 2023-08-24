@@ -64,28 +64,31 @@ internal static partial class Interop
 
             [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_encode_run")]
             internal static extern ImageUtilError Run(ImageEncoderHandle handle, out ulong size);
+
+            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_encode_set_lossless")]
+            internal static extern ImageUtilError SetLossless(ImageEncoderHandle handle, bool lossless);
+        }
+    }
+
+    internal class ImageEncoderHandle : SafeHandle
+    {
+        protected ImageEncoderHandle() : base(IntPtr.Zero, true)
+        {
         }
 
-        internal class ImageEncoderHandle : SafeHandle
+        public override bool IsInvalid => handle == IntPtr.Zero;
+
+
+        protected override bool ReleaseHandle()
         {
-            protected ImageEncoderHandle() : base(IntPtr.Zero, true)
+            var ret = ImageUtil.Encode.Destroy(handle);
+            if (ret != ImageUtilError.None)
             {
+                Log.Debug(GetType().FullName, $"Failed to release native {GetType().Name}");
+                return false;
             }
 
-            public override bool IsInvalid => handle == IntPtr.Zero;
-
-
-            protected override bool ReleaseHandle()
-            {
-                var ret = Encode.Destroy(handle);
-                if (ret != ImageUtilError.None)
-                {
-                    Log.Debug(GetType().FullName, $"Failed to release native {GetType().Name}");
-                    return false;
-                }
-
-                return true;
-            }
+            return true;
         }
     }
 }

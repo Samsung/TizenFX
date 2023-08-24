@@ -112,6 +112,12 @@ namespace Tizen.Uix.Tts
                         break;
                     }
 
+                case TtsError.ScreenReaderOff:
+                    {
+                        exp = new InvalidOperationException("Screen reader off");
+                        break;
+                    }
+
                 default:
                     {
                         exp = new Exception("");

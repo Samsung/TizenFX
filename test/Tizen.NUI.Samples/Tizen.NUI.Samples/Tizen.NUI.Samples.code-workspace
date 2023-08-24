@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../../src/Tizen.NUI"
+		},
+		{
+			"path": "../../../src/Tizen.NUI.Components"
+		},
+		{
+			"path": "../../../../../DALi"
+		}
+	],
+	"settings": {}
+}

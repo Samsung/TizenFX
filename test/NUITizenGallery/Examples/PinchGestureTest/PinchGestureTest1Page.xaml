@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.PinchGestureTest1Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="PinchGestureTest1Page"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <View x:Name="ContentView"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" LinearAlignment="Center" CellPadding="60,60"/>
+            </View.Layout>
+
+            <View x:Name="imageBox" BackgroundColor="White">
+
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Vertical" LinearAlignment="CenterHorizontal"/>
+                </View.Layout>
+
+                <ImageView x:Name="imageView" ResourceUrl="*Resource*/images/picture.png" />
+            </View>
+        </View>
+    </ContentPage.Content>
+</ContentPage>
+

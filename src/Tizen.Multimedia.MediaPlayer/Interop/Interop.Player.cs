@@ -37,6 +37,9 @@ internal static partial class Interop
         internal delegate void VideoFrameDecodedCallback(IntPtr packetHandle, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void AudioFrameDecodedCallback(IntPtr packetHandle, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void SubtitleUpdatedCallback(uint duration, string text, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -63,6 +66,9 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool AdaptiveVariantCallback(int bandwidth, int width, int height, IntPtr userData);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate bool SupportedMediaFormatCallback(int format, IntPtr userData);
+
         [DllImport(Libraries.Player, EntryPoint = "player_create")]
         internal static extern PlayerErrorCode Create(out PlayerHandle player);
 
@@ -71,6 +77,10 @@ internal static partial class Interop
 
         [DllImport(Libraries.Player, EntryPoint = "player_prepare")]
         internal static extern PlayerErrorCode Prepare(IntPtr player);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_prepare_async")]
+        internal static extern PlayerErrorCode PrepareAsync(IntPtr player, PrepareCallback callback,
+            IntPtr userData = default(IntPtr));
 
         [DllImport(Libraries.Player, EntryPoint = "player_unprepare")]
         internal static extern PlayerErrorCode Unprepare(IntPtr player);
@@ -171,6 +181,13 @@ internal static partial class Interop
 
         [DllImport(Libraries.Player, EntryPoint = "player_unset_media_packet_video_frame_decoded_cb")]
         internal static extern PlayerErrorCode UnsetVideoFrameDecodedCb(IntPtr player);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_set_media_packet_audio_frame_decoded_cb")]
+        internal static extern PlayerErrorCode SetAudioFrameDecodedCb(IntPtr player, IntPtr format, PlayerAudioExtractOption opt,
+            AudioFrameDecodedCallback callback, IntPtr userData = default(IntPtr));
+
+        [DllImport(Libraries.Player, EntryPoint = "player_unset_media_packet_audio_frame_decoded_cb")]
+        internal static extern PlayerErrorCode UnsetAudioFrameDecodedCb(IntPtr player);
 
         [DllImport(Libraries.Player, EntryPoint = "player_set_streaming_cookie")]
         internal static extern PlayerErrorCode SetStreamingCookie(IntPtr player, string cookie, int size);
@@ -337,6 +354,45 @@ internal static partial class Interop
 
         [DllImport(Libraries.Player, EntryPoint = "player_get_video_roi_area")]
         internal static extern PlayerErrorCode GetVideoRoi(IntPtr player, out double scaleX, out double scaleY, out double scaleWidth, out double scaleHeight);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_audio_pitch_set_enabled")]
+        internal static extern PlayerErrorCode SetAudioPitchEnabled(IntPtr player, bool enabled);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_audio_pitch_is_enabled")]
+        internal static extern PlayerErrorCode IsAudioPitchEnabled(IntPtr player, out bool enabled);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_audio_pitch_set_value")]
+        internal static extern PlayerErrorCode SetAudioPitch(IntPtr player, float level);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_audio_pitch_get_value")]
+        internal static extern PlayerErrorCode GetAudioPitch(IntPtr player, out float level);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_audio_offload_set_enabled")]
+        internal static extern PlayerErrorCode SetAudioOffloadEnabled(IntPtr player, bool value);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_audio_offload_is_enabled")]
+        internal static extern PlayerErrorCode IsAudioOffloadEnabled(IntPtr player, out bool value);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_audio_offload_is_activated")]
+        internal static extern PlayerErrorCode IsAudioOffloadActivated(IntPtr player, out bool value);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_audio_offload_foreach_supported_format")]
+        internal static extern PlayerErrorCode SupportedAudioOffloadFormat(IntPtr player, SupportedMediaFormatCallback callback, IntPtr userData);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_foreach_media_stream_supported_format")]
+        internal static extern PlayerErrorCode SupportedMediaStreamFormat(IntPtr player, SupportedMediaFormatCallback callback, IntPtr userData);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_set_audio_codec_type")]
+        internal static extern PlayerErrorCode SetAudioCodecType(IntPtr player, CodecType type);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_get_audio_codec_type")]
+        internal static extern PlayerErrorCode GetAudioCodecType(IntPtr player, out CodecType type);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_set_video_codec_type")]
+        internal static extern PlayerErrorCode SetVideoCodecType(IntPtr player, CodecType type);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_get_video_codec_type")]
+        internal static extern PlayerErrorCode GetVideoCodecType(IntPtr player, out CodecType type);
     }
 
     internal class PlayerHandle : SafeHandle

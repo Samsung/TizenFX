@@ -15,8 +15,10 @@
  */
 
 using System;
+using System.ComponentModel;
 
 using Tizen.Applications.CoreBackend;
+using Tizen.Internals.Errors;
 
 namespace Tizen.Applications
 {
@@ -112,6 +114,23 @@ namespace Tizen.Applications
         protected virtual void OnPause()
         {
             Paused?.Invoke(this, EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// Gets the window position of the application.
+        /// </summary>
+        /// <returns>The window position.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when there is no window position.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        public WindowPosition GetWindowPosition()
+        {
+            ErrorCode err = Interop.Application.GetWindowPosition(out int x, out int y, out int w, out int h);
+            if (err != ErrorCode.None)
+            {
+                throw new InvalidOperationException("Failed to get window position");
+            }
+
+            return new WindowPosition(x, y, w, h);
         }
     }
 }

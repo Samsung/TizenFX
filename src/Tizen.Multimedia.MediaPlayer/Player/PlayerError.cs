@@ -48,41 +48,42 @@ namespace Tizen.Multimedia
         ServiceDisconnected = PlayerErrorClass | 0x0d,
         NotSupportedAudioCodec = PlayerErrorClass | 0x0e,
         NotSupportedVideoCodec = PlayerErrorClass | 0x0f,
-        NotSupportedSubtitle = PlayerErrorClass | 0x10
+        NotSupportedSubtitle = PlayerErrorClass | 0x10,
+        NotAvailable = PlayerErrorClass | 0x12
     }
 
     internal static class PlayerErrorCodeExtensions
     {
-        internal static void ThrowIfFailed(this PlayerErrorCode err, Player player, string message)
+        internal static void ThrowIfFailed(this PlayerErrorCode errorCode, Player player, string message)
         {
-            if (err == PlayerErrorCode.None)
+            if (errorCode == PlayerErrorCode.None)
             {
                 return;
             }
 
-            var ex = err.GetException(message);
+            var ex = errorCode.GetException(message);
 
             if (ex == null)
             {
                 // Notify only when it can't be handled.
-                player?.NotifyError((int)err, message);
+                player?.NotifyError((int)errorCode, message);
 
-                throw new InvalidOperationException($"{message} : Unknown error({err.ToString()}).");
+                throw new InvalidOperationException($"{message} : Unknown error({errorCode.ToString()}).");
             }
 
             throw ex;
         }
 
-        internal static Exception GetException(this PlayerErrorCode err, string message)
+        internal static Exception GetException(this PlayerErrorCode errorCode, string message)
         {
-            if (err == PlayerErrorCode.None)
+            if (errorCode == PlayerErrorCode.None)
             {
                 return null;
             }
 
-            string msg = $"{ (message ?? "Operation failed") } : { err.ToString() }.";
+            string msg = $"{ (message ?? "Operation failed") } : { errorCode.ToString() }.";
 
-            switch (err)
+            switch (errorCode)
             {
                 case PlayerErrorCode.InvalidArgument:
                 case PlayerErrorCode.InvalidUri:
@@ -129,6 +130,13 @@ namespace Tizen.Multimedia
 
                 case PlayerErrorCode.NotSupportedVideoCodec:
                     throw new CodecNotSupportedException(CodecKind.Video);
+
+                case PlayerErrorCode.NotAvailable:
+                    throw new NotAvailableException(msg);
+
+                default:
+                    Log.Info(PlayerLog.Tag, "Unknow error: " + errorCode);
+                    break;
             }
 
             return null;
@@ -163,6 +171,22 @@ namespace Tizen.Multimedia
         /// <param name="message">Error description.</param>
         /// <since_tizen> 3 </since_tizen>
         public ResourceLimitException(string message) : base(message)
+        {
+        }
+    }
+
+    /// <summary>
+    /// The exception that is thrown when it is not available.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    public class NotAvailableException : Exception
+    {
+        /// <summary>
+        /// Initializes a new instance of the NotAvailableException class with a specified error message.
+        /// </summary>
+        /// <param name="message">Error description.</param>
+        /// <since_tizen> 6 </since_tizen>
+        public NotAvailableException(string message) : base(message)
         {
         }
     }

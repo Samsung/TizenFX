@@ -32,6 +32,16 @@ internal static partial class Interop
             Binary
         }
 
+        internal enum AppCommonErrorCode
+        {
+            None = Tizen.Internals.Errors.ErrorCode.None,
+            InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,
+            OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,
+            InvalidContext = -0x01100000 | 0x01,
+            NoSuchFile = Tizen.Internals.Errors.ErrorCode.NoSuchFile,
+            PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,
+        }
+
         [DllImport(Libraries.AppCommon, EntryPoint = "app_get_id")]
         internal static extern ErrorCode AppGetId(out string appId);
 
@@ -91,6 +101,15 @@ internal static partial class Interop
 
         [DllImport(Libraries.AppCommon, EntryPoint = "app_event_get_device_orientation")]
         internal static extern ErrorCode AppEventGetDeviceOrientation(IntPtr handle, out DeviceOrientation orientation);
+
+        [DllImport(Libraries.AppCommon, EntryPoint = "app_event_get_suspended_state")]
+        internal static extern ErrorCode AppEventGetSuspendedState(IntPtr handle, out SuspendedState state);
+
+        [DllImport(Libraries.AppCommon, EntryPoint = "app_get_res_control_allowed_resource_path")]
+        internal static extern AppCommonErrorCode AppGetResControlAllowedResourcePath(string applicationId, out string path);
+
+        [DllImport(Libraries.AppCommon, EntryPoint = "app_get_res_control_global_resource_path")]
+        internal static extern AppCommonErrorCode AppGetResControlGlobalResourcePath(string applicationId, out string path);
     }
 }
 

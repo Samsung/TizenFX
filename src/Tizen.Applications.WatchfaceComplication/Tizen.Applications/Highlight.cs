@@ -21,7 +21,7 @@ using System.Text;
 namespace Tizen.Applications.WatchfaceComplication
 {
     /// <summary>
-    /// Represents the Highlight class for the editable.
+    /// Represents the highlight data for an editable.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public class Highlight
@@ -34,7 +34,7 @@ namespace Tizen.Applications.WatchfaceComplication
         private ShapeType _type;
 
         /// <summary>
-        /// Initializes the Highlight class.
+        /// Initializes a new instance of the Highlight class.
         /// </summary>
         /// <param name="type">The highlight shape type.</param>
         /// <param name="x">The highlight geometry x.</param>

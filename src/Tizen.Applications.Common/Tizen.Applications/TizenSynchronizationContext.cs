@@ -67,66 +67,29 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         public override void Send(SendOrPostCallback d, object state)
         {
-            var mre = new ManualResetEvent(false);
-            Exception err = null;
-            GSourceManager.Post(() =>
+            using (var mre = new ManualResetEvent(false))
             {
-                try
+                Exception err = null;
+                GSourceManager.Post(() =>
                 {
-                    d(state);
-                }
-                catch (Exception ex)
+                    try
+                    {
+                        d(state);
+                    }
+                    catch (Exception ex)
+                    {
+                        err = ex;
+                    }
+                    finally
+                    {
+                        mre.Set();
+                    }
+                });
+                mre.WaitOne();
+                if (err != null)
                 {
-                    err = ex;
+                    throw err;
                 }
-                finally
-                {
-                    mre.Set();
-                }
-            });
-            mre.WaitOne();
-            if (err != null)
-            {
-                throw err;
-            }
-        }
-
-        private static class GSourceManager
-        {
-            private static Interop.Glib.GSourceFunc _wrapperHandler;
-            private static Object _transactionLock;
-            private static ConcurrentDictionary<int, Action> _handlerMap;
-            private static int _transactionId;
-
-            static GSourceManager()
-            {
-                _wrapperHandler = new Interop.Glib.GSourceFunc(Handler);
-                _transactionLock = new Object();
-                _handlerMap = new ConcurrentDictionary<int, Action>();
-                _transactionId = 0;
-            }
-
-            public static void Post(Action action)
-            {
-                int id = 0;
-                lock (_transactionLock)
-                {
-                    id = _transactionId++;
-                }
-                _handlerMap.TryAdd(id, action);
-                Interop.Glib.IdleAdd(_wrapperHandler, (IntPtr)id);
-            }
-
-            private static bool Handler(IntPtr userData)
-            {
-                int key = (int)userData;
-                if (_handlerMap.ContainsKey(key))
-                {
-                    Action action;
-                    _handlerMap.TryRemove(key, out action);
-                    action?.Invoke();
-                }
-                return false;
             }
         }
     }

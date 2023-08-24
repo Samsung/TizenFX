@@ -18,7 +18,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 using Tizen.Applications;
-using Tizen;
+using Tizen.Internals;
 using Tizen.Applications.DataControl;
 
 internal static partial class Interop
@@ -164,6 +164,7 @@ internal static partial class Interop
         internal delegate void MapBulkAddResponseCallback(int requestID,
             IntPtr provider, IntPtr bulkResults, bool providerResult, string error, IntPtr userData);
 
+        [NativeStruct("data_control_map_response_cb", Include="data_control.h", PkgConfig="data-control")]
         [StructLayoutAttribute(LayoutKind.Sequential)]
         internal struct MapResponseCallbacks
         {
@@ -184,6 +185,7 @@ internal static partial class Interop
         internal delegate void SqlBulkInsertResponseCallback(int requestID,
             IntPtr provider, IntPtr bulk_results, bool providerResult, string error, IntPtr userData);
 
+        [NativeStruct("data_control_sql_response_cb", Include="data_control.h", PkgConfig="data-control")]
         [StructLayoutAttribute(LayoutKind.Sequential)]
         internal struct SqlResponseCallbacks
         {
@@ -230,6 +232,7 @@ internal static partial class Interop
         internal delegate void MapBulkAddRequestCallback(int requestID,
             IntPtr provider, IntPtr bulkData, IntPtr userData);
 
+        [NativeStruct("data_control_provider_map_cb", Include="data_control.h", PkgConfig="data-control")]
         [StructLayoutAttribute(LayoutKind.Sequential)]
         internal struct MapRequestCallbacks
         {
@@ -252,6 +255,7 @@ internal static partial class Interop
         internal delegate void SqlBulkInsertRequestCallback(int requestID,
             IntPtr provider, IntPtr bulk_data, IntPtr userData);
 
+        [NativeStruct("data_control_provider_sql_cb", Include="data_control.h", PkgConfig="data-control")]
         [StructLayoutAttribute(LayoutKind.Sequential)]
         internal struct SqlRequestCallbacks
         {

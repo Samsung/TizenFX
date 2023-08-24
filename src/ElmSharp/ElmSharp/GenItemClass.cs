@@ -18,6 +18,8 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
+using Tizen.Internals;
+
 namespace ElmSharp
 {
     /// <summary>
@@ -279,6 +281,7 @@ namespace ElmSharp
         }
     }
 
+    [NativeStruct("Elm_Gen_Item_Class", Include="Elementary.h", PkgConfig="elementary")]
     [StructLayout(LayoutKind.Sequential)]
     internal class ItemClass
     {

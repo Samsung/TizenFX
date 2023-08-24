@@ -1,10 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Tizen.Multimedia\Tizen.Multimedia.csproj" />
+    <ProjectReference Include="..\Tizen.System.Storage\Tizen.System.Storage.csproj" />
     <ProjectReference Include="..\Tizen\Tizen.csproj" />
     <ProjectReference Include="..\Tizen.Log\Tizen.Log.csproj" />
     <ProjectReference Include="..\Tizen.System.Information\Tizen.System.Information.csproj" />

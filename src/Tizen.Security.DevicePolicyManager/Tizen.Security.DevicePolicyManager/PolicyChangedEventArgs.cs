@@ -22,6 +22,7 @@ namespace Tizen.Security.DevicePolicyManager
     /// An extended EventArgs class contains the changed dpm policy state.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API level 11.")]
     public class PolicyChangedEventArgs : EventArgs
     {
         internal PolicyChangedEventArgs(string name, string state)
@@ -34,11 +35,13 @@ namespace Tizen.Security.DevicePolicyManager
         /// Gets the name of the changed policy.
         /// </summary>
         /// <remarks>Each policy that can raise event has the name. The policy name value is in each policy class.</remarks>
+        [Obsolete("Deprecated since API level 11.")]
         public string PolicyName { get; }
 
         /// <summary>
         /// Gets the current state of the policy.
         /// </summary>
+        [Obsolete("Deprecated since API level 11.")]
         public bool IsAllowed { get; }
     }
 }

@@ -1,3 +1,20 @@
+/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 // using ElmSharp;
 using System;
 using System.Collections.Generic;
@@ -15,7 +32,7 @@ namespace Tizen.NUI.Binding
 {
     internal class TizenPlatformServices : IPlatformServices
     {
-        static MD5 checksum = MD5.Create();
+        static SHA256 checksum = SHA256.Create();
 
         static SynchronizationContext s_context;
 
@@ -24,81 +41,10 @@ namespace Tizen.NUI.Binding
             s_context = SynchronizationContext.Current;
         }
 
-        public class TizenTicker : Ticker
-        {
-            readonly System.Threading.Timer _timer;
-
-            public TizenTicker()
-            {
-                _timer = new System.Threading.Timer((object o) => HandleElapsed(o), this, Timeout.Infinite, Timeout.Infinite);
-            }
-
-            protected override void EnableTimer()
-            {
-                _timer.Change(16, 16);
-            }
-
-            protected override void DisableTimer()
-            {
-                _timer.Change(-1, -1);
-            }
-
-            void HandleElapsed(object state)
-            {
-                s_context.Post((o) => SendSignals(-1), null);
-            }
-        }
         #region IPlatformServices implementation
-
-        // public double GetNamedSize(NamedSize size, Type targetElementType, bool useOldSizes)
-        // {
-        //  int pt;
-        //  // Actual font size depends on the target idiom.
-        //  switch (size)
-        //  {
-        //      case NamedSize.Micro:
-        //          pt = Device.Idiom == TargetIdiom.TV || Device.Idiom == TargetIdiom.Watch ? 24 : 19;
-        //          break;
-        //      case NamedSize.Small:
-        //          pt = Device.Idiom == TargetIdiom.TV ? 26 : (Device.Idiom == TargetIdiom.Watch ? 30 : 22);
-        //          break;
-        //      case NamedSize.Default:
-        //      case NamedSize.Medium:
-        //          pt = Device.Idiom == TargetIdiom.TV ? 28 : (Device.Idiom == TargetIdiom.Watch ? 32 : 25);
-        //          break;
-        //      case NamedSize.Large:
-        //          pt = Device.Idiom == TargetIdiom.TV ? 84 : (Device.Idiom == TargetIdiom.Watch ? 36 : 31);
-        //          break;
-        //      default:
-        //          throw new ArgumentOutOfRangeException();
-        //  }
-        //  return Forms.ConvertToDPFont(pt);
-        // }
-
-        // public void OpenUriAction(Uri uri)
-        // {
-        //  if (uri == null || uri.AbsoluteUri == null)
-        //  {
-        //      throw new ArgumentNullException(nameof(uri));
-        //  }
-        //  TAppControl tAppControl = new TAppControl() { Operation = "%", Uri = uri.AbsoluteUri };
-        //  var matchedApplications = TAppControl.GetMatchedApplicationIds(tAppControl);
-        //  if (matchedApplications.Count() > 0)
-        //  {
-        //      TAppControl.SendLaunchRequest(tAppControl);
-        //      return;
-        //  }
-        //  throw new PlatformNotSupportedException();
-        // }
-
         public void BeginInvokeOnMainThread(Action action)
         {
             s_context.Post((o) => action(), null);
-        }
-
-        public Ticker CreateTicker()
-        {
-            return new TizenTicker();
         }
 
         public void StartTimer(TimeSpan interval, Func<bool> callback)
@@ -123,15 +69,15 @@ namespace Tizen.NUI.Binding
                 }
             };
             timer = new System.Threading.Timer(onTimeout, null, Timeout.Infinite, Timeout.Infinite);
-            // set interval separarately to prevent calling onTimeout before `timer' is assigned
+            // set interval separately to prevent calling onTimeout before `timer' is assigned
             timer.Change(interval, interval);
         }
 
         public async Task<Stream> GetStreamAsync(Uri uri, CancellationToken cancellationToken)
         {
             using (var client = new HttpClient())
-            using (HttpResponseMessage response = await client.GetAsync(uri, cancellationToken))
-                return await response.Content.ReadAsStreamAsync();
+            using (HttpResponseMessage response = await client.GetAsync(uri, cancellationToken).ConfigureAwait(false))
+                return await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
         }
 
         public Assembly[] GetAssemblies()
@@ -181,7 +127,7 @@ namespace Tizen.NUI.Binding
         {
             public static AppDomain CurrentDomain { get; private set; }
 
-            List<Assembly> _assemblies;
+            List<Assembly> assemblies;
 
             public static bool IsTizenSpecificAvailable { get; private set; }
 
@@ -192,18 +138,18 @@ namespace Tizen.NUI.Binding
 
             AppDomain()
             {
-                _assemblies = new List<Assembly>();
+                assemblies = new List<Assembly>();
 
                 // Add this renderer assembly to the list
-                _assemblies.Add(GetType().GetTypeInfo().Assembly);
+                assemblies.Add(GetType().GetTypeInfo().Assembly);
             }
 
             internal void RegisterAssemblyRecursively(Assembly asm)
             {
-                if (_assemblies.Contains(asm))
+                if (assemblies.Contains(asm))
                     return;
 
-                _assemblies.Add(asm);
+                assemblies.Add(asm);
 
                 foreach (var refName in asm.GetReferencedAssemblies())
                 {
@@ -215,9 +161,9 @@ namespace Tizen.NUI.Binding
                             if (refAsm != null)
                             {
                                 RegisterAssemblyRecursively(refAsm);
-                                if (refName.Name == "Xamarin.Forms.Core")
+                                if (refName.Name == "Tizen.NUI.Xaml.Core")
                                 {
-                                    if (refAsm.GetType("Xamarin.Forms.PlatformConfiguration.TizenSpecific.VisualElement") != null)
+                                    if (refAsm.GetType("Tizen.NUI.Xaml.PlatformConfiguration.TizenSpecific.VisualElement") != null)
                                     {
                                         IsTizenSpecificAvailable = true;
                                     }
@@ -234,7 +180,7 @@ namespace Tizen.NUI.Binding
 
             public Assembly[] GetAssemblies()
             {
-                return _assemblies.ToArray();
+                return assemblies.ToArray();
             }
         }
     }

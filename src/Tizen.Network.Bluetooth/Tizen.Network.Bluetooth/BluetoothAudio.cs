@@ -29,23 +29,24 @@ namespace Tizen.Network.Bluetooth
     {
         internal BluetoothAudio()
         {
+            BluetoothAudioImpl.Instance.AgScoStateChanged += (s, e) => AgScoStateChanged?.Invoke(this, e);
+            BluetoothAudioImpl.Instance.AudioConnectionStateChanged += (s, e) => AudioConnectionStateChanged?.Invoke(this, e);
         }
 
         /// <summary>
         /// The AudioConnectionStateChanged event is called when the audio connection state is changed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public event EventHandler<AudioConnectionStateChangedEventArgs> AudioConnectionStateChanged
-        {
-            add
-            {
-                BluetoothAudioImpl.Instance.AudioConnectionStateChanged += value;
-            }
-            remove
-            {
-                BluetoothAudioImpl.Instance.AudioConnectionStateChanged -= value;
-            }
-        }
+        public event EventHandler<AudioConnectionStateChangedEventArgs> AudioConnectionStateChanged;
+
+        /// <summary>
+        /// This event is called when the AG(Audio Gateway) SCO(Synchronous Connection Oriented link) state is changed.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.bluetooth.audio.call</feature>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static event EventHandler<AgScoStateChangedEventArgs> AgScoStateChanged;
 
         /// <summary>
         /// Connects the remote device with the given audio profile.
@@ -149,25 +150,6 @@ namespace Tizen.Network.Bluetooth
             get
             {   
                 return BluetoothAudioImpl.Instance.IsAgScoOpened;
-            }
-        }
-
-        /// <summary>
-        /// This event is called when the AG(Audio Gateway) SCO(Synchronous Connection Oriented link) state is changed.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// <feature>http://tizen.org/feature/network.bluetooth</feature>
-        /// <feature>http://tizen.org/feature/network.bluetooth.audio.call</feature>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static event EventHandler<AgScoStateChangedEventArgs> AgScoStateChanged
-        {
-            add
-            {
-                BluetoothAudioImpl.Instance.AgScoStateChanged += value;
-            }
-            remove
-            {
-                BluetoothAudioImpl.Instance.AgScoStateChanged -= value;
             }
         }
 

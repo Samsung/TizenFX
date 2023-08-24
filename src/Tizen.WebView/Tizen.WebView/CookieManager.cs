@@ -21,6 +21,7 @@ namespace Tizen.WebView
     /// Enumeration for the cookies accept policies.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
     public enum CookieAcceptPolicy
     {
         /// <summary>
@@ -41,11 +42,13 @@ namespace Tizen.WebView
     /// Enumeration for creating a type name for the storage of persistent cookies.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
     public enum CookiePersistentStorage
     {
         /// <summary>
         /// Cookies are stored in a text file in the Mozilla "cookies.txt" format.
         /// </summary>
+        [Obsolete("Deprecated since API level 8.")]
         Text,
         /// <summary>
         /// Cookies are stored in a SQLite file in the current Mozilla format.
@@ -57,6 +60,7 @@ namespace Tizen.WebView
     /// This class provides methods for the cookie manager.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
     public class CookieManager
     {
         private IntPtr _handle;
@@ -74,6 +78,7 @@ namespace Tizen.WebView
         /// </remarks>
         /// <param name="policy">The cookie acceptance policy.</param>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void SetCookieAcceptPolicy(CookieAcceptPolicy policy)
         {
             Interop.ChromiumEwk.ewk_cookie_manager_accept_policy_set(_handle, (Interop.ChromiumEwk.CookieAcceptPolicy)policy);
@@ -83,6 +88,7 @@ namespace Tizen.WebView
         /// Deletes all the cookies.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void ClearCookies()
         {
             Interop.ChromiumEwk.ewk_cookie_manager_cookies_clear(_handle);
@@ -96,6 +102,7 @@ namespace Tizen.WebView
         /// <param name="path">The path where to read/write cookies.</param>
         /// <param name="storage">The type of storage.</param>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void SetPersistentStorage(string path, CookiePersistentStorage storage)
         {
             Interop.ChromiumEwk.ewk_cookie_manager_persistent_storage_set(_handle, path, (Interop.ChromiumEwk.CookiePersistentStorage)storage);

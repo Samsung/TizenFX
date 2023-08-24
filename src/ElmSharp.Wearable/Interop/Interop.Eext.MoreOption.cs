@@ -73,6 +73,7 @@ internal static partial class Interop
         internal static extern IntPtr eext_more_option_items_get(IntPtr obj);
 
         [DllImport(Libraries.Eext)]
+        [return: MarshalAs(UnmanagedType.U1)]
         internal static extern bool eext_more_option_opened_get(IntPtr obj);
 
         [DllImport(Libraries.Eext)]

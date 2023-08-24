@@ -7,17 +7,17 @@ namespace RootProblemFixAddingSeveralLayers
 {
     public class CustomLayout : LayoutGroup
     {
-        protected override void OnMeasure(LayoutMeasureSpec widthMeasureSpec, LayoutMeasureSpec heightMeasureSpec)
+        protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
             var accumulatedWidth = new LayoutLength(0);
             var maxHeight = 0;
             var measuredWidth = new LayoutLength(0);
             LayoutLength measuredHeight = new LayoutLength(0);
-            LayoutMeasureSpec.ModeType widthMode = widthMeasureSpec.Mode;
-            LayoutMeasureSpec.ModeType heightMode = heightMeasureSpec.Mode;
+            MeasureSpecification.ModeType widthMode = widthMeasureSpec.Mode;
+            MeasureSpecification.ModeType heightMode = heightMeasureSpec.Mode;
 
-            bool isWidthExact = (widthMode == LayoutMeasureSpec.ModeType.EXACTLY);
-            bool isHeightExact = (heightMode == LayoutMeasureSpec.ModeType.EXACTLY);
+            bool isWidthExact = (widthMode == MeasureSpecification.ModeType.EXACTLY);
+            bool isHeightExact = (heightMode == MeasureSpecification.ModeType.EXACTLY);
 
             // In this layout we will:
             //  Measuring the layout with the children in a horizontal configuration, one after another
@@ -72,7 +72,7 @@ namespace RootProblemFixAddingSeveralLayers
             var center = childIncrement / 2;
 
             // Check layout direction
-            var view = GetOwner();
+            var view = Owner;
             ViewLayoutDirectionType layoutDirection = view.LayoutDirection;
 
             for (uint i = 0; i < count; i++)

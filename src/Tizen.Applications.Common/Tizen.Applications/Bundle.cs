@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using Tizen.Internals.Errors;
+using System.ComponentModel;
 
 namespace Tizen.Applications
 {
@@ -62,12 +63,34 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         public Bundle(SafeBundleHandle handle)
         {
-            if (handle == null || handle.IsInvalid)
+            if (handle == null)
             {
-                throw new ArgumentNullException("handle");
+                throw new ArgumentNullException(nameof(handle));
             }
 
-            _handle = Interop.Bundle.DangerousClone(handle.DangerousGetHandle());
+            if (handle.IsInvalid)
+            {
+                throw new ArgumentNullException(nameof(handle), "handle is invalid");
+            }
+
+            bool mustRelease = false;
+            try
+            {
+                handle.DangerousAddRef(ref mustRelease);
+                _handle = Interop.Bundle.DangerousClone(handle.DangerousGetHandle());
+            }
+            catch (ObjectDisposedException e)
+            {
+                throw new ArgumentNullException(nameof(handle), e.Message);
+            }
+            finally
+            {
+                if (mustRelease)
+                {
+                    handle.DangerousRelease();
+                }
+            }
+
             _keys = new HashSet<string>();
             Interop.Bundle.Iterator iterator = (string key, int type, IntPtr keyval, IntPtr userData) =>
             {
@@ -75,6 +98,7 @@ namespace Tizen.Applications
             };
 
             Interop.Bundle.Foreach(_handle, iterator, IntPtr.Zero);
+            GC.KeepAlive(iterator);
             if ((BundleErrorFactory.BundleError)ErrorFacts.GetLastResult() == BundleErrorFactory.BundleError.InvalidParameter)
             {
                 throw new ArgumentException("Invalid parameter - cannot create bundle instance");
@@ -704,6 +728,24 @@ namespace Tizen.Applications
 
                 _disposed = true;
             }
+        }
+
+        /// <summary>
+        /// Imports a bundle object from the argument vector.
+        /// </summary>
+        /// <param name="argv">The argument vector</param>
+        /// <exception cref="System.ArgumentNullException">Thrown when because the argument is null or invalid.</exception>
+        /// <returns>The bundle object.</returns>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Bundle ImportFromArgv(string[] argv)
+        {
+            if (argv == null)
+            {
+                throw new ArgumentNullException(nameof(argv));
+            }
+
+            return new Bundle(Interop.Bundle.ImportFromArgv(argv.Length, argv));
         }
 
         /// <summary>

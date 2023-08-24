@@ -1,3 +1,20 @@
+/*
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -29,6 +46,7 @@ namespace Tizen.NUI.Xaml
         public bool StopOnResourceDictionary => false;
         public bool VisitNodeOnDataTemplate => false;
         public bool SkipChildren(INode node, INode parentNode) => false;
+        public bool IsResourceDictionary(ElementNode node) => typeof(ResourceDictionary).IsAssignableFrom(Context.Types[node]);
 
         public void Visit(ValueNode node, INode parentNode)
         {
@@ -46,6 +64,8 @@ namespace Tizen.NUI.Xaml
             XamlParseException xpe;
             var type = XamlParser.GetElementType(node.XmlType, node, Context.RootElement?.GetType().GetTypeInfo().Assembly,
                 out xpe);
+            if (type == null)
+                throw new ArgumentNullException(null, "type should not be null");
             if (xpe != null)
                 throw xpe;
 
@@ -60,7 +80,7 @@ namespace Tizen.NUI.Xaml
                     .DeclaredConstructors.Any(
                         ci =>
                             ci.IsPublic && ci.GetParameters().Length != 0 &&
-                            ci.GetParameters().All(pi => pi.CustomAttributes.Any(attr => attr.AttributeType == typeof (ParameterAttribute)))) &&
+                            ci.GetParameters().All(pi => pi.CustomAttributes.Any(attr => attr.AttributeType == typeof(ParameterAttribute)))) &&
                 ValidateCtorArguments(type, node, out ctorargname))
                 value = CreateFromParameterizedConstructor(type, node);
             else if (!type.GetTypeInfo().DeclaredConstructors.Any(ci => ci.IsPublic && ci.GetParameters().Length == 0) &&
@@ -73,9 +93,9 @@ namespace Tizen.NUI.Xaml
                 //this is a trick as the DataTemplate parameterless ctor is internal, and we can't CreateInstance(..., false) on WP7
                 try
                 {
-                    if (type == typeof (DataTemplate))
+                    if (type == typeof(DataTemplate))
                         value = new DataTemplate();
-                    if (type == typeof (ControlTemplate))
+                    if (type == typeof(ControlTemplate))
                         value = new ControlTemplate();
                     if (value == null && node.CollectionItems.Any() && node.CollectionItems.First() is ValueNode)
                     {
@@ -87,18 +107,63 @@ namespace Tizen.NUI.Xaml
                     }
                     if (value == null)
                     {
-                        value = Activator.CreateInstance(type);
-                        if (value is Element)
+                        if (type.GetTypeInfo().DeclaredConstructors.Any(ci => ci.IsPublic && ci.GetParameters().Length == 0))
                         {
-                            if (null != Application.Current)
+                            //default constructor
+                            value = Activator.CreateInstance(type);
+                        }
+                        else
+                        {
+                            ConstructorInfo constructorInfo = null;
+
+                            //constructor with all default parameters
+                            foreach (var constructor in type.GetConstructors())
                             {
-                                Application.AddResourceChangedCallback(value, (value as Element).OnResourcesChanged);
+                                if (!constructor.IsStatic)
+                                {
+                                    bool areAllParamsDefault = true;
+
+                                    foreach (var param in constructor.GetParameters())
+                                    {
+                                        if (!param.HasDefaultValue)
+                                        {
+                                            areAllParamsDefault = false;
+                                            break;
+                                        }
+                                    }
+
+                                    if (areAllParamsDefault)
+                                    {
+                                        if (null == constructorInfo)
+                                        {
+                                            constructorInfo = constructor;
+                                        }
+                                        else
+                                        {
+                                            throw new XamlParseException($"{type.FullName} has more than one constructor which params are all default.", node);
+                                        }
+                                    }
+                                }
                             }
 
-                            if (value is BindableObject)
+                            if (null == constructorInfo)
                             {
-                                ((BindableObject)value).IsCreateByXaml = true;
+                                throw new XamlParseException($"{type.FullName} has no constructor which params are all default.", node);
                             }
+
+                            List<object> defaultParams = new List<object>();
+                            foreach (var param in constructorInfo.GetParameters())
+                            {
+                                defaultParams.Add(param.DefaultValue);
+                            }
+
+                            value = Activator.CreateInstance(type, defaultParams.ToArray());
+                        }
+                        if (value is Element element)
+                        {
+                            element.IsCreateByXaml = true;
+                            element.LineNumber = node.LineNumber;
+                            element.LinePosition = node.LinePosition;
                         }
                     }
                 }
@@ -128,7 +193,7 @@ namespace Tizen.NUI.Xaml
                 INode xKey;
                 if (!node.Properties.TryGetValue(XmlName.xKey, out xKey))
                     xKey = null;
-                
+
                 node.Properties.Clear();
                 node.CollectionItems.Clear();
 
@@ -138,7 +203,7 @@ namespace Tizen.NUI.Xaml
                 Values[node] = value;
             }
 
-            if (value is BindableObject)
+            if (value != null && value is BindableObject)
                 NameScope.SetNameScope(value as BindableObject, node.Namescope);
         }
 
@@ -168,7 +233,7 @@ namespace Tizen.NUI.Xaml
                     .DeclaredConstructors.FirstOrDefault(
                         ci =>
                             ci.GetParameters().Length != 0 && ci.IsPublic &&
-                            ci.GetParameters().All(pi => pi.CustomAttributes.Any(attr => attr.AttributeType == typeof (ParameterAttribute))));
+                            ci.GetParameters().All(pi => pi.CustomAttributes.Any(attr => attr.AttributeType == typeof(ParameterAttribute))));
             if (ctorInfo == null)
                 return true;
             foreach (var parameter in ctorInfo.GetParameters())
@@ -195,7 +260,7 @@ namespace Tizen.NUI.Xaml
                     .DeclaredConstructors.FirstOrDefault(
                         ci =>
                             ci.GetParameters().Length != 0 && ci.IsPublic &&
-                            ci.GetParameters().All(pi => pi.CustomAttributes.Any(attr => attr.AttributeType == typeof (ParameterAttribute))));
+                            ci.GetParameters().All(pi => pi.CustomAttributes.Any(attr => attr.AttributeType == typeof(ParameterAttribute))));
             object[] arguments = CreateArgumentsArray(node, ctorInfo);
 
             if (arguments != null)
@@ -215,25 +280,20 @@ namespace Tizen.NUI.Xaml
             if (!node.Properties.ContainsKey(XmlName.xFactoryMethod))
             {
                 //non-default ctor
-                object ret = Activator.CreateInstance(nodeType, arguments);
-                if (ret is Element)
+                object ret = Activator.CreateInstance(nodeType, BindingFlags.CreateInstance | BindingFlags.Public | BindingFlags.Instance | BindingFlags.OptionalParamBinding, null, arguments, CultureInfo.CurrentCulture);
+                if (ret is Element element)
                 {
-                    if (null != Application.Current)
-                    {
-                        Application.AddResourceChangedCallback(ret, (ret as Element).OnResourcesChanged);
-                    }
-
-                    if (ret is BindableObject)
-                    {
-                        ((BindableObject)ret).IsCreateByXaml = true;
-                    }
+                    element.IsCreateByXaml = true;
+                    element.LineNumber = (node as ElementNode)?.LineNumber ?? -1;
+                    element.LinePosition = (node as ElementNode)?.LinePosition ?? -1;
                 }
                 return ret;
             }
 
             var factoryMethod = ((string)((ValueNode)node.Properties[XmlName.xFactoryMethod]).Value);
-            Type[] types = arguments == null ? new Type[0] : arguments.Select(a => a.GetType()).ToArray();
-            Func<MethodInfo, bool> isMatch = m => {
+            Type[] types = arguments == null ? System.Array.Empty<Type>() : arguments.Select(a => a.GetType()).ToArray();
+            Func<MethodInfo, bool> isMatch = m =>
+            {
                 if (m.Name != factoryMethod)
                     return false;
                 var p = m.GetParameters();
@@ -241,21 +301,34 @@ namespace Tizen.NUI.Xaml
                     return false;
                 if (!m.IsStatic)
                     return false;
-                for (var i = 0; i < p.Length; i++) {
-                    if ((p [i].ParameterType.IsAssignableFrom(types [i])))
+                for (var i = 0; i < p.Length; i++)
+                {
+                    if ((p[i].ParameterType.IsAssignableFrom(types[i])))
                         continue;
-                    var op_impl =  p[i].ParameterType.GetImplicitConversionOperator(fromType: types[i], toType: p[i].ParameterType)
+                    var op_impl = p[i].ParameterType.GetImplicitConversionOperator(fromType: types[i], toType: p[i].ParameterType)
                                 ?? types[i].GetImplicitConversionOperator(fromType: types[i], toType: p[i].ParameterType);
 
                     if (op_impl == null)
                         return false;
-                    arguments [i] = op_impl.Invoke(null, new [] { arguments [i]});
+                    arguments[i] = op_impl.Invoke(null, new[] { arguments[i] });
                 }
                 return true;
             };
             var mi = nodeType.GetRuntimeMethods().FirstOrDefault(isMatch);
             if (mi == null)
+            {
+                if (node is ElementNode elementNode)
+                {
+                    var nodeTypeExtension = XamlParser.GetElementTypeExtension(node.XmlType, elementNode, Context.RootElement?.GetType().GetTypeInfo().Assembly);
+                    mi = nodeTypeExtension?.GetRuntimeMethods().FirstOrDefault(isMatch);
+                }
+            }
+
+            if (mi == null)
+            {
                 throw new MissingMemberException($"No static method found for {nodeType.FullName}::{factoryMethod} ({string.Join(", ", types.Select(t => t.FullName))})");
+            }
+
             return mi.Invoke(null, arguments);
         }
 
@@ -269,6 +342,12 @@ namespace Tizen.NUI.Xaml
             {
                 var array = new object[1];
                 array[0] = Values[elementNode];
+
+                if (array[0].GetType().IsClass)
+                {
+                    elementNode.Accept(new ApplyPropertiesVisitor(Context, true), null);
+                }
+
                 return array;
             }
 
@@ -285,7 +364,7 @@ namespace Tizen.NUI.Xaml
 
         public object[] CreateArgumentsArray(IElementNode enode, ConstructorInfo ctorInfo)
         {
-            if( ctorInfo != null )
+            if (ctorInfo != null)
             {
                 var n = ctorInfo.GetParameters().Length;
                 var array = new object[n];
@@ -293,7 +372,7 @@ namespace Tizen.NUI.Xaml
                 {
                     var parameter = ctorInfo.GetParameters()[i];
                     var propname =
-                        parameter?.CustomAttributes?.First(attr => attr.AttributeType == typeof (ParameterAttribute))?
+                        parameter?.CustomAttributes?.First(attr => attr.AttributeType == typeof(ParameterAttribute))?
                             .ConstructorArguments.First()
                             .Value as string;
                     var name = new XmlName("", propname);
@@ -315,7 +394,7 @@ namespace Tizen.NUI.Xaml
                         enode.SkipProperties.Add(name);
                     var value = Context.Values[node];
                     var serviceProvider = new XamlServiceProvider(enode, Context);
-                    var convertedValue = value?.ConvertTo(parameter.ParameterType, () => parameter, serviceProvider);
+                    var convertedValue = value?.ConvertTo(parameter?.ParameterType, () => parameter, serviceProvider);
                     array[i] = convertedValue;
                 }
                 return array;
@@ -339,17 +418,11 @@ namespace Tizen.NUI.Xaml
             else
             {
                 value = Activator.CreateInstance(nodeType);
-                if (value is Element)
+                if (value is Element element)
                 {
-                    if (null != Application.Current)
-                    {
-                        Application.AddResourceChangedCallback(value, (value as Element).OnResourcesChanged);
-                    }
-
-                    if (value is BindableObject)
-                    {
-                        ((BindableObject)value).IsCreateByXaml = true;
-                    }
+                    element.IsCreateByXaml = true;
+                    element.LineNumber = (node as ElementNode)?.LineNumber ?? -1;
+                    element.LinePosition = (node as ElementNode)?.LinePosition ?? -1;
                 }
             }
 
@@ -358,83 +431,78 @@ namespace Tizen.NUI.Xaml
             {
                 var valuestring = ((ValueNode)node.CollectionItems[0]).Value as string;
 
-                if (nodeType == typeof(SByte)) {
+                if (nodeType == typeof(SByte))
+                {
                     sbyte retval;
                     if (sbyte.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
                         return retval;
                 }
-                if (nodeType == typeof(Int16)) {
-                    short retval;
-                    if (short.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
-                        return retval;
+                if (nodeType == typeof(Int16))
+                {
+                    return Convert.ToInt16(GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring));
                 }
-                if (nodeType == typeof(Int32)) {
-                    int retval;
-                    if (int.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
-                        return retval;
+                if (nodeType == typeof(Int32))
+                {
+                    return Convert.ToInt32(GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring));
                 }
-                if (nodeType == typeof(Int64)) {
-                    long retval;
-                    if (long.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
-                        return retval;
+                if (nodeType == typeof(Int64))
+                {
+                    return Convert.ToInt64(GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring));
                 }
-                if (nodeType == typeof(Byte)) {
+                if (nodeType == typeof(Byte))
+                {
                     byte retval;
                     if (byte.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
                         return retval;
                 }
-                if (nodeType == typeof(UInt16)) {
-                    ushort retval;
-                    if (ushort.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
-                        return retval;
+                if (nodeType == typeof(UInt16))
+                {
+                    return Convert.ToUInt16(GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring));
                 }
-                if (nodeType == typeof(UInt32)) {
-                    uint retval;
-                    if (uint.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
-                        return retval;
+                if (nodeType == typeof(UInt32))
+                {
+                    return Convert.ToUInt32(GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring));
                 }
-                if (nodeType == typeof(UInt64)) {
-                    ulong retval;
-                    if (ulong.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
-                        return retval;
+                if (nodeType == typeof(UInt64))
+                {
+                    return Convert.ToUInt64(GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring));
                 }
-                if (nodeType == typeof(Single)) {
-                    float retval;
-                    if (float.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
-                        return retval;
+                if (nodeType == typeof(Single))
+                {
+                    return GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring);
                 }
-                if (nodeType == typeof(Double)) {
-                    double retval;
-                    if (double.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
-                        return retval;
+                if (nodeType == typeof(Double))
+                {
+                    return Convert.ToDouble(GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring));
                 }
-                if (nodeType == typeof (Boolean))
+                if (nodeType == typeof(Boolean))
                 {
                     bool outbool;
                     if (bool.TryParse(valuestring, out outbool))
                         return outbool;
                 }
-                if (nodeType == typeof(TimeSpan)) {
+                if (nodeType == typeof(TimeSpan))
+                {
                     TimeSpan retval;
                     if (TimeSpan.TryParse(valuestring, CultureInfo.InvariantCulture, out retval))
                         return retval;
                 }
-                if (nodeType == typeof (char))
+                if (nodeType == typeof(char))
                 {
                     char retval;
                     if (char.TryParse(valuestring, out retval))
                         return retval;
                 }
-                if (nodeType == typeof (string))
+                if (nodeType == typeof(string))
                     return valuestring;
-                if (nodeType == typeof (decimal))
+                if (nodeType == typeof(decimal))
                 {
                     decimal retval;
                     if (decimal.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
                         return retval;
                 }
 
-                else if (nodeType == typeof (Uri))
+                else if (nodeType == typeof(Uri))
                 {
                     Uri retval;
                     if (Uri.TryCreate(valuestring, UriKind.RelativeOrAbsolute, out retval))

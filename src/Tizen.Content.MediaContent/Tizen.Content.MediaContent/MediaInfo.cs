@@ -53,10 +53,7 @@ namespace Tizen.Content.MediaContent
             Rating = InteropHelper.GetValue<int>(handle, Interop.MediaInfo.GetRating);
             IsFavorite = InteropHelper.GetValue<bool>(handle, Interop.MediaInfo.GetFavorite);
             Title = InteropHelper.GetString(handle, Interop.MediaInfo.GetTitle);
-            StorageId = InteropHelper.GetString(handle, Interop.MediaInfo.GetStorageId);
             IsDrm = InteropHelper.GetValue<bool>(handle, Interop.MediaInfo.IsDrm);
-
-            StorageType = InteropHelper.GetValue<StorageType>(handle, Interop.MediaInfo.GetStorageType);
         }
 
         /// <summary>
@@ -182,25 +179,11 @@ namespace Tizen.Content.MediaContent
         public string Title { get; }
 
         /// <summary>
-        /// Gets the storage ID of the storage that the media is stored on.
-        /// </summary>
-        /// <value>The storage ID of the storage that the media is stored on.</value>
-        /// <since_tizen> 4 </since_tizen>
-        public string StorageId { get; }
-
-        /// <summary>
         /// Gets the value indicating whether the media is DRM-protected.
         /// </summary>
         /// <value>A bool value indicating whether the media is DRM-protected.</value>
         /// <since_tizen> 4 </since_tizen>
         public bool IsDrm { get; }
-
-        /// <summary>
-        /// Gets the storage type of the storage that the media is stored on.
-        /// </summary>
-        /// <value>The storage type of the storage that the media is stored on.</value>
-        /// <since_tizen> 4 </since_tizen>
-        public StorageType StorageType { get; }
 
         /// <summary>
         /// Returns a string representation of the media information.
@@ -229,6 +212,9 @@ namespace Tizen.Content.MediaContent
 
                 case MediaType.Video:
                     return new VideoInfo(handle);
+
+                case MediaType.Book:
+                    return new BookInfo(handle);
             }
 
             return new MediaInfo(handle);

@@ -52,6 +52,15 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Reinitialize FontConfig.
+        /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        public static void FontReinit()
+        {
+            Interop.Evas.evas_font_reinit();
+        }
+
+        /// <summary>
         /// Sets the Edje color class.
         /// </summary>
         /// <param name="colorClass">Color class.</param>

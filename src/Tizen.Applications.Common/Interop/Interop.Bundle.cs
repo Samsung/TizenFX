@@ -68,6 +68,9 @@ internal static partial class Interop
         [DllImport(Libraries.Bundle, EntryPoint = "bundle_dup")]
         internal static extern SafeBundleHandle DangerousClone(IntPtr handle);
 
+        [DllImport(Libraries.Bundle, EntryPoint = "bundle_import_from_argv")]
+        internal static extern SafeBundleHandle ImportFromArgv(int argc, string[] argv);
+
         internal static class UnsafeCode
         {
             internal static unsafe int AddItem(SafeBundleHandle handle, string key, byte[] value, int offset, int count)

@@ -15,7 +15,6 @@
  */
 
 using System;
-using System.Diagnostics;
 using Native = Interop.MediaControllerPlaylist;
 
 namespace Tizen.Multimedia.Remoting
@@ -36,7 +35,13 @@ namespace Tizen.Multimedia.Remoting
 
         internal MediaControlMetadata(IntPtr handle)
         {
-            Debug.Assert(handle != IntPtr.Zero);
+            // If native framework return null handle,
+            // it means server doesn't set metadata yet and it's not error.
+            // So we need to return empty metadata instance as native framework does.
+            if (handle == IntPtr.Zero)
+            {
+                return;
+            }
 
             Title = Native.GetMetadata(handle, MediaControllerNativeAttribute.Title);
             Artist = Native.GetMetadata(handle, MediaControllerNativeAttribute.Artist);
@@ -51,13 +56,8 @@ namespace Tizen.Multimedia.Remoting
             AlbumArtPath = Native.GetMetadata(handle, MediaControllerNativeAttribute.Picture);
 
             EncodedSeason = Native.GetMetadata(handle, MediaControllerNativeAttribute.Season);
-            Season = DecodeSeason(EncodedSeason);
-
             EncodedEpisode = Native.GetMetadata(handle, MediaControllerNativeAttribute.Episode);
-            Episode = DecodeEpisode(EncodedEpisode);
-
             EncodedResolution = Native.GetMetadata(handle, MediaControllerNativeAttribute.Resolution);
-            Resolution = DecodeResolution(EncodedResolution);
         }
 
         /// <summary>
@@ -159,9 +159,9 @@ namespace Tizen.Multimedia.Remoting
             set => EncodedResolution = EncodeResolution(value.Width, value.Height);
         }
 
-        // Native CAPI used only encoded string to gets or sets Season, Episode, Resolution.
-        // But encoded string is not useful for user, so we don't offer as it is.
-        // It'll be used internally.
+        // Developers who use Tizen Native API must encode strings to set or get metadata of media
+        // such as season, episode, and resolution. It is inconvenient.
+        // TizenFX supports for using normal strings and using encoded strings internally.
         internal string EncodedSeason { get; private set; }
 
         internal string EncodedEpisode { get; private set; }
@@ -243,7 +243,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Initializes a new instance of the <see cref="SeriesInformation"/> class.
         /// </summary>
-        /// <param name="number">The number of this video of all series.</param>
+        /// <param name="number">The order of this video in entire series.</param>
         /// <param name="title">The title.</param>
         /// <since_tizen> 6 </since_tizen>
         public SeriesInformation(int number, string title)
@@ -253,7 +253,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Gets or sets the number of this video of all series.
+        /// Gets or sets the order of this video in entire series.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public int Number { get; }

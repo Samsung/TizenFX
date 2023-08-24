@@ -37,8 +37,6 @@ namespace Tizen.Network.Connection
 
         private Interop.ConnectionProfile.ProfileStateChangedCallback _profileChangedCallback;
 
-        private TizenSynchronizationContext context = new TizenSynchronizationContext();
-
         internal IntPtr GetHandle()
         {
             return ProfileHandle;
@@ -58,40 +56,34 @@ namespace Tizen.Network.Connection
             add
             {
                 Log.Debug(Globals.LogTag, "ProfileStateChanged add");
-                context.Post((x) =>
+                if (_ProfileStateChanged == null)
                 {
-                    if (_ProfileStateChanged == null)
+                    try
                     {
-                        try
-                        {
-                            ProfileStateChangedStart();
-                        } catch (Exception e)
-                        {
-                            Log.Error(Globals.LogTag, "Exception on adding ProfileStateChanged\n" + e.ToString());
-                            return;
-                        }
+                        ProfileStateChangedStart();
+                    } catch (Exception e)
+                    {
+                        Log.Error(Globals.LogTag, "Exception on adding ProfileStateChanged\n" + e.ToString());
+                        return;
                     }
-                    _ProfileStateChanged += value;
-                }, null);
+                }
+                _ProfileStateChanged += value;
             }
             remove
             {
                 Log.Debug(Globals.LogTag, "ProfileStateChanged remove");
-                context.Post((x) =>
+                _ProfileStateChanged -= value;
+                if (_ProfileStateChanged == null)
                 {
-                    _ProfileStateChanged -= value;
-                    if (_ProfileStateChanged == null)
+                    try
                     {
-                        try
-                        {
-                            ProfileStateChangedStop();
-                        }
-                        catch (Exception e)
-                        {
-                            Log.Error(Globals.LogTag, "Exception on removing ProfileStateChanged\n" + e.ToString());
-                        }
+                        ProfileStateChangedStop();
                     }
-                }, null);
+                    catch (Exception e)
+                    {
+                        Log.Error(Globals.LogTag, "Exception on removing ProfileStateChanged\n" + e.ToString());
+                    }
+                }
             }
         }
 

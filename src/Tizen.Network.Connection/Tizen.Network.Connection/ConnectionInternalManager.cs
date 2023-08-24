@@ -35,7 +35,7 @@ namespace Tizen.Network.Connection
         {
             _tid = Thread.CurrentThread.ManagedThreadId;
             Log.Info(Globals.LogTag, "PInvoke connection_create for Thread " + _tid);
-            int ret = Interop.Connection.Create(_tid, out Handle);
+            int ret = Interop.Connection.Create(out Handle);
             Log.Info(Globals.LogTag, "Handle: " + Handle);
             if(ret != (int)ConnectionError.None)
             {
@@ -60,7 +60,7 @@ namespace Tizen.Network.Connection
         {
 
             Log.Info(Globals.LogTag, "PInvoke connection_destroy for Thread " + _tid);
-            Interop.Connection.Destroy(_tid, Handle);
+            Interop.Connection.Destroy(Handle);
             if (Handle != IntPtr.Zero)
             {
                 Handle = IntPtr.Zero;
@@ -70,38 +70,52 @@ namespace Tizen.Network.Connection
 
     internal class ConnectionInternalManager
     {
-        private static readonly Lazy<ConnectionInternalManager> s_instance =
-            new Lazy<ConnectionInternalManager>(() => new ConnectionInternalManager());
+        private static ConnectionInternalManager s_instance = null;
+        private static readonly object _lock = new object();
 
         private EventHandler<ConnectionTypeEventArgs> _ConnectionTypeChanged = null;
         private EventHandler<AddressEventArgs> _IPAddressChanged = null;
         private EventHandler<EthernetCableStateEventArgs> _EthernetCableStateChanged = null;
         private EventHandler<AddressEventArgs> _ProxyAddressChanged = null;
 
+        private static readonly object _ConnectionTypeChangedLock = new object();
+        private static readonly object _IPAddressChangedLock = new object();
+        private static readonly object _EthernetCableStateChangedLock = new object();
+        private static readonly object _ProxyAddressChangedLock = new object();
+
+
         private Interop.Connection.ConnectionAddressChangedCallback _connectionAddressChangedCallback;
         private Interop.Connection.ConnectionTypeChangedCallback _connectionTypeChangedCallback;
         private Interop.Connection.ConnectionAddressChangedCallback _proxyAddressChangedCallback;
         private Interop.Connection.EthernetCableStateChangedCallback _ethernetCableStateChangedCallback;
 
-        private TizenSynchronizationContext context = new TizenSynchronizationContext();
+        private Dictionary<IntPtr, Interop.Connection.ConnectionCallback> _callback_map =
+            new Dictionary<IntPtr, Interop.Connection.ConnectionCallback>();
+        private int _requestId = 0;
 
         internal static ConnectionInternalManager Instance
         {
             get
             {
-                return s_instance.Value;
+                lock (_lock)
+                {
+                    if (s_instance == null)
+                    {
+                        s_instance = new ConnectionInternalManager();
+                    }
+                    Log.Info(Globals.LogTag, "ConnectionInternalManager.Instance");
+                    return s_instance;
+                }
             }
         }
 
-        private static ThreadLocal<HandleHolder> s_threadName = new ThreadLocal<HandleHolder>(() =>
-        {
-            Log.Info(Globals.LogTag, "In threadlocal delegate");
-            return new HandleHolder();
-        });
+        private HandleHolder _handleHolder;
 
         private ConnectionInternalManager()
         {
             Log.Info(Globals.LogTag, "ConnectionInternalManager constructor");
+            _handleHolder = new HandleHolder();
+            Log.Info(Globals.LogTag, "Success to get handle");
         }
 
         ~ConnectionInternalManager()
@@ -111,14 +125,14 @@ namespace Tizen.Network.Connection
 
         internal IntPtr GetHandle()
         {
-            return s_threadName.Value.GetHandle();
+            return _handleHolder.GetHandle();
         }
 
         internal event EventHandler<ConnectionTypeEventArgs> ConnectionTypeChanged
         {
             add
             {
-                context.Post((x) =>
+                lock (_ConnectionTypeChangedLock)
                 {
                     if (_ConnectionTypeChanged == null)
                     {
@@ -133,11 +147,11 @@ namespace Tizen.Network.Connection
                         }
                     }
                     _ConnectionTypeChanged += value;
-                }, null);
+                }
             }
             remove
             {
-                context.Post((x) =>
+                lock (_ConnectionTypeChangedLock)
                 {
                     _ConnectionTypeChanged -= value;
                     if (_ConnectionTypeChanged == null)
@@ -151,7 +165,7 @@ namespace Tizen.Network.Connection
                             Log.Error(Globals.LogTag, "Exception on removing ConnectionTypeChanged\n" + e.ToString());
                         }
                     }
-                }, null);
+                }
             }
         }
 
@@ -189,7 +203,7 @@ namespace Tizen.Network.Connection
         {
             add
             {
-                context.Post((x) =>
+                lock(_EthernetCableStateChangedLock)
                 {
                     if (_EthernetCableStateChanged == null)
                     {
@@ -204,11 +218,11 @@ namespace Tizen.Network.Connection
                         }
                     }
                     _EthernetCableStateChanged += value;
-                }, null);
+                }
             }
             remove
             {
-                context.Post((x) =>
+                lock(_EthernetCableStateChangedLock)
                 {
                     _EthernetCableStateChanged -= value;
                     if (_EthernetCableStateChanged == null)
@@ -222,7 +236,7 @@ namespace Tizen.Network.Connection
                             Log.Error(Globals.LogTag, "Exception on removing EthernetCableStateChanged\n" + e.ToString());
                         }
                     }
-                }, null);
+                }
             }
         }
 
@@ -264,7 +278,7 @@ namespace Tizen.Network.Connection
         {
             add
             {
-                context.Post((x) =>
+                lock (_IPAddressChangedLock)
                 {
                     if (_IPAddressChanged == null)
                     {
@@ -279,12 +293,12 @@ namespace Tizen.Network.Connection
                         }
                     }
                     _IPAddressChanged += value;
-                }, null);
+                }
             }
 
             remove
             {
-                context.Post((x) =>
+                lock (_IPAddressChangedLock)
                 {
                     _IPAddressChanged -= value;
                     if (_IPAddressChanged == null)
@@ -298,7 +312,7 @@ namespace Tizen.Network.Connection
                             Log.Error(Globals.LogTag, "Exception on removing IPAddressChanged\n" + e.ToString());
                         }
                     }
-                }, null);
+                }
             }
         }
 
@@ -340,7 +354,7 @@ namespace Tizen.Network.Connection
         {
             add
             {
-                context.Post((x) =>
+                lock (_ProxyAddressChangedLock)
                 {
                     if (_ProxyAddressChanged == null)
                     {
@@ -355,11 +369,11 @@ namespace Tizen.Network.Connection
                         }
                     }
                     _ProxyAddressChanged += value;
-                }, null);
+                }
             }
             remove
             {
-                context.Post((x) =>
+                lock (_ProxyAddressChangedLock)
                 {
                     _ProxyAddressChanged -= value;
                     if (_ProxyAddressChanged == null)
@@ -373,7 +387,7 @@ namespace Tizen.Network.Connection
                             Log.Error(Globals.LogTag, "Exception on removing ProxyAddressChanged\n" + e.ToString());
                         }
                     }
-                }, null);
+                }
             }
         }
 
@@ -585,7 +599,7 @@ namespace Tizen.Network.Connection
                 {
                     Log.Error(Globals.LogTag, "It failed to add route to the routing table, " + (ConnectionError)ret);
                     ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
-                    ConnectionErrorFactory.CheckPermissionDeniedException(ret, "(http://tizen.org/privilege/network.set)");
+                    ConnectionErrorFactory.CheckPermissionDeniedException(ret, "(http://tizen.org/privilege/network.route)");
                     ConnectionErrorFactory.CheckHandleNullException(ret, (GetHandle() == IntPtr.Zero), "Connection Handle may have been disposed or released");
                     ConnectionErrorFactory.ThrowConnectionException(ret);
                 }
@@ -607,7 +621,7 @@ namespace Tizen.Network.Connection
                 {
                     Log.Error(Globals.LogTag, "It failed to remove route from the routing table, " + (ConnectionError)ret);
                     ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
-                    ConnectionErrorFactory.CheckPermissionDeniedException(ret, "(http://tizen.org/privilege/network.set)");
+                    ConnectionErrorFactory.CheckPermissionDeniedException(ret, "(http://tizen.org/privilege/network.route)");
                     ConnectionErrorFactory.CheckHandleNullException(ret, (GetHandle() == IntPtr.Zero), "Connection Handle may have been disposed or released");
                     ConnectionErrorFactory.ThrowConnectionException(ret);
                 }
@@ -867,40 +881,46 @@ namespace Tizen.Network.Connection
             if (profile != null)
             {
                 TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
-                Interop.Connection.ConnectionCallback Callback = (ConnectionError Result, IntPtr Data) =>
+                IntPtr id;
+                lock (_callback_map)
                 {
-                    Log.Info(Globals.LogTag, "SetDefaultCellularProfile done " + profile.Name);
-                    if (Result != ConnectionError.None)
+                    id = (IntPtr)_requestId++;
+                    _callback_map[id] = (error, key) =>
                     {
-                        Log.Error(Globals.LogTag, "Error occurs during set default cellular profile, " + Result);
-                        task.SetException(new InvalidOperationException("Error occurs during set default cellular profile, " + Result));
-                    }
-                    else
-                    {
-                        task.SetResult(true);
-                    }
-                };
-
-                context.Post((x) =>
-                {
-                    Log.Info(Globals.LogTag, "Interop.Connection.SetDefaultCellularServiceProfileAsync " + profile.Name);
-                    try
-                    {
-                        int ret = Interop.Connection.SetDefaultCellularServiceProfileAsync(GetHandle(), (int)type, profile.ProfileHandle, Callback, (IntPtr)0);
-
-                        if ((ConnectionError)ret != ConnectionError.None)
+                        Log.Info(Globals.LogTag, "SetDefaultCellularProfile done " + profile.Name);
+                        if (error != ConnectionError.None)
                         {
-                            Log.Error(Globals.LogTag, "It failed to set default cellular profile, " + (ConnectionError)ret);
-                            ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony");
-                            ConnectionErrorFactory.CheckHandleNullException(ret, (GetHandle() == IntPtr.Zero || profile.ProfileHandle == IntPtr.Zero), "Connection or Profile Handle may have been disposed or released");
-                            ConnectionErrorFactory.ThrowConnectionException(ret);
+                            Log.Error(Globals.LogTag, "Error occurs during set default cellular profile, " + error);
+                            task.SetException(new InvalidOperationException("Error occurs during set default cellular profile, " + error));
                         }
-                    } catch (Exception e)
+                        else
+                        {
+                            task.SetResult(true);
+                        }
+                        lock (_callback_map)
+                        {
+                            _callback_map.Remove(key);
+                        }
+                    };
+                }
+
+                Log.Info(Globals.LogTag, "Interop.Connection.SetDefaultCellularServiceProfileAsync " + profile.Name);
+                try
+                {
+                    int ret = Interop.Connection.SetDefaultCellularServiceProfileAsync(GetHandle(), (int)type, profile.ProfileHandle, _callback_map[id], id);
+
+                    if ((ConnectionError)ret != ConnectionError.None)
                     {
-                        Log.Error(Globals.LogTag, "Exception on SetDefaultCellularServiceProfileAsync\n" + e.ToString());
-                        task.SetException(e);
+                        Log.Error(Globals.LogTag, "It failed to set default cellular profile, " + (ConnectionError)ret);
+                        ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony");
+                        ConnectionErrorFactory.CheckHandleNullException(ret, (GetHandle() == IntPtr.Zero || profile.ProfileHandle == IntPtr.Zero), "Connection or Profile Handle may have been disposed or released");
+                        ConnectionErrorFactory.ThrowConnectionException(ret);
                     }
-                }, null);
+                } catch (Exception e)
+                {
+                    Log.Error(Globals.LogTag, "Exception on SetDefaultCellularServiceProfileAsync\n" + e.ToString());
+                    task.SetException(e);
+                }
 
                 return task.Task;
             }
@@ -965,40 +985,46 @@ namespace Tizen.Network.Connection
             {
                 Log.Debug(Globals.LogTag, "OpenProfileAsync " + profile.Name);
                 TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
-                Interop.Connection.ConnectionCallback Callback = (ConnectionError Result, IntPtr Data) =>
+                IntPtr id;
+                lock (_callback_map)
                 {
-                    Log.Info(Globals.LogTag, "OpenProfileAsync done " + profile.Name);
-                    if (Result != ConnectionError.None)
+                    id = (IntPtr)_requestId++;
+                    _callback_map[id] = (error, key) =>
                     {
-                        Log.Error(Globals.LogTag, "Error occurs during connecting profile, " + Result);
-                        task.SetException(new InvalidOperationException("Error occurs during connecting profile, " + Result));
-                    }
-                    else
-                    {
-                        task.SetResult(true);
-                    }
-                };
-
-                context.Post((x) =>
-                {
-                    Log.Info(Globals.LogTag, "Interop.Connection.OpenProfile " + profile.Name);
-                    try
-                    {
-                        int ret = Interop.Connection.OpenProfile(GetHandle(), profile.ProfileHandle, Callback, IntPtr.Zero);
-                        if ((ConnectionError)ret != ConnectionError.None)
+                        Log.Info(Globals.LogTag, "OpenProfileAsync done " + profile.Name);
+                        if (error != ConnectionError.None)
                         {
-                            Log.Error(Globals.LogTag, "It failed to connect profile, " + (ConnectionError)ret);
-                            ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth");
-                            ConnectionErrorFactory.CheckHandleNullException(ret, (GetHandle() == IntPtr.Zero || profile.ProfileHandle == IntPtr.Zero), "Connection or Profile Handle may have been disposed or released");
-                            ConnectionErrorFactory.ThrowConnectionException(ret);
+                            Log.Error(Globals.LogTag, "Error occurs during connecting profile, " + error);
+                            task.SetException(new InvalidOperationException("Error occurs during connecting profile, " + error));
                         }
-                    }
-                    catch (Exception e)
+                        else
+                        {
+                            task.SetResult(true);
+                        }
+                        lock (_callback_map)
+                        {
+                            _callback_map.Remove(key);
+                        }
+                    };
+                }
+
+                Log.Info(Globals.LogTag, "Interop.Connection.OpenProfile " + profile.Name);
+                try
+                {
+                    int ret = Interop.Connection.OpenProfile(GetHandle(), profile.ProfileHandle, _callback_map[id], id);
+                    if ((ConnectionError)ret != ConnectionError.None)
                     {
-                        Log.Error(Globals.LogTag, "Exception on OpenProfile\n" + e.ToString());
-                        task.SetException(e);
+                        Log.Error(Globals.LogTag, "It failed to connect profile, " + (ConnectionError)ret);
+                        ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth");
+                        ConnectionErrorFactory.CheckHandleNullException(ret, (GetHandle() == IntPtr.Zero || profile.ProfileHandle == IntPtr.Zero), "Connection or Profile Handle may have been disposed or released");
+                        ConnectionErrorFactory.ThrowConnectionException(ret);
                     }
-                }, null);
+                }
+                catch (Exception e)
+                {
+                    Log.Error(Globals.LogTag, "Exception on OpenProfile\n" + e.ToString());
+                    task.SetException(e);
+                }
 
                 return task.Task;
             }
@@ -1016,41 +1042,47 @@ namespace Tizen.Network.Connection
             {
                 Log.Info(Globals.LogTag, "CloseProfileAsync " + profile.Name);
                 TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
-                Interop.Connection.ConnectionCallback Callback = (ConnectionError Result, IntPtr Data) =>
+                IntPtr id;
+                lock (_callback_map)
                 {
-                    Log.Info(Globals.LogTag, "CloseProfileAsync done " + profile.Name);
-                    if (Result != ConnectionError.None)
+                    id = (IntPtr)_requestId++;
+                    _callback_map[id] = (error, key) =>
                     {
-                        Log.Error(Globals.LogTag, "Error occurs during disconnecting profile, " + Result);
-                        task.SetException(new InvalidOperationException("Error occurs during disconnecting profile, " + Result));
-                    }
-                    else
-                    {
-                        task.SetResult(true);
-                    }
-                };
-
-                context.Post((x) =>
-                {
-                    Log.Info(Globals.LogTag, "Interop.Connection.CloseProfile " + profile.Name);
-                    try
-                    {
-                        int ret = Interop.Connection.CloseProfile(GetHandle(), profile.ProfileHandle, Callback, IntPtr.Zero);
-                        if ((ConnectionError)ret != ConnectionError.None)
+                        Log.Info(Globals.LogTag, "CloseProfileAsync done " + profile.Name);
+                        if (error!= ConnectionError.None)
                         {
-                            Log.Error(Globals.LogTag, "It failed to disconnect profile, " + (ConnectionError)ret);
-                            ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth");
-                            ConnectionErrorFactory.CheckPermissionDeniedException(ret, "(http://tizen.org/privilege/network.set)");
-                            ConnectionErrorFactory.CheckHandleNullException(ret, (GetHandle() == IntPtr.Zero || profile.ProfileHandle == IntPtr.Zero), "Connection or Profile Handle may have been disposed or released");
-                            ConnectionErrorFactory.ThrowConnectionException(ret);
+                            Log.Error(Globals.LogTag, "Error occurs during disconnecting profile, " + error);
+                            task.SetException(new InvalidOperationException("Error occurs during disconnecting profile, " + error));
                         }
-                    }
-                    catch (Exception e)
+                        else
+                        {
+                            task.SetResult(true);
+                        }
+                        lock (_callback_map)
+                        {
+                            _callback_map.Remove(key);
+                        }
+                    };
+                }
+
+                Log.Info(Globals.LogTag, "Interop.Connection.CloseProfile " + profile.Name);
+                try
+                {
+                    int ret = Interop.Connection.CloseProfile(GetHandle(), profile.ProfileHandle, _callback_map[id], id);
+                    if ((ConnectionError)ret != ConnectionError.None)
                     {
-                        Log.Error(Globals.LogTag, "Exception on CloseProfile\n" + e.ToString());
-                        task.SetException(e);
+                        Log.Error(Globals.LogTag, "It failed to disconnect profile, " + (ConnectionError)ret);
+                        ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth");
+                        ConnectionErrorFactory.CheckPermissionDeniedException(ret, "(http://tizen.org/privilege/network.set)");
+                        ConnectionErrorFactory.CheckHandleNullException(ret, (GetHandle() == IntPtr.Zero || profile.ProfileHandle == IntPtr.Zero), "Connection or Profile Handle may have been disposed or released");
+                        ConnectionErrorFactory.ThrowConnectionException(ret);
                     }
-                }, null);
+                }
+                catch (Exception e)
+                {
+                    Log.Error(Globals.LogTag, "Exception on CloseProfile\n" + e.ToString());
+                    task.SetException(e);
+                }
 
                 return task.Task;
             }

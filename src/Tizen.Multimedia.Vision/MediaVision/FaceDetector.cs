@@ -15,18 +15,24 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using InteropFace = Interop.MediaVision.Face;
+using InteropInference = Interop.MediaVision.Inference;
 
 namespace Tizen.Multimedia.Vision
 {
     /// <summary>
     /// Provides the ability to detect faces on image sources.
     /// </summary>
+    /// <remarks>
+    /// If you want to use face detection based on inference engine(<see cref="InferenceBackendType"/>),
+    /// please use <see cref="DetectAsync(MediaVisionSource, InferenceModelConfiguration)"/>.
+    /// </remarks>
     /// <since_tizen> 4 </since_tizen>
     public static class FaceDetector
     {
-
         /// <summary>
         /// Detects faces on the source.<br/>
         /// Each time when DetectAsync is called, a set of the detected faces at the media source are received asynchronously.
@@ -43,7 +49,7 @@ namespace Tizen.Multimedia.Vision
         /// <since_tizen> 4 </since_tizen>
         public static async Task<Rectangle[]> DetectAsync(MediaVisionSource source)
         {
-            return await DetectAsync(source, null);
+            return await DetectAsync(source, (FaceDetectionConfiguration)null);
         }
 
         /// <summary>
@@ -102,6 +108,90 @@ namespace Tizen.Multimedia.Vision
                     tcs.TrySetException(e);
                 }
             };
+        }
+
+        /// <summary>
+        /// Detects faces on the source image using inference engine set in <paramref name="config"/>.<br/>
+        /// Each time when DetectAsync is called, a set of the detected faces at the media source are received asynchronously.
+        /// </summary>
+        /// <remarks>
+        /// If there's no detected face, empty collection will be returned.
+        /// </remarks>
+        /// <feature>http://tizen.org/feature/vision.inference</feature>
+        /// <feature>http://tizen.org/feature/vision.inference.face</feature>
+        /// <param name="source">The source of the media where faces will be detected.</param>
+        /// <param name="config">The engine's configuration that will be used for detecting.</param>
+        /// <returns>
+        /// A task that represents the asynchronous detect operation.<br/>
+        /// If there's no detected face, empty collection will be returned.
+        /// </returns>
+        /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="config"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">Internal error.</exception>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
+        /// <seealso cref="InferenceModelConfiguration"/>
+        /// <since_tizen> 6 </since_tizen>
+        public static async Task<IEnumerable<FaceDetectionResult>> DetectAsync(MediaVisionSource source,
+            InferenceModelConfiguration config)
+        {
+            // `vision.inference` feature is already checked, when config is created.
+            ValidationUtil.ValidateFeatureSupported(VisionFeatures.InferenceFace);
+
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+            if (config == null)
+            {
+                throw new ArgumentNullException(nameof(config));
+            }
+
+            var tcs = new TaskCompletionSource<IEnumerable<FaceDetectionResult>>();
+
+            using (var cb = ObjectKeeper.Get(GetCallback(tcs)))
+            {
+                InteropInference.DetectFace(source.Handle, config.GetHandle(), cb.Target).
+                    Validate("Failed to detect face.");
+
+                return await tcs.Task;
+            }
+        }
+
+        private static InteropInference.FaceDetectedCallback GetCallback(TaskCompletionSource<IEnumerable<FaceDetectionResult>> tcs)
+        {
+            return (IntPtr sourceHandle, int numberOfFaces, float[] confidences,
+                global::Interop.MediaVision.Rectangle[] locations, IntPtr _) =>
+            {
+                try
+                {
+                    if (!tcs.TrySetResult(GetResults(numberOfFaces, confidences, locations)))
+                    {
+                        Log.Error(MediaVisionLog.Tag, "Failed to set face detection result.");
+                    }
+                }
+                catch (Exception e)
+                {
+                    tcs.TrySetException(e);
+                }
+            };
+        }
+
+        private static IEnumerable<FaceDetectionResult> GetResults(int number, float[] confidences,
+            global::Interop.MediaVision.Rectangle[] locations)
+        {
+            if (number == 0)
+            {
+                return Enumerable.Empty<FaceDetectionResult>();
+            }
+
+            var results = new List<FaceDetectionResult>();
+
+            for (int i = 0; i < number; i++)
+            {
+                results.Add(new FaceDetectionResult(confidences[i], locations[i]));
+            }
+
+            return results;
         }
     }
 }

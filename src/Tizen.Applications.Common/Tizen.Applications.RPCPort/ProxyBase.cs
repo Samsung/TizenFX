@@ -87,6 +87,31 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
+        /// Connects to port synchronously.
+        /// </summary>
+        /// <param name="appid">The target stub app ID.</param>
+        /// <param name="port">The name of the RPC port.</param>
+        /// <exception cref="InvalidIDException">Thrown when not available app ID is used.</exception>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <exception cref="PermissionDeniedException">Thrown when the permission is denied.</exception>
+        /// <privilege>http://tizen.org/privilege/datasharing</privilege>
+        /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        /// <since_tizen> 8 </since_tizen>
+        protected void ConnectSync(string appid, string port)
+        {
+            var err = Interop.LibRPCPort.Proxy.ConnectSync(_proxy, appid, port);
+            switch (err)
+            {
+                case Interop.LibRPCPort.ErrorCode.InvalidParameter:
+                    throw new InvalidIDException();
+                case Interop.LibRPCPort.ErrorCode.PermissionDenied:
+                    throw new PermissionDeniedException();
+                case Interop.LibRPCPort.ErrorCode.IoError:
+                    throw new InvalidIOException();
+            }
+        }
+
+        /// <summary>
         /// Gets a port.
         /// </summary>
         /// <param name="t">The type of port.</param>
@@ -168,9 +193,9 @@ namespace Tizen.Applications.RPCPort
         private bool disposedValue = false;
 
         /// <summary>
-        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+        /// Releases any unmanaged resources used by this object and disposes any other disposable objects.
         /// </summary>
-        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        /// <param name="disposing">true to disposes any disposable objects, or false not to dispose disposable objects.</param>
         /// <since_tizen> 6 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {

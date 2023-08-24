@@ -470,7 +470,7 @@ namespace Tizen.Network.Bluetooth
         /// If this succeeds, the DiscoveryStateChanged event will be invoked.
         /// </remarks>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled or 
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled or
         /// the discovery process is not is progress. </exception>
         /// <since_tizen> 3 </since_tizen>
         static public void StopDiscovery()
@@ -638,6 +638,36 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
+        /// Starts the Bluetooth LE scan operation with scan mode.
+        /// </summary>
+        /// <remarks>
+        /// The Bluetooth must be enabled.
+        /// </remarks>The result of the operation StartLeScan.
+        /// <param name="mode">The LE scan mode.</param>
+        /// <since_tizen> 7 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.bluetooth.le</feature>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
+        /// or the Start LE scan is failed.</exception>
+        static public void StartLeScan(BluetoothLeScanMode mode)
+        {
+            if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
+            {
+                BluetoothLeImplAdapter.Instance.SetScanMode(mode);
+                int ret = BluetoothLeImplAdapter.Instance.StartScan();
+                if (ret != (int)BluetoothError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to start the le scan operation, Error - " + (BluetoothError)ret);
+                    BluetoothErrorFactory.ThrowBluetoothException(ret);
+                }
+            }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
+            }
+        }
+
+        /// <summary>
         /// Stops the Bluetooth LE scan operation.
         /// </summary>
         /// <remarks>
@@ -719,6 +749,34 @@ namespace Tizen.Network.Bluetooth
             {
                 BluetoothAdapterImpl.Instance.DestroyServerSocket(socket);
             }
+        }
+
+        /// <summary>
+        /// Select the A2DP source/sink role.
+        /// </summary>
+        /// <param name="role">The A2DP source/sink role.</param>
+        /// <since_tizen> 9 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.bluetooth.audio.call</feature>
+        /// <feature>http://tizen.org/feature/network.bluetooth.audio.media</feature>
+        /// <privilege>http://tizen.org/privilege/bluetooth</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static public void SelectRole(BluetoothAudioRole role)
+        {
+            BluetoothAudioImpl.Instance.SelectRole(role);
+        }
+
+        /// <summary>
+        /// Gets the name of the specification UUID.
+        /// </summary>
+        /// <param name="uuid">The UUID.</param>
+        /// <since_tizen> 9 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static public string GetUuidSpecificationName(string uuid)
+        {
+            return BluetoothAdapterImpl.Instance.GetUuidSpecificationName(uuid);
         }
     }
 }

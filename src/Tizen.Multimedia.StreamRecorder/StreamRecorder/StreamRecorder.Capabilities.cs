@@ -94,6 +94,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <returns>An IEnumerable of <see cref="RecorderFileFormat"/> representing the supported file formats.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public IEnumerable<RecorderFileFormat> GetSupportedFileFormats() => _fileFormats;
 
         private IEnumerable<RecorderAudioCodec> _audioCodecs;
@@ -103,6 +104,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <returns>An IEnumerable of <see cref="RecorderAudioCodec"/> representing the supported audio codecs.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public IEnumerable<RecorderAudioCodec> GetSupportedAudioCodecs() => _audioCodecs;
 
         private IEnumerable<RecorderVideoCodec> _videoCodecs;
@@ -112,6 +114,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <returns>An IEnumerable of <see cref="RecorderVideoCodec"/> representing the supported video codecs.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public IEnumerable<RecorderVideoCodec> GetSupportedVideoCodecs() => _videoCodecs;
 
         private IEnumerable<Size> _videoResolutions;
@@ -121,6 +124,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <returns>An IEnumerable of <see cref="Size"/> representing the supported resolutions.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public IEnumerable<Size> GetSupportedVideoResolutions() => _videoResolutions;
 
         internal void ValidateFileFormat(RecorderFileFormat format)

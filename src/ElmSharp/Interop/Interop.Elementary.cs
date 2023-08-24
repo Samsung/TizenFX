@@ -734,6 +734,7 @@ internal static partial class Interop
         internal static extern void elm_transit_paused_set(IntPtr transit, bool paused);
 
         [DllImport(Libraries.Elementary)]
+        [return : MarshalAs(UnmanagedType.U1)]
         internal static extern bool elm_transit_paused_get(IntPtr transit);
 
         [DllImport(Libraries.Elementary)]

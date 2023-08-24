@@ -23,6 +23,7 @@ namespace Tizen.Maps
     /// Multiple reverse geocode request for Tizen map service.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class MultiReverseGeocodeRequest : MapServiceRequest<PlaceAddress>
     {
         private Interop.MultiReverseGeocodeCallback _geocodeCallback;

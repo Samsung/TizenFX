@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+using System;
 using System.Collections.Generic;
 
 namespace Tizen.Account.OAuth2
@@ -22,6 +22,7 @@ namespace Tizen.Account.OAuth2
     /// Class containing access token and related information.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete]
     public class AccessToken
     {
         internal AccessToken()
@@ -32,24 +33,28 @@ namespace Tizen.Account.OAuth2
         /// The lifetime in seconds of the access token.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete]
         public long ExpiresIn { get; internal set;}
 
         /// <summary>
         /// The access token issued by the authorization server.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete]
         public string Token { get; internal set;}
 
         /// <summary>
         /// The scope of the access token.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete]
         public IEnumerable<string> Scope { get; internal set;}
 
         /// <summary>
         /// The type of the access token.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete]
         public string TokenType { get; internal set;}
     }
 }

@@ -25,5 +25,8 @@ internal static partial class Interop
 
         [DllImport(Libraries.ChromiumEwk)]
         internal static extern int ewk_shutdown();
+
+        [DllImport(Libraries.ChromiumEwk)]
+        internal static extern int ewk_set_arguments(int argc, string[] argv);
     }
 }

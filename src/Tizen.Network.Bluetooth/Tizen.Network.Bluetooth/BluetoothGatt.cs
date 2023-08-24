@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,23 +35,24 @@ namespace Tizen.Network.Bluetooth
         private BluetoothGattServer()
         {
             _impl = new BluetoothGattServerImpl();
+            _impl._notificationSent += (s, e) =>
+            {
+                e.Server = this;
+                NotificationSent?.Invoke(this, e);
+            };
+            _impl.AttMtuChanged += OnAttMtuChanged;
+        }
+
+        private void OnAttMtuChanged(object s, AttMtuChangedEventArgs e)
+        {
+            AttMtuChanged?.Invoke(this, e);
         }
 
         /// <summary>
         /// (event) This event is called when the indication acknowledgement is received for each notified client.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public event EventHandler<NotificationSentEventArg> NotificationSent
-        {
-            add
-            {
-                _impl._notificationSent += value;
-            }
-            remove
-            {
-                _impl._notificationSent -= value;
-            }
-        }
+        public event EventHandler<NotificationSentEventArg> NotificationSent;
 
         /// <summary>
         /// Creates the Bluetooth GATT server.
@@ -193,7 +195,7 @@ namespace Tizen.Network.Bluetooth
         /// <since_tizen> 3 </since_tizen>
         public void SendNotification(BluetoothGattCharacteristic characteristic, string clientAddress)
         {
-            _impl.SendNotification(characteristic, clientAddress);
+            _ = _impl.SendIndicationAsync(this, characteristic, clientAddress);
         }
 
         /// <summary>
@@ -214,9 +216,31 @@ namespace Tizen.Network.Bluetooth
             _impl.SendResponse(requestId, (int)type, status, value, offset);
         }
 
+        /// <summary>
+        /// Gets the value of the ATT MTU(Maximum Transmission Unit) for the connection.
+        /// </summary>
+        /// <param name="clientAddress">The remote device address.</param>
+        /// <feature>http://tizen.org/feature/network.bluetooth.le.gatt.server</feature>
+        /// <returns>The MTU value</returns>
+        /// <exception cref="NotSupportedException">Thrown when the BT/BLE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the BT/BLE is not enabled
+        /// or when the remote device is disconnected, or when other specific error occurs.</exception>
+        /// <since_tizen> 9 </since_tizen>
+        public int GetAttMtu(string clientAddress)
+        {
+            return _impl.GetAttMtu(clientAddress);
+        }
+
+        /// <summary>
+        /// The AttMtuChanged event is raised when the MTU value changed.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<AttMtuChangedEventArgs> AttMtuChanged;
+
         internal bool IsValid()
         {
-            return _impl.GetHandle().IsInvalid == false;
+            return _impl?.GetHandle()?.IsInvalid == false;
         }
 
         /// <summary>
@@ -271,6 +295,18 @@ namespace Tizen.Network.Bluetooth
             _impl = new BluetoothGattClientImpl(remoteAddress);
             _remoteAddress = remoteAddress;
             StaticConnectionStateChanged += OnConnectionStateChanged;
+            _impl.AttMtuChanged += OnAttMtuChanged;
+            _impl.ServiceChanged += OnServiceChanged;
+        }
+
+        private void OnAttMtuChanged(object s, AttMtuChangedEventArgs e)
+        {
+            AttMtuChanged?.Invoke(this, e);
+        }
+
+        private void OnServiceChanged(object s, ServiceChangedEventArgs e)
+        {
+            ServiceChanged?.Invoke(this, e);
         }
 
         /// <summary>
@@ -324,14 +360,11 @@ namespace Tizen.Network.Bluetooth
                     _taskForDisconnection = null;
                 }
 
-                if (e.Result == (int)BluetoothError.None)
-                {
-                    ConnectionStateChanged?.Invoke(this, e);
-                }
+                ConnectionStateChanged?.Invoke(this, e);
             }
         }
 
-        private static event EventHandler<GattConnectionStateChangedEventArgs> StaticConnectionStateChanged
+        internal static event EventHandler<GattConnectionStateChangedEventArgs> StaticConnectionStateChanged
         {
             add
             {
@@ -364,7 +397,6 @@ namespace Tizen.Network.Bluetooth
             if (ret != (int)BluetoothError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to set gatt connection state changed callback, Error - " + (BluetoothError)ret);
-                BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
 
@@ -374,7 +406,6 @@ namespace Tizen.Network.Bluetooth
             if (ret != (int)BluetoothError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to unset gatt connection state changed callback, Error - " + (BluetoothError)ret);
-                BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
 
@@ -426,7 +457,7 @@ namespace Tizen.Network.Bluetooth
         [Obsolete("Deprecated since API level 6. Please use Dispose() method on BluetoothGattClient.")]
         public void DestroyClient()
         {
-            _impl.GetHandle().Dispose();
+            _impl?.GetHandle()?.Dispose();
         }
 
         /// <summary>
@@ -524,9 +555,51 @@ namespace Tizen.Network.Bluetooth
             return await _impl.WriteValueAsyncTask(descriptor.GetHandle());
         }
 
+        /// <summary>
+        /// Gets the value of the ATT MTU(Maximum Transmission Unit) for the connection.
+        /// </summary>
+        /// <returns>The MTU value</returns>
+        /// <exception cref="NotSupportedException">Thrown when the BT/BLE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the BT/BLE is not enabled
+        /// or when the remote device is disconnected, or when other specific error occurs.</exception>
+        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int GetAttMtu()
+        {
+            return _impl.GetAttMtu();
+        }
+
+        /// <summary>
+        /// Sets the value of the ATT MTU(Maximum Transmission Unit) for the connection.
+        /// </summary>
+        /// <param name="mtu">The MTU value</param>
+        /// <exception cref="NotSupportedException">Thrown when the BT/BLE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the BT/BLE is not enabled
+        /// or when the remote device is disconnected, or when other specific error occurs.</exception>
+        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetAttMtu(int mtu)
+        {
+            _impl.SetAttMtu(mtu);
+        }
+
+        /// <summary>
+        /// The AttMtuChanged event is raised when the MTU value changed.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<AttMtuChangedEventArgs> AttMtuChanged;
+
+        /// <summary>
+        /// The ServiceChanged event is raised when the service is changed from the remote device(GATT server).
+        /// </summary>
+        /// <feature>http://tizen.org/feature/network.bluetooth.le.gatt.client</feature>
+        /// <since_tizen> 9 </since_tizen>
+        public event EventHandler<ServiceChangedEventArgs> ServiceChanged;
+
         internal bool Isvalid()
         {
-            return _impl.GetHandle().IsInvalid == false;
+            return _impl?.GetHandle()?.IsInvalid == false;
         }
 
         /// <summary>
@@ -831,6 +904,7 @@ namespace Tizen.Network.Bluetooth
         /// The NotificationStateChanged event is called when the client enables or disables the Notification/Indication for particular characteristics.
         /// </summary>
         /// <remarks>
+        /// BluetoothGattServer.RegisterGattService() should be called before adding/removing this EventHandler.
         /// Adding event handle on the characteristic on the client side will not have any effect.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
@@ -983,7 +1057,7 @@ namespace Tizen.Network.Bluetooth
                 _parent = parent;
                 ReleaseHandleOwnership();
             }
-         }
+        }
     }
 
     /// <summary>
@@ -1004,7 +1078,7 @@ namespace Tizen.Network.Bluetooth
         /// <remarks>throws in case of internal error.</remarks>
         /// <exception cref="InvalidOperationException">Thrown when the create GATT descriptor procedure fails.</exception>
         /// <since_tizen> 3 </since_tizen>
-        public BluetoothGattDescriptor(string uuid, BluetoothGattPermission permisions, byte[] value) : base (uuid, permisions)
+        public BluetoothGattDescriptor(string uuid, BluetoothGattPermission permisions, byte[] value) : base(uuid, permisions)
         {
             _impl = new BluetoothGattDescriptorImpl(uuid, permisions, value);
         }
@@ -1087,6 +1161,9 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// This event is called when the client request to read the value of a characteristic or a descriptor.
         /// </summary>
+        /// <remarks>
+        /// BluetoothGattServer.RegisterGattService() should be called before adding/removing this EventHandler.
+        /// </remarks>
         /// <exception cref="InvalidOperationException">Thrown when the set read value requested callback procedure fails.</exception>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<ReadRequestedEventArgs> ReadRequested
@@ -1115,6 +1192,9 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// This event is called when a value of a characteristic or a descriptor has been changed by a client.
         /// </summary>
+        /// <remarks>
+        /// BluetoothGattServer.RegisterGattService() should be called before adding/removing this EventHandler.
+        /// </remarks>
         /// <exception cref="InvalidOperationException">Thrown when the set write value requested callback procedure fails.</exception>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<WriteRequestedEventArgs> WriteRequested
@@ -1126,7 +1206,9 @@ namespace Tizen.Network.Bluetooth
                 {
                     _writeValueRequestedCallback = (clientAddress, requestId, serverHandle, gattHandle, response_needed, offset, valueToWrite, len, userData) =>
                     {
-                        _writeValueRequested?.Invoke(this, new WriteRequestedEventArgs(Server, clientAddress, requestId, valueToWrite, offset, response_needed));
+                        byte[] writeValue = new byte[len];
+                        Marshal.Copy(valueToWrite, writeValue, 0, len);
+                        _writeValueRequested?.Invoke(this, new WriteRequestedEventArgs(Server, clientAddress, requestId, writeValue, offset, response_needed));
                     };
                     Impl.SetWriteValueRequestedEventCallback(_writeValueRequestedCallback);
                 }

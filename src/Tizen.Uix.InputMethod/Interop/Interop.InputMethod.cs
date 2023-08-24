@@ -17,6 +17,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen.Internals;
 using Tizen.Uix.InputMethod;
 
 /// <summary>
@@ -57,6 +58,7 @@ internal static partial class Interop
             On
         };
 
+        [NativeStruct("ime_callback_s", Include="inputmethod.h", PkgConfig="capi-ui-inputmethod")]
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         internal struct ImeCallbackStruct
         {
@@ -70,6 +72,7 @@ internal static partial class Interop
             internal ImeHideCb hide;
         };
 
+        [NativeStruct("ime_preedit_attribute", Include="inputmethod.h", PkgConfig="capi-ui-inputmethod")]
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         internal struct ImePreEditAttributeStruct
         {
@@ -291,6 +294,21 @@ internal static partial class Interop
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_commit_content")]
         internal static extern ErrorCode ImeCommitContent(string content, string description, string mimeType);
 
+        [DllImport(Libraries.InputMethod, EntryPoint = "ime_set_native_window_size")]
+        internal static extern ErrorCode ImeSetNativeWindowSize(IntPtr window, int portraitWidth, int portraitHeight, int landscapeWidth, int landscapeHeight);
+
+        [DllImport(Libraries.InputMethod, EntryPoint = "ime_event_set_process_key_event_with_keycode_cb")]
+        internal static extern ErrorCode ImeEventSetProcessKeyEventWithKeycodeCb(ImeProcessKeyEventWithKeycodeCb callbackFunction, IntPtr userData);
+
+        [DllImport(Libraries.InputMethod, EntryPoint = "ime_update_preedit_cursor")]
+        internal static extern ErrorCode ImeUpdatePreeditCursor(uint position);
+
+        [DllImport(Libraries.InputMethod, EntryPoint = "ime_set_candidate_visibility_state")]
+        internal static extern ErrorCode ImeSetCandidateVisibilityState(bool visible);
+
+        [DllImport(Libraries.InputMethod, EntryPoint = "ime_event_set_input_hint_set_cb")]
+        internal static extern ErrorCode ImeEventSetInputHintSetCb(ImeInputHintSetCb callbackFunction, IntPtr userData);
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ImeCreateCb(IntPtr userData);
 
@@ -362,5 +380,11 @@ internal static partial class Interop
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ImeMimeTypeSetRequestCb(IntPtr mimeType, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate bool ImeProcessKeyEventWithKeycodeCb(uint keyCode, KeyCode keySym, KeyMask keyMask, IntPtr devInfo, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void ImeInputHintSetCb(InputHints hint, IntPtr userData);
     }
 }

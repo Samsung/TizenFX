@@ -171,9 +171,9 @@ namespace Tizen.Applications.RPCPort
         private bool disposedValue = false;
 
         /// <summary>
-        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+        /// Releases any unmanaged resources used by this object and disposes any other disposable objects.
         /// </summary>
-        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        /// <param name="disposing">true to disposes any disposable objects, or false not to dispose disposable objects.</param>
         /// <since_tizen> 6 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {

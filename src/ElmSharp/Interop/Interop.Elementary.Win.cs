@@ -434,5 +434,25 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_win_illume_command_send(IntPtr obj, IntPtr param);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern int elm_win_aux_hint_add(IntPtr obj, string hint, string val);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_win_aux_hint_del(IntPtr obj, int id);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_win_aux_hint_val_set(IntPtr obj, int id, string val);
+
+        [DllImport(Libraries.Elementary, EntryPoint = "elm_win_aux_hint_val_get")]
+        internal static extern IntPtr _elm_win_aux_hint_val_get(IntPtr obj, int id);
+
+        internal static string elm_win_aux_hint_val_get(IntPtr obj, int id)
+        {
+            return Marshal.PtrToStringAnsi(_elm_win_aux_hint_val_get(obj, id));
+        }
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern int elm_win_aux_hint_id_get(IntPtr obj, string hint);
     }
 }

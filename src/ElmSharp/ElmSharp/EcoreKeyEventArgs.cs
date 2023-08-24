@@ -17,6 +17,8 @@
 using System;
 using System.Runtime.InteropServices;
 
+using Tizen.Internals;
+
 namespace ElmSharp
 {
     /// <summary>
@@ -51,6 +53,7 @@ namespace ElmSharp
             return new EcoreKeyEventArgs { KeyName = evt.keyname, KeyCode = (int)evt.keycode };
         }
 
+        [NativeStruct("Ecore_Event_Key", Include="Elementary.h" , PkgConfig="elementary")]
         [StructLayout(LayoutKind.Sequential)]
         struct EcoreEventKey
         {
@@ -67,6 +70,7 @@ namespace ElmSharp
             public uint keycode;
             public IntPtr data;
             public IntPtr dev;
+            public int event_flags;
         }
     }
 }

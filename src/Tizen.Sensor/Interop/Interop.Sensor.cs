@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen.Internals;
 using Tizen.Sensor;
 
 internal static partial class Interop
@@ -54,7 +55,12 @@ internal static partial class Interop
     {
         //Sensor Listener CAPI
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        [Obsolete("Deprecated since API level 8. Please use the SensorEventsCallback instead.")]
         internal delegate void SensorEventCallback(IntPtr sensorHandle, IntPtr eventData, IntPtr data);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void SensorEventsCallback(IntPtr sensorHandle, IntPtr eventsData, uint events_count, IntPtr data);
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void SensorAccuracyCallback(IntPtr sensorHandle, ulong timestamp, SensorDataAccuracy accuracy, IntPtr data);
 
@@ -71,10 +77,18 @@ internal static partial class Interop
         internal static extern int StopListener(IntPtr listenerHandle);
 
         [DllImport(Libraries.Sensor, EntryPoint = "sensor_listener_set_event_cb")]
+        [Obsolete("Deprecated since API level 8. Please use the SetEventsCallback instead.")]
         internal static extern int SetEventCallback(IntPtr listenerHandle, uint intervalMs, SensorEventCallback callback, IntPtr data);
 
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_listener_set_events_cb")]
+        internal static extern int SetEventsCallback(IntPtr listenerHandle, SensorEventsCallback callback, IntPtr data);
+
         [DllImport(Libraries.Sensor, EntryPoint = "sensor_listener_unset_event_cb")]
+        [Obsolete("Deprecated since API level 8. Please use the UnsetEventsCallback instead.")]
         internal static extern int UnsetEventCallback(IntPtr listernerHandle);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_listener_unset_events_cb")]
+        internal static extern int UnsetEventsCallback(IntPtr listernerHandle);
 
         [DllImport(Libraries.Sensor, EntryPoint = "sensor_listener_set_accuracy_cb")]
         internal static extern int SetAccuracyCallback(IntPtr listenerHandle, SensorAccuracyCallback callback, IntPtr data);
@@ -90,6 +104,12 @@ internal static partial class Interop
 
         [DllImport(Libraries.Sensor, EntryPoint = "sensor_listener_set_attribute_int")]
         internal static extern int SetAttribute(IntPtr listenerHandle, SensorAttribute sensorAttribute, int option);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_listener_read_data")]
+        internal static extern int ReadData(IntPtr listenerHandle, out SensorEventStruct data);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_listener_read_data_list")]
+        internal static extern int ReadDataList(IntPtr listenerHandle, out IntPtr eventsData, out uint events_count);
     }
 
     internal static class SensorManager
@@ -111,6 +131,7 @@ internal static partial class Interop
         internal static extern int Free(IntPtr ptr);
     }
 
+    [NativeStruct("sensor_event_s", Include="sensor.h", PkgConfig="capi-system-sensor")]
     [StructLayout(LayoutKind.Sequential, Pack = 0)]
     internal struct SensorEventStruct
     {

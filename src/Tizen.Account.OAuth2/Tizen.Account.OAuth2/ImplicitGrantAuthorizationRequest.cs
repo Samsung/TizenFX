@@ -14,18 +14,21 @@
  * limitations under the License.
  */
 
+using System;
 namespace Tizen.Account.OAuth2
 {
     /// <summary>
     /// The class contains request parameters for retreiving access token in Implicit Grant flow.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete]
     public class ImplicitGrantAuthorizationRequest : AuthorizationRequest
     {
         /// <summary>
         /// The constructor
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete]
         public ImplicitGrantAuthorizationRequest()
         {
 
@@ -35,6 +38,7 @@ namespace Tizen.Account.OAuth2
         /// The response type parameter to aturhoization server.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete]
         public override string ResponseType { get; } = "token";
     }
 }

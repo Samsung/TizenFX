@@ -86,29 +86,6 @@ namespace Tizen.Content.MediaContent
             }
         }
 
-        private string _storageId;
-
-        /// <summary>
-        /// Gets or sets the storage ID for the given filter.
-        /// You can use this property when you want to search items only in the specific storage.
-        /// </summary>
-        /// <value>The storage ID to restrict storage to search, or null for all storages.</value>
-        /// <exception cref="ArgumentException"><paramref name="value"/> is a zero-length string, contains only white space.</exception>
-        /// <since_tizen> 4 </since_tizen>
-        public string StorageId
-        {
-            get => _storageId;
-            set
-            {
-                if (value != null)
-                {
-                    ValidationUtil.ValidateNotNullOrEmpty(value, nameof(value));
-                }
-
-                _storageId = value;
-            }
-        }
-
         internal static FilterHandle ToNativeHandle(QueryArguments arguments)
         {
             if (arguments == null || arguments.IsEmpty())
@@ -145,7 +122,7 @@ namespace Tizen.Content.MediaContent
 
         internal virtual bool IsEmpty()
         {
-            return StorageId == null && FilterExpression == null;
+            return FilterExpression == null;
         }
 
         internal virtual void FillHandle(FilterHandle handle)
@@ -154,12 +131,6 @@ namespace Tizen.Content.MediaContent
             {
                 Interop.Filter.SetCondition(handle, FilterExpression, Collation.Default).
                     ThrowIfError("Failed to create filter handle(condition)");
-            }
-
-            if (StorageId != null)
-            {
-                Interop.Filter.SetStorage(handle, StorageId).
-                    ThrowIfError("Failed to create filter handle(storage id)"); ;
             }
         }
     }

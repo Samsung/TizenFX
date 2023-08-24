@@ -6,6 +6,23 @@
     <GenerateDependencyFile>False</GenerateDependencyFile>
     <Deterministic>True</Deterministic>
     <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
+    <ProduceReferenceAssemblyInOutDir>True</ProduceReferenceAssemblyInOutDir>
+    <NoWarn>$(NoWarn);CS0618;CS0809</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <ProjectRootDir>$(MSBuildThisFileDirectory)..\</ProjectRootDir>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AllTizenProfiles>mobile;tv;wearable</AllTizenProfiles>
+    <SupportedProfiles Condition="'$(SupportedProfiles)' == ''">$(AllTizenProfiles)</SupportedProfiles>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <DefineConstants Condition="'$(BuildProfile)' == 'tv'">$(DefineConstants);PROFILE_TV</DefineConstants>
+    <DefineConstants Condition="'$(BuildProfile)' == 'wearable'">$(DefineConstants);PROFILE_WEARABLE</DefineConstants>
+    <DefineConstants Condition="'$(BuildProfile)' == 'mobile'">$(DefineConstants);PROFILE_MOBILE</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -15,7 +32,7 @@
   </PropertyGroup>
 
   <Import Project="$(MSBuildThisFileDirectory)version.props" />
-
-  <Import Project="$(MSBuildThisFileDirectory)analyzers.props" Condition="'$(BuildWithAnalyzer)' == 'True' Or '$(BuildingInsideVisualStudio)' == 'True'" />
+  <Import Project="$(MSBuildThisFileDirectory)analyzers.props"
+          Condition="'$(BuildWithAnalyzer)' == 'True' Or '$(BuildingInsideVisualStudio)' == 'True'" />
 
 </Project>

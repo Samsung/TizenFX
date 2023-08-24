@@ -193,14 +193,6 @@ namespace TextTest2
             Tizen.Log.Debug("NUI", "e.ImfEventData.EventName= " + e?.ImfEventData?.EventName);
             Tizen.Log.Debug("NUI", "e.ImfEventData.NumberOfChars= " + e?.ImfEventData?.NumberOfChars);
 
-            //Be able to compare VD specific private command with ImfEventData.predictiveString
-            if (e.ImfEventData.PredictiveString == "IME_F31")
-            {
-                ImfManager.Get().Deactivate();
-                ImfManager.Get().HideInputPanel();
-                // Do Something the user wants
-                Tizen.Log.Debug("NUI", "ImfManager ImfEventData.PredictiveString: IME_F31!!!");
-            }
             ImfManager.ImfCallbackData callbackData = new ImfManager.ImfCallbackData(true, 0, e.ImfEventData.PredictiveString, false);
             Tizen.Log.Debug("NUI", "ImfManager return callbackData!!!");
             return callbackData;

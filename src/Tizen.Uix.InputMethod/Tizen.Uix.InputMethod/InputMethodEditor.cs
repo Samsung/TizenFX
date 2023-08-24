@@ -1001,6 +1001,10 @@ namespace Tizen.Uix.InputMethod
         private static OutArrayAction<byte> _imDataRequestedDelegate;
         private static ImeGeometryRequestedCb _imeGeometryRequestedDelegate;
         private static OutAction<Rect> _geometryRequestedDelegate;
+        private static ImeProcessKeyEventWithKeycodeCb _imeProcessKeyWithKeycodeDelegate;
+        private static BoolAction<uint, KeyCode, KeyMask, InputMethodDeviceInformation> _processKeyWithKeycodeDelagate;
+        private static event EventHandler<InputHintSetEventArgs> _inputHintSet;
+        private static ImeInputHintSetCb _imeInputHintSetDelegate;
         private static Action _userCreate;
         private static Action _userTerminate;
         private static Action<ContextId, InputMethodContext> _userShow;
@@ -1115,6 +1119,21 @@ namespace Tizen.Uix.InputMethod
         /// <returns></returns>
         /// <since_tizen> 4 </since_tizen>
         public delegate bool BoolAction<T, T1, T2>(T a, T1 b, T2 c);
+
+        /// <summary>
+        /// An action with 4 input parameters returning a bool.
+        /// </summary>
+        /// <typeparam name="T">Generic type for parameter 1.</typeparam>
+        /// <typeparam name="T1">Generic type for parameter 2.</typeparam>
+        /// <typeparam name="T2">Generic type for parameter 3.</typeparam>
+        /// <typeparam name="T3">Generic type for parameter 4.</typeparam>
+        /// <param name="a">The input parameter 1.</param>
+        /// <param name="b">The input parameter 2.</param>
+        /// <param name="c">The input parameter 3.</param>
+        /// <param name="d">The input parameter 4.</param>
+        /// <returns></returns>
+        /// <since_tizen> 10 </since_tizen>
+        public delegate bool BoolAction<T, T1, T2, T3>(T a, T1 b, T2 c, T3 d);
 
         /// <summary>
         /// Called when an associated text input UI control has focus.
@@ -1508,9 +1527,9 @@ namespace Tizen.Uix.InputMethod
         {
             _imeLanguageRequestedDelegate = (IntPtr userData, out IntPtr langCode) =>
             {
-                string langauage;
-                _languageRequestedDelegate(out langauage);
-                langCode = (IntPtr)Marshal.StringToHGlobalAnsi(langauage);
+                string language;
+                _languageRequestedDelegate(out language);
+                langCode = (IntPtr)Marshal.StringToHGlobalAnsi(language);
             };
             ErrorCode error = ImeEventSetLanguageRequestedCallbackCb(_imeLanguageRequestedDelegate, IntPtr.Zero);
             if (error != ErrorCode.None)
@@ -1614,11 +1633,8 @@ namespace Tizen.Uix.InputMethod
         /// This is called when the IME application is hidden.
         /// It provides the context ID.
         /// </param>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function.
-        /// 2) Operation failed.
-        /// </exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="InvalidOperationException">This exception can be due to operation failed.</exception>
         /// <since_tizen> 4 </since_tizen>
         public static void Run(Action create, Action terminate, Action<ContextId, InputMethodContext> show, Action<ContextId> hide)
         {
@@ -1654,11 +1670,8 @@ namespace Tizen.Uix.InputMethod
         /// <param name="keyCode">The key code to be sent.</param>
         /// <param name="keyMask">The modifier key mask.</param>
         /// <param name="forwardKey">The flag to send the key event directly to the edit field.</param>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop has not started yet.
-        /// </exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="InvalidOperationException">The IME main loop has not started yet.</exception>
         /// <since_tizen> 4 </since_tizen>
         public static void SendKeyEvent(KeyCode keyCode, KeyMask keyMask, bool forwardKey = false)
         {
@@ -1677,11 +1690,8 @@ namespace Tizen.Uix.InputMethod
         /// http://tizen.org/privilege/ime
         /// </privilege>
         /// <param name="str">The string to be committed.</param>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop has not started yet.
-        /// </exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="InvalidOperationException">The IME main loop has not started yet.</exception>
         /// <since_tizen> 4 </since_tizen>
         public static void CommitString(string str)
         {
@@ -1699,11 +1709,8 @@ namespace Tizen.Uix.InputMethod
         /// <privilege>
         /// http://tizen.org/privilege/ime
         /// </privilege>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop has not started yet.
-        /// </exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="InvalidOperationException">The IME main loop has not started yet.</exception>
         /// <since_tizen> 4 </since_tizen>
         public static void ShowPreEditString()
         {
@@ -1721,11 +1728,8 @@ namespace Tizen.Uix.InputMethod
         /// <privilege>
         /// http://tizen.org/privilege/ime
         /// </privilege>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop has not started yet.
-        /// </exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="InvalidOperationException">The IME main loop has not started yet.</exception>
         /// <since_tizen> 4 </since_tizen>
         public static void HidePreEditString()
         {
@@ -1748,33 +1752,26 @@ namespace Tizen.Uix.InputMethod
         /// The list which has ime_preedit_attribute lists, strings can be composed of multiple string attributes: underline, highlight color, and reversal color.
         /// The attrs list can be empty if no attributes to set.
         /// </param>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop has not started yet.
-        /// 3) Invalid parameter.
-        /// </exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="InvalidOperationException">The IME main loop has not started yet.</exception>
         /// <since_tizen> 4 </since_tizen>
         public static void UpdatePreEditString(string str, IEnumerable<PreEditAttribute> attrs)
         {
             IntPtr einaList = IntPtr.Zero;
-            List<GCHandle> attributeHandleList = new List<GCHandle>();
             foreach (PreEditAttribute attribute in attrs)
             {
+                IntPtr attr = IntPtr.Zero;
                 ImePreEditAttributeStruct imePreEditAttribute = new ImePreEditAttributeStruct();
                 imePreEditAttribute.start = attribute.Start;
                 imePreEditAttribute.length = attribute.Length;
                 imePreEditAttribute.type = (int)attribute.Type;
                 imePreEditAttribute.value = attribute.Value;
-                GCHandle attributeHandle = GCHandle.Alloc(imePreEditAttribute, GCHandleType.Pinned);
-                attributeHandleList.Add(attributeHandle);
-                einaList = Interop.EinaList.EinaListAppend(einaList, attributeHandle.AddrOfPinnedObject());
+                attr = Marshal.AllocHGlobal(Marshal.SizeOf(imePreEditAttribute));
+                Marshal.WriteIntPtr(attr, IntPtr.Zero);
+                Marshal.StructureToPtr(imePreEditAttribute, attr, false);
+                einaList = Interop.EinaList.EinaListAppend(einaList, attr);
             }
             ErrorCode error = ImeUpdatePreeditString(str, einaList);
-            foreach (GCHandle handle in attributeHandleList)
-            {
-                handle.Free();
-            }
             if (error != ErrorCode.None)
             {
                 Log.Error(LogTag, "UpdatePreEditString Failed with error " + error);
@@ -1790,10 +1787,11 @@ namespace Tizen.Uix.InputMethod
         /// </privilege>
         /// <param name="maxLenBefore">The maximum length of the string to be retrieved before the cursor, -1 means unlimited.</param>
         /// <param name="maxLenAfter">The maximum length of the string to be retrieved after the cursor, -1 means unlimited.</param>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop has not started yet.
+        /// 1) The IME main loop has not started yet.
+        /// 2) The necessary event is not set.
         /// </exception>
         /// <postcondition>
         /// The requested surrounding text can be received using the SurroundingTextUpdated event, only if it is set.
@@ -1817,12 +1815,9 @@ namespace Tizen.Uix.InputMethod
         /// </privilege>
         /// <param name="offset">The offset value from the cursor position.</param>
         /// <param name="len">The length of the text to delete.</param>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop has not started yet.
-        /// 3) Invalid parameter.
-        /// </exception>
+        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="InvalidOperationException">The IME main loop has not started yet.</exception>
         /// <since_tizen> 4 </since_tizen>
         public static void DeleteSurroundingText(int offset, int len)
         {
@@ -1844,13 +1839,9 @@ namespace Tizen.Uix.InputMethod
         /// <param name="maxLenAfter">The maximum length of the string to be retrieved after the cursor, -1 means unlimited.</param>
         /// <param name="text">The surrounding text.</param>
         /// <param name="cursorPosition">The cursor position.</param>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop has not started yet.
-        /// 3) Invalid parameter.
-        /// 4) Failed to obtain text due to out of memory.
-        /// </exception>
+        /// <exception cref="OutOfMemoryException">This exception can be due to out of memory.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="InvalidOperationException">The IME main loop has not started yet.</exception>
         /// <since_tizen> 4 </since_tizen>
         public static void GetSurroundingText(int maxLenBefore, int maxLenAfter, out string text, out int cursorPosition)
         {
@@ -1872,12 +1863,9 @@ namespace Tizen.Uix.InputMethod
         /// </privilege>
         /// <param name="start">The start cursor position in text (in characters not bytes).</param>
         /// <param name="end">The end cursor position in text (in characters not bytes).</param>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop has not started yet.
-        /// 3) Invalid parameter.
-        /// </exception>
+        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="InvalidOperationException">The IME main loop has not started yet.</exception>
         /// <since_tizen> 4 </since_tizen>
         public static void SetSelection(int start, int end)
         {
@@ -1896,13 +1884,14 @@ namespace Tizen.Uix.InputMethod
         /// http://tizen.org/privilege/ime
         /// </privilege>
         /// <returns>The input panel main window object on success, otherwise null.</returns>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop has not started yet.
-        /// 3) Operation failed.
+        /// 1) The IME main loop has not started yet.
+        /// 2) Operation failed.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public static EditorWindow GetMainWindow()
         {
             EditorWindow._handle = ImeGetMainWindow();
@@ -1922,11 +1911,8 @@ namespace Tizen.Uix.InputMethod
         /// <privilege>
         /// http://tizen.org/privilege/ime
         /// </privilege>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop has not started yet.
-        /// </exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="InvalidOperationException">The IME main loop has not started yet.</exception>
         /// <since_tizen> 5 </since_tizen>
         public static void RequestHide()
         {
@@ -1944,11 +1930,8 @@ namespace Tizen.Uix.InputMethod
         /// <privilege>
         /// http://tizen.org/privilege/ime
         /// </privilege>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function.
-        /// 2) Operation failed.
-        /// </exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="InvalidOperationException">This exception can be due to operation failed.</exception>
         /// <since_tizen> 4 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void Create()
@@ -1976,11 +1959,7 @@ namespace Tizen.Uix.InputMethod
         /// <privilege>
         /// http://tizen.org/privilege/ime
         /// </privilege>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function.
-        /// 2) Operation failed.
-        /// </exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <since_tizen> 4 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void Destroy()
@@ -2001,11 +1980,8 @@ namespace Tizen.Uix.InputMethod
         /// http://tizen.org/privilege/ime
         /// </privilege>
         /// <param name="floatingMode"><c>true</c> to set the floating mode to on and <c>false</c> to set it to off.</param>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop has not started yet.
-        /// </exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="InvalidOperationException">The IME main loop has not started yet.</exception>
         /// <since_tizen> 5 </since_tizen>
         public static void SetFloatingMode(bool floatingMode)
         {
@@ -2026,11 +2002,8 @@ namespace Tizen.Uix.InputMethod
         /// <remarks>
         /// This function can be used in floating mode. If the floating mode is deactivated, calling this function has no effect.
         /// </remarks>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop has not started yet.
-        /// </exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="InvalidOperationException">The IME main loop has not started yet.</exception>
         /// <since_tizen> 5 </since_tizen>
         public static void SetFloatingDragStart()
         {
@@ -2051,11 +2024,8 @@ namespace Tizen.Uix.InputMethod
         /// <remarks>
         /// This function can be used in floating mode. If the floating mode is deactivated, calling this function has no effect.
         /// </remarks>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop has not started yet.
-        /// </exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="InvalidOperationException">The IME main loop has not started yet.</exception>
         /// <since_tizen> 5 </since_tizen>
         public static void SetFloatingDragEnd()
         {
@@ -2076,11 +2046,8 @@ namespace Tizen.Uix.InputMethod
         /// <remarks>
         /// LanguageRequestedCallback is raised after this API is called when the App requests changed language information.
         /// </remarks>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop has not started yet.
-        /// </exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="InvalidOperationException">The IME main loop has not started yet.</exception>
         /// <since_tizen> 6 </since_tizen>
         public static void SendLanguageUpdated()
         {
@@ -2099,11 +2066,8 @@ namespace Tizen.Uix.InputMethod
         /// http://tizen.org/privilege/ime
         /// </privilege>
         /// <param name="enable"><c>true</c> if shift button is clicked, otherwise <c>false</c>.</param>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop has not started yet.
-        /// </exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="InvalidOperationException">The IME main loop has not started yet.</exception>
         /// <since_tizen> 6 </since_tizen>
         public static void SendShiftModeUpdated(bool enable)
         {
@@ -2121,11 +2085,8 @@ namespace Tizen.Uix.InputMethod
         /// <privilege>
         /// http://tizen.org/privilege/ime
         /// </privilege>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop has not started yet.
-        /// </exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="InvalidOperationException">The IME main loop has not started yet.</exception>
         /// <since_tizen> 6 </since_tizen>
         public static void SendCustomGeometryUpdated()
         {
@@ -2144,11 +2105,8 @@ namespace Tizen.Uix.InputMethod
         /// http://tizen.org/privilege/ime
         /// </privilege>
         /// <returns>The selected text.</returns>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop has not started yet.
-        /// </exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="InvalidOperationException">The IME main loop has not started yet.</exception>
         /// <since_tizen> 6 </since_tizen>
         public static string GetSelectedText()
         {
@@ -2257,12 +2215,8 @@ namespace Tizen.Uix.InputMethod
         /// http://tizen.org/privilege/ime
         /// </privilege>
         /// <param name="command">The UTF-8 string to be sent.</param>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop has not started yet.
-        /// 3) Invalid parameter.
-        /// </exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="InvalidOperationException">The IME main loop has not started yet.</exception>
         /// <since_tizen> 6 </since_tizen>
         public static void SendPrivateCommand(string command)
         {
@@ -2283,12 +2237,8 @@ namespace Tizen.Uix.InputMethod
         /// <param name="content">The content URI to be sent.</param>
         /// <param name="description">The content description.</param>
         /// <param name="mimeType">The MIME type received from the MimeTypeSetRequest</param>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop has not started yet.
-        /// 3) Invalid parameter.
-        /// </exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="InvalidOperationException">The IME main loop has not started yet.</exception>
         /// <since_tizen> 6 </since_tizen>
         public static void CommitContent(string content, string description, string mimeType)
         {
@@ -2297,6 +2247,130 @@ namespace Tizen.Uix.InputMethod
             {
                 Log.Error(LogTag, "CommitContent Failed with error " + error);
                 throw InputMethodExceptionFactory.CreateException(error);
+            }
+        }
+
+        /// <summary>
+        /// This API updates the given native input panel window's size information.
+        /// The native window handle of NUI Window can be got by below code.
+        /// var handle = new Window.SafeNativeWindowHandle();
+        /// IntPtr nativeHandle = handle.DangerousGetHandle();
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/ime
+        /// </privilege>
+        /// <param name="window">The native window handle.</param>
+        /// <param name="portraitWidth">The width in the portrait mode.</param>
+        /// <param name="portraitHeight">The height in the portrait mode.</param>
+        /// <param name="landscapeWidth">The width in the landscape mode.</param>
+        /// <param name="landscapeHeight">The height in the landscape mode.</param>
+        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="InvalidOperationException">The IME main loop has not started yet.</exception>
+        /// <since_tizen> 9 </since_tizen>
+        public static void SetSize(IntPtr window, int portraitWidth, int portraitHeight, int landscapeWidth, int landscapeHeight)
+        {
+            ErrorCode error = ImeSetNativeWindowSize(window, portraitWidth, portraitHeight, landscapeWidth, landscapeHeight);
+            if (error != ErrorCode.None)
+            {
+                Log.Error(LogTag, "SetSize Failed with error " + error);
+                throw InputMethodExceptionFactory.CreateException(error);
+            }
+        }
+
+        /// <summary>
+        /// Sets the processKey action.
+        /// If the key event is from the external device, DeviceInfo will have its name, class, and subclass information.
+        /// </summary>
+        /// <param name="processKey">
+        /// <c>true</c> if the event was processed, otherwise the event was not processed and was forwarded to the client application.
+        /// The first parameter is X11 key code and the second parameter is key symbol.
+        /// The action is called when the key event is received from the external devices or the SendKey function.
+        /// This Event processes the key event before an associated text input UI control does.
+        /// </param>
+        /// <since_tizen> 10 </since_tizen>
+        public static void SetProcessKeyCallback(BoolAction<uint, KeyCode, KeyMask, InputMethodDeviceInformation> processKey)
+        {
+            _imeProcessKeyWithKeycodeDelegate = (uint keyCode, KeyCode keySymbol, KeyMask keyMask, IntPtr devInfo, IntPtr userData) =>
+            {
+                return _processKeyWithKeycodeDelagate(keyCode, keySymbol, keyMask, new InputMethodDeviceInformation(devInfo));
+            };
+            ErrorCode error = ImeEventSetProcessKeyEventWithKeycodeCb(_imeProcessKeyWithKeycodeDelegate, IntPtr.Zero);
+            if (error != ErrorCode.None)
+            {
+                Log.Error(LogTag, "Add ProcessKeyWithKeycode Failed with error " + error);
+            }
+            _processKeyWithKeycodeDelagate = processKey;
+        }
+
+        /// <summary>
+        /// Updates the cursor position in the preedit string.
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/ime
+        /// </privilege>
+        /// <param name="position">The cursor position in the preedit string.</param>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="InvalidOperationException">The IME main loop has not started yet.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        public static void UpdatePreeditCursor(uint position)
+        {
+            ErrorCode error = ImeUpdatePreeditCursor(position);
+            if (error != ErrorCode.None)
+            {
+                Log.Error(LogTag, "UpdatePreeditCursor Failed with error " + error);
+                throw InputMethodExceptionFactory.CreateException(error);
+            }
+        }
+
+        /// <summary>
+        /// Sets whether candidate strings will be shown or not.
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/ime
+        /// </privilege>
+        /// <param name="visible"><c>true</c> to show candidate strings, <c>false</c> otherwise.</param>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="InvalidOperationException">The IME main loop has not started yet.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        public static void SetCandidateVisibilityState(bool visible)
+        {
+            ErrorCode error = ImeSetCandidateVisibilityState(visible);
+            if (error != ErrorCode.None)
+            {
+                Log.Error(LogTag, "SetCandidateVisibilityState Failed with error " + error);
+                throw InputMethodExceptionFactory.CreateException(error);
+            }
+        }
+
+        /// <summary>
+        /// Called when an associated text input UI control requests the input panel to set its input hint.
+        /// It will only be called when the client application changes the edit field's input hint attribute after the input panel is shown.
+        /// </summary>
+        /// <seealso cref="InputHints"/>
+        /// <since_tizen> 10 </since_tizen>
+        public static event EventHandler<InputHintSetEventArgs> InputHintSet
+        {
+            add
+            {
+                _imeInputHintSetDelegate = (InputHints hint, IntPtr userData) =>
+                {
+                    InputHintSetEventArgs args = new InputHintSetEventArgs(hint);
+                    _inputHintSet?.Invoke(null, args);
+                };
+                ErrorCode error = ImeEventSetInputHintSetCb(_imeInputHintSetDelegate, IntPtr.Zero);
+                if (error != ErrorCode.None)
+                {
+                    Log.Error(LogTag, "Add InputHintSet Failed with error " + error);
+                }
+                else
+                {
+                    _inputHintSet += value;
+                }
+            }
+            remove
+            {
+                _inputHintSet -= value;
             }
         }
     }

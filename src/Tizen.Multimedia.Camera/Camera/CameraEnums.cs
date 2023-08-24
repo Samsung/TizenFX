@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.Multimedia
 {
@@ -25,9 +26,15 @@ namespace Tizen.Multimedia
     public enum CameraDevice
     {
         /// <summary>
+        /// The CameraDevice will be decided internally by target policy.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Default = Int32.MinValue,
+        /// <summary>
         /// The rear camera device.
         /// </summary>
-        Rear,
+        Rear = 0,
         /// <summary>
         /// The front camera device.
         /// </summary>
@@ -234,7 +241,22 @@ namespace Tizen.Multimedia
         /// Depth pixel format.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        Invz
+        Invz,
+        /// <summary>
+        /// Encoded pixel format : Motion JPEG
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        Mjpeg,
+        /// <summary>
+        /// Encoded pixel format : VP8
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        Vp8,
+        /// <summary>
+        /// Encoded pixel format : VP9
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        Vp9
     }
 
     /// <summary>
@@ -466,7 +488,17 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Custom mode.
         /// </summary>
-        Custom
+        Custom,
+        /// <summary>
+        /// Shutter priority mode.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        ShutterPriority,
+        /// <summary>
+        /// Aperture priority mode.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        AperturePriority
     }
 
     /// <summary>
@@ -921,5 +953,25 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         RgbPlane
+    }
+
+    /// <summary>
+    /// Enumeration for camera device type
+    /// </summary>
+    /// <since_tizen> 10 </since_tizen>
+    public enum CameraDeviceType
+    {
+        /// <summary>
+        /// Built-in camera.
+        /// </summary>
+        BuiltIn,
+        /// <summary>
+        /// USB camera.
+        /// </summary>
+        Usb,
+        /// <summary>
+        /// Network camera.
+        /// </summary>
+        Network
     }
 }

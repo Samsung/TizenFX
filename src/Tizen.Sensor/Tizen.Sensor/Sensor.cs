@@ -16,6 +16,8 @@
 
 using System;
 using Tizen.System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace Tizen.Sensor
 {
@@ -40,16 +42,45 @@ namespace Tizen.Sensor
         private int _maxBatchCount;
         private bool _isSensing = false;
         private bool _disposed = false;
-        private TimeSpan _timeSpan;
+        private ulong _timestamp;
         private uint _interval = 0;
         private uint _maxBatchLatency = 0;
         private SensorPausePolicy _pausePolicy = SensorPausePolicy.None;
         private IntPtr _sensorHandle = IntPtr.Zero;
         private IntPtr _listenerHandle = IntPtr.Zero;
+        internal IList<Interop.SensorEventStruct> BatchedEvents { get; set; } = new List<Interop.SensorEventStruct>();
 
+
+        /// <summary>
+        /// Read a sensor data synchronously.
+        /// </summary>
+        internal abstract void ReadData();
         internal abstract SensorType GetSensorType();
         internal abstract void EventListenStart();
         internal abstract void EventListenStop();
+
+        internal void updateBatchEvents(IntPtr eventsPtr, uint events_count)
+        {
+            if (events_count >= 1)
+            {
+                BatchedEvents.Clear();
+                IntPtr currentPtr = eventsPtr;
+                for (int i = 0; i < events_count; i++)
+                {
+                    BatchedEvents.Add(Interop.IntPtrToEventStruct(currentPtr));
+                    currentPtr += Marshal.SizeOf<Interop.SensorEventStruct>();
+                }
+            }
+        }
+
+        internal Interop.SensorEventStruct latestEvent()
+        {
+            if (BatchedEvents.Count > 0)
+            {
+                return BatchedEvents[BatchedEvents.Count - 1];
+            }
+            return default(Interop.SensorEventStruct);
+        }
 
         internal Sensor(uint index)
         {
@@ -257,12 +288,31 @@ namespace Tizen.Sensor
             set
             {
                 Log.Info(Globals.LogTag, "Setting the timespan of the sensor values");
-                _timeSpan = value;
+                _timestamp = (ulong)value.Ticks;
             }
             get
             {
                 Log.Info(Globals.LogTag, "Getting the timespan of the sensor values");
-                return _timeSpan;
+                return new TimeSpan((Int64)_timestamp);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the timestamp.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// <value> Timestamp. </value>
+        public ulong Timestamp
+        {
+            set
+            {
+                Log.Info(Globals.LogTag, "Setting the timestamp of the sensor values");
+                _timestamp = value;
+            }
+            get
+            {
+                Log.Info(Globals.LogTag, "Getting the timestamp of the sensor values");
+                return _timestamp;
             }
         }
 
@@ -325,6 +375,14 @@ namespace Tizen.Sensor
                 {
                     Log.Error(Globals.LogTag, "Error starting sensor");
                     throw SensorErrorFactory.CheckAndThrowException(error, "Unable to Start Sensor Listener");
+                }
+                try
+                {
+                    ReadData();
+                }
+                catch (InvalidOperationException e)
+                {
+                    Log.Error(Globals.LogTag, "Sensor has no data : " + e.Message);
                 }
                 EventListenStart();
                 _isSensing = true;

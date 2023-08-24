@@ -23,6 +23,7 @@ namespace Tizen.Multimedia
     /// Provides data for the <see cref="StreamRecorder.BufferConsumed"/> event.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated in API10; Will be removed in API12")]
     public class StreamRecorderBufferConsumedEventArgs : EventArgs
     {
         internal StreamRecorderBufferConsumedEventArgs(MediaPacket packet)
@@ -34,6 +35,7 @@ namespace Tizen.Multimedia
         /// Gets the packet that has consumed.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public MediaPacket Packet { get; }
     }
 }

@@ -181,7 +181,12 @@ namespace Tizen.System
         /// GET (bool) Indicates whether accessibility negative color is enabled on the device.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        AccessibilityNegativeColor
+        AccessibilityNegativeColor,
+        /// <summary>
+        /// GET (bool) Indicates whether rotary event is enabled on the device.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        RotaryEventEnabled
     }
     /// <summary>
     /// Enumeration for the Idle Lock State.

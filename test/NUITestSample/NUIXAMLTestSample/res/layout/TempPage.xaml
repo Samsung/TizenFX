@@ -3,6 +3,6 @@
   xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-  <PushButton LabelText="Button1" Focusable="true" Position2D="50,50" Size2D="100,50" >
-  </PushButton>
+  <TextLabel Text="Text1" Focusable="true" Position2D="50,50" Size2D="100,50" >
+  </TextLabel>
 </ContentPage>

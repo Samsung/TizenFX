@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -251,18 +251,6 @@ namespace Tizen.Content.MediaContent
         public static string DateRecorded => "MEDIA_RECORDED_DATE";
 
         /// <summary>
-        /// Gets the column name for the copyright of media.
-        /// </summary>
-        /// <value>The column name for the copyright of media.</value>
-        /// <remarks>
-        /// The value type is string.
-        /// </remarks>
-        /// <seealso cref="AudioInfo.Copyright"/>
-        /// <seealso cref="VideoInfo.Copyright"/>
-        /// <since_tizen> 4 </since_tizen>
-        public static string Copyright => "MEDIA_COPYRIGHT";
-
-        /// <summary>
         /// Gets the column name for the track number of media.
         /// </summary>
         /// <value>The column name for the track number of media.</value>
@@ -273,62 +261,6 @@ namespace Tizen.Content.MediaContent
         /// <seealso cref="VideoInfo.TrackNumber"/>
         /// <since_tizen> 4 </since_tizen>
         public static string TrackNumber => "MEDIA_TRACK_NUM";
-
-        /// <summary>
-        /// Gets the column name for the description of media.
-        /// </summary>
-        /// <value>The column name for the description of media.</value>
-        /// <remarks>
-        /// The value type is string.
-        /// </remarks>
-        /// <seealso cref="MediaInfo.Description"/>
-        /// <since_tizen> 4 </since_tizen>
-        public static string Description => "MEDIA_DESCRIPTION";
-
-        /// <summary>
-        /// Gets the column name for the bit rate of media.
-        /// </summary>
-        /// <value>The column name for the bit rate of media.</value>
-        /// <remarks>
-        /// The value type is integer.
-        /// </remarks>
-        /// <seealso cref="AudioInfo.BitRate"/>
-        /// <seealso cref="VideoInfo.BitRate"/>
-        /// <since_tizen> 4 </since_tizen>
-        public static string BitRate => "MEDIA_BITRATE";
-
-        /// <summary>
-        /// Gets the column name for the bit per sample of media.
-        /// </summary>
-        /// <value>The column name for the bit per sample of media.</value>
-        /// <remarks>
-        /// The value type is integer.
-        /// </remarks>
-        /// <seealso cref="AudioInfo.BitPerSample"/>
-        /// <since_tizen> 4 </since_tizen>
-        public static string BitPerSample => "MEDIA_BITPERSAMPLE";
-
-        /// <summary>
-        /// Gets the column name for the sample rate of media.
-        /// </summary>
-        /// <value>The column name for the sample rate of media.</value>
-        /// <remarks>
-        /// The value type is integer.
-        /// </remarks>
-        /// <seealso cref="AudioInfo.SampleRate"/>
-        /// <since_tizen> 4 </since_tizen>
-        public static string SampleRate => "MEDIA_SAMPLERATE";
-
-        /// <summary>
-        /// Gets the column name for the channels of media.
-        /// </summary>
-        /// <value>The column name for the channels of media.</value>
-        /// <remarks>
-        /// The value type is integer.
-        /// </remarks>
-        /// <seealso cref="AudioInfo.Channels"/>
-        /// <since_tizen> 4 </since_tizen>
-        public static string Channels => "MEDIA_CHANNEL";
 
         /// <summary>
         /// Gets the column name for the duration of media.
@@ -411,30 +343,6 @@ namespace Tizen.Content.MediaContent
         public static string DateTaken => "MEDIA_DATETAKEN";
 
         /// <summary>
-        /// Gets the column name for the orientation of media.
-        /// </summary>
-        /// <value>The column name for the orientation of media.</value>
-        /// <remarks>
-        /// The value type is integer.
-        /// The value should be an integer that is one of the <see cref="MediaContent.Orientation"/> values.
-        /// </remarks>
-        /// <seealso cref="MediaContent.Orientation"/>
-        /// <seealso cref="ImageInfo.Orientation"/>
-        /// <since_tizen> 4 </since_tizen>
-        public static string Orientation => "MEDIA_ORIENTATION";
-
-        /// <summary>
-        /// Gets the column name for the rating of media.
-        /// </summary>
-        /// <value>The column name for the rating of media.</value>
-        /// <remarks>
-        /// The value type is integer.
-        /// </remarks>
-        /// <seealso cref="MediaInfo.Rating"/>
-        /// <since_tizen> 4 </since_tizen>
-        public static string Rating => "MEDIA_RATING";
-
-        /// <summary>
         /// Gets the column name for the favorite status of media.
         /// </summary>
         /// <value>The column name for the favorite status of media.</value>
@@ -455,62 +363,6 @@ namespace Tizen.Content.MediaContent
         /// <seealso cref="MediaInfo.IsDrm"/>
         /// <since_tizen> 4 </since_tizen>
         public static string IsDrm => "MEDIA_IS_DRM";
-
-        /// <summary>
-        /// Gets the column name for the storage type of media.
-        /// </summary>
-        /// <value>The column name for the storage type of media.</value>
-        /// <remarks>
-        /// The value type is integer.
-        /// The value should be an integer that is one of the <see cref="MediaContent.StorageType"/> values.
-        /// </remarks>
-        /// <seealso cref="MediaInfo.StorageType"/>
-        /// <since_tizen> 4 </since_tizen>
-        public static string StorageType => "MEDIA_STORAGE_TYPE";
-
-        /// <summary>
-        /// Gets the column name for the exposure time of media.
-        /// </summary>
-        /// <value>The column name for the exposure time of media.</value>
-        /// <remarks>
-        /// The value type is integer.
-        /// </remarks>
-        /// <seealso cref="ImageInfo.ExposureTime"/>
-        /// <since_tizen> 4 </since_tizen>
-        public static string ExposureTime => "MEDIA_EXPOSURE_TIME";
-
-        /// <summary>
-        /// Gets the column name for the FNumber of media.
-        /// </summary>
-        /// <value>The column name for the FNumber of media.</value>
-        /// <remarks>
-        /// The value type is integer.
-        /// </remarks>
-        /// <seealso cref="ImageInfo.FNumber"/>
-        /// <since_tizen> 4 </since_tizen>
-        public static string FNumber => "MEDIA_FNUMBER";
-
-        /// <summary>
-        /// Gets the column name for the ISO of media.
-        /// </summary>
-        /// <value>The column name for the ISO of media.</value>
-        /// <remarks>
-        /// The value type is integer.
-        /// </remarks>
-        /// <seealso cref="ImageInfo.Iso"/>
-        /// <since_tizen> 4 </since_tizen>
-        public static string Iso => "MEDIA_ISO";
-
-        /// <summary>
-        /// Gets the column name for the model of media.
-        /// </summary>
-        /// <value>The column name for the model of media.</value>
-        /// <remarks>
-        /// The value type is string.
-        /// </remarks>
-        /// <seealso cref="ImageInfo.Model"/>
-        /// <since_tizen> 4 </since_tizen>
-        public static string Model => "MEDIA_MODEL";
     }
 
     /// <summary>
@@ -592,18 +444,6 @@ namespace Tizen.Content.MediaContent
         /// <seealso cref="Folder.Name"/>
         /// <since_tizen> 4 </since_tizen>
         public static string Name => "FOLDER_NAME";
-
-        /// <summary>
-        /// Gets the column name for the storage type of folder.
-        /// </summary>
-        /// <value>The column name for the storage type of folder.</value>
-        /// <remarks>
-        /// The value type is integer.
-        /// The value should be an integer that is one of the <see cref="MediaContent.StorageType"/> values.
-        /// </remarks>
-        /// <seealso cref="Folder.StorageType"/>
-        /// <since_tizen> 4 </since_tizen>
-        public static string StorageType => "FOLDER_STORAGE_TYPE";
     }
 
     /// <summary>
@@ -774,6 +614,7 @@ namespace Tizen.Content.MediaContent
     /// <seealso cref="MediaInfoCommand.CountFaceInfo(string, CountArguments)"/>
     /// <seealso cref="MediaInfoCommand.SelectFaceInfo(string, SelectArguments)"/>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API11; Will be removed in API13.")]
     public static class FaceInfoColumns
     {
         /// <summary>
@@ -785,6 +626,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="FaceInfo.Tag"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API11; Will be removed in API13.")]
         public static string Tag => "MEDIA_FACE_TAG";
 
         /// <summary>
@@ -796,53 +638,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="FaceInfo.Id"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API11; Will be removed in API13.")]
         public static string Id => "MEDIA_FACE_ID";
-    }
-
-    /// <summary>
-    /// Provides the storage column names that can be used for Select and Count commands.
-    /// </summary>
-    /// <seealso cref="SelectArguments"/>
-    /// <seealso cref="CountArguments"/>
-    /// <seealso cref="QueryArguments.FilterExpression"/>
-    /// <seealso cref="SelectArguments.SortOrder"/>
-    /// <seealso cref="StorageCommand.Count(CountArguments)"/>
-    /// <seealso cref="StorageCommand.Select(SelectArguments)"/>
-    /// <since_tizen> 4 </since_tizen>
-    public static class StorageColumns
-    {
-        /// <summary>
-        /// Gets the column name for the ID of storage.
-        /// </summary>
-        /// <value>The column name for the ID of storage.</value>
-        /// <remarks>
-        /// The value type is string.
-        /// </remarks>
-        /// <seealso cref="Storage.Id"/>
-        /// <since_tizen> 4 </since_tizen>
-        public static string Id => "STORAGE_ID";
-
-        /// <summary>
-        /// Gets the column name for the path of storage.
-        /// </summary>
-        /// <value>The column name for the path of storage.</value>
-        /// <remarks>
-        /// The value type is string.
-        /// </remarks>
-        /// <seealso cref="Storage.Path"/>
-        /// <since_tizen> 4 </since_tizen>
-        public static string Path => "STORAGE_PATH";
-
-        /// <summary>
-        /// Gets the column name for the type of storage.
-        /// </summary>
-        /// <value>The column name for the type of storage.</value>
-        /// <remarks>
-        /// The value type is integer.
-        /// The value should be an integer that is one of the <see cref="MediaContent.StorageType"/> values.
-        /// </remarks>
-        /// <seealso cref="Storage.Type"/>
-        /// <since_tizen> 4 </since_tizen>
-        public static string Type => "MEDIA_STORAGE_TYPE";
     }
 }

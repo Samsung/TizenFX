@@ -181,7 +181,6 @@ namespace Tizen.Multimedia
         /// Gets the level of the zoom of spherical video.
         /// </summary>
         /// <returns>The current zoom level of spherical video.</returns>
-        /// <remarks>Remark.</remarks>
         /// <feature>http://tizen.org/feature/opengles.version.2_0</feature>
         /// <feature>http://tizen.org/feature/multimedia.player.spherical_video</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
@@ -423,7 +422,6 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <seealso cref="FieldOfView"/>
         /// <seealso cref="GetZoom()"/>
-        /// <seealso cref="GetFileOfView()"/>
         /// <since_tizen> 5 </since_tizen>
         public void SetZoomWithFieldOfView(float level, FieldOfView fieldOfView)
         {

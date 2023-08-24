@@ -21,6 +21,8 @@ namespace Tizen.Applications.NotificationEventListener
     using System.ComponentModel;
     using System.Runtime.InteropServices;
 
+    using Tizen.Internals;
+
     /// <summary>
     /// This class provides a way to register callback function for some notification events.
     /// </summary>
@@ -40,6 +42,7 @@ namespace Tizen.Applications.NotificationEventListener
 
         private static Interop.NotificationEventListener.ChangedCallback callback;
 
+        [NativeStruct("notification_op", Include="notification_type.h", PkgConfig="notification")]
         [StructLayout(LayoutKind.Sequential)]
         private struct NotificationOperation
         {
@@ -398,6 +401,30 @@ namespace Tizen.Applications.NotificationEventListener
             Interop.NotificationEventListener.ErrorCode err;
 
             err = Interop.NotificationEventListener.SendEvent(uniqueNumber, (int)type);
+            if (err != Interop.NotificationEventListener.ErrorCode.None)
+            {
+                throw NotificationEventListenerErrorFactory.GetException(err, "failed to send event");
+            }
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetChecked(NotificationEventArgs eventargs, bool checkedValue)
+        {
+            Interop.NotificationEventListener.ErrorCode err;
+
+            err = Interop.NotificationEventListener.SetCheckedValue(eventargs.Handle, checkedValue);
+            if (err != Interop.NotificationEventListener.ErrorCode.None)
+            {
+                throw NotificationEventListenerErrorFactory.GetException(err, "failed to set checked");
+            }
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SendEventWithNotification(NotificationEventArgs eventargs, UserEventType type)
+        {
+            Interop.NotificationEventListener.ErrorCode err;
+
+            err = Interop.NotificationEventListener.SendEventWithNotification(eventargs.Handle, (int)type);
             if (err != Interop.NotificationEventListener.ErrorCode.None)
             {
                 throw NotificationEventListenerErrorFactory.GetException(err, "failed to send event");

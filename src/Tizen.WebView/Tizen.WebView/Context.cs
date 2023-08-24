@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.WebView
 {
@@ -22,6 +23,7 @@ namespace Tizen.WebView
     /// Enumeration for cache model options.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
     public enum CacheModel
     {
         /// <summary>
@@ -46,10 +48,32 @@ namespace Tizen.WebView
     /// All pages in the same context share the same preferences, visited link set, local storage, and so on.
     /// </remarks>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
     public class Context
     {
         private IntPtr _handle;
         private CookieManager _cookieManager;
+
+        private Interop.ChromiumEwk.DownloadStartCallback _downloadStartCallback;
+        private Interop.ChromiumEwk.InterceptRequestCallback _interceptRequestCallback;
+
+        /// <summary>
+        /// The delegate for handling download request.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <param name="url"> url of the download request. </param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
+        public delegate void DownloadRequestDelegate(string url);
+
+        /// <summary>
+        /// The delegate for intercepting and handling a resource request.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// <param name="interceptor"> The object which can handle a intercepted request. </param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
+        public delegate void InterceptRequestDelegate(RequestInterceptor interceptor);
 
         internal Context(IntPtr handle)
         {
@@ -63,6 +87,7 @@ namespace Tizen.WebView
         /// The default cache model is DocumentViewer.
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public CacheModel CacheModel
         {
             get
@@ -81,6 +106,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <returns>The CookieManager object.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public CookieManager GetCookieManager()
         {
             if (_cookieManager == null)
@@ -93,6 +119,82 @@ namespace Tizen.WebView
                 _cookieManager = new CookieManager(cookieManagerHandle);
             }
             return _cookieManager;
+        }
+
+        /// <summary>
+        /// Clears HTTP caches in the local storage and all resources cached in memory.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
+        public void ClearResourceCache()
+        {
+            Interop.ChromiumEwk.ewk_context_resource_cache_clear(_handle);
+        }
+
+        /// <summary>
+        /// Informs the WebEngine low memory to release unused memory.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
+        public void NotifyLowMemory()
+        {
+            Interop.ChromiumEwk.ewk_context_notify_low_memory(_handle);
+        }
+
+        /// <summary>
+        /// Sets the delegate function for download request.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
+        public void SetDownloadRequestDelegate(DownloadRequestDelegate startDownloadCb)
+        {
+            _downloadStartCallback = (string url, IntPtr userData) =>
+            {
+                startDownloadCb(url);
+            };
+            Interop.ChromiumEwk.ewk_context_did_start_download_callback_set(_handle, _downloadStartCallback, IntPtr.Zero);
+        }
+
+        /// <summary>
+        /// Sets the delegate function for intercepting a resource request.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// <param name="interceptRequestCb"> The delegate function for intercepting a resource request. </param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
+        public void SetInterceptRequestDelegate(InterceptRequestDelegate interceptRequestCb)
+        {
+            _interceptRequestCallback = (IntPtr context, IntPtr request, IntPtr userData) =>
+            {
+                interceptRequestCb(new RequestInterceptor(request));
+            };
+            Interop.ChromiumEwk.ewk_context_intercept_request_callback_set(_handle, _interceptRequestCallback, IntPtr.Zero);
+
+        }
+
+        /// <summary>
+        /// Starts the inspector server.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// <param name="port"> The port number. </param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
+        public uint StartInspectorServer(uint port)
+        {
+            return Interop.ChromiumEwk.ewk_context_inspector_server_start(_handle, port);
+        }
+
+        /// <summary>
+        /// Stops the inspector server.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
+        public void StopInspectorServer()
+        {
+            Interop.ChromiumEwk.ewk_context_inspector_server_stop(_handle);
         }
     }
 }

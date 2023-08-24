@@ -57,6 +57,7 @@ namespace Tizen.Multimedia
             IsMediaPacketPreviewCallbackSupported = IsFeatureSupported(NativeCapabilities.IsMediaPacketPreviewCallbackSupported);
             IsZeroShutterLagSupported = IsFeatureSupported(NativeCapabilities.IsZeroShutterLagSupported);
             IsContinuousCaptureSupported = IsFeatureSupported(NativeCapabilities.IsContinuousCaptureSupported);
+            IsExtraPreviewSupported = IsFeatureSupported(NativeCapabilities.IsExtraPreviewSupported);
             IsHdrCaptureSupported = IsFeatureSupported(NativeCapabilities.IsHdrCaptureSupported);
             IsAntiShakeSupported = IsFeatureSupported(NativeCapabilities.IsAntiShakeSupported);
             IsVideoStabilizationSupported = IsFeatureSupported(NativeCapabilities.IsVideoStabilizationSupported);
@@ -67,6 +68,11 @@ namespace Tizen.Multimedia
             IsPanSupported = CheckRangeValid(NativeSettings.GetPanRange);
             IsTiltSupported = CheckRangeValid(NativeSettings.GetTiltRange);
             IsHueSupported = CheckRangeValid(NativeSettings.GetHueRange);
+            IsSaturationSupported = CheckRangeValid(NativeSettings.GetSaturationRange);
+            IsSharpnessSupported = CheckRangeValid(NativeSettings.GetSharpnessRange);
+            IsFocusLevelSupported = CheckRangeValid(NativeSettings.GetFocusLevelRange);
+            IsGainSupported = CheckRangeValid(NativeSettings.GetGainRange);
+            IsWhiteBalanceTemperatureSupported = CheckRangeValid(NativeSettings.GetWhiteBalanceTemperatureRange);
         }
 
         private bool IsFeatureSupported(IsSupportedDelegate func)
@@ -83,102 +89,144 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the face detection feature's supported state.
+        /// Gets the face detection feature support state.
         /// </summary>
         /// <value>true if supported, otherwise false.</value>
         /// <since_tizen> 4 </since_tizen>
         public bool IsFaceDetectionSupported { get; }
 
         /// <summary>
-        /// Gets the media packet preview callback feature's supported state.
+        /// Gets the media packet preview callback feature support state.
         /// </summary>
         /// <value>true if supported, otherwise false.</value>
         /// <since_tizen> 4 </since_tizen>
         public bool IsMediaPacketPreviewCallbackSupported { get; }
 
         /// <summary>
-        /// Gets the zero shutter lag feature's supported state.
+        /// Gets the zero shutter lag feature support state.
         /// </summary>
         /// <value>true if supported, otherwise false.</value>
         /// <since_tizen> 4 </since_tizen>
         public bool IsZeroShutterLagSupported { get; }
 
         /// <summary>
-        /// Gets the continuous capture feature's supported state.
+        /// Gets the continuous capture feature support state.
         /// </summary>
         /// <value>true if supported, otherwise false.</value>
         /// <since_tizen> 4 </since_tizen>
         public bool IsContinuousCaptureSupported { get; }
 
         /// <summary>
-        /// Gets the support state of the HDR capture.
+        /// Gets the extra preview feature support state.
+        /// </summary>
+        /// <value>true if supported, otherwise false.</value>
+        /// <since_tizen> 10 </since_tizen>
+        public bool IsExtraPreviewSupported { get; }
+
+        /// <summary>
+        /// Gets the HDR capture feature support state.
         /// </summary>
         /// <value>true if supported, otherwise false.</value>
         /// <since_tizen> 4 </since_tizen>
         public bool IsHdrCaptureSupported { get; }
 
         /// <summary>
-        /// Gets the support state of the anti-shake feature.
+        /// Gets the anti-shake feature feature support state.
         /// </summary>
         /// <value>true if supported, otherwise false.</value>
         /// <since_tizen> 4 </since_tizen>
         public bool IsAntiShakeSupported { get; }
 
         /// <summary>
-        /// Gets the support state of the video stabilization feature.
+        /// Gets the video stabilization feature support state.
         /// </summary>
         /// <value>true if supported, otherwise false.</value>
         /// <since_tizen> 4 </since_tizen>
         public bool IsVideoStabilizationSupported { get; }
 
         /// <summary>
-        /// Gets the support state of auto contrast feature.
+        /// Gets the auto contrast feature support state.
         /// </summary>
         /// <value>true if supported, otherwise false.</value>
         /// <since_tizen> 4 </since_tizen>
         public bool IsAutoContrastSupported { get; }
 
         /// <summary>
-        /// Gets the support state of the brightness feature.
+        /// Gets the brightness feature support state.
         /// </summary>
         /// <value>true if supported, otherwise false.</value>
         /// <since_tizen> 4 </since_tizen>
         public bool IsBrigtnessSupported { get; }
 
         /// <summary>
-        /// Gets the support state of the exposure feature.
+        /// Gets the exposure feature support state.
         /// </summary>
         /// <value>true if supported, otherwise false.</value>
         /// <since_tizen> 4 </since_tizen>
         public bool IsExposureSupported { get; }
 
         /// <summary>
-        /// Gets the support state of the zoom feature.
+        /// Gets the zoom feature support state.
         /// </summary>
         /// <value>true if supported, otherwise false.</value>
         /// <since_tizen> 4 </since_tizen>
         public bool IsZoomSupported { get; }
 
         /// <summary>
-        /// Gets the support state of the pan feature.
+        /// Gets the pan feature support state.
         /// </summary>
         /// <value>true if supported, otherwise false.</value>
         /// <since_tizen> 4 </since_tizen>
         public bool IsPanSupported { get; }
 
         /// <summary>
-        /// Gets the support state of the tilt feature.
+        /// Gets the tilt feature support state.
         /// </summary>
         /// <value>true if supported, otherwise false.</value>
         /// <since_tizen> 4 </since_tizen>
         public bool IsTiltSupported { get; }
 
         /// <summary>
-        /// Gets the support state of the hue feature.
+        /// Gets the hue feature support state.
         /// </summary>
         /// <value>true if supported, otherwise false.</value>
         /// <since_tizen> 5 </since_tizen>
         public bool IsHueSupported { get; }
+
+        /// <summary>
+        /// Gets the saturation feature support state.
+        /// </summary>
+        /// <value>true if supported, otherwise false.</value>
+        /// <since_tizen> 11 </since_tizen>
+        public bool IsSaturationSupported { get; }
+
+        /// <summary>
+        /// Gets the sharpness feature support state.
+        /// </summary>
+        /// <value>true if supported, otherwise false.</value>
+        /// <since_tizen> 11 </since_tizen>
+        public bool IsSharpnessSupported { get; }
+
+        /// <summary>
+        /// Gets the manual focus level feature support state.
+        /// </summary>
+        /// <value>true if supported, otherwise false.</value>
+        /// <since_tizen> 11 </since_tizen>
+        public bool IsFocusLevelSupported { get; }
+
+        /// <summary>
+        /// Gets the gain feature support state.
+        /// </summary>
+        /// <value>true if supported, otherwise false.</value>
+        /// <since_tizen> 11 </since_tizen>
+        public bool IsGainSupported { get; }
+
+        /// <summary>
+        /// Gets the white balance temperature feature support state.
+        /// </summary>
+        /// <value>true if supported, otherwise false.</value>
+        /// <since_tizen> 11 </since_tizen>
+        public bool IsWhiteBalanceTemperatureSupported { get; }
 
         /// <summary>
         /// Retrieves all the preview resolutions supported by the camera.
@@ -187,11 +235,13 @@ namespace Tizen.Multimedia
         /// <returns>
         /// It returns a list containing all the supported preview resolutions.
         /// </returns>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public IEnumerable<Size> SupportedPreviewResolutions
         {
             get
             {
+                _camera.ValidateNotDisposed();
+
                 if (_previewResolutions == null)
                 {
                     _previewResolutions = GetSupportedPreviewResolutions();
@@ -208,11 +258,13 @@ namespace Tizen.Multimedia
         /// <returns>
         /// It returns a list containing all the supported capture resolutions.
         /// </returns>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public IEnumerable<Size> SupportedCaptureResolutions
         {
             get
             {
+                _camera.ValidateNotDisposed();
+
                 if (_cameraResolutions == null)
                 {
                     _cameraResolutions = GetSupportedCaptureResolutions();
@@ -229,11 +281,13 @@ namespace Tizen.Multimedia
         /// <returns>
         /// It returns a list containing all the supported <see cref="CameraPixelFormat"/>.
         /// </returns>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public IEnumerable<CameraPixelFormat> SupportedCapturePixelFormats
         {
             get
             {
+                _camera.ValidateNotDisposed();
+
                 if (_captureFormats == null)
                 {
                     _captureFormats = GetSupportedCapturePixelFormats();
@@ -250,11 +304,13 @@ namespace Tizen.Multimedia
         /// <returns>
         /// It returns a list containing all the supported <see cref="CameraPixelFormat"/>.
         /// </returns>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public IEnumerable<CameraPixelFormat> SupportedPreviewPixelFormats
         {
             get
             {
+                _camera.ValidateNotDisposed();
+
                 if (_previewFormats == null)
                 {
                     _previewFormats = GetSupportedPreviewPixelFormats();
@@ -271,11 +327,13 @@ namespace Tizen.Multimedia
         /// <returns>
         /// It returns a list containing all the supported <see cref="CameraFps"/>.
         /// </returns>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public IEnumerable<CameraFps> SupportedPreviewFps
         {
             get
             {
+                _camera.ValidateNotDisposed();
+
                 if (_fps == null)
                 {
                     _fps = GetSupportedPreviewFps();
@@ -295,7 +353,7 @@ namespace Tizen.Multimedia
         /// </returns>
         /// <since_tizen> 4 </since_tizen>
         /// <feature> http://tizen.org/feature/camera </feature>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public IEnumerable<CameraFps> GetSupportedPreviewFpsByResolution(int width, int height)
         {
             return GetSupportedPreviewFpsByResolutions(width, height);
@@ -310,7 +368,7 @@ namespace Tizen.Multimedia
         /// </returns>
         /// <since_tizen> 4 </since_tizen>
         /// <feature> http://tizen.org/feature/camera </feature>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public IEnumerable<CameraFps> GetSupportedPreviewFpsByResolution(Size size)
         {
             return GetSupportedPreviewFpsByResolutions(size.Width, size.Height);
@@ -323,11 +381,13 @@ namespace Tizen.Multimedia
         /// It returns a list containing all the supported <see cref="CameraAutoFocusMode"/>.
         /// </returns>
         /// <since_tizen> 4 </since_tizen>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public IEnumerable<CameraAutoFocusMode> SupportedAutoFocusModes
         {
             get
             {
+                _camera.ValidateNotDisposed();
+
                 if (_autoFocusModes == null)
                 {
                     _autoFocusModes = GetSupportedAutoFocusModes();
@@ -344,11 +404,13 @@ namespace Tizen.Multimedia
         /// It returns a list containing all the supported <see cref="CameraExposureMode"/>.
         /// </returns>
         /// <since_tizen> 4 </since_tizen>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public IEnumerable<CameraExposureMode> SupportedExposureModes
         {
             get
             {
+                _camera.ValidateNotDisposed();
+
                 if (_exposureModes == null)
                 {
                     _exposureModes = GetSupportedExposureModes();
@@ -365,11 +427,13 @@ namespace Tizen.Multimedia
         /// <returns>
         /// It returns a list containing all the supported <see cref="CameraIsoLevel"/>.
         /// </returns>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public IEnumerable<CameraIsoLevel> SupportedIsoLevels
         {
             get
             {
+                _camera.ValidateNotDisposed();
+
                 if (_isoLevels == null)
                 {
                     _isoLevels = GetSupportedIsoLevels();
@@ -386,11 +450,13 @@ namespace Tizen.Multimedia
         /// <returns>
         /// It returns a list containing all the supported <see cref="CameraTheaterMode"/>.
         /// </returns>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public IEnumerable<CameraTheaterMode> SupportedTheaterModes
         {
             get
             {
+                _camera.ValidateNotDisposed();
+
                 if (_theaterModes == null)
                 {
                     _theaterModes = GetSupportedTheaterModes();
@@ -407,11 +473,13 @@ namespace Tizen.Multimedia
         /// <returns>
         /// It returns a list containing all the supported <see cref="CameraWhiteBalance"/>.
         /// </returns>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public IEnumerable<CameraWhiteBalance> SupportedWhiteBalances
         {
             get
             {
+                _camera.ValidateNotDisposed();
+
                 if (_whitebalances == null)
                 {
                     _whitebalances = GetSupportedWhitebalances();
@@ -428,11 +496,13 @@ namespace Tizen.Multimedia
         /// <returns>
         /// It returns a list containing all the supported <see cref="CameraFlashMode"/>.
         /// </returns>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public IEnumerable<CameraFlashMode> SupportedFlashModes
         {
             get
             {
+                _camera.ValidateNotDisposed();
+
                 if (_flashModes == null)
                 {
                     _flashModes = GetSupportedFlashModes();
@@ -449,11 +519,13 @@ namespace Tizen.Multimedia
         /// <returns>
         /// It returns a list containing all the supported <see cref="CameraSceneMode"/>.
         /// </returns>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public IEnumerable<CameraSceneMode> SupportedSceneModes
         {
             get
             {
+                _camera.ValidateNotDisposed();
+
                 if (_sceneModes == null)
                 {
                     _sceneModes = GetSupportedSceneModes();
@@ -470,11 +542,13 @@ namespace Tizen.Multimedia
         /// <returns>
         /// It returns a list containing all the supported <see cref="CameraEffectMode"/>.
         /// </returns>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public IEnumerable<CameraEffectMode> SupportedEffects
         {
             get
             {
+                _camera.ValidateNotDisposed();
+
                 if (_effectModes == null)
                 {
                     _effectModes = GetSupportedEffects();
@@ -491,11 +565,13 @@ namespace Tizen.Multimedia
         /// <returns>
         /// An IEnumerable containing all the supported <see cref="Rotation"/>.
         /// </returns>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public IEnumerable<Rotation> SupportedStreamRotations
         {
             get
             {
+                _camera.ValidateNotDisposed();
+
                 if (_streamRotations == null)
                 {
                     _streamRotations = GetSupportedStreamRotations();
@@ -512,11 +588,13 @@ namespace Tizen.Multimedia
         /// <returns>
         /// It returns a list containing all the supported <see cref="Flips"/>.
         /// </returns>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public IEnumerable<Flips> SupportedStreamFlips
         {
             get
             {
+                _camera.ValidateNotDisposed();
+
                 if (_streamFlips == null)
                 {
                     _streamFlips = GetSupportedStreamFlips();
@@ -533,12 +611,14 @@ namespace Tizen.Multimedia
         /// <returns>
         /// It returns a list containing all the supported <see cref="CameraPtzType"/>.
         /// </returns>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public IEnumerable<CameraPtzType> SupportedPtzTypes
         {
             get
             {
-                if (_ptzTypes.Count == 0)
+                _camera.ValidateNotDisposed();
+
+                if (_ptzTypes == null)
                 {
                     _ptzTypes = GetSupportedPtzTypes();
                 }
@@ -550,15 +630,15 @@ namespace Tizen.Multimedia
         #region Methods for getting supported values
         private IList<Size> GetSupportedPreviewResolutions()
         {
-            List<Size> previewResolutions = new List<Size>();
+            var previewResolutions = new List<Size>();
 
-            NativeCapabilities.PreviewResolutionCallback callback = (int width, int height, IntPtr userData) =>
+            NativeCapabilities.PreviewResolutionCallback callback = (width, height, _) =>
             {
                 previewResolutions.Add(new Size(width, height));
                 return true;
             };
 
-            NativeCapabilities.SupportedPreviewResolutions(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedPreviewResolutions(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported preview resolutions");
 
             return previewResolutions.AsReadOnly();
@@ -566,15 +646,15 @@ namespace Tizen.Multimedia
 
         private IList<Size> GetSupportedCaptureResolutions()
         {
-            List<Size> cameraResolutions = new List<Size>();
+            var cameraResolutions = new List<Size>();
 
-            NativeCapabilities.CaptureResolutionCallback callback = (int width, int height, IntPtr userData) =>
+            NativeCapabilities.CaptureResolutionCallback callback = (width, height, _) =>
             {
                 cameraResolutions.Add(new Size(width, height));
                 return true;
             };
 
-            NativeCapabilities.SupportedCaptureResolutions(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedCaptureResolutions(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported capture resolutions");
 
             return cameraResolutions.AsReadOnly();
@@ -582,15 +662,15 @@ namespace Tizen.Multimedia
 
         private IList<CameraPixelFormat> GetSupportedCapturePixelFormats()
         {
-            List<CameraPixelFormat> captureFormats = new List<CameraPixelFormat>();
+            var captureFormats = new List<CameraPixelFormat>();
 
-            NativeCapabilities.CaptureFormatCallback callback = (CameraPixelFormat format, IntPtr userData) =>
+            NativeCapabilities.CaptureFormatCallback callback = (format, _) =>
             {
                 captureFormats.Add(format);
                 return true;
             };
 
-            NativeCapabilities.SupportedCapturePixelFormats(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedCapturePixelFormats(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported capture formats.");
 
             return captureFormats.AsReadOnly();
@@ -598,15 +678,15 @@ namespace Tizen.Multimedia
 
         private IList<CameraPixelFormat> GetSupportedPreviewPixelFormats()
         {
-            List<CameraPixelFormat> previewFormats = new List<CameraPixelFormat>();
+            var previewFormats = new List<CameraPixelFormat>();
 
-            NativeCapabilities.PreviewFormatCallback callback = (CameraPixelFormat format, IntPtr userData) =>
+            NativeCapabilities.PreviewFormatCallback callback = (format, _) =>
             {
                 previewFormats.Add(format);
                 return true;
             };
 
-            NativeCapabilities.SupportedPreviewPixelFormats(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedPreviewPixelFormats(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported preview formats.");
 
             return previewFormats.AsReadOnly();
@@ -614,15 +694,15 @@ namespace Tizen.Multimedia
 
         private IList<CameraFps> GetSupportedPreviewFps()
         {
-            List<CameraFps> previewFps = new List<CameraFps>();
+            var previewFps = new List<CameraFps>();
 
-            NativeCapabilities.FpsCallback callback = (CameraFps fps, IntPtr userData) =>
+            NativeCapabilities.FpsCallback callback = (fps, _) =>
             {
                 previewFps.Add(fps);
                 return true;
             };
 
-            NativeCapabilities.SupportedPreviewFps(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedPreviewFps(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported camera fps");
 
             return previewFps.AsReadOnly();
@@ -630,15 +710,15 @@ namespace Tizen.Multimedia
 
         private IList<CameraFps> GetSupportedPreviewFpsByResolutions(int width, int height)
         {
-            List<CameraFps> fpsByResolution = new List<CameraFps>();
+            var fpsByResolution = new List<CameraFps>();
 
-            NativeCapabilities.FpsByResolutionCallback callback = (CameraFps fps, IntPtr userData) =>
+            NativeCapabilities.FpsByResolutionCallback callback = (fps, _) =>
             {
                 fpsByResolution.Add(fps);
                 return true;
             };
 
-            NativeCapabilities.SupportedPreviewFpsByResolution(_camera.GetHandle(), width, height, callback, IntPtr.Zero).
+            NativeCapabilities.SupportedPreviewFpsByResolution(_camera.GetHandle(), width, height, callback).
                 ThrowIfFailed("Failed to get the supported fps by resolutions.");
 
             return fpsByResolution.AsReadOnly();
@@ -646,15 +726,15 @@ namespace Tizen.Multimedia
 
         private IList<CameraAutoFocusMode> GetSupportedAutoFocusModes()
         {
-            List<CameraAutoFocusMode> autoFocusModes = new List<CameraAutoFocusMode>();
+            var autoFocusModes = new List<CameraAutoFocusMode>();
 
-            NativeCapabilities.AfModeCallback callback = (CameraAutoFocusMode mode, IntPtr userData) =>
+            NativeCapabilities.AfModeCallback callback = (mode, _) =>
             {
                 autoFocusModes.Add(mode);
                 return true;
             };
 
-            NativeCapabilities.SupportedAutoFocusModes(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedAutoFocusModes(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported Auto focus modes.");
 
             return autoFocusModes.AsReadOnly();
@@ -662,15 +742,15 @@ namespace Tizen.Multimedia
 
         private IList<CameraExposureMode> GetSupportedExposureModes()
         {
-            List<CameraExposureMode> exposureModes = new List<CameraExposureMode>();
+            var exposureModes = new List<CameraExposureMode>();
 
-            NativeCapabilities.ExposureModeCallback callback = (CameraExposureMode mode, IntPtr userData) =>
+            NativeCapabilities.ExposureModeCallback callback = (mode, _) =>
             {
                 exposureModes.Add(mode);
                 return true;
             };
 
-            NativeCapabilities.SupportedExposureModes(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedExposureModes(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported Exposure modes.");
 
             return exposureModes.AsReadOnly();
@@ -678,15 +758,15 @@ namespace Tizen.Multimedia
 
         private IList<CameraIsoLevel> GetSupportedIsoLevels()
         {
-            List<CameraIsoLevel> isoLevels = new List<CameraIsoLevel>();
+            var isoLevels = new List<CameraIsoLevel>();
 
-            NativeCapabilities.IsoCallback callback = (CameraIsoLevel iso, IntPtr userData) =>
+            NativeCapabilities.IsoCallback callback = (iso, _) =>
             {
                 isoLevels.Add(iso);
                 return true;
             };
 
-            NativeCapabilities.SupportedIso(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedIso(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported Iso levels.");
 
             return isoLevels.AsReadOnly();
@@ -694,15 +774,15 @@ namespace Tizen.Multimedia
 
         private IList<CameraTheaterMode> GetSupportedTheaterModes()
         {
-            List<CameraTheaterMode> theaterModes = new List<CameraTheaterMode>();
+            var theaterModes = new List<CameraTheaterMode>();
 
-            NativeCapabilities.TheaterModeCallback callback = (CameraTheaterMode theaterMode, IntPtr userData) =>
+            NativeCapabilities.TheaterModeCallback callback = (theaterMode, _) =>
             {
                 theaterModes.Add(theaterMode);
                 return true;
             };
 
-            NativeCapabilities.SupportedTheaterModes(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedTheaterModes(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported theater modes.");
 
             return theaterModes.AsReadOnly();
@@ -710,15 +790,15 @@ namespace Tizen.Multimedia
 
         private IList<CameraWhiteBalance> GetSupportedWhitebalances()
         {
-            List<CameraWhiteBalance> whitebalances = new List<CameraWhiteBalance>();
+            var whitebalances = new List<CameraWhiteBalance>();
 
-            NativeCapabilities.WhitebalanceCallback callback = (CameraWhiteBalance whiteBalance, IntPtr userData) =>
+            NativeCapabilities.WhitebalanceCallback callback = (whiteBalance, _) =>
             {
                 whitebalances.Add(whiteBalance);
                 return true;
             };
 
-            NativeCapabilities.SupportedWhitebalance(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedWhitebalance(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported white balance.");
 
             return whitebalances.AsReadOnly();
@@ -726,15 +806,15 @@ namespace Tizen.Multimedia
 
         private IList<CameraFlashMode> GetSupportedFlashModes()
         {
-            List<CameraFlashMode> flashModes = new List<CameraFlashMode>();
+            var flashModes = new List<CameraFlashMode>();
 
-            NativeCapabilities.FlashModeCallback callback = (CameraFlashMode flashMode, IntPtr userData) =>
+            NativeCapabilities.FlashModeCallback callback = (flashMode, _) =>
             {
                 flashModes.Add(flashMode);
                 return true;
             };
 
-            NativeCapabilities.SupportedFlashModes(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedFlashModes(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported flash modes.");
 
             return flashModes.AsReadOnly();
@@ -742,15 +822,15 @@ namespace Tizen.Multimedia
 
         private IList<CameraSceneMode> GetSupportedSceneModes()
         {
-            List<CameraSceneMode> sceneModes = new List<CameraSceneMode>();
+            var sceneModes = new List<CameraSceneMode>();
 
-            NativeCapabilities.SceneModeCallback callback = (CameraSceneMode sceneMode, IntPtr userData) =>
+            NativeCapabilities.SceneModeCallback callback = (sceneMode, _) =>
             {
                 sceneModes.Add(sceneMode);
                 return true;
             };
 
-            NativeCapabilities.SupportedSceneModes(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedSceneModes(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported scene modes.");
 
             return sceneModes.AsReadOnly();
@@ -758,15 +838,15 @@ namespace Tizen.Multimedia
 
         private IList<CameraEffectMode> GetSupportedEffects()
         {
-            List<CameraEffectMode> effectModes = new List<CameraEffectMode>();
+            var effectModes = new List<CameraEffectMode>();
 
-            NativeCapabilities.EffectCallback callback = (CameraEffectMode effect, IntPtr userData) =>
+            NativeCapabilities.EffectCallback callback = (effect, _) =>
             {
                 effectModes.Add(effect);
                 return true;
             };
 
-            NativeCapabilities.SupportedEffects(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedEffects(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported camera effects.");
 
             return effectModes.AsReadOnly();
@@ -774,15 +854,15 @@ namespace Tizen.Multimedia
 
         private IList<Rotation> GetSupportedStreamRotations()
         {
-            List<Rotation> streamRotations = new List<Rotation>();
+            var streamRotations = new List<Rotation>();
 
-            NativeCapabilities.StreamRotationCallback callback = (Rotation streamRotation, IntPtr userData) =>
+            NativeCapabilities.StreamRotationCallback callback = (streamRotation, _) =>
             {
                 streamRotations.Add(streamRotation);
                 return true;
             };
 
-            NativeCapabilities.SupportedStreamRotations(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedStreamRotations(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported camera rotations.");
 
             return streamRotations.AsReadOnly();
@@ -790,15 +870,15 @@ namespace Tizen.Multimedia
 
         private IList<Flips> GetSupportedStreamFlips()
         {
-            List<Flips> streamFlips = new List<Flips>();
+            var streamFlips = new List<Flips>();
 
-            NativeCapabilities.StreamFlipCallback callback = (Flips streamFlip, IntPtr userData) =>
+            NativeCapabilities.StreamFlipCallback callback = (streamFlip, _) =>
             {
                 streamFlips.Add(streamFlip);
                 return true;
             };
 
-            NativeCapabilities.SupportedStreamFlips(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedStreamFlips(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported camera flips.");
 
             return streamFlips.AsReadOnly();
@@ -806,15 +886,15 @@ namespace Tizen.Multimedia
 
         private IList<CameraPtzType> GetSupportedPtzTypes()
         {
-            List<CameraPtzType> ptzTypes = new List<CameraPtzType>();
+            var ptzTypes = new List<CameraPtzType>();
 
-            NativeCapabilities.PtzTypeCallback callback = (CameraPtzType ptzType, IntPtr userData) =>
+            NativeCapabilities.PtzTypeCallback callback = (ptzType, _) =>
             {
                 ptzTypes.Add(ptzType);
                 return true;
             };
 
-            NativeCapabilities.SupportedPtzTypes(_camera.GetHandle(), callback, IntPtr.Zero).
+            NativeCapabilities.SupportedPtzTypes(_camera.GetHandle(), callback).
                 ThrowIfFailed("Failed to get the supported Ptz types.");
 
             return ptzTypes.AsReadOnly();

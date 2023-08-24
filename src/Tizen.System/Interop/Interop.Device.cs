@@ -99,6 +99,10 @@ internal static partial class Interop
         internal static extern int DevicePowerRequestLock(PowerLock type, int timeout_ms);
         [DllImport(Libraries.Device, EntryPoint = "device_power_release_lock", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int DevicePowerReleaseLock(PowerLock type);
+        [DllImport(Libraries.Device, EntryPoint = "device_power_poweroff", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int DevicePowerPowerOff();
+        [DllImport(Libraries.Device, EntryPoint = "device_power_reboot", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int DevicePowerReboot(string reason);
 
         //IR
         [DllImport(Libraries.Device, EntryPoint = "device_ir_is_available", CallingConvention = CallingConvention.Cdecl)]
@@ -113,5 +117,11 @@ internal static partial class Interop
         internal static extern int DeviceAddCallback(Tizen.System.EventType type, deviceCallback cb, IntPtr data);
         [DllImport(Libraries.Device, EntryPoint = "device_remove_callback", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int DeviceRemoveCallback(Tizen.System.EventType type, deviceCallback cb);
+
+        //PmQos
+        [DllImport(Libraries.Device, EntryPoint = "device_pmqos_app_launch_home", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int DevicePmQosAppLaunchHome(int timeout);
+        [DllImport(Libraries.Device, EntryPoint = "device_pmqos_homescreen", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int DevicePmQosHomeScreen(int timeout);
     }
 }

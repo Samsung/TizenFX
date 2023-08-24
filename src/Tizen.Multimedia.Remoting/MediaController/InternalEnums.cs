@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+using System;
 
 namespace Tizen.Multimedia.Remoting
 {
@@ -29,7 +30,10 @@ namespace Tizen.Multimedia.Remoting
         MovingToNext,   // Since 4.0
         MovingToPrev,   // Since 4.0
         FastForwarding, // Since 4.0
-        Rewinding       // Since 4.0
+        Rewinding,      // Since 4.0
+        Connecting,     // Since 6.0(API8)
+        Buffering,      // Since 6.0(API8)
+        Error           // Since 6.0(API8)
     }
 
     internal enum MediaControllerNativePlaybackAction
@@ -80,5 +84,37 @@ namespace Tizen.Multimedia.Remoting
         Season,
         Episode,
         Resolution
+    }
+
+    internal enum MediaControlNativeCapabilityCategory
+    {
+        Shuffle,
+        Repeat,
+        PlaybackPosition,
+        Playlist,
+        CustomCommand, // The same as CLIENT_CUSTOM of native fw
+        Search,
+        Subtitle,
+        Mode360
+    }
+
+    [Flags]
+    internal enum MediaControlNativeDisplayMode
+    {
+        LetterBox = 1,
+        OriginSize = 2,
+        FullScreen = 4,
+        CroppedFull = 8,
+        All = LetterBox | OriginSize | FullScreen | CroppedFull
+    }
+
+    [Flags]
+    internal enum MediaControlNativeDisplayRotation
+    {
+        Rotate0 = 1,
+        Rotate90 = 2,
+        Rotate180 = 4,
+        Rotate270 = 8,
+        All = Rotate0 | Rotate90 | Rotate180 | Rotate270
     }
 }

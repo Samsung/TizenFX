@@ -145,7 +145,7 @@ UpgradeLog*.htm
 *.txt~
 *.swp
 *.swo
- 
+
 # svn
 .svn
 
@@ -193,10 +193,6 @@ $RECYCLE.BIN/
 # End of core ignore list, below put you custom 'per project' settings (patterns or path)
 #####
 
-bin/
-obj/
-*.exe
-*.dll
 *.csproj.user
 *.lock.json
 
@@ -210,3 +206,15 @@ warnings.txt
 warn-settings.csharp.txt
 .svace-dir
 CompilationErrors-*.txt
+
+# exceptional allowed binaries
+!tools/bin/
+!packaging/depends/*.nupkg
+
+# external libraries
+externals/libs/
+
+# coverage
+tools/coverage
+coverage.json
+

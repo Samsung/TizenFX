@@ -1,3 +1,19 @@
+/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 //
 // XamlParser.cs
 //
@@ -33,14 +49,13 @@ using System.Reflection;
 using System.Xml;
 using Tizen.NUI.Binding;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
 using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.Xaml
 {
     internal static class XamlParser
     {
-        public const string XFUri = "http://xamarin.com/schemas/2014/forms";
+        public const string XFUri = "http://tizen.org/Tizen.NUI/2018/XAML";
         public const string NUI2018Uri = "http://tizen.org/Tizen.NUI/2018/XAML";
         public const string X2006Uri = "http://schemas.microsoft.com/winfx/2006/xaml";
         public const string X2009Uri = "http://schemas.microsoft.com/winfx/2009/xaml";
@@ -48,10 +63,13 @@ namespace Tizen.NUI.Xaml
 
         public static void ParseXaml(RootNode rootNode, XmlReader reader)
         {
+            // Reset xmlnsDefinitions to re-gather them for the new assembly.
+            s_xmlnsDefinitions = null;
+
             IList<KeyValuePair<string, string>> xmlns;
             var attributes = ParseXamlAttributes(reader, out xmlns);
             var prefixes = PrefixesToIgnore(xmlns);
-            (rootNode.IgnorablePrefixes ?? (rootNode.IgnorablePrefixes=new List<string>())).AddRange(prefixes);
+            (rootNode.IgnorablePrefixes ?? (rootNode.IgnorablePrefixes = new List<string>())).AddRange(prefixes);
             rootNode.Properties.AddRange(attributes);
             ParseXamlElementFor(rootNode, reader);
         }
@@ -190,7 +208,7 @@ namespace Tizen.NUI.Xaml
             throw new XamlParseException("Closing PropertyElement expected", (IXmlLineInfo)reader);
         }
 
-        static IList<KeyValuePair<XmlName, INode>> ParseXamlAttributes(XmlReader reader, out IList<KeyValuePair<string,string>> xmlns)
+        static IList<KeyValuePair<XmlName, INode>> ParseXamlAttributes(XmlReader reader, out IList<KeyValuePair<string, string>> xmlns)
         {
             Debug.Assert(reader.NodeType == XmlNodeType.Element);
             var attributes = new List<KeyValuePair<XmlName, INode>>();
@@ -200,13 +218,14 @@ namespace Tizen.NUI.Xaml
                 reader.MoveToAttribute(i);
 
                 //skip xmlns
-                if (reader.NamespaceURI == "http://www.w3.org/2000/xmlns/") {
+                if (reader.NamespaceURI == "http://www.w3.org/2000/xmlns/")
+                {
                     xmlns.Add(new KeyValuePair<string, string>(reader.LocalName, reader.Value));
                     continue;
                 }
 
                 var namespaceUri = reader.NamespaceURI;
-                if (reader.LocalName.Contains(".") && namespaceUri == "")
+                if (reader.LocalName.Contains(".") && string.IsNullOrEmpty(namespaceUri))
                     namespaceUri = ((IXmlNamespaceResolver)reader).LookupNamespace("");
                 var propertyName = new XmlName(namespaceUri, reader.LocalName);
 
@@ -214,50 +233,52 @@ namespace Tizen.NUI.Xaml
 
                 if (reader.NamespaceURI == X2006Uri)
                 {
-                    switch (reader.Name) {
-                    case "x:Key":
-                        propertyName = XmlName.xKey;
-                        break;
-                    case "x:Name":
-                        propertyName = XmlName.xName;
-                        break;
-                    case "x:Class":
-                    case "x:FieldModifier":
-                        continue;
-                    default:
-                        Debug.WriteLine("Unhandled attribute {0}", reader.Name);
-                        continue;
+                    switch (reader.Name)
+                    {
+                        case "x:Key":
+                            propertyName = XmlName.xKey;
+                            break;
+                        case "x:Name":
+                            propertyName = XmlName.xName;
+                            break;
+                        case "x:Class":
+                        case "x:FieldModifier":
+                            continue;
+                        default:
+                            Debug.WriteLine("Unhandled attribute {0}", reader.Name);
+                            continue;
                     }
                 }
 
                 if (reader.NamespaceURI == X2009Uri)
                 {
-                    switch (reader.Name) {
-                    case "x:Key":
-                        propertyName = XmlName.xKey;
-                        break;
-                    case "x:Name":
-                        propertyName = XmlName.xName;
-                        break;
-                    case "x:TypeArguments":
-                        propertyName = XmlName.xTypeArguments;
-                        value = TypeArgumentsParser.ParseExpression((string)value, (IXmlNamespaceResolver)reader, (IXmlLineInfo)reader);
-                        break;
-                    case "x:DataType":
-                        propertyName = XmlName.xDataType;
-                        break;
-                    case "x:Class":
-                    case "x:FieldModifier":
-                        continue;
-                    case "x:FactoryMethod":
-                        propertyName = XmlName.xFactoryMethod;
-                        break;
-                    case "x:Arguments":
-                        propertyName = XmlName.xArguments;
-                        break;
-                    default:
-                        Debug.WriteLine("Unhandled attribute {0}", reader.Name);
-                        continue;
+                    switch (reader.Name)
+                    {
+                        case "x:Key":
+                            propertyName = XmlName.xKey;
+                            break;
+                        case "x:Name":
+                            propertyName = XmlName.xName;
+                            break;
+                        case "x:TypeArguments":
+                            propertyName = XmlName.xTypeArguments;
+                            value = TypeArgumentsParser.ParseExpression((string)value, (IXmlNamespaceResolver)reader, (IXmlLineInfo)reader);
+                            break;
+                        case "x:DataType":
+                            propertyName = XmlName.xDataType;
+                            break;
+                        case "x:Class":
+                        case "x:FieldModifier":
+                            continue;
+                        case "x:FactoryMethod":
+                            propertyName = XmlName.xFactoryMethod;
+                            break;
+                        case "x:Arguments":
+                            propertyName = XmlName.xArguments;
+                            break;
+                        default:
+                            Debug.WriteLine("Unhandled attribute {0}", reader.Name);
+                            continue;
                     }
                 }
 
@@ -271,25 +292,12 @@ namespace Tizen.NUI.Xaml
         static IList<string> PrefixesToIgnore(IList<KeyValuePair<string, string>> xmlns)
         {
             var prefixes = new List<string>();
-            foreach (var kvp in xmlns) {
+            foreach (var kvp in xmlns)
+            {
                 var prefix = kvp.Key;
 
-                string typeName = null, ns = null, asm = null, targetPlatform = null;
-                XmlnsHelper.ParseXmlns(kvp.Value, out typeName, out ns, out asm, out targetPlatform);
-                if (targetPlatform == null)
-                    continue;
-                try {
-                    if (targetPlatform != Device.RuntimePlatform)
-                    {
-                        // Special case for Windows backward compatibility
-                        if (targetPlatform == "Windows" && Device.RuntimePlatform == Device.UWP)
-                            continue;
-                        
-                        prefixes.Add(prefix);
-                    }
-                } catch (InvalidOperationException) {
-                    prefixes.Add(prefix);
-                }
+                string typeName = null, ns = null, asm = null;
+                XmlnsHelper.ParseXmlns(kvp.Value, out typeName, out ns, out asm);
             }
             return prefixes;
         }
@@ -314,7 +322,7 @@ namespace Tizen.NUI.Xaml
         static IList<XmlnsDefinitionAttribute> s_xmlnsDefinitions;
         public static IList<Assembly> s_assemblies = new List<Assembly>();// = new Assembly[]{};
 
-        static void GatherXmlnsDefinitionAttributes()
+        static void GatherXmlnsDefinitionAttributes(Assembly currentAssembly)
         {
             //this could be extended to look for [XmlnsDefinition] in all assemblies
             // var assemblies = new [] {
@@ -322,12 +330,39 @@ namespace Tizen.NUI.Xaml
             // 	//typeof(XamlLoader).GetTypeInfo().Assembly,
             // };
             // s_assemblies = new Assembly[]{typeof(View).GetTypeInfo().Assembly};
-            s_assemblies.Add(typeof(View).GetTypeInfo().Assembly);
+            if (null == currentAssembly)
+            {
+                s_assemblies.Add(typeof(View).GetTypeInfo().Assembly);
+            }
+            else
+            {
+                s_assemblies.Add(currentAssembly);
+
+                var assemblies = currentAssembly?.GetReferencedAssemblies();
+
+                if (null != assemblies)
+                {
+                    foreach (var assembly in assemblies)
+                    {
+                        try
+                        {
+                            s_assemblies.Add(Assembly.Load(assembly));
+                        }
+                        catch (Exception e)
+                        {
+                            Tizen.Log.Fatal("NUI", "Load referenced assemblies e.Message: " + e.Message);
+                            Console.WriteLine("\n[FATAL] Load referenced assemblies e.Message: {0}\n", e.Message);
+                            throw new XamlParseException(e.Message);
+                        }
+                    }
+                }
+            }
 
             s_xmlnsDefinitions = new List<XmlnsDefinitionAttribute>();
 
             foreach (var assembly in s_assemblies)
-                foreach (XmlnsDefinitionAttribute attribute in assembly.GetCustomAttributes(typeof(XmlnsDefinitionAttribute))) {
+                foreach (XmlnsDefinitionAttribute attribute in assembly.GetCustomAttributes(typeof(XmlnsDefinitionAttribute)))
+                {
                     s_xmlnsDefinitions.Add(attribute);
                     attribute.AssemblyName = attribute.AssemblyName ?? assembly.FullName;
                 }
@@ -337,26 +372,34 @@ namespace Tizen.NUI.Xaml
             out XamlParseException exception)
         {
             if (s_xmlnsDefinitions == null)
-                GatherXmlnsDefinitionAttributes();
+                GatherXmlnsDefinitionAttributes(currentAssembly);
 
             var namespaceURI = xmlType.NamespaceUri;
             var elementName = xmlType.Name;
             var typeArguments = xmlType.TypeArguments;
             exception = null;
 
+            if (elementName.Contains("-"))
+            {
+                elementName = elementName.Replace('-', '+');
+            }
+
             var lookupAssemblies = new List<XmlnsDefinitionAttribute>();
             var lookupNames = new List<string>();
 
-            foreach (var xmlnsDef in s_xmlnsDefinitions) {
+            foreach (var xmlnsDef in s_xmlnsDefinitions)
+            {
                 if (xmlnsDef.XmlNamespace != namespaceURI)
                     continue;
                 lookupAssemblies.Add(xmlnsDef);
             }
 
-            if (lookupAssemblies.Count == 0) {
+            if (lookupAssemblies.Count == 0)
+            {
                 string ns, asmstring, _;
-                XmlnsHelper.ParseXmlns(namespaceURI, out _, out ns, out asmstring, out _);
-                lookupAssemblies.Add(new XmlnsDefinitionAttribute(namespaceURI, ns) {
+                XmlnsHelper.ParseXmlns(namespaceURI, out _, out ns, out asmstring);
+                lookupAssemblies.Add(new XmlnsDefinitionAttribute(namespaceURI, ns)
+                {
                     AssemblyName = asmstring ?? currentAssembly.FullName
                 });
             }
@@ -375,10 +418,26 @@ namespace Tizen.NUI.Xaml
             }
 
             Type type = null;
-            foreach (var asm in lookupAssemblies) {
+            foreach (var asm in lookupAssemblies)
+            {
                 foreach (var name in lookupNames)
+                {
                     if ((type = Type.GetType($"{asm.ClrNamespace}.{name}, {asm.AssemblyName}")) != null)
                         break;
+
+                    if ('?' == name.Last())
+                    {
+                        string nameOfNotNull = name.Substring(0, name.Length - 1);
+                        Type typeofNotNull = Type.GetType($"{asm.ClrNamespace}.{nameOfNotNull}, {asm.AssemblyName}");
+
+                        if (null != typeofNotNull)
+                        {
+                            type = typeof(Nullable<>).MakeGenericType(new Type[] { typeofNotNull });
+                            break;
+                        }
+                    }
+                }
+
                 if (type != null)
                     break;
             }
@@ -386,7 +445,7 @@ namespace Tizen.NUI.Xaml
             if (type != null && typeArguments != null)
             {
                 XamlParseException innerexception = null;
-                var args = typeArguments.Select(delegate(XmlType xmltype)
+                var args = typeArguments.Select(delegate (XmlType xmltype)
                 {
                     XamlParseException xpe;
                     var t = GetElementType(xmltype, xmlInfo, currentAssembly, out xpe);
@@ -406,7 +465,112 @@ namespace Tizen.NUI.Xaml
             }
 
             if (type == null)
-                exception = new XamlParseException($"Type {elementName} not found in xmlns {namespaceURI}", xmlInfo);
+            {
+                var message = $"Type {elementName} not found in xmlns {namespaceURI}\n";
+                message += "\n  - Make sure the all used assemblies (e.g. Tizen.NUI.Components) are included in the application project.";
+                message += "\n  - Make sure the type and namespace are correct.\n";
+                exception = new XamlParseException($"message", xmlInfo);
+            }
+
+            return type;
+        }
+
+        public static Type GetElementTypeExtension(XmlType xmlType, IXmlLineInfo xmlInfo, Assembly currentAssembly)
+        {
+            if (s_xmlnsDefinitions == null)
+                GatherXmlnsDefinitionAttributes(currentAssembly);
+
+            var namespaceURI = xmlType.NamespaceUri;
+            var elementName = xmlType.Name;
+            var typeArguments = xmlType.TypeArguments;
+
+            if (elementName.Contains("-"))
+            {
+                elementName = elementName.Replace('-', '+');
+            }
+
+            var lookupAssemblies = new List<XmlnsDefinitionAttribute>();
+            var lookupNames = new List<string>();
+
+            foreach (var xmlnsDef in s_xmlnsDefinitions)
+            {
+                if (xmlnsDef.XmlNamespace != namespaceURI)
+                    continue;
+                lookupAssemblies.Add(xmlnsDef);
+            }
+
+            if (lookupAssemblies.Count == 0)
+            {
+                string ns, asmstring, _;
+                XmlnsHelper.ParseXmlns(namespaceURI, out _, out ns, out asmstring);
+                lookupAssemblies.Add(new XmlnsDefinitionAttribute(namespaceURI, ns)
+                {
+                    AssemblyName = asmstring ?? currentAssembly.FullName
+                });
+            }
+
+            lookupNames.Add(elementName + "Extension");
+
+            for (var i = 0; i < lookupNames.Count; i++)
+            {
+                var name = lookupNames[i];
+                if (name.Contains(":"))
+                    name = name.Substring(name.LastIndexOf(':') + 1);
+                if (typeArguments != null)
+                    name += "`" + typeArguments.Count; //this will return an open generic Type
+                lookupNames[i] = name;
+            }
+
+            Type type = null;
+            foreach (var asm in lookupAssemblies)
+            {
+                foreach (var name in lookupNames)
+                {
+                    if ((type = Type.GetType($"{asm.ClrNamespace}.{name}, {asm.AssemblyName}")) != null)
+                        break;
+
+                    if ((type = currentAssembly.GetType($"{asm.ClrNamespace}.{name}")) != null)
+                    {
+                        break;
+                    }
+
+                    if ('?' == name.Last())
+                    {
+                        string nameOfNotNull = name.Substring(0, name.Length - 1);
+                        Type typeofNotNull = Type.GetType($"{asm.ClrNamespace}.{nameOfNotNull}, {asm.AssemblyName}");
+
+                        if (null != typeofNotNull)
+                        {
+                            type = typeof(Nullable<>).MakeGenericType(new Type[] { typeofNotNull });
+                            break;
+                        }
+                    }
+                }
+
+                if (type != null)
+                    break;
+            }
+
+            if (type != null && typeArguments != null)
+            {
+                XamlParseException innerexception = null;
+                var args = typeArguments.Select(delegate (XmlType xmltype)
+                {
+                    XamlParseException xpe;
+                    var t = GetElementType(xmltype, xmlInfo, currentAssembly, out xpe);
+                    if (xpe != null)
+                    {
+                        innerexception = xpe;
+                        return null;
+                    }
+                    return t;
+                }).ToArray();
+                if (innerexception != null)
+                {
+                    return null;
+                }
+                type = type.MakeGenericType(args);
+            }
 
             return type;
         }

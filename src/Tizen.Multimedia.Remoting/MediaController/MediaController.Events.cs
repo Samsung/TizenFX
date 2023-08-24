@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using Tizen.Applications;
 using Native = Interop.MediaControllerClient;
@@ -39,6 +40,7 @@ namespace Tizen.Multimedia.Remoting
             ServerStopped?.Invoke(this, EventArgs.Empty);
         }
 
+        #region Updated event
         /// <summary>
         /// Occurs when the playback state is updated.
         /// </summary>
@@ -77,6 +79,17 @@ namespace Tizen.Multimedia.Remoting
             {
                 eventHandler.Invoke(this, args);
             }
+        }
+
+        /// <summary>
+        /// Occurs when the playlist is updated.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public event EventHandler<PlaylistUpdatedEventArgs> PlaylistUpdated;
+
+        internal void RaisePlaylistUpdatedEvent(MediaControlPlaylistMode mode, string name, IntPtr playlistHandle)
+        {
+            PlaylistUpdated?.Invoke(this, new PlaylistUpdatedEventArgs(mode, name, new MediaControlPlaylist(playlistHandle)));
         }
 
         /// <summary>
@@ -138,37 +151,48 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Occurs when the playlist is updated.
+        /// Occurs when the subtitle mode is updated.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public event EventHandler<PlaylistUpdatedEventArgs> PlaylistUpdated;
-
-        internal void RaisePlaylistUpdatedEvent(MediaControlPlaylistMode mode, string name, IntPtr playlistHandle)
+        /// <since_tizen> 6 </since_tizen>
+        public event EventHandler<SubtitleModeUpdatedEventArgs> SubtitleModeUpdated;
+        internal void RaiseSubtitleModeUpdatedEvent(bool isEnabled)
         {
-            PlaylistUpdated?.Invoke(this, new PlaylistUpdatedEventArgs(mode, name, new MediaControlPlaylist(playlistHandle)));
+            SubtitleModeUpdated?.Invoke(this, new SubtitleModeUpdatedEventArgs(isEnabled));
         }
 
         /// <summary>
-        /// Occurs when the command is completed.
+        /// Occurs when the 360 mode is updated.
         /// </summary>
-        /// <remarks>
-        /// User can match the command and this event using <see cref="CommandCompletedEventArgs.RequestId"/> field.
-        /// </remarks>
-        /// <since_tizen> 5 </since_tizen>
-        internal event EventHandler<CommandCompletedEventArgs> CommandCompleted;
-
-        internal void RaiseCommandCompletedEvent(string requestId, MediaControllerError result, IntPtr bundleHandle)
+        /// <since_tizen> 6 </since_tizen>
+        public event EventHandler<Mode360UpdatedEventArgs> Mode360Updated;
+        internal void RaiseMode360UpdatedEvent(bool isEnabled)
         {
-            if (bundleHandle != IntPtr.Zero)
-            {
-                CommandCompleted?.Invoke(this, new CommandCompletedEventArgs(requestId, result, new Bundle(new SafeBundleHandle(bundleHandle, true))));
-            }
-            else
-            {
-                CommandCompleted?.Invoke(this, new CommandCompletedEventArgs(requestId, result));
-            }
+            Mode360Updated?.Invoke(this, new Mode360UpdatedEventArgs(isEnabled));
         }
 
+        /// <summary>
+        /// Occurs when the display mode is updated.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public event EventHandler<DisplayModeUpdatedEventArgs> DisplayModeUpdated;
+        internal void RaiseDisplayModeUpdatedEvent(MediaControlNativeDisplayMode mode)
+        {
+            DisplayModeUpdated?.Invoke(this, new DisplayModeUpdatedEventArgs(mode.ToPublic()));
+        }
+
+        /// <summary>
+        /// Occurs when the display rotation is updated.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public event EventHandler<DisplayRotationUpdatedEventArgs> DisplayRotationUpdated;
+        internal void RaiseDisplayRotationUpdatedEvent(MediaControlNativeDisplayRotation rotation)
+        {
+            DisplayRotationUpdated?.Invoke(this, new DisplayRotationUpdatedEventArgs(rotation.ToPublic()));
+        }
+        #endregion
+
+
+        #region Capability updated event
         /// <summary>
         /// Occurs when the playback capabilities are updated.
         /// </summary>
@@ -182,7 +206,7 @@ namespace Tizen.Multimedia.Remoting
             {
                 foreach (MediaControllerNativePlaybackAction action in Enum.GetValues(typeof(MediaControllerNativePlaybackAction)))
                 {
-                    Native.IsCapabilitySupported(playbackCapaHandle, action, out MediaControlCapabilitySupport support);
+                    Native.GetPlaybackCapability(playbackCapaHandle, action, out MediaControlCapabilitySupport support);
                     capabilities.Add(action.ToPublic(), support);
                 }
 
@@ -213,7 +237,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Occurs when the repeat mode capabilities are updated.
+        /// Occurs when the repeat mode capability is updated.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public event EventHandler<RepeatModeCapabilityUpdatedEventArgs> RepeatModeCapabilityUpdated;
@@ -224,7 +248,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Occurs when the shuffle mode capabilities are updated.
+        /// Occurs when the shuffle mode capability is updated.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public event EventHandler<ShuffleModeCapabilityUpdatedEventArgs> ShuffleModeCapabilityUpdated;
@@ -232,6 +256,118 @@ namespace Tizen.Multimedia.Remoting
         internal void RaiseShuffleModeCapabilityUpdatedEvent(MediaControlCapabilitySupport support)
         {
             ShuffleModeCapabilityUpdated?.Invoke(this, new ShuffleModeCapabilityUpdatedEventArgs(support));
+        }
+
+        /// <summary>
+        /// Occurs when the playback position capability is updated.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        public event EventHandler<PlaybackPositionCapabilityUpdatedEventArgs> PlaybackPositionCapabilityUpdated;
+
+        internal void RaisePlaybackPositionCapabilityUpdatedEvent(MediaControlCapabilitySupport support)
+        {
+            PlaybackPositionCapabilityUpdated?.Invoke(this, new PlaybackPositionCapabilityUpdatedEventArgs(support));
+        }
+
+        /// <summary>
+        /// Occurs when the playlist capability is updated.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        public event EventHandler<PlaylistCapabilityUpdatedEventArgs> PlaylistCapabilityUpdated;
+
+        internal void RaisePlaylistCapabilityUpdatedEvent(MediaControlCapabilitySupport support)
+        {
+            PlaylistCapabilityUpdated?.Invoke(this, new PlaylistCapabilityUpdatedEventArgs(support));
+        }
+
+        /// <summary>
+        /// Occurs when the custom command capability is updated.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        public event EventHandler<CustomCommandCapabilityUpdatedEventArgs> CustomCommandCapabilityUpdated;
+
+        internal void RaiseCustomCommandCapabilityUpdatedEvent(MediaControlCapabilitySupport support)
+        {
+            CustomCommandCapabilityUpdated?.Invoke(this, new CustomCommandCapabilityUpdatedEventArgs(support));
+        }
+
+        /// <summary>
+        /// Occurs when the search capability is updated.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        public event EventHandler<SearchCapabilityUpdatedEventArgs> SearchCapabilityUpdated;
+
+        internal void RaiseSearchCapabilityUpdatedEvent(MediaControlCapabilitySupport support)
+        {
+            SearchCapabilityUpdated?.Invoke(this, new SearchCapabilityUpdatedEventArgs(support));
+        }
+
+        /// <summary>
+        /// Occurs when the subtitle capability is updated.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        public event EventHandler<SubtitleCapabilityUpdatedEventArgs> SubtitleCapabilityUpdated;
+
+        internal void RaiseSubtitleCapabilityUpdatedEvent(MediaControlCapabilitySupport support)
+        {
+            SubtitleCapabilityUpdated?.Invoke(this, new SubtitleCapabilityUpdatedEventArgs(support));
+        }
+
+        /// <summary>
+        /// Occurs when the mode360 capability is updated.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        public event EventHandler<Mode360CapabilityUpdatedEventArgs> Mode360CapabilityUpdated;
+
+        internal void RaiseMode360CapabilityUpdatedEvent(MediaControlCapabilitySupport support)
+        {
+            Mode360CapabilityUpdated?.Invoke(this, new Mode360CapabilityUpdatedEventArgs(support));
+        }
+
+        /// <summary>
+        /// Occurs when the display mode capability is updated.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public event EventHandler<DisplayModeCapabilityUpdatedEventArgs> DisplayModeCapabilityUpdated;
+
+        internal void RaiseDisplayModeCapabilityUpdatedEvent(MediaControlNativeDisplayMode modes)
+        {
+            DisplayModeCapabilityUpdated?.Invoke(this, new DisplayModeCapabilityUpdatedEventArgs(modes.ToPublicList()));
+        }
+
+        /// <summary>
+        /// Occurs when the display rotation capability is updated.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public event EventHandler<DisplayRotationCapabilityUpdatedEventArgs> DisplayRotationCapabilityUpdated;
+
+        internal void RaiseDisplayRotationCapabilityUpdatedEvent(MediaControlNativeDisplayRotation rotations)
+        {
+            DisplayRotationCapabilityUpdated?.Invoke(this, new DisplayRotationCapabilityUpdatedEventArgs(rotations.ToPublicList()));
+        }
+        #endregion
+
+
+        #region Command
+        /// <summary>
+        /// Occurs when the command is completed.
+        /// </summary>
+        /// <remarks>
+        /// User can match the command and this event using <see cref="CommandCompletedEventArgs.RequestId"/> field.
+        /// </remarks>
+        /// <since_tizen> 5 </since_tizen>
+        internal event EventHandler<CommandCompletedEventArgs> CommandCompleted;
+
+        internal void RaiseCommandCompletedEvent(string requestId, int result, IntPtr bundleHandle)
+        {
+            if (bundleHandle != IntPtr.Zero)
+            {
+                CommandCompleted?.Invoke(this, new CommandCompletedEventArgs(requestId, result, new Bundle(new SafeBundleHandle(bundleHandle, true))));
+            }
+            else
+            {
+                CommandCompleted?.Invoke(this, new CommandCompletedEventArgs(requestId, result));
+            }
         }
 
         /// <summary>
@@ -244,5 +380,6 @@ namespace Tizen.Multimedia.Remoting
         {
             CustomCommandReceived?.Invoke(this, new CustomCommandReceivedEventArgs(command));
         }
+        #endregion
     }
 }

@@ -1,4 +1,20 @@
-﻿using System;
+﻿/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -83,8 +99,11 @@ namespace Tizen.NUI.Binding
             object sourceObject;
             if (_weakSource != null && _weakSource.TryGetTarget(out sourceObject))
             {
-                for (var i = 0; i < _parts.Count - 1; i++)
+                for (var i = 0; i < _parts.Count; i++)
                 {
+                    if (i + 1 == _parts.Count) //do not handle the last.
+                        break;
+
                     BindingExpressionPart part = _parts[i];
 
                     if (!part.IsSelf)
@@ -137,7 +156,7 @@ namespace Tizen.NUI.Binding
                 {
                     if ((needsGetter && part.LastGetter == null) || (needsSetter && part.NextPart == null && part.LastSetter == null))
                     {
-                        Console.WriteLine("Binding", PropertyNotFoundErrorMessage, part.Content, current, target.GetType(), property.PropertyName);
+                        Console.WriteLine("Binding, " + PropertyNotFoundErrorMessage, part.Content, current, target.GetType(), property.PropertyName);
                         break;
                     }
                 }
@@ -164,21 +183,21 @@ namespace Tizen.NUI.Binding
                 else
                     value = property.DefaultValue;
 
-                if (!TryConvert(part, ref value, property.ReturnType, true))
+                if (!TryConvert(ref value, property.ReturnType, true))
                 {
-                    Console.WriteLine("Binding", "{0} can not be converted to type '{1}'", value, property.ReturnType);
+                    Console.WriteLine($"Binding : {value} can not be converted to type {property.ReturnType}");
                     return;
                 }
 
-                target.SetValueCore(property, value, SetValueFlags.ClearDynamicResource, BindableObject.SetValuePrivateFlags.Default | BindableObject.SetValuePrivateFlags.Converted, false);
+                target.SetValueCore(property, value, SetValueFlags.ClearDynamicResource, BindableObject.SetValuePrivateFlags.Default | BindableObject.SetValuePrivateFlags.Converted);
             }
             else if (needsSetter && part.LastSetter != null && current != null)
             {
                 object value = Binding.GetTargetValue(target.GetValue(property), part.SetterType);
 
-                if (!TryConvert(part, ref value, part.SetterType, false))
+                if (!TryConvert(ref value, part.SetterType, false))
                 {
-                    Console.WriteLine("Binding", "{0} can not be converted to type '{1}'", value, part.SetterType);
+                    Console.WriteLine($"Binding : {value} can not be converted to type {part.SetterType}");
                     return;
                 }
 
@@ -205,7 +224,7 @@ namespace Tizen.NUI.Binding
         IEnumerable<BindingExpressionPart> GetPart(string part)
         {
             part = part.Trim();
-            if (part == string.Empty)
+            if (string.IsNullOrEmpty(part))
                 throw new FormatException("Path contains an empty part");
 
             BindingExpressionPart indexer = null;
@@ -273,8 +292,8 @@ namespace Tizen.NUI.Binding
                 if (sourceType.IsArray)
                 {
                     int index;
-                    if (!int.TryParse(part.Content, out index))
-                        Console.WriteLine("Binding", "{0} could not be parsed as an index for a {1}", part.Content, sourceType);
+                    if (!int.TryParse(part.Content, NumberStyles.Number, CultureInfo.InvariantCulture, out index))
+                        Console.WriteLine($"Binding : {part.Content} could not be parsed as an index for a {sourceType}");
                     else
                         part.Arguments = new object[] { index };
 
@@ -289,12 +308,15 @@ namespace Tizen.NUI.Binding
                 part.IndexerName = indexerName;
 
 #if NETSTANDARD2_0
-                try {
+                try
+                {
                     property = sourceType.GetDeclaredProperty(indexerName);
                 }
-                catch (AmbiguousMatchException) {
+                catch (AmbiguousMatchException)
+                {
                     // Get most derived instance of property
-                    foreach (var p in sourceType.GetProperties().Where(prop => prop.Name == indexerName)) {
+                    foreach (var p in sourceType.GetProperties().Where(prop => prop.Name == indexerName))
+                    {
                         if (property == null || property.DeclaringType.IsAssignableFrom(property.DeclaringType))
                             property = p;
                     }
@@ -304,7 +326,7 @@ namespace Tizen.NUI.Binding
 #endif
 
                 if (property == null) //is the indexer defined on the base class?
-                    property = sourceType.BaseType.GetProperty(indexerName);
+                    property = sourceType.BaseType?.GetProperty(indexerName);
                 if (property == null) //is the indexer defined on implemented interface ?
                 {
                     foreach (var implementedInterface in sourceType.ImplementedInterfaces)
@@ -351,7 +373,7 @@ namespace Tizen.NUI.Binding
                 }
                 if (property.CanWrite && property.SetMethod != null)
                 {
-                    if(property.SetMethod.IsPublic && !property.SetMethod.IsStatic)
+                    if (property.SetMethod.IsPublic && !property.SetMethod.IsStatic)
                     {
                         part.LastSetter = property.SetMethod;
                         part.SetterType = part.LastSetter.GetParameters().Last().ParameterType;
@@ -419,7 +441,7 @@ namespace Tizen.NUI.Binding
         }
         static Type[] DecimalTypes = new[] { typeof(float), typeof(decimal), typeof(double) };
 
-        bool TryConvert(BindingExpressionPart part, ref object value, Type convertTo, bool toTarget)
+        bool TryConvert(ref object value, Type convertTo, bool toTarget)
         {
             if (value == null)
                 return true;

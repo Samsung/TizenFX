@@ -36,7 +36,7 @@ internal static partial class Interop
         internal static extern Telephony.TelephonyError GetCallList(IntPtr handle, out uint count, out IntPtr callList);
 
         [DllImport(Libraries.Telephony, EntryPoint = "telephony_call_release_call_list")]
-        internal static extern Telephony.TelephonyError ReleaseCallList(uint count, IntPtr callList);
+        internal static extern Telephony.TelephonyError ReleaseCallList(uint count, ref IntPtr callList);
 
         [DllImport(Libraries.Telephony, EntryPoint = "telephony_call_get_handle_id")]
         internal static extern Telephony.TelephonyError GetHandleId(IntPtr callHandle, out uint handleId);
@@ -76,7 +76,7 @@ internal static partial class Interop
 
             protected override bool ReleaseHandle()
             {
-                ReleaseCallList(Count, this.handle);
+                ReleaseCallList(Count, ref this.handle);
                 this.SetHandle(IntPtr.Zero);
                 return true;
             }

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.AnimatedVectorImageViewTestPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="AnimatedVectorImageViewTestPage"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <View x:Name="ContentView"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+            <Button x:Name="ChangeCurrFrameBtn"
+                      WidthSpecification="500"
+                      HeightSpecification="100"
+                      BackgroundColor="#52c7d9"
+                      PointSize="15"
+                      TextColor="#800080"
+                      Position2D="50, 40"
+                      Text="change current frame"
+                      Weight="0.12">
+            </Button>
+
+            <Button x:Name="GetCurrFrameBtn"
+                      WidthSpecification="500"
+                      HeightSpecification="100"
+                      BackgroundColor="#52c7d9"
+                      PointSize="15"
+                      TextColor="#800080"
+                      Text="get current frame"
+                      Position2D="600, 40"
+                      Weight="0.12">
+            </Button>
+
+            <Button x:Name="PlayBtn"
+                      WidthSpecification="500"
+                      HeightSpecification="100"
+                      BackgroundColor="#52c7d9"
+                      PointSize="15"
+                      TextColor="#800080"
+                      Text="play"
+                      Position2D="50, 150"
+                      Weight="0.12">
+            </Button>
+
+            <Button x:Name="StopBtn"
+                      WidthSpecification="500"
+                      HeightSpecification="100"
+                      BackgroundColor="#52c7d9"
+                      PointSize="15"
+                      TextColor="#800080"
+                      Text="stop"
+                      Position2D="600, 150"
+                      Weight="0.12">
+            </Button>
+
+            <Button x:Name="SetMinMaxBtn"
+                      WidthSpecification="500"
+                      HeightSpecification="100"
+                      BackgroundColor="#52c7d9"
+                      PointSize="15"
+                      TextColor="#800080"
+                      Text="SetMinAndMaxFrame"
+                      Position2D="1200, 150"
+                      Weight="0.12">
+            </Button>
+
+            <AnimatedVectorImageView x:Name="aviv" Position2D="300,300" ResourceUrl="*Resource*/images/cycle_animation.json" RepeatCount="-1"/>
+
+        </View>
+    </ContentPage.Content>
+
+</ContentPage>

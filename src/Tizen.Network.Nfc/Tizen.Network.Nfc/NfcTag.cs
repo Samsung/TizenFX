@@ -29,6 +29,29 @@ namespace Tizen.Network.Nfc
     {
         private bool disposed = false;
         private IntPtr _tagHandle = IntPtr.Zero;
+        int _requestId = 0;
+
+        Dictionary<int, TaskCompletionSource<byte[]>> _transceiveTaskSource = new Dictionary<int, TaskCompletionSource<byte[]>>();
+        Interop.Nfc.TagTransceiveCompletedCallback _nativeTransceiveCallback;
+
+        Dictionary<int, TaskCompletionSource<NfcError>> _voidTaskSource = new Dictionary<int, TaskCompletionSource<NfcError>>();
+        Interop.Nfc.VoidCallback _nativeVoidCallback;
+
+        Dictionary<int, TaskCompletionSource<NfcNdefMessage>> _readNdefTaskSource = new Dictionary<int, TaskCompletionSource<NfcNdefMessage>>();
+        Interop.Nfc.TagReadCompletedCallback _nativeTagReadCallback;
+
+        /// <summary>
+        /// Constructor of NfcTag
+        /// </summary>
+        public NfcTag()
+        {
+            // A method is need to convert delegate to pass unmanaged layer through Interop call
+            // If we do not convert explicitly it, implicitly convert was occurred
+            // and temporal delegate was created. and it could be released by GC
+            _nativeTransceiveCallback = TransceiveCompletedCallback;
+            _nativeVoidCallback = VoidCallback;
+            _nativeTagReadCallback = ReadNdefCallback;
+        }
 
         /// <summary>
         /// The type of the NFC tag.
@@ -106,6 +129,9 @@ namespace Tizen.Network.Nfc
         internal NfcTag(IntPtr handle)
         {
             _tagHandle = handle;
+            _nativeTransceiveCallback = TransceiveCompletedCallback;
+            _nativeVoidCallback = VoidCallback;
+            _nativeTagReadCallback = ReadNdefCallback;
         }
 
         /// <summary>
@@ -186,27 +212,21 @@ namespace Tizen.Network.Nfc
         /// <exception cref="InvalidOperationException">Thrown when the the method fails due to an invalid operation.</exception>
         public Task<byte[]> TransceiveAsync(byte[] buffer)
         {
+            int requestId = 0;
             var task = new TaskCompletionSource<byte[]>();
-
-            byte[] resultBuffer = null;
-            Interop.Nfc.TagTransceiveCompletedCallback callback = (int result, IntPtr resultData, int dataSize, IntPtr userData) =>
+            lock (this)
             {
-                if (result == (int)NfcError.None)
-                {
-                    resultBuffer = new byte[dataSize];
-                    Marshal.Copy(resultData, resultBuffer, 0, dataSize);
-                    task.SetResult(resultBuffer);
-                }
-                return;
-            };
+                requestId = _requestId++;
+                _transceiveTaskSource[requestId] = task;
+            }
 
-            int ret = Interop.Nfc.Tag.Transceive(_tagHandle, buffer, buffer.Length, callback, IntPtr.Zero);
+            int ret = Interop.Nfc.Tag.Transceive(_tagHandle, buffer, buffer.Length, _nativeTransceiveCallback, (IntPtr)requestId);
             if (ret != (int)NfcError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to transceive data, Error - " + (NfcError)ret);
+                _transceiveTaskSource.Remove(requestId);
                 NfcErrorFactory.ThrowNfcException(ret);
             }
-
             return task.Task;
         }
 
@@ -219,28 +239,22 @@ namespace Tizen.Network.Nfc
         /// <exception cref="InvalidOperationException">Thrown when the method fails due to an invalid operation.</exception>
         public Task<NfcNdefMessage> ReadNdefMessageAsync()
         {
+            int requestId = 0;
             var task = new TaskCompletionSource<NfcNdefMessage>();
 
-            NfcNdefMessage ndefMsg = null;
-            Interop.Nfc.TagReadCompletedCallback callback = (int result, IntPtr ndefMessage, IntPtr userData) =>
+            lock (this)
             {
-                if (result == (int)NfcError.None)
-                {
-                    ndefMsg = new NfcNdefMessage(ndefMessage);
-                    task.SetResult(ndefMsg);
+                requestId = _requestId++;
+                _readNdefTaskSource[requestId] = task;
+            }
 
-                    return true;
-                }
-                return false;
-            };
-
-            int ret = Interop.Nfc.Tag.ReadNdef(_tagHandle, callback, IntPtr.Zero);
+            int ret = Interop.Nfc.Tag.ReadNdef(_tagHandle, _nativeTagReadCallback, (IntPtr)requestId);
             if (ret != (int)NfcError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to read ndef message, Error - " + (NfcError)ret);
+                _readNdefTaskSource.Remove(requestId);
                 NfcErrorFactory.ThrowNfcException(ret);
             }
-
             return task.Task;
         }
 
@@ -255,18 +269,21 @@ namespace Tizen.Network.Nfc
         /// <exception cref="InvalidOperationException">Thrown when the method fails due to an invalid operation.</exception>
         public Task<NfcError> WriteNdefMessageAsync(NfcNdefMessage ndefMessage)
         {
+            int requestId = 0;
             var task = new TaskCompletionSource<NfcError>();
 
-            Interop.Nfc.VoidCallback callback = (int result, IntPtr userData) =>
+            lock (this)
             {
-                task.SetResult((NfcError)result);
-                return;
-            };
+                requestId = _requestId++;
+                _voidTaskSource[requestId] = task;
+            }
 
-            int ret = Interop.Nfc.Tag.WriteNdef(_tagHandle, ndefMessage.GetHandle(), callback, IntPtr.Zero);
+            int ret = Interop.Nfc.Tag.WriteNdef(_tagHandle, ndefMessage.GetHandle(), _nativeVoidCallback, (IntPtr)requestId);
+
             if (ret != (int)NfcError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to write ndef message, Error - " + (NfcError)ret);
+                _voidTaskSource.Remove(requestId);
                 NfcErrorFactory.ThrowNfcException(ret);
             }
 
@@ -284,22 +301,67 @@ namespace Tizen.Network.Nfc
         /// <exception cref="InvalidOperationException">Thrown when the method fails due to an invalid operation.</exception>
         public Task<NfcError> FormatNdefMessageAsync(byte[] keyValue)
         {
+            int requestId = 0;
             var task = new TaskCompletionSource<NfcError>();
 
-            Interop.Nfc.VoidCallback callback = (int result, IntPtr userData) =>
+            lock (this)
             {
-                task.SetResult((NfcError)result);
-                return;
-            };
+                requestId = _requestId++;
+                _voidTaskSource[requestId] = task;
+            }
 
-            int ret = Interop.Nfc.Tag.FormatNdef(_tagHandle, keyValue, keyValue.Length, callback, IntPtr.Zero);
+            int ret = Interop.Nfc.Tag.FormatNdef(_tagHandle, keyValue, keyValue.Length, _nativeVoidCallback, (IntPtr)requestId);
             if (ret != (int)NfcError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to format ndef message, Error - " + (NfcError)ret);
+                _voidTaskSource.Remove(requestId);
                 NfcErrorFactory.ThrowNfcException(ret);
             }
 
             return task.Task;
+        }
+
+        void TransceiveCompletedCallback(int result, IntPtr resultData, int dataSize, IntPtr userData)
+        {
+            int requestId = (int)userData;
+            if (_transceiveTaskSource.ContainsKey(requestId))
+            {
+                if (result == (int)NfcError.None)
+                {
+                    byte[] resultBuffer = new byte[dataSize];
+                    Marshal.Copy(resultData, resultBuffer, 0, dataSize);
+                    _transceiveTaskSource[requestId].TrySetResult(resultBuffer);
+                }
+                _transceiveTaskSource.Remove(requestId);
+            }
+            return;
+        }
+
+        void VoidCallback(int result, IntPtr userData)
+        {
+            int requestId = (int)userData;
+            if (_voidTaskSource.ContainsKey(requestId))
+            {
+                _voidTaskSource[requestId].TrySetResult((NfcError)result);
+                _voidTaskSource.Remove(requestId);
+            }
+        }
+
+        bool ReadNdefCallback(int result, IntPtr ndefMessage, IntPtr userData)
+        {
+            bool ret = false;
+            int requestId = (int)userData;
+            if (_readNdefTaskSource.ContainsKey(requestId))
+            {
+                if (result == (int)NfcError.None)
+                {
+                    var ndefMsg = new NfcNdefMessage(ndefMessage);
+                    _readNdefTaskSource[requestId].TrySetResult(ndefMsg);
+                    ret = true;
+                }
+                _readNdefTaskSource.Remove(requestId);
+            }
+            return ret;
         }
     }
 }

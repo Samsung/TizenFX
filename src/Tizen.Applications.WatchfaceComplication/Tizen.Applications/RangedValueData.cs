@@ -21,7 +21,7 @@ using System.Text;
 namespace Tizen.Applications.WatchfaceComplication
 {
     /// <summary>
-    /// Represents the RangedValueData class for the RangedValue type complication.
+    /// Represents the ranged value data for a complication.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public class RangedValueData : ComplicationData

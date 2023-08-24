@@ -452,9 +452,10 @@ namespace Tizen.Network.Bluetooth
     /// <since_tizen> 3 </since_tizen>
     public class SocketData
     {
-        internal string RecvData;
-        internal int Size;
-        internal int Fd;
+        internal string _recvData;
+        internal byte[] _data;
+        internal int _dataSize;
+        internal int _fd;
 
         internal SocketData()
         {
@@ -468,7 +469,7 @@ namespace Tizen.Network.Bluetooth
         {
             get
             {
-                return Fd;
+                return _fd;
             }
         }
         /// <summary>
@@ -479,18 +480,30 @@ namespace Tizen.Network.Bluetooth
         {
             get
             {
-                return Size;
+                return _dataSize;
             }
         }
         /// <summary>
         /// The received data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 7. Please use ByteData property.")]
         public string Data
         {
             get
             {
-                return RecvData;
+                return _recvData;
+            }
+        }
+        /// <summary>
+        /// The received data.
+        /// </summary>
+        /// <since_tizen> 7 </since_tizen>
+        public byte[] ByteData
+        {
+            get
+            {
+                return _data;
             }
         }
     }

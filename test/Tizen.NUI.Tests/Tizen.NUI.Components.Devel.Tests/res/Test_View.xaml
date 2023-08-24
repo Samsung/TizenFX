@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<b:View x:Class="Tizen.NUI.Samples.MyLineCoverageTest"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:b="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <b:View Name="view" />
+</b:View>

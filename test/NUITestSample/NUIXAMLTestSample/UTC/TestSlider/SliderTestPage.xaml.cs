@@ -16,15 +16,16 @@
  */
 using System;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 
 namespace Tizen.NUI.Examples
 {
-    public class SliderTestPage : ContentPage
+    public partial class SliderTestPage : ContentPage
     {
 
         public SliderTestPage(Window win) : base (win)
         {
+            InitializeComponent();
         }
 
         public override void SetFocus()

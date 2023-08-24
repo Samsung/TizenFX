@@ -19,6 +19,7 @@ using System.Runtime.InteropServices;
 
 using Tizen.Internals.Errors;
 using Tizen.Applications;
+using System.Reflection;
 
 internal static partial class Interop
 {
@@ -144,6 +145,42 @@ internal static partial class Interop
             //int rpc_port_parcel_burst_write(rpc_port_parcel_h h, const unsigned char *buf, unsigned int size);
             [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_burst_write")]
             internal static extern ErrorCode Write(IntPtr parcelHandle, byte[] buf, int size);
+
+            //int rpc_port_parcel_get_header(rpc_port_parcel_h h, rpc_port_parcel_header_h *header);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_get_header")]
+            internal static extern ErrorCode GetHeader(IntPtr parcelHandle, out IntPtr ParcelHeaderHandle);
+
+            //int rpc_port_parcel_header_set_tag(rpc_port_parcel_header_h header, const char *tag);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_header_set_tag")]
+            internal static extern ErrorCode SetTag(IntPtr parcelHeaderHandle, string tag);
+
+            //int rpc_port_parcel_header_get_tag(rpc_port_parcel_header_h header, char **tag);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_header_get_tag")]
+            internal static extern ErrorCode GetTag(IntPtr parcelHeaderHandle, out string tag);
+
+            //int rpc_port_parcel_header_set_seq_num(rpc_port_parcel_header_h header, int seq_num);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_header_set_seq_num")]
+            internal static extern ErrorCode SetSeqNum(IntPtr parcelHeaderHandle, int seq_num);
+
+            //int rpc_port_parcel_header_get_seq_num(rpc_port_parcel_header_h header, int *seq_num);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_header_get_seq_num")]
+            internal static extern ErrorCode GetSeqNum(IntPtr parcelHeaderHandle, out int seq_num);
+
+            //int rpc_port_parcel_header_get_timestamp(rpc_port_parcel_header_h header, struct timespec *timestamp);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_header_get_timestamp")]
+            internal static extern ErrorCode GetTimeStamp(IntPtr parcelHeaderHandle, ref Libc.TimeStamp time);
+
+            //int rpc_port_parcel_get_raw(rpc_port_parcel_h h, void **raw, unsigned int *size);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_get_raw")]
+            internal static extern ErrorCode GetRaw(IntPtr parcelHandle, out IntPtr raw, out uint size);
+
+            //int rpc_port_parcel_create_from_raw(rpc_port_parcel_h *h, const void *raw, unsigned int size);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_create_from_raw")]
+            internal static extern ErrorCode CreateFromRaw(out IntPtr parcelHandle, byte[] raw, uint size);
+
+            //int rpc_port_parcel_create_without_header(rpc_port_parcel_h *h);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_create_without_header")]
+            internal static extern ErrorCode CreateWithoutHeader(out IntPtr parcelHandle);
         }
 
         internal static partial class Proxy
@@ -195,6 +232,10 @@ internal static partial class Interop
             //int rpc_port_proxy_get_port(rpc_port_proxy_h h, rpc_port_port_type_e type, rpc_port_h* port);
             [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_get_port")]
             internal static extern ErrorCode GetPort(IntPtr handle, PortType t, out IntPtr port);
+
+            //int rpc_port_proxy_connect_sync(rpc_port_proxy_h h, const char* appid, const char* port);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_connect_sync")]
+            internal static extern ErrorCode ConnectSync(IntPtr handle, string appId, string port);
         }
 
         internal static partial class Stub
@@ -246,6 +287,25 @@ internal static partial class Interop
             //int rpc_port_stub_get_port(rpc_port_stub_h h, rpc_port_port_type_e type, const char* instance, rpc_port_h *port);
             [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_get_port")]
             internal static extern ErrorCode GetPort(IntPtr handle, PortType t, string instance, out IntPtr port);
+        }
+
+        internal static partial class Port
+        {
+            //int rpc_port_set_private_sharing_array(rpc_port_h port, const char* paths[], unsigned int size);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_set_private_sharing_array")]
+            internal static extern ErrorCode SetPrivateSharingArray(IntPtr handle, string[] paths, uint size);
+
+            //int rpc_port_set_private_sharing(rpc_port_h port, const char* path);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_set_private_sharing")]
+            internal static extern ErrorCode SetPrivateSharing(IntPtr handle, string path);
+
+            //int rpc_port_unset_private_sharing(rpc_port_h port);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_unset_private_sharing")]
+            internal static extern ErrorCode UnsetPrivateSharing(IntPtr handle);
+
+            //int rpc_port_disconnect(rpc_port_h h);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_disconnect")]
+            internal static extern ErrorCode Disconnect(IntPtr handle);
         }
     }
 }

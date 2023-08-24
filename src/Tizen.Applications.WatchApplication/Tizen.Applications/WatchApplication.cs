@@ -24,6 +24,7 @@ namespace Tizen.Applications
     /// The class that represents the Tizen watch application.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API10. Will be removed in API12.")]
     public class WatchApplication : CoreApplication
     {
         /// <summary>
@@ -33,6 +34,7 @@ namespace Tizen.Applications
         /// Default backend for the watch application will be used.
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public WatchApplication() : base(new WatchCoreBackend())
         {
         }
@@ -45,6 +47,7 @@ namespace Tizen.Applications
         /// </remarks>
         /// <param name="backend">The backend instance implementing the ICoreBackend interface.</param>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public WatchApplication(ICoreBackend backend) : base(backend)
         {
         }
@@ -53,36 +56,42 @@ namespace Tizen.Applications
         /// Instances for the window.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         protected Window Window;
 
         /// <summary>
         /// Occurs whenever the application is resumed.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public event EventHandler Resumed;
 
         /// <summary>
         /// Occurs whenever the application is paused.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public event EventHandler Paused;
 
         /// <summary>
         /// Occurs whenever the time tick comes.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public event EventHandler<TimeEventArgs> TimeTick;
 
         /// <summary>
         /// Occurs whenever the time tick comes in the ambient mode.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public event EventHandler<TimeEventArgs> AmbientTick;
 
         /// <summary>
         /// Occurs when the ambient mode is changed.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public event EventHandler<AmbientEventArgs> AmbientChanged;
 
         /// <summary>
@@ -90,6 +99,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="args">Arguments from the commandline.</param>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public override void Run(string[] args)
         {
             Backend.AddEventHandler(EventType.Resumed, OnResume);
@@ -107,6 +117,7 @@ namespace Tizen.Applications
         /// If base.OnCreate() is not called, the event 'Created' will not be emitted.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         protected override void OnCreate()
         {
             base.OnCreate();
@@ -122,6 +133,7 @@ namespace Tizen.Applications
         /// If base.OnResume() is not called, the event 'Resumed' will not be emitted.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         protected virtual void OnResume()
         {
             Resumed?.Invoke(this, EventArgs.Empty);
@@ -132,6 +144,7 @@ namespace Tizen.Applications
         /// If base.OnPause() is not called, the event 'Paused' will not be emitted.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         protected virtual void OnPause()
         {
             Paused?.Invoke(this, EventArgs.Empty);
@@ -143,6 +156,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="time">The received TimeEventArgs to get the time information.</param>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         protected virtual void OnTick(TimeEventArgs time)
         {
             TimeTick?.Invoke(this, time);
@@ -155,6 +169,7 @@ namespace Tizen.Applications
         /// <param name="time">The received TimeEventArgs to get time information.</param>
         /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         protected virtual void OnAmbientTick(TimeEventArgs time)
         {
             AmbientTick?.Invoke(this, time);
@@ -166,6 +181,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="mode">The received AmbientEventArgs.</param>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         protected virtual void OnAmbientChanged(AmbientEventArgs mode)
         {
             AmbientChanged?.Invoke(this, mode);
@@ -199,6 +215,7 @@ namespace Tizen.Applications
         /// </code>
         /// </example>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         protected WatchTime GetCurrentTime()
         {
             SafeWatchTimeHandle handle;
@@ -243,6 +260,7 @@ namespace Tizen.Applications
         /// </code>
         /// </example>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         protected AmbientTickType GetAmbientTickType()
         {
             AmbientTickType ambientTickType;
@@ -288,6 +306,7 @@ namespace Tizen.Applications
         /// </code>
         /// </example>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         protected void SetAmbientTickType(AmbientTickType ambientTickType)
         {
             Interop.Watch.ErrorCode err = Interop.Watch.SetAmbientTickType(ambientTickType);
@@ -330,6 +349,7 @@ namespace Tizen.Applications
         /// </code>
         /// </example>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         protected void SetTimeTickFrequency(int ticks, TimeTickResolution type)
         {
             Interop.Watch.ErrorCode err = Interop.Watch.SetTimeTickFrequency(ticks, type);
@@ -372,6 +392,7 @@ namespace Tizen.Applications
         /// </code>
         /// </example>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         protected void GetTimeTickFrequency(out int ticks, out TimeTickResolution type)
         {
             Interop.Watch.ErrorCode err = Interop.Watch.GetTimeTickFrequency(out ticks, out type);

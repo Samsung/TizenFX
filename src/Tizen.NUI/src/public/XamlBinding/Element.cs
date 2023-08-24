@@ -1,7 +1,23 @@
+/*
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Xml;
@@ -15,45 +31,26 @@ namespace Tizen.NUI.Binding
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract partial class Element : BindableObject, IElement, INameScope, IElementController
     {
-
-        // public static readonly BindableProperty MenuProperty = BindableProperty.CreateAttached(nameof(Menu), typeof(Menu), typeof(Element), null);
-
-        // public static Menu GetMenu(BindableObject bindable)
-        // {
-        //   return (Menu)bindable.GetValue(MenuProperty);
-        // }
-
-        // public static void SetMenu(BindableObject bindable, Menu menu)
-        // {
-        //   bindable.SetValue(MenuProperty, menu);
-        // }
-
-        internal static readonly ReadOnlyCollection<Element> EmptyChildren = new ReadOnlyCollection<Element>(new Element[0]);
+        internal static readonly ReadOnlyCollection<Element> EmptyChildren = new ReadOnlyCollection<Element>(System.Array.Empty<Element>());
 
         /// <summary>
         /// Identifies the ClassId bindable property.
         /// </summary>
-        internal static readonly BindableProperty ClassIdProperty = BindableProperty.Create("ClassId", typeof(string), typeof(Tizen.NUI.BaseComponents.View), null);
+        internal static readonly BindableProperty ClassIdProperty = BindableProperty.Create(nameof(ClassId), typeof(string), typeof(Tizen.NUI.BaseComponents.View), null);
 
-        string _automationId;
+        string automationId;
 
-        IList<BindableObject> _bindableResources;
+        IList<BindableObject> bindableResources;
 
-        List<Action<object, ResourcesChangedEventArgs>> _changeHandlers;
+        List<Action<object, ResourcesChangedEventArgs>> changeHandlers;
 
-        Dictionary<BindableProperty, string> _dynamicResources;
+        Dictionary<BindableProperty, string> dynamicResources;
 
-        IEffectControlProvider _effectControlProvider;
+        Guid? id;
 
-        TrackableCollection<Effect> _effects;
+        Element parentOverride;
 
-        Guid? _id;
-
-        Element _parentOverride;
-
-        IPlatform _platform;
-
-        string _styleId;
+        string styleId;
 
         /// <summary>
         /// Gets or sets a value that allows the automation framework to find and interact with this element.
@@ -62,12 +59,12 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string AutomationId
         {
-            get { return _automationId; }
+            get { return automationId; }
             set
             {
-                if (_automationId != null)
+                if (automationId != null)
                     throw new InvalidOperationException("AutomationId may only be set one time");
-                _automationId = value;
+                automationId = value;
             }
         }
 
@@ -82,20 +79,6 @@ namespace Tizen.NUI.Binding
             set { SetValue(ClassIdProperty, value); }
         }
 
-        internal IList<Effect> Effects
-        {
-            get
-            {
-                if (_effects == null)
-                {
-                    _effects = new TrackableCollection<Effect>();
-                    _effects.CollectionChanged += EffectsOnCollectionChanged;
-                    _effects.Clearing += EffectsOnClearing;
-                }
-                return _effects;
-            }
-        }
-
         /// <summary>
         /// Gets a value that can be used to uniquely identify an element through the run of an application.
         /// </summary>
@@ -105,9 +88,9 @@ namespace Tizen.NUI.Binding
         {
             get
             {
-                if (!_id.HasValue)
-                    _id = Guid.NewGuid();
-                return _id.Value;
+                if (!id.HasValue)
+                    id = Guid.NewGuid();
+                return id.Value;
             }
         }
 
@@ -116,7 +99,7 @@ namespace Tizen.NUI.Binding
         /// </summary>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [Obsolete("ParentView is obsolete as of version 2.1.0. Please use Parent instead.")]
+        [Obsolete("ParentView is obsolete as of version 2.1.0. Use Parent instead.")]
         public BaseHandle ParentView
         {
             get
@@ -140,14 +123,14 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string StyleId
         {
-            get { return _styleId; }
+            get { return styleId; }
             set
             {
-                if (_styleId == value)
+                if (styleId == value)
                     return;
 
                 OnPropertyChanging();
-                _styleId = value;
+                styleId = value;
                 OnPropertyChanged();
             }
         }
@@ -164,10 +147,10 @@ namespace Tizen.NUI.Binding
 
         internal Element ParentOverride
         {
-            get { return _parentOverride; }
+            get { return parentOverride; }
             set
             {
-                if (_parentOverride == value)
+                if (parentOverride == value)
                     return;
 
                 bool emitChange = Parent != value;
@@ -175,35 +158,10 @@ namespace Tizen.NUI.Binding
                 if (emitChange)
                     OnPropertyChanging(nameof(Parent));
 
-                _parentOverride = value;
+                parentOverride = value;
 
                 if (emitChange)
                     OnPropertyChanged(nameof(Parent));
-            }
-        }
-
-        /// <summary>
-        /// For internal use.
-        /// </summary>
-        internal IPlatform Platform
-        {
-            get
-            {
-                if (_platform == null && RealParent != null)
-                    return RealParent.Platform;
-                return _platform;
-            }
-            set
-            {
-                if (_platform == value)
-                    return;
-                _platform = value;
-                PlatformSet?.Invoke(this, EventArgs.Empty);
-                foreach (Element descendant in Descendants())
-                {
-                    descendant._platform = _platform;
-                    descendant.PlatformSet?.Invoke(this, EventArgs.Empty);
-                }
             }
         }
 
@@ -215,13 +173,13 @@ namespace Tizen.NUI.Binding
 
         Dictionary<BindableProperty, string> DynamicResources
         {
-            get { return _dynamicResources ?? (_dynamicResources = new Dictionary<BindableProperty, string>()); }
+            get { return dynamicResources ?? (dynamicResources = new Dictionary<BindableProperty, string>()); }
         }
 
         void IElement.AddResourcesChangedListener(Action<object, ResourcesChangedEventArgs> onchanged)
         {
-            _changeHandlers = _changeHandlers ?? new List<Action<object, ResourcesChangedEventArgs>>(2);
-            _changeHandlers.Add(onchanged);
+            changeHandlers = changeHandlers ?? new List<Action<object, ResourcesChangedEventArgs>>(2);
+            changeHandlers.Add(onchanged);
         }
 
         /// <summary>
@@ -231,7 +189,7 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Element Parent
         {
-            get { return _parentOverride ?? RealParent; }
+            get { return parentOverride ?? RealParent; }
             set
             {
                 if (RealParent == value)
@@ -260,49 +218,21 @@ namespace Tizen.NUI.Binding
 
                 OnParentSet();
 
-                if (RealParent != null)
-                {
-                    IPlatform platform = RealParent.Platform;
-                    if (platform != null)
-                        Platform = platform;
-                }
-
                 OnPropertyChanged();
             }
         }
 
+        /// <summary>
+        /// Gets the x:Name dictionary of the element.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Dictionary<string, object> XNames => (GetNameScope() as NameScope)?.XNames ?? null;
+
         void IElement.RemoveResourcesChangedListener(Action<object, ResourcesChangedEventArgs> onchanged)
         {
-            if (_changeHandlers == null)
+            if (changeHandlers == null)
                 return;
-            _changeHandlers.Remove(onchanged);
-        }
-
-        /// <summary>
-        /// For internal use.
-        /// </summary>
-        internal IEffectControlProvider EffectControlProvider
-        {
-            get { return _effectControlProvider; }
-            set
-            {
-                if (_effectControlProvider == value)
-                    return;
-                if (_effectControlProvider != null && _effects != null)
-                {
-                    foreach (Effect effect in _effects)
-                        effect?.SendDetached();
-                }
-                _effectControlProvider = value;
-                if (_effectControlProvider != null && _effects != null)
-                {
-                    foreach (Effect effect in _effects)
-                    {
-                        if (effect != null)
-                            AttachEffect(effect);
-                    }
-                }
-            }
+            changeHandlers.Remove(onchanged);
         }
 
         //void IElementController.SetValueFromRenderer(BindableProperty property, object value) => SetValueFromRenderer(property, value);
@@ -327,28 +257,17 @@ namespace Tizen.NUI.Binding
             SetValueCore(property, value);
         }
 
-        /// <summary>
-        /// For internal use.
-        /// </summary>
-        /// <param name="name">The nameof the effect</param>
-        /// <returns>true if attached</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool EffectIsAttached(string name)
-        {
-            foreach (var effect in Effects)
-            {
-                if (effect.ResolveId == name)
-                    return true;
-            }
-            return false;
-        }
-
         object INameScope.FindByName(string name)
         {
             INameScope namescope = GetNameScope();
             if (namescope == null)
-                throw new InvalidOperationException("this element is not in a namescope");
-            return namescope.FindByName(name);
+            {
+                return null;
+            }
+            else
+            {
+                return namescope.FindByName(name);
+            }
         }
 
         void INameScope.RegisterName(string name, object scopedElement)
@@ -426,8 +345,8 @@ namespace Tizen.NUI.Binding
                 SetChildInheritedBindingContext(child, bc);
             }
 
-            if (_bindableResources != null)
-                foreach (BindableObject item in _bindableResources)
+            if (bindableResources != null)
+                foreach (BindableObject item in bindableResources)
                 {
                     SetInheritedBindingContext(item, BindingContext);
                 }
@@ -439,15 +358,19 @@ namespace Tizen.NUI.Binding
         /// Invoked whenever the ChildAdded event needs to be emitted.Implement this method to add class handling for this event.
         /// </summary>
         /// <param name="child">The element that was added.</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <exception cref="ArgumentNullException"> Thrown when child is null. </exception>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnChildAdded(Element child)
         {
-            child.Parent = this;
-            if (Platform != null)
-                child.Platform = Platform;
+            if (child == null)
+            {
+                throw new ArgumentNullException(nameof(child));
+            }
 
-            child.ApplyBindings(skipBindingContext: false, fromBindingContextChanged:true);
+            child.Parent = this;
+
+            child.ApplyBindings(skipBindingContext: false, fromBindingContextChanged: true);
 
             ChildAdded?.Invoke(this, new ElementEventArgs(child));
 
@@ -460,10 +383,16 @@ namespace Tizen.NUI.Binding
         /// Invoked whenever the ChildRemoved event needs to be emitted.Implement this method to add class handling for this event.
         /// </summary>
         /// <param name="child">The element that was removed.</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <exception cref="ArgumentNullException"> Thrown when child is null. </exception>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnChildRemoved(Element child)
         {
+            if (child == null)
+            {
+                throw new ArgumentNullException(nameof(child));
+            }
+
             child.Parent = null;
 
             ChildRemoved?.Invoke(child, new ElementEventArgs(child));
@@ -493,15 +422,6 @@ namespace Tizen.NUI.Binding
         protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             base.OnPropertyChanged(propertyName);
-
-            if (_effects == null || _effects.Count == 0)
-                return;
-
-            var args = new PropertyChangedEventArgs(propertyName);
-            foreach (Effect effect in _effects)
-            {
-                effect?.SendOnElementPropertyChanged(args);
-            }
         }
 
         /// <summary>
@@ -528,10 +448,7 @@ namespace Tizen.NUI.Binding
 
         internal virtual void OnParentResourcesChanged(object sender, ResourcesChangedEventArgs e)
         {
-            // if (e == ResourcesChangedEventArgs.StyleSheets)
-            // 	// ApplyStyleSheetsOnParentSet();
-            // else
-            // 	OnParentResourcesChanged(e.Values);
+            OnParentResourcesChanged(e.Values);
         }
 
         internal virtual void OnParentResourcesChanged(IEnumerable<KeyValuePair<string, object>> values)
@@ -544,7 +461,7 @@ namespace Tizen.NUI.Binding
             DynamicResources.Remove(property);
 
             if (DynamicResources.Count == 0)
-                _dynamicResources = null;
+                dynamicResources = null;
             base.OnRemoveDynamicResource(property);
         }
 
@@ -557,13 +474,13 @@ namespace Tizen.NUI.Binding
         {
             if (values == null)
                 return;
-            if (_changeHandlers != null)
-                foreach (Action<object, ResourcesChangedEventArgs> handler in _changeHandlers)
+            if (changeHandlers != null)
+                foreach (Action<object, ResourcesChangedEventArgs> handler in changeHandlers)
                     handler(this, new ResourcesChangedEventArgs(values));
-            if (_dynamicResources == null)
+            if (dynamicResources == null)
                 return;
-            if (_bindableResources == null)
-                _bindableResources = new List<BindableObject>();
+            if (bindableResources == null)
+                bindableResources = new List<BindableObject>();
             foreach (KeyValuePair<string, object> value in values)
             {
                 List<BindableProperty> changedResources = null;
@@ -586,8 +503,8 @@ namespace Tizen.NUI.Binding
                 var bindableObject = value.Value as BindableObject;
                 if (bindableObject != null && (bindableObject as Element)?.Parent == null)
                 {
-                    if (!_bindableResources.Contains(bindableObject))
-                        _bindableResources.Add(bindableObject);
+                    if (!bindableResources.Contains(bindableObject))
+                        bindableResources.Add(bindableObject);
                     SetInheritedBindingContext(bindableObject, BindingContext);
                 }
             }
@@ -603,16 +520,6 @@ namespace Tizen.NUI.Binding
         }
 
         internal event EventHandler ParentSet;
-
-        internal static void SetFlowDirectionFromParent(Element child)
-        {
-        }
-
-        /// <summary>
-        /// For internal use.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler PlatformSet;
 
         internal virtual void SetChildInheritedBindingContext(Element child, object context)
         {
@@ -637,78 +544,6 @@ namespace Tizen.NUI.Binding
                     yield return child;
                     queue.Enqueue(child);
                 }
-            }
-        }
-
-        void AttachEffect(Effect effect)
-        {
-            if (_effectControlProvider == null)
-                return;
-            if (effect.IsAttached)
-                throw new InvalidOperationException("Cannot attach Effect to multiple sources");
-
-            Effect effectToRegister = effect;
-            if (effect is RoutingEffect)
-                effectToRegister = ((RoutingEffect)effect).Inner;
-            _effectControlProvider.RegisterEffect(effectToRegister);
-            effectToRegister.Element = this;
-            effect.SendAttached();
-        }
-
-        void EffectsOnClearing(object sender, EventArgs eventArgs)
-        {
-            foreach (Effect effect in _effects)
-            {
-                effect?.ClearEffect();
-            }
-        }
-
-        void EffectsOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            switch (e.Action)
-            {
-                case NotifyCollectionChangedAction.Add:
-                    foreach (Effect effect in e.NewItems)
-                    {
-                        AttachEffect(effect);
-                    }
-                    break;
-                case NotifyCollectionChangedAction.Move:
-                    break;
-                case NotifyCollectionChangedAction.Remove:
-                    foreach (Effect effect in e.OldItems)
-                    {
-                        effect.ClearEffect();
-                    }
-                    break;
-                case NotifyCollectionChangedAction.Replace:
-                    foreach (Effect effect in e.NewItems)
-                    {
-                        AttachEffect(effect);
-                    }
-                    foreach (Effect effect in e.OldItems)
-                    {
-                        effect.ClearEffect();
-                    }
-                    break;
-                case NotifyCollectionChangedAction.Reset:
-                    if (e.NewItems != null)
-                    {
-                        foreach (Effect effect in e.NewItems)
-                        {
-                            AttachEffect(effect);
-                        }
-                    }
-                    if (e.OldItems != null)
-                    {
-                        foreach (Effect effect in e.OldItems)
-                        {
-                            effect.ClearEffect();
-                        }
-                    }
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
             }
         }
 

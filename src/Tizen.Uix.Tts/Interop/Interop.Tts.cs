@@ -40,16 +40,17 @@ internal static partial class Interop
             IoError = Tizen.Internals.Errors.ErrorCode.IoError,                     /* I/O error */
             InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,   /* Invalid parameter */
             OutOfNetwork = Tizen.Internals.Errors.ErrorCode.Networkdown,            /* Network is down */
-            TimedOut = Tizen.Internals.Errors.ErrorCode.TimedOut,                   /* No answer from the STT service */
+            TimedOut = Tizen.Internals.Errors.ErrorCode.TimedOut,                   /* No answer from the TTS service */
             PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,   /* Permission denied */
-            NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,           /* STT NOT supported */
+            NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,           /* TTS NOT supported */
             InvalidState = ErrorTts | 0x01,                                         /* Invalid state */
             InvalidVoice = ErrorTts | 0x02,                                         /* Invalid language */
-            EngineNotFound = ErrorTts | 0x03,                                       /* No available engine  */
-            OperationFailed = ErrorTts | 0x04,                                      /* Operation failed  */
+            EngineNotFound = ErrorTts | 0x03,                                       /* No available engine */
+            OperationFailed = ErrorTts | 0x04,                                      /* Operation failed */
             AudioPolicyBlocked = ErrorTts | 0x05,                                   /* Audio policy blocked */
-            NotSupportedFeature = ErrorTts | 0x06,                                  /* Not supported feature of current engine*/
-            ServiceReset = ErrorTts | 0x07                                          /* Service reset*/
+            NotSupportedFeature = ErrorTts | 0x06,                                  /* Not supported feature of current engine */
+            ServiceReset = ErrorTts | 0x07,                                         /* Service reset*/
+            ScreenReaderOff = ErrorTts | 0x08                                       /* Screen reader off */
         };
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -72,6 +73,12 @@ internal static partial class Interop
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void TtsEngineChangedCB(IntPtr handle, IntPtr engine_id, IntPtr language, int voice_type, bool need_credential, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void TtsScreenReaderChangedCB(IntPtr handle, bool is_on, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void TtsServiceStateChangedCB(IntPtr handle, ServiceState previous, ServiceState current, IntPtr userData);
 
         [DllImport(Libraries.Tts, EntryPoint = "tts_create", CallingConvention = CallingConvention.Cdecl)]
         internal static extern TtsError TtsCreate(out IntPtr handle);
@@ -112,14 +119,17 @@ internal static partial class Interop
         [DllImport(Libraries.Tts, EntryPoint = "tts_get_state", CallingConvention = CallingConvention.Cdecl)]
         internal static extern TtsError TtsGetState(IntPtr handle, out State state);
 
+        [DllImport(Libraries.Tts, EntryPoint = "tts_get_service_state", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern TtsError TtsGetServiceState(IntPtr handle, out ServiceState serviceState);
+
         [DllImport(Libraries.Tts, EntryPoint = "tts_get_speed_range", CallingConvention = CallingConvention.Cdecl)]
         internal static extern TtsError TtsGetSpeedRange(IntPtr handle, out int min, out int normal, out int max);
 
         [DllImport(Libraries.Tts, EntryPoint = "tts_get_error_message", CallingConvention = CallingConvention.Cdecl)]
         internal static extern TtsError TtsGetErrorMessage(IntPtr handle, out string err_msg);
 
-        [DllImport(Libraries.Tts, EntryPoint = "tts_is_recognition_type_supported", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern TtsError TtsIsRecognitionTypeSupported(IntPtr handle, string type, out bool support);
+        [DllImport(Libraries.Tts, EntryPoint = "tts_check_screen_reader_on", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern TtsError TtsCheckScreenReaderOn(IntPtr handle, out bool isOn);
 
         [DllImport(Libraries.Tts, EntryPoint = "tts_add_text", CallingConvention = CallingConvention.Cdecl)]
         internal static extern TtsError TtsAddText(IntPtr handle, string text, string language, int voice_type, int speed, out int uttId);
@@ -132,6 +142,9 @@ internal static partial class Interop
 
         [DllImport(Libraries.Tts, EntryPoint = "tts_pause", CallingConvention = CallingConvention.Cdecl)]
         internal static extern TtsError TtsPause(IntPtr handle);
+
+        [DllImport(Libraries.Tts, EntryPoint = "tts_repeat", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern TtsError TtsRepeat(IntPtr handle, out string text_repeat, out int utt_id);
 
         [DllImport(Libraries.Tts, EntryPoint = "tts_set_state_changed_cb", CallingConvention = CallingConvention.Cdecl)]
         internal static extern TtsError TtsSetStateChangedCB(IntPtr handle, TtsStateChangedCB callback, IntPtr userData);
@@ -168,5 +181,17 @@ internal static partial class Interop
 
         [DllImport(Libraries.Tts, EntryPoint = "tts_unset_engine_changed_cb", CallingConvention = CallingConvention.Cdecl)]
         internal static extern TtsError TtsUnsetEngineChangedCB(IntPtr handle);
+
+        [DllImport(Libraries.Tts, EntryPoint = "tts_set_screen_reader_changed_cb", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern TtsError TtsSetScreenReaderChangedCB(IntPtr handle, TtsScreenReaderChangedCB callback, IntPtr userData);
+
+        [DllImport(Libraries.Tts, EntryPoint = "tts_unset_screen_reader_changed_cb", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern TtsError TtsUnsetScreenReaderChangedCB(IntPtr handle);
+
+        [DllImport(Libraries.Tts, EntryPoint = "tts_set_service_state_changed_cb", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern TtsError TtsSetServiceStateChangedCB(IntPtr handle, TtsServiceStateChangedCB callback, IntPtr userData);
+
+        [DllImport(Libraries.Tts, EntryPoint = "tts_unset_service_state_changed_cb", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern TtsError TtsUnsetServiceStateChangedCB(IntPtr handle);
     }
 }

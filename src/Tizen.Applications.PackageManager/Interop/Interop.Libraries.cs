@@ -19,5 +19,6 @@ internal static partial class Interop
     internal static partial class Libraries
     {
         public const string PackageManager = "libcapi-appfw-package-manager.so.0";
+        public const string PackageManagerInternal = "libpkgmgr-client.so.0";
     }
 }

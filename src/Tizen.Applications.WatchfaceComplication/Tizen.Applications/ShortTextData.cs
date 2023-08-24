@@ -21,13 +21,13 @@ using System.Text;
 namespace Tizen.Applications.WatchfaceComplication
 {
     /// <summary>
-    /// Represents the ShortTextData class for the ShortText type complication.
+    /// Represents the short text data for a complication.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public class ShortTextData : ComplicationData
     {
         /// <summary>
-        /// Initializes the ShortTextData class.
+        /// Initializes a new instance of the ShortTextData class.
         /// </summary>
         /// <param name="shortText">The short text.</param>
         /// <param name="iconPath">The icon path.</param>

@@ -216,7 +216,7 @@ namespace Tizen.NUI
         protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
         {
             Log.Debug("NUI", "OnAppControlReceived() is called!");
-            if (e != null)
+            if (e != null && e.ReceivedAppControl != null)
             {
                 Log.Debug("NUI", "OnAppControlReceived() is called! ApplicationId=" + e.ReceivedAppControl.ApplicationId);
                 Log.Debug("NUI", "CallerApplicationId=" + e.ReceivedAppControl.CallerApplicationId + "   IsReplyRequest=" + e.ReceivedAppControl.IsReplyRequest);
@@ -227,7 +227,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if want to handle behavior.
         /// </summary>
-        protected void OnPause()
+        protected virtual void OnPause()
         {
             Log.Debug("NUI", "OnPause() is called!");
             Paused?.Invoke(this, EventArgs.Empty);

@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Tizen.Multimedia
 {
@@ -149,74 +150,6 @@ namespace Tizen.Multimedia
         {
             Interop.AudioDevice.RemoveDeviceConnectionChangedCallback(_deviceConnectionChangedCallbackId).
                 ThrowIfError("Unable to remove device connection changed callback");
-        }
-        #endregion
-
-        #region DeviceStateChanged event
-        private static int _deviceStateChangedCallbackId = -1;
-
-        private static Interop.AudioDevice.StateChangedCallback _audioDeviceStateChangedCallback;
-        private static EventHandler<AudioDeviceStateChangedEventArgs> _audioDeviceStateChanged;
-        private static readonly object _audioDeviceStateLock = new object();
-
-        /// <summary>
-        /// Occurs when the state of an audio device changes.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated since API level 5. Please use the DeviceRunningStateChanged property instead.")]
-        public static event EventHandler<AudioDeviceStateChangedEventArgs> DeviceStateChanged
-        {
-            add
-            {
-                if (value == null)
-                {
-                    return;
-                }
-
-                lock (_audioDeviceStateLock)
-                {
-                    if (_audioDeviceStateChanged == null)
-                    {
-                        RegisterDeviceStateChangedEvent();
-                    }
-                    _audioDeviceStateChanged += value;
-                }
-            }
-            remove
-            {
-                if (value == null)
-                {
-                    return;
-                }
-
-                lock (_audioDeviceStateLock)
-                {
-                    if (_audioDeviceStateChanged == value)
-                    {
-                        UnregisterDeviceStateChangedEvent();
-                    }
-                    _audioDeviceStateChanged -= value;
-                }
-            }
-        }
-
-        private static void RegisterDeviceStateChangedEvent()
-        {
-            _audioDeviceStateChangedCallback = (device, changedState, _) =>
-            {
-                _audioDeviceStateChanged?.Invoke(null,
-                    new AudioDeviceStateChangedEventArgs(new AudioDevice(device), changedState));
-            };
-
-            Interop.AudioDevice.AddDeviceStateChangedCallback(AudioDeviceOptions.All,
-                _audioDeviceStateChangedCallback, IntPtr.Zero, out _deviceStateChangedCallbackId).
-                ThrowIfError("Failed to add device state changed event");
-        }
-
-        private static void UnregisterDeviceStateChangedEvent()
-        {
-            Interop.AudioDevice.RemoveDeviceStateChangedCallback(_deviceStateChangedCallbackId).
-                ThrowIfError("Failed to remove device state changed event");
         }
         #endregion
 

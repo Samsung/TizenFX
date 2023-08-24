@@ -21,10 +21,15 @@ namespace Tizen.Network.Bluetooth
     internal class BluetoothAudioImpl : IDisposable
     {
         private event EventHandler<AudioConnectionStateChangedEventArgs> _audioConnectionChanged;
-        private event EventHandler<AgScoStateChangedEventArgs> _agScoStateChanged;
         private Interop.Bluetooth.AudioConnectionStateChangedCallback _audioConnectionChangedCallback;
 
-        private static readonly BluetoothAudioImpl _instance = new BluetoothAudioImpl();
+        private event EventHandler<AgScoStateChangedEventArgs> _agScoStateChanged;
+        private Interop.Bluetooth.AgScoStateChangedCallback _agScoStateChangedCallback;
+
+        private static readonly Lazy<BluetoothAudioImpl> _instance = new Lazy<BluetoothAudioImpl>(() =>
+        {
+            return new BluetoothAudioImpl();
+        });
         private bool disposed = false;
 
         internal event EventHandler<AudioConnectionStateChangedEventArgs> AudioConnectionStateChanged
@@ -51,10 +56,7 @@ namespace Tizen.Network.Bluetooth
         {
             _audioConnectionChangedCallback = (int result, bool connected, string deviceAddress, int profileType, IntPtr userData) =>
             {
-                if (_audioConnectionChanged != null)
-                {
-                    _audioConnectionChanged(null, new AudioConnectionStateChangedEventArgs(result, connected, deviceAddress, (BluetoothAudioProfileType)profileType));
-                }
+                _audioConnectionChanged?.Invoke(this, new AudioConnectionStateChangedEventArgs(result, connected, deviceAddress, (BluetoothAudioProfileType)profileType));
             };
             int ret = Interop.Bluetooth.SetAudioConnectionStateChangedCallback(_audioConnectionChangedCallback, IntPtr.Zero);
             if (ret != (int)BluetoothError.None)
@@ -162,7 +164,7 @@ namespace Tizen.Network.Bluetooth
 
         private void RegisterAgScoStateChangedEvent()
         {
-            Interop.Bluetooth.AgScoStateChangedCallback _agScoStateChangedCallback = (int result, bool opened, IntPtr userData) =>
+            _agScoStateChangedCallback = (int result, bool opened, IntPtr userData) =>
             {
                 _agScoStateChanged?.Invoke(null, new AgScoStateChangedEventArgs(opened));
             };
@@ -200,11 +202,28 @@ namespace Tizen.Network.Bluetooth
             }
         }
 
+        internal void SelectRole(BluetoothAudioRole role)
+        {
+            if (Globals.IsAudioInitialize)
+            {
+                int ret = Interop.Bluetooth.SelectAudioRole(role);
+                if (ret != (int)BluetoothError.None && ret != (int)BluetoothError.AlreadyDone)
+                {
+                    Log.Error(Globals.LogTag, "Failed to select audio role, Error - " + (BluetoothError)ret);
+                    BluetoothErrorFactory.ThrowBluetoothException(ret);
+                }
+            }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotInitialized);
+            }
+        }
+
         internal static BluetoothAudioImpl Instance
         {
             get
             {
-                return _instance;
+                return _instance.Value;
             }
         }
 

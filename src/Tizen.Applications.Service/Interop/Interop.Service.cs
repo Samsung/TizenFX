@@ -17,6 +17,7 @@
 using System;
 using System.Runtime.InteropServices;
 using Tizen.Applications.CoreBackend;
+using Tizen.Internals;
 using Tizen.Internals.Errors;
 
 internal static partial class Interop
@@ -37,13 +38,17 @@ internal static partial class Interop
         [DllImport(Libraries.AppcoreAgent, EntryPoint = "service_app_exit")]
         internal static extern void Exit();
 
+        [DllImport(Libraries.AppcoreAgent, EntryPoint = "service_app_exit_without_restart")]
+        internal static extern void ExitWithoutRestarting();
+
         [DllImport(Libraries.AppcoreAgent, EntryPoint = "service_app_add_event_handler")]
         internal static extern ErrorCode AddEventHandler(out IntPtr handle, DefaultCoreBackend.AppEventType eventType, AppEventCallback callback, IntPtr data);
 
         [DllImport(Libraries.AppcoreAgent, EntryPoint = "service_app_remove_event_handler")]
         internal static extern ErrorCode RemoveEventHandler(IntPtr handle);
 
-        [StructLayoutAttribute(LayoutKind.Sequential)]
+        [NativeStruct("service_app_lifecycle_callback_s", Include="service_app.h", PkgConfig="capi-appfw-service-application")]
+        [StructLayout(LayoutKind.Sequential)]
         internal struct ServiceAppLifecycleCallbacks
         {
             public ServiceAppCreateCallback OnCreate;

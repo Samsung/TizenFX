@@ -1,3 +1,20 @@
+/*
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,8 +25,6 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-
-using Tizen.NUI.Binding.Internals;
 using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Binding
@@ -19,10 +34,10 @@ namespace Tizen.NUI.Binding
     public class ResourceDictionary : IResourceDictionary, IDictionary<string, object>
     {
         static ConditionalWeakTable<Type, ResourceDictionary> s_instances = new ConditionalWeakTable<Type, ResourceDictionary>();
-        readonly Dictionary<string, object> _innerDictionary = new Dictionary<string, object>();
-        ResourceDictionary _mergedInstance;
-        Type _mergedWith;
-        Uri _source;
+        readonly Dictionary<string, object> innerDictionary = new Dictionary<string, object>();
+        ResourceDictionary mergedInstance;
+        Type mergedWith;
+        Uri source;
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -38,24 +53,26 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         [TypeConverter(typeof(TypeTypeConverter))]
         [Obsolete("Use Source")]
-        public Type MergedWith {
-            get { return _mergedWith; }
-            set {
-                if (_mergedWith == value)
+        public Type MergedWith
+        {
+            get { return mergedWith; }
+            set
+            {
+                if (mergedWith == value)
                     return;
 
-                if (_source != null)
+                if (source != null)
                     throw new ArgumentException("MergedWith can not be used with Source");
 
                 if (!typeof(ResourceDictionary).GetTypeInfo().IsAssignableFrom(value.GetTypeInfo()))
                     throw new ArgumentException("MergedWith should inherit from ResourceDictionary");
 
-                _mergedWith = value;
-                if (_mergedWith == null)
+                mergedWith = value;
+                if (mergedWith == null)
                     return;
 
-                _mergedInstance = s_instances.GetValue(_mergedWith, (key) => (ResourceDictionary)Activator.CreateInstance(key));
-                OnValuesChanged(_mergedInstance.ToArray());
+                mergedInstance = s_instances.GetValue(mergedWith, (key) => (ResourceDictionary)Activator.CreateInstance(key));
+                OnValuesChanged(mergedInstance.ToArray());
             }
         }
 
@@ -65,10 +82,12 @@ namespace Tizen.NUI.Binding
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         [TypeConverter(typeof(RDSourceTypeConverter))]
-        public Uri Source {
-            get { return _source; }
-            set {
-                if (_source == value)
+        public Uri Source
+        {
+            get { return source; }
+            set
+            {
+                if (source == value)
                     return;
                 throw new InvalidOperationException("Source can only be set from XAML."); //through the RDSourceTypeConverter
             }
@@ -85,26 +104,29 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetAndLoadSource(Uri value, string resourcePath, Assembly assembly, System.Xml.IXmlLineInfo lineInfo)
         {
-            _source = value;
-            if (_mergedWith != null)
+            source = value;
+            if (mergedWith != null)
                 throw new ArgumentException("Source can not be used with MergedWith");
 
             //this will return a type if the RD as an x:Class element, and codebehind
             var type = XamlResourceIdAttribute.GetTypeForPath(assembly, resourcePath);
             if (type != null)
-                _mergedInstance = s_instances.GetValue(type, (key) => (ResourceDictionary)Activator.CreateInstance(key));
+                mergedInstance = s_instances.GetValue(type, (key) => (ResourceDictionary)Activator.CreateInstance(key));
             else
-                _mergedInstance = DependencyService.Get<IResourcesLoader>()?.CreateFromResource<ResourceDictionary>(resourcePath, assembly, lineInfo);
-            OnValuesChanged(_mergedInstance.ToArray());
+                mergedInstance = DependencyService.Get<IResourcesLoader>()?.CreateFromResource<ResourceDictionary>(resourcePath, assembly, lineInfo);
+            OnValuesChanged(mergedInstance.ToArray());
         }
 
         ICollection<ResourceDictionary> _mergedDictionaries;
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ICollection<ResourceDictionary> MergedDictionaries {
-            get {
-                if (_mergedDictionaries == null) {
+        public ICollection<ResourceDictionary> MergedDictionaries
+        {
+            get
+            {
+                if (_mergedDictionaries == null)
+                {
                     var col = new ObservableCollection<ResourceDictionary>();
                     col.CollectionChanged += MergedDictionaries_CollectionChanged;
                     _mergedDictionaries = col;
@@ -113,16 +135,6 @@ namespace Tizen.NUI.Binding
             }
         }
 
-        internal IList<StyleSheets.StyleSheet> StyleSheets { get; set; }
-
-        void StyleSheetsCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            switch (e.Action) {
-            case NotifyCollectionChangedAction.Add:
-                    ValuesChanged?.Invoke(this, ResourcesChangedEventArgs.StyleSheets);
-                break;
-            }
-        }
         IList<ResourceDictionary> _collectionTrack;
 
         void MergedDictionaries_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -133,7 +145,8 @@ namespace Tizen.NUI.Binding
 
             _collectionTrack = _collectionTrack ?? new List<ResourceDictionary>();
             // Collection has been cleared
-            if (e.Action == NotifyCollectionChangedAction.Reset) {
+            if (e.Action == NotifyCollectionChangedAction.Reset)
+            {
                 foreach (var dictionary in _collectionTrack)
                     dictionary.ValuesChanged -= Item_ValuesChanged;
 
@@ -172,7 +185,7 @@ namespace Tizen.NUI.Binding
 
         void ICollection<KeyValuePair<string, object>>.Add(KeyValuePair<string, object> item)
         {
-            ((ICollection<KeyValuePair<string, object>>)_innerDictionary).Add(item);
+            ((ICollection<KeyValuePair<string, object>>)innerDictionary).Add(item);
             OnValuesChanged(item);
         }
 
@@ -180,35 +193,35 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Clear()
         {
-            _innerDictionary.Clear();
+            innerDictionary.Clear();
         }
 
         bool ICollection<KeyValuePair<string, object>>.Contains(KeyValuePair<string, object> item)
         {
-            return ((ICollection<KeyValuePair<string, object>>)_innerDictionary).Contains(item)
-                || (_mergedInstance != null && _mergedInstance.Contains(item));
+            return ((ICollection<KeyValuePair<string, object>>)innerDictionary).Contains(item)
+                || (mergedInstance != null && mergedInstance.Contains(item));
         }
 
         void ICollection<KeyValuePair<string, object>>.CopyTo(KeyValuePair<string, object>[] array, int arrayIndex)
         {
-            ((ICollection<KeyValuePair<string, object>>)_innerDictionary).CopyTo(array, arrayIndex);
+            ((ICollection<KeyValuePair<string, object>>)innerDictionary).CopyTo(array, arrayIndex);
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int Count
         {
-            get { return _innerDictionary.Count; }
+            get { return innerDictionary.Count; }
         }
 
         bool ICollection<KeyValuePair<string, object>>.IsReadOnly
         {
-            get { return ((ICollection<KeyValuePair<string, object>>)_innerDictionary).IsReadOnly; }
+            get { return ((ICollection<KeyValuePair<string, object>>)innerDictionary).IsReadOnly; }
         }
 
         bool ICollection<KeyValuePair<string, object>>.Remove(KeyValuePair<string, object> item)
         {
-            return ((ICollection<KeyValuePair<string, object>>)_innerDictionary).Remove(item);
+            return ((ICollection<KeyValuePair<string, object>>)innerDictionary).Remove(item);
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -217,7 +230,7 @@ namespace Tizen.NUI.Binding
         {
             if (ContainsKey(key))
                 throw new ArgumentException($"A resource with the key '{key}' is already present in the ResourceDictionary.");
-            _innerDictionary.Add(key, value);
+            innerDictionary.Add(key, value);
             OnValueChanged(key, value);
         }
 
@@ -225,7 +238,7 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ContainsKey(string key)
         {
-            return _innerDictionary.ContainsKey(key);
+            return innerDictionary.ContainsKey(key);
         }
 
         /// <summary>
@@ -238,10 +251,10 @@ namespace Tizen.NUI.Binding
         {
             get
             {
-                if (_innerDictionary.ContainsKey(index))
-                    return _innerDictionary[index];
-                if (_mergedInstance != null && _mergedInstance.ContainsKey(index))
-                    return _mergedInstance[index];
+                if (innerDictionary.ContainsKey(index))
+                    return innerDictionary[index];
+                if (mergedInstance != null && mergedInstance.ContainsKey(index))
+                    return mergedInstance[index];
                 if (MergedDictionaries != null)
                     foreach (var dict in MergedDictionaries.Reverse())
                         if (dict.ContainsKey(index))
@@ -250,7 +263,7 @@ namespace Tizen.NUI.Binding
             }
             set
             {
-                _innerDictionary[index] = value;
+                innerDictionary[index] = value;
                 OnValueChanged(index, value);
             }
         }
@@ -259,21 +272,21 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ICollection<string> Keys
         {
-            get { return _innerDictionary.Keys; }
+            get { return innerDictionary.Keys; }
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Remove(string key)
         {
-            return _innerDictionary.Remove(key);
+            return innerDictionary.Remove(key);
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ICollection<object> Values
         {
-            get { return _innerDictionary.Values; }
+            get { return innerDictionary.Values; }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -285,18 +298,20 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public IEnumerator<KeyValuePair<string, object>> GetEnumerator()
         {
-            return _innerDictionary.GetEnumerator();
+            return innerDictionary.GetEnumerator();
         }
 
-        internal IEnumerable<KeyValuePair<string, object>> MergedResources {
-            get {
+        internal IEnumerable<KeyValuePair<string, object>> MergedResources
+        {
+            get
+            {
                 if (MergedDictionaries != null)
                     foreach (var r in MergedDictionaries.Reverse().SelectMany(x => x.MergedResources))
                         yield return r;
-                if (_mergedInstance != null)
-                    foreach (var r in _mergedInstance.MergedResources)
+                if (mergedInstance != null)
+                    foreach (var r in mergedInstance.MergedResources)
                         yield return r;
-                foreach (var r in _innerDictionary)
+                foreach (var r in innerDictionary)
                     yield return r;
             }
         }
@@ -305,8 +320,8 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool TryGetValue(string key, out object value)
         {
-            return _innerDictionary.TryGetValue(key, out value)
-                || (_mergedInstance != null && _mergedInstance.TryGetValue(key, out value))
+            return innerDictionary.TryGetValue(key, out value)
+                || (mergedInstance != null && mergedInstance.TryGetValue(key, out value))
                 || (MergedDictionaries != null && TryGetMergedDictionaryValue(key, out value));
         }
 
@@ -326,18 +341,18 @@ namespace Tizen.NUI.Binding
             remove { ValuesChanged -= value; }
         }
 
-        internal void Add(Style style)
+        internal void Add(XamlStyle style)
         {
             if (string.IsNullOrEmpty(style.Class))
                 Add(style.TargetType.FullName, style);
             else
             {
-                IList<Style> classes;
+                IList<XamlStyle> classes;
                 object outclasses;
-                if (!TryGetValue(Style.StyleClassPrefix + style.Class, out outclasses) || (classes = outclasses as IList<Style>) == null)
-                    classes = new List<Style>();
+                if (!TryGetValue(XamlStyle.StyleClassPrefix + style.Class, out outclasses) || (classes = outclasses as IList<XamlStyle>) == null)
+                    classes = new List<XamlStyle>();
                 classes.Add(style);
-                this[Style.StyleClassPrefix + style.Class] = classes;
+                this[XamlStyle.StyleClassPrefix + style.Class] = classes;
             }
         }
 
@@ -346,13 +361,6 @@ namespace Tizen.NUI.Binding
         public void Add(ResourceDictionary mergedResourceDictionary)
         {
             MergedDictionaries.Add(mergedResourceDictionary);
-        }
-
-        internal void Add(StyleSheets.StyleSheet styleSheet)
-        {
-            StyleSheets = StyleSheets ?? new List<StyleSheets.StyleSheet>(2);
-            StyleSheets.Add(styleSheet);
-            ValuesChanged?.Invoke(this, ResourcesChangedEventArgs.StyleSheets);
         }
 
         void OnValueChanged(string key, object value)
@@ -369,7 +377,7 @@ namespace Tizen.NUI.Binding
 
         event EventHandler<ResourcesChangedEventArgs> ValuesChanged;
 
-        // [Xaml.ProvideCompiled("Xamarin.Forms.Core.XamlC.RDSourceTypeConverter")]
+        [Xaml.ProvideCompiled("Tizen.NUI.Xaml.Core.XamlC.RDSourceTypeConverter")]
         internal class RDSourceTypeConverter : TypeConverter, IExtendedTypeConverter
         {
             object IExtendedTypeConverter.ConvertFromInvariantString(string value, IServiceProvider serviceProvider)

@@ -180,11 +180,11 @@ namespace Tizen.Applications.Notifications
         /// {
         ///     SoundOption = AccessoryOption.Custom,
         ///     SoundPath = "Sound File Path",
-        ///     IsVibration = true,
+        ///     CanVibrate = true,
         ///     LedOption = AccessoryOption.Custom,
-        ///     LedOnMs = 100;
-        ///     LedOffMs = 50;
-        ///     LedColor = Color.Lime
+        ///     LedOnMillisecond = 100,
+        ///     LedOffMillisecond = 50,
+        ///     LedColor = Tizen.Common.Color.Lime
         /// };
         ///
         /// notification.Accessory = accessory;
@@ -201,6 +201,16 @@ namespace Tizen.Applications.Notifications
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public bool IsVisible { get; set; } = true;
+
+        /// <summary>
+        /// Gets a flag for do not show again checkbox.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool CheckBox { get; set; } = false;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool CheckedValue { get; set; } = false;
 
         /// <summary>
         /// Gets or sets NotificationSafeHandle.

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -32,7 +32,8 @@ namespace Tizen.Multimedia
         PermissionDenied = ErrorCode.PermissionDenied,
         NotSupported = ErrorCode.NotSupported,
         TizenMetadataEditorError = -0x019C0000,
-        OperationFailed = TizenMetadataEditorError | 0x01
+        OperationFailed = TizenMetadataEditorError | 0x01,
+        UpdateNotPossible = TizenMetadataEditorError | 0x02
     }
 
     internal static class MetadataEditorErrorExtensions
@@ -44,27 +45,33 @@ namespace Tizen.Multimedia
                 return;
             }
 
+            var errorMessages = $"{errorCode.ToString()} : {errorMessage}";
+
             switch (errorCode)
             {
                 case MetadataEditorError.InvalidParameter:
-                    throw new ArgumentException(errorMessage);
+                    throw new ArgumentException(errorMessages);
 
                 case MetadataEditorError.OutOfMemory:
-                    throw new OutOfMemoryException(errorMessage);
+                    throw new OutOfMemoryException(errorMessages);
 
                 case MetadataEditorError.FileNotExists:
-                    throw new FileNotFoundException(errorMessage);
+                    throw new FileNotFoundException(errorMessages);
 
                 case MetadataEditorError.PermissionDenied:
-                    throw new UnauthorizedAccessException(errorMessage);
+                    throw new UnauthorizedAccessException(errorMessages);
 
                 case MetadataEditorError.NotSupported:
-                    throw new FileFormatException(errorMessage);
+                    throw new FileFormatException(errorMessages);
 
                 case MetadataEditorError.OperationFailed:
-                    throw new InvalidOperationException(errorMessage);
+                case MetadataEditorError.UpdateNotPossible:
+                    throw new InvalidOperationException(errorMessages);
+
+                default:
+                    Log.Error(typeof(MetadataEditor).FullName, $"Unknown error : {errorCode.ToString()}");
+                    break;
             }
         }
     }
 }
-

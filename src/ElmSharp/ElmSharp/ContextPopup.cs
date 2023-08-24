@@ -224,9 +224,11 @@ namespace ElmSharp
         /// Get false if you cannot put it in the direction. Get true if it's possible.
         /// </returns>
         /// <since_tizen> preview </since_tizen>
+        /// [Obsolete("IsAvailableDirection is obsolete as of API6 and is no longer supported.")]
         public bool IsAvailableDirection(ContextPopupDirection direction)
         {
-            return Interop.Elementary.elm_ctxpopup_direction_available_get(RealHandle, (int)direction);
+            Console.WriteLine("ContextPopup.IsAvailableDirection is obsolete as of API6 and is no longer supported.");
+            return false;
         }
 
         /// <summary>

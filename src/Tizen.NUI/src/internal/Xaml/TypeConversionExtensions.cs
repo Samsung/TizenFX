@@ -1,3 +1,19 @@
+/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 //
 // TypeConversionExtensions.cs
 //
@@ -63,15 +79,40 @@ namespace Tizen.NUI.Xaml
             Func<object> getConverter = () =>
             {
                 MemberInfo memberInfo;
+                string converterTypeName = null;
+                Type realType = toType;
 
-                var converterTypeName = toType.GetTypeInfo().CustomAttributes.GetTypeConverterTypeName();
+                if (true == realType.IsGenericType && typeof(Nullable<>) == realType.GetGenericTypeDefinition())
+                {
+                    realType = realType.GetGenericArguments()[0];
+                }
+
+                converterTypeName = realType.CustomAttributes.GetTypeConverterTypeName();
                 if (minfoRetriever != null && (memberInfo = minfoRetriever()) != null)
                     converterTypeName = memberInfo.CustomAttributes.GetTypeConverterTypeName() ?? converterTypeName;
+
                 if (converterTypeName == null)
-                    return null;
+                {
+                    if (toType == typeof(Type))
+                    {
+                        converterTypeName = typeof(TypeTypeConverter).FullName;
+                    }
+                    else
+                    {
+                        converterTypeName = toType.FullName + "TypeConverter";
+                    }
+                }
 
                 var convertertype = Type.GetType(converterTypeName);
-                return Activator.CreateInstance(convertertype);
+
+                if (null == convertertype)
+                {
+                    return null;
+                }
+                else
+                {
+                    return Activator.CreateInstance(convertertype);
+                }
             };
 
             return ConvertTo(value, toType, getConverter, serviceProvider);
@@ -83,9 +124,9 @@ namespace Tizen.NUI.Xaml
                 attributes.FirstOrDefault(cad => TypeConverterAttribute.TypeConvertersType.Contains(cad.AttributeType.FullName));
             if (converterAttribute == null)
                 return null;
-            if (converterAttribute.ConstructorArguments[0].ArgumentType == typeof (string))
+            if (converterAttribute.ConstructorArguments[0].ArgumentType == typeof(string))
                 return (string)converterAttribute.ConstructorArguments[0].Value;
-            if (converterAttribute.ConstructorArguments[0].ArgumentType == typeof (Type))
+            if (converterAttribute.ConstructorArguments[0].ArgumentType == typeof(Type))
                 return ((Type)converterAttribute.ConstructorArguments[0].Value).AssemblyQualifiedName;
             return null;
         }
@@ -100,6 +141,19 @@ namespace Tizen.NUI.Xaml
             return value.ConvertTo(toType, getConverter, serviceProvider);
         }
 
+        private delegate void ParseValueFunc(string s, IFormatProvider provider);
+
+        static private Dictionary<Type, ParseValueFunc> typeToParseValueFunc = null;
+
+        static private void BuildParseValueFunc()
+        {
+            if (null == typeToParseValueFunc)
+            {
+                typeToParseValueFunc = new Dictionary<Type, ParseValueFunc>();
+
+            }
+        }
+
         internal static object ConvertTo(this object value, Type toType, Func<object> getConverter,
             IServiceProvider serviceProvider)
         {
@@ -111,84 +165,102 @@ namespace Tizen.NUI.Xaml
             {
                 //If there's a [TypeConverter], use it
                 object converter = getConverter?.Invoke();
-                var xfTypeConverter = converter as TypeConverter;
-                var xfExtendedTypeConverter = xfTypeConverter as IExtendedTypeConverter;
-                if (xfExtendedTypeConverter != null)
-                    return value = xfExtendedTypeConverter.ConvertFromInvariantString(str, serviceProvider);
-                if (xfTypeConverter != null)
-                    return value = xfTypeConverter.ConvertFromInvariantString(str);
-                var converterType = converter?.GetType();
-                if (converterType != null)
+                if (null != converter)
                 {
-                    var convertFromStringInvariant = converterType.GetRuntimeMethod("ConvertFromInvariantString",
-                        new[] { typeof (string) });
-                    if (convertFromStringInvariant != null)
-                        return value = convertFromStringInvariant.Invoke(converter, new object[] { str });
+                    var xfTypeConverter = converter as TypeConverter;
+                    var xfExtendedTypeConverter = xfTypeConverter as IExtendedTypeConverter;
+                    if (xfExtendedTypeConverter != null)
+                        return value = xfExtendedTypeConverter.ConvertFromInvariantString(str, serviceProvider);
+                    if (xfTypeConverter != null)
+                        return value = xfTypeConverter.ConvertFromInvariantString(str);
+                    var converterType = converter?.GetType();
+                    if (converterType != null)
+                    {
+                        var convertFromStringInvariant = converterType.GetRuntimeMethod("ConvertFromInvariantString",
+                            new[] { typeof(string) });
+                        if (convertFromStringInvariant != null)
+                            return value = convertFromStringInvariant.Invoke(converter, new object[] { str });
+                    }
                 }
+
                 var ignoreCase = (serviceProvider?.GetService(typeof(IConverterOptions)) as IConverterOptions)?.IgnoreCase ?? false;
 
                 //If the type is nullable, as the value is not null, it's safe to assume we want the built-in conversion
-                if (toType.GetTypeInfo().IsGenericType && toType.GetGenericTypeDefinition() == typeof (Nullable<>))
+                if (toType.GetTypeInfo().IsGenericType && toType.GetGenericTypeDefinition() == typeof(Nullable<>))
                     toType = Nullable.GetUnderlyingType(toType);
 
                 //Obvious Built-in conversions
                 if (toType.GetTypeInfo().IsEnum)
                     return Enum.Parse(toType, str, ignoreCase);
+
                 if (toType == typeof(SByte))
                     return SByte.Parse(str, CultureInfo.InvariantCulture);
                 if (toType == typeof(Int16))
-                    return Int16.Parse(str, CultureInfo.InvariantCulture);
+                {
+                    return Convert.ToInt16(GraphicsTypeManager.Instance.ConvertScriptToPixel(str));
+                }
                 if (toType == typeof(Int32))
-                    return Int32.Parse(str, CultureInfo.InvariantCulture);
+                {
+                    return Convert.ToInt32(GraphicsTypeManager.Instance.ConvertScriptToPixel(str));
+                }
                 if (toType == typeof(Int64))
-                    return Int64.Parse(str, CultureInfo.InvariantCulture);
+                {
+                    return Convert.ToInt64(GraphicsTypeManager.Instance.ConvertScriptToPixel(str));
+                }
                 if (toType == typeof(Byte))
                     return Byte.Parse(str, CultureInfo.InvariantCulture);
                 if (toType == typeof(UInt16))
-                    return UInt16.Parse(str, CultureInfo.InvariantCulture);
+                {
+                    return Convert.ToUInt16(GraphicsTypeManager.Instance.ConvertScriptToPixel(str));
+                }
                 if (toType == typeof(UInt32))
-                    return UInt32.Parse(str, CultureInfo.InvariantCulture);
+                {
+                    return Convert.ToUInt32(GraphicsTypeManager.Instance.ConvertScriptToPixel(str));
+                }
                 if (toType == typeof(UInt64))
-                    return UInt64.Parse(str, CultureInfo.InvariantCulture);
-                if (toType == typeof (Single))
-                    return Single.Parse(str, CultureInfo.InvariantCulture);
-                if (toType == typeof (Double))
-                    return Double.Parse(str, CultureInfo.InvariantCulture);
-                if (toType == typeof (Boolean))
+                {
+                    return Convert.ToUInt64(GraphicsTypeManager.Instance.ConvertScriptToPixel(str));
+                }
+                if (toType == typeof(Single))
+                {
+                    return GraphicsTypeManager.Instance.ConvertScriptToPixel(str);
+                }
+                if (toType == typeof(Double))
+                {
+                    return Convert.ToDouble(GraphicsTypeManager.Instance.ConvertScriptToPixel(str));
+                }
+                if (toType == typeof(Boolean))
                     return Boolean.Parse(str);
-                if (toType == typeof (TimeSpan))
+                if (toType == typeof(TimeSpan))
                     return TimeSpan.Parse(str, CultureInfo.InvariantCulture);
-                if (toType == typeof (DateTime))
+                if (toType == typeof(DateTime))
                     return DateTime.Parse(str, CultureInfo.InvariantCulture);
-                if (toType == typeof(Char)) {
+                if (toType == typeof(Char))
+                {
                     char c = '\0';
-                    Char.TryParse(str, out c);
+                    _ = Char.TryParse(str, out c);
                     return c;
                 }
-                if (toType == typeof (String) && str.StartsWith("{}", StringComparison.Ordinal))
+                if (toType == typeof(String) && str.StartsWith("{}", StringComparison.Ordinal))
                     return str.Substring(2);
-                if (toType == typeof (String))
+                if (toType == typeof(String))
                     return value;
                 if (toType == typeof(Decimal))
                     return Decimal.Parse(str, CultureInfo.InvariantCulture);
             }
 
             //if the value is not assignable and there's an implicit conversion, convert
-            if (value != null && !toType.IsAssignableFrom(value.GetType())) {
-                var opImplicit =   value.GetType().GetImplicitConversionOperator(fromType: value.GetType(), toType: toType)
+            if (value != null && !toType.IsAssignableFrom(value.GetType()))
+            {
+                var opImplicit = value.GetType().GetImplicitConversionOperator(fromType: value.GetType(), toType: toType)
                                 ?? toType.GetImplicitConversionOperator(fromType: value.GetType(), toType: toType);
 
-                if (opImplicit != null) {
+                if (opImplicit != null)
+                {
                     value = opImplicit.Invoke(null, new[] { value });
                     return value;
                 }
             }
-
-            var nativeValueConverterService = DependencyService.Get<INativeValueConverterService>();
-
-            object nativeValue = null;
-            if (nativeValueConverterService != null && nativeValueConverterService.ConvertTo(value, toType, out nativeValue))
-                return nativeValue;
 
             return value;
         }

@@ -1,3 +1,19 @@
+/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,8 +38,6 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static DeviceInfo info;
 
-        static IPlatformServices s_platformServices;
-
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetIdiom(TargetIdiom value) => Idiom = value;
         public static TargetIdiom Idiom { get; internal set; }
@@ -32,7 +46,7 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetTargetIdiom(TargetIdiom value) => Idiom = value;
 
-        [Obsolete("TargetPlatform is obsolete as of version 2.3.4. Please use RuntimePlatform instead.")]
+        [Obsolete("TargetPlatform is obsolete as of version 2.3.4. Use RuntimePlatform instead.")]
 #pragma warning disable 0618
         public static TargetPlatform OS
         {
@@ -53,7 +67,7 @@ namespace Tizen.NUI.Binding
         }
 #pragma warning restore 0618
 
-        public static string RuntimePlatform => PlatformServices?.RuntimePlatform;
+        public static string RuntimePlatform => null;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static DeviceInfo Info
@@ -61,7 +75,7 @@ namespace Tizen.NUI.Binding
             get
             {
                 // if (info == null)
-                // 	throw new InvalidOperationException("You MUST call Xamarin.Forms.Init(); prior to using it.");
+                // 	throw new InvalidOperationException("You MUST call Tizen.NUI.Xaml.Init(); prior to using it.");
                 return info;
             }
             set { info = value; }
@@ -70,28 +84,6 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetFlowDirection(FlowDirection value) => FlowDirection = value;
         public static FlowDirection FlowDirection { get; internal set; }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static bool IsInvokeRequired
-        {
-            get { return PlatformServices.IsInvokeRequired; }
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static IPlatformServices PlatformServices
-        {
-            get
-            {
-                if (s_platformServices == null)
-                    throw new InvalidOperationException("You MUST call Tizen.NUI.Init(); prior to using it.");
-                return s_platformServices;
-            }
-            set
-            {
-                s_platformServices = value;
-                Console.WriteLine("Device s_platformServices : " + s_platformServices );
-            }
-        }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static IReadOnlyList<string> Flags { get; private set; }
@@ -104,7 +96,6 @@ namespace Tizen.NUI.Binding
 
         public static void BeginInvokeOnMainThread(Action action)
         {
-            PlatformServices?.BeginInvokeOnMainThread(action);
             action();
             Console.WriteLine("Device BeginInvokeOnMainThread action called");
         }
@@ -119,38 +110,7 @@ namespace Tizen.NUI.Binding
         //     return GetNamedSize(size, targetElementType, false);
         // }
 
-        [Obsolete("OnPlatform is obsolete as of version 2.3.4. Please use switch(RuntimePlatform) instead.")]
-        public static void OnPlatform(Action iOS = null, Action Android = null, Action WinPhone = null, Action Default = null)
-        {
-            switch (OS)
-            {
-                case TargetPlatform.iOS:
-                    if (iOS != null)
-                        iOS();
-                    else if (Default != null)
-                        Default();
-                    break;
-                case TargetPlatform.Android:
-                    if (Android != null)
-                        Android();
-                    else if (Default != null)
-                        Default();
-                    break;
-                case TargetPlatform.Windows:
-                case TargetPlatform.WinPhone:
-                    if (WinPhone != null)
-                        WinPhone();
-                    else if (Default != null)
-                        Default();
-                    break;
-                case TargetPlatform.Other:
-                    if (Default != null)
-                        Default();
-                    break;
-            }
-        }
-
-        [Obsolete("OnPlatform<> (generic) is obsolete as of version 2.3.4. Please use switch(RuntimePlatform) instead.")]
+        [Obsolete("OnPlatform<> (generic) is obsolete as of version 2.3.4. Use switch(RuntimePlatform) instead.")]
         public static T OnPlatform<T>(T iOS, T Android, T WinPhone)
         {
             switch (OS)
@@ -167,20 +127,15 @@ namespace Tizen.NUI.Binding
             return iOS;
         }
 
-        public static void OpenUri(Uri uri)
-        {
-            // PlatformServices?.OpenUriAction(uri);
-        }
-
-        public static void StartTimer(TimeSpan interval, Func<bool> callback)
-        {
-            PlatformServices.StartTimer(interval, callback);
-        }
+        // public static void OpenUri(Uri uri)
+        // {
+        //     PlatformServices?.OpenUriAction(uri);
+        // }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Assembly[] GetAssemblies()
         {
-            return PlatformServices?.GetAssemblies();
+            return null;
         }
 
         // [EditorBrowsable(EditorBrowsableState.Never)]
@@ -188,37 +143,5 @@ namespace Tizen.NUI.Binding
         // {
         //     return PlatformServices.GetNamedSize(size, targetElementType, useOldSizes);
         // }
-
-        internal static Task<Stream> GetStreamAsync(Uri uri, CancellationToken cancellationToken)
-        {
-            return PlatformServices?.GetStreamAsync(uri, cancellationToken);
-        }
-
-        public static class Styles
-        {
-            public static readonly string TitleStyleKey = "TitleStyle";
-
-            public static readonly string SubtitleStyleKey = "SubtitleStyle";
-
-            public static readonly string BodyStyleKey = "BodyStyle";
-
-            public static readonly string ListItemTextStyleKey = "ListItemTextStyle";
-
-            public static readonly string ListItemDetailTextStyleKey = "ListItemDetailTextStyle";
-
-            public static readonly string CaptionStyleKey = "CaptionStyle";
-
-            public static readonly Style TitleStyle = new Style(typeof(Tizen.NUI.BaseComponents.TextLabel)) { BaseResourceKey = TitleStyleKey };
-
-            public static readonly Style SubtitleStyle = new Style(typeof(Tizen.NUI.BaseComponents.TextLabel)) { BaseResourceKey = SubtitleStyleKey };
-
-            public static readonly Style BodyStyle = new Style(typeof(Tizen.NUI.BaseComponents.TextLabel)) { BaseResourceKey = BodyStyleKey };
-
-            public static readonly Style ListItemTextStyle = new Style(typeof(Tizen.NUI.BaseComponents.TextLabel)) { BaseResourceKey = ListItemTextStyleKey };
-
-            public static readonly Style ListItemDetailTextStyle = new Style(typeof(Tizen.NUI.BaseComponents.TextLabel)) { BaseResourceKey = ListItemDetailTextStyleKey };
-
-            public static readonly Style CaptionStyle = new Style(typeof(Tizen.NUI.BaseComponents.TextLabel)) { BaseResourceKey = CaptionStyleKey };
-        }
     }
 }

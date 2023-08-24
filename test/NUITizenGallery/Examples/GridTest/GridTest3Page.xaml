@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.GridTest3Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="GridTest3Page"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <View x:Name="ContentView"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" CellPadding="10,10" LinearAlignment="Top"/>
+            </View.Layout>
+
+            <View x:Name="operationView"
+                    WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                    HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+                    Weight="0.5">
+
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Vertical" LinearAlignment="Bottom" CellPadding="10,10"/>
+                </View.Layout>
+
+                <TextField x:Name="textPlaceholder" Text="0.00" />
+            </View>
+
+            <View x:Name="btnView" Weight="0.5" >
+
+                <View.Layout >
+                    <GridLayout Columns="4" Rows="5" GridOrientation="Horizontal" ColumnSpacing="2" RowSpacing="2" />
+                </View.Layout>
+                <!-- Row 0 -->
+                <Button x:Name="btnClear" Text="C"
+                          GridLayout.Column="0"
+                          GridLayout.Row="0"
+                          WidthSpecification="180" HeightSpecification="100"/>
+                <Button x:Name="btnUp" Text="^"
+                          GridLayout.Column="1"
+                          GridLayout.Row="0"
+                          WidthSpecification="180" HeightSpecification="100"/>
+                <Button x:Name="btnProc" Text="%"
+                          GridLayout.Column="2"
+                          GridLayout.Row="0"
+                          WidthSpecification="180" HeightSpecification="100"/>
+                <Button x:Name="btnDiv" Text="/"
+                          GridLayout.Column="3"
+                          GridLayout.Row="0"
+                          WidthSpecification="180" HeightSpecification="100"/>
+                <!-- Row 1 -->
+                <Button x:Name="btn7" Text="7"
+                          GridLayout.Column="0"
+                          GridLayout.Row="1"
+                          WidthSpecification="180" HeightSpecification="100"/>
+                <Button x:Name="btn8" Text="8"
+                          GridLayout.Column="1"
+                          GridLayout.Row="1"
+                          WidthSpecification="180" HeightSpecification="100"/>
+                <Button x:Name="btn9" Text="9"
+                          GridLayout.Column="2"
+                          GridLayout.Row="1"
+                          WidthSpecification="180" HeightSpecification="100"/>
+                <Button x:Name="btnMultiply" Text="*"
+                          GridLayout.Column="3"
+                          GridLayout.Row="1"
+                          WidthSpecification="180" HeightSpecification="100"/>
+                <!-- Row 2 -->
+                <Button x:Name="btn4" Text="4"
+                          GridLayout.Column="0"
+                          GridLayout.Row="2"
+                          WidthSpecification="180" HeightSpecification="100"/>
+                <Button x:Name="btn5" Text="5"
+                          GridLayout.Column="1"
+                          GridLayout.Row="2"
+                          WidthSpecification="180" HeightSpecification="100"/>
+                <Button x:Name="btn6" Text="6"
+                          GridLayout.Column="2"
+                          GridLayout.Row="2"
+                          WidthSpecification="180" HeightSpecification="100"/>
+                <Button x:Name="btnMinus" Text="-"
+                          GridLayout.Column="3"
+                          GridLayout.Row="2"
+                          WidthSpecification="180" HeightSpecification="100"/>
+                <!-- Row 3 -->
+                <Button x:Name="btn1" Text="1"
+                          GridLayout.Column="0"
+                          GridLayout.Row="3"
+                          WidthSpecification="180" HeightSpecification="100"/>
+                <Button x:Name="btn2" Text="2"
+                          GridLayout.Column="1"
+                          GridLayout.Row="3"
+                          WidthSpecification="180" HeightSpecification="100"/>
+                <Button x:Name="btn3" Text="3"
+                          GridLayout.Column="2"
+                          GridLayout.Row="3"
+                          WidthSpecification="180" HeightSpecification="100"/>
+                <Button x:Name="btnPlus" Text="+"
+                          GridLayout.Column="3"
+                          GridLayout.Row="3"
+                          WidthSpecification="180" HeightSpecification="100"/>
+                <!-- Row 4 -->
+                <Button x:Name="btn0" Text="0"
+                          GridLayout.Column="0"
+                          GridLayout.Row="4"
+                          GridLayout.ColumnSpan="2"
+                          WidthSpecification="360" HeightSpecification="100"/>
+                    <!-- Row 4 Column 1 is expanded by span -->
+                <Button x:Name="btnDot" Text="."
+                          GridLayout.Column="2"
+                          GridLayout.Row="4"
+                          WidthSpecification="180" HeightSpecification="100"/>
+                <Button x:Name="btnEqual" Text="="
+                          GridLayout.Column="3"
+                          GridLayout.Row="4"
+                          WidthSpecification="180" HeightSpecification="100"/>
+            </View>
+        </View>
+    </ContentPage.Content>
+</ContentPage>

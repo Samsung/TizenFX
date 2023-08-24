@@ -17,6 +17,8 @@
 using System;
 using System.Runtime.InteropServices;
 
+using Tizen.Internals;
+
 internal static partial class Interop
 {
     internal static partial class ApplicationManager
@@ -97,6 +99,9 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool AppInfoCategoryCallback(string category, IntPtr userData);
         //bool (*app_info_category_cb) (const char *category, void *user_data)
+
+        internal delegate bool AppInfoResControlCallback(string resType, string minResVersion, string maxResVersion, string autoClose, IntPtr userUdata);
+        //bool (*app_info_res_control_cb) (const char *res_type, const char *min_res_version, const char *max_res_version, const char *auto_close, void *user_data);
 
         [DllImport(Libraries.AppManager, EntryPoint = "app_manager_set_app_context_event_cb")]
         internal static extern ErrorCode AppManagerSetAppContextEvent(AppManagerAppContextEventCallback callback, IntPtr userData);
@@ -182,9 +187,25 @@ internal static partial class Interop
         internal static extern ErrorCode AppManagerTerminateApp(IntPtr handle);
         //int app_manager_terminate_app (app_context_h app_context);
 
+        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_terminate_app_without_restarting")]
+        internal static extern ErrorCode AppManagerTerminateAppWithoutRestarting(IntPtr handle);
+        //int app_manager_terminate_app_without_restarting (app_context_h app_context);
+
         [DllImport(Libraries.AppManager, EntryPoint = "app_manager_get_app_context_by_instance_id")]
         internal static extern ErrorCode AppManagerGetAppContextByInstanceId(string applicationId, string instanceId, out IntPtr handle);
         //int app_manager_get_app_context_by_instance_id (const char *app_id, const char *instance_id, app_context_h *app_context);
+
+        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_attach_window")]
+        internal static extern ErrorCode AppManagerAttachWindow(string parentAppId, string childAppId);
+        //int app_manager_attach_window(const char *parent_app_id, const char *child_app_id);
+
+        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_detach_window")]
+        internal static extern ErrorCode AppManagerDetachWindow(string applicationId);
+        //int app_manager_detach_window(const char *app_id);
+
+        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_attach_window_below")]
+        internal static extern ErrorCode AppManagerAttachWindowBelow(string parentAppId, string childAppId);
+        //int app_manager_attach_window_below(const char *parent_app_id, const char *child_app_id);
 
         [DllImport(Libraries.AppManager, EntryPoint = "app_context_destroy")]
         internal static extern ErrorCode AppContextDestroy(IntPtr handle);
@@ -334,6 +355,10 @@ internal static partial class Interop
         internal static extern ErrorCode AppInfoMetadataFilterForeach(IntPtr handle, AppInfoFilterCallback callback, IntPtr userData);
         //int app_info_metadata_filter_foreach (app_info_metadata_filter_h handle, app_info_filter_cb callback, void *user_data)
 
+        [DllImport(Libraries.AppManager, EntryPoint = "app_info_foreach_res_control")]
+        internal static extern ErrorCode AppInfoForeachResControl(IntPtr handle, AppInfoResControlCallback callback, IntPtr userData);
+
+        [NativeStruct("struct rua_rec", Include="rua.h", PkgConfig="rua")]
         [StructLayout(LayoutKind.Sequential)]
         internal struct RuaRec
         {
@@ -347,6 +372,7 @@ internal static partial class Interop
             internal IntPtr icon;
             internal IntPtr uri;
             internal IntPtr image;
+            internal IntPtr compId;
         };
 
         [DllImport(Libraries.Rua, EntryPoint = "rua_history_get_rec")]

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="5" package="NUISettingsReset" version="1.0.0">
+  <profile name="common" />
+  <widget-application appid="NUISettingsReset"
+					exec="NUISettingsReset.dll"
+					type="dotnet-nui"
+					multiple="false"
+					taskmanage="true"
+					nodisplay="false"
+					launch_mode="single">
+    <label>NUISettingsReset</label>
+    <icon>NUISettingsReset.png</icon>
+    <widget-class classid="secondPage" update-period="0">
+      <support-size preview="NUISettingsReset.png">4x4</support-size>
+    </widget-class>
+    <widget-class classid="thirdPage" update-period="0">
+      <support-size preview="NUISettingsReset.png">4x4</support-size>
+    </widget-class>
+    <widget-class classid="fourthPage" update-period="0">
+      <support-size preview="NUISettingsReset.png">4x4</support-size>
+    </widget-class>
+    <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+  </widget-application>
+</manifest>

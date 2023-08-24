@@ -23,6 +23,7 @@ namespace Tizen.Security.DevicePolicyManager
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     /// <remarks>The TelephonyPolicy is created by <seealso cref="DevicePolicyManager.GetPolicy{T}"/>. and the DevicePolicyManager instance must exists when using the TelephonyPolicy.</remarks>
+    [Obsolete("Deprecated since API level 11.")]
     public class TelephonyPolicy : DevicePolicy, IDisposable
     {
         /// <summary>
@@ -30,6 +31,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// </summary>
         /// <remarks>This is used in <see cref="PolicyChangedEventArgs.PolicyName"/>.</remarks>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API level 11.")]
         public static readonly string MessagingPolicyName = "Messaging";
 
         private readonly string _messagingPolicyName = "messaging";
@@ -46,6 +48,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <summary>
         /// A Destructor of TelephonyPolicy.
         /// </summary>
+        [Obsolete("Deprecated since API level 11.")]
         ~TelephonyPolicy()
         {
             this.Dispose(false);
@@ -59,6 +62,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <since_tizen> 6 </since_tizen>
         /// <exception cref="ArgumentException">Thrown when failed because of invalid parameter.</exception>
         /// <exception cref="TimeoutException">Thrown when failed because of timeout.</exception>
+        [Obsolete("Deprecated since API level 11.")]
         public bool IsMessagingAllowed(string simId)
         {
             int state;
@@ -74,6 +78,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <summary>
         /// Releases any unmanaged resources used by this object.
         /// </summary>
+        [Obsolete("Deprecated since API level 11.")]
         public void Dispose()
         {
             this.Dispose(true);
@@ -84,6 +89,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        [Obsolete("Deprecated since API level 11.")]
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -114,6 +120,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// </summary>
         /// <remarks>This event will be removed automatically when TelephonyPolicy is destroyed.</remarks>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API level 11.")]
         public event EventHandler<PolicyChangedEventArgs> MessagingPolicyChanged
         {
             add

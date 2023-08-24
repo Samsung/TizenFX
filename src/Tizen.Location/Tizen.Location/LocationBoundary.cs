@@ -18,6 +18,8 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
+using Tizen.Internals;
+
 namespace Tizen.Location
 {
     /// <summary>
@@ -348,6 +350,7 @@ namespace Tizen.Location
     /// This structure represents the coordinates of a geographical location.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [NativeStruct("location_coords_s", Include="locations.h", PkgConfig="capi-location-manager")]
     [StructLayout(LayoutKind.Sequential)]
     public struct Coordinate
     {

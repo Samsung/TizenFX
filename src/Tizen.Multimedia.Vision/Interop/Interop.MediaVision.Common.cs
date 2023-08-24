@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen.Internals;
 using Tizen.Multimedia.Vision;
 
 /// <summary>
@@ -80,7 +81,7 @@ internal static partial class Interop
         };
     }
 
-    internal static Tizen.Multimedia.Rectangle[] ToApiStruct(MediaVision.Rectangle[] rects)
+    internal static Tizen.Multimedia.Rectangle[] ToApiStruct(this MediaVision.Rectangle[] rects)
     {
         var result = new Tizen.Multimedia.Rectangle[rects.Length];
 
@@ -91,11 +92,23 @@ internal static partial class Interop
         return result;
     }
 
+    internal static MediaVision.Rectangle[] ToMarShalable(this Tizen.Multimedia.Rectangle[] rects)
+    {
+        var result = new MediaVision.Rectangle[rects.Length];
+
+        for (int i = 0; i < rects.Length; i++)
+        {
+            result[i] = rects[i].ToMarshalable();
+        }
+        return result;
+    }
+
     /// <summary>
     /// Interop for Media Vision APIs.
     /// </summary>
     internal static partial class MediaVision
     {
+        [NativeStruct("mv_point_s", Include="mv_common.h", PkgConfig="capi-media-vision")]
         [StructLayout(LayoutKind.Sequential)]
         internal struct Point
         {
@@ -103,6 +116,7 @@ internal static partial class Interop
             internal int y;
         }
 
+        [NativeStruct("mv_rectangle_s", Include="mv_common.h", PkgConfig="capi-media-vision")]
         [StructLayout(LayoutKind.Sequential)]
         internal struct Rectangle
         {
@@ -112,6 +126,7 @@ internal static partial class Interop
             internal int height;
         }
 
+        [NativeStruct("mv_quadrangle_s", Include="mv_common.h", PkgConfig="capi-media-vision")]
         [StructLayout(LayoutKind.Sequential)]
         internal struct Quadrangle
         {
@@ -124,33 +139,39 @@ internal static partial class Interop
         /// </summary>
         internal static partial class MediaSource
         {
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_create_source")]
+            [DllImport(Libraries.MediaVisionCommon, EntryPoint = "mv_create_source")]
             internal static extern MediaVisionError Create(out IntPtr source);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_destroy_source")]
+            [DllImport(Libraries.MediaVisionCommon, EntryPoint = "mv_destroy_source")]
             internal static extern int Destroy(IntPtr /* mv_source_h */ source);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_source_fill_by_media_packet")]
+            [DllImport(Libraries.MediaVisionCommon, EntryPoint = "mv_source_fill_by_media_packet")]
             internal static extern MediaVisionError FillMediaPacket(IntPtr source, IntPtr mediaPacket);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_source_fill_by_buffer")]
+            [DllImport(Libraries.MediaVisionCommon, EntryPoint = "mv_source_fill_by_buffer")]
             internal static extern MediaVisionError FillBuffer(IntPtr source, byte[] buffer,
                 int bufferSize, uint imageWidth, uint imageHeight, VisionColorSpace colorspace);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_source_clear")]
+            [DllImport(Libraries.MediaVisionCommon, EntryPoint = "mv_source_clear")]
             internal static extern int Clear(IntPtr /* mv_source_h */ source);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_source_get_buffer")]
+            [DllImport(Libraries.MediaVisionCommon, EntryPoint = "mv_source_get_buffer")]
             internal static extern MediaVisionError GetBuffer(IntPtr source, out IntPtr buffer, out int bufferSize);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_source_get_height")]
+            [DllImport(Libraries.MediaVisionCommon, EntryPoint = "mv_source_get_height")]
             internal static extern int GetHeight(IntPtr source, out uint imageHeight);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_source_get_width")]
+            [DllImport(Libraries.MediaVisionCommon, EntryPoint = "mv_source_get_width")]
             internal static extern int GetWidth(IntPtr source, out uint imageWidth);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_source_get_colorspace")]
+            [DllImport(Libraries.MediaVisionCommon, EntryPoint = "mv_source_get_colorspace")]
             internal static extern int GetColorspace(IntPtr /* mv_source_h */ source, out VisionColorSpace colorspace);
+
+            [DllImport(Libraries.MediaVisionCommon, EntryPoint = "mv_source_set_timestamp")]
+            internal static extern int SetTimestamp(IntPtr source, ulong timestamp);
+
+            [DllImport(Libraries.MediaVisionCommon, EntryPoint = "mv_source_get_timestamp")]
+            internal static extern int GetTimestamp(IntPtr source, out ulong timestamp);
         }
 
         /// <summary>
@@ -158,35 +179,43 @@ internal static partial class Interop
         /// </summary>
         internal static partial class EngineConfig
         {
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_create_engine_config")]
+            [DllImport(Libraries.MediaVisionCommon, EntryPoint = "mv_create_engine_config")]
             internal static extern MediaVisionError Create(out IntPtr handle);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_destroy_engine_config")]
+            [DllImport(Libraries.MediaVisionCommon, EntryPoint = "mv_destroy_engine_config")]
             internal static extern int Destroy(IntPtr handle);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_engine_config_set_double_attribute")]
+            [DllImport(Libraries.MediaVisionCommon, EntryPoint = "mv_engine_config_set_double_attribute")]
             internal static extern MediaVisionError SetDouble(IntPtr handle, string name, double value);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_engine_config_set_int_attribute")]
+            [DllImport(Libraries.MediaVisionCommon, EntryPoint = "mv_engine_config_set_int_attribute")]
             internal static extern MediaVisionError SetInt(IntPtr handle, string name, int value);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_engine_config_set_bool_attribute")]
+            [DllImport(Libraries.MediaVisionCommon, EntryPoint = "mv_engine_config_set_bool_attribute")]
             internal static extern MediaVisionError SetBool(IntPtr handle, string name, bool value);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_engine_config_set_string_attribute")]
+            [DllImport(Libraries.MediaVisionCommon, EntryPoint = "mv_engine_config_set_string_attribute")]
             internal static extern MediaVisionError SetString(IntPtr handle, string name, string value);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_engine_config_get_double_attribute")]
+            [DllImport(Libraries.MediaVisionCommon, EntryPoint = "mv_engine_config_set_array_string_attribute")]
+            internal static extern MediaVisionError SetStringArray(IntPtr handle, string name,
+                [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] string[] value, int size);
+
+            [DllImport(Libraries.MediaVisionCommon, EntryPoint = "mv_engine_config_get_double_attribute")]
             internal static extern MediaVisionError GetDouble(IntPtr handle, string name, out double value);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_engine_config_get_int_attribute")]
+            [DllImport(Libraries.MediaVisionCommon, EntryPoint = "mv_engine_config_get_int_attribute")]
             internal static extern MediaVisionError GetInt(IntPtr handle, string name, out int value);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_engine_config_get_bool_attribute")]
+            [DllImport(Libraries.MediaVisionCommon, EntryPoint = "mv_engine_config_get_bool_attribute")]
             internal static extern MediaVisionError GetBool(IntPtr handle, string name, out bool value);
 
-            [DllImport(Libraries.MediaVision, EntryPoint = "mv_engine_config_get_string_attribute")]
+            [DllImport(Libraries.MediaVisionCommon, EntryPoint = "mv_engine_config_get_string_attribute")]
             internal static extern MediaVisionError GetString(IntPtr handle, string name, out IntPtr value);
+
+            [DllImport(Libraries.MediaVisionCommon, EntryPoint = "mv_engine_config_get_array_string_attribute")]
+            internal static extern MediaVisionError GetStringArray(IntPtr handle, string name,
+                out IntPtr value, out int size);
         }
     }
 }

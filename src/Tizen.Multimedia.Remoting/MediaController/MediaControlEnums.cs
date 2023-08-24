@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Tizen.Multimedia.Remoting
@@ -154,6 +155,24 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         MovingToPrevious,
+
+        /// <summary>
+        /// Connecting.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        Connecting,
+
+        /// <summary>
+        /// Buffering.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        Buffering,
+
+        /// <summary>
+        /// Error while playback.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        Error
     }
 
     /// <summary>
@@ -248,6 +267,115 @@ namespace Tizen.Multimedia.Remoting
         Tpo
     }
 
+    /// <summary>
+    /// Specifies the display mode.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    public enum MediaControlDisplayMode
+    {
+        /// <summary>
+        /// Letter box
+        /// </summary>
+        LetterBox,
+
+        /// <summary>
+        /// Original size
+        /// </summary>
+        OriginSize,
+
+        /// <summary>
+        /// Full screen
+        /// </summary>
+        FullScreen,
+
+        /// <summary>
+        /// Cropped full screen
+        /// </summary>
+        CroppedFull
+    }
+
+    /// <summary>
+    /// Specifies the code which represents the result of communication between client and server.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
+    public enum MediaControlResult
+    {
+        /// <summary>
+        /// The command or the event has been successfully completed.
+        /// </summary>
+        Success,
+
+        /// <summary>
+        /// The command or the event had already been completed.
+        /// </summary>
+        AlreadyDone = 200,
+
+        /// <summary>
+        /// The command or the event is aborted by some external event (e.g. aborted play command by incoming call).
+        /// </summary>
+        Aborted = 300,
+
+        /// <summary>
+        /// The command or the event is denied due to application policy (e.g. cannot rewind in recording).
+        /// </summary>
+        ActionDenied,
+
+        /// <summary>
+        /// The command or the event is not supported.
+        /// </summary>
+        NotSupported,
+
+        /// <summary>
+        /// The command or the event is out of supported range or the limit is reached.
+        /// </summary>
+        Invalid,
+
+        /// <summary>
+        /// Timeout has occurred.
+        /// </summary>
+        Timeout = 400,
+
+        /// <summary>
+        /// The application has failed.
+        /// </summary>
+        ApplicationFailed,
+
+        /// <summary>
+        /// The command or the event has failed because the application has no media.
+        /// </summary>
+        NoMedia,
+
+        /// <summary>
+        /// The command or the event has failed because there is no audio output device.
+        /// </summary>
+        NoAudioOutputDevice,
+
+        /// <summary>
+        /// The command or the event has failed because there is no peer.
+        /// </summary>
+        NoPeer,
+
+        /// <summary>
+        /// The network has failed.
+        /// </summary>
+        NetworkFailed = 500,
+
+        /// <summary>
+        /// The application does not have account.
+        /// </summary>
+        NoAccount = 600,
+
+        /// <summary>
+        /// The application could not log in.
+        /// </summary>
+        LoginFailed,
+
+        /// <summary>
+        /// Unknown error.
+        /// </summary>
+        Unknown = Int32.MaxValue
+    }
+
     internal static class EnumExtensions
     {
         internal static MediaControlPlaybackState ToPublic(this MediaControllerNativePlaybackState nativeState)
@@ -266,6 +394,10 @@ namespace Tizen.Multimedia.Remoting
                 case MediaControllerNativePlaybackState.FastForwarding: return MediaControlPlaybackState.FastForwarding;
                 case MediaControllerNativePlaybackState.Rewind:
                 case MediaControllerNativePlaybackState.Rewinding: return MediaControlPlaybackState.Rewinding;
+                case MediaControllerNativePlaybackState.Connecting: return MediaControlPlaybackState.Connecting;
+                case MediaControllerNativePlaybackState.Buffering: return MediaControlPlaybackState.Buffering;
+                case MediaControllerNativePlaybackState.Error: return MediaControlPlaybackState.Error;
+                default: break;
             }
 
             Debug.Fail($"Not supported code for playback state{nativeState}.");
@@ -283,6 +415,10 @@ namespace Tizen.Multimedia.Remoting
                 case MediaControlPlaybackState.MovingToPrevious: return MediaControllerNativePlaybackState.MovingToPrev;
                 case MediaControlPlaybackState.FastForwarding: return MediaControllerNativePlaybackState.FastForwarding;
                 case MediaControlPlaybackState.Rewinding: return MediaControllerNativePlaybackState.Rewinding;
+                case MediaControlPlaybackState.Connecting: return MediaControllerNativePlaybackState.Connecting;
+                case MediaControlPlaybackState.Buffering: return MediaControllerNativePlaybackState.Buffering;
+                case MediaControlPlaybackState.Error: return MediaControllerNativePlaybackState.Error;
+                default: break;
             }
             return MediaControllerNativePlaybackState.None;
         }
@@ -299,6 +435,7 @@ namespace Tizen.Multimedia.Remoting
                 case MediaControllerNativePlaybackAction.FastForward: return MediaControlPlaybackCommand.FastForward;
                 case MediaControllerNativePlaybackAction.Rewind: return MediaControlPlaybackCommand.Rewind;
                 case MediaControllerNativePlaybackAction.Toggle: return MediaControlPlaybackCommand.Toggle;
+                default: break;
             }
 
             Debug.Fail($"Not supported code for playback command{nativeAction}.");
@@ -317,6 +454,7 @@ namespace Tizen.Multimedia.Remoting
                 case MediaControlPlaybackCommand.FastForward: return MediaControllerNativePlaybackAction.FastForward;
                 case MediaControlPlaybackCommand.Rewind: return MediaControllerNativePlaybackAction.Rewind;
                 case MediaControlPlaybackCommand.Toggle: return MediaControllerNativePlaybackAction.Toggle;
+                default: break;
             }
             return MediaControllerNativePlaybackAction.Play;
         }
@@ -335,6 +473,134 @@ namespace Tizen.Multimedia.Remoting
 
             return mode == MediaControlRepeatMode.Off ? MediaControllerNativeRepeatMode.On :
                 (mode == MediaControlRepeatMode.On ? MediaControllerNativeRepeatMode.Off : MediaControllerNativeRepeatMode.OneMedia);
+        }
+
+        internal static MediaControlNativeDisplayMode ToNative(this MediaControlDisplayMode mode)
+        {
+            Debug.Assert(Enum.IsDefined(typeof(MediaControlDisplayMode), mode));
+
+            MediaControlNativeDisplayMode nativeMode = MediaControlNativeDisplayMode.LetterBox;
+            switch (mode)
+            {
+                case MediaControlDisplayMode.LetterBox:
+                    nativeMode = MediaControlNativeDisplayMode.LetterBox;
+                    break;
+                case MediaControlDisplayMode.OriginSize:
+                    nativeMode = MediaControlNativeDisplayMode.OriginSize;
+                    break;
+                case MediaControlDisplayMode.FullScreen:
+                    nativeMode = MediaControlNativeDisplayMode.FullScreen;
+                    break;
+                case MediaControlDisplayMode.CroppedFull:
+                    nativeMode = MediaControlNativeDisplayMode.CroppedFull;
+                    break;
+                default:
+                    break;
+            }
+            return nativeMode;
+        }
+
+        internal static MediaControlDisplayMode ToPublic(this MediaControlNativeDisplayMode mode)
+        {
+            Debug.Assert(Enum.IsDefined(typeof(MediaControlNativeDisplayMode), mode));
+            MediaControlDisplayMode nativeMode = MediaControlDisplayMode.LetterBox;
+            switch (mode)
+            {
+                case MediaControlNativeDisplayMode.LetterBox:
+                    nativeMode = MediaControlDisplayMode.LetterBox;
+                    break;
+                case MediaControlNativeDisplayMode.OriginSize:
+                    nativeMode = MediaControlDisplayMode.OriginSize;
+                    break;
+                case MediaControlNativeDisplayMode.FullScreen:
+                    nativeMode = MediaControlDisplayMode.FullScreen;
+                    break;
+                case MediaControlNativeDisplayMode.CroppedFull:
+                    nativeMode = MediaControlDisplayMode.CroppedFull;
+                    break;
+                default:
+                    break;
+            }
+            return nativeMode;
+        }
+
+        internal static IList<MediaControlDisplayMode> ToPublicList(this MediaControlNativeDisplayMode modes)
+        {
+            var supportedModes = new List<MediaControlDisplayMode>();
+
+            foreach (MediaControlNativeDisplayMode mode in Enum.GetValues(typeof(MediaControlNativeDisplayMode)))
+            {
+                if (modes.HasFlag(mode))
+                {
+                    supportedModes.Add(mode.ToPublic());
+                }
+            }
+
+            return supportedModes.AsReadOnly();
+        }
+
+        internal static MediaControlNativeDisplayRotation ToNative(this Rotation mode)
+        {
+            Debug.Assert(Enum.IsDefined(typeof(Rotation), mode));
+
+            MediaControlNativeDisplayRotation nativeMode = MediaControlNativeDisplayRotation.Rotate0;
+            switch (mode)
+            {
+                case Rotation.Rotate0:
+                    nativeMode = MediaControlNativeDisplayRotation.Rotate0;
+                    break;
+                case Rotation.Rotate90:
+                    nativeMode = MediaControlNativeDisplayRotation.Rotate90;
+                    break;
+                case Rotation.Rotate180:
+                    nativeMode = MediaControlNativeDisplayRotation.Rotate180;
+                    break;
+                case Rotation.Rotate270:
+                    nativeMode = MediaControlNativeDisplayRotation.Rotate270;
+                    break;
+                default:
+                    break;
+            }
+            return nativeMode;
+        }
+
+        internal static Rotation ToPublic(this MediaControlNativeDisplayRotation mode)
+        {
+            Debug.Assert(Enum.IsDefined(typeof(MediaControlNativeDisplayRotation), mode));
+            Rotation nativeMode = Rotation.Rotate0;
+            switch (mode)
+            {
+                case MediaControlNativeDisplayRotation.Rotate0:
+                    nativeMode = Rotation.Rotate0;
+                    break;
+                case MediaControlNativeDisplayRotation.Rotate90:
+                    nativeMode = Rotation.Rotate90;
+                    break;
+                case MediaControlNativeDisplayRotation.Rotate180:
+                    nativeMode = Rotation.Rotate180;
+                    break;
+                case MediaControlNativeDisplayRotation.Rotate270:
+                    nativeMode = Rotation.Rotate270;
+                    break;
+                default:
+                    break;
+            }
+            return nativeMode;
+        }
+
+        internal static IList<Rotation> ToPublicList(this MediaControlNativeDisplayRotation modes)
+        {
+            var supportedRotations = new List<Rotation>();
+
+            foreach (MediaControlNativeDisplayRotation mode in Enum.GetValues(typeof(MediaControlNativeDisplayRotation)))
+            {
+                if (modes.HasFlag(mode))
+                {
+                    supportedRotations.Add(mode.ToPublic());
+                }
+            }
+
+            return supportedRotations.AsReadOnly();
         }
     }
 }

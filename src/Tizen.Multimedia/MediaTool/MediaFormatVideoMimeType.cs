@@ -88,6 +88,66 @@ namespace Tizen.Multimedia
         Mpeg4Asp = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2071),
 
         /// <summary>
+        /// HEVC.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        Hevc = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2080),
+
+        /// <summary>
+        /// HEVC MP.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        HevcMp = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2081),
+
+        /// <summary>
+        /// HEVC M10P.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        HevcM10p = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2082),
+
+        /// <summary>
+        /// VP8.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        Vp8 = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2090),
+
+        /// <summary>
+        /// VP9.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        Vp9 = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x20A0),
+
+        /// <summary>
+        /// VC1.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        Vc1 = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x20B0),
+
+        /// <summary>
+        /// DIVX4.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        Divx4 = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x20C4),
+
+        /// <summary>
+        /// DIVX5.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        Divx5 = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x20C5),
+
+        /// <summary>
+        /// XVID.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        Xvid = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x20D0),
+
+        /// <summary>
+        /// AOMedia Video 1.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        Av1 = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x20E0),
+
+        /// <summary>
         /// I420.
         /// </summary>
         I420 = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x2510),
@@ -135,26 +195,32 @@ namespace Tizen.Multimedia
         /// <summary>
         /// RGB565.
         /// </summary>
-        Rgb565 = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x25a0),
+        Rgb565 = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x25A0),
 
         /// <summary>
         /// RGB888.
         /// </summary>
-        Rgb888 = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x25b0),
+        Rgb888 = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x25B0),
 
         /// <summary>
         /// RGBA.
         /// </summary>
-        Rgba = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x25c0),
+        Rgba = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x25C0),
 
         /// <summary>
         /// ARGB.
         /// </summary>
-        Argb = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x25d0),
+        Argb = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x25D0),
 
         /// <summary>
         /// BGRA.
         /// </summary>
-        Bgra = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x25e0),
+        Bgra = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x25E0),
+
+        /// <summary>
+        /// Y8.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        Y8 = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x25F0),
     }
 }

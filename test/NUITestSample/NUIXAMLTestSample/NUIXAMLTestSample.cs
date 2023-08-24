@@ -1,4 +1,5 @@
 using System;
+using Tizen.NUI.Examples;
 
 namespace NUIXAMLTestSample
 {
@@ -10,12 +11,15 @@ namespace NUIXAMLTestSample
         [STAThread]
         static void Main(string[] args)
         {
-             new TempTest().Run(args);
+            //new TextLayoutSample().Run(args);
+            //new TempTest().Run(args);
+            new LayoutSample().Run(args);
 
             /* For Sample codes */
             // new TestAmbient().Run(args);
             // new TestDetailApps().Run(args);
             // new TestMyContents().Run(args);
+            // new CommandDemoApplication().Run(args);
 
             /* For UTC codes */
             // new TestButton().Run(args);

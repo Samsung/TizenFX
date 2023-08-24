@@ -14,12 +14,16 @@
  * limitations under the License.
  */
 
+using System;
+using System.ComponentModel;
+
 namespace Tizen.WebView
 {
     /// <summary>
     /// This class provides the methods to initialize and shutdown the Chromium-efl.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
     public static class Chromium
     {
         /// <summary>
@@ -27,6 +31,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <returns>A reference count of the Chromium's instance.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public static int Initialize()
         {
             return Interop.ChromiumEwk.ewk_init();
@@ -37,9 +42,22 @@ namespace Tizen.WebView
         /// </summary>
         /// <returns>A reference count of the Chromium's instance.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public static int Shutdown()
         {
             return Interop.ChromiumEwk.ewk_shutdown();
+        }
+
+        /// <summary>
+        /// Sets argument count and argument array for Chromium.
+        /// </summary>
+        /// <param name="args">Argument array. The first value of array must be program's name.</param>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
+        public static void SetArguments(string[] args)
+        {
+            Interop.ChromiumEwk.ewk_set_arguments(args.Length, args);
         }
     }
 }

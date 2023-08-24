@@ -617,6 +617,23 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
+    /// Enumeration for the Bluetooth audio role.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum BluetoothAudioRole
+    {
+        /// <summary>
+        /// The source role.
+        /// </summary>
+        Source = 0,
+        /// <summary>
+        /// The sink role.
+        /// </summary>
+        Sink,
+    }
+
+    /// <summary>
     /// Enumeration for the Bluetooth service class types.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
@@ -977,6 +994,42 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
+    /// Enumeration for the player command.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
+    public enum PlayerCommand
+    {
+        /// <summary>
+        /// Play current track
+        /// </summary>
+        Play = 1,
+        /// <summary>
+        /// Pause current track
+        /// </summary>
+        Pause,
+        /// <summary>
+        /// Stop playing track
+        /// </summary>
+        Stop,
+        /// <summary>
+        /// Go to the next track
+        /// </summary>
+        Next,
+        /// <summary>
+        /// Go to the previous track
+        /// </summary>
+        Previous,
+        /// <summary>
+        /// Fast-forward current track
+        /// </summary>
+        FastForward,
+        /// <summary>
+        /// Rewind current track
+        /// </summary>
+        Rewind
+    }
+
+    /// <summary>
     /// Enumeration for the Bluetooth LE device address types.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
@@ -1058,6 +1111,26 @@ namespace Tizen.Network.Bluetooth
         /// The Bluetooth LE advertising started.
         /// </summary>
         BluetoothLeAdvertisingStarted
+    }
+
+    /// <summary>
+    /// Enumeration for the Bluetooth LE scan mode.
+    /// </summary>
+    /// <since_tizen> 7 </since_tizen>
+    public enum BluetoothLeScanMode
+    {
+        /// <summary>
+        /// Balanced mode of power consumption and connection latency
+        /// </summary>
+        Balanced,
+        /// <summary>
+        /// Low connection latency but high power consumption
+        /// </summary>
+        LowLatency,
+        /// <summary>
+        /// Low power consumption but high connection latency
+        /// </summary>
+        LowEnergy
     }
 
     /// <summary>
@@ -1232,6 +1305,26 @@ namespace Tizen.Network.Bluetooth
         /// Write requested.
         /// </summary>
         Write = 1,
+    }
+
+    /// <summary>
+    /// Enumeration for the GATT service change type.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
+    public enum BluetoothGattServiceChangeType
+    {
+        /// <summary>
+        /// Service added.
+        /// </summary>
+        Added = 0,
+        /// <summary>
+        /// Service removed.
+        /// </summary>
+        Removed,
+        /// <summary>
+        /// Resync is required.
+        /// </summary>
+        Resync,
     }
 
     /// <summary>

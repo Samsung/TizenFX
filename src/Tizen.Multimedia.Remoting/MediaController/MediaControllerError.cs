@@ -56,6 +56,9 @@ namespace Tizen.Multimedia.Remoting
 
                 case MediaControllerError.PermissionDenied:
                     throw new UnauthorizedAccessException(msg);
+
+                default:
+                    break;
             }
 
             throw new InvalidOperationException($"Unknown error({error}) : {message}");

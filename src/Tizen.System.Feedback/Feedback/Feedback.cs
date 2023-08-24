@@ -16,18 +16,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 
 namespace Tizen.System
 {
-    /// <summary>
-    /// The class for constants.
-    /// </summary>
-    internal static class Constants
-    {
-        internal const int NumberOfPattern = 39;
-    }
-
     /// <summary>
     /// The Feedback API provides functions to control haptic and sound.
     /// The Feedback API provides the way to play and stop feedback, and get the information whether a specific pattern is supported.
@@ -88,7 +81,48 @@ namespace Tizen.System
     {
         private const string LogTag = "Tizen.System.Feedback";
 
-        private readonly FeedbackPattern[] Pattern = new FeedbackPattern[39];
+        private readonly Dictionary<string, int> Pattern = new Dictionary<string, int>
+        {
+            {"Tap", 0},
+            {"SoftInputPanel", 1},
+            {"Key0", 6},
+            {"Key1", 7},
+            {"Key2", 8},
+            {"Key3", 9},
+            {"Key4", 10},
+            {"Key5", 11},
+            {"Key6", 12},
+            {"Key7", 13},
+            {"Key8", 14},
+            {"Key9", 15},
+            {"KeyStar", 16},
+            {"KeySharp", 17},
+            {"KeyBack", 18},
+            {"Hold", 19},
+            {"HardwareKeyPressed", 21},
+            {"HardwareKeyHold", 22},
+            {"Message", 23},
+            {"Email", 25},
+            {"WakeUp", 27},
+            {"Schedule", 29},
+            {"Timer", 31},
+            {"General", 33},
+            {"PowerOn", 36},
+            {"PowerOff", 37},
+            {"ChargerConnected", 38},
+            {"ChargingError", 40},
+            {"FullyCharged", 42},
+            {"LowBattery", 44},
+            {"Lock", 46},
+            {"UnLock", 47},
+            {"VibrationModeAbled", 55},
+            {"SilentModeDisabled", 56},
+            {"BluetoothDeviceConnected", 57},
+            {"BluetoothDeviceDisconnected", 58},
+            {"ListReorder", 62},
+            {"ListSlider", 63},
+            {"VolumeKeyPressed", 64},
+        };
 
         /// <summary>
         /// Constructor of Feedback class
@@ -107,85 +141,6 @@ namespace Tizen.System
         /// </example>
         public Feedback()
         {
-            Pattern[0].PatternNumber = 0;
-            Pattern[0].PatternString = "Tap";
-            Pattern[1].PatternNumber = 1;
-            Pattern[1].PatternString = "SoftInputPanel";
-            Pattern[2].PatternNumber = 6;
-            Pattern[2].PatternString = "Key0";
-            Pattern[3].PatternNumber = 7;
-            Pattern[3].PatternString = "Key1";
-            Pattern[4].PatternNumber = 8;
-            Pattern[4].PatternString = "Key2";
-            Pattern[5].PatternNumber = 9;
-            Pattern[5].PatternString = "Key3";
-            Pattern[6].PatternNumber = 10;
-            Pattern[6].PatternString = "Key4";
-            Pattern[7].PatternNumber = 11;
-            Pattern[7].PatternString = "Key5";
-            Pattern[8].PatternNumber = 12;
-            Pattern[8].PatternString = "Key6";
-            Pattern[9].PatternNumber = 13;
-            Pattern[9].PatternString = "Key7";
-            Pattern[10].PatternNumber = 14;
-            Pattern[10].PatternString = "Key8";
-            Pattern[11].PatternNumber = 15;
-            Pattern[11].PatternString = "Key9";
-            Pattern[12].PatternNumber = 16;
-            Pattern[12].PatternString = "KeyStar";
-            Pattern[13].PatternNumber = 17;
-            Pattern[13].PatternString = "KeySharp";
-            Pattern[14].PatternNumber = 18;
-            Pattern[14].PatternString = "KeyBack";
-            Pattern[15].PatternNumber = 19;
-            Pattern[15].PatternString = "Hold";
-            Pattern[16].PatternNumber = 21;
-            Pattern[16].PatternString = "HardwareKeyPressed";
-            Pattern[17].PatternNumber = 22;
-            Pattern[17].PatternString = "HardwareKeyHold";
-            Pattern[18].PatternNumber = 23;
-            Pattern[18].PatternString = "Message";
-            Pattern[19].PatternNumber = 25;
-            Pattern[19].PatternString = "Email";
-            Pattern[20].PatternNumber = 27;
-            Pattern[20].PatternString = "WakeUp";
-            Pattern[21].PatternNumber = 29;
-            Pattern[21].PatternString = "Schedule";
-            Pattern[22].PatternNumber = 31;
-            Pattern[22].PatternString = "Timer";
-            Pattern[23].PatternNumber = 33;
-            Pattern[23].PatternString = "General";
-            Pattern[24].PatternNumber = 36;
-            Pattern[24].PatternString = "PowerOn";
-            Pattern[25].PatternNumber = 37;
-            Pattern[25].PatternString = "PowerOff";
-            Pattern[26].PatternNumber = 38;
-            Pattern[26].PatternString = "ChargerConnected";
-            Pattern[27].PatternNumber = 40;
-            Pattern[27].PatternString = "ChargingError";
-            Pattern[28].PatternNumber = 42;
-            Pattern[28].PatternString = "FullyCharged";
-            Pattern[29].PatternNumber = 44;
-            Pattern[29].PatternString = "LowBattery";
-            Pattern[30].PatternNumber = 46;
-            Pattern[30].PatternString = "Lock";
-            Pattern[31].PatternNumber = 47;
-            Pattern[31].PatternString = "UnLock";
-            Pattern[32].PatternNumber = 55;
-            Pattern[32].PatternString = "VibrationModeAbled";
-            Pattern[33].PatternNumber = 56;
-            Pattern[33].PatternString = "SilentModeDisabled";
-            Pattern[34].PatternNumber = 57;
-            Pattern[34].PatternString = "BluetoothDeviceConnected";
-            Pattern[35].PatternNumber = 58;
-            Pattern[35].PatternString = "BluetoothDeviceDisconnected";
-            Pattern[36].PatternNumber = 62;
-            Pattern[36].PatternString = "ListReorder";
-            Pattern[37].PatternNumber = 63;
-            Pattern[37].PatternString = "ListSlider";
-            Pattern[38].PatternNumber = 64;
-            Pattern[38].PatternString = "VolumeKeyPressed";
-
             Interop.Feedback.FeedbackError res = (Interop.Feedback.FeedbackError)Interop.Feedback.Initialize();
             if (res != Interop.Feedback.FeedbackError.None)
             {
@@ -209,13 +164,6 @@ namespace Tizen.System
             if (res != Interop.Feedback.FeedbackError.None)
             {
                 Log.Warn(LogTag, string.Format("Failed to deinitialize feedback. err = {0}", res));
-                switch (res)
-                {
-                    case Interop.Feedback.FeedbackError.NotInitialized:
-                        throw new Exception("Not initialized");
-                    default:
-                        throw new InvalidOperationException("Failed to initialize");
-                }
             }
         }
 
@@ -250,24 +198,13 @@ namespace Tizen.System
         public bool IsSupportedPattern(FeedbackType type, String pattern)
         {
             bool supported = false;
-            bool found = false;
-            int i = 0;
+            int number;
             Interop.Feedback.FeedbackError res;
 
-            for (i = 0; i < Constants.NumberOfPattern; i++)
-            {
-                if (String.Compare(pattern, Pattern[i].PatternString) == 0)
-                {
-                    found = true;
-                    break;
-                }
-            }
+            if (!Pattern.TryGetValue(pattern, out number))
+                throw new ArgumentException($"Not supported pattern string : {pattern}", nameof(pattern));
 
-            if (!found)
-                throw new ArgumentException("Invalid Arguments");
-
-            res = (Interop.Feedback.FeedbackError)Interop.Feedback.IsSupportedPattern((Interop.Feedback.FeedbackType)type, Pattern[i].PatternNumber, out supported);
-
+            res = (Interop.Feedback.FeedbackError)Interop.Feedback.IsSupportedPattern((Interop.Feedback.FeedbackType)type, number, out supported);
 
             if (res != Interop.Feedback.FeedbackError.None)
             {
@@ -316,26 +253,16 @@ namespace Tizen.System
         /// </example>
         public void Play(FeedbackType type, String pattern)
         {
-            bool found = false;
-            int i = 0;
+            int number;
             Interop.Feedback.FeedbackError res;
 
-            for (i = 0; i < Constants.NumberOfPattern; i++)
-            {
-                if (String.Compare(pattern, Pattern[i].PatternString) == 0)
-                {
-                    found = true;
-                    break;
-                }
-            }
-
-            if (!found)
-                throw new ArgumentException("Invalid Arguments");
+            if (!Pattern.TryGetValue(pattern, out number))
+                throw new ArgumentException($"Not supported pattern string : {pattern}", nameof(pattern));
 
             if (type == FeedbackType.All)
-                res = (Interop.Feedback.FeedbackError)Interop.Feedback.Play(Pattern[i].PatternNumber);
+                res = (Interop.Feedback.FeedbackError)Interop.Feedback.Play(number);
             else
-                res = (Interop.Feedback.FeedbackError)Interop.Feedback.PlayType((Interop.Feedback.FeedbackType)type, Pattern[i].PatternNumber);
+                res = (Interop.Feedback.FeedbackError)Interop.Feedback.PlayType((Interop.Feedback.FeedbackType)type, number);
 
             if (res != Interop.Feedback.FeedbackError.None)
             {
@@ -399,6 +326,141 @@ namespace Tizen.System
                     case Interop.Feedback.FeedbackError.OperationFailed:
                     default:
                         throw new InvalidOperationException("Failed to stop pattern");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the count of theme can be used according to feedback type.
+        /// </summary>
+        /// <remarks>
+        /// Now this internal API works for FeedbackType.Sound only, FeedbackType.Vibration is not supported.
+        /// </remarks>
+        /// <since_tizen> 10 </since_tizen>
+        /// <param name="type">The feedback type.</param>
+        /// <returns>The counf of theme can be used according to feedback type.</returns>
+        /// <exception cref="Exception">Thrown when failed because the feedback is not initialized.</exception>
+        /// <exception cref="ArgumentException">Thrown when failed because of an invalid arguament.</exception>
+        /// <exception cref="NotSupportedException">Thrown when failed becuase the device (haptic, sound) is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of a system error.</exception>
+        /// <example>
+        /// <code>
+        /// Feedback feedback = new Feedback();
+        /// uint coundOfTheme = feedback.GetCountOfThemeInternal(FeedbackType.Sound);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint GetCountOfThemeInternal(FeedbackType type)
+        {
+            uint countOfTheme = 0;
+            Interop.Feedback.FeedbackError res;
+
+            res = (Interop.Feedback.FeedbackError)Interop.Feedback.GetCountOfThemeInternal((Interop.Feedback.FeedbackType)type, out countOfTheme);
+
+            if (res != Interop.Feedback.FeedbackError.None)
+            {
+                Log.Warn(LogTag, string.Format("Failed to get count of theme internal. err = {0}", res));
+                switch (res)
+                {
+                    case Interop.Feedback.FeedbackError.NotInitialized:
+                        throw new Exception("Not initialized");
+                    case Interop.Feedback.FeedbackError.InvalidParameter:
+                        throw new ArgumentException("Invalid Arguments");
+                    case Interop.Feedback.FeedbackError.NotSupported:
+                        throw new NotSupportedException("Device is not supported");
+                    case Interop.Feedback.FeedbackError.OperationFailed:
+                    default:
+                        throw new InvalidOperationException("Failed to get count of theme internal");
+                }
+            }
+            return countOfTheme;
+        }
+
+        /// <summary>
+        /// Gets the index of theme selected.
+        /// </summary>
+        /// <remarks>
+        /// Now this internal API works for FeedbackType.Sound only, FeedbackType.Vibration is not supported.
+        /// </remarks>
+        /// <since_tizen> 10 </since_tizen>
+        /// <param name="type">The feedback type.</param>
+        /// <returns>The index of theme selected as default theme according to feedback type.</returns>
+        /// <exception cref="ArgumentException">Thrown when failed because of an invalid arguament.</exception>
+        /// <exception cref="NotSupportedException">Thrown when failed becuase the device (haptic, sound) is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of a system error.</exception>
+        /// <example>
+        /// <code>
+        /// Feedback feedback = new Feedback();
+        /// uint indexOfTheme = feedback. GetThemeIndexInternal(FeedbackType.Sound);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint GetThemeIndexInternal(FeedbackType type)
+        {
+            uint countOfTheme = 0;
+            Interop.Feedback.FeedbackError res;
+
+            res = (Interop.Feedback.FeedbackError)Interop.Feedback.GetThemeIndexInternal((Interop.Feedback.FeedbackType)type, out countOfTheme);
+
+            if (res != Interop.Feedback.FeedbackError.None)
+            {
+                Log.Warn(LogTag, string.Format("Failed to get index of theme internal. err = {0}", res));
+                switch (res)
+                {
+                    case Interop.Feedback.FeedbackError.InvalidParameter:
+                        throw new ArgumentException("Invalid Arguments");
+                    case Interop.Feedback.FeedbackError.NotSupported:
+                        throw new NotSupportedException("Device is not supported");
+                    case Interop.Feedback.FeedbackError.OperationFailed:
+                    default:
+                        throw new InvalidOperationException("Failed to get index of theme internal");
+                }
+            }
+            return countOfTheme;
+        }
+
+        /// <summary>
+        /// Sets the index of theme according to feedback type.
+        /// </summary>
+        /// <remarks>
+        /// Now this internal API works for FeedbackType.Sound only, FeedbackType.Vibration is not supported.
+        /// To set the index of theme for Sound type, the application should have http://tizen.org/privilege/systemsettings.admin privilege.
+        /// </remarks>
+        /// <since_tizen> 10 </since_tizen>
+        /// <param name="type">The feedback type.</param>
+        /// <param name="indexOfTheme">The index of theme will be set.</param>
+        /// <exception cref="ArgumentException">Thrown when failed because of an invalid arguament.</exception>
+        /// <exception cref="NotSupportedException">Thrown when failed becuase the device (haptic, sound) is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when failed because the access is not granted(No privilege)</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of a system error.</exception>
+        /// <example>
+        /// <code>
+        /// Feedback feedback = new Feedback();
+        /// uint indexOfTheme = 0;
+        /// feedback.SetThemeIndexInternal(FeedbackType.Sound, indexOfTheme);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetThemeIndexInternal(FeedbackType type, uint indexOfTheme)
+        {
+            Interop.Feedback.FeedbackError res;
+
+            res = (Interop.Feedback.FeedbackError)Interop.Feedback.SetThemeIndexInternal((Interop.Feedback.FeedbackType)type, indexOfTheme);
+
+            if (res != Interop.Feedback.FeedbackError.None)
+            {
+                Log.Warn(LogTag, string.Format("Failed to set index of theme internal. err = {0}", res));
+                switch (res)
+                {
+                    case Interop.Feedback.FeedbackError.InvalidParameter:
+                        throw new ArgumentException("Invalid Arguments");
+                    case Interop.Feedback.FeedbackError.NotSupported:
+                        throw new NotSupportedException("Device is not supported");
+                    case Interop.Feedback.FeedbackError.PermissionDenied:
+                        throw new UnauthorizedAccessException("Access is not granted");
+                    case Interop.Feedback.FeedbackError.OperationFailed:
+                    default:
+                        throw new InvalidOperationException("Failed to set index of theme internal");
                 }
             }
         }

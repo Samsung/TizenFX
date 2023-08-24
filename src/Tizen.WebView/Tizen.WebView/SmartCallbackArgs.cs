@@ -23,6 +23,7 @@ namespace Tizen.WebView
     /// The argument from the SmartCallback.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
     public class SmartCallbackArgs : EventArgs
     {
         private IntPtr _arg;
@@ -37,6 +38,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <returns>Argument as an integer type.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public int GetAsInteger()
         {
             if (_arg == IntPtr.Zero)
@@ -51,6 +53,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <returns>Argument as a double type.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public double GetAsDouble()
         {
             if (_arg == IntPtr.Zero)
@@ -67,6 +70,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <returns>Argument as a boolean type.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public bool GetAsBoolean()
         {
             if (_arg == IntPtr.Zero)
@@ -81,6 +85,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <returns>Argument as a string type.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public string GetAsString()
         {
             if (_arg == IntPtr.Zero)

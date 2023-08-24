@@ -25,12 +25,14 @@ namespace Tizen.WebView
     /// </summary>
     /// <param name="message">The JavaScriptMessage returned by the script.</param>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
     public delegate void JavaScriptMessageHandler(JavaScriptMessage message);
 
     /// <summary>
     /// A script message contains information that is sent from the JavaScript runtime.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
     public class JavaScriptMessage
     {
         private string _name;
@@ -46,6 +48,7 @@ namespace Tizen.WebView
         /// The object name in JavaScript.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public string Name
         {
             get
@@ -59,6 +62,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <returns>The value of the body as an integer type.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public int GetBodyAsInteger()
         {
             if (_body == IntPtr.Zero)
@@ -73,6 +77,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <returns>The value of the body as a double type.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public double GetBodyAsDouble()
         {
             if (_body == IntPtr.Zero)
@@ -89,6 +94,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <returns>The value of the body as boolean type.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public bool GetBodyAsBoolean()
         {
             if (_body == IntPtr.Zero)
@@ -103,6 +109,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <returns>The value of the body as a string type.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public string GetBodyAsString()
         {
             if (_body == IntPtr.Zero)

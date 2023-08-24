@@ -26,6 +26,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Multimedia.AudioIO", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Multimedia.Camera", "..\Tizen.Multimedia.Camera\Tizen.Multimedia.Camera.csproj", "{EEA12578-E0D6-4852-90B8-020D238E29C4}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Applications.ComponentBased", "..\Tizen.Applications.ComponentBased\Tizen.Applications.ComponentBased.csproj", "{F3A6EEC0-C363-4022-87F8-864A9BB9E2A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -80,6 +82,10 @@ Global
 		{EEA12578-E0D6-4852-90B8-020D238E29C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEA12578-E0D6-4852-90B8-020D238E29C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEA12578-E0D6-4852-90B8-020D238E29C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3A6EEC0-C363-4022-87F8-864A9BB9E2A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3A6EEC0-C363-4022-87F8-864A9BB9E2A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3A6EEC0-C363-4022-87F8-864A9BB9E2A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3A6EEC0-C363-4022-87F8-864A9BB9E2A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

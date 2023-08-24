@@ -16,11 +16,11 @@
  */
 using System;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 
 namespace Tizen.NUI.Examples
 {
-    public class AppDetailPage : ContentPage
+    public partial class AppDetailPage : ContentPage
     {
         private Vector2 bezierPointIn1 = new Vector2(0.21f, 2);
         private Vector2 bezierPointIn2 = new Vector2(0.14f, 1);
@@ -34,6 +34,7 @@ namespace Tizen.NUI.Examples
 
         public AppDetailPage(Window win) : base (win)
         {
+            InitializeComponent();
             Root.BackgroundImage = "/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/store_default_bg_01.png";
         }
 
@@ -140,7 +141,7 @@ namespace Tizen.NUI.Examples
             if (sender is Button)
             {
                 Button button = sender as Button;
-                button.LabelText = "Open";
+                button.Text = "Open";
             }
             return true;
         }

@@ -57,6 +57,11 @@ namespace Tizen.Applications.Notifications
             }
 
             Interop.Notification.SetProperties(notification.Handle, (int)notification.Property);
+
+            if (notification.CheckBox == true)
+            {
+                Interop.Notification.SetCheckBox(notification.Handle, notification.CheckBox, notification.CheckedValue);
+            }
         }
 
         internal static void BindSafeHandle(Notification notification)
@@ -85,6 +90,7 @@ namespace Tizen.Applications.Notifications
             BindSafeHandleTime(notification);
             BindSafeHandleTag(notification);
             BindSafeHandleAction(notification);
+            BindSafeHandleCheckBox(notification);
         }
 
         private static void BindNotificationSafeHandle(Notification notification)
@@ -198,7 +204,7 @@ namespace Tizen.Applications.Notifications
 
                 if (time != 0)
                 {
-                    notification.TimeStamp = (new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Local)).AddSeconds(time).ToLocalTime();
+                    notification.TimeStamp = (new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).AddSeconds(time).ToLocalTime();
                 }
             }
         }
@@ -228,6 +234,21 @@ namespace Tizen.Applications.Notifications
             {
                 notification.Action = new AppControl(appcontrol);
             }
+        }
+
+        private static void BindSafeHandleCheckBox(Notification notification)
+        {
+            NotificationError ret;
+            bool checkbox = false;
+            bool checkedValue = false;
+
+            ret = Interop.Notification.GetCheckBox(notification.Handle, out checkbox, out checkedValue);
+            if (ret != NotificationError.None) {
+                Log.Error(Notification.LogTag, "Failed to get check box info");
+            }
+
+            notification.CheckBox = checkbox;
+            notification.CheckedValue = checkedValue;
         }
     }
 }

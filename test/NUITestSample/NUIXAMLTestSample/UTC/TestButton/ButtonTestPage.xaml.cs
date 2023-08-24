@@ -16,15 +16,16 @@
  */
 using System;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 
 namespace Tizen.NUI.Examples
 {
-    public class ButtonTestPage : ContentPage
+    public partial class ButtonTestPage : ContentPage
     {
 
         public ButtonTestPage(Window win) : base (win)
         {
+            InitializeComponent();
         }
 
         public override void SetFocus()
@@ -41,7 +42,7 @@ namespace Tizen.NUI.Examples
             if (sender is Button)
             {
                 Button button = sender as Button;
-                button.LabelText = "Click Me";
+                button.Text = "Click Me";
             }
             return true;
         }

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.FlexTest5Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="FlexTest5Page"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <View x:Name="ContentView"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+            <View.Layout>
+                <FlexLayout Direction="Column" Justification="FlexStart" Alignment="FlexStart"/>
+            </View.Layout>
+
+            <TextLabel x:Name="text"
+                         Text="Basic Grids"
+                         PointSize="12"
+                         WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                         HeightSpecification="100"
+                         VerticalAlignment="Center" />
+            <View x:Name="view1"
+                    BackgroundColor="#ff0000"
+                    WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                    HeightSpecification="100">
+
+                <View.Layout>
+                    <FlexLayout Direction="Row" Justification="SpaceBetween" Alignment="Center" />
+                </View.Layout>
+
+                <TextLabel BackgroundColor="#444444"
+                             TextColor="#ffffff"
+                             Text="1/2"
+                             PointSize="8"
+                             WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                             HeightSpecification="100"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center" />
+                <TextLabel BackgroundColor="#444444"
+                             TextColor="#ffffff"
+                             Text="1/2"
+                             PointSize="8"
+                             WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                             HeightSpecification="100"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center" />
+            </View>
+
+            <View x:Name="view2"
+                    BackgroundColor="#ff0000"
+                    WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                    HeightSpecification="100">
+
+                <View.Layout>
+                    <FlexLayout Direction="Row" Justification="SpaceBetween" Alignment="Center" />
+                </View.Layout>
+
+                <TextLabel BackgroundColor="#555555"
+                           TextColor="#ffffff"
+                           Text="1/3"
+                           PointSize="8"
+                           WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                           HeightSpecification="100"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center" />
+                <TextLabel BackgroundColor="#555555"
+                             TextColor="#ffffff"
+                             Text="1/3"
+                             PointSize="8"
+                             WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                             HeightSpecification="100"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center" />
+                <TextLabel BackgroundColor="#555555"
+                             TextColor="#ffffff"
+                             Text="1/3"
+                             PointSize="8"
+                             WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                             HeightSpecification="100"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center" />
+            </View>
+
+            <View x:Name="view3"
+                    BackgroundColor="#ff0000"
+                    WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                    HeightSpecification="100">
+
+                <View.Layout>
+                    <FlexLayout Direction="Row" Justification="SpaceBetween" Alignment="Center" />
+                </View.Layout>
+
+                <TextLabel BackgroundColor="#666666"
+                             TextColor="#ffffff"
+                             Text="1/4"
+                             PointSize="8"
+                             WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                             HeightSpecification="100"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center" />
+                <TextLabel BackgroundColor="#666666"
+                             TextColor="#ffffff"
+                             Text="1/4"
+                             PointSize="8"
+                             WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                             HeightSpecification="100"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center" />
+                <TextLabel BackgroundColor="#666666"
+                             TextColor="#ffffff"
+                             Text="1/4"
+                             PointSize="8"
+                             WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                             HeightSpecification="100"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center" />
+                <TextLabel BackgroundColor="#666666"
+                             TextColor="#ffffff"
+                             Text="1/4"
+                             PointSize="8"
+                             WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                             HeightSpecification="100"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center" />
+            </View>
+
+            <View x:Name="view4"
+                    BackgroundColor="#ff0000"
+                    WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                    HeightSpecification="100">
+
+                <View.Layout>
+                    <FlexLayout Direction="Row" Justification="SpaceBetween" Alignment="Center" />
+                </View.Layout>
+
+                <TextLabel BackgroundColor="#777777"
+                             TextColor="#ffffff"
+                             Text="1/5"
+                             PointSize="8"
+                             WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                             HeightSpecification="100"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center" />
+                <TextLabel BackgroundColor="#777777"
+                             TextColor="#ffffff"
+                             Text="1/5"
+                             PointSize="8"
+                             WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                             HeightSpecification="100"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center" />
+                <TextLabel BackgroundColor="#777777"
+                             TextColor="#ffffff"
+                             Text="1/5"
+                             PointSize="8"
+                             WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                             HeightSpecification="100"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center" />
+                <TextLabel BackgroundColor="#777777"
+                             TextColor="#ffffff"
+                             Text="1/5"
+                             PointSize="8"
+                             WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                             HeightSpecification="100"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center" />
+                <TextLabel BackgroundColor="#777777"
+                             TextColor="#ffffff"
+                             Text="1/5"
+                             PointSize="8"
+                             WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                             HeightSpecification="100"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center" />
+            </View>
+        </View>
+    </ContentPage.Content>
+</ContentPage>
+

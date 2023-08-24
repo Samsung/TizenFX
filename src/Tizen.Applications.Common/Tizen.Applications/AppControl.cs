@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -58,6 +59,7 @@ namespace Tizen.Applications
         private string _category = null;
         private string _applicationId = null;
         private ExtraDataCollection _extraData = null;
+        private string _componentId = null;
 
         /// <summary>
         /// Initializes the instance of the AppControl class.
@@ -106,13 +108,34 @@ namespace Tizen.Applications
         {
             if (handle == null)
             {
-                throw new ArgumentNullException("handle");
+                throw new ArgumentNullException(nameof(handle));
             }
 
-            Interop.AppControl.ErrorCode err = Interop.AppControl.DangerousClone(out _handle, handle.DangerousGetHandle());
-            if (err != Interop.AppControl.ErrorCode.None)
+            if (handle.IsInvalid)
             {
-                throw new InvalidOperationException("Failed to clone the appcontrol handle. Err = " + err);
+                throw new ArgumentNullException(nameof(handle), "handle is invalid");
+            }
+
+            bool mustRelease = false;
+            try
+            {
+                handle.DangerousAddRef(ref mustRelease);
+                Interop.AppControl.ErrorCode err = Interop.AppControl.DangerousClone(out _handle, handle.DangerousGetHandle());
+                if (err != Interop.AppControl.ErrorCode.None)
+                {
+                    throw new InvalidOperationException("Failed to clone the appcontrol handle. Err = " + err);
+                }
+            }
+            catch (ObjectDisposedException e)
+            {
+                throw new ArgumentNullException(nameof(handle), e.Message);
+            }
+            finally
+            {
+                if (mustRelease)
+                {
+                    handle.DangerousRelease();
+                }
             }
         }
 
@@ -135,10 +158,7 @@ namespace Tizen.Applications
                     s_replyCallbackMaps[requestId](new AppControl(launchHandle), new AppControl(replyHandle), (AppControlReplyResult)result);
                     if (result != Interop.AppControl.AppStartedStatus)
                     {
-                        lock (s_replyCallbackMaps)
-                        {
-                            s_replyCallbackMaps.Remove(requestId);
-                        }
+                        s_replyCallbackMaps.Remove(requestId);
                     }
                 }
             }
@@ -444,6 +464,52 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets and sets the component ID to explicitly launch a component.
+        /// </summary>
+        /// <value>
+        /// (if the component ID is null for setter, it clears the previous value.)
+        /// From Tizen 5.5, a new application model is supported that is component-based application.
+        /// This property is for launching component-based application. If it's not set, the main component of component-based application will be launched.
+        /// If the target app is not component-based application, setting property is meaningless.
+        /// </value>
+        /// <example>
+        /// <code>
+        /// AppControl appControl = new AppControl();
+        /// appControl.ApplicationId = "org.tizen.component-based-app"; // component-based application
+        /// appControl.ComponentId = "org.tizen.frame-component";
+        /// AppControl.SendLaunchRequest(appControl);
+        /// </code>
+        /// </example>
+        /// <since_tizen> 6 </since_tizen>
+        public string ComponentId
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(_componentId))
+                {
+                    Interop.AppControl.ErrorCode err = Interop.AppControl.GetComponentId(_handle, out _componentId);
+                    if (err != Interop.AppControl.ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, "Failed to get the component id from the AppControl. Err = " + err);
+                    }
+                }
+                return _componentId;
+            }
+            set
+            {
+                Interop.AppControl.ErrorCode err = Interop.AppControl.SetComponentId(_handle, value);
+                if (err == Interop.AppControl.ErrorCode.None)
+                {
+                    _componentId = value;
+                }
+                else
+                {
+                    Log.Warn(LogTag, "Failed to set the component id to the AppControl. Err = " + err);
+                }
+            }
+        }
+
 #endregion // Public Properties
 
         /// <summary>
@@ -523,6 +589,37 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Sends the launch request with setting timeout.
+        /// </summary>
+        /// <remarks>
+        /// The operation is mandatory information for the launch request.
+        /// If the operation is not specified, AppControlOperations.Default is used by default.
+        /// If the operation is AppControlOperations.Default, the application ID is mandatory to explicitly launch the application.<br/>
+        /// To launch a service application, an explicit launch request with the application ID given by property ApplicationId MUST be sent.<br/>
+        /// It can set receiving timeout interval using timeout parameter.
+        /// If there is an error that is not related to timeout, the error is returned immediately regardless of the timeout value.
+        /// </remarks>
+        /// <param name="launchRequest">The AppControl.</param>
+        /// <param name="timeout">The timeout in milliseconds, the timeout range is 5000 to 30000.</param>
+        /// <exception cref="ArgumentNullException">Thrown when failed because of a null argument.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
+        /// <exception cref="TimeoutException">Thrown when failed because of timeout.</exception>
+        /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        /// <example>
+        /// <code>
+        /// AppControl appControl = new AppControl();
+        /// appControl.ApplicationId = "org.tizen.calculator";
+        /// AppControl.SendLaunchRequest(appControl, 10000);
+        /// </code>
+        /// </example>
+        /// <since_tizen> 7.5 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SendLaunchRequest(AppControl launchRequest, uint timeout)
+        {
+            SendLaunchRequest(launchRequest, timeout, null);
+        }
+
+        /// <summary>
         /// Sends the launch request.
         /// </summary>
         /// <remarks>
@@ -588,7 +685,89 @@ namespace Tizen.Applications
                     case Interop.AppControl.ErrorCode.OutOfMemory:
                         throw new Exceptions.OutOfMemoryException("Out-of-memory");
                     case Interop.AppControl.ErrorCode.AppNotFound:
-                        throw new Exceptions.AppNotFoundException("App not found");
+                        throw new Exceptions.AppNotFoundException("App(" + launchRequest.ApplicationId + ") not found. Operation(" + launchRequest.Operation + ")");
+                    case Interop.AppControl.ErrorCode.LaunchRejected:
+                        throw new Exceptions.LaunchRejectedException("Launch rejected");
+                    case Interop.AppControl.ErrorCode.LaunchFailed:
+                        throw new Exceptions.LaunchFailedException("Launch failed");
+                    case Interop.AppControl.ErrorCode.PermissionDenied:
+                        throw new Exceptions.PermissionDeniedException("Permission denied");
+
+                    default:
+                        throw new Exceptions.LaunchRejectedException("Launch rejected");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Sends the launch request with setting timeout
+        /// </summary>
+        /// <remarks>
+        /// The operation is mandatory information for the launch request.
+        /// If the operation is not specified, AppControlOperations.Default is used by default.
+        /// If the operation is AppControlOperations.Default, the application ID is mandatory to explicitly launch the application.<br/>
+        /// To launch a service application, an explicit launch request with the application ID given by property ApplicationId MUST be sent.<br/>
+        /// It can set receiving timeout interval using timeout parameter.
+        /// If there is an error that is not related to timeout, the error is returned immediately regardless of the timeout value.
+        /// </remarks>
+        /// <param name="launchRequest">The AppControl.</param>
+        /// <param name="timeout">The timeout in milliseconds, the timeout range is 5000 to 30000.</param>
+        /// <param name="replyAfterLaunching">The callback function to be called when the reply is delivered.</param>
+        /// <exception cref="ArgumentException">Thrown when failed because of the argument is invalid.</exception>
+        /// <exception cref="Exceptions.AppNotFoundException">Thrown when the application to run is not found.</exception>
+        /// <exception cref="Exceptions.LaunchFailedException">Thrown when the request failed to launch the application.</exception>
+        /// <exception cref="Exceptions.LaunchRejectedException">Thrown when the launch request is rejected.</exception>
+        /// <exception cref="Exceptions.OutOfMemoryException">Thrown when the memory is insufficient.</exception>
+        /// <exception cref="Exceptions.PermissionDeniedException">Thrown when the permission is denied.</exception>
+        /// <exception cref="TimeoutException">Thrown when failed because of timeout. The timeout interval is set by timeout parameter.</exception>
+        /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        /// <example>
+        /// <code>
+        /// AppControl appControl = new AppControl();
+        /// appControl.ApplicationId = "org.tizen.calculator";
+        /// AppControl.SendLaunchRequest(appControl, 10000, (launchRequest, replyRequest, result) => {
+        ///     // ...
+        /// });
+        /// </code>
+        /// </example>
+        /// <since_tizen> 7.5 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SendLaunchRequest(AppControl launchRequest, uint timeout, AppControlReplyCallback replyAfterLaunching)
+        {
+            if (launchRequest == null)
+            {
+                throw new ArgumentNullException("launchRequest");
+            }
+
+            Interop.AppControl.ErrorCode err;
+
+            if (replyAfterLaunching != null)
+            {
+                int id = 0;
+                lock (s_replyCallbackMaps)
+                {
+                    id = s_reaustId++;
+                    s_replyCallbackMaps[id] = replyAfterLaunching;
+                }
+                err = Interop.AppControl.SendLaunchRequestWithTimeout(launchRequest._handle, timeout, s_replyNativeCallback, (IntPtr)id);
+            }
+            else
+            {
+                err = Interop.AppControl.SendLaunchRequestWithTimeout(launchRequest._handle, timeout, null, IntPtr.Zero);
+            }
+
+            if (err != Interop.AppControl.ErrorCode.None)
+            {
+                switch (err)
+                {
+                    case Interop.AppControl.ErrorCode.InvalidParameter:
+                        throw new ArgumentException("Invalid Arguments");
+                    case Interop.AppControl.ErrorCode.TimedOut:
+                        throw new TimeoutException("Timed out");
+                    case Interop.AppControl.ErrorCode.OutOfMemory:
+                        throw new Exceptions.OutOfMemoryException("Out-of-memory");
+                    case Interop.AppControl.ErrorCode.AppNotFound:
+                        throw new Exceptions.AppNotFoundException("App(" + launchRequest.ApplicationId + ") not found. Operation(" + launchRequest.Operation + ")");
                     case Interop.AppControl.ErrorCode.LaunchRejected:
                         throw new Exceptions.LaunchRejectedException("Launch rejected");
                     case Interop.AppControl.ErrorCode.LaunchFailed:
@@ -710,7 +889,7 @@ namespace Tizen.Applications
                     case Interop.AppControl.ErrorCode.InvalidParameter:
                         throw new ArgumentException("Invalid Arguments");
                     case Interop.AppControl.ErrorCode.AppNotFound:
-                        throw new Exceptions.AppNotFoundException("App not found");
+                        throw new Exceptions.AppNotFoundException("App(" + launchRequest.ApplicationId + ") not found. Operation(" + launchRequest.Operation + ")");
                     case Interop.AppControl.ErrorCode.LaunchRejected:
                         throw new Exceptions.LaunchRejectedException("Launch rejected");
                     case Interop.AppControl.ErrorCode.PermissionDenied:
@@ -722,6 +901,161 @@ namespace Tizen.Applications
             }
 
             return task.Task;
+        }
+
+        /// <summary>
+        /// Sets the auto restart.
+        /// </summary>
+        /// <remarks>
+        /// The functionality of this method only applies to the caller application.
+        /// The auto restart cannot be applied to other applications. The application ID set in the AppControl is ignored.
+        /// This method is only available for platform level signed applications.
+        /// </remarks>
+        /// <param name="appControl">The AppControl.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
+        /// <exception cref="Exceptions.PermissionDeniedException">Thrown when the permission is denied.</exception>
+        /// <exception cref="Exceptions.OutOfMemoryException">Thrown when the memory is insufficient.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the memory is insufficient.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetAutoRestart(AppControl appControl)
+        {
+            if (appControl == null)
+            {
+                throw new ArgumentNullException(nameof(appControl));
+            }
+
+            Interop.AppControl.ErrorCode err = Interop.AppControl.SetAutoRestart(appControl.SafeAppControlHandle);
+            if (err != Interop.AppControl.ErrorCode.None)
+            {
+                switch (err)
+                {
+                    case Interop.AppControl.ErrorCode.InvalidParameter:
+                        throw new ArgumentException("Invalid arguments");
+                    case Interop.AppControl.ErrorCode.PermissionDenied:
+                        throw new Exceptions.PermissionDeniedException("Permission denied");
+                    case Interop.AppControl.ErrorCode.OutOfMemory:
+                        throw new Exceptions.OutOfMemoryException("Out of memory");
+                    default:
+                        throw new InvalidOperationException("err = " + err);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Unsets the auto restart.
+        /// </summary>
+        /// <remarks>
+        /// The functionality of this method only applies to the caller application.
+        /// This method is only available for platform level signed applications.
+        /// </remarks>
+        /// <exception cref="Exceptions.PermissionDeniedException">Thrown when the permission is denied.</exception>
+        /// <exception cref="Exceptions.OutOfMemoryException">Thrown when the memory is insufficient.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the memory is insufficient.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void UnsetAutoRestart()
+        {
+            Interop.AppControl.ErrorCode err = Interop.AppControl.UnsetAutoRestart();
+            if (err != Interop.AppControl.ErrorCode.None)
+            {
+                switch (err)
+                {
+                    case Interop.AppControl.ErrorCode.PermissionDenied:
+                        throw new Exceptions.PermissionDeniedException("Permission denied");
+                    case Interop.AppControl.ErrorCode.OutOfMemory:
+                        throw new Exceptions.OutOfMemoryException("Out of memory");
+                    default:
+                        throw new InvalidOperationException("err = " + err);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets all default applications.
+        /// </summary>
+        /// <returns>ApplicationIds.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
+        /// <example>
+        /// <code>
+        /// IEnumerable&lt;string&gt; applicationIds = AppControl.GetDefaultApplicationIds();
+        /// if (applicationIds != null)
+        /// {
+        ///     foreach (string id in applicationIds)
+        ///     {
+        ///         // ...
+        ///     }
+        /// }
+        /// </code>
+        /// </example>
+        /// <since_tizen> 11 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static IEnumerable<string> GetDefaultApplicationIds()
+        {
+            List<string> ids = new List<string>();
+            Interop.AppControl.DefaultApplicationCallback callback = (applicationId, userData) =>
+            {
+                if (applicationId == null)
+                {
+                    return false;
+                }
+
+                ids.Add(applicationId);
+                return true;
+            };
+
+            Interop.AppControl.ErrorCode err = Interop.AppControl.ForeachDefaultApplication(callback, IntPtr.Zero);
+            if (err != Interop.AppControl.ErrorCode.None)
+            {
+                throw new InvalidOperationException("Failed to get default application Ids. err = " + err);
+            }
+
+            return ids;
+        }
+
+        /// <summary>
+        /// Sets the window position.
+        /// </summary>
+        /// <param name="windowPosition">The window position object.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the invalid operation error occurs.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        public void SetWindowPosition(WindowPosition windowPosition)
+        {
+            if (windowPosition == null)
+            {
+                throw new ArgumentNullException(nameof(windowPosition));
+            }
+
+            Interop.AppControl.ErrorCode err = Interop.AppControl.SetWindowPosition(this.SafeAppControlHandle, windowPosition.PositionX, windowPosition.PositionY, windowPosition.Width, windowPosition.Height);
+            if (err != Interop.AppControl.ErrorCode.None)
+            {
+                if (err == Interop.AppControl.ErrorCode.InvalidParameter)
+                {
+                    throw new ArgumentException("Invalid arguments");
+                }
+                else
+                {
+                    throw new InvalidOperationException("err = " + err);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the window position.
+        /// </summary>
+        /// <returns>The window position.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when the invalid operation error occurs.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        public WindowPosition GetWindowPosition()
+        {
+            Interop.AppControl.ErrorCode err = Interop.AppControl.GetWindowPosition(this.SafeAppControlHandle, out int x, out int y, out int w, out int h);
+            if (err != Interop.AppControl.ErrorCode.None)
+            {
+                throw new InvalidOperationException("err = " + err);
+            }
+
+            return new WindowPosition(x, y, w, h);
         }
 
         /// <summary>

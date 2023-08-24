@@ -94,11 +94,6 @@ namespace Tizen.Multimedia
                 _audioEffect = new AudioEffect(this);
             }
 
-            if (Features.IsSupported(PlayerFeatures.RawVideo))
-            {
-                RegisterVideoFrameDecodedCallback();
-            }
-
             RegisterEvents();
 
             _displaySettings = PlayerDisplaySettings.Create(this);
@@ -192,7 +187,8 @@ namespace Tizen.Multimedia
         /// Gets the streaming download progress.
         /// </summary>
         /// <returns>The <see cref="DownloadProgress"/> containing current download progress.</returns>
-        /// <remarks>The player must be in the <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
+        /// <remarks>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
+        /// or <see cref="PlayerState.Paused"/> state.</remarks>
         /// <exception cref="InvalidOperationException">
         ///     The player is not streaming.<br/>
         ///     -or-<br/>
@@ -202,7 +198,7 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         public DownloadProgress GetDownloadProgress()
         {
-            ValidatePlayerState(PlayerState.Playing, PlayerState.Paused);
+            ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
             int start = 0;
             int current = 0;
@@ -345,11 +341,81 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
+        /// Prepares the cancelable media player for playback, asynchronously.
+        /// </summary>
+        /// <param name="cancellationToken">The cancellation token to cancel preparing.</param>
+        /// <seealso cref="CancellationToken"/>
+        /// <returns>The task that represents the asynchronous prepare operation.</returns>
+        /// <remarks>To prepare the player, the player must be in the <see cref="PlayerState.Idle"/> state,
+        /// and a source must be set.
+        /// The state must be <see cref="PlayerState.Preparing"/> to cancel preparing.
+        /// When preparing is cancelled, a state will be changed to <see cref="PlayerState.Idle"/> from <see cref="PlayerState.Preparing"/>.</remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     Operation failed; internal error.
+        ///     -or-<br/>
+        ///     The player is not in the valid state.
+        ///     </exception>
+        /// <seealso cref="PrepareAsync()"/>
+        /// <seealso cref="Unprepare()"/>
+        /// <since_tizen> 6 </since_tizen>
+        public virtual async Task PrepareAsync(CancellationToken cancellationToken)
+        {
+            ValidateNotDisposed();
+
+            var taskCompletionSource = new TaskCompletionSource<bool>();
+
+            if (_source == null)
+            {
+                throw new InvalidOperationException("No source is set.");
+            }
+
+            ValidatePlayerState(PlayerState.Idle);
+
+            OnPreparing();
+
+            SetPreparing();
+
+            // register a callback to handle cancellation token anytime it occurs
+            cancellationToken.Register(() =>
+            {
+                ValidatePlayerState(PlayerState.Preparing);
+
+                // a user can get the state before finally block is called.
+                ClearPreparing();
+
+                Log.Warn(PlayerLog.Tag, $"preparing will be cancelled.");
+                NativePlayer.Unprepare(Handle).ThrowIfFailed(this, "Failed to unprepare the player");
+
+                taskCompletionSource.TrySetCanceled();
+            });
+
+            _prepareCallback = _ =>
+            {
+                Log.Warn(PlayerLog.Tag, $"prepared callback is called.");
+                taskCompletionSource.TrySetResult(true);
+            };
+
+            try
+            {
+                NativePlayer.PrepareAsync(Handle, _prepareCallback, IntPtr.Zero).
+                    ThrowIfFailed(this, "Failed to prepare the player");
+
+                await taskCompletionSource.Task.ConfigureAwait(false);
+            }
+            finally
+            {
+                ClearPreparing();
+            }
+        }
+
+        /// <summary>
         /// Unprepares the player.
         /// </summary>
         /// <remarks>
         ///     The most recently used source is reset and is no longer associated with the player. Playback is no longer possible.
-        ///     If you want to use the player again, you have to set a source and call <see cref="PrepareAsync"/> again.
+        ///     If you want to use the player again, you have to set a source and call <see cref="PrepareAsync()"/> or
+        ///     <see cref="PrepareAsync(CancellationToken)"/> again.
         ///     <para>
         ///     The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>, or <see cref="PlayerState.Paused"/> state.
         ///     It has no effect if the player is already in the <see cref="PlayerState.Idle"/> state.
@@ -399,7 +465,8 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
-        /// <seealso cref="PrepareAsync"/>
+        /// <seealso cref="PrepareAsync()"/>
+        /// <seealso cref="PrepareAsync(CancellationToken)"/>
         /// <seealso cref="Stop"/>
         /// <seealso cref="Pause"/>
         /// <seealso cref="PlaybackCompleted"/>
@@ -481,7 +548,9 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     It is not able to assign the source to the player.
         ///     </exception>
-        /// <seealso cref="PrepareAsync"/>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
+        /// <seealso cref="PrepareAsync()"/>
+        /// <seealso cref="PrepareAsync(CancellationToken)"/>
         /// <since_tizen> 3 </since_tizen>
         public void SetSource(MediaSource source)
         {
@@ -705,6 +774,10 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     <paramref name="rate"/> is zero.
         /// </exception>
+        /// <exception cref="NotAvailableException">
+        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        /// </exception>
+        /// <seealso cref="AudioOffload"/>
         /// <since_tizen> 3 </since_tizen>
         public void SetPlaybackRate(float rate)
         {
@@ -713,6 +786,7 @@ namespace Tizen.Multimedia
                 throw new ArgumentOutOfRangeException(nameof(rate), rate, "Valid range is -5.0 to 5.0 (except 0.0)");
             }
 
+            AudioOffload.CheckDisabled();
             ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
             NativePlayer.SetPlaybackRate(Handle, rate).ThrowIfFailed(this, "Failed to set the playback rate.");
@@ -883,7 +957,157 @@ namespace Tizen.Multimedia
         {
             Interlocked.Exchange(ref _isPreparing, 0);
         }
-
         #endregion
+
+        /// <summary>
+        /// Enable to decode an audio data for exporting PCM from a data.
+        /// </summary>
+        /// <param name="format">The media format handle required to audio PCM specification.
+        /// The format has to include <see cref="AudioMediaFormat.MimeType"/>,
+        /// <see cref="AudioMediaFormat.Channel"/> and <see cref="AudioMediaFormat.SampleRate"/>.
+        /// If the format is NULL, the original PCM format or platform default PCM format will be applied.</param>
+        /// <param name="option">The audio extract option.</param>
+        /// <remarks><para>The player must be in the <see cref="PlayerState.Idle"/> state.</para>
+        /// <para>A <see cref="AudioDataDecoded"/> event is called in a separate thread(not in the main loop).</para>
+        /// <para>The audio PCM data can be retrieved using a <see cref="AudioDataDecoded"/> event as a media packet
+        /// and it is available until it's destroyed by <see cref="MediaPacket.Dispose()"/>.
+        /// The packet has to be destroyed as quickly as possible after rendering the data
+        /// and all the packets have to be destroyed before <see cref="Unprepare"/> is called.</para>
+        /// <para>This function could be unavailable depending on the audio codec type.</para></remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="ArgumentException">The value is not valid.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     Operation failed; internal error.
+        ///     -or-<br/>
+        ///     The player is not in the valid state.
+        ///     </exception>
+        /// <exception cref="NotAvailableException">If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        ///     -or-<br/>
+        ///     The function is not available depending on the audio codec type. (Since tizen 6.0)
+        /// </exception>
+        /// <seealso cref="PlayerAudioExtractOption"/>
+        /// <seealso cref="DisableExportingAudioData"/>
+        /// <seealso cref="AudioOffload"/>
+        /// <seealso cref="AudioCodecType"/>
+        /// <since_tizen> 6 </since_tizen>
+        public void EnableExportingAudioData(AudioMediaFormat format, PlayerAudioExtractOption option)
+        {
+            ValidationUtil.ValidateEnum(typeof(PlayerAudioExtractOption), option, nameof(option));
+            AudioOffload.CheckDisabled();
+            ValidatePlayerState(PlayerState.Idle);
+
+            _audioFrameDecodedCallback = (IntPtr packetHandle, IntPtr userData) =>
+            {
+                var handler = AudioDataDecoded;
+                if (handler != null)
+                {
+                    Log.Debug(PlayerLog.Tag, "packet : " + packetHandle.ToString());
+                    handler.Invoke(this,
+                        new AudioDataDecodedEventArgs(MediaPacket.From(packetHandle)));
+                }
+                else
+                {
+                    MediaPacket.From(packetHandle).Dispose();
+                }
+            };
+
+            NativePlayer.SetAudioFrameDecodedCb(Handle, format == null ? IntPtr.Zero : format.AsNativeHandle(), option,
+                _audioFrameDecodedCallback, IntPtr.Zero).ThrowIfFailed(this, "Failed to register the _audioFrameDecoded");
+        }
+
+        /// <summary>
+        /// Disable to decode an audio data.
+        /// </summary>
+        /// <remarks>The player must be in the <see cref="PlayerState.Idle"/> or <see cref="PlayerState.Ready"/>
+        /// state.
+        /// This function could be unavailable depending on the audio codec type.</remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <exception cref="NotAvailableException">The function is not available depending on the audio codec type. (Since tizen 6.0)</exception>
+        /// <seealso cref="EnableExportingAudioData"/>
+        /// <seealso cref="AudioCodecType"/>
+        /// <since_tizen> 6 </since_tizen>
+        public void DisableExportingAudioData()
+        {
+            ValidatePlayerState(PlayerState.Idle, PlayerState.Ready);
+
+            NativePlayer.UnsetAudioFrameDecodedCb(Handle).
+                ThrowIfFailed(this, "Failed to unset the AudioFrameDecoded");
+
+            _audioFrameDecodedCallback = null;
+        }
+
+        /// <summary>
+        /// Enables to decode a video data for every frame.
+        /// </summary>
+        /// <remarks><para>The player must be in the <see cref="PlayerState.Idle"/> state,
+        /// but <see cref="Multimedia.Display"/> must not be set.</para>
+        /// <para>A <see cref="VideoFrameDecoded"/> event is called in a separate thread, not called in the main loop.</para>
+        /// <para>The video frame can be retrieved using a <see cref="VideoFrameDecoded"/> event with a media packet parameter.
+        /// If you change the media packet in the <see cref="VideoFrameDecoded"/> event, it will be displayed on the device.
+        /// The callback function holds the same buffer that is drawn on the display device.
+        /// and the <see cref="MediaPacket"/> is available until it is destroyed by <see cref="MediaPacket.Dispose()"/>.
+        /// It is recommended to destroy the packet as quickly as possible after the decoded data is rendered on the display.
+        /// All the packets have to be destroyed before <see cref="Unprepare"/> is called.</para></remarks>
+        /// <feature>http://tizen.org/feature/multimedia.raw_video</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     Operation failed; internal error.
+        ///     -or-<br/>
+        ///     The player is not in the valid state.
+        ///     </exception>
+        /// <seealso cref="DisableExportingVideoFrame"/>
+        /// <since_tizen> 6 </since_tizen>
+        public void EnableExportingVideoFrame()
+        {
+            ValidationUtil.ValidateFeatureSupported(PlayerFeatures.RawVideo);
+            ValidatePlayerState(PlayerState.Idle);
+
+            if (Display != null)
+            {
+                throw new InvalidOperationException("Display must be none.");
+            }
+
+            _videoFrameDecodedCallback = (packetHandle, _) =>
+            {
+                var handler = VideoFrameDecoded;
+                if (handler != null)
+                {
+                    Log.Debug(PlayerLog.Tag, "packet : " + packetHandle);
+                    handler.Invoke(this,
+                        new VideoFrameDecodedEventArgs(MediaPacket.From(packetHandle)));
+                }
+                else
+                {
+                    MediaPacket.From(packetHandle).Dispose();
+                }
+            };
+
+            NativePlayer.SetVideoFrameDecodedCb(Handle, _videoFrameDecodedCallback).
+                ThrowIfFailed(this, "Failed to register the VideoFrameDecoded");
+        }
+
+        /// <summary>
+        /// Disables to decode a video data.
+        /// </summary>
+        /// <remarks>The player must be in the <see cref="PlayerState.Idle"/> or <see cref="PlayerState.Ready"/>
+        /// state.</remarks>
+        /// <feature>http://tizen.org/feature/multimedia.raw_video</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <seealso cref="EnableExportingVideoFrame"/>
+        /// <since_tizen> 6 </since_tizen>
+        public void DisableExportingVideoFrame()
+        {
+            ValidationUtil.ValidateFeatureSupported(PlayerFeatures.RawVideo);
+            ValidatePlayerState(PlayerState.Idle, PlayerState.Ready);
+
+            NativePlayer.UnsetVideoFrameDecodedCb(Handle).
+                ThrowIfFailed(this, "Failed to unset the VideoFrameDecoded");
+
+            _videoFrameDecodedCallback = null;
+        }
     }
 }

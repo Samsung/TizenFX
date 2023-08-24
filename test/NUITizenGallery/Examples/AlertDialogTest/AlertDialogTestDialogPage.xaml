@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<DialogPage x:Class="NUITizenGallery.AlertDialogTestDialogPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:sys="clr-namespace:System.Collections.Generic;assembly=netstandard">
+
+    <!-- Content is main placeholder of DialogPage. Add your dialog into this view. -->
+    <DialogPage.Content>
+        <AlertDialog x:Name="alertDialog" Title="Title" Message="Message">
+            <AlertDialog.Actions>
+                <sys:List x:TypeArguments="View">
+                    <Button x:Name="cancelButton" Text="Cancel"/>
+                    <Button x:Name="okButton" Text="OK"/>
+                </sys:List>
+            </AlertDialog.Actions>
+        </AlertDialog>
+    </DialogPage.Content>
+
+</DialogPage>

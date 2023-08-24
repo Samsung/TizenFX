@@ -29,9 +29,94 @@ namespace Tizen.Multimedia
         /// Mono.
         /// </summary>
         Mono = 0x80,
+
         /// <summary>
         /// Stereo.
         /// </summary>
-        Stereo
+        Stereo,
+
+        /// <summary>
+        /// 3 audio channels
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        MultiChannel3,
+
+        /// <summary>
+        /// 4 audio channels
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        MultiChannel4,
+
+        /// <summary>
+        /// 5 audio channels
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        MultiChannel5,
+
+        /// <summary>
+        /// 6 audio channels
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        MultiChannel6,
+
+        /// <summary>
+        /// 7 audio channels
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        MultiChannel7,
+
+        /// <summary>
+        /// 8 audio channels
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        MultiChannel8,
+
+        /// <summary>
+        /// 9 audio channels
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        MultiChannel9,
+
+        /// <summary>
+        /// 10 audio channels
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        MultiChannel10,
+
+        /// <summary>
+        /// 11 audio channels
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        MultiChannel11,
+
+        /// <summary>
+        /// 12 audio channels
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        MultiChannel12,
+
+        /// <summary>
+        /// 13 audio channels
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        MultiChannel13,
+
+        /// <summary>
+        /// 14 audio channels
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        MultiChannel14,
+
+        /// <summary>
+        /// 15 audio channels
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        MultiChannel15,
+
+        /// <summary>
+        /// 16 audio channels
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        MultiChannel16
     }
 }

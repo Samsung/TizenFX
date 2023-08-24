@@ -20,5 +20,6 @@ internal static partial class Interop
         internal const string ChromiumEwk = "libchromium-ewk.so";
         internal const string Elementary = "libelementary.so.1";
         internal const string Evas = "libevas.so.1";
+        internal const string Eina = "libeina.so.1";
     }
 }

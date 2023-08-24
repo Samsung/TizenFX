@@ -21,39 +21,34 @@ using Tizen.Multimedia.Util;
 
 internal static partial class Interop
 {
-    internal static class Decode
+    internal static partial class ImageUtil
     {
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void DecodeCompletedCallback(ImageUtilError error, IntPtr userData, int width, int height, ulong size);
+        internal static partial class Decode
+        {
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+            internal delegate void DecodeCompletedCallback(ImageUtilError error, IntPtr userData, int width, int height, ulong size);
 
-        [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_create")]
-        public static extern ImageUtilError Create(out ImageDecoderHandle handle);
+            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_create")]
+            public static extern ImageUtilError Create(out ImageDecoderHandle handle);
 
-        [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_destroy")]
-        internal static extern ImageUtilError Destroy(IntPtr handle);
+            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_destroy")]
+            internal static extern ImageUtilError Destroy(IntPtr handle);
 
-        [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_set_input_path")]
-        internal static extern ImageUtilError SetInputPath(ImageDecoderHandle handle, IntPtr path);
+            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_set_input_path")]
+            internal static extern ImageUtilError SetInputPath(ImageDecoderHandle handle, IntPtr path);
 
-        [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_set_input_buffer")]
-        internal static extern ImageUtilError SetInputBuffer(ImageDecoderHandle handle, byte[] srcBuffer, ulong srcSize);
+            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_set_input_buffer")]
+            internal static extern ImageUtilError SetInputBuffer(ImageDecoderHandle handle, byte[] srcBuffer, ulong srcSize);
 
-        [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_set_output_buffer")]
-        internal static extern ImageUtilError SetOutputBuffer(ImageDecoderHandle handle, out IntPtr dstBuffer);
+            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_set_colorspace")]
+            internal static extern ImageUtilError SetColorspace(ImageDecoderHandle handle, ImageColorSpace colorspace);
 
-        [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_set_colorspace")]
-        internal static extern ImageUtilError SetColorspace(ImageDecoderHandle handle, ImageColorSpace colorspace);
+            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_set_jpeg_downscale")]
+            internal static extern ImageUtilError SetJpegDownscale(ImageDecoderHandle handle, JpegDownscale downscale);
 
-        [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_set_jpeg_downscale")]
-        internal static extern ImageUtilError SetJpegDownscale(ImageDecoderHandle handle, JpegDownscale downscale);
-
-        [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_run_async")]
-        internal static extern ImageUtilError DecodeRunAsync(ImageDecoderHandle handle, DecodeCompletedCallback callback,
-            IntPtr userData = default(IntPtr));
-
-        [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_run")]
-        internal static extern ImageUtilError DecodeRun(ImageDecoderHandle handle, out int width,
-            out int height, out ulong size);
+            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_decode_run2")]
+            internal static extern ImageUtilError DecodeRun(ImageDecoderHandle handle, out IntPtr imageHandle);
+        }
     }
 
     internal class ImageDecoderHandle : SafeHandle
@@ -66,7 +61,7 @@ internal static partial class Interop
 
         protected override bool ReleaseHandle()
         {
-            var ret = Decode.Destroy(handle);
+            var ret = ImageUtil.Decode.Destroy(handle);
             if (ret != ImageUtilError.None)
             {
                 Log.Debug(GetType().FullName, $"Failed to release native {GetType()}");
@@ -75,6 +70,5 @@ internal static partial class Interop
 
             return true;
         }
-
     }
 }

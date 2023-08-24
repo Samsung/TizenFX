@@ -1,3 +1,20 @@
+/*
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 using System;
 using System.Collections.Generic;
 
@@ -14,32 +31,36 @@ namespace Tizen.NUI.Binding
                 if (ve != null && ve.IsResourcesCreated)
                 {
                     resources = resources ?? new Dictionary<string, object>();
-                    if (ve.XamlResources != null)
+                    if (null == resources)
                     {
-                        foreach (KeyValuePair<string, object> res in ve.XamlResources.MergedResources)
-                            if (!resources.ContainsKey(res.Key))
-                                resources.Add(res.Key, res.Value);
-                            else if (res.Key.StartsWith(Style.StyleClassPrefix, StringComparison.Ordinal))
-                            {
-                                var mergedClassStyles = new List<Style>(resources[res.Key] as List<Style>);
-                                mergedClassStyles.AddRange(res.Value as List<Style>);
-                                resources[res.Key] = mergedClassStyles;
-                            }
+                        return null;
+                    }
+
+                    if (ve.XamlResources is var xres && xres != null)
+                    {
+                        foreach (KeyValuePair<string, object> res in xres.MergedResources)
+                        {
+                            // If a MergedDictionary value is overridden for a DynamicResource, 
+                            // it comes out later in the enumeration of MergedResources
+                            // TryGetValue ensures we pull the up-to-date value for the key
+                            if (!resources.ContainsKey(res.Key) && xres.TryGetValue(res.Key, out object value))
+                                resources.Add(res.Key, value);
+                        }
                     }
                 }
+
                 var app = element as Application;
                 if (app != null && app.SystemResources != null)
                 {
                     resources = resources ?? new Dictionary<string, object>(8);
+                    if (null == resources)
+                    {
+                        return null;
+                    }
+
                     foreach (KeyValuePair<string, object> res in app.SystemResources)
                         if (!resources.ContainsKey(res.Key))
                             resources.Add(res.Key, res.Value);
-                        else if (res.Key.StartsWith(Style.StyleClassPrefix, StringComparison.Ordinal))
-                        {
-                            var mergedClassStyles = new List<Style>(resources[res.Key] as List<Style>);
-                            mergedClassStyles.AddRange(res.Value as List<Style>);
-                            resources[res.Key] = mergedClassStyles;
-                        }
                 }
                 element = element.Parent;
             }
@@ -51,7 +72,7 @@ namespace Tizen.NUI.Binding
             while (element != null)
             {
                 var ve = element as IResourcesProvider;
-                if (ve != null && ve.IsResourcesCreated && ve.XamlResources != null && ve.XamlResources.TryGetValue(key, out value))
+                if (ve != null && ve.IsResourcesCreated && ve.XamlResources is var xres && xres != null && xres.TryGetValue(key, out value))
                 {
                     return true;
                 }

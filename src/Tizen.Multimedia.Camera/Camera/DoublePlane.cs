@@ -14,9 +14,6 @@
  * limitations under the License.
  */
 
-using System.Runtime.InteropServices;
-using static Interop.Camera;
-
 namespace Tizen.Multimedia
 {
     /// <summary>
@@ -25,12 +22,10 @@ namespace Tizen.Multimedia
     /// <since_tizen> 3 </since_tizen>
     public class DoublePlane : IPreviewPlane
     {
-        internal DoublePlane(DoublePlaneStruct unmanaged)
+        internal DoublePlane(params byte[][] data)
         {
-            Y = new byte[unmanaged.YLength];
-            UV = new byte[unmanaged.UVLength];
-            Marshal.Copy(unmanaged.Y, Y, 0, (int)unmanaged.YLength);
-            Marshal.Copy(unmanaged.UV, UV, 0, (int)unmanaged.UVLength);
+            Y = data[0];
+            UV = data[1];
         }
 
         /// <summary>

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<View x:Class="Tizen.NUI.LayoutSamples.HorizontalAlignmentView"
+    xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    WidthSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <View.Layout>
+        <LinearLayout LinearOrientation="Vertical"/>
+    </View.Layout>
+
+    <TextLabel x:Name="hAlignText"
+        Text="HorizontalAlignment"
+        WidthSpecification="{Static LayoutParamPolicies.MatchParent}"/>
+
+    <View x:Name="hAlignOptions"
+        WidthSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+        <View.Layout>
+            <LinearLayout LinearOrientation="Horizontal" CellPadding="20,0"/>
+        </View.Layout>
+
+        <RadioButton x:Name="hAlignBegin"
+            Text="Begin"
+            SelectedChanged="HAlignBeginSelectedChanged"/>
+
+        <RadioButton x:Name="hAlignCenter"
+            Text="Center"
+            SelectedChanged="HAlignCenterSelectedChanged"/>
+
+        <RadioButton x:Name="hAlignEnd"
+            Text="End"
+            SelectedChanged="HAlignEndSelectedChanged"/>
+    </View>
+</View>

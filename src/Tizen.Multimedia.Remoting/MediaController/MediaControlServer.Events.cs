@@ -23,15 +23,20 @@ namespace Tizen.Multimedia.Remoting
 {
     public static partial class MediaControlServer
     {
-        private static Native.PlaybackStateCommandReceivedCallback _playbackCommandCallback;
         private static Native.PlaybackActionCommandReceivedCallback _playbackActionCommandCallback;
         private static Native.PlaybackPositionCommandReceivedCallback _playbackPositionCommandCallback;
         private static Native.PlaylistCommandReceivedCallback _playlistCommandCallback;
         private static Native.ShuffleModeCommandReceivedCallback _shuffleModeCommandCallback;
         private static Native.RepeatModeCommandReceivedCallback _repeatModeCommandCallback;
+        private static Native.SimpleCommandReceivedCallback _subtitleModeCommandCallback;
+        private static Native.SimpleCommandReceivedCallback _mode360CommandCallback;
+        private static Native.DisplayModeCommandReceivedCallback _displayModeCommandCallback;
+        private static Native.DisplayRotationCommandReceivedCallback _displayRotationCommandCallback;
+
         private static Native.CustomCommandReceivedCallback _customCommandCallback;
         private static Native.SearchCommandReceivedCallback _searchCommandCallback;
         private static Native.CommandCompletedCallback _commandCompletedCallback;
+
 
         /// <summary>
         /// Occurs when a client sends playback command.
@@ -71,6 +76,30 @@ namespace Tizen.Multimedia.Remoting
         public static event EventHandler<RepeatModeCommandReceivedEventArgs> RepeatModeCommandReceived;
 
         /// <summary>
+        /// Occurs when a client sends subtitle mode command.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public static event EventHandler<SubtitleModeCommandReceivedEventArgs> SubtitleModeCommandReceived;
+
+        /// <summary>
+        /// Occurs when a client sends mode 360 command.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public static event EventHandler<Mode360CommandReceivedEventArgs> Mode360CommandReceived;
+
+        /// <summary>
+        /// Occurs when a client sends display mode command.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public static event EventHandler<DisplayModeCommandReceivedEventArgs> DisplayModeCommandReceived;
+
+        /// <summary>
+        /// Occurs when a client sends display rotation command.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public static event EventHandler<DisplayRotationCommandReceivedEventArgs> DisplayRotationCommandReceived;
+
+        /// <summary>
         /// Occurs when a client sends custom command.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
@@ -95,7 +124,9 @@ namespace Tizen.Multimedia.Remoting
                 // SendPlaybackCommand doesn't use requestId. It'll be removed in Level 7.
                 if (requestId == null)
                 {
+#pragma warning disable CS0618 // Type or member is obsolete
                     PlaybackCommandReceived?.Invoke(null, new PlaybackCommandReceivedEventArgs(clientName, playbackCommand.ToPublic()));
+#pragma warning restore CS0618 // Type or member is obsolete
                 }
                 else
                 {
@@ -161,6 +192,58 @@ namespace Tizen.Multimedia.Remoting
                 ThrowIfError("Failed to init RepeatModeCommandReceived event.");
         }
 
+        private static void RegisterSubtitleModeCommandReceivedEvent()
+        {
+            _subtitleModeCommandCallback = (clientName, requestId, isEnabled, _) =>
+            {
+                var command = new SubtitleModeCommand(isEnabled);
+                command.SetResponseInformation(clientName, requestId);
+
+                SubtitleModeCommandReceived?.Invoke(null, new SubtitleModeCommandReceivedEventArgs(command));
+            };
+            Native.SetSubtitleModeCommandReceivedCb(Handle, _subtitleModeCommandCallback).
+                ThrowIfError("Failed to init SubtitleModeCommandReceived event.");
+        }
+
+        private static void RegisterMode360CommandReceivedEvent()
+        {
+            _mode360CommandCallback = (clientName, requestId, isEnabled, _) =>
+            {
+                var command = new Mode360Command(isEnabled);
+                command.SetResponseInformation(clientName, requestId);
+
+                Mode360CommandReceived?.Invoke(null, new Mode360CommandReceivedEventArgs(command));
+            };
+            Native.SetMode360CommandReceivedCb(Handle, _mode360CommandCallback).
+                ThrowIfError("Failed to init Mode360CommandReceived event.");
+        }
+
+        private static void RegisterDisplayModeCommandReceivedEvent()
+        {
+            _displayModeCommandCallback = (clientName, requestId, mode, _) =>
+            {
+                var command = new DisplayModeCommand(mode.ToPublic());
+                command.SetResponseInformation(clientName, requestId);
+
+                DisplayModeCommandReceived?.Invoke(null, new DisplayModeCommandReceivedEventArgs(command));
+            };
+            Native.SetDisplayModeCommandReceivedCb(Handle, _displayModeCommandCallback).
+                ThrowIfError("Failed to init DisplayModeCommandReceived event.");
+        }
+
+        private static void RegisterDisplayRotationCommandReceivedEvent()
+        {
+            _displayRotationCommandCallback = (clientName, requestId, rotation, _) =>
+            {
+                var command = new DisplayRotationCommand(rotation.ToPublic());
+                command.SetResponseInformation(clientName, requestId);
+
+                DisplayRotationCommandReceived?.Invoke(null, new DisplayRotationCommandReceivedEventArgs(command));
+            };
+            Native.SetDisplayRotationCommandReceivedCb(Handle, _displayRotationCommandCallback).
+                ThrowIfError("Failed to init DisplayRotationCommandReceived event.");
+        }
+
         private static void RegisterCustomCommandReceivedEvent()
         {
             _customCommandCallback = (clientName, requestId, customCommand, bundleHandle, _) =>
@@ -182,7 +265,7 @@ namespace Tizen.Multimedia.Remoting
             Native.SetCustomCommandReceivedCb(Handle, _customCommandCallback).
                 ThrowIfError("Failed to init CustomCommandReceived event.");
         }
-        
+
         private static SearchCommand CreateSearchCommandReceivedEventArgs(IntPtr searchHandle)
         {
             var searchConditions = new List<MediaControlSearchCondition>();

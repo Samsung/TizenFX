@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.WebView
 {
@@ -22,6 +23,7 @@ namespace Tizen.WebView
     /// This class provides the properties for setting the preference of a specific WebView.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
     public class Settings
     {
         private IntPtr _handle;
@@ -35,6 +37,7 @@ namespace Tizen.WebView
         /// Whether the JavaScript can be executed.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public bool JavaScriptEnabled
         {
             get
@@ -52,6 +55,7 @@ namespace Tizen.WebView
         /// Whether the images can be loaded automatically.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public bool LoadImageAutomatically
         {
             get
@@ -69,6 +73,7 @@ namespace Tizen.WebView
         /// The default text encoding name.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public string DefaultTextEncodingName
         {
             get
@@ -86,6 +91,7 @@ namespace Tizen.WebView
         /// The default font size of a pixel.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public int DefaultFontSize
         {
             get
@@ -97,6 +103,128 @@ namespace Tizen.WebView
             {
                 Interop.ChromiumEwk.ewk_settings_default_font_size_set(_handle, value);
             }
+        }
+
+        /// <summary>
+        /// Whether the scripts can open windows.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
+        public bool ScriptsCanOpenWindows
+        {
+            get
+            {
+                return Interop.ChromiumEwk.ewk_settings_scripts_can_open_windows_get(_handle);
+            }
+
+            set
+            {
+                Interop.ChromiumEwk.ewk_settings_scripts_can_open_windows_set(_handle, value);
+            }
+        }
+
+        /// <summary>
+        /// Enable or Disable force zoom.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
+        public bool ForceZoom
+        {
+            get
+            {
+                return Interop.ChromiumEwk.ewk_settings_force_zoom_get(_handle);
+            }
+
+            set
+            {
+                Interop.ChromiumEwk.ewk_settings_force_zoom_set(_handle, value);
+            }
+        }
+
+        /// <summary>
+        /// Enable or Disable text autosizing.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
+        public bool TextAutosizing
+        {
+            get
+            {
+                return Interop.ChromiumEwk.ewk_settings_text_autosizing_enabled_get(_handle);
+            }
+
+            set
+            {
+                Interop.ChromiumEwk.ewk_settings_text_autosizing_enabled_set(_handle, value);
+            }
+        }
+
+        /// <summary>
+        /// Enable or Disable text zoom.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
+        public bool TextZoom
+        {
+            get
+            {
+                return Interop.ChromiumEwk.ewk_settings_text_zoom_enabled_get(_handle);
+            }
+
+            set
+            {
+                Interop.ChromiumEwk.ewk_settings_text_zoom_enabled_set(_handle, value);
+            }
+        }
+
+        /// <summary>
+        /// Enable or Disable the usage of keypad without user action.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
+        public bool UseKeypadWithoutUserAction
+        {
+            get
+            {
+                return Interop.ChromiumEwk.ewk_settings_uses_keypad_without_user_action_get(_handle);
+            }
+
+            set
+            {
+                Interop.ChromiumEwk.ewk_settings_uses_keypad_without_user_action_set(_handle, value);
+            }
+        }
+
+        /// <summary>
+        /// Enable or Disable Extra feature such as "edge,enable", "zoom,enable", "longpress,enable"
+        /// "doubletap,enable" and "selection,magnifier".
+        /// </summary>
+        /// <param name="name">The name of the feature user wants to set or reset.</param>
+        /// <param name="enable">The boolean value to set or reset.</param>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
+        public void SetExtraFeature(string name, bool enable)
+        {
+            Interop.ChromiumEwk.ewk_settings_extra_feature_set(_handle, name, enable);
+        }
+
+        /// <summary>
+        /// Get status of Extra feature such as "edge,enable", "zoom,enable", "longpress,enable"
+        /// "doubletap,enable" and "selection,magnifier".
+        /// </summary>
+        /// <param name="name">The name of the feature user wants to know status.</param>
+        /// <returns>Status true or false is returned.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
+        public bool GetExtraFeatureStatus(string name)
+        {
+             return Interop.ChromiumEwk.ewk_settings_extra_feature_get(_handle, name);
         }
     }
 }

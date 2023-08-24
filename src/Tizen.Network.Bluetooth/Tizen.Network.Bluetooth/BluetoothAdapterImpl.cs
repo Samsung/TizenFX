@@ -43,6 +43,7 @@ namespace Tizen.Network.Bluetooth
         private Interop.Bluetooth.VisibilityModeChangedCallback _visibilityChangedCallback;
         private Interop.Bluetooth.VisibilityDurationChangedCallback _visibilitydurationChangedCallback;
         private Interop.Bluetooth.DiscoveryStateChangedCallback _discoveryStateChangedCallback;
+        private Interop.Bluetooth.BondedDeviceCallback _bondedDeviceCallback;
 
         private static readonly BluetoothAdapterImpl _instance = new BluetoothAdapterImpl();
         private bool disposed = false;
@@ -470,7 +471,7 @@ namespace Tizen.Network.Bluetooth
         internal IEnumerable<BluetoothDevice> GetBondedDevices()
         {
             List<BluetoothDevice> deviceList = new List<BluetoothDevice>();
-            Interop.Bluetooth.BondedDeviceCallback callback = (ref BluetoothDeviceStruct deviceInfo, IntPtr userData) =>
+            _bondedDeviceCallback = (ref BluetoothDeviceStruct deviceInfo, IntPtr userData) =>
             {
                 Log.Info(Globals.LogTag, "Bonded devices cb is called");
                 if(!deviceInfo.Equals(null))
@@ -479,7 +480,7 @@ namespace Tizen.Network.Bluetooth
                 }
                 return true;
             };
-            int ret = Interop.Bluetooth.GetBondedDevices(callback, IntPtr.Zero);
+            int ret = Interop.Bluetooth.GetBondedDevices(_bondedDeviceCallback, IntPtr.Zero);
             if(ret != (int)BluetoothError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get bonded devices, Error - " + (BluetoothError)ret);
@@ -491,6 +492,7 @@ namespace Tizen.Network.Bluetooth
         internal BluetoothDevice GetBondedDevice(string address)
         {
             IntPtr deviceInfo;
+            BluetoothDevice btDevice;
             int ret = Interop.Bluetooth.GetBondedDeviceByAddress(address, out deviceInfo);
             if(ret != (int)BluetoothError.None)
             {
@@ -498,9 +500,9 @@ namespace Tizen.Network.Bluetooth
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
             BluetoothDeviceStruct device = (BluetoothDeviceStruct)Marshal.PtrToStructure(deviceInfo, typeof(BluetoothDeviceStruct));
-
+            btDevice = BluetoothUtils.ConvertStructToDeviceClass(device);
             Interop.Bluetooth.FreeDeviceInfo(deviceInfo);
-            return BluetoothUtils.ConvertStructToDeviceClass(device);
+            return btDevice;
         }
 
         internal bool IsServiceUsed(string serviceUuid)
@@ -528,13 +530,20 @@ namespace Tizen.Network.Bluetooth
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
 
-            byte[] hashArr = new byte[hashLength];
-            Marshal.Copy(hash, hashArr, 0, hashLength);
-            byte[] randomizerArr = new byte[randomizerLength];
-            Marshal.Copy(randomizer, randomizerArr, 0, randomizerLength);
+            if (hashLength > 0) {
+                byte[] hashArr = new byte[hashLength];
+                Marshal.Copy(hash, hashArr, 0, hashLength);
+                oobData.HashValue = hashArr;
+                Interop.Libc.Free(hash);
+            }
 
-            oobData.HashValue = hashArr;
-            oobData.RandomizerValue = randomizerArr;
+            if (randomizerLength > 0) {
+                byte[] randomizerArr = new byte[randomizerLength];
+                Marshal.Copy(randomizer, randomizerArr, 0, randomizerLength);
+                oobData.RandomizerValue = randomizerArr;
+                Interop.Libc.Free(randomizer);
+            }
+
             return oobData;
         }
 
@@ -589,6 +598,17 @@ namespace Tizen.Network.Bluetooth
                 Log.Error(Globals.LogTag, "Failed to destroy socket, Error - " + (BluetoothError)ret);
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
+        }
+
+        internal string GetUuidSpecificationName(string uuid)
+        {
+            int ret = Interop.Bluetooth.BtGattGetUuidSpecificationName(uuid, out string name);
+            if (ret != (int)BluetoothError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to get uuid specification name, Error - " + (BluetoothError)ret);
+                BluetoothErrorFactory.ThrowBluetoothException(ret);
+            }
+            return name;
         }
 
         internal static BluetoothAdapterImpl Instance

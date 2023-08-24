@@ -18,7 +18,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Tizen.Internals.Errors;
 
 namespace Tizen.Security
 {
@@ -26,9 +25,12 @@ namespace Tizen.Security
     /// The PrivacyPrivilegeManager provides the properties or methods to check and request a permission for privacy privilege.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.")]
     public static class PrivacyPrivilegeManager
     {
         private const string LogTag = "Tizen.Privilege";
+        private static Dictionary<int, TaskCompletionSource<RequestMultipleResponseEventArgs>> s_multipleRequestMap = new Dictionary<int, TaskCompletionSource<RequestMultipleResponseEventArgs>>();
+        private static int s_requestId = 0;
         private static IDictionary<string, WeakReference<ResponseContext>> s_responseWeakMap = new Dictionary<string, WeakReference<ResponseContext>>();
         private static Interop.PrivacyPrivilegeManager.RequestResponseCallback s_requestResponseCb =
                        (Interop.PrivacyPrivilegeManager.CallCause cause, Interop.PrivacyPrivilegeManager.RequestResult result,
@@ -62,6 +64,7 @@ namespace Tizen.Security
 
         private static IDictionary<string, ResponseContext> s_responseMap = new Dictionary<string, ResponseContext>();
         private static HashSet<string> s_PrivilegesInProgress = new HashSet<string>();
+        private static Interop.PrivacyPrivilegeManager.RequestMultipleResponseCallback s_multipleCallback = MultipleRequestHandler;
 
         private static string[] CheckPrivilegesArgument(IEnumerable<string> privileges, string methodName)
         {
@@ -110,6 +113,7 @@ namespace Tizen.Security
         /// </code>
         /// </example>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.")]
         public static CheckResult CheckPermission(string privilege)
         {
             Interop.PrivacyPrivilegeManager.CheckResult result;
@@ -156,6 +160,7 @@ namespace Tizen.Security
         /// </code>
         /// </example>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.")]
         public static IEnumerable<CheckResult> CheckPermissions(IEnumerable<string> privileges)
         {
             string[] privilegesArray = CheckPrivilegesArgument(privileges, "CheckPermissions");
@@ -203,6 +208,7 @@ namespace Tizen.Security
         /// </code>
         /// </example>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.")]
         public static void RequestPermission(string privilege)
         {
             if (!s_PrivilegesInProgress.Add(privilege))
@@ -255,6 +261,7 @@ namespace Tizen.Security
         /// </code>
         /// </example>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.")]
         public static Task<RequestMultipleResponseEventArgs> RequestPermissions(IEnumerable<string> privileges)
         {
             string[] privilegesArray = CheckPrivilegesArgument(privileges, "RequestPermissions");
@@ -276,32 +283,14 @@ namespace Tizen.Security
 
             Log.Info(LogTag, "Sending request for permissions: " + string.Join(" ", privilegesArray));
 
+            int requestId = 0;
+            lock (s_multipleRequestMap)
+            {
+                requestId = s_requestId++;
+            }
             TaskCompletionSource<RequestMultipleResponseEventArgs> permissionResponsesTask = new TaskCompletionSource<RequestMultipleResponseEventArgs>();
-            int ret = (int)Interop.PrivacyPrivilegeManager.RequestPermissions(privilegesArray, (uint)privilegesArray.Length,
-                        (Interop.PrivacyPrivilegeManager.CallCause cause, Interop.PrivacyPrivilegeManager.RequestResult[] results,
-                        string[] requestedPrivileges, uint privilegesCount, IntPtr userData) =>
-                        {
-                            Log.Info(LogTag, "Sending request for permissions: ");
-                            RequestMultipleResponseEventArgs requestResponse = new RequestMultipleResponseEventArgs();
-                            PermissionRequestResponse[] permissionResponses = new PermissionRequestResponse[privilegesCount];
-
-                            for (int iterator = 0; iterator < privilegesCount; ++iterator)
-                            {
-                                permissionResponses[iterator] = new PermissionRequestResponse
-                                {
-                                    Privilege = requestedPrivileges[iterator],
-                                    Result = (RequestResult)results[iterator]
-                                };
-                            }
-                            requestResponse.Cause = (CallCause)cause;
-                            requestResponse.Responses = permissionResponses;
-
-                            foreach (string privilege in requestedPrivileges)
-                            {
-                                s_PrivilegesInProgress.Remove(privilege);
-                            }
-                            permissionResponsesTask.SetResult(requestResponse);
-                        }, IntPtr.Zero);
+            s_multipleRequestMap[requestId] = permissionResponsesTask;
+            int ret = (int)Interop.PrivacyPrivilegeManager.RequestPermissions(privilegesArray, (uint)privilegesArray.Length, s_multipleCallback, (IntPtr)requestId);
 
             if (ret != (int)Interop.PrivacyPrivilegeManager.ErrorCode.None)
             {
@@ -310,6 +299,7 @@ namespace Tizen.Security
                 {
                     s_PrivilegesInProgress.Remove(privilege);
                 }
+                s_multipleRequestMap.Remove(requestId);
                 throw PrivacyPrivilegeManagerErrorFactory.GetException(ret);
             }
             else
@@ -370,6 +360,7 @@ namespace Tizen.Security
         /// </code>
         /// </example>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.")]
         public static WeakReference<ResponseContext> GetResponseContext(string privilege)
         {
             if (!(s_responseWeakMap.TryGetValue(privilege, out WeakReference<ResponseContext> weakRef) && weakRef.TryGetTarget(out ResponseContext context)))
@@ -380,11 +371,44 @@ namespace Tizen.Security
             return s_responseWeakMap[privilege];
         }
 
+        private static void MultipleRequestHandler(Interop.PrivacyPrivilegeManager.CallCause cause, Interop.PrivacyPrivilegeManager.RequestResult[] results,
+            string[] requestedPrivileges, uint privilegesCount, IntPtr userData)
+        {
+            int requestId = (int)userData;
+            if (!s_multipleRequestMap.ContainsKey(requestId))
+            {
+                return;
+            }
+
+            var tcs = s_multipleRequestMap[requestId];
+            RequestMultipleResponseEventArgs requestResponse = new RequestMultipleResponseEventArgs();
+            PermissionRequestResponse[] permissionResponses = new PermissionRequestResponse[privilegesCount];
+
+            for (int iterator = 0; iterator < privilegesCount; ++iterator)
+            {
+                permissionResponses[iterator] = new PermissionRequestResponse
+                {
+                    Privilege = requestedPrivileges[iterator],
+                    Result = (RequestResult)results[iterator]
+                };
+            }
+            requestResponse.Cause = (CallCause)cause;
+            requestResponse.Responses = permissionResponses;
+
+            foreach (string privilege in requestedPrivileges)
+            {
+                s_PrivilegesInProgress.Remove(privilege);
+            }
+            tcs.SetResult(requestResponse);
+            s_multipleRequestMap.Remove(requestId);
+        }
+
         /// <summary>
         /// This class manages event handlers of the privilege permission requests.
         /// This class enables having event handlers for an individual privilege.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.")]
         public class ResponseContext
         {
             private string _privilege;
@@ -398,6 +422,7 @@ namespace Tizen.Security
             /// </summary>
             /// <exception cref="System.InvalidOperationException">Thrown when the bundle instance has been disposed.</exception>
             /// <since_tizen> 4 </since_tizen>
+            [Obsolete("Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.")]
             public event EventHandler<RequestResponseEventArgs> ResponseFetched
             {
                 add

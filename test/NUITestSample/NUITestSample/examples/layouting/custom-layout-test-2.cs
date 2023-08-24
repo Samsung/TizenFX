@@ -29,7 +29,7 @@ namespace CustomLayoutTest2
         {
             Console.WriteLine($"CustomLayoutHorizental() constructor!");
         }
-        protected override void OnMeasure(LayoutMeasureSpec widthMeasureSpec, LayoutMeasureSpec heightMeasureSpec)
+        protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
             Console.WriteLine($"CustomLayoutHorizental OnMeasure() START");
 
@@ -87,7 +87,7 @@ namespace CustomLayoutTest2
             var center = childIncrement / 2;
 
             // Check layout direction
-            var view = GetOwner();
+            var view = Owner;
             ViewLayoutDirectionType layoutDirection = view.LayoutDirection;
 
             // this is needed, otherwise the child's LayoutItem is garbage collected!
@@ -138,7 +138,7 @@ namespace CustomLayoutTest2
 
         private static LayoutItem[] childLayouts = new LayoutItem[10];
 
-        protected override void OnMeasure(LayoutMeasureSpec widthMeasureSpec, LayoutMeasureSpec heightMeasureSpec)
+        protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
             var accumulatedHeight = new LayoutLength(0);
             var maxWidth = new LayoutLength(0);
@@ -180,7 +180,7 @@ namespace CustomLayoutTest2
             }
             var center = childIncrement / 2;
 
-            var view = GetOwner();
+            var view = Owner;
             ViewLayoutDirectionType layoutDirection = view.LayoutDirection;
 
             for (uint i = 0; i < ChildCount; ++i)
@@ -219,7 +219,7 @@ namespace CustomLayoutTest2
             Console.WriteLine($"CustomLayoutVertical OnLayout() END");
         }
     }
-    
+
     class Example : NUIApplication
     {
         public Example() : base()

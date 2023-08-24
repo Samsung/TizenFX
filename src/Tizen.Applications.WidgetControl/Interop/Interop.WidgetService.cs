@@ -53,13 +53,13 @@ internal static partial class Interop
         }
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void InstanceCallback(string widgetId, string instanceId, IntPtr userData);
+        internal delegate int InstanceCallback(string widgetId, string instanceId, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate int LifecycleCallback(string widgetId, LifecycleEvent e, string instanceId, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void WidgetListCallback(string widgetId, int isPrime, IntPtr userData);
+        internal delegate int WidgetListCallback(string widgetId, int isPrime, IntPtr userData);
 
         [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_icon")]
         internal static extern string GetIcon(string pkgId, string lang);
@@ -108,5 +108,14 @@ internal static partial class Interop
 
         [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_package_id")]
         internal static extern string GetWidgetPackageId(string widgetId);
+
+        [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_widget_max_count")]
+        internal static extern int GetWidgetMaxCount(string widgetId);
+
+        [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_instance_count")]
+        internal static extern int GetWidgetInstanceCount(string widgetId, string cluster, string category);
+
+        [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_app_id_of_setup_app")]
+        internal static extern string GetSetupAppId(string widgetId);
     }
 }

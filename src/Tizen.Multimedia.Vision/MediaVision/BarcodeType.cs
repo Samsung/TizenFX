@@ -66,6 +66,36 @@ namespace Tizen.Multimedia.Vision
         /// 1D barcode - Interleaved Two of Five.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        I25
+        I25,
+        /// <summary>
+        /// 1D barcode - International Article Number with 2-digit.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        Ean2 = 9,
+        /// <summary>
+        /// 1D barcode - International Article Number with 5-digit.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        Ean5,
+        /// <summary>
+        /// 1D barcode - Code 93.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        Code93,
+        /// <summary>
+        /// 1D barcode - Codabar
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        Codabar,
+        /// <summary>
+        /// 1D barcode - Databar
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        Databar,
+        /// <summary>
+        /// 1D barcode - Databar expand
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        DataBarExpand
     }
 }

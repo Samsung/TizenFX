@@ -1,4 +1,20 @@
-﻿using System;
+﻿/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -78,7 +94,7 @@ namespace Tizen.NUI.Binding
             }
 
             Assembly[] assemblies = Device.GetAssemblies();
-            if (Tizen.NUI.Binding.Internals.Registrar.ExtraAssemblies != null)
+            if (assemblies != null && Tizen.NUI.Binding.Internals.Registrar.ExtraAssemblies != null)
             {
                 assemblies = assemblies.Union(Tizen.NUI.Binding.Internals.Registrar.ExtraAssemblies).ToArray();
             }
@@ -108,10 +124,10 @@ namespace Tizen.NUI.Binding
                 catch (System.IO.FileNotFoundException)
                 {
                     // Sometimes the previewer doesn't actually have everything required for these loads to work
-                    Console.WriteLine(nameof(Registrar), "Could not load assembly: {0} for Attibute {1} | Some renderers may not be loaded", assembly.FullName, targetAttrType.FullName);
+                    Tizen.Log.Fatal("NUI", "Could not load assembly: {0} for Attibute {1} | Some renderers may not be loaded", assembly.FullName, targetAttrType.FullName);
                     continue;
                 }
-                
+
                 if (attributes.Length == 0)
                     continue;
 

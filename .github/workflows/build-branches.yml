@@ -1,0 +1,60 @@
+name: Build Branches
+
+on:
+  push:
+    branches:
+    - master
+    - DevelNUI
+    - API*
+
+    paths:
+    - 'build/**'
+    - 'internals/**'
+    - 'src/**'
+    - 'tools/**'
+    - '.github/workflows/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 3.1.402
+
+    - name: Build
+      run: ./build.sh full
+
+    - name: Checkout APITool
+      uses: actions/checkout@v3
+      with:
+        repository: TizenAPI/APITool
+        path: .apitool
+
+    - name: Extract API
+      run: |
+        dotnet run -p .apitool/ \
+            -- print --format=json --include-hidden \
+            -o Artifacts/api.json Artifacts/bin/public/
+
+    - name: Checkout APISpec
+      uses: actions/checkout@v3
+      with:
+        repository: TizenAPI/tizenfx-api-specs
+        token: ${{ secrets.TIZENAPI_GITHUB_TOKEN }}
+        path: .apispec
+    
+    - name: Push to APISpec
+      working-directory: .apispec
+      run: |
+        git config --global user.name "TizenAPI-Bot"
+        git config --global user.email "tizenapi@samsung.net"
+        git checkout --orphan prep
+        gzip -c ../Artifacts/api.json > ${{ github.sha }}.json.gz
+        find . -name "*.json.gz" -type f -mtime +30 -delete
+        git add .
+        git commit -m "Update API spec"
+        git push -f origin HEAD:main

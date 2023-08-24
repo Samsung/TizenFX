@@ -16,15 +16,15 @@
  */
 using System;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
 
 namespace Tizen.NUI.Examples
 {
-    public class TextFieldTestPage : ContentPage
+    public partial class TextFieldTestPage : ContentPage
     {
 
         public TextFieldTestPage(Window win) : base (win)
         {
+            InitializeComponent();
         }
 
         public override void SetFocus()

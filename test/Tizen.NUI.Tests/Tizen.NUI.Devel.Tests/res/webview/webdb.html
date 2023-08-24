@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html>
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
+<title>Web Database Test Page</title>
+<body>
+<h1>Web Database Test Page</h1>
+
+<div id="result"></div>
+
+<script type="text/javascript">
+    var db = window.openDatabase('cities111', '1.0', 'city stats', 1024);
+    window.onload = function () {
+        if (!window.openDatabase) {
+            document.getElementById("result").innerHTML = "Can't open database.";
+            return;
+        }
+        db.transaction(function (tx) {
+            tx.executeSql('create table if not exists cities (' + 'id integer primary key,' + 'name text,' + 'population integer' + ')', [], null,
+                function (tx, err) {
+                    document.getElementById("result").innerHTML = "Error: " + err.message;
+                }
+            );
+        });
+    };
+</script>
+
+</body>
+</html>

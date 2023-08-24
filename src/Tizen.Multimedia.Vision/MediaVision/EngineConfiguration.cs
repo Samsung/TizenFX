@@ -111,6 +111,11 @@ namespace Tizen.Multimedia.Vision
             EngineConfig.SetString(Handle, key, value).Validate("Failed to set attribute");
         }
 
+        internal void Set(string key, string [] value)
+        {
+            EngineConfig.SetStringArray(Handle, key, value, value.Length).Validate("Failed to set attribute");
+        }
+
         internal int GetInt(string key)
         {
             int value = 0;
@@ -144,6 +149,38 @@ namespace Tizen.Multimedia.Vision
             finally
             {
                 LibcSupport.Free(ptr);
+            }
+        }
+
+        internal string[] GetStringArray(string key)
+        {
+            IntPtr values = IntPtr.Zero;
+            int size = 0;
+
+            try
+            {
+                EngineConfig.GetStringArray(Handle, key, out values, out size).
+                    Validate("Failed to get the value");
+
+                var current = values;
+                var result = new string[size];
+
+                for (int i = 0; i < size; i++)
+                {
+                    result[i] = Marshal.PtrToStringAnsi(Marshal.ReadIntPtr(current));
+                    current = (IntPtr)((long)current + Marshal.SizeOf(typeof(IntPtr)));
+                }
+
+                return result;
+            }
+            finally
+            {
+                var current = values;
+                for (int i = 0; i < size; i++)
+                {
+                    LibcSupport.Free(Marshal.ReadIntPtr(current));
+                    current = (IntPtr)((long)current + Marshal.SizeOf(typeof(IntPtr)));
+                }
             }
         }
 

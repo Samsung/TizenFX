@@ -22,11 +22,14 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Runtime.InteropServices;
 
+using Tizen.Internals;
+
 namespace Tizen.Network.Bluetooth
 {
     /// <summary>
     /// The structure of the device class type and service.
     /// </summary>
+    [NativeStruct("bt_class_s", Include="bluetooth_type.h", PkgConfig="capi-network-bluetooth")]
     [StructLayout(LayoutKind.Sequential)]
     internal struct BluetoothClassStruct
     {
@@ -47,6 +50,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// This structure contains the information of the Bluetooth device.
     /// </summary>
+    [NativeStruct("bt_device_info_s", Include="bluetooth_type.h", PkgConfig="capi-network-bluetooth")]
     [StructLayout(LayoutKind.Sequential)]
     internal struct BluetoothDeviceStruct
     {
@@ -59,8 +63,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The name of the device.
         /// </summary>
-        [MarshalAsAttribute(UnmanagedType.LPStr)]
-        internal string Name;
+        internal IntPtr Name;
 
         /// <summary>
         /// The class of the device.
@@ -103,18 +106,16 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The manufacturer data.
         /// </summary>
-        [MarshalAsAttribute(UnmanagedType.LPStr)]
-        internal string ManufacturerData;
+        internal IntPtr ManufacturerData;
     }
-
+    [NativeStruct("bt_adapter_device_discovery_info_s", Include="bluetooth_type.h", PkgConfig="capi-network-bluetooth")]
     [StructLayout(LayoutKind.Sequential)]
     internal struct BluetoothDiscoveredDeviceStruct
     {
         [MarshalAsAttribute(UnmanagedType.LPStr)]
         internal string Address;
 
-        [MarshalAsAttribute(UnmanagedType.LPStr)]
-        internal string Name;
+        internal IntPtr Name;
 
         internal BluetoothClassStruct Class;
 
@@ -131,10 +132,10 @@ namespace Tizen.Network.Bluetooth
 
         internal int ManufacturerDataLength;
 
-        [MarshalAsAttribute(UnmanagedType.LPStr)]
-        internal string ManufacturerData;
+        internal IntPtr ManufacturerData;
     }
 
+    [NativeStruct("bt_device_sdp_info_s", Include="bluetooth_type.h", PkgConfig="capi-network-bluetooth")]
     [StructLayout(LayoutKind.Sequential)]
     internal struct BluetoothDeviceSdpStruct
     {
@@ -144,6 +145,7 @@ namespace Tizen.Network.Bluetooth
         internal int ServiceCount;
     }
 
+    [NativeStruct("bt_device_connection_info_s", Include="bluetooth_type.h", PkgConfig="capi-network-bluetooth")]
     [StructLayout(LayoutKind.Sequential)]
     internal struct BluetoothDeviceConnectionStruct
     {
@@ -152,6 +154,7 @@ namespace Tizen.Network.Bluetooth
         internal BluetoothDisconnectReason DisconnectReason;
     }
 
+    [NativeStruct("bt_socket_received_data_s", Include="bluetooth_type.h", PkgConfig="capi-network-bluetooth")]
     [StructLayout(LayoutKind.Sequential)]
     internal struct SocketDataStruct
     {
@@ -160,6 +163,7 @@ namespace Tizen.Network.Bluetooth
         internal IntPtr Data;
     }
 
+    [NativeStruct("bt_socket_connection_s", Include="bluetooth_type.h", PkgConfig="capi-network-bluetooth")]
     [StructLayout(LayoutKind.Sequential)]
     internal struct SocketConnectionStruct
     {
@@ -170,6 +174,7 @@ namespace Tizen.Network.Bluetooth
         internal string ServiceUuid;
     }
 
+    [NativeStruct("bt_adapter_le_device_scan_result_info_s", Include="bluetooth_type.h", PkgConfig="capi-network-bluetooth")]
     [StructLayout(LayoutKind.Sequential)]
     internal struct BluetoothLeScanDataStruct
     {
@@ -189,6 +194,7 @@ namespace Tizen.Network.Bluetooth
         internal IntPtr ScanData;
     }
 
+    [NativeStruct("bt_adapter_le_service_data_s", Include="bluetooth_type.h", PkgConfig="capi-network-bluetooth")]
     [StructLayout(LayoutKind.Sequential)]
     internal struct BluetoothLeServiceDataStruct
     {
@@ -205,6 +211,7 @@ namespace Tizen.Network.Bluetooth
         internal int ServiceDataLength;
     }
 
+    [NativeStruct("bt_hid_device_received_data_s", Include="bluetooth_type.h", PkgConfig="capi-network-bluetooth")]
     [StructLayout(LayoutKind.Sequential)]
     internal struct BluetoothHidDeviceReceivedDataStruct
     {
@@ -214,6 +221,29 @@ namespace Tizen.Network.Bluetooth
         internal BluetoothHidParamType paramType;
         internal int dataSize;
         internal IntPtr data;
+    }
+
+    [NativeStruct("bt_avrcp_metadata_attributes_info_s", Include="bluetooth_type.h", PkgConfig="capi-network-bluetooth")]
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct TrackInfoStruct
+    {
+        internal IntPtr Title;
+        internal IntPtr Artist;
+        internal IntPtr Album;
+        internal IntPtr Genre;
+        internal uint total_tracks;
+        internal uint number;
+        internal uint duration;
+    }
+
+    [NativeStruct("bt_gatt_client_att_mtu_info_s", Include = "bluetooth_type.h", PkgConfig = "capi-network-bluetooth")]
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct AttMtuInfoStruct
+    {
+        [MarshalAsAttribute(UnmanagedType.LPStr)]
+        internal string RemoteAddress;
+        internal int Mtu;
+        internal int Status;
     }
 
     internal static class BluetoothUtils
@@ -228,14 +258,21 @@ namespace Tizen.Network.Bluetooth
                 IntPtr[] extensionList = new IntPtr[device.ServiceCount];
                 Marshal.Copy (device.ServiceUuidList, extensionList, 0, device.ServiceCount);
                 uuidList = new Collection<string> ();
+                Log.Info(Globals.LogTag, "UUID Count: " + device.ServiceCount);
                 foreach (IntPtr extension in extensionList) {
-                    string uuid = Marshal.PtrToStringAnsi (extension);
-                    uuidList.Add (uuid);
+                    if (extension != IntPtr.Zero) {
+                        string uuid = Marshal.PtrToStringAnsi (extension);
+                        Log.Info(Globals.LogTag, "UUID: " + uuid);
+                        uuidList.Add (uuid);
+                    }
                 }
             }
 
             resultDevice.RemoteDeviceAddress = device.Address;
-            resultDevice.RemoteDeviceName = device.Name;
+            if (device.Name != IntPtr.Zero) {
+                resultDevice.RemoteDeviceName = Marshal.PtrToStringAnsi(device.Name);
+                Log.Info(Globals.LogTag, "Device Name: " + resultDevice.RemoteDeviceName);
+            }
             resultDevice.RemoteDeviceClass = new BluetoothClass();
             resultDevice.Class.MajorType = device.Class.MajorDeviceClassType;
             resultDevice.Class.MinorType = device.Class.MinorDeviceClassType;
@@ -246,7 +283,9 @@ namespace Tizen.Network.Bluetooth
             resultDevice.RemoteDeviceService = uuidList;
             resultDevice.RemoteDeviceCount = device.ServiceCount;
             resultDevice.RemoteManufLength = device.ManufacturerDataLength;
-            resultDevice.RemoteManufData = device.ManufacturerData;
+
+            if (device.ManufacturerData != IntPtr.Zero)
+                resultDevice.RemoteManufData = Marshal.PtrToStringAnsi(device.ManufacturerData, device.ManufacturerDataLength);
 
             return resultDevice;
         }
@@ -260,14 +299,21 @@ namespace Tizen.Network.Bluetooth
                 IntPtr[] extensionList = new IntPtr[structDevice.ServiceCount];
                 Marshal.Copy (structDevice.ServiceUuidList, extensionList, 0, structDevice.ServiceCount);
                 uuidList = new Collection<string> ();
+                Log.Info(Globals.LogTag, "UUID Count: " + structDevice.ServiceCount);
                 foreach (IntPtr extension in extensionList) {
-                    string uuid = Marshal.PtrToStringAnsi (extension);
-                    uuidList.Add (uuid);
+                    if (extension != IntPtr.Zero) {
+                        string uuid = Marshal.PtrToStringAnsi(extension);
+                        Log.Info(Globals.LogTag, "UUID: " + uuid);
+                        uuidList.Add(uuid);
+                    }
                 }
             }
 
             resultDevice.RemoteDeviceAddress = structDevice.Address;
-            resultDevice.RemoteDeviceName = structDevice.Name;
+            if (structDevice.Name != IntPtr.Zero) {
+                resultDevice.RemoteDeviceName = Marshal.PtrToStringAnsi(structDevice.Name);
+                Log.Info(Globals.LogTag, "Device Name: " + resultDevice.RemoteDeviceName);
+            }
 
             resultDevice.RemoteDeviceClass = new BluetoothClass();
             resultDevice.Class.MajorType = structDevice.Class.MajorDeviceClassType;
@@ -283,8 +329,11 @@ namespace Tizen.Network.Bluetooth
             }
 
             resultDevice.RemotePaired = structDevice.IsPaired;
-            resultDevice.RemoteManufData = structDevice.ManufacturerData;
             resultDevice.RemoteManufLength = structDevice.ManufacturerDataLength;
+
+            if (structDevice.ManufacturerData != IntPtr.Zero)
+                resultDevice.RemoteManufData = Marshal.PtrToStringAnsi(structDevice.ManufacturerData, structDevice.ManufacturerDataLength);
+
             return resultDevice;
         }
 
@@ -297,8 +346,10 @@ namespace Tizen.Network.Bluetooth
                 IntPtr[] extensionList = new IntPtr[structData.ServiceCount];
                 Marshal.Copy (structData.ServiceUuid, extensionList, 0, structData.ServiceCount);
                 uuidList = new Collection<string> ();
+                Log.Info(Globals.LogTag, "UUID Count: " + structData.ServiceCount);
                 foreach (IntPtr extension in extensionList) {
                     string uuid = Marshal.PtrToStringAnsi (extension);
+                    Log.Info(Globals.LogTag, "UUID: " + uuid);
                     uuidList.Add (uuid);
                 }
             }
@@ -385,9 +436,16 @@ namespace Tizen.Network.Bluetooth
         internal static SocketData ConvertStructToSocketData(SocketDataStruct structInfo)
         {
             SocketData data = new SocketData();
-            data.Fd = structInfo.SocketFd;
-            data.Size = structInfo.DataSize;
-            data.RecvData = Marshal.PtrToStringAnsi(structInfo.Data);
+            Log.Info(Globals.LogTag, "SocketDataLength" + structInfo.DataSize);
+
+            data._fd = structInfo.SocketFd;
+            if (structInfo.DataSize > 0)
+            {
+                data._dataSize = structInfo.DataSize;
+                data._data = new byte[data._dataSize];
+                Marshal.Copy(structInfo.Data, data._data, 0, data._dataSize);
+                data._recvData = Marshal.PtrToStringAnsi(structInfo.Data, structInfo.DataSize);
+            }
             return data;
         }
 

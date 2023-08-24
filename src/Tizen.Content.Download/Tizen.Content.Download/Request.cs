@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.ComponentModel;
 
 namespace Tizen.Content.Download
 {
@@ -841,6 +842,38 @@ namespace Tizen.Content.Download
             if (ret != (int)DownloadError.None)
             {
                 DownloadErrorFactory.ThrowException(ret, "Unsetting ProgressChanged callback failed");
+            }
+        }
+
+        /// <summary>
+        /// Enabled state of the cache feature.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/download</privilege>
+        /// <feature>http://tizen.org/feature/download</feature>
+        /// <exception cref="ArgumentException">Thrown when it is failed due to setting an invalid value.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to an invalid operation.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when a permission is denied.</exception>
+        /// <exception cref="NotSupportedException">Thrown when not supported.</exception>
+        public bool UsesCache
+        {
+            get
+            {
+                bool enable;
+                int ret = Interop.Download.GetDownloadCache(_downloadId, out enable);
+                if (ret != (int)DownloadError.None)
+                {
+                    DownloadErrorFactory.ThrowException(ret, "Failed to get enabled state of cache");
+                }
+                return enable;
+            }
+            set
+            {
+                int ret = Interop.Download.SetDownloadCache(_downloadId, value);
+                if (ret != (int)DownloadError.None)
+                {
+                    DownloadErrorFactory.ThrowException(ret, "Failed to set enabled state of download cache");
+                }
             }
         }
     }

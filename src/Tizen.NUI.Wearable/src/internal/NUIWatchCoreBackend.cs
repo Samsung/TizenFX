@@ -181,7 +181,7 @@ namespace Tizen.NUI
             Log.Debug("NUI", "NUIWatchCorebackend OnLanguageChanged Called");
             var handler = Handlers[EventType.LocaleChanged] as Action<LocaleChangedEventArgs>;
             // Need to make new signal return in native to return right value.
-            handler?.Invoke( new LocaleChangedEventArgs(""));
+            handler?.Invoke( new LocaleChangedEventArgs((source as Application)?.GetLanguage()));
         }
 
         /// <summary>

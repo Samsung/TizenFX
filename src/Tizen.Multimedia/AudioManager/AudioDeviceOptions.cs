@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.Multimedia
 {
@@ -51,18 +52,6 @@ namespace Tizen.Multimedia
         /// External devices.
         /// </summary>
         External = 0x0020,
-
-        /// <summary>
-        /// Deactivated devices.
-        /// </summary>
-        [Obsolete("Deprecated since API level 5.")]
-        Deactivated = 0x1000,
-
-        /// <summary>
-        /// Activated devices.
-        /// </summary>
-        [Obsolete("Deprecated since API level 5.")]
-        Activated = 0x2000,
 
         /// <summary>
         /// All devices.

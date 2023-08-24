@@ -1,0 +1,89 @@
+<Project>
+
+  <ItemDefinitionGroup>
+    <_ResourceItemsWithTargetPath>
+      <TizenProfile>$(AllTizenProfiles)</TizenProfile>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </_ResourceItemsWithTargetPath>
+  </ItemDefinitionGroup>
+
+  <ItemGroup>
+    <AllTizenProfilesItems Include="$(AllTizenProfiles.Split(';'))" />
+    <SupportedProfilesItems Include="$(SupportedProfiles.Split(';'))" Condition="'$(SupportedProfiles)' != ''" />
+  </ItemGroup>
+
+  <Target Name="GenerateProfileFileList" Outputs="%(AllTizenProfilesItems.Identity)">
+
+    <PropertyGroup>
+      <_TargetProfile>%(AllTizenProfilesItems.Identity)</_TargetProfile>
+      <_IsProfileMatch>false</_IsProfileMatch>
+      <_IsProfileMatch Condition="'%(SupportedProfilesItems.Identity)' == '$(_TargetProfile)'">true</_IsProfileMatch>
+    </PropertyGroup>
+
+    <AssignTargetPath Files="@(None)" RootFolder="$(MSBuildProjectDirectory)">
+      <Output TaskParameter="AssignedFiles" ItemName="_ItemsWithTargetPath" />
+    </AssignTargetPath>
+
+    <ItemGroup>
+      <_ResourceItemsWithTargetPath Include="@(_ItemsWithTargetPath)"
+                                    Condition="$([System.String]::new('%(_ItemsWithTargetPath.TargetPath)').StartsWith('res/', System.StringComparison.OrdinalIgnoreCase))" />
+      <_ResourceItemsWithTargetPath Remove="@(_ResourceItemsWithTargetPath)"
+                                    Condition="'%(CopyToOutputDirectory)' == '' Or '%(CopyToOutputDirectory)' == 'Never'" />
+    </ItemGroup>
+
+    <GetProfileMatchedItems
+      Items="@(_ResourceItemsWithTargetPath)"
+      TargetProfile="$(_TargetProfile)">
+      <Output TaskParameter="MatchedItems" ItemName="_ProfileResourceItemsWithTargetPath" />
+    </GetProfileMatchedItems>
+
+    <ItemGroup>
+      <_ProfilePreloadItems Include="$(OutDir)*.preload" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ProfileFiles Include="$(TargetFileName)" Condition="'$(_IsProfileMatch)' == 'true'" />
+      <_ProfileFiles Include="%(_ProfileResourceItemsWithTargetPath.TargetPath)" Condition="'$(_IsProfileMatch)' == 'true'" />
+      <_ProfileFiles Include="@(_ProfilePreloadItems->'%(Filename)%(Extension)')" Condition="'$(_IsProfileMatch)' == 'true'" />
+      <_ProfileFiles Include="ref/$(TargetFileName)" Condition="'$(_IsProfileMatch)' == 'false'" />
+    </ItemGroup>
+
+    <WriteLinesToFile File="$(OutDir)$(TargetName).$(_TargetProfile).filelist"
+                      Overwrite="true"
+                      Lines="@(_ProfileFiles)" />
+
+  </Target>
+
+  <UsingTask
+    TaskName="GetProfileMatchedItems"
+    TaskFactory="RoslynCodeTaskFactory"
+    AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+    <ParameterGroup>
+      <Items Required="true" ParameterType="Microsoft.Build.Framework.ITaskItem[]" />
+      <TargetProfile Required="true" />
+      <MatchedItems ParameterType="Microsoft.Build.Framework.ITaskItem[]" Output="true" />
+    </ParameterGroup>
+    <Task>
+      <Using Namespace="System" />
+      <Using Namespace="System.IO" />
+      <Using Namespace="System.Linq" />
+      <Using Namespace="System.Collections.Generic" />
+      <Code Type="Fragment" Language="cs">
+<![CDATA[
+  var _matchedItems = new List<ITaskItem>();
+  foreach (var item in Items) {
+    string tizenProfile = item.GetMetadata("TizenProfile");
+    if (!string.IsNullOrEmpty(tizenProfile)) {
+      string[] profiles = tizenProfile.Split(';');
+      if (profiles.Any(TargetProfile.Equals)) {
+        _matchedItems.Add(item);
+      }
+    }
+  }
+  MatchedItems = _matchedItems.ToArray();
+]]>
+      </Code>
+    </Task>
+  </UsingTask>
+
+</Project>

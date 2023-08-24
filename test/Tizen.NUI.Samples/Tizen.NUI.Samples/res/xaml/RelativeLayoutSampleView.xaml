@@ -1,0 +1,38 @@
+﻿<View x:Class="Tizen.NUI.Samples.RelativeLayoutSampleView"
+      xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:c="clr-namespace:Tizen.NUI.Components;assembly=Tizen.NUI.Components"
+      x:Name="MainView"
+      >
+    <View.Layout>
+        <RelativeLayout/>
+    </View.Layout>
+
+    <c:Button x:Name="left" Text="left" BackgroundColor="1,0.96,0.85,1" WidthSpecification="-2" HeightSpecification="100"/>
+    <c:Button x:Name="right" Text="right" BackgroundColor="0.83,1,0.85,1" WidthSpecification="-2" HeightSpecification="100"
+              RelativeLayout.LeftRelativeOffset="1.0"
+              RelativeLayout.RightRelativeOffset="1.0"
+              RelativeLayout.HorizontalAlignment="End"/>
+    <c:Button x:Name="center" Text="center" BackgroundColor="0.83,0.85,1,1" WidthSpecification="-2" HeightSpecification="100"
+              RelativeLayout.LeftTarget="left" RelativeLayout.LeftRelativeOffset="1.0"
+              RelativeLayout.RightTarget="right" RelativeLayout.RightRelativeOffset="0.0"
+              RelativeLayout.HorizontalAlignment="Center"/>
+    <c:Button x:Name="fill" Text="fill" BackgroundColor="0.83,1,1,1" WidthSpecification="-2" HeightSpecification="100"
+              RelativeLayout.LeftTarget="left" RelativeLayout.LeftRelativeOffset="1.0"
+              RelativeLayout.RightTarget="right" RelativeLayout.RightRelativeOffset="0.0"
+              RelativeLayout.FillHorizontal="true"
+              RelativeLayout.TopTarget="center" RelativeLayout.TopRelativeOffset="1.1"
+              RelativeLayout.BottomTarget="center" RelativeLayout.BottomRelativeOffset="1.1"/>
+    <c:Button x:Name="start" Text="start" BackgroundColor="0.94,0.94,0.89,1" WidthSpecification="-2" HeightSpecification="100"
+              RelativeLayout.LeftTarget="left" RelativeLayout.LeftRelativeOffset="1.0"
+              RelativeLayout.RightTarget="right" RelativeLayout.RightRelativeOffset="0.0"
+              RelativeLayout.HorizontalAlignment="Start"
+              RelativeLayout.TopTarget="fill" RelativeLayout.TopRelativeOffset="1.1"
+              RelativeLayout.BottomTarget="fill" RelativeLayout.BottomRelativeOffset="1.1"/>
+    <c:Button x:Name="startandright" Text="start and right" BackgroundColor="0.92,1,0.92,1" WidthSpecification="-2" HeightSpecification="100"
+              RelativeLayout.LeftTarget="start" RelativeLayout.LeftRelativeOffset="0.5"
+              RelativeLayout.RightTarget="right" RelativeLayout.RightRelativeOffset="1.0"
+              RelativeLayout.FillHorizontal="true"
+              RelativeLayout.TopTarget="start" RelativeLayout.TopRelativeOffset="1.1"
+              RelativeLayout.BottomTarget="start" RelativeLayout.BottomRelativeOffset="1.1"/>
+</View>

@@ -18,8 +18,8 @@ using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
-using static Interop.ImageUtil;
-using static Interop.ImageUtil.Transform;
+using static Interop;
+using NativeTransform = Interop.ImageUtil.Transform;
 
 namespace Tizen.Multimedia.Util
 {
@@ -42,7 +42,7 @@ namespace Tizen.Multimedia.Util
 
             using (var cbKeeper = ObjectKeeper.Get(GetCallback(tcs, source)))
             {
-                var result = Run(handle, source.GetHandle(), cbKeeper.Target);
+                var result = NativeTransform.Run(handle, source.GetHandle(), cbKeeper.Target);
 
                 if (result == ImageUtilError.NotSupportedFormat)
                 {
@@ -55,7 +55,7 @@ namespace Tizen.Multimedia.Util
             }
         }
 
-        private TransformCompletedCallback GetCallback(TaskCompletionSource<MediaPacket> tcs,
+        private NativeTransform.TransformCompletedCallback GetCallback(TaskCompletionSource<MediaPacket> tcs,
             MediaPacket source)
         {
             return (nativehandle, errorCode, _) =>
@@ -85,7 +85,7 @@ namespace Tizen.Multimedia.Util
 
         internal static TransformHandle CreateHandle()
         {
-            Create(out var handle).ThrowIfFailed("Failed to run ImageTransformer");
+            NativeTransform.Create(out var handle).ThrowIfFailed("Failed to run ImageTransformer");
             Debug.Assert(handle != null);
             return handle;
         }

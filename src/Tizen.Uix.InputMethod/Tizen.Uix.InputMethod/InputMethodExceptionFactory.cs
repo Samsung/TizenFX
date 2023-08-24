@@ -30,21 +30,21 @@ namespace Tizen.Uix.InputMethod
             {
                 case ErrorCode.OutOfMemory:
                     {
-                        exp = new InvalidOperationException("Out Of Memory");
+                        exp = new OutOfMemoryException("Out Of Memory");
                         break;
                     }
 
 
                 case ErrorCode.InvalidParameter:
                     {
-                        exp = new InvalidOperationException("Invalid Parameters Provided");
+                        exp = new ArgumentException("Invalid Parameters Provided");
                         break;
                     }
 
 
                 case ErrorCode.PermissionDenied:
                     {
-                        exp = new InvalidOperationException("Permission Denied");
+                        exp = new UnauthorizedAccessException("Permission Denied");
                         break;
                     }
 

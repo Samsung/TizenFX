@@ -85,6 +85,7 @@ namespace Tizen.Multimedia.Vision
         ///     -or-<br/>
         ///     <paramref name="imageObject"/> has already been disposed of.
         /// </exception>
+        /// <exception cref="InvalidOperationException">Internal error.(Since API level 10)</exception>
         /// <since_tizen> 4 </since_tizen>
         public void SetTarget(ImageObject imageObject)
         {

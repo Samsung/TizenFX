@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <NoWarn>$(NoWarn);CS0618;CA1054;CA1056</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <TizenPreloadFile Include="Tizen.NUI.Components.preload" Sequence="31" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tizen.Log\Tizen.Log.csproj" />
+    <ProjectReference Include="..\Tizen.NUI\Tizen.NUI.csproj" />
+    <ProjectReference Include="..\Tizen.System.Feedback\Tizen.System.Feedback.csproj" />
+    <ProjectReference Include="..\Tizen.System.Information\Tizen.System.Information.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="res\*.png;res\*.svg;res\*.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

@@ -22,7 +22,7 @@ using static Interop.WatchfaceComplication;
 namespace Tizen.Applications.WatchfaceComplication
 {
     /// <summary>
-    /// Represents the ComplicationProvider class for the complication provider service application.
+    /// Represents the complication provider for a service application.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public abstract class ComplicationProvider : IDisposable
@@ -33,7 +33,7 @@ namespace Tizen.Applications.WatchfaceComplication
         private readonly UpdateRequestedCallback _updatedCallback;
 
         /// <summary>
-        /// Initializes the ComplicationProvider class.
+        /// Initializes a new instance of the ComplicationProvider class.
         /// </summary>
         /// <param name="providerId">The id of the complication provider.</param>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
@@ -101,9 +101,9 @@ namespace Tizen.Applications.WatchfaceComplication
         }
 
         /// <summary>
-        /// Overrides this method to handle the behavior when the complication data update request event comes from watchface complication.
+        /// Overrides this method to handle the behavior when the event for requesting the update of complication data comes from watchface complication.
         /// </summary>
-        /// <param name="reqestAppId">The application ID of application which sent update request.</param>
+        /// <param name="reqestAppId">The ID of application which sent update request.</param>
         /// <param name="type">The requested type.</param>
         /// <param name="contextData">The complication's context which is set by complication setup application.</param>
         /// <returns>The requested ComplicationData</returns>
@@ -127,7 +127,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Gets the received event type.
         /// </summary>
-        /// <param name="recvAppCtrl">The appcontrol received event args.</param>
+        /// <param name="recvAppCtrl">The received appcontrol.</param>
         /// <exception cref="ArgumentException">Thrown when the invalid parameter is passed.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
@@ -156,9 +156,9 @@ namespace Tizen.Applications.WatchfaceComplication
         }
 
         /// <summary>
-        /// Gets the received event target provider ID.
+        /// Gets the provider ID of appcontrol that raises the event.
         /// </summary>
-        /// <param name="recvAppCtrl">The appcontrol received event args.</param>
+        /// <param name="recvAppCtrl">The received appcontrol.</param>
         /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
@@ -183,9 +183,9 @@ namespace Tizen.Applications.WatchfaceComplication
         }
 
         /// <summary>
-        /// Gets the received event target complication type.
+        /// Gets the complication type of the received appcontrol.
         /// </summary>
-        /// <param name="recvAppCtrl">The appcontrol received event args.</param>
+        /// <param name="recvAppCtrl">The received appcontrol.</param>
         /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
@@ -210,9 +210,9 @@ namespace Tizen.Applications.WatchfaceComplication
         }
 
         /// <summary>
-        /// Gets the received event target complication context.
+        /// Gets the complication context of appcontrol that raises the event.
         /// </summary>
-        /// <param name="recvAppCtrl">The appcontrol received event args.</param>
+        /// <param name="recvAppCtrl">The received appcontrol.</param>
         /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
@@ -242,7 +242,7 @@ namespace Tizen.Applications.WatchfaceComplication
         }
 
         /// <summary>
-        /// Releases the unmanaged resources used by the ComplicationProvider class specifying whether to perform a normal dispose operation.
+        /// Releases the unmanaged resources used by the ComplicationProvider instance specifying whether to perform a normal dispose operation.
         /// </summary>
         /// <param name="disposing">true for a normal dispose operation; false to finalize the handle.</param>
         /// <since_tizen> 3 </since_tizen>

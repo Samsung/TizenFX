@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 using System;
+using System.Threading;
 using Tizen.Internals.Errors;
 
 namespace Tizen.Multimedia
@@ -114,7 +115,8 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Prepared.
         /// </summary>
-        /// <seealso cref="Player.PrepareAsync"/>
+        /// <seealso cref="Player.PrepareAsync()"/>
+        /// <seealso cref="Player.PrepareAsync(CancellationToken)"/>
         Ready,
 
         /// <summary>
@@ -133,7 +135,8 @@ namespace Tizen.Multimedia
         /// Preparation in progress.
         /// </summary>
         /// <remarks>In this state, other methods and properties cannot be set.</remarks>
-        /// <seealso cref="Player.PrepareAsync"/>/>
+        /// <seealso cref="Player.PrepareAsync()"/>
+        /// <seealso cref="Player.PrepareAsync(CancellationToken)"/>
         Preparing,
     }
 
@@ -294,5 +297,51 @@ namespace Tizen.Multimedia
         /// Year.
         /// </summary>
         Year
+    }
+
+    /// <summary>
+    /// Enumeration of audio extract option.
+    /// </summary>
+    /// <seealso cref="Player.EnableExportingAudioData"/>
+    /// <since_tizen> 6 </since_tizen>
+    public enum PlayerAudioExtractOption
+    {
+        /// <summary>
+        /// Sync multi-channel audio stream with the playback clock.
+        /// </summary>
+        Default = 0x00,
+
+        /// <summary>
+        /// No sync with the playback clock.
+        /// </summary>
+        NoSyncWithClock = 0x01,
+
+        /// <summary>
+        /// Splits one interleaved multi-channel audio stream into several mono audio streams.
+        /// </summary>
+        Deinterleave = 0x02,
+
+        /// <summary>
+        /// Doesn't sync with clock and doesn't split multi-channel audio stream into several mono audio streams.
+        /// </summary>
+        NoSyncAndDeinterleave = 0x03,
+    }
+
+    /// <summary>
+    /// Specifies the types of a codec for <see cref="Player"/>.
+    /// </summary>
+    /// <seealso cref="Player.AudioCodecType"/>
+    /// <since_tizen> 6 </since_tizen>
+    public enum CodecType
+    {
+        /// <summary>
+        /// An optional flag for using the H/W codec.
+        /// </summary>
+        Hardware,
+
+        /// <summary>
+        ///  An optional flag for using the S/W codec
+        /// </summary>
+        Software,
     }
 }

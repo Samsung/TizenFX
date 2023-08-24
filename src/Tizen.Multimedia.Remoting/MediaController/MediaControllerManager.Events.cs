@@ -23,17 +23,28 @@ namespace Tizen.Multimedia.Remoting
 {
     public partial class MediaControllerManager
     {
+        // Updated event
         private Native.ServerUpdatedCallback _serverUpdatedCallback;
         private Native.PlaybackUpdatedCallback _playbackUpdatedCallback;
+        private NativePlaylist.PlaylistUpdatedCallback _playlistUpdatedCallback;
+        private NativePlaylist.MetadataUpdatedCallback _metadataUpdatedCallback;
         private Native.ShuffleModeUpdatedCallback _shufflemodeUpdatedCallback;
         private Native.RepeatModeUpdatedCallback _repeatmodeUpdatedCallback;
-        private Native.CommandCompletedCallback _commandCompletedCallback;
-        private NativePlaylist.MetadataUpdatedCallback _metadataUpdatedCallback;
-        private NativePlaylist.PlaylistUpdatedCallback _playlistUpdatedCallback;
+        private Native.BoolAttributeUpdatedCallback _subtitleModeUpdatedCallback;
+        private Native.BoolAttributeUpdatedCallback _mode360UpdatedCallback;
+        private Native.DisplayModeUpdatedCallback _displayModeUpdatedCallback;
+        private Native.DisplayRotationUpdatedCallback _displayRotationUpdatedCallback;
+
+        // Capability updated event
         private Native.PlaybackCapabilityUpdatedCallback _playbackCapabilityUpdatedCallback;
-        private Native.ShuffleCapabilityUpdatedCallback _shuffleModeCapabilityUpdatedCallback;
-        private Native.RepeatCapabilityUpdatedCallback _repeatModeCapabilityUpdatedCallback;
-        private Native.CustomCommandReceivedCallback _customCommandReceivedCallback;
+        private Native.SimpleCapabilityUpdatedCallback _categoryCapabilityUpdatedCallback;
+        private Native.CategoryAttributeCapabilityUpdatedCallback _displayModeCapabilityUpdatedCallback;
+        private Native.CategoryAttributeCapabilityUpdatedCallback _displayRotationCapabilityUpdatedCallback;
+
+        // Command
+        private Native.CommandCompletedCallback _commandCompletedCallback;
+        private Native.CustomCommandReceivedCallback _customEventReceivedCallback;
+
 
         /// <summary>
         /// Occurs when a server is started.
@@ -55,10 +66,17 @@ namespace Tizen.Multimedia.Remoting
             RegisterShuffleModeUpdatedEvent();
             RegisterRepeatModeUpdatedEvent();
             RegisterPlaylistUpdatedEvent();
-            RegisterCommandCompletedEvent();
+            RegisterSubtitleModeUpdateEvent();
+            RegisterMode360UpdateEvent();
+            RegisterDisplayModeUpdateEvent();
+            RegisterDisplayRotationUpdateEvent();
+
             RegisterPlaybackCapabilitiesEvent();
-            RegisterRepeatModeCapabilitiesEvent();
-            RegisterShuffleModeCapabilitiesEvent();
+            RegisterDisplayModeCapabilityUpdatedEvent();
+            RegisterDisplayRotationCapabilityUpdatedEvent();
+            RegisterSimpleCapabilityUpdatedEvent();
+
+            RegisterCommandCompletedEvent();
             RegisterCustomCommandReceivedEvent();
         }
 
@@ -80,6 +98,8 @@ namespace Tizen.Multimedia.Remoting
             }
         }
 
+
+        #region Updated event
         private void RegisterServerUpdatedEvent()
         {
             _serverUpdatedCallback = (serverName, state, _) =>
@@ -87,7 +107,8 @@ namespace Tizen.Multimedia.Remoting
                 RaiseServerChangedEvent(state, HandleServerUpdated(serverName, state));
             };
 
-            Native.SetServerUpdatedCb(Handle, _serverUpdatedCallback).ThrowIfError("Failed to init server changed event.");
+            Native.SetServerUpdatedCb(Handle, _serverUpdatedCallback).
+                ThrowIfError("Failed to register server changed event.");
         }
 
         private void RegisterPlaybackUpdatedEvent()
@@ -97,40 +118,8 @@ namespace Tizen.Multimedia.Remoting
                 GetController(serverName)?.RaisePlaybackUpdatedEvent(playbackHandle);
             };
 
-            Native.SetPlaybackUpdatedCb(Handle, _playbackUpdatedCallback).ThrowIfError("Failed to init PlaybackUpdated event.");
-        }
-
-
-        private void RegisterMetadataUpdatedEvent()
-        {
-            _metadataUpdatedCallback = (serverName, metadata, _) =>
-            {
-                GetController(serverName)?.RaiseMetadataUpdatedEvent(metadata);
-            };
-
-            NativePlaylist.SetMetadataUpdatedCb(Handle, _metadataUpdatedCallback).ThrowIfError("Failed to init MetadataUpdated event.");
-        }
-
-        private void RegisterShuffleModeUpdatedEvent()
-        {
-            _shufflemodeUpdatedCallback = (serverName, shuffleMode, _) =>
-            {
-                GetController(serverName)?.RaiseShuffleModeUpdatedEvent(shuffleMode);
-            };
-
-            Native.SetShuffleModeUpdatedCb(Handle, _shufflemodeUpdatedCallback).
-                ThrowIfError("Failed to init ShuffleModeUpdated event.");
-        }
-
-        private void RegisterRepeatModeUpdatedEvent()
-        {
-            _repeatmodeUpdatedCallback = (serverName, repeatMode, _) =>
-            {
-                GetController(serverName)?.RaiseRepeatModeUpdatedEvent(repeatMode.ToPublic());
-            };
-
-            Native.SetRepeatModeUpdatedCb(Handle, _repeatmodeUpdatedCallback).
-                ThrowIfError("Failed to init RepeatModeUpdated event.");
+            Native.SetPlaybackUpdatedCb(Handle, _playbackUpdatedCallback).
+                ThrowIfError("Failed to register PlaybackUpdated event.");
         }
 
         private void RegisterPlaylistUpdatedEvent()
@@ -141,9 +130,89 @@ namespace Tizen.Multimedia.Remoting
             };
 
             NativePlaylist.SetPlaylistModeUpdatedCb(Handle, _playlistUpdatedCallback).
-                ThrowIfError("Failed to init PlaylistUpdated event.");
+                ThrowIfError("Failed to register PlaylistUpdated event.");
         }
 
+        private void RegisterMetadataUpdatedEvent()
+        {
+            _metadataUpdatedCallback = (serverName, metadata, _) =>
+            {
+                GetController(serverName)?.RaiseMetadataUpdatedEvent(metadata);
+            };
+
+            NativePlaylist.SetMetadataUpdatedCb(Handle, _metadataUpdatedCallback).
+                ThrowIfError("Failed to register MetadataUpdated event.");
+        }
+
+        private void RegisterShuffleModeUpdatedEvent()
+        {
+            _shufflemodeUpdatedCallback = (serverName, shuffleMode, _) =>
+            {
+                GetController(serverName)?.RaiseShuffleModeUpdatedEvent(shuffleMode);
+            };
+
+            Native.SetShuffleModeUpdatedCb(Handle, _shufflemodeUpdatedCallback).
+                ThrowIfError("Failed to register ShuffleModeUpdated event.");
+        }
+
+        private void RegisterRepeatModeUpdatedEvent()
+        {
+            _repeatmodeUpdatedCallback = (serverName, repeatMode, _) =>
+            {
+                GetController(serverName)?.RaiseRepeatModeUpdatedEvent(repeatMode.ToPublic());
+            };
+
+            Native.SetRepeatModeUpdatedCb(Handle, _repeatmodeUpdatedCallback).
+                ThrowIfError("Failed to register RepeatModeUpdated event.");
+        }
+
+        private void RegisterSubtitleModeUpdateEvent()
+        {
+            _subtitleModeUpdatedCallback = (serverName, isEnabled, _) =>
+            {
+                GetController(serverName)?.RaiseSubtitleModeUpdatedEvent(isEnabled);
+            };
+
+            Native.SetSubtitleUpdatedCb(Handle, _subtitleModeUpdatedCallback).
+                ThrowIfError("Failed to register SubtitleModeUpdated event.");
+        }
+
+        private void RegisterMode360UpdateEvent()
+        {
+            _mode360UpdatedCallback = (serverName, isEnabled, _) =>
+            {
+                GetController(serverName)?.RaiseMode360UpdatedEvent(isEnabled);
+            };
+
+            Native.SetMode360UpdatedCb(Handle, _mode360UpdatedCallback).
+                ThrowIfError("Failed to register Mode360Updated event.");
+        }
+
+        private void RegisterDisplayModeUpdateEvent()
+        {
+            _displayModeUpdatedCallback = (serverName, mode, _) =>
+            {
+                GetController(serverName)?.RaiseDisplayModeUpdatedEvent(mode);
+            };
+
+            Native.SetDisplayModeUpdatedCb(Handle, _displayModeUpdatedCallback).
+                ThrowIfError("Failed to register DisplayModeUpdated event.");
+        }
+
+        private void RegisterDisplayRotationUpdateEvent()
+        {
+            _displayRotationUpdatedCallback = (serverName, rotation, _) =>
+            {
+                GetController(serverName)?.RaiseDisplayRotationUpdatedEvent(rotation);
+            };
+
+            Native.SetDisplayRotationUpdatedCb(Handle, _displayRotationUpdatedCallback).
+                ThrowIfError("Failed to register DisplayRotationUpdated event.");
+        }
+        #endregion
+
+
+        #region Command
         private void RegisterCommandCompletedEvent()
         {
             _commandCompletedCallback = (serverName, requestId, result, bundleHandle, _) =>
@@ -154,45 +223,12 @@ namespace Tizen.Multimedia.Remoting
             };
 
             Native.SetCommandCompletedCb(Handle, _commandCompletedCallback).
-                ThrowIfError("Failed to init CommandCompleted event.");
-        }
-
-        private void RegisterPlaybackCapabilitiesEvent()
-        {
-            _playbackCapabilityUpdatedCallback = (serverName, playbackCapaHandle, _) =>
-            {
-                GetController(serverName)?.RaisePlaybackCapabilityUpdatedEvent(playbackCapaHandle);
-            };
-
-            Native.SetPlaybackCapabilityUpdatedCb(Handle, _playbackCapabilityUpdatedCallback).
-                ThrowIfError("Failed to init PlaybackCapabilityUpdated event.");
-        }
-
-        private void RegisterRepeatModeCapabilitiesEvent()
-        {
-            _repeatModeCapabilityUpdatedCallback = (serverName, support, _) =>
-            {
-                GetController(serverName)?.RaiseRepeatModeCapabilityUpdatedEvent(support);
-            };
-
-            Native.SetRepeatCapabilityUpdatedCb(Handle, _repeatModeCapabilityUpdatedCallback).
-                ThrowIfError("Failed to init RepeatModeCapabilityUpdated event.");
-        }
-
-        private void RegisterShuffleModeCapabilitiesEvent()
-        {
-            _shuffleModeCapabilityUpdatedCallback = (serverName, support, _) =>
-            {
-                GetController(serverName)?.RaiseShuffleModeCapabilityUpdatedEvent(support);
-            };
-
-            Native.SetShuffleCapabilityUpdatedCb(Handle, _shuffleModeCapabilityUpdatedCallback).
-                ThrowIfError("Failed to init ShuffleModeCapabilityUpdated event.");
+                ThrowIfError("Failed to register CommandCompleted event.");
         }
 
         private void RegisterCustomCommandReceivedEvent()
         {
-            _customCommandReceivedCallback = (serverName, requestId, customEvent, bundleHandle, _) =>
+            _customEventReceivedCallback = (serverName, requestId, customEvent, bundleHandle, _) =>
             {
                 CustomCommand command = null;
                 if (bundleHandle != IntPtr.Zero)
@@ -209,8 +245,87 @@ namespace Tizen.Multimedia.Remoting
                 GetController(serverName)?.RaiseCustomCommandReceivedEvent(command);
             };
 
-            Native.SetCustomEventCb(Handle, _customCommandReceivedCallback).
-                ThrowIfError("Failed to init CustomCommandReceived event.");
+            Native.SetCustomEventCb(Handle, _customEventReceivedCallback).
+                ThrowIfError("Failed to register CustomCommandReceived event.");
         }
+        #endregion
+
+
+        #region Capability updated event
+        private void RegisterPlaybackCapabilitiesEvent()
+        {
+            _playbackCapabilityUpdatedCallback = (serverName, playbackCapaHandle, _) =>
+            {
+                GetController(serverName)?.RaisePlaybackCapabilityUpdatedEvent(playbackCapaHandle);
+            };
+
+            Native.SetPlaybackCapabilityUpdatedCb(Handle, _playbackCapabilityUpdatedCallback).
+                ThrowIfError("Failed to register PlaybackCapabilityUpdated event.");
+        }
+
+        private void RegisterDisplayModeCapabilityUpdatedEvent()
+        {
+            _displayModeCapabilityUpdatedCallback = (serverName, modes, _) =>
+            {
+                GetController(serverName)?.RaiseDisplayModeCapabilityUpdatedEvent(
+                    (MediaControlNativeDisplayMode)modes);
+            };
+
+            Native.SetDisplayModeCapabilityUpdatedCb(Handle, _displayModeCapabilityUpdatedCallback).
+                ThrowIfError("Failed to register DisplayModeCapabilityUpdated event.");
+        }
+
+        private void RegisterDisplayRotationCapabilityUpdatedEvent()
+        {
+            _displayRotationCapabilityUpdatedCallback = (serverName, rotations, _) =>
+            {
+                GetController(serverName)?.RaiseDisplayRotationCapabilityUpdatedEvent(
+                    (MediaControlNativeDisplayRotation)rotations);
+            };
+
+            Native.SetDisplayRotationCapabilityUpdatedCb(Handle, _displayRotationCapabilityUpdatedCallback).
+                ThrowIfError("Failed to register DisplayRotationCapabilityUpdated event.");
+        }
+
+        private void RegisterSimpleCapabilityUpdatedEvent()
+        {
+            _categoryCapabilityUpdatedCallback = (serverName, category, support, _) =>
+            {
+                switch (category)
+                {
+                    case MediaControlNativeCapabilityCategory.Shuffle:
+                        GetController(serverName)?.RaiseShuffleModeCapabilityUpdatedEvent(support);
+                        break;
+                    case MediaControlNativeCapabilityCategory.Repeat:
+                        GetController(serverName)?.RaiseRepeatModeCapabilityUpdatedEvent(support);
+                        break;
+                    case MediaControlNativeCapabilityCategory.PlaybackPosition:
+                        GetController(serverName)?.RaisePlaybackPositionCapabilityUpdatedEvent(support);
+                        break;
+                    case MediaControlNativeCapabilityCategory.Playlist:
+                        GetController(serverName)?.RaisePlaylistCapabilityUpdatedEvent(support);
+                        break;
+                    case MediaControlNativeCapabilityCategory.CustomCommand:
+                        GetController(serverName)?.RaiseCustomCommandCapabilityUpdatedEvent(support);
+                        break;
+                    case MediaControlNativeCapabilityCategory.Search:
+                        GetController(serverName)?.RaiseSearchCapabilityUpdatedEvent(support);
+                        break;
+                    case MediaControlNativeCapabilityCategory.Subtitle:
+                        GetController(serverName)?.RaiseSubtitleCapabilityUpdatedEvent(support);
+                        break;
+                    case MediaControlNativeCapabilityCategory.Mode360:
+                        GetController(serverName)?.RaiseMode360CapabilityUpdatedEvent(support);
+                        break;
+                    default:
+                        Log.Info(GetType().FullName, $"There's no category : {category}");
+                        break;
+                }
+            };
+
+            Native.SetCategoryCapabilityUpdatedCb(Handle, _categoryCapabilityUpdatedCallback).
+                ThrowIfError("Failed to register capability updated event.");
+        }
+        #endregion
     }
 }

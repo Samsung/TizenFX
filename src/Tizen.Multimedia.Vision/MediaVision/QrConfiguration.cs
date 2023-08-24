@@ -24,6 +24,10 @@ namespace Tizen.Multimedia.Vision
     /// <since_tizen> 4 </since_tizen>
     public class QrConfiguration
     {
+        private string _embedImagePath;
+        private QrShape _dataShape = QrShape.Rectangular;
+        private QrShape _finderShape = QrShape.Rectangular;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="QrConfiguration"/> class.
         /// </summary>
@@ -78,5 +82,69 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public int Version { get; }
+
+        /// <summary>
+        /// Gets or sets the embed image absolute path of the Design QR code.
+        /// </summary>
+        /// <remarks>
+        /// The mediastorage privilege (http://tizen.org/privilege/mediastorage) is needed if the image path is relevant to media storage.<br/>
+        /// The externalstorage privilege (http://tizen.org/privilege/externalstorage) is needed if the image path is relevant to external storage.
+        /// </remarks>
+        /// <exception cref="ArgumentNullException"><paramref name="value"/> is null.</exception>
+        /// <exception cref="ArgumentException"><paramref name="value"/> is zero-length string.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        public string EmbedImagePath
+        {
+            get
+            {
+                return _embedImagePath;
+            }
+            set
+            {
+                ValidationUtil.ValidateIsNullOrEmpty(value, nameof(value));
+
+                _embedImagePath = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the data shape of the Design QR code.
+        /// </summary>
+        /// <remarks>The default value is <see cref="QrShape.Rectangular"/>.</remarks>
+        /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        public QrShape DataShape
+        {
+            get
+            {
+                return _dataShape;
+            }
+            set
+            {
+                ValidationUtil.ValidateEnum(typeof(QrShape), value, nameof(value));
+
+                _dataShape = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the finder shape of the Design QR code.
+        /// </summary>
+        /// <remarks>The default value is <see cref="QrShape.Rectangular"/>.</remarks>
+        /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        public QrShape FinderShape
+        {
+            get
+            {
+                return _finderShape;
+            }
+            set
+            {
+                ValidationUtil.ValidateEnum(typeof(QrShape), value, nameof(value));
+
+                _finderShape = value;
+            }
+        }
     }
 }

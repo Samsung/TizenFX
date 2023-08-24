@@ -7,7 +7,7 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Examples
 {
-    class BixbyFinancePage : ContentPage
+    partial class BixbyFinancePage : ContentPage
     {
         private Vector2 bezierPointIn1 = new Vector2(0.21f, 2);
         private Vector2 bezierPointIn2 = new Vector2(0.14f, 1);
@@ -15,11 +15,12 @@ namespace Tizen.NUI.Examples
         private Vector2 bezierPointOut2 = new Vector2(0.22f, 1);
         private Animation scaleInAni = null;
         private Animation scaleOutAni = null;
-        private Animation selectedAni = null;
         private ImageView buttonClose = null;
         private ImageView buttonSend = null;
+
         public BixbyFinancePage(Window win) : base(win)
         {
+            InitializeComponent();
         }
 
         /// <summary>

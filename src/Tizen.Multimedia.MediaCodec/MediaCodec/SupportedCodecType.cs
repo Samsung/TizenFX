@@ -36,6 +36,7 @@ namespace Tizen.Multimedia.MediaCodec
         Wma2 = 0x10A1,
         WmaPro = 0x10A2,
         WmaLossless = 0x10A3,
+        Opus = 0x10D0,
 
         H261 = 0x2010,
         H263 = 0x2020,
@@ -48,5 +49,42 @@ namespace Tizen.Multimedia.MediaCodec
         // VP8 = 0x2090,
         // VP9 = 0x20A0,
         // VC1 = 0x20B0,
+    }
+
+    internal static class TypeConverter
+    {
+        private const int CodecTypeMask = 0xFFFF;
+
+        internal static int ToPublic(SupportedCodecType type)
+        {
+            int ret = (int)type;
+
+            switch (type)
+            {
+                case SupportedCodecType.Opus:
+                    ret = (int)MediaFormatAudioMimeType.Opus & CodecTypeMask;
+                    break;
+            }
+
+            return ret;
+        }
+
+        internal static int ToNative(MediaFormatAudioMimeType type)
+        {
+            int ret = (int)type & CodecTypeMask;
+            switch (type)
+            {
+                case MediaFormatAudioMimeType.Opus:
+                    ret = (int)SupportedCodecType.Opus;
+                    break;
+            }
+
+            return ret;
+        }
+
+        internal static int ToNative(MediaFormatVideoMimeType type)
+        {
+            return (int)type & CodecTypeMask;
+        }
     }
 }

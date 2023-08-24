@@ -18,6 +18,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Linq;
+using System.ComponentModel;
 
 namespace Tizen.Multimedia
 {
@@ -78,23 +79,6 @@ namespace Tizen.Multimedia
         public AudioDeviceIoDirection IoDirection => _ioDirection;
 
         /// <summary>
-        /// Gets the state of the device.
-        /// </summary>
-        /// <value>The <see cref="AudioDeviceState"/> of the device.</value>
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated since API level 5. Please use the IsRunning property instead.")]
-        public AudioDeviceState State
-        {
-            get
-            {
-                Interop.AudioDevice.GetDeviceState(Id, out var state).
-                    ThrowIfError("Failed to get the state of the device");
-
-                return state;
-            }
-        }
-
-        /// <summary>
         /// Gets the running state of the device.
         /// </summary>
         /// <value>true if the audio stream of device is running actually; otherwise, false.</value>
@@ -107,7 +91,7 @@ namespace Tizen.Multimedia
                     ThrowIfError("Failed to get the running state of the device");
 
                 return isRunning;
-			}
+            }
         }
 
         /// <summary>

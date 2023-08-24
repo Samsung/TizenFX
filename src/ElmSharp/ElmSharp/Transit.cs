@@ -246,7 +246,16 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public void Go(double interval = 0)
         {
-            Interop.Elementary.elm_transit_go_in(_handle, interval);
+            if (interval == 0)
+            {
+                // To start transition immediately, elm_transit_go() is called.
+                Interop.Elementary.elm_transit_go(_handle);
+            }
+            else
+            {
+                // elm_transit_go_in() uses timer so it does not start transition immediately although interval is 0.
+                Interop.Elementary.elm_transit_go_in(_handle, interval);
+            }
         }
 
         /// <summary>

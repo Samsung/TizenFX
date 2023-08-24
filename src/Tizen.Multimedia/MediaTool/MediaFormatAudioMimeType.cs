@@ -93,6 +93,30 @@ namespace Tizen.Multimedia
         WmaLossless = (MediaFormatType.Audio | MediaFormatDataType.Encoded | 0x10A3),
 
         /// <summary>
+        /// AC3.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        Ac3 = (MediaFormatType.Audio | MediaFormatDataType.Encoded | 0x10B1),
+
+        /// <summary>
+        /// Enhanced AC3.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        Eac3 = (MediaFormatType.Audio | MediaFormatDataType.Encoded | 0x10B2),
+
+        /// <summary>
+        /// Digital Theater Systems.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        Dts = (MediaFormatType.Audio | MediaFormatDataType.Encoded | 0x10C1),
+
+        /// <summary>
+        /// OPUS.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        Opus = (MediaFormatType.Audio | MediaFormatDataType.Encoded | 0x10D1),
+
+        /// <summary>
         /// PCM.
         /// </summary>
         Pcm = (MediaFormatType.Audio | MediaFormatDataType.Raw | 0x1510),

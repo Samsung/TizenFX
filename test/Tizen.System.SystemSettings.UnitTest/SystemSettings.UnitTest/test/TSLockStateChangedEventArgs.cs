@@ -1,6 +1,4 @@
 using System.Threading.Tasks;
-using System;
-using System.Threading;
 using Tizen.System;
 
 

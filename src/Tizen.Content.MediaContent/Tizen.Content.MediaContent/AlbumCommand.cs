@@ -30,7 +30,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <param name="database">The <see cref="MediaDatabase"/> that the commands run on.</param>
         /// <exception cref="ArgumentNullException"><paramref name="database"/> is null.</exception>
-        /// <exception cref="ObjectDisposedException"><paramref name="database"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException"><paramref name="database"/> has already been disposed.</exception>
         /// <since_tizen> 4 </since_tizen>
         public AlbumCommand(MediaDatabase database) : base(database)
         {
@@ -41,7 +41,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <returns>The number of albums.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <since_tizen> 4 </since_tizen>
         public int Count()
@@ -55,7 +55,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="arguments">The criteria to use to filter. This value can be null.</param>
         /// <returns>The number of albums.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <since_tizen> 4 </since_tizen>
         public int Count(CountArguments arguments)
@@ -70,7 +70,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <since_tizen> 4 </since_tizen>
         public MediaDataReader<Album> Select()
@@ -84,7 +84,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="filter">The criteria to use to filter. This value can be null.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <since_tizen> 4 </since_tizen>
         public MediaDataReader<Album> Select(SelectArguments filter)
@@ -100,7 +100,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="albumId">The ID of the album to query with.</param>
         /// <returns>The <see cref="Album"/> if <paramref name="albumId"/> exists, otherwise null.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="albumId"/> is equal to or less than zero.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <since_tizen> 4 </since_tizen>
@@ -133,7 +133,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="albumId">The ID of the album to query with.</param>
         /// <returns>The number of media information.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="albumId"/> is equal to or less than zero.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <since_tizen> 4 </since_tizen>
@@ -149,7 +149,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="arguments">The criteria to use to filter. This value can be null.</param>
         /// <returns>The number of media information.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="albumId"/> is equal to or less than zero.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <since_tizen> 4 </since_tizen>
@@ -172,7 +172,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="albumId">The ID of the album to select media.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <since_tizen> 4 </since_tizen>
         public MediaDataReader<MediaInfo> SelectMember(int albumId)
@@ -187,7 +187,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="filter">The criteria to use to filter. This value can be null.</param>
         /// <returns>The <see cref="MediaDataReader{TRecord}"/> containing the results.</returns>
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <since_tizen> 4 </since_tizen>
         public MediaDataReader<MediaInfo> SelectMember(int albumId, SelectArguments filter)

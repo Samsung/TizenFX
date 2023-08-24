@@ -36,55 +36,29 @@ namespace Tizen.Network.Bluetooth
         public BluetoothOppServer()
         {
             _impl = BluetoothOppServerImpl.Instance;
+            _impl.ConnectionRequested += (s, e) => ConnectionRequested?.Invoke(this, e);
+            _impl.TransferProgress += (s, e) => TransferProgress?.Invoke(this, e);
+            _impl.TransferFinished += (s, e) => TransferFinished?.Invoke(this, e);
         }
 
         /// <summary>
         /// (event) ConnectionRequested is called when OPP client requests for connection.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public event EventHandler<ConnectionRequestedEventArgs> ConnectionRequested
-        {
-            add
-            {
-                _impl.ConnectionRequested += value;
-            }
-            remove
-            {
-                _impl.ConnectionRequested -= value;
-            }
-        }
+        public event EventHandler<ConnectionRequestedEventArgs> ConnectionRequested;
 
         /// <summary>
         /// (event) TransferProgress is called when the file transfer state is changed.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public event EventHandler<TransferProgressEventArgs> TransferProgress
-        {
-            add
-            {
-                _impl.TransferProgress += value;
-            }
-            remove
-            {
-                _impl.TransferProgress -= value;
-            }
-        }
+        public event EventHandler<TransferProgressEventArgs> TransferProgress;
 
         /// <summary>
         /// (event) TransferFinished is called when the file tranfser is completed.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public event EventHandler<TransferFinishedEventArgs> TransferFinished
-        {
-            add
-            {
-                _impl.TransferFinished += value;
-            }
-            remove
-            {
-                _impl.TransferFinished -= value;
-            }
-        }
+        public event EventHandler<TransferFinishedEventArgs> TransferFinished;
+
         /// <summary>
         /// Register the Opp Server with the Opp service.
         /// </summary>
@@ -270,55 +244,28 @@ namespace Tizen.Network.Bluetooth
     {
         internal BluetoothOppClient()
         {
+            BluetoothOppClientImpl.Instance.PushResponded += (s, e) => PushResponded?.Invoke(this, e);
+            BluetoothOppClientImpl.Instance.PushProgress += (s, e) => PushProgress?.Invoke(this, e);
+            BluetoothOppClientImpl.Instance.PushFinished += (s, e) => PushFinished?.Invoke(this, e);
         }
 
         /// <summary>
         /// (event) PushResponded is called when remote OPP Server responds to a File push request.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public event EventHandler<PushRespondedEventArgs> PushResponded
-        {
-            add
-            {
-                BluetoothOppClientImpl.Instance.PushResponded += value;
-            }
-            remove
-            {
-                BluetoothOppClientImpl.Instance.PushResponded -= value;
-            }
-        }
+        public event EventHandler<PushRespondedEventArgs> PushResponded;
 
         /// <summary>
         /// (event) PushProgress is called when the file transfer state is changed.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public event EventHandler<PushProgressEventArgs> PushProgress
-        {
-            add
-            {
-                BluetoothOppClientImpl.Instance.PushProgress += value;
-            }
-            remove
-            {
-                BluetoothOppClientImpl.Instance.PushProgress -= value;
-            }
-        }
+        public event EventHandler<PushProgressEventArgs> PushProgress;
 
         /// <summary>
         /// (event) PushFinished is called when the file tranfser is completed.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public event EventHandler<PushFinishedEventArgs> PushFinished
-        {
-            add
-            {
-                BluetoothOppClientImpl.Instance.PushFinished += value;
-            }
-            remove
-            {
-                BluetoothOppClientImpl.Instance.PushFinished -= value;
-            }
-        }
+        public event EventHandler<PushFinishedEventArgs> PushFinished;
 
         /// <summary>
         /// Add File path to be pushed.
