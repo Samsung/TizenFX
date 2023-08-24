@@ -1467,22 +1467,6 @@ namespace Tizen.Uix.Stt
         {
             if (!disposedValue)
             {
-<<<<<<< HEAD
-				lock (thisLock)
-				{
-					if (_handle != IntPtr.Zero)
-					{
-						SttError error = SttDestroy(_handle);
-						if (error != SttError.None)
-						{
-							Log.Error(LogTag, "Destroy Failed with error " + error);
-						}
-						_handle = IntPtr.Zero;
-					}
-				}
-
-				disposedValue = true;
-=======
                 if (_handle != IntPtr.Zero)
                 {
                     SttError error = SttDestroy(_handle);
@@ -1494,7 +1478,6 @@ namespace Tizen.Uix.Stt
                 }
 
                 disposedValue = true;
->>>>>>> 6977ae43b0404f48cd6765bfb26ecdf54179c89c
             }
         }
     }

@@ -518,11 +518,7 @@ namespace Tizen.Uix.Tts
                 {
                     _defaultVoiceChanged -= value;
                     if (_defaultVoiceChanged == null)
-<<<<<<< HEAD
-					{
-=======
                     {
->>>>>>> 6977ae43b0404f48cd6765bfb26ecdf54179c89c
                         TtsError error = TtsUnsetDefaultVoiceChangedCB(_handle);
                         if (error != TtsError.None)
                         {
@@ -544,23 +540,6 @@ namespace Tizen.Uix.Tts
                 lock (_engineChangedLock)
                 {
                     if (_engineChanged == null)
-<<<<<<< HEAD
-                    {
-                        _engineDelegate = (IntPtr handle, IntPtr engineId, IntPtr language, int voiceType, bool needCredential, IntPtr userData) =>
-                        {
-                            string engineIdString = Marshal.PtrToStringAnsi(engineId);
-                            string languageString = Marshal.PtrToStringAnsi(language);
-                            EngineChangedEventArgs args = new EngineChangedEventArgs(engineIdString, languageString, voiceType, needCredential);
-                            _engineChanged?.Invoke(this, args);
-                        };
-                        TtsError error = TtsSetEngineChangedCB(_handle, _engineDelegate, IntPtr.Zero);
-                        if (error != TtsError.None)
-                        {
-                            Log.Error(LogTag, "Add EngineChanged Failed with error " + error);
-                        }
-                    }
-                    _engineChanged += value;
-=======
                     {
                         _engineDelegate = (IntPtr handle, IntPtr engineId, IntPtr language, int voiceType, bool needCredential, IntPtr userData) =>
                         {
@@ -620,7 +599,6 @@ namespace Tizen.Uix.Tts
                         }
                     }
                     _screenReaderChanged += value;
->>>>>>> 6977ae43b0404f48cd6765bfb26ecdf54179c89c
                 }
             }
 
@@ -628,17 +606,6 @@ namespace Tizen.Uix.Tts
             {
                 lock (_screenReaderChangedLock)
                 {
-<<<<<<< HEAD
-                    _engineChanged -= value;
-                    if (_engineChanged == null)
-                    {
-                        TtsError error = TtsUnsetEngineChangedCB(_handle);
-                        if (error != TtsError.None)
-                        {
-                            Log.Error(LogTag, "Remove EngineChanged Failed with error " + error);
-                        }
-                    }
-=======
                     _screenReaderChanged -= value;
                     if (_screenReaderChanged == null)
                     {
@@ -693,7 +660,6 @@ namespace Tizen.Uix.Tts
                             Log.Error(LogTag, "Remove ServiceStateChanged Failed with error " + error);
                         }
                     }
->>>>>>> 6977ae43b0404f48cd6765bfb26ecdf54179c89c
                 }
             }
         }
@@ -1301,23 +1267,6 @@ namespace Tizen.Uix.Tts
         protected virtual void Dispose(bool disposing)
         {
             if (!disposedValue)
-<<<<<<< HEAD
-			{
-				lock (thisLock)
-				{
-					if (_handle != IntPtr.Zero)
-					{
-						TtsError error = TtsDestroy(_handle);
-						if (error != TtsError.None)
-						{
-							Log.Error(LogTag, "Destroy Failed with error " + error);
-						}
-						_handle = IntPtr.Zero;
-					}
-				}
-
-				disposedValue = true;
-=======
             {
                 if (_handle != IntPtr.Zero)
                 {
@@ -1330,7 +1279,6 @@ namespace Tizen.Uix.Tts
                 }
 
                 disposedValue = true;
->>>>>>> 6977ae43b0404f48cd6765bfb26ecdf54179c89c
             }
         }
     }
