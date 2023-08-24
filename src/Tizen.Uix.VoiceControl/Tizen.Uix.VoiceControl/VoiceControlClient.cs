@@ -337,7 +337,6 @@ namespace Tizen.Uix.VoiceControl
         /// </remarks>
         /// <param name="name">Invocation name to be invoked by an application.</param>
         /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
-        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
         /// <exception cref="NotSupportedException">This exception can be due to not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <pre>
