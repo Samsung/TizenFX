@@ -1891,6 +1891,31 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Requests grab key events according to the requested device subtype
+        /// </summary>
+        /// <param name="deviceSubclass">The deviceSubclass type.</param>
+        /// <returns>True if KeyboardGrab succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool KeyboardGrab(DeviceSubClassType deviceSubclass)
+        {
+            bool ret = Interop.Window.KeyboardGrab(SwigCPtr, (uint)deviceSubclass);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Requests ungrab key events
+        /// </summary>
+        /// <returns>True if KeyboardUnGrab succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool KeyboardUnGrab()
+        {
+            bool ret = Interop.Window.KeyboardUnGrab(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
 
         /// <summary>
         /// Maximizes window's size.
