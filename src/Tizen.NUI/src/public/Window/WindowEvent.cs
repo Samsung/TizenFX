@@ -57,6 +57,7 @@ namespace Tizen.NUI
         private ResizeCompletedEventCallbackType resizeCompletedEventCallback;
         private InsetsChangedEventCallbackType insetsChangedEventCallback;
         private WindowPointerConstraintsEventCallback windowPointerConstraintsEventCallback;
+        private RootLayerHoverDataCallbackType rootLayerHoverDataCallback;
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WindowFocusChangedEventCallbackType(IntPtr window, bool focusGained);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -91,6 +92,8 @@ namespace Tizen.NUI
         private delegate void InsetsChangedEventCallbackType(int partType, int partState, IntPtr extents);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WindowPointerConstraintsEventCallback(IntPtr window, IntPtr constraintsEvent);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate bool RootLayerHoverDataCallbackType(IntPtr view, IntPtr hoverData);
 
 
         /// <summary>
@@ -151,6 +154,7 @@ namespace Tizen.NUI
                 }
             }
         }
+
 
         /// <summary>
         /// An event for the touched signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
@@ -340,6 +344,35 @@ namespace Tizen.NUI
                     using ResizeSignal signal = new ResizeSignal(Interop.Window.ResizeSignal(SwigCPtr), false);
                     signal.Ensure()?.Disconnect(windowResizeEventCallback);
                     windowResizeEventCallback = null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// An event for the hovered signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
+        /// The hovered signal is emitted when the hover input is received.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<HoverEventArgs> HoverEvent
+        {
+            add
+            {
+                if (rootLayerHoverDataEventHandler == null)
+                {
+                    rootLayerHoverDataCallback = OnWindowHover;
+                    Interop.ActorSignal.HoveredConnect(Layer.getCPtr(GetRootLayer()), rootLayerHoverDataCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                }
+                rootLayerHoverDataEventHandler += value;
+            }
+            remove
+            {
+                rootLayerHoverDataEventHandler -= value;
+                if (rootLayerHoverDataEventHandler == null && rootLayerHoverDataCallback != null)
+                {
+                    Interop.ActorSignal.HoveredDisconnect(Layer.getCPtr(GetRootLayer()), rootLayerHoverDataCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    rootLayerHoverDataCallback = null;
                 }
             }
         }
@@ -657,6 +690,7 @@ namespace Tizen.NUI
         private event EventHandler<WindowResizeCompletedEventArgs> resizeCompletedHandler;
         private event EventHandler<InsetsChangedEventArgs> insetsChangedEventHandler;
         private event EventHandler<PointerConstraintsEventArgs> windowPointerConstraintsEventHandler;
+        private event EventHandler<HoverEventArgs> rootLayerHoverDataEventHandler;
 
 
         internal event EventHandler EventProcessingFinished
@@ -954,6 +988,13 @@ namespace Tizen.NUI
                 using WindowPointerConstraintsSignal signal = new WindowPointerConstraintsSignal(Interop.WindowPointerConstraintsSignal.GetSignal(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(windowPointerConstraintsEventCallback);
                 windowPointerConstraintsEventCallback = null;
+            }
+
+            if (rootLayerHoverDataCallback != null)
+            {
+                Interop.ActorSignal.HoveredDisconnect(Layer.getCPtr(GetRootLayer()), rootLayerHoverDataCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+                rootLayerHoverDataCallback = null;
             }
         }
 
@@ -1265,6 +1306,23 @@ namespace Tizen.NUI
             }
         }
 
+        private bool OnWindowHover(IntPtr view, IntPtr hoverData)
+        {
+            if (hoverData == global::System.IntPtr.Zero)
+            {
+                NUILog.Error("hoverData should not be null!");
+                return false;
+            }
+
+            if (rootLayerHoverDataEventHandler != null)
+            {
+                HoverEventArgs e = new HoverEventArgs();
+                e.Hover = Tizen.NUI.Hover.GetHoverFromPtr(hoverData);
+                rootLayerHoverDataEventHandler(this, e);
+            }
+            return false;
+        }
+
         /// <summary>
         /// The focus changed event argument.
         /// </summary>
@@ -1455,6 +1513,31 @@ namespace Tizen.NUI
                 set
                 {
                     constraintsEvent = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event arguments that passed via the hover signal.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class HoverEventArgs : EventArgs
+        {
+            private Hover hover;
+
+            /// <summary>
+            /// Hover - contains touch points that represent the points that are currently being hovered or the points where a hover has stopped.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public Hover Hover
+            {
+                get
+                {
+                    return hover;
+                }
+                set
+                {
+                    hover = value;
                 }
             }
         }
