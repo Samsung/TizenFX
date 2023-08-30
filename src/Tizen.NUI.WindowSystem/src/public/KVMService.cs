@@ -188,6 +188,27 @@ namespace Tizen.NUI.WindowSystem.Shell
         }
 
         /// <summary>
+        /// Requests to cancel current drag.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        public void CancelDrag()
+        {
+            int res = Interop.KVMService.CancelDrag(_kvmService);
+            _tzsh.ErrorCodeThrow(res);
+        }
+
+        /// <summary>
+        /// Requests to receive the current drag data.
+        /// the drag data will be received by the DragEvent of the window.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        public void ReceiveDragData(string mimeType)
+        {
+            int res = Interop.KVMService.ReceiveDragData(_kvmService, mimeType);
+            _tzsh.ErrorCodeThrow(res);
+        }
+
+        /// <summary>
         /// Requests to set KVM window as secondary selection window.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
