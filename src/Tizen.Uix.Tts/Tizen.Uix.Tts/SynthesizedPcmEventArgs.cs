@@ -26,7 +26,7 @@ namespace Tizen.Uix.Tts
         internal SynthesizedPcmEventArgs(int utteranceId, SynthesizedPcmEvent synthesizedPcmEvent, byte[] data, AudioType audioType, int sampleRate)
         {
             UtteranceId = utteranceId;
-            SynthesizedPcmEvent = synthesizedPcmEvent;
+            EventType = synthesizedPcmEvent;
             Data = data;
             AudioType = audioType;
             SampleRate = sampleRate;
@@ -46,7 +46,7 @@ namespace Tizen.Uix.Tts
         /// The event of the PCM data.
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
-        public SynthesizedPcmEvent SynthesizedPcmEvent
+        public SynthesizedPcmEvent EventType
         {
             get;
             internal set;

@@ -317,7 +317,7 @@ namespace Tizen.Uix.Tts
         private readonly Object _engineChangedLock = new Object();
         private readonly Object _screenReaderChangedLock = new Object();
         private readonly Object _serviceStateChangedLock = new Object();
-        private readonly object _SynthesizedPcmLock = new object();
+        private readonly object _synthesizedPcmLock = new object();
         private TtsStateChangedCB _stateDelegate;
         private TtsUtteranceStartedCB _utteranceStartedResultDelegate;
         private TtsUtteranceCompletedCB _utteranceCompletedResultDelegate;
@@ -328,6 +328,7 @@ namespace Tizen.Uix.Tts
         private TtsServiceStateChangedCB _serviceStateDelegate;
         private TtsSythesizedPcmCB _synthesizedPcmDelegate;
         private TtsSupportedVoiceCB _supportedvoiceDelegate;
+        private PlayingMode _playingMode = PlayingMode.ByService;
 
         /// <summary>
         /// Constructor to create a TTS instance.
@@ -972,10 +973,14 @@ namespace Tizen.Uix.Tts
         /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         /// <pre>
-        /// The Client must be in the <see cref="State.Created"/> state.
+        /// If you want to set, the Client must be in the <see cref="State.Created"/> state.
         /// </pre>
         public PlayingMode PlayingMode
         {
+            get
+            {
+                return _playingMode;
+            }
             set
             {
                 TtsError error = TtsSetPlayingMode(_handle, value);
@@ -984,6 +989,7 @@ namespace Tizen.Uix.Tts
                     Log.Error(LogTag, "Set Mode Failed with error " + error);
                     throw ExceptionFactory.CreateException(error);
                 }
+                _playingMode = value;
             }
         }
 
