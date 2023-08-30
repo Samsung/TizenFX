@@ -20,18 +20,37 @@ using System.ComponentModel;
 
 namespace Tizen.NUI.Accessibility
 {
+    /// <summary>
+    /// Interface representing a table cell.
+    /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public interface IAtspiTableCell
     {
+        /// <summary>
+        /// Returns the table this cell belongs to.
+        /// </summary>
+        /// <returns> The table </returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         IAtspiTable AccessibilityGetTable();
 
+        /// <summary>
+        /// Returns the position of this cell in the table.
+        /// </summary>
+        /// <returns> A pair of integers (row index, column index) </returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         Tuple<int, int> AccessibilityGetCellPosition();
 
+        /// <summary>
+        /// Returns the number of rows occupied by this cell.
+        /// </summary>
+        /// <returns> The number of rows </returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         int AccessibilityGetCellRowSpan();
 
+        /// <summary>
+        /// Returns the number of columns occupied by this cell.
+        /// </summary>
+        /// <returns> The number of columns </returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         int AccessibilityGetCellColumnSpan();
     }
