@@ -112,7 +112,9 @@ namespace NUIWindowKVMSample
             windowView.BackgroundColor = Color.Yellow;
             this.Add(windowView);
 
-            dnd.AddListener(windowView, OnDnDEvent);
+            // The First argument of listener should be window, not view.
+            // The listener of view couldn't catch receive data from ReceiveDragData of KVMService
+            dnd.AddListener(this, OnDnDEvent);
 
             tzShell = new Tizen.NUI.WindowSystem.Shell.TizenShell();
             kvmService = new Tizen.NUI.WindowSystem.Shell.KVMService(tzShell, this);
@@ -126,7 +128,15 @@ namespace NUIWindowKVMSample
             if (e.DragType == DragType.Enter)
             {
                 Log.Debug("KVMSample", "Target(KVM) App DRagEvnetType: Enter");
-                kvmService.PerformDrop();
+                // PerformDrop is drop into the KVM window and finish the current drag.
+                // If you want to get the current drag data without end the drag,
+                // use ReceiveDragData(mimetype) instead of PerformDrop().
+                //kvmService.PerformDrop();
+
+                // The drag data will be received by ReceiveDragData of OnDragStarted callback and DragEvent of the OnDnDEvent callback.
+                // and the drag will be ended by enter the KVM window as UX of the app.
+                // If you want to end the drag without receive drag data, use CancelDrag().
+                kvmService.CancelDrag();
             }
             if (e.DragType == DragType.Drop)
             {
@@ -137,6 +147,10 @@ namespace NUIWindowKVMSample
         private void OnDragStarted(object sender, EventArgs e)
         {
             Log.Debug("KVMSample", "Tizen KVM: Drag started");
+
+            // Request the drag data to the Display server.
+            // The drag data can get at DnD Listener (OnDnDEvent function)
+            kvmService.ReceiveDragData("text/plain");
         }
 
         private void OnDragEnded(object sender, EventArgs e)
