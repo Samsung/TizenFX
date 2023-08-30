@@ -27,13 +27,13 @@ namespace Tizen.NUI.ParticleSystem
     /// how new particles are emitted.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ParticleSourceInterface
+    internal class ParticleSourceInterface
     {
         /// <summary>
         /// Constructor
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ParticleSourceInterface()
+        internal ParticleSourceInterface()
         {
         }
 
@@ -47,7 +47,7 @@ namespace Tizen.NUI.ParticleSystem
         /// </remarks>
         /// <param name="list">List of arguments</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual void Construct(params object[] list)
+        internal virtual void Construct(params object[] list)
         {
         }
 
@@ -65,7 +65,7 @@ namespace Tizen.NUI.ParticleSystem
         /// <param name="count">Number of particles emitter expects to be spawned during call</param>
         /// <returns>Number of spawned particles</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual uint Update(ParticleEmitterProxy emitterProxy, uint count)
+        internal virtual uint Update(ParticleEmitterProxy emitterProxy, uint count)
         {
             return 0;
         }
@@ -79,7 +79,7 @@ namespace Tizen.NUI.ParticleSystem
         /// It is the only place where ParticleSource may use NUI objects.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual void Init()
+        internal virtual void Init()
         {
             
         }
@@ -88,7 +88,7 @@ namespace Tizen.NUI.ParticleSystem
         /// ParticleEmitter proxy that can be accessed by the user implementation
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ParticleEmitterProxy Emitter;
+        internal ParticleEmitterProxy Emitter;
     }
     
     /// <summary>
@@ -101,7 +101,7 @@ namespace Tizen.NUI.ParticleSystem
     /// </remarks>
     /// <typeparam name="T">Class of interface that derives from <see cref="ParticleSourceInterface"/></typeparam>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public partial class ParticleSource<T> : BaseHandle where T : ParticleSourceInterface, new()
+    internal partial class ParticleSource<T> : BaseHandle where T : ParticleSourceInterface, new()
     {
         // static cache for sources (binding between native side and interfaces)
         private static ParticleInterfaceRegister<ParticleSourceInterface> gSourceInterfaceRegister = new ParticleInterfaceRegister<ParticleSourceInterface>();
@@ -162,7 +162,7 @@ namespace Tizen.NUI.ParticleSystem
         /// The constructor takes variable number of arguments which is processed when called ParticleSourceInterface.Construct()
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ParticleSource(params object[] list) : this(Interop.ParticleSource.New( mOnInitInvoker, mOnUpdateInvoker, out gRefObjectPtr ), true)
+        internal ParticleSource(params object[] list) : this(Interop.ParticleSource.New( mOnInitInvoker, mOnUpdateInvoker, out gRefObjectPtr ), true)
         {
             // Create interface on the C# side (no direct connection with C++)
             mInterface = new T();
@@ -190,7 +190,7 @@ namespace Tizen.NUI.ParticleSystem
         /// </summary>
         /// <returns>Source callback interface</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public T Callback => GetCallbackInterface();
+        internal T Callback => GetCallbackInterface();
 
         internal void SetEmitter(ParticleEmitter emitter)
         {

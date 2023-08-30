@@ -27,7 +27,7 @@ namespace Tizen.NUI.ParticleSystem
     /// <summary>
     /// Enum defining blending options when rendering the particles.
     /// </summary>
-    public enum ParticleBlendingMode
+    internal enum ParticleBlendingMode
     {
         Additive = 0,
         Screen = 1,
@@ -60,7 +60,7 @@ namespace Tizen.NUI.ParticleSystem
     /// ParticleSource and ParticleModifier callback interfaces should not be accessing
     /// Event side (NUI) objects. Both callbacks are executed on Update thread.
     /// </summary>
-    public class ParticleEmitter : BaseHandle
+    internal class ParticleEmitter : BaseHandle
     {
         internal ParticleEmitter(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
@@ -71,7 +71,7 @@ namespace Tizen.NUI.ParticleSystem
         /// </summary>
         /// <param name="view">View to attach the particle emitter.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ParticleEmitter(View view) : this(Interop.ParticleEmitter.New(view.SwigCPtr), true)
+        internal ParticleEmitter(View view) : this(Interop.ParticleEmitter.New(view.SwigCPtr), true)
         {
             mProxy = new ParticleEmitterProxy(this);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -82,7 +82,7 @@ namespace Tizen.NUI.ParticleSystem
         /// </summary>
         /// <param name="particleEmitter">Source object to copy.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ParticleEmitter( ParticleEmitter particleEmitter) : this(Interop. ParticleEmitter.New( ParticleEmitter.getCPtr(particleEmitter)), true)
+        internal ParticleEmitter( ParticleEmitter particleEmitter) : this(Interop. ParticleEmitter.New( ParticleEmitter.getCPtr(particleEmitter)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -104,7 +104,7 @@ namespace Tizen.NUI.ParticleSystem
         /// </summary>
         /// <param name="particleEmitter">Source object to copy.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetSource<T>(ParticleSource<T> source) where T : ParticleSourceInterface, new()
+        internal void SetSource<T>(ParticleSource<T> source) where T : ParticleSourceInterface, new()
         {
             // update interface
             source.SetEmitter(this);
@@ -118,7 +118,7 @@ namespace Tizen.NUI.ParticleSystem
         /// Maximum particle count
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint ParticleCount
+        internal uint ParticleCount
         {
             get
             {
@@ -141,7 +141,7 @@ namespace Tizen.NUI.ParticleSystem
         /// EmissionRate defines number of particles emitted per second.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint EmissionRate
+        internal uint EmissionRate
         {
             get
             {
@@ -164,7 +164,7 @@ namespace Tizen.NUI.ParticleSystem
         /// initial burst emission. By default it's set to 0.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint InitialParticleCount
+        internal uint InitialParticleCount
         {
             get
             {
@@ -186,7 +186,7 @@ namespace Tizen.NUI.ParticleSystem
         /// Active particles in the system can be limited without changing <see cref="ParticleCount"/>.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint ActiveParticleLimit
+        internal uint ActiveParticleLimit
         {
             get{
                 var value = Interop.ParticleEmitter.GetActiveParticlesLimit(SwigCPtr);
@@ -209,7 +209,7 @@ namespace Tizen.NUI.ParticleSystem
         /// <see cref="ParticleBlendingMode"/>
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ParticleBlendingMode RendererBlendingMode
+        internal ParticleBlendingMode RendererBlendingMode
         {
             get
             {                
@@ -228,7 +228,7 @@ namespace Tizen.NUI.ParticleSystem
         /// Gets/sets texture to be used by the renderer
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Texture RendererTexture
+        internal Texture RendererTexture
         {
             set
             {
@@ -247,7 +247,7 @@ namespace Tizen.NUI.ParticleSystem
         /// </remarks>
         /// <param name="modifier">Valid modifier object</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void AddModifier<T>(ParticleModifier<T> modifier) where T : ParticleModifierInterface, new()
+        internal void AddModifier<T>(ParticleModifier<T> modifier) where T : ParticleModifierInterface, new()
         {
             // update interface
             modifier.SetEmitter(this);
@@ -261,7 +261,7 @@ namespace Tizen.NUI.ParticleSystem
         /// </summary>
         /// <returns>Valid ParticleSource object or null</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ParticleSource<T> GetSource<T>() where T : ParticleSourceInterface, new()
+        internal ParticleSource<T> GetSource<T>() where T : ParticleSourceInterface, new()
         {
             IntPtr cPtr = Interop.ParticleEmitter.GetSource(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -275,11 +275,11 @@ namespace Tizen.NUI.ParticleSystem
         /// <param name="index">Index within modifier stack</param>
         /// <returns>Valid ParticleModifier object or null</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ParticleModifier<ParticleModifierInterface> GetModifierAt(uint index)
+        internal ParticleModifier<T> GetModifierAt<T>(uint index) where T : ParticleModifierInterface, new()
         {
             IntPtr cPtr = Interop.ParticleEmitter.GetModifierAt(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            ParticleModifier<ParticleModifierInterface> ret = (cPtr == IntPtr.Zero) ? null : Registry.GetManagedBaseHandleFromNativePtr(cPtr) as ParticleModifier<ParticleModifierInterface>;
+            ParticleModifier<T> ret = (cPtr == IntPtr.Zero) ? null : Registry.GetManagedBaseHandleFromNativePtr(cPtr) as ParticleModifier<T>;
             return ret;
         }
 
@@ -287,7 +287,7 @@ namespace Tizen.NUI.ParticleSystem
         /// Starts emission of particles.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Start()
+        internal void Start()
         {
             Interop.ParticleEmitter.Start(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -297,7 +297,7 @@ namespace Tizen.NUI.ParticleSystem
         /// Stops emission of particles.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Stop()
+        internal void Stop()
         {
             Interop.ParticleEmitter.Stop(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -312,7 +312,7 @@ namespace Tizen.NUI.ParticleSystem
         /// <param name="defaultValue">Default value to fill the stream with</param>
         /// <returns>Index of newly created data stream</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public unsafe uint AddLocalStreamFloat(float defaultValue)
+        internal unsafe uint AddLocalStreamFloat(float defaultValue)
         {
             var result = Interop.ParticleEmitter.AddLocalStream(SwigCPtr, (uint)StreamType.Float, &defaultValue, sizeof(float));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -328,7 +328,7 @@ namespace Tizen.NUI.ParticleSystem
         /// <param name="defaultValue">Default value to fill the stream with</param>
         /// <returns>Index of newly created data stream</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public unsafe uint AddLocalStreamVector2(Vector2 defaultValue)
+        internal unsafe uint AddLocalStreamVector2(Vector2 defaultValue)
         {
             var result = Interop.ParticleEmitter.AddLocalStream(SwigCPtr, (uint)StreamType.FloatVector2, (void*)defaultValue.SwigCPtr.Handle, sizeof(float)*2);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -344,7 +344,7 @@ namespace Tizen.NUI.ParticleSystem
         /// <param name="defaultValue">Default value to fill the stream with</param>
         /// <returns>Index of newly created data stream</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public unsafe uint AddLocalStreamVector3(Vector3 defaultValue)
+        internal unsafe uint AddLocalStreamVector3(Vector3 defaultValue)
         {
             var result = Interop.ParticleEmitter.AddLocalStream(SwigCPtr, (uint)StreamType.FloatVector3, (void*)defaultValue.SwigCPtr.Handle, sizeof(float)*3);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -360,7 +360,7 @@ namespace Tizen.NUI.ParticleSystem
         /// <param name="defaultValue">Default value to fill the stream with</param>
         /// <returns>Index of newly created data stream</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public unsafe uint AddLocalStreamVector4(Vector4 defaultValue)
+        internal unsafe uint AddLocalStreamVector4(Vector4 defaultValue)
         {
             var result = Interop.ParticleEmitter.AddLocalStream(SwigCPtr, (uint)StreamType.FloatVector4, (void*)defaultValue.SwigCPtr.Handle, sizeof(float)*4);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -376,7 +376,7 @@ namespace Tizen.NUI.ParticleSystem
     /// This class provides functionality that can be used inside the Source/Modifier callbacks.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ParticleEmitterProxy
+    internal class ParticleEmitterProxy
     {
         internal ParticleEmitterProxy(ParticleEmitter emitter)
         {
@@ -395,7 +395,7 @@ namespace Tizen.NUI.ParticleSystem
         /// <param name="lifetime">Lifetime of the particle in seconds</param>
         /// <returns>New Particle object or null</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Particle NewParticle( float lifetime )
+        internal Particle NewParticle( float lifetime )
         {
             var result = Interop.ParticleEmitter.NewParticle(mEmitterBasePtr, lifetime);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -467,7 +467,7 @@ namespace Tizen.NUI.ParticleSystem
         /// <param name="defaultValue">Default value</param>
         /// <returns>Index of new stream</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint AddLocalStreamFloat(float defaultValue)
+        internal uint AddLocalStreamFloat(float defaultValue)
         {
             return mEmitter.AddLocalStreamFloat(defaultValue);
         }
@@ -478,7 +478,7 @@ namespace Tizen.NUI.ParticleSystem
         /// <param name="defaultValue">Default value</param>
         /// <returns>Index of new stream</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint AddLocalStreamVector2(Vector2 defaultValue)
+        internal uint AddLocalStreamVector2(Vector2 defaultValue)
         {
             return mEmitter.AddLocalStreamVector2(defaultValue);
         }
@@ -489,7 +489,7 @@ namespace Tizen.NUI.ParticleSystem
         /// <param name="defaultValue">Default value</param>
         /// <returns>Index of new stream</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint AddLocalStreamVector3(Vector3 defaultValue)
+        internal uint AddLocalStreamVector3(Vector3 defaultValue)
         {
             return mEmitter.AddLocalStreamVector3(defaultValue);
         }
@@ -500,7 +500,7 @@ namespace Tizen.NUI.ParticleSystem
         /// <param name="defaultValue">Default value</param>
         /// <returns>Index of new stream</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint AddLocalStreamVector4(Vector4 defaultValue)
+        internal uint AddLocalStreamVector4(Vector4 defaultValue)
         {
             return mEmitter.AddLocalStreamVector4(defaultValue);
         }

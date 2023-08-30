@@ -32,7 +32,7 @@ namespace Tizen.NUI.ParticleSystem
     /// Declares types of default streams 
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public enum ParticleStream
+    internal enum ParticleStream
     {
         Position      = 1 << 0, // Vector3, Position of particle
         Rotation      = 1 << 1, // Vector4, Rotation of particle (quaternion)
@@ -49,14 +49,14 @@ namespace Tizen.NUI.ParticleSystem
     /// Particle class provides interface to particle data streams
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Particle
+    internal class Particle
     {
         /// <summary>
         /// StreamView provides functionality allowing particle
         /// data manipulation (read/write).
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public class StreamView
+        internal class StreamView
         {
             internal StreamView(HandleRef list, uint particleIndex, uint streamIndex)
             {
@@ -182,7 +182,7 @@ namespace Tizen.NUI.ParticleSystem
         /// <param name="streamIndex">Index of stream to get value from</param>
         /// <returns>StreamView object</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public StreamView GetStreamValue(uint streamIndex)
+        internal StreamView GetStreamValue(uint streamIndex)
         {
             return new StreamView(mEmitterRef, mIndex, streamIndex);
         }
@@ -193,7 +193,7 @@ namespace Tizen.NUI.ParticleSystem
         /// <param name="streamIndex">Index of stream to get value from</param>
         /// <returns>StreamView object</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public StreamView GetStreamValue(ParticleStream streamIndex)
+        internal StreamView GetStreamValue(ParticleStream streamIndex)
         {
             return new StreamView(mEmitterRef, mIndex, streamIndex);
         }
@@ -204,7 +204,7 @@ namespace Tizen.NUI.ParticleSystem
         /// <param name="value">Value to set</param>
         /// <param name="streamIndex">Index of stream to get value from</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetStreamValue(float value, uint streamIndex)
+        internal void SetStreamValue(float value, uint streamIndex)
         {
             Interop.Particle.WriteFloat(mEmitterRef, streamIndex, mIndex, value);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -217,7 +217,7 @@ namespace Tizen.NUI.ParticleSystem
         /// <param name="value">Value to set</param>
         /// <param name="streamIndex">Index of stream to get value from</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetStreamValue(Vector2 value, uint streamIndex)
+        internal void SetStreamValue(Vector2 value, uint streamIndex)
         {
             Interop.Particle.WriteVector2(mEmitterRef, streamIndex, mIndex, value.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -230,7 +230,7 @@ namespace Tizen.NUI.ParticleSystem
         /// <param name="value">Value to set</param>
         /// <param name="streamIndex">Index of stream to get value from</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetStreamValue(Vector3 value, uint streamIndex)
+        internal void SetStreamValue(Vector3 value, uint streamIndex)
         {
             Interop.Particle.WriteVector3(mEmitterRef, streamIndex, mIndex, value.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -243,7 +243,7 @@ namespace Tizen.NUI.ParticleSystem
         /// <param name="value">Value to set</param>
         /// <param name="streamIndex">Index of stream to get value from</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetStreamValue(Vector4 value, uint streamIndex)
+        internal void SetStreamValue(Vector4 value, uint streamIndex)
         {
             Interop.Particle.WriteVector4(mEmitterRef, streamIndex, mIndex, value.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -256,7 +256,7 @@ namespace Tizen.NUI.ParticleSystem
         /// <param name="value">Value to set</param>
         /// <param name="particleStream">Stream to get value from</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetStreamValue(float value, ParticleStream particleStream)
+        internal void SetStreamValue(float value, ParticleStream particleStream)
         {
             uint streamIndex = (uint)(Interop.ParticleEmitter.GetDefaultStreamIndex(mEmitterRef, (uint)(particleStream)));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -272,7 +272,7 @@ namespace Tizen.NUI.ParticleSystem
         /// <param name="value">Value to set</param>
         /// <param name="particleStream">Stream to get value from</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetStreamValue(Vector2 value, ParticleStream particleStream)
+        internal void SetStreamValue(Vector2 value, ParticleStream particleStream)
         {
             uint streamIndex = (uint)(Interop.ParticleEmitter.GetDefaultStreamIndex(mEmitterRef, (uint)(particleStream)));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -288,7 +288,7 @@ namespace Tizen.NUI.ParticleSystem
         /// <param name="value">Value to set</param>
         /// <param name="particleStream">Stream to get value from</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetStreamValue(Vector3 value, ParticleStream particleStream)
+        internal void SetStreamValue(Vector3 value, ParticleStream particleStream)
         {
             uint streamIndex = (uint)(Interop.ParticleEmitter.GetDefaultStreamIndex(mEmitterRef, (uint)(particleStream)));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -304,7 +304,7 @@ namespace Tizen.NUI.ParticleSystem
         /// <param name="value">Value to set</param>
         /// <param name="particleStream">Stream to get value from</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetStreamValue(Vector4 value, ParticleStream particleStream)
+        internal void SetStreamValue(Vector4 value, ParticleStream particleStream)
         {
             uint streamIndex = (uint)(Interop.ParticleEmitter.GetDefaultStreamIndex(mEmitterRef, (uint)(particleStream)));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -332,7 +332,7 @@ namespace Tizen.NUI.ParticleSystem
         /// Position of the Particle.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector3 Position
+        internal Vector3 Position
         {
             get
             {
@@ -351,7 +351,7 @@ namespace Tizen.NUI.ParticleSystem
         /// Color of the Particle.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector4 Color
+        internal Vector4 Color
         {
             get
             {
@@ -370,7 +370,7 @@ namespace Tizen.NUI.ParticleSystem
         /// Velocity of the Particle.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector3 Velocity
+        internal Vector3 Velocity
         {
             get
             {
@@ -389,7 +389,7 @@ namespace Tizen.NUI.ParticleSystem
         /// Scale of the Particle.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector3 Scale
+        internal Vector3 Scale
         {
             get
             {
@@ -408,7 +408,7 @@ namespace Tizen.NUI.ParticleSystem
         /// Rotation of the Particle.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector4 Rotation
+        internal Vector4 Rotation
         {
             get
             {
@@ -427,7 +427,7 @@ namespace Tizen.NUI.ParticleSystem
         /// Opacity of the Particle.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public float Opacity
+        internal float Opacity
         {
             get
             {
@@ -446,7 +446,7 @@ namespace Tizen.NUI.ParticleSystem
         /// Lifetime of the Particle.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public float Lifetime
+        internal float Lifetime
         {
             get
             {
@@ -465,7 +465,7 @@ namespace Tizen.NUI.ParticleSystem
         /// Initial lifetime of the Particle.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public float LifetimeBase
+        internal float LifetimeBase
         {
             get
             {

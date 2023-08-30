@@ -29,13 +29,13 @@ namespace Tizen.NUI.ParticleSystem
     /// how particles in the system should be modified 
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ParticleModifierInterface
+    internal class ParticleModifierInterface
     {
         /// <summary>
         /// Constructor
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ParticleModifierInterface()
+        internal ParticleModifierInterface()
         {
         }
 
@@ -49,7 +49,7 @@ namespace Tizen.NUI.ParticleSystem
         /// </remarks>
         /// <param name="list">List of arguments</param>
         [EditorBrowsable(EditorBrowsableState.Never)] 
-        public virtual void Construct(params object[] list)
+        internal virtual void Construct(params object[] list)
         {
         }
 
@@ -65,7 +65,7 @@ namespace Tizen.NUI.ParticleSystem
         /// <param name="emitterProxy">Proxy to the ParticleEmitter object</param>
         /// <param name="particleList">List of particles to be updated by the modifier</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual void Update(ParticleEmitterProxy emitterProxy, List<Particle> particleList)
+        internal virtual void Update(ParticleEmitterProxy emitterProxy, List<Particle> particleList)
         {
         }
 
@@ -73,7 +73,7 @@ namespace Tizen.NUI.ParticleSystem
         /// ParticleEmitter proxy that can be accessed by the user implementation
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ParticleEmitterProxy Emitter;
+        internal ParticleEmitterProxy Emitter;
     }
     
     
@@ -90,10 +90,10 @@ namespace Tizen.NUI.ParticleSystem
     /// </remarks>
     /// <typeparam name="T">Class of interface that derives from <see cref="ParticleModifierInterface"/></typeparam>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public partial class ParticleModifier<T> : BaseHandle where T : ParticleModifierInterface, new()
+    internal partial class ParticleModifier<T> : BaseHandle where T : ParticleModifierInterface, new()
     {
         // static cache for modifiers (binding between native side and interfaces)
-        static ParticleInterfaceRegister<ParticleModifierInterface> gModifierInterfaceRegister = new ParticleInterfaceRegister<ParticleModifierInterface>();
+        private static ParticleInterfaceRegister<ParticleModifierInterface> gModifierInterfaceRegister = new ParticleInterfaceRegister<ParticleModifierInterface>();
         
         /// <summary>
         /// Destructor
@@ -140,7 +140,7 @@ namespace Tizen.NUI.ParticleSystem
         /// The constructor takes variable number of arguments which is processed when called ParticleModifierInterface.Construct()
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ParticleModifier(params object[] list) : this(Interop.ParticleModifier.New(mOnUpdateInvoker, out gRefObjectPtr), true)
+        internal ParticleModifier(params object[] list) : this(Interop.ParticleModifier.New(mOnUpdateInvoker, out gRefObjectPtr), true)
         {
             // Create interface on the C# side (no direct connection with C++)
             mInterface = new T();
