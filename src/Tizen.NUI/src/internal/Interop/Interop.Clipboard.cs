@@ -25,6 +25,7 @@ namespace Tizen.NUI
             public static extern global::System.IntPtr Get();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Clipboard_SetData")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool SetData(global::System.Runtime.InteropServices.HandleRef clipboard, string mimeType, string data);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Clipboard_GetData")]
