@@ -23,12 +23,12 @@ namespace Tizen.Uix.Tts
     /// <since_tizen> 11 </since_tizen>
     public class SynthesizedPcmEventArgs
     {
-        internal SynthesizedPcmEventArgs(int utteranceId, SynthesizedPcmEvent pcmEvent, byte[] pcmData, AudioType pcmAudioType, int sampleRate)
+        internal SynthesizedPcmEventArgs(int utteranceId, SynthesizedPcmEvent synthesizedPcmEvent, byte[] data, AudioType audioType, int sampleRate)
         {
             UtteranceId = utteranceId;
-            PcmEvent = pcmEvent;
-            PcmData = pcmData;
-            PcmAudioType = pcmAudioType;
+            SynthesizedPcmEvent = synthesizedPcmEvent;
+            Data = data;
+            AudioType = audioType;
             SampleRate = sampleRate;
         }
 
@@ -46,7 +46,7 @@ namespace Tizen.Uix.Tts
         /// The event of the PCM data.
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
-        public SynthesizedPcmEvent PcmEvent
+        public SynthesizedPcmEvent SynthesizedPcmEvent
         {
             get;
             internal set;
@@ -56,7 +56,7 @@ namespace Tizen.Uix.Tts
         /// The syntehsized PCM data.
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
-        public byte[] PcmData
+        public byte[] Data
         {
             get;
             internal set;
@@ -66,7 +66,7 @@ namespace Tizen.Uix.Tts
         /// The audio type of the PCM data.
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
-        public AudioType PcmAudioType
+        public AudioType AudioType
         {
             get;
             internal set;
