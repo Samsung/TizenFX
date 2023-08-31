@@ -737,7 +737,7 @@ namespace Tizen.Uix.Tts
         {
             add
             {
-                lock (_SynthesizedPcmLock)
+                lock (_synthesizedPcmLock)
                 {
                     if (_synthesizedPcmEventHandler == null)
                     {
@@ -761,7 +761,7 @@ namespace Tizen.Uix.Tts
 
             remove
             {
-                lock (_SynthesizedPcmLock)
+                lock (_synthesizedPcmLock)
                 {
                     _synthesizedPcmEventHandler -= value;
                     if (_synthesizedPcmEventHandler == null)
