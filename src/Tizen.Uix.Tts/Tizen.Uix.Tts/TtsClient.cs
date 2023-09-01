@@ -231,6 +231,67 @@ namespace Tizen.Uix.Tts
     };
 
     /// <summary>
+    /// Enumeration for the playing modes of TTS.
+    /// </summary>
+    /// <since_tizen> 11 </since_tizen>
+    public enum PlayingMode
+    {
+        /// <summary>
+        /// Mode for TTS playing on TTS service.
+        /// </summary>
+        ByService = 0,
+
+        /// <summary>
+        /// Mode for TTS playing on TTS client.
+        /// </summary>
+        ByClient = 1
+    };
+
+    /// <summary>
+    /// Enumeration for the audio types.
+    /// </summary>
+    /// <since_tizen> 11 </since_tizen>
+    public enum AudioType
+    {
+        /// <summary>
+        /// Signed 16-bit audio type.
+        /// </summary>
+        RawS16 = 0,
+
+        /// <summary>
+        /// Unsigned 8-bit audio type.
+        /// </summary>
+        RawU8 = 1
+    };
+
+    /// <summary>
+    /// Enumeration for the synthesized PCM events.
+    /// </summary>
+    /// <since_tizen> 11 </since_tizen>
+    public enum SynthesizedPcmEvent
+    {
+        /// <summary>
+        /// The PCM synthesis failed.
+        /// </summary>
+        Fail = -1,
+
+        /// <summary>
+        /// Received initial synthesized PCM data for an utterance.
+        /// </summary>
+        Start = 1,
+
+        /// <summary>
+        /// Received synthesized PCM data, not the first and last in the stream.
+        /// </summary>
+        Continue = 2,
+
+        /// <summary>
+        /// Received the final synthesized PCM data.
+        /// </summary>
+        Finish = 3
+    };
+
+    /// <summary>
     /// You can use Text-To-Speech (TTS) API's to read sound data transformed by the engine from input texts.
     /// Applications can add input-text to queue for reading continuously and control the player that can play, pause, and stop sound data synthesized from text.
     /// </summary>
@@ -246,6 +307,7 @@ namespace Tizen.Uix.Tts
         private event EventHandler<EngineChangedEventArgs> _engineChanged;
         private event EventHandler<ScreenReaderChangedEventArgs> _screenReaderChanged;
         private event EventHandler<ServiceStateChangedEventArgs> _serviceStateChanged;
+        private EventHandler<SynthesizedPcmEventArgs> _synthesizedPcmEventHandler;
         private bool disposedValue = false;
         private readonly Object _stateChangedLock = new Object();
         private readonly Object _utteranceStartedLock = new Object();
@@ -255,6 +317,7 @@ namespace Tizen.Uix.Tts
         private readonly Object _engineChangedLock = new Object();
         private readonly Object _screenReaderChangedLock = new Object();
         private readonly Object _serviceStateChangedLock = new Object();
+        private readonly object _synthesizedPcmLock = new object();
         private TtsStateChangedCB _stateDelegate;
         private TtsUtteranceStartedCB _utteranceStartedResultDelegate;
         private TtsUtteranceCompletedCB _utteranceCompletedResultDelegate;
@@ -263,7 +326,9 @@ namespace Tizen.Uix.Tts
         private TtsEngineChangedCB _engineDelegate;
         private TtsScreenReaderChangedCB _screenReaderDelegate;
         private TtsServiceStateChangedCB _serviceStateDelegate;
+        private TtsSythesizedPcmCB _synthesizedPcmDelegate;
         private TtsSupportedVoiceCB _supportedvoiceDelegate;
+        private PlayingMode _playingMode = PlayingMode.ByService;
 
         /// <summary>
         /// Constructor to create a TTS instance.
@@ -665,6 +730,53 @@ namespace Tizen.Uix.Tts
         }
 
         /// <summary>
+        /// Event to be invoked when the synthesized pcm data comes from the engine.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        public event EventHandler<SynthesizedPcmEventArgs> SynthesizedPcm
+        {
+            add
+            {
+                lock (_synthesizedPcmLock)
+                {
+                    if (_synthesizedPcmEventHandler == null)
+                    {
+                        _synthesizedPcmDelegate = (IntPtr handle, int uttId, SynthesizedPcmEvent pcmEvent, IntPtr pcmData, int pcmSize, AudioType audioType, int sampleRate, IntPtr userData) =>
+                        {
+                            var managedPcmData = new byte[pcmSize];
+                            Marshal.Copy(pcmData, managedPcmData, 0, pcmSize);
+                            SynthesizedPcmEventArgs args = new SynthesizedPcmEventArgs(uttId, pcmEvent, managedPcmData, audioType, sampleRate);
+                            _synthesizedPcmEventHandler?.Invoke(this, args);
+                        };
+
+                        TtsError error = TtsSetSynthesizedPcmCB(_handle, _synthesizedPcmDelegate, IntPtr.Zero);
+                        if (error != TtsError.None)
+                        {
+                            Log.Error(LogTag, "Add SynthesizedPcm Failed with error " + error);
+                        }
+                    }
+                    _synthesizedPcmEventHandler += value;
+                }
+            }
+
+            remove
+            {
+                lock (_synthesizedPcmLock)
+                {
+                    _synthesizedPcmEventHandler -= value;
+                    if (_synthesizedPcmEventHandler == null)
+                    {
+                        TtsError error = TtsUnsetSynthesizedPcmCB(_handle);
+                        if (error != TtsError.None)
+                        {
+                            Log.Error(LogTag, "Remove SynthesizedPcm Failed with error " + error);
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets the default voice set by the user.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -845,6 +957,39 @@ namespace Tizen.Uix.Tts
                 }
 
                 return isOn;
+            }
+        }
+
+        /// <summary>
+        /// Sets the current playing mode.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        /// <value>
+        /// The current playing mode.
+        /// </value>
+        /// <feature>
+        /// http://tizen.org/feature/speech.synthesis
+        /// </feature>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
+        /// <pre>
+        /// If you want to set, the Client must be in the <see cref="State.Created"/> state.
+        /// </pre>
+        public PlayingMode PlayingMode
+        {
+            get
+            {
+                return _playingMode;
+            }
+            set
+            {
+                TtsError error = TtsSetPlayingMode(_handle, value);
+                if (error != TtsError.None)
+                {
+                    Log.Error(LogTag, "Set Mode Failed with error " + error);
+                    throw ExceptionFactory.CreateException(error);
+                }
+                _playingMode = value;
             }
         }
 
