@@ -28719,6 +28719,11 @@
     "title": "Enum TimeEvent",
     "keywords": ""
   },
+  "API11/api/Tizen.Uix.Tts.AudioType.html": {
+    "href": "API11/api/Tizen.Uix.Tts.AudioType.html",
+    "title": "Enum AudioType",
+    "keywords": ""
+  },
   "API11/api/Tizen.Uix.Tts.DefaultVoiceChangedEventArgs.html": {
     "href": "API11/api/Tizen.Uix.Tts.DefaultVoiceChangedEventArgs.html",
     "title": "Class DefaultVoiceChangedEventArgs",
@@ -28747,6 +28752,11 @@
   "API11/api/Tizen.Uix.Tts.Mode.html": {
     "href": "API11/api/Tizen.Uix.Tts.Mode.html",
     "title": "Enum Mode",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Uix.Tts.PlayingMode.html": {
+    "href": "API11/api/Tizen.Uix.Tts.PlayingMode.html",
+    "title": "Enum PlayingMode",
     "keywords": ""
   },
   "API11/api/Tizen.Uix.Tts.RepeatedText.html": {
@@ -28787,6 +28797,16 @@
   "API11/api/Tizen.Uix.Tts.SupportedVoice.html": {
     "href": "API11/api/Tizen.Uix.Tts.SupportedVoice.html",
     "title": "Class SupportedVoice",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Uix.Tts.SynthesizedPcmEvent.html": {
+    "href": "API11/api/Tizen.Uix.Tts.SynthesizedPcmEvent.html",
+    "title": "Enum SynthesizedPcmEvent",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Uix.Tts.SynthesizedPcmEventArgs.html": {
+    "href": "API11/api/Tizen.Uix.Tts.SynthesizedPcmEventArgs.html",
+    "title": "Class SynthesizedPcmEventArgs",
     "keywords": ""
   },
   "API11/api/Tizen.Uix.Tts.TtsClient.html": {
