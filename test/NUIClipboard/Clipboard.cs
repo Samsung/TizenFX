@@ -7,7 +7,7 @@ namespace NUIClipboard
 {
     class Program : NUIApplication
     {
-        const string TAG = "NUIClipboard";
+        const string TAG = "clipboard";
         const string MIME_TYPE_PLAIN_TEXT = "text/plain;charset=utf-8";
         const string MIME_TYPE_TEXT_URI = "text/uri-list";
         const string MIME_TYPE_HTML = "application/xhtml+xml";
@@ -28,6 +28,7 @@ namespace NUIClipboard
         {
             Window.Instance.WindowSize = new Size(900, 1080);
             Window.Instance.BackgroundColor = Color.White;
+
             View mainView = NewView(false);
             Window.Instance.GetDefaultLayer().Add(mainView);
 
@@ -58,7 +59,7 @@ namespace NUIClipboard
             {
                 string data = fieldCopy.Text;
                 Clipboard.Instance.SetData(MIME_TYPE_PLAIN_TEXT, data);
-                Tizen.Log.Debug(TAG, $"SetData type:{MIME_TYPE_PLAIN_TEXT}, data:{data}");
+                Tizen.Log.Info(TAG, $"SetData type:{MIME_TYPE_PLAIN_TEXT}, data:{data}\n");
             };
 
 
@@ -70,7 +71,7 @@ namespace NUIClipboard
             buttonPaste.Clicked += (s, e) =>
             {
                 Clipboard.Instance.GetData(MIME_TYPE_PLAIN_TEXT, OnClipboardDataReceived);
-                Tizen.Log.Debug(TAG, $"GetData request type:{MIME_TYPE_PLAIN_TEXT}");
+                Tizen.Log.Info(TAG, $"GetData request type:{MIME_TYPE_PLAIN_TEXT}\n");
             };
 
             Button buttonCopyClear = NewButton("Clear");
@@ -105,11 +106,11 @@ namespace NUIClipboard
         {
             if (!success)
             {
-                Tizen.Log.Debug(TAG, $"Data receive fail");
+                Tizen.Log.Error(TAG, $"Data receive fail");
                 return;
             }
 
-            Tizen.Log.Debug(TAG, $"OnClipboardDataReceived type:{clipEvent.MimeType}, data{clipEvent.Data}");
+            Tizen.Log.Info(TAG, $"OnClipboardDataReceived type:{clipEvent.MimeType}, data:{clipEvent.Data}\n");
 
             // info update
             labelType.Text = clipEvent.MimeType;

@@ -39,6 +39,19 @@ namespace Tizen.NUI
     }
 
     /// <summary>
+    /// ClipboardDataSelectedEventArgs is a class to record clipboard selected event arguments which will be sent to user.<br/>
+    /// This is to catch data selection event.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class ClipboardDataSelectedEventArgs : EventArgs
+    {
+        /// <summary>
+        /// The mime type of clipboard selected data.
+        /// </summary>
+        public string MimeType { get; set; }
+    }
+
+    /// <summary>
     /// ClipboardEventArgs is a class to record clipboard event arguments which will be sent to user.<br/>
     /// This is for internal use only.
     /// </summary>
@@ -68,8 +81,52 @@ namespace Tizen.NUI
         private EventHandler<ClipboardEventArgs> clipboardDataReceivedEventHandler;
         private ClipboardDataReceivedCallback clipboardDataReceivedCallback;
 
+        private EventHandler<ClipboardDataSelectedEventArgs> clipboardDataSelectedEventHandler;
+        private ClipboardDataSelectedCallback clipboardDataSelectedCallback;
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void ClipboardDataReceivedCallback(uint id, string mimeType, string data);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void ClipboardDataSelectedCallback(string mimeType);
+
+        /// <summary>
+        /// The DataSelected event is emitted when a copy event occurs somewhere.<br/>
+        /// In order for this event to operate normally,<br/>
+        /// the process using this event must be Secondary Selection.
+        /// </summary>
+        /// <example>
+        /// The following example demonstrates how to use the DataSelected.
+        /// <code>
+        /// kvmService.SetSecondarySelction(); // precondition
+        ///
+        /// Clipboard.Instance.DataSelected += (s, e) =>
+        /// {
+        ///     string selectedType = e.MimeType;
+        /// };
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<ClipboardDataSelectedEventArgs> DataSelected
+        {
+            add
+            {
+                if (clipboardDataSelectedEventHandler == null)
+                {
+                    clipboardDataSelectedCallback = (OnClipboardDataSelected);
+                    ClipboardDataSelectedSignal().Connect(clipboardDataSelectedCallback);
+                }
+                clipboardDataSelectedEventHandler += value;
+            }
+            remove
+            {
+                clipboardDataSelectedEventHandler -= value;
+                if (clipboardDataSelectedEventHandler == null && ClipboardDataSelectedSignal().Empty() == false)
+                {
+                    ClipboardDataSelectedSignal().Disconnect(clipboardDataSelectedCallback);
+                }
+            }
+        }
 
         private event EventHandler<ClipboardEventArgs> ClipboardDataReceived
         {
@@ -90,6 +147,20 @@ namespace Tizen.NUI
                     ClipboardDataReceivedSignal().Disconnect(clipboardDataReceivedCallback);
                 }
             }
+        }
+
+        internal ClipboardSignal ClipboardDataSelectedSignal()
+        {
+            var ret = new ClipboardSignal(Interop.Clipboard.ClipboardDataSelectedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        private void OnClipboardDataSelected(string mimeType)
+        {
+            var e = new ClipboardDataSelectedEventArgs();
+            e.MimeType = mimeType;
+            clipboardDataSelectedEventHandler?.Invoke(this, e);
         }
 
         internal ClipboardSignal ClipboardDataReceivedSignal()

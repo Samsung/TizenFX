@@ -36,6 +36,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Clipboard_DataReceivedSignal")]
             public static extern global::System.IntPtr ClipboardDataReceivedSignal(global::System.Runtime.InteropServices.HandleRef clipboard);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Clipboard_DataSelectedSignal")]
+            public static extern global::System.IntPtr ClipboardDataSelectedSignal(global::System.Runtime.InteropServices.HandleRef clipboard);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ClipboardSignal_Empty")]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool ClipboardSignalEmpty(global::System.Runtime.InteropServices.HandleRef signal);
