@@ -170,6 +170,11 @@ namespace Tizen.NUI
                 {
                     this.ClipboardDataReceivedSignal().Disconnect(clipboardDataReceivedCallback);
                 }
+
+                if (clipboardDataSelectedCallback != null)
+                {
+                    this.ClipboardDataSelectedSignal().Disconnect(clipboardDataSelectedCallback);
+                }
             }
 
             base.Dispose(type);
