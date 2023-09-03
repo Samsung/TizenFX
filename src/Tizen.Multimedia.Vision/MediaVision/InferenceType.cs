@@ -74,29 +74,6 @@ namespace Tizen.Multimedia.Vision
     }
 
     /// <summary>
-    /// Specifies the type of target. It's used for running inference backend.
-    /// </summary>
-    /// <since_tizen> 6 </since_tizen>
-    [Obsolete("Deprecated since API8; Will be removed in API10. Please use InferenceTargetDevice instead.")]
-    public enum InferenceTargetType
-    {
-        /// <summary>
-        /// CPU target
-        /// </summary>
-        CPU,
-
-        /// <summary>
-        /// GPU target
-        /// </summary>
-        GPU,
-
-        /// <summary>
-        /// Custom target
-        /// </summary>
-        Custom
-    }
-
-    /// <summary>
     /// Specifies the target device which is used for running <see cref="InferenceModelConfiguration.Backend"/>.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
