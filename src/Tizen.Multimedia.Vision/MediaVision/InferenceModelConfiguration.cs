@@ -361,31 +361,6 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Gets or sets the inference model's target.
-        /// </summary>
-        /// <remarks>
-        /// The default target is <see cref="InferenceTargetType.CPU"/>.<br/>
-        /// If target doesn't support <see cref="InferenceTargetType.GPU"/> and <see cref="InferenceTargetType.Custom"/>,
-        /// <see cref="InferenceTargetType.CPU"/> will be used internally, despite the user's choice.
-        /// </remarks>
-        /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
-        /// <since_tizen> 6 </since_tizen>
-        [Obsolete("Deprecated since API8. Will be removed in API10. Please use Device instead.")]
-        public InferenceTargetType Target
-        {
-            get
-            {
-                return (InferenceTargetType)GetInt(_keyTargetType);
-            }
-            set
-            {
-                ValidationUtil.ValidateEnum(typeof(InferenceTargetType), value, nameof(Target));
-
-                Set(_keyTargetType, (int)value);
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the processor type for inference models.
         /// </summary>
         /// <remarks>
