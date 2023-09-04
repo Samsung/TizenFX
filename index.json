@@ -19399,11 +19399,6 @@
     "title": "Enum InferenceTargetDevice",
     "keywords": ""
   },
-  "API11/api/Tizen.Multimedia.Vision.InferenceTargetType.html": {
-    "href": "API11/api/Tizen.Multimedia.Vision.InferenceTargetType.html",
-    "title": "Enum InferenceTargetType",
-    "keywords": ""
-  },
   "API11/api/Tizen.Multimedia.Vision.Landmark.html": {
     "href": "API11/api/Tizen.Multimedia.Vision.Landmark.html",
     "title": "Struct Landmark",
