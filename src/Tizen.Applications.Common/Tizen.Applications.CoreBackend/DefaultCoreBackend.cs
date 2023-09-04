@@ -61,7 +61,13 @@ namespace Tizen.Applications.CoreBackend
             /// <summary>
             /// The suspended state changed event of the application.
             /// </summary>
-            SuspendedStateChanged
+            SuspendedStateChanged,
+
+            /// <summary>
+            /// The time zone changed event of the application.
+            /// </summary>
+            /// <since_tizen> 11 </since_tizen>
+            TimeZoneChanged = 7,
         }
 
         /// <summary>
@@ -279,6 +285,27 @@ namespace Tizen.Applications.CoreBackend
             {
                 var handler = Handlers[EventType.SuspendedStateChanged] as Action<SuspendedStateEventArgs>;
                 handler?.Invoke(new SuspendedStateEventArgs(state));
+            }
+        }
+
+        /// <summary>
+        /// Default implementation for the time zone changed event.
+        /// </summary>
+        /// <param name="infoHandle"></param>
+        /// <param name="data"></param>
+        /// <since_tizen> 11 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnTimeZoneChangedNative(IntPtr infoHandle, IntPtr data)
+        {
+            ErrorCode err = Interop.AppCommon.AppEventGetTimeZone(infoHandle, out string timeZone, out string timeZoneId);
+            if (err != ErrorCode.None)
+            {
+                Log.Error(LogTag, "Failed to get time zone. Err = " + err);
+            }
+            if (Handlers.ContainsKey(EventType.TimeZoneChanged))
+            {
+                var handler = Handlers[EventType.TimeZoneChanged] as Action<TimeZoneChangedEventArgs>;
+                handler?.Invoke(new TimeZoneChangedEventArgs(timeZone, timeZoneId));
             }
         }
     }

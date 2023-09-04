@@ -110,6 +110,12 @@ namespace Tizen.Applications
         public event EventHandler<DeviceOrientationEventArgs> DeviceOrientationChanged;
 
         /// <summary>
+        /// Occurs when the time zone is changed.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        public event EventHandler<TimeZoneChangedEventArgs> TimeZoneChanged;
+
+        /// <summary>
         /// The backend instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -132,6 +138,7 @@ namespace Tizen.Applications
             _backend.AddEventHandler<LocaleChangedEventArgs>(EventType.LocaleChanged, OnLocaleChanged);
             _backend.AddEventHandler<RegionFormatChangedEventArgs>(EventType.RegionFormatChanged, OnRegionFormatChanged);
             _backend.AddEventHandler<DeviceOrientationEventArgs>(EventType.DeviceOrientationChanged, OnDeviceOrientationChanged);
+            _backend.AddEventHandler<TimeZoneChangedEventArgs>(EventType.TimeZoneChanged, OnTimeZoneChanged);
 
             string[] argsClone = new string[args == null ? 1 : args.Length + 1];
             if (args != null && args.Length > 1)
@@ -275,6 +282,17 @@ namespace Tizen.Applications
         protected virtual void OnDeviceOrientationChanged(DeviceOrientationEventArgs e)
         {
             DeviceOrientationChanged?.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// Overrides this method if want to handle behavior when the time zone is changed.
+        /// If base.OnTimeZoneChanged() is not called, the event "TimeZoneChanged" will not be emitted.
+        /// </summary>
+        /// <param name="e">The time zone changed event argument</param>
+        /// <since_tizen> 11 </since_tizen>
+        protected virtual void OnTimeZoneChanged(TimeZoneChangedEventArgs e)
+        {
+            TimeZoneChanged?.Invoke(this, e);
         }
 
         /// <summary>
