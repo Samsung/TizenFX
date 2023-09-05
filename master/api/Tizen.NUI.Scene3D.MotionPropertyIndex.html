@@ -53,15 +53,16 @@
   MotionPropertyIndex
   </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionIndex/MotionPropertyIndex.cs/#L45" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionIndex/MotionPropertyIndex.cs/#L46" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
   
   <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.NUI.Scene3D.html">Tizen.NUI.Scene3D</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.Scene3D.dll</dd></dl>
+  <dl class="attribute-list"><dt>API Level:</dt><dd><span>11</span></dd></dl>
   
-  <div class="markdown level0 summary"><p>Basic <a class="xref" href="Tizen.NUI.Scene3D.MotionIndex.html">MotionIndex</a> to control Dali&apos;s Property.
+  <div class="markdown level0 summary"><p>Basic <a class="xref" href="Tizen.NUI.Scene3D.MotionIndex.html">MotionIndex</a> to control Property.
 It can control more general case.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
@@ -116,11 +117,11 @@ MotionPropertyIndex  position1 = new MotionPropertyIndex(new PropertyKey(&quot;n
   <a id="Tizen_NUI_Scene3D_MotionPropertyIndex__ctor_" data-uid="Tizen.NUI.Scene3D.MotionPropertyIndex.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionIndex/MotionPropertyIndex.cs/#L51">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionIndex/MotionPropertyIndex.cs/#L52">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionPropertyIndex__ctor" data-uid="Tizen.NUI.Scene3D.MotionPropertyIndex.#ctor">MotionPropertyIndex()</h4>
     <section>
-      <p>Create an initialized blend shape index.</p>
+      <p>Create an initialized motion property index.</p>
 
     </section>
   </div>
@@ -130,16 +131,61 @@ MotionPropertyIndex  position1 = new MotionPropertyIndex(new PropertyKey(&quot;n
     <pre><code class="lang-csharp hljs">public MotionPropertyIndex()</code></pre>
   </div>
   
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   
   <a id="Tizen_NUI_Scene3D_MotionPropertyIndex__ctor_" data-uid="Tizen.NUI.Scene3D.MotionPropertyIndex.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionIndex/MotionPropertyIndex.cs/#L60">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionIndex/MotionPropertyIndex.cs/#L74">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Scene3D_MotionPropertyIndex__ctor_System_String_System_String_" data-uid="Tizen.NUI.Scene3D.MotionPropertyIndex.#ctor(System.String,System.String)">MotionPropertyIndex(String, String)</h4>
+    <section>
+      <p>Create an initialized motion property index with given node string ID and property string ID.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MotionPropertyIndex(string modelNodeName, string propertyName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">modelNodeName</span></td>
+        <td><p>Node string ID for this motion index</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">propertyName</span></td>
+        <td><p>Property string ID for this motion index</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>11</span></h6>
+  
+  
+  <a id="Tizen_NUI_Scene3D_MotionPropertyIndex__ctor_" data-uid="Tizen.NUI.Scene3D.MotionPropertyIndex.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionIndex/MotionPropertyIndex.cs/#L63">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionPropertyIndex__ctor_Tizen_NUI_PropertyKey_Tizen_NUI_PropertyKey_" data-uid="Tizen.NUI.Scene3D.MotionPropertyIndex.#ctor(Tizen.NUI.PropertyKey,Tizen.NUI.PropertyKey)">MotionPropertyIndex(PropertyKey, PropertyKey)</h4>
     <section>
-      <p>Create an initialized blend shape index with input node id, and property id.</p>
+      <p>Create an initialized motion property index with given node ID and property ID.</p>
 
     </section>
   </div>
@@ -161,22 +207,25 @@ MotionPropertyIndex  position1 = new MotionPropertyIndex(new PropertyKey(&quot;n
       <tr>
         <td><a class="xref" href="Tizen.NUI.PropertyKey.html">PropertyKey</a></td>
         <td><span class="parametername">modelNodeId</span></td>
-        <td></td>
+        <td><p>Node ID for this motion index</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.NUI.PropertyKey.html">PropertyKey</a></td>
         <td><span class="parametername">propertyId</span></td>
-        <td></td>
+        <td><p>Property ID for this motion index</p>
+</td>
       </tr>
     </tbody>
   </table>
   
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   
   <a id="Tizen_NUI_Scene3D_MotionPropertyIndex__ctor_" data-uid="Tizen.NUI.Scene3D.MotionPropertyIndex.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionIndex/MotionPropertyIndex.cs/#L70">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionIndex/MotionPropertyIndex.cs/#L84">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionPropertyIndex__ctor_Tizen_NUI_Scene3D_MotionPropertyIndex_" data-uid="Tizen.NUI.Scene3D.MotionPropertyIndex.#ctor(Tizen.NUI.Scene3D.MotionPropertyIndex)">MotionPropertyIndex(MotionPropertyIndex)</h4>
     <section>
@@ -208,6 +257,7 @@ MotionPropertyIndex  position1 = new MotionPropertyIndex(new PropertyKey(&quot;n
     </tbody>
   </table>
   
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   <h2 id="properties">Properties
   </h2>
@@ -215,7 +265,7 @@ MotionPropertyIndex  position1 = new MotionPropertyIndex(new PropertyKey(&quot;n
   <a id="Tizen_NUI_Scene3D_MotionPropertyIndex_PropertyId_" data-uid="Tizen.NUI.Scene3D.MotionPropertyIndex.PropertyId*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionIndex/MotionPropertyIndex.cs/#L95">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionIndex/MotionPropertyIndex.cs/#L109">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionPropertyIndex_PropertyId" data-uid="Tizen.NUI.Scene3D.MotionPropertyIndex.PropertyId">PropertyId</h4>
     <section>
@@ -244,6 +294,7 @@ MotionPropertyIndex  position1 = new MotionPropertyIndex(new PropertyKey(&quot;n
     </tbody>
   </table>
   
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   <h2 id="methods">Methods
   </h2>
@@ -251,7 +302,7 @@ MotionPropertyIndex  position1 = new MotionPropertyIndex(new PropertyKey(&quot;n
   <a id="Tizen_NUI_Scene3D_MotionPropertyIndex_ReleaseSwigCPtr_" data-uid="Tizen.NUI.Scene3D.MotionPropertyIndex.ReleaseSwigCPtr*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionIndex/MotionPropertyIndex.cs/#L126">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionIndex/MotionPropertyIndex.cs/#L139">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionPropertyIndex_ReleaseSwigCPtr_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.Scene3D.MotionPropertyIndex.ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef)</h4>
     <section>

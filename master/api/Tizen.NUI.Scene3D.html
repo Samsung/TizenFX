@@ -63,23 +63,6 @@
         <section class="col col-12 col-md-8"><p>Specialized <a class="xref" href="Tizen.NUI.Scene3D.MotionIndex.html">MotionIndex</a> to control blend shape.
 We can control the blend shape by index (when we set BlendShapeId as IndexKey),
 or by name (when we set BlendShapeId as StringKey).</p>
-<p><a class="xref" href="Tizen.NUI.Scene3D.MotionValue.html">MotionValue</a> should be float type.</p>
-<pre><code>BlendShapeIndex blendShapeIndex0 = new BlendShapeIndex(new PropertyKey(&quot;nodeName&quot;), new PropertyKey(0u));
-BlendShapeIndex blendShapeIndex1 = new BlendShapeIndex(new PropertyKey(&quot;nodeName&quot;), new PropertyKey(&quot;Target_1&quot;));
-
-// We can change the property later.
-BlendShapeIndex blendShapeIndex2 = new BlendShapeIndex;
-blendShapeIndex2.ModelNodeId = new PropertyKey(&quot;nodeName&quot;);
-blendShapeIndex2.BlendShapeId = new PropertyKey(&quot;Target_2&quot;);</code></pre>
-
-<p>Specially, if ModelNodeId is invalid and BlendShapeId is StringKey,
-It will control all ModelNode that has the inputed blend shape name.</p>
-<pre><code>// If &quot;node0&quot; and &quot;node1&quot; has same BlendShape named &quot;Smile&quot;,
-// blendShapeIndexAll will control both nodes.
-BlendShapeIndex blendShapeIndexAll = new BlendShapeIndex(new PropertyKey(&quot;Smile&quot;));
-
-BlendShapeIndex blendShapeIndex0 = new BlendShapeIndex(new PropertyKey(&quot;node0&quot;), new PropertyKey(&quot;Smile&quot;));
-BlendShapeIndex blendShapeIndex1 = new BlendShapeIndex(new PropertyKey(&quot;node1&quot;), new PropertyKey(&quot;Smile&quot;));</code></pre>
 </section>
       </div>
       <div class="described-list-item row ml-0 mr-0">
@@ -142,77 +125,26 @@ Physically Based Rendering with Image Based Lighting is also supported.</p>
         <section class="col col-12 col-md-8"><p>List of model motion definitions.
 Each motion has pair of <a class="xref" href="Tizen.NUI.Scene3D.MotionIndex.html">MotionIndex</a> and <a class="xref" href="Tizen.NUI.Scene3D.MotionValue.html">MotionValue</a>.
 MotionIndex is abstract class that specify the target of motion.
-MotionValue is target value of motion. It can be KeyFrames.</p>
-<p>We can generate list of motions by MotionIndex and MotionValue classes.</p>
-<pre><code>MotionData motionData = new MotionData(3.0f);
-
-// Make MotionIndex with MotionPropertyIndex
-// Make MotionValue with PropertyValue
-motionData.Add(new MotionPropertyIndex(new PropertyKey(&quot;nodeName&quot;), new PropertyKey(&quot;color&quot;)), new MotionValue(new PropertyValue(Color.Red)));
-
-// Make MotionIndex with MotionTransformIndex
-// Make MotionValue with Dali::KeyFrames
-KeyFrames keyFrames = new KeyFrames();
-keyFrames.Add(0.0f, 0.0f);
-keyFrames.Add(0.0f, 1.0f);
-motionData.Add(new MotionTransformIndex(new PropertyKey(&quot;nodeName&quot;), MotionTransformIndex.TransformType.PositionX), new MotionValue(keyFrames));
-
-// Make MotionIndex with BlendShapeIndex
-motionData.Add(new BlendShapeIndex(new PropertyKey(&quot;nodeName&quot;), new PropertyKey(&quot;blendShapeName&quot;)), motionData.GetValue(1u));</code></pre>
-
-<p>We can request to load MotionData from file or buffer asynchronously.
-If load completed, <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html#Tizen_NUI_Scene3D_MotionData_LoadCompleted">LoadCompleted</a> event will be invoked.
-If we try to load before LoadCompleted event invoked, previous load request cancel and only latest request loaded.</p>
-<pre><code>MotionData motionData = new MotionData();
-motionData.LoadCompleted += OnLoadCompleted;
-motionData.LoadBvh(&quot;bvhFilename.bvh&quot;, Vector3.One);
-
-...
-
-void OnLoadCompleted(object o, event e)
-{
-    MotionData motionData = o as MotionData;
-    /// Do something.
-}</code></pre>
-
-<p>We can generate animation of Scene3D.Model from MotionData class.
-Or, just set values.</p>
-<pre><code>// Generate animation from loaded Model
-Animation animation = model.GenerateMotionDataAnimation(motionData);
-animation.Play();
-
-// Set values from loaded Model.
-model2.SetMotionData(motionData);</code></pre>
+MotionValue is destination value of target for the motion. It can be expressed with <a class="xref" href="Tizen.NUI.PropertyValue.html">PropertyValue</a> or <a class="xref" href="Tizen.NUI.KeyFrames.html">KeyFrames</a>.</p>
 </section>
       </div>
       <div class="described-list-item row ml-0 mr-0">
         <h4 class="col col-12 col-md-4">
           <a class="xref" href="Tizen.NUI.Scene3D.MotionIndex.html">MotionIndex</a>
         </h4>
-        <section class="col col-12 col-md-8"><p>Index of motion value. It will be used to specify the target of motion applied.</p>
-<p>There are three kinds of MotionIndex : <a class="xref" href="Tizen.NUI.Scene3D.MotionPropertyIndex.html">MotionPropertyIndex</a>, <a class="xref" href="Tizen.NUI.Scene3D.MotionTransformIndex.html">MotionTransformIndex</a> and <a class="xref" href="Tizen.NUI.Scene3D.BlendShapeIndex.html">BlendShapeIndex</a>.
-MotionPropertyIndex will be used for control whole kind of properties.
-The <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html">MotionData</a> loaded from files / buffer will have this kind of MotionIndex.</p>
-<p>MotionTransformIndex will be used for control the <a class="xref" href="Tizen.NUI.Scene3D.ModelNode.html">ModelNode</a>&apos;s Position / Orientation / Scale, or each components.
+        <section class="col col-12 col-md-8"><p>Index of motion value. It will be used to specify the target of motion applied.
+There are three kinds of MotionIndex : <a class="xref" href="Tizen.NUI.Scene3D.MotionPropertyIndex.html">MotionPropertyIndex</a>, <a class="xref" href="Tizen.NUI.Scene3D.MotionTransformIndex.html">MotionTransformIndex</a> and <a class="xref" href="Tizen.NUI.Scene3D.BlendShapeIndex.html">BlendShapeIndex</a>.
+MotionPropertyIndex will be used for control all kind of properties.
+The <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html">MotionData</a> loaded from files / buffer will have this kind of MotionIndex.
+MotionTransformIndex will be used for control the <a class="xref" href="Tizen.NUI.Scene3D.ModelNode.html">ModelNode</a>&apos;s Position / Orientation / Scale, or each components.
 BlendShapeIndex will be used for control some blend shape animation.</p>
-<p>We can use this class below cases</p>
-<ul>
-<li>ModelNodeId (string key) , MotionTransformIndex         : Target is ModelNode&apos;s transform property</li>
-<li>ModelNodeId (int key)    , MotionTransformIndex         : Target is ModelNode&apos;s transform property [not implemented yet]</li>
-<li>ModelNodeId (string key) , BlendShapeIndex (int key)    : Target is ModelNode&apos;s BlendShape</li>
-<li>ModelNodeId (string key) , BlendShapeIndex (string key) : Target is ModelNode&apos;s BlendShape</li>
-<li>ModelNodeId (int key)    , BlendShapeIndex (int key)    : Target is ModelNode&apos;s BlendShape [not implemented yet]</li>
-<li>ModelNodeId (int key)    , BlendShapeIndex (string key) : Target is ModelNode&apos;s BlendShape [not implemented yet]</li>
-<li>ModelNodeId (null)       , BlendShapeIndex (string key) : Target is all ModelNode&apos;s BlendShape
-All other cases are invalid.</li>
-</ul>
 </section>
       </div>
       <div class="described-list-item row ml-0 mr-0">
         <h4 class="col col-12 col-md-4">
           <a class="xref" href="Tizen.NUI.Scene3D.MotionPropertyIndex.html">MotionPropertyIndex</a>
         </h4>
-        <section class="col col-12 col-md-8"><p>Basic <a class="xref" href="Tizen.NUI.Scene3D.MotionIndex.html">MotionIndex</a> to control Dali&apos;s Property.
+        <section class="col col-12 col-md-8"><p>Basic <a class="xref" href="Tizen.NUI.Scene3D.MotionIndex.html">MotionIndex</a> to control Property.
 It can control more general case.</p>
 </section>
       </div>
@@ -221,19 +153,16 @@ It can control more general case.</p>
           <a class="xref" href="Tizen.NUI.Scene3D.MotionTransformIndex.html">MotionTransformIndex</a>
         </h4>
         <section class="col col-12 col-md-8"><p>Specialized <a class="xref" href="Tizen.NUI.Scene3D.MotionIndex.html">MotionIndex</a> to control transform.
-It will be used when app developer don&apos;t care about Property index list,
+It will be used when app developer doesn&apos;t care about Property index list,
 but want to change the transform properties anyway fast enough.</p>
-<p>Each TransformTypes has their own matched <a class="xref" href="Tizen.NUI.Scene3D.MotionValue.html">MotionValue</a> type.</p>
 </section>
       </div>
       <div class="described-list-item row ml-0 mr-0">
         <h4 class="col col-12 col-md-4">
           <a class="xref" href="Tizen.NUI.Scene3D.MotionValue.html">MotionValue</a>
         </h4>
-        <section class="col col-12 col-md-8"><p>This MotionValue be used for target value of each <a class="xref" href="Tizen.NUI.Scene3D.MotionIndex.html">MotionIndex</a>.
+        <section class="col col-12 col-md-8"><p>This MotionValue will be used for target value of each <a class="xref" href="Tizen.NUI.Scene3D.MotionIndex.html">MotionIndex</a>.
 We can get and set MotionValue as 2 types : PropertyValue and KeyFrames.</p>
-<p>Each types will be cross-converted internally.
-For example, when we set PropertyValue, we can get KeyFrames with 2 frames, and target value is set.</p>
 </section>
       </div>
       <div class="described-list-item row ml-0 mr-0">
@@ -307,7 +236,7 @@ ProjectionMode defines how the camera shows 3D objects or scene on a 2D plane wi
         <h4 class="col col-12 col-md-4">
           <a class="xref" href="Tizen.NUI.Scene3D.MotionTransformIndex.TransformTypes.html">MotionTransformIndex.TransformTypes</a>
         </h4>
-        <section class="col col-12 col-md-8"><p>The list of component types what this MotionIndex can control.</p>
+        <section class="col col-12 col-md-8"><p>The list of transform property types what this MotionTransformIndex can control.</p>
 </section>
       </div>
       <div class="described-list-item row ml-0 mr-0">

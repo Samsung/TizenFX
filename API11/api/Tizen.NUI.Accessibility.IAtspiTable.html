@@ -53,7 +53,7 @@
   IAtspiTable
   </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L25" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L31" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -61,7 +61,8 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.NUI.Accessibility.html">Tizen.NUI.Accessibility</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
   
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Interface representing a table.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
@@ -70,6 +71,9 @@
 
   
   
+  <h5 id="Tizen_NUI_Accessibility_IAtspiTable_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>The selection methods extend the Selection interface, so both should be implemented by table and grid controls.</p>
+</div>
   
   <h2 id="methods">Methods
   </h2>
@@ -77,11 +81,12 @@
   <a id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityAddColumnSelection_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityAddColumnSelection*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L85">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L192">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityAddColumnSelection_System_Int32_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityAddColumnSelection(System.Int32)">AccessibilityAddColumnSelection(Int32)</h4>
     <section>
-      
+      <p>Selects a column.</p>
+
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
@@ -102,7 +107,8 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">column</span></td>
-        <td></td>
+        <td><p>Column number </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -117,7 +123,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td></td>
+        <td><p>True on success, false otherwise </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -127,11 +134,12 @@
   <a id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityAddRowSelection_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityAddRowSelection*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L82">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L184">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityAddRowSelection_System_Int32_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityAddRowSelection(System.Int32)">AccessibilityAddRowSelection(Int32)</h4>
     <section>
-      
+      <p>Selects a row.</p>
+
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
@@ -152,7 +160,8 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">row</span></td>
-        <td></td>
+        <td><p>Row number </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -167,7 +176,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td></td>
+        <td><p>True on success, false otherwise </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -177,11 +187,12 @@
   <a id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityGetCaption_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityGetCaption*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L40">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L66">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityGetCaption" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityGetCaption">AccessibilityGetCaption()</h4>
     <section>
-      
+      <p>Gets the table&apos;s caption.</p>
+
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
@@ -200,7 +211,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
-        <td></td>
+        <td><p>The caption or null </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -210,11 +222,12 @@
   <a id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityGetCell_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityGetCell*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L46">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L82">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityGetCell_System_Int32_System_Int32_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityGetCell(System.Int32,System.Int32)">AccessibilityGetCell(Int32, Int32)</h4>
     <section>
-      
+      <p>Gets the cell at the specified position.</p>
+
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
@@ -235,12 +248,14 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">row</span></td>
-        <td></td>
+        <td><p>Row number </p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">column</span></td>
-        <td></td>
+        <td><p>Column number </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -255,7 +270,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.NUI.Accessibility.IAtspiTableCell.html">IAtspiTableCell</a></td>
-        <td></td>
+        <td><p>The cell or null </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -265,11 +281,12 @@
   <a id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityGetChildIndex_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityGetChildIndex*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L49">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L97">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityGetChildIndex_System_Int32_System_Int32_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityGetChildIndex(System.Int32,System.Int32)">AccessibilityGetChildIndex(Int32, Int32)</h4>
     <section>
-      
+      <p>Gets the one-dimensional index of a cell.</p>
+
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
@@ -290,12 +307,14 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">row</span></td>
-        <td></td>
+        <td><p>Row number </p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">column</span></td>
-        <td></td>
+        <td><p>Column number </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -310,21 +329,27 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
-        <td></td>
+        <td><p>The one-dimensional index </p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityGetChildIndex_System_Int32_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The returned index should be such that:</p>
+<pre><code> GetChildAtIndex(GetChildIndex(row, column)) == GetCell(row, column)</code></pre>
+</div>
   
   
   
   <a id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityGetColumnCount_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityGetColumnCount*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L31">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L45">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityGetColumnCount" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityGetColumnCount">AccessibilityGetColumnCount()</h4>
     <section>
-      
+      <p>Gets the number of columns.</p>
+
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
@@ -343,7 +368,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
-        <td></td>
+        <td><p>The number of columns </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -353,11 +379,12 @@
   <a id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityGetColumnDescription_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityGetColumnDescription*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L58">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L121">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityGetColumnDescription_System_Int32_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityGetColumnDescription(System.Int32)">AccessibilityGetColumnDescription(Int32)</h4>
     <section>
-      
+      <p>Gets the description of a column.</p>
+
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
@@ -378,7 +405,8 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">column</span></td>
-        <td></td>
+        <td><p>Column number </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -393,7 +421,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td></td>
+        <td><p>The description of the column </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -403,11 +432,12 @@
   <a id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityGetColumnHeader_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityGetColumnHeader*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L64">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L137">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityGetColumnHeader_System_Int32_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityGetColumnHeader(System.Int32)">AccessibilityGetColumnHeader(Int32)</h4>
     <section>
-      
+      <p>Gets the header of a column.</p>
+
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
@@ -428,7 +458,8 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">column</span></td>
-        <td></td>
+        <td><p>Column number </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -443,7 +474,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
-        <td></td>
+        <td><p>The column header or null </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -453,11 +485,12 @@
   <a id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityGetPositionByChildIndex_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityGetPositionByChildIndex*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L52">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L105">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityGetPositionByChildIndex_System_Int32_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityGetPositionByChildIndex(System.Int32)">AccessibilityGetPositionByChildIndex(Int32)</h4>
     <section>
-      
+      <p>Gets the position (row and column) of a cell.</p>
+
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
@@ -478,7 +511,8 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">childIndex</span></td>
-        <td></td>
+        <td><p>One-dimensional index of the cell </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -493,7 +527,8 @@
     <tbody>
       <tr>
         <td><span class="xref">Tuple</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
-        <td></td>
+        <td><p>A pair of integers (row index, column index) </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -503,11 +538,12 @@
   <a id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityGetRowCount_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityGetRowCount*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L28">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L38">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityGetRowCount" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityGetRowCount">AccessibilityGetRowCount()</h4>
     <section>
-      
+      <p>Gets the number of rows.</p>
+
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
@@ -526,7 +562,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
-        <td></td>
+        <td><p>The number of rows </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -536,11 +573,12 @@
   <a id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityGetRowDescription_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityGetRowDescription*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L55">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L113">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityGetRowDescription_System_Int32_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityGetRowDescription(System.Int32)">AccessibilityGetRowDescription(Int32)</h4>
     <section>
-      
+      <p>Gets the description of a row.</p>
+
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
@@ -561,7 +599,8 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">row</span></td>
-        <td></td>
+        <td><p>Row number </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -576,7 +615,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td></td>
+        <td><p>The description of the row </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -586,11 +626,12 @@
   <a id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityGetRowHeader_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityGetRowHeader*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L61">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L129">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityGetRowHeader_System_Int32_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityGetRowHeader(System.Int32)">AccessibilityGetRowHeader(Int32)</h4>
     <section>
-      
+      <p>Gets the header of a row.</p>
+
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
@@ -611,7 +652,8 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">row</span></td>
-        <td></td>
+        <td><p>Row number </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -626,7 +668,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
-        <td></td>
+        <td><p>The row header or null </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -636,11 +679,12 @@
   <a id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityGetSelectedColumnCount_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityGetSelectedColumnCount*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L37">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L59">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityGetSelectedColumnCount" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityGetSelectedColumnCount">AccessibilityGetSelectedColumnCount()</h4>
     <section>
-      
+      <p>Gets the number of selected columns.</p>
+
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
@@ -659,7 +703,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
-        <td></td>
+        <td><p>The number of selected columns </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -669,11 +714,12 @@
   <a id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityGetSelectedColumns_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityGetSelectedColumns*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L70">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L151">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityGetSelectedColumns" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityGetSelectedColumns">AccessibilityGetSelectedColumns()</h4>
     <section>
-      
+      <p>Gets all selected columns&apos; numbers.</p>
+
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
@@ -692,7 +738,8 @@
     <tbody>
       <tr>
         <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
-        <td></td>
+        <td><p>Selected columns&apos; numbers </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -702,11 +749,12 @@
   <a id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityGetSelectedRowCount_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityGetSelectedRowCount*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L34">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L52">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityGetSelectedRowCount" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityGetSelectedRowCount">AccessibilityGetSelectedRowCount()</h4>
     <section>
-      
+      <p>Gets the number of selected rows.</p>
+
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
@@ -725,7 +773,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
-        <td></td>
+        <td><p>The number of selected rows </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -735,11 +784,12 @@
   <a id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityGetSelectedRows_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityGetSelectedRows*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L67">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L144">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityGetSelectedRows" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityGetSelectedRows">AccessibilityGetSelectedRows()</h4>
     <section>
-      
+      <p>Gets all selected rows&apos; numbers.</p>
+
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
@@ -758,7 +808,8 @@
     <tbody>
       <tr>
         <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
-        <td></td>
+        <td><p>Selected rows&apos; numbers </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -768,11 +819,12 @@
   <a id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityGetSummary_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityGetSummary*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L43">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L73">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityGetSummary" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityGetSummary">AccessibilityGetSummary()</h4>
     <section>
-      
+      <p>Gets the table&apos;s summary.</p>
+
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
@@ -791,7 +843,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
-        <td></td>
+        <td><p>The summary or null </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -801,11 +854,12 @@
   <a id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityIsCellSelected_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityIsCellSelected*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L79">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L176">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityIsCellSelected_System_Int32_System_Int32_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityIsCellSelected(System.Int32,System.Int32)">AccessibilityIsCellSelected(Int32, Int32)</h4>
     <section>
-      
+      <p>Checks if a cell is selected.</p>
+
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
@@ -826,12 +880,14 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">row</span></td>
-        <td></td>
+        <td><p>Row number of the cell </p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">column</span></td>
-        <td></td>
+        <td><p>Column number of the cell </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -846,7 +902,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td></td>
+        <td><p>True if the cell is selected, false otherwise </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -856,11 +913,12 @@
   <a id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityIsColumnSelected_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityIsColumnSelected*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L76">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L167">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityIsColumnSelected_System_Int32_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityIsColumnSelected(System.Int32)">AccessibilityIsColumnSelected(Int32)</h4>
     <section>
-      
+      <p>Checks if a column is selected.</p>
+
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
@@ -881,7 +939,8 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">column</span></td>
-        <td></td>
+        <td><p>Column number </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -896,7 +955,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td></td>
+        <td><p>True if the column is selected, false otherwise </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -906,11 +966,12 @@
   <a id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityIsRowSelected_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityIsRowSelected*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L73">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L159">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityIsRowSelected_System_Int32_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityIsRowSelected(System.Int32)">AccessibilityIsRowSelected(Int32)</h4>
     <section>
-      
+      <p>Checks if a row is selected.</p>
+
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
@@ -931,7 +992,8 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">row</span></td>
-        <td></td>
+        <td><p>Row number </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -946,7 +1008,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td></td>
+        <td><p>True if the row is selected, false otherwise </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -956,11 +1019,12 @@
   <a id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityRemoveColumnSelection_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityRemoveColumnSelection*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L91">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L208">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityRemoveColumnSelection_System_Int32_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityRemoveColumnSelection(System.Int32)">AccessibilityRemoveColumnSelection(Int32)</h4>
     <section>
-      
+      <p>Unselects a column.</p>
+
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
@@ -981,7 +1045,8 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">column</span></td>
-        <td></td>
+        <td><p>Column number </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -996,7 +1061,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td></td>
+        <td><p>True on success, false otherwise </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1006,11 +1072,12 @@
   <a id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityRemoveRowSelection_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityRemoveRowSelection*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L88">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiTable.cs/#L200">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Accessibility_IAtspiTable_AccessibilityRemoveRowSelection_System_Int32_" data-uid="Tizen.NUI.Accessibility.IAtspiTable.AccessibilityRemoveRowSelection(System.Int32)">AccessibilityRemoveRowSelection(Int32)</h4>
     <section>
-      
+      <p>Unselects a row.</p>
+
     </section>
   </div>
   <div class="markdown level1 conceptual"></div>
@@ -1031,7 +1098,8 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">row</span></td>
-        <td></td>
+        <td><p>Row number </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -1046,7 +1114,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td></td>
+        <td><p>True on success, false otherwise </p>
+</td>
       </tr>
     </tbody>
   </table>

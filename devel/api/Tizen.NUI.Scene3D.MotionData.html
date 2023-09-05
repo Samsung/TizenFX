@@ -53,58 +53,19 @@
   MotionData
   </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L85" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L89" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
   
   <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.NUI.Scene3D.html">Tizen.NUI.Scene3D</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.Scene3D.dll</dd></dl>
+  <dl class="attribute-list"><dt>API Level:</dt><dd><span>11</span></dd></dl>
   
   <div class="markdown level0 summary"><p>List of model motion definitions.
 Each motion has pair of <a class="xref" href="Tizen.NUI.Scene3D.MotionIndex.html">MotionIndex</a> and <a class="xref" href="Tizen.NUI.Scene3D.MotionValue.html">MotionValue</a>.
 MotionIndex is abstract class that specify the target of motion.
-MotionValue is target value of motion. It can be KeyFrames.</p>
-<p>We can generate list of motions by MotionIndex and MotionValue classes.</p>
-<pre><code>MotionData motionData = new MotionData(3.0f);
-
-// Make MotionIndex with MotionPropertyIndex
-// Make MotionValue with PropertyValue
-motionData.Add(new MotionPropertyIndex(new PropertyKey(&quot;nodeName&quot;), new PropertyKey(&quot;color&quot;)), new MotionValue(new PropertyValue(Color.Red)));
-
-// Make MotionIndex with MotionTransformIndex
-// Make MotionValue with Dali::KeyFrames
-KeyFrames keyFrames = new KeyFrames();
-keyFrames.Add(0.0f, 0.0f);
-keyFrames.Add(0.0f, 1.0f);
-motionData.Add(new MotionTransformIndex(new PropertyKey(&quot;nodeName&quot;), MotionTransformIndex.TransformType.PositionX), new MotionValue(keyFrames));
-
-// Make MotionIndex with BlendShapeIndex
-motionData.Add(new BlendShapeIndex(new PropertyKey(&quot;nodeName&quot;), new PropertyKey(&quot;blendShapeName&quot;)), motionData.GetValue(1u));</code></pre>
-
-<p>We can request to load MotionData from file or buffer asynchronously.
-If load completed, <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html#Tizen_NUI_Scene3D_MotionData_LoadCompleted">LoadCompleted</a> event will be invoked.
-If we try to load before LoadCompleted event invoked, previous load request cancel and only latest request loaded.</p>
-<pre><code>MotionData motionData = new MotionData();
-motionData.LoadCompleted += OnLoadCompleted;
-motionData.LoadBvh(&quot;bvhFilename.bvh&quot;, Vector3.One);
-
-...
-
-void OnLoadCompleted(object o, event e)
-{
-    MotionData motionData = o as MotionData;
-    /// Do something.
-}</code></pre>
-
-<p>We can generate animation of Scene3D.Model from MotionData class.
-Or, just set values.</p>
-<pre><code>// Generate animation from loaded Model
-Animation animation = model.GenerateMotionDataAnimation(motionData);
-animation.Play();
-
-// Set values from loaded Model.
-model2.SetMotionData(motionData);</code></pre>
+MotionValue is destination value of target for the motion. It can be expressed with <a class="xref" href="Tizen.NUI.PropertyValue.html">PropertyValue</a> or <a class="xref" href="Tizen.NUI.KeyFrames.html">KeyFrames</a>.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   
@@ -137,6 +98,52 @@ model2.SetMotionData(motionData);</code></pre>
     </dd>
   </dl>
   
+  <h5 id="Tizen_NUI_Scene3D_MotionData_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>We don&apos;t check duplicated MotionIndex internally.
+We don&apos;t check MotionValue type is matched with MotionIndex.</p>
+</div>
+  <h5 id="Tizen_NUI_Scene3D_MotionData_examples"><strong>Examples</strong></h5>
+  <p>We can generate list of motions by MotionIndex and MotionValue classes.</p>
+<pre><code>MotionData motionData = new MotionData(3.0f);
+
+// Make MotionIndex with MotionPropertyIndex
+// Make MotionValue with PropertyValue
+motionData.Add(new MotionPropertyIndex(new PropertyKey(&quot;nodeName&quot;), new PropertyKey(&quot;color&quot;)), new MotionValue(new PropertyValue(Color.Red)));
+
+// Make MotionIndex with MotionTransformIndex
+// Make MotionValue with Dali::KeyFrames
+KeyFrames keyFrames = new KeyFrames();
+keyFrames.Add(0.0f, 0.0f);
+keyFrames.Add(0.0f, 1.0f);
+motionData.Add(new MotionTransformIndex(new PropertyKey(&quot;nodeName&quot;), MotionTransformIndex.TransformType.PositionX), new MotionValue(keyFrames));
+
+// Make MotionIndex with BlendShapeIndex
+motionData.Add(new BlendShapeIndex(new PropertyKey(&quot;nodeName&quot;), new PropertyKey(&quot;blendShapeName&quot;)), motionData.GetValue(1u));</code></pre>
+
+  <p>We can request to load MotionData from file or buffer asynchronously.
+If load completed, <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html#Tizen_NUI_Scene3D_MotionData_LoadCompleted">LoadCompleted</a> event will be invoked.
+If we try to load before LoadCompleted event invoked, previous load request cancel and only latest request loaded.</p>
+<pre><code>MotionData motionData = new MotionData();
+motionData.LoadCompleted += OnLoadCompleted;
+motionData.LoadBvh(&quot;bvhFilename.bvh&quot;, Vector3.One);
+
+...
+
+void OnLoadCompleted(object o, event e)
+{
+    MotionData motionData = o as MotionData;
+    /// Do something.
+}</code></pre>
+
+  <p>We can generate animation of Scene3D.Model from MotionData class.
+Or, just set values.</p>
+<pre><code>// Generate animation from loaded Model
+Animation animation = model.GenerateMotionDataAnimation(motionData);
+animation.Play();
+
+// Set values from loaded Model.
+model2.SetMotionData(motionData);</code></pre>
+
   
   <h2 id="constructors">Constructors
   </h2>
@@ -144,11 +151,11 @@ model2.SetMotionData(motionData);</code></pre>
   <a id="Tizen_NUI_Scene3D_MotionData__ctor_" data-uid="Tizen.NUI.Scene3D.MotionData.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L96">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L100">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionData__ctor" data-uid="Tizen.NUI.Scene3D.MotionData.#ctor">MotionData()</h4>
     <section>
-      <p>Create an initialized motion data.</p>
+      <p>Create an initialized, empty motion data.</p>
 
     </section>
   </div>
@@ -158,12 +165,13 @@ model2.SetMotionData(motionData);</code></pre>
     <pre><code class="lang-csharp hljs">public MotionData()</code></pre>
   </div>
   
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   
   <a id="Tizen_NUI_Scene3D_MotionData__ctor_" data-uid="Tizen.NUI.Scene3D.MotionData.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L106">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L110">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionData__ctor_System_Int32_" data-uid="Tizen.NUI.Scene3D.MotionData.#ctor(System.Int32)">MotionData(Int32)</h4>
     <section>
@@ -174,7 +182,7 @@ model2.SetMotionData(motionData);</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MotionData(int durationMilliSeconds)</code></pre>
+    <pre><code class="lang-csharp hljs">public MotionData(int durationMilliseconds)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -188,19 +196,20 @@ model2.SetMotionData(motionData);</code></pre>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
-        <td><span class="parametername">durationMilliSeconds</span></td>
-        <td><p>Duration of this motion data when it be generated as Animation in milliseconds.</p>
+        <td><span class="parametername">durationMilliseconds</span></td>
+        <td><p>Duration of an Animation generated from this motion data, in milliseconds.</p>
 </td>
       </tr>
     </tbody>
   </table>
   
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   
   <a id="Tizen_NUI_Scene3D_MotionData__ctor_" data-uid="Tizen.NUI.Scene3D.MotionData.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L116">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L120">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionData__ctor_Tizen_NUI_Scene3D_MotionData_" data-uid="Tizen.NUI.Scene3D.MotionData.#ctor(Tizen.NUI.Scene3D.MotionData)">MotionData(MotionData)</h4>
     <section>
@@ -232,6 +241,7 @@ model2.SetMotionData(motionData);</code></pre>
     </tbody>
   </table>
   
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   <h2 id="properties">Properties
   </h2>
@@ -239,11 +249,11 @@ model2.SetMotionData(motionData);</code></pre>
   <a id="Tizen_NUI_Scene3D_MotionData_Duration_" data-uid="Tizen.NUI.Scene3D.MotionData.Duration*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L141">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L145">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionData_Duration" data-uid="Tizen.NUI.Scene3D.MotionData.Duration">Duration</h4>
     <section>
-      <p>Get or set the duration of this motion data  in milliseconds.</p>
+      <p>Get or set the duration of this motion data in milliseconds.</p>
 
     </section>
   </div>
@@ -268,6 +278,7 @@ model2.SetMotionData(motionData);</code></pre>
     </tbody>
   </table>
   
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   <h2 id="methods">Methods
   </h2>
@@ -275,11 +286,11 @@ model2.SetMotionData(motionData);</code></pre>
   <a id="Tizen_NUI_Scene3D_MotionData_Add_" data-uid="Tizen.NUI.Scene3D.MotionData.Add*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L171">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L175">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionData_Add_Tizen_NUI_Scene3D_MotionIndex_Tizen_NUI_Scene3D_MotionValue_" data-uid="Tizen.NUI.Scene3D.MotionData.Add(Tizen.NUI.Scene3D.MotionIndex,Tizen.NUI.Scene3D.MotionValue)">Add(MotionIndex, MotionValue)</h4>
     <section>
-      <p>Append pair of MotionIndex and MotionValue end of list.</p>
+      <p>Append pair of MotionIndex and MotionValue to the list.</p>
 
     </section>
   </div>
@@ -313,16 +324,17 @@ model2.SetMotionData(motionData);</code></pre>
     </tbody>
   </table>
   
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   
   <a id="Tizen_NUI_Scene3D_MotionData_Clear_" data-uid="Tizen.NUI.Scene3D.MotionData.Clear*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L336">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L352">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionData_Clear" data-uid="Tizen.NUI.Scene3D.MotionData.Clear">Clear()</h4>
     <section>
-      <p>Clear all inputed values.</p>
+      <p>Removes all stored motions.</p>
 
     </section>
   </div>
@@ -332,12 +344,13 @@ model2.SetMotionData(motionData);</code></pre>
     <pre><code class="lang-csharp hljs">public void Clear()</code></pre>
   </div>
   
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   
   <a id="Tizen_NUI_Scene3D_MotionData_Dispose_" data-uid="Tizen.NUI.Scene3D.MotionData.Dispose*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L371">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L386">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionData_Dispose_Tizen_NUI_DisposeTypes_" data-uid="Tizen.NUI.Scene3D.MotionData.Dispose(Tizen.NUI.DisposeTypes)">Dispose(DisposeTypes)</h4>
     <section>
@@ -376,11 +389,11 @@ model2.SetMotionData(motionData);</code></pre>
   <a id="Tizen_NUI_Scene3D_MotionData_GetIndex_" data-uid="Tizen.NUI.Scene3D.MotionData.GetIndex*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L183">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L187">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionData_GetIndex_System_UInt32_" data-uid="Tizen.NUI.Scene3D.MotionData.GetIndex(System.UInt32)">GetIndex(UInt32)</h4>
     <section>
-      <p>Get MotionIndex at index&apos;th. null if invalid index inputed</p>
+      <p>Get MotionIndex at position, or null if invalid index was given.</p>
 
     </section>
   </div>
@@ -418,22 +431,23 @@ model2.SetMotionData(motionData);</code></pre>
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.NUI.Scene3D.MotionIndex.html">MotionIndex</a></td>
-        <td><p>The index&apos;th MotionIndex. Or empty handle that doesn&apos;t have body</p>
+        <td><p>The MotionIndex at position. Or null.</p>
 </td>
       </tr>
     </tbody>
   </table>
   
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   
   <a id="Tizen_NUI_Scene3D_MotionData_GetMotionCount_" data-uid="Tizen.NUI.Scene3D.MotionData.GetMotionCount*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L158">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L162">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionData_GetMotionCount" data-uid="Tizen.NUI.Scene3D.MotionData.GetMotionCount">GetMotionCount()</h4>
     <section>
-      <p>Get the number of MotionIndex / MotionValue pair list what this hold.</p>
+      <p>Get the number of contained MotionIndex / MotionValue pair what this hold.</p>
 
     </section>
   </div>
@@ -453,22 +467,23 @@ model2.SetMotionData(motionData);</code></pre>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
-        <td><p>The number of motions what this hold.</p>
+        <td><p>The number of contained motions.</p>
 </td>
       </tr>
     </tbody>
   </table>
   
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   
   <a id="Tizen_NUI_Scene3D_MotionData_GetValue_" data-uid="Tizen.NUI.Scene3D.MotionData.GetValue*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L209">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L219">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionData_GetValue_System_UInt32_" data-uid="Tizen.NUI.Scene3D.MotionData.GetValue(System.UInt32)">GetValue(UInt32)</h4>
     <section>
-      <p>Get MotionValue at index&apos;th. null if invalid index inputed</p>
+      <p>Get MotionValue at position, or null if invalid index was given.</p>
 
     </section>
   </div>
@@ -506,18 +521,19 @@ model2.SetMotionData(motionData);</code></pre>
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.NUI.Scene3D.MotionValue.html">MotionValue</a></td>
-        <td><p>The index&apos;th MotionValue. Or empty handle that doesn&apos;t have body</p>
+        <td><p>The MotionValue at position. Or null.</p>
 </td>
       </tr>
     </tbody>
   </table>
   
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   
   <a id="Tizen_NUI_Scene3D_MotionData_LoadBlendShapeAnimation_" data-uid="Tizen.NUI.Scene3D.MotionData.LoadBlendShapeAnimation*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L275">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L292">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionData_LoadBlendShapeAnimation_System_String_System_Boolean_" data-uid="Tizen.NUI.Scene3D.MotionData.LoadBlendShapeAnimation(System.String,System.Boolean)">LoadBlendShapeAnimation(String, Boolean)</h4>
     <section>
@@ -556,12 +572,13 @@ After load completed, <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html#Ti
     </tbody>
   </table>
   
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   
   <a id="Tizen_NUI_Scene3D_MotionData_LoadBlendShapeAnimationFromBuffer_" data-uid="Tizen.NUI.Scene3D.MotionData.LoadBlendShapeAnimationFromBuffer*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L289">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L305">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionData_LoadBlendShapeAnimationFromBuffer_System_String_System_Boolean_" data-uid="Tizen.NUI.Scene3D.MotionData.LoadBlendShapeAnimationFromBuffer(System.String,System.Boolean)">LoadBlendShapeAnimationFromBuffer(String, Boolean)</h4>
     <section>
@@ -600,21 +617,19 @@ After load completed, <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html#Ti
     </tbody>
   </table>
   
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   
   <a id="Tizen_NUI_Scene3D_MotionData_LoadMotionCaptureAnimation_" data-uid="Tizen.NUI.Scene3D.MotionData.LoadMotionCaptureAnimation*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L242">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L259">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionData_LoadMotionCaptureAnimation_System_String_Tizen_NUI_Vector3_System_Boolean_" data-uid="Tizen.NUI.Scene3D.MotionData.LoadMotionCaptureAnimation(System.String,Tizen.NUI.Vector3,System.Boolean)">LoadMotionCaptureAnimation(String, Vector3, Boolean)</h4>
     <section>
       <p>Load motion capture animation.
-Scale is additional scale factor of motion capture animation. It is possible that
-Model&apos;s scale may not matched with motion capture animation scale.
-If scale is null, default use as Vector3.ONE
 We support bvh format.
-After load completed, <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html#Tizen_NUI_Scene3D_MotionData_LoadCompleted">LoadCompleted</a> event will be invoked.</p>
+After load completes, <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html#Tizen_NUI_Scene3D_MotionData_LoadCompleted">LoadCompleted</a> event will be invoked.</p>
 
     </section>
   </div>
@@ -653,22 +668,25 @@ After load completed, <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html#Ti
       </tr>
     </tbody>
   </table>
+  <h5 id="Tizen_NUI_Scene3D_MotionData_LoadMotionCaptureAnimation_System_String_Tizen_NUI_Vector3_System_Boolean__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Scale is additional scale factor of motion capture animation. It is possible that
+Model&apos;s scale may not match with motion capture animation scale.
+If scale is null, default value will be used: <cref name="Vector3.ONE"></cref></p>
+</div>
   
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   
   <a id="Tizen_NUI_Scene3D_MotionData_LoadMotionCaptureAnimationFromBuffer_" data-uid="Tizen.NUI.Scene3D.MotionData.LoadMotionCaptureAnimationFromBuffer*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L261">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L279">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionData_LoadMotionCaptureAnimationFromBuffer_System_String_Tizen_NUI_Vector3_System_Boolean_" data-uid="Tizen.NUI.Scene3D.MotionData.LoadMotionCaptureAnimationFromBuffer(System.String,Tizen.NUI.Vector3,System.Boolean)">LoadMotionCaptureAnimationFromBuffer(String, Vector3, Boolean)</h4>
     <section>
-      <p>Load motion capture animation.
-Scale is additional scale factor of motion capture animation. It is possible that
-Model&apos;s scale may not matched with motion capture animation scale.
-If scale is null, default use as Vector3.ONE
+      <p>Load motion capture animation from string.
 We support bvh format.
-After load completed, <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html#Tizen_NUI_Scene3D_MotionData_LoadCompleted">LoadCompleted</a> event will be invoked.</p>
+After load completes, <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html#Tizen_NUI_Scene3D_MotionData_LoadCompleted">LoadCompleted</a> event will be invoked.</p>
 
     </section>
   </div>
@@ -690,7 +708,7 @@ After load completed, <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html#Ti
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
         <td><span class="parametername">motionCaptureBuffer</span></td>
-        <td><p>Contents of motion capture format file.</p>
+        <td><p>Contents of motion capture format string.</p>
 </td>
       </tr>
       <tr>
@@ -707,13 +725,19 @@ After load completed, <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html#Ti
       </tr>
     </tbody>
   </table>
+  <h5 id="Tizen_NUI_Scene3D_MotionData_LoadMotionCaptureAnimationFromBuffer_System_String_Tizen_NUI_Vector3_System_Boolean__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Scale is additional scale factor of motion capture animation. It is possible that
+Model&apos;s scale may not match with motion capture animation scale.
+If scale is null, default value will be used: <cref name="Vector3.ONE"></cref></p>
+</div>
   
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   
   <a id="Tizen_NUI_Scene3D_MotionData_ReleaseSwigCPtr_" data-uid="Tizen.NUI.Scene3D.MotionData.ReleaseSwigCPtr*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L406">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L421">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionData_ReleaseSwigCPtr_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.Scene3D.MotionData.ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef)</h4>
     <section>
@@ -750,7 +774,7 @@ After load completed, <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html#Ti
   
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L300">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionData.cs/#L316">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionData_LoadCompleted" data-uid="Tizen.NUI.Scene3D.MotionData.LoadCompleted">LoadCompleted</h4>
     <section>
@@ -780,6 +804,7 @@ It will be invoked only for latest load request.</p>
     </tbody>
   </table>
   
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   <h2 id="implements">Implements</h2>
   <div>

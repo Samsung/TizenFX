@@ -60,24 +60,14 @@
   
   <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.NUI.Scene3D.html">Tizen.NUI.Scene3D</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.Scene3D.dll</dd></dl>
+  <dl class="attribute-list"><dt>API Level:</dt><dd><span>11</span></dd></dl>
   
-  <div class="markdown level0 summary"><p>Index of motion value. It will be used to specify the target of motion applied.</p>
-<p>There are three kinds of MotionIndex : <a class="xref" href="Tizen.NUI.Scene3D.MotionPropertyIndex.html">MotionPropertyIndex</a>, <a class="xref" href="Tizen.NUI.Scene3D.MotionTransformIndex.html">MotionTransformIndex</a> and <a class="xref" href="Tizen.NUI.Scene3D.BlendShapeIndex.html">BlendShapeIndex</a>.
-MotionPropertyIndex will be used for control whole kind of properties.
-The <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html">MotionData</a> loaded from files / buffer will have this kind of MotionIndex.</p>
-<p>MotionTransformIndex will be used for control the <a class="xref" href="Tizen.NUI.Scene3D.ModelNode.html">ModelNode</a>&apos;s Position / Orientation / Scale, or each components.
+  <div class="markdown level0 summary"><p>Index of motion value. It will be used to specify the target of motion applied.
+There are three kinds of MotionIndex : <a class="xref" href="Tizen.NUI.Scene3D.MotionPropertyIndex.html">MotionPropertyIndex</a>, <a class="xref" href="Tizen.NUI.Scene3D.MotionTransformIndex.html">MotionTransformIndex</a> and <a class="xref" href="Tizen.NUI.Scene3D.BlendShapeIndex.html">BlendShapeIndex</a>.
+MotionPropertyIndex will be used for control all kind of properties.
+The <a class="xref" href="Tizen.NUI.Scene3D.MotionData.html">MotionData</a> loaded from files / buffer will have this kind of MotionIndex.
+MotionTransformIndex will be used for control the <a class="xref" href="Tizen.NUI.Scene3D.ModelNode.html">ModelNode</a>&apos;s Position / Orientation / Scale, or each components.
 BlendShapeIndex will be used for control some blend shape animation.</p>
-<p>We can use this class below cases</p>
-<ul>
-<li>ModelNodeId (string key) , MotionTransformIndex         : Target is ModelNode&apos;s transform property</li>
-<li>ModelNodeId (int key)    , MotionTransformIndex         : Target is ModelNode&apos;s transform property [not implemented yet]</li>
-<li>ModelNodeId (string key) , BlendShapeIndex (int key)    : Target is ModelNode&apos;s BlendShape</li>
-<li>ModelNodeId (string key) , BlendShapeIndex (string key) : Target is ModelNode&apos;s BlendShape</li>
-<li>ModelNodeId (int key)    , BlendShapeIndex (int key)    : Target is ModelNode&apos;s BlendShape [not implemented yet]</li>
-<li>ModelNodeId (int key)    , BlendShapeIndex (string key) : Target is ModelNode&apos;s BlendShape [not implemented yet]</li>
-<li>ModelNodeId (null)       , BlendShapeIndex (string key) : Target is all ModelNode&apos;s BlendShape
-All other cases are invalid.</li>
-</ul>
 </div>
   <div class="markdown level0 conceptual"></div>
   
@@ -118,6 +108,17 @@ All other cases are invalid.</li>
     </dd>
   </dl>
   
+  <h5 id="Tizen_NUI_Scene3D_MotionIndex_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>We can use below cases.
+<table>
+<tr><td>ModelNodeId KeyType</td><td>MotionIndex class                                 </td><td>Description                             </td></tr>
+<tr><td>KeyType.String     </td><td>MotionTransformIndex                              </td><td>Target is ModelNode&apos;s transform property</td></tr>
+<tr><td>KeyType.String     </td><td>BlendShapeIndex (with BlendShapeId KeyType.Index) </td><td>Target is ModelNode&apos;s BlendShape        </td></tr>
+<tr><td>KeyType.String     </td><td>BlendShapeIndex (with BlendShapeId KeyType.String)</td><td>Target is ModelNode&apos;s BlendShape        </td></tr>
+<tr><td>(null)             </td><td>BlendShapeIndex (with BlendShapeId KeyType.String)</td><td>Target is all ModelNode&apos;s BlendShape    </td></tr>
+</table>
+All other cases are invalid.</p>
+</div>
   
   <h2 id="constructors">Constructors
   </h2>
@@ -157,6 +158,7 @@ All other cases are invalid.</li>
     </tbody>
   </table>
   
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   <h2 id="properties">Properties
   </h2>
@@ -168,7 +170,7 @@ All other cases are invalid.</li>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionIndex_ModelNodeId" data-uid="Tizen.NUI.Scene3D.MotionIndex.ModelNodeId">ModelNodeId</h4>
     <section>
-      <p>The id of ModelNode. If you want to apply to all ModelNodes who has BlendShape string, let this value as null.</p>
+      <p>The ID of ModelNode. If you want to apply to all ModelNodes who has BlendShape string, assign null.</p>
 
     </section>
   </div>
@@ -193,6 +195,7 @@ All other cases are invalid.</li>
     </tbody>
   </table>
   
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   <h2 id="methods">Methods
   </h2>
@@ -200,7 +203,7 @@ All other cases are invalid.</li>
   <a id="Tizen_NUI_Scene3D_MotionIndex_ReleaseSwigCPtr_" data-uid="Tizen.NUI.Scene3D.MotionIndex.ReleaseSwigCPtr*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionIndex/MotionIndex.cs/#L108">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionIndex/MotionIndex.cs/#L107">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Scene3D_MotionIndex_ReleaseSwigCPtr_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.Scene3D.MotionIndex.ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef)</h4>
     <section>
