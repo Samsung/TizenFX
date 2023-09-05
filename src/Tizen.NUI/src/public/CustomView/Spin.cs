@@ -17,6 +17,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Globalization;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 
@@ -686,7 +687,7 @@ namespace Tizen.NUI
             int previousValue = currentValue;
 
             // If the input value is invalid, change it back to the previous valid value
-            if (int.TryParse(textField.Text, out currentValue))
+            if (int.TryParse(textField.Text, NumberStyles.None, CultureInfo.InvariantCulture, out currentValue))
             {
                 if (currentValue < minValue || currentValue > maxValue)
                 {

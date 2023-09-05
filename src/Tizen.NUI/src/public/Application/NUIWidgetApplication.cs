@@ -125,6 +125,20 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Flush render/update thread messages synchronously.
+        /// </summary>
+        /// <remarks>
+        /// This function will relayout forcibily.
+        /// This function is used for advanced developer. It will make main-thread overhead if you call this function frequencely.
+        /// </remarks>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void FlushUpdateMessages()
+        {
+            ApplicationHandle.FlushUpdateMessages();
+        }
+
+        /// <summary>
         /// Overrides this method if want to handle OnLocaleChanged behavior.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>

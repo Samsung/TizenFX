@@ -5,10 +5,6 @@
     <TizenCreateTpkOnBuild>false</TizenCreateTpkOnBuild>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <SupportedProfiles>mobile;wearable</SupportedProfiles>
-  </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Tizen.NUI\Tizen.NUI.csproj" />
     <ProjectReference Include="..\Tizen.System.Information\Tizen.System.Information.csproj" />

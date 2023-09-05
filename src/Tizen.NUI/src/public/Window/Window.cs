@@ -1120,6 +1120,62 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Sets the keyboard repeat information of horizontal way.
+        /// </summary>
+        /// <param name="rate">The key repeat rate value in seconds.</param>
+        /// <param name="delay">The key repeat delay value in seconds.</param>
+        /// <returns>True if setting the keyboard repeat succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool SetKeyboardHorizentalRepeatInfo(float rate, float delay)
+        {
+            bool ret = Interop.Window.SetKeyboardHorizentalRepeatInfo(rate, delay);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets the keyboard repeat information of horizontal way.
+        /// </summary>
+        /// <param name="rate">The key repeat rate value in seconds.</param>
+        /// <param name="delay">The key repeat delay value in seconds.</param>
+        /// <returns>True if setting the keyboard repeat succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool GetKeyboardHorizentalRepeatInfo(out float rate, out float delay)
+        {
+            bool ret = Interop.Window.GetKeyboardHorizentalRepeatInfo(out rate, out delay);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Sets the keyboard repeat information of vertical way.
+        /// </summary>
+        /// <param name="rate">The key repeat rate value in seconds.</param>
+        /// <param name="delay">The key repeat delay value in seconds.</param>
+        /// <returns>True if setting the keyboard repeat succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool SetKeyboardVerticalRepeatInfo(float rate, float delay)
+        {
+            bool ret = Interop.Window.SetKeyboardVerticalRepeatInfo(rate, delay);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets the keyboard repeat information of vertical way.
+        /// </summary>
+        /// <param name="rate">The key repeat rate value in seconds.</param>
+        /// <param name="delay">The key repeat delay value in seconds.</param>
+        /// <returns>True if setting the keyboard repeat succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool GetKeyboardVerticalRepeatInfo(out float rate, out float delay)
+        {
+            bool ret = Interop.Window.GetKeyboardVerticalRepeatInfo(out rate, out delay);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Adds a layer to the stage.
         /// </summary>
         /// <param name="layer">Layer to add.</param>
@@ -1823,6 +1879,43 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
+        /// <summary>
+        /// Sets visibility on/off of cursor
+        /// </summary>
+        /// <param name="visible">The visibility of cursor.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void CursorVisibleSet(bool visible)
+        {
+            Interop.Window.CursorVisibleSet(SwigCPtr, visible);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Requests grab key events according to the requested device subtype
+        /// </summary>
+        /// <param name="deviceSubclass">The deviceSubclass type.</param>
+        /// <returns>True if KeyboardGrab succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool KeyboardGrab(DeviceSubClassType deviceSubclass)
+        {
+            bool ret = Interop.Window.KeyboardGrab(SwigCPtr, (uint)deviceSubclass);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Requests ungrab key events
+        /// </summary>
+        /// <returns>True if KeyboardUnGrab succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool KeyboardUnGrab()
+        {
+            bool ret = Interop.Window.KeyboardUnGrab(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
 
         /// <summary>
         /// Maximizes window's size.

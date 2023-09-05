@@ -80,6 +80,9 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void TtsServiceStateChangedCB(IntPtr handle, ServiceState previous, ServiceState current, IntPtr userData);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void TtsSythesizedPcmCB(IntPtr handle, int uttId, SynthesizedPcmEvent pcmEvent, IntPtr pcmData, int pcmSize, AudioType audioType, int sampleRate, IntPtr userData);
+
         [DllImport(Libraries.Tts, EntryPoint = "tts_create", CallingConvention = CallingConvention.Cdecl)]
         internal static extern TtsError TtsCreate(out IntPtr handle);
 
@@ -193,5 +196,14 @@ internal static partial class Interop
 
         [DllImport(Libraries.Tts, EntryPoint = "tts_unset_service_state_changed_cb", CallingConvention = CallingConvention.Cdecl)]
         internal static extern TtsError TtsUnsetServiceStateChangedCB(IntPtr handle);
+
+        [DllImport(Libraries.Tts, EntryPoint = "tts_set_playing_mode", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern TtsError TtsSetPlayingMode(IntPtr handle, PlayingMode mode);
+
+        [DllImport(Libraries.Tts, EntryPoint = "tts_set_synthesized_pcm_cb", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern TtsError TtsSetSynthesizedPcmCB(IntPtr handle, TtsSythesizedPcmCB callback, IntPtr userData);
+
+        [DllImport(Libraries.Tts, EntryPoint = "tts_unset_synthesized_pcm_cb", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern TtsError TtsUnsetSynthesizedPcmCB(IntPtr handle);
     }
 }
