@@ -15,6 +15,7 @@
 */
 
 
+using System;
 using System.ComponentModel;
 
 namespace Tizen.Uix.Tts
@@ -24,7 +25,7 @@ namespace Tizen.Uix.Tts
     /// </summary>
     /// <since_tizen> 11 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class SynthesizedPcmEventArgs
+    public class SynthesizedPcmEventArgs : EventArgs
     {
         internal SynthesizedPcmEventArgs(int utteranceId, SynthesizedPcmEvent synthesizedPcmEvent, byte[] data, AudioType audioType, int sampleRate)
         {
