@@ -557,7 +557,7 @@ If there is no animatable item for MotionData, return null.</p>
       <tr>
         <td><a class="xref" href="Tizen.NUI.Scene3D.MotionData.html">MotionData</a></td>
         <td><span class="parametername">motionData</span></td>
-        <td><p>Inputed list of pair of MotionIndex and MotionValue, and duration.</p>
+        <td><p>Source motion data.</p>
 </td>
       </tr>
     </tbody>
@@ -573,12 +573,13 @@ If there is no animatable item for MotionData, return null.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.NUI.Animation.html">Animation</a></td>
-        <td><p>Generated animation by input motion data, or null if there is no animatable item exist about inputed motionData</p>
+        <td><p>Generated animation from then given motion data, or null if there is no animatable item in <code data-dev-comment-type="paramref" class="paramref">motionData</code></p>
 </td>
       </tr>
     </tbody>
   </table>
   
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
@@ -1090,7 +1091,7 @@ If scale is null, default use as Vector3.ONE</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L613">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L611">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_Model_ReleaseSwigCPtr_" data-uid="Tizen.NUI.Scene3D.Model.ReleaseSwigCPtr*"></a>
   <h4 id="Tizen_NUI_Scene3D_Model_ReleaseSwigCPtr_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.Scene3D.Model.ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef)</h4>
@@ -1208,12 +1209,12 @@ If scale is null, default use as Vector3.ONE</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L555">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L554">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_Model_SetMotionData_" data-uid="Tizen.NUI.Scene3D.Model.SetMotionData*"></a>
   <h4 id="Tizen_NUI_Scene3D_Model_SetMotionData_Tizen_NUI_Scene3D_MotionData_" data-uid="Tizen.NUI.Scene3D.Model.SetMotionData(Tizen.NUI.Scene3D.MotionData)">SetMotionData(MotionData)</h4>
-  <div class="markdown level1 summary"><p>Prototype of MotionData setter.
-Note that this API didn&apos;t apply KeyFrames animation.
+  <div class="markdown level1 summary"><p>Set values from MotionData.
+Note that this method doesn not apply KeyFrames animation.
 If you want to apply the animation, please use <a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GenerateMotionDataAnimation_Tizen_NUI_Scene3D_MotionData_">GenerateMotionDataAnimation(MotionData)</a> and play the result.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1234,12 +1235,13 @@ If you want to apply the animation, please use <a class="xref" href="Tizen.NUI.S
       <tr>
         <td><a class="xref" href="Tizen.NUI.Scene3D.MotionData.html">MotionData</a></td>
         <td><span class="parametername">motionData</span></td>
-        <td><p>Inputed list of pair of MotionIndex and MotionValue.</p>
+        <td><p>Source motion data.</p>
 </td>
       </tr>
     </tbody>
   </table>
   
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   <div style="margin-bottom: 15px"></div>
 

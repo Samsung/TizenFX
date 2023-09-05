@@ -89,7 +89,8 @@
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.NUI.Accessibility.html">Tizen.NUI.Accessibility</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
   
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Interface representing objects which can store immutable texts.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
@@ -101,11 +102,12 @@
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiText.cs/#L30">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiText.cs/#L43">View Source</a>
   </span>
   <a id="Tizen_NUI_Accessibility_IAtspiText_AccessibilityGetCharacterCount_" data-uid="Tizen.NUI.Accessibility.IAtspiText.AccessibilityGetCharacterCount*"></a>
   <h4 id="Tizen_NUI_Accessibility_IAtspiText_AccessibilityGetCharacterCount" data-uid="Tizen.NUI.Accessibility.IAtspiText.AccessibilityGetCharacterCount">AccessibilityGetCharacterCount()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets number of all stored characters.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -122,7 +124,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
-        <td></td>
+        <td><p>The number of characters </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -131,11 +134,12 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiText.cs/#L33">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiText.cs/#L50">View Source</a>
   </span>
   <a id="Tizen_NUI_Accessibility_IAtspiText_AccessibilityGetCursorOffset_" data-uid="Tizen.NUI.Accessibility.IAtspiText.AccessibilityGetCursorOffset*"></a>
   <h4 id="Tizen_NUI_Accessibility_IAtspiText_AccessibilityGetCursorOffset" data-uid="Tizen.NUI.Accessibility.IAtspiText.AccessibilityGetCursorOffset">AccessibilityGetCursorOffset()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the cursor offset.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -152,7 +156,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
-        <td></td>
+        <td><p>Value of cursor offset </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -161,11 +166,12 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiText.cs/#L51">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiText.cs/#L112">View Source</a>
   </span>
   <a id="Tizen_NUI_Accessibility_IAtspiText_AccessibilityGetRangeExtents_" data-uid="Tizen.NUI.Accessibility.IAtspiText.AccessibilityGetRangeExtents*"></a>
   <h4 id="Tizen_NUI_Accessibility_IAtspiText_AccessibilityGetRangeExtents_System_Int32_System_Int32_Tizen_NUI_BaseComponents_AccessibilityCoordinateType_" data-uid="Tizen.NUI.Accessibility.IAtspiText.AccessibilityGetRangeExtents(System.Int32,System.Int32,Tizen.NUI.BaseComponents.AccessibilityCoordinateType)">AccessibilityGetRangeExtents(Int32, Int32, AccessibilityCoordinateType)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the bounding box for text within a range in text.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -184,17 +190,20 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">startOffset</span></td>
-        <td></td>
+        <td><p>The index of first character </p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">endOffset</span></td>
-        <td></td>
+        <td><p>The index of first character after the last one expected </p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.NUI.BaseComponents.AccessibilityCoordinateType.html">AccessibilityCoordinateType</a></td>
         <td><span class="parametername">coordType</span></td>
-        <td></td>
+        <td><p>The enumeration with type of coordinate system </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -209,7 +218,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.NUI.Rectangle.html">Rectangle</a></td>
-        <td></td>
+        <td><p>Rectangle giving the position and size of the specified range of text </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -218,11 +228,12 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiText.cs/#L42">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiText.cs/#L78">View Source</a>
   </span>
   <a id="Tizen_NUI_Accessibility_IAtspiText_AccessibilityGetSelection_" data-uid="Tizen.NUI.Accessibility.IAtspiText.AccessibilityGetSelection*"></a>
   <h4 id="Tizen_NUI_Accessibility_IAtspiText_AccessibilityGetSelection_System_Int32_" data-uid="Tizen.NUI.Accessibility.IAtspiText.AccessibilityGetSelection(System.Int32)">AccessibilityGetSelection(Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets selected text.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -241,7 +252,8 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">selectionNumber</span></td>
-        <td></td>
+        <td><p>The selection index </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -256,20 +268,25 @@
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.NUI.BaseComponents.AccessibilityRange.html">AccessibilityRange</a></td>
-        <td></td>
+        <td><p>Range structure containing acquired text and offsets in original string </p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="Tizen_NUI_Accessibility_IAtspiText_AccessibilityGetSelection_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Currently only one selection (i.e. with index = 0) is supported</p>
+</div>
   
   
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiText.cs/#L27">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiText.cs/#L36">View Source</a>
   </span>
   <a id="Tizen_NUI_Accessibility_IAtspiText_AccessibilityGetText_" data-uid="Tizen.NUI.Accessibility.IAtspiText.AccessibilityGetText*"></a>
   <h4 id="Tizen_NUI_Accessibility_IAtspiText_AccessibilityGetText_System_Int32_System_Int32_" data-uid="Tizen.NUI.Accessibility.IAtspiText.AccessibilityGetText(System.Int32,System.Int32)">AccessibilityGetText(Int32, Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets stored text in given range.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -288,12 +305,14 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">startOffset</span></td>
-        <td></td>
+        <td><p>The index of first character </p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">endOffset</span></td>
-        <td></td>
+        <td><p>The index of first character after the last one expected </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -308,7 +327,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td></td>
+        <td><p>The substring of stored text </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -317,11 +337,12 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiText.cs/#L39">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiText.cs/#L67">View Source</a>
   </span>
   <a id="Tizen_NUI_Accessibility_IAtspiText_AccessibilityGetTextAtOffset_" data-uid="Tizen.NUI.Accessibility.IAtspiText.AccessibilityGetTextAtOffset*"></a>
   <h4 id="Tizen_NUI_Accessibility_IAtspiText_AccessibilityGetTextAtOffset_System_Int32_Tizen_NUI_BaseComponents_AccessibilityTextBoundary_" data-uid="Tizen.NUI.Accessibility.IAtspiText.AccessibilityGetTextAtOffset(System.Int32,Tizen.NUI.BaseComponents.AccessibilityTextBoundary)">AccessibilityGetTextAtOffset(Int32, AccessibilityTextBoundary)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets substring of stored text truncated in concrete gradation.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -340,12 +361,14 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">offset</span></td>
-        <td></td>
+        <td><p>The position in stored text </p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.NUI.BaseComponents.AccessibilityTextBoundary.html">AccessibilityTextBoundary</a></td>
         <td><span class="parametername">boundary</span></td>
-        <td></td>
+        <td><p>The enumeration describing text gradation </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -360,7 +383,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.NUI.BaseComponents.AccessibilityRange.html">AccessibilityRange</a></td>
-        <td></td>
+        <td><p>Range structure containing acquired text and offsets in original string </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -369,11 +393,12 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiText.cs/#L45">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiText.cs/#L89">View Source</a>
   </span>
   <a id="Tizen_NUI_Accessibility_IAtspiText_AccessibilityRemoveSelection_" data-uid="Tizen.NUI.Accessibility.IAtspiText.AccessibilityRemoveSelection*"></a>
   <h4 id="Tizen_NUI_Accessibility_IAtspiText_AccessibilityRemoveSelection_System_Int32_" data-uid="Tizen.NUI.Accessibility.IAtspiText.AccessibilityRemoveSelection(System.Int32)">AccessibilityRemoveSelection(Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Removes the whole selection.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -392,7 +417,8 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">selectionNumber</span></td>
-        <td></td>
+        <td><p>The selection index </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -407,20 +433,25 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td></td>
+        <td><p>True on success, false otherwise </p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="Tizen_NUI_Accessibility_IAtspiText_AccessibilityRemoveSelection_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Currently only one selection (i.e. with index = 0) is supported</p>
+</div>
   
   
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiText.cs/#L36">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiText.cs/#L58">View Source</a>
   </span>
   <a id="Tizen_NUI_Accessibility_IAtspiText_AccessibilitySetCursorOffset_" data-uid="Tizen.NUI.Accessibility.IAtspiText.AccessibilitySetCursorOffset*"></a>
   <h4 id="Tizen_NUI_Accessibility_IAtspiText_AccessibilitySetCursorOffset_System_Int32_" data-uid="Tizen.NUI.Accessibility.IAtspiText.AccessibilitySetCursorOffset(System.Int32)">AccessibilitySetCursorOffset(Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Sets the cursor offset.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -439,7 +470,8 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">offset</span></td>
-        <td></td>
+        <td><p>Cursor offset </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -454,7 +486,8 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td></td>
+        <td><p>True if successful </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -463,11 +496,12 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiText.cs/#L48">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiText.cs/#L102">View Source</a>
   </span>
   <a id="Tizen_NUI_Accessibility_IAtspiText_AccessibilitySetSelection_" data-uid="Tizen.NUI.Accessibility.IAtspiText.AccessibilitySetSelection*"></a>
   <h4 id="Tizen_NUI_Accessibility_IAtspiText_AccessibilitySetSelection_System_Int32_System_Int32_System_Int32_" data-uid="Tizen.NUI.Accessibility.IAtspiText.AccessibilitySetSelection(System.Int32,System.Int32,System.Int32)">AccessibilitySetSelection(Int32, Int32, Int32)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Sets selected text.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -486,17 +520,20 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">selectionNumber</span></td>
-        <td></td>
+        <td><p>The selection index </p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">startOffset</span></td>
-        <td></td>
+        <td><p>The index of first character </p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><span class="parametername">endOffset</span></td>
-        <td></td>
+        <td><p>The index of first character after the last one expected </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -511,10 +548,14 @@
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td></td>
+        <td><p>True on success, false otherwise </p>
+</td>
       </tr>
     </tbody>
   </table>
+  <h5 id="Tizen_NUI_Accessibility_IAtspiText_AccessibilitySetSelection_System_Int32_System_Int32_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Currently only one selection (i.e. with index = 0) is supported</p>
+</div>
   
   
   <div style="margin-bottom: 15px"></div>
@@ -549,7 +590,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiText.cs/#L24" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiText.cs/#L27" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

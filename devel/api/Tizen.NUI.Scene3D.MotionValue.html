@@ -88,11 +88,10 @@
   
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.NUI.Scene3D.html">Tizen.NUI.Scene3D</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.Scene3D.dll</dd></dl>
+  <dl class="attribute-list"><dt>API Level:</dt><dd><span>11</span></dd></dl>
   
-  <div class="markdown level0 summary"><p>This MotionValue be used for target value of each <a class="xref" href="Tizen.NUI.Scene3D.MotionIndex.html">MotionIndex</a>.
+  <div class="markdown level0 summary"><p>This MotionValue will be used for target value of each <a class="xref" href="Tizen.NUI.Scene3D.MotionIndex.html">MotionIndex</a>.
 We can get and set MotionValue as 2 types : PropertyValue and KeyFrames.</p>
-<p>Each types will be cross-converted internally.
-For example, when we set PropertyValue, we can get KeyFrames with 2 frames, and target value is set.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   
@@ -126,7 +125,9 @@ For example, when we set PropertyValue, we can get KeyFrames with 2 frames, and 
   </dl>
   
   <h5 id="Tizen_NUI_Scene3D_MotionValue_remarks"><strong>Remarks</strong></h5>
-  <div class="markdown level0 remarks"><p>The type of property should be matched with MotionIndex required.</p>
+  <div class="markdown level0 remarks"><p>Each type will be cross-converted internally.
+For example, when we set PropertyValue, we can get KeyFrames with 2 frames, and target value is set.
+The type of property should be matched with MotionIndex required.</p>
 </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -135,7 +136,7 @@ For example, when we set PropertyValue, we can get KeyFrames with 2 frames, and 
   </span>
   <a id="Tizen_NUI_Scene3D_MotionValue__ctor_" data-uid="Tizen.NUI.Scene3D.MotionValue.#ctor*"></a>
   <h4 id="Tizen_NUI_Scene3D_MotionValue__ctor" data-uid="Tizen.NUI.Scene3D.MotionValue.#ctor">MotionValue()</h4>
-  <div class="markdown level1 summary"><p>Create an initialized motion value with invalid.</p>
+  <div class="markdown level1 summary"><p>Create an initialized invalid motion value.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -143,11 +144,12 @@ For example, when we set PropertyValue, we can get KeyFrames with 2 frames, and 
     <pre><code class="lang-csharp hljs">public MotionValue()</code></pre>
   </div>
   
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionValue.cs/#L85">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionValue.cs/#L87">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_MotionValue__ctor_" data-uid="Tizen.NUI.Scene3D.MotionValue.#ctor*"></a>
   <h4 id="Tizen_NUI_Scene3D_MotionValue__ctor_Tizen_NUI_KeyFrames_" data-uid="Tizen.NUI.Scene3D.MotionValue.#ctor(Tizen.NUI.KeyFrames)">MotionValue(KeyFrames)</h4>
@@ -171,16 +173,18 @@ For example, when we set PropertyValue, we can get KeyFrames with 2 frames, and 
       <tr>
         <td><a class="xref" href="Tizen.NUI.KeyFrames.html">KeyFrames</a></td>
         <td><span class="parametername">keyFrames</span></td>
-        <td></td>
+        <td><p>KeyFrameValue for this motion value</p>
+</td>
       </tr>
     </tbody>
   </table>
   
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionValue.cs/#L76">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionValue.cs/#L77">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_MotionValue__ctor_" data-uid="Tizen.NUI.Scene3D.MotionValue.#ctor*"></a>
   <h4 id="Tizen_NUI_Scene3D_MotionValue__ctor_Tizen_NUI_PropertyValue_" data-uid="Tizen.NUI.Scene3D.MotionValue.#ctor(Tizen.NUI.PropertyValue)">MotionValue(PropertyValue)</h4>
@@ -204,16 +208,18 @@ For example, when we set PropertyValue, we can get KeyFrames with 2 frames, and 
       <tr>
         <td><a class="xref" href="Tizen.NUI.PropertyValue.html">PropertyValue</a></td>
         <td><span class="parametername">propertyValue</span></td>
-        <td></td>
+        <td><p>PropertyValue for this motion value</p>
+</td>
       </tr>
     </tbody>
   </table>
   
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionValue.cs/#L95">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionValue.cs/#L97">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_MotionValue__ctor_" data-uid="Tizen.NUI.Scene3D.MotionValue.#ctor*"></a>
   <h4 id="Tizen_NUI_Scene3D_MotionValue__ctor_Tizen_NUI_Scene3D_MotionValue_" data-uid="Tizen.NUI.Scene3D.MotionValue.#ctor(Tizen.NUI.Scene3D.MotionValue)">MotionValue(MotionValue)</h4>
@@ -243,18 +249,19 @@ For example, when we set PropertyValue, we can get KeyFrames with 2 frames, and 
     </tbody>
   </table>
   
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionValue.cs/#L139">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionValue.cs/#L141">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_MotionValue_KeyFramesValue_" data-uid="Tizen.NUI.Scene3D.MotionValue.KeyFramesValue*"></a>
   <h4 id="Tizen_NUI_Scene3D_MotionValue_KeyFramesValue" data-uid="Tizen.NUI.Scene3D.MotionValue.KeyFramesValue">KeyFramesValue</h4>
-  <div class="markdown level1 summary"><p>Get or set the value as KeyFrames type.
-If ValueType is ValueType.PropertyValue, it will create new KeyFrames by stored PropertyValue.</p>
+  <div class="markdown level1 summary"><p>Get or set the KeyFrames.
+If Type is ValueType.PropertyValue, getter will create new KeyFrames from stored PropertyValue.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -277,16 +284,17 @@ If ValueType is ValueType.PropertyValue, it will create new KeyFrames by stored 
     </tbody>
   </table>
   
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionValue.cs/#L122">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionValue.cs/#L124">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_MotionValue_PropertyValue_" data-uid="Tizen.NUI.Scene3D.MotionValue.PropertyValue*"></a>
   <h4 id="Tizen_NUI_Scene3D_MotionValue_PropertyValue" data-uid="Tizen.NUI.Scene3D.MotionValue.PropertyValue">PropertyValue</h4>
-  <div class="markdown level1 summary"><p>Get or set the value as PropertyValue type.
-If ValueType is ValueType.KeyFrames, it will return last value of stored KeyFrames.</p>
+  <div class="markdown level1 summary"><p>Get or set the PropertyValue.
+If Type is ValueType.KeyFrames, getter will return last PropertyValue instance of stored KeyFrames.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -309,15 +317,16 @@ If ValueType is ValueType.KeyFrames, it will return last value of stored KeyFram
     </tbody>
   </table>
   
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionValue.cs/#L155">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionValue.cs/#L157">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_MotionValue_Type_" data-uid="Tizen.NUI.Scene3D.MotionValue.Type*"></a>
   <h4 id="Tizen_NUI_Scene3D_MotionValue_Type" data-uid="Tizen.NUI.Scene3D.MotionValue.Type">Type</h4>
-  <div class="markdown level1 summary"><p>Get the type of value what we set.</p>
+  <div class="markdown level1 summary"><p>Get the type of value which we set.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -340,17 +349,18 @@ If ValueType is ValueType.KeyFrames, it will return last value of stored KeyFram
     </tbody>
   </table>
   
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionValue.cs/#L167">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionValue.cs/#L169">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_MotionValue_Invalidate_" data-uid="Tizen.NUI.Scene3D.MotionValue.Invalidate*"></a>
   <h4 id="Tizen_NUI_Scene3D_MotionValue_Invalidate" data-uid="Tizen.NUI.Scene3D.MotionValue.Invalidate">Invalidate()</h4>
-  <div class="markdown level1 summary"><p>Invalidate the value what we set.</p>
+  <div class="markdown level1 summary"><p>Invalidate the value which we set.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -358,11 +368,12 @@ If ValueType is ValueType.KeyFrames, it will return last value of stored KeyFram
     <pre><code class="lang-csharp hljs">public void Invalidate()</code></pre>
   </div>
   
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionValue.cs/#L224">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/ModelMotion/MotionValue.cs/#L225">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_MotionValue_ReleaseSwigCPtr_" data-uid="Tizen.NUI.Scene3D.MotionValue.ReleaseSwigCPtr*"></a>
   <h4 id="Tizen_NUI_Scene3D_MotionValue_ReleaseSwigCPtr_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.Scene3D.MotionValue.ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef)</h4>
