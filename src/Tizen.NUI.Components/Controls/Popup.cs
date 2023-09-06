@@ -844,7 +844,7 @@ namespace Tizen.NUI.Components
 
         private void PopupStylePropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName.Equals("LayoutDirection"))
+            if (e.PropertyName is var propName && propName != null && propName.Equals("LayoutDirection"))
             {
                 btGroup.UpdateButton(buttonStyle);
             }
