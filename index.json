@@ -15929,6 +15929,11 @@
     "title": "Enum TimeTickResolution",
     "keywords": ""
   },
+  "API11/api/Tizen.Applications.TimeZoneChangedEventArgs.html": {
+    "href": "API11/api/Tizen.Applications.TimeZoneChangedEventArgs.html",
+    "title": "Class TimeZoneChangedEventArgs",
+    "keywords": ""
+  },
   "API11/api/Tizen.Applications.TizenSynchronizationContext.html": {
     "href": "API11/api/Tizen.Applications.TizenSynchronizationContext.html",
     "title": "Class TizenSynchronizationContext",
