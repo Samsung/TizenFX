@@ -247,7 +247,7 @@ namespace Tizen.NUI.Components
 
         private void TitlePropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (isFadeOutColorSet == false  && e.PropertyName.Equals("BackgroundColor") )
+            if (isFadeOutColorSet == false  && e.PropertyName is var propName && propName != null && propName.Equals("BackgroundColor") )
             {
                 fadeOutColor = this.BackgroundColor;
                 UpdateImage();
