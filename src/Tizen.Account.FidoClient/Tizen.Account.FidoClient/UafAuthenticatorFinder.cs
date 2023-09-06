@@ -25,6 +25,7 @@ namespace Tizen.Account.FidoClient
     /// Class to find available FIDO specific authenticators on the device
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public static class UafAuthenticatorFinder
     {
         /// <summary>
@@ -48,6 +49,7 @@ namespace Tizen.Account.FidoClient
         /// </code>
         /// </example>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public static async Task<IEnumerable<AuthenticatorInformation>> DiscoverAuthenticatorsAsync()
         {
             IEnumerable<AuthenticatorInformation> result = null;
