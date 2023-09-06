@@ -33,6 +33,7 @@ namespace Tizen.Account.FidoClient
     ///     }
     /// </code>
     /// </example>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class AuthenticatorInformation
     {
         internal AuthenticatorInformation()
@@ -43,84 +44,98 @@ namespace Tizen.Account.FidoClient
         /// The authenticator Title
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Title { get; internal set; }
 
         /// <summary>
         /// The Authenticator AAID (Authenticator Attestation ID)
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Aaid { get; internal set; }
 
         /// <summary>
         /// The Authenticator description
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Description { get; internal set; }
 
         /// <summary>
         /// The Authenticator assertion scheme.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string AssertionScheme { get; internal set; }
 
         /// <summary>
         /// The Authenticator algorithm.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public AuthenticationAlgorithm AuthenticationAlgorithm { get; internal set; }
 
         /// <summary>
         /// The user verification method of this Authenticator
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public UserVerificationMethod UserVerification { get; internal set; }
 
         /// <summary>
         /// The key protection method of this Authenticator.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public KeyProtectionType KeyProtection { get; internal set; }
 
         /// <summary>
         /// The matcher protection method of this Authenticator.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public MatcherProtectionType MatcherProtection { get; internal set; }
 
         /// <summary>
         /// The attachment hint of this Authenticator.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public AuthenticatorAttachmentHint AttachmentHint { get; internal set; }
 
         /// <summary>
         /// Denotes the Authenticator is Second factor only which is supported by U2F standards.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public bool IsSecondFactorOnly { get; internal set; }
 
         /// <summary>
         /// The available attestation types for this Authenticator.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public IEnumerable<AuthenticatorAttestationType> AttestationTypes { get; internal set; }
 
         /// <summary>
         /// The Transaction Confirmation display type of this Authenticator.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public TransactionConfirmationDisplayType TcDisplayType { get; internal set; }
 
         /// <summary>
         /// The Transaction Confirmation display type of this Authenticator.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string TcDisplayContentType { get; internal set; }
 
         /// <summary>
         /// The icon of this Authenticator.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Icon { get; internal set; }
     }
 }

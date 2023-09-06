@@ -118,5 +118,109 @@ namespace Tizen.NUI.Scene3D
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
+
+        /// <summary>
+        /// Make the light enable shadow for this light or not.
+        /// NUI.Scene3D generates shadow by using shadow map.
+        /// For the Directional Light, the shadow map is created to cover view frustum of current selected camera.
+        /// This means that if the distance between the near and far planes is too large,
+        /// the shadow map has to cover an unnecessarily large area. This results in lower shadow quality.
+        /// </summary>
+        /// <remarks>
+        /// This light should be already turned on in the SceneView.
+        /// (When true) If there is previous light already enabled shadow in the SceneView, this function call is ignored.
+        /// (When false, and this light is currently used for shader)
+        /// If there are other lights those are turned on and shadow enabled, one of the light will be used for shadow automatically.
+        /// </remarks>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsShadowEnabled
+        {
+            get
+            {
+
+                bool isEnabled = Interop.Light.IsShadowEnabled(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return isEnabled;
+            }
+            set
+            {
+                Interop.Light.EnableShadow(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// Make the shadow edge soften or not.
+        /// Basically the shadow is hard shadow that has sharp edge.
+        /// This method enables soft filtering to make the sharp edge to smoothing.
+        /// </summary>
+        /// <remarks>
+        /// This soft filtering requires expensive computation power.
+        /// </remarks>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsShadowSoftFilteringEnabled
+        {
+            get
+            {
+
+                bool isEnabled = Interop.Light.IsShadowSoftFilteringEnabled(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return isEnabled;
+            }
+            set
+            {
+                Interop.Light.EnableShadowSoftFiltering(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// Sets and gets shadow intensity.
+        /// If the intensity is larger, the shadow area will be darker.
+        /// The intensity value is between [0, 1].
+        /// Default value is 0.5
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float ShadowIntensity
+        {
+            get
+            {
+
+                float shadowIntensity = Interop.Light.GetShadowIntensity(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return shadowIntensity;
+            }
+            set
+            {
+                Interop.Light.SetShadowIntensity(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// Sets and gets shadow bias.
+        /// Shadow bias is an offset value to remove shadow acne that is a visual artifact can be shown on the Shadow
+        /// Default value is 0.001
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float ShadowBias
+        {
+            get
+            {
+
+                float shadowBias = Interop.Light.GetShadowBias(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return shadowBias;
+            }
+            set
+            {
+                Interop.Light.SetShadowBias(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
     }
 }

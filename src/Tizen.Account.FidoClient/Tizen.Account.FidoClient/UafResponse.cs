@@ -14,18 +14,22 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace Tizen.Account.FidoClient
 {
     /// <summary>
     /// Represents FIDO response message
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class UafResponse
     {
         /// <summary>
         /// The constructor
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public UafResponse()
         {
         }
@@ -34,6 +38,7 @@ namespace Tizen.Account.FidoClient
         /// FIDO response message in JSON format
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Response { set; get; }
     }
 }

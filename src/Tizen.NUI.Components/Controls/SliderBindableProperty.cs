@@ -352,9 +352,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty LowIndicatorSizeProperty = BindableProperty.Create(nameof(LowIndicatorSize), typeof(Size), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Slider)bindable;
-            if (newValue != null)
+            if (newValue as Size is var nVal && nVal != null)
             {
-                instance.InternalLowIndicatorSize = newValue as Size;
+                instance.InternalLowIndicatorSize = nVal;
             }
         },
         defaultValueCreator: (bindable) =>
@@ -370,9 +370,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty HighIndicatorSizeProperty = BindableProperty.Create(nameof(HighIndicatorSize), typeof(Size), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Slider)bindable;
-            if (newValue != null)
+            if (newValue as Size is var nVal && nVal != null)
             {
-                instance.InternalHighIndicatorSize = newValue as Size;
+                instance.InternalHighIndicatorSize = nVal;
             }
         },
         defaultValueCreator: (bindable) =>
@@ -388,9 +388,9 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ValueIndicatorSizeProperty = BindableProperty.Create(nameof(ValueIndicatorSize), typeof(Size), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Slider)bindable;
-            if (newValue != null)
+            if (newValue as Size is var nVal && nVal != null)
             {
-                instance.InternalValueIndicatorSize = newValue as Size;
+                instance.InternalValueIndicatorSize = nVal;
             }
         },
         defaultValueCreator: (bindable) =>
