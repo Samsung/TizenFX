@@ -96,7 +96,7 @@ namespace Tizen.Applications.CoreBackend
 
         /// <summary>
         /// Pre-defined event type "TimeZoneChanged".
-        /// The TimeZoneChangedEventArgs class is an event argument class for this EventType.
+        /// The <see cref="TimeZoneChangedEventArgs"/> class is an event argument class for this EventType.
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
         public static readonly EventType TimeZoneChanged = "TimeZoneChanged";

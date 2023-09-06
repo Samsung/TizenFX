@@ -285,7 +285,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the time zone is changed.
+        /// Override this method if you want to handle behavior when the time zone is changed.
         /// If base.OnTimeZoneChanged() is not called, the event "TimeZoneChanged" will not be emitted.
         /// </summary>
         /// <param name="e">The time zone changed event argument</param>

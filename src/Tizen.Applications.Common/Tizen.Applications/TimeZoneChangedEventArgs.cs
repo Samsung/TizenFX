@@ -28,7 +28,8 @@ namespace Tizen.Applications
         /// <summary>
         /// Initializes TimeZoneChangedEventArgs class
         /// </summary>
-        /// <param name="timeZone">The information of the Locale</param>
+        /// <param name="timeZone">The information of the TimeZone</param>
+        /// <param name="timeZoneId">The information of the TimeZone ID</param>
         /// <since_tizen> 11 </since_tizen>
         public TimeZoneChangedEventArgs(string timeZone, string timeZoneId)
         {
@@ -39,12 +40,14 @@ namespace Tizen.Applications
         /// <summary>
         /// The property to get the information of the TimeZone.
         /// </summary>
+        /// <value> The time zone. (e.g. "+9:00") </value>
         /// <since_tizen> 11 </since_tizen>
         public string TimeZone { get; private set; }
 
         /// <summary>
         /// The property to get the information of the TimeZone ID.
         /// </summary>
+        /// <value> The time zone ID. (e.g. "Asia/Seoul") </value>
         /// <since_tizen> 11 </since_tizen>
         public string TimeZoneId { get; private set; }
     }
