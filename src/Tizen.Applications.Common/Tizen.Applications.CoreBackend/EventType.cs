@@ -94,6 +94,13 @@ namespace Tizen.Applications.CoreBackend
         /// <since_tizen> 6 </since_tizen>
         public static readonly EventType SuspendedStateChanged = "SuspendedStateChanged";
 
+        /// <summary>
+        /// Pre-defined event type "TimeZoneChanged".
+        /// The <see cref="TimeZoneChangedEventArgs"/> class is an event argument class for this EventType.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        public static readonly EventType TimeZoneChanged = "TimeZoneChanged";
+
         private string _typeName;
 
         /// <summary>
