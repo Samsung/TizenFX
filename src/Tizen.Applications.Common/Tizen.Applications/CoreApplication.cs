@@ -205,6 +205,12 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnAppControlReceived(AppControlReceivedEventArgs e)
         {
+            if (e == null)
+            {
+                Log.Error(LogTag, "e is null");
+                return;
+            }
+
             AppControlReceived?.Invoke(this, e);
         }
 
@@ -216,6 +222,12 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnLowMemory(LowMemoryEventArgs e)
         {
+            if (e == null)
+            {
+                Log.Error(LogTag, "e is null");
+                return;
+            }
+
             LowMemory?.Invoke(this, e);
             if (e.LowMemoryStatus == LowMemoryStatus.SoftWarning || e.LowMemoryStatus == LowMemoryStatus.HardWarning)
             {
@@ -231,6 +243,12 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnLowBattery(LowBatteryEventArgs e)
         {
+            if (e == null)
+            {
+                Log.Error(LogTag, "e is null");
+                return;
+            }
+
             LowBattery?.Invoke(this, e);
         }
 
@@ -242,6 +260,12 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnLocaleChanged(LocaleChangedEventArgs e)
         {
+            if (e == null)
+            {
+                Log.Error(LogTag, "e is null");
+                return;
+            }
+
             if (!GlobalizationMode.Invariant)
             {
                 ChangeCurrentUICultureInfo(e.Locale);
@@ -258,6 +282,12 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
         {
+            if (e == null)
+            {
+                Log.Error(LogTag, "e is null");
+                return;
+            }
+
             if (!GlobalizationMode.Invariant)
             {
                 ChangeCurrentCultureInfo(e.Region);

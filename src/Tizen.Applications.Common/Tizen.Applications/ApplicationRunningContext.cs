@@ -347,7 +347,11 @@ namespace Tizen.Applications
             GC.SuppressFinalize(this);
         }
 
+#pragma warning disable CA1801
+#pragma warning disable CA1063
         private void Dispose(bool disposing)
+#pragma warning restore CA1063
+#pragma warning restore CA1801
         {
             if (_disposed)
                 return;

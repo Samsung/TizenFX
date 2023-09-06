@@ -142,7 +142,7 @@ namespace Tizen.Applications
         {
             if (replyRequest == null)
             {
-                throw new ArgumentNullException("replyRequest");
+                throw new ArgumentNullException(nameof(replyRequest));
             }
             Interop.AppControl.ErrorCode err = Interop.AppControl.ReplyToLaunchRequest(replyRequest.SafeAppControlHandle, this.SafeAppControlHandle, (int)result);
             if (err != Interop.AppControl.ErrorCode.None)

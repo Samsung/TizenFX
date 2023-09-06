@@ -72,6 +72,7 @@ namespace Tizen.Applications
                 Exception err = null;
                 GSourceManager.Post(() =>
                 {
+#pragma warning disable CA1031
                     try
                     {
                         d(state);
@@ -84,6 +85,7 @@ namespace Tizen.Applications
                     {
                         mre.Set();
                     }
+#pragma warning restore CA1031
                 });
                 mre.WaitOne();
                 if (err != null)

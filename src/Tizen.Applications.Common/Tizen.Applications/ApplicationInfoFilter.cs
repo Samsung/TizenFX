@@ -38,7 +38,9 @@ namespace Tizen.Applications
         /// This class is a possible value to use in the InstalledApplicationFilter.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
+#pragma warning disable CA1034
         public static class Values
+#pragma warning restore CA1034
         {
             /// <summary>
             /// A pre-defined value string for InstalledStorage key. This value indicates that the application is installed at internal storage.
@@ -63,7 +65,9 @@ namespace Tizen.Applications
         /// This class is a possible key to use in the InstalledApplicationFilter.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+#pragma warning disable CA1034
         public static class Keys
+#pragma warning restore CA1034
         {
             /// <summary>
             /// A key to filter by application id.
