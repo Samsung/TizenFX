@@ -452,7 +452,7 @@ namespace Tizen.Applications
                     };
 
                     IntPtr infoHandle = GetInfoHandle();
-                    if (infoHandle != null)
+                    if (infoHandle != IntPtr.Zero)
                     {
                         err = Interop.ApplicationManager.AppInfoForeachResControl(infoHandle, _resControlCallback, IntPtr.Zero);
                         if (err != Interop.ApplicationManager.ErrorCode.None)
@@ -509,7 +509,9 @@ namespace Tizen.Applications
             GC.SuppressFinalize(this);
         }
 
+#pragma warning disable CA1063
         private void Dispose(bool disposing)
+#pragma warning restore CA1063
         {
             if (_disposed)
                 return;

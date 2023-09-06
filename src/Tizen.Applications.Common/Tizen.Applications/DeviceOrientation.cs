@@ -25,6 +25,7 @@ namespace Tizen.Applications
         /// <summary>
         /// The device orientation is 0.
         /// </summary>
+#pragma warning disable CA1707
         Orientation_0 = 0,
 
         /// <summary>
@@ -41,5 +42,6 @@ namespace Tizen.Applications
         /// The device orientation is 270.
         /// </summary>
         Orientation_270 = 270,
+#pragma warning restore CA1707
     }
 }

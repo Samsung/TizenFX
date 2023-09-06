@@ -76,7 +76,9 @@ namespace Tizen.Applications.CoreBackend
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
+#pragma warning disable CA1051
         protected IDictionary<EventType, object> Handlers = new Dictionary<EventType, object>();
+#pragma warning restore CA1051
 
         /// <summary>
         /// Constructor of DefaultCoreBackend class.
@@ -131,7 +133,9 @@ namespace Tizen.Applications.CoreBackend
         /// Exits the mainloop of the backend.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+#pragma warning disable CA1716
         public abstract void Exit();
+#pragma warning restore CA1716
 
         /// <summary>
         /// Releases all resources.

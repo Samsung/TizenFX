@@ -59,7 +59,7 @@ namespace Tizen.Applications
         /// <returns>true if the handle is released successfully.</returns>
         protected override bool ReleaseHandle()
         {
-            Interop.Bundle.DangerousFree(this.handle);
+            _ = Interop.Bundle.DangerousFree(this.handle);
             this.SetHandle(IntPtr.Zero);
             return true;
         }
