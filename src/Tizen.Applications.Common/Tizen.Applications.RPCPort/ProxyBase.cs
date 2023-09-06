@@ -34,7 +34,9 @@ namespace Tizen.Applications.RPCPort
         /// Gets Port object.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
+#pragma warning disable CA1721
         protected Port Port { get; private set; }
+#pragma warning restore CA1721
 
         /// <summary>
         /// Gets Port object for asynchronous events.

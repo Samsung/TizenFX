@@ -52,6 +52,8 @@ namespace Tizen.Applications.CoreBackend
         /// Exits the mainloop of the backend.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+#pragma warning disable CA1716
         void Exit();
+#pragma warning restore CA1716
     }
 }

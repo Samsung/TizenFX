@@ -21,18 +21,10 @@ namespace Tizen.Applications
 {
     internal static class GSourceManager
     {
-        private static Interop.Glib.GSourceFunc _wrapperHandler;
-        private static Object _transactionLock;
-        private static ConcurrentDictionary<int, Action> _handlerMap;
-        private static int _transactionId;
-
-        static GSourceManager()
-        {
-            _wrapperHandler = new Interop.Glib.GSourceFunc(Handler);
-            _transactionLock = new Object();
-            _handlerMap = new ConcurrentDictionary<int, Action>();
-            _transactionId = 0;
-        }
+        private static Interop.Glib.GSourceFunc _wrapperHandler = new Interop.Glib.GSourceFunc(Handler);
+        private static Object _transactionLock = new Object();
+        private static ConcurrentDictionary<int, Action> _handlerMap = new ConcurrentDictionary<int, Action>();
+        private static int _transactionId = 0;
 
         public static void Post(Action action, bool useTizenGlibContext = false)
         {
@@ -44,7 +36,7 @@ namespace Tizen.Applications
             _handlerMap.TryAdd(id, action);
             IntPtr source = Interop.Glib.IdleSourceNew();
             Interop.Glib.SourceSetCallback(source, _wrapperHandler, (IntPtr)id, IntPtr.Zero);
-            Interop.Glib.SourceAttach(source, useTizenGlibContext ? Interop.AppCoreUI.GetTizenGlibContext() : IntPtr.Zero);
+            _ = Interop.Glib.SourceAttach(source, useTizenGlibContext ? Interop.AppCoreUI.GetTizenGlibContext() : IntPtr.Zero);
             Interop.Glib.SourceUnref(source);
         }
 

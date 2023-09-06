@@ -120,7 +120,7 @@ namespace Tizen.Applications
         {
             if (args == null)
             {
-                throw new ArgumentNullException("args");
+                throw new ArgumentNullException(nameof(args));
             }
             s_CurrentApplication = this;
         }
@@ -129,7 +129,9 @@ namespace Tizen.Applications
         /// Exits the main loop of the application.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+#pragma warning disable CA1716
         public abstract void Exit();
+#pragma warning restore CA1716
 
         #region IDisposable Support
         private bool _disposedValue = false; // To detect redundant calls

@@ -294,7 +294,9 @@ namespace Tizen.Applications
         /// </code>
         /// </example>
         /// <since_tizen> 3 </since_tizen>
+#pragma warning disable CA1056
         public string Uri
+#pragma warning restore CA1056
         {
             get
             {
@@ -535,7 +537,7 @@ namespace Tizen.Applications
         {
             if (control == null)
             {
-                throw new ArgumentNullException("control");
+                throw new ArgumentNullException(nameof(control));
             }
 
             List<string> ids = new List<string>();
@@ -654,7 +656,7 @@ namespace Tizen.Applications
         {
             if (launchRequest == null)
             {
-                throw new ArgumentNullException("launchRequest");
+                throw new ArgumentNullException(nameof(launchRequest));
             }
 
             Interop.AppControl.ErrorCode err;
@@ -736,7 +738,7 @@ namespace Tizen.Applications
         {
             if (launchRequest == null)
             {
-                throw new ArgumentNullException("launchRequest");
+                throw new ArgumentNullException(nameof(launchRequest));
             }
 
             Interop.AppControl.ErrorCode err;
@@ -806,7 +808,7 @@ namespace Tizen.Applications
         {
             if (terminateRequest == null)
             {
-                throw new ArgumentNullException("terminateRequest");
+                throw new ArgumentNullException(nameof(terminateRequest));
             }
             Interop.AppControl.ErrorCode err;
 
@@ -1062,7 +1064,9 @@ namespace Tizen.Applications
         /// Class for extra data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+#pragma warning disable CA1034
         public class ExtraDataCollection
+#pragma warning restore CA1034
         {
             private readonly SafeAppControlHandle _handle;
 
@@ -1092,11 +1096,11 @@ namespace Tizen.Applications
             {
                 if (string.IsNullOrEmpty(key))
                 {
-                    throw new ArgumentNullException("key");
+                    throw new ArgumentNullException(nameof(key));
                 }
                 if (string.IsNullOrEmpty(value))
                 {
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
                 }
                 Interop.AppControl.ErrorCode err = Interop.AppControl.AddExtraData(_handle, key, value);
                 if (err != Interop.AppControl.ErrorCode.None)
@@ -1135,11 +1139,11 @@ namespace Tizen.Applications
             {
                 if (string.IsNullOrEmpty(key))
                 {
-                    throw new ArgumentNullException("key");
+                    throw new ArgumentNullException(nameof(key));
                 }
                 if (value == null)
                 {
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
                 }
                 string[] valueArray = value.ToArray();
                 Interop.AppControl.ErrorCode err = Interop.AppControl.AddExtraDataArray(_handle, key, valueArray, valueArray.Length);
@@ -1277,7 +1281,7 @@ namespace Tizen.Applications
             {
                 if (string.IsNullOrEmpty(key))
                 {
-                    throw new ArgumentNullException("key");
+                    throw new ArgumentNullException(nameof(key));
                 }
                 Interop.AppControl.GetExtraData(_handle, key, out value);
                 if (value != null)
@@ -1319,7 +1323,7 @@ namespace Tizen.Applications
             {
                 if (string.IsNullOrEmpty(key))
                 {
-                    throw new ArgumentNullException("key");
+                    throw new ArgumentNullException(nameof(key));
                 }
                 IntPtr valuePtr = IntPtr.Zero;
                 int len = -1;
@@ -1331,9 +1335,9 @@ namespace Tizen.Applications
                     {
                         IntPtr charArr = Marshal.ReadIntPtr(valuePtr, IntPtr.Size * i);
                         stringList.Add(Marshal.PtrToStringAnsi(charArr));
-                        Interop.Libc.Free(charArr);
+                        _ = Interop.Libc.Free(charArr);
                     }
-                    Interop.Libc.Free(valuePtr);
+                    _ = Interop.Libc.Free(valuePtr);
                     value = stringList;
                     return true;
                 }
@@ -1362,7 +1366,7 @@ namespace Tizen.Applications
             {
                 if (string.IsNullOrEmpty(key))
                 {
-                    throw new ArgumentNullException("key");
+                    throw new ArgumentNullException(nameof(key));
                 }
                 Interop.AppControl.ErrorCode err = Interop.AppControl.RemoveExtraData(_handle, key);
                 if (err != Interop.AppControl.ErrorCode.None)
@@ -1416,7 +1420,7 @@ namespace Tizen.Applications
             {
                 if (string.IsNullOrEmpty(key))
                 {
-                    throw new ArgumentNullException("key");
+                    throw new ArgumentNullException(nameof(key));
                 }
                 bool isArray = false;
                 Interop.AppControl.ErrorCode err = Interop.AppControl.IsExtraDataArray(_handle, key, out isArray);
@@ -1431,7 +1435,7 @@ namespace Tizen.Applications
             {
                 if (string.IsNullOrEmpty(key))
                 {
-                    throw new ArgumentNullException("key");
+                    throw new ArgumentNullException(nameof(key));
                 }
                 string value = string.Empty;
                 Interop.AppControl.ErrorCode err = Interop.AppControl.GetExtraData(_handle, key, out value);
@@ -1458,7 +1462,7 @@ namespace Tizen.Applications
             {
                 if (string.IsNullOrEmpty(key))
                 {
-                    throw new ArgumentNullException("key");
+                    throw new ArgumentNullException(nameof(key));
                 }
                 IntPtr valuePtr = IntPtr.Zero;
                 int len = -1;
@@ -1487,9 +1491,9 @@ namespace Tizen.Applications
                     {
                         IntPtr charArr = Marshal.ReadIntPtr(valuePtr, IntPtr.Size * i);
                         valueArray.Add(Marshal.PtrToStringAnsi(charArr));
-                        Interop.Libc.Free(charArr);
+                        _ = Interop.Libc.Free(charArr);
                     }
-                    Interop.Libc.Free(valuePtr);
+                    _ = Interop.Libc.Free(valuePtr);
                 }
                 return valueArray;
             }

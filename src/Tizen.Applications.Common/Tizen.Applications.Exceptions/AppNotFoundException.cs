@@ -6,7 +6,9 @@ namespace Tizen.Applications.Exceptions
     /// The class that represents the exception which will be thrown when the application to run is not found
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+#pragma warning disable CA1032
     public class AppNotFoundException : InvalidOperationException
+#pragma warning restore CA1032
     {
         /// <summary>
         /// Constructor

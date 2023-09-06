@@ -217,6 +217,11 @@ namespace Tizen.Applications
         /// <since_tizen> 6 </since_tizen>
         public static void TerminateBackgroundApplication(ApplicationRunningContext app)
         {
+            if (app == null)
+            {
+                throw new ArgumentException("Invalid argument.");
+            }
+
             ErrorCode err = Interop.ApplicationManager.AppManagerRequestTerminateBgApp(app._contextHandle);
             if (err != Interop.ApplicationManager.ErrorCode.None)
             {
