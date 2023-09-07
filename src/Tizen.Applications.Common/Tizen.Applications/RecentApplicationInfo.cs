@@ -27,8 +27,6 @@ namespace Tizen.Applications
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class RecentApplicationInfo : ApplicationInfo
     {
-        private const string LogTag = "Tizen.Applications";
-
         /// <summary>
         /// Gets the instance ID.
         /// </summary>
@@ -51,7 +49,9 @@ namespace Tizen.Applications
         /// Gets the URI.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+#pragma warning disable CA1056
         public string Uri { get; private set; }
+#pragma warning restore CA1056
 
         /// <summary>
         /// Gets the launchTime.

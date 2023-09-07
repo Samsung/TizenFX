@@ -38,9 +38,9 @@ namespace Tizen.NUI
             string result = value.ToString();
             FieldInfo info = typeof(T).GetField(result);
             var attributes = info.GetCustomAttributes(typeof(DescriptionAttribute), true);
-            if (null != attributes?.FirstOrDefault() && (attributes.First() as DescriptionAttribute) != null)
+            if (null != attributes?.FirstOrDefault() && attributes?.First() as DescriptionAttribute is var firstAttribute && firstAttribute != null)
             {
-                result = (attributes.First() as DescriptionAttribute).Description;
+                result = firstAttribute.Description;
             }
 
             return result;

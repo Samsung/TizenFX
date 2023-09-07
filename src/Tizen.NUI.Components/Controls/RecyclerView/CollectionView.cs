@@ -1321,7 +1321,8 @@ namespace Tizen.NUI.Components
 
         private void ReinitializeLayout()
         {
-            if (ItemsSource == null || ItemsLayouter == null || ItemTemplate == null)
+            var localItemsLayouter = ItemsLayouter;
+            if (ItemsSource == null || localItemsLayouter == null || ItemTemplate == null)
             {
                 return;
             }
@@ -1349,11 +1350,11 @@ namespace Tizen.NUI.Components
                 itemsLayouter.Clear();
                 ClearCache();
 
-                ItemsLayouter.Initialize(this);
+                localItemsLayouter.Initialize(this);
                 needInitalizeLayouter = false;
             }
 
-            ItemsLayouter.RequestLayout(0.0f, true);
+            localItemsLayouter.RequestLayout(0.0f, true);
 
             if (delayedScrollTo)
             {
@@ -1369,11 +1370,11 @@ namespace Tizen.NUI.Components
 
             if (ScrollingDirection == Direction.Horizontal)
             {
-                ContentContainer.SizeWidth = (float)ItemsLayouter?.CalculateLayoutOrientationSize();
+                ContentContainer.SizeWidth = (float)localItemsLayouter.CalculateLayoutOrientationSize();
             }
             else
             {
-                ContentContainer.SizeHeight = (float)ItemsLayouter?.CalculateLayoutOrientationSize();
+                ContentContainer.SizeHeight = (float)localItemsLayouter.CalculateLayoutOrientationSize();
             }
         }
 

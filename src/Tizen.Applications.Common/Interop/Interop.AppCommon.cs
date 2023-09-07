@@ -110,6 +110,9 @@ internal static partial class Interop
 
         [DllImport(Libraries.AppCommon, EntryPoint = "app_get_res_control_global_resource_path")]
         internal static extern AppCommonErrorCode AppGetResControlGlobalResourcePath(string applicationId, out string path);
+
+        [DllImport(Libraries.AppCommon, EntryPoint = "app_event_get_time_zone")]
+        internal static extern ErrorCode AppEventGetTimeZone(IntPtr handle, out string timeZone, out string timeZoneId);
     }
 }
 

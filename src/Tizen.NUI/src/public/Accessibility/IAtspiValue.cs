@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2022 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2023 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,9 +20,16 @@ using System.ComponentModel;
 
 namespace Tizen.NUI.Accessibility
 {
+    /// <summary>
+    /// Interface representing objects which can store numeric value.
+    /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public interface IAtspiValue
     {
+        /// <summary>
+        /// Gets the lowest possible value.
+        /// </summary>
+        /// <returns> The minimum value </returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         double AccessibilityGetMinimum();
 
@@ -52,12 +59,25 @@ namespace Tizen.NUI.Accessibility
         [EditorBrowsable(EditorBrowsableState.Never)]
         string AccessibilityGetValueText();
 
+        /// <summary>
+        /// Gets the highest possible value.
+        /// </summary>
+        /// <returns> The highest value </returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         double AccessibilityGetMaximum();
 
+        /// <summary>
+        /// Sets the current value.
+        /// </summary>
+        /// <param name="value"> The current value to set </param>
+        /// <returns> True if value could have been assigned, false otherwise </returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         bool AccessibilitySetCurrent(double value);
 
+        /// <summary>
+        /// Gets the lowest increment that can be distinguished.
+        /// </summary>
+        /// <returns> The lowest increment </returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         double AccessibilityGetMinimumIncrement();
     }

@@ -189,7 +189,7 @@ namespace Tizen.NUI.Binding
             if (property == null)
                 throw new ArgumentNullException(nameof(property));
 
-            if (!IsBinded && property.ValueGetter != null)
+            if (!IsBound && property.ValueGetter != null)
             {
                 return property.ValueGetter(this);
             }
@@ -306,7 +306,7 @@ namespace Tizen.NUI.Binding
 
         internal void InternalSetValue(BindableProperty property, object value)
         {
-            if (true == IsBinded)
+            if (true == IsBound)
             {
                 SetValue(property, value, false, true);
             }
@@ -617,7 +617,7 @@ namespace Tizen.NUI.Binding
             if (fromStyle && !CanBeSetFromStyle(targetProperty))
                 return;
 
-            IsBinded = true;
+            IsBound = true;
 
             var context = GetOrCreateContext(targetProperty);
             if (fromStyle)
@@ -791,7 +791,29 @@ namespace Tizen.NUI.Binding
             }
         }
 
+        /// <summary>
+        /// Check if object is bound or not.
+        /// This API used for legacy codes.
+        /// Should be removed after all app usage replaced into IsBound.
+        /// </summary>
+        [Obsolete("This has been deprecated in API11. Use IsBound property instead.")]
         internal bool IsBinded
+        {
+            get
+            {
+                return IsBound;
+            }
+            set
+            {
+                IsBound = value;
+            }
+        }
+
+        /// <summary>
+        /// Check if object is bound or not.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsBound
         {
             get;
             set;
@@ -805,7 +827,7 @@ namespace Tizen.NUI.Binding
 
             if (newvalue is BindableObject targetBindableObject)
             {
-                targetBindableObject.IsBinded = true;
+                targetBindableObject.IsBound = true;
             }
         }
 

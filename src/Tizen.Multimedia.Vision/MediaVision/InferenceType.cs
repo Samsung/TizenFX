@@ -37,6 +37,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// ArmNN backend type
         /// </summary>
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         ArmNN,
 
         /// <summary>
@@ -46,6 +47,7 @@ namespace Tizen.Multimedia.Vision
         /// Should be set <see cref="InferenceTargetDevice"/> to <see cref="InferenceTargetDevice.Custom"/>.
         /// </remarks>
         /// <since_tizen> 8 </since_tizen>
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         MLApi,
 
         /// <summary>
@@ -56,30 +58,19 @@ namespace Tizen.Multimedia.Vision
         /// <see cref="InferenceTargetDevice.GPU"/>.
         /// </remarks>
         /// <since_tizen> 8 </since_tizen>
-        One
-    }
-
-    /// <summary>
-    /// Specifies the type of target. It's used for running inference backend.
-    /// </summary>
-    /// <since_tizen> 6 </since_tizen>
-    [Obsolete("Deprecated since API8; Will be removed in API10. Please use InferenceTargetDevice instead.")]
-    public enum InferenceTargetType
-    {
-        /// <summary>
-        /// CPU target
-        /// </summary>
-        CPU,
+        One,
 
         /// <summary>
-        /// GPU target
+        /// NNTrainer backend type
         /// </summary>
-        GPU,
+        /// <since_tizen> 11 </since_tizen>
+        NNTrainer,
 
         /// <summary>
-        /// Custom target
+        /// SNPE(Snapdragon Neural Processing Engine) backend type
         /// </summary>
-        Custom
+        /// <since_tizen> 11 </since_tizen>
+        Snpe
     }
 
     /// <summary>
