@@ -29,7 +29,9 @@ namespace Tizen.Applications
         /// Initializes the ServiceApplication class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+#pragma warning disable CA2000
         public ServiceApplication() : base(new ServiceCoreBackend())
+#pragma warning restore CA2000
         {
         }
 
