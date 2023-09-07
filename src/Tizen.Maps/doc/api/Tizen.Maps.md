@@ -4,6 +4,9 @@ remarks: *content
 ---
 ## Overview
 
+[!NOTE]
+All maps-service APIs have been deprecated since Tizen 8.0 and will be removed after two releases without any alternatives.
+
 Maps API provides a developer with a set of functions, helping to create Maps aware applications.
 
 Maps API comprises of following features:
