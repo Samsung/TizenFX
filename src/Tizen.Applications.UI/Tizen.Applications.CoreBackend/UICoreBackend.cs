@@ -28,12 +28,14 @@ namespace Tizen.Applications.CoreBackend
         private IntPtr _localeChangedEventHandle = IntPtr.Zero;
         private IntPtr _regionChangedEventHandle = IntPtr.Zero;
         private IntPtr _deviceOrientationChangedEventHandle = IntPtr.Zero;
+        private IntPtr _timeZoneChangedEventHandle = IntPtr.Zero;
         private bool _disposedValue = false;
         private Interop.Application.AppEventCallback _onLowMemoryNative;
         private Interop.Application.AppEventCallback _onLowBatteryNative;
         private Interop.Application.AppEventCallback _onLocaleChangedNative;
         private Interop.Application.AppEventCallback _onRegionChangedNative;
         private Interop.Application.AppEventCallback _onDeviceOrientationChangedNative;
+        private Interop.Application.AppEventCallback _onTimeZoneChangedNative;
 
         public UICoreBackend()
         {
@@ -48,6 +50,7 @@ namespace Tizen.Applications.CoreBackend
             _onLocaleChangedNative = new Interop.Application.AppEventCallback(OnLocaleChangedNative);
             _onRegionChangedNative = new Interop.Application.AppEventCallback(OnRegionChangedNative);
             _onDeviceOrientationChangedNative = new Interop.Application.AppEventCallback(OnDeviceOrientationChangedNative);
+            _onTimeZoneChangedNative = new Interop.Application.AppEventCallback(OnTimeZoneChangedNative);
         }
 
         public override void Exit()
@@ -89,6 +92,12 @@ namespace Tizen.Applications.CoreBackend
                 Log.Error(LogTag, "Failed to add event handler for DeviceOrientationChanged event. Err = " + err);
             }
 
+            err = Interop.Application.AddEventHandler(out _timeZoneChangedEventHandle, AppEventType.TimeZoneChanged, _onTimeZoneChangedNative, IntPtr.Zero);
+            if (err != ErrorCode.None)
+            {
+                Log.Error(LogTag, "Failed to add event handler for TimeZoneChanged event. Err = " + err);
+            }
+
             err = Interop.Application.Main(args.Length, args, ref _callbacks, IntPtr.Zero);
             if (err != ErrorCode.None)
             {
@@ -124,6 +133,10 @@ namespace Tizen.Applications.CoreBackend
                 if (_deviceOrientationChangedEventHandle != IntPtr.Zero)
                 {
                     Interop.Application.RemoveEventHandler(_deviceOrientationChangedEventHandle);
+                }
+                if (_timeZoneChangedEventHandle != IntPtr.Zero)
+                {
+                    Interop.Application.RemoveEventHandler(_timeZoneChangedEventHandle);
                 }
 
                 _disposedValue = true;
@@ -161,8 +174,7 @@ namespace Tizen.Applications.CoreBackend
             {
                 // Create a SafeAppControlHandle but the ownsHandle is false,
                 // because the appControlHandle will be closed by native appfw after this method automatically.
-                SafeAppControlHandle safeHandle = new SafeAppControlHandle(appControlHandle, false);
-
+                using SafeAppControlHandle safeHandle = new SafeAppControlHandle(appControlHandle, false);
                 var handler = Handlers[EventType.AppControlReceived] as Action<AppControlReceivedEventArgs>;
                 handler?.Invoke(new AppControlReceivedEventArgs(new ReceivedAppControl(safeHandle)));
             }
@@ -209,6 +221,11 @@ namespace Tizen.Applications.CoreBackend
         protected override void OnDeviceOrientationChangedNative(IntPtr infoHandle, IntPtr data)
         {
             base.OnDeviceOrientationChangedNative(infoHandle, data);
+        }
+
+        protected override void OnTimeZoneChangedNative(IntPtr infoHandle, IntPtr data)
+        {
+            base.OnTimeZoneChangedNative(infoHandle, data);
         }
     }
 }
