@@ -35,7 +35,9 @@ namespace Tizen.Applications
         /// The default backend for the UI application will be used.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
+#pragma warning disable CA2000
         public CoreUIApplication() : base(new UICoreBackend())
+#pragma warning restore CA2000
         {
         }
 
