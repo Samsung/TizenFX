@@ -56,6 +56,7 @@ namespace Tizen.NUI
         private MoveCompletedEventCallbackType moveCompletedEventCallback;
         private ResizeCompletedEventCallbackType resizeCompletedEventCallback;
         private InsetsChangedEventCallbackType insetsChangedEventCallback;
+        private WindowPointerConstraintsEventCallback windowPointerConstraintsEventCallback;
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WindowFocusChangedEventCallbackType(IntPtr window, bool focusGained);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -88,6 +89,8 @@ namespace Tizen.NUI
         private delegate void ResizeCompletedEventCallbackType(IntPtr window, IntPtr size);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void InsetsChangedEventCallbackType(int partType, int partState, IntPtr extents);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void WindowPointerConstraintsEventCallback(IntPtr window, IntPtr constraintsEvent);
 
 
         /// <summary>
@@ -605,6 +608,34 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Emits the event when pointer is locked/unlocked<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<PointerConstraintsEventArgs> PointerConstraintsEvent
+        {
+            add
+            {
+                if (windowPointerConstraintsEventHandler == null)
+                {
+                    windowPointerConstraintsEventCallback = OnWindowPointerConstraintsEvent;
+                    using WindowPointerConstraintsSignal signal = new WindowPointerConstraintsSignal(Interop.WindowPointerConstraintsSignal.GetSignal(SwigCPtr), false);
+                    signal?.Connect(windowPointerConstraintsEventCallback);
+                }
+                windowPointerConstraintsEventHandler += value;
+            }
+            remove
+            {
+                windowPointerConstraintsEventHandler -= value;
+                if (windowPointerConstraintsEventHandler == null && windowPointerConstraintsEventCallback != null)
+                {
+                    using WindowPointerConstraintsSignal signal = new WindowPointerConstraintsSignal(Interop.WindowPointerConstraintsSignal.GetSignal(SwigCPtr), false);
+                    signal?.Disconnect(windowMouseRelativeEventCallback);
+                    windowPointerConstraintsEventCallback = null;
+                }
+            }
+        }
+
         private event EventHandler<FocusChangedEventArgs> windowFocusChangedEventHandler;
         private event EventHandler<TouchEventArgs> rootLayerTouchDataEventHandler;
         private ReturnTypeEventHandler<object, TouchEventArgs, bool> rootLayerInterceptTouchDataEventHandler;
@@ -625,6 +656,7 @@ namespace Tizen.NUI
         private event EventHandler<WindowMoveCompletedEventArgs> moveCompletedHandler;
         private event EventHandler<WindowResizeCompletedEventArgs> resizeCompletedHandler;
         private event EventHandler<InsetsChangedEventArgs> insetsChangedEventHandler;
+        private event EventHandler<PointerConstraintsEventArgs> windowPointerConstraintsEventHandler;
 
 
         internal event EventHandler EventProcessingFinished
@@ -915,6 +947,13 @@ namespace Tizen.NUI
                 using WindowInsetsChangedSignal signal = new WindowInsetsChangedSignal(Interop.WindowInsetsChangedSignalType.Get(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(insetsChangedEventCallback);
                 insetsChangedEventCallback = null;
+            }
+
+            if (windowPointerConstraintsEventCallback != null)
+            {
+                using WindowPointerConstraintsSignal signal = new WindowPointerConstraintsSignal(Interop.WindowPointerConstraintsSignal.GetSignal(GetBaseHandleCPtrHandleRef), false);
+                signal?.Disconnect(windowPointerConstraintsEventCallback);
+                windowPointerConstraintsEventCallback = null;
             }
         }
 
@@ -1210,6 +1249,22 @@ namespace Tizen.NUI
             }
         }
 
+        private void OnWindowPointerConstraintsEvent(IntPtr view, IntPtr constraintsEvent)
+        {
+            if (constraintsEvent == global::System.IntPtr.Zero)
+            {
+                NUILog.Error("constraintsEvent should not be null!");
+                return;
+            }
+
+            if (windowPointerConstraintsEventHandler != null)
+            {
+                PointerConstraintsEventArgs e = new PointerConstraintsEventArgs();
+                e.PointerConstraints = Tizen.NUI.PointerConstraints.GetPointerConstraintsFromPtr(constraintsEvent);
+                windowPointerConstraintsEventHandler(this, e);
+            }
+        }
+
         /// <summary>
         /// The focus changed event argument.
         /// </summary>
@@ -1374,6 +1429,32 @@ namespace Tizen.NUI
                 set
                 {
                     mouseEvent = value;
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// PointerConstraints evnet arguments.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class PointerConstraintsEventArgs : EventArgs
+        {
+            private PointerConstraints constraintsEvent;
+
+            /// <summary>
+            /// PointerConstraints event.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public PointerConstraints PointerConstraints
+            {
+                get
+                {
+                    return constraintsEvent;
+                }
+                set
+                {
+                    constraintsEvent = value;
                 }
             }
         }
