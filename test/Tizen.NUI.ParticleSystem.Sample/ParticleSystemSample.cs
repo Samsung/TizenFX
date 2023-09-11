@@ -151,9 +151,10 @@ namespace Tizen.NUI.ParticleSystem.Sample
 
             var view = new View();
             view.BackgroundColor = Color.Wheat;
-            view.Size = new Size(1, 1);
-            view.PivotPoint = new Position(0, 0);
-            view.Position2D = new Position2D(mWindow.Size.Width/2, mWindow.Size.Height/2);
+            view.Size = new Size(mWindow.Size.Width, mWindow.Size.Height);
+            view.PivotPoint = PivotPoint.Center;
+            view.ParentOrigin = ParentOrigin.TopLeft;
+            view.Position2D = new Position2D(0, 0);
             mWindow.Add(view);
             // Attach emitter to view
             mEmitter = new ParticleEmitter(view)
