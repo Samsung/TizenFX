@@ -27,6 +27,7 @@ namespace Tizen.NUI.ParticleSystem
     /// <summary>
     /// Enum defining blending options when rendering the particles.
     /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public enum ParticleBlendingMode
     {
         Additive = 0,
@@ -60,6 +61,7 @@ namespace Tizen.NUI.ParticleSystem
     /// ParticleSource and ParticleModifier callback interfaces should not be accessing
     /// Event side (NUI) objects. Both callbacks are executed on Update thread.
     /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class ParticleEmitter : BaseHandle
     {
         internal ParticleEmitter(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
