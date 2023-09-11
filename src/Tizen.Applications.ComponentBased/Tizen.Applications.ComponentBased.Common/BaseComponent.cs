@@ -69,6 +69,12 @@ namespace Tizen.Applications.ComponentBased.Common
         public event EventHandler<SuspendedStateEventArgs> SuspendedStateChanged;
 
         /// <summary>
+        /// Occurs when the time zone is changed.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        public event EventHandler<TimeZoneChangedEventArgs> TimeZoneChanged;
+
+        /// <summary>
         /// A component instance ID.
         /// It will be created after OnCreate method is invoked.
         /// </summary>
@@ -167,6 +173,11 @@ namespace Tizen.Applications.ComponentBased.Common
         internal void OnSuspendedStateCallback(int state)
         {
             SuspendedStateChanged?.Invoke(this, new SuspendedStateEventArgs((SuspendedState)state));
+        }
+
+        internal void OnTimeZoneChangedCallback(string timeZone, string timeZoneId)
+        {
+            TimeZoneChanged?.Invoke(this, new TimeZoneChangedEventArgs(timeZone, timeZoneId));
         }
 
         /// <summary>

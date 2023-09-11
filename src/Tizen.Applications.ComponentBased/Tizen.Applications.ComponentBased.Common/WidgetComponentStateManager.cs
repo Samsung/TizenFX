@@ -41,6 +41,7 @@ namespace Tizen.Applications.ComponentBased.Common
             _callbacks.OnResume = new Interop.CBApplication.WidgetResumeCallback(OnResumeCallback);
             _callbacks.OnStart = new Interop.CBApplication.WidgetStartCallback(OnStartCallback);
             _callbacks.OnStop = new Interop.CBApplication.WidgetStopCallback(OnStopCallback);
+            _callbacks.OnTimeZoneChanged = new Interop.CBApplication.WidgetTimeZoneChangedCallback(OnTimeZoneChangedCallback);
             Parent = parent;
         }
 
