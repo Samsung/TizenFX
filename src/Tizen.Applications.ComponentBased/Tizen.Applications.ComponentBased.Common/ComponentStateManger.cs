@@ -114,6 +114,17 @@ namespace Tizen.Applications.ComponentBased.Common
             }
         }
 
+        protected void OnTimeZoneChangedCallback(IntPtr context, string timeZone, string timeZoneId, IntPtr userData)
+        {
+            foreach (BaseComponent com in ComponentInstances)
+            {
+                if (com.Handle == context)
+                {
+                    com.OnTimeZoneChangedCallback(timeZone, timeZoneId);
+                }
+            }
+        }
+
         protected void OnRestoreCallback(IntPtr context, IntPtr content, IntPtr userData)
         {
             foreach (BaseComponent com in ComponentInstances)

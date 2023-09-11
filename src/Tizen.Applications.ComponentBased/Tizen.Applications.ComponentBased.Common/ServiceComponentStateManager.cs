@@ -36,6 +36,7 @@ namespace Tizen.Applications.ComponentBased.Common
             _callbacks.OnCreate = new Interop.CBApplication.ServiceCreateCallback(OnCreateCallback);
             _callbacks.OnDestroy = new Interop.CBApplication.ServiceDestroyCallback(OnDestroyCallback);
             _callbacks.OnStart = new Interop.CBApplication.ServiceStartCommandCallback(OnStartCallback);
+            _callbacks.OnTimeZoneChanged = new Interop.CBApplication.ServiceTimeZoneChangedCallback(OnTimeZoneChangedCallback);
             Parent = parent;
         }
 
@@ -64,7 +65,7 @@ namespace Tizen.Applications.ComponentBased.Common
             {
                 if (sc.Handle == context)
                 {
-                    SafeAppControlHandle handle = new SafeAppControlHandle(appControl, false);
+                    using SafeAppControlHandle handle = new SafeAppControlHandle(appControl, false);
                     AppControl control = new AppControl(handle);
                     sc.OnStartCommand(control, restarted);
                     break;
