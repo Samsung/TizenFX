@@ -11,7 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="chipmunk\" />
+    <Folder Include="chipmunk" />
+    <Folder Include="interop" />
+    <Folder Include="wrapper" />
   </ItemGroup>
 
 </Project>
