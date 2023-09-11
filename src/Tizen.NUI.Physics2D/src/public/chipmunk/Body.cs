@@ -7,10 +7,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -247,7 +247,7 @@ namespace Tizen.NUI.Physics2D.Chipmunk
 
         /// <summary>
         /// Mass of the rigid body. Mass does not have to be expressed in any particular units, but
-        /// relative masses should be consistent. 
+        /// relative masses should be consistent.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public double Mass
@@ -259,7 +259,7 @@ namespace Tizen.NUI.Physics2D.Chipmunk
         /// <summary>
         /// Moment of inertia of the body. The mass tells you how hard it is to push an object,
         /// the MoI tells you how hard it is to spin the object. Don't try to guess the MoI, use the
-        /// MomentFor*() functions to estimate it, or the physics may behave strangely. 
+        /// MomentFor*() functions to estimate it, or the physics may behave strangely.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public double Moment

@@ -20,7 +20,13 @@ using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Linq;
+using Tizen.NUI;
+using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Constants;
+using Tizen.NUI.Physics2D;
 using Tizen.NUI.Physics2D.Chipmunk;
+
+
 
 // Tests the basic functionality of the Chipmunk2D physics engine without the need of any rendering.
 // It sets up a 2D physics simulation with a dynamic circle dropping to the top of two static segments
@@ -28,182 +34,98 @@ using Tizen.NUI.Physics2D.Chipmunk;
 // and the position of the circle body is printed at each step to verify the correctness of the physics
 // simulation.
 
-class Physics2DSample
+class Physics2DSample : NUIApplication
 {
-    public Physics2DSample()
+    static string IMAGE_DIR = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/";
+
+    Window mWindow;
+    Vector2 mWindowSize;
+    Matrix mTransform;
+    PhysicsAdaptor mPhysicsAdaptor;
+
+    protected override void OnCreate()
     {
+        // Up call to the Base class first
+        base.OnCreate();
+
+        mWindow = Window.Instance;
+        mWindow.BackgroundColor = Color.DarkOrchid;
+        mWindowSize = mWindow.WindowSize;
+
+        mTransform = new Matrix();
+        mTransform.SetIdentityAndScale(new Vector3(1.0f, -1.0f, 1.0f));
+        mTransform.SetTranslation(new Vector3(mWindowSize.Width * 0.5f, mWindowSize.Height * 0.5f, 0.0f));
+
         // Create a space for physics simulation
-        var space = new Space();
-    
-        // Set up gravity along the Y-axis (negative value for downward)
-        var gravity = new Vect(0, -100);
-        space.Gravity = gravity;
-        
-        // Create two static bodies (static bodies do not move) with shapes (segments) to form the ground
-        var groundBody1 = new Body(BodyType.Static);
-        var groundBody2 = new Body(BodyType.Static);
-                    
-        // Add the body to the space
-        space.AddBody(groundBody1);
-        space.AddBody(groundBody2);
+        mPhysicsAdaptor = new PhysicsAdaptor(mTransform, mWindowSize);
+        mWindow.AddLayer(mPhysicsAdaptor.GetRootLayer());
 
-        var groundStart = new Vect(-1000, 0); // Start point of the ground
-        var groundEnd = new Vect(1000, 0); // End point of the ground
-    
-        var groundShape1 = new Segment(groundBody1, groundStart, groundEnd, 0);
-        var groundShape2 = new Segment(groundBody2, groundStart, groundEnd, 0);
-        
-        groundShape1.CollisionType = 0;
-        groundShape2.CollisionType = 1;
-        
-        groundShape1.Elasticity = 0.85f;
-        groundShape2.Elasticity = 0.85f;
-    
-        // Add the shapes to the space
-        space.AddShape(groundShape1);
-        space.AddShape(groundShape2);
-    
-        // Create a dynamic body with a circle shape
-        var radius = 20.0;
-        var mass = 1.0;
-        var moment = Circle.MomentForCircle(mass, 0, radius, Vect.Zero);
-        
-        // Set initial position for the circle
-        var circleBody = new Body(mass, moment);
-        circleBody.Position = new Vect(0, 50);
-    
-        // Add the body to the space
-        space.AddBody(circleBody);
-    
-        // Create a circle shape
-        var circleShape = new Circle(circleBody, radius, Vect.Zero);
-        circleShape.CollisionType = 2;
-        circleShape.Elasticity = 0.85f;
-    
-        // Add the circle shape to the space
-        space.AddShape(circleShape);
+        using (var accessor = mPhysicsAdaptor.GetAccessor())
+        {
+            var space = accessor.GetNative();
 
-        // Detect the collision between the circle and the ground        
-        CollisionHandler handler = space.GetOrCreateCollisionHandler(0, 2);
-        handler.Data = new StringBuilder();
-        
-        handler.Begin = (arbiterHandle, spaceHandle, userData) =>
-        {
-            StringBuilder builder = (StringBuilder)userData;
-            _ = builder.Append("Begin -> ");
-            
-            Console.WriteLine("CollisionHandler::" + handler.Data.ToString());
-        };
-    
-        handler.PreSolve = (arbiterHandle, spaceHandle, userData) =>
-        {
-            StringBuilder builder = (StringBuilder)userData;
-            _ = builder.Append("PreSolve -> ");
-            
-            Console.WriteLine("CollisionHandler::" + handler.Data.ToString());
-    
-            return true;
-        };
-    
-        handler.PostSolve = (arbiterHandle, spaceHandle, userData) =>
-        {
-            StringBuilder builder = (StringBuilder)userData;
-            _ = builder.Append("PostSolve -> ");
-            
-            Console.WriteLine("CollisionHandler::" + handler.Data.ToString());
-        };
-    
-        handler.Separate = (arbiterHandle, spaceHandle, userData) =>
-        {
-            StringBuilder builder = (StringBuilder)userData;
-            _ = builder.Append("Separate -> ");
-            
-            Console.WriteLine("CollisionHandler::" + handler.Data.ToString());
-        };
-        
-    
-        // Simulate the physics for some time steps
-        var numSteps = 60; // Number of simulation steps
-        var timeStep = 1.0 / 60.0; // Time step for each simulation step (60 FPS)
-        
-        // Set the velocity of the circle body to make it move to the right
-        circleBody.Velocity = new Vect(100, 0); // Velocity of (100, 0) along the X-axis
-        
-        for (int i = 0; i < numSteps; ++i)
-        {
-            space.Step(timeStep);
-    
-            // Print the position of the circle body during simulation
-            var position = circleBody.Position;
-            Console.WriteLine("Step " + i + " - Circle Position: (" + position.X + ", " + position.Y + ")");
-        }
+            // Set up gravity along the Y-axis (negative value for downward)
+            var gravity = new Vect(0, -100);
+            space.Gravity = gravity;
 
-        // Make a point query on a shape
-        {
-            circleShape.Filter = new ShapeFilter((UIntPtr)10, 1, 5);
-            ShapeFilter filter = circleShape.Filter;
-            Console.WriteLine("ShapeFilter: " + filter.Group + ", " + filter.Categories + ", " + filter.Mask);
-        
-            var body = new Body(1, 1.66);
-            var shape = new Box(body, 2, 2, 0);
-    
-            PointQueryInfo point = shape.PointQuery(new Vect(3, 4));
-            Console.WriteLine("Shape PointQuery: Distance: " + point.Distance + ", Point: " + point.Point + ", Gradient.X: " + point.Gradient.X + ", Gradient.Y: " + point.Gradient.Y);            
-    
-            shape.Dispose();
-            body.Dispose();
+            // Create two static bodies (static bodies do not move) with shapes (segments) to form the ground
+            var groundBody1 = new Body(BodyType.Static);
+            var groundBody2 = new Body(BodyType.Static);
+
+            // Add the body to the space
+            space.AddBody(groundBody1);
+            space.AddBody(groundBody2);
+
+            var groundStart = new Vect(-1000.0f, 0.0f); // Start point of the ground
+            var groundEnd = new Vect(1000.0f, 0.0f); // End point of the ground
+
+            var groundShape1 = new Segment(groundBody1, groundStart, groundEnd, 0);
+            var groundShape2 = new Segment(groundBody2, groundStart, groundEnd, 0);
+
+            groundShape1.CollisionType = 0;
+            groundShape2.CollisionType = 1;
+
+            groundShape1.Elasticity = 0.85f;
+            groundShape2.Elasticity = 0.85f;
+
+            // Add the shapes to the space
+            space.AddShape(groundShape1);
+            space.AddShape(groundShape2);
+
+            // Create a dynamic body with a circle shape
+            var radius = 13.0;
+            var mass = 1.0;
+            var moment = Circle.MomentForCircle(mass, 0, radius, Vect.Zero);
+
+            // Set initial position for the circle
+            var circleBody = new Body(mass, moment);
+            circleBody.Position = new Vect(0, 50);
+
+            // Add the body to the space
+            space.AddBody(circleBody);
+
+            // Create a circle shape
+            var circleShape = new Circle(circleBody, radius, Vect.Zero);
+            circleShape.CollisionType = 2;
+            circleShape.Elasticity = 0.85f;
+
+            // Add the circle shape to the space
+            space.AddShape(circleShape);
+
+            View ball;
+            ball = new ImageView(IMAGE_DIR + "blocks-ball.png")
+            {
+                Name = "ball",
+                Size = new Size(26, 26)
+            };
+
+            var physicsBall = mPhysicsAdaptor.AddViewToBody(ball, circleBody);
+            physicsBall.AsyncSetPhysicsPosition(new Vector3(0.0f, 100.0f, 0.0f));
+            // Auto dispose of accessor
         }
-    
-        // Make a point query on a space
-        {
-            var mySpace = new Space();
-            var body = new Body(1, 1.66);
-            var shape = new Box(body, 100, 100, 0);
-    
-            body.Position = new Vect(0, 0);
-    
-            PointQueryInfo[] infos = mySpace.PointQuery(body.Position, 10.0, ShapeFilter.FILTER_ALL).ToArray();
-            Console.WriteLine("Space PointQuery: infos.Length: " + infos.Length);
-    
-            mySpace.AddBody(body);
-            mySpace.AddShape(shape);
-    
-            infos = mySpace.PointQuery(body.Position, 10.0, ShapeFilter.FILTER_ALL).ToArray();
-            Console.WriteLine("Space PointQuery: infos.Length: " + infos.Length);
-    
-            if (infos.Length > 0 && shape == infos[0].Shape)
-            {
-                Console.WriteLine("Space PointQuery: The shape matches");
-            }
-    
-            PointQueryInfo info = space.PointQueryNearest(new Vect(0, 0), 100.0, ShapeFilter.FILTER_ALL);
-            
-            if (info == null || info.Shape == null)
-            {
-                Console.WriteLine("Space PointQueryNearest: No shape is found");
-            }
-            else
-            {
-                Console.WriteLine("Shape PointQueryNearest: Distance: " + info.Distance + ", Point: " + info.Point + ", Gradient.X: "  + info.Gradient.X + ", Gradient.Y: " + info.Gradient.Y + ", Body position: " + info.Shape.Body.Position);
-            }
-    
-            shape.Dispose();
-            body.Dispose();
-            mySpace.Dispose();
-        }
-        
-        // Clean up
-        groundShape1.Dispose();
-        groundShape2.Dispose();
-        circleShape.Dispose();
-    
-        groundBody1.Dispose();
-        groundBody2.Dispose();
-        circleBody.Dispose();
-    
-        space.Dispose();
+        mPhysicsAdaptor.CreateSyncPoint();
     }
-    
+
     /// <summary>
     /// The main entry point for the application.
     /// </summary>
@@ -211,6 +133,6 @@ class Physics2DSample
     static void Main(string[] args)
     {
         Physics2DSample example = new Physics2DSample();
+        example.Run(args);
     }
 }
-
