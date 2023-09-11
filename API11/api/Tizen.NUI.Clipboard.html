@@ -53,7 +53,7 @@
   Clipboard
   </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Clipboard/ClipboardEvent.cs/#L66" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Clipboard/ClipboardEvent.cs/#L79" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -294,6 +294,52 @@ public void OnClipboardDataReceived(bool success, ClipEvent clipEvent)
   <p>The following example demonstrates how to use the SetData.</p>
 <pre><code>string MIME_TYPE_PLAIN_TEXT = &quot;text/plain;charset=utf-8&quot;;
 Clipboard.Instance.SetData(MIME_TYPE_PLAIN_TEXT, &quot;Hello Clipboard&quot;);</code></pre>
+
+  
+  
+  <h2 id="events">Events
+  </h2>
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Clipboard/ClipboardEvent.cs/#L109">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Clipboard_DataSelected" data-uid="Tizen.NUI.Clipboard.DataSelected">DataSelected</h4>
+    <section>
+      <p>The DataSelected event is emitted when a copy event occurs somewhere.<br>
+In order for this event to operate normally,<br>
+the process using this event must be Secondary Selection.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;ClipboardDataSelectedEventArgs&gt; DataSelected</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.ClipboardDataSelectedEventArgs.html">ClipboardDataSelectedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Clipboard_DataSelected_examples">Examples</h5>
+  <p>The following example demonstrates how to use the DataSelected.</p>
+<pre><code>kvmService.SetSecondarySelction(); // precondition
+
+Clipboard.Instance.DataSelected += (s, e) =>
+{
+    string selectedType = e.MimeType;
+};</code></pre>
 
   
   

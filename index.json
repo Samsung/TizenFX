@@ -22409,6 +22409,11 @@
     "title": "Class Clipboard",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.ClipboardDataSelectedEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.ClipboardDataSelectedEventArgs.html",
+    "title": "Class ClipboardDataSelectedEventArgs",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.ClipEvent.html": {
     "href": "API11/api/Tizen.NUI.ClipEvent.html",
     "title": "Struct ClipEvent",
@@ -24449,6 +24454,11 @@
     "title": "Enum PixelFormat",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.PointerConstraints.html": {
+    "href": "API11/api/Tizen.NUI.PointerConstraints.html",
+    "title": "Class PointerConstraints",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.PointStateType.html": {
     "href": "API11/api/Tizen.NUI.PointStateType.html",
     "title": "Enum PointStateType",
@@ -25782,6 +25792,11 @@
   "API11/api/Tizen.NUI.Window.MouseRelativeEventArgs.html": {
     "href": "API11/api/Tizen.NUI.Window.MouseRelativeEventArgs.html",
     "title": "Class Window.MouseRelativeEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.Window.PointerConstraintsEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.Window.PointerConstraintsEventArgs.html",
+    "title": "Class Window.PointerConstraintsEventArgs",
     "keywords": ""
   },
   "API11/api/Tizen.NUI.Window.ResizedEventArgs.html": {
