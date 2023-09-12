@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest package="org.tizen.example.Tizen.NUI.Physics2D.Sample" version="1.0.0" api-version="6" xmlns="http://tizen.org/ns/packages">
+    <profile name="common" />
+    <ui-application appid="org.tizen.example.Tizen.NUI.Physics2D.Sample" exec="Physics2DSample.dll" multiple="false" nodisplay="false" taskmanage="true" type="dotnet-nui" launch_mode="single">
+        <label>Tizen.NUI.Physics2D.Sample</label>
+        <icon>NUI.png</icon>
+        <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+        <splash-screens />
+    </ui-application>
+    <shortcut-list />
+    <dependencies />
+    <provides-appdefined-privileges />
+</manifest>
