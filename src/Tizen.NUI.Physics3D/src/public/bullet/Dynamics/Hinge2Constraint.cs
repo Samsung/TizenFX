@@ -1,0 +1,97 @@
+﻿/*
+ * Copyright (c) 2013-2022 Andres Traks
+ *
+ * This software is provided 'as-is', without any express or implied warranty.
+ * In no event will the authors be held liable for any damages arising from the use of this software.
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it freely,
+ * subject to the following restrictions:
+ *
+ * 1. The origin of this software must not be misrepresented; you must not claim that you wrote the original software. If you use this software in a product, an acknowledgment in the product documentation would be appreciated but is not required.
+ * 2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.
+ * 3. This notice may not be removed or altered from any source distribution.
+ */
+
+using System;
+using System.ComponentModel;
+using System.Numerics;
+using static Tizen.NUI.Physics3D.Bullet.UnsafeNativeMethods;
+
+namespace Tizen.NUI.Physics3D.Bullet
+{
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public class Hinge2Constraint : Generic6DofSpring2Constraint
+	{
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public Hinge2Constraint(RigidBody rigidBodyA, RigidBody rigidBodyB, global::System.Numerics.Vector3 anchor,
+		 	global::System.Numerics.Vector3 axis1, global::System.Numerics.Vector3 axis2)
+		{
+			IntPtr native = btHinge2Constraint_new(rigidBodyA.Native, rigidBodyB.Native,
+				ref anchor, ref axis1, ref axis2);
+			InitializeUserOwned(native);
+			InitializeMembers(rigidBodyA, rigidBodyB);
+		}
+
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public void SetLowerLimit(float ang1min)
+		{
+			btHinge2Constraint_setLowerLimit(Native, ang1min);
+		}
+
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public void SetUpperLimit(float ang1max)
+		{
+			btHinge2Constraint_setUpperLimit(Native, ang1max);
+		}
+
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public global::System.Numerics.Vector3 Anchor
+		{
+			get
+			{
+			 	global::System.Numerics.Vector3 value;
+				btHinge2Constraint_getAnchor(Native, out value);
+				return value;
+			}
+		}
+
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public global::System.Numerics.Vector3 Anchor2
+		{
+			get
+			{
+			 	global::System.Numerics.Vector3 value;
+				btHinge2Constraint_getAnchor2(Native, out value);
+				return value;
+			}
+		}
+
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public float Angle1 => btHinge2Constraint_getAngle1(Native);
+
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public float Angle2 => btHinge2Constraint_getAngle2(Native);
+
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public global::System.Numerics.Vector3 Axis1
+		{
+			get
+			{
+			 	global::System.Numerics.Vector3 value;
+				btHinge2Constraint_getAxis1(Native, out value);
+				return value;
+			}
+		}
+
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public global::System.Numerics.Vector3 Axis2
+		{
+			get
+			{
+			 	global::System.Numerics.Vector3 value;
+				btHinge2Constraint_getAxis2(Native, out value);
+				return value;
+			}
+		}
+	}
+}
