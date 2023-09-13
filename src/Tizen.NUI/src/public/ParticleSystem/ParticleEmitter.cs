@@ -36,21 +36,6 @@ namespace Tizen.NUI.ParticleSystem
     }
 
     /// <summary>
-    /// Internal class defining data types stored in the data streams
-    /// </summary>
-    internal enum StreamType
-    {
-        Float = 0,
-        FloatVector2 = 1,
-        FloatVector3 = 2,
-        FloatVector4 = 3,
-        Integer = 4,
-        IntVector2 = 5,
-        IntVector3 = 6,
-        IntVector4 = 7,
-    }
-    
-    /// <summary>
     /// Class ParticleEmitter creates a single emitter attached to a specified
     /// View. ParticleEmitter is responsible for spawning and updating particles.
     ///
@@ -326,7 +311,7 @@ namespace Tizen.NUI.ParticleSystem
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint AddLocalStreamFloat(float defaultValue)
         {
-            var result = Interop.ParticleEmitter.AddLocalStream_Float(SwigCPtr, (uint)StreamType.Float, defaultValue, sizeof(float));
+            var result = Interop.ParticleEmitter.AddLocalStream_Float(SwigCPtr, defaultValue);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
         }
@@ -342,7 +327,7 @@ namespace Tizen.NUI.ParticleSystem
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint AddLocalStreamVector2(Vector2 defaultValue)
         {
-            var result = Interop.ParticleEmitter.AddLocalStream_Vector2(SwigCPtr, (uint)StreamType.FloatVector2, defaultValue.SwigCPtr.Handle, sizeof(float)*2);
+            var result = Interop.ParticleEmitter.AddLocalStream_Vector2(SwigCPtr, defaultValue.SwigCPtr.Handle);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
         }
@@ -358,7 +343,7 @@ namespace Tizen.NUI.ParticleSystem
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint AddLocalStreamVector3(Vector3 defaultValue)
         {
-            var result = Interop.ParticleEmitter.AddLocalStream_Vector3(SwigCPtr, (uint)StreamType.FloatVector3, defaultValue.SwigCPtr.Handle, sizeof(float)*3);
+            var result = Interop.ParticleEmitter.AddLocalStream_Vector3(SwigCPtr, defaultValue.SwigCPtr.Handle);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
         }
@@ -374,7 +359,7 @@ namespace Tizen.NUI.ParticleSystem
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint AddLocalStreamVector4(Vector4 defaultValue)
         {
-            var result = Interop.ParticleEmitter.AddLocalStream_Vector4(SwigCPtr, (uint)StreamType.FloatVector4, defaultValue.SwigCPtr.Handle, sizeof(float)*4);
+            var result = Interop.ParticleEmitter.AddLocalStream_Vector4(SwigCPtr, defaultValue.SwigCPtr.Handle);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
         }
