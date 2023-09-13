@@ -589,6 +589,7 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
+                imageView.UpdateImage(Visual.Property.Opacity, new PropertyValue(((Color)newValue).A), false);
                 imageView.UpdateImage(Visual.Property.MixColor, new PropertyValue((Color)newValue));
             }
         },
