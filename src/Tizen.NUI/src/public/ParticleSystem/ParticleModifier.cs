@@ -96,12 +96,13 @@ namespace Tizen.NUI.ParticleSystem
         static ParticleInterfaceRegister<ParticleModifierInterface> gModifierInterfaceRegister = new ParticleInterfaceRegister<ParticleModifierInterface>();
         
         /// <summary>
-        /// Destructor
+        /// Dispose.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        ~ParticleModifier()
+        protected override void Dispose(DisposeTypes type)
         {
-            gModifierInterfaceRegister.Remove(mInterface);
+            if (disposed) return;
+            base.Dispose(type);
         }
 
         /// <summary>
