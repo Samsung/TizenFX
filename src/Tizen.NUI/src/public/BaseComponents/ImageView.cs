@@ -67,6 +67,7 @@ namespace Tizen.NUI.BaseComponents
             ImageVisualProperty.WrapModeV,
             ImageVisualProperty.SynchronousLoading,
             Visual.Property.MixColor,
+            Visual.Property.Opacity,
             Visual.Property.PremultipliedAlpha,
             ImageVisualProperty.OrientationCorrection,
             ImageVisualProperty.FastTrackUploading,
