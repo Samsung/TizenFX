@@ -76,6 +76,11 @@ namespace Tizen.NUI.Scene3D
     /// <since_tizen> 10 </since_tizen>
     public partial class Model : View
     {
+        private EventHandler meshHitEventHandler;
+        private MeshHitCallbackType meshHitCallback;
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void MeshHitCallbackType(IntPtr model);
+
         internal Model(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
@@ -602,6 +607,59 @@ namespace Tizen.NUI.Scene3D
             float scaleFactor = Interop.Model.GetImageBasedLightScaleFactor(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return scaleFactor;
+        }
+
+        /// <summary>
+        /// Set the ColliderMesh for a particular model-node.
+        /// If modelNodeName is not set, then the collider-mesh is set upon the model itself.
+        /// If colliderMeshFileName is not set, then the mesh is removed.
+        /// </summary>
+        /// <param name="colliderMeshFileName">The full file location of the collider mesh.</param>
+        /// <param name="modelNodeName">The name of the model node to apply the mesh to.</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetColliderMesh(string colliderMeshFileName, string modelNodeName)
+        {
+            Interop.Model.SetColliderMesh(SwigCPtr, colliderMeshFileName, modelNodeName);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// MeshHit event.
+        /// Called when a collider mesh is set and it is hit.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler MeshHit
+        {
+            add
+            {
+                if (meshHitEventHandler == null)
+                {
+                    meshHitCallback = OnMeshHit;
+                    Interop.Model.MeshHitConnect(SwigCPtr, meshHitCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                }
+                meshHitEventHandler += value;
+            }
+            remove
+            {
+                meshHitEventHandler -= value;
+                if (meshHitEventHandler == null && meshHitCallback != null)
+                {
+                    Interop.Model.MeshHitDisconnect(SwigCPtr, meshHitCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    meshHitCallback = null;
+                }
+            }
+        }
+
+        private void OnMeshHit(IntPtr model)
+        {
+            if (meshHitEventHandler != null)
+            {
+                meshHitEventHandler(this, null);
+            }
         }
 
         /// <summary>
