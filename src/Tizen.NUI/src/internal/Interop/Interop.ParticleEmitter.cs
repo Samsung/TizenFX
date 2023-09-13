@@ -112,11 +112,23 @@ namespace Tizen.NUI.ParticleSystem
             internal static extern int NewParticle(global::System.IntPtr emitter, float lifetime);
 
             // ParticleList
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleList_AddLocalStream")]
-            internal unsafe static extern uint AddLocalStream(global::System.Runtime.InteropServices.HandleRef jarg1, uint streamType, void* defaultValue, uint typeSize );
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleList_AddLocalStreami_Int")]
+            internal static extern uint AddLocalStream_Int(global::System.Runtime.InteropServices.HandleRef jarg1, uint streamType, int defaultValue, uint typeSize );
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleList_AddLocalStream_Float")]
+            internal static extern uint AddLocalStream_Float(global::System.Runtime.InteropServices.HandleRef jarg1, uint streamType, float defaultValue, uint typeSize );
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleList_AddLocalStream_Vector2")]
+            internal static extern uint AddLocalStream_Vector2(global::System.Runtime.InteropServices.HandleRef jarg1, uint streamType, global::System.IntPtr defaultValue, uint typeSize );
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleList_AddLocalStream_Vector3")]
+            internal static extern uint AddLocalStream_Vector3(global::System.Runtime.InteropServices.HandleRef jarg1, uint streamType, global::System.IntPtr defaultValue, uint typeSize );
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleList_AddLocalStream_Vector4")]
+            internal static extern uint AddLocalStream_Vector4(global::System.Runtime.InteropServices.HandleRef jarg1, uint streamType, global::System.IntPtr defaultValue, uint typeSize );
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleList_GetDefaultStreamIndex")]
-            internal unsafe static extern int GetDefaultStreamIndex(global::System.Runtime.InteropServices.HandleRef jarg1, uint builtInStream );
+            internal static extern int GetDefaultStreamIndex(global::System.Runtime.InteropServices.HandleRef jarg1, uint builtInStream );
 
         }
     }
