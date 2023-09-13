@@ -496,5 +496,4 @@ namespace Tizen.NUI.ParticleSystem
         private uint mIndex;
         private readonly HandleRef mEmitterRef;
     }
-
 }

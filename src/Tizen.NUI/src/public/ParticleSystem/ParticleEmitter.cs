@@ -34,7 +34,7 @@ namespace Tizen.NUI.ParticleSystem
         Screen = 1,
         Default = Additive
     }
-    
+
     /// <summary>
     /// Internal class defining data types stored in the data streams
     /// </summary>
@@ -87,6 +87,16 @@ namespace Tizen.NUI.ParticleSystem
         public ParticleEmitter( ParticleEmitter particleEmitter) : this(Interop. ParticleEmitter.New( ParticleEmitter.getCPtr(particleEmitter)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed) return;
+            base.Dispose(type);
         }
 
         /// <summary>
@@ -227,7 +237,7 @@ namespace Tizen.NUI.ParticleSystem
         }
         
         /// <summary>
-        /// Gets/sets texture to be used by the renderer
+        /// Sets texture to be used by the renderer
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Texture RendererTexture
