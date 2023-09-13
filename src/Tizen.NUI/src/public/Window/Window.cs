@@ -43,6 +43,7 @@ namespace Tizen.NUI
         private LayoutController localController;
         private Key internalLastKeyEvent;
         private Touch internalLastTouchEvent;
+        private Hover internalLastHoverEvent;
         private Timer internalHoverTimer;
 
         static internal bool IsSupportedMultiWindow()
@@ -1268,13 +1269,13 @@ namespace Tizen.NUI
         {
             if (touchPoint == null)
             {
-                using Touch touch = GetLastTouchEvent();
-                if (touch == null || touch.GetPointCount() < 1)
+                using Hover hover = GetLastHoverEvent();
+                if (hover == null || hover.GetPointCount() < 1)
                 {
                     return;
                 }
-                using Vector2 screenPosition = touch.GetScreenPosition(0);
-                touchPoint = new TouchPoint(touch.GetDeviceId(0), TouchPoint.StateType.Motion, screenPosition.X, screenPosition.Y);
+                using Vector2 screenPosition = hover.GetScreenPosition(0);
+                touchPoint = new TouchPoint(hover.GetDeviceId(0), TouchPoint.StateType.Motion, screenPosition.X, screenPosition.Y);
             }
             Interop.Window.FeedHoverEvent(SwigCPtr, TouchPoint.getCPtr(touchPoint));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -2134,6 +2135,22 @@ namespace Tizen.NUI
             Interop.Window.InternalRetrievingLastTouchEvent(SwigCPtr, internalLastTouchEvent.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return internalLastTouchEvent;
+        }
+
+        /// <summary>
+        /// Gets the last hover event the window gets.
+        /// </summary>
+        /// <returns>The last hover event the window gets.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Hover GetLastHoverEvent()
+        {
+            if(internalLastHoverEvent == null)
+            {
+                internalLastHoverEvent = new Hover();
+            }
+            Interop.Window.InternalRetrievingLastHoverEvent(SwigCPtr, internalLastHoverEvent.SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return internalLastHoverEvent;
         }
 
         /// <summary>
