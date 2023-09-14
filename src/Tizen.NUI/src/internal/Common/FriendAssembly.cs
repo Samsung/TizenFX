@@ -28,6 +28,7 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("Tizen.NUI.Extension, " + Tizen.NUI.PublicKey.TizenFX)]
 [assembly: InternalsVisibleTo("Tizen.NUI.Scene3D, " + Tizen.NUI.PublicKey.TizenFX)]
 [assembly: InternalsVisibleTo("Tizen.NUI.Physics2D, " + Tizen.NUI.PublicKey.TizenFX)]
+[assembly: InternalsVisibleTo("Tizen.NUI.Physics3D, " + Tizen.NUI.PublicKey.TizenFX)]
 
 [assembly: InternalsVisibleTo("Tizen.TV.NUI, " + Tizen.NUI.PublicKey.TizenTV)]
 [assembly: InternalsVisibleTo("Tizen.TV.NUI.Component, " + Tizen.NUI.PublicKey.TizenTV)]

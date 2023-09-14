@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <Folder Include="bullet\" />
+    <Folder Include="wrapper\" />
   </ItemGroup>
 
 </Project>

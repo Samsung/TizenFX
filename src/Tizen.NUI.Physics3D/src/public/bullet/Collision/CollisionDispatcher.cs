@@ -21,125 +21,131 @@ using static Tizen.NUI.Physics3D.Bullet.UnsafeNativeMethods;
 
 namespace Tizen.NUI.Physics3D.Bullet
 {
-	[Flags]
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public enum DispatcherFlags
-	{
-		None = 0,
-		StaticStaticReported = 1,
-		UseRelativeContactBreakingThreshold = 2,
-		DisableContactPoolDynamicAllocation = 4
-	}
+    [Flags]
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum DispatcherFlags
+    {
+        None = 0,
+        StaticStaticReported = 1,
+        UseRelativeContactBreakingThreshold = 2,
+        DisableContactPoolDynamicAllocation = 4
+    }
 
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public delegate void NearCallback(BroadphasePair collisionPair, CollisionDispatcher dispatcher, DispatcherInfo dispatchInfo);
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public delegate void NearCallback(BroadphasePair collisionPair, CollisionDispatcher dispatcher, DispatcherInfo dispatchInfo);
 
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public class CollisionDispatcher : Dispatcher
-	{
-		[UnmanagedFunctionPointer(Tizen.NUI.Physics3D.Bullet.Native.Conv), SuppressUnmanagedCodeSecurity]
-		private delegate void NearCallbackUnmanagedDelegate(IntPtr collisionPair, IntPtr dispatcher, IntPtr dispatchInfo);
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class CollisionDispatcher : Dispatcher
+    {
+        [UnmanagedFunctionPointer(Tizen.NUI.Physics3D.Bullet.Native.Conv), SuppressUnmanagedCodeSecurity]
+        private delegate void NearCallbackUnmanagedDelegate(IntPtr collisionPair, IntPtr dispatcher, IntPtr dispatchInfo);
 
-		protected CollisionConfiguration _collisionConfiguration;
-		private NearCallback _nearCallback;
-		private List<CollisionAlgorithmCreateFunc> _collisionCreateFuncs;
-		private NearCallbackUnmanagedDelegate _nearCallbackUnmanaged;
-		private IntPtr _nearCallbackUnmanagedPtr;
+        protected CollisionConfiguration _collisionConfiguration;
+        private NearCallback _nearCallback;
+        private List<CollisionAlgorithmCreateFunc> _collisionCreateFuncs;
+        private NearCallbackUnmanagedDelegate _nearCallbackUnmanaged;
+        private IntPtr _nearCallbackUnmanagedPtr;
 
-		protected internal CollisionDispatcher()
-		{
-		}
+        protected internal CollisionDispatcher()
+        {
+        }
 
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		public CollisionDispatcher(CollisionConfiguration collisionConfiguration)
-		{
-			IntPtr native = btCollisionDispatcher_new(collisionConfiguration.Native);
-			InitializeUserOwned(native);
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public CollisionDispatcher(CollisionConfiguration collisionConfiguration)
+        {
+            IntPtr native = btCollisionDispatcher_new(collisionConfiguration.Native);
+            InitializeUserOwned(native);
 
-			_collisionConfiguration = collisionConfiguration;
-		}
+            _collisionConfiguration = collisionConfiguration;
+        }
 
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		public static void DefaultNearCallback(BroadphasePair collisionPair, CollisionDispatcher dispatcher,
-			DispatcherInfo dispatchInfo)
-		{
-			btCollisionDispatcher_defaultNearCallback(collisionPair.Native, dispatcher.Native,
-				dispatchInfo.Native);
-		}
+        internal CollisionDispatcher(IntPtr native, BulletObject owner)
+        {
+            InitializeSubObject(native, owner);
+            _collisionConfiguration = new DefaultCollisionConfiguration(btCollisionDispatcher_getCollisionConfiguration(native), this);
+        }
 
-		private void NearCallbackUnmanaged(IntPtr collisionPair, IntPtr dispatcher, IntPtr dispatchInfo)
-		{
-			 global::System.Diagnostics.Debug.Assert(dispatcher == Native);
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void DefaultNearCallback(BroadphasePair collisionPair, CollisionDispatcher dispatcher,
+            DispatcherInfo dispatchInfo)
+        {
+            btCollisionDispatcher_defaultNearCallback(collisionPair.Native, dispatcher.Native,
+                dispatchInfo.Native);
+        }
 
-			_nearCallback(new BroadphasePair(collisionPair), this, new DispatcherInfo(dispatchInfo));
-		}
+        private void NearCallbackUnmanaged(IntPtr collisionPair, IntPtr dispatcher, IntPtr dispatchInfo)
+        {
+             global::System.Diagnostics.Debug.Assert(dispatcher == Native);
 
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		public void RegisterCollisionCreateFunc(BroadphaseNativeType proxyType0, BroadphaseNativeType proxyType1, CollisionAlgorithmCreateFunc createFunc)
-		{
-			if (_collisionCreateFuncs == null)
-			{
-				_collisionCreateFuncs = new List<CollisionAlgorithmCreateFunc>();
-			}
-			_collisionCreateFuncs.Add(createFunc);
+            _nearCallback(new BroadphasePair(collisionPair), this, new DispatcherInfo(dispatchInfo));
+        }
 
-			btCollisionDispatcher_registerCollisionCreateFunc(Native, proxyType0,
-				proxyType1, createFunc.Native);
-		}
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RegisterCollisionCreateFunc(BroadphaseNativeType proxyType0, BroadphaseNativeType proxyType1, CollisionAlgorithmCreateFunc createFunc)
+        {
+            if (_collisionCreateFuncs == null)
+            {
+                _collisionCreateFuncs = new List<CollisionAlgorithmCreateFunc>();
+            }
+            _collisionCreateFuncs.Add(createFunc);
 
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		public void RegisterClosestPointsCreateFunc(BroadphaseNativeType proxyType0, BroadphaseNativeType proxyType1, CollisionAlgorithmCreateFunc createFunc)
-		{
-			if (_collisionCreateFuncs == null)
-			{
-				_collisionCreateFuncs = new List<CollisionAlgorithmCreateFunc>();
-			}
-			_collisionCreateFuncs.Add(createFunc);
+            btCollisionDispatcher_registerCollisionCreateFunc(Native, proxyType0,
+                proxyType1, createFunc.Native);
+        }
 
-			btCollisionDispatcher_registerClosestPointsCreateFunc(Native, proxyType0,
-				proxyType1, createFunc.Native);
-		}
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RegisterClosestPointsCreateFunc(BroadphaseNativeType proxyType0, BroadphaseNativeType proxyType1, CollisionAlgorithmCreateFunc createFunc)
+        {
+            if (_collisionCreateFuncs == null)
+            {
+                _collisionCreateFuncs = new List<CollisionAlgorithmCreateFunc>();
+            }
+            _collisionCreateFuncs.Add(createFunc);
 
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		public CollisionConfiguration CollisionConfiguration
-		{
-			get => _collisionConfiguration;
-			set
-			{
-				btCollisionDispatcher_setCollisionConfiguration(Native, value.Native);
-				_collisionConfiguration = value;
-			}
-		}
+            btCollisionDispatcher_registerClosestPointsCreateFunc(Native, proxyType0,
+                proxyType1, createFunc.Native);
+        }
 
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		public DispatcherFlags DispatcherFlags
-		{
-			get => btCollisionDispatcher_getDispatcherFlags(Native);
-			set => btCollisionDispatcher_setDispatcherFlags(Native, value);
-		}
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public CollisionConfiguration CollisionConfiguration
+        {
+            get => _collisionConfiguration;
+            set
+            {
+                btCollisionDispatcher_setCollisionConfiguration(Native, value.Native);
+                _collisionConfiguration = value;
+            }
+        }
 
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		public NearCallback NearCallback
-		{
-			get => _nearCallback;
-			set
-			{
-				_nearCallback = value;
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public DispatcherFlags DispatcherFlags
+        {
+            get => btCollisionDispatcher_getDispatcherFlags(Native);
+            set => btCollisionDispatcher_setDispatcherFlags(Native, value);
+        }
 
-				if (value == null)
-				{
-					btCollisionDispatcher_setNearCallback(Native, IntPtr.Zero);
-					_nearCallbackUnmanaged = null;
-					return;
-				}
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public NearCallback NearCallback
+        {
+            get => _nearCallback;
+            set
+            {
+                _nearCallback = value;
 
-				if (_nearCallbackUnmanaged == null)
-				{
-					_nearCallbackUnmanaged = new NearCallbackUnmanagedDelegate(NearCallbackUnmanaged);
-					_nearCallbackUnmanagedPtr = Marshal.GetFunctionPointerForDelegate(_nearCallbackUnmanaged);
-				}
-				btCollisionDispatcher_setNearCallback(Native, _nearCallbackUnmanagedPtr);
-			}
-		}
-	}
+                if (value == null)
+                {
+                    btCollisionDispatcher_setNearCallback(Native, IntPtr.Zero);
+                    _nearCallbackUnmanaged = null;
+                    return;
+                }
+
+                if (_nearCallbackUnmanaged == null)
+                {
+                    _nearCallbackUnmanaged = new NearCallbackUnmanagedDelegate(NearCallbackUnmanaged);
+                    _nearCallbackUnmanagedPtr = Marshal.GetFunctionPointerForDelegate(_nearCallbackUnmanaged);
+                }
+                btCollisionDispatcher_setNearCallback(Native, _nearCallbackUnmanagedPtr);
+            }
+        }
+    }
 }
