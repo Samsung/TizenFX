@@ -80,8 +80,15 @@ namespace Tizen.NUI.ParticleSystem
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
-            if (disposed) return;
-            base.Dispose(type);
+            if (Disposed)
+            {
+                return;
+            }
+
+            if (HasBody())
+            {
+                base.Dispose(type);
+            }
         }
 
         /// <summary>
