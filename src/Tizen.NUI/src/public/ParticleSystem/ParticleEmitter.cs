@@ -85,10 +85,7 @@ namespace Tizen.NUI.ParticleSystem
                 return;
             }
 
-            if (HasBody())
-            {
-                base.Dispose(type);
-            }
+            base.Dispose(type);
         }
 
         /// <summary>
