@@ -31,6 +31,8 @@ AutoReqProv: no
 
 BuildRequires: dotnet-build-tools
 BuildRequires: pkgconfig(dali2-csharp-binder)
+BuildRequires: pkgconfig(dali2-csharp-binder-physics-2d)
+BuildRequires: pkgconfig(dali2-csharp-binder-physics-3d)
 Requires(post): /usr/bin/vconftool
 
 # BuildRequires for StructValidator
