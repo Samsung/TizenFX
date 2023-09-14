@@ -120,8 +120,8 @@ namespace Tizen.NUI.ParticleSystem
             if (HasBody())
             {
                 gSourceInterfaceRegister.Remove(mInterface);
-                base.Dispose(type);
             }
+            base.Dispose(type);
         }
         
         /// <summary>
