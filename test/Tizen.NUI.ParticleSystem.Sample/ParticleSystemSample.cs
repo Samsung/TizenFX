@@ -172,12 +172,7 @@ namespace Tizen.NUI.ParticleSystem.Sample
             mEmitter.AddModifier(mModifier);
             
             // Load texture
-            var pixelBuffer = ImageLoader.LoadImageFromFile(IMAGE_DIR + "/blue-part2.png");
-            Texture tex = new Texture(TextureType.TEXTURE_2D, PixelFormat.RGBA8888, pixelBuffer.GetWidth(),
-                pixelBuffer.GetHeight());
-            tex.Upload(pixelBuffer.CreatePixelData());
-            
-            mEmitter.RendererTexture = tex;
+            mEmitter.TextureResourceUrl = IMAGE_DIR + "/blue-part2.png";
             mEmitter.Start();
         }
         

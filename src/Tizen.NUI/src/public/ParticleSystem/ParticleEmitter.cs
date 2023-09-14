@@ -232,11 +232,18 @@ namespace Tizen.NUI.ParticleSystem
         /// Sets texture to be used by the renderer
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Texture RendererTexture
+        public string TextureResourceUrl
         {
             set
             {
-                Interop.ParticleEmitter.SetTexture(SwigCPtr, value.SwigCPtr);
+                var pixelBuffer = ImageLoader.LoadImageFromFile(value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                Texture tex = new Texture(TextureType.TEXTURE_2D, PixelFormat.RGBA8888, pixelBuffer.GetWidth(),
+                        pixelBuffer.GetHeight());
+                tex.Upload(pixelBuffer.CreatePixelData());
+
+                Interop.ParticleEmitter.SetTexture(SwigCPtr, tex.SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
