@@ -311,7 +311,7 @@ namespace Tizen.NUI.ParticleSystem
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint AddLocalStreamFloat(float defaultValue)
         {
-            var result = Interop.ParticleEmitter.AddLocalStream_Float(SwigCPtr, defaultValue);
+            var result = Interop.ParticleEmitter.AddLocalStreamFloat(SwigCPtr, defaultValue);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
         }
@@ -327,7 +327,7 @@ namespace Tizen.NUI.ParticleSystem
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint AddLocalStreamVector2(Vector2 defaultValue)
         {
-            var result = Interop.ParticleEmitter.AddLocalStream_Vector2(SwigCPtr, defaultValue.SwigCPtr.Handle);
+            var result = Interop.ParticleEmitter.AddLocalStreamVector2(SwigCPtr, defaultValue.SwigCPtr.Handle);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
         }
@@ -343,7 +343,7 @@ namespace Tizen.NUI.ParticleSystem
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint AddLocalStreamVector3(Vector3 defaultValue)
         {
-            var result = Interop.ParticleEmitter.AddLocalStream_Vector3(SwigCPtr, defaultValue.SwigCPtr.Handle);
+            var result = Interop.ParticleEmitter.AddLocalStreamVector3(SwigCPtr, defaultValue.SwigCPtr.Handle);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
         }
@@ -359,7 +359,7 @@ namespace Tizen.NUI.ParticleSystem
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint AddLocalStreamVector4(Vector4 defaultValue)
         {
-            var result = Interop.ParticleEmitter.AddLocalStream_Vector4(SwigCPtr, defaultValue.SwigCPtr.Handle);
+            var result = Interop.ParticleEmitter.AddLocalStreamVector4(SwigCPtr, defaultValue.SwigCPtr.Handle);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
         }
