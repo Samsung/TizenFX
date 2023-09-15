@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2022 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2023 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,10 +36,20 @@ namespace Tizen.NUI
             public static extern bool StartDragAndDrop(global::System.Runtime.InteropServices.HandleRef dragAndDrop, global::System.Runtime.InteropServices.HandleRef sourceView, global::System.Runtime.InteropServices.HandleRef shadow, string mimeType, string data, global::System.Runtime.InteropServices.HandleRef callback);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragAndDrop_AddListener")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool AddListener(global::System.Runtime.InteropServices.HandleRef dragAndDrop, global::System.Runtime.InteropServices.HandleRef targetView, global::System.Runtime.InteropServices.HandleRef callback);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragAndDrop_RemoveListener")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool RemoveListener(global::System.Runtime.InteropServices.HandleRef dragAndDrop, global::System.Runtime.InteropServices.HandleRef targetView, global::System.Runtime.InteropServices.HandleRef callback);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragAndDrop_Window_AddListener")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool WindowAddListener(global::System.Runtime.InteropServices.HandleRef dragAndDrop, global::System.Runtime.InteropServices.HandleRef targetWindow, global::System.Runtime.InteropServices.HandleRef callback);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragAndDrop_Window_RemoveListener")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool WindowRemoveListener(global::System.Runtime.InteropServices.HandleRef dragAndDrop, global::System.Runtime.InteropServices.HandleRef targetWindow, global::System.Runtime.InteropServices.HandleRef callback);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragEvent_GetAction")]
             public static extern int GetAction(global::System.IntPtr dragAndDrop);
