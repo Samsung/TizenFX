@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2022 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2023 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,9 +33,11 @@ namespace Tizen.NUI
         public delegate void SourceEventHandler(DragSourceEventType sourceEventType);
         private delegate void InternalSourceEventHandler(int sourceEventType);
         public delegate void DragAndDropEventHandler(View targetView, DragEvent dragEvent);
+        public delegate void DragAndDropWindowEventHandler(Window targetWindow, DragEvent dragEvent);
         private delegate void InternalDragAndDropEventHandler(global::System.IntPtr dragEvent);
         private InternalSourceEventHandler sourceEventCb;
         private Dictionary<View, InternalDragAndDropEventHandler> targetEventDictionary = new Dictionary<View, InternalDragAndDropEventHandler>();
+        private Dictionary<Window, InternalDragAndDropEventHandler> targetWindowEventDictionary = new Dictionary<Window, InternalDragAndDropEventHandler>();
         private View mShadowView;
         private Window mDragWindow;
         private int shadowWidth;
@@ -215,7 +217,7 @@ namespace Tizen.NUI
             if (!Interop.DragAndDrop.AddListener(SwigCPtr, View.getCPtr(targetView),
                                                  new global::System.Runtime.InteropServices.HandleRef(this, Marshal.GetFunctionPointerForDelegate<Delegate>(cb))))
             {
-                 throw new InvalidOperationException("Fail to AddListener");
+                 throw new InvalidOperationException("Fail to AddListener for View");
             }
         }
 
@@ -229,7 +231,7 @@ namespace Tizen.NUI
         {
             if (!targetEventDictionary.ContainsKey(targetView))
             {
-                 throw new InvalidOperationException("Fail to RemoveListener");
+                 throw new InvalidOperationException("Fail to RemoveListener for View");
             }
 
             InternalDragAndDropEventHandler cb = targetEventDictionary[targetView];
@@ -237,7 +239,77 @@ namespace Tizen.NUI
             if (!Interop.DragAndDrop.RemoveListener(SwigCPtr, View.getCPtr(targetView),
                                                     new global::System.Runtime.InteropServices.HandleRef(this, Marshal.GetFunctionPointerForDelegate<Delegate>(cb))))
             {
-                 throw new InvalidOperationException("Fail to RemoveListener");
+                 throw new InvalidOperationException("Fail to RemoveListener for View");
+            }
+        }
+
+        /// <summary>
+        /// Adds listener for drop targets
+        /// </summary>
+        /// <param name="targetWindow">The target Window</param>
+        /// <param name="callback">The callback function to get drag event when the drag source enters, moves, leaves and drops on the drop target</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddListener(Window targetWindow, DragAndDropWindowEventHandler callback)
+        {
+            InternalDragAndDropEventHandler cb = (dragEvent) =>
+            {
+                DragType type = (DragType)Interop.DragAndDrop.GetAction(dragEvent);
+                DragEvent ev = new DragEvent();
+                global::System.IntPtr cPtr = Interop.DragAndDrop.GetPosition(dragEvent);
+                ev.Position = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+
+                if (type == DragType.Enter)
+                {
+                    ev.DragType = type;
+                    callback(targetWindow, ev);
+                }
+                else if (type == DragType.Leave)
+                {
+                    ev.DragType = type;
+                    callback(targetWindow, ev);
+                }
+                else if (type == DragType.Move)
+                {
+                    ev.DragType = type;
+                    callback(targetWindow, ev);
+                }
+                else if (type == DragType.Drop)
+                {
+                    ev.DragType = type;
+                    ev.MimeType = Interop.DragAndDrop.GetMimeType(dragEvent);
+                    ev.Data = Interop.DragAndDrop.GetData(dragEvent);
+                    callback(targetWindow, ev);
+                }
+            };
+
+            targetWindowEventDictionary.Add(targetWindow, cb);
+
+            if (!Interop.DragAndDrop.WindowAddListener(SwigCPtr, Window.getCPtr(targetWindow),
+                                                       new global::System.Runtime.InteropServices.HandleRef(this, Marshal.GetFunctionPointerForDelegate<Delegate>(cb))))
+            {
+                 throw new InvalidOperationException("Fail to AddListener for Window");
+            }
+        }
+
+        /// <summary>
+        /// Removes listener for drop targets
+        /// </summary>
+        /// <param name="targetWindow">The target window</param>
+        /// <param name="callback">The callback function to remove</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveListener(Window targetWindow, DragAndDropWindowEventHandler callback)
+        {
+            if (!targetWindowEventDictionary.ContainsKey(targetWindow))
+            {
+                 throw new InvalidOperationException("Fail to RemoveListener for Window");
+            }
+
+            InternalDragAndDropEventHandler cb = targetWindowEventDictionary[targetWindow];
+            targetWindowEventDictionary.Remove(targetWindow);
+            if (!Interop.DragAndDrop.WindowRemoveListener(SwigCPtr, Window.getCPtr(targetWindow),
+                                                          new global::System.Runtime.InteropServices.HandleRef(this, Marshal.GetFunctionPointerForDelegate<Delegate>(cb))))
+            {
+                 throw new InvalidOperationException("Fail to RemoveListener for Window");
             }
         }
     }
