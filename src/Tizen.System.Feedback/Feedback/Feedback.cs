@@ -496,5 +496,52 @@ namespace Tizen.System
                 }
             }
         }
+
+        /// <summary>
+        /// Stops the current feedback playing by feedback type
+        /// </summary>
+        /// <remarks>
+        /// To stop vibration, the application should have http://tizen.org/privilege/haptic privilege.
+        /// </remarks>
+        /// <since_tizen> 10 </since_tizen>
+        /// <param name="type">The feedback type.</param>
+        /// <exception cref="Exception">Thrown when failed because the feedback is not initialized.</exception>
+        /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument</exception>
+        /// <exception cref="NotSupportedException">Thrown when failed because the device (haptic, sound) or a specific pattern is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when failed because the access is not granted (No privilege).</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of a system error.</exception>
+        /// <example>
+        /// <code>
+        /// Feedback Feedback = new Feedback();
+        /// feedback.StopTypeInternal(FeedbackType.Sound);
+        /// feedback.StopTypeInternal(FeedbackType.Vibration);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void StopTypeInternal(FeedbackType type)
+        {
+            Interop.Feedback.FeedbackError res;
+
+            res = (Interop.Feedback.FeedbackError)Interop.Feedback.StopTypeInternal((Interop.Feedback.FeedbackType)type);
+
+            if (res != Interop.Feedback.FeedbackError.None)
+            {
+                Log.Warn(LogTag, string.Format("Failed to Stop feedback by feedback type internal. err = {0}", res));
+                switch (res)
+                {
+                    case Interop.Feedback.FeedbackError.NotInitialized:
+                        throw new Exception("Not initialized");
+                    case Interop.Feedback.FeedbackError.InvalidParameter:
+                        throw new ArgumentException("Invalid Arguments");
+                    case Interop.Feedback.FeedbackError.NotSupported:
+                        throw new NotSupportedException("Not supported");
+                    case Interop.Feedback.FeedbackError.PermissionDenied:
+                        throw new UnauthorizedAccessException("Access is not granted");
+                    case Interop.Feedback.FeedbackError.OperationFailed:
+                    default:
+                        throw new InvalidOperationException("Failed to stop pattern by feedback type");
+                }
+            }
+        }
     }
 }
