@@ -33,6 +33,7 @@ namespace Tizen.NUI
         public delegate void SourceEventHandler(DragSourceEventType sourceEventType);
         private delegate void InternalSourceEventHandler(int sourceEventType);
         public delegate void DragAndDropEventHandler(View targetView, DragEvent dragEvent);
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void DragAndDropWindowEventHandler(Window targetWindow, DragEvent dragEvent);
         private delegate void InternalDragAndDropEventHandler(global::System.IntPtr dragEvent);
         private InternalSourceEventHandler sourceEventCb;
