@@ -23359,6 +23359,11 @@
     "title": "Delegate DragAndDrop.DragAndDropEventHandler",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.DragAndDrop.DragAndDropWindowEventHandler.html": {
+    "href": "API11/api/Tizen.NUI.DragAndDrop.DragAndDropWindowEventHandler.html",
+    "title": "Delegate DragAndDrop.DragAndDropWindowEventHandler",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.DragAndDrop.html": {
     "href": "API11/api/Tizen.NUI.DragAndDrop.html",
     "title": "Class DragAndDrop",
