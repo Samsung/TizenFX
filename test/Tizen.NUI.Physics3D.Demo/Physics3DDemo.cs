@@ -22,126 +22,118 @@ using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Physics3D;
 using Tizen.NUI.Physics3D.Bullet;
+using Vector2 = Tizen.NUI.Vector2;
+using Vector3 = Tizen.NUI.Vector3;
 
 // This is an example of running a basic Bullet physics simulation - it tests that the
 // C# physics wrappers and native integration wrappers work together.
 // It renders a ball that falls under gravity
 class Physics3DSample : NUIApplication
 {
-    static string IMAGE_DIR = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/";
-
-    Window mWindow;
-    Tizen.NUI.Vector2 mWindowSize;
-    Matrix mTransform;
-    PhysicsAdaptor mPhysicsAdaptor;
-    HashSet<CollisionShape> mCollisionShapes;
-    List<PhysicsActor> mPhysicsActors;
+    private Window _window;
+    private Vector2 _windowSize;
+    private Matrix _transform;
+    private PhysicsAdaptor _physicsAdaptor;
+    private HashSet<CollisionShape> _collisionShapes;
+    private List<PhysicsActor> _physicsActors;
 
     protected override void OnCreate()
     {
         base.OnCreate();
 
-        mWindow = Window.Instance;
-        mWindow.BackgroundColor = Color.DarkOrchid;
-        mWindowSize = mWindow.WindowSize;
-        mWindow.KeyEvent += OnKeyEvent;
+        _window = Window.Instance;
+        _window.BackgroundColor = Color.Navy;
+        _windowSize = _window.WindowSize;
+        _window.KeyEvent += OnKeyEvent;
 
-        mTransform = new Matrix();
-        mTransform.SetIdentityAndScale(new Tizen.NUI.Vector3(1.0f, -1.0f, 1.0f));
-        mTransform.SetTranslation(new Tizen.NUI.Vector3(mWindowSize.Width * 0.5f, mWindowSize.Height * 0.5f, -100.0f));
+        _transform = new Matrix();
+        _transform.SetIdentityAndScale(new Vector3(1.0f, -1.0f, 1.0f));
+        _transform.SetTranslation(new Vector3(_windowSize.Width * 0.5f, _windowSize.Height * 0.5f, -100.0f));
 
-        mPhysicsAdaptor = new PhysicsAdaptor(mTransform, mWindowSize);
+        _physicsAdaptor = new PhysicsAdaptor(_transform, _windowSize);
 
-        mWindow.AddLayer(mPhysicsAdaptor.GetRootLayer());
-        mPhysicsActors = new List<PhysicsActor>();
-        mCollisionShapes = new HashSet<CollisionShape>();
+        _window.AddLayer(_physicsAdaptor.GetRootLayer());
+        _physicsActors = new List<PhysicsActor>();
+        _collisionShapes = new HashSet<CollisionShape>();
 
-        using(var accessor = mPhysicsAdaptor.GetAccessor())
+        using(var accessor = _physicsAdaptor.GetAccessor())
         {
             var dynamicsWorld = accessor.GetNative();
 
-            var gravity = new System.Numerics.Vector3(0.0f, -400.0f, 0.0f);
+            var gravity = new System.Numerics.Vector3(0.0f, -600.0f, 0.0f);
             dynamicsWorld.SetGravity(ref gravity);
 
             CreateGround(dynamicsWorld);
             CreateBall(dynamicsWorld);
         }
-        mPhysicsAdaptor.CreateSyncPoint();
+        _physicsAdaptor.CreateSyncPoint();
     }
 
-    void OnKeyEvent(object source, Window.KeyEventArgs e)
+    private void OnKeyEvent(object source, Window.KeyEventArgs e)
     {
-        if (e.Key.State == Key.StateType.Down)
+        if (e.Key.State != Key.StateType.Down) return;
+        switch( e.Key.KeyPressedName )
         {
-            switch( e.Key.KeyPressedName )
+            case "Escape":
+            case "Back":
             {
-                case "Escape":
-                case "Back":
-                {
-                    Exit();
-                }
-                break;
+                Exit();
             }
+                break;
         }
     }
 
-    void CreateGround(DiscreteDynamicsWorld dynamicsWorld)
+    private void CreateGround(DiscreteDynamicsWorld dynamicsWorld)
     {
-        var size = new Tizen.NUI.Vector3(2.0f * mWindowSize.Width, 10.0f, 2.0f * mWindowSize.Height);
-        var groundView = new View(); //CubeRenderer.CreateView(size, BRICK_WALL);
+        var size = new Vector3(2.0f * _windowSize.Width, 10.0f, 2.0f * _windowSize.Height);
+        var groundView = new View();
 
         var physicsActor = CreateBrick(dynamicsWorld, groundView, 0.0f, 0.5f, 0.5f, size);
-        physicsActor.AsyncSetPhysicsPosition(new Tizen.NUI.Vector3(0.0f, 0.5f * mWindowSize.Height - 10.0f, 0.0f));
-        physicsActor.AsyncSetPhysicsRotation(new Tizen.NUI.Rotation(new Radian(0.1f), Tizen.NUI.Vector3.ZAxis));
-        mPhysicsActors.Add(physicsActor);
+        physicsActor.AsyncSetPhysicsPosition(new Vector3(0.0f, 0.5f * _windowSize.Height - 10.0f, 0.0f));
+        physicsActor.AsyncSetPhysicsRotation(new Rotation(new Radian(0.1f), Vector3.ZAxis));
+        _physicsActors.Add(physicsActor);
     }
 
-    void CreateBall(DiscreteDynamicsWorld dynamicsWorld)
+    private void CreateBall(DiscreteDynamicsWorld dynamicsWorld)
     {
-        const float BALL_MASS       = 2.0f;
-        const float BALL_RADIUS     = 50.0f;
+        const float ballMass       = 2.0f;
+        const float ballRadius     = 50.0f;
 
-        var ball = new SphereShape(BALL_RADIUS);
-        mCollisionShapes.Add(ball);
+        var ball = new SphereShape(ballRadius);
+        _collisionShapes.Add(ball);
 
-        Matrix4x4 transform = Matrix4x4.Identity;
-        RigidBody body = CreateRigidBody(dynamicsWorld, BALL_MASS, transform, ball);
+        var transform = Matrix4x4.Identity;
+        var body = CreateRigidBody(dynamicsWorld, ballMass, transform, ball);
 
         body.Friction = 0.1f;
         body.Restitution = 0.95f;
+        
+        var view = BallRenderer.CreateView(new Vector3(2.0f*ballRadius, 2.0f*ballRadius, 2.0f*ballRadius), Color.White);
+        var physicsBall = _physicsAdaptor.AddViewToBody(view, body);
 
-        View view = new ImageView(IMAGE_DIR + "blocks-ball.png")
-        {
-            Name = "ball",
-            Size = new Size(2.0f*BALL_RADIUS, 2.0f*BALL_RADIUS)
-        };
-        var physicsBall = mPhysicsAdaptor.AddViewToBody(view, body);
-
-        physicsBall.AsyncSetPhysicsPosition(new Tizen.NUI.Vector3(0.0f, -400.0f, -150.0f));
-        mPhysicsActors.Add(physicsBall);
+        physicsBall.AsyncSetPhysicsPosition(new Vector3(0.0f, -400.0f, -150.0f));
+        _physicsActors.Add(physicsBall);
     }
 
-    PhysicsActor CreateBrick(DiscreteDynamicsWorld dynamicsWorld, View view,
-                             float mass, float elasticity, float friction, Tizen.NUI.Vector3 size)
+    private PhysicsActor CreateBrick(DiscreteDynamicsWorld dynamicsWorld, View view,
+        float mass, float elasticity, float friction, Vector3 size)
     {
         var halfExtents = new System.Numerics.Vector3(size.Width * 0.5f, size.Height * 0.5f, size.Depth * 0.5f);
         var shape = new BoxShape(halfExtents);
-        System.Numerics.Vector3 inertia;
-        shape.CalculateLocalInertia(mass, out inertia);
-        Matrix4x4 startTransform = Matrix4x4.Identity;
-
-        RigidBody body = CreateRigidBody(dynamicsWorld, mass, startTransform, shape);
+        
+        var startTransform = Matrix4x4.Identity;
+        var body = CreateRigidBody(dynamicsWorld, mass, startTransform, shape);
 
         body.Friction = friction;
         body.Restitution = elasticity;
 
-        var physicsActor = mPhysicsAdaptor.AddViewToBody(view, body);
+        var physicsActor = _physicsAdaptor.AddViewToBody(view, body);
         return physicsActor;
     }
 
-    RigidBody CreateRigidBody(DiscreteDynamicsWorld dynamicsWorld, float mass, Matrix4x4 transform, CollisionShape shape)
+    private static RigidBody CreateRigidBody(DiscreteDynamicsWorld dynamicsWorld, float mass, Matrix4x4 transform, CollisionShape shape)
     {
-        bool isDynamic = (mass != 0.0);
+        var isDynamic = (mass != 0.0);
         var localInertia = new System.Numerics.Vector3(0.0f, 0.0f, 0.0f);
         if(isDynamic)
         {
@@ -159,24 +151,24 @@ class Physics3DSample : NUIApplication
     protected override void OnTerminate()
     {
         base.OnTerminate();
-        using(var accessor = mPhysicsAdaptor.GetAccessor())
+        using(var accessor = _physicsAdaptor.GetAccessor())
         {
             var dynamicsWorld = accessor.GetNative();
 
-            foreach( var physicsActor in mPhysicsActors )
+            foreach( var physicsActor in _physicsActors )
             {
                 var body = physicsActor.GetBody();
-                mPhysicsAdaptor.RemoveViewFromBody(physicsActor);
+                _physicsAdaptor.RemoveViewFromBody(physicsActor);
                 dynamicsWorld.RemoveRigidBody(body);
                 body.Dispose();
             }
             // Clean up
-            foreach (var shape in mCollisionShapes)
+            foreach (var shape in _collisionShapes)
             {
                 shape.Dispose();
             }
         }
-        mPhysicsAdaptor.Dispose();
+        _physicsAdaptor.Dispose();
     }
 
     /// <summary>
@@ -185,7 +177,7 @@ class Physics3DSample : NUIApplication
     [STAThread] // Forces app to use one thread to access NUI
     static void Main(string[] args)
     {
-        Physics3DSample example = new Physics3DSample();
+        var example = new Physics3DSample();
         example.Run(args);
     }
 }

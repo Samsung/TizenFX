@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest package="org.tizen.example.Tizen.NUI.Physics3D.Sample" version="1.0.0" api-version="6" xmlns="http://tizen.org/ns/packages">
+<manifest package="org.tizen.example.Tizen.NUI.Physics3D.Demo" version="1.0.0" api-version="6" xmlns="http://tizen.org/ns/packages">
     <profile name="common" />
-    <ui-application appid="org.tizen.example.Tizen.NUI.Physics3D.Sample" exec="Physics3DSample.dll" multiple="false" nodisplay="false" taskmanage="true" type="dotnet-nui" launch_mode="single">
-        <label>Tizen.NUI.Physics3D.Sample</label>
+    <ui-application appid="org.tizen.example.Tizen.NUI.Physics3D.Demo" exec="Physics3DDemo.dll" multiple="false" nodisplay="false" taskmanage="true" type="dotnet-nui" launch_mode="single">
+        <label>Tizen.NUI.Physics3D.Demo</label>
         <icon>NUI.png</icon>
         <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
         <splash-screens />
