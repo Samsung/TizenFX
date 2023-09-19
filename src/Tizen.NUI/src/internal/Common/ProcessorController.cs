@@ -101,6 +101,12 @@ namespace Tizen.NUI
             onceEventIndex = 0;
             internalProcessorOnceEvent[1]?.Invoke(this, null);
             internalProcessorOnceEvent[1] = null;
+
+            // If once event added during 1 event invoke, request Process again as Idle.
+            if (internalProcessorOnceEvent[0] != null)
+            {
+                Awake();
+            }
         }
 
         /// <summary>
@@ -124,7 +130,7 @@ namespace Tizen.NUI
         /// It will call ProcessController.processorCallback and ProcessController.processorPostCallback hardly.
         /// </summary>
         /// <note>
-        /// When event thread is not in idle state, This function will be ignored.
+        /// When event thread is not in idle state, This function will request process on next idle state.
         /// </note>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Awake()
