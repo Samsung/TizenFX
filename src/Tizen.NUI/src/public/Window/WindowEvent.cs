@@ -630,7 +630,7 @@ namespace Tizen.NUI
                 if (windowPointerConstraintsEventHandler == null && windowPointerConstraintsEventCallback != null)
                 {
                     using WindowPointerConstraintsSignal signal = new WindowPointerConstraintsSignal(Interop.WindowPointerConstraintsSignal.GetSignal(SwigCPtr), false);
-                    signal?.Disconnect(windowMouseRelativeEventCallback);
+                    signal?.Disconnect(windowPointerConstraintsEventCallback);
                     windowPointerConstraintsEventCallback = null;
                 }
             }
