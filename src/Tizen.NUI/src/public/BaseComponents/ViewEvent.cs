@@ -104,8 +104,6 @@ namespace Tizen.NUI.BaseComponents
         private bool dispatchParentHoverEvents = true;
         private bool dispatchGestureEvents = true;
         private bool dispatchParentGestureEvents = true;
-        private bool dispatchTouchMotion = true;
-        private bool dispatchHoverMotion = true;
 
 
         /// <summary>
@@ -842,12 +840,6 @@ namespace Tizen.NUI.BaseComponents
             TouchEventArgs e = new TouchEventArgs();
             e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(touchData);
 
-            // If DispatchTouchMotion is false, Motion event is not dispatched.
-            if (DispatchTouchMotion == false && e.Touch.GetState(0) == PointStateType.Motion)
-            {
-                return true;
-            }
-
             bool consumed = false;
 
             if (interceptTouchDataEventHandler != null)
@@ -875,13 +867,6 @@ namespace Tizen.NUI.BaseComponents
 
             TouchEventArgs e = new TouchEventArgs();
             e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(touchData);
-
-            // If DispatchTouchMotion is false, Motion event is not dispatched.
-            if (DispatchTouchMotion == false && e.Touch.GetState(0) == PointStateType.Motion)
-            {
-                return true;
-            }
-
 
             bool consumed = false;
 
@@ -921,12 +906,6 @@ namespace Tizen.NUI.BaseComponents
 
             HoverEventArgs e = new HoverEventArgs();
             e.Hover = Tizen.NUI.Hover.GetHoverFromPtr(hoverEvent);
-
-            // If DispatchHoverMotion is false, Motion event is not dispatched.
-            if (DispatchHoverMotion == false && e.Hover.GetState(0) == PointStateType.Motion)
-            {
-                return true;
-            }
 
             bool consumed = false;
 
@@ -1677,11 +1656,24 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return dispatchTouchMotion;
+                return (bool)GetValue(DispatchTouchMotionProperty);
             }
             set
             {
-                dispatchTouchMotion = value;
+                SetValue(DispatchTouchMotionProperty, value);
+            }
+        }
+
+        private bool InternalDispatchTouchMotion
+        {
+            get
+            {
+                return Object.InternalGetPropertyBool(SwigCPtr, View.Property.DispatchTouchMotion);
+            }
+            set
+            {
+                Object.InternalSetPropertyBool(SwigCPtr, View.Property.DispatchTouchMotion, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -1694,13 +1686,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return dispatchHoverMotion;
+                return (bool)GetValue(DispatchHoverMotionProperty);
             }
             set
             {
-                dispatchHoverMotion = value;
+                SetValue(DispatchHoverMotionProperty, value);
             }
         }
 
+        private bool InternalDispatchHoverMotion
+        {
+            get
+            {
+                return Object.InternalGetPropertyBool(SwigCPtr, View.Property.DispatchHoverMotion);
+            }
+            set
+            {
+                Object.InternalSetPropertyBool(SwigCPtr, View.Property.DispatchHoverMotion, value);
+                NotifyPropertyChanged();
+            }
+        }
     }
 }

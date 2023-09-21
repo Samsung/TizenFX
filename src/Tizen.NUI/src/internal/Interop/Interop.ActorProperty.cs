@@ -221,6 +221,12 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_UPDATE_AREA_HINT_get")]
             public static extern int UpdateAreaHintGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Actor_Property_DISPATCH_TOUCH_MOTION_get")]
+            public static extern int DispatchTouchMotionGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Actor_Property_DISPATCH_HOVER_MOTION_get")]
+            public static extern int DispatchHoverMotionGet();
         }
     }
 }
