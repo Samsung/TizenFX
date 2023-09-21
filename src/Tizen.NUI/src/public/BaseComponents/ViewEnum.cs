@@ -264,6 +264,8 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int AccessibilityHidden = Interop.ViewProperty.AccessibilityHiddenGet();
             internal static readonly int AutomationId = Interop.ViewProperty.AutomationIdGet();
             internal static readonly int UpdateAreaHint = Interop.ActorProperty.UpdateAreaHintGet();
+            internal static readonly int DispatchTouchMotion = Interop.ActorProperty.DispatchTouchMotionGet();
+            internal static readonly int DispatchHoverMotion = Interop.ActorProperty.DispatchHoverMotionGet();
         }
     }
 }
