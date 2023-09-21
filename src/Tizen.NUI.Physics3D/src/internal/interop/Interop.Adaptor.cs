@@ -50,28 +50,24 @@ namespace Tizen.NUI.Physics3D
 
             [DllImport(Libraries.Physics3D, EntryPoint = "CSharp_Dali_PhysicsAdaptor_CreateDebugLayer")]
             internal static extern global::System.IntPtr CreateDebugLayer(HandleRef adaptor, HandleRef window);
-            // Layer
 
             [DllImport(Libraries.Physics3D, EntryPoint = "CSharp_Dali_PhysicsAdaptor_TranslateToPhysicsSpace_1")]
             internal static extern global::System.IntPtr TranslatePositionToPhysicsSpace(HandleRef adaptor, HandleRef position);
-            // Vector3
+
             [DllImport(Libraries.Physics3D, EntryPoint = "CSharp_Dali_PhysicsAdaptor_TranslateToPhysicsSpace_2")]
             internal static extern global::System.IntPtr TranslateRotationToPhysicsSpace(HandleRef adaptor, HandleRef rotation);
-            // Quaternion
 
             [DllImport(Libraries.Physics3D, EntryPoint = "CSharp_Dali_PhysicsAdaptor_TranslateFromPhysicsSpace_1")]
             internal static extern global::System.IntPtr TranslatePositionFromPhysicsSpace(HandleRef adaptor, HandleRef position);
-            // Vector3
+
             [DllImport(Libraries.Physics3D, EntryPoint = "CSharp_Dali_PhysicsAdaptor_TranslateFromPhysicsSpace_2")]
             internal static extern global::System.IntPtr TranslateRotationFromPhysicsSpace(HandleRef adaptor, HandleRef rotation);
-            // Quaternion
 
             [DllImport(Libraries.Physics3D, EntryPoint = "CSharp_Dali_PhysicsAdaptor_ConvertVectorToPhysicsSpace")]
             internal static extern global::System.IntPtr ConvertVectorToPhysicsSpace(HandleRef adaptor, HandleRef vector);
-            // Vector3
+
             [DllImport(Libraries.Physics3D, EntryPoint = "CSharp_Dali_PhysicsAdaptor_ConvertVectorFromPhysicsSpace")]
             internal static extern global::System.IntPtr ConvertVectorFromPhysicsSpace(HandleRef adaptor, HandleRef vector);
-            // Vector3
 
             [DllImport(Libraries.Physics3D, EntryPoint = "CSharp_Dali_PhysicsAdaptor_SetTransformAndSize")]
             internal static extern void SetTransformAndSize(HandleRef adaptor, HandleRef transform, HandleRef size);
@@ -90,17 +86,18 @@ namespace Tizen.NUI.Physics3D
 
             [DllImport(Libraries.Physics3D, EntryPoint = "CSharp_Dali_PhysicsAdaptor_AddActorBody")]
             internal static extern global::System.IntPtr AddActorBody(HandleRef adaptor, HandleRef actor, global::System.IntPtr body);
-            // PhysicsActor
+
             [DllImport(Libraries.Physics3D, EntryPoint = "CSharp_Dali_PhysicsAdaptor_RemoveActorBody")]
             internal static extern void RemoveActorBody(HandleRef adaptor, HandleRef physicsActor);
 
             [DllImport(Libraries.Physics3D, EntryPoint = "CSharp_Dali_PhysicsAdaptor_GetPhysicsActor")]
             internal static extern global::System.IntPtr GetPhysicsActor(HandleRef adaptor, global::System.IntPtr body);
-            // PhysicsActor
+
+            [DllImport(Libraries.Physics3D, EntryPoint = "CSharp_Dali_PhysicsAdaptor_SetRootActor")]
+            internal static extern void SetRootActor(HandleRef adaptor, HandleRef actor);
 
             [DllImport(Libraries.Physics3D, EntryPoint = "CSharp_Dali_PhysicsAdaptor_GetRootActor")]
             internal static extern global::System.IntPtr GetRootActor(HandleRef adaptor);
-            // Actor
 
             [DllImport(Libraries.Physics3D, EntryPoint = "CSharp_Dali_PhysicsAdaptor_BuildPickingRay")]
             internal static extern void BuildPickingRay(HandleRef adaptor, HandleRef origin, HandleRef direction,
@@ -108,7 +105,6 @@ namespace Tizen.NUI.Physics3D
 
             [DllImport(Libraries.Physics3D, EntryPoint = "CSharp_Dali_PhysicsAdaptor_ProjectPoint")]
             internal static extern global::System.IntPtr ProjectPoint(HandleRef adaptor, HandleRef origin, HandleRef direction, float distance);
-            // Vector3
 
             [DllImport(Libraries.Physics3D, EntryPoint = "CSharp_Dali_PhysicsAdaptor_CreateSyncPoint")]
             internal static extern void CreateSyncPoint(HandleRef adaptor);

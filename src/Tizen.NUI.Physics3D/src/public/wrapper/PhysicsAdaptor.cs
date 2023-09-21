@@ -293,6 +293,17 @@ namespace Tizen.NUI.Physics3D
         }
 
         /// <summary>
+        /// Set the root layer. All actors previously parented on the old root will be moved.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetRootLayer(Layer layer)
+        {
+            Interop.Adaptor.SetRootActor(SwigCPtr, Layer.getCPtr(layer));
+            if(NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         ///
         /// </summary>
         //public Layer GetRootLayer()... it's needed for 2 things - touch and finding actors.

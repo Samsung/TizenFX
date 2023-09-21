@@ -293,10 +293,19 @@ namespace Tizen.NUI.Physics2D
         }
 
         /// <summary>
-        ///
+        /// Set the root layer. All actors previously parented on the old root will be moved.
         /// </summary>
-        //public Layer GetRootLayer()... it's needed for 2 things - touch and finding actors.
-        // Provide a PhysisActor api to get View back
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetRootLayer(Layer layer)
+        {
+            Interop.Adaptor.SetRootActor(SwigCPtr, Layer.getCPtr(layer));
+            if(NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Get the root layer.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Layer GetRootLayer()
         {
