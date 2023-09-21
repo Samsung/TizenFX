@@ -636,6 +636,42 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Gets or sets the status of whether motion event of Touch can be dispatched.
+        /// If a Window's DispatchTouchMotion is set to false, then it's can not will receive motion event of TouchEvent.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DispatchTouchMotion
+        {
+            get
+            {
+                return Object.InternalGetPropertyBool(Layer.getCPtr(GetRootLayer()), View.Property.DispatchTouchMotion);
+            }
+            set
+            {
+                Object.InternalSetPropertyBool(Layer.getCPtr(GetRootLayer()), View.Property.DispatchTouchMotion, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the status of whether motion event of Hover can be dispatched.
+        /// If a Window's DispatchHoverMotion is set to false, then it's can not will receive motion event of HoverEvent.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DispatchHoverMotion
+        {
+            get
+            {
+                return Object.InternalGetPropertyBool(Layer.getCPtr(GetRootLayer()), View.Property.DispatchHoverMotion);
+            }
+            set
+            {
+                Object.InternalSetPropertyBool(Layer.getCPtr(GetRootLayer()), View.Property.DispatchHoverMotion, value);
+                NotifyPropertyChanged();
+            }
+        }
+
         private event EventHandler<FocusChangedEventArgs> windowFocusChangedEventHandler;
         private event EventHandler<TouchEventArgs> rootLayerTouchDataEventHandler;
         private ReturnTypeEventHandler<object, TouchEventArgs, bool> rootLayerInterceptTouchDataEventHandler;
