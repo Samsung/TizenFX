@@ -2583,6 +2583,42 @@ namespace Tizen.NUI.BaseComponents
         });
 
         /// <summary>
+        /// DispatchTouchMotionProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty DispatchTouchMotionProperty = BindableProperty.Create(nameof(DispatchTouchMotion), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            if (newValue != null)
+            {
+                instance.InternalDispatchTouchMotion = (bool)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            return instance.InternalDispatchTouchMotion;
+        });
+
+        /// <summary>
+        /// DispatchHoverMotionProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty DispatchHoverMotionProperty = BindableProperty.Create(nameof(DispatchHoverMotion), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            if (newValue != null)
+            {
+                instance.InternalDispatchHoverMotion = (bool)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            return instance.InternalDispatchHoverMotion;
+        });
+
+        /// <summary>
         /// Gets View's Size2D set by user.
         /// </summary>
         internal Size2D GetUserSize2D()
