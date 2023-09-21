@@ -26169,6 +26169,36 @@
     "title": "Class WindowResizeCompletedEventArgs",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.WindowSystem.html": {
+    "href": "API11/api/Tizen.NUI.WindowSystem.html",
+    "title": "Namespace Tizen.NUI.WindowSystem",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WindowSystem.InputGenerator.DeviceType.html": {
+    "href": "API11/api/Tizen.NUI.WindowSystem.InputGenerator.DeviceType.html",
+    "title": "Enum InputGenerator.DeviceType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WindowSystem.InputGenerator.html": {
+    "href": "API11/api/Tizen.NUI.WindowSystem.InputGenerator.html",
+    "title": "Class InputGenerator",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WindowSystem.InputGenerator.PointerType.html": {
+    "href": "API11/api/Tizen.NUI.WindowSystem.InputGenerator.PointerType.html",
+    "title": "Enum InputGenerator.PointerType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WindowSystem.InputGenerator.PointerWheelType.html": {
+    "href": "API11/api/Tizen.NUI.WindowSystem.InputGenerator.PointerWheelType.html",
+    "title": "Enum InputGenerator.PointerWheelType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.NUI.WindowSystem.InputGenerator.TouchType.html": {
+    "href": "API11/api/Tizen.NUI.WindowSystem.InputGenerator.TouchType.html",
+    "title": "Enum InputGenerator.TouchType",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.WindowSystem.Shell.html": {
     "href": "API11/api/Tizen.NUI.WindowSystem.Shell.html",
     "title": "Namespace Tizen.NUI.WindowSystem.Shell",
