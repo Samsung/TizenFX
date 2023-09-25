@@ -84,5 +84,22 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
+        /// <summary>
+        /// Compile the visual shader in advance. Afterwards,
+        /// when a visual using a new shader is requested, the pre-compiled shader is used.
+        /// </summary>
+        /// <remarks> It is recommended that this method be called at the top of the application code.</remarks>
+        /// <remarks>
+        /// Using precompiled shaders is helpful when the application is complex and uses
+        /// many different styles of visual options. On the other hand,if most visuals are the same
+        /// and the application is simple, it may use memory unnecessarily or slow down the application launching speed.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void UsePreCompiledShader()
+        {
+            Interop.VisualFactory.UsePreCompiledShader(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
     }
 }
