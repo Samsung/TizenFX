@@ -2108,13 +2108,18 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the last key event the window gets.
         /// </summary>
+        /// <remarks>
+        /// We will use weak reference of last key events.
+        /// Return value will be invalidated if last key event changed internally.
+        /// </remarks>
         /// <returns>The last key event the window gets.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Key GetLastKeyEvent()
         {
-            if(internalLastKeyEvent == null)
+            if (internalLastKeyEvent == null || !internalLastKeyEvent.HasBody())
             {
-                internalLastKeyEvent = new Key();
+                // Create empty event handle without register.
+                internalLastKeyEvent = new Key(Interop.Key.New("", "", 0, 0, 0u, 0), false);
             }
             Interop.Window.InternalRetrievingLastKeyEvent(SwigCPtr, internalLastKeyEvent.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -2124,13 +2129,18 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the last touch event the window gets.
         /// </summary>
+        /// <remarks>
+        /// We will use weak reference of last touch events.
+        /// Return value will be invalidated if last touch event changed internally.
+        /// </remarks>
         /// <returns>The last touch event the window gets.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Touch GetLastTouchEvent()
         {
-            if(internalLastTouchEvent == null)
+            if (internalLastTouchEvent == null || !internalLastTouchEvent.HasBody())
             {
-                internalLastTouchEvent = new Touch();
+                // Create empty event handle without register.
+                internalLastTouchEvent = new Touch(Interop.Touch.NewTouch(), false);
             }
             Interop.Window.InternalRetrievingLastTouchEvent(SwigCPtr, internalLastTouchEvent.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -2140,13 +2150,18 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the last hover event the window gets.
         /// </summary>
+        /// <remarks>
+        /// We will use weak reference of last hover events.
+        /// Return value will be invalidated if last hover event changed internally.
+        /// </remarks>
         /// <returns>The last hover event the window gets.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Hover GetLastHoverEvent()
         {
-            if(internalLastHoverEvent == null)
+            if (internalLastHoverEvent == null || !internalLastHoverEvent.HasBody())
             {
-                internalLastHoverEvent = new Hover();
+                // Create empty event handle without register.
+                internalLastHoverEvent = new Hover(Interop.Hover.New(0u), false);
             }
             Interop.Window.InternalRetrievingLastHoverEvent(SwigCPtr, internalLastHoverEvent.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
