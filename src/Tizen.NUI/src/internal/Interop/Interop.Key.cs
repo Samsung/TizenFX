@@ -33,6 +33,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_New")]
             public static extern global::System.IntPtr New(string jarg1, string jarg2, int jarg3, int jarg4, uint jarg5, int jarg6);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_New__SWIG_1")]
+            public static extern global::System.IntPtr New();
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Key")]
             public static extern void DeleteKey(global::System.Runtime.InteropServices.HandleRef jarg1);
 
