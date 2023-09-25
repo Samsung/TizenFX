@@ -26049,6 +26049,11 @@
     "title": "Delegate Window.FrameCallbackType",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Window.HoverEventArgs.html": {
+    "href": "API11/api/Tizen.NUI.Window.HoverEventArgs.html",
+    "title": "Class Window.HoverEventArgs",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Window.html": {
     "href": "API11/api/Tizen.NUI.Window.html",
     "title": "Class Window",
