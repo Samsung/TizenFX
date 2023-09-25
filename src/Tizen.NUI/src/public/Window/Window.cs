@@ -2119,7 +2119,7 @@ namespace Tizen.NUI
             if (internalLastKeyEvent == null || !internalLastKeyEvent.HasBody())
             {
                 // Create empty event handle without register.
-                internalLastKeyEvent = new Key(Interop.Key.New("", "", 0, 0, 0u, 0), false);
+                internalLastKeyEvent = new Key(Interop.Key.New(), false);
             }
             Interop.Window.InternalRetrievingLastKeyEvent(SwigCPtr, internalLastKeyEvent.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
