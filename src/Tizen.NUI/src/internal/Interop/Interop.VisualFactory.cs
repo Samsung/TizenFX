@@ -44,6 +44,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualFactory_CreateVisual__SWIG_2")]
             public static extern global::System.IntPtr CreateVisual(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualFactory_UsePreCompiledShader")]
+            public static extern void UsePreCompiledShader(global::System.Runtime.InteropServices.HandleRef jarg1);
         }
     }
 }
