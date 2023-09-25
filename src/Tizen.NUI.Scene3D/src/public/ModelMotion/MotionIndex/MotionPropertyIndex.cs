@@ -23,7 +23,7 @@ using Tizen.NUI;
 namespace Tizen.NUI.Scene3D
 {
     /// <summary>
-    /// Basic <see cref="MotionIndex"/> to control Dali's Property.
+    /// Basic <see cref="MotionIndex"/> to control Property.
     /// It can control more general case.
     /// </summary>
     /// <example>
@@ -46,7 +46,7 @@ namespace Tizen.NUI.Scene3D
     public class MotionPropertyIndex : MotionIndex
     {
         /// <summary>
-        /// Create an initialized blend shape index.
+        /// Create an initialized motion property index.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public MotionPropertyIndex() : this(Interop.MotionIndex.MotionPropertyIndexNew(), true)
@@ -55,10 +55,23 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
-        /// Create an initialized blend shape index with input node id, and property id.
+        /// Create an initialized motion property index with given node ID and property ID.
         /// </summary>
+        /// <param name="modelNodeId">Node ID for this motion index</param>
+        /// <param name="propertyId">Property ID for this motion index</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public MotionPropertyIndex(PropertyKey modelNodeId, PropertyKey propertyId) : this(Interop.MotionIndex.MotionPropertyIndexNew(PropertyKey.getCPtr(modelNodeId), PropertyKey.getCPtr(propertyId)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Create an initialized motion property index with given node string ID and property string ID.
+        /// </summary>
+        /// <param name="modelNodeName">Node string ID for this motion index</param>
+        /// <param name="propertyName">Property string ID for this motion index</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public MotionPropertyIndex(string modelNodeName, string propertyName) : this(Interop.MotionIndex.MotionPropertyIndexNew(PropertyKey.getCPtr(new PropertyKey(modelNodeName)), PropertyKey.getCPtr(new PropertyKey(propertyName))), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

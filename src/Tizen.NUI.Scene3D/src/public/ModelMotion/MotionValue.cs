@@ -24,13 +24,12 @@ using Tizen.NUI;
 namespace Tizen.NUI.Scene3D
 {
     /// <summary>
-    /// This MotionValue be used for target value of each <see cref="MotionIndex"/>.
+    /// This MotionValue will be used for target value of each <see cref="MotionIndex"/>.
     /// We can get and set MotionValue as 2 types : PropertyValue and KeyFrames.
-    ///
-    /// Each types will be cross-converted internally.
-    /// For example, when we set PropertyValue, we can get KeyFrames with 2 frames, and target value is set.
     /// </summary>
     /// <remarks>
+    /// Each type will be cross-converted internally.
+    /// For example, when we set PropertyValue, we can get KeyFrames with 2 frames, and target value is set.
     /// The type of property should be matched with MotionIndex required.
     /// </remarks>
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -62,7 +61,7 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
-        /// Create an initialized motion value with invalid.
+        /// Create an initialized invalid motion value.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public MotionValue() : this(Interop.MotionValue.MotionValueNew(), true)
@@ -73,6 +72,7 @@ namespace Tizen.NUI.Scene3D
         /// <summary>
         /// Create an initialized motion value with PropertyValue.
         /// </summary>
+        /// <param name="propertyValue">PropertyValue for this motion value</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public MotionValue(PropertyValue propertyValue) : this(Interop.MotionValue.MotionValueNewPropertyValue(PropertyValue.getCPtr(propertyValue)), true)
         {
@@ -82,6 +82,7 @@ namespace Tizen.NUI.Scene3D
         /// <summary>
         /// Create an initialized motion value with KeyFrames.
         /// </summary>
+        /// <param name="keyFrames">KeyFrameValue for this motion value</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public MotionValue(KeyFrames keyFrames) : this(Interop.MotionValue.MotionValueNewKeyFrames(KeyFrames.getCPtr(keyFrames)), true)
         {
@@ -116,8 +117,8 @@ namespace Tizen.NUI.Scene3D
 
 
         /// <summary>
-        /// Get or set the value as PropertyValue type.
-        /// If ValueType is ValueType.KeyFrames, it will return last value of stored KeyFrames.
+        /// Get or set the PropertyValue.
+        /// If Type is ValueType.KeyFrames, getter will return last PropertyValue instance of stored KeyFrames.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyValue PropertyValue
@@ -133,8 +134,8 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
-        /// Get or set the value as KeyFrames type.
-        /// If ValueType is ValueType.PropertyValue, it will create new KeyFrames by stored PropertyValue.
+        /// Get or set the KeyFrames.
+        /// If Type is ValueType.PropertyValue, getter will create new KeyFrames from stored PropertyValue.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public KeyFrames KeyFramesValue
@@ -150,7 +151,7 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
-        /// Get the type of value what we set.
+        /// Get the type of value which we set.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ValueType Type
@@ -162,7 +163,7 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
-        /// Invalidate the value what we set.
+        /// Invalidate the value which we set.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Invalidate()

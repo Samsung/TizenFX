@@ -26,8 +26,13 @@ namespace Tizen.NUI.Scene3D
     /// List of model motion definitions.
     /// Each motion has pair of <see cref="MotionIndex"/> and <see cref="MotionValue"/>.
     /// MotionIndex is abstract class that specify the target of motion.
-    /// MotionValue is target value of motion. It can be KeyFrames.
-    ///
+    /// MotionValue is destination value of target for the motion. It can be expressed with <see cref="Tizen.NUI.PropertyValue"/> or <see cref="Tizen.NUI.KeyFrames"/>.
+    /// </summary>
+    /// <remarks>
+    /// We don't check duplicated MotionIndex internally.
+    /// We don't check MotionValue type is matched with MotionIndex.
+    /// </remarks>
+    /// <example>
     /// We can generate list of motions by MotionIndex and MotionValue classes.
     ///
     /// <code>
@@ -47,7 +52,8 @@ namespace Tizen.NUI.Scene3D
     /// // Make MotionIndex with BlendShapeIndex
     /// motionData.Add(new BlendShapeIndex(new PropertyKey("nodeName"), new PropertyKey("blendShapeName")), motionData.GetValue(1u));
     /// </code>
-    ///
+    /// </example>
+    /// <example>
     /// We can request to load MotionData from file or buffer asynchronously.
     /// If load completed, <see cref="LoadCompleted"/> event will be invoked.
     /// If we try to load before LoadCompleted event invoked, previous load request cancel and only latest request loaded.
@@ -65,7 +71,8 @@ namespace Tizen.NUI.Scene3D
     ///     /// Do something.
     /// }
     /// </code>
-    ///
+    /// </example>
+    /// <example>
     /// We can generate animation of Scene3D.Model from MotionData class.
     /// Or, just set values.
     ///
@@ -77,11 +84,7 @@ namespace Tizen.NUI.Scene3D
     /// // Set values from loaded Model.
     /// model2.SetMotionData(motionData);
     /// </code>
-    /// </summary>
-    /// <remark>
-    /// We don't check duplicated MotionIndex internally.
-    /// We don't check MotionValue type is matched with MotionIndex.
-    /// </remark>
+    /// </example>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class MotionData : BaseHandle
     {
@@ -91,7 +94,7 @@ namespace Tizen.NUI.Scene3D
         private delegate void LoadCompletedCallbackType(IntPtr motionData);
 
         /// <summary>
-        /// Create an initialized motion data.
+        /// Create an initialized, empty motion data.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public MotionData() : this(Interop.MotionData.MotionDataNew(), true)
@@ -102,9 +105,9 @@ namespace Tizen.NUI.Scene3D
         /// <summary>
         /// Create an initialized motion data with duration.
         /// </summary>
-        /// <param name="durationMilliSeconds">Duration of this motion data when it be generated as Animation in milliseconds.</param>
+        /// <param name="durationMilliseconds">Duration of an Animation generated from this motion data, in milliseconds.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public MotionData(int durationMilliSeconds) : this(Interop.MotionData.MotionDataNew(MilliSecondsToSeconds(durationMilliSeconds)), true)
+        public MotionData(int durationMilliseconds) : this(Interop.MotionData.MotionDataNew(MillisecondsToSeconds(durationMilliseconds)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -136,25 +139,25 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
-        /// Get or set the duration of this motion data  in milliseconds.
+        /// Get or set the duration of this motion data in milliseconds.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int Duration
         {
             get
             {
-                return SecondsToMilliSeconds(GetDuration());
+                return SecondsToMilliseconds(GetDuration());
             }
             set
             {
-                SetDuration(MilliSecondsToSeconds(value));
+                SetDuration(MillisecondsToSeconds(value));
             }
         }
 
         /// <summary>
-        /// Get the number of MotionIndex / MotionValue pair list what this hold.
+        /// Get the number of contained MotionIndex / MotionValue pair what this hold.
         /// </summary>
-        /// <returns>The number of motions what this hold.</returns>
+        /// <returns>The number of contained motions.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetMotionCount()
         {
@@ -164,7 +167,7 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
-        /// Append pair of MotionIndex and MotionValue end of list.
+        /// Append pair of MotionIndex and MotionValue to the list.
         /// </summary>
         /// <param name="index">MotionIndex to be added</param>
         /// <param name="value">MotionValue to be added</param>
@@ -176,10 +179,10 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
-        /// Get MotionIndex at index'th. null if invalid index inputed
+        /// Get MotionIndex at position, or null if invalid index was given.
         /// </summary>
         /// <param name="index">The index of motion data list</param>
-        /// <returns>The index'th MotionIndex. Or empty handle that doesn't have body</returns>
+        /// <returns>The MotionIndex at position. Or null.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public MotionIndex GetIndex(uint index)
         {
@@ -198,14 +201,20 @@ namespace Tizen.NUI.Scene3D
                 handle = new HandleRef(null, IntPtr.Zero);
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            if (!ret.HasBody())
+            {
+                ret.Dispose();
+                ret = null;
+            }
             return ret;
         }
 
         /// <summary>
-        /// Get MotionValue at index'th. null if invalid index inputed
+        /// Get MotionValue at position, or null if invalid index was given.
         /// </summary>
         /// <param name="index">The index of motion data list</param>
-        /// <returns>The index'th MotionValue. Or empty handle that doesn't have body</returns>
+        /// <returns>The MotionValue at position. Or null.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public MotionValue GetValue(uint index)
         {
@@ -224,21 +233,28 @@ namespace Tizen.NUI.Scene3D
                 handle = new HandleRef(null, IntPtr.Zero);
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            if (!ret.HasBody())
+            {
+                ret.Dispose();
+                ret = null;
+            }
             return ret;
         }
 
         /// <summary>
         /// Load motion capture animation.
-        /// Scale is additional scale factor of motion capture animation. It is possible that
-        /// Model's scale may not matched with motion capture animation scale.
-        /// If scale is null, default use as Vector3.ONE
         /// We support bvh format.
-        /// After load completed, <see cref="LoadCompleted"/> event will be invoked.
+        /// After load completes, <see cref="LoadCompleted"/> event will be invoked.
         /// </summary>
+        /// <remarks>
+        /// Scale is additional scale factor of motion capture animation. It is possible that
+        /// Model's scale may not match with motion capture animation scale.
+        /// If scale is null, default value will be used: <cref name="Vector3.ONE"/>
+        /// </remarks>
         /// <param name="motionCaptureFilename">Name of motion capture format file.</param>
         /// <param name="scale">Scale value of motion capture animation match with model.</param>
         /// <param name="synchronousLoad">Load synchronously or not. Default is async load.</param>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void LoadMotionCaptureAnimation(string motionCaptureFilename, Vector3 scale = null, bool synchronousLoad = false)
         {
@@ -247,17 +263,18 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
-        /// Load motion capture animation.
-        /// Scale is additional scale factor of motion capture animation. It is possible that
-        /// Model's scale may not matched with motion capture animation scale.
-        /// If scale is null, default use as Vector3.ONE
+        /// Load motion capture animation from string.
         /// We support bvh format.
-        /// After load completed, <see cref="LoadCompleted"/> event will be invoked.
+        /// After load completes, <see cref="LoadCompleted"/> event will be invoked.
         /// </summary>
-        /// <param name="motionCaptureBuffer">Contents of motion capture format file.</param>
+        /// <remarks>
+        /// Scale is additional scale factor of motion capture animation. It is possible that
+        /// Model's scale may not match with motion capture animation scale.
+        /// If scale is null, default value will be used: <cref name="Vector3.ONE"/>
+        /// </remarks>
+        /// <param name="motionCaptureBuffer">Contents of motion capture format string.</param>
         /// <param name="scale">Scale value of motion capture animation match with model.</param>
         /// <param name="synchronousLoad">Load synchronously or not. Default is async load.</param>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void LoadMotionCaptureAnimationFromBuffer(string motionCaptureBuffer, Vector3 scale = null, bool synchronousLoad = false)
         {
@@ -271,7 +288,6 @@ namespace Tizen.NUI.Scene3D
         /// </summary>
         /// <param name="blendShapeFilename">Name of json format file what we predefined.</param>
         /// <param name="synchronousLoad">Load synchronously or not. Default is async load.</param>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void LoadBlendShapeAnimation(string blendShapeFilename, bool synchronousLoad = false)
         {
@@ -285,7 +301,6 @@ namespace Tizen.NUI.Scene3D
         /// </summary>
         /// <param name="blendShapeBuffer">Contents of json format file what we predefined.</param>
         /// <param name="synchronousLoad">Load synchronously or not. Default is async load.</param>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void LoadBlendShapeAnimationFromBuffer(string blendShapeBuffer, bool synchronousLoad = false)
         {
@@ -332,7 +347,7 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
-        /// Clear all inputed values.
+        /// Removes all stored motions.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Clear()
@@ -354,12 +369,12 @@ namespace Tizen.NUI.Scene3D
             return ret;
         }
 
-        private static float MilliSecondsToSeconds(int millisec)
+        private static float MillisecondsToSeconds(int millisec)
         {
             return (float)millisec / 1000.0f;
         }
 
-        private static int SecondsToMilliSeconds(float sec)
+        private static int SecondsToMilliseconds(float sec)
         {
             return (int)(sec * 1000);
         }

@@ -24,24 +24,23 @@ namespace Tizen.NUI.Scene3D
 {
     /// <summary>
     /// Index of motion value. It will be used to specify the target of motion applied.
-    ///
     /// There are three kinds of MotionIndex : <see cref="MotionPropertyIndex"/>, <see cref="MotionTransformIndex"/> and <see cref="BlendShapeIndex"/>.
-    /// MotionPropertyIndex will be used for control whole kind of properties.
+    /// MotionPropertyIndex will be used for control all kind of properties.
     /// The <see cref="MotionData"/> loaded from files / buffer will have this kind of MotionIndex.
-    ///
     /// MotionTransformIndex will be used for control the <see cref="ModelNode"/>'s Position / Orientation / Scale, or each components.
     /// BlendShapeIndex will be used for control some blend shape animation.
-    ///
-    /// We can use this class below cases
-    /// - ModelNodeId (string key) , MotionTransformIndex         : Target is ModelNode's transform property
-    /// - ModelNodeId (int key)    , MotionTransformIndex         : Target is ModelNode's transform property [not implemented yet]
-    /// - ModelNodeId (string key) , BlendShapeIndex (int key)    : Target is ModelNode's BlendShape
-    /// - ModelNodeId (string key) , BlendShapeIndex (string key) : Target is ModelNode's BlendShape
-    /// - ModelNodeId (int key)    , BlendShapeIndex (int key)    : Target is ModelNode's BlendShape [not implemented yet]
-    /// - ModelNodeId (int key)    , BlendShapeIndex (string key) : Target is ModelNode's BlendShape [not implemented yet]
-    /// - ModelNodeId (null)       , BlendShapeIndex (string key) : Target is all ModelNode's BlendShape
-    /// All other cases are invalid.
     /// </summary>
+    /// <remarks>
+    /// We can use below cases.
+    /// <table>
+    ///  <tr><td>ModelNodeId KeyType</td><td>MotionIndex class                                 </td><td>Description                             </td></tr>
+    ///  <tr><td>KeyType.String     </td><td>MotionTransformIndex                              </td><td>Target is ModelNode's transform property</td></tr>
+    ///  <tr><td>KeyType.String     </td><td>BlendShapeIndex (with BlendShapeId KeyType.Index) </td><td>Target is ModelNode's BlendShape        </td></tr>
+    ///  <tr><td>KeyType.String     </td><td>BlendShapeIndex (with BlendShapeId KeyType.String)</td><td>Target is ModelNode's BlendShape        </td></tr>
+    ///  <tr><td>(null)             </td><td>BlendShapeIndex (with BlendShapeId KeyType.String)</td><td>Target is all ModelNode's BlendShape    </td></tr>
+    /// </table>
+    /// All other cases are invalid.
+    /// </remarks>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class MotionIndex : BaseHandle
     {
@@ -72,9 +71,9 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
-        /// The id of ModelNode. If you want to apply to all ModelNodes who has BlendShape string, let this value as null.
+        /// The ID of ModelNode. If you want to apply to all ModelNodes who has BlendShape string, assign null.
         /// </summary>
-         [EditorBrowsable(EditorBrowsableState.Never)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyKey ModelNodeId
         {
             get
