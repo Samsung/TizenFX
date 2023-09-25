@@ -24,11 +24,12 @@ namespace Tizen.NUI.Scene3D
 {
     /// <summary>
     /// Specialized <see cref="MotionIndex"/> to control transform.
-    /// It will be used when app developer don't care about Property index list,
+    /// It will be used when app developer doesn't care about Property index list,
     /// but want to change the transform properties anyway fast enough.
-    ///
-    /// Each TransformTypes has their own matched <see cref="MotionValue"/> type.
     /// </summary>
+    /// <remarks>
+    /// Each TransformTypes has their own matched <see cref="MotionValue"/> type.
+    /// </remarks>
     /// <example>
     /// <code>
     /// MotionTransformIndex position = new MotionTransformIndex(new PropertyKey("nodeName"), MotionTransformIndex.TransformTypes.Position);
@@ -43,10 +44,9 @@ namespace Tizen.NUI.Scene3D
     public class MotionTransformIndex : MotionIndex
     {
         /// <summary>
-        /// The list of component types what this MotionIndex can control.
+        /// The list of transform property types what this MotionTransformIndex can control.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names")]
         public enum TransformTypes
         {
             /// <summary>
@@ -111,7 +111,7 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
-        /// Create an initialized blend shape index.
+        /// Create an initialized motion transform index.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public MotionTransformIndex() : this(Interop.MotionIndex.MotionTransformIndexNew(), true)
@@ -120,10 +120,23 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
-        /// Create an initialized blend shape index with input node id, and transform type.
+        /// Create an initialized motion transform index with given node ID and transform type.
         /// </summary>
+        /// <param name="modelNodeId">Node ID for this motion index</param>
+        /// <param name="transformType">Transform property type for this motion index</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public MotionTransformIndex(PropertyKey modelNodeId, TransformTypes transformType) : this(Interop.MotionIndex.MotionTransformIndexNew(PropertyKey.getCPtr(modelNodeId), (int)transformType), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Create an initialized motion transform index with given node string ID, and transform type.
+        /// </summary>
+        /// <param name="modelNodeName">Node string ID for this motion index</param>
+        /// <param name="transformType">Transform property type for this motion index</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public MotionTransformIndex(string modelNodeName, TransformTypes transformType) : this(Interop.MotionIndex.MotionTransformIndexNew(PropertyKey.getCPtr(new PropertyKey(modelNodeName)), (int)transformType), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -155,7 +168,7 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
-        /// The component type what this MotionIndex want to control.
+        /// The transform property type what this MotionIndex want to control.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TransformTypes TransformType

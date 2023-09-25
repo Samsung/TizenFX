@@ -512,9 +512,8 @@ namespace Tizen.NUI.Scene3D
         /// Generate animation by MotionData.
         /// If there is no animatable item for MotionData, return null.
         /// </summary>
-        /// <param name="motionData">Inputed list of pair of MotionIndex and MotionValue, and duration.</param>
-        /// <returns>Generated animation by input motion data, or null if there is no animatable item exist about inputed motionData</returns>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        /// <param name="motionData">Source motion data.</param>
+        /// <returns>Generated animation from then given motion data, or null if there is no animatable item in <paramref name="motionData"/></returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Animation GenerateMotionDataAnimation(MotionData motionData)
         {
@@ -545,12 +544,11 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
-        /// Prototype of MotionData setter.
-        /// Note that this API didn't apply KeyFrames animation.
+        /// Set values from MotionData.
+        /// Note that this method doesn not apply KeyFrames animation.
         /// If you want to apply the animation, please use <see cref="GenerateMotionDataAnimation(MotionData)"/> and play the result.
         /// </summary>
-        /// <param name="motionData">Inputed list of pair of MotionIndex and MotionValue.</param>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        /// <param name="motionData">Source motion data.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetMotionData(MotionData motionData)
         {
