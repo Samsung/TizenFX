@@ -42,7 +42,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Touch(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Touch.Upcast(cPtr), cMemoryOwn)
+        internal Touch(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
