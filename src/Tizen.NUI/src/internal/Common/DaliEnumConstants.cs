@@ -251,7 +251,7 @@ namespace Tizen.NUI
             for (int i = 0; i < st.FrameCount; i++)
             {
                 global::System.Diagnostics.StackFrame sf = st.GetFrame(i);
-                Tizen.Log.Error("NUI", " Method " + sf.GetMethod());
+                Tizen.Log.Error("NUI", " Method " + sf.GetMethod() + ":" + sf.GetFileName() + ":" + sf.GetFileLineNumber());
             }
         }
     }
