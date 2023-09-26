@@ -1553,13 +1553,13 @@ namespace Tizen.NUI
             return instance;
         }
 
-        public static Application NewApplication(string stylesheet, NUIApplication.WindowMode windowMode, WindowType type)
+        public static Application NewApplication(string[] args, string stylesheet, NUIApplication.WindowMode windowMode, WindowType type)
         {
             if (instance != null)
             {
                 return instance;
             }
-            Application ret = New(1, stylesheet, windowMode, type);
+            Application ret = New(args, stylesheet, windowMode, type);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             instance = ret;
@@ -1700,12 +1700,27 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public static Application New(int argc, string stylesheet, NUIApplication.WindowMode windowMode, WindowType type)
+        public static Application New(string[] args, string stylesheet, NUIApplication.WindowMode windowMode, WindowType type)
         {
+            int argc = 0;
+            string argvStr = "";
+            try
+            {
+                argc = args.Length;
+                argvStr = string.Join(" ", args);
+            }
+            catch (Exception exception)
+            {
+                Tizen.Log.Fatal("NUI", "[Error] got exception during Application New(), this should not occur, message : " + exception.Message);
+                Tizen.Log.Fatal("NUI", "[Error] error line number : " + new StackTrace(exception, true).GetFrame(0).GetFileLineNumber());
+                Tizen.Log.Fatal("NUI", "[Error] Stack Trace : " + exception.StackTrace);
+                throw;
+            }
+
             // It will be removed until dali APIs are prepared.
             Rectangle initRectangle = new Rectangle(0, 0, 0, 0);
 
-            Application ret = new Application(Interop.Application.New(argc, stylesheet, (int)windowMode, Rectangle.getCPtr(initRectangle), (int)type), true);
+            Application ret = new Application(Interop.Application.New(argc, argvStr, stylesheet, (int)windowMode, Rectangle.getCPtr(initRectangle), (int)type), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
