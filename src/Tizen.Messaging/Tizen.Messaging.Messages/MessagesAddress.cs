@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+using System;
 
 namespace Tizen.Messaging.Messages
 {
@@ -20,6 +21,7 @@ namespace Tizen.Messaging.Messages
     /// This class is used to manage the information of the message address.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class MessagesAddress
     {
         internal RecipientType Type;
@@ -34,6 +36,7 @@ namespace Tizen.Messaging.Messages
         /// </summary>
         /// <param name="number">The recipient's address to receive a message.</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public MessagesAddress(string number)
         {
             Number = number;
