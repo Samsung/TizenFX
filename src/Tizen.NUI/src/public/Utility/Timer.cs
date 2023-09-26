@@ -136,7 +136,7 @@ namespace Tizen.NUI
                 for (int i = 0; i < st.FrameCount; i++)
                 {
                     StackFrame sf = st.GetFrame(i);
-                    Tizen.Log.Error("NUI", " Method " + sf.GetMethod());
+                    Tizen.Log.Error("NUI", " Method " + sf.GetMethod() + ":" + sf.GetFileName() + ":" + sf.GetFileLineNumber());
                 }
             }
 
@@ -166,7 +166,7 @@ namespace Tizen.NUI
                 for (int i = 0; i < st.FrameCount; i++)
                 {
                     StackFrame sf = st.GetFrame(i);
-                    Tizen.Log.Error("NUI", " Method " + sf.GetMethod());
+                    Tizen.Log.Error("NUI", " Method " + sf.GetMethod() + ":" + sf.GetFileName() + ":" + sf.GetFileLineNumber());
                 }
             }
 
@@ -197,7 +197,7 @@ namespace Tizen.NUI
                 for (int i = 0; i < st.FrameCount; i++)
                 {
                     StackFrame sf = st.GetFrame(i);
-                    Tizen.Log.Error("NUI", " Method " + sf.GetMethod());
+                    Tizen.Log.Error("NUI", " Method " + sf.GetMethod() + ":" + sf.GetFileName() + ":" + sf.GetFileLineNumber());
                 }
             }
 

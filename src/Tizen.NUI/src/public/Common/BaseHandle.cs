@@ -617,7 +617,7 @@ namespace Tizen.NUI
                     for (int i = 0; i < st.FrameCount; i++)
                     {
                         global::System.Diagnostics.StackFrame sf = st.GetFrame(i);
-                        Tizen.Log.Fatal("NUI", " Method " + sf.GetMethod());
+                        Tizen.Log.Fatal("NUI", " Method " + sf.GetMethod() + ":" + sf.GetFileName() + ":" + sf.GetFileLineNumber());
                     }
                     Tizen.Log.Fatal("NUI", "Error! just return here with null swigCPtr! this can cause unknown error or crash in next step");
 
@@ -665,7 +665,7 @@ namespace Tizen.NUI
                 for (int i = 0; i < st.FrameCount; i++)
                 {
                     global::System.Diagnostics.StackFrame sf = st.GetFrame(i);
-                    DebugFileLogging.Instance.WriteLog($"[{i}] {sf.GetMethod()}");
+                    DebugFileLogging.Instance.WriteLog($"[{i}] {sf.GetMethod()}:{sf.GetFileName()}:{sf.GetFileLineNumber()}");
                 }
             }
         }
