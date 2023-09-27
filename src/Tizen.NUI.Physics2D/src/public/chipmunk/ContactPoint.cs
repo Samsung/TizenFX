@@ -108,13 +108,16 @@ namespace Tizen.NUI.Physics2D.Chipmunk
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode()
         {
-            var hashCode = -1285340573;
+            unchecked
+            {
+                var hashCode = -1285340573;
 
-            hashCode = hashCode * -1521134295 + pointA.GetHashCode();
-            hashCode = hashCode * -1521134295 + pointB.GetHashCode();
-            hashCode = hashCode * -1521134295 + distance.GetHashCode();
+                hashCode = hashCode * -1521134295 + pointA.GetHashCode();
+                hashCode = hashCode * -1521134295 + pointB.GetHashCode();
+                hashCode = hashCode * -1521134295 + distance.GetHashCode();
 
-            return hashCode;
+                return hashCode;
+            }
         }
 
         /// <summary>

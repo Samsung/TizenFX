@@ -568,13 +568,16 @@ namespace Tizen.NUI.ParticleSystem
         
         internal T Get(IntPtr cPtr)
         {
-            var result = mBasePtr.FindIndex(0, x => x == cPtr );
-            if (result >= 0)
+            lock (mBasePtr)
             {
-                return mInterfaces[result];
-            }
+                var result = mBasePtr.FindIndex(0, x => x == cPtr);
+                if (result >= 0)
+                {
+                    return mInterfaces[result];
+                }
 
-            return null;
+                return null;
+            }
         }
         
         private List<IntPtr> mBasePtr = new List<IntPtr>();
