@@ -43,8 +43,8 @@ namespace Tizen.Location.Geofence
         /// The geofence ID.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-    [Obsolete("Deprecated since API11. Might be removed in API13")]
-    public int GeofenceId
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
+        public int GeofenceId
         {
             get;
         }
@@ -53,8 +53,8 @@ namespace Tizen.Location.Geofence
         /// The proximity state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-    [Obsolete("Deprecated since API11. Might be removed in API13")]
-    public ProximityState State
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
+        public ProximityState State
         {
             get;
         }
@@ -63,8 +63,8 @@ namespace Tizen.Location.Geofence
         /// The proximity provider.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-    [Obsolete("Deprecated since API11. Might be removed in API13")]
-    public ProximityProvider Provider
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
+        public ProximityProvider Provider
         {
             get;
         }
@@ -93,8 +93,8 @@ namespace Tizen.Location.Geofence
         /// The specified geofence ID.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-    [Obsolete("Deprecated since API11. Might be removed in API13")]
-    public int GeofenceId
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
+        public int GeofenceId
         {
             get;
         }
@@ -103,8 +103,8 @@ namespace Tizen.Location.Geofence
         /// The geofence state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-    [Obsolete("Deprecated since API11. Might be removed in API13")]
-    public GeofenceState State
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
+        public GeofenceState State
         {
             get;
         }
@@ -137,8 +137,8 @@ namespace Tizen.Location.Geofence
         /// The place ID.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-    [Obsolete("Deprecated since API11. Might be removed in API13")]
-    public int PlaceId
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
+        public int PlaceId
         {
             get;
         }
@@ -147,8 +147,8 @@ namespace Tizen.Location.Geofence
         /// The specified geofence ID.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-    [Obsolete("Deprecated since API11. Might be removed in API13")]
-    public int FenceId
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
+        public int FenceId
         {
             get;
         }
@@ -157,8 +157,8 @@ namespace Tizen.Location.Geofence
         /// The error code for the particular action.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-    [Obsolete("Deprecated since API11. Might be removed in API13")]
-    public GeofenceError ErrorCode
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
+        public GeofenceError ErrorCode
         {
             get;
         }
@@ -167,8 +167,8 @@ namespace Tizen.Location.Geofence
         /// The result code for the particular place and geofence management.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-    [Obsolete("Deprecated since API11. Might be removed in API13")]
-    public GeofenceEventType EventType
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
+        public GeofenceEventType EventType
         {
             get;
         }
