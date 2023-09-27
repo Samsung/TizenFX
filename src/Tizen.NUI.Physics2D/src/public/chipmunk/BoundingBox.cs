@@ -111,16 +111,19 @@ namespace Tizen.NUI.Physics2D.Chipmunk
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode()
         {
-            var hashCode = -1064806749;
+            unchecked
+            {
+                var hashCode = -1064806749;
 
 #pragma warning disable RECS0025 // Non-readonly field referenced in 'GetHashCode()'
-            hashCode = hashCode * -1521134295 + left.GetHashCode();
-            hashCode = hashCode * -1521134295 + bottom.GetHashCode();
-            hashCode = hashCode * -1521134295 + right.GetHashCode();
-            hashCode = hashCode * -1521134295 + top.GetHashCode();
+                hashCode = hashCode * -1521134295 + left.GetHashCode();
+                hashCode = hashCode * -1521134295 + bottom.GetHashCode();
+                hashCode = hashCode * -1521134295 + right.GetHashCode();
+                hashCode = hashCode * -1521134295 + top.GetHashCode();
 #pragma warning restore RECS0025 // Non-readonly field referenced in 'GetHashCode()'
 
-            return hashCode;
+                return hashCode;
+            }
         }
 
         /// <summary>
