@@ -36,7 +36,7 @@ namespace Tizen.Location.Geofence
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Deprecated since API11. Might be removed in API13")]
-        public int PlaceId Fence Fence
+        public Fence Fence
         {
             get;
             internal set;
@@ -47,7 +47,7 @@ namespace Tizen.Location.Geofence
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Deprecated since API11. Might be removed in API13")]
-        public int PlaceId int GeofenceId
+        public int GeofenceId
         {
             get;
             internal set;
@@ -70,7 +70,7 @@ namespace Tizen.Location.Geofence
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Deprecated since API11. Might be removed in API13")]
-        public int PlaceId int Count
+        public int Count
         {
             get;
             internal set;
@@ -96,7 +96,7 @@ namespace Tizen.Location.Geofence
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Deprecated since API11. Might be removed in API13")]
-        public int PlaceId int PlaceId
+        public int PlaceId
         {
             get;
             internal set;
@@ -107,7 +107,7 @@ namespace Tizen.Location.Geofence
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Deprecated since API11. Might be removed in API13")]
-        public int PlaceId string Name
+        public string Name
         {
             get;
             internal set;
@@ -130,7 +130,7 @@ namespace Tizen.Location.Geofence
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Deprecated since API11. Might be removed in API13")]
-        public int PlaceId int Count
+        public int Count
         {
             get;
             internal set;

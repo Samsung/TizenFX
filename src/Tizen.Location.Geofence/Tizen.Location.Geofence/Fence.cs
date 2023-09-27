@@ -101,7 +101,7 @@ namespace Tizen.Location.Geofence
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Deprecated since API11. Might be removed in API13")]
-        public int PlaceId double Longitude
+        public double Longitude
         {
             get
             {
@@ -122,7 +122,7 @@ namespace Tizen.Location.Geofence
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Deprecated since API11. Might be removed in API13")]
-        public int PlaceId double Latitude
+        public double Latitude
         {
             get
             {
@@ -142,7 +142,7 @@ namespace Tizen.Location.Geofence
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Deprecated since API11. Might be removed in API13")]
-        public int PlaceId int Radius
+        public int Radius
         {
             get
             {
@@ -162,7 +162,7 @@ namespace Tizen.Location.Geofence
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Deprecated since API11. Might be removed in API13")]
-        public int PlaceId string Address
+        public string Address
         {
             get
             {
@@ -182,7 +182,7 @@ namespace Tizen.Location.Geofence
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Deprecated since API11. Might be removed in API13")]
-        public int PlaceId string Bssid
+        public string Bssid
         {
             get
             {
@@ -202,7 +202,7 @@ namespace Tizen.Location.Geofence
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Deprecated since API11. Might be removed in API13")]
-        public int PlaceId string Ssid
+        public string Ssid
         {
             get
             {
@@ -296,7 +296,7 @@ namespace Tizen.Location.Geofence
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Deprecated since API11. Might be removed in API13")]
-        public int PlaceId void Dispose()
+        public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
