@@ -21,6 +21,7 @@ namespace Tizen.Location.Geofence
     /// Represents the geofence list item data.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13")]
     public class FenceData
     {
         internal FenceData(int fenceId, IntPtr handle, int index, int count)
@@ -34,7 +35,8 @@ namespace Tizen.Location.Geofence
         /// The geofence instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Fence Fence
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
+        public int PlaceId Fence Fence
         {
             get;
             internal set;
@@ -44,7 +46,8 @@ namespace Tizen.Location.Geofence
         /// The geofence ID.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public int GeofenceId
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
+        public int PlaceId int GeofenceId
         {
             get;
             internal set;
@@ -55,6 +58,7 @@ namespace Tizen.Location.Geofence
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The index value starts from 1.</value>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public int Index
         {
             get;
@@ -65,7 +69,8 @@ namespace Tizen.Location.Geofence
         /// The total number of fences that exists for the requester.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public int Count
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
+        public int PlaceId int Count
         {
             get;
             internal set;
@@ -76,6 +81,7 @@ namespace Tizen.Location.Geofence
     /// Represents the place list item data.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13")]
     public class PlaceData
     {
         internal PlaceData(int id, string name, int index, int count)
@@ -89,7 +95,8 @@ namespace Tizen.Location.Geofence
         /// The current place ID.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public int PlaceId
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
+        public int PlaceId int PlaceId
         {
             get;
             internal set;
@@ -99,7 +106,8 @@ namespace Tizen.Location.Geofence
         /// The current place name.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public string Name
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
+        public int PlaceId string Name
         {
             get;
             internal set;
@@ -110,6 +118,7 @@ namespace Tizen.Location.Geofence
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The index value starts from 1.</value>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public int Index
         {
             get;
@@ -120,7 +129,8 @@ namespace Tizen.Location.Geofence
         /// The total number of places that exists for the requester.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public int Count
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
+        public int PlaceId int Count
         {
             get;
             internal set;

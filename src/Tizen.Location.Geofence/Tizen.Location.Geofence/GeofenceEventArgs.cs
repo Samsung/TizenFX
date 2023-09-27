@@ -22,6 +22,7 @@ namespace Tizen.Location.Geofence
     /// Event arguments are passed when an event is triggered to notify the proximity state change.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13")]
     public class ProximityStateEventArgs : EventArgs
     {
         /// <summary>
@@ -42,7 +43,8 @@ namespace Tizen.Location.Geofence
         /// The geofence ID.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public int GeofenceId
+    [Obsolete("Deprecated since API11. Might be removed in API13")]
+    public int GeofenceId
         {
             get;
         }
@@ -51,7 +53,8 @@ namespace Tizen.Location.Geofence
         /// The proximity state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public ProximityState State
+    [Obsolete("Deprecated since API11. Might be removed in API13")]
+    public ProximityState State
         {
             get;
         }
@@ -60,7 +63,8 @@ namespace Tizen.Location.Geofence
         /// The proximity provider.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public ProximityProvider Provider
+    [Obsolete("Deprecated since API11. Might be removed in API13")]
+    public ProximityProvider Provider
         {
             get;
         }
@@ -70,6 +74,7 @@ namespace Tizen.Location.Geofence
     /// Event arguments are passed when an event is triggered to notify the geofence state change.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13")]
     public class GeofenceStateEventArgs : EventArgs
     {
         /// <summary>
@@ -88,7 +93,8 @@ namespace Tizen.Location.Geofence
         /// The specified geofence ID.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public int GeofenceId
+    [Obsolete("Deprecated since API11. Might be removed in API13")]
+    public int GeofenceId
         {
             get;
         }
@@ -97,7 +103,8 @@ namespace Tizen.Location.Geofence
         /// The geofence state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public GeofenceState State
+    [Obsolete("Deprecated since API11. Might be removed in API13")]
+    public GeofenceState State
         {
             get;
         }
@@ -107,6 +114,7 @@ namespace Tizen.Location.Geofence
     /// Event arguments are passed when an event occurs in geofence and the place, such as add, update, etc..
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13")]
     public class GeofenceResponseEventArgs : EventArgs
     {
         /// <summary>
@@ -129,7 +137,8 @@ namespace Tizen.Location.Geofence
         /// The place ID.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public int PlaceId
+    [Obsolete("Deprecated since API11. Might be removed in API13")]
+    public int PlaceId
         {
             get;
         }
@@ -138,7 +147,8 @@ namespace Tizen.Location.Geofence
         /// The specified geofence ID.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public int FenceId
+    [Obsolete("Deprecated since API11. Might be removed in API13")]
+    public int FenceId
         {
             get;
         }
@@ -147,7 +157,8 @@ namespace Tizen.Location.Geofence
         /// The error code for the particular action.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public GeofenceError ErrorCode
+    [Obsolete("Deprecated since API11. Might be removed in API13")]
+    public GeofenceError ErrorCode
         {
             get;
         }
@@ -156,7 +167,8 @@ namespace Tizen.Location.Geofence
         /// The result code for the particular place and geofence management.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public GeofenceEventType EventType
+    [Obsolete("Deprecated since API11. Might be removed in API13")]
+    public GeofenceEventType EventType
         {
             get;
         }

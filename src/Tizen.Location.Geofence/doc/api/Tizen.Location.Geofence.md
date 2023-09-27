@@ -4,6 +4,10 @@ summary: The Tizen.Location.Geofence namespace provides classes for virtual peri
 remarks: *content
 ---
 ## Overview
+
+[!NOTE]
+All geofence APIs have been deprecated since Tizen 8.0 and will be removed after two releases without any alternatives.
+
 This API provides functions to set the gofence with a geopoint, MAC address of Wi-Fi, and Bluetooth address.
 Also, notifications on events like changing in service status are provided.
 
