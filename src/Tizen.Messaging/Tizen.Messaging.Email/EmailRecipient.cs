@@ -20,17 +20,20 @@ namespace Tizen.Messaging.Email
     /// This class represents recipients of an email.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13")]
     public class EmailRecipient
     {
         /// <summary>
         /// The email address of the recipient.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public string Address { get; set; }
         /// <summary>
         /// The constructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public EmailRecipient()
         {
 
