@@ -13,9 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-[!NOTE]
-All Email APIs have been deprecated since Tizen 8.0 and will be removed after two releases without any alternatives.
-
 uid: Tizen.Messaging.Email
 summary: The Tizen.Messaging.Email namespace contains classes providing the functionality to send emails.
+
+> [!NOTE]
+> All Email APIs have been deprecated since Tizen 8.0 (API Level 11) which means they are planned to be removed after two releases.
+
 ---
