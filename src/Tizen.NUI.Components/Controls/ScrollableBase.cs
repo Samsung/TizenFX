@@ -1385,12 +1385,13 @@ namespace Tizen.NUI.Components
                 return false;
             }
 
+            bool handled = true;
             if (mScrollEnabled == true)
             {
-                OnPanGesture(gestures);
+                handled = OnPanGesture(gestures);
             }
 
-            return true;
+            return handled;
         }
 
         private float CustomScrollAlphaFunction(float progress)
