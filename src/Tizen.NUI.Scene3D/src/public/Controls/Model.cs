@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
 using Tizen.NUI;
@@ -161,7 +162,43 @@ namespace Tizen.NUI.Scene3D
                 return GetModelRoot();
             }
         }
-
+        
+        /// <summary>
+        /// Sets collider mesh for selected node 
+        /// </summary>
+        /// <param name="modelNode">Node to attach collider mesh to</param>
+        /// <param name="vertexList">List of mesh vertices</param>
+        /// <param name="indexList">List of mesh indices</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetColliderMesh(string nodeName, List<Vector3> vertexList, List<int> indexList)
+        {
+            var vertices = new Interop.Model.Vec3[vertexList.Count];
+            var idx = 0;
+            foreach (var vertex in vertexList)
+            {
+                vertices[idx].x = vertex.X;
+                vertices[idx].y = vertex.Y;
+                vertices[idx].z = vertex.Z;
+                ++idx;
+            }
+            
+            Interop.Model.SetColliderMesh(SwigCPtr, nodeName, vertices, vertexList.Count, indexList.ToArray(), indexList.Count);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+        
+        /// <summary>
+        /// Adds modelNode to this Model.
+        /// </summary>
+        /// <param name="modelNode">Root of a ModelNode tree</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveColliderMesh(string nodeName)
+        {
+            //Interop.Model.AddModelNode(SwigCPtr, ModelNode.getCPtr(modelNode));
+            //if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+        
         /// <summary>
         /// Adds modelNode to this Model.
         /// </summary>

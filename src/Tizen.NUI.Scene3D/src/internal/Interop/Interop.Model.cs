@@ -14,13 +14,27 @@
  * limitations under the License.
  *
  */
-
+using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 namespace Tizen.NUI.Scene3D
 {
     internal static partial class Interop
     {
         internal static partial class Model
         {
+            [StructLayout(LayoutKind.Sequential)]
+            internal struct Vec3
+            {
+                internal float x, y, z;
+            }
+        
+            [StructLayout(LayoutKind.Sequential)]
+            internal struct ElementIndex
+            {
+                internal Int32 index;
+            }
+            
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_New_SWIG_0")]
             public static extern global::System.IntPtr ModelNew(string modelUrl, string resourcePasth);
 
@@ -106,6 +120,12 @@ namespace Tizen.NUI.Scene3D
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_LoadFacialAnimation_2")]
             public static extern global::System.IntPtr LoadBlendShapeAnimationFromBuffer(global::System.Runtime.InteropServices.HandleRef model, string jsonBuffer, int jsonBufferLength);
+            
+            //SWIGEXPORT void SWIGSTDCALL CSharp_Dali_Model_SetColliderMesh(void *modelPtr, void* vertexPtr, unsigned long vertexCount, void* indexPtr, unsigned long indexCount) {
+  
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_SetColliderMesh")]
+            public static extern global::System.IntPtr SetColliderMesh(global::System.Runtime.InteropServices.HandleRef model,
+                string nodeName, Vec3[] vPtr, int vLength, int[] iPtr, int iLength);
         }
     }
 }
