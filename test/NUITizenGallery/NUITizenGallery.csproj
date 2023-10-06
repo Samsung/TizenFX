@@ -33,6 +33,6 @@
     </PropertyGroup>
 
     <ImportGroup>
-        <Import Project="..\..\pkg\Tizen.NET.API11\xamlbuild\Tizen.NUI.XamlBuild.targets" />
+        <Import Project="..\..\pkg\Tizen.NET.API12\xamlbuild\Tizen.NUI.XamlBuild.targets" />
     </ImportGroup>
 </Project>
