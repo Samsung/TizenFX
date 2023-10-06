@@ -39,7 +39,7 @@ The __API#__ branches are the release branch for Tizen .NET __API Level #__.
 
 These release branches were __FROZEN__. No new public APIs can be added to these branches, only bug fixes and internal APIs can be added.
 
-## Using `net6.0-tizen` target framework
+## Using `net6.0-tizen` target framework for API11 or above
 If you want to use the `net6.0-tizen` target framework, you need to [install Tizen workload](https://github.com/Samsung/Tizen.NET/wiki/Installing-Tizen-.NET-Workload).
 
 ## Using `tizen` target framework
@@ -56,6 +56,7 @@ For more information, please see [Using Tizen.NET.Sdk as SDK-style](https://deve
 ### Minimum required versions of Tizen.NET.Sdk and Visual Studio
 | API Level | Target Framework | Tizen.NET.Sdk | Visual Studio     |
 |:---------:|------------------|---------------|-------------------|
+| API12     | net6.0-tizen9.0  | [Tizen .NET Workloads](https://github.com/samsung/Tizen.NET) | 2022       |
 | API11     | net6.0-tizen8.0  | [Tizen .NET Workloads](https://github.com/samsung/Tizen.NET) | 2022       |
 | API10     | tizen10.0        | 1.1.9         | 2019              |
 | API9      | tizen90          | 1.1.7         | 2019              |
