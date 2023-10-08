@@ -103,7 +103,7 @@ namespace Tizen.NUI.ParticleSystem
         /// <summary>
         /// Raises the window to the top of the window stack.
         /// </summary>
-        /// <param name="particleEmitter">Source object to copy.</param>
+        /// <param name="source">Source object to copy.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetSource<T>(ParticleSource<T> source) where T : ParticleSourceInterface, new()
         {
