@@ -58,7 +58,7 @@ namespace Tizen.NUI
 
             RegistryCurrentThreadCheck();
 
-            if (Instance._controlMap.TryAdd(refCptr, new WeakReference(baseHandle, false)) != true)
+            if (Instance._controlMap.TryAdd(refCptr, new WeakReference(baseHandle, true)) != true)
             {
                 WeakReference weakReference;
                 if(Instance._controlMap.TryGetValue(refCptr, out weakReference))
