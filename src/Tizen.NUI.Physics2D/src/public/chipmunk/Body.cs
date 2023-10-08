@@ -728,11 +728,12 @@ namespace Tizen.NUI.Physics2D.Chipmunk
             get
             {
                 int count = NativeMethods.cpBodyGetContactedBodiesCount(body);
+                int intptrBytes = checked(IntPtr.Size * count);
 
-                if (count == 0)
+                if (intptrBytes == 0)
                     return Array.Empty<Body>();
 
-                IntPtr ptrBodies = Marshal.AllocHGlobal(IntPtr.Size * count);
+                IntPtr ptrBodies = Marshal.AllocHGlobal(intptrBytes);
                 NativeMethods.cpBodyGetUserDataContactedBodies(body, ptrBodies);
 
                 IntPtr[] userDataArray = new IntPtr[count];
