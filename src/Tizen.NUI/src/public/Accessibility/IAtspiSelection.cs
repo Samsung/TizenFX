@@ -65,7 +65,7 @@ namespace Tizen.NUI.Accessibility
         /// Checks whether a child is selected.
         /// </summary>
         /// <param name="childIndex"> The index of the child </param>
-        /// <returns>< True if given child is selected, false otherwise /returns>
+        /// <returns>True if given child is selected, false otherwise </returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         bool AccessibilityIsChildSelected(int childIndex);
 
