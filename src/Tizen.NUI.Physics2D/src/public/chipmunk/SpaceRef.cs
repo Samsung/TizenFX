@@ -526,11 +526,12 @@ namespace Tizen.NUI.Physics2D.Chipmunk
             get
             {
                 int count = NativeMethods.cpSpaceGetBodyCount(space);
+                int intptrBytes = checked(IntPtr.Size * count);
 
-                if (count == 0)
+                if (intptrBytes == 0)
                     return Array.Empty<Body>();
 
-                IntPtr ptrBodies = Marshal.AllocHGlobal(IntPtr.Size * count);
+                IntPtr ptrBodies = Marshal.AllocHGlobal(intptrBytes);
                 NativeMethods.cpSpaceGetBodiesUserDataArray(space, ptrBodies);
 
                 IntPtr[] userDataArray = new IntPtr[count];
@@ -560,11 +561,12 @@ namespace Tizen.NUI.Physics2D.Chipmunk
             get
             {
                 int count = NativeMethods.cpSpaceGetDynamicBodyCount(space);
+                int intptrBytes = checked(IntPtr.Size * count);
 
-                if (count == 0)
+                if (intptrBytes == 0)
                     return Array.Empty<Body>();
 
-                IntPtr ptrBodies = Marshal.AllocHGlobal(IntPtr.Size * count);
+                IntPtr ptrBodies = Marshal.AllocHGlobal(intptrBytes);
                 NativeMethods.cpSpaceGetDynamicBodiesUserDataArray(space, ptrBodies);
 
                 IntPtr[] userDataArray = new IntPtr[count];

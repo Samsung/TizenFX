@@ -104,8 +104,15 @@ namespace Tizen.NUI.Physics2D.Chipmunk
         private IntPtr ToPointer()
         {
             IntPtr drawOptionsPtr = NativeInterop.AllocStructure<cpSpaceDebugDrawOptions>();
-
-            Marshal.StructureToPtr<cpSpaceDebugDrawOptions>(this, drawOptionsPtr, false);
+            try
+            {
+                Marshal.StructureToPtr<cpSpaceDebugDrawOptions>(this, drawOptionsPtr, false);
+            }
+            catch (Exception exception)
+            {
+                Tizen.Log.Fatal("NUI", "[Error] got exception during Marshal.StructureToPtr, this should not occur, message : " + exception.Message);
+            }
+      
             return drawOptionsPtr;
         }
 
