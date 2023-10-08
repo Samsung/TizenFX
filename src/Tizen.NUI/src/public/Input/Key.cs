@@ -49,7 +49,11 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Key(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Key(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, true)
+        {
+        }
+
+        internal Key(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
         }
 
