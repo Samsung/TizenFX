@@ -69,6 +69,29 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        internal BaseHandle(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister)
+        {
+            //to catch derived classes dali native exceptions
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            DebugFileLogging.Instance.WriteLog($"BaseHandle.contructor with cMemeryOwn:{cMemoryOwn} and cRegister:{cRegister} START");
+
+            registerMe = cRegister;
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            if (registerMe)
+            {
+                // Register this instance of BaseHandle in the registry.
+                Registry.Register(this);
+            }
+
+            disposeDebuggingCtor();
+            DebugFileLogging.Instance.WriteLog($" BaseHandle.contructor with cMemeryOwn and cRegister END");
+            DebugFileLogging.Instance.WriteLog($"=============================");
+        }
+
         internal BaseHandle(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
             //to catch derived classes dali native exceptions
@@ -511,6 +534,15 @@ namespace Tizen.NUI
             PropertySet?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        internal void UnregisterFromRegistry()
+        {
+            if (registerMe)
+            {
+                Registry.Unregister(this);
+                registerMe = false;
+            }
+        }
+
         /// <summary>
         /// Dispose.
         /// </summary>
@@ -537,10 +569,7 @@ namespace Tizen.NUI
             //because the execution order of Finalizes is non-deterministic.
 
             //Unreference this instance from Registry.
-            if (registerMe)
-            {
-                Registry.Unregister(this);
-            }
+            UnregisterFromRegistry();
 
             disposeDebuggingDispose(type);
 
