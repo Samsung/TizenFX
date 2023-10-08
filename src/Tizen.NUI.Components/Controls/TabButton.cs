@@ -301,10 +301,10 @@ namespace Tizen.NUI.Components
                 // Text only
                 if (isEmptyIcon && !isEmptyText)
                 {
-                    if (tabButtonStyle.Size != null)
+                    if (tabButtonStyle.Size  is var size && size  != null)
                     {
-                        WidthSpecification = (int)tabButtonStyle.Size.Width;
-                        HeightSpecification = (int)tabButtonStyle.Size.Height;
+                        WidthSpecification = (int)size.Width;
+                        HeightSpecification = (int)size.Height;
                     }
 
                     if ((tabButtonStyle.Text != null) && (tabButtonStyle.Text.PixelSize != null) && (tabButtonStyle.Text.PixelSize.Normal != null))
@@ -335,11 +335,11 @@ namespace Tizen.NUI.Components
                         WidthSpecification = (int)tabButtonStyle.SizeWithIcon.Width;
                         HeightSpecification = (int)tabButtonStyle.SizeWithIcon.Height;
                     }
-
-                    if ((tabButtonStyle.Icon != null) && (tabButtonStyle.Icon.Size != null))
+                    var size = tabButtonStyle.Icon?.Size;
+                    if (size != null)
                     {
-                        Icon.WidthSpecification = (int)tabButtonStyle.Icon.Size.Width;
-                        Icon.HeightSpecification = (int)tabButtonStyle.Icon.Size.Height;
+                        Icon.WidthSpecification = (int)size.Width;
+                        Icon.HeightSpecification = (int)size.Height;
                     }
 
                     TextLabel.PixelSize = tabButtonStyle.TextSizeWithIcon;
@@ -347,10 +347,10 @@ namespace Tizen.NUI.Components
                 // Nothing
                 else
                 {
-                    if (tabButtonStyle.Size != null)
+                    if (tabButtonStyle.Size is var size && size != null)
                     {
-                        WidthSpecification = (int)tabButtonStyle.Size.Width;
-                        HeightSpecification = (int)tabButtonStyle.Size.Height;
+                        WidthSpecification = (int)size.Width;
+                        HeightSpecification = (int)size.Height;
                     }
                 }
             }
