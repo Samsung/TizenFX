@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2023 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -731,6 +731,16 @@ namespace Tizen.NUI.BaseComponents
         {
             PropertyMap value = new PropertyMap();
             using (var propertyValue = map.Find(key))
+            {
+                if (null != propertyValue) propertyValue.Get(value);
+            }
+            return value;
+        }
+
+        internal static PropertyArray GetArrayFromMap(PropertyMap map, string key)
+        {
+            PropertyArray value = new PropertyArray();
+            using (var propertyValue = map.Find(0, key))
             {
                 if (null != propertyValue) propertyValue.Get(value);
             }
