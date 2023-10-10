@@ -65,10 +65,10 @@ namespace Tizen.Multimedia.Util
 
                 case ThumbnailExtractorError.UnsupportedContent:
                     return new FileFormatException(errorMessage);
-            }
 
-            return new InvalidOperationException("[" + errorCode.ToString() + "]" + errorMessage);
+                default:
+                    return new InvalidOperationException("[" + errorCode.ToString() + "]" + errorMessage);
+            }
         }
     }
 }
-
