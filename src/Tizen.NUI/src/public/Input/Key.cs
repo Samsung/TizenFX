@@ -30,7 +30,7 @@ namespace Tizen.NUI
         /// The default constructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Key() : this(Interop.Key.New(), true)
+        public Key() : this(Interop.Key.New("","",0,0,0u,0), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
