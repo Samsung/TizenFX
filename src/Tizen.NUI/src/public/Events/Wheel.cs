@@ -53,7 +53,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Wheel(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, true)
+        internal Wheel(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
         {
         }
 
