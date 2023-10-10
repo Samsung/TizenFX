@@ -24,9 +24,11 @@ namespace Tizen.NUI
     {
         internal static partial class Accessibility
         {
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+            public delegate void SayCallback(string status);
+
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_say")]
-            [return: MarshalAs(UnmanagedType.U1)]
-            public static extern bool Say(string jarg1, bool jarg2, IntPtr jarg3);
+            public static extern void Say(string arg1_text, bool arg2_discardable, SayCallback arg3_callback);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_pause_resume")]
             public static extern void PauseResume(bool jarg1);
