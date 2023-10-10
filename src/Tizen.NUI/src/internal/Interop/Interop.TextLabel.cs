@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2023 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -164,6 +164,12 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_GetTextPosition")]
             public static extern global::System.IntPtr GetTextPosition(global::System.Runtime.InteropServices.HandleRef textLabelRef, uint start, uint end);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_SetTextFitArray")]
+            public static extern void SetTextFitArray(global::System.Runtime.InteropServices.HandleRef textLabel, bool enable, uint arraySize, float[] pointSizeArray, float[] minLineSizeArray);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_GetTextFitArray")]
+            public static extern global::System.IntPtr GetTextFitArray(global::System.Runtime.InteropServices.HandleRef textLabel);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_AnchorClickedSignal")]
             public static extern global::System.IntPtr AnchorClickedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
