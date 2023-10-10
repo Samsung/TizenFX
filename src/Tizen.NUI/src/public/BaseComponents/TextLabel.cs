@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2023 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -1402,6 +1402,105 @@ namespace Tizen.NUI.BaseComponents
                 textFit = TextMapHelper.GetTextFitStruct(textFitMap);
             }
             return textFit;
+        }
+
+        /// <summary>
+        /// Set TextFitArray to TextLabel. <br />
+        /// TextFitArray finds and applies the largest PointSize that fits among OptionList.
+        /// </summary>
+        /// <param name="textFitArray">The TextFitArray</param>
+        /// <remarks>
+        /// TextFitArray tries binary search by default. <br />
+        /// The precondition for TextFitArray to perform binary search is sorting in ascending order of MinLineSize. <br />
+        /// Because if MinLineSize is not sorted in ascending order, <br />
+        /// binary search cannot guarantee that it will always find the best value. <br />
+        /// In this case, the search sequentially starts from the largest PointSize. <br />
+        /// If TextFitArrayOption's MinLineSize is set to null or 0, <br />
+        /// TextFitArray is calculated without applying MinLineSize. <br />
+        /// If TextFitArray is enabled, TextLabel's MinLineSize property is ignored. <br />
+        /// See <see cref="Tizen.NUI.Text.TextFitArray"/> and <see cref="Tizen.NUI.Text.TextFitArrayOption"/>.
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetTextFitArray method. <br />
+        /// <code>
+        /// var textFitArray = new Tizen.NUI.Text.TextFitArray();
+        /// textFitArray.Enable = true;
+        /// textFitArray.OptionList = new List<Tizen.NUI.Text.TextFitArrayOption>()
+        /// {
+        ///     new Tizen.NUI.Text.TextFitArrayOption(12, 18),
+        ///     new Tizen.NUI.Text.TextFitArrayOption(24, 40),
+        ///     new Tizen.NUI.Text.TextFitArrayOption(28, 48),
+        ///     new Tizen.NUI.Text.TextFitArrayOption(32, 56),
+        ///     new Tizen.NUI.Text.TextFitArrayOption(50, 72),
+        /// };
+        /// label.SetTextFitArray(textFitArray);
+        /// </code>
+        /// <br />
+        /// The table below shows cases where binary search is possible and where it is not possible. <br />
+        /// <code>
+        /// [Binary search possible]
+        /// |            | List index  |  0 |  1 |  2 |  3 |
+        /// | OptionList | PointSize   | 24 | 28 | 32 | 48 |
+        /// |            | MinLineSize | 40 | 48 | 48 | 62 | << MinLineSize sorted in ascending order
+        ///                                    ^    ^
+        ///                                    same values ​are not a problem
+        ///
+        /// [Binary search not possible]
+        /// |            | List index  |  0 |  1 |  2 |  3 |
+        /// | OptionList | PointSize   | 24 | 28 | 32 | 48 |
+        /// |            | MinLineSize | 40 | 48 | 38 | 62 | << MinLineSize is not sorted in ascending order
+        ///                                         ^
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetTextFitArray(TextFitArray textFitArray)
+        {
+            bool enable = textFitArray.Enable;
+            int optionListSize = textFitArray.OptionList?.Count ?? 0;
+
+            float[] pointSizeArray = new float[optionListSize];
+            float[] minLineSizeArray = new float[optionListSize];
+
+            for (int i = 0 ; i < optionListSize ; i ++)
+            {
+                TextFitArrayOption option = textFitArray.OptionList[i];
+                pointSizeArray[i] = option.PointSize;
+                minLineSizeArray[i] = option.MinLineSize ?? 0;
+            }
+
+            Interop.TextLabel.SetTextFitArray(SwigCPtr, enable, (uint)optionListSize, pointSizeArray, minLineSizeArray);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Get TextFitArray from TextLabel.
+        /// </summary>
+        /// <returns>The TextFitArray</returns>
+        /// <remarks>
+        /// See <see cref="Tizen.NUI.Text.TextFitArray"/> and <see cref="Tizen.NUI.Text.TextFitArrayOption"/>.
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the GetTextFitArray method. <br />
+        /// <code>
+        /// Tizen.NUI.Text.TextFitArray textFitArray = label.GetTextFitArray();
+        /// bool enable = textFitArray.Enable;
+        /// var optionList = textFitArray.OptionList;
+        /// foreach(Tizen.NUI.Text.TextFitArrayOption option in optionList)
+        /// {
+        ///     float pointSize = option.PointSize;
+        ///     float minLinesize = option.MinLineSize;
+        /// }
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextFitArray GetTextFitArray()
+        {
+            using PropertyMap textFitArrayMap = new PropertyMap(Interop.TextLabel.GetTextFitArray(SwigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            TextFitArray textFitArray;
+            textFitArray = TextUtils.GetMapToTextFitArray(textFitArrayMap);
+            return textFitArray;
         }
 
         /// <summary>
