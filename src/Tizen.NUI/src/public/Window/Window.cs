@@ -1269,7 +1269,7 @@ namespace Tizen.NUI
         {
             if (touchPoint == null)
             {
-                using Hover hover = GetLastHoverEvent();
+                Hover hover = GetLastHoverEvent();
                 if (hover == null || hover.GetPointCount() < 1)
                 {
                     return;
@@ -2108,13 +2108,26 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the last key event the window gets.
         /// </summary>
+        /// <remarks>
+        /// We will use weak reference of last key events.
+        /// Return value will be invalidated if last key event changed internally.
+        /// </remarks>
+        /// <remarks>
+        /// Do not Dispose this value.
+        /// </remarks>
         /// <returns>The last key event the window gets.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Key GetLastKeyEvent()
         {
-            if(internalLastKeyEvent == null)
+            if (internalLastKeyEvent == null)
             {
-                internalLastKeyEvent = new Key();
+                // TODO : We need to make automatically release memory of these cached events in future.
+                if (!(internalLastKeyEvent?.IsNativeHandleInvalid() ?? true))
+                {
+                    Interop.Key.DeleteKey(internalLastKeyEvent.SwigCPtr);
+                }
+                // Create empty event handle without register.
+                internalLastKeyEvent = new Key(Interop.Key.New(), false);
             }
             Interop.Window.InternalRetrievingLastKeyEvent(SwigCPtr, internalLastKeyEvent.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -2124,13 +2137,26 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the last touch event the window gets.
         /// </summary>
+        /// <remarks>
+        /// We will use weak reference of last touch events.
+        /// Return value will be invalidated if last touch event changed internally.
+        /// </remarks>
+        /// <remarks>
+        /// Do not Dispose this value.
+        /// </remarks>
         /// <returns>The last touch event the window gets.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Touch GetLastTouchEvent()
         {
-            if(internalLastTouchEvent == null)
+            if (internalLastTouchEvent == null)
             {
-                internalLastTouchEvent = new Touch();
+                // TODO : We need to make automatically release memory of these cached events in future.
+                if (!(internalLastTouchEvent?.IsNativeHandleInvalid() ?? true))
+                {
+                    Interop.Touch.DeleteTouch(internalLastTouchEvent.SwigCPtr);
+                }
+                // Create empty event handle without register.
+                internalLastTouchEvent = new Touch(Interop.Touch.NewTouch(), false);
             }
             Interop.Window.InternalRetrievingLastTouchEvent(SwigCPtr, internalLastTouchEvent.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -2140,13 +2166,26 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the last hover event the window gets.
         /// </summary>
+        /// <remarks>
+        /// We will use weak reference of last hover events.
+        /// Return value will be invalidated if last hover event changed internally.
+        /// </remarks>
+        /// <remarks>
+        /// Do not Dispose this value.
+        /// </remarks>
         /// <returns>The last hover event the window gets.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Hover GetLastHoverEvent()
         {
-            if(internalLastHoverEvent == null)
+            if (internalLastHoverEvent == null)
             {
-                internalLastHoverEvent = new Hover();
+                // TODO : We need to make automatically release memory of these cached events in future.
+                if (!(internalLastHoverEvent?.IsNativeHandleInvalid() ?? true))
+                {
+                    Interop.Hover.DeleteHover(internalLastHoverEvent.SwigCPtr);
+                }
+                // Create empty event handle without register.
+                internalLastHoverEvent = new Hover(Interop.Hover.New(0u), false);
             }
             Interop.Window.InternalRetrievingLastHoverEvent(SwigCPtr, internalLastHoverEvent.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -2235,10 +2274,26 @@ namespace Tizen.NUI
 
                 localController?.Dispose();
 
+                // TODO : We need to make automatically release memory of these cached events in future.
+                if (!(internalLastKeyEvent?.IsNativeHandleInvalid() ?? true))
+                {
+                    Interop.Key.DeleteKey(internalLastKeyEvent.SwigCPtr);
+                }
+                if (!(internalLastTouchEvent?.IsNativeHandleInvalid() ?? true))
+                {
+                    Interop.Touch.DeleteTouch(internalLastTouchEvent.SwigCPtr);
+                }
+                if (!(internalLastHoverEvent?.IsNativeHandleInvalid() ?? true))
+                {
+                    Interop.Hover.DeleteHover(internalLastHoverEvent.SwigCPtr);
+                }
+
                 internalLastKeyEvent?.Dispose();
                 internalLastKeyEvent = null;
                 internalLastTouchEvent?.Dispose();
                 internalLastTouchEvent = null;
+                internalLastHoverEvent?.Dispose();
+                internalLastHoverEvent = null;
 
                 internalHoverTimer?.Stop();
                 internalHoverTimer?.Dispose();
