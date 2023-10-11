@@ -26,6 +26,7 @@ namespace Tizen.Location.Geofence
     /// </list>
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13")]
     public class FenceStatus : IDisposable
     {
         private bool _disposed = false;
@@ -43,6 +44,7 @@ namespace Tizen.Location.Geofence
         /// <param name="fenceId">The geofence ID.</param>
         /// <exception cref="ArgumentException">In case of an invalid parameter.</exception>
         /// <exception cref="NotSupportedException">In case of geofence is not supported.</exception>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public FenceStatus(int fenceId)
         {
             IntPtr handle;
@@ -69,6 +71,7 @@ namespace Tizen.Location.Geofence
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="NotSupportedException">In case the geofence is not supported.</exception>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public GeofenceState State
         {
             get
@@ -89,6 +92,7 @@ namespace Tizen.Location.Geofence
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="NotSupportedException">In case the geofence is not supported.</exception>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public int Duration
         {
             get
@@ -108,6 +112,7 @@ namespace Tizen.Location.Geofence
         /// The overloaded Dispose API for destroying the fence handle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public void Dispose()
         {
             Dispose(true);
@@ -118,6 +123,7 @@ namespace Tizen.Location.Geofence
         /// Dispose.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

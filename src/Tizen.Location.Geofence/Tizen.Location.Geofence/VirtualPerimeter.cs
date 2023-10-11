@@ -24,6 +24,7 @@ namespace Tizen.Location.Geofence
     /// A user can manage all the geofence or place related data and events.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13")]
     public class VirtualPerimeter
     {
         private IntPtr Handle;
@@ -34,6 +35,7 @@ namespace Tizen.Location.Geofence
         /// <since_tizen> 3 </since_tizen>
         /// <param name="manager">The GeofenceManager instance.</param>
         /// <exception cref="ArgumentException"> In case of an invalid parameter.</exception>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public VirtualPerimeter(GeofenceManager manager)
         {
             if (manager == null)
@@ -57,6 +59,7 @@ namespace Tizen.Location.Geofence
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
         /// <exception cref="UnauthorizedAccessException">In case privileges are not defined.</exception>
         /// <exception cref="NotSupportedException">In case the geofence is not supported.</exception>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public int AddPlaceName(string name)
         {
             int placeId = 0;
@@ -80,6 +83,7 @@ namespace Tizen.Location.Geofence
         /// <exception cref="InvalidOperationException">In case of any System error.</exception>
         /// <exception cref="UnauthorizedAccessException">In case privileges are not defined.</exception>
         /// <exception cref="NotSupportedException">In case the geofence is not supported.</exception>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public void UpdatePlace(int placeId, string name)
         {
             GeofenceError ret = (GeofenceError)Interop.VirtualPerimeter.UpdatePlace(Handle, placeId, name);
@@ -99,6 +103,7 @@ namespace Tizen.Location.Geofence
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
         /// <exception cref="UnauthorizedAccessException">In case privileges are not defined.</exception>
         /// <exception cref="NotSupportedException">In case the geofence is not supported.</exception>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public void RemovePlace(int placeId)
         {
             GeofenceError ret = (GeofenceError)Interop.VirtualPerimeter.RemovePlace(Handle, placeId);
@@ -120,6 +125,7 @@ namespace Tizen.Location.Geofence
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
         /// <exception cref="UnauthorizedAccessException">In case privileges are not defined.</exception>
         /// <exception cref="NotSupportedException">In case the geofence is not supported.</exception>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public int AddGeofence(Fence fence)
         {
             int fenceId = 0;
@@ -142,6 +148,7 @@ namespace Tizen.Location.Geofence
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
         /// <exception cref="UnauthorizedAccessException">In case privileges are not defined.</exception>
         /// <exception cref="NotSupportedException">In case the geofence is not supported.</exception>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public void RemoveGeofence(int fenceId)
         {
             GeofenceError ret = (GeofenceError)Interop.VirtualPerimeter.RemoveFence(Handle, fenceId);
@@ -162,6 +169,7 @@ namespace Tizen.Location.Geofence
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
         /// <exception cref="UnauthorizedAccessException">In case privileges are not defined.</exception>
         /// <exception cref="NotSupportedException">In case the geofence is not supported.</exception>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public string GetPlaceName(int placeId)
         {
             string name = "";
@@ -183,6 +191,7 @@ namespace Tizen.Location.Geofence
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
         /// <exception cref="UnauthorizedAccessException">In case privileges are not defined.</exception>
         /// <exception cref="NotSupportedException">In case the geofence is not supported.</exception>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public IEnumerable<PlaceData> GetPlaceDataList()
         {
             List<PlaceData> places = new List<PlaceData>();
@@ -214,6 +223,7 @@ namespace Tizen.Location.Geofence
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
         /// <exception cref="UnauthorizedAccessException">In case privileges are not defined.</exception>
         /// <exception cref="NotSupportedException">In case geofence is not supported.</exception>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public IEnumerable<FenceData> GetFenceDataList()
         {
             List<FenceData> fences = new List<FenceData>();
@@ -247,6 +257,7 @@ namespace Tizen.Location.Geofence
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
         /// <exception cref="UnauthorizedAccessException">In case privileges are not defined.</exception>
         /// <exception cref="NotSupportedException">In case the geofence is not supported.</exception>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public IEnumerable<FenceData> GetGeofenceDataListByPlaceId(int placeId)
         {
             List<FenceData> fences = new List<FenceData>();
