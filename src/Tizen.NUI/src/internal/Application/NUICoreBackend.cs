@@ -186,7 +186,7 @@ namespace Tizen.NUI
             }
             else if (defaultWindowType != WindowType.Normal)
             {
-                application = Application.NewApplication(stylesheet, windowMode, defaultWindowType);
+                application = Application.NewApplication(args, stylesheet, windowMode, defaultWindowType);
             }
             else
             {
