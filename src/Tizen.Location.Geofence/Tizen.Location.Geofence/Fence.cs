@@ -31,6 +31,7 @@ namespace Tizen.Location.Geofence
     /// and the manufacturer's assigned 24-bit identifier for the radio chipset in the WAP.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13")]
     public class Fence : IDisposable
     {
         private bool _disposed = false;
@@ -59,6 +60,7 @@ namespace Tizen.Location.Geofence
         /// Gets the type of geofence.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public FenceType Type
         {
             get
@@ -78,6 +80,7 @@ namespace Tizen.Location.Geofence
         /// Gets the ID of the place.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public int PlaceId
         {
             get
@@ -97,6 +100,7 @@ namespace Tizen.Location.Geofence
         /// Gets the longitude of geofence.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public double Longitude
         {
             get
@@ -117,6 +121,7 @@ namespace Tizen.Location.Geofence
         /// Gets the latitude of geofence.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public double Latitude
         {
             get
@@ -136,6 +141,7 @@ namespace Tizen.Location.Geofence
         /// Gets the radius of geofence.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public int Radius
         {
             get
@@ -155,6 +161,7 @@ namespace Tizen.Location.Geofence
         /// Gets the address of geofence.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public string Address
         {
             get
@@ -174,6 +181,7 @@ namespace Tizen.Location.Geofence
         /// Gets the BSSID of geofence.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public string Bssid
         {
             get
@@ -193,6 +201,7 @@ namespace Tizen.Location.Geofence
         /// Gets the SSID of geofence.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public string Ssid
         {
             get
@@ -221,6 +230,7 @@ namespace Tizen.Location.Geofence
         /// <exception cref="ArgumentException">In case of an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
         /// <exception cref="NotSupportedException">In case the geofence is not supported.</exception>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public static Fence CreateGPSFence(int placeId, double latitude, double longitude, int radius, string address)
         {
             IntPtr handle = IntPtr.Zero;
@@ -244,6 +254,7 @@ namespace Tizen.Location.Geofence
         /// <exception cref="ArgumentException">In case of an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
         /// <exception cref="NotSupportedException">In case the geofence is not supported.</exception>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public static Fence CreateWifiFence(int placeId, string bssid, string ssid)
         {
             IntPtr handle = IntPtr.Zero;
@@ -267,6 +278,7 @@ namespace Tizen.Location.Geofence
         /// <exception cref="ArgumentException">In case of an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
         /// <exception cref="NotSupportedException">In case the geofence is not supported.</exception>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public static Fence CreateBTFence(int placeId, string bssid, string ssid)
         {
             IntPtr handle = IntPtr.Zero;
@@ -283,6 +295,7 @@ namespace Tizen.Location.Geofence
         /// The overloaded Dispose API for destroying the fence handle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public void Dispose()
         {
             Dispose(true);
@@ -293,6 +306,7 @@ namespace Tizen.Location.Geofence
         /// Dispose.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

@@ -14,12 +14,15 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace Tizen.Location.Geofence
 {
     /// <summary>
     /// Enumeration for the geofence types.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13")]
     public enum FenceType
     {
         /// <summary>
@@ -45,6 +48,7 @@ namespace Tizen.Location.Geofence
     /// Enumeration for the state of geofence.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13")]
     public enum GeofenceState
     {
         /// <summary>
@@ -70,6 +74,7 @@ namespace Tizen.Location.Geofence
     /// Enumeration for the geofence management events.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13")]
     public enum GeofenceEventType
     {
         /// <summary>
@@ -131,6 +136,7 @@ namespace Tizen.Location.Geofence
     /// Enumeration for the provider of proximity.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13")]
     public enum ProximityProvider
     {
         /// <summary>
@@ -168,6 +174,7 @@ namespace Tizen.Location.Geofence
     /// Enumeration for the state of proximity.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13")]
     public enum ProximityState
     {
         /// <summary>
