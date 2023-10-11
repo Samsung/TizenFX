@@ -36,6 +36,7 @@ namespace Tizen.Location.Geofence
     /// </list>
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13")]
     public class GeofenceManager : IDisposable
     {
         private bool _disposed = false;
@@ -53,6 +54,7 @@ namespace Tizen.Location.Geofence
         /// <exception cref="OutOfMemoryException">In case of out of memory condition.</exception>
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
         /// <exception cref="NotSupportedException">In case the geofence is not supported.</exception>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public GeofenceManager()
         {
             IntPtr handle;
@@ -78,6 +80,7 @@ namespace Tizen.Location.Geofence
         /// Checks whether the Geofence manager is available or not.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public static bool IsSupported
         {
             get
@@ -106,6 +109,7 @@ namespace Tizen.Location.Geofence
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
         /// <exception cref="UnauthorizedAccessException">In case privileges are not defined.</exception>
         /// <exception cref="NotSupportedException">In case the geofence is not supported.</exception>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public void Start(int geofenceId)
         {
             GeofenceError ret = (GeofenceError)Interop.GeofenceManager.Start(Handle, geofenceId);
@@ -129,6 +133,7 @@ namespace Tizen.Location.Geofence
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
         /// <exception cref="UnauthorizedAccessException">In case privileges are not defined.</exception>
         /// <exception cref="NotSupportedException">In case the geofence is not supported.</exception>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public void Stop(int geofenceId)
         {
             GeofenceError ret = (GeofenceError)Interop.GeofenceManager.Stop(Handle, geofenceId);
@@ -155,6 +160,7 @@ namespace Tizen.Location.Geofence
         /// Call to Start() will invoke this event.
         /// </remarks>
         /// <exception cref="NotSupportedException">In case the feature is not supported.</exception>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public event EventHandler<GeofenceStateEventArgs> StateChanged
         {
             add
@@ -200,6 +206,7 @@ namespace Tizen.Location.Geofence
         /// Call to Start() will invoke this event.
         /// </remarks>
         /// <exception cref="NotSupportedException">In case the feature is not supported.</exception>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public event EventHandler<ProximityStateEventArgs> ProximityChanged
         {
             add
@@ -247,6 +254,7 @@ namespace Tizen.Location.Geofence
         /// The value of place_id or geofence_id is -1 when the place ID or geofence ID is not assigned.
         /// </remarks>
         /// <exception cref="NotSupportedException">In case the feature is not supported.</exception>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public event EventHandler<GeofenceResponseEventArgs> GeofenceEventChanged
         {
             add
@@ -279,6 +287,7 @@ namespace Tizen.Location.Geofence
         /// The overloaded Dispose API for destroying the GeofenceManager handle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public void Dispose()
         {
             Dispose(true);
@@ -289,6 +298,7 @@ namespace Tizen.Location.Geofence
         /// Dispose.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

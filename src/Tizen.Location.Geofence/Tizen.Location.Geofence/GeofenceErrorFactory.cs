@@ -24,6 +24,7 @@ namespace Tizen.Location.Geofence
     /// Enumeration for the types of error occured, if any.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13")]
     public enum GeofenceError
     {
         /// <summary>
