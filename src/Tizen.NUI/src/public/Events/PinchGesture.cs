@@ -25,7 +25,11 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class PinchGesture : Gesture
     {
-        internal PinchGesture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal PinchGesture(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal PinchGesture(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
         }
 
