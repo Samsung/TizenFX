@@ -28,7 +28,7 @@ namespace Tizen.Data.Tdbc.Driver.Sqlite
         private bool disposedValue;
         private readonly object _lock = new object();
         private EventHandler<RecordChangedEventArgs> _recordChanged;
-
+        private Interop.Sqlite.UpdateHookCallback _hook;
 
         static Connection()
         {
@@ -70,6 +70,7 @@ namespace Tizen.Data.Tdbc.Driver.Sqlite
                 Interop.Sqlite.UpdateHook(_db, null, IntPtr.Zero);
                 Interop.Sqlite.Close(_db);
                 _opened = false;
+                _hook = null;
             }
         }
 
@@ -154,7 +155,12 @@ namespace Tizen.Data.Tdbc.Driver.Sqlite
             if (ret != (int)Interop.Sqlite.ResultCode.SQLITE_OK)
                 throw new InvalidOperationException("code:" + ret);
 
-            Interop.Sqlite.UpdateHook(_db, UpdateHookCallback, IntPtr.Zero);
+            if (_hook == null)
+            {
+                _hook = new Interop.Sqlite.UpdateHookCallback(UpdateHookCallback);
+            }
+
+            Interop.Sqlite.UpdateHook(_db, _hook, IntPtr.Zero);
             _opened = true;
         }
 
