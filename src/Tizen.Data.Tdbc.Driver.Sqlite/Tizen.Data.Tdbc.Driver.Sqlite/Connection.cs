@@ -90,14 +90,11 @@ namespace Tizen.Data.Tdbc.Driver.Sqlite
                     break;
             }
 
-            if (operationType == OperationType.Delete)
-                return;
-
             Sql sql = new Sql(string.Format("SELECT * from {0} WHERE rowid = {1}", table_name, rowid));
             using (IStatement stmt = CreateStatement())
             using (IResultSet resultSet = stmt.ExecuteQuery(sql))
             {
-                IRecord record = resultSet.FirstOrDefault();
+                IRecord record = resultSet?.FirstOrDefault();
                 lock (_lock)
                 {
                     RecordChangedEventArgs ev = new RecordChangedEventArgs(operationType, db_name, table_name, record);

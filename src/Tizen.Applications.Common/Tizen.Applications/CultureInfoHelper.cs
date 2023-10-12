@@ -39,7 +39,9 @@ namespace Tizen.Applications
             }
 
             string cultureName = string.Empty;
+#pragma warning disable CA1308
             string key = "CultureInfo:" + locale.ToLowerInvariant();
+#pragma warning restore CA1308
             IntPtr value = Interop.LibIniParser.GetString(dictionary, key, IntPtr.Zero);
             if (value != IntPtr.Zero)
             {

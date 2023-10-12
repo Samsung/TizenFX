@@ -335,6 +335,11 @@ namespace Tizen.Applications.RPCPort
         /// <since_tizen> 5 </since_tizen>
         public void WriteBundle(Bundle b)
         {
+            if (b == null)
+            {
+                return;
+            }
+
             Interop.LibRPCPort.Parcel.WriteBundle(_handle, b.SafeBundleHandle.DangerousGetHandle());
         }
 
@@ -472,6 +477,11 @@ namespace Tizen.Applications.RPCPort
         /// <since_tizen> 5 </since_tizen>
         public void Write(byte[] bytes)
         {
+            if (bytes == null)
+            {
+                return;
+            }
+
             Interop.LibRPCPort.Parcel.Write(_handle, bytes, bytes.Length);
         }
 
@@ -508,7 +518,9 @@ namespace Tizen.Applications.RPCPort
         #region IDisposable Support
         private bool disposedValue = false;
 
+#pragma warning disable CA1063
         private void Dispose(bool disposing)
+#pragma warning restore CA1063
         {
             if (!disposedValue)
             {

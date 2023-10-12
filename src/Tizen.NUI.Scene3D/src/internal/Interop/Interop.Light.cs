@@ -43,8 +43,34 @@ namespace Tizen.NUI.Scene3D
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool IsEnabled(global::System.Runtime.InteropServices.HandleRef light);
 
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_GetMaximumEnabledLightCount")]
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Light_GetMaximumEnabledLightCount")]
             public static extern uint GetMaximumEnabledLightCount();
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Light_EnableShadow")]
+            public static extern void EnableShadow(global::System.Runtime.InteropServices.HandleRef light, bool enable);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Light_IsShadowEnabled")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool IsShadowEnabled(global::System.Runtime.InteropServices.HandleRef light);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Light_EnableShadowSoftFiltering")]
+            public static extern void EnableShadowSoftFiltering(global::System.Runtime.InteropServices.HandleRef light, bool enable);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Light_IsShadowSoftFilteringEnabled")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool IsShadowSoftFilteringEnabled(global::System.Runtime.InteropServices.HandleRef light);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Light_SetShadowIntensity")]
+            public static extern void SetShadowIntensity(global::System.Runtime.InteropServices.HandleRef light, float shadowIntensity);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Light_GetShadowIntensity")]
+            public static extern float GetShadowIntensity(global::System.Runtime.InteropServices.HandleRef light);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Light_SetShadowBias")]
+            public static extern void SetShadowBias(global::System.Runtime.InteropServices.HandleRef light, float shadowIntensity);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Light_GetShadowBias")]
+            public static extern float GetShadowBias(global::System.Runtime.InteropServices.HandleRef light);
         }
     }
 }

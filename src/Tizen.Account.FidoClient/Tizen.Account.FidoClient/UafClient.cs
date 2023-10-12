@@ -27,6 +27,7 @@ namespace Tizen.Account.FidoClient
     /// The FIDO UAF Client APIs
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public static class UafClient
     {
         private static string _vendorName = null;
@@ -58,6 +59,7 @@ namespace Tizen.Account.FidoClient
         /// The FIDO Client vendor name
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public static string VendorName
         {
             get
@@ -70,6 +72,7 @@ namespace Tizen.Account.FidoClient
         /// The FIDO Client Major version
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public static int MajorVersion
         {
             get
@@ -82,6 +85,7 @@ namespace Tizen.Account.FidoClient
         /// The FIDO Client Minor version
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public static int MinorVersion
         {
             get
@@ -94,6 +98,7 @@ namespace Tizen.Account.FidoClient
         /// The FIDO Server response for successfull interaction.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public static int StautsOk
         {
             get
@@ -122,6 +127,7 @@ namespace Tizen.Account.FidoClient
         ///     bool response = await UafClient.CheckPolicyAsync(uafRequest);
         /// </code>
         /// </example>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public static async Task<bool> CheckPolicyAsync(UafMessage uafMessage)
         {
             if (uafMessage == null)
@@ -157,6 +163,7 @@ namespace Tizen.Account.FidoClient
         ///     var response = await UafClient.ProcessRequestAsync(uafRequest, null);
         /// </code>
         /// </example>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public static async Task<UafResponse> ProcessRequestAsync(UafMessage uafMessage, string channelBindng)
         {
             if (uafMessage == null)
@@ -222,6 +229,7 @@ namespace Tizen.Account.FidoClient
             ///     await UafClient.NotifyResultAsync(UafClient.StautsOk, response);
             /// </code>
             /// </example>
+            [Obsolete("Deprecated since API11. Might be removed in API13.")]
             public static async Task NotifyResultAsync(int responseCode, UafResponse response)
         {
             if (response == null)

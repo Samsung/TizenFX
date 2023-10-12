@@ -84,6 +84,7 @@ internal static partial class Interop
         internal delegate void FrameLowBatteryCallback(IntPtr context, int status, IntPtr userData);
         internal delegate void FrameLowMemoryCallback(IntPtr context, int status, IntPtr userData);
         internal delegate void FrameSuspendedStateCallback(IntPtr context, int state, IntPtr userData);
+        internal delegate void FrameTimeZoneChangedCallback(IntPtr context, string timeZone, string timeZoneId, IntPtr userData);
 
         internal struct FrameLifecycleCallbacks
         {
@@ -102,6 +103,7 @@ internal static partial class Interop
             public FrameLowBatteryCallback OnLowBattery;
             public FrameLowMemoryCallback OnLowMemory;
             public FrameSuspendedStateCallback OnSuspendedState;
+            public FrameTimeZoneChangedCallback OnTimeZoneChanged;
         }
 
         internal delegate bool ServiceCreateCallback(IntPtr context, IntPtr userData);
@@ -116,6 +118,7 @@ internal static partial class Interop
         internal delegate void ServiceLowBatteryCallback(IntPtr context, int status, IntPtr userData);
         internal delegate void ServiceLowMemoryCallback(IntPtr context, int status, IntPtr userData);
         internal delegate void ServiceSuspendedStateCallback(IntPtr context, int state, IntPtr userData);
+        internal delegate void ServiceTimeZoneChangedCallback(IntPtr context, string timeZone, string timeZoneId, IntPtr userData);
 
         internal struct ServiceLifecycleCallbacks
         {
@@ -131,6 +134,7 @@ internal static partial class Interop
             public ServiceLowBatteryCallback OnLowBattery;
             public ServiceLowMemoryCallback OnLowMemory;
             public ServiceSuspendedStateCallback OnSuspendedState;
+            public ServiceTimeZoneChangedCallback OnTimeZoneChanged;
         }
 
         internal delegate IntPtr WidgetCreateCallback(IntPtr context, int width, int height, IntPtr userData);
@@ -147,6 +151,7 @@ internal static partial class Interop
         internal delegate void WidgetLowBatteryCallback(IntPtr context, int status, IntPtr userData);
         internal delegate void WidgetLowMemoryCallback(IntPtr context, int status, IntPtr userData);
         internal delegate void WidgetSuspendedStateCallback(IntPtr context, int state, IntPtr userData);
+        internal delegate void WidgetTimeZoneChangedCallback(IntPtr context, string timeZone, string timeZoneId, IntPtr userData);
 
         internal struct WidgetLifecycleCallbacks
         {
@@ -164,6 +169,7 @@ internal static partial class Interop
             public WidgetLowBatteryCallback OnLowBattery;
             public WidgetLowMemoryCallback OnLowMemory;
             public WidgetSuspendedStateCallback OnSuspendedState;
+            public WidgetTimeZoneChangedCallback OnTimeZoneChanged;
         }
 
         internal delegate IntPtr BaseCreateCallback(IntPtr context, IntPtr userData);
@@ -176,6 +182,7 @@ internal static partial class Interop
         internal delegate void BaseLowBatteryCallback(IntPtr context, int status, IntPtr userData);
         internal delegate void BaseLowMemoryCallback(IntPtr context, int status, IntPtr userData);
         internal delegate void BaseSuspendedStateCallback(IntPtr context, int state, IntPtr userData);
+        internal delegate void BaseTimeZoneChangedCallback(IntPtr context, string timeZone, string timeZoneId, IntPtr userData);
 
         [DllImport(Libraries.CompCoreBase, EntryPoint = "component_based_app_base_main")]
         internal static extern ErrorCode BaseMain(int argc, string[] argv, ref CBAppLifecycleCallbacks callback, IntPtr userData);

@@ -104,8 +104,6 @@ namespace Tizen.NUI.BaseComponents
         private bool dispatchParentHoverEvents = true;
         private bool dispatchGestureEvents = true;
         private bool dispatchParentGestureEvents = true;
-        private bool dispatchTouchMotion = true;
-        private bool dispatchHoverMotion = true;
 
 
         /// <summary>
@@ -719,13 +717,14 @@ namespace Tizen.NUI.BaseComponents
                 {
                     if (this.IsDisposeQueued)
                     {
-                        var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
+                        using var process = global::System.Diagnostics.Process.GetCurrentProcess();
+                        var processId = process.Id;
                         var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
                         var me = this.GetType().FullName;
 
                         //in this case, the View object is ready to be disposed waiting on DisposeQueue, so event callback should not be invoked!
                         Tizen.Log.Error("NUI", "in this case, the View object is ready to be disposed waiting on DisposeQueue, so event callback should not be invoked! just return here! \n" +
-                            $"process:{process} thread:{thread}, isDisposed:{this.Disposed}, isDisposeQueued:{this.IsDisposeQueued}, me:{me}\n");
+                            $"process:{processId} thread:{thread}, isDisposed:{this.Disposed}, isDisposeQueued:{this.IsDisposeQueued}, me:{me}\n");
                         return;
                     }
                 }
@@ -742,26 +741,28 @@ namespace Tizen.NUI.BaseComponents
                 {
                     if (keyInputFocusLostEventHandler != null)
                     {
-                        var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
+                        using var process = global::System.Diagnostics.Process.GetCurrentProcess();
+                        var processId = process.Id;
                         var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
                         var me = this.GetType().FullName;
 
                         throw new ObjectDisposedException(nameof(SwigCPtr), $"Error! NUI's native dali object is already disposed. " +
                             $"OR the native dali object handle of NUI becomes null! \n" +
-                            $" process:{process} thread:{thread}, isDisposed:{this.Disposed}, isDisposeQueued:{this.IsDisposeQueued}, me:{me}\n");
+                            $" process:{processId} thread:{thread}, isDisposed:{this.Disposed}, isDisposeQueued:{this.IsDisposeQueued}, me:{me}\n");
                     }
                 }
                 else
                 {
                     if (this.IsDisposeQueued)
                     {
-                        var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
+                        using var process = global::System.Diagnostics.Process.GetCurrentProcess();
+                        var processId = process.Id;
                         var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
                         var me = this.GetType().FullName;
 
                         //in this case, the View object is ready to be disposed waiting on DisposeQueue, so event callback should not be invoked!
                         Tizen.Log.Error("NUI", "in this case, the View object is ready to be disposed waiting on DisposeQueue, so event callback should not be invoked! just return here! \n" +
-                            $"process:{process} thread:{thread}, isDisposed:{this.Disposed}, isDisposeQueued:{this.IsDisposeQueued}, me:{me}\n");
+                            $"process:{processId} thread:{thread}, isDisposed:{this.Disposed}, isDisposeQueued:{this.IsDisposeQueued}, me:{me}\n");
                         return;
                     }
                 }
@@ -839,12 +840,6 @@ namespace Tizen.NUI.BaseComponents
             TouchEventArgs e = new TouchEventArgs();
             e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(touchData);
 
-            // If DispatchTouchMotion is false, Motion event is not dispatched.
-            if (DispatchTouchMotion == false && e.Touch.GetState(0) == PointStateType.Motion)
-            {
-                return true;
-            }
-
             bool consumed = false;
 
             if (interceptTouchDataEventHandler != null)
@@ -872,13 +867,6 @@ namespace Tizen.NUI.BaseComponents
 
             TouchEventArgs e = new TouchEventArgs();
             e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(touchData);
-
-            // If DispatchTouchMotion is false, Motion event is not dispatched.
-            if (DispatchTouchMotion == false && e.Touch.GetState(0) == PointStateType.Motion)
-            {
-                return true;
-            }
-
 
             bool consumed = false;
 
@@ -918,12 +906,6 @@ namespace Tizen.NUI.BaseComponents
 
             HoverEventArgs e = new HoverEventArgs();
             e.Hover = Tizen.NUI.Hover.GetHoverFromPtr(hoverEvent);
-
-            // If DispatchHoverMotion is false, Motion event is not dispatched.
-            if (DispatchHoverMotion == false && e.Hover.GetState(0) == PointStateType.Motion)
-            {
-                return true;
-            }
 
             bool consumed = false;
 
@@ -1674,11 +1656,24 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return dispatchTouchMotion;
+                return (bool)GetValue(DispatchTouchMotionProperty);
             }
             set
             {
-                dispatchTouchMotion = value;
+                SetValue(DispatchTouchMotionProperty, value);
+            }
+        }
+
+        private bool InternalDispatchTouchMotion
+        {
+            get
+            {
+                return Object.InternalGetPropertyBool(SwigCPtr, View.Property.DispatchTouchMotion);
+            }
+            set
+            {
+                Object.InternalSetPropertyBool(SwigCPtr, View.Property.DispatchTouchMotion, value);
+                NotifyPropertyChanged();
             }
         }
 
@@ -1691,13 +1686,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return dispatchHoverMotion;
+                return (bool)GetValue(DispatchHoverMotionProperty);
             }
             set
             {
-                dispatchHoverMotion = value;
+                SetValue(DispatchHoverMotionProperty, value);
             }
         }
 
+        private bool InternalDispatchHoverMotion
+        {
+            get
+            {
+                return Object.InternalGetPropertyBool(SwigCPtr, View.Property.DispatchHoverMotion);
+            }
+            set
+            {
+                Object.InternalSetPropertyBool(SwigCPtr, View.Property.DispatchHoverMotion, value);
+                NotifyPropertyChanged();
+            }
+        }
     }
 }
