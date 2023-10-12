@@ -389,11 +389,30 @@ namespace Tizen.NUI
 
         private void DirectorOnSizeAnimation(global::System.IntPtr animation, global::System.IntPtr targetSize)
         {
-            var ani = new Animation(animation, true);
+            bool useRegisterAnimation = false;
+
+            var ani = Registry.GetManagedBaseHandleFromNativePtr(animation) as Animation;
+            if (ani != null)
+            {
+                HandleRef CPtr = new HandleRef(this, animation);
+                Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                CPtr = new HandleRef(null, global::System.IntPtr.Zero);
+
+                useRegisterAnimation = true;
+            }
+            else
+            {
+                ani = new Animation(animation, true);
+            }
             var vector3 = new Vector3(targetSize, false);
             OnSizeAnimation?.Invoke(ani, vector3);
-            ani.Dispose();
             vector3.Dispose();
+
+            // Dispose only if we create new Animation here.
+            if (!useRegisterAnimation)
+            {
+                ani.Dispose();
+            }
         }
 
         private bool DirectorOnKey(global::System.IntPtr arg0)
@@ -469,9 +488,28 @@ namespace Tizen.NUI
 
         private void DirectorOnStyleChange(global::System.IntPtr styleManager, int change)
         {
-            var styleManger = new StyleManager(styleManager, true);
-            OnStyleChange?.Invoke(styleManger, (StyleChangeType)change);
-            styleManger.Dispose();
+            bool useRegisterStyleManager = false;
+
+            var nuiStyleManger = Registry.GetManagedBaseHandleFromNativePtr(styleManager) as StyleManager;
+            if (nuiStyleManger != null)
+            {
+                HandleRef CPtr = new HandleRef(this, styleManager);
+                Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                CPtr = new HandleRef(null, global::System.IntPtr.Zero);
+
+                useRegisterStyleManager = true;
+            }
+            else
+            {
+                nuiStyleManger = new StyleManager(styleManager, true);
+            }
+            OnStyleChange?.Invoke(nuiStyleManger, (StyleChangeType)change);
+
+            // Dispose only if we create new StyleManager here.
+            if (!useRegisterStyleManager)
+            {
+                nuiStyleManger.Dispose();
+            }
         }
 
         private bool DirectorOnAccessibilityActivated()
@@ -481,7 +519,8 @@ namespace Tizen.NUI
 
         private bool DirectorOnAccessibilityPan(global::System.IntPtr gesture)
         {
-            var panGesture = new PanGesture(gesture, true);
+            // Take memory ownership, but do not register into Registry.
+            var panGesture = new PanGesture(gesture, true, false);
             var ret = OnAccessibilityPan?.Invoke(panGesture) ?? false;
             panGesture.Dispose();
             return ret;
