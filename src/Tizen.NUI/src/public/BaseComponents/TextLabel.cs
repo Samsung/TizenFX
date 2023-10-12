@@ -1425,7 +1425,7 @@ namespace Tizen.NUI.BaseComponents
         /// <code>
         /// var textFitArray = new Tizen.NUI.Text.TextFitArray();
         /// textFitArray.Enable = true;
-        /// textFitArray.OptionList = new List<Tizen.NUI.Text.TextFitArrayOption>()
+        /// textFitArray.OptionList = new List&lt;Tizen.NUI.Text.TextFitArrayOption&gt;()
         /// {
         ///     new Tizen.NUI.Text.TextFitArrayOption(12, 18),
         ///     new Tizen.NUI.Text.TextFitArrayOption(24, 40),
@@ -1441,14 +1441,14 @@ namespace Tizen.NUI.BaseComponents
         /// [Binary search possible]
         /// |            | List index  |  0 |  1 |  2 |  3 |
         /// | OptionList | PointSize   | 24 | 28 | 32 | 48 |
-        /// |            | MinLineSize | 40 | 48 | 48 | 62 | << MinLineSize sorted in ascending order
+        /// |            | MinLineSize | 40 | 48 | 48 | 62 | &lt;&lt; MinLineSize sorted in ascending order
         ///                                    ^    ^
         ///                                    same values ​are not a problem
         ///
         /// [Binary search not possible]
         /// |            | List index  |  0 |  1 |  2 |  3 |
         /// | OptionList | PointSize   | 24 | 28 | 32 | 48 |
-        /// |            | MinLineSize | 40 | 48 | 38 | 62 | << MinLineSize is not sorted in ascending order
+        /// |            | MinLineSize | 40 | 48 | 38 | 62 | &lt;&lt; MinLineSize is not sorted in ascending order
         ///                                         ^
         /// </code>
         /// </example>
