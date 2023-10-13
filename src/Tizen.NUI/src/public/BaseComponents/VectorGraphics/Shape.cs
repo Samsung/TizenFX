@@ -20,6 +20,7 @@ using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace Tizen.NUI.BaseComponents.VectorGraphics
 {
@@ -73,7 +74,18 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
             get
             {
                 global::System.IntPtr cPtr = Interop.Shape.GetFillGradient(BaseHandle.getCPtr(this));
-                Gradient ret = new Gradient(cPtr, true);
+
+                Gradient ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Gradient;
+                if (ret != null)
+                {
+                    HandleRef CPtr = new HandleRef(this, cPtr);
+                    Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                    CPtr = new HandleRef(null, global::System.IntPtr.Zero);
+                }
+                else
+                {
+                    ret = new Gradient(cPtr, true);
+                }
                 return ret;
             }
             set
@@ -149,7 +161,18 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
             get
             {
                 global::System.IntPtr cPtr = Interop.Shape.GetStrokeGradient(BaseHandle.getCPtr(this));
-                Gradient ret = new Gradient(cPtr, true);
+
+                Gradient ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Gradient;
+                if (ret != null)
+                {
+                    HandleRef CPtr = new HandleRef(this, cPtr);
+                    Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                    CPtr = new HandleRef(null, global::System.IntPtr.Zero);
+                }
+                else
+                {
+                    ret = new Gradient(cPtr, true);
+                }
                 return ret;
             }
             set
