@@ -76,6 +76,11 @@ namespace Tizen.NUI.Wearable
             layoutManager.Layout(ScrollingDirection == Direction.Horizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y);
         }
 
+        /// <summary>
+        /// Gets / Sets total number of items.
+        /// </summary>
+        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int TotalItemCount
         {
             get
@@ -127,7 +132,11 @@ namespace Tizen.NUI.Wearable
             }
         }
 
-
+        /// <summary>
+        /// Scrolling direction mode for RecyclerView. <see cref="ScrollableBase.ScrollingDirection"/>.
+        /// </summary>
+        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public new Direction ScrollingDirection
         {
             get
@@ -253,6 +262,8 @@ namespace Tizen.NUI.Wearable
         private View focusedView;
         private int prevFocusedDataIndex = 0;
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override View GetNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
         {
             View nextFocusedView = null;
