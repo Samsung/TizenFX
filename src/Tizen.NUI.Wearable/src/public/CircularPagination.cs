@@ -47,8 +47,6 @@ namespace Tizen.NUI.Wearable
         private bool isCurrentIndicatorCentered = false; // When the current indicator is the center one, this variable becomes true.
         private bool isOddNumber = true;
         private bool uninitializedLeftIndicator = true; // Need it when the indicators are asymmetry and the right indicator count is set earlier than left one.
-        private Animation selectAnimation = null;
-        private bool isNeedAnimation = false; // TODO : Animation will support using override function later.
 
         Position2D[] oddArray = new Position2D[] { new Position2D(36, 74), new Position2D(47, 60), new Position2D(60, 47), new Position2D(74, 36),
                                                    new Position2D(89, 26), new Position2D(105, 18), new Position2D(122, 11), new Position2D(139, 7),
@@ -202,7 +200,6 @@ namespace Tizen.NUI.Wearable
                 UpdateVisual();
             }
         }
-
 
         /// <summary>
         /// Gets or sets the number of the pages/indicators.
@@ -516,14 +513,6 @@ namespace Tizen.NUI.Wearable
             UpdateVisual();
         }
 
-        private void CreateSelectAnimation()
-        {
-            if (selectAnimation == null)
-            {
-                selectAnimation = new Animation(250);
-            }
-        }
-
         /// <summary>
         /// You can override it to do your select out operation.
         /// </summary>
@@ -593,16 +582,6 @@ namespace Tizen.NUI.Wearable
 
             if (type == DisposeTypes.Explicit)
             {
-                if (selectAnimation != null)
-                {
-                    if (selectAnimation.State == Animation.States.Playing)
-                    {
-                        selectAnimation.Stop();
-                    }
-                    selectAnimation.Dispose();
-                    selectAnimation = null;
-                }
-
                 container.RemoveAll();
                 indicatorList.Clear();
 
