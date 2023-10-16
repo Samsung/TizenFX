@@ -16,10 +16,11 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using Tizen.NUI.BaseComponents;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.NUI.Accessibility
 {
@@ -105,12 +106,10 @@ namespace Tizen.NUI.Accessibility
         /// <returns></returns>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static bool Say(string sentence, bool discardable)
+        public static void Say(string sentence, bool discardable)
         {
-            bool ret = Interop.Accessibility.Say(sentence, discardable, Marshal.GetFunctionPointerForDelegate<Delegate>(callback));
-
+            Interop.Accessibility.Say(sentence, discardable, SayFinishedEventCallback);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         /// <summary>
@@ -314,12 +313,6 @@ namespace Tizen.NUI.Accessibility
         #endregion Event, Enum, Struct, ETC
 
         #region Private
-
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        private delegate void SayFinishedEventCallbackType(int result);
-
-        private static SayFinishedEventCallbackType callback = SayFinishedEventCallback;
-
         private static Interop.Accessibility.EnabledDisabledSignalHandler enabledSignalHandler = null;
 
         private static Interop.Accessibility.EnabledDisabledSignalHandler disabledSignalHandler = null;
@@ -328,9 +321,20 @@ namespace Tizen.NUI.Accessibility
 
         private static Interop.Accessibility.EnabledDisabledSignalHandler screenReaderDisabledSignalHandler = null;
 
-        private static void SayFinishedEventCallback(int result)
+        private static readonly IReadOnlyDictionary<string, SayFinishedState> sayFinishedStateDictionary = new Dictionary<string, SayFinishedState>
         {
+            ["ReadingCancelled"] = SayFinishedState.Cancelled,
+            ["ReadingStopped"] = SayFinishedState.Stopped,
+            ["ReadingSkipped"] = SayFinishedState.Skipped,
+            ["ReadingPaused"] = SayFinishedState.Paused,
+            ["ReadingResumed"] = SayFinishedState.Resumed,
+        };
+
+        private static void SayFinishedEventCallback(string status)
+        {
+            var result = sayFinishedStateDictionary.GetValueOrDefault(status, SayFinishedState.Invalid);
             NUILog.Debug($"sayFinishedEventCallback(res={result}) called!");
+
             SayFinished?.Invoke(typeof(Accessibility), new SayFinishedEventArgs(result));
         }
 
@@ -357,9 +361,9 @@ namespace Tizen.NUI.Accessibility
             get;
         }
 
-        internal SayFinishedEventArgs(int result)
+        internal SayFinishedEventArgs(Accessibility.SayFinishedState state)
         {
-            State = (Accessibility.SayFinishedState)(result);
+            State = state;
             NUILog.Debug($"SayFinishedEventArgs Constructor! State={State}");
         }
     }
