@@ -24,6 +24,7 @@ namespace Tizen.Messaging.Email
     /// This class is used to send email messages.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13")]
     public static class EmailSender
     {
         static private Dictionary<int, Interop.Email.EmailSentCallback> _sendCbMap = new Dictionary<int, Interop.Email.EmailSentCallback>();
@@ -35,6 +36,7 @@ namespace Tizen.Messaging.Email
         /// <param name="email">The email message.</param>
         /// <returns> Failure if the email sending activity failed, otherwise Success.</returns>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public static async Task<EmailSendResult> SendAsync(EmailMessage email)
         {
             var task = new TaskCompletionSource<EmailSendResult>();

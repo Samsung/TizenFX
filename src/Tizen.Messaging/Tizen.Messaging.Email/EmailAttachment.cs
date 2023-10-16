@@ -14,23 +14,28 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace Tizen.Messaging.Email
 {
     /// <summary>
     /// Represents an email attachment.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13")]
     public class EmailAttachment
     {
         /// <summary>
         /// The absolute full path of the file to be attached.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public string FilePath { get; set; }
         /// <summary>
         /// The constructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public EmailAttachment()
         {
 
