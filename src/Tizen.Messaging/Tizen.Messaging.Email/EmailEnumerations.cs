@@ -14,12 +14,15 @@
 * limitations under the License.
 */
 
+using System;
+
 namespace Tizen.Messaging.Email
 {
     /// <summary>
     /// Result of sending the email.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13")]
     public enum EmailSendResult
     {
         /// <summary>
