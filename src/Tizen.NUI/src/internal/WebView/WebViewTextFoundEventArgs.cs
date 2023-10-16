@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2021 Samsung Electronics Co., Ltd.
+﻿/*
+ * Copyright (c) 2023 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,33 +21,20 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// Event arguments that passed via the WebView.ResponsePolicyDecided,
-    /// WebView.NavigationPolicyDecided or WebView.NewWindowPolicyDecided.
+    /// Event arguments that passed via the WebView.TextFound.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class WebViewPolicyDecidedEventArgs : EventArgs
+    public class WebViewTextFoundEventArgs : EventArgs
     {
-        internal WebViewPolicyDecidedEventArgs(WebPolicyDecisionMaker maker)
+        internal WebViewTextFoundEventArgs(uint count)
         {
-            PolicyDecisionMaker = maker;
+            Count = count;
         }
 
         /// <summary>
-        /// Deprecated. The response policy decision maker.
+        /// The count of text found.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebPolicyDecisionMaker ResponsePolicyDecisionMaker
-        {
-            get
-            {
-                return PolicyDecisionMaker;
-            }
-        }
-
-        /// <summary>
-        /// The policy decision maker.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebPolicyDecisionMaker PolicyDecisionMaker { get; }
+        public uint Count { get; }
     }
 }
