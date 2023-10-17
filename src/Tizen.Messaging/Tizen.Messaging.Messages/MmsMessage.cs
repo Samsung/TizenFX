@@ -23,6 +23,7 @@ namespace Tizen.Messaging.Messages
     /// This class represents multimedia messages.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class MmsMessage : Message
     {
         private IList<MessagesAttachment> _attachment = new List<MessagesAttachment>();
@@ -31,6 +32,7 @@ namespace Tizen.Messaging.Messages
         /// Creates a multimedia message.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public MmsMessage() : base(MessageType.Mms)
         {
         }
@@ -44,6 +46,7 @@ namespace Tizen.Messaging.Messages
         /// The subject of the multimedia message.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Subject
         {
             get
@@ -72,6 +75,7 @@ namespace Tizen.Messaging.Messages
         /// The collection of normal message recipients.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public ICollection<MessagesAddress> To
         {
             get
@@ -84,6 +88,7 @@ namespace Tizen.Messaging.Messages
         /// The collection of CC (carbon copy) message recipients.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public ICollection<MessagesAddress> Cc
         {
             get
@@ -96,6 +101,7 @@ namespace Tizen.Messaging.Messages
         /// The collection of BCC (blind carbon copy) message recipients.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public ICollection<MessagesAddress> Bcc
         {
             get
@@ -108,6 +114,7 @@ namespace Tizen.Messaging.Messages
         /// The list of attachment files.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public IList<MessagesAttachment> Attachments
         {
             get

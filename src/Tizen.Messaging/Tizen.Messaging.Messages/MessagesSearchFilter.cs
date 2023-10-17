@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+using System;
 
 namespace Tizen.Messaging.Messages
 {
@@ -20,12 +21,14 @@ namespace Tizen.Messaging.Messages
     /// This class represents message search filters.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class MessagesSearchFilter
     {
         /// <summary>
         /// Creates a search filter for searching messages.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public MessagesSearchFilter()
         {
         }
@@ -34,21 +37,25 @@ namespace Tizen.Messaging.Messages
         /// The message box type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public MessageBoxType MessageBoxType { get; set; }
         /// <summary>
         /// The message type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public MessageType MessageType { get; set; }
         /// <summary>
         /// The keyword to search in the text and the subject.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string TextKeyword { get; set; }
         /// <summary>
         /// The recipient address.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string AddressKeyword { get; set; }
     }
 }
