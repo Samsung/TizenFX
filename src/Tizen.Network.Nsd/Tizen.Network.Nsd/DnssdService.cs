@@ -241,7 +241,7 @@ namespace Tizen.Network.Nsd
             {
                 value = new byte[length];
                 Marshal.Copy(data, value, 0, length);
-                Interop.Libc.Free(data);
+                Interop.Glib.Free(data);
             }
             return value;
         }
