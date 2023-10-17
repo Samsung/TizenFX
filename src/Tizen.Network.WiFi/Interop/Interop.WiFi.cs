@@ -358,4 +358,10 @@ internal static partial class Interop
         [DllImport(Libraries.Libc, EntryPoint = "free")]
         public static extern void Free(IntPtr userData);
     }
+
+    internal static partial class Glib
+    {
+        [DllImport(Libraries.Glib, EntryPoint = "g_free", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void Free(IntPtr userData);
+    }
 }

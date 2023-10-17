@@ -54,7 +54,7 @@ namespace Tizen.Network.WiFi
                     else
                     {
                         _essid = Marshal.PtrToStringAnsi(strPtr);
-                        Interop.Libc.Free(strPtr);
+                        Interop.Glib.Free(strPtr);
                     }
                 }
                 return _essid;
@@ -83,7 +83,7 @@ namespace Tizen.Network.WiFi
                 {
                     rawSsid = new byte[length];
                     Marshal.Copy(ptr, rawSsid, 0, length);
-                    Interop.Libc.Free(ptr);
+                    Interop.Glib.Free(ptr);
                 }
                 return rawSsid;
             }
