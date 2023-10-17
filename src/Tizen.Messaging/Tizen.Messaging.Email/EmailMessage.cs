@@ -24,6 +24,7 @@ namespace Tizen.Messaging.Email
     /// This class contains the Messaging API to support sending email messages.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13")]
     public class EmailMessage : IDisposable
     {
         internal IntPtr _emailHandle = IntPtr.Zero;
@@ -39,6 +40,7 @@ namespace Tizen.Messaging.Email
         /// The constructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public EmailMessage()
         {
             int ret = Interop.Email.CreateEmail(out _emailHandle);
@@ -53,6 +55,7 @@ namespace Tizen.Messaging.Email
         /// The subject of the email message.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public string Subject
         {
             set
@@ -76,6 +79,7 @@ namespace Tizen.Messaging.Email
         /// The body of the email message.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public string Body
         {
             set
@@ -98,6 +102,7 @@ namespace Tizen.Messaging.Email
         /// The list of file attachments.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+[Obsolete("Deprecated since API11. Might be removed in API13")]
         public IList<EmailAttachment> Attachments
         {
             get
@@ -113,6 +118,7 @@ namespace Tizen.Messaging.Email
         /// The email address should be in the standard format (as described in the Internet standards RFC 5321 and RFC 5322).
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public ICollection<EmailRecipient> To
         {
             get
@@ -128,6 +134,7 @@ namespace Tizen.Messaging.Email
         /// The email address should be in the standard format (as described in the Internet standards RFC 5321 and RFC 5322).
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public ICollection<EmailRecipient> Cc
         {
             get
@@ -143,6 +150,7 @@ namespace Tizen.Messaging.Email
         /// The email address should be in the standard format (as described in the Internet standards RFC 5321 and RFC 5322).
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public ICollection<EmailRecipient> Bcc
         {
             get
@@ -169,6 +177,7 @@ namespace Tizen.Messaging.Email
         /// Releases all resources used by the EmailMessage.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         public void Dispose()
         {
             Dispose(true);
@@ -180,6 +189,7 @@ namespace Tizen.Messaging.Email
         /// </summary>
         /// <param name="disposing">Disposing by User</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13")]
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

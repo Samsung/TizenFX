@@ -337,6 +337,8 @@ namespace Tizen.System
             {"BurnerMoved", 40030},
             {"Connected", 40031},
             {"Disconnected", 40032},
+            {"Welcome", 40033},
+            {"AutoDoorOpen", 40034},
         };
 
         /// <summary>
