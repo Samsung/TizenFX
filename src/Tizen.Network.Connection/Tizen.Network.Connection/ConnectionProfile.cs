@@ -196,7 +196,7 @@ namespace Tizen.Network.Connection
                     Log.Error(Globals.LogTag, "It failed to get id of connection profile, " + (ConnectionError)ret);
                 }
                 string result = Marshal.PtrToStringAnsi(Value);
-                Interop.Libc.Free(Value);
+                Interop.Glib.Free(Value);
                 return result;
             }
         }
@@ -217,7 +217,7 @@ namespace Tizen.Network.Connection
                     Log.Error(Globals.LogTag, "It failed to get name of connection profile, " + (ConnectionError)ret);
                 }
                 string result = Marshal.PtrToStringAnsi(Value);
-                Interop.Libc.Free(Value);
+                Interop.Glib.Free(Value);
                 return result;
             }
         }
@@ -257,7 +257,7 @@ namespace Tizen.Network.Connection
                     Log.Error(Globals.LogTag, "It failed to get network interface name, " + (ConnectionError)ret);
                 }
                 string result = Marshal.PtrToStringAnsi(Value);
-                Interop.Libc.Free(Value);
+                Interop.Glib.Free(Value);
                 return result;
             }
         }
@@ -391,7 +391,7 @@ namespace Tizen.Network.Connection
                     Log.Error(Globals.LogTag, "It failed to get proxy address, " + (ConnectionError)ret);
                 }
                 string result = Marshal.PtrToStringAnsi(Value);
-                Interop.Libc.Free(Value);
+                Interop.Glib.Free(Value);
                 return result;
 
             }

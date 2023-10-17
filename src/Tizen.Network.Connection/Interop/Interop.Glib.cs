@@ -14,12 +14,14 @@
  * limitations under the License.
  */
 
+using System;
+using System.Runtime.InteropServices;
+
 internal static partial class Interop
 {
-    internal static partial class Libraries
+    internal static partial class Glib
     {
-        public const string Connection = "libcapi-network-connection.so.1";
-        public const string Libc = "libc.so.6";
-        public const string Glib = "libglib-2.0.so.0";
+        [DllImport(Libraries.Glib, EntryPoint = "g_free", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern uint Free(IntPtr data);
     }
 }
