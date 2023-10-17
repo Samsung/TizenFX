@@ -1335,9 +1335,9 @@ namespace Tizen.Applications
                     {
                         IntPtr charArr = Marshal.ReadIntPtr(valuePtr, IntPtr.Size * i);
                         stringList.Add(Marshal.PtrToStringAnsi(charArr));
-                        _ = Interop.Libc.Free(charArr);
+                        Marshal.FreeHGlobal(charArr);
                     }
-                    _ = Interop.Libc.Free(valuePtr);
+                    Marshal.FreeHGlobal(valuePtr);
                     value = stringList;
                     return true;
                 }
@@ -1491,9 +1491,9 @@ namespace Tizen.Applications
                     {
                         IntPtr charArr = Marshal.ReadIntPtr(valuePtr, IntPtr.Size * i);
                         valueArray.Add(Marshal.PtrToStringAnsi(charArr));
-                        _ = Interop.Libc.Free(charArr);
+                        Marshal.FreeHGlobal(charArr);
                     }
-                    _ = Interop.Libc.Free(valuePtr);
+                    Marshal.FreeHGlobal(valuePtr);
                 }
                 return valueArray;
             }
