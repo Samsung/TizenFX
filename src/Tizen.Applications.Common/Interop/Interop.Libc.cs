@@ -23,9 +23,6 @@ internal static partial class Interop
 {
     internal static partial class Libc
     {
-        [DllImport(Libraries.Libc, EntryPoint = "free", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int Free(IntPtr ptr);
-
         [DllImport(Libraries.Libc, EntryPoint = "getenv")]
         internal static extern IntPtr GetEnvironmentVariable(string name);
 
