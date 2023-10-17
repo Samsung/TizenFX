@@ -790,7 +790,15 @@ namespace Tizen.NUI.Components
         }
         private StringSelector InternalIconURLSelector
         {
-            get => buttonIcon?.ResourceUrlSelector == null ? null : new StringSelector(buttonIcon.ResourceUrlSelector);
+            get
+            {
+                Selector<string> resourceUrlSelector = buttonIcon?.ResourceUrlSelector;
+                if(resourceUrlSelector == null)
+                {
+                    return null;
+                }
+                return new StringSelector(resourceUrlSelector);
+            }
             set
             {
                 if (value == null || buttonIcon == null)
