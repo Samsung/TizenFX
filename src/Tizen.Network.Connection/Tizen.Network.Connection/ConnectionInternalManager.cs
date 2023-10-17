@@ -479,7 +479,7 @@ namespace Tizen.Network.Connection
             }
 
             string result = Marshal.PtrToStringAnsi(ip);
-            Interop.Libc.Free(ip);
+            Interop.Glib.Free(ip);
             Log.Info(Globals.LogTag, "IPAddress " + result + " (" + result.Length + ")");
             if (result.Length == 0)
             {
@@ -535,7 +535,7 @@ namespace Tizen.Network.Connection
             }
 
             string result = Marshal.PtrToStringAnsi(ip);
-            Interop.Libc.Free(ip);
+            Interop.Glib.Free(ip);
             return result;
         }
 
@@ -553,7 +553,7 @@ namespace Tizen.Network.Connection
             }
 
             string result = Marshal.PtrToStringAnsi(mac);
-            Interop.Libc.Free(mac);
+            Interop.Glib.Free(mac);
             return result;
         }
 
