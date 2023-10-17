@@ -17,6 +17,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
 {
@@ -95,7 +96,20 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public RenderTask GetTask(uint index)
         {
-            RenderTask ret = new RenderTask(Interop.RenderTask.RenderTaskListGetTask(SwigCPtr, index), true);
+            global::System.IntPtr cPtr = Interop.RenderTask.RenderTaskListGetTask(SwigCPtr, index);
+
+            RenderTask ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as RenderTask;
+            if (ret != null)
+            {
+                HandleRef CPtr = new HandleRef(this, cPtr);
+                Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                CPtr = new HandleRef(null, global::System.IntPtr.Zero);
+            }
+            else
+            {
+                ret = new RenderTask(cPtr, true);
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
