@@ -23,12 +23,14 @@ namespace Tizen.Messaging.Messages
     /// This class represents short text messages.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class SmsMessage : Message
     {
         /// <summary>
         /// Creates a short text message.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public SmsMessage() : base(MessageType.Sms)
         {
         }
@@ -41,6 +43,7 @@ namespace Tizen.Messaging.Messages
         /// The collection of normal message recipients.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public ICollection<MessagesAddress> To
         {
             get
