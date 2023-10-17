@@ -353,7 +353,7 @@ namespace Tizen.Network.Connection
             string addr = Marshal.PtrToStringAnsi(addrPtr);
             if (addr == null || addr.Length == 0)
                 return DefaultIPAddress();
-            Interop.Libc.Free(addrPtr);
+            Interop.Glib.Free(addrPtr);
             return System.Net.IPAddress.Parse(addr);
         }
 
