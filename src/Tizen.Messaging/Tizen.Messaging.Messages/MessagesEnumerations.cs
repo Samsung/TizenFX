@@ -13,6 +13,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+using System;
 
 namespace Tizen.Messaging.Messages
 {
@@ -20,6 +21,7 @@ namespace Tizen.Messaging.Messages
     /// Enumeration for the result of sending a message.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public enum SentResult
     {
         /// <summary>
@@ -36,6 +38,7 @@ namespace Tizen.Messaging.Messages
     /// Enumeration for the message type.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public enum MessageType
     {
         /// <summary>
@@ -64,6 +67,7 @@ namespace Tizen.Messaging.Messages
     /// Enumeration for the message box type.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public enum MessageBoxType
     {
         /// <summary>
@@ -92,6 +96,7 @@ namespace Tizen.Messaging.Messages
     /// Enumeration for the SIM slot index of a message.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public enum SimSlotId
     {
         /// <summary>
@@ -135,6 +140,7 @@ namespace Tizen.Messaging.Messages
     /// Enumeration for the attachment type for the MMS messaging.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public enum MediaType
     {
         /// <summary>
