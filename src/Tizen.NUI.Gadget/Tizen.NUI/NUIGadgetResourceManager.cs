@@ -36,8 +36,19 @@ namespace Tizen.NUI
         private readonly string _resourceClassName;
         private readonly IDictionary<string, global::System.Resources.ResourceManager> _resourceMap = new Dictionary<string, global::System.Resources.ResourceManager>();
 
-        internal NUIGadgetResourceManager(NUIGadgetInfo info)
+        /// <summary>
+        /// Initializes the resource manager of the gadget.
+        /// </summary>
+        /// <param name="info">The information of the gadget.</param>
+        /// <exception cref="ArgumentNullException">Thrown when failed because of a invalid argument.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        public NUIGadgetResourceManager(NUIGadgetInfo info)
         {
+            if (info == null)
+            {
+                throw new ArgumentNullException(nameof(info));
+            }
+
             _resourcePath = info.ResourcePath;
             _resourceDll = info.ResourceFile;
             _resourceClassName = info.ResourceClassName;
