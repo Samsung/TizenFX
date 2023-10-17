@@ -22,6 +22,7 @@ namespace Tizen.Messaging.Messages
     /// This class represents the WAP push messages.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class PushMessage : Message
     {
         internal PushMessage(IntPtr messageHandle) : base(messageHandle)
