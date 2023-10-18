@@ -856,12 +856,24 @@ namespace Tizen.NUI.BaseComponents
             {
                 using (var propertyValue = GetProperty(Property.TOOLTIP))
                 {
-                    if (propertyValue != null && propertyValue.Get(out string retrivedValue))
+                    using var propertyMap = new PropertyMap();
+                    if (propertyValue != null && propertyValue.Get(propertyMap))
                     {
-                        return retrivedValue;
+                        using var retrivedContentValue = propertyMap?.Find(NDalic.TooltipContent);
+                        if (retrivedContentValue != null)
+                        {
+                            using var contextPropertyMap = new PropertyMap();
+                            if (retrivedContentValue.Get(contextPropertyMap))
+                            {
+                                using var retrivedTextValue = contextPropertyMap?.Find(NDalic.TextVisualText);
+                                if (retrivedTextValue != null && retrivedTextValue.Get(out string retrivedValue))
+                                {
+                                    return retrivedValue;
+                                }
+                            }
+                        }
                     }
-                    NUILog.Error($"[ERROR] Fail to get TooltipText! Return error MSG (error to get TooltipText)!");
-                    return "error to get TooltipText";
+                    return "";
                 }
             }
             set
