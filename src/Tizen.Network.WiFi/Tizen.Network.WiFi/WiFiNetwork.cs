@@ -364,7 +364,7 @@ namespace Tizen.Network.WiFi
                 else
                 {
                     code = Marshal.PtrToStringAnsi(strPtr);
-                    Interop.Libc.Free(strPtr);
+                    Marshal.FreeHGlobal(strPtr);
                 }
                 return code;
             }
