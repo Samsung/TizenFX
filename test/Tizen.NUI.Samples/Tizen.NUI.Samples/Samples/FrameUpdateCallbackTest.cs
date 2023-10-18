@@ -540,7 +540,8 @@ namespace Tizen.NUI.Samples
 
       // Add frame callback on window.
       // OnUpdate callback of frameUpdateCallback will be called before every render frame.
-      window.AddFrameUpdateCallback(frameUpdateCallback);
+      // We can set root view what given frameUpdateCallback used
+      window.AddFrameUpdateCallback(frameUpdateCallback, controlView);
 
       // compute limit position the container could go.
       leftDirectionLimit = (float)window.Size.Width - (totalSize + (float)(INITIAL_POSITION));
