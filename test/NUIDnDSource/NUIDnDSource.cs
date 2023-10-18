@@ -24,6 +24,7 @@ namespace NUIDnDSource
         {
             // Create DnD Instance
             dnd = DragAndDrop.Instance;
+            dnd.SetDragWindowOffset(-75, -75);
 
             Window.Instance.KeyEvent += OnKeyEvent;
             Window.Instance.WindowSize = new Size(900, 1080);
