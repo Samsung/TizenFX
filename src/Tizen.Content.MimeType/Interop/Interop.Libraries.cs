@@ -20,6 +20,5 @@ internal static partial class Interop
     {
         public const string Mime = "libcapi-content-mime-type.so.0";
         public const string Glib = "libglib-2.0.so.0";
-        public const string Libc = "libc.so.6";
     }
 }
