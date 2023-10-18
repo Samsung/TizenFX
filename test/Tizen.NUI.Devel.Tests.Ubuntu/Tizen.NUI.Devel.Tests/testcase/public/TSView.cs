@@ -207,5 +207,24 @@ namespace Tizen.NUI.Devel.Tests
 
             testView.Dispose();
         }
+
+
+        [Test]
+        [Category("P1")]
+        [Description("Get value test for View.ToolTipText")]
+        [Property("SPEC", "Tizen.NUI.BaseComponents.View.ToolTipText")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "eunkiki.hong@samsung.com")]
+        public void ToolTipText_GET_SET_VALUE()
+        {
+            /* TEST CODE */
+            View testView = new View();
+
+            testView.TooltipText = "tooltipText";
+            Assert.AreEqual("tooltipText", testView.TooltipText, "Should get equal string value what we set before");
+
+            testView.Dispose();
+        }
     }
 }
