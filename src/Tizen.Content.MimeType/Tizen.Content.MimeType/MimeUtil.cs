@@ -86,9 +86,9 @@ namespace Tizen.Content.MimeType
             foreach (IntPtr extension in extensionList)
             {
                 coll.Add(Marshal.PtrToStringAnsi(extension));
-                Interop.Libc.Free(extension);
+                Marshal.FreeHGlobal(extension);
             }
-            Interop.Libc.Free(extensionArray);
+            Marshal.FreeHGlobal(extensionArray);
             return coll;
         }
 
