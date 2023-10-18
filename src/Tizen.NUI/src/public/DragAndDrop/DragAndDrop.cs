@@ -43,6 +43,8 @@ namespace Tizen.NUI
         private Window mDragWindow;
         private int shadowWidth;
         private int shadowHeight;
+        private int dragWindowOffsetX = 0;
+        private int dragWindowOffsetY = 0;
 
         private bool initDrag = false;
 
@@ -123,7 +125,7 @@ namespace Tizen.NUI
                 shadowHeight = MinDragWindowHeight;
             }
 
-            mDragWindow = new Window("DragWindow", new Rectangle(-shadowWidth, -shadowHeight, shadowWidth, shadowHeight), true)
+            mDragWindow = new Window("DragWindow", new Rectangle(dragWindowOffsetX, dragWindowOffsetY, shadowWidth, shadowHeight), true)
             {
                 BackgroundColor = Color.Transparent,
             };
@@ -312,6 +314,18 @@ namespace Tizen.NUI
             {
                  throw new InvalidOperationException("Fail to RemoveListener for Window");
             }
+        }
+
+        /// <summary>
+        /// Sets drag window offset
+        /// </summary>
+        /// <param name="x">The x direction offset</param>
+        /// <param name="y">The y direction offset</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetDragWindowOffset(int x, int y)
+        {
+            dragWindowOffsetX = x;
+            dragWindowOffsetY = y;
         }
     }
 }
