@@ -397,6 +397,9 @@ namespace Tizen.NUI.BaseComponents
 
             internalName = null;
 
+            Interop.ControlDevel.DaliAccessibilityDetachAccessibleObject(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
             if (disposing == false)
             {
                 if (IsNativeHandleInvalid() || SwigCMemOwn == false)
