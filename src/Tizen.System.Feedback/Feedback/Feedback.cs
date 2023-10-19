@@ -552,6 +552,7 @@ namespace Tizen.System
         /// </summary>
         /// <remarks>
         /// Now this internal API works for FeedbackType.Sound only, FeedbackType.Vibration is not supported.
+        /// Counts of theme range will be 1 ~ N according to conf file.
         /// </remarks>
         /// <since_tizen> 10 </since_tizen>
         /// <param name="type">The feedback type.</param>
@@ -598,6 +599,7 @@ namespace Tizen.System
         /// </summary>
         /// <remarks>
         /// Now this internal API works for FeedbackType.Sound only, FeedbackType.Vibration is not supported.
+        /// Index of theme range will be 1 ~ N according to conf file.
         /// </remarks>
         /// <since_tizen> 10 </since_tizen>
         /// <param name="type">The feedback type.</param>
@@ -642,6 +644,7 @@ namespace Tizen.System
         /// <remarks>
         /// Now this internal API works for FeedbackType.Sound only, FeedbackType.Vibration is not supported.
         /// To set the index of theme for Sound type, the application should have http://tizen.org/privilege/systemsettings.admin privilege.
+        /// Index of theme range is 1 ~ N according to conf file. If you put the wrong index, operation cannot be guaranteed.
         /// </remarks>
         /// <since_tizen> 10 </since_tizen>
         /// <param name="type">The feedback type.</param>
@@ -653,7 +656,7 @@ namespace Tizen.System
         /// <example>
         /// <code>
         /// Feedback feedback = new Feedback();
-        /// uint indexOfTheme = 0;
+        /// uint indexOfTheme = 1;
         /// feedback.SetThemeIndexInternal(FeedbackType.Sound, indexOfTheme);
         /// </code>
         /// </example>
