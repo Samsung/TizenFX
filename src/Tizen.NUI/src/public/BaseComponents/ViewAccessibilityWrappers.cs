@@ -53,7 +53,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (view is null)
             {
-                NUILog.Error($"RefObject 0x{refObjectPtr:x} is not a View");
+                throw new ArgumentException($"RefObject 0x{refObjectPtr:x} is not a View", nameof(refObjectPtr));
             }
 
             return view;
@@ -70,9 +70,7 @@ namespace Tizen.NUI.BaseComponents
                 return atspiInterface;
             }
 
-            NUILog.Error($"RefObject 0x{refObjectPtr:x} is not a {typeof(T).FullName}");
-
-            return default(T);
+            throw new ArgumentException($"RefObject 0x{refObjectPtr:x} is not a {typeof(T).FullName}", nameof(refObjectPtr));
         }
 
         private static IntPtr DuplicateString(string value)
@@ -113,8 +111,6 @@ namespace Tizen.NUI.BaseComponents
         private static ulong AccessibilityCalculateStatesWrapper(IntPtr self, ulong initialStates)
         {
             View view = GetViewFromRefObject(self);
-            if (view == null)
-                return 0UL;
 
             ulong bitMask = 0UL;
 
