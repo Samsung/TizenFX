@@ -95,7 +95,7 @@ namespace Tizen.NUI.Scene3D
         public Model(string modelUrl, string resourceDirectoryUrl = "") : this(Interop.Model.ModelNew(modelUrl, resourceDirectoryUrl), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            this.PositionUsesAnchorPoint = true;
+            this.PositionUsesPivotPoint = true;
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace Tizen.NUI.Scene3D
         public Model() : this(Interop.Model.ModelNew(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            this.PositionUsesAnchorPoint = true;
+            this.PositionUsesPivotPoint = true;
         }
 
         /// <summary>
@@ -117,6 +117,7 @@ namespace Tizen.NUI.Scene3D
         public Model(Model model) : this(Interop.Model.NewModel(Model.getCPtr(model)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            this.PositionUsesPivotPoint = model.PositionUsesPivotPoint;
         }
 
         /// <summary>
@@ -128,6 +129,7 @@ namespace Tizen.NUI.Scene3D
         {
             Model ret = new Model(Interop.Model.ModelAssign(SwigCPtr, Model.getCPtr(model)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            ret.PositionUsesPivotPoint = model.PositionUsesPivotPoint;
             return ret;
         }
 
@@ -199,8 +201,14 @@ namespace Tizen.NUI.Scene3D
             ModelNode ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as ModelNode;
             if (ret == null)
             {
+                // Store the value of PositionUsesAnchorPoint from dali object (Since View object automatically change PositionUsesPivotPoint value as false, we need to keep value.)
+                HandleRef handle = new HandleRef(this, cPtr);
+                bool originalPositionUsesAnchorPoint = Object.InternalGetPropertyBool(handle, View.Property.PositionUsesAnchorPoint);
+                handle = new HandleRef(null, IntPtr.Zero);
+
                 // Register new animatable into Registry.
                 ret = new ModelNode(cPtr, true);
+                ret.PositionUsesPivotPoint = originalPositionUsesAnchorPoint;
             }
             else
             {
@@ -569,8 +577,14 @@ namespace Tizen.NUI.Scene3D
             ModelNode ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as ModelNode;
             if (ret == null)
             {
+                // Store the value of PositionUsesAnchorPoint from dali object (Since View object automatically change PositionUsesPivotPoint value as false, we need to keep value.)
+                HandleRef handle = new HandleRef(this, cPtr);
+                bool originalPositionUsesAnchorPoint = Object.InternalGetPropertyBool(handle, View.Property.PositionUsesAnchorPoint);
+                handle = new HandleRef(null, IntPtr.Zero);
+
                 // Register new animatable into Registry.
                 ret = new ModelNode(cPtr, true);
+                ret.PositionUsesPivotPoint = originalPositionUsesAnchorPoint;
             }
             else
             {
