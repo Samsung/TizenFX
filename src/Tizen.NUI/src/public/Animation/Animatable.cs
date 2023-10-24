@@ -26,6 +26,11 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class Animatable : BaseHandle
     {
+        static internal new void Preload()
+        {
+            BaseHandle.Preload();
+            // Do nothing. Just call for load static values.
+        }
 
         /// <summary>
         /// Create an instance of animatable.

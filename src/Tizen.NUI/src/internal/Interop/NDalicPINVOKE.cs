@@ -245,6 +245,14 @@ namespace Tizen.NUI
         {
         }
 
+        static internal void Preload()
+        {
+            // Do nothing. Just call for load static values.
+            var temporalSwigExceptionHelper = swigExceptionHelper;
+            var temporalSwigStringHelper = swigStringHelper;
+            ThrowExceptionIfExists();
+        }
+
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_BaseHandle")]
         public static extern void DeleteBaseHandle(global::System.Runtime.InteropServices.HandleRef jarg1);
 
