@@ -332,7 +332,11 @@ namespace Tizen.NUI.Accessibility
 
         private static void SayFinishedEventCallback(string status)
         {
-            var result = sayFinishedStateDictionary.GetValueOrDefault(status, SayFinishedState.Invalid);
+            SayFinishedState result;
+            if (!sayFinishedStateDictionary.TryGetValue(status, out result))
+            {
+                result = SayFinishedState.Invalid;
+            }
             NUILog.Debug($"sayFinishedEventCallback(res={result}) called!");
 
             SayFinished?.Invoke(typeof(Accessibility), new SayFinishedEventArgs(result));
