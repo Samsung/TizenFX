@@ -179,6 +179,16 @@ namespace Tizen.NUI.Samples
                     case KEY_NUM_7:
                         mainWin.SetMimimumSize(new Size2D(100, 100));
                         break;
+                    case KEY_NUM_8:
+                        if(mainWin.GetFullScreen() == false)
+                        {
+                            mainWin.SetFullScreen(true);
+                        }
+                        else
+                        {
+                            mainWin.SetFullScreen(false);
+                        }
+                        break;
 
                     default:
                         log.Fatal(tag, $"no test!");
