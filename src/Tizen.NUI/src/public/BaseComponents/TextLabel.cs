@@ -84,6 +84,14 @@ namespace Tizen.NUI.BaseComponents
 
         static TextLabel() { }
 
+        static internal new void Preload()
+        {
+            // Do not call View.Preload(), since we already call it
+
+            Property.Preload();
+            // Do nothing. Just call for load static values.
+        }
+
         private static SystemFontTypeChanged systemFontTypeChanged = new SystemFontTypeChanged();
         private static SystemLocaleLanguageChanged systemLocaleLanguageChanged = new SystemLocaleLanguageChanged();
         static private string defaultStyleName = "Tizen.NUI.BaseComponents.TextLabel";
@@ -1847,6 +1855,11 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int EllipsisPosition = Interop.TextLabel.EllipsisPositionGet();
             internal static readonly int Strikethrough = Interop.TextLabel.StrikethroughGet();
             internal static readonly int CharacterSpacing = Interop.TextLabel.CharacterSpacingGet();
+
+            internal static void Preload()
+            {
+                // Do nothing. Just call for load static values.
+            }
         }
 
         private void OnShadowColorChanged(float x, float y, float z, float w)
