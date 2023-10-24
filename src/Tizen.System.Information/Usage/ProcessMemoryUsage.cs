@@ -280,7 +280,7 @@ namespace Tizen.System
             }
             finally
             {
-                Interop.Libc.Free(ptr);
+                Marshal.FreeHGlobal(ptr);
             }
         }
 
@@ -319,7 +319,7 @@ namespace Tizen.System
             }
             finally
             {
-               Interop.Libc.Free(ptr);
+                Marshal.FreeHGlobal(ptr);
             }
 
             Gpus = GetProcessMemoryValueInt(Interop.RuntimeInfo.ProcessMemoryInfoKey.Gpu, pid);

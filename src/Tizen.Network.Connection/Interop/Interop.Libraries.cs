@@ -20,5 +20,6 @@ internal static partial class Interop
     {
         public const string Connection = "libcapi-network-connection.so.1";
         public const string Libc = "libc.so.6";
+        public const string Glib = "libglib-2.0.so.0";
     }
 }

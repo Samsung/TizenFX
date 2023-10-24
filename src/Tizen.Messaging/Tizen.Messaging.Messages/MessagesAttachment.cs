@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+using System;
 
 namespace Tizen.Messaging.Messages
 {
@@ -20,18 +21,21 @@ namespace Tizen.Messaging.Messages
     /// This class is used to manage the information of the message attachment.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class MessagesAttachment
     {
         /// <summary>
         /// The media type of the attachment.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public MediaType Type { get; }
 
         /// <summary>
         /// The file path of the attachment.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string FilePath { get; }
 
         /// <summary>
@@ -40,6 +44,7 @@ namespace Tizen.Messaging.Messages
         /// <param name="type">The attachment's type.</param>
         /// <param name="filePath">The file path to attach.</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public MessagesAttachment(MediaType type, string filePath)
         {
             Type = type;
