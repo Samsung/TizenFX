@@ -393,6 +393,13 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_KeyboardUnGrab")]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool KeyboardUnGrab(global::System.Runtime.InteropServices.HandleRef window);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_SetFullScreen")]
+            public static extern void SetFullScreen(global::System.Runtime.InteropServices.HandleRef window, bool fullscreen);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_GetFullScreen")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool GetFullScreen(global::System.Runtime.InteropServices.HandleRef window);
         }
     }
 }

@@ -2424,6 +2424,32 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Sets to resize window with full screen.
+        /// If full screen size is set for the window,
+        /// window will be resized with full screen.
+        /// In addition, the full screen sized window's z-order is the highest.
+        /// </summary>
+        /// <param name="fullscreen"> If fullscreen is true, set fullscreen or unset.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetFullScreen(bool fullscreen)
+        {
+            Interop.Window.SetFullScreen(SwigCPtr, fullscreen);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Gets whether the full screen sized window or not.
+        /// </summary>
+        /// <returns>Returns true if the full screen sized window is.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool GetFullScreen()
+        {
+            bool ret = Interop.Window.GetFullScreen(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+              return ret;
+        }
+
+        /// <summary>
         /// Get Native Window handle.
         /// <example>
         /// How to get Native Window handle
