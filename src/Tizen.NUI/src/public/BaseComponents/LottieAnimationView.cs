@@ -970,7 +970,8 @@ namespace Tizen.NUI.BaseComponents
         internal static readonly int ActionJumpTo = Interop.LottieAnimationView.AnimatedVectorImageVisualActionJumpToGet();
 
         // This is used for internal purpose.
-        internal static readonly int ActionSetDynamicProperty = Interop.LottieAnimationView.AnimatedVectorImageVisualActionSetDynamicProperty();
+        internal static readonly int ActionSetDynamicProperty = Interop.LottieAnimationView.AnimatedVectorImageVisualActionSetDynamicPropertyGet();
+        internal static readonly int ActionFlush = Interop.LottieAnimationView.AnimatedVectorImageVisualActionFlushGet();
 
         internal class VisualEventSignalArgs : EventArgs
         {
@@ -1109,6 +1110,13 @@ namespace Tizen.NUI.BaseComponents
                     break;
             }
             ret?.Dispose();
+        }
+
+        internal void FlushLottieMessages()
+        {
+            NUILog.Debug($"<[{GetId()}]FLUSH>");
+
+            Interop.View.DoActionWithEmptyAttributes(this.SwigCPtr, ImageView.Property.IMAGE, ActionFlush);
         }
         #endregion Internal
 

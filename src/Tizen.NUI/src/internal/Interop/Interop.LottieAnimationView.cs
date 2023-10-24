@@ -33,7 +33,10 @@ namespace Tizen.NUI
             public static extern int AnimatedVectorImageVisualActionJumpToGet();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_AnimatedVectorImageVisual_Actions_SET_DYNAMIC_PROPERTY_get")]
-            public static extern int AnimatedVectorImageVisualActionSetDynamicProperty();
+            public static extern int AnimatedVectorImageVisualActionSetDynamicPropertyGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_AnimatedVectorImageVisual_Actions_FLUSH_get")]
+            public static extern int AnimatedVectorImageVisualActionFlushGet();
         }
     }
 }
