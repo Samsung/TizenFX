@@ -1625,5 +1625,29 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"WindowRequestResizeToServer END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("Window SetFullScreen")]
+        [Property("SPEC", "Tizen.NUI.Window.SetFullScreen M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void SetFullScreen()
+        {
+            tlog.Debug(tag, $"SetFullScreen START");
+
+            try
+            {
+                win.SetFullScreen(true);
+                Assert.IsTrue(win.GetFullScreen());
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"SetFullScreen END (OK)");
+        }
     }
 }
