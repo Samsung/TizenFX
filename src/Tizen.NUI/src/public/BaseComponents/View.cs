@@ -105,6 +105,16 @@ namespace Tizen.NUI.BaseComponents
             RegisterAccessibilityDelegate();
         }
 
+        static internal new void Preload()
+        {
+            Container.Preload();
+
+            // Do nothing. Just call for load static values.
+            var temporalPositionPropertyGroup = positionPropertyGroup;
+            var temporalSizePropertyGroup = sizePropertyGroup;
+            var temporalScalePropertyGroup = scalePropertyGroup;
+        }
+
         /// <summary>
         /// Accessibility mode for controlling View's Accessible implementation.
         /// It is only relevant when deriving custom controls from View directly,
