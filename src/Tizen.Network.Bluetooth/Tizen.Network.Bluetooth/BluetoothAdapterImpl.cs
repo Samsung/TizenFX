@@ -534,14 +534,14 @@ namespace Tizen.Network.Bluetooth
                 byte[] hashArr = new byte[hashLength];
                 Marshal.Copy(hash, hashArr, 0, hashLength);
                 oobData.HashValue = hashArr;
-                Interop.Libc.Free(hash);
+                Interop.Glib.Gfree(hash);
             }
 
             if (randomizerLength > 0) {
                 byte[] randomizerArr = new byte[randomizerLength];
                 Marshal.Copy(randomizer, randomizerArr, 0, randomizerLength);
                 oobData.RandomizerValue = randomizerArr;
-                Interop.Libc.Free(randomizer);
+                Interop.Glib.Gfree(randomizer);
             }
 
             return oobData;
