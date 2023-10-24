@@ -187,10 +187,10 @@ namespace Tizen.Network.Bluetooth
             foreach (IntPtr uuids in uuidList)
             {
                 list.Add(Marshal.PtrToStringAnsi(uuids));
-                Interop.Libc.Free(uuids);
+                Interop.Glib.Gfree(uuids);
             }
 
-            Interop.Libc.Free(uuidListArray);
+            Interop.Glib.Gfree(uuidListArray);
             Marshal.FreeHGlobal(scanDataStruct.AdvData);
             Marshal.FreeHGlobal(scanDataStruct.ScanData);
             return list;
@@ -295,10 +295,10 @@ namespace Tizen.Network.Bluetooth
             foreach (IntPtr uuids in uuidList)
             {
                 list.Add(Marshal.PtrToStringAnsi(uuids));
-                Interop.Libc.Free(uuids);
+                Interop.Glib.Gfree(uuids);
             }
 
-            Interop.Libc.Free(uuidListArray);
+            Interop.Glib.Gfree(uuidListArray);
             Marshal.FreeHGlobal(scanDataStruct.AdvData);
             Marshal.FreeHGlobal(scanDataStruct.ScanData);
             return list;
@@ -417,7 +417,7 @@ namespace Tizen.Network.Bluetooth
                 Marshal.Copy(manufData, data.Data, 0, data.DataLength);
             }
 
-            Interop.Libc.Free(manufData);
+            Interop.Glib.Gfree(manufData);
             Marshal.FreeHGlobal(scanDataStruct.AdvData);
             Marshal.FreeHGlobal(scanDataStruct.ScanData);
             return data;
