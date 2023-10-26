@@ -518,6 +518,7 @@ namespace NUnit.Framework.Internal.Execution
         {
             lock (cancelLock)
             {
+                NUnit.Framework.TUnit.TLogger.Write($"CompositeWorkItem Cancel {force}\n");
                 if (_children == null)
                     return;
 
@@ -531,6 +532,7 @@ namespace NUnit.Framework.Internal.Execution
                         child.Cancel(force);
                 }
             }
+            base.Cancel(force);
         }
 
         private string GetCaseID(string TCID)

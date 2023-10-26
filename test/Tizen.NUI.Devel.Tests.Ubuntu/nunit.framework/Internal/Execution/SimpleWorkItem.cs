@@ -75,5 +75,10 @@ namespace NUnit.Framework.Internal.Execution
             }
         }
 
+        public override void Cancel(bool force)
+        {
+            TLogger.Write($"Cancel SimpleWorkItem force:{force}\n");
+            base.Cancel(force);
+        }
     }
 }

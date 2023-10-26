@@ -383,6 +383,7 @@ namespace NUnit.Framework.Internal.Execution
         /// <param name="force">true if the WorkItem should be aborted, false if it should run to completion</param>
         public virtual void Cancel(bool force)
         {
+            NUnit.Framework.TUnit.TLogger.Write($"Cancel WorkItem force:{force}\n");
             if (Context != null)
                 Context.ExecutionStatus = force ? TestExecutionStatus.AbortRequested : TestExecutionStatus.StopRequested;
 
