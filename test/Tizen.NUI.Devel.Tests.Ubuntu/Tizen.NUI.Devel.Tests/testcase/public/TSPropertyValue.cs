@@ -12,7 +12,6 @@ namespace Tizen.NUI.Devel.Tests
     public class PropertyValueTest
     {
         private const string tag = "NUITEST";
-        private string path;
 
         [SetUp]
         public void Init()
