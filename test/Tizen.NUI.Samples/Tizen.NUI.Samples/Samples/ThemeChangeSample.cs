@@ -21,7 +21,6 @@ namespace Tizen.NUI.Samples
                 {
                     AutoNavigationContent = false,
                     Title = "NUI theme sample",
-                    //Actions = new View[] { closeButton },
                 },
                 Content = new ScrollableBase()
                 {

@@ -134,14 +134,6 @@ namespace Tizen.NUI.Components.Devel.Tests
             testingTarget.Command = command;
             tlog.Debug(tag, "Command : " + testingTarget.Command);
 
-            //Button parameter = new Button()
-            //{ 
-            //    Size = new Size(10, 30),
-            //    BackgroundColor = Color.Green,
-            //};
-            //testingTarget.CommandParameter = parameter;
-            //tlog.Debug(tag, "CommandParameter : " + testingTarget.CommandParameter);
-
             testingTarget.Dispose();
             tlog.Debug(tag, $"ControlCommand END (OK)");
         }

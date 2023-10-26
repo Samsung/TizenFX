@@ -326,12 +326,6 @@ namespace NUnit.Framework.Constraints
                 {
                     switch (c)
                     {
-                        //case '\'':
-                        //    sb.Append("\\\'");
-                        //    break;
-                        //case '\"':
-                        //    sb.Append("\\\"");
-                        //    break;
                         case '\\':
                             sb.Append("\\\\");
                             break;

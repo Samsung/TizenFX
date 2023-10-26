@@ -363,17 +363,9 @@ namespace Tizen.NUI.Devel.Tests
             dummy.SingleValue = 4.0f;
             testingTarget.Add(dummy);
 
-            // keyValue.KeyString != null
-            //KeyValue dummy2 = new KeyValue()
-            //{
-            //    KeyString = "myKey"
-            //};
-            //testingTarget.Add(dummy2);
-
             Assert.AreEqual(1, testingTarget.Count(), "Add with string and PropertyValue parameter function does not work");
 
             dummy.Dispose();
-            //dummy2.Dispose();
             testingTarget.Dispose();
             tlog.Debug(tag, $"PropertyMapAddWithKeyValue END (OK)");
         }

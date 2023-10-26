@@ -24,6 +24,7 @@ namespace Tizen.NUI.Samples
             "Food DropDown",
             "Kitchen DropDown",
         };
+
         private static Color[] color = new Color[]
         {
         new Color(0.05f, 0.63f, 0.9f, 1),//#ff0ea1e6 Utility
@@ -31,6 +32,7 @@ namespace Tizen.NUI.Samples
         new Color(0.75f, 0.46f, 0.06f, 1),//#ffec7510 Food
         new Color(0.59f, 0.38f, 0.85f, 1),//#ff9762d9 Kitchen
         };
+
         public void Activate()
         {
             Window window = NUIApplication.GetDefaultWindow();
@@ -62,6 +64,7 @@ namespace Tizen.NUI.Samples
             };
 
             root.Add(parent1);
+
             // Create a description text.
             createText[0] = new TextLabel();
             createText[0].Text = "Create DropDown just by properties";
@@ -69,15 +72,16 @@ namespace Tizen.NUI.Samples
             createText[0].MultiLine = true;
             parent1.Add(createText[0]);
 
-            //Create a dropdown by property.
             #region CreateByProperty
             dropDown = new DropDown();
+
             var style = dropDown.Style;
             style.Button.BackgroundImage = "";
             style.Button.Icon.ResourceUrl = CommonResource.GetFHResourcePath() + "6. List/list_ic_dropdown.png";
             style.Button.Text.PointSize = 20;
             style.Button.Text.FontFamily = "SamsungOneUI 500";
             style.Button.Text.TextColor = new Color(0, 0, 0, 1);
+
             dropDown.ApplyStyle(style);
             dropDown.Size = new Size(900, 108);
             dropDown.HeaderText.Text = "TitleArea";
@@ -100,6 +104,7 @@ namespace Tizen.NUI.Samples
             dropDown.ListPadding = new Extents(4, 4, 4, 4);
             dropDown.BackgroundColor = new Color(1, 1, 1, 1);
             parent1.Add(dropDown);
+
             for (int i = 0; i < 8; i++)
             {
                 DropDown.DropDownDataItem item = new DropDown.DropDownDataItem();
@@ -109,6 +114,7 @@ namespace Tizen.NUI.Samples
                     Pressed = new Color(0, 0, 0, 0.4f),
                     Other = new Color(1, 1, 1, 0),
                 };
+
                 item.Text = "Normal list " + i;
                 item.PointSize = 18;
                 item.FontFamily = "SamsungOne 500";
@@ -132,6 +138,7 @@ namespace Tizen.NUI.Samples
             dropDown.AttachScrollBar(scrollBar);
 
             #endregion
+
             ///////////////////////////////////////////////Create by Attributes//////////////////////////////////////////////////////////
             parent2 = new View()
             {
@@ -152,7 +159,6 @@ namespace Tizen.NUI.Samples
             createText[1].MultiLine = true;
             parent2.Add(createText[1]);
 
-            //Create a dropdown by style.
             #region CreateByStyle
 
             DropDownStyle dropDownStyle = new DropDownStyle
@@ -184,12 +190,14 @@ namespace Tizen.NUI.Samples
                     PositionX = 56,
                     BackgroundImage = "",
                 },
+
                 ListBackgroundImage = new ImageViewStyle
                 {
                     ResourceUrl = new Selector<string> { All = CommonResource.GetFHResourcePath() + "10. Drop Down/dropdown_bg.png" },
                     Border = new Selector<Rectangle> { All = new Rectangle(51, 51, 51, 51) },
                     Size = new Size(360, 500),
                 },
+
                 SpaceBetweenButtonTextAndIcon = 8,
                 ListMargin = new Extents(20, 0, 20, 0),
                 BackgroundColor = new Selector<Color> { All = new Color(1, 1, 1, 1) },
@@ -241,6 +249,7 @@ namespace Tizen.NUI.Samples
             dropDown2.AttachScrollBar(scrollBar2);
 
             #endregion
+
             //Add all views into root view.
             root.Add(parent1);
             root.Add(parent2);

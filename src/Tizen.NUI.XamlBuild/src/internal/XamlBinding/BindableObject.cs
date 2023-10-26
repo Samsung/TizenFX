@@ -734,7 +734,7 @@ namespace Tizen.NUI.Binding
             else if (property.DefaultValueCreator != null )
             {
                 context.Value = property.DefaultValueCreator(this); //Update Value from dali
-            }//added by xb.teng
+            }
 
             return context;
         }

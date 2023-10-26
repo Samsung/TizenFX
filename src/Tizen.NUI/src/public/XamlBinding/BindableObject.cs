@@ -894,11 +894,11 @@ namespace Tizen.NUI.Binding
             else if (property.ValueGetter != null)
             {
                 context.Value = property.ValueGetter(this); //Update Value from dali
-            }//added by xiaohui.fang
+            }
             else if (property.DefaultValueCreator != null) //This will be removed in the future.
             {
                 context.Value = property.DefaultValueCreator(this); //Update Value from dali
-            }//added by xb.teng
+            }
 
             return context;
         }
