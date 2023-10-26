@@ -99,6 +99,7 @@ namespace NUnit.Framework.Internal.Execution
         /// <param name="force">true if the run should be aborted, false if it should allow its currently running test to complete</param>
         public void CancelRun(bool force)
         {
+            NUnit.Framework.TUnit.TLogger.Write($"CancelRun {force}\n");
 #if !PORTABLE
             lock (cancelLock)
             {
