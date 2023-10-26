@@ -44,10 +44,10 @@ namespace Tizen.NUI
         /// This API should not be called at worker thread.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageUrl GenerateUrl()
+        public override ImageUrl GenerateUrl()
         {
             ImageUrl ret = new ImageUrl(Interop.NativeImageSource.GenerateUrl(this.SwigCPtr.Handle), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

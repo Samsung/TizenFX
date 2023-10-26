@@ -40,6 +40,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageQueue_EnqueueBuffer")]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool EnqueueBuffer(IntPtr queue, IntPtr buffer);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageQueue_GenerateUrl")]
+            public static extern IntPtr GenerateUrl(IntPtr queue);
         }
     }
 }
