@@ -261,7 +261,7 @@ namespace NUnit.Framework.Api
         /// </remarks>
         public void RunAsync(ITestListener listener, ITestFilter filter)
         {
-            log.Info("Running tests");
+            TLogger.Write("RunAsync Start!\n");
             if (LoadedTest == null)
                 throw new InvalidOperationException("The Run method was called but no test has been loaded");
 
@@ -288,6 +288,7 @@ namespace NUnit.Framework.Api
 
             StartRun(listener);
             WaitForCompletion(Timeout.Infinite);
+            TLogger.Write("RunAsync Finished!\n");
         }
 
         /// <summary>
@@ -297,6 +298,7 @@ namespace NUnit.Framework.Api
         /// <returns>True if the run completed, otherwise false</returns>
         public bool WaitForCompletion(int timeout)
         {
+            TLogger.Write("WaitForCompletion...\n");
 #if !SILVERLIGHT && !PORTABLE
             return _runComplete.WaitOne(timeout, false);
 #else
@@ -408,6 +410,7 @@ namespace NUnit.Framework.Api
         /// </summary>
         private void OnRunCompleted(object sender, EventArgs e)
         {
+            TLogger.Write("OnRunCompleted\n");
 #if PARALLEL
             if (_pump != null)
                 _pump.Dispose();
