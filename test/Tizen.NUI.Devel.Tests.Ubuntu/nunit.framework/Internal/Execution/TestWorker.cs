@@ -30,6 +30,7 @@
 #if PARALLEL
 using System;
 using System.Threading;
+using NUnit.Framework.TUnit;
 
 namespace NUnit.Framework.Internal.Execution
 {
@@ -112,6 +113,7 @@ namespace NUnit.Framework.Internal.Execution
         private void TestWorkerThreadProc()
         {
             log.Info("{0} starting ", _workerThread.Name);
+            TLogger.Write($"{_workerThread.Name} Started\n");
 
             _running = true;
 
@@ -125,15 +127,20 @@ namespace NUnit.Framework.Internal.Execution
 
                     log.Info("{0} executing {1}", _workerThread.Name, _currentWorkItem.Test.Name);
 
+                    TLogger.Write($"{_workerThread.Name} busy\n");
+
                     if (Busy != null)
                         Busy(this, EventArgs.Empty);
-
+                        
+                    TLogger.Write($"{_workerThread.Name} executing {_currentWorkItem.Test.Name}\n");
                     _currentWorkItem.WorkerId = Name;
                     _currentWorkItem.Execute();
+                    TLogger.Write($"{_workerThread.Name} executing {_currentWorkItem.Test.Name} done\n");
 
                     if (Idle != null)
                         Idle(this, EventArgs.Empty);
 
+                    TLogger.Write($"{_workerThread.Name} idle\n");
                     ++_workItemCount;
                 }
             }
@@ -141,6 +148,7 @@ namespace NUnit.Framework.Internal.Execution
             {
                 log.Info("{0} stopping - {1} WorkItems processed.", _workerThread.Name, _workItemCount);
             }
+            TLogger.Write($"{_workerThread.Name} Finished\n");
         }
 
         /// <summary>
@@ -159,6 +167,7 @@ namespace NUnit.Framework.Internal.Execution
         /// <param name="force">true if the thread should be aborted, false if it should allow the currently running test to complete</param>
         public void Cancel(bool force)
         {
+            TLogger.Write($"Cancel TestWorker force:{force}\n");
             if (force)
                 _running = false;
 
@@ -167,7 +176,9 @@ namespace NUnit.Framework.Internal.Execution
                 {
                     _currentWorkItem.Cancel(force);
                     if (force)
+                    {
                         _currentWorkItem = null;
+                    }
                 }
         }
     }
