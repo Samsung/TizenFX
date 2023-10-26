@@ -205,6 +205,7 @@ namespace NUnit.Framework.Internal.Execution
         /// </summary>
         public void CancelRun(bool force)
         {
+            NUnit.Framework.TUnit.TLogger.Write($"CancelRun {force}\n");
             foreach (var shift in Shifts)
                 shift.Cancel(force);
         }

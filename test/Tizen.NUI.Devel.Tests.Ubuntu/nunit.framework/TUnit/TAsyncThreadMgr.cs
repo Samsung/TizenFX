@@ -44,6 +44,7 @@ namespace NUnit.Framework.TUnit
 
         public void SetData(TestCommand testCommand, TestMethod testMethod, object[] arguments, TestExecutionContext context, bool IsAsyncOperation)
         {
+            TLogger.Write($"TAsyn.SetData()\n");
             this.testCommand = testCommand;
             this.testMethod = testMethod;
             this.arguments = arguments;
@@ -126,6 +127,7 @@ namespace NUnit.Framework.TUnit
                     runTearDown();
                     Thread.Sleep(50);
                     #endregion
+                    
                     testCommand._testMethodRunComplete.Set();
                     _methodExecutionResetEvent.Reset();
                     _methodExecutionResetEvent.WaitOne();
@@ -163,6 +165,7 @@ namespace NUnit.Framework.TUnit
             #region nguyen.vtan add TearDown
             runTearDown();
             #endregion
+
             testCommand._testMethodRunComplete.Set();
             _methodExecutionResetEvent.Reset();
             _methodExecutionResetEvent.WaitOne();

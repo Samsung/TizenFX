@@ -52,6 +52,8 @@ namespace Tizen.NUI.Devel.Tests
         private ManualResetEvent methodExecutionResetEvent;
         private TAsyncThreadMgr asyncThreadMgr;
 
+        private bool testFinished = false;
+
         protected override void OnCreate()
         {
             base.OnCreate();
@@ -114,15 +116,18 @@ namespace Tizen.NUI.Devel.Tests
         {
             methodExecutionResetEvent.WaitOne();
 
-            if (asyncThreadMgr.RunTestMethod() == false)
+            if (eventThreadCallback == null || asyncThreadMgr.RunTestMethod() == false)
             {
                 mainTitle.Text = title + "Finished!\nWill be terminated after 5 seconds";
+                testFinished = true;
+
                 timer = new Timer(300);
                 timer.Tick += OnTick;
                 timer.Start();
                 return;
             }
-            eventThreadCallback.Trigger();
+
+            eventThreadCallback?.Trigger();
         }
 
         private bool OnTick(object obj, EventArgs e)
@@ -163,9 +168,9 @@ namespace Tizen.NUI.Devel.Tests
 
         protected override void OnResume()
         {
-            base.OnResume();
-
             tlog.Debug(tag, $"OnResume()");
+
+            base.OnResume();
         }
 
         protected override void OnPause()
@@ -175,9 +180,21 @@ namespace Tizen.NUI.Devel.Tests
 
         protected override void OnTerminate()
         {
-            timer.Dispose();
-            mainTitle.Unparent();
-            root.Unparent();
+            tlog.Debug(tag, "OnTerminate()");
+
+            // Clear program
+            timer?.Dispose();
+            mainTitle?.Unparent();
+            root?.Dispose();
+            eventThreadCallback?.Dispose();
+
+            // Stop test forcely.
+            if (!testFinished)
+            {
+                // TODO : Currently, it is not works well...
+                // trunner._textRunner.StopTest(true);
+            }
+
             base.OnTerminate();
             Exit();
         }
