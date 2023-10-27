@@ -1388,7 +1388,10 @@ namespace Tizen.NUI.Components
                 mPanGestureDetector?.Dispose();
                 mPanGestureDetector = null;
 
-                ContentContainer?.RemovePropertyNotification(propertyNotification);
+                if(!(ContentContainer?.Disposed ?? true) && propertyNotification != null)
+                {
+                    ContentContainer?.RemovePropertyNotification(propertyNotification);
+                }
                 propertyNotification?.Dispose();
                 propertyNotification = null;
             }
