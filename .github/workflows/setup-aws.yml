@@ -1,8 +1,9 @@
 name: "Setup test"
 
 on:
-  branches:
-  - test-actions
+  push:
+    branches:
+    - test-actions
 
 env:
   DOCFX_FILE: docfx_tizen_docs.json
