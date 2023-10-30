@@ -45,12 +45,16 @@ namespace Tizen.NUI
         /// <param name="handle">A reference to the copied handle</param>
         /// This will be made public in the next tizen release after an ACR is done. Till then, it needs to be hidden as an inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public RotationGestureDetector(RotationGestureDetector handle) : this(Interop.RotationGesture.NewRotationGestureDetector(RotationGestureDetector.getCPtr(handle)), true)
+        public RotationGestureDetector(RotationGestureDetector handle) : this(Interop.RotationGesture.NewRotationGestureDetector(RotationGestureDetector.getCPtr(handle)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal RotationGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.RotationGesture.RotationGestureDetectorUpcast(cPtr), cMemoryOwn)
+        internal RotationGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal RotationGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
         }
 

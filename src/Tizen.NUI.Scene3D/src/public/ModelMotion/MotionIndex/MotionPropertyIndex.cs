@@ -81,7 +81,7 @@ namespace Tizen.NUI.Scene3D
         /// </summary>
         /// <param name="motionPropertyIndex">Source object to copy.</param>
         /// <since_tizen> 11 </since_tizen>
-        public MotionPropertyIndex(MotionPropertyIndex motionPropertyIndex) : this(Interop.MotionIndex.NewMotionPropertyIndex(MotionPropertyIndex.getCPtr(motionPropertyIndex)), true)
+        public MotionPropertyIndex(MotionPropertyIndex motionPropertyIndex) : this(Interop.MotionIndex.NewMotionPropertyIndex(MotionPropertyIndex.getCPtr(motionPropertyIndex)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -98,7 +98,11 @@ namespace Tizen.NUI.Scene3D
             return ret;
         }
 
-        internal MotionPropertyIndex(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal MotionPropertyIndex(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal MotionPropertyIndex(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
         }
 

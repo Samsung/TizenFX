@@ -113,7 +113,7 @@ namespace Tizen.NUI.Scene3D
         /// </summary>
         /// <param name="blendShapeIndex">Source object to copy.</param>
         /// <since_tizen> 11 </since_tizen>
-        public BlendShapeIndex(BlendShapeIndex blendShapeIndex) : this(Interop.MotionIndex.NewBlendShapeIndex(BlendShapeIndex.getCPtr(blendShapeIndex)), true)
+        public BlendShapeIndex(BlendShapeIndex blendShapeIndex) : this(Interop.MotionIndex.NewBlendShapeIndex(BlendShapeIndex.getCPtr(blendShapeIndex)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -130,7 +130,11 @@ namespace Tizen.NUI.Scene3D
             return ret;
         }
 
-        internal BlendShapeIndex(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal BlendShapeIndex(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal BlendShapeIndex(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
         }
 

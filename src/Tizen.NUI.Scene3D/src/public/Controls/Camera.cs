@@ -32,7 +32,11 @@ namespace Tizen.NUI.Scene3D
     /// <since_tizen> 10 </since_tizen>
     public partial class Camera : View
     {
-        internal Camera(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Camera(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal Camera(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, true, cRegister)
         {
         }
 
@@ -50,7 +54,7 @@ namespace Tizen.NUI.Scene3D
         /// </summary>
         /// <param name="camera">The Camera object to be copied.</param>
         /// <since_tizen> 10 </since_tizen>
-        public Camera(Camera camera) : this(Interop.Camera.NewCamera(Camera.getCPtr(camera)), true)
+        public Camera(Camera camera) : this(Interop.Camera.NewCamera(Camera.getCPtr(camera)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
