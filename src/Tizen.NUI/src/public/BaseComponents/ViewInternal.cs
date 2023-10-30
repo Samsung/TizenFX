@@ -1346,6 +1346,12 @@ namespace Tizen.NUI.BaseComponents
 
             disposeDebugging(type);
 
+            internalName = "";
+            Unparent();
+
+            Interop.ControlDevel.DaliAccessibilityDetachAccessibleObject(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
             //_mergedStyle = null;
 
             internalMaximumSize?.Dispose();
@@ -1387,7 +1393,6 @@ namespace Tizen.NUI.BaseComponents
             tapGestureDetector = null;
             rotationGestureDetector?.Dispose();
             rotationGestureDetector = null;
-
 
             internalCurrentParentOrigin?.Dispose();
             internalCurrentParentOrigin = null;
