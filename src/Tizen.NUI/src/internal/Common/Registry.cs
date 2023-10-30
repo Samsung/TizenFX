@@ -61,44 +61,55 @@ namespace Tizen.NUI
             if (Instance._controlMap.TryAdd(refCptr, new WeakReference(baseHandle, true)) != true)
             {
                 WeakReference weakReference;
-                if(Instance._controlMap.TryGetValue(refCptr, out weakReference))
+                if (Instance._controlMap.TryGetValue(refCptr, out weakReference))
                 {
                     if (weakReference == null)
                     {
-                        Tizen.Log.Error("NUI", $"Something Wrong! weakReference is null\n");
-                        throw new System.InvalidOperationException("Error! NUI Registry weakReference should not be NULL!");
+                        Tizen.Log.Error("NUI", $"Something Wrong! weakReference is null! input type:{baseHandle.GetType()}\n");
+
+                        // 2023-10-30 : Just print error log without exception. Please reopne below throw action after all apps fixed.
+                        Tizen.Log.Fatal("NUI", "Error! just return here without Register! this can cause unknown error or crash in next step");
+                        return;
+                        //throw new System.InvalidOperationException("Error! NUI Registry weakReference should not be NULL!");
                     }
                     var target = weakReference.Target;
 
                     BaseHandle ret = target as BaseHandle;
-                    if (ret != null)
-                    {
-                        Tizen.Log.Error("NUI", $"refCptr is already exist! input type:{baseHandle.GetType()}, registed type:{ret.GetType()}, refCptr:{refCptr.ToString("X8")}\n");
-                        throw new System.InvalidOperationException("refCptr is already exist!");
-                    }
-                    else if(target == null)
+                    if (target == null)
                     {
                         // Special case. If WeakReference.Target is null, it might be disposed by GC. just Add forcely.
                         if (Instance._controlMap.TryRemove(refCptr, out weakReference) != true)
                         {
-                            Tizen.Log.Error("NUI", $"Something Wrong when we try to remove null target\n");
+                            Tizen.Log.Error("NUI", $"Something Wrong when we try to remove null target! input type:{baseHandle.GetType()}, registed type:{target?.GetType()}\n");
                         }
                         if (Instance._controlMap.TryAdd(refCptr, new WeakReference(baseHandle, false)) != true)
                         {
-                            Tizen.Log.Error("NUI", $"Something Wrong when we try to replace null target\n");
-                            throw new System.InvalidOperationException("refCptr register failed");
+                            Tizen.Log.Error("NUI", $"Something Wrong when we try to replace null target! input type:{baseHandle.GetType()}, registed type:{target?.GetType()}\n");
+
+                            // 2023-10-30 : Just print error log without exception. Please reopne below throw action after all apps fixed.
+                            Tizen.Log.Fatal("NUI", "Error! just return here without Register! this can cause unknown error or crash in next step");
+                            return;
+                            //throw new System.InvalidOperationException("refCptr register failed");
                         }
                     }
                     else
                     {
-                        Tizen.Log.Error("NUI", $"Something Wrong!! target is not BaseHandle! target.GetType() : {target?.GetType()}\n");
-                        throw new System.InvalidOperationException("refCptr is already exist, but not a BaseHandle!");
+                        Tizen.Log.Error("NUI", $"Something Wrong!! refCptr is already exist! input type:{baseHandle.GetType()}, registed type:{target?.GetType()}, refCptr:{refCptr.ToString("X8")}\n");
+
+                        // 2023-10-30 : Just print error log without exception. Please reopne below throw action after all apps fixed.
+                        Tizen.Log.Fatal("NUI", "Error! just return here without Register! this can cause unknown error or crash in next step");
+                        return;
+                        //throw new System.InvalidOperationException("refCptr is already exist!");
                     }
                 }
                 else
                 {
-                    Tizen.Log.Error("NUI", $"refCptr is already exist! OR something Wrong!!!\n");
-                    throw new System.InvalidOperationException("refCptr is already exist, but fail to get handle!");
+                    Tizen.Log.Error("NUI", $"refCptr is already exist! OR something Wrong!!! input type:{baseHandle.GetType()}\n");
+
+                    // 2023-10-30 : Just print error log without exception. Please reopne below throw action after all apps fixed.
+                    Tizen.Log.Fatal("NUI", "Error! just return here without Register! this can cause unknown error or crash in next step");
+                    return;
+                    //throw new System.InvalidOperationException("refCptr is already exist, but fail to get handle!");
                 }
             }
 
@@ -118,7 +129,7 @@ namespace Tizen.NUI
             WeakReference refe;
             if (Instance._controlMap.TryRemove(refCptr, out refe) != true)
             {
-                NUILog.Debug("something wrong when removing refCptr!");
+                Tizen.Log.Error("NUI", $"something wrong when removing refCptr!\n");
             }
 
             NUILog.Debug($"[Registry] Unregister! type:{baseHandle.GetType()} count:{Instance._controlMap.Count} copyNativeHandle:{baseHandle.GetBaseHandleCPtrHandleRef.Handle.ToString("X8")}");
