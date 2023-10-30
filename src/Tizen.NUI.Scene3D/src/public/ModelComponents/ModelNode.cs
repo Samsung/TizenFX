@@ -47,7 +47,11 @@ namespace Tizen.NUI.Scene3D
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ModelNode : View
     {
-        internal ModelNode(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal ModelNode(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal ModelNode(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, true, cRegister)
         {
         }
 
@@ -66,7 +70,7 @@ namespace Tizen.NUI.Scene3D
         /// </summary>
         /// <param name="modelNode">Source object to copy.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ModelNode(ModelNode modelNode) : this(Interop.ModelNode.NewModelNode(ModelNode.getCPtr(modelNode)), true)
+        public ModelNode(ModelNode modelNode) : this(Interop.ModelNode.NewModelNode(ModelNode.getCPtr(modelNode)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

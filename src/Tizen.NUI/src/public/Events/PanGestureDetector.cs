@@ -45,12 +45,16 @@ namespace Tizen.NUI
         /// <param name="handle">A reference to the copied handle</param>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public PanGestureDetector(PanGestureDetector handle) : this(Interop.PanGestureDetector.NewPanGestureDetector(PanGestureDetector.getCPtr(handle)), true)
+        public PanGestureDetector(PanGestureDetector handle) : this(Interop.PanGestureDetector.NewPanGestureDetector(PanGestureDetector.getCPtr(handle)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal PanGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal PanGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal PanGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
         }
 

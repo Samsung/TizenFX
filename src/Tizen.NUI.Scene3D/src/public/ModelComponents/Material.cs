@@ -43,7 +43,11 @@ namespace Tizen.NUI.Scene3D
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Material : BaseHandle
     {
-        internal Material(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Material(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal Material(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
         }
 
@@ -61,7 +65,7 @@ namespace Tizen.NUI.Scene3D
         /// </summary>
         /// <param name="material">Source object to copy.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Material(Material material) : this(Interop.Material.NewMaterial(Material.getCPtr(material)), true)
+        public Material(Material material) : this(Interop.Material.NewMaterial(Material.getCPtr(material)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
