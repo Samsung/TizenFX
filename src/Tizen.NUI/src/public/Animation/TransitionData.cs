@@ -51,12 +51,16 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="handle">Handle to an object.</param>
         /// <since_tizen> 3 </since_tizen>
-        public TransitionData(TransitionData handle) : this(Interop.TransitionData.NewTransitionData(TransitionData.getCPtr(handle)), true)
+        public TransitionData(TransitionData handle) : this(Interop.TransitionData.NewTransitionData(TransitionData.getCPtr(handle)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal TransitionData(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal TransitionData(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal TransitionData(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
         }
 

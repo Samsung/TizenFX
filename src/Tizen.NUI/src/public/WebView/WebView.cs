@@ -132,12 +132,17 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="webView">WebView to copy. The copied WebView will point at the same implementation</param>
         /// <since_tizen> 9 </since_tizen>
-        public WebView(WebView webView) : this(Interop.WebView.NewWebView(WebView.getCPtr(webView)), true)
+        public WebView(WebView webView) : this(Interop.WebView.NewWebView(WebView.getCPtr(webView)), true, false)
         {
+            // TODO : Please deprecate this API.
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal WebView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.WebView.Upcast(cPtr), cMemoryOwn)
+        internal WebView(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal WebView(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(Interop.WebView.Upcast(cPtr), cMemoryOwn, true, cRegister)
         {
             screenshotAcquiredProxyCallback = OnScreenshotAcquired;
             hitTestFinishedProxyCallback = OnHitTestFinished;
