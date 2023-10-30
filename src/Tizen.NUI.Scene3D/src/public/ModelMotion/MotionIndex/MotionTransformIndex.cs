@@ -146,7 +146,7 @@ namespace Tizen.NUI.Scene3D
         /// </summary>
         /// <param name="motionTransformIndex">Source object to copy.</param>
         /// <since_tizen> 11 </since_tizen>
-        public MotionTransformIndex(MotionTransformIndex motionTransformIndex) : this(Interop.MotionIndex.NewMotionTransformIndex(MotionTransformIndex.getCPtr(motionTransformIndex)), true)
+        public MotionTransformIndex(MotionTransformIndex motionTransformIndex) : this(Interop.MotionIndex.NewMotionTransformIndex(MotionTransformIndex.getCPtr(motionTransformIndex)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -163,7 +163,11 @@ namespace Tizen.NUI.Scene3D
             return ret;
         }
 
-        internal MotionTransformIndex(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal MotionTransformIndex(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal MotionTransformIndex(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
         }
 

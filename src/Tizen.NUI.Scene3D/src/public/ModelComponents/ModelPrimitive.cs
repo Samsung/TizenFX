@@ -42,7 +42,11 @@ namespace Tizen.NUI.Scene3D
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ModelPrimitive : BaseHandle
     {
-        internal ModelPrimitive(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal ModelPrimitive(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal ModelPrimitive(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
         }
 
@@ -60,7 +64,7 @@ namespace Tizen.NUI.Scene3D
         /// </summary>
         /// <param name="modelPrimitive">Source object to copy.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ModelPrimitive(ModelPrimitive modelPrimitive) : this(Interop.ModelPrimitive.NewModelPrimitive(ModelPrimitive.getCPtr(modelPrimitive)), true)
+        public ModelPrimitive(ModelPrimitive modelPrimitive) : this(Interop.ModelPrimitive.NewModelPrimitive(ModelPrimitive.getCPtr(modelPrimitive)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

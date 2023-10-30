@@ -143,12 +143,16 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="handle">Handle to copy from.</param>
         /// <since_tizen> 3 </since_tizen>
-        public TableView(TableView handle) : this(Interop.TableView.NewTableView(TableView.getCPtr(handle)), true)
+        public TableView(TableView handle) : this(Interop.TableView.NewTableView(TableView.getCPtr(handle)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal TableView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal TableView(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal TableView(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, true, cRegister)
         {
         }
 
