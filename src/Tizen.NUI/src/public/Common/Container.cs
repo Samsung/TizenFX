@@ -50,7 +50,12 @@ namespace Tizen.NUI
             var temporalXamlStyleProperty = XamlStyleProperty;
         }
 
-        internal Container(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Container(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+            // No un-managed data hence no need to store a native ptr
+        }
+
+        internal Container(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
             // No un-managed data hence no need to store a native ptr
         }

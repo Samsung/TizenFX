@@ -63,16 +63,6 @@ namespace Tizen.NUI.ParticleSystem
             mProxy = new ParticleEmitterProxy(this);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        
-        /// <summary>
-        /// Copy constructor.
-        /// </summary>
-        /// <param name="particleEmitter">Source object to copy.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ParticleEmitter( ParticleEmitter particleEmitter) : this(Interop. ParticleEmitter.New( ParticleEmitter.getCPtr(particleEmitter)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
 
         /// <summary>
         /// Dispose.

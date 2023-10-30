@@ -45,12 +45,16 @@ namespace Tizen.NUI
         /// <param name="handle">A reference to the copied handle</param>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public PinchGestureDetector(PinchGestureDetector handle) : this(Interop.PinchGesture.NewPinchGestureDetector(PinchGestureDetector.getCPtr(handle)), true)
+        public PinchGestureDetector(PinchGestureDetector handle) : this(Interop.PinchGesture.NewPinchGestureDetector(PinchGestureDetector.getCPtr(handle)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal PinchGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PinchGesture.PinchGestureDetectorUpcast(cPtr), cMemoryOwn)
+        internal PinchGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal PinchGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
         }
 
