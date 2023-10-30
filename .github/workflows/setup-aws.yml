@@ -101,7 +101,7 @@ jobs:
     - name: Get Github action IP
       id: ip
       uses: haythem/public-ip@v1.2
-	  
+
     - name: Remove Github Actions IP from security group
       run: |
         aws ec2 revoke-security-group-ingress --group-name ${{ env.AWS_SG_NAME }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
