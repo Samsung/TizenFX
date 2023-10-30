@@ -1,9 +1,8 @@
 name: "Setup test"
 
 on:
-  schedule:
-  - cron: "0 17 * * *"
-  workflow_dispatch:
+  branches:
+  - test-actions
 
 env:
   DOCFX_FILE: docfx_tizen_docs.json
