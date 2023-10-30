@@ -102,6 +102,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(bool disposing)
         {
+            // Note : We can clean dictionaries even this API called from GC Thread.
             CleanCallbackDictionaries();
             base.Dispose(disposing);
         }
