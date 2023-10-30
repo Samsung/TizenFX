@@ -212,7 +212,7 @@ namespace Tizen.NUI.Accessibility
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            return dummyHandle.GetInstanceSafely<View>(ptr);
+            return dummyObject.GetInstanceSafely<View>(ptr);
         }
 
         /// <summary>
@@ -342,7 +342,7 @@ namespace Tizen.NUI.Accessibility
             SayFinished?.Invoke(typeof(Accessibility), new SayFinishedEventArgs(result));
         }
 
-        private static BaseHandle dummyHandle = new BaseHandle();
+        private static readonly object dummyObject = new object();
 
         #endregion Private
     }
