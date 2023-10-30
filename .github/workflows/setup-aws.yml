@@ -1,0 +1,111 @@
+name: "Deploy Documents for Tizen Docs Test"
+
+on:
+  schedule:
+  - cron: "0 17 * * *"
+  workflow_dispatch:
+
+env:
+  DOCFX_FILE: docfx_tizen_docs.json
+  DEPLOY_BRANCH: tizen-docs-pages
+  CACHE_NAME: docfx-tizen-docs-pages-site
+
+jobs:
+
+  add-ip:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Get Github action IP
+      id: ip
+      uses: haythem/public-ip@v1.2
+
+    - name: Setting environment variables
+      run: |
+        echo "AWS_DEFAULT_REGION=ap-northeast-2" >> $GITHUB_ENV
+        echo "AWS_SG_NAME=tizenapi-public-sg" >> $GITHUB_ENV
+
+    - name: Add Github Actions IP to Security group
+      run: |
+        aws ec2 authorize-security-group-ingress --group-name ${{ env.AWS_SG_NAME }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32    
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: ap-northeast-2
+
+  build:
+    needs: [add-ip]
+    runs-on: [self-hosted, linux, x64]
+    container:
+      image: tizendotnet/tizenfx-build-worker:2.0
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        repository: TizenAPI/TizenFX-Docs
+
+    - name: Checkout TizenFX sources
+      run: |
+        ./build.sh clone
+
+    - name: Cache DocFX output
+      id: cache-site
+      uses: actions/cache@v2
+      with:
+        path: _site
+        key: ${{ env.CACHE_NAME }}-${{ hashFiles('repos/commits') }}
+
+    - name: Build Documents
+      if: steps.cache-site.outputs.cache-hit != 'true'
+      run: |
+        ./build.sh restore
+        ./build.sh build
+
+    - name: Archive Artifacts
+      run: |
+        tar cfz site.tar.gz _site/
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: documents
+        path: site.tar.gz
+
+  deploy:
+    needs: [build]
+    runs-on: ubuntu-20.04
+
+    steps:
+    - uses: actions/download-artifact@v2
+      with:
+        name: documents
+
+    - name: Extract Artifacts
+      run: |
+        tar xfz site.tar.gz
+
+    - name: Deploy GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./_site
+        publish_branch: ${{ env.DEPLOY_BRANCH }}
+        user_name: 'TizenAPI-Bot'
+        user_email: 'tizenapi@samsung.com'
+        full_commit_message: 'Update documents'
+
+  remove-ip:
+    needs: [deploy]
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Get Github action IP
+      id: ip
+      uses: haythem/public-ip@v1.2
+	  
+    - name: Remove Github Actions IP from security group
+      run: |
+        aws ec2 revoke-security-group-ingress --group-name ${{ env.AWS_SG_NAME }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: ap-northeast-2
