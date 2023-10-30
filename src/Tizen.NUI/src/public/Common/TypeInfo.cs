@@ -40,12 +40,16 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="handle">This copy constructor is required for (smart) pointer semantics.</param>
         /// <since_tizen> 3 </since_tizen>
-        public TypeInfo(TypeInfo handle) : this(Interop.TypeInfo.NewTypeInfo(TypeInfo.getCPtr(handle)), true)
+        public TypeInfo(TypeInfo handle) : this(Interop.TypeInfo.NewTypeInfo(TypeInfo.getCPtr(handle)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal TypeInfo(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal TypeInfo(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal TypeInfo(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
         }
 
