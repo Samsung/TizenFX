@@ -25,13 +25,6 @@ jobs:
         echo "AWS_DEFAULT_REGION=ap-northeast-2" >> $GITHUB_ENV
         echo "AWS_SG_NAME=tizenapi-public-sg" >> $GITHUB_ENV
 
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_2 }} 
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_2 }} 
-        aws-region: ap-northeast-2
-
     - name: Add Github Actions IP to Security group
       run: |
         aws ec2 authorize-security-group-ingress --group-name ${{ env.AWS_SG_NAME }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32    
