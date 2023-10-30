@@ -1,0 +1,633 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class TimePicker
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class TimePicker
+   ">
+    <meta name="generator" content="docfx 2.56.1.0">
+    <meta name="version" content="API11">
+    
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+            
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+            
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+              
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.NUI.Components.TimePicker">
+  
+  <div class="entity">
+  
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_NUI_Components_TimePicker" data-uid="Tizen.NUI.Components.TimePicker" class="mt-0 text-break"><span class="entity-type">Class</span>
+  TimePicker
+  </h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/TimePicker.cs/#L57" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+  
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.NUI.Components.html">Tizen.NUI.Components</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.Components.dll</dd></dl>
+  <dl class="attribute-list"><dt>API Level:</dt><dd><span>9</span></dd></dl>
+  
+  <div class="markdown level0 summary"><p>TimePicker is a class which provides a function that allows the user to select
+a time through a scrolling motion by expressing the specified value as a list.
+TimePicker expresses the current time using the locale information of the system.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class TimePicker : Control, IDynamicResourceHandler, IElement, INameScope, IElementController, System.IDisposable, IResourcesProvider</code></pre>
+  </div>
+
+  
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.ViewWrapper.html">ViewWrapper</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.CustomView.html">CustomView</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.VisualView.html">VisualView</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Control.html">Control</a></div>
+        <div><span class="xref">TimePicker</span></div>
+      </div>
+    </dd>
+  </dl>
+
+  
+  
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a></div>
+    </dd>
+  </dl>
+  
+  
+  <h2 id="constructors">Constructors
+  </h2>
+  
+  <a id="Tizen_NUI_Components_TimePicker__ctor_" data-uid="Tizen.NUI.Components.TimePicker.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/TimePicker.cs/#L107">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_TimePicker__ctor" data-uid="Tizen.NUI.Components.TimePicker.#ctor">TimePicker()</h4>
+    <section>
+      <p>Creates a new instance of TimePicker.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TimePicker()</code></pre>
+  </div>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  
+  <a id="Tizen_NUI_Components_TimePicker__ctor_" data-uid="Tizen.NUI.Components.TimePicker.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/TimePicker.cs/#L117">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_TimePicker__ctor_System_String_" data-uid="Tizen.NUI.Components.TimePicker.#ctor(System.String)">TimePicker(String)</h4>
+    <section>
+      <p>Creates a new instance of TimePicker.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TimePicker(string style)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">style</span></td>
+        <td><p>Creates TimePicker by special style defined in UX.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  
+  <a id="Tizen_NUI_Components_TimePicker__ctor_" data-uid="Tizen.NUI.Components.TimePicker.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/TimePicker.cs/#L127">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_TimePicker__ctor_Tizen_NUI_Components_TimePickerStyle_" data-uid="Tizen.NUI.Components.TimePicker.#ctor(Tizen.NUI.Components.TimePickerStyle)">TimePicker(TimePickerStyle)</h4>
+    <section>
+      <p>Creates a new instance of TimePicker.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TimePicker(TimePickerStyle timePickerStyle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.TimePickerStyle.html">TimePickerStyle</a></td>
+        <td><span class="parametername">timePickerStyle</span></td>
+        <td><p>Creates TimePicker by style customized by user.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  <h2 id="fields">Fields
+  </h2>
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/TimePicker.cs/#L81">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_TimePicker_Is24HourViewProperty" data-uid="Tizen.NUI.Components.TimePicker.Is24HourViewProperty">Is24HourViewProperty</h4>
+    <section>
+      <p>Is24HourViewProperty</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty Is24HourViewProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/TimePicker.cs/#L63">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_TimePicker_TimeProperty" data-uid="Tizen.NUI.Components.TimePicker.TimeProperty">TimeProperty</h4>
+    <section>
+      <p>TimeProperty</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty TimeProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h2 id="properties">Properties
+  </h2>
+  
+  <a id="Tizen_NUI_Components_TimePicker_Is24HourView_" data-uid="Tizen.NUI.Components.TimePicker.Is24HourView*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/TimePicker.cs/#L218">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_TimePicker_Is24HourView" data-uid="Tizen.NUI.Components.TimePicker.Is24HourView">Is24HourView</h4>
+    <section>
+      <p>The is24hourview value of TimePicker.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Is24HourView { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  
+  <a id="Tizen_NUI_Components_TimePicker_Time_" data-uid="Tizen.NUI.Components.TimePicker.Time*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/TimePicker.cs/#L170">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_TimePicker_Time" data-uid="Tizen.NUI.Components.TimePicker.Time">Time</h4>
+    <section>
+      <p>The hour value of TimePicker.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTime Time { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">DateTime</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  <h2 id="methods">Methods
+  </h2>
+  
+  <a id="Tizen_NUI_Components_TimePicker_ApplyStyle_" data-uid="Tizen.NUI.Components.TimePicker.ApplyStyle*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/TimePicker.cs/#L329">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_TimePicker_ApplyStyle_Tizen_NUI_BaseComponents_ViewStyle_" data-uid="Tizen.NUI.Components.TimePicker.ApplyStyle(Tizen.NUI.BaseComponents.ViewStyle)">ApplyStyle(ViewStyle)</h4>
+    <section>
+      <p>Applies style to TimePicker.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void ApplyStyle(ViewStyle viewStyle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.ViewStyle.html">ViewStyle</a></td>
+        <td><span class="parametername">viewStyle</span></td>
+        <td><p>The style to apply.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_ApplyStyle_Tizen_NUI_BaseComponents_ViewStyle_">View.ApplyStyle(ViewStyle)</a></div>
+  
+  
+  
+  <a id="Tizen_NUI_Components_TimePicker_Dispose_" data-uid="Tizen.NUI.Components.TimePicker.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/TimePicker.cs/#L136">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_TimePicker_Dispose_Tizen_NUI_DisposeTypes_" data-uid="Tizen.NUI.Components.TimePicker.Dispose(Tizen.NUI.DisposeTypes)">Dispose(DisposeTypes)</h4>
+    <section>
+      <p>Dispose TimePicker and all children on it.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Dispose(DisposeTypes type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.DisposeTypes.html">DisposeTypes</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Dispose type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_Dispose_Tizen_NUI_DisposeTypes_">Control.Dispose(DisposeTypes)</a></div>
+  
+  
+  
+  <a id="Tizen_NUI_Components_TimePicker_GetNextFocusableView_" data-uid="Tizen.NUI.Components.TimePicker.GetNextFocusableView*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/TimePicker.cs/#L359">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_TimePicker_GetNextFocusableView_Tizen_NUI_BaseComponents_View_Tizen_NUI_BaseComponents_View_FocusDirection_System_Boolean_" data-uid="Tizen.NUI.Components.TimePicker.GetNextFocusableView(Tizen.NUI.BaseComponents.View,Tizen.NUI.BaseComponents.View.FocusDirection,System.Boolean)">GetNextFocusableView(View, View.FocusDirection, Boolean)</h4>
+    <section>
+      <p>ToDo : only key navigation is enabled, and value editing is added as an very simple operation. by toggling enter key, it switches edit mode.
+ToDo : this should be fixed and changed properly by owner. (And UX SPEC should be referenced also)</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override View GetNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><span class="parametername">currentFocusedView</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.FocusDirection.html">View.FocusDirection</a></td>
+        <td><span class="parametername">direction</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">loopEnabled</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.CustomView.html#Tizen_NUI_BaseComponents_CustomView_GetNextFocusableView_Tizen_NUI_BaseComponents_View_Tizen_NUI_BaseComponents_View_FocusDirection_System_Boolean_">CustomView.GetNextFocusableView(View, View.FocusDirection, Boolean)</a></div>
+  
+  
+  
+  <a id="Tizen_NUI_Components_TimePicker_OnEnabled_" data-uid="Tizen.NUI.Components.TimePicker.OnEnabled*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/TimePicker.cs/#L265">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_TimePicker_OnEnabled_System_Boolean_" data-uid="Tizen.NUI.Components.TimePicker.OnEnabled(System.Boolean)">OnEnabled(Boolean)</h4>
+    <section>
+      <p>Internal callback of enabled property changes.
+Inherited view can override this method to implements enabled property changes.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnEnabled(bool enabled)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">enabled</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_OnEnabled_System_Boolean_">View.OnEnabled(Boolean)</a></div>
+  
+  
+  
+  <a id="Tizen_NUI_Components_TimePicker_OnInitialize_" data-uid="Tizen.NUI.Components.TimePicker.OnInitialize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/TimePicker.cs/#L278">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_TimePicker_OnInitialize" data-uid="Tizen.NUI.Components.TimePicker.OnInitialize">OnInitialize()</h4>
+    <section>
+      <p>Initialize TimePicker object.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void OnInitialize()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_OnInitialize">Control.OnInitialize()</a></div>
+  
+  
+  <h2 id="events">Events
+  </h2>
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/TimePicker.cs/#L164">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_TimePicker_TimeChanged" data-uid="Tizen.NUI.Components.TimePicker.TimeChanged">TimeChanged</h4>
+    <section>
+      <p>An event emitted when TimePicker value changed, user can subscribe or unsubscribe to this event handler.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;TimeChangedEventArgs&gt; TimeChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.Components.TimeChangedEventArgs.html">TimeChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  <h2 id="implements">Implements</h2>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+          </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

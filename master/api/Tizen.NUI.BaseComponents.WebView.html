@@ -1,0 +1,4046 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class WebView
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class WebView
+   ">
+    <meta name="generator" content="docfx 2.56.1.0">
+    <meta name="version" content="API11">
+    
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+            
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+            
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+              
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.NUI.BaseComponents.WebView">
+  
+  <div class="entity">
+  
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_NUI_BaseComponents_WebView" data-uid="Tizen.NUI.BaseComponents.WebView" class="mt-0 text-break"><span class="entity-type">Class</span>
+  WebView
+  </h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebViewBindableProperty.cs/#L23" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+  
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.NUI.BaseComponents.html">Tizen.NUI.BaseComponents</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
+  <dl class="attribute-list"><dt>API Level:</dt><dd><span>9</span></dd></dl>
+  
+  <div class="markdown level0 summary"><p>WebView allows presenting content with embedded web browser, both local files and remote websites.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class WebView : View, IDynamicResourceHandler, IElement, INameScope, IElementController, System.IDisposable, IResourcesProvider</code></pre>
+  </div>
+
+  
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></div>
+        <div><span class="xref">WebView</span></div>
+      </div>
+    </dd>
+  </dl>
+
+  
+  
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a></div>
+    </dd>
+  </dl>
+  
+  
+  <h2 id="constructors">Constructors
+  </h2>
+  
+  <a id="Tizen_NUI_BaseComponents_WebView__ctor_" data-uid="Tizen.NUI.BaseComponents.WebView.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L104">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView__ctor" data-uid="Tizen.NUI.BaseComponents.WebView.#ctor">WebView()</h4>
+    <section>
+      <p>Creates a WebView.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public WebView()</code></pre>
+  </div>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView__ctor_" data-uid="Tizen.NUI.BaseComponents.WebView.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L114">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView__ctor_System_String_System_String_" data-uid="Tizen.NUI.BaseComponents.WebView.#ctor(System.String,System.String)">WebView(String, String)</h4>
+    <section>
+      <p>Creates a WebView with locale and time-zone.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public WebView(string locale, string timezoneId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">locale</span></td>
+        <td><p>The specified locale</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">timezoneId</span></td>
+        <td><p>The specified time-zone ID</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView__ctor_" data-uid="Tizen.NUI.BaseComponents.WebView.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L125">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView__ctor_System_String___" data-uid="Tizen.NUI.BaseComponents.WebView.#ctor(System.String[])">WebView(String[])</h4>
+    <section>
+      <p>Creates a WebView with an args list.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public WebView(string[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>Arguments passed into web engine. The first value of array must be program&apos;s name.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView__ctor_" data-uid="Tizen.NUI.BaseComponents.WebView.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L135">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView__ctor_Tizen_NUI_BaseComponents_WebView_" data-uid="Tizen.NUI.BaseComponents.WebView.#ctor(Tizen.NUI.BaseComponents.WebView)">WebView(WebView)</h4>
+    <section>
+      <p>Copy constructor.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public WebView(WebView webView)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.WebView.html">WebView</a></td>
+        <td><span class="parametername">webView</span></td>
+        <td><p>WebView to copy. The copied WebView will point at the same implementation</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  <h2 id="fields">Fields
+  </h2>
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebViewBindableProperty.cs/#L29">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_CacheModelProperty" data-uid="Tizen.NUI.BaseComponents.WebView.CacheModelProperty">CacheModelProperty</h4>
+    <section>
+      <p>CacheModelProperty</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty CacheModelProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebViewBindableProperty.cs/#L47">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_CookieAcceptPolicyProperty" data-uid="Tizen.NUI.BaseComponents.WebView.CookieAcceptPolicyProperty">CookieAcceptPolicyProperty</h4>
+    <section>
+      <p>CookieAcceptPolicyProperty</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty CookieAcceptPolicyProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebViewBindableProperty.cs/#L119">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_DefaultFontSizeProperty" data-uid="Tizen.NUI.BaseComponents.WebView.DefaultFontSizeProperty">DefaultFontSizeProperty</h4>
+    <section>
+      <p>DefaultFontSizeProperty</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty DefaultFontSizeProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebViewBindableProperty.cs/#L101">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_DefaultTextEncodingNameProperty" data-uid="Tizen.NUI.BaseComponents.WebView.DefaultTextEncodingNameProperty">DefaultTextEncodingNameProperty</h4>
+    <section>
+      <p>DefaultTextEncodingNameProperty</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty DefaultTextEncodingNameProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebViewBindableProperty.cs/#L65">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_EnableJavaScriptProperty" data-uid="Tizen.NUI.BaseComponents.WebView.EnableJavaScriptProperty">EnableJavaScriptProperty</h4>
+    <section>
+      <p>EnableJavaScriptProperty</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty EnableJavaScriptProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebViewBindableProperty.cs/#L83">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_LoadImagesAutomaticallyProperty" data-uid="Tizen.NUI.BaseComponents.WebView.LoadImagesAutomaticallyProperty">LoadImagesAutomaticallyProperty</h4>
+    <section>
+      <p>LoadImagesAutomaticallyProperty</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty LoadImagesAutomaticallyProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h2 id="properties">Properties
+  </h2>
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_BackForwardList_" data-uid="Tizen.NUI.BaseComponents.WebView.BackForwardList*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L871">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_BackForwardList" data-uid="Tizen.NUI.BaseComponents.WebView.BackForwardList">BackForwardList</h4>
+    <section>
+      <p>BackForwardList.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public WebBackForwardList BackForwardList { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.WebBackForwardList.html">WebBackForwardList</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_CacheModel_" data-uid="Tizen.NUI.BaseComponents.WebView.CacheModel*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L900">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_CacheModel" data-uid="Tizen.NUI.BaseComponents.WebView.CacheModel">CacheModel</h4>
+    <section>
+      <p>Deprecated. The cache model of the current WebView.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CacheModel CacheModel { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.CacheModel.html">CacheModel</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_ContentBackgroundColor_" data-uid="Tizen.NUI.BaseComponents.WebView.ContentBackgroundColor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1205">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_ContentBackgroundColor" data-uid="Tizen.NUI.BaseComponents.WebView.ContentBackgroundColor">ContentBackgroundColor</h4>
+    <section>
+      <p>Background color of web page.
+Please note that it only works after LoadUrl, etc.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Color ContentBackgroundColor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Color.html">Color</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_ContentSize_" data-uid="Tizen.NUI.BaseComponents.WebView.ContentSize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1140">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_ContentSize" data-uid="Tizen.NUI.BaseComponents.WebView.ContentSize">ContentSize</h4>
+    <section>
+      <p>The size of content, read-only.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Size ContentSize { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size.html">Size</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_Context_" data-uid="Tizen.NUI.BaseComponents.WebView.Context*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L859">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_Context" data-uid="Tizen.NUI.BaseComponents.WebView.Context">Context</h4>
+    <section>
+      <p>Context.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public WebContext Context { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.WebContext.html">WebContext</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_CookieAcceptPolicy_" data-uid="Tizen.NUI.BaseComponents.WebView.CookieAcceptPolicy*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L929">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_CookieAcceptPolicy" data-uid="Tizen.NUI.BaseComponents.WebView.CookieAcceptPolicy">CookieAcceptPolicy</h4>
+    <section>
+      <p>Deprecated. The cookie acceptance policy.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CookieAcceptPolicy CookieAcceptPolicy { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.CookieAcceptPolicy.html">CookieAcceptPolicy</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_CookieManager_" data-uid="Tizen.NUI.BaseComponents.WebView.CookieManager*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L865">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_CookieManager" data-uid="Tizen.NUI.BaseComponents.WebView.CookieManager">CookieManager</h4>
+    <section>
+      <p>CookieManager.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public WebCookieManager CookieManager { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.WebCookieManager.html">WebCookieManager</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_CursorEnabledByClient_" data-uid="Tizen.NUI.BaseComponents.WebView.CursorEnabledByClient*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1256">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_CursorEnabledByClient" data-uid="Tizen.NUI.BaseComponents.WebView.CursorEnabledByClient">CursorEnabledByClient</h4>
+    <section>
+      <p>Whether cursor is enabled or not by client.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CursorEnabledByClient { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_DefaultFontSize_" data-uid="Tizen.NUI.BaseComponents.WebView.DefaultFontSize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1063">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_DefaultFontSize" data-uid="Tizen.NUI.BaseComponents.WebView.DefaultFontSize">DefaultFontSize</h4>
+    <section>
+      <p>The default font size in pixel.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int DefaultFontSize { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_DefaultTextEncodingName_" data-uid="Tizen.NUI.BaseComponents.WebView.DefaultTextEncodingName*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1034">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_DefaultTextEncodingName" data-uid="Tizen.NUI.BaseComponents.WebView.DefaultTextEncodingName">DefaultTextEncodingName</h4>
+    <section>
+      <p>The default text encoding name.<br>
+e.g. &quot;UTF-8&quot;<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string DefaultTextEncodingName { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_EnableJavaScript_" data-uid="Tizen.NUI.BaseComponents.WebView.EnableJavaScript*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L975">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_EnableJavaScript" data-uid="Tizen.NUI.BaseComponents.WebView.EnableJavaScript">EnableJavaScript</h4>
+    <section>
+      <p>Deprecated. Whether JavaScript is enabled.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool EnableJavaScript { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_Favicon_" data-uid="Tizen.NUI.BaseComponents.WebView.Favicon*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1298">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_Favicon" data-uid="Tizen.NUI.BaseComponents.WebView.Favicon">Favicon</h4>
+    <section>
+      <p>Gets favicon of web page.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ImageView Favicon { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.ImageView.html">ImageView</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_KeyEventsEnabled_" data-uid="Tizen.NUI.BaseComponents.WebView.KeyEventsEnabled*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1187">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_KeyEventsEnabled" data-uid="Tizen.NUI.BaseComponents.WebView.KeyEventsEnabled">KeyEventsEnabled</h4>
+    <section>
+      <p>Whether key events are enabled or not.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool KeyEventsEnabled { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_LoadImagesAutomatically_" data-uid="Tizen.NUI.BaseComponents.WebView.LoadImagesAutomatically*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1004">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_LoadImagesAutomatically" data-uid="Tizen.NUI.BaseComponents.WebView.LoadImagesAutomatically">LoadImagesAutomatically</h4>
+    <section>
+      <p>Deprecated. Whether images can be loaded automatically.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool LoadImagesAutomatically { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_LoadProgressPercentage_" data-uid="Tizen.NUI.BaseComponents.WebView.LoadProgressPercentage*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1347">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_LoadProgressPercentage" data-uid="Tizen.NUI.BaseComponents.WebView.LoadProgressPercentage">LoadProgressPercentage</h4>
+    <section>
+      <p>Gets percentage of loading progress.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float LoadProgressPercentage { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_MouseEventsEnabled_" data-uid="Tizen.NUI.BaseComponents.WebView.MouseEventsEnabled*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1170">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_MouseEventsEnabled" data-uid="Tizen.NUI.BaseComponents.WebView.MouseEventsEnabled">MouseEventsEnabled</h4>
+    <section>
+      <p>Whether mouse events are enabled or not.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool MouseEventsEnabled { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_PageZoomFactor_" data-uid="Tizen.NUI.BaseComponents.WebView.PageZoomFactor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1312">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_PageZoomFactor" data-uid="Tizen.NUI.BaseComponents.WebView.PageZoomFactor">PageZoomFactor</h4>
+    <section>
+      <p>Zoom factor of web page.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float PageZoomFactor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_ScrollPosition_" data-uid="Tizen.NUI.BaseComponents.WebView.ScrollPosition*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1092">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_ScrollPosition" data-uid="Tizen.NUI.BaseComponents.WebView.ScrollPosition">ScrollPosition</h4>
+    <section>
+      <p>The position of scroll.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Position ScrollPosition { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_ScrollSize_" data-uid="Tizen.NUI.BaseComponents.WebView.ScrollSize*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1127">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_ScrollSize" data-uid="Tizen.NUI.BaseComponents.WebView.ScrollSize">ScrollSize</h4>
+    <section>
+      <p>The size of scroll, read-only.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Size ScrollSize { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size.html">Size</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_SelectedText_" data-uid="Tizen.NUI.BaseComponents.WebView.SelectedText*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1273">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_SelectedText" data-uid="Tizen.NUI.BaseComponents.WebView.SelectedText">SelectedText</h4>
+    <section>
+      <p>Gets selected text in web page.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string SelectedText { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_Settings_" data-uid="Tizen.NUI.BaseComponents.WebView.Settings*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L877">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_Settings" data-uid="Tizen.NUI.BaseComponents.WebView.Settings">Settings</h4>
+    <section>
+      <p>BackForwardList.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public WebSettings Settings { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.WebSettings.html">WebSettings</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_TextZoomFactor_" data-uid="Tizen.NUI.BaseComponents.WebView.TextZoomFactor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1329">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_TextZoomFactor" data-uid="Tizen.NUI.BaseComponents.WebView.TextZoomFactor">TextZoomFactor</h4>
+    <section>
+      <p>Zoom factor of text in web page.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float TextZoomFactor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_TileCoverAreaMultiplier_" data-uid="Tizen.NUI.BaseComponents.WebView.TileCoverAreaMultiplier*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1239">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_TileCoverAreaMultiplier" data-uid="Tizen.NUI.BaseComponents.WebView.TileCoverAreaMultiplier">TileCoverAreaMultiplier</h4>
+    <section>
+      <p>Multiplier of cover area of tile when web page is rendered.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float TileCoverAreaMultiplier { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_TilesClearedWhenHidden_" data-uid="Tizen.NUI.BaseComponents.WebView.TilesClearedWhenHidden*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1222">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_TilesClearedWhenHidden" data-uid="Tizen.NUI.BaseComponents.WebView.TilesClearedWhenHidden">TilesClearedWhenHidden</h4>
+    <section>
+      <p>Whether tiles are cleared or not when hidden.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool TilesClearedWhenHidden { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_Title_" data-uid="Tizen.NUI.BaseComponents.WebView.Title*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1286">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_Title" data-uid="Tizen.NUI.BaseComponents.WebView.Title">Title</h4>
+    <section>
+      <p>Gets title of web page.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Title { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_Url_" data-uid="Tizen.NUI.BaseComponents.WebView.Url*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L884">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_Url" data-uid="Tizen.NUI.BaseComponents.WebView.Url">Url</h4>
+    <section>
+      <p>The URL to load.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Url { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_UserAgent_" data-uid="Tizen.NUI.BaseComponents.WebView.UserAgent*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L959">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_UserAgent" data-uid="Tizen.NUI.BaseComponents.WebView.UserAgent">UserAgent</h4>
+    <section>
+      <p>The user agent string.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string UserAgent { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_VideoHoleEnabled_" data-uid="Tizen.NUI.BaseComponents.WebView.VideoHoleEnabled*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1153">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_VideoHoleEnabled" data-uid="Tizen.NUI.BaseComponents.WebView.VideoHoleEnabled">VideoHoleEnabled</h4>
+    <section>
+      <p>Whether video hole is enabled or not.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool VideoHoleEnabled { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h2 id="methods">Methods
+  </h2>
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_ActivateAccessibility_" data-uid="Tizen.NUI.BaseComponents.WebView.ActivateAccessibility*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L2052">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_ActivateAccessibility_System_Boolean_" data-uid="Tizen.NUI.BaseComponents.WebView.ActivateAccessibility(System.Boolean)">ActivateAccessibility(Boolean)</h4>
+    <section>
+      <p>Requests to activate/deactivate the accessibility usage set by web app.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ActivateAccessibility(bool activated)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">activated</span></td>
+        <td><p>The new factor to be scaled</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_AddCustomHeader_" data-uid="Tizen.NUI.BaseComponents.WebView.AddCustomHeader*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1768">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_AddCustomHeader_System_String_System_String_" data-uid="Tizen.NUI.BaseComponents.WebView.AddCustomHeader(System.String,System.String)">AddCustomHeader(String, String)</h4>
+    <section>
+      <p>Adds custom header.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool AddCustomHeader(string name, string value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>The name of custom header</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value of custom header</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_AddDynamicCertificatePath_" data-uid="Tizen.NUI.BaseComponents.WebView.AddDynamicCertificatePath*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L2078">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_AddDynamicCertificatePath_System_String_System_String_" data-uid="Tizen.NUI.BaseComponents.WebView.AddDynamicCertificatePath(System.String,System.String)">AddDynamicCertificatePath(String, String)</h4>
+    <section>
+      <p>Adds dynamic certificate path.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddDynamicCertificatePath(string host, string certPath)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">host</span></td>
+        <td><p>Host that required client authentication</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">certPath</span></td>
+        <td><p>The file path stored certificate</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_AddJavaScriptMessageHandler_" data-uid="Tizen.NUI.BaseComponents.WebView.AddJavaScriptMessageHandler*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1909">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_AddJavaScriptMessageHandler_System_String_Tizen_NUI_BaseComponents_WebView_JavaScriptMessageHandler_" data-uid="Tizen.NUI.BaseComponents.WebView.AddJavaScriptMessageHandler(System.String,Tizen.NUI.BaseComponents.WebView.JavaScriptMessageHandler)">AddJavaScriptMessageHandler(String, WebView.JavaScriptMessageHandler)</h4>
+    <section>
+      <p>Add a message handler into the WebView.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddJavaScriptMessageHandler(string objectName, WebView.JavaScriptMessageHandler handler)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">objectName</span></td>
+        <td><p>The name of exposed object</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.WebView.JavaScriptMessageHandler.html">WebView.JavaScriptMessageHandler</a></td>
+        <td><span class="parametername">handler</span></td>
+        <td><p>The callback function</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_CanGoBack_" data-uid="Tizen.NUI.BaseComponents.WebView.CanGoBack*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1860">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_CanGoBack" data-uid="Tizen.NUI.BaseComponents.WebView.CanGoBack">CanGoBack()</h4>
+    <section>
+      <p>Returns whether backward is possible.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CanGoBack()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if backward is possible, false otherwise</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_CanGoForward_" data-uid="Tizen.NUI.BaseComponents.WebView.CanGoForward*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1872">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_CanGoForward" data-uid="Tizen.NUI.BaseComponents.WebView.CanGoForward">CanGoForward()</h4>
+    <section>
+      <p>Returns whether forward is possible.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CanGoForward()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if forward is possible, false otherwise</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_CheckVideoPlayingAsynchronously_" data-uid="Tizen.NUI.BaseComponents.WebView.CheckVideoPlayingAsynchronously*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L2119">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_CheckVideoPlayingAsynchronously_Tizen_NUI_BaseComponents_WebView_VideoPlayingCallback_" data-uid="Tizen.NUI.BaseComponents.WebView.CheckVideoPlayingAsynchronously(Tizen.NUI.BaseComponents.WebView.VideoPlayingCallback)">CheckVideoPlayingAsynchronously(WebView.VideoPlayingCallback)</h4>
+    <section>
+      <p>Asynchronously requests to check if there is a video playing in the given view.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CheckVideoPlayingAsynchronously(WebView.VideoPlayingCallback callback)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.WebView.VideoPlayingCallback.html">WebView.VideoPlayingCallback</a></td>
+        <td><span class="parametername">callback</span></td>
+        <td><p>The callback called after checking if video is playing or not</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_ClearAllTilesResources_" data-uid="Tizen.NUI.BaseComponents.WebView.ClearAllTilesResources*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L2008">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_ClearAllTilesResources" data-uid="Tizen.NUI.BaseComponents.WebView.ClearAllTilesResources">ClearAllTilesResources()</h4>
+    <section>
+      <p>Clears title resources of current WebView.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearAllTilesResources()</code></pre>
+  </div>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_ClearCache_" data-uid="Tizen.NUI.BaseComponents.WebView.ClearCache*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L2174">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_ClearCache" data-uid="Tizen.NUI.BaseComponents.WebView.ClearCache">ClearCache()</h4>
+    <section>
+      <p>Deprecated. Clears the cache of current WebView.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearCache()</code></pre>
+  </div>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_ClearCookies_" data-uid="Tizen.NUI.BaseComponents.WebView.ClearCookies*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L2183">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_ClearCookies" data-uid="Tizen.NUI.BaseComponents.WebView.ClearCookies">ClearCookies()</h4>
+    <section>
+      <p>Deprecated. Clears all the cookies of current WebView.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearCookies()</code></pre>
+  </div>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_ClearHistory_" data-uid="Tizen.NUI.BaseComponents.WebView.ClearHistory*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L2018">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_ClearHistory" data-uid="Tizen.NUI.BaseComponents.WebView.ClearHistory">ClearHistory()</h4>
+    <section>
+      <p>Clears the history of current WebView.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearHistory()</code></pre>
+  </div>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_Dispose_" data-uid="Tizen.NUI.BaseComponents.WebView.Dispose*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L152">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_Dispose_Tizen_NUI_DisposeTypes_" data-uid="Tizen.NUI.BaseComponents.WebView.Dispose(Tizen.NUI.DisposeTypes)">Dispose(DisposeTypes)</h4>
+    <section>
+      <p>Dispose for IDisposable pattern</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Dispose(DisposeTypes type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.DisposeTypes.html">DisposeTypes</a></td>
+        <td><span class="parametername">type</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_Dispose_Tizen_NUI_DisposeTypes_">View.Dispose(DisposeTypes)</a></div>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_EvaluateJavaScript_" data-uid="Tizen.NUI.BaseComponents.WebView.EvaluateJavaScript*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1884">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_EvaluateJavaScript_System_String_" data-uid="Tizen.NUI.BaseComponents.WebView.EvaluateJavaScript(System.String)">EvaluateJavaScript(String)</h4>
+    <section>
+      <p>Evaluates JavaScript code represented as a string.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EvaluateJavaScript(string script)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">script</span></td>
+        <td><p>The JavaScript code</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_EvaluateJavaScript_" data-uid="Tizen.NUI.BaseComponents.WebView.EvaluateJavaScript*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1896">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_EvaluateJavaScript_System_String_Tizen_NUI_BaseComponents_WebView_JavaScriptMessageHandler_" data-uid="Tizen.NUI.BaseComponents.WebView.EvaluateJavaScript(System.String,Tizen.NUI.BaseComponents.WebView.JavaScriptMessageHandler)">EvaluateJavaScript(String, WebView.JavaScriptMessageHandler)</h4>
+    <section>
+      <p>Evaluates JavaScript code represented as a string.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EvaluateJavaScript(string script, WebView.JavaScriptMessageHandler handler)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">script</span></td>
+        <td><p>The JavaScript code</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.WebView.JavaScriptMessageHandler.html">WebView.JavaScriptMessageHandler</a></td>
+        <td><span class="parametername">handler</span></td>
+        <td><p>The callback for result of JavaScript code evaluation</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_GetPlainTextAsynchronously_" data-uid="Tizen.NUI.BaseComponents.WebView.GetPlainTextAsynchronously*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L2207">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_GetPlainTextAsynchronously_Tizen_NUI_BaseComponents_WebView_PlainTextReceivedCallback_" data-uid="Tizen.NUI.BaseComponents.WebView.GetPlainTextAsynchronously(Tizen.NUI.BaseComponents.WebView.PlainTextReceivedCallback)">GetPlainTextAsynchronously(WebView.PlainTextReceivedCallback)</h4>
+    <section>
+      <p>Get a plain text of current web page asynchronously.
+Please note that it gets plain text of currently loaded page so please call this method after page load finished.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void GetPlainTextAsynchronously(WebView.PlainTextReceivedCallback callback)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.WebView.PlainTextReceivedCallback.html">WebView.PlainTextReceivedCallback</a></td>
+        <td><span class="parametername">callback</span></td>
+        <td><p>The callback for getting plain text</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_GetScaleFactor_" data-uid="Tizen.NUI.BaseComponents.WebView.GetScaleFactor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L2040">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_GetScaleFactor" data-uid="Tizen.NUI.BaseComponents.WebView.GetScaleFactor">GetScaleFactor()</h4>
+    <section>
+      <p>Gets the current scale factor of the page.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float GetScaleFactor()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_GetScreenshot_" data-uid="Tizen.NUI.BaseComponents.WebView.GetScreenshot*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L2090">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_GetScreenshot_Tizen_NUI_Rectangle_System_Single_" data-uid="Tizen.NUI.BaseComponents.WebView.GetScreenshot(Tizen.NUI.Rectangle,System.Single)">GetScreenshot(Rectangle, Single)</h4>
+    <section>
+      <p>Get snapshot of the specified viewArea of page.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ImageView GetScreenshot(Rectangle viewArea, float scaleFactor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">viewArea</span></td>
+        <td><p>Host that required client authentication</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td><span class="parametername">scaleFactor</span></td>
+        <td><p>The file path stored certificate</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.ImageView.html">ImageView</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_GetScreenshotAsynchronously_" data-uid="Tizen.NUI.BaseComponents.WebView.GetScreenshotAsynchronously*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L2105">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_GetScreenshotAsynchronously_Tizen_NUI_Rectangle_System_Single_Tizen_NUI_BaseComponents_WebView_ScreenshotAcquiredCallback_" data-uid="Tizen.NUI.BaseComponents.WebView.GetScreenshotAsynchronously(Tizen.NUI.Rectangle,System.Single,Tizen.NUI.BaseComponents.WebView.ScreenshotAcquiredCallback)">GetScreenshotAsynchronously(Rectangle, Single, WebView.ScreenshotAcquiredCallback)</h4>
+    <section>
+      <p>Get snapshot of the specified viewArea of page.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool GetScreenshotAsynchronously(Rectangle viewArea, float scaleFactor, WebView.ScreenshotAcquiredCallback callback)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">viewArea</span></td>
+        <td><p>Host that required client authentication</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td><span class="parametername">scaleFactor</span></td>
+        <td><p>The file path stored certificate</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.WebView.ScreenshotAcquiredCallback.html">WebView.ScreenshotAcquiredCallback</a></td>
+        <td><span class="parametername">callback</span></td>
+        <td><p>The callback for getting screen shot</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_GoBack_" data-uid="Tizen.NUI.BaseComponents.WebView.GoBack*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1839">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_GoBack" data-uid="Tizen.NUI.BaseComponents.WebView.GoBack">GoBack()</h4>
+    <section>
+      <p>Goes to the back</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void GoBack()</code></pre>
+  </div>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_GoForward_" data-uid="Tizen.NUI.BaseComponents.WebView.GoForward*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1849">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_GoForward" data-uid="Tizen.NUI.BaseComponents.WebView.GoForward">GoForward()</h4>
+    <section>
+      <p>Goes to the forward</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void GoForward()</code></pre>
+  </div>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_HighlightText_" data-uid="Tizen.NUI.BaseComponents.WebView.HighlightText*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L2065">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_HighlightText_System_String_Tizen_NUI_BaseComponents_WebView_FindOption_System_UInt32_" data-uid="Tizen.NUI.BaseComponents.WebView.HighlightText(System.String,Tizen.NUI.BaseComponents.WebView.FindOption,System.UInt32)">HighlightText(String, WebView.FindOption, UInt32)</h4>
+    <section>
+      <p>Searches and highlights the given string in the document.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HighlightText(string text, WebView.FindOption options, uint maxMatchCount)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">text</span></td>
+        <td><p>The text to be searched</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.WebView.FindOption.html">WebView.FindOption</a></td>
+        <td><span class="parametername">options</span></td>
+        <td><p>The options to search</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><span class="parametername">maxMatchCount</span></td>
+        <td><p>The maximum match count to search</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_HitTest_" data-uid="Tizen.NUI.BaseComponents.WebView.HitTest*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L2146">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_HitTest_System_Int32_System_Int32_Tizen_NUI_BaseComponents_WebView_HitTestMode_" data-uid="Tizen.NUI.BaseComponents.WebView.HitTest(System.Int32,System.Int32,Tizen.NUI.BaseComponents.WebView.HitTestMode)">HitTest(Int32, Int32, WebView.HitTestMode)</h4>
+    <section>
+      <p>Does hit test synchronously.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public WebHitTestResult HitTest(int x, int y, WebView.HitTestMode mode)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">x</span></td>
+        <td><p>the horizontal position to query</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">y</span></td>
+        <td><p>the vertical position to query</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.WebView.HitTestMode.html">WebView.HitTestMode</a></td>
+        <td><span class="parametername">mode</span></td>
+        <td><p>the mode of hit test</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.WebHitTestResult.html">WebHitTestResult</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_HitTestAsynchronously_" data-uid="Tizen.NUI.BaseComponents.WebView.HitTestAsynchronously*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L2161">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_HitTestAsynchronously_System_Int32_System_Int32_Tizen_NUI_BaseComponents_WebView_HitTestMode_Tizen_NUI_BaseComponents_WebView_HitTestFinishedCallback_" data-uid="Tizen.NUI.BaseComponents.WebView.HitTestAsynchronously(System.Int32,System.Int32,Tizen.NUI.BaseComponents.WebView.HitTestMode,Tizen.NUI.BaseComponents.WebView.HitTestFinishedCallback)">HitTestAsynchronously(Int32, Int32, WebView.HitTestMode, WebView.HitTestFinishedCallback)</h4>
+    <section>
+      <p>Does hit test asynchronously.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool HitTestAsynchronously(int x, int y, WebView.HitTestMode mode, WebView.HitTestFinishedCallback callback)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">x</span></td>
+        <td><p>the horizontal position to query</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">y</span></td>
+        <td><p>the vertical position to query</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.WebView.HitTestMode.html">WebView.HitTestMode</a></td>
+        <td><span class="parametername">mode</span></td>
+        <td><p>the mode of hit test</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.WebView.HitTestFinishedCallback.html">WebView.HitTestFinishedCallback</a></td>
+        <td><span class="parametername">callback</span></td>
+        <td><p>the callback that is called after hit test is finished.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_JavaScriptAlertReply_" data-uid="Tizen.NUI.BaseComponents.WebView.JavaScriptAlertReply*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1944">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_JavaScriptAlertReply" data-uid="Tizen.NUI.BaseComponents.WebView.JavaScriptAlertReply">JavaScriptAlertReply()</h4>
+    <section>
+      <p>Reply for alert popup.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void JavaScriptAlertReply()</code></pre>
+  </div>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_JavaScriptConfirmReply_" data-uid="Tizen.NUI.BaseComponents.WebView.JavaScriptConfirmReply*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1971">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_JavaScriptConfirmReply_System_Boolean_" data-uid="Tizen.NUI.BaseComponents.WebView.JavaScriptConfirmReply(System.Boolean)">JavaScriptConfirmReply(Boolean)</h4>
+    <section>
+      <p>Reply for confirm popup.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void JavaScriptConfirmReply(bool confirmed)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">confirmed</span></td>
+        <td><p>Confirmed or not</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_JavaScriptPromptReply_" data-uid="Tizen.NUI.BaseComponents.WebView.JavaScriptPromptReply*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1998">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_JavaScriptPromptReply_System_String_" data-uid="Tizen.NUI.BaseComponents.WebView.JavaScriptPromptReply(System.String)">JavaScriptPromptReply(String)</h4>
+    <section>
+      <p>Reply for prompt popup.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void JavaScriptPromptReply(string result)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">result</span></td>
+        <td><p>Text in prompt input field.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_LoadContents_" data-uid="Tizen.NUI.BaseComponents.WebView.LoadContents*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1667">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_LoadContents_System_Byte___System_String_System_String_System_String_" data-uid="Tizen.NUI.BaseComponents.WebView.LoadContents(System.Byte[],System.String,System.String,System.String)">LoadContents(Byte[], String, String, String)</h4>
+    <section>
+      <p>Requests to load the given contents by MIME type.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool LoadContents(byte[] contents, string mimeType, string encoding, string baseUri)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">Byte</a>[]</td>
+        <td><span class="parametername">contents</span></td>
+        <td><p>The contents to be loaded in bytes</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">mimeType</span></td>
+        <td><p>The type of contents, &quot;text/html&quot; is assumed if null</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">encoding</span></td>
+        <td><p>The encoding for contents, &quot;UTF-8&quot; is assumed if null</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">baseUri</span></td>
+        <td><p>The base URI to use for relative resources</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_LoadContents_" data-uid="Tizen.NUI.BaseComponents.WebView.LoadContents*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1684">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_LoadContents_System_String_System_UInt32_System_String_System_String_System_String_" data-uid="Tizen.NUI.BaseComponents.WebView.LoadContents(System.String,System.UInt32,System.String,System.String,System.String)">LoadContents(String, UInt32, String, String, String)</h4>
+    <section>
+      <p>Requests to load the given contents by MIME type.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool LoadContents(string contents, uint contentSize, string mimeType, string encoding, string baseUri)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">contents</span></td>
+        <td><p>The contents to be loaded. For UTF-8 encoding, contents would be got like System.Text.Encoding.UTF8.GetString(...)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><span class="parametername">contentSize</span></td>
+        <td><p>The size of contents (in bytes)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">mimeType</span></td>
+        <td><p>The type of contents, &quot;text/html&quot; is assumed if null</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">encoding</span></td>
+        <td><p>The encoding for contents, &quot;UTF-8&quot; is assumed if null</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">baseUri</span></td>
+        <td><p>The base URI to use for relative resources</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_LoadHtmlString_" data-uid="Tizen.NUI.BaseComponents.WebView.LoadHtmlString*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1640">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_LoadHtmlString_System_String_" data-uid="Tizen.NUI.BaseComponents.WebView.LoadHtmlString(System.String)">LoadHtmlString(String)</h4>
+    <section>
+      <p>Loads a html by string.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void LoadHtmlString(string data)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">data</span></td>
+        <td><p>The data of Web</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_LoadHTMLString_" data-uid="Tizen.NUI.BaseComponents.WebView.LoadHTMLString*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1628">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_LoadHTMLString_System_String_" data-uid="Tizen.NUI.BaseComponents.WebView.LoadHTMLString(System.String)">LoadHTMLString(String)</h4>
+    <section>
+      <p>Deprecated. Loads a html by string.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void LoadHTMLString(string data)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">data</span></td>
+        <td><p>The data of Web</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_LoadHtmlStringOverrideCurrentEntry_" data-uid="Tizen.NUI.BaseComponents.WebView.LoadHtmlStringOverrideCurrentEntry*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1652">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_LoadHtmlStringOverrideCurrentEntry_System_String_System_String_System_String_" data-uid="Tizen.NUI.BaseComponents.WebView.LoadHtmlStringOverrideCurrentEntry(System.String,System.String,System.String)">LoadHtmlStringOverrideCurrentEntry(String, String, String)</h4>
+    <section>
+      <p>Loads the specified html as the content of the view to override current history entry.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool LoadHtmlStringOverrideCurrentEntry(string html, string baseUri, string unreachableUri)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">html</span></td>
+        <td><p>The html to be loaded</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">baseUri</span></td>
+        <td><p>Base URL used for relative paths to external objects</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">unreachableUri</span></td>
+        <td><p>URL that could not be reached</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_LoadUrl_" data-uid="Tizen.NUI.BaseComponents.WebView.LoadUrl*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1618">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_LoadUrl_System_String_" data-uid="Tizen.NUI.BaseComponents.WebView.LoadUrl(System.String)">LoadUrl(String)</h4>
+    <section>
+      <p>Loads a html.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void LoadUrl(string url)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">url</span></td>
+        <td><p>The path of Web</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseComponents_WebView_LoadUrl_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The following privileges are required:
+<a href="http://tizen.org/privilege/internet">http://tizen.org/privilege/internet</a> for remote web pages of websites.
+<a href="http://tizen.org/privilege/mediastorage">http://tizen.org/privilege/mediastorage</a> for local files in media storage.
+<a href="http://tizen.org/privilege/externalstorage">http://tizen.org/privilege/externalstorage</a> for local files in external storage.</p>
+</div>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_RegisterGeolocationPermissionCallback_" data-uid="Tizen.NUI.BaseComponents.WebView.RegisterGeolocationPermissionCallback*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L2132">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_RegisterGeolocationPermissionCallback_Tizen_NUI_BaseComponents_WebView_GeolocationPermissionCallback_" data-uid="Tizen.NUI.BaseComponents.WebView.RegisterGeolocationPermissionCallback(Tizen.NUI.BaseComponents.WebView.GeolocationPermissionCallback)">RegisterGeolocationPermissionCallback(WebView.GeolocationPermissionCallback)</h4>
+    <section>
+      <p>Registers callback which will be called upon geolocation permission request.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RegisterGeolocationPermissionCallback(WebView.GeolocationPermissionCallback callback)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.WebView.GeolocationPermissionCallback.html">WebView.GeolocationPermissionCallback</a></td>
+        <td><span class="parametername">callback</span></td>
+        <td><p>The callback for requesting geolocation permission</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_RegisterJavaScriptAlertCallback_" data-uid="Tizen.NUI.BaseComponents.WebView.RegisterJavaScriptAlertCallback*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1929">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_RegisterJavaScriptAlertCallback_Tizen_NUI_BaseComponents_WebView_JavaScriptAlertCallback_" data-uid="Tizen.NUI.BaseComponents.WebView.RegisterJavaScriptAlertCallback(Tizen.NUI.BaseComponents.WebView.JavaScriptAlertCallback)">RegisterJavaScriptAlertCallback(WebView.JavaScriptAlertCallback)</h4>
+    <section>
+      <p>Registers a callback for JS alert.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RegisterJavaScriptAlertCallback(WebView.JavaScriptAlertCallback callback)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.WebView.JavaScriptAlertCallback.html">WebView.JavaScriptAlertCallback</a></td>
+        <td><span class="parametername">callback</span></td>
+        <td><p>The callback function</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_RegisterJavaScriptConfirmCallback_" data-uid="Tizen.NUI.BaseComponents.WebView.RegisterJavaScriptConfirmCallback*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1955">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_RegisterJavaScriptConfirmCallback_Tizen_NUI_BaseComponents_WebView_JavaScriptConfirmCallback_" data-uid="Tizen.NUI.BaseComponents.WebView.RegisterJavaScriptConfirmCallback(Tizen.NUI.BaseComponents.WebView.JavaScriptConfirmCallback)">RegisterJavaScriptConfirmCallback(WebView.JavaScriptConfirmCallback)</h4>
+    <section>
+      <p>Registers a callback for JS confirm.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RegisterJavaScriptConfirmCallback(WebView.JavaScriptConfirmCallback callback)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.WebView.JavaScriptConfirmCallback.html">WebView.JavaScriptConfirmCallback</a></td>
+        <td><span class="parametername">callback</span></td>
+        <td><p>The callback function</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_RegisterJavaScriptPromptCallback_" data-uid="Tizen.NUI.BaseComponents.WebView.RegisterJavaScriptPromptCallback*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1982">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_RegisterJavaScriptPromptCallback_Tizen_NUI_BaseComponents_WebView_JavaScriptPromptCallback_" data-uid="Tizen.NUI.BaseComponents.WebView.RegisterJavaScriptPromptCallback(Tizen.NUI.BaseComponents.WebView.JavaScriptPromptCallback)">RegisterJavaScriptPromptCallback(WebView.JavaScriptPromptCallback)</h4>
+    <section>
+      <p>Registers a callback for JS promt.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RegisterJavaScriptPromptCallback(WebView.JavaScriptPromptCallback callback)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.WebView.JavaScriptPromptCallback.html">WebView.JavaScriptPromptCallback</a></td>
+        <td><span class="parametername">callback</span></td>
+        <td><p>The callback function</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_ReleaseSwigCPtr_" data-uid="Tizen.NUI.BaseComponents.WebView.ReleaseSwigCPtr*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L174">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.BaseComponents.WebView.ReleaseSwigCPtr(Tizen.System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(Runtime.InteropServices.HandleRef)</h4>
+    <section>
+      
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void ReleaseSwigCPtr(Runtime.InteropServices.HandleRef swigCPtr)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Tizen.System.Runtime.InteropServices.HandleRef</span></td>
+        <td><span class="parametername">swigCPtr</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_">View.ReleaseSwigCPtr(Runtime.InteropServices.HandleRef)</a></div>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_Reload_" data-uid="Tizen.NUI.BaseComponents.WebView.Reload*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1695">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_Reload" data-uid="Tizen.NUI.BaseComponents.WebView.Reload">Reload()</h4>
+    <section>
+      <p>Reloads the Web</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Reload()</code></pre>
+  </div>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_ReloadWithoutCache_" data-uid="Tizen.NUI.BaseComponents.WebView.ReloadWithoutCache*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1705">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_ReloadWithoutCache" data-uid="Tizen.NUI.BaseComponents.WebView.ReloadWithoutCache">ReloadWithoutCache()</h4>
+    <section>
+      <p>Reloads the current page&apos;s document without cache</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ReloadWithoutCache()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_RemoveCustomHeader_" data-uid="Tizen.NUI.BaseComponents.WebView.RemoveCustomHeader*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1780">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_RemoveCustomHeader_System_String_" data-uid="Tizen.NUI.BaseComponents.WebView.RemoveCustomHeader(System.String)">RemoveCustomHeader(String)</h4>
+    <section>
+      <p>Removes custom header.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool RemoveCustomHeader(string name)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>The name of custom header</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_Resume_" data-uid="Tizen.NUI.BaseComponents.WebView.Resume*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1736">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_Resume" data-uid="Tizen.NUI.BaseComponents.WebView.Resume">Resume()</h4>
+    <section>
+      <p>Resumes the operation after calling Suspend()</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Resume()</code></pre>
+  </div>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_ResumeNetworkLoading_" data-uid="Tizen.NUI.BaseComponents.WebView.ResumeNetworkLoading*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1756">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_ResumeNetworkLoading" data-uid="Tizen.NUI.BaseComponents.WebView.ResumeNetworkLoading">ResumeNetworkLoading()</h4>
+    <section>
+      <p>Resumes all network loading.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ResumeNetworkLoading()</code></pre>
+  </div>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_ScrollBy_" data-uid="Tizen.NUI.BaseComponents.WebView.ScrollBy*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1816">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_ScrollBy_System_Int32_System_Int32_" data-uid="Tizen.NUI.BaseComponents.WebView.ScrollBy(System.Int32,System.Int32)">ScrollBy(Int32, Int32)</h4>
+    <section>
+      <p>Scrolls page of web view by deltaX and detlaY.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ScrollBy(int deltaX, int deltaY)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">deltaX</span></td>
+        <td><p>The deltaX of scroll</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">deltaY</span></td>
+        <td><p>The deltaY of scroll</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_ScrollEdgeBy_" data-uid="Tizen.NUI.BaseComponents.WebView.ScrollEdgeBy*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1828">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_ScrollEdgeBy_System_Int32_System_Int32_" data-uid="Tizen.NUI.BaseComponents.WebView.ScrollEdgeBy(System.Int32,System.Int32)">ScrollEdgeBy(Int32, Int32)</h4>
+    <section>
+      <p>Scrolls edge of web view by deltaX and deltaY.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ScrollEdgeBy(int deltaX, int deltaY)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">deltaX</span></td>
+        <td><p>The deltaX of scroll</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">deltaY</span></td>
+        <td><p>The deltaY of scroll</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_SetScaleFactor_" data-uid="Tizen.NUI.BaseComponents.WebView.SetScaleFactor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L2030">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_SetScaleFactor_System_Single_Tizen_NUI_Vector2_" data-uid="Tizen.NUI.BaseComponents.WebView.SetScaleFactor(System.Single,Tizen.NUI.Vector2)">SetScaleFactor(Single, Vector2)</h4>
+    <section>
+      <p>Scales the current page, centered at the given point.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetScaleFactor(float scaleFactor, Vector2 point)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td><span class="parametername">scaleFactor</span></td>
+        <td><p>The new factor to be scaled</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector2.html">Vector2</a></td>
+        <td><span class="parametername">point</span></td>
+        <td><p>The center coordinate</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_SetTtsFocus_" data-uid="Tizen.NUI.BaseComponents.WebView.SetTtsFocus*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L2195">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_SetTtsFocus_System_Boolean_" data-uid="Tizen.NUI.BaseComponents.WebView.SetTtsFocus(System.Boolean)">SetTtsFocus(Boolean)</h4>
+    <section>
+      <p>Sets the tts focus to the webview.
+Please note that it only works when the webview does not have keyinput focus.
+If the webview has a keyinput focus, it also has tts focus so calling SetTtsFocus(false) is ignored.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetTtsFocus(bool focused)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">focused</span></td>
+        <td><p>Focused or not</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_StartInspectorServer_" data-uid="Tizen.NUI.BaseComponents.WebView.StartInspectorServer*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1792">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_StartInspectorServer_System_UInt32_" data-uid="Tizen.NUI.BaseComponents.WebView.StartInspectorServer(System.UInt32)">StartInspectorServer(UInt32)</h4>
+    <section>
+      <p>Starts the inspector server.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint StartInspectorServer(uint port)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><span class="parametername">port</span></td>
+        <td><p>The port number</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_StopInspectorServer_" data-uid="Tizen.NUI.BaseComponents.WebView.StopInspectorServer*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1803">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_StopInspectorServer" data-uid="Tizen.NUI.BaseComponents.WebView.StopInspectorServer">StopInspectorServer()</h4>
+    <section>
+      <p>Stops the inspector server.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool StopInspectorServer()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_StopLoading_" data-uid="Tizen.NUI.BaseComponents.WebView.StopLoading*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1716">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_StopLoading" data-uid="Tizen.NUI.BaseComponents.WebView.StopLoading">StopLoading()</h4>
+    <section>
+      <p>Stops loading the Web</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void StopLoading()</code></pre>
+  </div>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_Suspend_" data-uid="Tizen.NUI.BaseComponents.WebView.Suspend*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1726">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_Suspend" data-uid="Tizen.NUI.BaseComponents.WebView.Suspend">Suspend()</h4>
+    <section>
+      <p>Suspends the operation.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Suspend()</code></pre>
+  </div>
+  
+  
+  
+  <a id="Tizen_NUI_BaseComponents_WebView_SuspendNetworkLoading_" data-uid="Tizen.NUI.BaseComponents.WebView.SuspendNetworkLoading*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L1746">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_SuspendNetworkLoading" data-uid="Tizen.NUI.BaseComponents.WebView.SuspendNetworkLoading">SuspendNetworkLoading()</h4>
+    <section>
+      <p>Suspends all network loading.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SuspendNetworkLoading()</code></pre>
+  </div>
+  
+  
+  <h2 id="events">Events
+  </h2>
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L600">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_CertificateConfirmed" data-uid="Tizen.NUI.BaseComponents.WebView.CertificateConfirmed">CertificateConfirmed</h4>
+    <section>
+      <p>Event for the CertificateConfirmed signal which can be used to subscribe or unsubscribe the event handler.<br>
+This signal is emitted when certificate would be confirmed.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;WebViewCertificateReceivedEventArgs&gt; CertificateConfirmed</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.WebViewCertificateReceivedEventArgs.html">WebViewCertificateReceivedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L684">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_ConsoleMessageReceived" data-uid="Tizen.NUI.BaseComponents.WebView.ConsoleMessageReceived">ConsoleMessageReceived</h4>
+    <section>
+      <p>Event for the ConsoleMessageReceived signal which can be used to subscribe or unsubscribe the event handler.<br>
+This signal is emitted when console message is received.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;WebViewConsoleMessageReceivedEventArgs&gt; ConsoleMessageReceived</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.WebViewConsoleMessageReceivedEventArgs.html">WebViewConsoleMessageReceivedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L740">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_ContextMenuHidden" data-uid="Tizen.NUI.BaseComponents.WebView.ContextMenuHidden">ContextMenuHidden</h4>
+    <section>
+      <p>Event for the ContextMenuHidden signal which can be used to subscribe or unsubscribe the event handler.<br>
+This signal is emitted when context menu item is hidden.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;WebViewContextMenuHiddenEventArgs&gt; ContextMenuHidden</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.WebViewContextMenuHiddenEventArgs.html">WebViewContextMenuHiddenEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L712">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_ContextMenuShown" data-uid="Tizen.NUI.BaseComponents.WebView.ContextMenuShown">ContextMenuShown</h4>
+    <section>
+      <p>Event for the ContextMenuShown signal which can be used to subscribe or unsubscribe the event handler.<br>
+This signal is emitted when context menu is shown.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;WebViewContextMenuShownEventArgs&gt; ContextMenuShown</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.WebViewContextMenuShownEventArgs.html">WebViewContextMenuShownEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L460">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_FormRepostPolicyDecided" data-uid="Tizen.NUI.BaseComponents.WebView.FormRepostPolicyDecided">FormRepostPolicyDecided</h4>
+    <section>
+      <p>Event for the FormRepostDecided signal which can be used to subscribe or unsubscribe the event handler.<br>
+This signal is emitted when form repost policy would be decided.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;WebViewFormRepostPolicyDecidedEventArgs&gt; FormRepostPolicyDecided</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.WebViewFormRepostPolicyDecidedEventArgs.html">WebViewFormRepostPolicyDecidedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L488">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_FrameRendered" data-uid="Tizen.NUI.BaseComponents.WebView.FrameRendered">FrameRendered</h4>
+    <section>
+      <p>Event for the FrameRendered signal which can be used to subscribe or unsubscribe the event handler.<br>
+This signal is emitted when frame is rendered off-screen.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;EventArgs&gt; FrameRendered</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventHandler</span>&lt;<span class="xref">EventArgs</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L656">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_HttpAuthRequested" data-uid="Tizen.NUI.BaseComponents.WebView.HttpAuthRequested">HttpAuthRequested</h4>
+    <section>
+      <p>Event for the HttpAuthRequested signal which can be used to subscribe or unsubscribe the event handler.<br>
+This signal is emitted when http authentication is requested.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;WebViewHttpAuthRequestedEventArgs&gt; HttpAuthRequested</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.WebViewHttpAuthRequestedEventArgs.html">WebViewHttpAuthRequestedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L544">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_NavigationPolicyDecided" data-uid="Tizen.NUI.BaseComponents.WebView.NavigationPolicyDecided">NavigationPolicyDecided</h4>
+    <section>
+      <p>Event for the NavigationPolicyDecided signal which can be used to subscribe or unsubscribe the event handler.<br>
+This signal is emitted when response policy would be decided.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;WebViewPolicyDecidedEventArgs&gt; NavigationPolicyDecided</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.WebViewPolicyDecidedEventArgs.html">WebViewPolicyDecidedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L572">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_NewWindowCreated" data-uid="Tizen.NUI.BaseComponents.WebView.NewWindowCreated">NewWindowCreated</h4>
+    <section>
+      <p>Event for the NewWindowCreated signal which can be used to subscribe or unsubscribe the event handler.<br>
+This signal is emitted when a new window would be created.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandlerWithReturnType&lt;object, EventArgs, WebView&gt; NewWindowCreated</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.EventHandlerWithReturnType-3.html">EventHandlerWithReturnType</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a>, <span class="xref">EventArgs</span>, <a class="xref" href="Tizen.NUI.BaseComponents.WebView.html">WebView</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L377">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_PageLoadError" data-uid="Tizen.NUI.BaseComponents.WebView.PageLoadError">PageLoadError</h4>
+    <section>
+      <p>Event for the PageLoadError signal which can be used to subscribe or unsubscribe the event handler.<br>
+This signal is emitted when there&apos;s an error in page loading.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;WebViewPageLoadErrorEventArgs&gt; PageLoadError</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.WebViewPageLoadErrorEventArgs.html">WebViewPageLoadErrorEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L349">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_PageLoadFinished" data-uid="Tizen.NUI.BaseComponents.WebView.PageLoadFinished">PageLoadFinished</h4>
+    <section>
+      <p>Event for the PageLoadFinished signal which can be used to subscribe or unsubscribe the event handler.<br>
+This signal is emitted when page loading has finished.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;WebViewPageLoadEventArgs&gt; PageLoadFinished</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.WebViewPageLoadEventArgs.html">WebViewPageLoadEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L321">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_PageLoading" data-uid="Tizen.NUI.BaseComponents.WebView.PageLoading">PageLoading</h4>
+    <section>
+      <p>Event for the PageLoading signal which can be used to subscribe or unsubscribe the event handler.<br>
+This signal is emitted when page loading is in progress.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;WebViewPageLoadEventArgs&gt; PageLoading</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.WebViewPageLoadEventArgs.html">WebViewPageLoadEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L293">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_PageLoadStarted" data-uid="Tizen.NUI.BaseComponents.WebView.PageLoadStarted">PageLoadStarted</h4>
+    <section>
+      <p>Event for the PageLoadStarted signal which can be used to subscribe or unsubscribe the event handler.<br>
+This signal is emitted when page loading has started.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;WebViewPageLoadEventArgs&gt; PageLoadStarted</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.WebViewPageLoadEventArgs.html">WebViewPageLoadEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L516">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_ResponsePolicyDecided" data-uid="Tizen.NUI.BaseComponents.WebView.ResponsePolicyDecided">ResponsePolicyDecided</h4>
+    <section>
+      <p>Event for the ResponsePolicyDecided signal which can be used to subscribe or unsubscribe the event handler.<br>
+This signal is emitted when response policy would be decided.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;WebViewPolicyDecidedEventArgs&gt; ResponsePolicyDecided</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.WebViewPolicyDecidedEventArgs.html">WebViewPolicyDecidedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L404">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_ScrollEdgeReached" data-uid="Tizen.NUI.BaseComponents.WebView.ScrollEdgeReached">ScrollEdgeReached</h4>
+    <section>
+      <p>Event for the ScrollEdgeReached signal which can be used to subscribe or unsubscribe the event handler.<br>
+This signal is emitted when web view is scrolled to edge.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;WebViewScrollEdgeReachedEventArgs&gt; ScrollEdgeReached</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.WebViewScrollEdgeReachedEventArgs.html">WebViewScrollEdgeReachedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L628">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_SslCertificateChanged" data-uid="Tizen.NUI.BaseComponents.WebView.SslCertificateChanged">SslCertificateChanged</h4>
+    <section>
+      <p>Event for the SslCertificateChanged signal which can be used to subscribe or unsubscribe the event handler.<br>
+This signal is emitted when SSL certificate is changed.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;WebViewCertificateReceivedEventArgs&gt; SslCertificateChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.WebViewCertificateReceivedEventArgs.html">WebViewCertificateReceivedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/WebView/WebView.cs/#L432">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_BaseComponents_WebView_UrlChanged" data-uid="Tizen.NUI.BaseComponents.WebView.UrlChanged">UrlChanged</h4>
+    <section>
+      <p>Event for the UrlChanged signal which can be used to subscribe or unsubscribe the event handler.<br>
+This signal is emitted when url is changed.<br></p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;WebViewUrlChangedEventArgs&gt; UrlChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.WebViewUrlChangedEventArgs.html">WebViewUrlChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h2 id="implements">Implements</h2>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.BindableObjectExtensions.html#Tizen_NUI_Binding_BindableObjectExtensions_SetBinding_Tizen_NUI_Binding_BindableObject_Tizen_NUI_Binding_BindableProperty_System_String_Tizen_NUI_Binding_BindingMode_Tizen_NUI_Binding_IValueConverter_System_String_">BindableObjectExtensions.SetBinding(BindableObject, BindableProperty, String, BindingMode, IValueConverter, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.NameScopeExtensions.html#Tizen_NUI_Binding_NameScopeExtensions_FindByName__1_Tizen_NUI_Binding_Element_System_String_">NameScopeExtensions.FindByName&lt;T&gt;(Element, String)</a>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+          </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,1339 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Model
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Model
+   ">
+    <meta name="generator" content="docfx 2.56.1.0">
+    <meta name="version" content="API11">
+    
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+            
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+            
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+              
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.NUI.Scene3D.Model">
+  
+  <div class="entity">
+  
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_NUI_Scene3D_Model" data-uid="Tizen.NUI.Scene3D.Model" class="mt-0 text-break"><span class="entity-type">Class</span>
+  Model
+  </h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L77" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+  
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.NUI.Scene3D.html">Tizen.NUI.Scene3D</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.Scene3D.dll</dd></dl>
+  <dl class="attribute-list"><dt>API Level:</dt><dd><span>10</span></dd></dl>
+  
+  <div class="markdown level0 summary"><p>Model is a Class to show 3D mesh objects.
+Model supports glTF 2.0 and DLI model formats.
+Physically Based Rendering with Image Based Lighting is also supported.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Model : View, IDynamicResourceHandler, IElement, INameScope, IElementController, System.IDisposable, IResourcesProvider</code></pre>
+  </div>
+
+  
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></div>
+        <div><span class="xref">Model</span></div>
+      </div>
+    </dd>
+  </dl>
+
+  
+  
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a></div>
+    </dd>
+  </dl>
+  
+  <h5 id="Tizen_NUI_Scene3D_Model_remarks"><strong>Remarks</strong></h5>
+  <div class="markdown level0 remarks"><p>Since NUI uses a left-handed coordinate system, loaded models are transformed into a left-handed coordinate system with Y pointing down.
+The Animations defined in the glTF or DLI are also loaded and can be retrieved by using <a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_UInt32_">GetAnimation(UInt32)</a> and <a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_String_">GetAnimation(String)</a> methods.
+The number of animation is also retrieved by GetAnimationCount() method.</p>
+<p>Model also supports Physically Based Rendering(PBR) with Image Based Lighting(IBL).
+For the IBL, two cube map textures(diffuse and specular) are required.
+Model supports 4 types layout for Cube Map: Vertical/Horizontal Cross layouts, and Vertical/Horizontal Array layouts.
+And also, ktx format with cube map is supported.</p>
+<p>The model and IBL textures start to be loaded asynchronously when the Model object is on Window.
+ResourcesLoaded signal notifies that the loading of the model and IBL resources have been completed.
+If Model or IBL is requested to be loaded before the other loading is completed, the ResourcesLoaded signal is called after all resources are loaded.
+<a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_UInt32_">GetAnimation(UInt32)</a> and <a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_String_">GetAnimation(String)</a> methods can be used after the model loading is finished.</p>
+<p>By default, the loaded mesh has its own size and <a class="xref" href="Tizen.NUI.PivotPoint.html">PivotPoint</a> inferred from position of vertices.
+The <a class="xref" href="Tizen.NUI.PivotPoint.html">PivotPoint</a> can be modified after model loading is finished.
+If user set size property, the mesh will be scaled to the input size.
+Default value of <a class="xref" href="Tizen.NUI.ParentOrigin.html">ParentOrigin</a> of the Model is Center.</p>
+</div>
+  <h5 id="Tizen_NUI_Scene3D_Model_examples"><strong>Examples</strong></h5>
+  <pre><code>Model model = new Model(modelUrl)
+{
+    Size = new Size(width, height),
+};
+model.ResourcesLoaded += (s, e) =>
+{
+    model.PivotPoint = new Vector3(0.5f, 0.5f, 0.5f); // Use center as a Pivot.
+
+    int animationCount = model.GetAnimationCount();
+    if(animationCount > 0)
+    {
+        // Play an Animation of index 0.
+        model.GetAnimation(0).Play();
+    }
+};
+model.SetImageBasedLightSource(diffuseUrl, specularUrl, scaleFactor);
+window.Add(model);</code></pre>
+
+  
+  <h2 id="constructors">Constructors
+  </h2>
+  
+  <a id="Tizen_NUI_Scene3D_Model__ctor_" data-uid="Tizen.NUI.Scene3D.Model.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L105">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Scene3D_Model__ctor" data-uid="Tizen.NUI.Scene3D.Model.#ctor">Model()</h4>
+    <section>
+      <p>Create an initialized Model.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Model()</code></pre>
+  </div>
+  
+  
+  
+  <a id="Tizen_NUI_Scene3D_Model__ctor_" data-uid="Tizen.NUI.Scene3D.Model.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L95">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Scene3D_Model__ctor_System_String_System_String_" data-uid="Tizen.NUI.Scene3D.Model.#ctor(System.String,System.String)">Model(String, String)</h4>
+    <section>
+      <p>Create an initialized Model.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Model(string modelUrl, string resourceDirectoryUrl = &quot;&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">modelUrl</span></td>
+        <td><p>model file url.(e.g. glTF, and DLI).</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">resourceDirectoryUrl</span></td>
+        <td><p>The url to derectory containing resources: binary, image etc.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Scene3D_Model__ctor_System_String_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If resourceDirectoryUrl is empty, the parent directory url of modelUrl is used for resource url.</p>
+<p><a href="http://tizen.org/privilege/mediastorage">http://tizen.org/privilege/mediastorage</a> for local files in media storage.
+<a href="http://tizen.org/privilege/externalstorage">http://tizen.org/privilege/externalstorage</a> for local files in external storage.</p>
+</div>
+  
+  <h6><strong>API Level</strong>: <span>10</span></h6>
+  
+  
+  <a id="Tizen_NUI_Scene3D_Model__ctor_" data-uid="Tizen.NUI.Scene3D.Model.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L117">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Scene3D_Model__ctor_Tizen_NUI_Scene3D_Model_" data-uid="Tizen.NUI.Scene3D.Model.#ctor(Tizen.NUI.Scene3D.Model)">Model(Model)</h4>
+    <section>
+      <p>Copy constructor.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Model(Model model)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Scene3D.Model.html">Model</a></td>
+        <td><span class="parametername">model</span></td>
+        <td><p>Source object to copy.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>10</span></h6>
+  
+  <h2 id="properties">Properties
+  </h2>
+  
+  <a id="Tizen_NUI_Scene3D_Model_ImageBasedLightScaleFactor_" data-uid="Tizen.NUI.Scene3D.Model.ImageBasedLightScaleFactor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L141">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Scene3D_Model_ImageBasedLightScaleFactor" data-uid="Tizen.NUI.Scene3D.Model.ImageBasedLightScaleFactor">ImageBasedLightScaleFactor</h4>
+    <section>
+      <p>Set/Get the ImageBasedLight ScaleFactor.
+Scale factor controls light source intensity in [0.0f, 1.0f]</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float ImageBasedLightScaleFactor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_Scene3D_Model_ModelRoot_" data-uid="Tizen.NUI.Scene3D.Model.ModelRoot*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L158">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Scene3D_Model_ModelRoot" data-uid="Tizen.NUI.Scene3D.Model.ModelRoot">ModelRoot</h4>
+    <section>
+      <p>Retrieves root ModelNode of this Model.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ModelNode ModelRoot { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Scene3D.ModelNode.html">ModelNode</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h2 id="methods">Methods
+  </h2>
+  
+  <a id="Tizen_NUI_Scene3D_Model_AddModelNode_" data-uid="Tizen.NUI.Scene3D.Model.AddModelNode*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L172">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Scene3D_Model_AddModelNode_Tizen_NUI_Scene3D_ModelNode_" data-uid="Tizen.NUI.Scene3D.Model.AddModelNode(Tizen.NUI.Scene3D.ModelNode)">AddModelNode(ModelNode)</h4>
+    <section>
+      <p>Adds modelNode to this Model.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddModelNode(ModelNode modelNode)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Scene3D.ModelNode.html">ModelNode</a></td>
+        <td><span class="parametername">modelNode</span></td>
+        <td><p>Root of a ModelNode tree</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_Scene3D_Model_ApplyCamera_" data-uid="Tizen.NUI.Scene3D.Model.ApplyCamera*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L360">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Scene3D_Model_ApplyCamera_System_UInt32_Tizen_NUI_Scene3D_Camera_" data-uid="Tizen.NUI.Scene3D.Model.ApplyCamera(System.UInt32,Tizen.NUI.Scene3D.Camera)">ApplyCamera(UInt32, Camera)</h4>
+    <section>
+      <p>Apply camera parameters at the index to inputed Camera.
+If camera parameter is valid and camera is not empty, apply parameters.
+It will change camera&apos;s transform and near / far / fov or orthographic size / aspect ratio (if defined)</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ApplyCamera(uint index, Camera camera)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>Index of camera to be retrieved.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Scene3D.Camera.html">Camera</a></td>
+        <td><span class="parametername">camera</span></td>
+        <td><p>Camera to be applied parameter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if Apply successed. False otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Scene3D_Model_ApplyCamera_System_UInt32_Tizen_NUI_Scene3D_Camera__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method should be called after Model load has been finished.</p>
+</div>
+  
+  
+  
+  <a id="Tizen_NUI_Scene3D_Model_FindChildModelNodeByName_" data-uid="Tizen.NUI.Scene3D.Model.FindChildModelNodeByName*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L197">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Scene3D_Model_FindChildModelNodeByName_System_String_" data-uid="Tizen.NUI.Scene3D.Model.FindChildModelNodeByName(System.String)">FindChildModelNodeByName(String)</h4>
+    <section>
+      <p>Removes Returns a child ModelNode object with a name that matches nodeName.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ModelNode FindChildModelNodeByName(string nodeName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">nodeName</span></td>
+        <td><p>The name of the child ModelNode object you want to find.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Scene3D.ModelNode.html">ModelNode</a></td>
+        <td><p>Child ModelNode that has nodeName as name.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_Scene3D_Model_GenerateCamera_" data-uid="Tizen.NUI.Scene3D.Model.GenerateCamera*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L339">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Scene3D_Model_GenerateCamera_System_UInt32_" data-uid="Tizen.NUI.Scene3D.Model.GenerateCamera(System.UInt32)">GenerateCamera(UInt32)</h4>
+    <section>
+      <p>Generate Camera using camera parameters at the index.
+If camera parameter is valid, create new Camera.
+Else, return empty Handle.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Camera GenerateCamera(uint index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>Index of camera to be generated.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Scene3D.Camera.html">Camera</a></td>
+        <td><p>Generated Camera by the index, or empty Handle if generation failed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Scene3D_Model_GenerateCamera_System_UInt32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method should be called after Model load has been finished.</p>
+</div>
+  
+  
+  
+  <a id="Tizen_NUI_Scene3D_Model_GenerateMotionDataAnimation_" data-uid="Tizen.NUI.Scene3D.Model.GenerateMotionDataAnimation*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L527">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Scene3D_Model_GenerateMotionDataAnimation_Tizen_NUI_Scene3D_MotionData_" data-uid="Tizen.NUI.Scene3D.Model.GenerateMotionDataAnimation(Tizen.NUI.Scene3D.MotionData)">GenerateMotionDataAnimation(MotionData)</h4>
+    <section>
+      <p>Generate animation by MotionData.
+If there is no animatable item for MotionData, return null.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Animation GenerateMotionDataAnimation(MotionData motionData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Scene3D.MotionData.html">MotionData</a></td>
+        <td><span class="parametername">motionData</span></td>
+        <td><p>Source motion data.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Animation.html">Animation</a></td>
+        <td><p>Generated animation from then given motion data, or null if there is no animatable item in <code data-dev-comment-type="paramref" class="paramref">motionData</code></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>11</span></h6>
+  
+  
+  <a id="Tizen_NUI_Scene3D_Model_GetAnimation_" data-uid="Tizen.NUI.Scene3D.Model.GetAnimation*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L292">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Scene3D_Model_GetAnimation_System_String_" data-uid="Tizen.NUI.Scene3D.Model.GetAnimation(System.String)">GetAnimation(String)</h4>
+    <section>
+      <p>Retrieves animation with the given name.
+Note: This method should be called after Model load finished.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Animation GetAnimation(string name)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>String name of animation to be retrieved.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Animation.html">Animation</a></td>
+        <td><p>Animation that has the given name.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>10</span></h6>
+  
+  
+  <a id="Tizen_NUI_Scene3D_Model_GetAnimation_" data-uid="Tizen.NUI.Scene3D.Model.GetAnimation*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L265">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Scene3D_Model_GetAnimation_System_UInt32_" data-uid="Tizen.NUI.Scene3D.Model.GetAnimation(System.UInt32)">GetAnimation(UInt32)</h4>
+    <section>
+      <p>Gets animation at the index.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Animation GetAnimation(uint index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>Index of animation to be retrieved.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Animation.html">Animation</a></td>
+        <td><p>Animation at the index.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Scene3D_Model_GetAnimation_System_UInt32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method should be called after Model load has been finished.</p>
+</div>
+  
+  <h6><strong>API Level</strong>: <span>10</span></h6>
+  
+  
+  <a id="Tizen_NUI_Scene3D_Model_GetAnimationCount_" data-uid="Tizen.NUI.Scene3D.Model.GetAnimationCount*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L249">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Scene3D_Model_GetAnimationCount" data-uid="Tizen.NUI.Scene3D.Model.GetAnimationCount">GetAnimationCount()</h4>
+    <section>
+      <p>Gets number of animations that has been loaded from model file.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint GetAnimationCount()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><p>The number of loaded animations.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Scene3D_Model_GetAnimationCount_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method should be called after Model load has been finished.</p>
+</div>
+  
+  <h6><strong>API Level</strong>: <span>10</span></h6>
+  
+  
+  <a id="Tizen_NUI_Scene3D_Model_GetCameraCount_" data-uid="Tizen.NUI.Scene3D.Model.GetCameraCount*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L320">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Scene3D_Model_GetCameraCount" data-uid="Tizen.NUI.Scene3D.Model.GetCameraCount">GetCameraCount()</h4>
+    <section>
+      <p>Gets number of camera parameters that has been loaded from model file.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint GetCameraCount()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><p>The number of loaded camera parameters.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Scene3D_Model_GetCameraCount_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method should be called after Model load has been finished.</p>
+</div>
+  
+  
+  
+  <a id="Tizen_NUI_Scene3D_Model_LoadBlendShapeAnimation_" data-uid="Tizen.NUI.Scene3D.Model.LoadBlendShapeAnimation*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L470">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Scene3D_Model_LoadBlendShapeAnimation_System_String_" data-uid="Tizen.NUI.Scene3D.Model.LoadBlendShapeAnimation(System.String)">LoadBlendShapeAnimation(String)</h4>
+    <section>
+      <p>Load blendshape animation and assign to model from json file.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Animation LoadBlendShapeAnimation(string jsonFilename)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">jsonFilename</span></td>
+        <td><p>Name of json format file what we predefined.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Animation.html">Animation</a></td>
+        <td><p>Animaion of facial</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_Scene3D_Model_LoadBlendShapeAnimationFromBuffer_" data-uid="Tizen.NUI.Scene3D.Model.LoadBlendShapeAnimationFromBuffer*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L498">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Scene3D_Model_LoadBlendShapeAnimationFromBuffer_System_String_" data-uid="Tizen.NUI.Scene3D.Model.LoadBlendShapeAnimationFromBuffer(System.String)">LoadBlendShapeAnimationFromBuffer(String)</h4>
+    <section>
+      <p>Load morphing animation and assign to model from json string.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Animation LoadBlendShapeAnimationFromBuffer(string jsonBuffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">jsonBuffer</span></td>
+        <td><p>Contents of json format file what we predefined.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Animation.html">Animation</a></td>
+        <td><p>Animaion of facial</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_Scene3D_Model_LoadBvhAnimation_" data-uid="Tizen.NUI.Scene3D.Model.LoadBvhAnimation*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L383">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Scene3D_Model_LoadBvhAnimation_System_String_Tizen_NUI_Vector3_System_Boolean_" data-uid="Tizen.NUI.Scene3D.Model.LoadBvhAnimation(System.String,Tizen.NUI.Vector3,System.Boolean)">LoadBvhAnimation(String, Vector3, Boolean)</h4>
+    <section>
+      <p>Load bvh animation and assign to model.
+Scale is additional scale factor of bvh animation. It is possible that
+Model&apos;s scale may not matched with bvh animation scale.
+If scale is null, default use as Vector3.ONE</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Animation LoadBvhAnimation(string bvhFilename, Vector3 scale = null, bool translateRootFromModelNode = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">bvhFilename</span></td>
+        <td><p>Name of bvh format file.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td><span class="parametername">scale</span></td>
+        <td><p>Scale value of bvh animation match with model.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">translateRootFromModelNode</span></td>
+        <td><p>Whether we should translate the bvh root from it&apos;s ModelNode position or not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Animation.html">Animation</a></td>
+        <td><p>Animaion of bvh</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_Scene3D_Model_LoadBvhAnimationFromBuffer_" data-uid="Tizen.NUI.Scene3D.Model.LoadBvhAnimationFromBuffer*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L416">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Scene3D_Model_LoadBvhAnimationFromBuffer_System_String_Tizen_NUI_Vector3_System_Boolean_" data-uid="Tizen.NUI.Scene3D.Model.LoadBvhAnimationFromBuffer(System.String,Tizen.NUI.Vector3,System.Boolean)">LoadBvhAnimationFromBuffer(String, Vector3, Boolean)</h4>
+    <section>
+      <p>Load bvh animation and assign to model.
+Scale is additional scale factor of bvh animation. It is possible that
+Model&apos;s scale may not matched with bvh animation scale.
+If scale is null, default use as Vector3.ONE</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Animation LoadBvhAnimationFromBuffer(string bvhBuffer, Vector3 scale = null, bool translateRootFromModelNode = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">bvhBuffer</span></td>
+        <td><p>Contents of bvh format file.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td><span class="parametername">scale</span></td>
+        <td><p>Scale value of bvh animation match with model.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">translateRootFromModelNode</span></td>
+        <td><p>Whether we should translate the bvh root from it&apos;s ModelNode position or not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Animation.html">Animation</a></td>
+        <td><p>Animaion of bvh</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_Scene3D_Model_LoadFacialAnimation_" data-uid="Tizen.NUI.Scene3D.Model.LoadFacialAnimation*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L444">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Scene3D_Model_LoadFacialAnimation_System_String_" data-uid="Tizen.NUI.Scene3D.Model.LoadFacialAnimation(System.String)">LoadFacialAnimation(String)</h4>
+    <section>
+      <p>Load facial animation and assign to model.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Animation LoadFacialAnimation(string facialFilename)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">facialFilename</span></td>
+        <td><p>Name of json format file what we predefined.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Animation.html">Animation</a></td>
+        <td><p>Animaion of facial</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_Scene3D_Model_LoadFacialAnimationFromBuffer_" data-uid="Tizen.NUI.Scene3D.Model.LoadFacialAnimationFromBuffer*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L457">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Scene3D_Model_LoadFacialAnimationFromBuffer_System_String_" data-uid="Tizen.NUI.Scene3D.Model.LoadFacialAnimationFromBuffer(System.String)">LoadFacialAnimationFromBuffer(String)</h4>
+    <section>
+      <p>Load facial animation and assign to model.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Animation LoadFacialAnimationFromBuffer(string facialBuffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">facialBuffer</span></td>
+        <td><p>Contents of json format file what we predefined.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Animation.html">Animation</a></td>
+        <td><p>Animaion of facial</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_Scene3D_Model_ReleaseSwigCPtr_" data-uid="Tizen.NUI.Scene3D.Model.ReleaseSwigCPtr*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L625">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Scene3D_Model_ReleaseSwigCPtr_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.Scene3D.Model.ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef)</h4>
+    <section>
+      <p>Release swigCPtr.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.runtime.interopservices.handleref">System.Runtime.InteropServices.HandleRef</a></td>
+        <td><span class="parametername">swigCPtr</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_Scene3D_Model_RemoveModelNode_" data-uid="Tizen.NUI.Scene3D.Model.RemoveModelNode*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L184">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Scene3D_Model_RemoveModelNode_Tizen_NUI_Scene3D_ModelNode_" data-uid="Tizen.NUI.Scene3D.Model.RemoveModelNode(Tizen.NUI.Scene3D.ModelNode)">RemoveModelNode(ModelNode)</h4>
+    <section>
+      <p>Removes modelNode from this Model.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveModelNode(ModelNode modelNode)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Scene3D.ModelNode.html">ModelNode</a></td>
+        <td><span class="parametername">modelNode</span></td>
+        <td><p>Root of a ModelNode tree to be removed</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_Scene3D_Model_SetImageBasedLightSource_" data-uid="Tizen.NUI.Scene3D.Model.SetImageBasedLightSource*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L235">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Scene3D_Model_SetImageBasedLightSource_System_String_System_String_System_Single_" data-uid="Tizen.NUI.Scene3D.Model.SetImageBasedLightSource(System.String,System.String,System.Single)">SetImageBasedLightSource(String, String, Single)</h4>
+    <section>
+      <p>Changes Image Based Light according to the given input textures.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetImageBasedLightSource(string diffuseUrl, string specularUrl, float scaleFactor = 1F)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">diffuseUrl</span></td>
+        <td><p>The path of Cube map image that will be used as a diffuse IBL source.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">specularUrl</span></td>
+        <td><p>The path of Cube map image that will be used as a specular IBL source.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.single">Single</a></td>
+        <td><span class="parametername">scaleFactor</span></td>
+        <td><p>Scale factor that controls light source intensity in [0.0f, 1.0f]. Default value is 1.0f.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Scene3D_Model_SetImageBasedLightSource_System_String_System_String_System_Single__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p><a href="http://tizen.org/privilege/mediastorage">http://tizen.org/privilege/mediastorage</a> for local files in media storage.
+<a href="http://tizen.org/privilege/externalstorage">http://tizen.org/privilege/externalstorage</a> for local files in external storage.</p>
+</div>
+  
+  <h6><strong>API Level</strong>: <span>10</span></h6>
+  
+  
+  <a id="Tizen_NUI_Scene3D_Model_SetMotionData_" data-uid="Tizen.NUI.Scene3D.Model.SetMotionData*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L562">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Scene3D_Model_SetMotionData_Tizen_NUI_Scene3D_MotionData_" data-uid="Tizen.NUI.Scene3D.Model.SetMotionData(Tizen.NUI.Scene3D.MotionData)">SetMotionData(MotionData)</h4>
+    <section>
+      <p>Set values from MotionData.
+Note that this method doesn not apply KeyFrames animation.
+If you want to apply the animation, please use <a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GenerateMotionDataAnimation_Tizen_NUI_Scene3D_MotionData_">GenerateMotionDataAnimation(MotionData)</a> and play the result.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetMotionData(MotionData motionData)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Scene3D.MotionData.html">MotionData</a></td>
+        <td><span class="parametername">motionData</span></td>
+        <td><p>Source motion data.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>11</span></h6>
+  
+  <h2 id="implements">Implements</h2>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+          </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

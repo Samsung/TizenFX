@@ -1,0 +1,483 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface IAtspiSelection
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface IAtspiSelection
+   ">
+    <meta name="generator" content="docfx 2.56.1.0">
+    <meta name="version" content="API11">
+    
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+            
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+            
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+              
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.NUI.Accessibility.IAtspiSelection">
+  
+  <div class="entity">
+  
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_NUI_Accessibility_IAtspiSelection" data-uid="Tizen.NUI.Accessibility.IAtspiSelection" class="mt-0 text-break"><span class="entity-type">Interface</span>
+  IAtspiSelection
+  </h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiSelection.cs/#L27" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+  
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.NUI.Accessibility.html">Tizen.NUI.Accessibility</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
+  
+  <div class="markdown level0 summary"><p>Interface representing objects which can store a set of selected items.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IAtspiSelection</code></pre>
+  </div>
+
+  
+  
+  
+  <h2 id="methods">Methods
+  </h2>
+  
+  <a id="Tizen_NUI_Accessibility_IAtspiSelection_AccessibilityClearSelection_" data-uid="Tizen.NUI.Accessibility.IAtspiSelection.AccessibilityClearSelection*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiSelection.cs/#L83">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Accessibility_IAtspiSelection_AccessibilityClearSelection" data-uid="Tizen.NUI.Accessibility.IAtspiSelection.AccessibilityClearSelection">AccessibilityClearSelection()</h4>
+    <section>
+      <p>Deselects all children.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool AccessibilityClearSelection()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True on success, false otherwise </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_Accessibility_IAtspiSelection_AccessibilityDeselectChild_" data-uid="Tizen.NUI.Accessibility.IAtspiSelection.AccessibilityDeselectChild*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiSelection.cs/#L91">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Accessibility_IAtspiSelection_AccessibilityDeselectChild_System_Int32_" data-uid="Tizen.NUI.Accessibility.IAtspiSelection.AccessibilityDeselectChild(System.Int32)">AccessibilityDeselectChild(Int32)</h4>
+    <section>
+      <p>Deselects a child.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool AccessibilityDeselectChild(int childIndex)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">childIndex</span></td>
+        <td><p>The index of the child. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True on success, false otherwise </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_Accessibility_IAtspiSelection_AccessibilityDeselectSelectedChild_" data-uid="Tizen.NUI.Accessibility.IAtspiSelection.AccessibilityDeselectSelectedChild*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiSelection.cs/#L61">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Accessibility_IAtspiSelection_AccessibilityDeselectSelectedChild_System_Int32_" data-uid="Tizen.NUI.Accessibility.IAtspiSelection.AccessibilityDeselectSelectedChild(System.Int32)">AccessibilityDeselectSelectedChild(Int32)</h4>
+    <section>
+      <p>Deselects a selected child.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool AccessibilityDeselectSelectedChild(int selectedChildIndex)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">selectedChildIndex</span></td>
+        <td><p>The index of the selected child </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True on success, false otherwise </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_Accessibility_IAtspiSelection_AccessibilityGetSelectedChild_" data-uid="Tizen.NUI.Accessibility.IAtspiSelection.AccessibilityGetSelectedChild*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiSelection.cs/#L45">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Accessibility_IAtspiSelection_AccessibilityGetSelectedChild_System_Int32_" data-uid="Tizen.NUI.Accessibility.IAtspiSelection.AccessibilityGetSelectedChild(System.Int32)">AccessibilityGetSelectedChild(Int32)</h4>
+    <section>
+      <p>Gets a specific selected child.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">View AccessibilityGetSelectedChild(int selectedChildIndex)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">selectedChildIndex</span></td>
+        <td><p>The index of the selected child </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><p>The selected child or nullptr if index is invalid </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Accessibility_IAtspiSelection_AccessibilityGetSelectedChild_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p><code>selectedChildIndex</code> refers to the list of selected children, not the list of all children.</p>
+</div>
+  
+  
+  
+  <a id="Tizen_NUI_Accessibility_IAtspiSelection_AccessibilityGetSelectedChildrenCount_" data-uid="Tizen.NUI.Accessibility.IAtspiSelection.AccessibilityGetSelectedChildrenCount*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiSelection.cs/#L34">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Accessibility_IAtspiSelection_AccessibilityGetSelectedChildrenCount" data-uid="Tizen.NUI.Accessibility.IAtspiSelection.AccessibilityGetSelectedChildrenCount">AccessibilityGetSelectedChildrenCount()</h4>
+    <section>
+      <p>Gets the number of selected children.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">int AccessibilityGetSelectedChildrenCount()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><p>The number of selected children (zero if none) </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_Accessibility_IAtspiSelection_AccessibilityIsChildSelected_" data-uid="Tizen.NUI.Accessibility.IAtspiSelection.AccessibilityIsChildSelected*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiSelection.cs/#L69">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Accessibility_IAtspiSelection_AccessibilityIsChildSelected_System_Int32_" data-uid="Tizen.NUI.Accessibility.IAtspiSelection.AccessibilityIsChildSelected(System.Int32)">AccessibilityIsChildSelected(Int32)</h4>
+    <section>
+      <p>Checks whether a child is selected.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool AccessibilityIsChildSelected(int childIndex)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">childIndex</span></td>
+        <td><p>The index of the child </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if given child is selected, false otherwise </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_Accessibility_IAtspiSelection_AccessibilitySelectAll_" data-uid="Tizen.NUI.Accessibility.IAtspiSelection.AccessibilitySelectAll*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiSelection.cs/#L76">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Accessibility_IAtspiSelection_AccessibilitySelectAll" data-uid="Tizen.NUI.Accessibility.IAtspiSelection.AccessibilitySelectAll">AccessibilitySelectAll()</h4>
+    <section>
+      <p>Selects all children.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool AccessibilitySelectAll()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True on success, false otherwise </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_Accessibility_IAtspiSelection_AccessibilitySelectChild_" data-uid="Tizen.NUI.Accessibility.IAtspiSelection.AccessibilitySelectChild*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiSelection.cs/#L53">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Accessibility_IAtspiSelection_AccessibilitySelectChild_System_Int32_" data-uid="Tizen.NUI.Accessibility.IAtspiSelection.AccessibilitySelectChild(System.Int32)">AccessibilitySelectChild(Int32)</h4>
+    <section>
+      <p>Selects a child.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool AccessibilitySelectChild(int childIndex)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">childIndex</span></td>
+        <td><p>The index of the child </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True on success, false otherwise </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+          </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>
