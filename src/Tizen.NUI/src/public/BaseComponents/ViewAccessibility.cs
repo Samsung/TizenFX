@@ -388,37 +388,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(bool disposing)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            internalName = null;
-
-            Interop.ControlDevel.DaliAccessibilityDetachAccessibleObject(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            if (disposing == false)
-            {
-                if (IsNativeHandleInvalid() || SwigCMemOwn == false)
-                {
-                    // at this case, implicit nor explicit dispose is not required. No native object is made.
-                    disposed = true;
-                    return;
-                }
-            }
-
-            if (disposing)
-            {
-                Unparent();
-            }
-
-            base.Dispose(disposing);
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
         protected static readonly string AccessibilityActivateAction = "activate";
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected static readonly string AccessibilityReadingSkippedAction = "ReadingSkipped";
