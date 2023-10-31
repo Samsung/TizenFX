@@ -115,9 +115,9 @@ jobs:
     - name: Remove Github Actions IP from security group
       continue-on-error: true
       run: |
-        aws ec2 revoke-security-group-ingress --group-name ${{ env.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ env.All_IP }}/0
-        aws ec2 revoke-security-group-ingress --group-name ${{ env.AWS_SG_ID }} --protocol tcp --port 443 --cidr ${{ env.All_IP }}/0
-        aws ec2 revoke-security-group-ingress --group-name ${{ env.AWS_SG_ID }} --protocol tcp --port 80 --cidr ${{ env.All_IP }}/0
+        aws ec2 revoke-security-group-ingress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ env.All_IP }}/0
+        aws ec2 revoke-security-group-ingress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 443 --cidr ${{ env.All_IP }}/0
+        aws ec2 revoke-security-group-ingress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 80 --cidr ${{ env.All_IP }}/0
         aws ec2 revoke-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ env.All_IP }}/0
         aws ec2 revoke-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 443 --cidr ${{ env.All_IP }}/0
         aws ec2 revoke-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 80 --cidr ${{ env.All_IP }}/0
