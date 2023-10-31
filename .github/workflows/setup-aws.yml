@@ -104,7 +104,7 @@ jobs:
         full_commit_message: 'Update documents'
 
   remove-ip:
-    #needs: [deploy]
+    needs: [deploy]
     runs-on: ubuntu-20.04
 
     steps:
