@@ -37,8 +37,10 @@ jobs:
       run: |
         aws ec2 authorize-security-group-ingress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
         aws ec2 authorize-security-group-ingress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 443 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+        aws ec2 authorize-security-group-ingress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 80 --cidr ${{ steps.ip.outputs.ipv4 }}/32
         aws ec2 authorize-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
         aws ec2 authorize-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 443 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+        aws ec2 authorize-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 80 --cidr ${{ steps.ip.outputs.ipv4 }}/32
 
   build:
     needs: [add-ip]
@@ -114,8 +116,10 @@ jobs:
       run: |
         aws ec2 revoke-security-group-ingress --group-name ${{ env.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
         aws ec2 revoke-security-group-ingress --group-name ${{ env.AWS_SG_ID }} --protocol tcp --port 443 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+        aws ec2 revoke-security-group-ingress --group-name ${{ env.AWS_SG_ID }} --protocol tcp --port 80 --cidr ${{ steps.ip.outputs.ipv4 }}/32
         aws ec2 revoke-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
         aws ec2 revoke-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 443 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+        aws ec2 revoke-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 80 --cidr ${{ steps.ip.outputs.ipv4 }}/32
         rm $HOME/key.pem
 
       env:
