@@ -42,7 +42,7 @@ jobs:
 
     - name: Start Runner
       run: |
-        echo "${{ secrets.AWS_SSH_PEM_KEY }}" >> $HOME/key.pem
+        echo "${{ secrets.AWS_SSH_PEM_KEY }}" > $HOME/key.pem
         chmod 400 $HOME/key.pem
         ssh -i $HOME/key.pem ubuntu@${{secrets.AWS_SSH_HOST}}
         cd action-runner
