@@ -40,6 +40,17 @@ jobs:
         aws ec2 authorize-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
         aws ec2 authorize-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 443 --cidr ${{ steps.ip.outputs.ipv4 }}/32
 
+    - name: Start Runner
+      run: |
+        echo "$SSH_PEM_KEY" >> $HOME/key.pem
+        chmod 400 $HOME/key.pem
+        ssh -i $HOME/key.pem ubuntu@${{secrets.AWS_SSH_HOST}}
+        cd action-runner
+        ./run.sh
+      env:
+        SSH_KNOWN_HOST: ${{secrets.AWS_SSH_HOST}}
+        SSH_PEM_KEY: ${{secrets.AWS_SSH_PEM_KEY}}
+
   build:
     needs: [add-ip]
     runs-on: [self-hosted, linux, x64]
@@ -114,8 +125,9 @@ jobs:
       run: |
         aws ec2 revoke-security-group-ingress --group-name ${{ env.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
         aws ec2 revoke-security-group-ingress --group-name ${{ env.AWS_SG_ID }} --protocol tcp --port 443 --cidr ${{ steps.ip.outputs.ipv4 }}/32
-        aws ec2 authorize-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
-        aws ec2 authorize-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 443 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+        aws ec2 revoke-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+        aws ec2 revoke-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 443 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+        rm $HOME/key.pem
 
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_3 }}
