@@ -51,7 +51,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal PixelBuffer(PixelBuffer handle) : this(Interop.PixelBuffer.NewPixelBuffer(PixelBuffer.getCPtr(handle)), true)
+        internal PixelBuffer(PixelBuffer handle) : this(Interop.PixelBuffer.NewPixelBuffer(PixelBuffer.getCPtr(handle)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
