@@ -47,11 +47,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal PathConstrainer(PathConstrainer handle) : this(Interop.PathConstrainer.NewPathConstrainer(PathConstrainer.getCPtr(handle)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         internal PathConstrainer Assign(PathConstrainer rhs)
         {
             PathConstrainer ret = new PathConstrainer(Interop.PathConstrainer.Assign(SwigCPtr, PathConstrainer.getCPtr(rhs)), false);

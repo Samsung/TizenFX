@@ -36,7 +36,7 @@ namespace Tizen.NUI
         /// Create a instance of PropertyNotification.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public PropertyNotification() : this(Interop.PropertyNotification.NewPropertyNotification(), true)
+        public PropertyNotification() : this(Interop.PropertyNotification.NewPropertyNotification(), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -45,12 +45,16 @@ namespace Tizen.NUI
         /// Create a instance of PropertyNotification.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public PropertyNotification(PropertyNotification handle) : this(Interop.PropertyNotification.NewPropertyNotification(PropertyNotification.getCPtr(handle)), true)
+        public PropertyNotification(PropertyNotification handle) : this(Interop.PropertyNotification.NewPropertyNotification(PropertyNotification.getCPtr(handle)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal PropertyNotification(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal PropertyNotification(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal PropertyNotification(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
         }
 
@@ -170,7 +174,20 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public PropertyCondition GetCondition()
         {
-            PropertyCondition ret = new PropertyCondition(Interop.PropertyNotification.GetCondition(SwigCPtr), true);
+            global::System.IntPtr cPtr = Interop.PropertyNotification.GetCondition(SwigCPtr);
+
+            PropertyCondition ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as PropertyCondition;
+            if (ret != null)
+            {
+                global::System.Runtime.InteropServices.HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+                Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+            else
+            {
+                ret = new PropertyCondition(cPtr, true);
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

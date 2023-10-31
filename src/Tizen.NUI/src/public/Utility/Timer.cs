@@ -53,12 +53,16 @@ namespace Tizen.NUI
 
             NUILog.Debug($"(0x{SwigCPtr.Handle:X})  Timer({milliSec}) Constructor!");
         }
-        internal Timer(Timer timer) : this(Interop.Timer.NewTimer(Timer.getCPtr(timer)), true)
+        internal Timer(Timer timer) : this(Interop.Timer.NewTimer(Timer.getCPtr(timer)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Timer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Timer(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal Timer(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
             timerTickCallbackDelegate = OnTick;
             timerTickCallbackOfNative = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(timerTickCallbackDelegate);
