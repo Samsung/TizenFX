@@ -56,11 +56,6 @@ namespace Tizen.NUI
             mCachedBuffer = buffer;
         }
 
-        internal EncodedImageBuffer(EncodedImageBuffer handle) : this(Interop.EncodedImageBuffer.NewEncodedImageBuffer(EncodedImageBuffer.getCPtr(handle)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         internal EncodedImageBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
