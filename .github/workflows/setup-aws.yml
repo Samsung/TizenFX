@@ -24,6 +24,7 @@ jobs:
       run: |
         echo "AWS_DEFAULT_REGION=ap-northeast-2" >> $GITHUB_ENV
         echo "AWS_SG_ID=sg-01199b01d9daa447e" >> $GITHUB_ENV
+        echo "All_IP=0.0.0.0" >> $GITHUB_ENV
         
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -35,12 +36,12 @@ jobs:
     - name: Add Github Actions IP to Security group
       continue-on-error: true
       run: |
-        aws ec2 authorize-security-group-ingress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
-        aws ec2 authorize-security-group-ingress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 443 --cidr ${{ steps.ip.outputs.ipv4 }}/32
-        aws ec2 authorize-security-group-ingress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 80 --cidr ${{ steps.ip.outputs.ipv4 }}/32
-        aws ec2 authorize-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
-        aws ec2 authorize-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 443 --cidr ${{ steps.ip.outputs.ipv4 }}/32
-        aws ec2 authorize-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 80 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+        aws ec2 authorize-security-group-ingress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ env.All_IP }}/0
+        aws ec2 authorize-security-group-ingress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 443 --cidr ${{ env.All_IP }}/0
+        aws ec2 authorize-security-group-ingress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 80 --cidr ${{ env.All_IP }}/0
+        aws ec2 authorize-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ env.All_IP }}/0
+        aws ec2 authorize-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 443 --cidr ${{ env.All_IP }}/0
+        aws ec2 authorize-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 80 --cidr ${{ env.All_IP }}/0
 
   build:
     needs: [add-ip]
@@ -114,12 +115,12 @@ jobs:
     - name: Remove Github Actions IP from security group
       continue-on-error: true
       run: |
-        aws ec2 revoke-security-group-ingress --group-name ${{ env.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
-        aws ec2 revoke-security-group-ingress --group-name ${{ env.AWS_SG_ID }} --protocol tcp --port 443 --cidr ${{ steps.ip.outputs.ipv4 }}/32
-        aws ec2 revoke-security-group-ingress --group-name ${{ env.AWS_SG_ID }} --protocol tcp --port 80 --cidr ${{ steps.ip.outputs.ipv4 }}/32
-        aws ec2 revoke-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
-        aws ec2 revoke-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 443 --cidr ${{ steps.ip.outputs.ipv4 }}/32
-        aws ec2 revoke-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 80 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+        aws ec2 revoke-security-group-ingress --group-name ${{ env.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ env.All_IP }}/0
+        aws ec2 revoke-security-group-ingress --group-name ${{ env.AWS_SG_ID }} --protocol tcp --port 443 --cidr ${{ env.All_IP }}/0
+        aws ec2 revoke-security-group-ingress --group-name ${{ env.AWS_SG_ID }} --protocol tcp --port 80 --cidr ${{ env.All_IP }}/0
+        aws ec2 revoke-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ env.All_IP }}/0
+        aws ec2 revoke-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 443 --cidr ${{ env.All_IP }}/0
+        aws ec2 revoke-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 80 --cidr ${{ env.All_IP }}/0
         rm $HOME/key.pem
 
       env:
