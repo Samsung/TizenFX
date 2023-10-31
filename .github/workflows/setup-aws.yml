@@ -40,14 +40,6 @@ jobs:
         aws ec2 authorize-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
         aws ec2 authorize-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 443 --cidr ${{ steps.ip.outputs.ipv4 }}/32
 
-    - name: Start Runner
-      run: |
-        echo "${{ secrets.AWS_SSH_PEM_KEY }}" > $HOME/key.pem
-        chmod 400 $HOME/key.pem
-        ssh -i $HOME/key.pem ubuntu@${{secrets.AWS_SSH_HOST}}
-        cd action-runner
-        ./run.sh
-
   build:
     needs: [add-ip]
     runs-on: [self-hosted, linux, x64]
