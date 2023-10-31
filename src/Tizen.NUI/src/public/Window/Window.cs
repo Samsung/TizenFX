@@ -2481,7 +2481,7 @@ namespace Tizen.NUI
         {
             bool ret = Interop.Window.GetFullScreen(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-              return ret;
+            return ret;
         }
 
         /// <summary>
