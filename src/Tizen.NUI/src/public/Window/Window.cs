@@ -1634,7 +1634,20 @@ namespace Tizen.NUI
 
         internal ObjectRegistry GetObjectRegistry()
         {
-            ObjectRegistry ret = new ObjectRegistry(Interop.Stage.GetObjectRegistry(stageCPtr), true);
+            global::System.IntPtr cPtr = Interop.Stage.GetObjectRegistry(stageCPtr);
+
+            ObjectRegistry ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as ObjectRegistry;
+            if (ret != null)
+            {
+                global::System.Runtime.InteropServices.HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+                Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+            else
+            {
+                ret = new ObjectRegistry(cPtr, true);
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
