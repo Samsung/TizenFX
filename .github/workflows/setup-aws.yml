@@ -23,7 +23,7 @@ jobs:
     - name: Setting environment variables
       run: |
         echo "AWS_DEFAULT_REGION=ap-northeast-2" >> $GITHUB_ENV
-        echo "AWS_SG_NAME=tizenapi-public-sg" >> $GITHUB_ENV
+        echo "AWS_SG_ID=sg-01199b01d9daa447e" >> $GITHUB_ENV
         
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -33,8 +33,12 @@ jobs:
         aws-region: ap-northeast-2
 
     - name: Add Github Actions IP to Security group
+      continue-on-error: true
       run: |
-        aws ec2 authorize-security-group-ingress --group-name ${{ env.AWS_SG_NAME }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32    
+        aws ec2 authorize-security-group-ingress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+        aws ec2 authorize-security-group-ingress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 443 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+        aws ec2 authorize-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+        aws ec2 authorize-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 443 --cidr ${{ steps.ip.outputs.ipv4 }}/32
 
   build:
     needs: [add-ip]
@@ -106,8 +110,13 @@ jobs:
       uses: haythem/public-ip@v1.2
 
     - name: Remove Github Actions IP from security group
+      continue-on-error: true
       run: |
-        aws ec2 revoke-security-group-ingress --group-name ${{ env.AWS_SG_NAME }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+        aws ec2 revoke-security-group-ingress --group-name ${{ env.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+        aws ec2 revoke-security-group-ingress --group-name ${{ env.AWS_SG_ID }} --protocol tcp --port 443 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+        aws ec2 authorize-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+        aws ec2 authorize-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 443 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_3 }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_3 }}
