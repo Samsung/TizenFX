@@ -30,16 +30,20 @@ namespace Tizen.NUI
         private static readonly TTSPlayer instance = TTSPlayer.Get();
         private StateChangedEventCallbackType stateChangedEventCallback;
 
-        internal TTSPlayer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TtsPlayer.Upcast(cPtr), cMemoryOwn)
+        internal TTSPlayer(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
         {
         }
 
-        internal TTSPlayer() : this(Interop.TtsPlayer.NewTtsPlayer(), true)
+        internal TTSPlayer(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
+        {
+        }
+
+        internal TTSPlayer() : this(Interop.TtsPlayer.NewTtsPlayer(), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal TTSPlayer(TTSPlayer handle) : this(Interop.TtsPlayer.NewTtsPlayer(TTSPlayer.getCPtr(handle)), true)
+        internal TTSPlayer(TTSPlayer handle) : this(Interop.TtsPlayer.NewTtsPlayer(TTSPlayer.getCPtr(handle)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -145,7 +149,22 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static TTSPlayer Get(TTSMode mode)
         {
-            TTSPlayer ret = new TTSPlayer(Interop.TtsPlayer.Get((int)mode), true);
+            global::System.IntPtr cPtr = Interop.TtsPlayer.Get((int)mode);
+
+            TTSPlayer ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as TTSPlayer;
+            if (ret != null)
+            {
+                object dummyObect = new object();
+
+                HandleRef CPtr = new HandleRef(dummyObect, cPtr);
+                Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                CPtr = new HandleRef(null, global::System.IntPtr.Zero);
+            }
+            else
+            {
+                ret = new TTSPlayer(cPtr, true);
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -157,7 +176,22 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static TTSPlayer Get()
         {
-            TTSPlayer ret = new TTSPlayer(Interop.TtsPlayer.Get(), true);
+            global::System.IntPtr cPtr = Interop.TtsPlayer.Get();
+
+            TTSPlayer ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as TTSPlayer;
+            if (ret != null)
+            {
+                object dummyObect = new object();
+
+                HandleRef CPtr = new HandleRef(dummyObect, cPtr);
+                Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                CPtr = new HandleRef(null, global::System.IntPtr.Zero);
+            }
+            else
+            {
+                ret = new TTSPlayer(cPtr, true);
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

@@ -38,11 +38,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal FontClient(FontClient handle) : this(Interop.FontClient.NewFontClient(FontClient.getCPtr(handle)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         internal static uint DefaultPointSize
         {
             get
@@ -291,7 +286,22 @@ namespace Tizen.NUI
 
         internal static FontClient Get()
         {
-            FontClient ret = new FontClient(Interop.FontClient.Get(), true);
+            global::System.IntPtr cPtr = Interop.FontClient.Get();
+
+            FontClient ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as FontClient;
+            if (ret != null)
+            {
+                object dummyObect = new object();
+
+                global::System.Runtime.InteropServices.HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(dummyObect, cPtr);
+                Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+            else
+            {
+                ret = new FontClient(cPtr, true);
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

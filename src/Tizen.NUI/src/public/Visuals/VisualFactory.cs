@@ -31,11 +31,11 @@ namespace Tizen.NUI
         /// </summary>
         private static VisualFactory instance;
 
-        internal VisualFactory(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        private VisualFactory(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
-        internal VisualFactory() : this(Interop.VisualFactory.NewVisualFactory(), true)
+        private VisualFactory() : this(Interop.VisualFactory.NewVisualFactory(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
