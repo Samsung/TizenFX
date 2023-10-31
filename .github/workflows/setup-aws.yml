@@ -112,6 +112,19 @@ jobs:
       id: ip
       uses: haythem/public-ip@v1.2
 
+    - name: Setting environment variables
+      run: |
+        echo "AWS_DEFAULT_REGION=ap-northeast-2" >> $GITHUB_ENV
+        echo "AWS_SG_ID=sg-01199b01d9daa447e" >> $GITHUB_ENV
+        echo "All_IP=0.0.0.0" >> $GITHUB_ENV
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_3 }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_3 }}
+        aws-region: ap-northeast-2
+
     - name: Remove Github Actions IP from security group
       continue-on-error: true
       run: |
@@ -121,9 +134,3 @@ jobs:
         aws ec2 revoke-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ env.All_IP }}/0
         aws ec2 revoke-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 443 --cidr ${{ env.All_IP }}/0
         aws ec2 revoke-security-group-egress --group-id ${{ env.AWS_SG_ID }} --protocol tcp --port 80 --cidr ${{ env.All_IP }}/0
-        rm $HOME/key.pem
-
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID_3 }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY_3 }}
-        AWS_DEFAULT_REGION: ap-northeast-2
