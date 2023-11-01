@@ -210,9 +210,31 @@ namespace Tizen.NUI.WindowSystem.Shell
 
         /// <summary>
         /// Requests to set KVM window as secondary selection window.
+        /// The request name has typo and will remove soon.
+        /// Please use SetSecondarySelection.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
         public void SetSecondarySelction()
+        {
+           SetSecondarySelection();
+        }
+
+        /// <summary>
+        /// Requests to unset secondary selection window of KVM window.
+        /// The request name has typo and will remove soon.
+        /// Please use UnsetSecondarySelection.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        public void UnsetSecondarySelction()
+        {
+           UnsetSecondarySelection();
+        }
+
+        /// <summary>
+        /// Requests to set KVM window as secondary selection window.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        public void SetSecondarySelection()
         {
             int res = Interop.KVMService.SetSecondarySelection(_kvmService);
             _tzsh.ErrorCodeThrow(res);
@@ -222,7 +244,7 @@ namespace Tizen.NUI.WindowSystem.Shell
         /// Requests to unset secondary selection window of KVM window.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
-        public void UnsetSecondarySelction()
+        public void UnsetSecondarySelection()
         {
             int res = Interop.KVMService.UnsetSecondarySelection(_kvmService);
             _tzsh.ErrorCodeThrow(res);
