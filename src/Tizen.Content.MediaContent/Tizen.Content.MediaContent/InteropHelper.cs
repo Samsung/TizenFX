@@ -39,7 +39,7 @@ namespace Tizen.Content.MediaContent
             }
             finally
             {
-                Interop.Libc.Free(val);
+                Tizen.Multimedia.GLibSupport.GFree(val);
             }
         }
 

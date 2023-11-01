@@ -29,11 +29,20 @@ namespace Tizen.Multimedia
                 internal const int R_OK = 0x04;
             }
 
-            [DllImport(Libraries.Libc, EntryPoint = "free")]
+            [DllImport(Libraries.Libc, EntryPoint = "free", CallingConvention = CallingConvention.Cdecl)]
             public static extern void Free(IntPtr ptr);
 
-            [DllImport(Libraries.Libc, EntryPoint = "access")]
+            [DllImport(Libraries.Libc, EntryPoint = "access", CallingConvention = CallingConvention.Cdecl)]
             public static extern int Access(string path, int mode);
+        }
+    }
+
+    internal static partial class Interop
+    {
+        internal static partial class GLib
+        {
+            [DllImport(Libraries.GLib, EntryPoint = "g_free", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void GFree(IntPtr ptr);
         }
     }
 }

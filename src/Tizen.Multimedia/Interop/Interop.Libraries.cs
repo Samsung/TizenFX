@@ -23,6 +23,7 @@ namespace Tizen.Multimedia
             public const string SoundManager = "libcapi-media-sound-manager.so.0";
             public const string MediaTool = "libcapi-media-tool.so.0";
             public const string Libc = "libc.so.6";
+            public const string GLib = "libglib-2.0.so.0";
         }
     }
 }

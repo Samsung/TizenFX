@@ -18,7 +18,6 @@ using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using Native = Interop.MetadataExtractor;
-using static Interop;
 
 namespace Tizen.Multimedia
 {
@@ -38,7 +37,7 @@ namespace Tizen.Multimedia
             }
             finally
             {
-                Libc.Free(valuePtr);
+                GLibSupport.GFree(valuePtr);
             }
         }
 

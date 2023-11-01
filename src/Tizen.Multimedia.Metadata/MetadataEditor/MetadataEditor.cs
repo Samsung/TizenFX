@@ -18,6 +18,8 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 
+using Native = Interop.MetadataEditor;
+
 namespace Tizen.Multimedia
 {
     /// <summary>
@@ -72,11 +74,11 @@ namespace Tizen.Multimedia
                 throw new ArgumentException($"{nameof(path)} is a zero-length string.", nameof(path));
             }
 
-            Interop.MetadataEditor.Create(out _handle).ThrowIfError("Failed to create metadata");
+            Native.Create(out _handle).ThrowIfError("Failed to create metadata");
 
             try
             {
-                Interop.MetadataEditor.SetPath(Handle, path).ThrowIfError("Failed to set path");
+                Native.SetPath(Handle, path).ThrowIfError("Failed to set path");
 
                 _isFileReadOnly = File.GetAttributes(path).HasFlag(FileAttributes.ReadOnly);
             }
@@ -93,14 +95,14 @@ namespace Tizen.Multimedia
 
             try
             {
-                Interop.MetadataEditor.GetMetadata(Handle, attr, out val)
+                Native.GetMetadata(Handle, attr, out val)
                     .ThrowIfError("Failed to get metadata");
 
                 return Marshal.PtrToStringAnsi(val);
             }
             finally
             {
-                Interop.Libc.Free(val);
+                Tizen.Multimedia.GLibSupport.GFree(val);
             }
         }
 
@@ -111,7 +113,7 @@ namespace Tizen.Multimedia
                 throw new InvalidOperationException("The media file is read-only.");
             }
 
-            Interop.MetadataEditor.SetMetadata(Handle, attr, value).ThrowIfError("Failed to set value");
+            Native.SetMetadata(Handle, attr, value).ThrowIfError("Failed to set value");
         }
 
         /// <summary>
@@ -445,7 +447,7 @@ namespace Tizen.Multimedia
                 throw new InvalidOperationException("The media file is read-only.");
             }
 
-            Interop.MetadataEditor.UpdateMetadata(Handle).ThrowIfError("Failed to update file");
+            Native.UpdateMetadata(Handle).ThrowIfError("Failed to update file");
         }
 
         /// <summary>
@@ -480,7 +482,7 @@ namespace Tizen.Multimedia
 
             try
             {
-                Interop.MetadataEditor.GetPicture(Handle, index, out data, out var size, out mimeType).
+                Native.GetPicture(Handle, index, out data, out var size, out mimeType).
                     ThrowIfError("Failed to get the value");
 
                 if (size > 0)
@@ -497,12 +499,12 @@ namespace Tizen.Multimedia
             {
                 if (data != IntPtr.Zero)
                 {
-                    Interop.Libc.Free(data);
+                    GLibSupport.GFree(data);
                 }
 
                 if (mimeType != IntPtr.Zero)
                 {
-                    Interop.Libc.Free(mimeType);
+                    GLibSupport.GFree(mimeType);
                 }
             }
         }
@@ -541,7 +543,7 @@ namespace Tizen.Multimedia
                 throw new InvalidOperationException("The media file is read-only.");
             }
 
-            Interop.MetadataEditor.AddPicture(Handle, path).
+            Native.AddPicture(Handle, path).
                 ThrowIfError("Failed to append picture");
         }
 
@@ -579,7 +581,7 @@ namespace Tizen.Multimedia
                 throw new InvalidOperationException("The media file is read-only.");
             }
 
-            Interop.MetadataEditor.RemovePicture(Handle, index).ThrowIfError("Failed to remove picture");
+            Native.RemovePicture(Handle, index).ThrowIfError("Failed to remove picture");
         }
 
         /// <summary>
@@ -603,7 +605,7 @@ namespace Tizen.Multimedia
             {
                 if (_handle != IntPtr.Zero)
                 {
-                    Interop.MetadataEditor.Destroy(_handle);
+                    Native.Destroy(_handle);
                     _handle = IntPtr.Zero;
                 }
 

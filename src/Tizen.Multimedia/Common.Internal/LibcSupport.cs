@@ -25,4 +25,12 @@ namespace Tizen.Multimedia
             Interop.Libc.Free(ptr);
         }
     }
+
+    internal static class GLibSupport
+    {
+        internal static void GFree(IntPtr ptr)
+        {
+            Interop.GLib.GFree(ptr);
+        }
+    }
 }
