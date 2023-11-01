@@ -98,7 +98,7 @@ namespace Tizen.NUI
         /// <example>
         /// The following example demonstrates how to use the DataSelected.
         /// <code>
-        /// kvmService.SetSecondarySelction(); // precondition
+        /// kvmService.SetSecondarySelection(); // precondition
         ///
         /// Clipboard.Instance.DataSelected += (s, e) =>
         /// {
