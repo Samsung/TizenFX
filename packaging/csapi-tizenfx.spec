@@ -222,10 +222,10 @@ install -p -m 755 packaging/500.tizenfx_upgrade.sh %{buildroot}%{UPGRADE_SCRIPT_
 /usr/bin/vconftool set -t string db/dotnet/tizen_rid_version %{TIZEN_NET_RUNTIME_IDENTIFIERS} -f
 /usr/bin/vconftool set -t string db/dotnet/tizen_tfm_support %{TIZEN_NET_TARGET_FRAMEWORK_MONIKERS} -f
 /usr/bin/vconftool set -t string db/dotnet/runtime_version %{DOTNET_CORE_RUNTIME_VERSION} -f
-touch %{buildroot}%{DOTNET_LIBRARY_PATH}/dotnet_resolving.info
-echo "db/dotnet/tizen_rid_version %{TIZEN_NET_RUNTIME_IDENTIFIERS}" > %{buildroot}%{DOTNET_LIBRARY_PATH}/dotnet_resolving.info
-echo "db/dotnet/tizen_tfm_support %{TIZEN_NET_TARGET_FRAMEWORK_MONIKERS}" >> %{buildroot}%{DOTNET_LIBRARY_PATH}/dotnet_resolving.info
-echo "db/dotnet/runtime_version %{DOTNET_CORE_RUNTIME_VERSION}" >> %{buildroot}%{DOTNET_LIBRARY_PATH}/dotnet_resolving.info
+touch %{DOTNET_LIBRARY_PATH}/dotnet_resolving.info
+echo "db/dotnet/tizen_rid_version %{TIZEN_NET_RUNTIME_IDENTIFIERS}" > %{DOTNET_LIBRARY_PATH}/dotnet_resolving.info
+echo "db/dotnet/tizen_tfm_support %{TIZEN_NET_TARGET_FRAMEWORK_MONIKERS}" >> %{DOTNET_LIBRARY_PATH}/dotnet_resolving.info
+echo "db/dotnet/runtime_version %{DOTNET_CORE_RUNTIME_VERSION}" >> %{DOTNET_LIBRARY_PATH}/dotnet_resolving.info
 
 %files
 %license LICENSE
