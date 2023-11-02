@@ -91,7 +91,10 @@ namespace Tizen.NUI
             if (registerMe)
             {
                 // Register this instance of BaseHandle in the registry.
-                Registry.Register(this);
+                if (!Registry.Register(this))
+                {
+                    registerMe = false;
+                }
             }
 
             disposeDebuggingCtor();
@@ -113,7 +116,10 @@ namespace Tizen.NUI
             if (registerMe)
             {
                 // Register this instance of BaseHandle in the registry.
-                Registry.Register(this);
+                if (!Registry.Register(this))
+                {
+                    registerMe = false;
+                }
             }
 
             disposeDebuggingCtor();
@@ -133,7 +139,10 @@ namespace Tizen.NUI
             if (registerMe)
             {
                 // Register this instance of BaseHandle in the registry.
-                Registry.Register(this);
+                if (!Registry.Register(this))
+                {
+                    registerMe = false;
+                }
             }
 
             disposeDebuggingCtor();
