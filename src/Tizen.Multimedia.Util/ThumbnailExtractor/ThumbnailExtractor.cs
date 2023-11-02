@@ -290,7 +290,7 @@ namespace Tizen.Multimedia.Util
             {
                 if (thumbData != IntPtr.Zero)
                 {
-                    LibcSupport.Free(thumbData);
+                    GLibSupport.GFree(thumbData);
                 }
             }
         }
