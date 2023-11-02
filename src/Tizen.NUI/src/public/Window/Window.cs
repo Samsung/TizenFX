@@ -155,7 +155,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Creates a new Window with a specific name.<br />
+        /// Creates a new Window with a specific name using WindowData.<br />
         /// This creates an extra window in addition to the default main window<br />
         /// </summary>
         /// <param name="name">The name for extra window. </param>

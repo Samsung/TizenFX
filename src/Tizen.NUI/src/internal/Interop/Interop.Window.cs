@@ -32,11 +32,11 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_New__SWIG_3")]
             public static extern global::System.IntPtr New(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Window__SWIG_0")]
-            public static extern global::System.IntPtr NewWindow();
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_New__WithWindowData")]
             public static extern global::System.IntPtr New(string name, string className, global::System.Runtime.InteropServices.HandleRef windowData);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Window__SWIG_0")]
+            public static extern global::System.IntPtr NewWindow();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Window")]
             public static extern void DeleteWindow(global::System.Runtime.InteropServices.HandleRef jarg1);
