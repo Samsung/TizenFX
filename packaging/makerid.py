@@ -23,7 +23,7 @@ with open(runtime_dir) as json_file:
             rid_list.append(key)
 
     rid_list = list(set(rid_list))
-    rid_list.sort()
+    rid_list.sort(reverse=True)
 
     f = open(spec_dir,'r')
     origin_data = f.read()
