@@ -51,10 +51,17 @@ namespace Tizen.NUI
         /// Stores the mapping between this instance of BaseHandle (C# base class) and native part.
         /// </summary>
         /// <param name="baseHandle">The instance of BaseHandle (C# base class).</param>
-        internal static void Register(BaseHandle baseHandle)
+        /// <returns>True if we success to register. False otherwise.</returns>
+        internal static bool Register(BaseHandle baseHandle)
         {
             // We store a pointer to the RefObject for the control
             IntPtr refCptr = Interop.BaseHandle.GetObjectPtr(baseHandle.GetBaseHandleCPtrHandleRef);
+
+            if (refCptr == IntPtr.Zero)
+            {
+                Tizen.Log.Error("NUI", $"We try to register BaseHandle dont have body! input type:{baseHandle.GetType()}\n");
+                return false;
+            }
 
             RegistryCurrentThreadCheck();
 
@@ -69,7 +76,7 @@ namespace Tizen.NUI
 
                         // 2023-10-30 : Just print error log without exception. Please reopne below throw action after all apps fixed.
                         Tizen.Log.Fatal("NUI", "Error! just return here without Register! this can cause unknown error or crash in next step");
-                        return;
+                        return false;
                         //throw new System.InvalidOperationException("Error! NUI Registry weakReference should not be NULL!");
                     }
                     var target = weakReference.Target;
@@ -88,7 +95,7 @@ namespace Tizen.NUI
 
                             // 2023-10-30 : Just print error log without exception. Please reopne below throw action after all apps fixed.
                             Tizen.Log.Fatal("NUI", "Error! just return here without Register! this can cause unknown error or crash in next step");
-                            return;
+                            return false;
                             //throw new System.InvalidOperationException("refCptr register failed");
                         }
                     }
@@ -98,7 +105,7 @@ namespace Tizen.NUI
 
                         // 2023-10-30 : Just print error log without exception. Please reopne below throw action after all apps fixed.
                         Tizen.Log.Fatal("NUI", "Error! just return here without Register! this can cause unknown error or crash in next step");
-                        return;
+                        return false;
                         //throw new System.InvalidOperationException("refCptr is already exist!");
                     }
                 }
@@ -108,13 +115,13 @@ namespace Tizen.NUI
 
                     // 2023-10-30 : Just print error log without exception. Please reopne below throw action after all apps fixed.
                     Tizen.Log.Fatal("NUI", "Error! just return here without Register! this can cause unknown error or crash in next step");
-                    return;
+                    return false;
                     //throw new System.InvalidOperationException("refCptr is already exist, but fail to get handle!");
                 }
             }
 
             NUILog.Debug($"[Registry] Register! type:{baseHandle.GetType()} count:{Instance._controlMap.Count} copyNativeHandle:{baseHandle.GetBaseHandleCPtrHandleRef.Handle.ToString("X8")}");
-            return;
+            return true;
         }
 
         /// <summary>
