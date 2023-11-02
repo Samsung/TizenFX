@@ -17,6 +17,7 @@
 using Tizen.Applications;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using NativeClient = Interop.MediaControllerClient;
 using NativeServer = Interop.MediaControllerServer;
 using NativeClientHandle = Interop.MediaControllerClientHandle;
@@ -59,9 +60,21 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="requestId">The request Id for each command.</param>
         internal void SetResponseInformation(string receiverId, string requestId)
         {
-            ReceiverId = receiverId ?? throw new ArgumentNullException(nameof(receiverId)); ;
-            _requestId = requestId ?? throw new ArgumentNullException(nameof(requestId)); ;
+            ReceiverId = receiverId ?? throw new ArgumentNullException(nameof(receiverId));
+            _requestId = requestId;
+
+            if (_requestId == null)
+            {
+                Log.Info(GetType().FullName, "request_id is null. Response() should not be called.");
+            }
         }
+
+        /// <summary>
+        /// Gets the status of response.
+        /// </summary>
+        /// <remarks>If false, the receiver should not response for the received command.</remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool NeedToResponse => _requestId != null;
 
         /// <summary>
         /// Requests command to server.
@@ -90,6 +103,11 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="bundle">The extra data.</param>
         internal void Response(IntPtr serverHandle, int result, Bundle bundle)
         {
+            if (NeedToResponse == false)
+            {
+                throw new InvalidOperationException("The receiver should not call this, if NeedToResponse is false.");
+            }
+
             try
             {
                 if (bundle != null)
@@ -121,6 +139,11 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="bundle">The extra data.</param>
         internal void Response(NativeClientHandle clientHandle, int result, Bundle bundle)
         {
+            if (NeedToResponse == false)
+            {
+                throw new InvalidOperationException("The receiver should not call this, if NeedToResponse is false.");
+            }
+
             try
             {
                 if (bundle != null)
@@ -645,7 +668,7 @@ namespace Tizen.Multimedia.Remoting
             NativeClient.CreateSearchHandle(out _searchHandle).ThrowIfError("Failed to create search handle.");
 
             try
-            {   
+            {
                 if (condition.Bundle != null)
                 {
                     NativeClient.SetSearchConditionBundle(_searchHandle, condition.ContentType, condition.Category,
