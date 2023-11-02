@@ -88,4 +88,91 @@ namespace Tizen.System
         /// <since_tizen> 3 </since_tizen>
         public int Brightness { get; internal set; }
     }
+
+    /// <summary>
+    /// PowerStateWaitEventArgs is an extended EventArgs class.
+    /// This class contains event arguments for the (PowerState)StateWaitCallback event from the Power class.
+    /// </summary>
+    /// <since_tizen> 10 </since_tizen>
+    public class PowerStateWaitEventArgs : EventArgs
+    {
+        internal PowerStateWaitEventArgs() {}
+        /// <summary>
+        /// PrevState indicates reason power state where transition has started
+        /// </summary>
+        public PowerState PrevState { get; internal set; }
+        /// <summary>
+        /// NextState indicates power state to be changed by transition
+        /// </summary>
+        public PowerState NextState { get; internal set; }
+        /// <summary>
+        /// WaitCallbackId indicates unique id for each callback invocation.
+        /// It is used to confirm or cancel about subscribed callback.
+        /// </summary>
+        public UInt64 WaitCallbackId { get; internal set; }
+        /// <summary>
+        /// TransitionReason indicates reason for what triggered the transition
+        /// </summary>
+        public PowerTransitionReason TransitionReason { get; internal set; }
+    }
+
+    /// <summary>
+    /// PowerTransientStateWaitEventArgs is an extended EventArgs class.
+    /// This class contains event arguments for the (PowerTransientState)StateWaitCallback event from the Power class.
+    /// </summary>
+    /// <since_tizen> 10 </since_tizen>
+    public class PowerTransientStateWaitEventArgs : EventArgs
+    {
+        internal PowerTransientStateWaitEventArgs() {}
+        /// <summary>
+        /// TransientState indicates transient state to be changed by the transition
+        /// </summary>
+        public PowerTransientState TransientState { get; internal set; }
+        /// <summary>
+        /// WaitCallbackId indicates unique id for each callback invocation.
+        /// It is used to confirm or cancel about subscribed callback.
+        /// </summary>
+        public UInt64 WaitCallbackId { get; internal set; }
+        /// <summary>
+        /// TransitionReason indicates reason for what triggered the transition
+        /// </summary>
+        public PowerTransitionReason TransitionReason { get; internal set; }
+    }
+
+    /// <summary>
+    /// PowerLockStateChangedEventArgs is an extended EventArgs class.
+    /// This class contains event arguments for the (PowerLock)StateChangedCallback event from the Power class.
+    /// </summary>
+    /// <since_tizen> 10 </since_tizen>
+    public class PowerLockStateChangedEventArgs : EventArgs
+    {
+        internal PowerLockStateChangedEventArgs() {}
+        /// <summary>
+        ///  PowerLockType indicates Type of power lock
+        /// </summary>
+        public PowerLock PowerLockType { get; internal set; }
+        /// <summary>
+        /// PowerLockState indicates locked or unlocked about power lock type.
+        /// </summary>
+        public PowerLockState PowerLockState { get; internal set; }
+    }
+
+    /// <summary>
+    /// PowerStateChangeRequestEventArgs is an extended EventArgs class.
+    /// This class contains event arguments for the (PowerState)StateChangeRequestCallback event from the Power class.
+    /// </summary>
+    /// <since_tizen> 10 </since_tizen>
+    public class PowerStateChangeRequestEventArgs : EventArgs
+    {
+        internal PowerStateChangeRequestEventArgs() {}
+        /// <summary>
+        /// PowerState indicates state to be changed that was requested.
+        /// </summary>
+        public PowerState PowerState { get; internal set; }
+        /// <summary>
+        /// Retval indicates return of change state result from deviced.
+        /// If Retval is negative, it means failure, 0 means success.
+        /// </summary>
+        public int Retval { get; internal set; }
+    }
 }
