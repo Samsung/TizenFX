@@ -1395,7 +1395,7 @@ namespace Tizen.Multimedia
                 }
                 finally
                 {
-                    LibcSupport.Free(val);
+                    Marshal.FreeHGlobal(val);
                 }
             }
 
@@ -1426,7 +1426,7 @@ namespace Tizen.Multimedia
                 }
                 finally
                 {
-                    LibcSupport.Free(val);
+                    Marshal.FreeHGlobal(val);
                 }
             }
 
