@@ -13,7 +13,7 @@
 %define DOTNET_NUGET_SOURCE /nuget
 
 %define TIZEN_NET_RUNTIME_IDENTIFIERS 4.0.0:5.0.0:5.5.0:6.0.0:6.5.0:7.0.0:8.0.0:9.0.0
-%define TIZEN_NET_TARGET_FRAMEWORK_MONIKERS net6.0-tizen9.0:net6.0-tizen8.0:tizen11.0:tizen10.0:tizen90:tizen80:tizen70:tizen60:tizen50:tizen40
+%define TIZEN_NET_TARGET_FRAMEWORK_MONIKERS net6.0-tizen8.0:tizen10.0:tizen90:tizen80:tizen70:tizen60:tizen50:tizen40
 %define DOTNET_CORE_RUNTIME_VERSION 6.0
 
 %define UPGRADE_SCRIPT_PATH /usr/share/upgrade/scripts
@@ -183,7 +183,6 @@ mkdir -p %{buildroot}%{DOTNET_ASSEMBLY_RES_PATH}
 mkdir -p %{buildroot}%{DOTNET_NUGET_SOURCE}
 mkdir -p %{buildroot}%{DOTNET_TOOLS_PATH}
 mkdir -p %{buildroot}%{DOTNET_PRELOAD_PATH}
-mkdir -p %{buildroot}%{DOTNET_LIBRARY_PATH}
 
 # Install Runtime Assemblies
 install -p -m 644 Artifacts/bin/public/*.dll %{buildroot}%{DOTNET_ASSEMBLY_PATH}
@@ -223,10 +222,11 @@ install -p -m 755 packaging/500.tizenfx_upgrade.sh %{buildroot}%{UPGRADE_SCRIPT_
 /usr/bin/vconftool set -t string db/dotnet/tizen_rid_version %{TIZEN_NET_RUNTIME_IDENTIFIERS} -f
 /usr/bin/vconftool set -t string db/dotnet/tizen_tfm_support %{TIZEN_NET_TARGET_FRAMEWORK_MONIKERS} -f
 /usr/bin/vconftool set -t string db/dotnet/runtime_version %{DOTNET_CORE_RUNTIME_VERSION} -f
-touch %{buildroot}%{DOTNET_LIBRARY_PATH}/dotnet_resolving.info
-echo "db/dotnet/tizen_rid_version %{TIZEN_NET_RUNTIME_IDENTIFIERS}" > %{buildroot}%{DOTNET_LIBRARY_PATH}/dotnet_resolving.info
-echo "db/dotnet/tizen_tfm_support %{TIZEN_NET_TARGET_FRAMEWORK_MONIKERS}" >> %{buildroot}%{DOTNET_LIBRARY_PATH}/dotnet_resolving.info
-echo "db/dotnet/runtime_version %{DOTNET_CORE_RUNTIME_VERSION}" >> %{buildroot}%{DOTNET_LIBRARY_PATH}/dotnet_resolving.info
+mkdir -p %{DOTNET_LIBRARY_PATH}
+touch %{DOTNET_LIBRARY_PATH}/dotnet_resolving.info
+echo "db/dotnet/tizen_rid_version %{TIZEN_NET_RUNTIME_IDENTIFIERS}" > %{DOTNET_LIBRARY_PATH}/dotnet_resolving.info
+echo "db/dotnet/tizen_tfm_support %{TIZEN_NET_TARGET_FRAMEWORK_MONIKERS}" >> %{DOTNET_LIBRARY_PATH}/dotnet_resolving.info
+echo "db/dotnet/runtime_version %{DOTNET_CORE_RUNTIME_VERSION}" >> %{DOTNET_LIBRARY_PATH}/dotnet_resolving.info
 
 %files
 %license LICENSE
