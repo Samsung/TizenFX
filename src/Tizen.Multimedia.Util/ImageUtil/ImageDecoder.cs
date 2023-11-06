@@ -247,7 +247,7 @@ namespace Tizen.Multimedia.Util
             {
                 if (outBuffer != IntPtr.Zero)
                 {
-                    LibcSupport.Free(outBuffer);
+                    Marshal.FreeHGlobal(outBuffer);
                 }
 
                 if (imageHandle != IntPtr.Zero)

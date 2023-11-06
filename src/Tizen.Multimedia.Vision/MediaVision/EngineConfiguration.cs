@@ -148,7 +148,7 @@ namespace Tizen.Multimedia.Vision
             }
             finally
             {
-                LibcSupport.Free(ptr);
+                Marshal.FreeHGlobal(ptr);
             }
         }
 
@@ -178,7 +178,7 @@ namespace Tizen.Multimedia.Vision
                 var current = values;
                 for (int i = 0; i < size; i++)
                 {
-                    LibcSupport.Free(Marshal.ReadIntPtr(current));
+                    Marshal.FreeHGlobal(current);
                     current = (IntPtr)((long)current + Marshal.SizeOf(typeof(IntPtr)));
                 }
             }

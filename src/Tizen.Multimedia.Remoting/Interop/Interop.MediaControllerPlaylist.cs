@@ -66,7 +66,7 @@ internal static partial class Interop
             }
             finally
             {
-                Tizen.Multimedia.LibcSupport.Free(valuePtr);
+                Marshal.FreeHGlobal(valuePtr);
             }
         }
 
@@ -141,7 +141,7 @@ internal static partial class Interop
             }
             finally
             {
-                Tizen.Multimedia.LibcSupport.Free(valuePtr);
+                Marshal.FreeHGlobal(valuePtr);
             }
         }
 
@@ -161,8 +161,8 @@ internal static partial class Interop
             }
             finally
             {
-                Tizen.Multimedia.LibcSupport.Free(playlistName);
-                Tizen.Multimedia.LibcSupport.Free(index);
+                Marshal.FreeHGlobal(playlistName);
+                Marshal.FreeHGlobal(index);
             }
         }
 
@@ -184,7 +184,7 @@ internal static partial class Interop
             }
             finally
             {
-                Tizen.Multimedia.LibcSupport.Free(valuePtr);
+                Marshal.FreeHGlobal(valuePtr);
             }
         }
 
