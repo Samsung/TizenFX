@@ -101,7 +101,7 @@ namespace Tizen.Multimedia.Vision
                 {
                     if (unmangedArray != IntPtr.Zero)
                     {
-                        LibcSupport.Free(unmangedArray);
+                        Marshal.FreeHGlobal(unmangedArray);
                     }
                 }
             }
