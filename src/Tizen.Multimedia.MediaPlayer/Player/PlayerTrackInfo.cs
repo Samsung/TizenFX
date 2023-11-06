@@ -121,7 +121,9 @@ namespace Tizen.Multimedia
             }
             finally
             {
-                LibcSupport.Free(code);
+                // LibcSupport.Free(code);
+                // Marshal.FreeHGlobal(Marshal.ReadIntPtr(code));
+                Marshal.FreeHGlobal(code);
             }
         }
 
