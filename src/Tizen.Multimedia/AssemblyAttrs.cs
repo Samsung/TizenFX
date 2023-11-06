@@ -41,6 +41,8 @@ using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("Tizen.Multimedia.Radio, " + PublicKey.Value)]
 
+[assembly: InternalsVisibleTo("Tizen.Multimedia.Metadata, " + PublicKey.Value)]
+
 internal static class PublicKey
 {
     internal const string Value =

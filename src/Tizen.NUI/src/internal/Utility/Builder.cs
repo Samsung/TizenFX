@@ -237,14 +237,40 @@ namespace Tizen.NUI
 
         internal PathConstrainer GetPathConstrainer(string pathConstrainerName)
         {
-            PathConstrainer ret = new PathConstrainer(Interop.Builder.GetPathConstrainer(SwigCPtr, pathConstrainerName), true);
+            global::System.IntPtr cPtr = Interop.Builder.GetPathConstrainer(SwigCPtr, pathConstrainerName);
+
+            PathConstrainer ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as PathConstrainer;
+            if (ret != null)
+            {
+                global::System.Runtime.InteropServices.HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+                Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+            else
+            {
+                ret = new PathConstrainer(cPtr, true);
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal LinearConstrainer GetLinearConstrainer(string linearConstrainerName)
         {
-            LinearConstrainer ret = new LinearConstrainer(Interop.Builder.GetLinearConstrainer(SwigCPtr, linearConstrainerName), true);
+            global::System.IntPtr cPtr = Interop.Builder.GetLinearConstrainer(SwigCPtr, linearConstrainerName);
+
+            LinearConstrainer ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as LinearConstrainer;
+            if (ret != null)
+            {
+                global::System.Runtime.InteropServices.HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+                Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+            else
+            {
+                ret = new LinearConstrainer(cPtr, true);
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

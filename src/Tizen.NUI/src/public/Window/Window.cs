@@ -154,6 +154,28 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Creates a new Window with a specific name using WindowData.<br />
+        /// This creates an extra window in addition to the default main window<br />
+        /// </summary>
+        /// <param name="name">The name for extra window. </param>
+        /// <param name="windowData">The window data</param>
+        /// <returns>A new Window.</returns>
+        /// <feature> http://tizen.org/feature/opengles.surfaceless_context </feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Window(string name, WindowData windowData) : this(Interop.Window.New(name, "", WindowData.getCPtr(windowData)), true)
+        {
+            if (IsSupportedMultiWindow() == false)
+            {
+                NUILog.Error("This device does not support surfaceless_context. So Window cannot be created. ");
+            }
+            this.windowTitle = name;
+            this.EnableBorder(windowData.BorderInterface);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+
 
         /// <summary>
         /// Enumeration for orientation of the window is the way in which a rectangular page is oriented for normal viewing.
@@ -1634,7 +1656,20 @@ namespace Tizen.NUI
 
         internal ObjectRegistry GetObjectRegistry()
         {
-            ObjectRegistry ret = new ObjectRegistry(Interop.Stage.GetObjectRegistry(stageCPtr), true);
+            global::System.IntPtr cPtr = Interop.Stage.GetObjectRegistry(stageCPtr);
+
+            ObjectRegistry ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as ObjectRegistry;
+            if (ret != null)
+            {
+                global::System.Runtime.InteropServices.HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+                Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+            else
+            {
+                ret = new ObjectRegistry(cPtr, true);
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -2446,7 +2481,7 @@ namespace Tizen.NUI
         {
             bool ret = Interop.Window.GetFullScreen(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-              return ret;
+            return ret;
         }
 
         /// <summary>

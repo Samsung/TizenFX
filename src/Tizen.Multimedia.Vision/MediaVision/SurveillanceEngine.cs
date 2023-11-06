@@ -93,7 +93,7 @@ namespace Tizen.Multimedia.Vision
                 }
                 finally
                 {
-                    LibcSupport.Free(roiPtr);
+                    Marshal.FreeHGlobal(roiPtr);
                 }
             }
             set

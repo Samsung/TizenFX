@@ -30,7 +30,7 @@ namespace Tizen.NUI
         /// Creates TypeInfo object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public TypeInfo() : this(Interop.TypeInfo.NewTypeInfo(), true)
+        public TypeInfo() : this(Interop.TypeInfo.NewTypeInfo(), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
