@@ -13,7 +13,7 @@
 
 %define TIZEN_NET_RUNTIME_IDENTIFIERS @rid_version@
 %define TIZEN_NET_TARGET_FRAMEWORK_MONIKERS @tfm_support@
-%define DOTNET_CORE_RUNTIME_VERSION @dotnet_core_version@
+%define DOTNET_CORE_RUNTIME_VERSION 6.0
 
 %define UPGRADE_SCRIPT_PATH /usr/share/upgrade/scripts
 
