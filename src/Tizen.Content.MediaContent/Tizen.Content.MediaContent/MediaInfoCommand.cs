@@ -517,7 +517,7 @@ namespace Tizen.Content.MediaContent
                 var current = path;
                 for (int i = 0; i < length; i++)
                 {
-                    Interop.Libc.Free(Marshal.ReadIntPtr(current));
+                    Marshal.FreeHGlobal(current);
                     current = (IntPtr)((long)current + Marshal.SizeOf(typeof(IntPtr)));
                 }
             }

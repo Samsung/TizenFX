@@ -131,7 +131,7 @@ namespace Tizen.Multimedia.Util
             }
             finally
             {
-                Interop.Libc.Free(outBuffer);
+                Marshal.FreeHGlobal(outBuffer);
             }
         }
 
