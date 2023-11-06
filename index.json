@@ -11724,6 +11724,26 @@
     "title": "Enum PowerLock",
     "keywords": ""
   },
+  "API10/api/Tizen.System.PowerLockStateChangedEventArgs.html": {
+    "href": "API10/api/Tizen.System.PowerLockStateChangedEventArgs.html",
+    "title": "Class PowerLockStateChangedEventArgs",
+    "keywords": ""
+  },
+  "API10/api/Tizen.System.PowerStateChangeRequestEventArgs.html": {
+    "href": "API10/api/Tizen.System.PowerStateChangeRequestEventArgs.html",
+    "title": "Class PowerStateChangeRequestEventArgs",
+    "keywords": ""
+  },
+  "API10/api/Tizen.System.PowerStateWaitEventArgs.html": {
+    "href": "API10/api/Tizen.System.PowerStateWaitEventArgs.html",
+    "title": "Class PowerStateWaitEventArgs",
+    "keywords": ""
+  },
+  "API10/api/Tizen.System.PowerTransientStateWaitEventArgs.html": {
+    "href": "API10/api/Tizen.System.PowerTransientStateWaitEventArgs.html",
+    "title": "Class PowerTransientStateWaitEventArgs",
+    "keywords": ""
+  },
   "API10/api/Tizen.System.PowerUsage.html": {
     "href": "API10/api/Tizen.System.PowerUsage.html",
     "title": "Class PowerUsage",
