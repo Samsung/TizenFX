@@ -102,7 +102,7 @@ namespace Tizen.Multimedia
             }
             finally
             {
-                Tizen.Multimedia.GLibSupport.GFree(val);
+                Marshal.FreeHGlobal(val);
             }
         }
 
@@ -499,12 +499,12 @@ namespace Tizen.Multimedia
             {
                 if (data != IntPtr.Zero)
                 {
-                    GLibSupport.GFree(data);
+                    Marshal.FreeHGlobal(data);
                 }
 
                 if (mimeType != IntPtr.Zero)
                 {
-                    GLibSupport.GFree(mimeType);
+                    Marshal.FreeHGlobal(mimeType);
                 }
             }
         }

@@ -18,6 +18,7 @@ using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Runtime.InteropServices;
 using Native = Interop.ThumbnailExtractor;
 
 namespace Tizen.Multimedia.Util
@@ -290,7 +291,7 @@ namespace Tizen.Multimedia.Util
             {
                 if (thumbData != IntPtr.Zero)
                 {
-                    GLibSupport.GFree(thumbData);
+                    Marshal.FreeHGlobal(thumbData);
                 }
             }
         }

@@ -36,13 +36,4 @@ namespace Tizen.Multimedia
             public static extern int Access(string path, int mode);
         }
     }
-
-    internal static partial class Interop
-    {
-        internal static partial class GLib
-        {
-            [DllImport(Libraries.GLib, EntryPoint = "g_free", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void GFree(IntPtr ptr);
-        }
-    }
 }

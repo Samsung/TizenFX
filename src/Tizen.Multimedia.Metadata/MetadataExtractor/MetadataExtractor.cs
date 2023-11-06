@@ -163,8 +163,8 @@ namespace Tizen.Multimedia
             }
             finally
             {
-                GLibSupport.GFree(data);
-                GLibSupport.GFree(mimeType);
+                Marshal.FreeHGlobal(data);
+                Marshal.FreeHGlobal(mimeType);
             }
         }
 
@@ -196,7 +196,7 @@ namespace Tizen.Multimedia
             }
             finally
             {
-                GLibSupport.GFree(lyrics);
+                Marshal.FreeHGlobal(lyrics);
             }
         }
 
@@ -230,7 +230,7 @@ namespace Tizen.Multimedia
             }
             finally
             {
-                GLibSupport.GFree(data);
+                Marshal.FreeHGlobal(data);
             }
         }
 
@@ -267,7 +267,7 @@ namespace Tizen.Multimedia
             }
             finally
             {
-                GLibSupport.GFree(data);
+                Marshal.FreeHGlobal(data);
             }
         }
 

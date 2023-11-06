@@ -39,7 +39,7 @@ namespace Tizen.Content.MediaContent
             }
             finally
             {
-                Tizen.Multimedia.GLibSupport.GFree(val);
+                Marshal.FreeHGlobal(val);
             }
         }
 
