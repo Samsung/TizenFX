@@ -256,7 +256,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AccessibilityStates GetAccessibilityStates()
         {
-            var result = new AccessibilityStates {BitMask = Interop.ControlDevel.DaliToolkitDevelControlGetAccessibilityStates(SwigCPtr)};
+            var result = new AccessibilityStates { BitMask = Interop.ControlDevel.DaliToolkitDevelControlGetAccessibilityStates(SwigCPtr) };
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
         }
@@ -333,7 +333,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return new AccessibilityEvents {Owner = this};
+                return new AccessibilityEvents { Owner = this };
             }
         }
 
@@ -365,6 +365,40 @@ namespace Tizen.NUI.BaseComponents
         {
             Interop.ControlDevel.DaliAccessibilityBridgeUnregisterDefaultLabel(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(bool disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            internalName = null;
+
+            if (SwigCPtr.Handle != IntPtr.Zero && global::System.Threading.Thread.CurrentThread.ManagedThreadId == Registry.Instance.SavedApplicationThread.ManagedThreadId)
+            {
+                Interop.ControlDevel.DaliAccessibilityDetachAccessibleObject(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            if (disposing == false)
+            {
+                if (IsNativeHandleInvalid() || SwigCMemOwn == false)
+                {
+                    // at this case, implicit nor explicit dispose is not required. No native object is made.
+                    disposed = true;
+                    return;
+                }
+            }
+
+            if (disposing)
+            {
+                Unparent();
+            }
+
+            base.Dispose(disposing);
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
