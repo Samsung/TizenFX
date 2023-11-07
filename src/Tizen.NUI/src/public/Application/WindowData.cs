@@ -100,6 +100,26 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets or sets the front buffer rendering of the default window.
+        /// The default value is false.
+        /// </summary>
+        /// <value>The front buffer rendering of the default window.</value>
+        public bool FrontBufferRendering
+        {
+            set
+            {
+                Interop.WindowData.SetFrontBufferRendering(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                bool isFrontBufferRendering = Interop.WindowData.GetFrontBufferRendering(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+                return isFrontBufferRendering;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the border interface of the default window.
         /// The default value is null.
         /// </summary>
