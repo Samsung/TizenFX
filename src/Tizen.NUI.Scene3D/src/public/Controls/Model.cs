@@ -76,6 +76,7 @@ namespace Tizen.NUI.Scene3D
     /// <since_tizen> 10 </since_tizen>
     public partial class Model : View
     {
+        private bool isBuilt = false;
         internal Model(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
         {
         }
@@ -100,6 +101,7 @@ namespace Tizen.NUI.Scene3D
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             this.PositionUsesPivotPoint = true;
+            ResourcesLoaded += OnResourcesLoaded;
         }
 
         /// <summary>
@@ -620,6 +622,29 @@ namespace Tizen.NUI.Scene3D
             float scaleFactor = Interop.Model.GetImageBasedLightScaleFactor(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return scaleFactor;
+        }
+
+        private void OnResourcesLoaded(object sender, EventArgs e)
+        {
+            if(!isBuilt && this.ModelRoot != null)
+            {
+                this.ModelRoot.Build();
+                isBuilt = true;
+            }
+        }
+
+        /// <summary>
+        /// To make transitionSet instance be disposed.
+        /// </summary>
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            ResourcesLoaded -= OnResourcesLoaded;
+            base.Dispose(type);
         }
 
         /// <summary>
