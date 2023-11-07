@@ -138,8 +138,21 @@ namespace Tizen.NUI.Scene3D
         private Geometry GetGeometry()
         {
             IntPtr cPtr = Interop.ModelPrimitive.GetGeometry(SwigCPtr);
+            Geometry ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Geometry;
+            if (ret == null)
+            {
+                HandleRef handle = new HandleRef(this, cPtr);
+                handle = new HandleRef(null, IntPtr.Zero);
+
+                ret = new Geometry(cPtr, true);
+            }
+            else
+            {
+                HandleRef handle = new HandleRef(this, cPtr);
+                Tizen.NUI.Interop.BaseHandle.DeleteBaseHandle(handle);
+                handle = new HandleRef(null, IntPtr.Zero);
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            Geometry ret = (cPtr == IntPtr.Zero) ? null : Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Geometry;
             return ret;
         }
 
@@ -163,9 +176,22 @@ namespace Tizen.NUI.Scene3D
         [EditorBrowsable(EditorBrowsableState.Never)]
         private Material GetMaterial()
         {
-            IntPtr cPtr = Interop.ModelPrimitive.GetMaterial(SwigCPtr);
+            global::System.IntPtr cPtr = Interop.ModelPrimitive.GetMaterial(SwigCPtr);
+            Material ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Material;
+            if (ret == null)
+            {
+                HandleRef handle = new HandleRef(this, cPtr);
+                handle = new HandleRef(null, IntPtr.Zero);
+
+                ret = new Material(cPtr, true);
+            }
+            else
+            {
+                HandleRef handle = new HandleRef(this, cPtr);
+                Tizen.NUI.Interop.BaseHandle.DeleteBaseHandle(handle);
+                handle = new HandleRef(null, IntPtr.Zero);
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            Material ret = (cPtr == IntPtr.Zero) ? null : Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Material;
             return ret;
         }
 

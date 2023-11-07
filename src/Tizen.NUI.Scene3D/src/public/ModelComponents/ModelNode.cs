@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
+using System.Collections.Generic;
 using Tizen.NUI;
 using Tizen.NUI.Binding;
 using Tizen.NUI.BaseComponents;
@@ -162,7 +163,7 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
-        /// Removes Returns a child ModelNode object with a name that matches nodeName.
+        /// Returns a child ModelNode object with a name that matches nodeName.
         /// </summary>
         /// <param name="nodeName">The name of the child ModelNode object you want to find.</param>
         /// <returns>Child ModelNode that has nodeName as name.</returns>
@@ -237,6 +238,73 @@ namespace Tizen.NUI.Scene3D
         private uint GetModelPrimitiveCount()
         {
             uint ret = Interop.ModelNode.GetModelPrimitiveCount(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Build C# ModelNode Tree
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal void Build()
+        {
+            List<ModelNode> childModelNodes = new List<ModelNode>();
+            uint childModelNodeCount = GetChildModelNodeCount();
+            for(uint i = 0; i < childModelNodeCount; ++i)
+            {
+                ModelNode modelNode = GetChildModelNodeAt(i);
+                childModelNodes.Add(modelNode);
+                modelNode.Build();
+            }
+
+            foreach(ModelNode node in childModelNodes)
+            {
+                this.Add(node);
+            }
+        }
+
+        /// <summary>
+        /// Gets the number of child objects in the ModelNode object.
+        /// </summary>
+        /// <returns>The number of childchild objects in the ModelNode object.</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private uint GetChildModelNodeCount()
+        {
+            uint ret = Interop.ModelNode.GetChildModelNodeCount(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Returns a child ModelNode object at the index.
+        /// </summary>
+        /// <param name="index">The index of child ModelNode object you want to find.</param>
+        /// <returns>Child ModelNode</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private ModelNode GetChildModelNodeAt(uint index)
+        {
+            global::System.IntPtr cPtr = Interop.ModelNode.GetChildModelNodeAt(SwigCPtr, index);
+            ModelNode ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as ModelNode;
+            if (ret == null)
+            {
+                // Store the value of PositionUsesAnchorPoint from dali object (Since View object automatically change PositionUsesPivotPoint value as false, we need to keep value.)
+                HandleRef handle = new HandleRef(this, cPtr);
+                bool originalPositionUsesAnchorPoint = Object.InternalGetPropertyBool(handle, View.Property.PositionUsesAnchorPoint);
+                handle = new HandleRef(null, IntPtr.Zero);
+
+                // Register new animatable into Registry.
+                ret = new ModelNode(cPtr, true);
+                ret.PositionUsesPivotPoint = originalPositionUsesAnchorPoint;
+            }
+            else
+            {
+                // We found matched NUI animatable. Reduce cPtr reference count.
+                HandleRef handle = new HandleRef(this, cPtr);
+                Tizen.NUI.Interop.BaseHandle.DeleteBaseHandle(handle);
+                handle = new HandleRef(null, IntPtr.Zero);
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
