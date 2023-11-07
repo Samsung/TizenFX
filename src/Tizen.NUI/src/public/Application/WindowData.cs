@@ -30,6 +30,7 @@ namespace Tizen.NUI
     {
         private IBorderInterface borderInterface = null;
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public WindowData() : this(Interop.WindowData.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -44,6 +45,7 @@ namespace Tizen.NUI
         /// The default size of the position and size is X=0, Y=0, WIDTH=0, HEIGHT=0.
         /// </summary>
         /// <value>The position and size of the default window.</value>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Rectangle PositionSize
         {
             set
@@ -64,6 +66,7 @@ namespace Tizen.NUI
         /// The default mode is WindowMode.Transparent.
         /// </summary>
         /// <value>The mode of the default window.</value>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication.WindowMode WindowMode
         {
             set
@@ -84,6 +87,7 @@ namespace Tizen.NUI
         /// The default type is WindowType.Normal.
         /// </summary>
         /// <value>The type of the default window.</value>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public WindowType WindowType
         {
             set
@@ -100,10 +104,32 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets or sets the front buffer rendering of the default window.
+        /// The default value is false.
+        /// </summary>
+        /// <value>The front buffer rendering of the default window.</value>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool FrontBufferRendering
+        {
+            set
+            {
+                Interop.WindowData.SetFrontBufferRendering(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                bool isFrontBufferRendering = Interop.WindowData.GetFrontBufferRendering(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+                return isFrontBufferRendering;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the border interface of the default window.
         /// The default value is null.
         /// </summary>
         /// <value>The border interface of the default window.</value>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public IBorderInterface BorderInterface
         {
             set
