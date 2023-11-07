@@ -1231,12 +1231,6 @@ namespace Tizen.NUI.BaseComponents
 
             disposeDebugging(type);
 
-            internalName = "";
-            Unparent();
-
-            Interop.ControlDevel.DaliAccessibilityDetachAccessibleObject(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
             //_mergedStyle = null;
 
             internalMaximumSize?.Dispose();
