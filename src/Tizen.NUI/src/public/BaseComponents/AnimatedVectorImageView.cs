@@ -328,6 +328,25 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Set minimum frame and maximum frame by marker.
+        /// Animation will play between the start frame and the end frame of the marker if one marker is specified.
+        /// Or animation will play between the start frame of the first marker and the end frame of the second marker if two markers are specified.
+        /// </summary>
+        /// <param name="marker1">First marker</param>
+        /// <param name="marker2">Second marker</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetMinAndMaxFrameByMarker(string marker1, string marker2 = null)
+        {
+            NUILog.Debug($"[AnimatedVectorImageView START[ [{GetId()}] SetMinAndMaxFrameByMarker({marker1}, {marker2})");
+
+            minimumFrameMarker = marker1;
+            maximumFrameMarker = marker2;
+            isMinMaxFrameSet = minMaxSetTypes.SetByMinAndMaxFrameByMarkerMethod;
+
+            NUILog.Debug($" [{GetId()}] minimumFrameMarker:{minimumFrameMarker}, maximumFrameMarker:{maximumFrameMarker}) ]AnimatedVectorImageView END]");
+        }
+
+        /// <summary>
         /// SetMinMaxFrame(int startFrame, int endFrame)
         /// </summary>
         /// <param name="minFrame"></param>
@@ -355,9 +374,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// A marker has its start frame and end frame. 
+        /// A marker has its start frame and end frame.
         /// Animation will play between the start frame and the end frame of the marker if one marker is specified.
-        /// Or animation will play between the start frame of the first marker and the end frame of the second marker if two markers are specified.   *
+        /// Or animation will play between the start frame of the first marker and the end frame of the second marker if two markers are specified.
         /// </summary>
         /// <param name="marker1">First marker</param>
         /// <param name="marker2">Second marker</param>
@@ -389,6 +408,10 @@ namespace Tizen.NUI.BaseComponents
                     base.CurrentFrame = 0;
                     innerCurrentFrame = 0;
                     break;
+
+                case minMaxSetTypes.SetByMinAndMaxFrameByMarkerMethod:
+                    GetFrameValueFromMarkerInfo();
+                    goto case minMaxSetTypes.SetByMinAndMaxFrameMethod;
 
                 case minMaxSetTypes.SetByMinAndMaxFrameMethod:
                     base.SetMinMaxFrame(minimumFrame, maximumFrame);
@@ -479,7 +502,7 @@ namespace Tizen.NUI.BaseComponents
             switch (isMinMaxFrameSet)
             {
                 case minMaxSetTypes.NotSetByUser:
-                    switch(endAction)
+                    switch (endAction)
                     {
                         case EndActions.Cancel:
                             innerCurrentFrame = base.CurrentFrame;
@@ -488,10 +511,14 @@ namespace Tizen.NUI.BaseComponents
                             base.CurrentFrame = innerCurrentFrame = 0;
                             break;
                         case EndActions.StopFinal:
-                            base.CurrentFrame = innerCurrentFrame= totalFrameNum - 1;
+                            base.CurrentFrame = innerCurrentFrame = totalFrameNum - 1;
                             break;
                     }
                     break;
+
+                case minMaxSetTypes.SetByMinAndMaxFrameByMarkerMethod:
+                    GetFrameValueFromMarkerInfo();
+                    goto case minMaxSetTypes.SetByMinAndMaxFrameMethod;
 
                 case minMaxSetTypes.SetByMinAndMaxFrameMethod:
                     switch (endAction)
@@ -507,6 +534,7 @@ namespace Tizen.NUI.BaseComponents
                             break;
                     }
                     break;
+
                 case minMaxSetTypes.SetByMarker:
                 case minMaxSetTypes.SetByBaseSetMinMaxFrameMethod:
                 default:
@@ -581,6 +609,67 @@ namespace Tizen.NUI.BaseComponents
 
 
         #region Internal
+        internal void GetFrameValueFromMarkerInfo()
+        {
+            bool minimumMarkerFoundSuccess = false;
+            bool maximumMarkerFoundSuccess = false;
+            int foundedMinimumFrame = 0;
+            int foundedMaximumFrame = 0;
+
+            NUILog.Debug($" [{GetId()}] GetFrameValueFromMarkerInfo : marker = (minimumFrameMarker:{minimumFrameMarker}, maximumFrameMarker:{maximumFrameMarker})");
+
+            // Note : let we insure to get marker frame value only one time per each frame marker setter
+            if (minimumFrameMarker == null)
+            {
+                return;
+            }
+
+            var markerInfoList = GetMarkerInfo();
+            if (markerInfoList != null)
+            {
+                foreach (var markerInfo in markerInfoList)
+                {
+                    if (markerInfo.Item1 == minimumFrameMarker)
+                    {
+                        if (maximumFrameMarker == null)
+                        {
+                            minimumMarkerFoundSuccess = true;
+                            maximumMarkerFoundSuccess = true;
+                            foundedMinimumFrame = markerInfo.Item2;
+                            foundedMaximumFrame = markerInfo.Item3;
+                        }
+                        else
+                        {
+                            minimumMarkerFoundSuccess = true;
+                            foundedMinimumFrame = markerInfo.Item2;
+                        }
+                    }
+                    else if (markerInfo.Item1 == maximumFrameMarker)
+                    {
+                        maximumMarkerFoundSuccess = true;
+                        foundedMaximumFrame = markerInfo.Item2;
+                    }
+                }
+            }
+
+            if (minimumMarkerFoundSuccess && maximumMarkerFoundSuccess)
+            {
+                minimumFrame = (foundedMinimumFrame) > 0 ? foundedMinimumFrame : 0;
+                maximumFrame = (foundedMaximumFrame) > 0 ? foundedMaximumFrame : 0;
+                NUILog.Debug($" [{GetId()}] GetFrameValueFromMarkerInfo Sucess! frame set as {minimumFrame} ~ {maximumFrame} : marker = (minimumFrameMarker:{minimumFrameMarker}, maximumFrameMarker:{maximumFrameMarker})");
+                if (minimumFrame > maximumFrame)
+                {
+                    NUILog.Debug($" [{GetId()}] minimumFrame:{minimumFrame} > maximumFrame:{maximumFrame})");
+                }
+                minimumFrameMarker = maximumFrameMarker = null;
+            }
+            else
+            {
+                minimumFrame = 0;
+                maximumFrame = totalFrameNum - 1;
+                NUILog.Debug($" [{GetId()}] GetFrameValueFromMarkerInfo Failed! frame set as {minimumFrame} ~ {maximumFrame} : marker = (minimumFrameMarker:{minimumFrameMarker}, maximumFrameMarker:{maximumFrameMarker})");
+            }
+        }
         #endregion Internal
 
 
@@ -589,6 +678,8 @@ namespace Tizen.NUI.BaseComponents
         private int repeatCnt = 0;
         private RepeatModes repeatMode = RepeatModes.Restart;
         private int minimumFrame = -1, maximumFrame = -1;
+        private string minimumFrameMarker = null;
+        private string maximumFrameMarker = null;
         private minMaxSetTypes isMinMaxFrameSet = minMaxSetTypes.NotSetByUser;
         private int innerCurrentFrame = -1;
         private EndActions innerEndAction = EndActions.Cancel;
@@ -596,6 +687,7 @@ namespace Tizen.NUI.BaseComponents
         {
             NotSetByUser,
             SetByMinAndMaxFrameMethod,
+            SetByMinAndMaxFrameByMarkerMethod,
             SetByMarker,
             SetByBaseSetMinMaxFrameMethod,
         }
