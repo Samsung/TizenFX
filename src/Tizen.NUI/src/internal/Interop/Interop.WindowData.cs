@@ -47,6 +47,13 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowData_GetTransparency")]
             [return: MarshalAs(UnmanagedType.U1)]
             public static extern bool GetTransparency(HandleRef nuiWindowData);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowData_SetFrontBufferRendering")]
+            public static extern void SetFrontBufferRendering(HandleRef nuiWindowData, bool enable);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowData_GetFrontBufferRendering")]
+            [return: MarshalAs(UnmanagedType.U1)]
+            public static extern bool GetFrontBufferRendering(HandleRef nuiWindowData);
         }
     }
 }
