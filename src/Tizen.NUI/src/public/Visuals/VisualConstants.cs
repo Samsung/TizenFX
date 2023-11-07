@@ -971,6 +971,16 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly int EnableFrameCache = NDalic.ImageVisualOrientationCorrection + 13;
+
+        /// <summary>
+        /// @brief The marker information the AnimatedVectorImageVisual will use.
+        /// @details Type Property::MAP.
+        /// The map contains the marker name as a key and Property::Array as a value.
+        /// And the array contains 2 integer values which are the frame numbers, the start frame number and the end frame number of the marker.
+        /// @note This property is read-only.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int MarkerInfo = NDalic.ImageVisualOrientationCorrection + 15;
     }
 
     /// <summary>

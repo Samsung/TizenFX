@@ -595,6 +595,62 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Get the list of markers' information such as the start frame and the end frame in the Lottie file.
+        /// </summary>
+        /// <returns>List of Tuple (string of marker name, integer of start frame, integer of end frame)</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public List<Tuple<string, int, int>> GetMarkerInfo()
+        {
+            if (currentStates.markerInfo != null)
+            {
+                return currentStates.markerInfo;
+            }
+
+            NUILog.Debug($"<");
+
+            PropertyMap imageMap = base.Image;
+            if (imageMap != null)
+            {
+                PropertyValue val = imageMap.Find(ImageVisualProperty.MarkerInfo);
+                PropertyMap markerMap = new PropertyMap();
+                if (val?.Get(ref markerMap) == true)
+                {
+                    currentStates.markerInfo = new List<Tuple<string, int, int>>();
+                    for (uint i = 0; i < markerMap.Count(); i++)
+                    {
+                        using PropertyKey propertyKey = markerMap.GetKeyAt(i);
+                        string key = propertyKey.StringKey;
+
+                        using PropertyValue arrVal = markerMap.GetValue(i);
+                        using PropertyArray arr = new PropertyArray();
+                        if (arrVal.Get(arr))
+                        {
+                            int startFrame = -1;
+                            using PropertyValue start = arr.GetElementAt(0);
+                            start?.Get(out startFrame);
+
+                            int endFrame = -1;
+                            using PropertyValue end = arr.GetElementAt(1);
+                            end?.Get(out endFrame);
+
+                            NUILog.Debug($"[{i}] marker name={key}, startFrame={startFrame}, endFrame={endFrame}");
+
+                            Tuple<string, int, int> item = new Tuple<string, int, int>(key, startFrame, endFrame);
+
+                            currentStates.markerInfo?.Add(item);
+                        }
+                    }
+                }
+                markerMap.Dispose();
+                val?.Dispose();
+            }
+            NUILog.Debug($">");
+
+            return currentStates.markerInfo;
+        }
+
+        /// <summary>
         /// A marker has its start frame and end frame.
         /// Animation will play between the start frame and the end frame of the marker if one marker is specified.
         /// Or animation will play between the start frame of the first marker and the end frame of the second marker if two markers are specified.   *
@@ -1043,6 +1099,7 @@ namespace Tizen.NUI.BaseComponents
             internal float scale;
             internal PlayStateType playState;
             internal List<Tuple<string, int, int>> contentInfo;
+            internal List<Tuple<string, int, int>> markerInfo;
             internal string mark1, mark2;
             internal bool redrawInScalingDown;
             internal bool enableFrameCache;
