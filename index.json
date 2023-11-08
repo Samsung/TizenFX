@@ -28259,6 +28259,46 @@
     "title": "Enum PowerLock",
     "keywords": ""
   },
+  "API11/api/Tizen.System.PowerLockState.html": {
+    "href": "API11/api/Tizen.System.PowerLockState.html",
+    "title": "Enum PowerLockState",
+    "keywords": ""
+  },
+  "API11/api/Tizen.System.PowerLockStateChangedEventArgs.html": {
+    "href": "API11/api/Tizen.System.PowerLockStateChangedEventArgs.html",
+    "title": "Class PowerLockStateChangedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.System.PowerState.html": {
+    "href": "API11/api/Tizen.System.PowerState.html",
+    "title": "Enum PowerState",
+    "keywords": ""
+  },
+  "API11/api/Tizen.System.PowerStateChangeRequestEventArgs.html": {
+    "href": "API11/api/Tizen.System.PowerStateChangeRequestEventArgs.html",
+    "title": "Class PowerStateChangeRequestEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.System.PowerStateWaitEventArgs.html": {
+    "href": "API11/api/Tizen.System.PowerStateWaitEventArgs.html",
+    "title": "Class PowerStateWaitEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.System.PowerTransientState.html": {
+    "href": "API11/api/Tizen.System.PowerTransientState.html",
+    "title": "Enum PowerTransientState",
+    "keywords": ""
+  },
+  "API11/api/Tizen.System.PowerTransientStateWaitEventArgs.html": {
+    "href": "API11/api/Tizen.System.PowerTransientStateWaitEventArgs.html",
+    "title": "Class PowerTransientStateWaitEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.System.PowerTransitionReason.html": {
+    "href": "API11/api/Tizen.System.PowerTransitionReason.html",
+    "title": "Enum PowerTransitionReason",
+    "keywords": ""
+  },
   "API11/api/Tizen.System.PowerUsage.html": {
     "href": "API11/api/Tizen.System.PowerUsage.html",
     "title": "Class PowerUsage",
