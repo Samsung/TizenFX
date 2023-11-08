@@ -118,7 +118,7 @@ namespace NUIWindowKVMSample
 
             tzShell = new Tizen.NUI.WindowSystem.Shell.TizenShell();
             kvmService = new Tizen.NUI.WindowSystem.Shell.KVMService(tzShell, this);
-            kvmService.SetSecondarySelction();
+            kvmService.SetSecondarySelection();
             kvmService.DragStarted += OnDragStarted;
             kvmService.DragEnded += OnDragEnded;
         }

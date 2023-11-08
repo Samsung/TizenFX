@@ -22,7 +22,11 @@ namespace Tizen.NUI
 {
     internal class ObjectRegistry : BaseHandle
     {
-        internal ObjectRegistry(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal ObjectRegistry(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal ObjectRegistry(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
         }
 
@@ -156,12 +160,7 @@ namespace Tizen.NUI
         }
 
 
-        public ObjectRegistry() : this(Interop.ObjectRegistry.NewObjectRegistry(), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        public ObjectRegistry(ObjectRegistry handle) : this(Interop.ObjectRegistry.NewObjectRegistry(ObjectRegistry.getCPtr(handle)), true)
+        public ObjectRegistry() : this(Interop.ObjectRegistry.NewObjectRegistry(), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

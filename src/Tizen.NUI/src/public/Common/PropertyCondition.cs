@@ -29,12 +29,16 @@ namespace Tizen.NUI
         /// Create a property condition instance.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public PropertyCondition() : this(Interop.PropertyCondition.NewPropertyCondition(), true)
+        public PropertyCondition() : this(Interop.PropertyCondition.NewPropertyCondition(), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal PropertyCondition(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal PropertyCondition(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal PropertyCondition(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
         }
 

@@ -195,10 +195,15 @@ namespace Tizen.NUI
 
         }
 
-        internal WidgetView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal WidgetView(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
         {
         }
-        internal WidgetView(WidgetView handle) : this(Interop.WidgetView.NewWidgetView(WidgetView.getCPtr(handle)), true)
+
+        internal WidgetView(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, true, cRegister)
+        {
+        }
+
+        internal WidgetView(WidgetView handle) : this(Interop.WidgetView.NewWidgetView(WidgetView.getCPtr(handle)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

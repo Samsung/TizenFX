@@ -18,6 +18,8 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 
+using Native = Interop.MetadataExtractor;
+
 namespace Tizen.Multimedia
 {
     /// <summary>
@@ -33,7 +35,7 @@ namespace Tizen.Multimedia
         private void Create(Func<MetadataExtractorError> initFunc)
         {
             MetadataExtractorRetValidator.ThrowIfError(
-                Interop.MetadataExtractor.Create(out _handle), "Failed to create metadata");
+                Native.Create(out _handle), "Failed to create metadata");
 
             try
             {
@@ -62,7 +64,7 @@ namespace Tizen.Multimedia
                 throw new ArgumentNullException(nameof(path));
             }
 
-            Create(() => Interop.MetadataExtractor.SetPath(_handle, path));
+            Create(() => Native.SetPath(_handle, path));
         }
 
         /// <summary>
@@ -89,7 +91,7 @@ namespace Tizen.Multimedia
 
             try
             {
-                Create(() => Interop.MetadataExtractor.SetBuffer(_handle, _buffer, buffer.Length));
+                Create(() => Native.SetBuffer(_handle, _buffer, buffer.Length));
             }
             catch (Exception)
             {
@@ -146,7 +148,7 @@ namespace Tizen.Multimedia
             {
                 int size = 0;
 
-                var ret = Interop.MetadataExtractor.GetArtwork(Handle, out data, out size, out mimeType);
+                var ret = Native.GetArtwork(Handle, out data, out size, out mimeType);
                 MetadataExtractorRetValidator.ThrowIfError(ret, "Failed to get value");
 
                 if (size > 0)
@@ -161,8 +163,8 @@ namespace Tizen.Multimedia
             }
             finally
             {
-                Interop.Libc.Free(data);
-                Interop.Libc.Free(mimeType);
+                Marshal.FreeHGlobal(data);
+                Marshal.FreeHGlobal(mimeType);
             }
         }
 
@@ -182,7 +184,7 @@ namespace Tizen.Multimedia
             {
                 uint timestamp = 0;
 
-                var ret = Interop.MetadataExtractor.GetSynclyrics(Handle, index, out timestamp, out lyrics);
+                var ret = Native.GetSynclyrics(Handle, index, out timestamp, out lyrics);
                 MetadataExtractorRetValidator.ThrowIfError(ret, "Failed to get sync lyrics");
 
                 if (lyrics == IntPtr.Zero)
@@ -194,7 +196,7 @@ namespace Tizen.Multimedia
             }
             finally
             {
-                Interop.Libc.Free(lyrics);
+                Marshal.FreeHGlobal(lyrics);
             }
         }
 
@@ -213,7 +215,7 @@ namespace Tizen.Multimedia
             {
                 int size = 0;
 
-                var ret = Interop.MetadataExtractor.GetFrame(Handle, out data, out size);
+                var ret = Native.GetFrame(Handle, out data, out size);
                 MetadataExtractorRetValidator.ThrowIfError(ret, "Failed to get value");
 
                 if (size == 0)
@@ -228,7 +230,7 @@ namespace Tizen.Multimedia
             }
             finally
             {
-                Interop.Libc.Free(data);
+                Marshal.FreeHGlobal(data);
             }
         }
 
@@ -250,7 +252,7 @@ namespace Tizen.Multimedia
             {
                 int size = 0;
 
-                var ret = Interop.MetadataExtractor.GetFrameAtTime(Handle, timeStamp, accurate, out data, out size);
+                var ret = Native.GetFrameAtTime(Handle, timeStamp, accurate, out data, out size);
                 MetadataExtractorRetValidator.ThrowIfError(ret, "Failed to get value");
 
                 if (size == 0)
@@ -265,7 +267,7 @@ namespace Tizen.Multimedia
             }
             finally
             {
-                Interop.Libc.Free(data);
+                Marshal.FreeHGlobal(data);
             }
         }
 
@@ -303,7 +305,7 @@ namespace Tizen.Multimedia
 
             if (_handle != IntPtr.Zero)
             {
-                var ret = Interop.MetadataExtractor.Destroy(_handle);
+                var ret = Native.Destroy(_handle);
                 if (ret != MetadataExtractorError.None)
                 {
                     Log.Error(typeof(MetadataExtractor).FullName, $"DestroyHandle failed : {ret}.");

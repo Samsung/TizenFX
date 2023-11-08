@@ -44,7 +44,7 @@ jobs:
       uses: actions/checkout@v3
       with:
         repository: TizenAPI/tizenfx-api-specs
-        token: ${{ secrets.TIZENAPI_GITHUB_TOKEN }}
+        token: ${{ secrets.TIZENAPI_GITHUB_TOKEN_FINEGRAINED }}
         path: .apispec
     
     - name: Push to APISpec
