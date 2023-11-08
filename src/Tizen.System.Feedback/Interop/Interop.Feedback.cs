@@ -67,5 +67,8 @@ internal static partial class Interop
 
         [DllImport(Libraries.Feedback, EntryPoint = "feedback_stop_type_internal")]
         internal static extern int StopTypeInternal(FeedbackType type);
+
+        [DllImport(Libraries.Feedback, EntryPoint = "feedback_get_theme_ids_internal", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int GetThemeIdsInternal(FeedbackType type, out uint coundOfTheme, out IntPtr themeIds);
     }
 }
