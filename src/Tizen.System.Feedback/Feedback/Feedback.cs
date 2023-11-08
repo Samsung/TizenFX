@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 
 namespace Tizen.System
@@ -730,6 +731,62 @@ namespace Tizen.System
                         throw new InvalidOperationException("Failed to stop pattern by feedback type");
                 }
             }
+        }
+
+        /// <summary>
+        /// Gets the id array of theme supported.
+        /// </summary>
+        /// <remarks>
+        /// Now this internal API works for FeedbackType.Sound only, FeedbackType.Vibration is not supported.
+        /// The theme id is positive value as defined in the conf file.
+        /// </remarks>
+        /// <since_tizen> 10 </since_tizen>
+        /// <param name="type">The feedback type.</param>
+        /// <returns>The array of theme id supported according to feedback type.</returns>
+        /// <exception cref="ArgumentException">Thrown when failed because of an invalid arguament.</exception>
+        /// <exception cref="NotSupportedException">Thrown when failed becuase the device (haptic, sound) is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of a system error.</exception>
+        /// <example>
+        /// <code>
+        /// Feedback feedback = new Feedback();
+        /// uint[] getThemeIds = feedback.GetThemeIdsInternal(FeedbackType.Sound);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint[] GetThemeIdsInternal(FeedbackType type)
+        {
+            uint countOfTheme = 0;
+            IntPtr getThemeIds;
+            Interop.Feedback.FeedbackError res;
+
+            res = (Interop.Feedback.FeedbackError)Interop.Feedback.GetThemeIdsInternal((Interop.Feedback.FeedbackType)type, out countOfTheme, out getThemeIds);
+            if (res != Interop.Feedback.FeedbackError.None)
+            {
+                Log.Warn(LogTag, string.Format("Failed to get ids of theme internal. err = {0}", res));
+                switch (res)
+                {
+                    case Interop.Feedback.FeedbackError.InvalidParameter:
+                        throw new ArgumentException("Invalid Arguments");
+                    case Interop.Feedback.FeedbackError.NotSupported:
+                        throw new NotSupportedException("Device is not supported");
+                    case Interop.Feedback.FeedbackError.OperationFailed:
+                    default:
+                        throw new InvalidOperationException("Failed to get ids of theme internal");
+                }
+            }
+
+            uint[] themeIds = new uint[countOfTheme];
+            unsafe {
+                uint index = 0;
+                uint* themeIdsPointer = (uint*)getThemeIds;
+
+                for (index = 0; index < countOfTheme; index++) {
+                    themeIds[index] = themeIdsPointer[index];
+                }
+            }
+            Marshal.FreeHGlobal(getThemeIds);
+
+            return themeIds;
         }
     }
 }
