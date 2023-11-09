@@ -61,6 +61,10 @@ namespace Tizen.NUI.BaseComponents
             currentStates.redrawInScalingDown = true;
             currentStates.desiredWidth = 0;
             currentStates.desiredHeight = 0;
+            currentStates.synchronousLoading = true;
+
+            // Notify to base ImageView cache that default synchronousLoading for lottie file is true.
+            base.SynchronousLoading = currentStates.synchronousLoading;
 
             // Set changed flag as true when initalized state.
             // After some properties change, LottieAnimationView.UpdateImage will apply these inital values.
@@ -170,13 +174,15 @@ namespace Tizen.NUI.BaseComponents
                 using PropertyValue stopAction = new PropertyValue((int)currentStates.stopEndAction);
                 using PropertyValue loopMode = new PropertyValue((int)currentStates.loopMode);
                 using PropertyValue redrawInScalingDown = new PropertyValue(currentStates.redrawInScalingDown);
+                using PropertyValue synchronousLoading = new PropertyValue(currentStates.synchronousLoading);
 
                 map.Add(Visual.Property.Type, type)
                     .Add(ImageVisualProperty.URL, url)
                     .Add(ImageVisualProperty.LoopCount, loopCnt)
                     .Add(ImageVisualProperty.StopBehavior, stopAction)
                     .Add(ImageVisualProperty.LoopingMode, loopMode)
-                    .Add(ImageVisualProperty.RedrawInScalingDown, redrawInScalingDown);
+                    .Add(ImageVisualProperty.RedrawInScalingDown, redrawInScalingDown)
+                    .Add(ImageVisualProperty.SynchronousLoading, synchronousLoading);
 
                 if (currentStates.desiredWidth > 0)
                 {
@@ -240,6 +246,24 @@ namespace Tizen.NUI.BaseComponents
             {
                 currentStates.desiredHeight = value;
                 base.DesiredHeight = currentStates.desiredHeight;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the SynchronousLoading for LottieAnimationView<br />
+        /// We should set it before setup ResourceUrl, URL property.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new bool SynchronousLoading
+        {
+            get
+            {
+                return currentStates.synchronousLoading;
+            }
+            set
+            {
+                currentStates.synchronousLoading = value;
+                base.SynchronousLoading = currentStates.synchronousLoading;
             }
         }
 
@@ -805,6 +829,7 @@ namespace Tizen.NUI.BaseComponents
                 UpdateImage(ImageVisualProperty.StopBehavior, new PropertyValue((int)currentStates.stopEndAction), false);
                 UpdateImage(ImageVisualProperty.LoopingMode, new PropertyValue((int)currentStates.loopMode), false);
                 UpdateImage(ImageVisualProperty.RedrawInScalingDown, new PropertyValue(currentStates.redrawInScalingDown), false);
+                UpdateImage(ImageVisualProperty.SynchronousLoading, new PropertyValue(currentStates.synchronousLoading), false);
 
                 // Do not cache PlayRange and TotalFrameNumber into cachedImagePropertyMap.
                 // (To keep legacy implements behaviour)
@@ -1205,6 +1230,7 @@ namespace Tizen.NUI.BaseComponents
             internal string mark1, mark2;
             internal bool redrawInScalingDown;
             internal int desiredWidth, desiredHeight;
+            internal bool synchronousLoading;
             internal bool changed;
         };
         private states currentStates;
