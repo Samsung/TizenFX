@@ -398,9 +398,10 @@ namespace Tizen.NUI.Binding
             namescope.UnregisterName(name);
         }
 
-        internal event EventHandler<ElementEventArgs> ChildAdded;
+        // 2023-11-08 : Just ignore Tizen.NUI don't using logics.
+        // internal event EventHandler<ElementEventArgs> ChildAdded;
 
-        internal event EventHandler<ElementEventArgs> ChildRemoved;
+        // internal event EventHandler<ElementEventArgs> ChildRemoved;
 
         internal event EventHandler<ElementEventArgs> DescendantAdded;
 
