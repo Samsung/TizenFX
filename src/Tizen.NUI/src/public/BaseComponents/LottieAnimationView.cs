@@ -296,7 +296,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 int ret = currentStates.totalFrame;
-                if (ret == -1)
+                if (ret <= 0)
                 {
                     Interop.View.InternalRetrievingVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.TotalFrameNumber, out ret);
 
