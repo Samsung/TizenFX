@@ -377,12 +377,6 @@ namespace Tizen.NUI.BaseComponents
 
             internalName = null;
 
-            if (SwigCPtr.Handle != IntPtr.Zero && global::System.Threading.Thread.CurrentThread.ManagedThreadId == Registry.Instance.SavedApplicationThread.ManagedThreadId)
-            {
-                Interop.ControlDevel.DaliAccessibilityDetachAccessibleObject(SwigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
             if (disposing == false)
             {
                 if (IsNativeHandleInvalid() || SwigCMemOwn == false)
