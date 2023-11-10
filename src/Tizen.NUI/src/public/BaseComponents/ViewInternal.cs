@@ -1346,6 +1346,12 @@ namespace Tizen.NUI.BaseComponents
 
             disposeDebugging(type);
 
+            if (SwigCMemOwn && !IsNativeHandleInvalid())
+            {
+                Interop.ControlDevel.DaliAccessibilityDetachAccessibleObject(SwigCPtr);
+                NDalicPINVOKE.ThrowExceptionIfExists();
+            }
+
             //_mergedStyle = null;
 
             internalMaximumSize?.Dispose();
