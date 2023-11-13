@@ -174,6 +174,41 @@ namespace Tizen.Multimedia
             UiSync = uiSync;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Display"/> class with an <see cref="IWindowHandleProvider"/> interface.
+        /// </summary>
+        /// <param name="window">An <see cref="IWindowHandleProvider"/> object that provides a handle to a window.</param>
+        /// <since_tizen> 12 </since_tizen>
+        public Display(IWindowHandleProvider window)
+            : this(window, false)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Display"/> class with an <see cref="IWindowHandleProvider"/> interface.
+        /// </summary>
+        /// <param name="window">An <see cref="IWindowHandleProvider"/> object that provides a handle to a window.</param>
+        /// <param name="uiSync">A value indicating whether video and UI are in sync or not.</param>
+        /// <remarks>
+        /// UI sync is only for <see cref="T:Tizen.Multimedia.Player"/> and
+        /// <see cref="T:Tizen.Multimedia.Player.DisplaySettings"/> will not work in UI sync mode.
+        /// </remarks>
+        /// <since_tizen> 12 </since_tizen>
+        public Display(IWindowHandleProvider window, bool uiSync)
+        {
+            if (window == null)
+            {
+                throw new ArgumentNullException(nameof(window));
+            }
+
+            _setter = new EcoreDisplaySetter(window.WindowHandle,
+                new Rectangle((int)window.PositionX, (int)window.PositionY, (int)window.Width, (int)window.Height),
+                window.Rotation.ToMmRotation());
+
+            UiSync = uiSync;
+        }
+
+
         private EvasObject EvasObject { get; }
 
         private DisplayType Type { get; }
@@ -221,6 +256,25 @@ namespace Tizen.Multimedia
             }
 
             return Tizen.Multimedia.Rotation.Rotate90;
+        }
+
+        internal static Rotation ToMmRotation(this int rotation)
+        {
+            switch (rotation)
+            {
+                case 0:
+                    return Rotation.Rotate0;
+                case 90:
+                    return Rotation.Rotate90;
+                case 180:
+                    return Rotation.Rotate180;
+                case 270:
+                    return Rotation.Rotate270;
+                default:
+                    break;
+            }
+
+            return Rotation.Rotate90;
         }
     }
 }
