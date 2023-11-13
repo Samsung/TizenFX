@@ -55,6 +55,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetView_Property_EFFECT_get")]
             public static extern int EffectGet();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetView_Property_KEEP_WIDGET_SIZE_get")]
+            public static extern int KeepWidgetSizeGet();
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WidgetView_Property")]
             public static extern global::System.IntPtr NewWidgetViewProperty();
 

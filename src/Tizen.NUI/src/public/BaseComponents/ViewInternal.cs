@@ -1388,7 +1388,6 @@ namespace Tizen.NUI.BaseComponents
             rotationGestureDetector?.Dispose();
             rotationGestureDetector = null;
 
-
             internalCurrentParentOrigin?.Dispose();
             internalCurrentParentOrigin = null;
             internalCurrentAnchorPoint?.Dispose();

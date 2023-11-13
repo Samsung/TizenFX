@@ -420,6 +420,12 @@ namespace NUnitLite
 		return Summary.FailureCount + Summary.ErrorCount + Summary.InvalidCount;
 	}
 
+	public void StopTest(bool force)
+	{
+		TLogger.Write($"StopTest force:{force}\n");
+		_runner.StopRun(force);
+	}
+
 	public void ReportResults(ITestResult result)
 	{
 		Summary = new ResultSummary(result);

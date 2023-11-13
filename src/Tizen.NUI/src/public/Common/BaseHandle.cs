@@ -28,6 +28,11 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class BaseHandle : Element, global::System.IDisposable
     {
+        static internal void Preload()
+        {
+            // Do nothing. Just call for load static values.
+        }
+
         /// <summary>
         /// swigCMemOwn
         /// </summary>
@@ -54,8 +59,9 @@ namespace Tizen.NUI
         /// Create an instance of BaseHandle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public BaseHandle() : this(Interop.BaseHandle.NewBaseHandle())
+        public BaseHandle() : this(Interop.BaseHandle.NewBaseHandle(), true, false)
         {
+            // Note : Empty BaseHandle instance don't need to be register in Registry.
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -64,9 +70,36 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="handle">The BaseHandle instance.</param>
         /// <since_tizen> 3 </since_tizen>
-        public BaseHandle(BaseHandle handle) : this(Interop.BaseHandle.NewBaseHandle(BaseHandle.getCPtr(handle)))
+        public BaseHandle(BaseHandle handle) : this(Interop.BaseHandle.NewBaseHandle(BaseHandle.getCPtr(handle)), true, false)
         {
+            // Note : Copyed BaseHandle instance don't need to be register in Registry.
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal BaseHandle(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister)
+        {
+            //to catch derived classes dali native exceptions
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            DebugFileLogging.Instance.WriteLog($"BaseHandle.contructor with cMemeryOwn:{cMemoryOwn} and cRegister:{cRegister} START");
+
+            registerMe = cRegister;
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            if (registerMe)
+            {
+                // Register this instance of BaseHandle in the registry.
+                if (!Registry.Register(this))
+                {
+                    registerMe = false;
+                }
+            }
+
+            disposeDebuggingCtor();
+            DebugFileLogging.Instance.WriteLog($" BaseHandle.contructor with cMemeryOwn and cRegister END");
+            DebugFileLogging.Instance.WriteLog($"=============================");
         }
 
         internal BaseHandle(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -83,7 +116,10 @@ namespace Tizen.NUI
             if (registerMe)
             {
                 // Register this instance of BaseHandle in the registry.
-                Registry.Register(this);
+                if (!Registry.Register(this))
+                {
+                    registerMe = false;
+                }
             }
 
             disposeDebuggingCtor();
@@ -103,7 +139,10 @@ namespace Tizen.NUI
             if (registerMe)
             {
                 // Register this instance of BaseHandle in the registry.
-                Registry.Register(this);
+                if (!Registry.Register(this))
+                {
+                    registerMe = false;
+                }
             }
 
             disposeDebuggingCtor();
@@ -511,6 +550,15 @@ namespace Tizen.NUI
             PropertySet?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        internal void UnregisterFromRegistry()
+        {
+            if (registerMe)
+            {
+                Registry.Unregister(this);
+                registerMe = false;
+            }
+        }
+
         /// <summary>
         /// Dispose.
         /// </summary>
@@ -537,10 +585,7 @@ namespace Tizen.NUI
             //because the execution order of Finalizes is non-deterministic.
 
             //Unreference this instance from Registry.
-            if (registerMe)
-            {
-                Registry.Unregister(this);
-            }
+            UnregisterFromRegistry();
 
             disposeDebuggingDispose(type);
 
@@ -617,7 +662,7 @@ namespace Tizen.NUI
                     for (int i = 0; i < st.FrameCount; i++)
                     {
                         global::System.Diagnostics.StackFrame sf = st.GetFrame(i);
-                        Tizen.Log.Fatal("NUI", " Method " + sf.GetMethod());
+                        Tizen.Log.Fatal("NUI", " Method " + sf.GetMethod() + ":" + sf.GetFileName() + ":" + sf.GetFileLineNumber());
                     }
                     Tizen.Log.Fatal("NUI", "Error! just return here with null swigCPtr! this can cause unknown error or crash in next step");
 
@@ -665,7 +710,7 @@ namespace Tizen.NUI
                 for (int i = 0; i < st.FrameCount; i++)
                 {
                     global::System.Diagnostics.StackFrame sf = st.GetFrame(i);
-                    DebugFileLogging.Instance.WriteLog($"[{i}] {sf.GetMethod()}");
+                    DebugFileLogging.Instance.WriteLog($"[{i}] {sf.GetMethod()}:{sf.GetFileName()}:{sf.GetFileLineNumber()}");
                 }
             }
         }

@@ -19,9 +19,9 @@ using System.Runtime.InteropServices;
 
 internal static partial class Interop
 {
-    internal static partial class Libc
+    internal static partial class Glib
     {
-        [DllImport(Libraries.Libc, EntryPoint = "free", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int Free(IntPtr ptr);
+        [DllImport(Libraries.Glib, EntryPoint = "g_free", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern uint Free(IntPtr data);
     }
 }

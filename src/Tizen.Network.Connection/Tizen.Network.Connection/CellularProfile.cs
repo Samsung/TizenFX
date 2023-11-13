@@ -63,7 +63,7 @@ namespace Tizen.Network.Connection
                     Log.Error(Globals.LogTag, "It failed to get apn, " + (ConnectionError)ret);
                 }
                 string result = Marshal.PtrToStringAnsi(Value);
-                Interop.Libc.Free(Value);
+                Interop.Glib.Free(Value);
                 return result;
             }
 
@@ -112,7 +112,7 @@ namespace Tizen.Network.Connection
                     Log.Error(Globals.LogTag, "It failed to get home url, " + (ConnectionError)ret);
                 }
                 string result = Marshal.PtrToStringAnsi(Value);
-                Interop.Libc.Free(Value);
+                Interop.Glib.Free(Value);
                 return result;
             }
 

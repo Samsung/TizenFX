@@ -47,7 +47,11 @@ namespace Tizen.NUI.Scene3D
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ModelNode : View
     {
-        internal ModelNode(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal ModelNode(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal ModelNode(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, true, cRegister)
         {
         }
 
@@ -58,7 +62,7 @@ namespace Tizen.NUI.Scene3D
         public ModelNode() : this(Interop.ModelNode.ModelNodeNew(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            this.PositionUsesAnchorPoint = true;
+            this.PositionUsesPivotPoint = true;
         }
 
         /// <summary>
@@ -66,7 +70,7 @@ namespace Tizen.NUI.Scene3D
         /// </summary>
         /// <param name="modelNode">Source object to copy.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ModelNode(ModelNode modelNode) : this(Interop.ModelNode.NewModelNode(ModelNode.getCPtr(modelNode)), true)
+        public ModelNode(ModelNode modelNode) : this(Interop.ModelNode.NewModelNode(ModelNode.getCPtr(modelNode)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -80,6 +84,7 @@ namespace Tizen.NUI.Scene3D
         {
             ModelNode ret = new ModelNode(Interop.ModelNode.ModelNodeAssign(SwigCPtr, ModelNode.getCPtr(modelNode)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            ret.PositionUsesPivotPoint = modelNode.PositionUsesPivotPoint;
             return ret;
         }
 
@@ -172,8 +177,14 @@ namespace Tizen.NUI.Scene3D
             ModelNode ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as ModelNode;
             if (ret == null)
             {
+                // Store the value of PositionUsesAnchorPoint from dali object (Since View object automatically change PositionUsesPivotPoint value as false, we need to keep value.)
+                HandleRef handle = new HandleRef(this, cPtr);
+                bool originalPositionUsesAnchorPoint = Object.InternalGetPropertyBool(handle, View.Property.PositionUsesAnchorPoint);
+                handle = new HandleRef(null, IntPtr.Zero);
+
                 // Register new animatable into Registry.
                 ret = new ModelNode(cPtr, true);
+                ret.PositionUsesPivotPoint = originalPositionUsesAnchorPoint;
             }
             else
             {

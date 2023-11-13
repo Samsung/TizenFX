@@ -256,7 +256,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AccessibilityStates GetAccessibilityStates()
         {
-            var result = new AccessibilityStates {BitMask = Interop.ControlDevel.DaliToolkitDevelControlGetAccessibilityStates(SwigCPtr)};
+            var result = new AccessibilityStates { BitMask = Interop.ControlDevel.DaliToolkitDevelControlGetAccessibilityStates(SwigCPtr) };
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
         }
@@ -353,7 +353,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return new AccessibilityEvents {Owner = this};
+                return new AccessibilityEvents { Owner = this };
             }
         }
 
@@ -396,6 +396,12 @@ namespace Tizen.NUI.BaseComponents
             }
 
             internalName = null;
+
+            if (SwigCPtr.Handle != IntPtr.Zero && global::System.Threading.Thread.CurrentThread.ManagedThreadId == Registry.Instance.SavedApplicationThread.ManagedThreadId)
+            {
+                Interop.ControlDevel.DaliAccessibilityDetachAccessibleObject(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
 
             if (disposing == false)
             {

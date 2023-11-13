@@ -85,7 +85,7 @@ namespace Tizen.NUI.ParticleSystem
     /// Modifiers can be stacked (more than one can be added to the ParticleEmitter).
     /// Output of one modifier becomes input for next modifier.
     ///
-    /// Modifier calls into the implementation of <see cref="ParticleModifierInterface"> class.
+    /// Modifier calls into the implementation of <see cref="ParticleModifierInterface"/> class.
     /// 
     /// </remarks>
     /// <typeparam name="T">Class of interface that derives from <see cref="ParticleModifierInterface"/></typeparam>

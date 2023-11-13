@@ -71,16 +71,13 @@ jobs:
         git tag -fa "v$VERSION" -m "Release $VERSION"
         git push -f --tags origin refs/tags/"v$VERSION"
 
-    - name: Install Github Package Registry Tool
-      if: github.event.inputs.deploy_to_gpr == 'true'
-      run: dotnet tool install --global --no-cache gpr
-
     - name: Deploy NuGet packages to Github Packages Registry
       if: github.event.inputs.deploy_to_gpr == 'true'
+      env:
+        PACKAGES_SOURCE: https://nuget.pkg.github.com/Samsung/index.json
+        APIKEY: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        gpr push --api-key ${{ secrets.GITHUB_TOKEN }} \
-                 --repository ${{ github.repository }} \
-                 --retries 3 Artifacts/*.nupkg
+        dotnet nuget push Artifacts/*.nupkg -k $APIKEY -s $PACKAGES_SOURCE -t 3000
 
     - name: Deploy NuGet packages to MyGet
       if: github.event.inputs.deploy_to_myget == 'true'

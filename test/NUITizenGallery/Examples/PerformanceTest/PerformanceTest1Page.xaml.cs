@@ -98,8 +98,6 @@ namespace NUITizenGallery
 
         protected override void Dispose(DisposeTypes type)
         {
-            AppWindow.RemoveFrameUpdateCallback(FPSCounter);
-
             if (Disposed)
             {
                 return;
@@ -107,6 +105,7 @@ namespace NUITizenGallery
 
             if (type == DisposeTypes.Explicit)
             {
+                AppWindow.RemoveFrameUpdateCallback(FPSCounter);
                 RemoveAllChildren(true);
             }
 

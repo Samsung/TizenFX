@@ -18,6 +18,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Binding.Internals;
@@ -41,7 +42,20 @@ namespace Tizen.NUI
         ResourceDictionary _resources;
         bool IResourcesProvider.IsResourcesCreated => _resources != null;
 
-        internal Container(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        static internal new void Preload()
+        {
+            Animatable.Preload();
+
+            // Do nothing. Just call for load static values.
+            var temporalXamlStyleProperty = XamlStyleProperty;
+        }
+
+        internal Container(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+            // No un-managed data hence no need to store a native ptr
+        }
+
+        internal Container(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
             // No un-managed data hence no need to store a native ptr
         }
@@ -241,18 +255,24 @@ namespace Tizen.NUI
         public void DisposeRecursively()
         {
             // To avoid useless "OnChildRemoved" callback invoke, Dispose itself before children.
-            if(!Disposed && !IsDisposeQueued)
+            if (!Disposed && !IsDisposeQueued)
             {
                 Dispose();
             }
 
-            foreach (View child in Children)
-            {
-                child.DisposeRecursively();
-            }
+            // Copy child referecen to avoid Children changed during DisposeRecursively();
+            var copiedChildren = childViews.ToList();
 
             // Make sure that itself don't have children anymore.
             childViews?.Clear();
+
+            foreach (View child in copiedChildren)
+            {
+                if (!(child?.Disposed ?? true))
+                {
+                    child.DisposeRecursively();
+                }
+            }
         }
 
         /// <summary>

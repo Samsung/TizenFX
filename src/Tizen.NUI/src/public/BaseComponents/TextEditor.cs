@@ -57,6 +57,14 @@ namespace Tizen.NUI.BaseComponents
 
         static TextEditor() { }
 
+        static internal new void Preload()
+        {
+            // Do not call View.Preload(), since we already call it
+
+            Property.Preload();
+            // Do nothing. Just call for load static values.
+        }
+
         /// <summary>
         /// Creates the TextEditor control.
         /// </summary>
@@ -84,11 +92,6 @@ namespace Tizen.NUI.BaseComponents
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             SetVisible(shown);
-        }
-
-        internal TextEditor(TextEditor handle, bool shown = true) : this(Interop.TextEditor.NewTextEditor(TextEditor.getCPtr(handle)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal TextEditor(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true, TextEditorStyle style = null) : base(cPtr, cMemoryOwn, style)
@@ -2767,6 +2770,11 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int InputFilter = Interop.TextEditor.InputFilterGet();
             internal static readonly int Strikethrough = Interop.TextEditor.StrikethroughGet();
             internal static readonly int CharacterSpacing = Interop.TextEditor.CharacterSpacingGet();
+
+            internal static void Preload()
+            {
+                // Do nothing. Just call for load static values.
+            }
         }
 
         internal class InputStyle

@@ -111,7 +111,10 @@ namespace Tizen.NUI.Physics2D.Chipmunk
         internal static IntPtr StructureArrayToPtr<T>(IReadOnlyList<T> items)
         {
             var size = SizeOf<T>();
-            var memory = Marshal.AllocHGlobal(size * items.Count);
+            int allocBytes = checked(size * items.Count);
+            Debug.Assert(allocBytes > 0, "The memory to be allocated should be greater than 0");
+
+            var memory = Marshal.AllocHGlobal(allocBytes);
 
             for (var i = 0; i < items.Count; i++)
             {

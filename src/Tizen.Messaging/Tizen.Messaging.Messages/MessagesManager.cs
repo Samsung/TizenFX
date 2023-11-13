@@ -25,6 +25,7 @@ namespace Tizen.Messaging.Messages
     /// </summary>
     /// <privilege>http://tizen.org/privilege/message.read</privilege>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public static class MessagesManager
     {
         /// <summary>
@@ -39,6 +40,7 @@ namespace Tizen.Messaging.Messages
         /// <exception cref="ArgumentException">Thrown when input coordinates are invalid.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have proper privileges.</exception>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public static Task<SentResult> SendMessageAsync(Message message, bool saveToSentbox)
         {
             return MessagesManagerImpl.Instance.SendMessageAsync(message, saveToSentbox);
@@ -56,6 +58,7 @@ namespace Tizen.Messaging.Messages
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have proper privileges.</exception>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public static Task<IEnumerable<Message>> SearchMessageAsync(MessagesSearchFilter filter)
         {
             return MessagesManagerImpl.Instance.SearchMessageAsync(filter);
@@ -66,6 +69,7 @@ namespace Tizen.Messaging.Messages
         /// </summary>
         /// <privilege>http://tizen.org/privilege/message.read</privilege>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         static public event EventHandler<MessageReceivedEventArgs> MessageReceived
         {
             add

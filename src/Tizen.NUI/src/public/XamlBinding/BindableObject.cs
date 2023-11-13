@@ -62,10 +62,7 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int LinePosition { get; set; } = -1;
 
-        void IDynamicResourceHandler.SetDynamicResource(BindableProperty property, string key)
-        {
-            SetDynamicResource(property, key, false);
-        }
+        void IDynamicResourceHandler.SetDynamicResource(BindableProperty property, string key) => SetDynamicResource(property, key, false);
 
         /// <summary>
         /// Raised when a property has changed.
@@ -136,10 +133,7 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler BindingContextChanged;
 
-        internal void ClearValue(BindableProperty property, bool fromStyle)
-        {
-            ClearValue(property, fromStyle: fromStyle, checkAccess: true);
-        }
+        internal void ClearValue(BindableProperty property, bool fromStyle) => ClearValue(property, fromStyle: fromStyle, checkAccess: true);
 
         /// <summary>
         /// Clears any value set by Tizen.NUI.Xaml.BindableObject.SetValue.
@@ -213,7 +207,8 @@ namespace Tizen.NUI.Binding
         /// Removes a previously set binding.
         /// </summary>
         /// <param name="property">The BindableProperty from which to remove bindings.</param>
-        internal void RemoveBinding(BindableProperty property)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveBinding(BindableProperty property)
         {
             if (property == null)
                 throw new ArgumentNullException(nameof(property));
@@ -232,10 +227,7 @@ namespace Tizen.NUI.Binding
         /// <param name="binding">The binding to set.</param>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetBinding(BindableProperty targetProperty, BindingBase binding)
-        {
-            SetBinding(targetProperty, binding, false);
-        }
+        public void SetBinding(BindableProperty targetProperty, BindingBase binding) => SetBinding(targetProperty, binding, false);
 
         /// Internal used, will never changed to not hidden.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -326,6 +318,7 @@ namespace Tizen.NUI.Binding
                     context.Value = value;
                 }
 
+                property.PropertyChanging?.Invoke(this, oldvalue, value);
                 property.PropertyChanged?.Invoke(this, oldvalue, value);
 
                 OnPropertyChanged(property.PropertyName);
@@ -423,10 +416,7 @@ namespace Tizen.NUI.Binding
         /// </summary>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected void ApplyBindings()
-        {
-            ApplyBindings(skipBindingContext: false, fromBindingContextChanged: false);
-        }
+        protected void ApplyBindings() => ApplyBindings(skipBindingContext: false, fromBindingContextChanged: false);
 
         /// <summary>
         /// Override this method to execute an action when the BindingContext changes.
@@ -650,10 +640,7 @@ namespace Tizen.NUI.Binding
             return false;
         }
 
-        internal void SetDynamicResource(BindableProperty property, string key)
-        {
-            SetDynamicResource(property, key, false);
-        }
+        internal void SetDynamicResource(BindableProperty property, string key) => SetDynamicResource(property, key, false);
 
         internal void SetDynamicResource(BindableProperty property, string key, bool fromStyle)
         {
@@ -675,10 +662,7 @@ namespace Tizen.NUI.Binding
             OnSetDynamicResource(property, key);
         }
 
-        internal void SetValue(BindableProperty property, object value, bool fromStyle)
-        {
-            SetValue(property, value, fromStyle, true);
-        }
+        internal void SetValue(BindableProperty property, object value, bool fromStyle) => SetValue(property, value, fromStyle, true);
 
         internal void SetValueCore(BindablePropertyKey propertyKey, object value, SetValueFlags attributes = SetValueFlags.None)
         {
@@ -692,10 +676,7 @@ namespace Tizen.NUI.Binding
         /// <param name="value">The value to set</param>
         /// <param name="attributes">The set value flag</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal void SetValueCore(BindableProperty property, object value, SetValueFlags attributes = SetValueFlags.None)
-        {
-            SetValueCore(property, value, attributes, SetValuePrivateFlags.Default);
-        }
+        internal void SetValueCore(BindableProperty property, object value, SetValueFlags attributes = SetValueFlags.None) => SetValueCore(property, value, attributes, SetValuePrivateFlags.Default);
 
         internal void SetValueCore(BindableProperty property, object value, SetValueFlags attributes, SetValuePrivateFlags privateAttributes)
         {
@@ -1115,7 +1096,11 @@ namespace Tizen.NUI.Binding
             }
         }
 
-        internal void ClearBinding()
+        /// <summary>
+        /// Unapplies all previously set bindings.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ClearBinding()
         {
             foreach (var property in properties)
             {

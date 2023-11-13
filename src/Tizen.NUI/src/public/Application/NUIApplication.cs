@@ -640,6 +640,22 @@ namespace Tizen.NUI
         static public void Preload()
         {
             Interop.Application.PreInitialize();
+
+            // Initialize some static utility
+            var disposalbeQueue = DisposeQueue.Instance;
+            var registry = Registry.Instance;
+
+            // Initialize some BaseComponent static variables now
+            BaseComponents.View.Preload();
+            BaseComponents.ImageView.Preload();
+            BaseComponents.TextLabel.Preload();
+            BaseComponents.TextEditor.Preload();
+            BaseComponents.TextField.Preload();
+            Disposable.Preload();
+
+            // Initialize exception tasks. It must be called end of Preload()
+            NDalicPINVOKE.Preload();
+
             IsPreload = true;
         }
 

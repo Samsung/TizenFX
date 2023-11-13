@@ -25,6 +25,11 @@ namespace Tizen.NUI
     /// <since_tizen> 6 </since_tizen>
     public class Disposable : global::System.IDisposable
     {
+        static internal void Preload()
+        {
+            // Do nothing. Just call for load static values.
+        }
+
         /// <summary>
         /// The flag to check if it is already disposed of.
         /// </summary>

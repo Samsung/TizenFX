@@ -63,16 +63,6 @@ namespace Tizen.NUI.ParticleSystem
             mProxy = new ParticleEmitterProxy(this);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        
-        /// <summary>
-        /// Copy constructor.
-        /// </summary>
-        /// <param name="particleEmitter">Source object to copy.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ParticleEmitter( ParticleEmitter particleEmitter) : this(Interop. ParticleEmitter.New( ParticleEmitter.getCPtr(particleEmitter)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
 
         /// <summary>
         /// Dispose.
@@ -103,7 +93,7 @@ namespace Tizen.NUI.ParticleSystem
         /// <summary>
         /// Raises the window to the top of the window stack.
         /// </summary>
-        /// <param name="particleEmitter">Source object to copy.</param>
+        /// <param name="source">Source object to copy.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetSource<T>(ParticleSource<T> source) where T : ParticleSourceInterface, new()
         {
@@ -568,13 +558,16 @@ namespace Tizen.NUI.ParticleSystem
         
         internal T Get(IntPtr cPtr)
         {
-            var result = mBasePtr.FindIndex(0, x => x == cPtr );
-            if (result >= 0)
+            lock (mBasePtr)
             {
-                return mInterfaces[result];
-            }
+                var result = mBasePtr.FindIndex(0, x => x == cPtr);
+                if (result >= 0)
+                {
+                    return mInterfaces[result];
+                }
 
-            return null;
+                return null;
+            }
         }
         
         private List<IntPtr> mBasePtr = new List<IntPtr>();

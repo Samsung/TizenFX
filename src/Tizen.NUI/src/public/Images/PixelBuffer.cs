@@ -51,12 +51,17 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal PixelBuffer(PixelBuffer handle) : this(Interop.PixelBuffer.NewPixelBuffer(PixelBuffer.getCPtr(handle)), true)
+        internal PixelBuffer(PixelBuffer handle) : this(Interop.PixelBuffer.NewPixelBuffer(PixelBuffer.getCPtr(handle)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal PixelBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal PixelBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, false)
+        {
+            // Note : PixelBuffer don't need to be register in Registry default. So we can create this class from worker thread.
+        }
+
+        internal PixelBuffer(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
         }
 

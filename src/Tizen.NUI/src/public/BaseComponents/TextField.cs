@@ -57,6 +57,14 @@ namespace Tizen.NUI.BaseComponents
 
         static TextField() { }
 
+        static internal new void Preload()
+        {
+            // Do not call View.Preload(), since we already call it
+
+            Property.Preload();
+            // Do nothing. Just call for load static values.
+        }
+
         /// <summary>
         /// Creates the TextField control.
         /// </summary>
@@ -105,11 +113,6 @@ namespace Tizen.NUI.BaseComponents
             }
             Focusable = true;
             TextChanged += TextFieldTextChanged;
-        }
-
-        internal TextField(TextField handle, bool shown = true) : this(Interop.TextField.NewTextField(TextField.getCPtr(handle)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal enum ExceedPolicyType
@@ -2765,6 +2768,11 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int InputFilter = Interop.TextField.InputFilterGet();
             internal static readonly int Strikethrough = Interop.TextField.StrikethroughGet();
             internal static readonly int CharacterSpacing = Interop.TextField.CharacterSpacingGet();
+
+            internal static void Preload()
+            {
+                // Do nothing. Just call for load static values.
+            }
         }
 
         internal class InputStyle

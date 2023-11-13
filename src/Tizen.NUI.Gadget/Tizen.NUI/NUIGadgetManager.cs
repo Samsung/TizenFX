@@ -346,8 +346,9 @@ namespace Tizen.NUI
 
         internal static bool HandleAppControl(AppControlReceivedEventArgs args)
         {
-            if (!args.ReceivedAppControl.ExtraData.TryGet("__K_GADGET_RES_TYPE", out string resourceType) ||
-                !args.ReceivedAppControl.ExtraData.TryGet("__K_GADGET_CLASS_NAME", out string className))
+            var extraData = args.ReceivedAppControl?.ExtraData;
+            if (extraData == null||!extraData.TryGet("__K_GADGET_RES_TYPE", out string resourceType) ||
+                !extraData.TryGet("__K_GADGET_CLASS_NAME", out string className))
             {
                 return false;
             }

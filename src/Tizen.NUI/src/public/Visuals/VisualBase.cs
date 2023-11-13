@@ -33,16 +33,21 @@ namespace Tizen.NUI
         /// Creates an empty visual handle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public VisualBase() : this(Interop.VisualBase.NewVisualBase(), true)
+        public VisualBase() : this(Interop.VisualBase.NewVisualBase(), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal VisualBase(VisualBase handle) : this(Interop.VisualBase.NewVisualBase(VisualBase.getCPtr(handle)), true)
+        internal VisualBase(VisualBase handle) : this(Interop.VisualBase.NewVisualBase(VisualBase.getCPtr(handle)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        internal VisualBase(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+
+        internal VisualBase(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal VisualBase(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
         }
 

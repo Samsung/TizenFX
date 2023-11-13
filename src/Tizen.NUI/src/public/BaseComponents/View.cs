@@ -105,6 +105,16 @@ namespace Tizen.NUI.BaseComponents
             RegisterAccessibilityDelegate();
         }
 
+        static internal new void Preload()
+        {
+            Container.Preload();
+
+            // Do nothing. Just call for load static values.
+            var temporalPositionPropertyGroup = positionPropertyGroup;
+            var temporalSizePropertyGroup = sizePropertyGroup;
+            var temporalScalePropertyGroup = scalePropertyGroup;
+        }
+
         /// <summary>
         /// Accessibility mode for controlling View's Accessible implementation.
         /// It is only relevant when deriving custom controls from View directly,
@@ -176,23 +186,16 @@ namespace Tizen.NUI.BaseComponents
             SetVisible(shown);
         }
 
-        internal View(View uiControl, bool shown = true) : this(Interop.View.NewView(View.getCPtr(uiControl)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            if (!shown)
-            {
-                SetVisible(false);
-            }
-
-            backgroundExtraData = uiControl.backgroundExtraData == null ? null : new BackgroundExtraData(uiControl.backgroundExtraData);
-        }
-
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : this(cPtr, cMemoryOwn, shown)
         {
             InitializeStyle(viewStyle);
         }
 
-        internal View(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(cPtr, cMemoryOwn)
+        internal View(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : this(cPtr, cMemoryOwn, shown, cMemoryOwn)
+        {
+        }
+
+        internal View(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
             if (HasBody())
             {
@@ -856,12 +859,24 @@ namespace Tizen.NUI.BaseComponents
             {
                 using (var propertyValue = GetProperty(Property.TOOLTIP))
                 {
-                    if (propertyValue != null && propertyValue.Get(out string retrivedValue))
+                    using var propertyMap = new PropertyMap();
+                    if (propertyValue != null && propertyValue.Get(propertyMap))
                     {
-                        return retrivedValue;
+                        using var retrivedContentValue = propertyMap?.Find(NDalic.TooltipContent);
+                        if (retrivedContentValue != null)
+                        {
+                            using var contextPropertyMap = new PropertyMap();
+                            if (retrivedContentValue.Get(contextPropertyMap))
+                            {
+                                using var retrivedTextValue = contextPropertyMap?.Find(NDalic.TextVisualText);
+                                if (retrivedTextValue != null && retrivedTextValue.Get(out string retrivedValue))
+                                {
+                                    return retrivedValue;
+                                }
+                            }
+                        }
                     }
-                    NUILog.Error($"[ERROR] Fail to get TooltipText! Return error MSG (error to get TooltipText)!");
-                    return "error to get TooltipText";
+                    return "";
                 }
             }
             set

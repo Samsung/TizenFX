@@ -32,6 +32,15 @@ namespace Tizen.NUI.BaseComponents
     {
         static ImageView() { }
 
+        static internal new void Preload()
+        {
+            // Do not call View.Preload(), since we already call it
+
+            Property.Preload();
+            // Do nothing. Just call for load static values.
+            var temporalCachedImagePropertyKeyList = cachedImagePropertyKeyList;
+        }
+
         private EventHandler<ResourceReadyEventArgs> _resourceReadyEventHandler;
         private ResourceReadyEventCallbackType _resourceReadyEventCallback;
         private EventHandler<ResourceLoadedEventArgs> _resourceLoadedEventHandler;
@@ -1882,6 +1891,11 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int PixelArea = Interop.ImageView.PixelAreaGet();
             internal static readonly int PlaceHolderUrl = Interop.ImageView.PlaceHolderImageGet();
             internal static readonly int TransitionEffect = Interop.ImageView.TransitionEffectGet();
+
+            internal static void Preload()
+            {
+                // Do nothing. Just call for load static values.
+            }
         }
 
         private enum ImageType

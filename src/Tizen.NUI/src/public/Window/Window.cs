@@ -154,6 +154,28 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Creates a new Window with a specific name using WindowData.<br />
+        /// This creates an extra window in addition to the default main window<br />
+        /// </summary>
+        /// <param name="name">The name for extra window. </param>
+        /// <param name="windowData">The window data</param>
+        /// <returns>A new Window.</returns>
+        /// <feature> http://tizen.org/feature/opengles.surfaceless_context </feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Window(string name, WindowData windowData) : this(Interop.Window.New(name, "", WindowData.getCPtr(windowData)), true)
+        {
+            if (IsSupportedMultiWindow() == false)
+            {
+                NUILog.Error("This device does not support surfaceless_context. So Window cannot be created. ");
+            }
+            this.windowTitle = name;
+            this.EnableBorder(windowData.BorderInterface);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+
 
         /// <summary>
         /// Enumeration for orientation of the window is the way in which a rectangular page is oriented for normal viewing.
@@ -1554,7 +1576,20 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public RenderTaskList GetRenderTaskList()
         {
-            RenderTaskList ret = new RenderTaskList(Interop.Stage.GetRenderTaskList(stageCPtr), true);
+            global::System.IntPtr cPtr = Interop.Stage.GetRenderTaskList(stageCPtr);
+
+            RenderTaskList ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as RenderTaskList;
+            if (ret != null)
+            {
+                HandleRef CPtr = new HandleRef(this, cPtr);
+                Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                CPtr = new HandleRef(null, global::System.IntPtr.Zero);
+            }
+            else
+            {
+                ret = new RenderTaskList(cPtr, true);
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1621,7 +1656,20 @@ namespace Tizen.NUI
 
         internal ObjectRegistry GetObjectRegistry()
         {
-            ObjectRegistry ret = new ObjectRegistry(Interop.Stage.GetObjectRegistry(stageCPtr), true);
+            global::System.IntPtr cPtr = Interop.Stage.GetObjectRegistry(stageCPtr);
+
+            ObjectRegistry ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as ObjectRegistry;
+            if (ret != null)
+            {
+                global::System.Runtime.InteropServices.HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+                Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+            else
+            {
+                ret = new ObjectRegistry(cPtr, true);
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -2112,22 +2160,14 @@ namespace Tizen.NUI
         /// We will use weak reference of last key events.
         /// Return value will be invalidated if last key event changed internally.
         /// </remarks>
-        /// <remarks>
-        /// Do not Dispose this value.
-        /// </remarks>
         /// <returns>The last key event the window gets.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Key GetLastKeyEvent()
         {
             if (internalLastKeyEvent == null)
             {
-                // TODO : We need to make automatically release memory of these cached events in future.
-                if (!(internalLastKeyEvent?.IsNativeHandleInvalid() ?? true))
-                {
-                    Interop.Key.DeleteKey(internalLastKeyEvent.SwigCPtr);
-                }
                 // Create empty event handle without register.
-                internalLastKeyEvent = new Key(Interop.Key.New(), false);
+                internalLastKeyEvent = new Key(Interop.Key.New(), true, false);
             }
             Interop.Window.InternalRetrievingLastKeyEvent(SwigCPtr, internalLastKeyEvent.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -2141,22 +2181,14 @@ namespace Tizen.NUI
         /// We will use weak reference of last touch events.
         /// Return value will be invalidated if last touch event changed internally.
         /// </remarks>
-        /// <remarks>
-        /// Do not Dispose this value.
-        /// </remarks>
         /// <returns>The last touch event the window gets.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Touch GetLastTouchEvent()
         {
             if (internalLastTouchEvent == null)
             {
-                // TODO : We need to make automatically release memory of these cached events in future.
-                if (!(internalLastTouchEvent?.IsNativeHandleInvalid() ?? true))
-                {
-                    Interop.Touch.DeleteTouch(internalLastTouchEvent.SwigCPtr);
-                }
                 // Create empty event handle without register.
-                internalLastTouchEvent = new Touch(Interop.Touch.NewTouch(), false);
+                internalLastTouchEvent = new Touch(Interop.Touch.NewTouch(), true, false);
             }
             Interop.Window.InternalRetrievingLastTouchEvent(SwigCPtr, internalLastTouchEvent.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -2170,22 +2202,14 @@ namespace Tizen.NUI
         /// We will use weak reference of last hover events.
         /// Return value will be invalidated if last hover event changed internally.
         /// </remarks>
-        /// <remarks>
-        /// Do not Dispose this value.
-        /// </remarks>
         /// <returns>The last hover event the window gets.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Hover GetLastHoverEvent()
         {
             if (internalLastHoverEvent == null)
             {
-                // TODO : We need to make automatically release memory of these cached events in future.
-                if (!(internalLastHoverEvent?.IsNativeHandleInvalid() ?? true))
-                {
-                    Interop.Hover.DeleteHover(internalLastHoverEvent.SwigCPtr);
-                }
                 // Create empty event handle without register.
-                internalLastHoverEvent = new Hover(Interop.Hover.New(0u), false);
+                internalLastHoverEvent = new Hover(Interop.Hover.New(0u), true, false);
             }
             Interop.Window.InternalRetrievingLastHoverEvent(SwigCPtr, internalLastHoverEvent.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -2227,6 +2251,19 @@ namespace Tizen.NUI
         public void AddFrameUpdateCallback(FrameUpdateCallbackInterface frameUpdateCallback)
         {
             frameUpdateCallback?.AddFrameUpdateCallback(stageCPtr, Layer.getCPtr(GetRootLayer()));
+        }
+
+        /// <summary>
+        /// Add FrameUpdateCallback with root view.
+        /// FrameUpdateCallbackInterface can only detach Views under given view.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddFrameUpdateCallback(FrameUpdateCallbackInterface frameUpdateCallback, View rootView)
+        {
+            if(rootView != null)
+            {
+                frameUpdateCallback?.AddFrameUpdateCallback(stageCPtr, View.getCPtr(rootView));
+            }
         }
 
         /// <summary>
@@ -2273,20 +2310,6 @@ namespace Tizen.NUI
                 childLayers.Clear();
 
                 localController?.Dispose();
-
-                // TODO : We need to make automatically release memory of these cached events in future.
-                if (!(internalLastKeyEvent?.IsNativeHandleInvalid() ?? true))
-                {
-                    Interop.Key.DeleteKey(internalLastKeyEvent.SwigCPtr);
-                }
-                if (!(internalLastTouchEvent?.IsNativeHandleInvalid() ?? true))
-                {
-                    Interop.Touch.DeleteTouch(internalLastTouchEvent.SwigCPtr);
-                }
-                if (!(internalLastHoverEvent?.IsNativeHandleInvalid() ?? true))
-                {
-                    Interop.Hover.DeleteHover(internalLastHoverEvent.SwigCPtr);
-                }
 
                 internalLastKeyEvent?.Dispose();
                 internalLastKeyEvent = null;
@@ -2431,6 +2454,32 @@ namespace Tizen.NUI
             IntPtr cPtr = Interop.Actor.FindChildById(defaultLayer.SwigCPtr, id);
             Layer ret = this.GetInstanceSafely<Layer>(cPtr);
 
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Sets to resize window with full screen.
+        /// If full screen size is set for the window,
+        /// window will be resized with full screen.
+        /// In addition, the full screen sized window's z-order is the highest.
+        /// </summary>
+        /// <param name="fullscreen"> If fullscreen is true, set fullscreen or unset.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetFullScreen(bool fullscreen)
+        {
+            Interop.Window.SetFullScreen(SwigCPtr, fullscreen);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Gets whether the full screen sized window or not.
+        /// </summary>
+        /// <returns>Returns true if the full screen sized window is.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool GetFullScreen()
+        {
+            bool ret = Interop.Window.GetFullScreen(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

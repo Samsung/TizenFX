@@ -53,7 +53,11 @@ namespace Tizen.NUI.Scene3D
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Light : View
     {
-        internal Light(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Light(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal Light(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, true, cRegister)
         {
         }
 
@@ -71,7 +75,7 @@ namespace Tizen.NUI.Scene3D
         /// </summary>
         /// <param name="light">Source object to copy.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Light(Light light) : this(Interop.Light.NewLight(Light.getCPtr(light)), true)
+        public Light(Light light) : this(Interop.Light.NewLight(Light.getCPtr(light)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
