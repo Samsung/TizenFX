@@ -707,11 +707,11 @@ namespace Tizen.Applications
             }
             w = new int[cnt1];
             Marshal.Copy(wPtr, w, 0, cnt1);
-            Interop.Libc.Free(wPtr);
+            Marshal.FreeHGlobal(wPtr);
 
             h = new int[cnt1];
             Marshal.Copy(hPtr, h, 0, cnt1);
-            Interop.Libc.Free(hPtr);
+            Marshal.FreeHGlobal(hPtr);
 
             err = Interop.WidgetService.GetSupportedSizeTypes(Id, ref cnt2, out typesPtr);
             switch (err)
@@ -734,7 +734,7 @@ namespace Tizen.Applications
 
             types = new int[cnt2];
             Marshal.Copy(typesPtr, types, 0, cnt2);
-            Interop.Libc.Free(typesPtr);
+            Marshal.FreeHGlobal(typesPtr);
 
             for (int i = 0; i < cnt1; i++)
             {
