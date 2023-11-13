@@ -19,6 +19,5 @@ internal static partial class Interop
     internal static partial class Libraries
     {
         public const string WidgetService = "libwidget_service.so.1";
-        public const string Libc = "libc.so.6";
     }
 }
