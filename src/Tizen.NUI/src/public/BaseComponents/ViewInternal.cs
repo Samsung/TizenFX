@@ -1468,6 +1468,8 @@ namespace Tizen.NUI.BaseComponents
             NUILog.Debug($"=============================");
 
             base.Dispose(type);
+            
+            aliveCount--;
         }
 
         /// This will not be public opened.
