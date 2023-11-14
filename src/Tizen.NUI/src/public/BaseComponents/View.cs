@@ -85,6 +85,8 @@ namespace Tizen.NUI.BaseComponents
         private Vector4 internalCurrentWorldColor = null;
         private Vector2 internalCurrentScreenPosition = null;
 
+        private static int aliveCount = 0;
+
         static View()
         {
             RegisterPropertyGroup(PositionProperty, positionPropertyGroup);
@@ -208,6 +210,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
+
+            aliveCount++;
         }
 
         internal View(ViewImpl implementation, bool shown = true) : this(Interop.View.NewViewInternal(ViewImpl.getCPtr(implementation)), true)
@@ -3495,6 +3499,12 @@ namespace Tizen.NUI.BaseComponents
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector3 CurrentScale => GetCurrentScale();
+
+        /// <summary>
+        /// Gets the number of currently alived View object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int AliveCount => aliveCount;
 
     }
 }
