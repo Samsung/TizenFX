@@ -192,7 +192,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Get the number of total frames
+        /// Get the number of total frames.
+        /// If resouce is still not be loaded, or invalid resource, the value is 0.
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
         public int TotalFrame
@@ -502,6 +503,10 @@ namespace Tizen.NUI.BaseComponents
                 currentStates.framePlayRangeMin = minFrame;
                 currentStates.framePlayRangeMax = maxFrame;
 
+                // Remove marker information.
+                currentStates.mark1 = null;
+                currentStates.mark2 = null;
+
                 Interop.View.InternalUpdateVisualPropertyIntPair(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.PlayRange, currentStates.framePlayRangeMin, currentStates.framePlayRangeMax);
 
                 NUILog.Debug($"  [{GetId()}] currentStates.min:({currentStates.framePlayRangeMin}, max:{currentStates.framePlayRangeMax})>");
@@ -664,7 +669,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// A marker has its start frame and end frame.
         /// Animation will play between the start frame and the end frame of the marker if one marker is specified.
-        /// Or animation will play between the start frame of the first marker and the end frame of the second marker if two markers are specified.   *
+        /// Or animation will play between the start frame of the first marker and the end frame of the second marker if two markers are specified.
         /// </summary>
         /// <param name="marker1">First marker</param>
         /// <param name="marker2">Second marker</param>
@@ -672,13 +677,18 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetMinMaxFrameByMarker(string marker1, string marker2 = null)
         {
-            if (currentStates.mark1 != marker1 || currentStates.mark2 != marker2)
+            string marker1OrEmpty = marker1 ?? ""; // mark1 should not be null
+            if (currentStates.mark1 != marker1OrEmpty || currentStates.mark2 != marker2)
             {
-                NUILog.Debug($"< [{GetId()}] SetMinMaxFrameByMarker({marker1}, {marker2})");
+                NUILog.Debug($"< [{GetId()}] SetMinMaxFrameByMarker({marker1OrEmpty}, {marker2})");
 
                 currentStates.changed = true;
-                currentStates.mark1 = marker1;
+                currentStates.mark1 = marker1OrEmpty;
                 currentStates.mark2 = marker2;
+
+                // Remove frame information.
+                currentStates.framePlayRangeMin = -1;
+                currentStates.framePlayRangeMax = -1;
 
                 if (string.IsNullOrEmpty(currentStates.mark2))
                 {
