@@ -403,6 +403,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     // at this case, implicit nor explicit dispose is not required. No native object is made.
                     disposed = true;
+                    aliveCount--;
                     return;
                 }
             }
