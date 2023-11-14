@@ -27,6 +27,9 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_EncodedImageBuffer_New")]
             public static extern IntPtr New(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_EncodedImageBuffer_New__SWIG_1")]
+            public static extern IntPtr New(global::System.Runtime.InteropServices.HandleRef jarg1, int imageType);
+
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_EncodedImageBuffer__SWIG_0")]
             public static extern IntPtr NewEncodedImageBuffer();
 
@@ -35,6 +38,12 @@ namespace Tizen.NUI
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_EncodedImageBuffer")]
             public static extern void DeleteEncodedImageBuffer(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_EncodedImageBuffer_SetImageType")]
+            public static extern void SetImageType(global::System.Runtime.InteropServices.HandleRef jarg1, int imageType);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_EncodedImageBuffer_GetImageType")]
+            public static extern int GetImageType(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_EncodedImageBuffer_GetRawBuffer")]
             public static extern IntPtr GetRawBuffer(IntPtr handle);
