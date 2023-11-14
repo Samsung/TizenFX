@@ -213,4 +213,22 @@ namespace Tizen.Network.WiFi
         /// <since_tizen> 6 </since_tizen>
         Scanning = 1
     }
+
+    /// <summary>
+    /// Enumeration for the Wi-Fi autoscan mode.
+    /// </summary>
+    /// <since_tizen> 10 </since_tizen>
+    public enum WiFiAutoScanMode
+    {
+        /// <summary>
+        /// Auto scan interval is increased exponentially like 4, 8, 16, ...128secs.
+        /// </summary>
+        /// <since_tizen> 10 </since_tizen>
+        Exponential = 0,
+        /// <summary>
+        /// Auto scan interval is fixed with 10secs(for mobile) / 15secs(for wearable).
+        /// </summary>
+        /// <since_tizen> 10 </since_tizen>
+        Periodic = 1
+    }
 }

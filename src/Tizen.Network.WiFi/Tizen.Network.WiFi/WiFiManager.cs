@@ -457,9 +457,9 @@ namespace Tizen.Network.WiFi
         /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public void SetAutoScanMode(int scanMode)
+        static public void SetAutoScanMode(WiFiAutoScanMode scanMode)
         {
-            WiFiManagerImpl.Instance.SetAutoScanMode(scanMode);
+            WiFiManagerImpl.Instance.SetAutoScanMode((int)scanMode);
         }
 
         /// <summary>
