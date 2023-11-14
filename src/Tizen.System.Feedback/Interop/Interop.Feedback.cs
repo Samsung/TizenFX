@@ -59,11 +59,11 @@ internal static partial class Interop
         [DllImport(Libraries.Feedback, EntryPoint = "feedback_get_count_of_theme_internal")]
         internal static extern int GetCountOfThemeInternal(FeedbackType type, out uint countOfTheme);
 
-        [DllImport(Libraries.Feedback, EntryPoint = "feedback_get_theme_index_internal")]
-        internal static extern int GetThemeIndexInternal(FeedbackType type, out uint indexOfTheme);
+        [DllImport(Libraries.Feedback, EntryPoint = "feedback_get_theme_id_internal")]
+        internal static extern int GetThemeIdInternal(FeedbackType type, out uint idOfTheme);
 
-        [DllImport(Libraries.Feedback, EntryPoint = "feedback_set_theme_index_internal")]
-        internal static extern int SetThemeIndexInternal(FeedbackType type, uint indexOfTheme);
+        [DllImport(Libraries.Feedback, EntryPoint = "feedback_set_theme_id_internal")]
+        internal static extern int SetThemeIdInternal(FeedbackType type, uint idOfTheme);
 
         [DllImport(Libraries.Feedback, EntryPoint = "feedback_stop_type_internal")]
         internal static extern int StopTypeInternal(FeedbackType type);
