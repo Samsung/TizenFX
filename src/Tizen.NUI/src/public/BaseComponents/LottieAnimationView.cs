@@ -206,6 +206,11 @@ namespace Tizen.NUI.BaseComponents
 
                     currentStates.totalFrame = ret;
                     NUILog.Debug($"TotalFrameNumber get! ret={ret}");
+
+                    if (ret <= 0)
+                    {
+                        Tizen.Log.Error("NUI", $"Fail to get TotalFrame. Maybe file is not loaded yet, or invalid url used. url : {currentStates.url}\n");
+                    }
                 }
                 return ret;
             }
@@ -556,38 +561,41 @@ namespace Tizen.NUI.BaseComponents
             PropertyMap imageMap = base.Image;
             if (imageMap != null)
             {
-                PropertyValue val = imageMap.Find(ImageVisualProperty.ContentInfo);
-                PropertyMap contentMap = new PropertyMap();
-                if (val?.Get(ref contentMap) == true)
+                if (TotalFrame > 0) // Check whether image file loaded successfuly.
                 {
-                    currentStates.contentInfo = new List<Tuple<string, int, int>>();
-                    for (uint i = 0; i < contentMap.Count(); i++)
+                    PropertyValue val = imageMap.Find(ImageVisualProperty.ContentInfo);
+                    PropertyMap contentMap = new PropertyMap();
+                    if (val?.Get(ref contentMap) == true)
                     {
-                        using PropertyKey propertyKey = contentMap.GetKeyAt(i);
-                        string key = propertyKey.StringKey;
-
-                        using PropertyValue arrVal = contentMap.GetValue(i);
-                        using PropertyArray arr = new PropertyArray();
-                        if (arrVal.Get(arr))
+                        currentStates.contentInfo = new List<Tuple<string, int, int>>();
+                        for (uint i = 0; i < contentMap.Count(); i++)
                         {
-                            int startFrame = -1;
-                            using PropertyValue start = arr.GetElementAt(0);
-                            start?.Get(out startFrame);
+                            using PropertyKey propertyKey = contentMap.GetKeyAt(i);
+                            string key = propertyKey.StringKey;
 
-                            int endFrame = -1;
-                            using PropertyValue end = arr.GetElementAt(1);
-                            end?.Get(out endFrame);
+                            using PropertyValue arrVal = contentMap.GetValue(i);
+                            using PropertyArray arr = new PropertyArray();
+                            if (arrVal.Get(arr))
+                            {
+                                int startFrame = -1;
+                                using PropertyValue start = arr.GetElementAt(0);
+                                start?.Get(out startFrame);
 
-                            NUILog.Debug($"[{i}] layer name={key}, startFrame={startFrame}, endFrame={endFrame}");
+                                int endFrame = -1;
+                                using PropertyValue end = arr.GetElementAt(1);
+                                end?.Get(out endFrame);
 
-                            Tuple<string, int, int> item = new Tuple<string, int, int>(key, startFrame, endFrame);
+                                NUILog.Debug($"[{i}] layer name={key}, startFrame={startFrame}, endFrame={endFrame}");
 
-                            currentStates.contentInfo?.Add(item);
+                                Tuple<string, int, int> item = new Tuple<string, int, int>(key, startFrame, endFrame);
+
+                                currentStates.contentInfo?.Add(item);
+                            }
                         }
                     }
+                    contentMap.Dispose();
+                    val?.Dispose();
                 }
-                contentMap.Dispose();
-                val?.Dispose();
             }
             NUILog.Debug($">");
 
@@ -612,38 +620,41 @@ namespace Tizen.NUI.BaseComponents
             PropertyMap imageMap = base.Image;
             if (imageMap != null)
             {
-                PropertyValue val = imageMap.Find(ImageVisualProperty.MarkerInfo);
-                PropertyMap markerMap = new PropertyMap();
-                if (val?.Get(ref markerMap) == true)
+                if (TotalFrame > 0) // Check whether image file loaded successfuly.
                 {
-                    currentStates.markerInfo = new List<Tuple<string, int, int>>();
-                    for (uint i = 0; i < markerMap.Count(); i++)
+                    PropertyValue val = imageMap.Find(ImageVisualProperty.MarkerInfo);
+                    PropertyMap markerMap = new PropertyMap();
+                    if (val?.Get(ref markerMap) == true)
                     {
-                        using PropertyKey propertyKey = markerMap.GetKeyAt(i);
-                        string key = propertyKey.StringKey;
-
-                        using PropertyValue arrVal = markerMap.GetValue(i);
-                        using PropertyArray arr = new PropertyArray();
-                        if (arrVal.Get(arr))
+                        currentStates.markerInfo = new List<Tuple<string, int, int>>();
+                        for (uint i = 0; i < markerMap.Count(); i++)
                         {
-                            int startFrame = -1;
-                            using PropertyValue start = arr.GetElementAt(0);
-                            start?.Get(out startFrame);
+                            using PropertyKey propertyKey = markerMap.GetKeyAt(i);
+                            string key = propertyKey.StringKey;
 
-                            int endFrame = -1;
-                            using PropertyValue end = arr.GetElementAt(1);
-                            end?.Get(out endFrame);
+                            using PropertyValue arrVal = markerMap.GetValue(i);
+                            using PropertyArray arr = new PropertyArray();
+                            if (arrVal.Get(arr))
+                            {
+                                int startFrame = -1;
+                                using PropertyValue start = arr.GetElementAt(0);
+                                start?.Get(out startFrame);
 
-                            NUILog.Debug($"[{i}] marker name={key}, startFrame={startFrame}, endFrame={endFrame}");
+                                int endFrame = -1;
+                                using PropertyValue end = arr.GetElementAt(1);
+                                end?.Get(out endFrame);
 
-                            Tuple<string, int, int> item = new Tuple<string, int, int>(key, startFrame, endFrame);
+                                NUILog.Debug($"[{i}] marker name={key}, startFrame={startFrame}, endFrame={endFrame}");
 
-                            currentStates.markerInfo?.Add(item);
+                                Tuple<string, int, int> item = new Tuple<string, int, int>(key, startFrame, endFrame);
+
+                                currentStates.markerInfo?.Add(item);
+                            }
                         }
                     }
+                    markerMap.Dispose();
+                    val?.Dispose();
                 }
-                markerMap.Dispose();
-                val?.Dispose();
             }
             NUILog.Debug($">");
 
