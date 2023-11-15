@@ -77,6 +77,7 @@ namespace Tizen.NUI.Scene3D
     public partial class Model : View
     {
         private bool isBuilt = false;
+        private Position modelPivotPoint = new Position();
         internal Model(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
         {
         }
@@ -137,6 +138,22 @@ namespace Tizen.NUI.Scene3D
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             ret.PositionUsesPivotPoint = model.PositionUsesPivotPoint;
             return ret;
+        }
+
+        /// <summary>
+        /// Get The original pivot point of the model
+        /// </summary>
+        /// <remarks>
+        /// This returns (0, 0, 0) before resources are loaded.
+        /// </remarks>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Position ModelPivotPoint
+        {
+            get
+            {
+                return modelPivotPoint;
+            }
         }
 
         /// <summary>
@@ -640,6 +657,9 @@ namespace Tizen.NUI.Scene3D
             {
                 this.ModelRoot.Build();
                 isBuilt = true;
+                this.modelPivotPoint.X = this.PivotPoint.X;
+                this.modelPivotPoint.Y = this.PivotPoint.Y;
+                this.modelPivotPoint.Z = this.PivotPoint.Z;
             }
         }
 
