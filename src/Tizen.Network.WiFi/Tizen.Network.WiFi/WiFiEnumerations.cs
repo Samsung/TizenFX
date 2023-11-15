@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.Network.WiFi
 {
@@ -218,6 +219,7 @@ namespace Tizen.Network.WiFi
     /// Enumeration for the Wi-Fi autoscan mode.
     /// </summary>
     /// <since_tizen> 10 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public enum WiFiAutoScanMode
     {
         /// <summary>
