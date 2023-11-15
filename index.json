@@ -23429,6 +23429,11 @@
     "title": "Class EncodedImageBuffer",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.EncodedImageBuffer.ImageTypes.html": {
+    "href": "API11/api/Tizen.NUI.EncodedImageBuffer.ImageTypes.html",
+    "title": "Enum EncodedImageBuffer.ImageTypes",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.EnvironmentVariable.html": {
     "href": "API11/api/Tizen.NUI.EnvironmentVariable.html",
     "title": "Class EnvironmentVariable",
