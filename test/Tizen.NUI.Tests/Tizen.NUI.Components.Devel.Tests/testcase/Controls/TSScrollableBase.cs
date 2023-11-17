@@ -608,10 +608,10 @@ namespace Tizen.NUI.Components.Devel.Tests
             Assert.IsInstanceOf<ScrollableBase>(testingTarget, "Should return ScrollableBase instance.");
 
             testingTarget.FadeScrollbar = false;
-            Assert.AreEqaul(false, testingTarget.FadeScrollbar, "Should be equal.");
+            Assert.AreEqual(false, testingTarget.FadeScrollbar, "Should be equal.");
 
             testingTarget.FadeScrollbar = true;
-            Assert.AreEqaul(true, testingTarget.FadeScrollbar, "Should be equal.");
+            Assert.AreEqual(true, testingTarget.FadeScrollbar, "Should be equal.");
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"ScrollableBaseFadeScrollbar END (OK)");

@@ -47,8 +47,6 @@ namespace Tizen.NUI.Wearable
         private bool isCurrentIndicatorCentered = false; // When the current indicator is the center one, this variable becomes true.
         private bool isOddNumber = true;
         private bool uninitializedLeftIndicator = true; // Need it when the indicators are asymmetry and the right indicator count is set earlier than left one.
-        private Animation selectAnimation = null;
-        private bool isNeedAnimation = false; // TODO : Animation will support using override function later.
 
         Position2D[] oddArray = new Position2D[] { new Position2D(36, 74), new Position2D(47, 60), new Position2D(60, 47), new Position2D(74, 36),
                                                    new Position2D(89, 26), new Position2D(105, 18), new Position2D(122, 11), new Position2D(139, 7),
@@ -202,7 +200,6 @@ namespace Tizen.NUI.Wearable
                 UpdateVisual();
             }
         }
-
 
         /// <summary>
         /// Gets or sets the number of the pages/indicators.
@@ -516,14 +513,6 @@ namespace Tizen.NUI.Wearable
             UpdateVisual();
         }
 
-        private void CreateSelectAnimation()
-        {
-            if (selectAnimation == null)
-            {
-                selectAnimation = new Animation(250);
-            }
-        }
-
         /// <summary>
         /// You can override it to do your select out operation.
         /// </summary>
@@ -593,16 +582,6 @@ namespace Tizen.NUI.Wearable
 
             if (type == DisposeTypes.Explicit)
             {
-                if (selectAnimation != null)
-                {
-                    if (selectAnimation.State == Animation.States.Playing)
-                    {
-                        selectAnimation.Stop();
-                    }
-                    selectAnimation.Dispose();
-                    selectAnimation = null;
-                }
-
                 container.RemoveAll();
                 indicatorList.Clear();
 
@@ -694,7 +673,8 @@ namespace Tizen.NUI.Wearable
         private void UpdateVisual()
         {
             if (null == circularPaginationStyle.IndicatorSize) return;
-            if (null == circularPaginationStyle.IndicatorImageURL) return;
+            var indicatorImageURL = circularPaginationStyle.IndicatorImageURL;
+            if (null == indicatorImageURL) return;
             if (indicatorCount <= 0) return;
 
             for (int i = 0; i < indicatorList.Count; i++)
@@ -713,7 +693,7 @@ namespace Tizen.NUI.Wearable
                     }
                     else
                     {
-                        indicator.URL = circularPaginationStyle.IndicatorImageURL.Selected;
+                        indicator.URL = indicatorImageURL.Selected;
                     }
                     indicator.Opacity = 1.0f;
                 }
@@ -726,7 +706,7 @@ namespace Tizen.NUI.Wearable
                     }
                     else
                     {
-                        indicator.URL = circularPaginationStyle.IndicatorImageURL.Normal;
+                        indicator.URL = indicatorImageURL.Normal;
                     }
                     indicator.Opacity = 0.5f;
                 }
@@ -753,7 +733,8 @@ namespace Tizen.NUI.Wearable
         private void UpdateAsymmetry()
         {
             if (null == circularPaginationStyle.IndicatorSize) return;
-            if (null == circularPaginationStyle.IndicatorImageURL) return;
+            var indicatorImageURL = circularPaginationStyle.IndicatorImageURL;
+            if (null == indicatorImageURL) return;
 
             int listCount = indicatorList.Count;
 
@@ -778,7 +759,7 @@ namespace Tizen.NUI.Wearable
                 }
                 else
                 {
-                    newOne.URL = circularPaginationStyle.IndicatorImageURL.Normal;
+                    newOne.URL = indicatorImageURL.Normal;
                 }
                 newOne.Opacity = 0.5f;
                 container.AddVisual("Indicator" + i, newOne);
@@ -798,7 +779,7 @@ namespace Tizen.NUI.Wearable
             }
             else
             {
-                indicatorList[selectedIndex].URL = circularPaginationStyle.IndicatorImageURL.Selected;
+                indicatorList[selectedIndex].URL = indicatorImageURL.Selected;
                 indicatorList[selectedIndex].Opacity = 1.0f;
             }
         }

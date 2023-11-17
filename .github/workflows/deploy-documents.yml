@@ -13,7 +13,7 @@ jobs:
       image: tizendotnet/tizenfx-build-worker:2.0
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         repository: TizenAPI/TizenFX-Docs
 
@@ -46,7 +46,7 @@ jobs:
 
   deploy:
     needs: [build]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
     - uses: actions/download-artifact@v2

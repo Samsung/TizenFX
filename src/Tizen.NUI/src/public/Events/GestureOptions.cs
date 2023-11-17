@@ -328,7 +328,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets the duration in milliseconds between the first tap's up event and the second tap's down event to be recognized as a duoble-tap gesture.
+        /// Sets the duration in milliseconds the duration time for recognizing multi-tap gesture.
+        /// If there are two taps within this time, it is a double tap.
         /// </summary>
         /// <remarks>This is a global configuration option. Affects all gestures.</remarks>
         /// <param name="ms">The time value in milliseconds</param>
@@ -336,6 +337,20 @@ namespace Tizen.NUI
         public void SetDoubleTapTimeout(uint ms)
         {
             Interop.GestureOptions.SetDoubleTapTimeout(ms);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Sets the recognizer time required to be recognized as a tap gesture,
+        /// This time is from touch down to touch up to recognize the tap gesture.
+        /// If the time between touch down and touch up is longer than recognizer time, it is not recognized as a tap gesture.
+        /// </summary>
+        /// <remarks>This is a global configuration option. Affects all gestures.</remarks>
+        /// <param name="ms">The time value in milliseconds</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetTapRecognizerTime(uint ms)
+        {
+            Interop.GestureOptions.SetTapRecognizerTime(ms);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }

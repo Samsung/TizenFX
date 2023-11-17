@@ -421,7 +421,7 @@ namespace Tizen.NUI.Xaml
             {
                 var info = assembly.GetManifestResourceInfo(resource);
 
-                if (!string.IsNullOrEmpty(info.FileName) &&
+                if (info != null && !string.IsNullOrEmpty(info.FileName) &&
                     string.Compare(info.FileName, filename, StringComparison.OrdinalIgnoreCase) == 0)
                     return true;
             }

@@ -36,9 +36,14 @@ namespace Tizen.Multimedia
 
     internal static class MetadataExtractorRetValidator
     {
-        internal static void ThrowIfError(MetadataExtractorError error, string errorMessage)
+        internal static void ThrowIfError(MetadataExtractorError errorCode, string errorMessage)
         {
-            switch (error)
+            if (errorCode == MetadataExtractorError.None)
+            {
+                return;
+            }
+
+            switch (errorCode)
             {
                 case MetadataExtractorError.InvalidParameter:
                     throw new ArgumentException(errorMessage);
@@ -54,6 +59,10 @@ namespace Tizen.Multimedia
 
                 case MetadataExtractorError.OperationFailed:
                     throw new InvalidOperationException(errorMessage);
+
+                default:
+                    Log.Error(typeof(MetadataExtractor).FullName, $"Unknown error : {errorCode.ToString()}");
+                    break;
             }
         }
     }

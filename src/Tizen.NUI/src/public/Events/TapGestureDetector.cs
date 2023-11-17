@@ -49,15 +49,29 @@ namespace Tizen.NUI
         public TapGestureDetector(uint tapsRequired) : this(Interop.TapGestureDetector.New(tapsRequired), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
 
-        internal TapGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        /// <summary>
+        /// The copy constructor.
+        /// </summary>
+        /// <param name="handle">A reference to the copied handle</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TapGestureDetector(TapGestureDetector handle) : this(Interop.TapGestureDetector.NewTapGestureDetector(TapGestureDetector.getCPtr(handle)), true, false)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal TapGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal TapGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
         }
 
         private DaliEventHandler<object, DetectedEventArgs> _detectedEventHandler;
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void DetectedCallbackType(IntPtr actor, IntPtr TapGesture);
         private DetectedCallbackType _detectedCallback;
 
@@ -88,17 +102,6 @@ namespace Tizen.NUI
                     DetectedSignal().Disconnect(_detectedCallback);
                 }
             }
-        }
-
-        /// <summary>
-        /// The copy constructor.
-        /// </summary>
-        /// <param name="handle">A reference to the copied handle</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public TapGestureDetector(TapGestureDetector handle) : this(Interop.TapGestureDetector.NewTapGestureDetector(TapGestureDetector.getCPtr(handle)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -181,15 +184,45 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// override it to clean-up your own resources.
+        /// </summary>
+        /// <param name="type"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (HasBody())
+            {
+                if (_detectedCallback != null)
+                {
+                    using TapGestureDetectedSignal signal = new TapGestureDetectedSignal(Interop.TapGestureDetector.DetectedSignal(GetBaseHandleCPtrHandleRef), false);
+                    signal?.Disconnect(_detectedCallback);
+                    _detectedCallback = null;
+                }
+            }
+            base.Dispose(type);
+        }
+
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (_detectedCallback != null)
-            {
-                DetectedSignal().Disconnect(_detectedCallback);
-            }
-
             Interop.TapGestureDetector.DeleteTapGestureDetector(swigCPtr);
         }
 

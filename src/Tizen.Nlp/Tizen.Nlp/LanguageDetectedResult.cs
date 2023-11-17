@@ -13,6 +13,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
+using System;
 
 namespace Tizen.Nlp
 {
@@ -20,6 +21,7 @@ namespace Tizen.Nlp
     /// This class contains result of language detected.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
+    [Obsolete("Deprecated since API11. Will be removed in API13.")]
     public class LanguageDetectedResult
     {
         /// <summary>

@@ -277,5 +277,31 @@ namespace Tizen.NUI.Devel.Tests
             view.Dispose();
             tlog.Debug(tag, $"ViewFocusableChildren END (OK)");
         }
+		
+		[Test]
+        [Category("P1")]
+        [Description("View SetDefaultGrabTouchAfterLeave.")]
+        [Property("SPEC", "Tizen.NUI.View.SetDefaultGrabTouchAfterLeave A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void BaseComponentsViewSetDefaultGrabTouchAfterLeave()
+        {
+            tlog.Debug(tag, $"BaseComponentsViewSetDefaultGrabTouchAfterLeave START");
+
+            try
+			{
+			    View.SetDefaultGrabTouchAfterLeave(true);
+                View.SetDefaultAllowOnlyOwnTouch(true);
+			}
+			catch (Exception e)
+            {
+                tlog.Info(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"BaseComponentsViewSetDefaultGrabTouchAfterLeave END (OK)");
+        }
     }
 }

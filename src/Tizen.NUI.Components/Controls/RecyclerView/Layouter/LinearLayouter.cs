@@ -29,7 +29,7 @@ namespace Tizen.NUI.Components
         private readonly List<float> ItemPosition = new List<float>();
         private readonly List<float> ItemSize = new List<float>();
         private int ItemSizeChanged = -1;
-        private CollectionView colView;
+        private CollectionView collectionView;
         private bool hasHeader;
         private float headerSize;
         private Extents headerMargin;
@@ -46,6 +46,16 @@ namespace Tizen.NUI.Components
         private Timer requestLayoutTimer = null;
         private bool isSourceEmpty;
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected new IGroupableItemSource Source => collectionView?.InternalSource;
+
+        /// <summary>
+        /// Visible ViewItem.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override List<GroupInfo> GroupItems => groups;
+
         /// <summary>
         /// Clean up ItemsLayouter.
         /// </summary>
@@ -54,27 +64,32 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public override void Initialize(RecyclerView view)
         {
-            colView = view as CollectionView;
-            if (colView == null)
+            collectionView = view as CollectionView;
+            if (collectionView == null)
             {
                 throw new ArgumentException("LinearLayouter only can be applied CollectionView.", nameof(view));
             }
-            // 1. Clean Up
-            Clear();
 
+            // 1. Clean Up
+            foreach (RecyclerViewItem item in VisibleItems)
+            {
+                collectionView.UnrealizeItem(item, false);
+            }
+            VisibleItems.Clear();
+            groups.Clear();
             FirstVisible = 0;
             LastVisible = 0;
 
-            IsHorizontal = (colView.ScrollingDirection == ScrollableBase.Direction.Horizontal);
+            IsHorizontal = (collectionView.ScrollingDirection == ScrollableBase.Direction.Horizontal);
 
-            RecyclerViewItem header = colView?.Header;
-            RecyclerViewItem footer = colView?.Footer;
+            RecyclerViewItem header = collectionView?.Header;
+            RecyclerViewItem footer = collectionView?.Footer;
             float width, height;
-            int count = colView.InternalItemSource.Count;
+            int count = Source.Count;
 
             if (header != null)
             {
-                MeasureChild(colView, header);
+                MeasureChild(collectionView, header);
 
                 width = header.Layout != null? header.Layout.MeasuredWidth.Size.AsRoundedValue() : 0;
                 height = header.Layout != null? header.Layout.MeasuredHeight.Size.AsRoundedValue() : 0;
@@ -86,13 +101,13 @@ namespace Tizen.NUI.Components
                 headerMargin = new Extents(itemMargin);
                 hasHeader = true;
 
-                colView.UnrealizeItem(header);
+                collectionView.UnrealizeItem(header);
             }
             else hasHeader = false;
 
             if (footer != null)
             {
-                MeasureChild(colView, footer);
+                MeasureChild(collectionView, footer);
 
                 width = footer.Layout != null? footer.Layout.MeasuredWidth.Size.AsRoundedValue() : 0;
                 height = footer.Layout != null? footer.Layout.MeasuredHeight.Size.AsRoundedValue() : 0;
@@ -105,7 +120,7 @@ namespace Tizen.NUI.Components
                 footer.Index = count - 1;
                 hasFooter = true;
 
-                colView.UnrealizeItem(footer);
+                collectionView.UnrealizeItem(footer);
             }
             else hasFooter = false;
 
@@ -120,17 +135,17 @@ namespace Tizen.NUI.Components
 
             int firstIndex = hasHeader? 1 : 0;
 
-            if (colView.IsGrouped)
+            if (collectionView.IsGrouped)
             {
                 isGrouped = true;
 
-                if (colView.GroupHeaderTemplate != null)
+                if (collectionView.GroupHeaderTemplate != null)
                 {
-                    while (!colView.InternalItemSource.IsGroupHeader(firstIndex)) firstIndex++;
+                    while (!Source.IsGroupHeader(firstIndex)) firstIndex++;
                     //must be always true
-                    if (colView.InternalItemSource.IsGroupHeader(firstIndex))
+                    if (Source.IsGroupHeader(firstIndex))
                     {
-                        RecyclerViewItem groupHeader = colView.RealizeItem(firstIndex);
+                        RecyclerViewItem groupHeader = collectionView.RealizeItem(firstIndex);
                         firstIndex++;
 
                         if (groupHeader == null) throw new Exception("[" + firstIndex + "] Group Header failed to realize!");
@@ -143,7 +158,7 @@ namespace Tizen.NUI.Components
                         }
                         else
                         {
-                            MeasureChild(colView, groupHeader);
+                            MeasureChild(collectionView, groupHeader);
 
                             width = groupHeader.Layout.MeasuredWidth.Size.AsRoundedValue();
                             height = groupHeader.Layout.MeasuredHeight.Size.AsRoundedValue();
@@ -154,7 +169,7 @@ namespace Tizen.NUI.Components
                                             width + itemMargin.Start + itemMargin.End:
                                             height + itemMargin.Top + itemMargin.Bottom;
                         groupHeaderMargin = new Extents(itemMargin);
-                        colView.UnrealizeItem(groupHeader);
+                        collectionView.UnrealizeItem(groupHeader);
                     }
                 }
                 else
@@ -162,14 +177,14 @@ namespace Tizen.NUI.Components
                     groupHeaderSize = 0F;
                 }
 
-                if (colView.GroupFooterTemplate != null)
+                if (collectionView.GroupFooterTemplate != null)
                 {
                     int firstFooter = firstIndex;
-                    while (!colView.InternalItemSource.IsGroupFooter(firstFooter)) firstFooter++;
+                    while (!Source.IsGroupFooter(firstFooter)) firstFooter++;
                     //must be always true
-                    if (colView.InternalItemSource.IsGroupFooter(firstFooter))
+                    if (Source.IsGroupFooter(firstFooter))
                     {
-                        RecyclerViewItem groupFooter = colView.RealizeItem(firstFooter);
+                        RecyclerViewItem groupFooter = collectionView.RealizeItem(firstFooter);
 
                         if (groupFooter == null) throw new Exception("[" + firstFooter + "] Group Footer failed to realize!");
                         // Need to Set proper height or width on scroll direction.
@@ -180,7 +195,7 @@ namespace Tizen.NUI.Components
                         }
                         else
                         {
-                            MeasureChild(colView, groupFooter);
+                            MeasureChild(collectionView, groupFooter);
 
                             width = groupFooter.Layout.MeasuredWidth.Size.AsRoundedValue();
                             height = groupFooter.Layout.MeasuredHeight.Size.AsRoundedValue();
@@ -190,8 +205,8 @@ namespace Tizen.NUI.Components
                         groupFooterSize = IsHorizontal?
                                             width + itemMargin.Start + itemMargin.End:
                                             height + itemMargin.Top + itemMargin.Bottom;
-                        groupFooterMargin = new Extents(itemMargin);  
-                        colView.UnrealizeItem(groupFooter);
+                        groupFooterMargin = new Extents(itemMargin);
+                        collectionView.UnrealizeItem(groupFooter);
                     }
                 }
                 else
@@ -202,12 +217,22 @@ namespace Tizen.NUI.Components
             else isGrouped = false;
 
             bool failed = false;
+
             //Final Check of FirstIndex
-            while (colView.InternalItemSource.IsHeader(firstIndex) ||
-                    colView.InternalItemSource.IsGroupHeader(firstIndex) ||
-                    colView.InternalItemSource.IsGroupFooter(firstIndex))
+            if ((Source.Count - 1 < firstIndex) ||
+                (Source.IsFooter(firstIndex) && (Source.Count - 1) == firstIndex))
             {
-                if (colView.InternalItemSource.IsFooter(firstIndex))
+                StepCandidate = 0F;
+                failed = true;
+            }
+
+            while (!failed &&
+                   (Source.IsHeader(firstIndex) ||
+                    Source.IsGroupHeader(firstIndex) ||
+                    Source.IsGroupFooter(firstIndex)))
+            {
+                if (Source.IsFooter(firstIndex)
+                    || ((Source.Count - 1) <= firstIndex))
                 {
                     StepCandidate = 0F;
                     failed = true;
@@ -218,14 +243,14 @@ namespace Tizen.NUI.Components
 
             if (!failed)
             {
-                RecyclerViewItem sizeDeligate = colView.RealizeItem(firstIndex);
+                RecyclerViewItem sizeDeligate = collectionView.RealizeItem(firstIndex);
                 if (sizeDeligate == null)
                 {
                     // error !
                     throw new Exception("Cannot create content from DatTemplate.");
                 }
 
-                sizeDeligate.BindingContext = colView.InternalItemSource.GetItem(firstIndex);
+                sizeDeligate.BindingContext = Source.GetItem(firstIndex);
 
                 // Need to Set proper height or width on scroll direction.
                 if (sizeDeligate.Layout == null)
@@ -235,7 +260,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    MeasureChild(colView, sizeDeligate);
+                    MeasureChild(collectionView, sizeDeligate);
 
                     width = sizeDeligate.Layout.MeasuredWidth.Size.AsRoundedValue();
                     height = sizeDeligate.Layout.MeasuredHeight.Size.AsRoundedValue();
@@ -245,19 +270,19 @@ namespace Tizen.NUI.Components
                 StepCandidate = IsHorizontal?
                                 width + itemMargin.Start + itemMargin.End:
                                 height + itemMargin.Top + itemMargin.Bottom;
-                CandidateMargin = new Extents(itemMargin);  
+                CandidateMargin = new Extents(itemMargin);
                 if (StepCandidate == 0) StepCandidate = 1; //????
 
-                colView.UnrealizeItem(sizeDeligate);
+                collectionView.UnrealizeItem(sizeDeligate, false);
             }
 
             float Current = IsHorizontal? Padding.Start : Padding.Top;
-            IGroupableItemSource source = colView.InternalItemSource;
+            IGroupableItemSource source = Source;
             GroupInfo currentGroup = null;
             object currentParent = null;
             for (int i = 0; i < count; i++)
             {
-                if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+                if (collectionView.SizingStrategy == ItemSizingStrategy.MeasureAll)
                 {
                     if (i == 0 && hasHeader)
                         ItemSize.Add(headerSize);
@@ -300,7 +325,7 @@ namespace Tizen.NUI.Components
                                 GroupSize = currentSize,
                                 GroupPosition = Current
                             };
-                            if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+                            if (collectionView.SizingStrategy == ItemSizingStrategy.MeasureAll)
                                 currentGroup.ItemPosition.Add(0);
                             groups.Add(currentGroup);
                             if (source.IsGroupHeader(i)) Current += currentSize;
@@ -313,7 +338,7 @@ namespace Tizen.NUI.Components
                             {
                                 currentGroup.Count++;
                                 currentGroup.GroupSize += groupFooterSize;
-                                if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+                                if (collectionView.SizingStrategy == ItemSizingStrategy.MeasureAll)
                                     currentGroup.ItemPosition.Add(Current - currentGroup.GroupPosition);
                                 Current += groupFooterSize;
                             }
@@ -324,7 +349,7 @@ namespace Tizen.NUI.Components
                             {
                                 currentGroup.Count++;
                                 currentGroup.GroupSize += StepCandidate;
-                                if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+                                if (collectionView.SizingStrategy == ItemSizingStrategy.MeasureAll)
                                     currentGroup.ItemPosition.Add(Current - currentGroup.GroupPosition);
                                 Current += StepCandidate;
                             }
@@ -333,7 +358,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+                    if (collectionView.SizingStrategy == ItemSizingStrategy.MeasureAll)
                         ItemPosition.Add(Current);
 
                     if (i == 0 && hasHeader) Current += headerSize;
@@ -343,8 +368,8 @@ namespace Tizen.NUI.Components
             }
 
             ScrollContentSize = Current + (IsHorizontal? Padding.End : Padding.Bottom);
-            if (IsHorizontal) colView.ContentContainer.SizeWidth = ScrollContentSize;
-            else colView.ContentContainer.SizeHeight = ScrollContentSize;
+            if (IsHorizontal) collectionView.ContentContainer.SizeWidth = ScrollContentSize;
+            else collectionView.ContentContainer.SizeHeight = ScrollContentSize;
 
             base.Initialize(view);
             //Console.WriteLine("[NUI] Init Done, StepCnadidate{0}, Scroll{1}", StepCandidate, ScrollContentSize);
@@ -368,7 +393,7 @@ namespace Tizen.NUI.Components
                 force = true;
             }
 
-            int LastIndex = colView.InternalItemSource.Count - 1;
+            int LastIndex = Source.Count - 1;
 
             if (!force && PrevScrollPosition == Math.Abs(scrollPosition)) return;
             PrevScrollPosition = Math.Abs(scrollPosition);
@@ -385,10 +410,10 @@ namespace Tizen.NUI.Components
             int prevLastVisible = LastVisible;
 
             (float X, float Y) visibleArea = (PrevScrollPosition,
-                PrevScrollPosition + (IsHorizontal? colView.Size.Width : colView.Size.Height)
+                PrevScrollPosition + (IsHorizontal? collectionView.Size.Width : collectionView.Size.Height)
             );
 
-            // 1. Set First/Last Visible Item Index. 
+            // 1. Set First/Last Visible Item Index.
             (int start, int end) = FindVisibleItems(visibleArea);
             FirstVisible = start;
             LastVisible = end;
@@ -399,9 +424,8 @@ namespace Tizen.NUI.Components
             {
                 if (item.Index < FirstVisible || item.Index > LastVisible)
                 {
-                    //Console.WriteLine("[NUI] Unrealize{0}!", item.Index);
                     unrealizedItems.Add(item);
-                    colView.UnrealizeItem(item);
+                    collectionView.UnrealizeItem(item);
                 }
             }
             VisibleItems.RemoveAll(unrealizedItems.Contains);
@@ -420,7 +444,7 @@ namespace Tizen.NUI.Components
 
                 if (item == null)
                 {
-                    item = colView.RealizeItem(i);
+                    item = collectionView.RealizeItem(i);
                     if (item != null) VisibleItems.Add(item);
                     else throw new Exception("Failed to create RecycerViewItem index of ["+ i + "]");
                 }
@@ -430,14 +454,14 @@ namespace Tizen.NUI.Components
 
                 var size = (IsHorizontal? item.SizeWidth: item.SizeHeight);
 
-                if (colView.SizingStrategy == ItemSizingStrategy.MeasureFirst)
+                if (collectionView.SizingStrategy == ItemSizingStrategy.MeasureFirst)
                 {
-                    if (item.IsHeader || item.IsFooter || item.isGroupHeader || item.isGroupFooter)
+                    if (item.IsHeader || item.IsFooter || item.IsGroupHeader || item.IsGroupFooter)
                     {
                         if (item.IsHeader) size = headerSize;
                         else if (item.IsFooter) size = footerSize;
-                        else if (item.isGroupHeader) size = groupHeaderSize;
-                        else if (item.isGroupFooter) size = groupFooterSize;
+                        else if (item.IsGroupHeader) size = groupHeaderSize;
+                        else if (item.IsGroupFooter) size = groupFooterSize;
                     }
                     else size = StepCandidate;
                 }
@@ -515,16 +539,16 @@ namespace Tizen.NUI.Components
         {
             if (item == null)
                 throw new ArgumentNullException(nameof(item));
-            if (colView == null) return;
+            if (collectionView == null) return;
 
             if (!IsInitialized ||
-                (colView.SizingStrategy == ItemSizingStrategy.MeasureFirst &&
+                (collectionView.SizingStrategy == ItemSizingStrategy.MeasureFirst &&
                 item.Index != 0) ||
                 (item.Index < 0))
                 return;
 
             float PrevSize, CurrentSize;
-            if (item.Index == (colView.InternalItemSource.Count - 1))
+            if (item.Index == (Source.Count - 1))
             {
                 PrevSize = ScrollContentSize - ItemPosition[item.Index];
             }
@@ -537,7 +561,7 @@ namespace Tizen.NUI.Components
 
             if (CurrentSize != PrevSize)
             {
-                if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+                if (collectionView.SizingStrategy == ItemSizingStrategy.MeasureAll)
                     ItemSize[item.Index] = CurrentSize;
                 else
                     StepCandidate = CurrentSize;
@@ -554,11 +578,11 @@ namespace Tizen.NUI.Components
         {
             // Insert Single item.
             if (source == null) throw new ArgumentNullException(nameof(source));
-            if (colView == null) return;
+            if (collectionView == null) return;
 
-            if (isSourceEmpty)
+            if (isSourceEmpty || StepCandidate == 0)
             {
-                Initialize(colView);
+                Initialize(collectionView);
             }
 
             // Will be null if not a group.
@@ -571,10 +595,10 @@ namespace Tizen.NUI.Components
             float offset = 0F;
             (topInScreenIndex, offset) = FindTopItemInScreen();
             */
-        
+
             // 1. Handle MeasureAll
             /*
-            if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+            if (collectionView.SizingStrategy == ItemSizingStrategy.MeasureAll)
             {
                 //Need To Implement
             }
@@ -631,7 +655,7 @@ namespace Tizen.NUI.Components
                     }
                     else
                     {
-                        if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+                        if (collectionView.SizingStrategy == ItemSizingStrategy.MeasureAll)
                         {
                             float curPos = groupInfo.ItemPosition[startIndex - groupInfo.StartIndex];
                             groupInfo.ItemPosition.Insert(startIndex - groupInfo.StartIndex, curPos);
@@ -660,7 +684,7 @@ namespace Tizen.NUI.Components
             }
             else
             {
-                if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+                if (collectionView.SizingStrategy == ItemSizingStrategy.MeasureAll)
                 {
                     // Need to Implements
                 }
@@ -670,8 +694,8 @@ namespace Tizen.NUI.Components
             // 3. Update Scroll Content Size
             ScrollContentSize += currentSize;
 
-            if (IsHorizontal) colView.ContentContainer.SizeWidth = ScrollContentSize;
-            else colView.ContentContainer.SizeHeight = ScrollContentSize;
+            if (IsHorizontal) collectionView.ContentContainer.SizeWidth = ScrollContentSize;
+            else collectionView.ContentContainer.SizeHeight = ScrollContentSize;
 
             // 4. Update Visible Items.
             foreach (RecyclerViewItem item in VisibleItems)
@@ -682,6 +706,18 @@ namespace Tizen.NUI.Components
                 }
             }
 
+            if (startIndex <= FirstVisible)
+            {
+                FirstVisible++;
+                LastVisible++;
+            }
+            else if (startIndex > FirstVisible && startIndex <= LastVisible)
+            {
+                LastVisible++;
+            }
+
+            if (FirstVisible > Source.Count - 1) FirstVisible = Source.Count -1;
+            if (LastVisible > Source.Count - 1) LastVisible = Source.Count -1;
 
             float scrollPosition = PrevScrollPosition;
 
@@ -693,7 +729,7 @@ namespace Tizen.NUI.Components
                 scrollPosition = GetItemPosition(topInScreenIndex);
                 scrollPosition -= offset;
 
-                colView.ScrollTo(scrollPosition);
+                collectionView.ScrollTo(scrollPosition);
             }
             */
 
@@ -710,11 +746,11 @@ namespace Tizen.NUI.Components
         {
              // Insert Group
             if (source == null) throw new ArgumentNullException(nameof(source));
-            if (colView == null) return;
+            if (collectionView == null) return;
 
-            if (isSourceEmpty)
+            if (isSourceEmpty || StepCandidate == 0)
             {
-                Initialize(colView);
+                Initialize(collectionView);
             }
 
             float currentSize = StepCandidate;
@@ -730,7 +766,7 @@ namespace Tizen.NUI.Components
 
             // 1. Handle MeasureAll
             /*
-            if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+            if (collectionView.SizingStrategy == ItemSizingStrategy.MeasureAll)
             {
                 //Need To Implement
             }
@@ -779,7 +815,7 @@ namespace Tizen.NUI.Components
                         }
                         else
                         {
-                            if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+                            if (collectionView.SizingStrategy == ItemSizingStrategy.MeasureAll)
                             {
                                //Need To Implement
                                /*
@@ -837,8 +873,8 @@ namespace Tizen.NUI.Components
             }
 
             // 3. Update Scroll Content Size
-            if (IsHorizontal) colView.ContentContainer.SizeWidth = ScrollContentSize;
-            else colView.ContentContainer.SizeHeight = ScrollContentSize;
+            if (IsHorizontal) collectionView.ContentContainer.SizeWidth = ScrollContentSize;
+            else collectionView.ContentContainer.SizeHeight = ScrollContentSize;
 
             // 4. Update Visible Items.
             foreach (RecyclerViewItem item in VisibleItems)
@@ -849,6 +885,19 @@ namespace Tizen.NUI.Components
                 }
             }
 
+            if (startIndex <= FirstVisible)
+            {
+                FirstVisible = FirstVisible + count;
+                LastVisible = LastVisible + count;
+            }
+            else if (startIndex > FirstVisible && startIndex <= LastVisible)
+            {
+                LastVisible = LastVisible + count;
+            }
+
+            if (FirstVisible > Source.Count - 1) FirstVisible = Source.Count -1;
+            if (LastVisible > Source.Count - 1) LastVisible = Source.Count -1;
+
             // Position Adjust
             float scrollPosition = PrevScrollPosition;
             /*
@@ -858,7 +907,7 @@ namespace Tizen.NUI.Components
                 scrollPosition = GetItemPosition(topInScreenIndex);
                 scrollPosition -= offset;
 
-                colView.ScrollTo(scrollPosition);
+                collectionView.ScrollTo(scrollPosition);
             }
             */
 
@@ -875,7 +924,7 @@ namespace Tizen.NUI.Components
         {
             // Remove Single
             if (source == null) throw new ArgumentNullException(nameof(source));
-            if (colView == null) return;
+            if (collectionView == null) return;
 
             // Will be null if not a group.
             float currentSize = StepCandidate;
@@ -890,7 +939,7 @@ namespace Tizen.NUI.Components
 
             // 1. Handle MeasureAll
             /*
-            if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+            if (collectionView.SizingStrategy == ItemSizingStrategy.MeasureAll)
             {
                 //Need To Implement
             }
@@ -926,12 +975,13 @@ namespace Tizen.NUI.Components
                     // Remove Group
                     // groupInfo.Dispose();
                     groups.Remove(groupInfo);
+                    parentIndex--;
                 }
                 else
                 {
                     groupInfo.Count--;
 
-                    if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+                    if (collectionView.SizingStrategy == ItemSizingStrategy.MeasureAll)
                     {
                         //Need to Implement this.
                     }
@@ -949,7 +999,7 @@ namespace Tizen.NUI.Components
             }
             else
             {
-                if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+                if (collectionView.SizingStrategy == ItemSizingStrategy.MeasureAll)
                 {
                     // Need to Implements
                 }
@@ -959,8 +1009,8 @@ namespace Tizen.NUI.Components
             ScrollContentSize -= currentSize;
 
             // 3. Update Scroll Content Size
-            if (IsHorizontal) colView.ContentContainer.SizeWidth = ScrollContentSize;
-            else colView.ContentContainer.SizeHeight = ScrollContentSize;
+            if (IsHorizontal) collectionView.ContentContainer.SizeWidth = ScrollContentSize;
+            else collectionView.ContentContainer.SizeHeight = ScrollContentSize;
 
             // 4. Update Visible Items.
             RecyclerViewItem targetItem = null;
@@ -969,7 +1019,7 @@ namespace Tizen.NUI.Components
                 if (item.Index == startIndex)
                 {
                     targetItem = item;
-                    colView.UnrealizeItem(item);
+                    collectionView.UnrealizeItem(item);
                 }
                 else if (item.Index > startIndex)
                 {
@@ -977,6 +1027,20 @@ namespace Tizen.NUI.Components
                 }
             }
             VisibleItems.Remove(targetItem);
+
+
+            if (startIndex <= FirstVisible)
+            {
+                FirstVisible--;
+                LastVisible--;
+            }
+            else if (startIndex > FirstVisible && startIndex <= LastVisible)
+            {
+                LastVisible--;
+            }
+
+            if (FirstVisible < 0) FirstVisible = 0;
+            if (LastVisible < 0) LastVisible = 0;
 
             // Position Adjust
             float scrollPosition = PrevScrollPosition;
@@ -987,7 +1051,7 @@ namespace Tizen.NUI.Components
                 scrollPosition = GetItemPosition(topInScreenIndex);
                 scrollPosition -= offset;
 
-                colView.ScrollTo(scrollPosition);
+                collectionView.ScrollTo(scrollPosition);
             }
             */
 
@@ -1004,7 +1068,7 @@ namespace Tizen.NUI.Components
         {
             // Remove Group
             if (source == null) throw new ArgumentNullException(nameof(source));
-            if (colView == null) return;
+            if (collectionView == null) return;
 
             // Will be null if not a group.
             float currentSize = StepCandidate;
@@ -1019,7 +1083,7 @@ namespace Tizen.NUI.Components
 
             // 1. Handle MeasureAll
             /*
-            if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+            if (collectionView.SizingStrategy == ItemSizingStrategy.MeasureAll)
             {
                 //Need To Implement
             }
@@ -1043,7 +1107,7 @@ namespace Tizen.NUI.Components
                 // Check item is group parent or not
                 // if group parent, add new gorupinfo
                 currentSize = groupInfo.GroupSize;
-                if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+                if (collectionView.SizingStrategy == ItemSizingStrategy.MeasureAll)
                 {
                     // Update ItemSize and ItemPosition
                 }
@@ -1066,8 +1130,8 @@ namespace Tizen.NUI.Components
             ScrollContentSize -= currentSize;
 
             // 3. Update Scroll Content Size
-            if (IsHorizontal) colView.ContentContainer.SizeWidth = ScrollContentSize;
-            else colView.ContentContainer.SizeHeight = ScrollContentSize;
+            if (IsHorizontal) collectionView.ContentContainer.SizeWidth = ScrollContentSize;
+            else collectionView.ContentContainer.SizeHeight = ScrollContentSize;
 
             // 4. Update Visible Items.
             List<RecyclerViewItem> unrealizedItems = new List<RecyclerViewItem>();
@@ -1077,7 +1141,7 @@ namespace Tizen.NUI.Components
                     && (item.Index < startIndex + count))
                 {
                     unrealizedItems.Add(item);
-                    colView.UnrealizeItem(item);
+                    collectionView.UnrealizeItem(item);
                 }
                 else if (item.Index >= startIndex + count)
                 {
@@ -1086,6 +1150,19 @@ namespace Tizen.NUI.Components
             }
             VisibleItems.RemoveAll(unrealizedItems.Contains);
             unrealizedItems.Clear();
+
+            if (startIndex <= FirstVisible)
+            {
+                FirstVisible = FirstVisible - count;
+                LastVisible = LastVisible - count;
+            }
+            else if (startIndex > FirstVisible && startIndex <= LastVisible)
+            {
+                LastVisible = LastVisible - count;
+            }
+
+            if (FirstVisible < 0) FirstVisible = 0;
+            if (LastVisible < 0) LastVisible = 0;
 
             // Position Adjust
             float scrollPosition = PrevScrollPosition;
@@ -1096,7 +1173,7 @@ namespace Tizen.NUI.Components
                 scrollPosition = GetItemPosition(topInScreenIndex);
                 scrollPosition -= offset;
 
-                colView.ScrollTo(scrollPosition);
+                collectionView.ScrollTo(scrollPosition);
             }
             */
 
@@ -1113,7 +1190,7 @@ namespace Tizen.NUI.Components
         {
             // Reorder Single
             if (source == null) throw new ArgumentNullException(nameof(source));
-            if (colView == null) return;
+            if (collectionView == null) return;
 
             // Will be null if not a group.
             float currentSize = StepCandidate;
@@ -1128,12 +1205,12 @@ namespace Tizen.NUI.Components
 
             // 1. Handle MeasureAll
             /*
-            if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+            if (collectionView.SizingStrategy == ItemSizingStrategy.MeasureAll)
             {
                 //Need To Implement
             }
             */
-            
+
             // Move can only happen in it's own groups.
             // so there will be no changes in position, startIndex in ohter groups.
             // check visible item and update indexs.
@@ -1157,8 +1234,50 @@ namespace Tizen.NUI.Components
                 }
             }
 
-            if (IsHorizontal) colView.ContentContainer.SizeWidth = ScrollContentSize;
-            else colView.ContentContainer.SizeHeight = ScrollContentSize;
+            if (fromPosition > FirstVisible)
+            {
+                if (toPosition > LastVisible)
+                {
+                    FirstVisible--;
+                    LastVisible--;
+                }
+                else if (toPosition > FirstVisible && toPosition <= LastVisible)
+                {
+                    LastVisible--;
+                }
+            }
+            else if (fromPosition >= FirstVisible && fromPosition <= LastVisible)
+            {
+                if (toPosition < FirstVisible)
+                {
+                    FirstVisible++;
+                }
+                else if (toPosition > LastVisible)
+                {
+                    LastVisible--;
+                }
+            }
+            else if (fromPosition > LastVisible)
+            {
+                if (toPosition <= FirstVisible)
+                {
+                    FirstVisible++;
+                    LastVisible++;
+                }
+                else if (toPosition > FirstVisible && toPosition <= LastVisible)
+                {
+                    LastVisible++;
+                }
+            }
+
+            if (FirstVisible < 0) FirstVisible = 0;
+            if (LastVisible < 0) LastVisible = 0;
+            if (FirstVisible > Source.Count - 1) FirstVisible = Source.Count -1;
+            if (LastVisible > Source.Count - 1) LastVisible = Source.Count -1;
+
+
+            if (IsHorizontal) collectionView.ContentContainer.SizeWidth = ScrollContentSize;
+            else collectionView.ContentContainer.SizeHeight = ScrollContentSize;
 
             // Position Adjust
             float scrollPosition = PrevScrollPosition;
@@ -1170,7 +1289,7 @@ namespace Tizen.NUI.Components
                 scrollPosition = GetItemPosition(topInScreenIndex);
                 scrollPosition -= offset;
 
-                colView.ScrollTo(scrollPosition);
+                collectionView.ScrollTo(scrollPosition);
             }
             */
 
@@ -1187,7 +1306,7 @@ namespace Tizen.NUI.Components
         {
             // Reorder Groups
             if (source == null) throw new ArgumentNullException(nameof(source));
-            if (colView == null) return;
+            if (collectionView == null) return;
 
             // Will be null if not a group.
             float currentSize = StepCandidate;
@@ -1235,7 +1354,7 @@ namespace Tizen.NUI.Components
 
                 int startGroup = (diff > 0? fromParentIndex: toParentIndex);
                 int endGroup =  (diff > 0? toParentIndex: fromParentIndex);
-                
+
                 for (int i = startGroup; i <= endGroup; i++)
                 {
                     if (i == toParentIndex) continue;
@@ -1273,6 +1392,14 @@ namespace Tizen.NUI.Components
                     }
                 }
             }
+            // FIXME!! Unraelize All and reset First/Last Visible
+            foreach (RecyclerViewItem item in VisibleItems)
+            {
+                collectionView.UnrealizeItem(item);
+            }
+            VisibleItems.Clear();
+            FirstVisible = 0;
+            LastVisible = 0;
 
             // Position Adjust
             float scrollPosition = PrevScrollPosition;
@@ -1284,7 +1411,7 @@ namespace Tizen.NUI.Components
                 scrollPosition = GetItemPosition(topInScreenIndex);
                 scrollPosition -= offset;
 
-                colView.ScrollTo(scrollPosition);
+                collectionView.ScrollTo(scrollPosition);
             }
             */
 
@@ -1303,7 +1430,7 @@ namespace Tizen.NUI.Components
             if (source == null) throw new ArgumentNullException(nameof(source));
             IGroupableItemSource gSource = source as IGroupableItemSource;
             if (gSource == null)throw new Exception("Source is not group!");
-            if (colView == null) return;
+            if (collectionView == null) return;
 
             // Get the first Visible Position to adjust.
             /*
@@ -1371,12 +1498,14 @@ namespace Tizen.NUI.Components
                         targetSibling = IsHorizontal? targetSibling : currentFocusedView.SiblingOrder + 1;
                         break;
                     }
+                default:
+                    break;
             }
 
             if (targetSibling > -1 && targetSibling < Container.Children.Count)
             {
                 RecyclerViewItem candidate = Container.Children[targetSibling] as RecyclerViewItem;
-                if (candidate != null && candidate.Index >= 0 && candidate.Index < colView.InternalItemSource.Count)
+                if (candidate != null && candidate.Index >= 0 && candidate.Index < Source.Count)
                 {
                     nextFocusedView = candidate;
                 }
@@ -1389,7 +1518,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override (int start, int end) FindVisibleItems((float X, float Y) visibleArea)
         {
-            int MaxIndex = colView.InternalItemSource.Count - 1 - (hasFooter? 1 : 0);
+            int MaxIndex = Source.Count - 1 - (hasFooter? 1 : 0);
             int adds = 5;
             int skipGroup = -2;
             (int start, int end) found = (0, 0);
@@ -1501,16 +1630,17 @@ namespace Tizen.NUI.Components
             return found;
         }
 
-        // Item position excluding margins.
-        internal override (float X, float Y) GetItemPosition(int index)
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal override (float X, float Y) GetItemPosition(int index)
         {
             int spaceStartX = Padding.Start;
             int spaceStartY = Padding.Top;
-            if (colView.InternalItemSource.IsHeader(index))
+            if (Source.IsHeader(index))
             {
                 return (spaceStartX + headerMargin.Start, spaceStartY + headerMargin.Top);
             }
-            else if (colView.InternalItemSource.IsFooter(index))
+            else if (Source.IsFooter(index))
             {
                 return ((IsHorizontal? ScrollContentSize - footerSize - Padding.End + footerMargin.Start : spaceStartX + footerMargin.Start),
                         (IsHorizontal? spaceStartY + footerMargin.Top : ScrollContentSize - footerSize - Padding.Bottom + footerMargin.Top));
@@ -1526,11 +1656,11 @@ namespace Tizen.NUI.Components
                 float current = GetGroupPosition(gInfo, index);
                 Extents itemMargin = CandidateMargin;
 
-                if (colView.InternalItemSource.IsGroupHeader(index))
+                if (Source.IsGroupHeader(index))
                 {
                     itemMargin = groupHeaderMargin;
                 }
-                else if (colView.InternalItemSource.IsGroupFooter(index))
+                else if (Source.IsGroupFooter(index))
                 {
                     itemMargin = groupFooterMargin;
                 }
@@ -1541,7 +1671,7 @@ namespace Tizen.NUI.Components
                         spaceStartY + itemMargin.Top:
                         itemMargin.Top + GetGroupPosition(gInfo, index)));
             }
-            else if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+            else if (collectionView.SizingStrategy == ItemSizingStrategy.MeasureAll)
             {
                 //FIXME : CandidateMargin need to be actual itemMargin
                 return ((IsHorizontal? ItemPosition[index] + CandidateMargin.Start : spaceStartX + CandidateMargin.Start),
@@ -1557,44 +1687,45 @@ namespace Tizen.NUI.Components
             }
         }
 
-        // Item size excluding margins. this size is approximated size.
-        internal override (float Width, float Height) GetItemSize(int index)
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal override (float Width, float Height) GetItemSize(int index)
         {
-            if (colView.InternalItemSource.IsHeader(index))
+            if (Source.IsHeader(index))
             {
-                return ((IsHorizontal? (int)headerSize : (int)(colView.Size.Width) - Padding.Start - Padding.End)
+                return ((IsHorizontal? (int)headerSize : (int)(collectionView.Size.Width) - Padding.Start - Padding.End)
                         - headerMargin.Start - headerMargin.End,
-                        (IsHorizontal? (int)colView.Size.Height - Padding.Top - Padding.Bottom: (int)headerSize)
+                        (IsHorizontal? (int)collectionView.Size.Height - Padding.Top - Padding.Bottom: (int)headerSize)
                         - headerMargin.Top - headerMargin.Bottom);
             }
-            else if (colView.InternalItemSource.IsFooter(index))
+            else if (Source.IsFooter(index))
             {
-                return ((IsHorizontal? (int)footerSize : (int)(colView.Size.Width) - Padding.Start - Padding.End)
+                return ((IsHorizontal? (int)footerSize : (int)(collectionView.Size.Width) - Padding.Start - Padding.End)
                         - footerMargin.Start - footerMargin.End,
-                        (IsHorizontal? (int)colView.Size.Height - Padding.Top - Padding.Bottom: (int)footerSize)
+                        (IsHorizontal? (int)collectionView.Size.Height - Padding.Top - Padding.Bottom: (int)footerSize)
                         - footerMargin.Top - footerMargin.Bottom);
             }
-            else if (colView.InternalItemSource.IsGroupHeader(index))
+            else if (Source.IsGroupHeader(index))
             {
-                return ((IsHorizontal? (int)groupHeaderSize : (int)(colView.Size.Width) - Padding.Start - Padding.End)
+                return ((IsHorizontal? (int)groupHeaderSize : (int)(collectionView.Size.Width) - Padding.Start - Padding.End)
                         - groupHeaderMargin.Start - groupHeaderMargin.End,
-                        (IsHorizontal? (int)colView.Size.Height - Padding.Top - Padding.Bottom: (int)groupHeaderSize)
+                        (IsHorizontal? (int)collectionView.Size.Height - Padding.Top - Padding.Bottom: (int)groupHeaderSize)
                         - groupHeaderMargin.Top - groupHeaderMargin.Bottom);
             }
-            else if (colView.InternalItemSource.IsGroupFooter(index))
+            else if (Source.IsGroupFooter(index))
             {
-                return ((IsHorizontal? (int)groupFooterSize : (int)(colView.Size.Width) - Padding.Start - Padding.End)
+                return ((IsHorizontal? (int)groupFooterSize : (int)(collectionView.Size.Width) - Padding.Start - Padding.End)
                         - groupFooterMargin.Start - groupFooterMargin.End,
-                        (IsHorizontal? (int)colView.Size.Height - Padding.Top - Padding.Bottom: (int)groupFooterSize)
+                        (IsHorizontal? (int)collectionView.Size.Height - Padding.Top - Padding.Bottom: (int)groupFooterSize)
                         - groupFooterMargin.Top - groupFooterMargin.Bottom);
             }
             else
             {
-                return ((IsHorizontal? (int)StepCandidate : (int)(colView.Size.Width) - Padding.Start - Padding.End)
+                return ((IsHorizontal? (int)StepCandidate : (int)(collectionView.Size.Width) - Padding.Start - Padding.End)
                         - CandidateMargin.Start - CandidateMargin.End,
-                        (IsHorizontal? (int)colView.Size.Height - Padding.Top - Padding.Bottom: (int)StepCandidate)
+                        (IsHorizontal? (int)collectionView.Size.Height - Padding.Top - Padding.Bottom: (int)StepCandidate)
                         - CandidateMargin.Top - CandidateMargin.Bottom);
-            }            
+            }
         }
 
         private void DelayedRequestLayout(float scrollPosition , bool force = true)
@@ -1611,6 +1742,7 @@ namespace Tizen.NUI.Components
                 RequestLayout(scrollPosition, force);
                 return false;
             });
+            requestLayoutTimer.Start();
         }
 
         /*
@@ -1637,49 +1769,40 @@ namespace Tizen.NUI.Components
 
         private float GetItemStepSize(int index)
         {
-            if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+            if (collectionView.SizingStrategy == ItemSizingStrategy.MeasureAll)
             {
                 return ItemSize[index];
             }
             else
             {
-                if (colView.InternalItemSource.IsHeader(index))
+                if (Source.IsHeader(index))
                     return headerSize;
-                else if (colView.InternalItemSource.IsFooter(index))
+                else if (Source.IsFooter(index))
                     return footerSize;
-                else if (colView.InternalItemSource.IsGroupHeader(index))
+                else if (Source.IsGroupHeader(index))
                     return groupHeaderSize;
-                else if (colView.InternalItemSource.IsGroupFooter(index))
+                else if (Source.IsGroupFooter(index))
                     return groupFooterSize;
                 else
                     return StepCandidate;
-            }            
+            }
         }
 
         private void UpdatePosition(int index)
         {
-            bool IsGroup = (colView.InternalItemSource is IGroupableItemSource);
+            bool IsGroup = (Source is IGroupableItemSource);
 
             if (index <= 0) return;
-            if (index >= colView.InternalItemSource.Count)
+            if (index >= Source.Count)
 
                 if (IsGroup)
                 {
-                    //IsGroupHeader = (colView.InternalItemSource as IGroupableItemSource).IsGroupHeader(index);
-                    //IsGroupFooter = (colView.InternalItemSource as IGroupableItemSource).IsGroupFooter(index);
+                    //IsGroupHeader = (Source as IGroupableItemSource).IsGroupHeader(index);
+                    //IsGroupFooter = (Source as IGroupableItemSource).IsGroupFooter(index);
                     //Do Something
                 }
-            if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+            if (collectionView.SizingStrategy == ItemSizingStrategy.MeasureAll)
                 ItemPosition[index] = ItemPosition[index - 1] + GetItemStepSize(index - 1);
-        }
-
-        private RecyclerViewItem GetVisibleItem(int index)
-        {
-            foreach (RecyclerViewItem item in VisibleItems)
-            {
-                if (item.Index == index) return item;
-            }
-            return null;
         }
 
         private GroupInfo GetGroupInfo(int index)
@@ -1704,7 +1827,7 @@ namespace Tizen.NUI.Components
 
         private float GetGroupPosition(GroupInfo groupInfo, int index)
         {
-            if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+            if (collectionView.SizingStrategy == ItemSizingStrategy.MeasureAll)
                 return groupInfo.GroupPosition + groupInfo.ItemPosition[index - groupInfo.StartIndex];
             else
             {
@@ -1737,15 +1860,5 @@ namespace Tizen.NUI.Components
                     return null;
                 }
         */
-        class GroupInfo
-        {
-            public object GroupParent;
-            public int StartIndex;
-            public int Count;
-            public float GroupSize;
-            public float GroupPosition;
-            //Items relative position from the GroupPosition. Only use for MeasureAll.
-            public List<float> ItemPosition = new List<float>();
-        }
     }
 }

@@ -36,14 +36,14 @@ namespace Tizen.NUI.Binding
                         return null;
                     }
 
-                    if (ve.XamlResources != null)
+                    if (ve.XamlResources is var xres && xres != null)
                     {
-                        foreach (KeyValuePair<string, object> res in ve.XamlResources.MergedResources)
+                        foreach (KeyValuePair<string, object> res in xres.MergedResources)
                         {
                             // If a MergedDictionary value is overridden for a DynamicResource, 
                             // it comes out later in the enumeration of MergedResources
                             // TryGetValue ensures we pull the up-to-date value for the key
-                            if (!resources.ContainsKey(res.Key) && ve.XamlResources.TryGetValue(res.Key, out object value))
+                            if (!resources.ContainsKey(res.Key) && xres.TryGetValue(res.Key, out object value))
                                 resources.Add(res.Key, value);
                         }
                     }
@@ -72,7 +72,7 @@ namespace Tizen.NUI.Binding
             while (element != null)
             {
                 var ve = element as IResourcesProvider;
-                if (ve != null && ve.IsResourcesCreated && ve.XamlResources != null && ve.XamlResources.TryGetValue(key, out value))
+                if (ve != null && ve.IsResourcesCreated && ve.XamlResources is var xres && xres != null && xres.TryGetValue(key, out value))
                 {
                     return true;
                 }

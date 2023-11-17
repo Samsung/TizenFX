@@ -106,6 +106,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void LinearLayoutLinearAlignment()
         {
             tlog.Debug(tag, $"LinearLayoutLinearAlignment START");
@@ -265,6 +266,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MCST")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void LinearLayoutOnLayout()
         {
             tlog.Debug(tag, $"LinearLayoutOnLayout START");

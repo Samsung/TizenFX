@@ -78,6 +78,27 @@ namespace Tizen.NUI.Scene3D
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_IsUsingFramebuffer")]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool IsUsingFramebuffer(global::System.Runtime.InteropServices.HandleRef sceneView);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_SetFramebufferMultiSamplingLevel")]
+            public static extern void SetFramebufferMultiSamplingLevel(global::System.Runtime.InteropServices.HandleRef sceneView, uint multiSamplingLevel);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_GetFramebufferMultiSamplingLevel")]
+            public static extern uint GetFramebufferMultiSamplingLevel(global::System.Runtime.InteropServices.HandleRef sceneView);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_SetSkybox")]
+            public static extern void SetSkybox(global::System.Runtime.InteropServices.HandleRef sceneView, string skyboxUrl);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_SetSkyboxIntensity")]
+            public static extern void SetSkyboxIntensity(global::System.Runtime.InteropServices.HandleRef sceneView, float intensity);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_GetSkyboxIntensity")]
+            public static extern float GetSkyboxIntensity(global::System.Runtime.InteropServices.HandleRef sceneView);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_SetSkyboxOrientation")]
+            public static extern void SetSkyboxOrientation(global::System.Runtime.InteropServices.HandleRef sceneView, global::System.Runtime.InteropServices.HandleRef orientation);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_GetSkyboxOrientation")]
+            public static extern global::System.IntPtr GetSkyboxOrientation(global::System.Runtime.InteropServices.HandleRef sceneView);
         }
     }
 }

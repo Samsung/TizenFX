@@ -411,5 +411,33 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.AreEqual(false, resultBool, "...and That value must be equal what we added");
             }
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("internal API test in Ubuntu, Container.DisposeRecursively")]
+        [Property("SPEC", "Tizen.NUI.Common.Container.DisposeRecursively M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "eunkiki.hong@samsung.com")]
+        public void DisposeRecursively_VALUE()
+        {
+            /* TEST CODE */
+            View testParent = new View();
+            View testChildL0 = new View();
+            View testChildL1 = new View();
+
+            testParent.Add(testChildL0);
+            testChildL0.Add(testChildL1);
+
+            Assert.AreEqual(false, testParent.Disposed, "View should not disposed yet.");
+            Assert.AreEqual(false, testChildL0.Disposed, "View should not disposed yet.");
+            Assert.AreEqual(false, testChildL1.Disposed, "View should not disposed yet.");
+
+            testParent.DisposeRecursively();
+
+            Assert.AreEqual(true, testParent.Disposed, "View should be disposed now.");
+            Assert.AreEqual(true, testChildL0.Disposed, "View should be disposed now.");
+            Assert.AreEqual(true, testChildL1.Disposed, "View should be disposed now.");
+        }
     }
 }

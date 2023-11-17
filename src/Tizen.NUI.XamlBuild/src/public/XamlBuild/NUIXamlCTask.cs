@@ -217,6 +217,13 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 ReadSymbols = NeedDebug,
             };
 
+            if (UseInjection)
+            {
+                XamlOptimization = 1;
+            }
+
+            LoggingHelper.LogWarning($"XamlOptimization is {XamlOptimization}.");
+
             using (var assemblyDefinition = AssemblyDefinition.ReadAssembly(System.IO.Path.GetFullPath(Assembly), readerParameters))
             {
                 if (null != XamlFilePath)
@@ -293,13 +300,6 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
                         bool currentRetOfType = false;
                         IList<Exception> currentExceptionsOfType = null;
-
-                        if (UseInjection)
-                        {
-                            XamlOptimization = 1;
-                        }
-
-                        LoggingHelper.LogWarning($"XamlOptimization is {XamlOptimization}.");
 
                         if (0 == XamlOptimization)
                         {
@@ -419,7 +419,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             }
 
             CustomAttribute xamlFilePathAttr;
-            var xamlFilePath = typeDef.HasCustomAttributes && (xamlFilePathAttr = typeDef.CustomAttributes.FirstOrDefault(ca => ca.AttributeType.FullName == "Tizen.NUI.Xaml.XamlFilePathAttribute")) != null ?
+            var xamlFilePath = typeDef.HasCustomAttributes && (xamlFilePathAttr = typeDef.CustomAttributes.FirstOrDefault(ca => ca.AttributeType.FullName.Contains("Tizen.NUI.Xaml.XamlFilePathAttribute"))) != null ?
                                       (string)xamlFilePathAttr.ConstructorArguments[0].Value :
                                       resource.Name;
 
@@ -517,7 +517,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             ModuleDefinition module = typeDef.Module;
 
             CustomAttribute xamlFilePathAttr;
-            var xamlFilePath = typeDef.HasCustomAttributes && (xamlFilePathAttr = typeDef.CustomAttributes.FirstOrDefault(ca => ca.AttributeType.FullName == "Tizen.NUI.Xaml.XamlFilePathAttribute")) != null ?
+            var xamlFilePath = typeDef.HasCustomAttributes && (xamlFilePathAttr = typeDef.CustomAttributes.FirstOrDefault(ca => ca.AttributeType.FullName.Contains("Tizen.NUI.Xaml.XamlFilePathAttribute"))) != null ?
                                       (string)xamlFilePathAttr.ConstructorArguments[0].Value :
                                       resource.Name;
 

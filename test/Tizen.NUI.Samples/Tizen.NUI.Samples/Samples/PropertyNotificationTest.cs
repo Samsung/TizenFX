@@ -7,7 +7,6 @@ namespace Tizen.NUI.Samples
     public class PropertyNotificationTest : IExample
     {
         Window win;
-        int cnt;
         TextLabel statusText;
         global::System.Random rand = new global::System.Random();
 

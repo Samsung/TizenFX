@@ -239,6 +239,8 @@ namespace Tizen.Applications
                 }
 
                 list.Add(new Badge(appId, (int)count, display == 0 ? false : true));
+
+                return true;
             }, IntPtr.Zero);
 
             if (err != BadgeError.None)

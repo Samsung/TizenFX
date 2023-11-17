@@ -1609,6 +1609,15 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Formatted current value.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        string IAtspiValue.AccessibilityGetValueText()
+        {
+            return $"{CurrentValue}";
+        }
+
+        /// <summary>
         /// Gets maximum value for Accessibility.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]

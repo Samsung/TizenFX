@@ -35,15 +35,15 @@
                     <l:BoolToObjectConverter x:TypeArguments="XamlStyle">
                         <l:BoolToObjectConverter.TrueObject>
                             <XamlStyle TargetType="TextLabel">
-                                <Setter Property="Text" Value="Indubitably!" />
-                                <Setter Property="TextColor" Value="Green" />
+                                <!--<Setter Property="Text" Value="Indubitably!" />
+                                <Setter Property="TextColor" Value="Green" />-->
                             </XamlStyle>
                         </l:BoolToObjectConverter.TrueObject>
 
                         <l:BoolToObjectConverter.FalseObject>
                             <XamlStyle TargetType="TextLabel">
-                                <Setter Property="Text" Value="Maybe later" />
-                                <Setter Property="TextColor" Value="Red" />
+                                <!--<Setter Property="Text" Value="Maybe later" />
+                                <Setter Property="TextColor" Value="Red" />-->
                             </XamlStyle>
                         </l:BoolToObjectConverter.FalseObject>
                     </l:BoolToObjectConverter>

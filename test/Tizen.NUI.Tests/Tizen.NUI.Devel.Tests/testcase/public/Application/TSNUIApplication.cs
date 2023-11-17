@@ -36,6 +36,26 @@ namespace Tizen.NUI.Devel.Tests
             {
                 base.OnLocaleChanged(e);
             }
+
+            public void MyOnRegionFormatChanged(RegionFormatChangedEventArgs e)
+            {
+                base.OnRegionFormatChanged(e);
+            }
+
+            public void MyOnLowMemory(LowMemoryEventArgs e)
+            {
+                base.OnLowMemory(e);
+            }
+
+            public void MyOnLowBattery(LowBatteryEventArgs e)
+            {
+                base.OnLowBattery(e);
+            }
+
+            public void MyExit()
+            {
+                base.Exit();
+            }
         }
 
         [SetUp]
@@ -57,6 +77,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void NUIApplicationConstructor()
         {
             tlog.Debug(tag, $"NUIApplicationConstructor START");
@@ -173,6 +194,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void NUIApplicationConstructorWithBackendType()
         {
             tlog.Debug(tag, $"NUIApplicationConstructorWithBackendType START");
@@ -255,7 +277,9 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
+#pragma warning disable Reflection // The code contains reflection
                 NUIApplication.RegisterAssembly(typeof(NUIApplication).Assembly);
+#pragma warning restore Reflection // The code contains reflection
             }
             catch (Exception e)
             {
@@ -424,6 +448,120 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             tlog.Debug(tag, $"NUIApplicationOnTerminate END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("NUIApplication OnRegionFormatChanged")]
+        [Property("SPEC", "Tizen.NUI.NUIApplication.OnRegionFormatChanged M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void NUIApplicationOnRegionFormatChanged()
+        {
+            tlog.Debug(tag, $"NUIApplicationOnRegionFormatChanged START");
+
+            var testingTarget = new MyNUIApplication();
+            Assert.IsNotNull(testingTarget, "Should be not null.");
+            Assert.IsInstanceOf<NUIApplication>(testingTarget, "Should be an instance of Window type.");
+
+            try
+            {
+                testingTarget.MyOnRegionFormatChanged(new RegionFormatChangedEventArgs("Shanghai"));
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"NUIApplicationOnRegionFormatChanged END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("NUIApplication OnLowMemory")]
+        [Property("SPEC", "Tizen.NUI.NUIApplication.OnLowMemory M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void NUIApplicationOnLowMemory()
+        {
+            tlog.Debug(tag, $"NUIApplicationOnLowMemory START");
+
+            var testingTarget = new MyNUIApplication();
+            Assert.IsNotNull(testingTarget, "Should be not null.");
+            Assert.IsInstanceOf<NUIApplication>(testingTarget, "Should be an instance of Window type.");
+
+            try
+            {
+                LowMemoryStatus status = LowMemoryStatus.None;
+                testingTarget.MyOnLowMemory(new LowMemoryEventArgs (status));
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"NUIApplicationOnLowMemory END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("NUIApplication OnLowBattery")]
+        [Property("SPEC", "Tizen.NUI.NUIApplication.OnLowBattery M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void NUIApplicationOnLowBattery()
+        {
+            tlog.Debug(tag, $"NUIApplicationOnLowBattery START");
+
+            var testingTarget = new MyNUIApplication();
+            Assert.IsNotNull(testingTarget, "Should be not null.");
+            Assert.IsInstanceOf<NUIApplication>(testingTarget, "Should be an instance of Window type.");
+
+            try
+            {
+                LowBatteryStatus status = LowBatteryStatus.None;
+                testingTarget.MyOnLowBattery(new LowBatteryEventArgs (status));
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"NUIApplicationOnLowBattery END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("NUIApplication Exit")]
+        [Property("SPEC", "Tizen.NUI.NUIApplication.Exit M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void NUIApplicationExit()
+        {
+            tlog.Debug(tag, $"NUIApplicationExit START");
+
+            var testingTarget = new MyNUIApplication();
+            Assert.IsNotNull(testingTarget, "Should be not null.");
+            Assert.IsInstanceOf<NUIApplication>(testingTarget, "Should be an instance of Window type.");
+
+            try
+            {
+                testingTarget.MyExit();
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"NUIApplicationExit END (OK)");
         }
     }
 }

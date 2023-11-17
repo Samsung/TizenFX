@@ -45,10 +45,11 @@ namespace Tizen.NUI.Devel.Tests
                 try
                 {
                     var testingTarget = Tizen.NUI.EXaml.EXamlExtensions.LoadFromEXamlPath(view, path);
+                    Tizen.NUI.EXaml.EXamlExtensions.DisposeXamlElements(view);
                 }
                 catch (Exception e)
                 {
-                    tlog.Debug(tag, e.Message.ToString());
+                    tlog.Error(tag, e.Message.ToString());
                     Assert.Fail("Caught Exception: Failed!");
                 }
             }
@@ -188,23 +189,23 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "TXaml,Type")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void LoadFromEXamlByRelativePath2()
+        public void LoadFromEXamlByRelativePath()
         {
-            tlog.Debug(tag, $"LoadFromEXamlByRelativePath2 START");
+            tlog.Debug(tag, $"LoadFromEXamlByRelativePath START");
 
             try
             {
-                var testcase = new TotalSample(true);
+                //var testcase = new TotalSample(true);
+                var testcase = new TotalSample();
                 Assert.True(true, "Should go here!");
             }
             catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
-                tlog.Debug(tag, e.StackTrace);
                 Assert.Fail("Caught Exception: Failed!");
             }
 
-            tlog.Debug(tag, $"LoadFromEXamlByRelativePath2 END");
+            tlog.Debug(tag, $"LoadFromEXamlByRelativePath END");
         }
     }
 }

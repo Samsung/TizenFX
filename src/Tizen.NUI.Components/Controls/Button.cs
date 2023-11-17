@@ -357,7 +357,7 @@ namespace Tizen.NUI.Components
                     overlayImage = CreateOverlayImage();
                     if (null != Extension)
                     {
-                        overlayImage = Extension.OnCreateOverlayImage(this, overlayImage);
+                        Extension.ProcessOverlayImage(this, ref overlayImage);
                     }
                     if (null != overlayImage)
                     {
@@ -790,7 +790,15 @@ namespace Tizen.NUI.Components
         }
         private StringSelector InternalIconURLSelector
         {
-            get => buttonIcon?.ResourceUrlSelector == null ? null : new StringSelector(buttonIcon.ResourceUrlSelector);
+            get
+            {
+                Selector<string> resourceUrlSelector = buttonIcon?.ResourceUrlSelector;
+                if(resourceUrlSelector == null)
+                {
+                    return null;
+                }
+                return new StringSelector(resourceUrlSelector);
+            }
             set
             {
                 if (value == null || buttonIcon == null)
@@ -1005,28 +1013,27 @@ namespace Tizen.NUI.Components
         {
             Debug.Assert(buttonIcon != null && buttonText != null);
 
-            styleApplied = false;
-
             base.ApplyStyle(viewStyle);
 
             if (viewStyle is ButtonStyle buttonStyle)
             {
-                Extension = buttonStyle.CreateExtension();
+                styleApplying++;
+
+                if ((Extension = buttonStyle.CreateExtension()) != null)
+                {
+                    bool needRelayout = false;
+                    needRelayout |= Extension.ProcessIcon(this, ref buttonIcon);
+                    needRelayout |= Extension.ProcessText(this, ref buttonText);
+
+                    if (needRelayout)
+                    {
+                        LayoutItems();
+                    }
+                }
 
                 if (buttonStyle.Overlay != null)
                 {
                     OverlayImage?.ApplyStyle(buttonStyle.Overlay);
-                }
-
-                if (Extension != null)
-                {
-                    buttonIcon.Unparent();
-                    buttonIcon = Extension.OnCreateIcon(this, buttonIcon);
-
-                    buttonText.Unparent();
-                    buttonText = Extension.OnCreateText(this, buttonText);
-
-                    LayoutItems();
                 }
 
                 if (buttonStyle.Text != null)
@@ -1039,9 +1046,10 @@ namespace Tizen.NUI.Components
                 {
                     buttonIcon.ApplyStyle(buttonStyle.Icon);
                 }
+
+                styleApplying--;
             }
 
-            styleApplied = true;
             UpdateState();
         }
 

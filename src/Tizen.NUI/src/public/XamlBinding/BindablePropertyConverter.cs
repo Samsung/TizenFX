@@ -71,7 +71,7 @@ namespace Tizen.NUI.Binding
                         type = xamlStyle.TargetType;
                 }
                 else if (parentValuesProvider.TargetObject is Trigger)
-                    type = (parentValuesProvider.TargetObject as Trigger).TargetType;
+                    type = (parentValuesProvider.TargetObject as Trigger)?.TargetType;
                 else if (parentValuesProvider.TargetObject is XamlPropertyCondition && (parent as TriggerBase) != null)
                     type = (parent as TriggerBase).TargetType;
 

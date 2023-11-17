@@ -50,6 +50,38 @@ namespace Tizen.NUI.Components
                     {
                         instance.UpdateState();
                     }
+                    if (instance.ParentItemsView is CollectionView collectionView)
+                    {
+                        var context = instance.BindingContext;
+                        if (collectionView.SelectionMode is ItemSelectionMode.Single ||
+                            collectionView.SelectionMode is ItemSelectionMode.SingleAlways)
+                        {
+                            if (newSelected && collectionView.SelectedItem != context)
+                            {
+                                collectionView.SelectedItem = context;
+                            }
+                            else if (!newSelected && collectionView.SelectedItem == context)
+                            {
+                                collectionView.SelectedItem = null;
+                            }
+                        }
+                        else if (collectionView.SelectionMode is ItemSelectionMode.Multiple)
+                        {
+                            var selectedList = collectionView.SelectedItems;
+                            if (selectedList != null && context != null)
+                            {
+                                bool contains = selectedList.Contains(context);
+                                if (newSelected && !contains)
+                                {
+                                    selectedList.Add(context);
+                                }
+                                else if (!newSelected && contains)
+                                {
+                                    selectedList.Remove(context);
+                                }
+                            }
+                        }
+                    }
                 }
             }
         },
@@ -123,7 +155,11 @@ namespace Tizen.NUI.Components
         public bool IsSelectable
         {
             get => (bool)GetValue(IsSelectableProperty);
-            set => SetValue(IsSelectableProperty, value);
+            set
+            {
+                SetValue(IsSelectableProperty, value);
+                OnPropertyChanged(nameof(IsSelectable));
+            }
         }
 
         /// <summary>
@@ -133,7 +169,11 @@ namespace Tizen.NUI.Components
         public bool IsSelected
         {
             get => (bool)GetValue(IsSelectedProperty);
-            set => SetValue(IsSelectedProperty, value);
+            set
+            {
+                SetValue(IsSelectedProperty, value);
+                OnPropertyChanged(nameof(IsSelected));
+            }
         }
 
         /// <summary>
@@ -168,9 +208,37 @@ namespace Tizen.NUI.Components
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsRealized { get; internal set; }
-        internal bool IsHeader { get; set; }
-        internal bool IsFooter { get; set; }
-        internal bool IsPressed { get; set; } = false;
+
+        /// <summary>
+        /// State of Pressed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsPressed { get; set; } = false;
+
+        /// <summary>
+        /// Boolean flag to check this item is header.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsHeader { get; set; }
+
+        /// <summary>
+        /// Boolean flag to check this item is footer.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsFooter { get; set; }
+
+        /// <summary>
+        /// Boolean flag to check this item is group header.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsGroupHeader { get; set; }
+
+        /// <summary>
+        /// Boolean flag to check this item is group footer.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsGroupFooter { get; set; }
+
 
         /// <summary>
         /// Called after a key event is received by the view that has had its focus set.

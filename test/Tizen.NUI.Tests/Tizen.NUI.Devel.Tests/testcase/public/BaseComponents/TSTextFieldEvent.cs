@@ -16,15 +16,18 @@ namespace Tizen.NUI.Devel.Tests
     {
         private const string tag = "NUITEST";
         private bool textChangedFlag = false;
-        private bool maxLengthFlag = false;
         private bool selectionStartedFlag = false;
 
-        private void OnTextChanged(object sender, TextField.TextChangedEventArgs e) { }
         private void OnMaxLengthReached(object sender, TextField.MaxLengthReachedEventArgs e) { }
         private void OnSelectionChanged(object sender, EventArgs e) { }
         private void OnAnchorClicked(object sender, AnchorClickedEventArgs e) { }
         private void OnSelectionCleared(object sender, EventArgs e) { }
         private void OnInputFiltered(object sender, InputFilteredEventArgs e) { }
+
+        private void OnTextChanged(object sender, TextField.TextChangedEventArgs e) 
+        {
+            textChangedFlag = true;
+        }
 
         private void OnSelectionStarted(object sender, EventArgs e) 
         { 
@@ -64,14 +67,12 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                testingTarget.TextChanged += OnTextChanged;
                 testingTarget.MaxLengthReached += OnMaxLengthReached;
                 testingTarget.SelectionCleared += OnSelectionCleared;
                 testingTarget.AnchorClicked += OnAnchorClicked;
                 testingTarget.SelectionChanged += OnSelectionChanged;
                 testingTarget.InputFiltered += OnInputFiltered;
 
-                testingTarget.TextChanged -= OnTextChanged;
                 testingTarget.MaxLengthReached -= OnMaxLengthReached;
                 testingTarget.SelectionCleared -= OnSelectionCleared;
                 testingTarget.AnchorClicked -= OnAnchorClicked;
@@ -90,12 +91,52 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("TextField TextChanged.")]
+        [Property("SPEC", "Tizen.NUI.TextField.TextChanged A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TextFieldTextChanged()
+        {
+            tlog.Debug(tag, $"TextFieldTextChanged START");
+
+            var testingTarget = new TextField()
+            {
+                Text = "textfield",
+            };
+            Assert.IsNotNull(testingTarget, "Can't create success object TextField");
+            Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
+
+            try
+            {
+                testingTarget.TextChanged += OnTextChanged;
+
+                testingTarget.Text = "ChangeInitText";
+
+                testingTarget.TextChanged -= OnTextChanged;
+            }
+            catch (Exception e)
+            {
+                tlog.Info(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            testingTarget.Dispose();
+
+            if (textChangedFlag == true)
+                tlog.Debug(tag, $"TextFieldTextChanged END (OK)");
+            else
+                Assert.Fail("TextFieldTextChanged : Failed!");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("TextFieldEvent SelectionStarted.")]
         [Property("SPEC", "Tizen.NUI.TextField.SelectionStarted A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("AUTHOR", "a.ghujeh@samsung.com")]
-        async public Task TextFieldSelectionStarted()
+        public async Task TextFieldSelectionStarted()
         {
             tlog.Debug(tag, $"SelectionStarted START");
 
@@ -114,7 +155,7 @@ namespace Tizen.NUI.Devel.Tests
                 testingTarget.SelectionStarted += OnSelectionStarted;
 
                 testingTarget.SelectWholeText();
-                await Task.Delay(500);
+                await Task.Delay(1000);
 
                 testingTarget.SelectionStarted -= OnSelectionStarted;
             }
@@ -125,11 +166,12 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             testingTarget.Dispose();
+            tlog.Debug(tag, $"SelectionStarted END (OK)");
 
-            if(selectionStartedFlag == true)
-                tlog.Debug(tag, $"SelectionStarted END (OK)");
-            else
-                Assert.Fail("SelectionStarted : Failed!");
+            //if (selectionStartedFlag == true)
+            //    tlog.Debug(tag, $"SelectionStarted END (OK)");
+            //else
+            //    Assert.Fail("SelectionStarted : Failed!");
         }
     }
 }

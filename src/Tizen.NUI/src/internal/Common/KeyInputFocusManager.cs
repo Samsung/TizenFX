@@ -37,7 +37,22 @@ namespace Tizen.NUI
 
         public static KeyInputFocusManager Get()
         {
-            KeyInputFocusManager ret = new KeyInputFocusManager(Interop.KeyInputFocusManager.Get(), true);
+            global::System.IntPtr cPtr = Interop.KeyInputFocusManager.Get();
+
+            KeyInputFocusManager ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as KeyInputFocusManager;
+            if (ret != null)
+            {
+                object dummyObect = new object();
+
+                global::System.Runtime.InteropServices.HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(dummyObect, cPtr);
+                Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+            else
+            {
+                ret = new KeyInputFocusManager(cPtr, true);
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

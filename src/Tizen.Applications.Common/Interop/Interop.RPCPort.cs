@@ -177,6 +177,10 @@ internal static partial class Interop
             //int rpc_port_parcel_create_from_raw(rpc_port_parcel_h *h, const void *raw, unsigned int size);
             [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_create_from_raw")]
             internal static extern ErrorCode CreateFromRaw(out IntPtr parcelHandle, byte[] raw, uint size);
+
+            //int rpc_port_parcel_create_without_header(rpc_port_parcel_h *h);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_create_without_header")]
+            internal static extern ErrorCode CreateWithoutHeader(out IntPtr parcelHandle);
         }
 
         internal static partial class Proxy

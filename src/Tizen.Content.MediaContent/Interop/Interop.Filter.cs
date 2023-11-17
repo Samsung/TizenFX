@@ -38,9 +38,6 @@ internal static partial class Interop
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_filter_set_order_v2")]
         internal static extern MediaContentError SetOrder(FilterHandle filter, string orderExpression);
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_filter_set_storage")]
-        internal static extern MediaContentError SetStorage(FilterHandle filter, string storageId);
     }
 
     internal class FilterHandle : MediaContentCriticalHandle

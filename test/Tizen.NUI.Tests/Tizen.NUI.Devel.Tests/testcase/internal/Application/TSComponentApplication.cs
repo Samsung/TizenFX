@@ -181,5 +181,36 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"ComponentApplicationAssign END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("ComponentApplication Connect.")]
+        [Property("SPEC", "Tizen.NUI.ComponentApplication.Connect M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ComponentApplicationConnect()
+        {
+            tlog.Debug(tag, $"ComponentApplicationConnect START");
+
+            var testingTarget = new ComponentApplication(widget.SwigCPtr.Handle, false);
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<ComponentApplication>(testingTarget, "should be an instance of testing target class!");
+
+            try
+            {
+                dummyCallback callback = OnDummyCallback;
+                testingTarget.Connect(callback);
+                testingTarget.Disconnect(callback);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ComponentApplicationConnect END (OK)");
+        }
     }
 }

@@ -38,6 +38,13 @@ namespace NUITizenGallery
             addCount++;
         }
 
+        void InsertItemClicked(object sender, ClickedEventArgs e)
+        {
+            // Add item in the source
+            source.Insert(3, new TestItem(addCount, $"Test Item [{addCount}]", Color.Red));
+            addCount++;
+        }
+
         void RemoveItemClicked(object sender, ClickedEventArgs e)
         {
             // Removed selected item from the source

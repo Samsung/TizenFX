@@ -47,28 +47,6 @@ namespace Tizen.NUI
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusManager_KeyInputFocusChangedSignal")]
             public static extern IntPtr KeyInputFocusChangedSignal(HandleRef jarg1);
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusSignal_Empty")]
-            [return: MarshalAs(UnmanagedType.U1)]
-            public static extern bool KeyInputFocusSignalEmpty(HandleRef jarg1);
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusSignal_GetConnectionCount")]
-            public static extern uint KeyInputFocusSignalGetConnectionCount(HandleRef jarg1);
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusSignal_Connect", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void KeyInputFocusSignalConnect(HandleRef jarg1, Delegate jarg2);
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusSignal_Disconnect", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void KeyInputFocusSignalDisconnect(HandleRef jarg1, Delegate jarg2);
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusSignal_Emit")]
-            public static extern void KeyInputFocusSignalEmit(HandleRef jarg1, HandleRef jarg2);
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_KeyInputFocusSignal")]
-            public static extern IntPtr NewKeyInputFocusSignal();
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_KeyInputFocusSignal")]
-            public static extern void DeleteKeyInputFocusSignal(HandleRef jarg1);
         }
     }
 }

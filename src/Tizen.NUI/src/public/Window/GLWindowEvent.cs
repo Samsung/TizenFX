@@ -29,11 +29,11 @@ namespace Tizen.NUI
         private EventCallbackDelegateType1 windowKeyCallbackDelegate;
         private WindowResizedEventCallbackType windowResizedEventCallback;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void FocusChangedEventCallbackType(IntPtr window, bool focusGained);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool GLWindowTouchDataCallbackType(IntPtr touchData);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WindowResizedEventCallbackType(IntPtr windowSize);
 
         /// <summary>
@@ -77,16 +77,19 @@ namespace Tizen.NUI
                 if (windoTouchDataEventHandler == null)
                 {
                     windowTouchDataCallback = OnWindowTouch;
-                    this.TouchSignal().Connect(windowTouchDataCallback);
+                    Interop.GLWindow.GlWindowTouchSignalConnect(SwigCPtr, windowTouchDataCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                 }
                 windoTouchDataEventHandler += value;
             }
             remove
             {
                 windoTouchDataEventHandler -= value;
-                if (windoTouchDataEventHandler == null && TouchSignal().Empty() == false && windowTouchDataCallback != null)
+                if (windoTouchDataEventHandler == null && windowTouchDataCallback != null)
                 {
-                    this.TouchSignal().Disconnect(windowTouchDataCallback);
+                    Interop.GLWindow.GlWindowTouchSignalDisconnect(SwigCPtr, windowTouchDataCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    windowTouchDataCallback = null;
                 }
             }
         }
@@ -162,13 +165,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal TouchSignal TouchSignal()
-        {
-            TouchSignal ret = new TouchSignal(Interop.GLWindow.GlWindowTouchSignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         internal GLWindowResizedSignal GLWindowResizedSignal()
         {
             GLWindowResizedSignal ret = new GLWindowResizedSignal(Interop.GLWindow.GlWindowResizedSignal(SwigCPtr), false);
@@ -188,7 +184,8 @@ namespace Tizen.NUI
 
             if (windowTouchDataCallback != null)
             {
-                TouchSignal().Disconnect(windowTouchDataCallback);
+                Interop.GLWindow.GlWindowTouchSignalDisconnect(SwigCPtr, windowTouchDataCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExists();
             }
 
             if (windowKeyCallbackDelegate != null)
@@ -396,7 +393,7 @@ namespace Tizen.NUI
             }
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void GLVisibilityChangedEventCallbackType(IntPtr window, bool visibility);
         private GLVisibilityChangedEventCallbackType glVisibilityChangedEventCallback;
         private event EventHandler<VisibilityChangedEventArgs> visibilityChangedEventHandler;

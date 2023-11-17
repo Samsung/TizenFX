@@ -63,6 +63,28 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// The constructor of Rotation from Euler angles.
+        /// </summary>
+        /// <param name="pitch">Pitch value as Radian.</param>
+        /// <param name="yaw">Yaw value as Radian</param>
+        /// <param name="roll">Roll value as Radian</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Rotation(Radian pitch, Radian yaw, Radian roll) : this(Interop.Rotation.NewRotation3(Radian.getCPtr(pitch), Radian.getCPtr(yaw), Radian.getCPtr(roll)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// The constructor of Rotation from Quaternion Vector4.
+        /// </summary>
+        /// <param name="vector">Quaternion vector for Rotation.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Rotation(Vector4 vector) : this(Interop.Rotation.NewRotation4(Vector4.getCPtr(vector)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// (0.0f,0.0f,0.0f,1.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -316,6 +338,32 @@ namespace Tizen.NUI
             bool ret = Interop.Rotation.GetAxisAngle(SwigCPtr, Vector3.getCPtr(axis), Radian.getCPtr(angle));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// <summary>
+        /// Set the quaternion from Euler angles.
+        /// </summary>
+        /// <param name="pitch">Pitch value as Radian.</param>
+        /// <param name="yaw">Yaw value as Radian</param>
+        /// <param name="roll">Roll value as Radian</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetEulerAngle(Radian pitch, Radian yaw, Radian roll)
+        {
+            Interop.Rotation.SetEulerAngle(SwigCPtr, Radian.getCPtr(pitch), Radian.getCPtr(yaw), Radian.getCPtr(roll));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Get the Euler angles from this quaternion.
+        /// </summary>
+        /// <param name="pitch">The result of pitch value as Radian.</param>
+        /// <param name="yaw">The result of yaw value as Radian</param>
+        /// <param name="roll">The result of roll value as Radian</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void GetEulerAngle(Radian pitch, Radian yaw, Radian roll)
+        {
+            Interop.Rotation.GetEulerAngle(SwigCPtr, Radian.getCPtr(pitch), Radian.getCPtr(yaw), Radian.getCPtr(roll));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>

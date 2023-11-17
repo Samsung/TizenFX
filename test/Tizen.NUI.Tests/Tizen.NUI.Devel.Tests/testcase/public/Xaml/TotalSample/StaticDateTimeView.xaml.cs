@@ -14,15 +14,7 @@
  * limitations under the License.
  *
  */
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Globalization;
-using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Binding;
-using Tizen.NUI.Components;
-using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Devel.Tests
 {
@@ -30,7 +22,9 @@ namespace Tizen.NUI.Devel.Tests
     {
         public StaticDateTimeView()
         {
+#pragma warning disable Reflection // The code contains reflection
             global::Tizen.NUI.Xaml.Extensions.LoadFromXaml(this, typeof(StaticDateTimeView));
+#pragma warning restore Reflection // The code contains reflection
         }
     }
 }

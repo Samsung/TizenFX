@@ -237,6 +237,7 @@ namespace Tizen.NUI
     /// Enumeration for type determination of how the camera operates.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("This has been deprecated in API10 and will be removed in API12. Do not use this.")]
     public enum CameraType
     {
         /// <summary>
@@ -776,7 +777,77 @@ namespace Tizen.NUI
         /// <remarks>
         /// See <see cref="NUIApplication" /> for this type. <br />
         /// </remarks>
-        Ime
+        Ime,
+        /// <summary>
+        /// Used for desktop windows.
+        /// This is a desktop type. No other windows can be placed below this type of window.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Desktop        
+    }
+
+    /// <summary>
+    /// An enum of window layout types.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum WindowLayoutType
+    {
+        /// <summary>
+        /// Window is placed on the left half of the screen
+        /// </summary>
+        LeftHalf,
+        /// <summary>
+        /// Window is placed on the right half of the screen
+        /// </summary>
+        RightHalf,
+        /// <summary>
+        /// Window is placed on the top half of the screen
+        /// </summary>
+        TopHalf,
+        /// <summary>
+        /// Window is placed on the bottom half of the screen
+        /// </summary>
+        BottomHalf,
+        /// <summary>
+        /// Window is placed on the upper-left quarter of the screen
+        /// </summary>
+        UpperLeftQuarter,
+        /// <summary>
+        /// Window is placed on the upper-right quarter of the screen
+        /// </summary>
+        UpperRightQuarter,
+        /// <summary>
+        /// Window is placed on the lower-left quarter of the screen
+        /// </summary>
+        LowerLeftQuarter,
+        /// <summary>
+        /// Window is placed on the lower-right quarter of the screen
+        /// </summary>
+        LowerRightQuarter,
+        /// <summary>
+        /// Window is placed on the left third of the screen horizontally
+        /// </summary>
+        LeftThird,
+        /// <summary>
+        /// Window is placed on the center third of the screen horizontally
+        /// </summary>
+        CenterThird,
+        /// <summary>
+        /// Window is placed on the right third of the screen horizontally
+        /// </summary>
+        RightThird,
+        /// <summary>
+        /// Window is placed on the top third of the screen vertically
+        /// </summary>
+        TopThird,
+        /// <summary>
+        /// Window is placed on the middle third of the screen vertically
+        /// </summary>
+        MiddleThird,
+        /// <summary>
+        /// Window is placed on the bottom third of the screen vertically
+        /// </summary>
+        BottomThird,
     }
 
     /// <since_tizen> 3 </since_tizen>
@@ -1963,6 +2034,19 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public const float UseSystemSetting = -1.0f;
+    }
+
+    /// <summary>
+    /// FontFamily constant.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public struct FontFamily
+    {
+        /// <summary>
+        /// UseSystemSetting
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly string UseSystemSetting = string.Empty;
     }
 
     /// <summary>

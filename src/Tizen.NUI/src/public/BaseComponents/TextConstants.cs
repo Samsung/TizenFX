@@ -1,4 +1,4 @@
-// Copyright (c) 2021 Samsung Electronics Co., Ltd.
+// Copyright (c) 2023 Samsung Electronics Co., Ltd.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 
@@ -547,6 +548,77 @@ namespace Tizen.NUI.Text
     }
 
     /// <summary>
+    /// A struct to pass data of TextFitArray's OptionList.
+    /// </summary>
+    /// <remarks>
+    /// The TextFitArrayOption struct is used as an item to TextFitArray's OptionList. <br />
+    /// See <see cref="Tizen.NUI.Text.TextFitArray"/>.
+    /// </remarks>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1815: Override equals and operator equals on value types")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public struct TextFitArrayOption
+    {
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="pointSize">The PointSize for TextFitArrayOption</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextFitArrayOption(float pointSize)
+        {
+            PointSize = pointSize;
+            MinLineSize = null;
+        }
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="pointSize">The PointSize for TextFitArrayOption</param>
+        /// <param name="minLineSize">The MinLineSize for TextFitArrayOption</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextFitArrayOption(float pointSize, float? minLineSize)
+        {
+            PointSize = pointSize;
+            MinLineSize = minLineSize;
+        }
+
+        /// <summary>
+        /// Point size for text fit array.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float PointSize { get; set; }
+
+        /// <summary>
+        /// Min line size for text fit array.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float? MinLineSize { get; set; }
+    }
+
+    /// <summary>
+    /// A struct to pass data of SetTextFitArray and GetTextFitArray methods.
+    /// </summary>
+    /// <remarks>
+    /// The TextFitArray struct is used as an argument to SetTextFitArray and GetTextFitArray methods. <br />
+    /// See <see cref="Tizen.NUI.BaseComponents.TextLabel.SetTextFitArray"/> and <see cref="Tizen.NUI.BaseComponents.TextLabel.GetTextFitArray"/>.
+    /// </remarks>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1815: Override equals and operator equals on value types")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public struct TextFitArray
+    {
+        /// <summary>
+        /// True to enable the text fit array or false to disable (the default value is false).
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Enable { get; set; }
+
+        /// <summary>
+        /// A List of TextFitArrayOptions.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public List<TextFitArrayOption> OptionList { get; set; }
+    }
+
+    /// <summary>
     /// A struct to pass data of Placeholder PropertyMap. <br />
     /// </summary>
     /// <remarks>
@@ -800,5 +872,71 @@ namespace Tizen.NUI.Text
         /// <returns>The hash code.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => (LeftImageUrl, RightImageUrl).GetHashCode();
+    }
+
+    /// <summary>
+    /// A struct to pass data of FontInfo PropertyMap.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public struct FontInfo : IEquatable<FontInfo>
+    {
+        /// <summary>
+        /// The FontFamily of the font.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string Family { get; set; }
+
+        /// <summary>
+        /// The FontPath of the font.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string Path { get; set; }
+
+        /// <summary>
+        /// The FontStyle of the font.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public FontStyle Style { get; set; }
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>true if equal FontInfo, else false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object obj) => obj is FontInfo other && this.Equals(other);
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="other">The FontInfo to compare with the current FontInfo.</param>
+        /// <returns>true if equal FontInfo, else false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Equals(FontInfo other) => Family == other.Family && Path == other.Path && Style == other.Style;
+
+        /// <summary>
+        /// The == operator.
+        /// </summary>
+        /// <param name="lhsFontInfo">FontInfo to compare</param>
+        /// <param name="rhsFontInfo">FontInfo to be compared</param>
+        /// <returns>true if FontInfos are equal</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator ==(FontInfo lhsFontInfo, FontInfo rhsFontInfo) => lhsFontInfo.Equals(rhsFontInfo);
+
+        /// <summary>
+        /// The != operator.
+        /// </summary>
+        /// <param name="lhsFontInfo">FontInfo to compare</param>
+        /// <param name="rhsFontInfo">FontInfo to be compared</param>
+        /// <returns>true if FontInfos are not equal</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator !=(FontInfo lhsFontInfo, FontInfo rhsFontInfo) => !lhsFontInfo.Equals(rhsFontInfo);
+
+        /// <summary>
+        /// Gets the hash code of this FontInfo.
+        /// </summary>
+        /// <returns>The hash code.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => (Family, Path, Style).GetHashCode();
     }
 }

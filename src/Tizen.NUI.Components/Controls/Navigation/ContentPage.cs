@@ -29,17 +29,42 @@ namespace Tizen.NUI.Components
         private AppBar appBar = null;
         private View content = null;
 
-        /// <summary>
-        /// Creates a new instance of a ContentPage.
-        /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        public ContentPage() : base()
+        private void Initialize()
         {
             Layout = new ContentPageLayout();
 
             // ContentPage matches to parent by default.
             WidthSpecification = LayoutParamPolicies.MatchParent;
             HeightSpecification = LayoutParamPolicies.MatchParent;
+        }
+
+        /// <summary>
+        /// Creates a new instance of a ContentPage.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public ContentPage() : base()
+        {
+            Initialize();
+        }
+
+        /// <summary>
+        /// Creates a new instance of ContentPage with style.
+        /// </summary>
+        /// <param name="style">Creates ContentPage by special style defined in UX.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ContentPage(string style) : base(style)
+        {
+            Initialize();
+        }
+
+        /// <summary>
+        /// Creates a new instance of a ContentPage with style.
+        /// </summary>
+        /// <param name="style">A style applied to the newly created ContentPage.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ContentPage(ControlStyle style) : base(style)
+        {
+            Initialize();
         }
 
         /// <summary>
@@ -77,6 +102,13 @@ namespace Tizen.NUI.Components
             base.OnInitialize();
 
             AccessibilityRole = Role.PageTab;
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override string AccessibilityGetName()
+        {
+            return AppBar?.Title;
         }
 
         /// <summary>
@@ -158,9 +190,9 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    if (AppBar != null)
+                    if (AppBar is var bar && bar != null)
                     {
-                        FocusManager.Instance.SetCurrentFocusView(AppBar.PassFocusableViewInsideIfNeeded());
+                        FocusManager.Instance.SetCurrentFocusView(bar.PassFocusableViewInsideIfNeeded());
                     }
                     else
                     {

@@ -37,8 +37,6 @@ namespace Tizen.Applications
         private readonly ICoreTask _task;
         private bool _disposedValue = false;
 
-        private static System.Timers.Timer sTimer;
-
         /// <summary>
         /// Initializes the CoreApplication class.
         /// </summary>
@@ -112,10 +110,16 @@ namespace Tizen.Applications
         public event EventHandler<DeviceOrientationEventArgs> DeviceOrientationChanged;
 
         /// <summary>
+        /// Occurs when the time zone is changed.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        public event EventHandler<TimeZoneChangedEventArgs> TimeZoneChanged;
+
+        /// <summary>
         /// The backend instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        protected ICoreBackend Backend { get { return _backend; } }      
+        protected ICoreBackend Backend { get { return _backend; } }
 
         /// <summary>
         /// Runs the application's main loop.
@@ -134,6 +138,7 @@ namespace Tizen.Applications
             _backend.AddEventHandler<LocaleChangedEventArgs>(EventType.LocaleChanged, OnLocaleChanged);
             _backend.AddEventHandler<RegionFormatChangedEventArgs>(EventType.RegionFormatChanged, OnRegionFormatChanged);
             _backend.AddEventHandler<DeviceOrientationEventArgs>(EventType.DeviceOrientationChanged, OnDeviceOrientationChanged);
+            _backend.AddEventHandler<TimeZoneChangedEventArgs>(EventType.TimeZoneChanged, OnTimeZoneChanged);
 
             string[] argsClone = new string[args == null ? 1 : args.Length + 1];
             if (args != null && args.Length > 1)
@@ -173,7 +178,7 @@ namespace Tizen.Applications
             if (_task != null)
             {
                 TizenUISynchronizationContext.Initialize();
-            }            
+            }
 
             if (!GlobalizationMode.Invariant)
             {
@@ -207,6 +212,12 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnAppControlReceived(AppControlReceivedEventArgs e)
         {
+            if (e == null)
+            {
+                Log.Error(LogTag, "e is null");
+                return;
+            }
+
             AppControlReceived?.Invoke(this, e);
         }
 
@@ -218,6 +229,12 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnLowMemory(LowMemoryEventArgs e)
         {
+            if (e == null)
+            {
+                Log.Error(LogTag, "e is null");
+                return;
+            }
+
             LowMemory?.Invoke(this, e);
             if (e.LowMemoryStatus == LowMemoryStatus.SoftWarning || e.LowMemoryStatus == LowMemoryStatus.HardWarning)
             {
@@ -233,6 +250,12 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnLowBattery(LowBatteryEventArgs e)
         {
+            if (e == null)
+            {
+                Log.Error(LogTag, "e is null");
+                return;
+            }
+
             LowBattery?.Invoke(this, e);
         }
 
@@ -244,6 +267,12 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnLocaleChanged(LocaleChangedEventArgs e)
         {
+            if (e == null)
+            {
+                Log.Error(LogTag, "e is null");
+                return;
+            }
+
             if (!GlobalizationMode.Invariant)
             {
                 ChangeCurrentUICultureInfo(e.Locale);
@@ -260,6 +289,12 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
         {
+            if (e == null)
+            {
+                Log.Error(LogTag, "e is null");
+                return;
+            }
+
             if (!GlobalizationMode.Invariant)
             {
                 ChangeCurrentCultureInfo(e.Region);
@@ -280,32 +315,51 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Dispatches an asynchronous message to the main loop of the CoreTask.
+        /// Override this method if you want to handle behavior when the time zone is changed.
+        /// If base.OnTimeZoneChanged() is not called, the event "TimeZoneChanged" will not be emitted.
         /// </summary>
+        /// <param name="e">The time zone changed event argument</param>
+        /// <since_tizen> 11 </since_tizen>
+        protected virtual void OnTimeZoneChanged(TimeZoneChangedEventArgs e)
+        {
+            TimeZoneChanged?.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// Dispatches an asynchronous message to a main loop of the CoreApplication.
+        /// </summary>
+        /// <remarks>
+        /// If an application uses UI thread App Model, the asynchronous message will be delivered to the UI thread.
+        /// If not, the asynchronous message will be delivered to the main thread.
+        /// </remarks>
         /// <param name="runner">The runner callaback.</param>
         /// <exception cref="ArgumentNullException">Thrown when the runner is null.</exception>
         /// <since_tizen> 10 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Post(Action runner)
+        public static void Post(Action runner)
         {
             if (runner == null)
             {
                 throw new ArgumentNullException(nameof(runner));
             }
 
-            GSourceManager.Post(runner);
+            GSourceManager.Post(runner, true);
         }
 
         /// <summary>
-        /// Dispatches an asynchronous message to the main loop of the CoreTask.
+        /// Dispatches an asynchronous message to a main loop of the CoreApplication.
         /// </summary>
+        /// <remarks>
+        /// If an application uses UI thread App Model, the asynchronous message will be delivered to the UI thread.
+        /// If not, the asynchronous message will be delivered to the main thread.
+        /// </remarks>
         /// <typeparam name="T">The type of the result.</typeparam>
         /// <param name="runner">The runner callback.</param>
         /// <exception cref="ArgumentNullException">Thrown when the runner is null.</exception>
         /// <returns>A task with the result.</returns>
         /// <since_tizen> 10 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public async Task<T> Post<T>(Func<T> runner)
+        public static async Task<T> Post<T>(Func<T> runner)
         {
             if (runner == null)
             {
@@ -313,7 +367,7 @@ namespace Tizen.Applications
             }
 
             var task = new TaskCompletionSource<T>();
-            GSourceManager.Post(() => { task.SetResult(runner()); });
+            GSourceManager.Post(() => { task.SetResult(runner()); }, true);
             return await task.Task.ConfigureAwait(false);
         }
 
@@ -589,12 +643,7 @@ namespace Tizen.Applications
 
         internal static string GetDefaultLocale()
         {
-            IntPtr stringPtr = IntPtr.Zero;
-            if (Interop.BaseUtilsi18n.GetDefault(out stringPtr) != 0)
-            {
-                return string.Empty;
-            }
-
+            IntPtr stringPtr = Interop.Libc.GetEnvironmentVariable("LANG");
             if (stringPtr == IntPtr.Zero)
             {
                 return string.Empty;

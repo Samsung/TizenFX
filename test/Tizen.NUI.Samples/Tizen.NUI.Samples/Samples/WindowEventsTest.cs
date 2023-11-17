@@ -45,6 +45,8 @@ namespace Tizen.NUI.Samples
             Window.Instance.GetDefaultLayer().Add(parent1);
             Window.Instance.GetDefaultLayer().Add(parent2);
 
+            Window.Instance.OrientationChanged += OnWindowOrientationChangedEvent;
+
             parent1.LeftFocusableView = parent2;
             parent2.RightFocusableView = parent1;
 
@@ -53,6 +55,17 @@ namespace Tizen.NUI.Samples
 
             FocusManager.Instance.SetCurrentFocusView(parent1);
             Window.Instance.BackgroundColor = new Color(1.0f, 0.92f, 0.80f, 1.0f);
+
+            Window.Instance.AddAvailableOrientation(Window.WindowOrientation.Portrait);
+            Window.Instance.AddAvailableOrientation(Window.WindowOrientation.Landscape);
+            Window.Instance.AddAvailableOrientation(Window.WindowOrientation.PortraitInverse);
+            Window.Instance.AddAvailableOrientation(Window.WindowOrientation.LandscapeInverse);
+        }
+
+        private void OnWindowOrientationChangedEvent(object sender, WindowOrientationChangedEventArgs e)
+        {
+            Window.WindowOrientation orientation = e.WindowOrientation;
+            log.Fatal(tag, $"OnWindowOrientationChangedEvent() called!, orientation:{orientation}");
         }
 
         private void OnParentFocusGained(object sender, EventArgs e)
@@ -89,7 +102,7 @@ namespace Tizen.NUI.Samples
                 childViewWindow.KeyEvent += OnChildViewWindowKeyEvent;
                 childViewWindow.TransitionEffect += OnChildViewWindowTransitionEffect;
                 childViewWindow.KeyboardRepeatSettingsChanged += OnChildViewWindowKeyboardRepeatSettingsChanged;
-                childViewWindow.ViewAdded += OnChildViewWindowViewAdded;
+                //childViewWindow.ViewAdded += OnChildViewWindowViewAdded; // Block this signal for temprary
                 childViewWindow.AuxiliaryMessage += OnAuxiliaryMessageEvent;
             }
         }
@@ -107,7 +120,7 @@ namespace Tizen.NUI.Samples
                 childViewWindow.KeyEvent -= OnChildViewWindowKeyEvent;
                 childViewWindow.TransitionEffect -= OnChildViewWindowTransitionEffect;
                 childViewWindow.KeyboardRepeatSettingsChanged -= OnChildViewWindowKeyboardRepeatSettingsChanged;
-                childViewWindow.ViewAdded -= OnChildViewWindowViewAdded;
+                //childViewWindow.ViewAdded -= OnChildViewWindowViewAdded; // Block this signal for temprary
                 childViewWindow.AuxiliaryMessage -= OnAuxiliaryMessageEvent;
                 childViewWindow = null;
             }

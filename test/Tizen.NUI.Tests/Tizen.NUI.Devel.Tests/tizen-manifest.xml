@@ -3,7 +3,7 @@
     <profile name="common" />
     <ui-application appid="Tizen.NUI.Devel.Tests"
                     exec="Tizen.NUI.Devel.Tests.dll"
-                    type="dotnet"
+                    type="dotnet-nui"
                     multiple="false"
                     taskmanage="true"
                     launch_mode="single">
@@ -11,6 +11,11 @@
     <label>Tizen.NUI.Devel.Tests</label>
     </ui-application>
     <privileges>
-          <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
-  </privileges>
+      <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+      <privilege>http://tizen.org/privilege/window.priority.set</privilege>
+      <privilege>http://tizen.org/privilege/filesystem.write</privilege>
+      <privilege>http://tizen.org/privilege/internet</privilege>
+      <privilege>http://tizen.org/privilege/mediastorage</privilege>
+      <privilege>http://tizen.org/privilege/externalstorage</privilege>
+    </privileges>
 </manifest>

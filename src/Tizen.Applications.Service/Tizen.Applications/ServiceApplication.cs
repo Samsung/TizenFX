@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using System.ComponentModel;
 using Tizen.Applications.CoreBackend;
 
 namespace Tizen.Applications
@@ -28,7 +29,9 @@ namespace Tizen.Applications
         /// Initializes the ServiceApplication class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+#pragma warning disable CA2000
         public ServiceApplication() : base(new ServiceCoreBackend())
+#pragma warning restore CA2000
         {
         }
 
@@ -40,6 +43,16 @@ namespace Tizen.Applications
         public override void Run(string[] args)
         {
             base.Run(args);
+        }
+
+        /// <summary>
+        /// Exits the main loop of the application without restarting.
+        /// </summary>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ExitWithoutRestarting()
+        {
+            Interop.Service.ExitWithoutRestarting();
         }
     }
 }

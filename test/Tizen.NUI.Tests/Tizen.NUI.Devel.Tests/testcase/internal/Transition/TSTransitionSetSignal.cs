@@ -13,12 +13,6 @@ namespace Tizen.NUI.Devel.Tests
     public class InternalTransitionSetSignalTest
     {
         private const string tag = "NUITEST";
-        private global::System.IntPtr OnIntPtrCallback;
-        private delegate bool dummyCallback(IntPtr transitionSet);
-        private bool OnDummyCallback(IntPtr data)
-        {
-            return false;
-        }
 
         [SetUp]
         public void Init()

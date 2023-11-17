@@ -2,6 +2,7 @@
 using global::System;
 using Tizen.NUI.BaseComponents;
 using System.Collections.Generic;
+using Tizen.NUI.Components;
 
 namespace Tizen.NUI.Samples
 {
@@ -26,8 +27,11 @@ namespace Tizen.NUI.Samples
 
         public void Activate()
         {
+            //test case 1: checking dispose without "-=" of event.
             DisposeWithoutUnsubscribedEventTest();
-            AnimationDisposeTest();
+
+            //test case 2: checking Animation class dispose.
+            //AnimationDisposeTest();
         }
         public void Deactivate()
         {
@@ -125,6 +129,35 @@ namespace Tizen.NUI.Samples
                 child.FocusGained += Child_FocusGained;
             }
         }
+
+        private void AddManyScrollableBases()
+        {
+            tlog.Fatal(tag, $"AddManyScrollableBases()");
+
+            for (int i = 0; i < NUMBER_OF_VIEW; i++)
+            {
+                var child = new ScrollableBase()
+                {
+                    Size = new Size(60, 60),
+                    Position = new Position(rand.Next(MIN_POSITION, MAX_POSITION), rand.Next(MIN_POSITION, MAX_POSITION)),
+                    BackgroundColor = new Color((float)rand.NextDouble(), (float)rand.NextDouble(), (float)rand.NextDouble(), 1),
+                };
+
+                rootView.Add(child);
+                child.Relayout += Child_Relayout;
+                child.RemovedFromWindow += Child_RemovedFromWindow;
+                child.AddedToWindow += Child_AddedToWindow;
+                child.WheelEvent += Child_WheelEvent;
+                child.HoverEvent += Child_HoverEvent;
+                child.InterceptTouchEvent += Child_InterceptTouchEvent;
+                child.TouchEvent += Child_TouchEvent;
+                child.ResourcesLoaded += Child_ResourcesLoaded;
+                child.KeyEvent += Child_KeyEvent;
+                child.FocusLost += Child_FocusLost;
+                child.FocusGained += Child_FocusGained;
+            }
+        }
+
 
         private void Child_FocusGained(object sender, EventArgs e)
         {
@@ -260,7 +293,11 @@ namespace Tizen.NUI.Samples
             toggle = !toggle;
             if (toggle)
             {
-                AddManyObject();
+                //test case 1: checking ImageView object dispose.
+                //AddManyObject();
+                
+                //test case 2: checking ScrollableBase object dispose.
+                AddManyScrollableBases();
             }
             else
             {

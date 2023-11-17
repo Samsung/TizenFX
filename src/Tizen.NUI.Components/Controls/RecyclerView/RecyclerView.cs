@@ -33,7 +33,11 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IEnumerable), typeof(RecyclerView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var instance = (RecyclerView)bindable;
+            var instance = bindable as RecyclerView;
+            if (instance == null)
+            {
+                throw new Exception("Bindable object is not RecyclerView.");
+            }
             if (newValue != null)
             {
                 instance.InternalItemsSource = newValue as IEnumerable;
@@ -41,7 +45,11 @@ namespace Tizen.NUI.Components
         },
         defaultValueCreator: (bindable) =>
         {
-            var instance = (RecyclerView)bindable;
+            var instance = bindable as RecyclerView;
+            if (instance == null)
+            {
+                throw new Exception("Bindable object is not RecyclerView.");
+            }
             return instance.InternalItemsSource;
         });
 
@@ -51,7 +59,11 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ItemTemplateProperty = BindableProperty.Create(nameof(ItemTemplate), typeof(DataTemplate), typeof(RecyclerView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var instance = (RecyclerView)bindable;
+            var instance = bindable as RecyclerView;
+            if (instance == null)
+            {
+                throw new Exception("Bindable object is not RecyclerView.");
+            }
             if (newValue != null)
             {
                 instance.InternalItemTemplate = newValue as DataTemplate;
@@ -59,9 +71,18 @@ namespace Tizen.NUI.Components
         },
         defaultValueCreator: (bindable) =>
         {
-            var instance = (RecyclerView)bindable;
+            var instance = bindable as RecyclerView;
+            if (instance == null)
+            {
+                throw new Exception("Bindable object is not RecyclerView.");
+            }
             return instance.InternalItemTemplate;
         });
+
+        private void Initialize()
+        {
+            Scrolling += OnScrolling;
+        }
 
         /// <summary>
         /// Base Constructor
@@ -69,7 +90,17 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public RecyclerView() : base()
         {
-            Scrolling += OnScrolling;
+            Initialize();
+        }
+
+        /// <summary>
+        /// Creates a new instance of a RecyclerView with style.
+        /// </summary>
+        /// <param name="style">A style applied to the newly created RecyclerView.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public RecyclerView(ControlStyle style) : base(style)
+        {
+            Initialize();
         }
 
         /// <summary>
@@ -111,7 +142,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Internal encapsulated items data source.
         /// </summary>
-        internal IItemSource InternalItemSource { get; set; }
+        internal IItemSource InternalSource { get; set; }
 
         /// <summary>
         /// RecycleCache of ViewItem.
@@ -289,9 +320,10 @@ namespace Tizen.NUI.Components
         /// Realize indexed item.
         /// </summary>
         /// <param name="index"> Index position of realizing item </param>
-        internal virtual RecyclerViewItem RealizeItem(int index)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal virtual RecyclerViewItem RealizeItem(int index)
         {
-            object context = InternalItemSource.GetItem(index);
+            object context = InternalSource.GetItem(index);
             // Check DataTemplate is Same!
             if (ItemTemplate is DataTemplateSelector)
             {
@@ -328,9 +360,14 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="item"> Target item for unrealizing </param>
         /// <param name="recycle"> Allow recycle. default is true </param>
-        internal virtual void UnrealizeItem(RecyclerViewItem item, bool recycle = true)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal virtual void UnrealizeItem(RecyclerViewItem item, bool recycle = true)
         {
-            if (item == null) return;
+            if (item == null)
+            {
+                return;
+            }
+
             item.Index = -1;
             item.ParentItemsView = null;
             item.BindingContext = null;
@@ -368,12 +405,20 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual bool PushRecycleCache(RecyclerViewItem item)
         {
-            if (item == null) throw new ArgumentNullException(nameof(item));
-            if (RecycleCache.Count >= CacheMax) return false;
-            if (item.Template == null) return false;
+            if (item == null)
+            {
+                throw new ArgumentNullException(nameof(item));
+            }
+
+            if (item.Template == null || RecycleCache.Count >= CacheMax)
+            {
+                return false;
+            }
+
             item.Hide();
             item.Index = -1;
             RecycleCache.Add(item);
+
             return true;
         }
 
@@ -416,7 +461,11 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         protected virtual void OnScrolling(object source, ScrollEventArgs args)
         {
-            if (args == null) throw new ArgumentNullException(nameof(args));
+            if (args == null)
+            {
+                throw new ArgumentNullException(nameof(args));
+            }
+
             if (!disposed && InternalItemsLayouter != null && ItemsSource != null && ItemTemplate != null)
             {
                 //Console.WriteLine("[NUI] On Scrolling! {0} => {1}", ScrollPosition.Y, args.Position.Y);
@@ -447,10 +496,10 @@ namespace Tizen.NUI.Components
                 InternalItemsLayouter = null;
                 ItemsSource = null;
                 ItemTemplate = null;
-                if (InternalItemSource != null)
+                if (InternalSource != null)
                 {
-                    InternalItemSource.Dispose();
-                    InternalItemSource = null;
+                    InternalSource.Dispose();
+                    InternalSource = null;
                 }
                 //
             }
@@ -469,7 +518,7 @@ namespace Tizen.NUI.Components
         {
             item.Index = index;
             item.ParentItemsView = this;
-            item.Template = (ItemTemplate as DataTemplateSelector)?.SelectDataTemplate(InternalItemSource.GetItem(index), this) ?? ItemTemplate;
+            item.Template = (ItemTemplate as DataTemplateSelector)?.SelectDataTemplate(InternalSource.GetItem(index), this) ?? ItemTemplate;
             item.BindingContext = context;
             item.Relayout += OnItemRelayout;
         }

@@ -522,5 +522,17 @@ namespace Tizen.NUI
         /// Determines whether the reference is null or the Rectangle has all 0 properties.
         /// </summary>
         internal static bool IsNullOrZero(Rectangle rectangle) => (rectangle == null || (rectangle.top == 0 && rectangle.right == 0 && rectangle.bottom == 0 && rectangle.left == 0));
+
+        /// <summary>
+        /// Get Rectangle from Intptr.<br/>
+        /// </summary>
+        /// <param name="cPtr">An object of IntPtr type.</param>
+        /// <returns>An object of the Rectangle type.</returns>
+        internal static Rectangle GetRectangleFromPtr(global::System.IntPtr cPtr)
+        {
+            Rectangle ret = new Rectangle(cPtr, false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
     }
 }

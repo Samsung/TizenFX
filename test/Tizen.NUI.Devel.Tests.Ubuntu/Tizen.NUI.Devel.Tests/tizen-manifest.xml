@@ -3,7 +3,7 @@
     <profile name="common" />
     <ui-application appid="Tizen.NUI.Devel.Tests"
                     exec="Tizen.NUI.Devel.Tests.dll"
-                    type="dotnet"
+                    type="dotnet-nui"
                     multiple="false"
                     taskmanage="true"
                     launch_mode="single">

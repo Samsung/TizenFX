@@ -22,6 +22,7 @@ namespace Tizen.Applications.RPCPort
     /// Exception class for invalid IO.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
+ #pragma warning disable CA1032
     public class InvalidIOException : InvalidOperationException { }
 
     /// <summary>
@@ -53,4 +54,5 @@ namespace Tizen.Applications.RPCPort
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public class InvalidCallbackException : InvalidOperationException { }
+#pragma warning restore CA1032
 }

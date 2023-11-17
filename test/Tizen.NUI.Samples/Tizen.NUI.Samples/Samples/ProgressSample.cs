@@ -23,7 +23,8 @@ namespace Tizen.NUI.Samples
             layout[0].Layout = new LinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Vertical,
-                LinearAlignment = LinearLayout.Alignment.Center
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
             };
             window.Add(layout[0]);
 
@@ -35,7 +36,8 @@ namespace Tizen.NUI.Samples
             layout[1].Layout = new LinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Horizontal,
-                LinearAlignment = LinearLayout.Alignment.Center
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
             };
             layout[0].Add(layout[1]);
 
@@ -47,7 +49,7 @@ namespace Tizen.NUI.Samples
             layout[2].Layout = new LinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Vertical,
-                LinearAlignment = LinearLayout.Alignment.CenterHorizontal,
+                HorizontalAlignment = HorizontalAlignment.Center,
                 CellPadding = new Size2D(50, 100)
             };
             layout[1].Add(layout[2]);
@@ -60,7 +62,7 @@ namespace Tizen.NUI.Samples
             layout[3].Layout = new LinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Vertical,
-                LinearAlignment = LinearLayout.Alignment.CenterHorizontal,
+                HorizontalAlignment = HorizontalAlignment.Center,
                 CellPadding = new Size2D(50, 100)
             };
             layout[1].Add(layout[3]);

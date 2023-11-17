@@ -71,6 +71,38 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"RelativeVector3ConstructorWithFloat END (OK)");
         }
+        
+		[Test]
+        [Category("P1")]
+        [Description("RelativeVector3 XYZ With Float.")]
+        [Property("SPEC", "Tizen.NUI.RelativeVector3.XYZ With Float M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("COVPARAM", "Single, Single, Single")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
+        public void RelativeVector3XYZWithFloat()
+        {
+            tlog.Debug(tag, $"RelativeVector3XYZWithFloat START");
+
+            var testingTarget = new RelativeVector3(0.5f, 0.6f, 0.7f);
+            Assert.IsNotNull(testingTarget, "Can't create success object RelativeVector3");
+            Assert.IsInstanceOf<RelativeVector3>(testingTarget, "Should return Vector3 instance.");
+            
+            try
+			{
+                testingTarget.X = 0.1f;
+			    testingTarget.Y = 0.5f;
+			    testingTarget.Z = 0.9f;
+			}
+			catch(Exception e)
+            {
+                Assert.Fail("Catch exception: " + e.Message.ToString());
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"RelativeVector3XYZWithFloat END (OK)");
+        }
 
         [Test]
         [Category("P1")]

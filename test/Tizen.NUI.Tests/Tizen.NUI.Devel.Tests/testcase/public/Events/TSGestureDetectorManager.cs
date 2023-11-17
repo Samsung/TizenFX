@@ -48,9 +48,8 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             tlog.Debug(tag, $"GestureDetectorManagerConstructor END (OK)");
-            Assert.Pass("GestureDetectorManagerConstructor");
         }
-
+		
         [Test]
         [Category("P2")]
         [Description("GestureDetectorManager constructor")]
@@ -90,7 +89,6 @@ namespace Tizen.NUI.Devel.Tests
                 using (View view = new View())
                 {
                     var testingTarget = new GestureDetectorManager(view, null);
-
                 }
             }
             catch (ArgumentNullException e)

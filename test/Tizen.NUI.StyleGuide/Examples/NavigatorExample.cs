@@ -49,16 +49,92 @@ namespace Tizen.NUI.StyleGuide
             };
 
             navigator = NUIApplication.GetDefaultWindow().GetDefaultNavigator();
-            Content = generatePage();
+            Content = generateContent(this);
+        }
+
+        protected override void OnBackNavigation(PageBackNavigationEventArgs eventArgs)
+        {
+            var noButton = new Button()
+            {
+                Text = "No"
+            };
+            noButton.Clicked += (o, e) =>
+            {
+                // Pops the dialog page.
+                Navigator.Pop();
+            };
+
+            var yesButton = new Button()
+            {
+                Text = "Yes"
+            };
+            yesButton.Clicked += (o, e) =>
+            {
+                // Removes the dialog page.
+                Navigator.RemoveAt(Navigator.PageCount - 1);
+
+                // Pops the content page.
+                Navigator.Pop();
+            };
+
+            DialogPage.ShowAlertDialog("", "Do you really want to pop?", new View[] { noButton, yesButton });
         }
 
         private ContentPage generatePage()
         {
-            var page = new ContentPage();
-            page.AppBar = new AppBar()
+            var page = new ContentPage()
             {
-                Title = "NavigatorTestPage",
+                AppBar = new AppBar()
+                {
+                    Title = "NavigatorTestPage" + navigator.PageCount.ToString()
+                }
             };
+            page.Content = generateContent(page);
+
+            return page;
+        }
+
+        private void updateBackNavigationButtonText(Button button, Navigator navigator)
+        {
+            if (navigator == null)
+            {
+                return;
+            }
+
+            if (navigator.EnableBackNavigation)
+            {
+                button.Text = "Navigator BackNavigation is enabled";
+            }
+            else
+            {
+                button.Text = "Navigator BackNavigation is disabled";
+            }
+        }
+
+        private void updatePageBackNavigationButtonText(Button button, Page page)
+        {
+            if (page == null)
+            {
+                return;
+            }
+
+            if (page.EnableBackNavigation)
+            {
+                button.Text = "Page BackNavigation is enabled";
+            }
+            else
+            {
+                button.Text = "Page BackNavigation is disabled";
+            }
+        }
+
+        private View generateContent(Page page)
+        {
+            if (page == null)
+            {
+                Tizen.Log.Error("NUITEST", "The page should not be null");
+                return null;
+            }
 
             var contentView = new View()
             {
@@ -69,7 +145,6 @@ namespace Tizen.NUI.StyleGuide
                     CellPadding = new Size2D(0, 10),
                 },
             };
-            page.Content = contentView;
 
             var buttonPush = new Button()
             {
@@ -85,7 +160,6 @@ namespace Tizen.NUI.StyleGuide
                     return;
                 }
                 var newPage = generatePage();
-                newPage.AppBar.Title = "NavigatorTestPage" + navigator.PageCount.ToString();
                 navigator.Push(newPage);
             };
             contentView.Add(buttonPush);
@@ -107,6 +181,54 @@ namespace Tizen.NUI.StyleGuide
             };
             contentView.Add(buttonPop);
 
+            var buttonBackNavigation = new Button()
+            {
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.MatchParent,
+            };
+
+            updateBackNavigationButtonText(buttonBackNavigation, navigator);
+
+            buttonBackNavigation.Clicked += (s, e) =>
+            {
+                if (navigator == null)
+                {
+                    Tizen.Log.Error("NUITEST", "The page should be pushed to a Navigator");
+                    return;
+                }
+
+                navigator.EnableBackNavigation = !navigator.EnableBackNavigation;
+                updateBackNavigationButtonText(buttonBackNavigation, navigator);
+            };
+            contentView.Add(buttonBackNavigation);
+
+            var buttonPageBackNavigation = new Button()
+            {
+                Text = "Page BackNavigation is enabled",
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.MatchParent,
+            };
+
+            buttonPageBackNavigation.Clicked += (s, e) =>
+            {
+                if (navigator == null)
+                {
+                    Tizen.Log.Error("NUITEST", "The page should be pushed to a Navigator");
+                    return;
+                }
+
+                page.EnableBackNavigation = !page.EnableBackNavigation;
+                updatePageBackNavigationButtonText(buttonPageBackNavigation, page);
+            };
+            contentView.Add(buttonPageBackNavigation);
+
+            // Update back navigation button's text when the page is appearing.
+            page.Appearing += (o, e) =>
+            {
+                updateBackNavigationButtonText(buttonBackNavigation, navigator);
+                updatePageBackNavigationButtonText(buttonPageBackNavigation, page);
+            };
+
             Color backgroundColor;
             switch (navigator.PageCount % numberOfDifferentColor)
             {
@@ -125,7 +247,9 @@ namespace Tizen.NUI.StyleGuide
             };
             buttonPush.BackgroundColor = backgroundColor;
             buttonPop.BackgroundColor = backgroundColor;
-            return page;
+            buttonBackNavigation.BackgroundColor = backgroundColor;
+            buttonPageBackNavigation.BackgroundColor = backgroundColor;
+            return contentView;
         }
     }
 }

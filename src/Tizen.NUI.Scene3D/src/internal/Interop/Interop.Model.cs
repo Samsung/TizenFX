@@ -24,6 +24,9 @@ namespace Tizen.NUI.Scene3D
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_New_SWIG_0")]
             public static extern global::System.IntPtr ModelNew(string modelUrl, string resourcePasth);
 
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_New_SWIG_1")]
+            public static extern global::System.IntPtr ModelNew();
+
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_new_Model_SWIG_0")]
             public static extern global::System.IntPtr NewModel();
 
@@ -41,6 +44,12 @@ namespace Tizen.NUI.Scene3D
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_GetModelRoot")]
             public static extern global::System.IntPtr GetModelRoot(global::System.Runtime.InteropServices.HandleRef model);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_AddModelNode")]
+            public static extern void AddModelNode(global::System.Runtime.InteropServices.HandleRef model, global::System.Runtime.InteropServices.HandleRef modelNode);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_RemoveModelNode")]
+            public static extern void RemoveModelNode(global::System.Runtime.InteropServices.HandleRef model, global::System.Runtime.InteropServices.HandleRef modelNode);
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_SetChildrenSensitive")]
             public static extern void SetChildrenSensitive(global::System.Runtime.InteropServices.HandleRef model, bool enable);
@@ -66,6 +75,37 @@ namespace Tizen.NUI.Scene3D
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_GetAnimation_2")]
             public static extern global::System.IntPtr GetAnimation(global::System.Runtime.InteropServices.HandleRef model, string name);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_GetCameraCount")]
+            public static extern uint GetCameraCount(global::System.Runtime.InteropServices.HandleRef model);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_GenerateCamera")]
+            public static extern global::System.IntPtr GenerateCamera(global::System.Runtime.InteropServices.HandleRef model, uint index);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_ApplyCamera")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool ApplyCamera(global::System.Runtime.InteropServices.HandleRef model, uint index, global::System.Runtime.InteropServices.HandleRef camera);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_FindChildModelNodeByName")]
+            public static extern global::System.IntPtr FindChildModelNodeByName(global::System.Runtime.InteropServices.HandleRef model, string nodeName);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_GenerateMotionDataAnimation")]
+            public static extern global::System.IntPtr GenerateMotionDataAnimation(global::System.Runtime.InteropServices.HandleRef model, global::System.Runtime.InteropServices.HandleRef motionData);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_SetMotionData")]
+            public static extern void SetMotionData(global::System.Runtime.InteropServices.HandleRef model, global::System.Runtime.InteropServices.HandleRef motionData);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_LoadBvhAnimation_1")]
+            public static extern global::System.IntPtr LoadBvhAnimation(global::System.Runtime.InteropServices.HandleRef model, string bvhFilename, global::System.Runtime.InteropServices.HandleRef scale, bool translateRootFromModelNode);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_LoadBvhAnimation_2")]
+            public static extern global::System.IntPtr LoadBvhAnimationFromBuffer(global::System.Runtime.InteropServices.HandleRef model, string bvhBuffer, int bvhBufferLength, global::System.Runtime.InteropServices.HandleRef scale, bool translateRootFromModelNode);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_LoadFacialAnimation_1")]
+            public static extern global::System.IntPtr LoadBlendShapeAnimation(global::System.Runtime.InteropServices.HandleRef model, string jsonFilename);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_LoadFacialAnimation_2")]
+            public static extern global::System.IntPtr LoadBlendShapeAnimationFromBuffer(global::System.Runtime.InteropServices.HandleRef model, string jsonBuffer, int jsonBufferLength);
         }
     }
 }

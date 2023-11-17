@@ -38,6 +38,37 @@ namespace Tizen.NUI
         private VectorUnsignedChar mCachedBuffer = null; // cached encoded raw buffer
 
         /// <summary>
+        /// The list of type of encoded image buffer.
+        /// It will be used when we want to specify the buffer data type.
+        /// </summary>
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names")]
+        public enum ImageTypes
+        {
+            /// <summary>
+            /// Regular images.
+            /// </summary>
+            /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            RegularImage = 0,
+
+            /// <summary>
+            /// Vector rasterize images.
+            /// </summary>
+            /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            VectorImage,
+
+            /// <summary>
+            /// Animated vector rasterize images.
+            /// </summary>
+            /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            AnimatedVectorImage,
+        }
+
+        /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="stream">The Stream of the image file.</param>
@@ -45,24 +76,58 @@ namespace Tizen.NUI
         /// <exception cref="InvalidOperationException"> Thrown when stream don't have any data. </exception>
         /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public EncodedImageBuffer(System.IO.Stream stream) : this(GetRawBuffrFromStreamHelper(stream))
+        public EncodedImageBuffer(System.IO.Stream stream) : this(GetRawBuffrFromStreamHelper(stream), ImageTypes.RegularImage)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal EncodedImageBuffer(VectorUnsignedChar buffer) : this(Interop.EncodedImageBuffer.New(VectorUnsignedChar.getCPtr(buffer)), true)
+        /// <summary>
+        /// Constructor with image type.
+        /// </summary>
+        /// <param name="stream">The Stream of the image file.</param>
+        /// <param name="imageType">The type of the image stream.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when stream is null. </exception>
+        /// <exception cref="InvalidOperationException"> Thrown when stream don't have any data. </exception>
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public EncodedImageBuffer(System.IO.Stream stream, ImageTypes imageType) : this(GetRawBuffrFromStreamHelper(stream), imageType)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal EncodedImageBuffer(VectorUnsignedChar buffer, ImageTypes imageType) : this(Interop.EncodedImageBuffer.New(VectorUnsignedChar.getCPtr(buffer), (int)imageType), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             mCachedBuffer = buffer;
         }
 
-        internal EncodedImageBuffer(EncodedImageBuffer handle) : this(Interop.EncodedImageBuffer.NewEncodedImageBuffer(EncodedImageBuffer.getCPtr(handle)), true)
+        internal EncodedImageBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, false)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            // Note : EncodedImageBuffer don't need to be register in Registry default. So we can create this class from worker thread.
         }
 
-        internal EncodedImageBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal EncodedImageBuffer(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
+        }
+
+        /// <summary>
+        /// The type of image for this EncodedImageBuffer.
+        /// </summary>
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageTypes ImageType
+        {
+            set
+            {
+                Interop.EncodedImageBuffer.SetImageType(SwigCPtr, (int)value);
+                NDalicPINVOKE.ThrowExceptionIfExists();
+            }
+            get
+            {
+                ImageTypes ret = (ImageTypes)Interop.EncodedImageBuffer.GetImageType(SwigCPtr);
+                NDalicPINVOKE.ThrowExceptionIfExists();
+                return ret;
+            }
         }
 
         /// <summary>
@@ -71,6 +136,9 @@ namespace Tizen.NUI
         /// Note : the url lifecycle is same as ImageUrl and it's internal usage.
         /// Store only ImageUrl.ToString() result and re-use that url is Undefined Behavior.
         /// </summary>
+        /// <remarks>
+        /// This API should not be called at worker thread.
+        /// </remarks>
         /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageUrl GenerateUrl()

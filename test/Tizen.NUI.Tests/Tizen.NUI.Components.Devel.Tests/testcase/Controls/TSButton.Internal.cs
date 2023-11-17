@@ -27,11 +27,6 @@ namespace Tizen.NUI.Components.Devel.Tests
                 return base.AccessibilityGetName();
             }
 
-            public bool MyAccessibilityShouldReportZeroChildren()
-            {
-                return base.AccessibilityShouldReportZeroChildren();
-            }
-
             public bool MyHandleControlStateOnTouch(Touch touch)
             {
                 return base.HandleControlStateOnTouch(touch);
@@ -108,7 +103,6 @@ namespace Tizen.NUI.Components.Devel.Tests
 
             testingTarget.Text = "Button";
             tlog.Debug(tag, "AccessibilityGetName : " + testingTarget.MyAccessibilityGetName());
-            tlog.Debug(tag, "AccessibilityShouldReportZeroChildren : " + testingTarget.MyAccessibilityShouldReportZeroChildren());
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"ButtonAccessibilityGetName END (OK)");

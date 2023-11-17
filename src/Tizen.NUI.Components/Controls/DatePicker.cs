@@ -287,8 +287,6 @@ namespace Tizen.NUI.Components
 
         private void Initialize()
         {
-            HeightSpecification = LayoutParamPolicies.MatchParent;
-
             Layout = new LinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Horizontal,

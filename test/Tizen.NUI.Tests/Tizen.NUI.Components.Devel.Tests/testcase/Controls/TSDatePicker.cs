@@ -90,7 +90,7 @@ namespace Tizen.NUI.Components.Devel.Tests
 
             try
             {
-                new DatePicker(Tizen.NUI.DefaultThemeCreator.DefaultId);
+                new DatePicker("Tizen.NUI.Components.DatePicker");
             }
             catch (Exception e)
             {
@@ -118,10 +118,6 @@ namespace Tizen.NUI.Components.Devel.Tests
                 Pickers = new PickerStyle()
                 {
                     StartScrollOffset = new Size(10, 10),
-                    Divider = new ViewStyle()
-                    {
-                        Position = new Position(30, 40),
-                    }
                 },
                 CellPadding = new Size2D(20, 20),
             };
@@ -212,10 +208,6 @@ namespace Tizen.NUI.Components.Devel.Tests
                 Pickers = new PickerStyle()
                 {
                     StartScrollOffset = new Size(10, 10),
-                    Divider = new ViewStyle()
-                    {
-                        Position = new Position(30, 40),
-                    }
                 },
                 CellPadding = new Size2D(20, 20),
             };

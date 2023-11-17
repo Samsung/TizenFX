@@ -137,7 +137,12 @@ namespace Tizen.NUI.Samples
 
             // Add Horizontal Slider
             hori_slider_parent = new View() { Size = new Size(960, 740) };
-            hori_slider_parent.Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical, LinearAlignment = LinearLayout.Alignment.Bottom, CellPadding = new Size2D(0, 50) };
+            hori_slider_parent.Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Vertical,
+                VerticalAlignment = VerticalAlignment.Bottom,
+                CellPadding = new Size2D(0, 50)
+            };
             bottom_parent.Add(hori_slider_parent);
             hori_slider_parent.Add(slider_null_style[0]);
             hori_slider_parent.Add(slider_null_style[1]);
@@ -146,7 +151,13 @@ namespace Tizen.NUI.Samples
 
             // Add vertical Slider
             ver_slider_parent = new View() { Size = new Size(960, 740) };
-            ver_slider_parent.Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Horizontal, LinearAlignment = LinearLayout.Alignment.Center, CellPadding = new Size2D(100, 0) };
+            ver_slider_parent.Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                CellPadding = new Size2D(100, 0)
+            };
             bottom_parent.Add(ver_slider_parent);
             ver_slider_parent.Add(slider_null_style[2]);
             ver_slider_parent.Add(slider_null_style[3]);

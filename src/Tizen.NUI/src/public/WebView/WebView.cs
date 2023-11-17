@@ -73,6 +73,9 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<WebViewPolicyDecidedEventArgs> navigationPolicyDecidedEventHandler;
         private WebViewPolicyDecidedCallback navigationPolicyDecidedCallback;
 
+        private EventHandlerWithReturnType<object, EventArgs, WebView> newWindowCreatedEventHandler;
+        private WebViewNewWindowCreatedCallback newWindowCreatedCallback;
+
         private EventHandler<WebViewCertificateReceivedEventArgs> certificateConfirmedEventHandler;
         private WebViewCertificateReceivedCallback certificateConfirmedCallback;
 
@@ -129,12 +132,17 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="webView">WebView to copy. The copied WebView will point at the same implementation</param>
         /// <since_tizen> 9 </since_tizen>
-        public WebView(WebView webView) : this(Interop.WebView.NewWebView(WebView.getCPtr(webView)), true)
+        public WebView(WebView webView) : this(Interop.WebView.NewWebView(WebView.getCPtr(webView)), true, false)
         {
+            // TODO : Please deprecate this API.
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal WebView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.WebView.Upcast(cPtr), cMemoryOwn)
+        internal WebView(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal WebView(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(Interop.WebView.Upcast(cPtr), cMemoryOwn, true, cRegister)
         {
             screenshotAcquiredProxyCallback = OnScreenshotAcquired;
             hitTestFinishedProxyCallback = OnHitTestFinished;
@@ -177,106 +185,109 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The callback function that is invoked when the message is received from the script.
         /// </summary>
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void JavaScriptMessageHandler(string message);
 
         /// <summary>
         /// The callback function that is invoked when the message is received from the script.
         /// </summary>
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void JavaScriptAlertCallback(string message);
 
         /// <summary>
         /// The callback function that is invoked when the message is received from the script.
         /// </summary>
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void JavaScriptConfirmCallback(string message);
 
         /// <summary>
         /// The callback function that is invoked when the message is received from the script.
         /// </summary>
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void JavaScriptPromptCallback(string message1, string message2);
 
         /// <summary>
         /// The callback function that is invoked when screen shot is acquired asynchronously.
         /// </summary>
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void ScreenshotAcquiredCallback(ImageView image);
 
         /// <summary>
         /// The callback function that is invoked when video playing is checked asynchronously.
         /// </summary>
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void VideoPlayingCallback(bool isPlaying);
 
         /// <summary>
         /// The callback function that is invoked when geolocation permission is requested.
         /// </summary>
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void GeolocationPermissionCallback(string host, string protocol);
 
         /// <summary>
         /// The callback function that is invoked when hit test is finished.
         /// </summary>
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void HitTestFinishedCallback(WebHitTestResult test);
 
         /// <summary>
         /// The callback function that is invoked when the plain text of the current page is received.
         /// </summary>
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void PlainTextReceivedCallback(string plainText);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewPageLoadCallback(string pageUrl);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewPageLoadErrorCallback(IntPtr error);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewScrollEdgeReachedCallback(int edge);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewUrlChangedCallback(string pageUrl);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewFormRepostPolicyDecidedCallback(IntPtr maker);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewFrameRenderedCallback();
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewScreenshotAcquiredProxyCallback(IntPtr data);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewHitTestFinishedProxyCallback(IntPtr data);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewPolicyDecidedCallback(IntPtr maker);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void WebViewNewWindowCreatedCallback(out IntPtr outView);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewCertificateReceivedCallback(IntPtr certificate);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewHttpAuthRequestedCallback(IntPtr handler);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewConsoleMessageReceivedCallback(IntPtr message);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewContextMenuShownCallback(IntPtr menu);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewContextMenuHiddenCallback(IntPtr menu);
 
         /// <summary>
@@ -299,6 +310,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 pageLoadStartedEventHandler -= value;
+                if (pageLoadStartedEventHandler == null)
+                {
+                    IntPtr ip = IntPtr.Zero;
+                    Interop.WebView.RegisterPageLoadStartedCallback(SwigCPtr, new HandleRef(this, ip));
+                }
             }
         }
 
@@ -322,6 +338,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 pageLoadingEventHandler -= value;
+                if (pageLoadingEventHandler == null)
+                {
+                    IntPtr ip = IntPtr.Zero;
+                    Interop.WebView.RegisterPageLoadInProgressCallback(SwigCPtr, new HandleRef(this, ip));
+                }
             }
         }
 
@@ -345,6 +366,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 pageLoadFinishedEventHandler -= value;
+                if (pageLoadFinishedEventHandler == null)
+                {
+                    IntPtr ip = IntPtr.Zero;
+                    Interop.WebView.RegisterPageLoadFinishedCallback(SwigCPtr, new HandleRef(this, ip));
+                }
             }
         }
 
@@ -368,6 +394,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 pageLoadErrorEventHandler -= value;
+                if (pageLoadErrorEventHandler == null)
+                {
+                    IntPtr ip = IntPtr.Zero;
+                    Interop.WebView.RegisterPageLoadErrorCallback(SwigCPtr, new HandleRef(this, ip));
+                }
             }
         }
 
@@ -391,6 +422,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 scrollEdgeReachedEventHandler -= value;
+                if (scrollEdgeReachedEventHandler == null)
+                {
+                    IntPtr ip = IntPtr.Zero;
+                    Interop.WebView.RegisterScrollEdgeReachedCallback(SwigCPtr, new HandleRef(this, ip));
+                }
             }
         }
 
@@ -414,6 +450,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 urlChangedEventHandler -= value;
+                if (urlChangedEventHandler == null)
+                {
+                    IntPtr ip = IntPtr.Zero;
+                    Interop.WebView.RegisterUrlChangedCallback(SwigCPtr, new HandleRef(this, ip));
+                }
             }
         }
 
@@ -437,6 +478,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 formRepostPolicyDecidedEventHandler -= value;
+                if (formRepostPolicyDecidedEventHandler == null)
+                {
+                    IntPtr ip = IntPtr.Zero;
+                    Interop.WebView.RegisterFormRepostDecidedCallback(SwigCPtr, new HandleRef(this, ip));
+                }
             }
         }
 
@@ -460,6 +506,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 frameRenderedEventHandler -= value;
+                if (frameRenderedEventHandler == null)
+                {
+                    IntPtr ip = IntPtr.Zero;
+                    Interop.WebView.RegisterFrameRenderedCallback(SwigCPtr, new HandleRef(this, ip));
+                }
             }
         }
 
@@ -483,6 +534,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 responsePolicyDecidedEventHandler -= value;
+                if (responsePolicyDecidedEventHandler == null)
+                {
+                    IntPtr ip = IntPtr.Zero;
+                    Interop.WebView.RegisterResponsePolicyDecidedCallback(SwigCPtr, new HandleRef(this, ip));
+                }
             }
         }
 
@@ -506,6 +562,39 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 navigationPolicyDecidedEventHandler -= value;
+                if (navigationPolicyDecidedEventHandler == null)
+                {
+                    IntPtr ip = IntPtr.Zero;
+                    Interop.WebView.RegisterNavigationPolicyDecidedCallback(SwigCPtr, new HandleRef(this, ip));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event for the NewWindowCreated signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when a new window would be created.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandlerWithReturnType<object, EventArgs, WebView> NewWindowCreated
+        {
+            add
+            {
+                if (newWindowCreatedEventHandler == null)
+                {
+                    newWindowCreatedCallback = OnNewWindowCreated;
+                    System.IntPtr ip = Marshal.GetFunctionPointerForDelegate(newWindowCreatedCallback);
+                    Interop.WebView.RegisterNewWindowCreatedCallback(SwigCPtr, new HandleRef(this, ip));
+                }
+                newWindowCreatedEventHandler += value;
+            }
+            remove
+            {
+                newWindowCreatedEventHandler -= value;
+                if (newWindowCreatedEventHandler == null)
+                {
+                    IntPtr ip = IntPtr.Zero;
+                    Interop.WebView.RegisterNewWindowCreatedCallback(SwigCPtr, new HandleRef(this, ip));
+                }
             }
         }
 
@@ -529,6 +618,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 certificateConfirmedEventHandler -= value;
+                if (certificateConfirmedEventHandler == null)
+                {
+                    IntPtr ip = IntPtr.Zero;
+                    Interop.WebView.RegisterCertificateConfirmedCallback(SwigCPtr, new HandleRef(this, ip));
+                }
             }
         }
 
@@ -552,6 +646,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 sslCertificateChangedEventHandler -= value;
+                if (sslCertificateChangedEventHandler == null)
+                {
+                    IntPtr ip = IntPtr.Zero;
+                    Interop.WebView.RegisterSslCertificateChangedCallback(SwigCPtr, new HandleRef(this, ip));
+                }
             }
         }
 
@@ -575,6 +674,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 httpAuthRequestedEventHandler -= value;
+                if (httpAuthRequestedEventHandler == null)
+                {
+                    IntPtr ip = IntPtr.Zero;
+                    Interop.WebView.RegisterHttpAuthHandlerCallback(SwigCPtr, new HandleRef(this, ip));
+                }
             }
         }
 
@@ -598,6 +702,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 consoleMessageReceivedEventHandler -= value;
+                if (consoleMessageReceivedEventHandler == null)
+                {
+                    IntPtr ip = IntPtr.Zero;
+                    Interop.WebView.RegisterConsoleMessageReceivedCallback(SwigCPtr, new HandleRef(this, ip));
+                }
             }
         }
 
@@ -621,6 +730,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 contextMenuShownEventHandler -= value;
+                if (contextMenuShownEventHandler == null)
+                {
+                    IntPtr ip = IntPtr.Zero;
+                    Interop.WebView.RegisterContextMenuShownCallback(SwigCPtr, new HandleRef(this, ip));
+                }
             }
         }
 
@@ -644,6 +758,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 contextMenuHiddenEventHandler -= value;
+                if (contextMenuHiddenEventHandler == null)
+                {
+                    IntPtr ip = IntPtr.Zero;
+                    Interop.WebView.RegisterContextMenuHiddenCallback(SwigCPtr, new HandleRef(this, ip));
+                }
             }
         }
 
@@ -1086,6 +1205,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Background color of web page.
+        /// Please note that it only works after LoadUrl, etc.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color ContentBackgroundColor
@@ -1545,7 +1665,23 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Requests to load the given contents by MIME type.
         /// </summary>
-        /// <param name="contents">The contents to be loaded</param>
+        /// <param name="contents">The contents to be loaded in bytes</param>
+        /// <param name="mimeType">The type of contents, "text/html" is assumed if null</param>
+        /// <param name="encoding">The encoding for contents, "UTF-8" is assumed if null</param>
+        /// <param name="baseUri">The base URI to use for relative resources</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool LoadContents(byte[] contents, string mimeType, string encoding, string baseUri)
+        {
+            int length = contents != null ? contents.Length : 0;
+            bool result = Interop.WebView.LoadContents(SwigCPtr, contents, (uint)length, mimeType, encoding, baseUri);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
+
+        /// <summary>
+        /// Requests to load the given contents by MIME type.
+        /// </summary>
+        /// <param name="contents">The contents to be loaded. For UTF-8 encoding, contents would be got like System.Text.Encoding.UTF8.GetString(...)</param>
         /// <param name="contentSize">The size of contents (in bytes)</param>
         /// <param name="mimeType">The type of contents, "text/html" is assumed if null</param>
         /// <param name="encoding">The encoding for contents, "UTF-8" is assumed if null</param>
@@ -1798,9 +1934,12 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterJavaScriptAlertCallback(JavaScriptAlertCallback callback)
         {
-            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(callback);
+            IntPtr ip = IntPtr.Zero;
+            if (callback != null)
+            {
+                ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(callback);
+            }
             Interop.WebView.RegisterJavaScriptAlertCallback(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
-
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1821,9 +1960,12 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterJavaScriptConfirmCallback(JavaScriptConfirmCallback callback)
         {
-            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(callback);
+            IntPtr ip = IntPtr.Zero;
+            if (callback != null)
+            {
+                ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(callback);
+            }
             Interop.WebView.RegisterJavaScriptConfirmCallback(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
-
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1845,9 +1987,12 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterJavaScriptPromptCallback(JavaScriptPromptCallback callback)
         {
-            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(callback);
+            IntPtr ip = IntPtr.Zero;
+            if (callback != null)
+            {
+                ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(callback);
+            }
             Interop.WebView.RegisterJavaScriptPromptCallback(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
-
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -2152,6 +2297,12 @@ namespace Tizen.NUI.BaseComponents
         private void OnNavigationPolicyDecided(IntPtr maker)
         {
             navigationPolicyDecidedEventHandler?.Invoke(this, new WebViewPolicyDecidedEventArgs(new WebPolicyDecisionMaker(maker, true)));
+        }
+
+        private void OnNewWindowCreated(out IntPtr viewHandle)
+        {
+            WebView view = newWindowCreatedEventHandler?.Invoke(this, new EventArgs());
+            viewHandle = (IntPtr)view.SwigCPtr;
         }
 
         private void OnCertificateConfirmed(IntPtr certificate)

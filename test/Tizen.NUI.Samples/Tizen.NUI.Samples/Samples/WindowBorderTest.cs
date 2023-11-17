@@ -95,7 +95,7 @@ namespace Tizen.NUI.Samples
                 HeightResizePolicy = ResizePolicyType.FillToParent,
                 Layout = new LinearLayout()
                 {
-                    LinearAlignment = LinearLayout.Alignment.Top,
+                    VerticalAlignment = VerticalAlignment.Top,
                     LinearOrientation = LinearLayout.Orientation.Vertical,
                     CellPadding = new Size(50, 50),
                 }

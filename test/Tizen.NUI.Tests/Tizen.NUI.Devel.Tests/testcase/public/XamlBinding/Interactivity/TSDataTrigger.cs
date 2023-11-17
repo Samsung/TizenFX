@@ -36,8 +36,12 @@ namespace Tizen.NUI.Devel.Tests
         public void DataTriggerConstructor()
         {
             tlog.Debug(tag, $"DataTriggerConstructor START");
+
+#pragma warning disable Reflection // The code contains reflection
             DataTrigger dt = new DataTrigger(typeof(View));
+#pragma warning restore Reflection // The code contains reflection
             Assert.IsNotNull(dt, "Should not be null");
+            
             tlog.Debug(tag, $"DataTriggerConstructor END");
         }
 
@@ -47,15 +51,20 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC", "Tizen.NUI.Binding.DataTrigger.Binding  A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
-        public void BindingTest()
+        public void DataTriggerBindingWithNull()
         {
-            tlog.Debug(tag, $"BindingTest START");
+            tlog.Debug(tag, $"DataTriggerBindingWithNull START");
+
+#pragma warning disable Reflection // The code contains reflection
             DataTrigger dt = new DataTrigger(typeof(View));
+#pragma warning restore Reflection // The code contains reflection
             Assert.IsNotNull(dt, "Should not be null");
+            
             var ret = dt.Binding; //null
             Assert.IsNull(ret, "Should be null");
             dt.Binding = ret;
-            tlog.Debug(tag, $"BindingTest END");
+            
+            tlog.Debug(tag, $"DataTriggerBindingWithNull END");
         }
 
         [Test]
@@ -64,15 +73,19 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC", "Tizen.NUI.Binding.DataTrigger.Binding  A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
-        public void BindingTest2()
+        public void DataTriggerBinding()
         {
-            tlog.Debug(tag, $"BindingTest2 START");
+            tlog.Debug(tag, $"DataTriggerBinding START");
+
+#pragma warning disable Reflection // The code contains reflection
             DataTrigger dt = new DataTrigger(typeof(View));
+#pragma warning restore Reflection // The code contains reflection
             Assert.IsNotNull(dt, "Should not be null");
+
             var b = new Binding.Binding();
             dt.Binding = b;
 
-            tlog.Debug(tag, $"BindingTest2 END");
+            tlog.Debug(tag, $"DataTriggerBinding END");
         }
 
         [Test]
@@ -81,15 +94,19 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC", "Tizen.NUI.Binding.DataTrigger.Setters  A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRO")]
-        public void SettersTest()
+        public void DataTriggerSetters()
         {
-            tlog.Debug(tag, $"SettersTest START");
+            tlog.Debug(tag, $"DataTriggerSetters START");
+
+#pragma warning disable Reflection // The code contains reflection
             DataTrigger dt = new DataTrigger(typeof(View));
+#pragma warning restore Reflection // The code contains reflection
             Assert.IsNotNull(dt, "Should not be null");
+
             var ret = dt.Setters;
             Assert.AreEqual(0, ret.Count, "Should be equal");
 
-            tlog.Debug(tag, $"SettersTest END");
+            tlog.Debug(tag, $"DataTriggerSetters END");
         }
 
         [Test]
@@ -98,16 +115,21 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC", "Tizen.NUI.Binding.DataTrigger.Value  A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
-        public void ValueTest()
+        [Obsolete]
+        public void DataTriggerValue()
         {
-            tlog.Debug(tag, $"IsSealedTest2 START");
+            tlog.Debug(tag, $"DataTriggerValue START");
+
+#pragma warning disable Reflection // The code contains reflection
             DataTrigger dt = new DataTrigger(typeof(View));
+#pragma warning restore Reflection // The code contains reflection
             Assert.IsNotNull(dt, "Should not be null");
             var ret = dt.Value;
             dt.Value = ret;
             Assert.AreEqual(ret, dt.Value, "Should be equal");
             dt.Value = 0;
-            tlog.Debug(tag, $"IsSealedTest2 END");
+            
+            tlog.Debug(tag, $"DataTriggerValue END");
         }
     }
 }

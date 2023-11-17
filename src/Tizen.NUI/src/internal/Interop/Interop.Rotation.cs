@@ -30,6 +30,12 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Rotation_2")]
             public static extern global::System.IntPtr NewRotation2(global::System.Runtime.InteropServices.HandleRef v0, global::System.Runtime.InteropServices.HandleRef v1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Rotation_3")]
+            public static extern global::System.IntPtr NewRotation3(global::System.Runtime.InteropServices.HandleRef pitch, global::System.Runtime.InteropServices.HandleRef yaw, global::System.Runtime.InteropServices.HandleRef roll);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Rotation_4")]
+            public static extern global::System.IntPtr NewRotation4(global::System.Runtime.InteropServices.HandleRef vector4);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Rotation")]
             public static extern void DeleteRotation(global::System.Runtime.InteropServices.HandleRef rotation);
 
@@ -43,6 +49,12 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rotation_GetAxisAngle")]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool GetAxisAngle(global::System.Runtime.InteropServices.HandleRef rotation, global::System.Runtime.InteropServices.HandleRef axis, global::System.Runtime.InteropServices.HandleRef radianAngle);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rotation_SetEulerAngle")]
+            public static extern void SetEulerAngle(global::System.Runtime.InteropServices.HandleRef rotation, global::System.Runtime.InteropServices.HandleRef pitch, global::System.Runtime.InteropServices.HandleRef yaw, global::System.Runtime.InteropServices.HandleRef roll);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rotation_GetEulerAngle")]
+            public static extern void GetEulerAngle(global::System.Runtime.InteropServices.HandleRef rotation, global::System.Runtime.InteropServices.HandleRef pitch, global::System.Runtime.InteropServices.HandleRef yaw, global::System.Runtime.InteropServices.HandleRef roll);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rotation_Add")]
             public static extern global::System.IntPtr Add(global::System.Runtime.InteropServices.HandleRef rotation0, global::System.Runtime.InteropServices.HandleRef rotation1);

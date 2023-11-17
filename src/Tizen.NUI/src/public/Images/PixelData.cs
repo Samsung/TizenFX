@@ -72,7 +72,12 @@ namespace Tizen.NUI
 
         }
 
-        internal PixelData(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal PixelData(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, false)
+        {
+            // Note : PixelData don't need to be register in Registry default. So we can create this class from worker thread.
+        }
+
+        internal PixelData(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
         }
 
@@ -98,6 +103,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Generate Url from pixel data.
         /// </summary>
+        /// <remarks>
+        /// This API should not be called at worker thread.
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageUrl GenerateUrl()
         {

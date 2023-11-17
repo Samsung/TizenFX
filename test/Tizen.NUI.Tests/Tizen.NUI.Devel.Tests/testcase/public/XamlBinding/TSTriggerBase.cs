@@ -268,7 +268,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(sl, "null SealedList");
             sl.Add(1);
             sl.IsReadOnly = true;
-            int i;
             Assert.Throws<InvalidOperationException>(() => sl.Insert(0, 2));
             tlog.Debug(tag, $"SealedListInsertTest END");
         }
@@ -287,7 +286,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(sl, "null SealedList");
             sl.Add(1);
             sl.IsReadOnly = true;
-            int i;
             Assert.Throws<InvalidOperationException>(() => sl.Remove(1));
             tlog.Debug(tag, $"SealedListRemoveTest END");
         }

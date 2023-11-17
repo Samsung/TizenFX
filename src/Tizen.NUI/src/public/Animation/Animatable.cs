@@ -26,6 +26,11 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class Animatable : BaseHandle
     {
+        static internal new void Preload()
+        {
+            BaseHandle.Preload();
+            // Do nothing. Just call for load static values.
+        }
 
         /// <summary>
         /// Create an instance of animatable.
@@ -34,10 +39,13 @@ namespace Tizen.NUI
         public Animatable() : this(Interop.Handle.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
 
-        internal Animatable(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Animatable(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal Animatable(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
         }
 
@@ -137,6 +145,28 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Sets the value of an existing property.
+        /// </summary>
+        /// <param name="name">The index of the property.</param>
+        /// <param name="propertyValue">The new value of the property.</param>
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetProperty(string name, PropertyValue propertyValue)
+        {
+            var propertyName = LowerFirstLetter(name);
+            Property property = new Property(this, propertyName);
+            if (property.PropertyIndex == Property.InvalidIndex)
+            {
+                Tizen.Log.Error("NUI", "Invalid property name\n");
+            }
+            else
+            {
+                Tizen.NUI.Object.SetProperty(SwigCPtr, property.PropertyIndex, propertyValue);
+            }
+            property.Dispose();
+        }
+
+        /// <summary>
         /// Registers a new animatable property.
         /// </summary>
         /// <param name="name">The name of the property.</param>
@@ -178,6 +208,18 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Retrieves the latest rendered frame value of the property.
+        /// </summary>
+        /// <param name="index">The index of the property.</param>
+        /// <returns>The property value.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyValue GetCurrentProperty(int index)
+        {
+            PropertyValue ret = Tizen.NUI.Object.GetCurrentProperty(SwigCPtr, index);
+            return ret;
+        }
+
+        /// <summary>
         /// Adds a property notification to this object.
         /// </summary>
         /// <param name="property">The name of the property.</param>
@@ -187,7 +229,7 @@ namespace Tizen.NUI
         public PropertyNotification AddPropertyNotification(string property, PropertyCondition condition)
         {
             Property properties = PropertyHelper.GetPropertyFromString(this, property);
-            PropertyNotification ret = new PropertyNotification(Interop.Handle.AddPropertyNotification(SwigCPtr, properties.propertyIndex, PropertyCondition.getCPtr(condition)), true);
+            PropertyNotification ret = new PropertyNotification(Interop.Handle.AddPropertyNotification(SwigCPtr, properties.PropertyIndex, PropertyCondition.getCPtr(condition)), true);
             properties.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -238,6 +280,13 @@ namespace Tizen.NUI
         {
             Interop.HandleInternal.HandleRemoveConstraints(SwigCPtr, tag);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        private static string LowerFirstLetter(string original)
+        {
+            StringBuilder sb = new StringBuilder(original);
+            sb[0] = (char)(sb[0] | 0x20);
+            return sb.ToString();
         }
 
         /// This will not be public opened.

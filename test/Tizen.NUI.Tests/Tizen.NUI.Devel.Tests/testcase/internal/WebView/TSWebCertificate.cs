@@ -14,31 +14,24 @@ namespace Tizen.NUI.Devel.Tests
     public class InternalWebCertificateTest
     {
         private const string tag = "NUITEST";
-        private static string[] runtimeArgs = { "Tizen.NUI.Devel.Tests", "--enable-dali-window", "--enable-spatial-navigation" };
-        private const string USER_AGENT = "Mozilla/5.0 (SMART-TV; Linux; Tizen 6.0) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/76.0.3809.146 TV Safari/537.36";
-
-        internal class MyWebCertificate : WebCertificate
-        {
-            public MyWebCertificate(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
-            { }
-
-            public void OnReleaseSwigCPtr(global::System.Runtime.InteropServices.HandleRef swigCPtr)
-            {
-                base.ReleaseSwigCPtr(swigCPtr);
-            }
-        }
+        private string url = $"file://{Applications.Application.Current.DirectoryInfo.Resource}webview/index.html";
+        private BaseComponents.WebView webView = null;
 
         [SetUp]
         public void Init()
         {
+            webView = new BaseComponents.WebView()
+            {
+                Size = new Size(150, 100),
+            };
             tlog.Info(tag, "Init() is called!");
-
-
         }
 
         [TearDown]
         public void Destroy()
         {
+            tlog.Info(tag, "Destroy() is being called!");
+            webView.Dispose();
             tlog.Info(tag, "Destroy() is called!");
         }
 
@@ -50,63 +43,64 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "CONSTR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebCertificateConstructor()
+        public async Task WebCertificateConstructor()
         {
             tlog.Debug(tag, $"WebCertificateConstructor START");
 
-            using (Tizen.NUI.BaseComponents.WebView webview = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai"))
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewCertificateReceivedEventArgs> onSslCertificateChange = (s, e) =>
             {
-                var testingTarget = new WebCertificate(webview.SwigCPtr.Handle, false);
-                Assert.IsNotNull(testingTarget, "null handle");
-                Assert.IsInstanceOf<WebCertificate>(testingTarget, "Should return WebCertificate instance.");
+                Assert.IsNotNull(e.Certificate, "null handle");
+                Assert.IsInstanceOf<WebCertificate>(e.Certificate, "Should return WebCertificate instance.");
+                tcs.TrySetResult(true);
+            };
+            webView.SslCertificateChanged += onSslCertificateChange;
 
-                testingTarget.Dispose();
-            }
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "SslCertificateChanged event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.SslCertificateChanged -= onSslCertificateChange;
 
             tlog.Debug(tag, $"WebCertificateConstructor END (OK)");
         }
 
         [Test]
         [Category("P1")]
-        [Description("WebCertificate IsFromMainFrame.")]
-        [Property("SPEC", "Tizen.NUI.WebCertificate.IsFromMainFrame A")]
+        [Description("WebCertificate Allow.")]
+        [Property("SPEC", "Tizen.NUI.WebCertificate.Allow M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRO")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public async Task WebCertificateIsFromMainFrame()
+        public async Task WebCertificateAllow()
         {
             tlog.Debug(tag, $"WebCertificateIsFromMainFrame START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView(runtimeArgs)
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewCertificateReceivedEventArgs> onSslCertificateChange = (s, e) =>
             {
-                Size = new Size(500, 200),
-                UserAgent = USER_AGENT
+                Assert.IsTrue(e.Certificate.PemData == null || e.Certificate.PemData.Length == 0, "Certificate has no pem data.");
+                Assert.IsFalse(e.Certificate.IsFromMainFrame, "Certificate is not from main frame.");
+                Assert.IsFalse(e.Certificate.IsContextSecure, "Certificate is not context secure.");
+                e.Certificate.Allow(false);
+                tcs.TrySetResult(true);
             };
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return Tizen.NUI.BaseComponents.WebView instance.");
+            webView.SslCertificateChanged += onSslCertificateChange;
 
-            testingTarget.SslCertificateChanged += OnSslCertificateChanged;
-            NUIApplication.GetDefaultWindow().Add(testingTarget);
-            
-            testingTarget.LoadUrl("http://www.baidu.com");
-            await Task.Delay(10000);
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "SslCertificateChanged event should be invoked");
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-            NUIApplication.GetDefaultWindow().Remove(testingTarget);
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
-            testingTarget.Dispose();
+            webView.SslCertificateChanged -= onSslCertificateChange;
+
             tlog.Debug(tag, $"WebCertificateIsFromMainFrame END (OK)");
-        }
-
-        private void OnSslCertificateChanged(object sender, WebViewCertificateReceivedEventArgs e)
-        {
-            tlog.Info(tag, $"ssl certificate changed, PemData: {e.Certificate.PemData}");
-            tlog.Info(tag, $"ssl certificate changed, IsFromMainFrame: {e.Certificate.IsFromMainFrame}");
-            tlog.Info(tag, $"ssl certificate changed, IsContextSecure: {e.Certificate.IsContextSecure}");
-            
-            e.Certificate.Allow(false);
         }
     }
 }

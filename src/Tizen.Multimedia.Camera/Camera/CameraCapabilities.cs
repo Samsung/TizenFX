@@ -68,6 +68,11 @@ namespace Tizen.Multimedia
             IsPanSupported = CheckRangeValid(NativeSettings.GetPanRange);
             IsTiltSupported = CheckRangeValid(NativeSettings.GetTiltRange);
             IsHueSupported = CheckRangeValid(NativeSettings.GetHueRange);
+            IsSaturationSupported = CheckRangeValid(NativeSettings.GetSaturationRange);
+            IsSharpnessSupported = CheckRangeValid(NativeSettings.GetSharpnessRange);
+            IsFocusLevelSupported = CheckRangeValid(NativeSettings.GetFocusLevelRange);
+            IsGainSupported = CheckRangeValid(NativeSettings.GetGainRange);
+            IsWhiteBalanceTemperatureSupported = CheckRangeValid(NativeSettings.GetWhiteBalanceTemperatureRange);
         }
 
         private bool IsFeatureSupported(IsSupportedDelegate func)
@@ -187,6 +192,41 @@ namespace Tizen.Multimedia
         /// <value>true if supported, otherwise false.</value>
         /// <since_tizen> 5 </since_tizen>
         public bool IsHueSupported { get; }
+
+        /// <summary>
+        /// Gets the saturation feature support state.
+        /// </summary>
+        /// <value>true if supported, otherwise false.</value>
+        /// <since_tizen> 11 </since_tizen>
+        public bool IsSaturationSupported { get; }
+
+        /// <summary>
+        /// Gets the sharpness feature support state.
+        /// </summary>
+        /// <value>true if supported, otherwise false.</value>
+        /// <since_tizen> 11 </since_tizen>
+        public bool IsSharpnessSupported { get; }
+
+        /// <summary>
+        /// Gets the manual focus level feature support state.
+        /// </summary>
+        /// <value>true if supported, otherwise false.</value>
+        /// <since_tizen> 11 </since_tizen>
+        public bool IsFocusLevelSupported { get; }
+
+        /// <summary>
+        /// Gets the gain feature support state.
+        /// </summary>
+        /// <value>true if supported, otherwise false.</value>
+        /// <since_tizen> 11 </since_tizen>
+        public bool IsGainSupported { get; }
+
+        /// <summary>
+        /// Gets the white balance temperature feature support state.
+        /// </summary>
+        /// <value>true if supported, otherwise false.</value>
+        /// <since_tizen> 11 </since_tizen>
+        public bool IsWhiteBalanceTemperatureSupported { get; }
 
         /// <summary>
         /// Retrieves all the preview resolutions supported by the camera.

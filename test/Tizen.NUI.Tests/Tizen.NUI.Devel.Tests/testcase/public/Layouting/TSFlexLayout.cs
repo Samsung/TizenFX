@@ -31,6 +31,7 @@ namespace Tizen.NUI.Devel.Tests
         private static bool flagOnLayoutOverride;
         private static bool flagOnChildAddOverride;
         private static bool flagOnChildRemoveOverride;
+
         internal class MyFlexLayout : FlexLayout
         {
             public MyFlexLayout() : base()
@@ -56,20 +57,12 @@ namespace Tizen.NUI.Devel.Tests
                 base.OnLayout(changed, left, top, right, bottom);
             }
 
-            public void OnChildAddTest(LayoutItem child)
-            {
-                OnChildAdd(child);
-            }
             protected override void OnChildAdd(LayoutItem child)
             {
                 flagOnChildAddOverride = true;
                 base.OnChildAdd(child);
             }
 
-            public void OnChildRemoveTest(LayoutItem child)
-            {
-                OnChildRemove(child);
-            }
             protected override void OnChildRemove(LayoutItem child)
             {
                 flagOnChildRemoveOverride = true;
@@ -718,6 +711,47 @@ namespace Tizen.NUI.Devel.Tests
             Assert.True(flagOnLayoutOverride, "FlexLayout overridden method not invoked with false parameter.");
 
             tlog.Debug(tag, $"FlexLayoutOnLayout END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("FlexLayout OnChildAdd")]
+        [Property("SPEC", "Tizen.NUI.FlexLayout.OnChildAdd M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MCST")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void FlexLayoutOnOnChildAdd()
+        {
+            tlog.Debug(tag, $"FlexLayoutOnOnChildAdd START");
+
+            flagOnChildAddOverride = false;
+            Assert.False(flagOnChildAddOverride, "flagOnLayoutOverride should be false initial");
+
+            flagOnChildRemoveOverride = false;
+            Assert.False(flagOnChildRemoveOverride, "flagOnLayoutOverride should be false initial");
+
+            LayoutItem layoutItem = new LinearLayout();
+
+            View view = new View()
+            {
+                ExcludeLayouting = false,
+                Size = new Size(100, 150),
+                Margin = new Extents(20, 20, 20, 20)
+            };
+
+            layoutItem.AttachToOwner(view);
+
+            var testingTarget = new MyFlexLayout();
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<FlexLayout>(testingTarget, "Should be an instance of FlexLayout type.");
+
+            testingTarget.Add(layoutItem);
+            Assert.True(flagOnChildAddOverride, "FlexLayout overridden method not invoked.");
+
+            testingTarget.Remove(layoutItem);
+            Assert.True(flagOnChildRemoveOverride, "FlexLayout overridden method not invoked.");
+
+            tlog.Debug(tag, $"FlexLayoutOnOnChildAdd END (OK)");
         }
     }
 }

@@ -37,5 +37,15 @@ namespace Tizen.NUI.Components
         {
             return Navigator.GetDefaultNavigator(window);
         }
+
+        /// <summary>
+        /// Sets the default navigator of the given window.
+        /// </summary>
+        /// <exception cref="ArgumentNullException">Thrown when the argument window is null.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetDefaultNavigator(this Window window, Navigator navigator)
+        {
+            Navigator.SetDefaultNavigator(window, navigator);
+        }
     }
 }

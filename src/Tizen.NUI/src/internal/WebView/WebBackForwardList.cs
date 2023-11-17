@@ -205,7 +205,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public IList<WebBackForwardListItem> GetForwardItems(int limit)
         {
-            System.IntPtr itemPtr = Interop.WebBackForwardList.GetBackwardItems(SwigCPtr, limit);
+            System.IntPtr itemPtr = Interop.WebBackForwardList.GetForwardItems(SwigCPtr, limit);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             if (forwardItemList != null)

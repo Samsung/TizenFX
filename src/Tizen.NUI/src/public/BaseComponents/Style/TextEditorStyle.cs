@@ -206,6 +206,36 @@ namespace Tizen.NUI.BaseComponents
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).inputOutline = (string)newValue,
             defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).inputOutline);
 
+        /// <summary> The bindable property of SmoothScroll. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly BindableProperty SmoothScrollProperty = BindableProperty.Create(nameof(SmoothScroll), typeof(bool?), typeof(TextEditorStyle), null,
+            propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).smoothScroll = (bool?)newValue,
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).smoothScroll);
+
+        /// <summary> The bindable property of SmoothScrollDuration. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly BindableProperty SmoothScrollDurationProperty = BindableProperty.Create(nameof(SmoothScrollDuration), typeof(float?), typeof(TextEditorStyle), null,
+            propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).smoothScrollDuration = (float?)newValue,
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).smoothScrollDuration);
+
+        /// <summary> The bindable property of EnableScrollBar. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly BindableProperty EnableScrollBarProperty = BindableProperty.Create(nameof(EnableScrollBar), typeof(bool?), typeof(TextEditorStyle), null,
+            propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).enableScrollBar = (bool?)newValue,
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).enableScrollBar);
+
+        /// <summary> The bindable property of ScrollBarShowDuration. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly BindableProperty ScrollBarShowDurationProperty = BindableProperty.Create(nameof(ScrollBarShowDuration), typeof(float?), typeof(TextEditorStyle), null,
+            propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).scrollBarShowDuration = (float?)newValue,
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).scrollBarShowDuration);
+
+        /// <summary> The bindable property of ScrollBarFadeDuration. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly BindableProperty ScrollBarFadeDurationProperty = BindableProperty.Create(nameof(ScrollBarFadeDuration), typeof(float?), typeof(TextEditorStyle), null,
+            propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).scrollBarFadeDuration = (float?)newValue,
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).scrollBarFadeDuration);
+
         /// <summary> The bindable property of EnableSelection. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty EnableSelectionProperty = BindableProperty.Create(nameof(EnableSelection), typeof(bool?), typeof(TextEditorStyle), null,
@@ -277,6 +307,18 @@ namespace Tizen.NUI.BaseComponents
         });
 
         [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FontSizeScaleProperty = BindableProperty.Create(nameof(FontSizeScale), typeof(float?), typeof(TextEditorStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textEditorStyle = (TextEditorStyle)bindable;
+            textEditorStyle.fontSizeScale = (float?)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textEditorStyle = (TextEditorStyle)bindable;
+            return textEditorStyle.fontSizeScale;
+        });
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SelectionPopupStyleProperty = BindableProperty.Create(nameof(SelectionPopupStyle), typeof(PropertyMap), typeof(TextEditorStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditorStyle = (TextEditorStyle)bindable;
@@ -312,6 +354,11 @@ namespace Tizen.NUI.BaseComponents
         private string emboss;
         private string inputEmboss;
         private string inputOutline;
+        private bool? smoothScroll;
+        private float? smoothScrollDuration;
+        private bool? enableScrollBar;
+        private float? scrollBarShowDuration;
+        private float? scrollBarFadeDuration;
         private float? pixelSize;
         private bool? enableSelection;
         private bool? matchSystemLanguageDirection;
@@ -326,6 +373,7 @@ namespace Tizen.NUI.BaseComponents
         private float? lineSpacing;
         private float? minLineSize;
         private float? relativeLineHeight;
+        private float? fontSizeScale;
 
         static TextEditorStyle() { }
 
@@ -592,6 +640,56 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The SmoothScroll property.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool? SmoothScroll
+        {
+            get => (bool?)GetValue(SmoothScrollProperty);
+            set => SetValue(SmoothScrollProperty, value);
+        }
+
+        /// <summary>
+        /// The SmoothScrollDuration property.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float? SmoothScrollDuration
+        {
+            get => (float?)GetValue(SmoothScrollDurationProperty);
+            set => SetValue(SmoothScrollDurationProperty, value);
+        }
+
+        /// <summary>
+        /// The EnableScrollBar property.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool? EnableScrollBar
+        {
+            get => (bool?)GetValue(EnableScrollBarProperty);
+            set => SetValue(EnableScrollBarProperty, value);
+        }
+
+        /// <summary>
+        /// The ScrollBarShowDuration property.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float? ScrollBarShowDuration
+        {
+            get => (float?)GetValue(ScrollBarShowDurationProperty);
+            set => SetValue(ScrollBarShowDurationProperty, value);
+        }
+
+        /// <summary>
+        /// The ScrollBarFadeDuration property.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float? ScrollBarFadeDuration
+        {
+            get => (float?)GetValue(ScrollBarFadeDurationProperty);
+            set => SetValue(ScrollBarFadeDurationProperty, value);
+        }
+
+        /// <summary>
         /// The PixelSize property.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -710,6 +808,13 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (float?)GetValue(RelativeLineHeightProperty);
             set => SetValue(RelativeLineHeightProperty, value);
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float? FontSizeScale
+        {
+            get => (float?)GetValue(FontSizeScaleProperty);
+            set => SetValue(FontSizeScaleProperty, value);
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]

@@ -36,19 +36,18 @@ namespace Tizen.NUI.Devel.Tests
         public void TapGestureConstructor()
         {
             tlog.Debug(tag, $"TapGestureConstructor START");
-            
-            TapGesture a1 = new TapGesture();
-            
-            a1.Dispose();
 
-            
+            var testingTarget = new TapGesture();
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<TapGesture>(testingTarget, "Should be an instance of TapGesture type.");
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"TapGestureConstructor END (OK)");
-            Assert.Pass("TapGestureConstructor");
         }
 
         [Test]
         [Category("P1")]
-        [Description("Test NumberOfTaps property.")]
+        [Description("TapGesture NumberOfTaps.")]
         [Property("SPEC", "Tizen.NUI.TapGesture.NumberOfTaps A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
@@ -56,17 +55,21 @@ namespace Tizen.NUI.Devel.Tests
         public void TapGestureNumberOfTaps()
         {
             tlog.Debug(tag, $"TapGestureNumberOfTaps START");
-            TapGesture a1 = new TapGesture();
 
-            uint b1 = a1.NumberOfTaps;
-            
+            var testingTarget = new TapGesture();
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<TapGesture>(testingTarget, "Should be an instance of TapGesture type.");
+
+            var result = testingTarget.NumberOfTaps;
+            tlog.Debug(tag, "NumberOfTaps : " + result);
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"TapGestureNumberOfTaps END (OK)");
-            Assert.Pass("TapGestureNumberOfTaps");
         }
 
         [Test]
         [Category("P1")]
-        [Description("Test NumberOfTouches property.")]
+        [Description("TapGesture NumberOfTouches.")]
         [Property("SPEC", "Tizen.NUI.TapGesture.NumberOfTouches A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
@@ -74,17 +77,21 @@ namespace Tizen.NUI.Devel.Tests
         public void TapGestureNumberOfTouches()
         {
             tlog.Debug(tag, $"TapGestureNumberOfTouches START");
-            TapGesture a1 = new TapGesture();
 
-            uint b1 = a1.NumberOfTouches;
-            
+            var testingTarget = new TapGesture();
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<TapGesture>(testingTarget, "Should be an instance of TapGesture type.");
+
+            var result = testingTarget.NumberOfTouches;
+            tlog.Debug(tag, "NumberOfTouches : " + result);
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"TapGestureNumberOfTouches END (OK)");
-            Assert.Pass("TapGestureNumberOfTouches");
         }
 
         [Test]
         [Category("P1")]
-        [Description("Test ScreenPoint property.")]
+        [Description("TapGesture ScreenPoint.")]
         [Property("SPEC", "Tizen.NUI.TapGesture.ScreenPoint A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
@@ -92,17 +99,21 @@ namespace Tizen.NUI.Devel.Tests
         public void TapGestureScreenPoint()
         {
             tlog.Debug(tag, $"TapGestureScreenPoint START");
-            TapGesture a1 = new TapGesture();
 
-            Vector2 v1 = a1.ScreenPoint;
-            
+            var testingTarget = new TapGesture();
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<TapGesture>(testingTarget, "Should be an instance of TapGesture type.");
+
+            var result =  testingTarget.ScreenPoint;
+            Assert.IsInstanceOf<Vector2>(result, "Should be an instance of Vector2 type.");
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"TapGestureScreenPoint END (OK)");
-            Assert.Pass("TapGestureScreenPoint");
         }
 
         [Test]
         [Category("P1")]
-        [Description("Test LocalPoint property.")]
+        [Description("TapGesture LocalPoint.")]
         [Property("SPEC", "Tizen.NUI.TapGesture.LocalPoint A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
@@ -110,33 +121,62 @@ namespace Tizen.NUI.Devel.Tests
         public void TapGestureLocalPoint()
         {
             tlog.Debug(tag, $"TapGestureLocalPoint START");
-            TapGesture a1 = new TapGesture();
 
-            Vector2 v1 = a1.LocalPoint;
-            
+            var testingTarget = new TapGesture();
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<TapGesture>(testingTarget, "Should be an instance of TapGesture type.");
+
+            var result = testingTarget.LocalPoint;
+            Assert.IsInstanceOf<Vector2>(result, "Should be an instance of Vector2 type.");
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"TapGestureLocalPoint END (OK)");
-            Assert.Pass("TapGestureLocalPoint");
         }
 
         [Test]
         [Category("P1")]
-        [Description("Test GetTapGestureFromPtr property.")]
-        [Property("SPEC", "Tizen.NUI.TapGesture.GetTapGestureFromPtr A")]
+        [Description("TapGesture SourceType.")]
+        [Property("SPEC", "Tizen.NUI.TapGesture.SourceType A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
+        public void TapGestureSourceType()
+        {
+            tlog.Debug(tag, $"TapGestureSourceType START");
+
+            var testingTarget = new TapGesture();
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<TapGesture>(testingTarget, "Should be an instance of TapGesture type.");
+
+            var result = testingTarget.SourceType;
+            tlog.Debug(tag, "SourceType : " + result);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TapGestureSourceType END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TapGesture GetTapGestureFromPtr.")]
+        [Property("SPEC", "Tizen.NUI.TapGesture.GetTapGestureFromPtr M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void TapGestureGetTapGestureFromPtr()
         {
             tlog.Debug(tag, $"TapGestureGetTapGestureFromPtr START");
-            TapGesture a1 = new TapGesture();
-			
-            TapGesture a2 = TapGesture.GetTapGestureFromPtr(a1.SwigCPtr.Handle);
 
-            a1.Dispose();
-            
+            using (TapGesture gesture = new TapGesture())
+            {
+                var testingTarget = TapGesture.GetTapGestureFromPtr(gesture.SwigCPtr.Handle);
+                Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+                Assert.IsInstanceOf<TapGesture>(testingTarget, "Should be an instance of TapGesture type.");
+
+                testingTarget.Dispose();
+            }
+
             tlog.Debug(tag, $"TapGestureGetTapGestureFromPtr END (OK)");
-            Assert.Pass("TapGestureGetTapGestureFromPtr");
         }
     }
-
 }

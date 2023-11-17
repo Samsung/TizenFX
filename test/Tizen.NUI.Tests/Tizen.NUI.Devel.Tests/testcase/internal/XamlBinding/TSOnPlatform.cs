@@ -35,6 +35,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC", "Tizen.NUI.Binding.OnPlatform.OnPlatform C")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
+        [Obsolete]
         public void OnPlatformConstructor()
         {
             tlog.Debug(tag, $"OnPlatformConstructor START");

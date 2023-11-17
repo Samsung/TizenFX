@@ -98,19 +98,23 @@ namespace Tizen.NUI.Xaml
                     && resource.GetType().GetTypeInfo().IsGenericType
                     && (resource.GetType().GetGenericTypeDefinition() == typeof(OnPlatform<>)))
                 {
-                    var tType = resource.GetType().GenericTypeArguments[0];
-                    var opImplicit = tType.GetImplicitConversionOperator(fromType: tType, toType: propertyType)
-                                    ?? propertyType.GetImplicitConversionOperator(fromType: tType, toType: propertyType);
-
-                    if (opImplicit != null)
+                    var typeArgs = resource.GetType().GenericTypeArguments;
+                    if (typeArgs != null)
                     {
-                        //convert the OnPlatform<T> to T
-                        var opPlatformImplicitConversionOperator = resource?.GetType().GetImplicitConversionOperator(fromType: resource?.GetType(), toType: tType);
-                        resource = opPlatformImplicitConversionOperator?.Invoke(null, new[] { resource });
+                        var tType = typeArgs[0];
+                        var opImplicit = tType.GetImplicitConversionOperator(fromType: tType, toType: propertyType)
+                                        ?? propertyType.GetImplicitConversionOperator(fromType: tType, toType: propertyType);
 
-                        //and convert to toType
-                        resource = opImplicit.Invoke(null, new[] { resource });
-                        return resource;
+                        if (opImplicit != null)
+                        {
+                            //convert the OnPlatform<T> to T
+                            var opPlatformImplicitConversionOperator = resource?.GetType().GetImplicitConversionOperator(fromType: resource?.GetType(), toType: tType);
+                            resource = opPlatformImplicitConversionOperator?.Invoke(null, new[] { resource });
+
+                            //and convert to toType
+                            resource = opImplicit.Invoke(null, new[] { resource });
+                            return resource;
+                        }
                     }
                 }
             }

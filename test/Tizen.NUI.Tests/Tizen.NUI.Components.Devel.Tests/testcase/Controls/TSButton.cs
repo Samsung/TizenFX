@@ -6,7 +6,7 @@ using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using System.Threading.Tasks;
 using System.Resources;
-
+using Tizen.NUI.Components.Devel.Tests.Properties;
 
 namespace Tizen.NUI.Components.Devel.Tests.testcase.Controls
 {
@@ -191,11 +191,11 @@ namespace Tizen.NUI.Components.Devel.Tests.testcase.Controls
 
             NUIApplication.GetDefaultWindow().GetDefaultLayer().Add(testingTarget);
 
-            NUIApplication.MultilingualResourceManager = new ResourceManager(typeof(NUIApplication));
+            NUIApplication.MultilingualResourceManager = Resources.ResourceManager;
 
             if (NUIApplication.MultilingualResourceManager != null)
             {
-                testingTarget.TranslatableText = "Test TranslatableText";
+                testingTarget.TranslatableText = "TranslatableText";
                 tlog.Debug(tag, "testingTarget.TranslatableText : " + testingTarget.TranslatableText);
             }
 

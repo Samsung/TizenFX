@@ -299,9 +299,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_UnparentAndReset")]
             public static extern void UnparentAndReset(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisibilityChangedSignal")]
-            public static extern global::System.IntPtr VisibilityChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_RelayoutContainer")]
             public static extern void DeleteRelayoutContainer(global::System.Runtime.InteropServices.HandleRef jarg1);
 

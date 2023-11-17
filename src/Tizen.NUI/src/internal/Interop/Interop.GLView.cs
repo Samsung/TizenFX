@@ -26,6 +26,9 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_New_SWIG")]
             public static extern global::System.IntPtr New(int nuiColorFormat);
 
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_New2_SWIG")]
+            public static extern global::System.IntPtr New(int backendMode, int nuiColorFormat);
+
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_GlView_SWIG_0")]
             public static extern global::System.IntPtr NewGlView();
 
@@ -54,8 +57,29 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_GetRenderingMode")]
             public static extern global::System.IntPtr GlViewGetRenderingMode(HandleRef nuiGlView);
 
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_GetBackendMode")]
+            public static extern global::System.IntPtr GlViewGetBackendMode(HandleRef nuiGlView);
+
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_RenderOnce")]
             public static extern void GlViewRenderOnce(HandleRef nuiGlView);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_BindTextureResources")]
+            public static extern void GlViewBindTextureResources(HandleRef nuiGlView, global::System.IntPtr textures, int size);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderCallbackInput_Size_get")]
+            public static extern global::System.IntPtr GlViewGetRednerCallbackInputSize(global::System.IntPtr renderInput);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderCallbackInput_Mvp_get")]
+            public static extern global::System.IntPtr GlViewGetRednerCallbackInputMvp(global::System.IntPtr renderInput);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderCallbackInput_Projection_get")]
+            public static extern global::System.IntPtr GlViewGetRednerCallbackInputProjection(global::System.IntPtr renderInput);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderCallbackInput_ClippingBox_get")]
+            public static extern global::System.IntPtr GlViewGetRednerCallbackInputClipplingBox(global::System.IntPtr renderInput);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderCallbackInput_TextureBindings_get")]
+            public static extern global::System.IntPtr GlViewGetRednerCallbackInputTextureBindings(global::System.IntPtr renderInput, ref int size);
         }
     }
 }

@@ -10,12 +10,12 @@ on:
 jobs:
 
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 3.1.402
 
@@ -44,7 +44,7 @@ jobs:
       run: ./build.sh pack
 
     - name: Checkout APITool
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         repository: TizenAPI/APITool
         path: .apitool
@@ -64,10 +64,10 @@ jobs:
 
   check-api:
     needs: [build]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 3.1.x
 
@@ -86,7 +86,7 @@ jobs:
         key: ${{ github.event.pull_request.base.sha }}.json
         path: Artifacts/base-api.json
 
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       if: ${{ steps.base-spec.outputs.code != 200 }}
       with:
         ref: ${{ github.event.pull_request.base.sha }}
@@ -101,7 +101,7 @@ jobs:
 
     - name: Checkout APITool
       if: ${{ steps.base-spec.outputs.code != 200 }}
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         repository: TizenAPI/APITool
         path: .apitool

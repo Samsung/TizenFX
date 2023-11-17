@@ -18,6 +18,7 @@
 using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -25,7 +26,7 @@ namespace Tizen.NUI
     /// This class creates a border UI.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class DefaultBorder : IBorderInterface
+    public class DefaultBorder : BindableObject, IDisposable, IBorderInterface
     {
         #region Constant Fields
         private static readonly string ResourcePath = FrameworkInformation.ResourcePath;
@@ -52,6 +53,7 @@ namespace Tizen.NUI
 
 
         #region Fields
+        private bool disposed = false;
         private Color backgroundColor;
         private View borderView;
 
@@ -65,13 +67,9 @@ namespace Tizen.NUI
         private float preScale = 0;
 
         private View windowView = null;
-        private bool isWinGestures = false;
-        private Timer timer;
         private Timer overlayTimer;
 
-        private CurrentGesture currentGesture = CurrentGesture.None;
-        private bool disposed = false;
-
+        private uint borderLineThickness;
         private Size2D minSize;
         private Size2D maxSize;
         private Window.BorderResizePolicyType resizePolicy;
@@ -80,28 +78,93 @@ namespace Tizen.NUI
 
         #region Events
         private PanGestureDetector borderPanGestureDetector;
-        private PinchGestureDetector borderPinchGestureDetector;
-        private PanGestureDetector winPanGestureDetector;
-        private TapGestureDetector winTapGestureDetector;
         #endregion //Events
 
         #region Enums
-        private enum CurrentGesture
-        {
-          None = 0,
-          TapGesture = 1,
-          PanGesture = 2,
-          PinchGesture = 3,
-        }
         #endregion //Enums
 
         #region Methods
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty BorderLineThicknessProperty = BindableProperty.Create(nameof(BorderLineThickness), typeof(uint), typeof(DefaultBorder), default(uint), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (DefaultBorder)bindable;
+            if (newValue != null)
+            {
+                instance.borderLineThickness = (uint)newValue;
+                instance.UpdateProperty();
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (DefaultBorder)bindable;
+            return instance.borderLineThickness;
+        });
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty MinSizeProperty = BindableProperty.Create(nameof(MinSize), typeof(Size2D), typeof(DefaultBorder), default(Size2D), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (DefaultBorder)bindable;
+            if (newValue != null)
+            {
+                instance.minSize = (Size2D)newValue;
+                instance.UpdateProperty();
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (DefaultBorder)bindable;
+            return instance.minSize;
+        });
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty MaxSizeProperty = BindableProperty.Create(nameof(MaxSize), typeof(Size2D), typeof(DefaultBorder), default(Size2D), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (DefaultBorder)bindable;
+            if (newValue != null)
+            {
+                instance.maxSize = (Size2D)newValue;
+                instance.UpdateProperty();
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (DefaultBorder)bindable;
+            return instance.maxSize;
+        });
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ResizePolicyProperty = BindableProperty.Create(nameof(ResizePolicy), typeof(Window.BorderResizePolicyType), typeof(DefaultBorder), default(Window.BorderResizePolicyType), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (DefaultBorder)bindable;
+            if (newValue != null)
+            {
+                instance.resizePolicy = (Window.BorderResizePolicyType)newValue;
+                instance.UpdateProperty();
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (DefaultBorder)bindable;
+            return instance.resizePolicy;
+        });
+
 
         /// <summary>
         /// The thickness of the border.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint BorderLineThickness {get; set;}
+        public uint BorderLineThickness
+        {
+            get
+            {
+                return (uint)GetValue(BorderLineThicknessProperty);
+            }
+            set
+            {
+                SetValue(BorderLineThicknessProperty, value);
+            }
+        }
 
         /// <summary>
         /// The thickness of the border's touch area.
@@ -124,12 +187,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return minSize;
+                return (Size2D)GetValue(MinSizeProperty);
             }
             set
             {
-                minSize = value;
-                UpdateProperty();
+                SetValue(MinSizeProperty, value);
             }
         }
 
@@ -141,12 +203,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return maxSize;
+                return (Size2D)GetValue(MaxSizeProperty);
             }
             set
             {
-                maxSize = value;
-                UpdateProperty();
+                SetValue(MaxSizeProperty, value);
             }
         }
 
@@ -174,12 +235,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return resizePolicy;
+                return (Window.BorderResizePolicyType)GetValue(ResizePolicyProperty);
             }
             set
             {
-                resizePolicy = value;
-                UpdateProperty();
+                SetValue(ResizePolicyProperty, value);
             }
         }
 
@@ -192,12 +252,11 @@ namespace Tizen.NUI
             BorderWindow?.UpdateProperty();
         }
 
-
         /// <summary>
         /// Creates a default border
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public DefaultBorder()
+        public DefaultBorder() : base()
         {
             BorderLineThickness = DefaultLineThickness;
             TouchThickness = DefaultTouchThickness;
@@ -345,7 +404,11 @@ namespace Tizen.NUI
             {
                 return;
             }
-            borderView.BackgroundColor = DefaultBackgroundColor;
+
+            if (string.IsNullOrEmpty(borderView.BackgroundImage))
+            {
+                borderView.BackgroundColor = DefaultBackgroundColor;
+            }
             borderView.BorderlineColor = new Color(0.5f, 0.5f, 0.5f, 0.3f);
             borderView.BorderlineWidth = 1.0f;
             borderView.BorderlineOffset = -1f;
@@ -360,16 +423,19 @@ namespace Tizen.NUI
 
         private bool OnBorderViewTouched(object sender, View.TouchEventArgs e)
         {
-            if (e.Touch.GetState(0) == PointStateType.Started)
+            if (string.IsNullOrEmpty(borderView.BackgroundImage))
             {
-                backgroundColor = new Color(borderView.BackgroundColor);
-                borderView.BackgroundColor = DefaultClickedBackgroundColor;
-            }
-            else if (e.Touch.GetState(0) == PointStateType.Finished ||
-                     e.Touch.GetState(0) == PointStateType.Leave ||
-                     e.Touch.GetState(0) == PointStateType.Interrupted)
-            {
-                borderView.BackgroundColor = backgroundColor;
+                if (e.Touch.GetState(0) == PointStateType.Started)
+                {
+                    backgroundColor = new Color(borderView.BackgroundColor);
+                    borderView.BackgroundColor = DefaultClickedBackgroundColor;
+                }
+                else if (e.Touch.GetState(0) == PointStateType.Finished ||
+                        e.Touch.GetState(0) == PointStateType.Leave ||
+                        e.Touch.GetState(0) == PointStateType.Interrupted)
+                {
+                    borderView.BackgroundColor = backgroundColor;
+                }
             }
             return true;
         }
@@ -440,7 +506,6 @@ namespace Tizen.NUI
             else if (panGesture.State == Gesture.StateType.Finished || panGesture.State == Gesture.StateType.Cancelled)
             {
                 direction = Window.BorderDirection.None;
-                ClearWindowGesture();
             }
         }
 
@@ -453,7 +518,6 @@ namespace Tizen.NUI
             SetDispatchParentGestureEvents(sender as View, false);
             if (e != null && e.Touch.GetState(0) == PointStateType.Down)
             {
-              ClearWindowGesture();
               if (ResizePolicy != Window.BorderResizePolicyType.Fixed)
               {
                 OnRequestResize();
@@ -472,7 +536,6 @@ namespace Tizen.NUI
             SetDispatchParentGestureEvents(sender as View, false);
             if (e != null && e.Touch.GetState(0) == PointStateType.Down)
             {
-              ClearWindowGesture();
               if (ResizePolicy != Window.BorderResizePolicyType.Fixed)
               {
                 OnRequestResize();
@@ -492,7 +555,6 @@ namespace Tizen.NUI
             SetDispatchParentGestureEvents(sender as View, false);
             if (e != null && e.Touch.GetState(0) == PointStateType.Down)
             {
-              ClearWindowGesture();
               if (ResizePolicy != Window.BorderResizePolicyType.Fixed)
               {
                 OnRequestResize();
@@ -511,7 +573,6 @@ namespace Tizen.NUI
             SetDispatchParentGestureEvents(sender as View, false);
             if (e != null && e.Touch.GetState(0) == PointStateType.Down)
             {
-              ClearWindowGesture();
               if (ResizePolicy != Window.BorderResizePolicyType.Fixed)
               {
                 OnRequestResize();
@@ -528,7 +589,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected void MinimizeBorderWindow()
         {
-            ClearWindowGesture();
             BorderWindow.Minimize(true);
             OnMinimize(true);
         }
@@ -553,7 +613,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected void MaximizeBorderWindow()
         {
-            ClearWindowGesture();
             if (BorderWindow.IsMaximized())
             {
               BorderWindow.Maximize(false);
@@ -640,7 +699,6 @@ namespace Tizen.NUI
                     }
                     borderView.CornerRadius = new Vector4(0, 0, 0, 0);
                     borderView.CornerRadiusPolicy = VisualTransformPolicyType.Relative;
-                    BorderWindow.SetTransparency(false);
                 }
                 else
                 {
@@ -666,7 +724,6 @@ namespace Tizen.NUI
                     }
                     borderView.CornerRadius = new Vector4(0.03f, 0.03f, 0.03f, 0.03f);
                     borderView.CornerRadiusPolicy = VisualTransformPolicyType.Relative;
-                    BorderWindow.SetTransparency(true);
                 }
             }
         }
@@ -683,149 +740,15 @@ namespace Tizen.NUI
                 return;
             }
             this.borderView = borderView;
+
+            BorderWindow.BackgroundColor = Color.Transparent;
+
             // Register to resize and move through pan gestures.
             borderPanGestureDetector = new PanGestureDetector();
             borderPanGestureDetector.Attach(borderView);
             borderPanGestureDetector.Detected += OnPanGestureDetected;
 
-            borderPinchGestureDetector = new PinchGestureDetector();
-            borderPinchGestureDetector.Attach(borderView);
-            borderPinchGestureDetector.Detected += OnPinchGestureDetected;
-
-            AddInterceptGesture();
-
             UpdateIcons();
-        }
-
-
-        // Register an intercept touch event on the window.
-        private void AddInterceptGesture()
-        {
-            isWinGestures = false;
-            BorderWindow.InterceptTouchEvent += OnWinInterceptedTouch;
-        }
-
-        // Intercept touch on window.
-        private bool OnWinInterceptedTouch(object sender, Window.TouchEventArgs e)
-        {
-            if (e.Touch.GetState(0) == PointStateType.Stationary && e.Touch.GetPointCount() == 2)
-            {
-                if (isWinGestures == false && timer == null)
-                {
-                    timer = new Timer(300);
-                    timer.Tick += OnTick;
-                    timer.Start();
-                }
-            }
-            else
-            {
-                currentGesture = CurrentGesture.None;
-                if (timer != null)
-                {
-                    timer.Stop();
-                    timer.Dispose();
-                    timer = null;
-                }
-            }
-            return false;
-        }
-
-        // If two finger long press is done, create a windowView.
-        // then, Register a gesture on the windowView to do a resize or move.
-        private bool OnTick(object o, Timer.TickEventArgs e)
-        {
-            windowView = new View()
-            {
-                WidthResizePolicy = ResizePolicyType.FillToParent,
-                HeightResizePolicy = ResizePolicyType.FillToParent,
-                BackgroundColor = new Color(1, 1, 1, 0.5f),
-            };
-            windowView.TouchEvent += (s, e) =>
-            {
-                return true;
-            };
-            BorderWindow.Add(windowView);
-
-            winTapGestureDetector = new TapGestureDetector();
-            winTapGestureDetector.Attach(windowView);
-            winTapGestureDetector.SetMaximumTapsRequired(3);
-            winTapGestureDetector.Detected += OnWinTapGestureDetected;
-
-            winPanGestureDetector = new PanGestureDetector();
-            winPanGestureDetector.Attach(windowView);
-            winPanGestureDetector.Detected += OnWinPanGestureDetected;
-
-            BorderWindow.InterceptTouchEvent -= OnWinInterceptedTouch;
-            isWinGestures = true;
-            return false;
-        }
-
-        // Behavior when the window is tapped.
-        private void OnWinTapGestureDetected(object source, TapGestureDetector.DetectedEventArgs e)
-        {
-          if (currentGesture <= CurrentGesture.TapGesture)
-          {
-              currentGesture = CurrentGesture.TapGesture;
-              if (e.TapGesture.NumberOfTaps == 2)
-              {
-                  if (BorderWindow.IsMaximized() == false)
-                  {
-                    BorderWindow.Maximize(true);
-                  }
-                  else
-                  {
-                    BorderWindow.Maximize(false);
-                  }
-              }
-              else
-              {
-                  ClearWindowGesture();
-              }
-          }
-        }
-
-        // Window moves through pan gestures.
-        private void OnWinPanGestureDetected(object source, PanGestureDetector.DetectedEventArgs e)
-        {
-            if (currentGesture <= CurrentGesture.PanGesture /*&& panGesture.NumberOfTouches == 1*/)
-            {
-                PanGesture panGesture = e.PanGesture;
-
-                if (panGesture.State == Gesture.StateType.Started)
-                {
-                    currentGesture = CurrentGesture.PanGesture;
-                    if (BorderWindow.IsMaximized() == true)
-                    {
-                        BorderWindow.Maximize(false);
-                    }
-                    else
-                    {
-                        OnRequestMove();
-                        BorderWindow.RequestMoveToServer();
-                    }
-                }
-                else if (panGesture.State == Gesture.StateType.Finished || panGesture.State == Gesture.StateType.Cancelled)
-                {
-                    currentGesture = CurrentGesture.None;
-                    ClearWindowGesture();
-                }
-            }
-        }
-
-        private void ClearWindowGesture()
-        {
-            if (isWinGestures)
-            {
-                winPanGestureDetector.Dispose();
-                winTapGestureDetector.Dispose();
-
-                isWinGestures = false;
-                if (BorderWindow != null)
-                {
-                    BorderWindow.Remove(windowView);
-                    BorderWindow.InterceptTouchEvent += OnWinInterceptedTouch;
-                }
-            }
         }
 
         /// <summary>
@@ -866,6 +789,22 @@ namespace Tizen.NUI
         public virtual void OnMoved(int x, int y) {}
 
         /// <summary>
+        /// Called when window has been moved the display server.
+        /// </summary>
+        /// <param name="x">The x of the has been moved window</param>
+        /// <param name="y">The y of the has been moved window</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual void OnMoveCompleted(int x, int y) {}
+
+        /// <summary>
+        /// Called when window has been resized the display server.
+        /// </summary>
+        /// <param name="width">The width of the resized window</param>
+        /// <param name="height">The height of the resized window</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual void OnResizeCompleted(int width, int height) {}
+
+        /// <summary>
         /// Called when the window is maximized.
         /// </summary>
         /// <param name="isMaximized">If window is maximized or unmaximized.</param>
@@ -873,7 +812,15 @@ namespace Tizen.NUI
         public virtual void OnMaximize(bool isMaximized)
         {
             Tizen.Log.Info("NUI", $"OnMaximize {isMaximized}\n");
-            UpdateIcons();
+            if (BorderWindow.IsMaximized() == true)
+            {
+                BorderWindow.SetTransparency(false);
+            }
+            else
+            {
+                BorderWindow.SetTransparency(true);
+            }
+
         }
 
         /// <summary>
@@ -899,12 +846,18 @@ namespace Tizen.NUI
                 if (enabled == true)
                 {
                     backgroundColor = new Color(borderView.BackgroundColor);
-                    borderView.BackgroundColor = Color.Transparent;
+                    if (string.IsNullOrEmpty(borderView.BackgroundImage))
+                    {
+                        borderView.BackgroundColor = Color.Transparent;
+                    }
                     borderView.Hide();
                 }
                 else
                 {
-                    borderView.BackgroundColor = backgroundColor;
+                    if (string.IsNullOrEmpty(borderView.BackgroundImage))
+                    {
+                        borderView.BackgroundColor = backgroundColor;
+                    }
                     borderView.Show();
                 }
             }
@@ -962,46 +915,35 @@ namespace Tizen.NUI
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Dispose()
+        {
+            Dispose(true);
+            global::System.GC.SuppressFinalize(this);
+        }
+
         protected virtual void Dispose(bool disposing)
         {
             if (disposed)
             {
                 return;
             }
+
             if (disposing)
             {
-                ClearWindowGesture();
-
-                if (BorderWindow != null)
-                {
-                    BorderWindow.InterceptTouchEvent -= OnWinInterceptedTouch;
-                }
-
                 borderView?.Dispose();
                 windowView?.Dispose();
                 borderPanGestureDetector?.Dispose();
-                borderPinchGestureDetector?.Dispose();
                 backgroundColor?.Dispose();
                 minimalizeIcon?.Dispose();
                 maximalizeIcon?.Dispose();
                 closeIcon?.Dispose();
                 leftCornerIcon?.Dispose();
                 rightCornerIcon?.Dispose();
-                timer?.Dispose();
                 overlayTimer?.Dispose();
             }
             disposed = true;
         }
 
-        /// <summary>
-        /// Dispose
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Dispose()
-        {
-            Dispose(true);
-            global::System.GC.SuppressFinalize(this);
-        }
         #endregion //Methods
 
     }

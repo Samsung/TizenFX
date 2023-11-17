@@ -441,10 +441,26 @@ namespace Tizen.NUI
             /// </summary>
             AnimatedImage,
             /// <summary>
+            /// Renders an animated gradient.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            AnimatedGradient = Visual.Type.AnimatedImage + 1,
+            /// <summary>
+            /// Renders an animated vector image.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            AnimatedVectorImage = Visual.Type.AnimatedImage + 2,
+            /// <summary>
             /// Renders an arc.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             Arc = AnimatedImage + 3,
+
+            /// <summary>
+            /// Keyword for invalid visual type. (NUI only)
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Invalid = Border - 1,
         }
 
         /// <summary>
@@ -953,6 +969,24 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly int MaskingMode = NDalic.ImageVisualOrientationCorrection + 12;
+
+        /// <summary>
+        /// @brief Whether to uploading texture before ResourceReady signal emit or after texture load completed time.
+        /// @details Name "fastTrackUploading", type Property::BOOLEAN.
+        /// @note It is used in the ImageVisual. The default is false.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int FastTrackUploading = NDalic.ImageVisualOrientationCorrection + 13;
+
+        /// <summary>
+        /// @brief The marker information the AnimatedVectorImageVisual will use.
+        /// @details Type Property::MAP.
+        /// The map contains the marker name as a key and Property::Array as a value.
+        /// And the array contains 2 integer values which are the frame numbers, the start frame number and the end frame number of the marker.
+        /// @note This property is read-only.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int MarkerInfo = NDalic.ImageVisualOrientationCorrection + 15;
     }
 
     /// <summary>

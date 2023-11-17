@@ -10,10 +10,7 @@ namespace Tizen.NUI.Samples
         private Layer defaultLayer;
 
         Tizen.NUI.Extension.RiveAnimationView rav;
-        Button playButton, stopButton;
-        Button bounceButton, brokeButton;
-        Button fillButton, strokeButton, opacityButton;
-        Button scaleButton, rotationButton, positionButton;
+        Button playButton;
         public void Activate()
         {
             window = NUIApplication.GetDefaultWindow();

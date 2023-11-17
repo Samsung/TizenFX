@@ -105,7 +105,7 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Size2DTypeConverter  ConvertFromInvariantString")]
+        [Description("Size2DTypeConverter ConvertFromInvariantString")]
         [Property("SPEC", "Tizen.NUI.Binding.Size2DTypeConverter.ConvertFromInvariantString M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]

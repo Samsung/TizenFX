@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2023 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
  */
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Components
@@ -85,11 +86,7 @@ namespace Tizen.NUI.Components
 
         private TabContent content = null;
 
-        /// <summary>
-        /// Creates a new instance of TabView.
-        /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        public TabView()
+        private void Initialize()
         {
             Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical };
             WidthSpecification = LayoutParamPolicies.MatchParent;
@@ -100,6 +97,35 @@ namespace Tizen.NUI.Components
 
             // To show TabBar's shadow TabBar is raised above Content.
             TabBar.RaiseAbove(Content);
+        }
+
+        /// <summary>
+        /// Creates a new instance of TabView.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public TabView()
+        {
+            Initialize();
+        }
+
+        /// <summary>
+        /// Creates a new instance of TabView.
+        /// </summary>
+        /// <param name="style">Creates TabView by special style defined in UX.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TabView(string style) : base(style)
+        {
+            Initialize();
+        }
+
+        /// <summary>
+        /// Creates a new instance of a TabView with style.
+        /// </summary>
+        /// <param name="style">A style applied to the newly created TabView.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TabView(ControlStyle style) : base(style)
+        {
+            Initialize();
         }
 
         /// <inheritdoc/>
@@ -142,7 +168,7 @@ namespace Tizen.NUI.Components
         {
             if ((content != null) && (content.ViewCount > args.Index))
             {
-                content.Select(args.Index);
+                content.SelectContentView(args.Index);
             }
         }
 
@@ -156,6 +182,19 @@ namespace Tizen.NUI.Components
             {
                 return tabBar;
             }
+
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            protected set
+            {
+                if (tabBar != null)
+                {
+                    tabBar.TabButtonSelected -= tabButtonSelectedHandler;
+                    Utility.Dispose(tabBar);
+                }
+
+                tabBar = value;
+                Add(tabBar);
+            }
         }
 
         /// <summary>
@@ -167,6 +206,18 @@ namespace Tizen.NUI.Components
             get
             {
                 return content;
+            }
+
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            protected set
+            {
+                if (content != null)
+                {
+                    Utility.Dispose(content);
+                }
+
+                content = value;
+                Add(content);
             }
         }
 
@@ -185,7 +236,7 @@ namespace Tizen.NUI.Components
 
             if (Content != null)
             {
-                Content.AddView(view);
+                Content.AddContentView(view);
             }
         }
 
@@ -208,7 +259,44 @@ namespace Tizen.NUI.Components
             var view = Content.GetView(index);
             if (view != null)
             {
-                Content.RemoveView(view);
+                Content.RemoveContentView(view);
+            }
+        }
+
+        /// <summary>
+        /// Adds a tab from the given TabItem.
+        /// TabItem contains Title and IconURL of a new TabButton in TabBar and Content of a new View in TabContent.
+        /// <param name="tabItem">The tab item which contains Title and IconURL of a new TabButton in TabBar and Content of a new View in TabContent.</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [SuppressMessage("Microsoft.Reliability",
+                         "CA2000:DisposeObjectsBeforeLosingScope",
+                         Justification = "The tabButton is added to TabBar and disposed when TabBar is disposed.")]
+        public virtual void Add(TabItem tabItem)
+        {
+            if (tabItem == null) return;
+
+            var hasTitle = (String.IsNullOrEmpty(tabItem.Title) == false);
+            var hasIconUrl = (String.IsNullOrEmpty(tabItem.IconUrl) == false);
+
+            // Adds a new TabButton and Content View only if TabItem has TabButton properties and Content View.
+            if ((hasTitle || hasIconUrl) && (tabItem.Content != null))
+            {
+                var tabButton = new TabButton(tabItem.TabButtonStyle);
+
+                if (hasTitle)
+                {
+                    tabButton.Text = tabItem.Title;
+                }
+
+                if (hasIconUrl)
+                {
+                    tabButton.IconURL = tabItem.IconUrl;
+                }
+
+                TabBar.AddTabButton(tabButton);
+
+                Content.AddContentView(tabItem.Content);
             }
         }
 

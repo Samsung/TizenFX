@@ -147,7 +147,16 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetNeedGesturePropagation")]
             public static extern float SetNeedGesturePropagation(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
-#if NUI_PROPERTY_CHANGE_1
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_CalculateScreenPosition")]
+            public static extern global::System.IntPtr CalculateScreenPosition(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_CalculateScreenExtents")]
+            public static extern global::System.IntPtr CalculateScreenExtents(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_CurrentScreenExtents")]
+            public static extern global::System.IntPtr CurrentScreenExtents(global::System.Runtime.InteropServices.HandleRef jarg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalRetrievingPropertyVector2")]
             public static extern int InternalRetrievingPropertyVector2(HandleRef actor, int propertyType, HandleRef retrievingVector2);
 
@@ -199,8 +208,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalSetPropertyInt")]
             public static extern int InternalSetPropertyInt(HandleRef actor, int propertyType, int valInt);
-
-#endif
         }
     }
 }

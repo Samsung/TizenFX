@@ -79,7 +79,10 @@ namespace Tizen.Applications.RPCPort
         protected void AddPrivilege(string privilege)
         {
             if (privilege == null)
-                throw new ArgumentNullException();
+            {
+                throw new ArgumentNullException(nameof(privilege));
+            }
+
             Interop.LibRPCPort.Stub.AddPrivilege(_stub, privilege);
         }
 

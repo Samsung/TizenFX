@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.AnimalGridPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="AnimalGridPage"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <View x:Name="ContentView"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" LinearAlignment="Top" CellPadding="10,10" />
+            </View.Layout>
+
+            <CollectionView x:Name="ColView"
+              WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+              HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+              ScrollingDirection="Vertical"
+              ItemsSource="{Binding Source}"
+              HideScrollbar="true"
+              SelectionMode="SingleAlways"
+              SelectionChangedCommand="{Binding SelectedAnimalChangedCommand}">
+
+                <CollectionView.ItemsLayouter>
+                      <GridLayouter />
+                </CollectionView.ItemsLayouter>
+                <CollectionView.ItemTemplate>
+                      <DataTemplate>
+                            <DefaultGridItem
+                                WidthSpecification="230"
+                                HeightSpecification="200"
+                                Text="{Binding Path=Name}"
+                                ResourceUrl="{Binding Path=ImagePath}">
+                                <DefaultGridItem.Badge>
+                                    <CheckBox />
+                                </DefaultGridItem.Badge>
+                            </DefaultGridItem>
+                      </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+
+            </CollectionView>
+        </View>
+    </ContentPage.Content>
+</ContentPage>

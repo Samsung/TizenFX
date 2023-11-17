@@ -17,7 +17,6 @@ namespace Tizen.NUI.Devel.Tests
     {
         private const string tag = "NUITEST";
         private static readonly Condition condition;
-        private string path = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "index.xml";
 
         private void OnStatePropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
@@ -79,7 +78,9 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"DataTemplateConstructorWithType START");
 
             string str = "myDataTemplate";
+#pragma warning disable Reflection // The code contains reflection
             var testingTarget = new DataTemplate(str.GetType());
+#pragma warning restore Reflection // The code contains reflection
             Assert.IsNotNull(testingTarget, "Can't create success object DataTemplate");
             Assert.IsInstanceOf<DataTemplate>(testingTarget, "Should be an instance of DataTemplate type.");
 
@@ -118,8 +119,10 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"DataTemplateSetBinding START");
 
             BindingBase binding = new Tizen.NUI.Binding.Binding() as BindingBase;
+#pragma warning disable Reflection // The code contains reflection
             BindableProperty stateProperty = BindableProperty.CreateAttached("State", typeof(bool), typeof(XamlPropertyCondition), false, propertyChanged: OnStatePropertyChanged);
- 
+#pragma warning restore Reflection // The code contains reflection
+
             var testingTarget = new DataTemplate();
             Assert.IsNotNull(testingTarget, "Can't create success object DataTemplate");
             Assert.IsInstanceOf<DataTemplate>(testingTarget, "Should be an instance of DataTemplate type.");
@@ -130,7 +133,8 @@ namespace Tizen.NUI.Devel.Tests
             }
             catch (Exception e)
             {
-                Assert.Fail("SetBinding Fail!");
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
             tlog.Debug(tag, $"DataTemplateSetBinding END (OK)");
@@ -157,7 +161,7 @@ namespace Tizen.NUI.Devel.Tests
             {
                 testingTarget.SetBinding(null, binding);
             }
-            catch (ArgumentNullException e)
+            catch (ArgumentNullException)
             {
                 tlog.Debug(tag, $"DataTemplateSetValueWithNullBindableProperty END (OK)");
                 Assert.Pass("Caught ArgumentNullException: Pass!");
@@ -175,7 +179,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"DataTemplateSetBindingWithNullBindingBase START");
 
+#pragma warning disable Reflection // The code contains reflection
             BindableProperty stateProperty = BindableProperty.CreateAttached("State", typeof(bool), typeof(XamlPropertyCondition), false, propertyChanged: OnStatePropertyChanged);
+#pragma warning restore Reflection // The code contains reflection
 
             var testingTarget = new DataTemplate();
             Assert.IsNotNull(testingTarget, "Can't create success object DataTemplate");
@@ -185,7 +191,7 @@ namespace Tizen.NUI.Devel.Tests
             {
                 testingTarget.SetBinding(stateProperty, null);
             }
-            catch (ArgumentNullException e)
+            catch (ArgumentNullException)
             {
                 tlog.Debug(tag, $"DataTemplateSetValueWithNullBindableProperty END (OK)");
                 Assert.Pass("Caught ArgumentNullException: Pass!");
@@ -203,7 +209,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"DataTemplateSetValue START");
 
+#pragma warning disable Reflection // The code contains reflection
             BindableProperty stateProperty = BindableProperty.CreateAttached("State", typeof(bool), typeof(XamlPropertyCondition), false, propertyChanged: OnStatePropertyChanged);
+#pragma warning restore Reflection // The code contains reflection
 
             var testingTarget = new DataTemplate();
             Assert.IsNotNull(testingTarget, "Can't create success object DataTemplate");
@@ -215,7 +223,8 @@ namespace Tizen.NUI.Devel.Tests
             }
             catch (Exception e)
             {
-                Assert.Fail("SetValue Fail!");
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
             tlog.Debug(tag, $"DataTemplateSetValue END (OK)");
@@ -240,7 +249,7 @@ namespace Tizen.NUI.Devel.Tests
             {
                 testingTarget.SetValue(null, true);
             }
-            catch (ArgumentNullException e)
+            catch (ArgumentNullException)
             {
                 tlog.Debug(tag, $"DataTemplateSetValueWithNullBindableProperty END (OK)");
                 Assert.Pass("Caught ArgumentNullException: Pass!");
@@ -259,7 +268,9 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"DataTemplateSetupContentWithNullBindable START");
 
             BindingBase binding = new Tizen.NUI.Binding.Binding() as BindingBase;
+#pragma warning disable Reflection // The code contains reflection
             BindableProperty stateProperty = BindableProperty.CreateAttached("State", typeof(bool), typeof(XamlPropertyCondition), false, propertyChanged: OnStatePropertyChanged);
+#pragma warning restore Reflection // The code contains reflection
 
             var testingTarget = new MyDataTemplateTest();
             Assert.IsNotNull(testingTarget, "Can't create success object DataTemplate");
@@ -273,7 +284,8 @@ namespace Tizen.NUI.Devel.Tests
             }
             catch (Exception e)
             {
-                Assert.Fail("Fail!");
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
             tlog.Debug(tag, $"DataTemplateSetupContentWithNullBindable END (OK)");

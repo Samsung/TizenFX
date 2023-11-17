@@ -70,5 +70,33 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"SlideTransitionDirection END (OK)");
         }
+        [Test]
+        [Category("P1")]
+        [Description("SlideTransition CreateTransition.")]
+        [Property("SPEC", "Tizen.NUI.SlideTransition.CreateTransition M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void SlideTransitionCreateTransition()
+        {
+            tlog.Debug(tag, $"SlideTransitionCreateTransition START");
+
+            var testingTarget = new SlideTransition();
+            Assert.IsNotNull(testingTarget, "Can't create success object SlideTransition");
+            Assert.IsInstanceOf<SlideTransition>(testingTarget, "Should be an instance of SlideTransition type.");
+
+            using (View view = new View())
+            {
+                TimePeriod timePeriod = new TimePeriod(0);
+                AlphaFunction alphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default);
+				
+                var result = testingTarget.CreateTransition(view, true,timePeriod,alphaFunction);
+                Assert.IsNotNull(result, "Can't create success object TransitionItemBase");
+                Assert.IsInstanceOf<TransitionItemBase>(result, "Should be an instance of TransitionItemBase type.");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"SlideTransitionCreateTransition END (OK)");
+        }
     }
 }

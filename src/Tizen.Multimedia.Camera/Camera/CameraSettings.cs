@@ -38,6 +38,11 @@ namespace Tizen.Multimedia
         private readonly Range? _panRange;
         private readonly Range? _tiltRange;
         private readonly Range? _zoomRange;
+        private readonly Range? _saturationRange;
+        private readonly Range? _sharpnessRange;
+        private readonly Range? _focusLevelRange;
+        private readonly Range? _gainRange;
+        private readonly Range? _whitebalanceTemperatureRange;
 
         internal CameraSettings(Camera camera)
         {
@@ -50,6 +55,11 @@ namespace Tizen.Multimedia
             _panRange = GetRange(Native.GetPanRange);
             _tiltRange = GetRange(Native.GetTiltRange);
             _zoomRange = GetRange(Native.GetZoomRange);
+            _saturationRange = GetRange(Native.GetSaturationRange);
+            _sharpnessRange = GetRange(Native.GetSharpnessRange);
+            _focusLevelRange = GetRange(Native.GetFocusLevelRange);
+            _gainRange = GetRange(Native.GetGainRange);
+            _whitebalanceTemperatureRange = GetRange(Native.GetWhiteBalanceTemperatureRange);
         }
 
         private delegate CameraError GetRangeDelegate(IntPtr handle, out int min, out int max);
@@ -191,7 +201,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the available contrast level.
+        /// Gets the available contrast value range.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
@@ -236,7 +246,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the available hue level.
+        /// Gets the available hue value range.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// <remarks>
@@ -282,7 +292,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the available brightness level.
+        /// Gets the available brightness value range.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
@@ -354,7 +364,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the available exposure value.
+        /// Gets the available exposure value range.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
@@ -374,6 +384,259 @@ namespace Tizen.Multimedia
             }
         }
         #endregion Exposure
+
+        #region saturation
+        /// <summary>
+        /// Gets or sets the camera saturation value.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
+        public int Saturation
+        {
+            get
+            {
+                Native.GetSaturation(_camera.GetHandle(), out int val).
+                    ThrowIfFailed("Failed to get camera saturation value");
+
+                return val;
+            }
+            set
+            {
+                Native.SetSaturation(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set camera saturation value.");
+            }
+        }
+
+        /// <summary>
+        /// Gets the available saturation value range.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        /// <remarks>
+        /// If the minimum value is greater than the maximum value, it means this feature is not supported.
+        /// </remarks>
+        /// <exception cref="NotSupportedException">Saturation is not supported.</exception>
+        public Range SaturationRange
+        {
+            get
+            {
+                if (!_saturationRange.HasValue)
+                {
+                    throw new NotSupportedException("Saturation is not supported.");
+                }
+
+                return _saturationRange.Value;
+            }
+        }
+        #endregion saturation
+
+        #region sharpness
+        /// <summary>
+        /// Gets or sets the camera sharpness value.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
+        public int Sharpness
+        {
+            get
+            {
+                Native.GetSharpness(_camera.GetHandle(), out int val).
+                    ThrowIfFailed("Failed to get camera sharpness value");
+
+                return val;
+            }
+            set
+            {
+                Native.SetSharpness(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set camera sharpness value.");
+            }
+        }
+
+        /// <summary>
+        /// Gets the available sharpness value range.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        /// <remarks>
+        /// If the minimum value is greater than the maximum value, it means this feature is not supported.
+        /// </remarks>
+        /// <exception cref="NotSupportedException">Sharpness is not supported.</exception>
+        public Range SharpnessRange
+        {
+            get
+            {
+                if (!_sharpnessRange.HasValue)
+                {
+                    throw new NotSupportedException("Sharpness is not supported.");
+                }
+
+                return _sharpnessRange.Value;
+            }
+        }
+        #endregion sharpness
+
+        #region focus level
+        /// <summary>
+        /// Gets or sets the camera manual focus level.
+        /// </summary>
+        /// <remark>If user set this value for manual focus, auto focusing will be stopped.</remark>
+        /// <since_tizen> 11 </since_tizen>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
+        public int FocusLevel
+        {
+            get
+            {
+                Native.GetFocusLevel(_camera.GetHandle(), out int val).
+                    ThrowIfFailed("Failed to get camera manual focus level.");
+
+                return val;
+            }
+            set
+            {
+                Native.SetFocusLevel(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set camera manual focus level.");
+            }
+        }
+
+        /// <summary>
+        /// Gets the available manual focus level range.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        /// <remarks>
+        /// If the minimum value is greater than the maximum value, it means this feature is not supported.
+        /// </remarks>
+        /// <exception cref="NotSupportedException">Focus level is not supported.</exception>
+        public Range FocusLevelRange
+        {
+            get
+            {
+                if (!_focusLevelRange.HasValue)
+                {
+                    throw new NotSupportedException("Focus level is not supported.");
+                }
+
+                return _focusLevelRange.Value;
+            }
+        }
+        #endregion focus level
+
+        #region gain
+        /// <summary>
+        /// Gets or sets the camera gain value.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
+        public int Gain
+        {
+            get
+            {
+                Native.GetGain(_camera.GetHandle(), out int val).
+                    ThrowIfFailed("Failed to get camera gain value");
+
+                return val;
+            }
+            set
+            {
+                Native.SetGain(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set camera gain value.");
+            }
+        }
+
+        /// <summary>
+        /// Gets the available gain value range.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        /// <remarks>
+        /// If the minimum value is greater than the maximum value, it means this feature is not supported.
+        /// </remarks>
+        /// <exception cref="NotSupportedException">Gain is not supported.</exception>
+        public Range GainRange
+        {
+            get
+            {
+                if (!_gainRange.HasValue)
+                {
+                    throw new NotSupportedException("Gain is not supported.");
+                }
+
+                return _gainRange.Value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the camera gain step value.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
+        public int GainStep
+        {
+            get
+            {
+                Native.GetGainStep(_camera.GetHandle(), out int val).
+                    ThrowIfFailed("Failed to get camera gain step value");
+
+                return val;
+            }
+        }
+        #endregion gain
+
+        #region whitebalanceTemperature
+        /// <summary>
+        /// Gets or sets the camera white balance temperature value.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
+        public int WhiteBalanceTemperature
+        {
+            get
+            {
+                Native.GetWhiteBalanceTemperature(_camera.GetHandle(), out int val).
+                    ThrowIfFailed("Failed to get camera white balance temperature value");
+
+                return val;
+            }
+            set
+            {
+                Native.SetWhitebalanceTemperature(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set camera white balance temperature value.");
+            }
+        }
+
+        /// <summary>
+        /// Gets the available camera white balance temperature value range.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        /// <remarks>
+        /// If the minimum value is greater than the maximum value, it means this feature is not supported.
+        /// </remarks>
+        /// <exception cref="NotSupportedException">WhiteBalanceTemperatureRange is not supported.</exception>
+        public Range WhiteBalanceTemperatureRange
+        {
+            get
+            {
+                if (!_whitebalanceTemperatureRange.HasValue)
+                {
+                    throw new NotSupportedException("WhiteBalanceTemperatureRange is not supported.");
+                }
+
+                return _whitebalanceTemperatureRange.Value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the camera white balance temperature step value.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
+        public int WhiteBalanceTemperatureStep
+        {
+            get
+            {
+                Native.GetWhiteBalanceTemperatureStep(_camera.GetHandle(), out int val).
+                    ThrowIfFailed("Failed to get camera white balance temperature step value");
+
+                return val;
+            }
+        }
+        #endregion whitebalanceTemperature
 
         #region Zoom
         /// <summary>
@@ -400,7 +663,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the available zoom level.
+        /// Gets the available zoom value range.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
@@ -1132,7 +1395,7 @@ namespace Tizen.Multimedia
                 }
                 finally
                 {
-                    LibcSupport.Free(val);
+                    Marshal.FreeHGlobal(val);
                 }
             }
 
@@ -1163,7 +1426,7 @@ namespace Tizen.Multimedia
                 }
                 finally
                 {
-                    LibcSupport.Free(val);
+                    Marshal.FreeHGlobal(val);
                 }
             }
 
@@ -1297,7 +1560,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public int GetExtraPreviewGopInterval(int streamId)
         {
-            Native.GetExtraPreviewBitrate(_camera.GetHandle(), streamId, out int gopInterval).
+            Native.GetExtraPreviewGopInterval(_camera.GetHandle(), streamId, out int gopInterval).
                 ThrowIfFailed("Failed to get extra preview gop interval");
 
             return gopInterval;
@@ -1307,26 +1570,44 @@ namespace Tizen.Multimedia
         /// Sets The GOP(Group Of Pictures) interval of extra preview with given stream ID.
         /// </summary>
         /// <param name="streamId">The stream ID.</param>
-        /// <param name="gopInterval">The stream ID.</param>
+        /// <param name="gopInterval">The GOP interval for extra preview.</param>
         /// <since_tizen> 10 </since_tizen>
         /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public void SetExtraPreviewGopInterval(int streamId, int gopInterval)
         {
-            Native.SetExtraPreviewBitrate(_camera.GetHandle(), streamId, gopInterval).
+            Native.SetExtraPreviewGopInterval(_camera.GetHandle(), streamId, gopInterval).
                 ThrowIfFailed("Failed to set extra preview gop interval");
         }
 
         /// <summary>
-        /// Gets the rotation of extra preview with given stream ID.
+        /// Gets the rotation of preview frame with given stream ID.
         /// </summary>
         /// <param name="streamId">The stream ID.</param>
         /// <returns>A rotation of extra preview.</returns>
         /// <since_tizen> 10 </since_tizen>
         /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public Rotation GetExtraPreviewRotation(int streamId)
+            => GetPreviewFrameRotation();
+
+        /// <summary>
+        /// Gets the rotation of preview frame.
+        /// </summary>
+        /// <returns>A rotation of preview frame.</returns>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Rotation GetExtraPreviewRotation()
+            => GetPreviewFrameRotation();
+
+        /// <summary>
+        /// Gets the rotation of preview frame.
+        /// </summary>
+        /// <returns>A rotation of preview frame.</returns>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Rotation GetPreviewFrameRotation()
         {
-            Native.GetExtraPreviewRotation(_camera.GetHandle(), streamId, out Rotation rotation).
-                ThrowIfFailed("Failed to get extra preview gop interval");
+            Native.GetPreviewFrameRotation(_camera.GetHandle(), out Rotation rotation).
+                ThrowIfFailed("Failed to get preview frame rotation");
 
             return rotation;
         }

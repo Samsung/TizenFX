@@ -434,7 +434,7 @@ namespace Tizen.NUI.Components
         /// The default value is true.
         /// If AutoNavigationContent is set to be true and NavigationContent is not set,
         /// then default navigation content is automatically displayed.
-        /// If default navigation content is clicked, it calls navigator pop operation.
+        /// If default navigation content is clicked, the back navigation proceeds.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public bool AutoNavigationContent
@@ -672,10 +672,10 @@ namespace Tizen.NUI.Components
                 var page = GetParent() as Page;
                 if (page != null)
                 {
-                    var navigator = page.GetParent() as Navigator;
-                    if (navigator != null)
+                    var navigator = page.Navigator;
+                    if ((navigator != null) && (navigator.EnableBackNavigation))
                     {
-                        navigator.Pop();
+                        navigator.NavigateBack();
                     }
                 }
             };

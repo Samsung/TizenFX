@@ -18,6 +18,7 @@
 using System;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using Tizen.NUI;
 using Tizen.NUI.Binding;
 using Tizen.NUI.BaseComponents;
@@ -69,8 +70,13 @@ namespace Tizen.NUI.Scene3D
     {
         private bool inCameraTransition = false;
         private Animation cameraTransition;
+        private string skyboxUrl;
 
-        internal SceneView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal SceneView(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal SceneView(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, true, cRegister)
         {
         }
 
@@ -88,7 +94,7 @@ namespace Tizen.NUI.Scene3D
         /// </summary>
         /// <param name="sceneView">The source object.</param>
         /// <since_tizen> 10 </since_tizen>
-        public SceneView(SceneView sceneView) : this(Interop.SceneView.NewScene(SceneView.getCPtr(sceneView)), true)
+        public SceneView(SceneView sceneView) : this(Interop.SceneView.NewScene(SceneView.getCPtr(sceneView)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -104,6 +110,13 @@ namespace Tizen.NUI.Scene3D
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
+        /// <summary>
+        /// An event emitted when Camera Transition is finished.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler CameraTransitionFinished;
 
         /// <summary>
         /// Set/Get the ImageBasedLight ScaleFactor.
@@ -147,6 +160,85 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
+        /// Set/Get the Framebuffer's MultiSamplingLevel.
+        /// Only has effects if UseFramebuffer is true, and Framebuffer MultiSampling is supported.
+        /// Default is 0.
+        /// </summary>
+        /// <remarks>
+        /// Getter didn't consider Framebuffer MultiSampling is supported or not.
+        /// </remarks>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint FramebufferMultiSamplingLevel
+        {
+            set
+            {
+                SetFramebufferMultiSamplingLevel(value);
+            }
+            get
+            {
+                return GetFramebufferMultiSamplingLevel();
+            }
+        }
+
+        /// <summary>
+        /// Set/Get SkyboxUrl.
+        /// If SkyboxUrl is set, the cube map image is loaded and skybox is attached on scene.
+        /// Skybox texture is asynchronously loaded. When loading is finished, ResourcesLoaded is emitted.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string SkyboxUrl
+        {
+            set
+            {
+                SetSkybox(value);
+            }
+            get
+            {
+                return skyboxUrl;
+            }
+        }
+
+        /// <summary>
+        /// Set/Get Skybox intensity.
+        /// The skybox intensity is multiplied to the color of skybox texture.
+        /// Default value is 1.0f.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float SkyboxIntensity
+        {
+            set
+            {
+                SetSkyboxIntensity(value);
+            }
+            get
+            {
+                return GetSkyboxIntensity();
+            }
+        }
+
+        /// <summary>
+        /// Set/Get angle of orientation of the skybox.
+        /// If orientation is set, the skybox will be rotate by the Radian orientation along YAxis.
+        /// Default value is 0.0f.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Rotation SkyboxOrientation
+        {
+            set
+            {
+                SetSkyboxOrientation(value);
+            }
+            get
+            {
+                return GetSkyboxOrientation();
+            }
+        }
+
+        /// <summary>
         /// Adds a Camera to the SceneView at the end of the camera list of SceneView.
         /// The Camera can be used as a selected camera to render the scene by using <see cref="SelectCamera(uint)"/> or <see cref="SelectCamera(string)"/>
         /// </summary>
@@ -163,7 +255,7 @@ namespace Tizen.NUI.Scene3D
         /// <since_tizen> 10 </since_tizen>
         public void AddCamera(Camera camera)
         {
-            if(camera != null)
+            if (camera != null)
             {
                 Interop.SceneView.AddCamera(SwigCPtr, camera.SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -184,7 +276,7 @@ namespace Tizen.NUI.Scene3D
         /// <since_tizen> 10 </since_tizen>
         public void RemoveCamera(Camera camera)
         {
-            if(camera != null)
+            if (camera != null)
             {
                 Interop.SceneView.RemoveCamera(SwigCPtr, camera.SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -213,7 +305,7 @@ namespace Tizen.NUI.Scene3D
         {
             global::System.IntPtr cPtr = Interop.SceneView.GetCamera(SwigCPtr, index);
             Camera camera = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Camera;
-            if(camera == null)
+            if (camera == null)
             {
                 // Register new camera into Registry.
                 camera = new Camera(cPtr, true);
@@ -239,7 +331,7 @@ namespace Tizen.NUI.Scene3D
         {
             global::System.IntPtr cPtr = Interop.SceneView.GetCamera(SwigCPtr, name);
             Camera camera = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Camera;
-            if(camera == null)
+            if (camera == null)
             {
                 // Register new camera into Registry.
                 camera = new Camera(cPtr, true);
@@ -262,10 +354,11 @@ namespace Tizen.NUI.Scene3D
         /// <since_tizen> 10 </since_tizen>
         public void SelectCamera(uint index)
         {
-            if(inCameraTransition)
+            if (inCameraTransition)
             {
                 return;
             }
+            this.GetSelectedCamera()?.Unparent();
             Interop.SceneView.SelectCamera(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -277,29 +370,32 @@ namespace Tizen.NUI.Scene3D
         /// <since_tizen> 10 </since_tizen>
         public void SelectCamera(string name)
         {
-            if(inCameraTransition)
+            if (inCameraTransition)
             {
                 return;
             }
+            this.GetSelectedCamera()?.Unparent();
             Interop.SceneView.SelectCamera(SwigCPtr, name);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
         /// Starts camera transition from currently selected camera to a camera of index.
-        /// Camera Position and Orientation is smoothly animated.
+        /// Camera Position, Orientation and FieldOfView are smoothly animated.
         /// </summary>
         /// <remarks>
-        /// The selected camera is switched when the transition is started.
-        /// During camera transition, Selected Camera cannot be changed by using SelectCamera() or CameraTransition() method.
+        /// The selected camera is switched to the Camera of the index when the transition is started.
+        /// During camera transition, Selected Camera should not be changed by using SelectCamera() or CameraTransition() method.
+        /// During camera transition, Camera properties of Selected Camera should not be changed.
         /// </remarks>
         /// <param name="index"> Index of destination Camera of Camera transition.</param>
         /// <param name="durationMilliSeconds">The duration in milliseconds.</param>
         /// <param name="alphaFunction">The alpha function to apply.</param>
         /// <since_tizen> 10 </since_tizen>
+        [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "The ownership of camera object is not owned by this class.")]
         public void CameraTransition(uint index, int durationMilliSeconds, AlphaFunction alphaFunction = null)
         {
-            if(inCameraTransition)
+            if (inCameraTransition || GetSelectedCamera() == GetCamera(index))
             {
                 return;
             }
@@ -311,19 +407,21 @@ namespace Tizen.NUI.Scene3D
 
         /// <summary>
         /// Starts camera transition from currently selected camera to a camera of input name.
-        /// Camera Position and Orientation is smoothly animated.
+        /// Camera Position, Orientation and FieldOfView are smoothly animated.
         /// </summary>
         /// <remarks>
-        /// The selected camera is switched when the transition is started.
-        /// During camera transition, Selected Camera cannot be changed by using SelectCamera() or CameraTransition() method.
+        /// The selected camera is switched to the Camera of the input name when the transition is started.
+        /// During camera transition, Selected Camera should not be changed by using SelectCamera() or CameraTransition() method.
+        /// During camera transition, Camera properties of Selected Camera should not be changed.
         /// </remarks>
         /// <param name="name"> string keyword of destination Camera of Camera transition.</param>
         /// <param name="durationMilliSeconds">The duration in milliseconds.</param>
         /// <param name="alphaFunction">The alpha function to apply.</param>
         /// <since_tizen> 10 </since_tizen>
+        [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "The ownership of camera object is not owned by this class.")]
         public void CameraTransition(string name, int durationMilliSeconds, AlphaFunction alphaFunction = null)
         {
-            if(inCameraTransition)
+            if (inCameraTransition || GetSelectedCamera() == GetCamera(name))
             {
                 return;
             }
@@ -342,7 +440,7 @@ namespace Tizen.NUI.Scene3D
         {
             global::System.IntPtr cPtr = Interop.SceneView.GetSelectedCamera(SwigCPtr);
             Camera camera = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Camera;
-            if(camera == null)
+            if (camera == null)
             {
                 // Register new camera into Registry.
                 camera = new Camera(cPtr, true);
@@ -388,6 +486,19 @@ namespace Tizen.NUI.Scene3D
             return result;
         }
 
+        internal void SetFramebufferMultiSamplingLevel(uint multiSamplingLevel)
+        {
+            Interop.SceneView.SetFramebufferMultiSamplingLevel(SwigCPtr, multiSamplingLevel);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal uint GetFramebufferMultiSamplingLevel()
+        {
+            uint result = Interop.SceneView.GetFramebufferMultiSamplingLevel(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
+
         /// <summary>
         /// Set the ImageBasedLight ScaleFactor.
         /// </summary>
@@ -409,6 +520,64 @@ namespace Tizen.NUI.Scene3D
             return scaleFactor;
         }
 
+        /// <summary>
+        /// Set the Skybox from cube map image.
+        /// Skybox texture is asynchronously loaded. When loading is finished, ResourcesLoaded is emitted.
+        /// </summary>
+        /// <param name="skyboxUrl">Cube map image url for skybox.</param>
+        private void SetSkybox(string skyboxUrl)
+        {
+            this.skyboxUrl = skyboxUrl;
+            Interop.SceneView.SetSkybox(SwigCPtr, skyboxUrl);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Sets Skybox intensity.
+        /// The skybox intensity is multiplied to the color of skybox texture.
+        /// Default value is 1.0f.
+        /// </summary>
+        /// <param name="intensity">Intensity value to be multiplied to the cube map color.</param>
+        private void SetSkyboxIntensity(float intensity)
+        {
+            Interop.SceneView.SetSkyboxIntensity(SwigCPtr, intensity);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Gets Skybox intensity.
+        /// Default value is 1.0f.
+        /// </summary>
+        /// <returns>skybox intensity.</returns>
+        private float GetSkyboxIntensity()
+        {
+            float intensity = Interop.SceneView.GetSkyboxIntensity(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return intensity;
+        }
+
+        /// <summary>
+        /// Sets orientation of the skybox.
+        /// </summary>
+        /// <param name="orientation">Rotation angle of the skybox along YAxis.</param>
+        private void SetSkyboxOrientation(Rotation orientation)
+        {
+            Interop.SceneView.SetSkyboxOrientation(SwigCPtr, Rotation.getCPtr(orientation));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Gets Skybox orientation.
+        /// </summary>
+        /// <returns>skybox orientation.</returns>
+        private Rotation GetSkyboxOrientation()
+        {
+            global::System.IntPtr cPtr = Interop.SceneView.GetSkyboxOrientation(SwigCPtr);
+            Rotation ret = (cPtr == global::System.IntPtr.Zero) ? null : new Rotation(cPtr, true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         private void CameraTransition(Camera sourceCamera, Camera destinationCamera, int durationMilliSeconds, AlphaFunction alphaFunction)
         {
             inCameraTransition = true;
@@ -420,20 +589,89 @@ namespace Tizen.NUI.Scene3D
             Rotation destinationOrientation = destinationCamera.Orientation;
 
             cameraTransition = new Animation(durationMilliSeconds);
+
             KeyFrames positionKeyFrames = new KeyFrames();
             positionKeyFrames.Add(0.0f, sourcePosition);
             positionKeyFrames.Add(1.0f, destinationPosition);
+
             KeyFrames orientationKeyFrames = new KeyFrames();
             orientationKeyFrames.Add(0.0f, sourceOrientation);
             orientationKeyFrames.Add(1.0f, destinationOrientation);
+
             cameraTransition.AnimateBetween(destinationCamera, "Position", positionKeyFrames, Animation.Interpolation.Linear, alphaFunction);
             cameraTransition.AnimateBetween(destinationCamera, "Orientation", orientationKeyFrames, Animation.Interpolation.Linear, alphaFunction);
 
+            if (destinationCamera.ProjectionMode == Camera.ProjectionModeType.Perspective)
+            {
+                Radian sourceFieldOfView = sourceCamera.FieldOfView;
+                Radian destinationFieldOfView = destinationCamera.FieldOfView;
+
+                // If ProjectionDirection is not equal, match the value.
+                if (sourceCamera.ProjectionDirection != destinationCamera.ProjectionDirection)
+                {
+                    float aspect = destinationCamera.AspectRatio;
+                    if (destinationCamera.ProjectionDirection == Camera.ProjectionDirectionType.Vertical)
+                    {
+                        Camera.ConvertFovFromHorizontalToVertical(aspect, ref sourceFieldOfView);
+                    }
+                    else
+                    {
+                        Camera.ConvertFovFromVerticalToHorizontal(aspect, ref sourceFieldOfView);
+                    }
+                }
+
+                KeyFrames fieldOfViewKeyFrames = new KeyFrames();
+                fieldOfViewKeyFrames.Add(0.0f, sourceFieldOfView.ConvertToFloat());
+                fieldOfViewKeyFrames.Add(1.0f, destinationFieldOfView.ConvertToFloat());
+                cameraTransition.AnimateBetween(destinationCamera, "FieldOfView", fieldOfViewKeyFrames, Animation.Interpolation.Linear, alphaFunction);
+
+                sourceFieldOfView.Dispose();
+                destinationFieldOfView.Dispose();
+                fieldOfViewKeyFrames.Dispose();
+            }
+            else
+            {
+                float sourceOrthographicSize = sourceCamera.OrthographicSize;
+                float destinationOrthographicSize = destinationCamera.OrthographicSize;
+
+                // If ProjectionDirection is not equal, match the value.
+                if (sourceCamera.ProjectionDirection != destinationCamera.ProjectionDirection)
+                {
+                    float aspect = destinationCamera.AspectRatio;
+                    if (destinationCamera.ProjectionDirection == Camera.ProjectionDirectionType.Vertical)
+                    {
+                        sourceOrthographicSize = sourceOrthographicSize / aspect;
+                    }
+                    else
+                    {
+                        sourceOrthographicSize = sourceOrthographicSize * aspect;
+                    }
+                }
+
+                KeyFrames orthographicSizeKeyFrames = new KeyFrames();
+                orthographicSizeKeyFrames.Add(0.0f, sourceOrthographicSize);
+                orthographicSizeKeyFrames.Add(1.0f, destinationOrthographicSize);
+                cameraTransition.AnimateBetween(destinationCamera, "OrthographicSize", orthographicSizeKeyFrames, Animation.Interpolation.Linear, alphaFunction);
+
+                orthographicSizeKeyFrames.Dispose();
+            }
+
+            float destinationNearPlaneDistance = destinationCamera.NearPlaneDistance;
+            float destinationFarPlaneDistance = destinationCamera.FarPlaneDistance;
+            destinationCamera.NearPlaneDistance = Math.Min(sourceCamera.NearPlaneDistance, destinationCamera.NearPlaneDistance);
+            destinationCamera.FarPlaneDistance = Math.Max(sourceCamera.FarPlaneDistance, destinationCamera.FarPlaneDistance);
+
             cameraTransition.Finished += (s, e) =>
             {
+                this.GetSelectedCamera().NearPlaneDistance = destinationNearPlaneDistance;
+                this.GetSelectedCamera().FarPlaneDistance = destinationFarPlaneDistance;
                 inCameraTransition = false;
+                CameraTransitionFinished?.Invoke(this, EventArgs.Empty);
             };
             cameraTransition.Play();
+
+            positionKeyFrames.Dispose();
+            orientationKeyFrames.Dispose();
         }
 
         /// <summary>

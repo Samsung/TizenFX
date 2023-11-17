@@ -224,14 +224,8 @@ namespace Tizen.NUI
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-#if NUI_PROPERTY_CHANGE_DEBUG
-        internal static int PropertyValueConstructor = 0;
-#endif        
         internal PropertyValue(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-#if NUI_PROPERTY_CHANGE_DEBUG
-            PropertyValueConstructor++;
-#endif
         }
 
         internal PropertyValue(Matrix3 matrixValue) : this(Interop.PropertyValue.NewPropertyValueMatrix3(Matrix3.getCPtr(matrixValue)), true)
@@ -415,6 +409,111 @@ namespace Tizen.NUI
             else if (type.Equals(typeof(Rectangle)))
             {
                 value = new PropertyValue((Rectangle)obj);
+            }
+            else
+            {
+                throw new global::System.InvalidOperationException("Unimplemented type for Property Value :" + type.Name);
+            }
+            return value;
+        }
+
+
+        /// <summary>
+        /// An extension to the property value class that allows us to create a
+        /// Property value from a C# object, for example, integer, float, or string.<br />
+        /// Warning : This API don't automatically release memory.
+        /// </summary>
+        /// <param name="obj">An object to create.</param>
+        /// <returns>The created value's IntPtr.</returns>
+        /// <exception cref="global::System.ArgumentNullException"> Thrown when obj is null. </exception>
+        static internal global::System.IntPtr CreateFromObjectIntPtr(System.Object obj)
+        {
+            if (null == obj)
+            {
+                throw new global::System.ArgumentNullException(nameof(obj));
+            }
+
+            System.Type type = obj.GetType();
+            global::System.IntPtr value = global::System.IntPtr.Zero;
+            if (type.IsEnum)
+            {
+                value = Interop.PropertyValue.NewPropertyValue((int)obj);//Enum.Parse(type, str);
+            }
+            else if (type.Equals(typeof(int)))
+            {
+                value = Interop.PropertyValue.NewPropertyValue((int)obj);
+            }
+            else if (type.Equals(typeof(System.Int32)))
+            {
+                value = Interop.PropertyValue.NewPropertyValue((int)obj);
+            }
+            else if (type.Equals(typeof(bool)))
+            {
+                value = Interop.PropertyValue.NewPropertyValue((bool)obj);
+            }
+            else if (type.Equals(typeof(float)))
+            {
+                value = Interop.PropertyValue.NewPropertyValue((float)obj);
+            }
+            else if (type.Equals(typeof(string)))
+            {
+                value = Interop.PropertyValue.NewPropertyValueString((string)obj);
+            }
+            else if (type.Equals(typeof(Vector2)))
+            {
+                value = Interop.PropertyValue.NewPropertyValueVector2(Vector2.getCPtr((Vector2)obj));
+            }
+            else if (type.Equals(typeof(Vector3)))
+            {
+                value = Interop.PropertyValue.NewPropertyValueVector3(Vector3.getCPtr((Vector3)obj));
+            }
+            else if (type.Equals(typeof(Vector4)))
+            {
+                value = Interop.PropertyValue.NewPropertyValueVector4(Vector4.getCPtr((Vector4)obj));
+            }
+            else if (type.Equals(typeof(Position)))
+            {
+                value = Interop.PropertyValue.NewPropertyValueVector3(Position.getCPtr((Position)obj));
+            }
+            else if (type.Equals(typeof(Position2D)))
+            {
+                value = Interop.PropertyValue.NewPropertyValueVector2(Position2D.getCPtr((Position2D)obj));
+            }
+            else if (type.Equals(typeof(Size)))
+            {
+                value = Interop.PropertyValue.NewPropertyValueVector3(Size.getCPtr((Size)obj));
+            }
+            else if (type.Equals(typeof(Size2D)))
+            {
+                value = Interop.PropertyValue.NewPropertyValueVector2(Size2D.getCPtr((Size2D)obj));
+            }
+            else if (type.Equals(typeof(Color)))
+            {
+                value = Interop.PropertyValue.NewPropertyValueVector4(Color.getCPtr((Color)obj));
+            }
+            else if (type.Equals(typeof(Rotation)))
+            {
+                value = Interop.PropertyValue.NewPropertyValueQuaternion(Rotation.getCPtr((Rotation)obj));
+            }
+            else if (type.Equals(typeof(RelativeVector2)))
+            {
+                value = Interop.PropertyValue.NewPropertyValueVector2(RelativeVector2.getCPtr((RelativeVector2)obj));
+            }
+            else if (type.Equals(typeof(RelativeVector3)))
+            {
+                value = Interop.PropertyValue.NewPropertyValueVector3(RelativeVector3.getCPtr((RelativeVector3)obj));
+            }
+            else if (type.Equals(typeof(RelativeVector4)))
+            {
+                value = Interop.PropertyValue.NewPropertyValueVector4(RelativeVector4.getCPtr((RelativeVector4)obj));
+            }
+            else if (type.Equals(typeof(Extents)))
+            {
+                value = Interop.PropertyValue.NewPropertyValueExtents(Extents.getCPtr((Extents)obj));
+            }
+            else if (type.Equals(typeof(Rectangle)))
+            {
+                value = Interop.PropertyValue.NewPropertyValueRect(Rectangle.getCPtr((Rectangle)obj));
             }
             else
             {

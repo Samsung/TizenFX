@@ -158,13 +158,33 @@ namespace Tizen.Applications.RPCPort
         /// <summary>
         /// Constructor for this class.
         /// </summary>
+        /// <param name="withHeader">If it's false, the parcel object does not have the header.</param>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        public Parcel(bool withHeader)
+        {
+            Interop.LibRPCPort.ErrorCode error;
+            if (withHeader)
+            {
+                error = Interop.LibRPCPort.Parcel.Create(out _handle);
+                if (error != Interop.LibRPCPort.ErrorCode.None)
+                    throw new InvalidIOException();
+            }
+            else
+            {
+                error = Interop.LibRPCPort.Parcel.CreateWithoutHeader(out _handle);
+                if (error != Interop.LibRPCPort.ErrorCode.None)
+                    throw new InvalidIOException();
+            }
+        }
+
+        /// <summary>
+        /// Constructor for this class.
+        /// </summary>
         /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
         /// <since_tizen> 5 </since_tizen>
-        public Parcel()
+        public Parcel() : this(true)
         {
-            var r = Interop.LibRPCPort.Parcel.Create(out _handle);
-            if (r != Interop.LibRPCPort.ErrorCode.None)
-                throw new InvalidIOException();
         }
 
         /// <summary>
@@ -315,6 +335,11 @@ namespace Tizen.Applications.RPCPort
         /// <since_tizen> 5 </since_tizen>
         public void WriteBundle(Bundle b)
         {
+            if (b == null)
+            {
+                return;
+            }
+
             Interop.LibRPCPort.Parcel.WriteBundle(_handle, b.SafeBundleHandle.DangerousGetHandle());
         }
 
@@ -425,7 +450,13 @@ namespace Tizen.Applications.RPCPort
         {
             Interop.LibRPCPort.Parcel.ReadBundle(_handle, out IntPtr b);
 
-            return new Bundle(new SafeBundleHandle(b, true));
+            Bundle bundle = null;
+            using (SafeBundleHandle safeBundleHandle = new SafeBundleHandle(b, true))
+            {
+                bundle = new Bundle(safeBundleHandle);
+            }
+
+            return bundle;
         }
 
         /// <summary>
@@ -446,6 +477,11 @@ namespace Tizen.Applications.RPCPort
         /// <since_tizen> 5 </since_tizen>
         public void Write(byte[] bytes)
         {
+            if (bytes == null)
+            {
+                return;
+            }
+
             Interop.LibRPCPort.Parcel.Write(_handle, bytes, bytes.Length);
         }
 
@@ -482,7 +518,9 @@ namespace Tizen.Applications.RPCPort
         #region IDisposable Support
         private bool disposedValue = false;
 
+#pragma warning disable CA1063
         private void Dispose(bool disposing)
+#pragma warning restore CA1063
         {
             if (!disposedValue)
             {

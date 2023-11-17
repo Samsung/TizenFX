@@ -820,6 +820,7 @@ namespace Tizen.NUI.Devel.Tests
                     try
                     {
                         testingTarget.AttachToOwner(owner);
+                        Assert.True(flagOnAttachedToOwner, "FlexLayout overridden method not invoked.");
                     }
                     catch (Exception e)
                     {

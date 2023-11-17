@@ -39,6 +39,29 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void VisualEventSignalConstructorWithParameters()
+        {
+            tlog.Debug(tag, $"VisualEventSignalConstructorWithParameters START");
+
+            using (View view = new View())
+            {
+                var testingTarget = new VisualEventSignal(view.SwigCPtr.Handle, false);
+                Assert.IsNotNull(testingTarget, "Should be not null!");
+                Assert.IsInstanceOf<VisualEventSignal>(testingTarget, "Should be an Instance of VisualEventSignal!");
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"VisualEventSignalConstructorWithParameters END (OK)");
+        }
+        
+        [Test]
+        [Category("P1")]
+        [Description("VisualEventSignal constructor.")]
+        [Property("SPEC", "Tizen.NUI.VisualEventSignal.VisualEventSignal C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void VisualEventSignalConstructor()
         {
             tlog.Debug(tag, $"VisualEventSignalConstructor START");

@@ -57,6 +57,8 @@ namespace Tizen.NUI.Wearable
             DecelerationRate = 0.991f;
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void SetScrollbar()
         {
             if(LayoutManager != null)
@@ -65,6 +67,8 @@ namespace Tizen.NUI.Wearable
             }
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public new RecycleAdapter Adapter
         {
             get

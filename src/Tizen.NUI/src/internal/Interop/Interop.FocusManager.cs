@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
 {
@@ -79,8 +80,11 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_FocusGroupChangedSignal")]
             public static extern global::System.IntPtr FocusGroupChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_FocusedActorEnterKeySignal")]
-            public static extern global::System.IntPtr FocusedActorEnterKeySignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_FocusedActorEnterKeySignal_Connect")]
+            public static extern void FocusedActorEnterKeySignalConnect(HandleRef focusManager, HandleRef handler);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_FocusedActorEnterKeySignal_Disconnect")]
+            public static extern void FocusedActorEnterKeySignalDisconnect(HandleRef focusManager, HandleRef handler);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyboardFocusManager_EnableDefaultAlgorithm")]
             public static extern void EnableDefaultAlgorithm(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
@@ -97,6 +101,13 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyboardFocusManager_ResetFocusFinderRootActor")]
             public static extern void ResetFocusFinderRootView(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_EnableFocusIndicator")]
+            public static extern void EnableFocusIndicator(global::System.Runtime.InteropServices.HandleRef focusManager, bool enable);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_IsFocusIndicatorEnabled")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool IsFocusIndicatorEnabled(global::System.Runtime.InteropServices.HandleRef focusManager);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_SWIGUpcast")]
             public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);

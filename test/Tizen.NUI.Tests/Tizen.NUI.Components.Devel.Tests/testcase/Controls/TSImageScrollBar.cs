@@ -291,7 +291,7 @@ namespace Tizen.NUI.Components.Devel.Tests
 
             try
             {
-                new ScrollBar(Tizen.NUI.DefaultThemeCreator.DefaultId);
+                new ScrollBar("Tizen.NUI.Components.Scrollbar");
             }
             catch (Exception e)
             {

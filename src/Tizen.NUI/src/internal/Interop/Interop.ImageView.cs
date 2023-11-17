@@ -29,6 +29,12 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_Property_PIXEL_AREA_get")]
             public static extern int PixelAreaGet();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_Property_PLACEHOLDER_IMAGE_get")]
+            public static extern int PlaceHolderImageGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_Property_TRANSITION_EFFECT_get")]
+            public static extern int TransitionEffectGet();
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_ImageView_Property")]
             public static extern global::System.IntPtr NewImageViewProperty();
 

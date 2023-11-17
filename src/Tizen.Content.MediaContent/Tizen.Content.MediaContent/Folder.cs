@@ -28,17 +28,13 @@ namespace Tizen.Content.MediaContent
     /// <since_tizen> 4 </since_tizen>
     public class Folder
     {
-#pragma warning disable CS0618 // Type or member is obsolete
         internal Folder(IntPtr handle)
         {
             Id = InteropHelper.GetString(handle, Interop.Folder.GetFolderId);
             Path = InteropHelper.GetString(handle, Interop.Folder.GetPath);
             Name = InteropHelper.GetString(handle, Interop.Folder.GetName);
-
-            StorageType = InteropHelper.GetValue<StorageType>(handle, Interop.Folder.GetStorageType);
-            StorageId = InteropHelper.GetString(handle, Interop.Folder.GetStorageId);
         }
-#pragma warning restore CS0618 // Type or member is obsolete
+
         internal static Folder FromHandle(IntPtr handle) => new Folder(handle);
 
         /// <summary>
@@ -63,29 +59,10 @@ namespace Tizen.Content.MediaContent
         public string Name { get; }
 
         /// <summary>
-        /// Gets the <see cref="StorageType"/> of the storage that the folder exists.
-        /// </summary>
-        /// <value>The <see cref="StorageType"/> of the storage that the folder exists.</value>
-        /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated in level 6")]
-        public StorageType StorageType { get; }
-
-        /// <summary>
-        /// Gets the storage ID of the storage that the folder exists.
-        /// </summary>
-        /// <value>The storage ID of the storage that the folder exists.</value>
-        /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated in level 6")]
-        public string StorageId { get; }
-
-#pragma warning disable CS0618 // Type or member is obsolete
-        /// <summary>
         /// Returns a string representation of the folder.
         /// </summary>
         /// <returns>A string representation of the current folder.</returns>
         /// <since_tizen> 4 </since_tizen>
-        public override string ToString() =>
-            $"Id={Id}, Name={Name}, Path={Path}, StorageType={StorageType}, StorageId={StorageType}";
-#pragma warning restore CS0618 // Type or member is obsolete
+        public override string ToString() => $"Id={Id}, Name={Name}, Path={Path}";
     }
 }

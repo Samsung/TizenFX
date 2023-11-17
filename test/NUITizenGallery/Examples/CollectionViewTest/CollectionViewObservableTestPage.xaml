@@ -30,6 +30,7 @@
                 </View.Layout>
 
                 <Button x:Name="AddItem" Text="Add" WidthSpecification="200" HeightSpecification="80" Clicked="AddItemClicked"/>
+                <Button x:Name="InsertItem" Text="Insert" WidthSpecification="200" HeightSpecification="80" Clicked="InsertItemClicked"/>
                 <Button x:Name="RemoveItem" Text="Remove" WidthSpecification="200" HeightSpecification="80"  Clicked="RemoveItemClicked"/>
                 <Button x:Name="RemoveAllItems" Text="Remove All" WidthSpecification="300" HeightSpecification="80"  Clicked="RemoveAllClicked"/>
             </View>

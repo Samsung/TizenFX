@@ -14,12 +14,15 @@
  *  limitations under the License
  */
 
+using System;
+
 namespace Tizen.Security.DevicePolicyManager
 {
     /// <summary>
     /// The abstract class for Policy instances.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API level 11.")]
     public abstract class DevicePolicy
     {
         protected internal readonly DevicePolicyManager _dpm;

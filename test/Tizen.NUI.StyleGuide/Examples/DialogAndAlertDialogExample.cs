@@ -26,7 +26,7 @@ namespace Tizen.NUI.StyleGuide
     internal class DialogAndAlertDialogExample : ContentPage, IExample
     {
         private View rootContent;
-        private Button buttonOneAction, buttonTwoAction, buttonNoTitle, buttonNoMessage;
+        private Button buttonNoAction, buttonOneAction, buttonTwoAction, buttonNoTitle, buttonNoMessage;
 
         public void Activate()
         {
@@ -61,6 +61,19 @@ namespace Tizen.NUI.StyleGuide
                     VerticalAlignment = VerticalAlignment.Center,
                     CellPadding = new Size2D(10, 20),
                 },
+            };
+
+            buttonNoAction = new Button
+            {
+                Name = "buttonNoAction",
+                Text = "Show AlertDialog without button",
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+            };
+            rootContent.Add(buttonNoAction);
+
+            buttonNoAction.Clicked += (s, e) =>
+            {
+                DialogPage.ShowAlertDialog("Title", "Message", null);
             };
 
             buttonOneAction = new Button

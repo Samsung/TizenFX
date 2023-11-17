@@ -72,17 +72,26 @@ namespace Tizen.NUI
         {
             get
             {
-                int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.FaceCullingMode);
-                pValue.Get(out temp);
-                pValue.Dispose();
-                return temp;
+                return (int)InternalFaceCullingMode;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.FaceCullingMode, temp);
-                temp.Dispose();
+                InternalFaceCullingMode = (FaceCullingModeType)value;
+            }
+        }
+
+        /// <summary>
+        /// Gets and Sets FaceCullingMode by FaceCullingModeType enum.
+        /// </summary>
+        private FaceCullingModeType InternalFaceCullingMode
+        {
+            get
+            {
+                return (FaceCullingModeType)Object.InternalGetPropertyInt(SwigCPtr, Renderer.Property.FaceCullingMode);
+            }
+            set
+            {
+                Object.InternalSetPropertyInt(SwigCPtr, Renderer.Property.FaceCullingMode, (int)value);
             }
         }
 
@@ -94,17 +103,26 @@ namespace Tizen.NUI
         {
             get
             {
-                int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendMode);
-                pValue.Get(out temp);
-                pValue.Dispose();
-                return temp;
+                return (int)InternalBlendMode;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.BlendMode, temp);
-                temp.Dispose();
+                InternalBlendMode = (BlendModeType)value;
+            }
+        }
+
+        /// <summary>
+        /// Gets and Sets BlendMode by BlendModeType enum.
+        /// </summary>
+        private BlendModeType InternalBlendMode
+        {
+            get
+            {
+                return (BlendModeType)Object.InternalGetPropertyInt(SwigCPtr, Renderer.Property.BlendMode);
+            }
+            set
+            {
+                Object.InternalSetPropertyInt(SwigCPtr, Renderer.Property.BlendMode, (int)value);
             }
         }
 
@@ -116,17 +134,26 @@ namespace Tizen.NUI
         {
             get
             {
-                int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendEquationRgb);
-                pValue.Get(out temp);
-                pValue.Dispose();
-                return temp;
+                return (int)InternalBlendEquationRgb;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.BlendEquationRgb, temp);
-                temp.Dispose();
+                InternalBlendEquationRgb = (BlendEquationType)value;
+            }
+        }
+
+        /// <summary>
+        /// Gets and Sets BlendEquationRgb by BlendEquationType enum.
+        /// </summary>
+        private BlendEquationType InternalBlendEquationRgb
+        {
+            get
+            {
+                return (BlendEquationType)Object.InternalGetPropertyInt(SwigCPtr, Renderer.Property.BlendEquationRgb);
+            }
+            set
+            {
+                Object.InternalSetPropertyInt(SwigCPtr, Renderer.Property.BlendEquationRgb, (int)value);
             }
         }
 
@@ -138,17 +165,26 @@ namespace Tizen.NUI
         {
             get
             {
-                int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendEquationAlpha);
-                pValue.Get(out temp);
-                pValue.Dispose();
-                return temp;
+                return (int)InternalBlendEquationAlpha;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.BlendEquationAlpha, temp);
-                temp.Dispose();
+                InternalBlendEquationAlpha = (BlendEquationType)value;
+            }
+        }
+
+        /// <summary>
+        /// Gets and Sets BlendEquationRgb by BlendEquationType enum.
+        /// </summary>
+        private BlendEquationType InternalBlendEquationAlpha
+        {
+            get
+            {
+                return (BlendEquationType)Object.InternalGetPropertyInt(SwigCPtr, Renderer.Property.BlendEquationAlpha);
+            }
+            set
+            {
+                Object.InternalSetPropertyInt(SwigCPtr, Renderer.Property.BlendEquationAlpha, (int)value);
             }
         }
 
@@ -160,17 +196,26 @@ namespace Tizen.NUI
         {
             get
             {
-                int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendFactorSrcRgb);
-                pValue.Get(out temp);
-                pValue.Dispose();
-                return temp;
+                return (int)InternalBlendFactorSrcRgb;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.BlendFactorSrcRgb, temp);
-                temp.Dispose();
+                InternalBlendFactorSrcRgb = (BlendFactorType)value;
+            }
+        }
+
+        /// <summary>
+        /// Gets and Sets BlendFactorSrcRgb by BlendFactorType enum.
+        /// </summary>
+        private BlendFactorType InternalBlendFactorSrcRgb
+        {
+            get
+            {
+                return (BlendFactorType)Object.InternalGetPropertyInt(SwigCPtr, Renderer.Property.BlendFactorSrcRgb);
+            }
+            set
+            {
+                Object.InternalSetPropertyInt(SwigCPtr, Renderer.Property.BlendFactorSrcRgb, (int)value);
             }
         }
 
@@ -182,17 +227,26 @@ namespace Tizen.NUI
         {
             get
             {
-                int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendFactorDestRgb);
-                pValue.Get(out temp);
-                pValue.Dispose();
-                return temp;
+                return (int)InternalBlendFactorDestRgb;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.BlendFactorDestRgb, temp);
-                temp.Dispose();
+                InternalBlendFactorDestRgb = (BlendFactorType)value;
+            }
+        }
+
+        /// <summary>
+        /// Gets and Sets BlendFactorDestRgb by BlendFactorType enum.
+        /// </summary>
+        private BlendFactorType InternalBlendFactorDestRgb
+        {
+            get
+            {
+                return (BlendFactorType)Object.InternalGetPropertyInt(SwigCPtr, Renderer.Property.BlendFactorDestRgb);
+            }
+            set
+            {
+                Object.InternalSetPropertyInt(SwigCPtr, Renderer.Property.BlendFactorDestRgb, (int)value);
             }
         }
 
@@ -204,17 +258,26 @@ namespace Tizen.NUI
         {
             get
             {
-                int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendFactorSrcAlpha);
-                pValue.Get(out temp);
-                pValue.Dispose();
-                return temp;
+                return (int)InternalBlendFactorSrcAlpha;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.BlendFactorSrcAlpha, temp);
-                temp.Dispose();
+                InternalBlendFactorSrcAlpha = (BlendFactorType)value;
+            }
+        }
+
+        /// <summary>
+        /// Gets and Sets BlendFactorSrcAlpha by BlendFactorType enum.
+        /// </summary>
+        private BlendFactorType InternalBlendFactorSrcAlpha
+        {
+            get
+            {
+                return (BlendFactorType)Object.InternalGetPropertyInt(SwigCPtr, Renderer.Property.BlendFactorSrcAlpha);
+            }
+            set
+            {
+                Object.InternalSetPropertyInt(SwigCPtr, Renderer.Property.BlendFactorSrcAlpha, (int)value);
             }
         }
 
@@ -226,17 +289,26 @@ namespace Tizen.NUI
         {
             get
             {
-                int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.BlendFactorDestAlpha);
-                pValue.Get(out temp);
-                pValue.Dispose();
-                return temp;
+                return (int)InternalBlendFactorDestAlpha;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.BlendFactorDestAlpha, temp);
-                temp.Dispose();
+                InternalBlendFactorDestAlpha = (BlendFactorType)value;
+            }
+        }
+
+        /// <summary>
+        /// Gets and Sets BlendFactorDestAlpha by BlendFactorType enum.
+        /// </summary>
+        private BlendFactorType InternalBlendFactorDestAlpha
+        {
+            get
+            {
+                return (BlendFactorType)Object.InternalGetPropertyInt(SwigCPtr, Renderer.Property.BlendFactorDestAlpha);
+            }
+            set
+            {
+                Object.InternalSetPropertyInt(SwigCPtr, Renderer.Property.BlendFactorDestAlpha, (int)value);
             }
         }
 
@@ -336,17 +408,26 @@ namespace Tizen.NUI
         {
             get
             {
-                int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.DepthWriteMode);
-                pValue.Get(out temp);
-                pValue.Dispose();
-                return temp;
+                return (int)InternalDepthWriteMode;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.DepthWriteMode, temp);
-                temp.Dispose();
+                InternalDepthWriteMode = (DepthWriteModeType)value;
+            }
+        }
+
+        /// <summary>
+        /// Gets and Sets DepthWriteMode by DepthWriteModeType enum.
+        /// </summary>
+        private DepthWriteModeType InternalDepthWriteMode
+        {
+            get
+            {
+                return (DepthWriteModeType)Object.InternalGetPropertyInt(SwigCPtr, Renderer.Property.DepthWriteMode);
+            }
+            set
+            {
+                Object.InternalSetPropertyInt(SwigCPtr, Renderer.Property.DepthWriteMode, (int)value);
             }
         }
 
@@ -358,17 +439,26 @@ namespace Tizen.NUI
         {
             get
             {
-                int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.DepthFunction);
-                pValue.Get(out temp);
-                pValue.Dispose();
-                return temp;
+                return (int)InternalDepthFunction;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.DepthFunction, temp);
-                temp.Dispose();
+                InternalDepthFunction = (DepthFunctionType)value;
+            }
+        }
+
+        /// <summary>
+        /// Gets and Sets DepthFunction by DepthFunctionType enum.
+        /// </summary>
+        private DepthFunctionType InternalDepthFunction
+        {
+            get
+            {
+                return (DepthFunctionType)Object.InternalGetPropertyInt(SwigCPtr, Renderer.Property.DepthFunction);
+            }
+            set
+            {
+                Object.InternalSetPropertyInt(SwigCPtr, Renderer.Property.DepthFunction, (int)value);
             }
         }
 
@@ -380,17 +470,26 @@ namespace Tizen.NUI
         {
             get
             {
-                int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.DepthTestMode);
-                pValue.Get(out temp);
-                pValue.Dispose();
-                return temp;
+                return (int)InternalDepthTestMode;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.DepthTestMode, temp);
-                temp.Dispose();
+                InternalDepthTestMode = (DepthTestModeType)value;
+            }
+        }
+
+        /// <summary>
+        /// Gets and Sets DepthTestMode by DepthTestModeType enum.
+        /// </summary>
+        private DepthTestModeType InternalDepthTestMode
+        {
+            get
+            {
+                return (DepthTestModeType)Object.InternalGetPropertyInt(SwigCPtr, Renderer.Property.DepthTestMode);
+            }
+            set
+            {
+                Object.InternalSetPropertyInt(SwigCPtr, Renderer.Property.DepthTestMode, (int)value);
             }
         }
 
@@ -402,17 +501,26 @@ namespace Tizen.NUI
         {
             get
             {
-                int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.RenderMode);
-                pValue.Get(out temp);
-                pValue.Dispose();
-                return temp;
+                return (int)InternalRenderMode;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.RenderMode, temp);
-                temp.Dispose();
+                InternalRenderMode = (RenderModeType)value;
+            }
+        }
+
+        /// <summary>
+        /// Gets and Sets RenderMode by RenderModeType enum.
+        /// </summary>
+        private RenderModeType InternalRenderMode
+        {
+            get
+            {
+                return (RenderModeType)Object.InternalGetPropertyInt(SwigCPtr, Renderer.Property.RenderMode);
+            }
+            set
+            {
+                Object.InternalSetPropertyInt(SwigCPtr, Renderer.Property.RenderMode, (int)value);
             }
         }
 
@@ -424,17 +532,26 @@ namespace Tizen.NUI
         {
             get
             {
-                int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.StencilFunction);
-                pValue.Get(out temp);
-                pValue.Dispose();
-                return temp;
+                return (int)InternalStencilFunction;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.StencilFunction, temp);
-                temp.Dispose();
+                InternalStencilFunction = (StencilFunctionType)value;
+            }
+        }
+
+        /// <summary>
+        /// Gets and Sets StencilFunction by StencilFunctionType enum.
+        /// </summary>
+        private StencilFunctionType InternalStencilFunction
+        {
+            get
+            {
+                return (StencilFunctionType)Object.InternalGetPropertyInt(SwigCPtr, Renderer.Property.StencilFunction);
+            }
+            set
+            {
+                Object.InternalSetPropertyInt(SwigCPtr, Renderer.Property.StencilFunction, (int)value);
             }
         }
 
@@ -512,17 +629,26 @@ namespace Tizen.NUI
         {
             get
             {
-                int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.StencilOperationOnFail);
-                pValue.Get(out temp);
-                pValue.Dispose();
-                return temp;
+                return (int)InternalStencilOperationOnFail;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.StencilOperationOnFail, temp);
-                temp.Dispose();
+                InternalStencilOperationOnFail = (StencilOperationType)value;
+            }
+        }
+
+        /// <summary>
+        /// Gets and Sets StencilOperationOnFail by StencilOperationType enum.
+        /// </summary>
+        private StencilOperationType InternalStencilOperationOnFail
+        {
+            get
+            {
+                return (StencilOperationType)Object.InternalGetPropertyInt(SwigCPtr, Renderer.Property.StencilOperationOnFail);
+            }
+            set
+            {
+                Object.InternalSetPropertyInt(SwigCPtr, Renderer.Property.StencilOperationOnFail, (int)value);
             }
         }
 
@@ -534,17 +660,27 @@ namespace Tizen.NUI
         {
             get
             {
-                int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.StencilOperationOnZFail);
-                pValue.Get(out temp);
-                pValue.Dispose();
-                return temp;
+                return (int)InternalStencilOperationOnZFail;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.StencilOperationOnZFail, temp);
-                temp.Dispose();
+                InternalStencilOperationOnZFail = (StencilOperationType)value;
+            }
+        }
+
+
+        /// <summary>
+        /// Gets and Sets StencilOperationOnZFail by StencilOperationType enum.
+        /// </summary>
+        private StencilOperationType InternalStencilOperationOnZFail
+        {
+            get
+            {
+                return (StencilOperationType)Object.InternalGetPropertyInt(SwigCPtr, Renderer.Property.StencilOperationOnZFail);
+            }
+            set
+            {
+                Object.InternalSetPropertyInt(SwigCPtr, Renderer.Property.StencilOperationOnZFail, (int)value);
             }
         }
 
@@ -556,17 +692,26 @@ namespace Tizen.NUI
         {
             get
             {
-                int temp = 0;
-                var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, Renderer.Property.StencilOperationOnZPass);
-                pValue.Get(out temp);
-                pValue.Dispose();
-                return temp;
+                return (int)InternalStencilOperationOnZPass;
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, Renderer.Property.StencilOperationOnZPass, temp);
-                temp.Dispose();
+                InternalStencilOperationOnZPass = (StencilOperationType)value;
+            }
+        }
+
+        /// <summary>
+        /// Gets and Sets StencilOperationOnZPass property by StencilOperationType enum.
+        /// </summary>
+        private StencilOperationType InternalStencilOperationOnZPass
+        {
+            get
+            {
+                return (StencilOperationType)Object.InternalGetPropertyInt(SwigCPtr, Renderer.Property.StencilOperationOnZPass);
+            }
+            set
+            {
+                Object.InternalSetPropertyInt(SwigCPtr, Renderer.Property.StencilOperationOnZPass, (int)value);
             }
         }
 
@@ -625,7 +770,7 @@ namespace Tizen.NUI
             System.IntPtr cPtr = Interop.Renderer.GetTextures(SwigCPtr);
             HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             TextureSet ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as TextureSet;
-            if (cPtr != null && ret == null)
+            if (cPtr != IntPtr.Zero && ret == null)
             {
                 ret = new TextureSet(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

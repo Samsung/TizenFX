@@ -93,11 +93,11 @@ namespace Tizen.NUI.Components
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override ImageView OnCreateOverlayImage(Button button, ImageView overlayImage)
+        public override bool ProcessOverlayImage(Button button, ref ImageView overlayImage)
         {
             overlayImage.Hide();
 
-            return overlayImage;
+            return false;
         }
 
         /// <inheritdoc/>

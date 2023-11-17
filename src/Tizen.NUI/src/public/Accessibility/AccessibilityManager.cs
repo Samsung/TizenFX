@@ -700,7 +700,22 @@ namespace Tizen.NUI.Accessibility
 
         internal static AccessibilityManager Get()
         {
-            AccessibilityManager ret = new AccessibilityManager(Interop.AccessibilityManager.Get(), true);
+            global::System.IntPtr cPtr = Interop.AccessibilityManager.Get();
+
+            AccessibilityManager ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as AccessibilityManager;
+            if (ret != null)
+            {
+                object dummyObect = new object();
+
+                global::System.Runtime.InteropServices.HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(dummyObect, cPtr);
+                Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+            else
+            {
+                ret = new AccessibilityManager(cPtr, true);
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -716,13 +731,6 @@ namespace Tizen.NUI.Accessibility
         internal AccessibilityFocusOvershotSignal FocusOvershotSignal()
         {
             AccessibilityFocusOvershotSignal ret = new AccessibilityFocusOvershotSignal(Interop.AccessibilityManager.FocusOvershotSignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal ViewSignal FocusedViewActivatedSignal()
-        {
-            ViewSignal ret = new ViewSignal(Interop.AccessibilityManager.FocusedActorActivatedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

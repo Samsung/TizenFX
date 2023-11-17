@@ -48,15 +48,40 @@ namespace Tizen.NUI.Components
 
         private View content = null;
 
+        private void Initialize()
+        {
+            Layout = new AbsoluteLayout();
+
+            this.Relayout += OnRelayout;
+        }
+
         /// <summary>
         /// Creates a new instance of Dialog.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public Dialog() : base()
         {
-            Layout = new AbsoluteLayout();
+            Initialize();
+        }
 
-            this.Relayout += OnRelayout;
+        /// <summary>
+        /// Creates a new instance of Dialog with style.
+        /// </summary>
+        /// <param name="style">Creates Dialog by special style defined in UX.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Dialog(string style) : base(style)
+        {
+            Initialize();
+        }
+
+        /// <summary>
+        /// Creates a new instance of a Dialog with style.
+        /// </summary>
+        /// <param name="style">A style applied to the newly created Dialog.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Dialog(ControlStyle style) : base(style)
+        {
+            Initialize();
         }
 
         /// <inheritdoc/>

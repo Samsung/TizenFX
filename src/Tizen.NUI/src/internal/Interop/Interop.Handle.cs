@@ -68,6 +68,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_GetProperty")]
             public static extern global::System.IntPtr GetProperty(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_GetCurrentProperty")]
+            public static extern global::System.IntPtr GetCurrentProperty(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_AddPropertyNotification__SWIG_0")]
             public static extern global::System.IntPtr AddPropertyNotification(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 

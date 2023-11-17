@@ -77,6 +77,7 @@ namespace Tizen.NUI
         protected VisualFittingModeType? _visualFittingMode = null;
 
         private Vector4 cornerRadius = null;
+        private VisualTransformPolicyType? cornerRadiusPolicy = null;
         private float? borderlineWidth = null;
         private Color borderlineColor = null;
         private float? borderlineOffset = null;
@@ -626,6 +627,25 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Whether the CornerRadius property value is relative (percentage [0.0f to 0.5f] of the view size) or absolute (in world units).
+        /// It is absolute by default.
+        /// When the policy is relative, the corner radius is relative to the smaller of the view's width and height.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public VisualTransformPolicyType CornerRadiusPolicy
+        {
+            get
+            {
+                return cornerRadiusPolicy ?? (VisualTransformPolicyType.Absolute);
+            }
+            set
+            {
+                cornerRadiusPolicy = value;
+                UpdateVisual();
+            }
+        }
+
+        /// <summary>
         /// The borderline width of the visual.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -757,6 +777,12 @@ namespace Tizen.NUI
             {
                 PropertyValue temp = new PropertyValue(cornerRadius);
                 _outputVisualMap.Add(Visual.Property.CornerRadius, temp);
+                temp.Dispose();
+            }
+            if (cornerRadiusPolicy != null)
+            {
+                PropertyValue temp = new PropertyValue((int)cornerRadiusPolicy);
+                _outputVisualMap.Add(Visual.Property.CornerRadiusPolicy, temp);
                 temp.Dispose();
             }
             if (borderlineWidth != null)

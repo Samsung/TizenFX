@@ -37,12 +37,13 @@ namespace Tizen.NUI.Devel.Tests
         public void FocusManagerConstructor()
         {
             tlog.Debug(tag, $"FocusManagerConstructor START");
-            FocusManager a1 = new FocusManager();
+            
+            var testingTarget = new FocusManager();
+            Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
+            Assert.IsInstanceOf<FocusManager>(testingTarget, "Should be an instance of FocusManager type.");
 
-            a1.Dispose();
-
+            testingTarget.Dispose();
             tlog.Debug(tag, $"FocusManagerConstructor END (OK)");
-            Assert.Pass("FocusManagerConstructor");
         }
 
         [Test]
@@ -52,26 +53,27 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void FocusManagerPreFocusChange()
         {
             tlog.Debug(tag, $"FocusManagerPreFocusChange START");
-            FocusManager a1 = FocusManager.Instance;
 
-            a1.PreFocusChange += A1_PreFocusChange;
-            a1.PreFocusChange -= A1_PreFocusChange;
+            var testingTarget = FocusManager.Instance;
+            Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
+            Assert.IsInstanceOf<FocusManager>(testingTarget, "Should be an instance of FocusManager type.");
 
-            tlog.Debug(tag, $"112");
+            testingTarget.PreFocusChange += OnPreFocusChange;
+            testingTarget.PreFocusChange -= OnPreFocusChange;
+
             object o1 = new object();
             FocusManager.PreFocusChangeEventArgs e = new FocusManager.PreFocusChangeEventArgs();
-            tlog.Debug(tag, $"113");
-            A1_PreFocusChange(o1, e);
-            tlog.Debug(tag, $"114");
+            OnPreFocusChange(o1, e);
 
             tlog.Debug(tag, $"FocusManagerPreFocusChange END (OK)");
-            Assert.Pass("FocusManagerPreFocusChange");
         }
 
-        private View A1_PreFocusChange(object o, FocusManager.PreFocusChangeEventArgs e)
+        [Obsolete]
+        private View OnPreFocusChange(object o, FocusManager.PreFocusChangeEventArgs e)
         {
             View v1 = e.CurrentView;
             e.CurrentView = v1;
@@ -84,7 +86,38 @@ namespace Tizen.NUI.Devel.Tests
 
             return v1;
         }
+		
+        [Test]
+        [Category("P1")]
+        [Description("FocusManager FocusChanging")]
+        [Property("SPEC", "Tizen.NUI.FocusManager.FocusChanging A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void FocusManagerFocusChanging()
+        {
+            tlog.Debug(tag, $"FocusManagerFocusChanging START");
+            
+            var testingTarget = FocusManager.Instance;
+            Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
+            Assert.IsInstanceOf<FocusManager>(testingTarget, "Should be an instance of FocusManager type.");
 
+            try
+			{
+                testingTarget.FocusChanging += OnFocusChanging;
+                testingTarget.FocusChanging -= OnFocusChanging;
+            }
+			catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
+            
+            tlog.Debug(tag, $"FocusManagerFocusChanging END (OK)");
+        }		
+		
+		public void OnFocusChanging(object sender, FocusChangingEventArgs e) { }
+		
         [Test]
         [Category("P1")]
         [Description("FocusManager FocusChanged")]
@@ -95,28 +128,30 @@ namespace Tizen.NUI.Devel.Tests
         public void FocusManagerFocusChanged()
         {
             tlog.Debug(tag, $"FocusManagerFocusChanged START");
-            FocusManager a1 = FocusManager.Instance;
 
-            a1.FocusChanged += A1_FocusChanged;
-            a1.FocusChanged -= A1_FocusChanged;
+            var testingTarget = FocusManager.Instance;
+            Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
+            Assert.IsInstanceOf<FocusManager>(testingTarget, "Should be an instance of FocusManager type.");
+
+            testingTarget.FocusChanged += OnFocusChanged;
+            testingTarget.FocusChanged -= OnFocusChanged;
 
             object o1 = new object();
             FocusManager.FocusChangedEventArgs e = new FocusManager.FocusChangedEventArgs();
-            A1_FocusChanged(o1, e);
+            OnFocusChanged(o1, e);
 
             tlog.Debug(tag, $"FocusManagerFocusChanged END (OK)");
-            Assert.Pass("FocusManagerFocusChanged");
         }
 
-        private void A1_FocusChanged(object sender, FocusManager.FocusChangedEventArgs e)
+        private void OnFocusChanged(object sender, FocusManager.FocusChangedEventArgs e)
         {
-            View v1 = e.CurrentView;
-            e.CurrentView = v1;
+            View v1 = e.Previous;
+            e.Previous = v1;
 
-            View v2 = e.NextView;
-            e.NextView = v2;
+            View v2 = e.Current;
+            e.Current = v2;
         }
-
+        
         [Test]
         [Category("P1")]
         [Description("FocusManager FocusGroupChanged")]
@@ -127,19 +162,22 @@ namespace Tizen.NUI.Devel.Tests
         public void FocusManagerFocusGroupChanged()
         {
             tlog.Debug(tag, $"FocusManagerFocusGroupChanged START");
-            FocusManager a1 = FocusManager.Instance;
 
-            a1.FocusGroupChanged += A1_FocusGroupChanged;
-            a1.FocusGroupChanged -= A1_FocusGroupChanged;
+            var testingTarget = FocusManager.Instance;
+            Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
+            Assert.IsInstanceOf<FocusManager>(testingTarget, "Should be an instance of FocusManager type.");
+
+            testingTarget.FocusGroupChanged += OnFocusGroupChanged;
+            testingTarget.FocusGroupChanged -= OnFocusGroupChanged;
+            
             object o1 = new object();
             FocusManager.FocusGroupChangedEventArgs e = new FocusManager.FocusGroupChangedEventArgs();
-            A1_FocusGroupChanged(o1, e);
+            OnFocusGroupChanged(o1, e);
 
             tlog.Debug(tag, $"FocusManagerFocusGroupChanged END (OK)");
-            Assert.Pass("FocusManagerFocusGroupChanged");
         }
 
-        private void A1_FocusGroupChanged(object sender, FocusManager.FocusGroupChangedEventArgs e)
+        private void OnFocusGroupChanged(object sender, FocusManager.FocusGroupChangedEventArgs e)
         {
             View v1 = e.CurrentView;
             e.CurrentView = v1;
@@ -158,19 +196,22 @@ namespace Tizen.NUI.Devel.Tests
         public void FocusManagerFocusedViewActivated()
         {
             tlog.Debug(tag, $"FocusManagerFocusedViewActivated START");
-            FocusManager a1 = FocusManager.Instance;
 
-            a1.FocusedViewActivated += A1_FocusedViewActivated;
-            a1.FocusedViewActivated -= A1_FocusedViewActivated;
+            var testingTarget = FocusManager.Instance;
+            Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
+            Assert.IsInstanceOf<FocusManager>(testingTarget, "Should be an instance of FocusManager type.");
+
+            testingTarget.FocusedViewActivated += OnFocusedViewActivated;
+            testingTarget.FocusedViewActivated -= OnFocusedViewActivated;
+
             object o1 = new object();
             FocusManager.FocusedViewActivatedEventArgs e = new FocusManager.FocusedViewActivatedEventArgs();
-            A1_FocusedViewActivated(o1, e);
+            OnFocusedViewActivated(o1, e);
 
             tlog.Debug(tag, $"FocusManagerFocusedViewActivated END (OK)");
-            Assert.Pass("FocusManagerFocusedViewActivated");
         }
 
-        private void A1_FocusedViewActivated(object sender, FocusManager.FocusedViewActivatedEventArgs e)
+        private void OnFocusedViewActivated(object sender, FocusManager.FocusedViewActivatedEventArgs e)
         {
             View v1 = e.View;
             e.View = v1;
@@ -183,23 +224,26 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void FocusManagerFocusedViewEnterKeyPressed()
         {
             tlog.Debug(tag, $"FocusManagerFocusedViewEnterKeyPressed START");
-            FocusManager a1 = FocusManager.Instance;
 
-            a1.FocusedViewEnterKeyPressed += A1_FocusedViewEnterKeyPressed;
-            a1.FocusedViewEnterKeyPressed -= A1_FocusedViewEnterKeyPressed;
+            var testingTarget = FocusManager.Instance;
+            Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
+            Assert.IsInstanceOf<FocusManager>(testingTarget, "Should be an instance of FocusManager type.");
+
+            testingTarget.FocusedViewEnterKeyPressed += OnFocusedViewEnterKeyPressed;
+            testingTarget.FocusedViewEnterKeyPressed -= OnFocusedViewEnterKeyPressed;
 
             object o1 = new object();
             FocusManager.FocusedViewActivatedEventArgs e = new FocusManager.FocusedViewActivatedEventArgs();
-            A1_FocusedViewEnterKeyPressed(o1, e);
+            OnFocusedViewEnterKeyPressed(o1, e);
 
             tlog.Debug(tag, $"FocusManagerFocusedViewEnterKeyPressed END (OK)");
-            Assert.Pass("FocusManagerFocusedViewEnterKeyPressed");
         }
 
-        private void A1_FocusedViewEnterKeyPressed(object sender, FocusManager.FocusedViewActivatedEventArgs e)
+        private void OnFocusedViewEnterKeyPressed(object sender, FocusManager.FocusedViewActivatedEventArgs e)
         {
             View v1 = e.View;
             e.View = v1;
@@ -215,13 +259,15 @@ namespace Tizen.NUI.Devel.Tests
         public void FocusManagerFocusGroupLoop()
         {
             tlog.Debug(tag, $"FocusManagerFocusGroupLoop START");
-            FocusManager a1 = FocusManager.Instance;
 
-            a1.FocusGroupLoop = true;
-            bool b1 = a1.FocusGroupLoop;
+            var testingTarget = FocusManager.Instance;
+            Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
+            Assert.IsInstanceOf<FocusManager>(testingTarget, "Should be an instance of FocusManager type.");
+
+            testingTarget.FocusGroupLoop = true;
+            Assert.AreEqual(true, testingTarget.FocusGroupLoop, "Should be equal!");
 
             tlog.Debug(tag, $"FocusManagerFocusGroupLoop END (OK)");
-            Assert.Pass("FocusManagerFocusGroupLoop");
         }
 
         [Test]
@@ -234,30 +280,18 @@ namespace Tizen.NUI.Devel.Tests
         public void FocusManagerFocusIndicator()
         {
             tlog.Debug(tag, $"FocusManagerFocusIndicator START");
-            View v1 = new View();
-            FocusManager a1 = FocusManager.Instance;
 
-            a1.FocusIndicator = v1;
-            v1 = a1.FocusIndicator;
-            v1.Dispose();
+            var testingTarget = FocusManager.Instance;
+            Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
+            Assert.IsInstanceOf<FocusManager>(testingTarget, "Should be an instance of FocusManager type.");
+
+            using (View view = new View())
+            {
+                testingTarget.FocusIndicator = view;
+                Assert.AreEqual(view, testingTarget.FocusIndicator, "Should be equal!");
+            }
 
             tlog.Debug(tag, $"FocusManagerFocusIndicator END (OK)");
-            Assert.Pass("FocusManagerFocusIndicator");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("FocusManager Instance")]
-        [Property("SPEC", "Tizen.NUI.FocusManager.Instance A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void FocusManagerInstance()
-        {
-            tlog.Debug(tag, $"FocusManagerInstance START");
-            FocusManager a1 = FocusManager.Instance;
-            tlog.Debug(tag, $"FocusManagerInstance END (OK)");
-            Assert.Pass("FocusManagerInstance");
         }
 
         [Test]
@@ -271,12 +305,24 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"FocusManagerSetCurrentFocusView START");
 
-            FocusManager a1 = FocusManager.Instance;
-            View v1 = new View();
-            a1.SetCurrentFocusView(v1);
+            var testingTarget = FocusManager.Instance;
+            Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
+            Assert.IsInstanceOf<FocusManager>(testingTarget, "Should be an instance of FocusManager type.");
 
+            using (View view = new View())
+            {
+                try
+                {
+                    testingTarget.SetCurrentFocusView(view);
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception : Failed!");
+                }
+            }
+            
             tlog.Debug(tag, $"FocusManagerSetCurrentFocusView END (OK)");
-            Assert.Pass("FocusManagerSetCurrentFocusView");
         }
 
         [Test]
@@ -291,13 +337,15 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"FocusManagerSetCurrentFocusViewWithNull START");
 
             var testingTarget = FocusManager.Instance;
+            Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
+            Assert.IsInstanceOf<FocusManager>(testingTarget, "Should be an instance of FocusManager type.");
 
             try
             {
                 View view = null;
                 testingTarget.SetCurrentFocusView(view);
             }
-            catch (ArgumentNullException e)
+            catch (ArgumentNullException)
             {
                 tlog.Debug(tag, $"FocusManagerSetCurrentFocusViewWithNull END (OK)");
                 Assert.Pass("Caught ArgumentNullException : Passed");
@@ -315,11 +363,21 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"FocusManagerGetCurrentFocusView START");
 
-            FocusManager a1 = FocusManager.Instance;
-            View v1 = a1.GetCurrentFocusView();
+            var testingTarget = FocusManager.Instance;
+            Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
+            Assert.IsInstanceOf<FocusManager>(testingTarget, "Should be an instance of FocusManager type.");
+
+            try
+            {
+                testingTarget.GetCurrentFocusView();
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
 
             tlog.Debug(tag, $"FocusManagerGetCurrentFocusView END (OK)");
-            Assert.Pass("FocusManagerGetCurrentFocusView");
         }
 
         [Test]
@@ -332,11 +390,22 @@ namespace Tizen.NUI.Devel.Tests
         public void FocusManagerMoveFocus()
         {
             tlog.Debug(tag, $"FocusManagerMoveFocus START");
-            FocusManager a1 = FocusManager.Instance;
-            a1.MoveFocus(View.FocusDirection.Up);
+
+            var testingTarget = FocusManager.Instance;
+            Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
+            Assert.IsInstanceOf<FocusManager>(testingTarget, "Should be an instance of FocusManager type.");
+
+            try
+            {
+                testingTarget.MoveFocus(View.FocusDirection.Up);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
 
             tlog.Debug(tag, $"FocusManagerMoveFocus END (OK)");
-            Assert.Pass("FocusManagerMoveFocus");
         }
 
         [Test]
@@ -349,11 +418,27 @@ namespace Tizen.NUI.Devel.Tests
         public void FocusManagerClearFocus()
         {
             tlog.Debug(tag, $"FocusManagerClearFocus START");
-            FocusManager a1 = FocusManager.Instance;
-            a1.ClearFocus();
+
+            var testingTarget = FocusManager.Instance;
+            Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
+            Assert.IsInstanceOf<FocusManager>(testingTarget, "Should be an instance of FocusManager type.");
+
+            using (View view = new View() { Size = new Size(100, 200) })
+            {
+                testingTarget.SetCurrentFocusView(view);
+
+                try
+                {
+                    testingTarget.ClearFocus();
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception : Failed!");
+                }
+            }
 
             tlog.Debug(tag, $"FocusManagerClearFocus END (OK)");
-            Assert.Pass("FocusManagerClearFocus");
         }
 
         [Test]
@@ -366,11 +451,22 @@ namespace Tizen.NUI.Devel.Tests
         public void FocusManagerMoveFocusBackward()
         {
             tlog.Debug(tag, $"FocusManagerMoveFocusBackward START");
-            FocusManager a1 = FocusManager.Instance;
-            a1.MoveFocusBackward();
+
+            var testingTarget = FocusManager.Instance;
+            Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
+            Assert.IsInstanceOf<FocusManager>(testingTarget, "Should be an instance of FocusManager type.");
+
+            try
+            {
+                testingTarget.MoveFocusBackward();
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
 
             tlog.Debug(tag, $"FocusManagerMoveFocusBackward END (OK)");
-            Assert.Pass("FocusManagerMoveFocusBackward");
         }
 
         [Test]
@@ -383,32 +479,26 @@ namespace Tizen.NUI.Devel.Tests
         public void FocusManagerSetAsFocusGroup()
         {
             tlog.Debug(tag, $"FocusManagerSetAsFocusGroup START");
-            FocusManager a1 = FocusManager.Instance;
-            View v1 = new View();
-            a1.SetAsFocusGroup(v1, true);
+
+            var testingTarget = FocusManager.Instance;
+            Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
+            Assert.IsInstanceOf<FocusManager>(testingTarget, "Should be an instance of FocusManager type.");
+
+            using (View v1 = new View())
+            {
+                try
+                {
+                    testingTarget.SetAsFocusGroup(v1, true);
+                    Assert.IsTrue(testingTarget.IsFocusGroup(v1));
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception : Failed!");
+                }
+            }
 
             tlog.Debug(tag, $"FocusManagerSetAsFocusGroup END (OK)");
-            Assert.Pass("FocusManagerSetAsFocusGroup");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("FocusManager IsFocusGroup")]
-        [Property("SPEC", "Tizen.NUI.FocusManager.IsFocusGroup M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void FocusManagerIsFocusGroup()
-        {
-            tlog.Debug(tag, $"FocusManagerIsFocusGroup START");
-            FocusManager a1 = FocusManager.Instance;
-
-            View v1 = new View();
-            a1.IsFocusGroup(v1);
-            v1.Dispose();
-
-            tlog.Debug(tag, $"FocusManagerIsFocusGroup END (OK)");
-            Assert.Pass("FocusManagerIsFocusGroup");
         }
 
         [Test]
@@ -421,14 +511,25 @@ namespace Tizen.NUI.Devel.Tests
         public void FocusManagerGetFocusGroup()
         {
             tlog.Debug(tag, $"FocusManagerGetFocusGroup START");
-            FocusManager a1 = FocusManager.Instance;
 
-            View v1 = new View();
-            a1.GetFocusGroup(v1);
-            v1.Dispose();
+            var testingTarget = FocusManager.Instance;
+            Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
+            Assert.IsInstanceOf<FocusManager>(testingTarget, "Should be an instance of FocusManager type.");
+
+            using (View v1 = new View())
+            {
+                try
+                {
+                    testingTarget.GetFocusGroup(v1);
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception : Failed!");
+                }
+            }
 
             tlog.Debug(tag, $"FocusManagerGetFocusGroup END (OK)");
-            Assert.Pass("FocusManagerGetFocusGroup");
         }
 
         [Test]
@@ -442,11 +543,83 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"FocusManagerSetCustomAlgorithm START");
 
-            FocusManager a1 = FocusManager.Instance;
-            a1.SetCustomAlgorithm(null);
+            var testingTarget = FocusManager.Instance;
+            Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
+            Assert.IsInstanceOf<FocusManager>(testingTarget, "Should be an instance of FocusManager type.");
+
+            try
+            {
+                testingTarget.SetCustomAlgorithm(null);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
 
             tlog.Debug(tag, $"FocusManagerSetCustomAlgorithm END (OK)");
-            Assert.Pass("FocusManagerSetCustomAlgorithm");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("FocusManager EnableDefaultAlgorithm")]
+        [Property("SPEC", "Tizen.NUI.FocusManager.EnableDefaultAlgorithm M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void FocusManagerEnableDefaultAlgorithm()
+        {
+            tlog.Debug(tag, $"FocusManagerEnableDefaultAlgorithm START");
+
+            var testingTarget = FocusManager.Instance;
+            Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
+            Assert.IsInstanceOf<FocusManager>(testingTarget, "Should be an instance of FocusManager type.");
+
+            try
+			{
+                testingTarget.EnableDefaultAlgorithm(true);
+                var result = testingTarget.IsDefaultAlgorithmEnabled();
+                Assert.AreEqual(true, result, "Should be equal!");
+            }
+			catch(Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"FocusManagerEnableDefaultAlgorithm END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("FocusManager SetFocusFinderRootView")]
+        [Property("SPEC", "Tizen.NUI.FocusManager.SetFocusFinderRootView M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void FocusManagerSetFocusFinderRootView()
+        {
+            tlog.Debug(tag, $"FocusManagerSetFocusFinderRootView START");
+            
+            var testingTarget = FocusManager.Instance;
+            Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
+            Assert.IsInstanceOf<FocusManager>(testingTarget, "Should be an instance of FocusManager type.");
+
+            try
+			{
+                using (View view = new View())
+                {
+                    testingTarget.SetFocusFinderRootView(view);
+                    testingTarget.ResetFocusFinderRootView();
+                }
+            }
+			catch(Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Catch exception: " + e.Message.ToString());
+            }
+			
+            tlog.Debug(tag, $"FocusManagerSetFocusFinderRootView END (OK)");
         }
 
         [Test]
@@ -471,5 +644,34 @@ namespace Tizen.NUI.Devel.Tests
             }
             tlog.Debug(tag, $"FocusManagerGet END (OK)");
         }
+		
+		
+        [Test]
+        [Category("P1")]
+        [Description("FocusManager GetFocusIndicatorView")]
+        [Property("SPEC", "Tizen.NUI.FocusManager.GetFocusIndicatorView M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void FocusManagerGetFocusIndicatorView()
+        {
+            tlog.Debug(tag, $"FocusManagerGetFocusIndicatorView START");
+
+            var testingTarget = FocusManager.Instance;
+            Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
+            Assert.IsInstanceOf<FocusManager>(testingTarget, "Should be an instance of FocusManager type.");
+
+            try
+            {
+                testingTarget.GetFocusIndicatorView();
+			}
+			catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
+
+            tlog.Debug(tag, $"FocusManagerGetFocusIndicatorView END (OK)");
+        }		
     }
 }

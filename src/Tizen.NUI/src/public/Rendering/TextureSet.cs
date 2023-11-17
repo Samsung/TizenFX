@@ -64,7 +64,7 @@ namespace Tizen.NUI
             System.IntPtr cPtr = Interop.TextureSet.GetTexture(SwigCPtr, index);
             HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             Texture ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as Texture;
-            if (cPtr != null && ret == null)
+            if (cPtr != System.IntPtr.Zero && ret == null)
             {
                 ret = new Texture(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

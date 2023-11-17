@@ -180,7 +180,7 @@ namespace Tizen.NUI.Samples
           ResourceUrl = imagePath + "download2.jpeg",
           Layout = new LinearLayout()
           {
-              LinearAlignment = LinearLayout.Alignment.CenterHorizontal,
+              HorizontalAlignment = HorizontalAlignment.Center,
               LinearOrientation = LinearLayout.Orientation.Horizontal,
               CellPadding = new Size(10, 10),
           }

@@ -62,6 +62,16 @@ namespace Tizen.NUI.Devel.Tests
 
                             var result = testingTarget.GetTransitionAt(0);
                             tlog.Debug(tag, "GetTransitionAt : " + result);
+                            
+							try
+						    {
+						        testingTarget.TransitionWithChild = false;
+						    }
+						    catch (Exception e)
+                            {
+                                tlog.Debug(tag, e.Message.ToString());
+                                Assert.Fail("Caught Exception : Failed!");
+                            }
 
                             testingTarget.Dispose();
                         }

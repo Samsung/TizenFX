@@ -14,12 +14,15 @@
  *  limitations under the License
  */
 
+using System;
+
 namespace Tizen.Security.DevicePolicyManager
 {
     /// <summary>
     /// Enumeration for dpm password quality type
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API level 11.")]
     public enum PasswordQuality
     {
         /// <summary>

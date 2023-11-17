@@ -18,12 +18,13 @@ namespace Tizen.NUI.Devel.Tests
         private string path = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "picture.png";
         private string jpg_path = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "arrow.jpg";
 
+        private bool IsCapturedFlag = false;
+
         private delegate bool dummyCallback(IntPtr captureSignal);
         private bool OnDummyCallback(IntPtr data)
         {
             return false;
         }
-
 
         internal class MyCapture : Capture
         {
@@ -337,12 +338,18 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"CaptureStartIncludeColor START");
 
+            IsCapturedFlag = false;
+
             var testingTarget = new Capture();
             Assert.IsNotNull(testingTarget, "Can't create success object Capture");
             Assert.IsInstanceOf<Capture>(testingTarget, "Should be an instance of Capture type.");
 
-            using (Container container = new View())
+            testingTarget.Finished += OnFinishedEvent;
+
+            using (View container = new View())
             {
+                Window.Instance.GetDefaultLayer().Add(container);
+
                 using (Size size = new Size(100, 80))
                 {
                     using (Color color = Color.Cyan)
@@ -354,11 +361,14 @@ namespace Tizen.NUI.Devel.Tests
                         catch (Exception e)
                         {
                             tlog.Debug(tag, e.Message.ToString());
-                            Assert.Fail("Caught Exception: Failed!");
                         }
                     }
                 }
+
+                Window.Instance.GetDefaultLayer().Remove(container);
             }
+
+            testingTarget.Finished -= OnFinishedEvent;
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"CaptureStartIncludeColor END (OK)");
@@ -878,28 +888,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Capture Finished.")]
-        [Property("SPEC", "Tizen.NUI.Capture.Finished M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void CaptureFinished()
-        {
-            tlog.Debug(tag, $"CaptureFinished START");
-
-            var testingTarget = new MyCapture();
-            Assert.IsNotNull(testingTarget, "Can't create success object MyCapture");
-            Assert.IsInstanceOf<MyCapture>(testingTarget, "Should be an instance of MyCapture type.");
-
-            testingTarget.Finished += OnFinishedEvent;
-            testingTarget.Finished -= OnFinishedEvent;
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"CaptureFinished END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("Capture GetNativeImageSource.")]
         [Property("SPEC", "Tizen.NUI.Capture.GetNativeImageSource M")]
         [Property("SPEC_URL", "-")]
@@ -944,122 +932,9 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"CaptureCaptureFinishedEventArgsSuccess END (OK)");
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("Capture.CaptureSignal constructor.")]
-        [Property("SPEC", "Tizen.NUI.Capture.CaptureSignal.CaptureSignal M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void CaptureCaptureSignalConstructor()
-        {
-            tlog.Debug(tag, $"CaptureCaptureSignalConstructor START");
-
-            using (Capture capture = new Capture())
-            {
-                var testingTarget = new CaptureSignal(capture.SwigCPtr.Handle, true);
-                Assert.IsNotNull(testingTarget, "Can't create success object CaptureSignal");
-                Assert.IsInstanceOf<CaptureSignal>(testingTarget, "Should be an instance of CaptureSignal type.");
-
-                testingTarget.Dispose();
-            }
-
-            tlog.Debug(tag, $"CaptureCaptureSignalConstructor END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Capture.CaptureSignal Empty.")]
-        [Property("SPEC", "Tizen.NUI.Capture.CaptureSignal.Empty M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void CaptureCaptureSignalEmpty()
-        {
-            tlog.Debug(tag, $"CaptureCaptureSignalEmpty START");
-
-            using (Capture capture = new Capture())
-            {
-                var testingTarget = new CaptureSignal(capture.SwigCPtr.Handle, true);
-                Assert.IsNotNull(testingTarget, "Can't create success object CaptureSignal");
-                Assert.IsInstanceOf<CaptureSignal>(testingTarget, "Should be an instance of CaptureSignal type.");
-
-                try
-                {
-                    var result = testingTarget.Empty();
-                    tlog.Debug(tag, "Empty : " +  result);
-                }
-                catch (Exception e)
-                {
-                    tlog.Debug(tag, e.Message.ToString());
-                    Assert.Fail("Caught Exception : Failed!");
-                }
-
-                testingTarget.Dispose();
-            }
-
-            tlog.Debug(tag, $"CaptureCaptureSignalEmpty END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Capture.CaptureSignal GetConnectionCount.")]
-        [Property("SPEC", "Tizen.NUI.Capture.CaptureSignal.GetConnectionCount M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void CaptureCaptureSignalGetConnectionCount()
-        {
-            tlog.Debug(tag, $"CaptureCaptureSignalGetConnectionCount START");
-
-            using (Capture capture = new Capture())
-            {
-                var testingTarget = new CaptureSignal(capture.SwigCPtr.Handle, true);
-                Assert.IsNotNull(testingTarget, "Can't create success object CaptureSignal");
-                Assert.IsInstanceOf<CaptureSignal>(testingTarget, "Should be an instance of CaptureSignal type.");
-
-                var result = testingTarget.GetConnectionCount();
-                tlog.Debug(tag, "ConnectionCount : " + result);
-
-                testingTarget.Dispose();
-            }
-
-            tlog.Debug(tag, $"CaptureCaptureSignalGetConnectionCount END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Capture.CaptureSignal Emit.")]
-        [Property("SPEC", "Tizen.NUI.Capture.CaptureSignal.Emit M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void CaptureCaptureSignalEmit()
-        {
-            tlog.Debug(tag, $"CaptureCaptureSignalEmit START");
-
-            var currentPid = global::System.Diagnostics.Process.GetCurrentProcess().Id;
-            var currentTid = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
-
-            tlog.Debug(tag, $"thread check! main pid={App.mainPid}, current pid={currentPid}, main tid={App.mainTid}, current tid={currentTid}");
-
-            using (Capture capture = new Capture())
-            {
-                var testingTarget = new CaptureSignal(capture.SwigCPtr.Handle, true);
-                Assert.IsNotNull(testingTarget, "Can't create success object CaptureSignal");
-                Assert.IsInstanceOf<CaptureSignal>(testingTarget, "Should be an instance of CaptureSignal type.");
-
-                testingTarget.Emit(capture, true);
-                
-                testingTarget.Dispose();
-            }
-
-            tlog.Debug(tag, $"CaptureCaptureSignalEmit END (OK)");
-        }
-
         private void OnFinishedEvent(object sender, CaptureFinishedEventArgs e)
         {
-            // Do not implementation
+            IsCapturedFlag = true;
         }
     }
 }

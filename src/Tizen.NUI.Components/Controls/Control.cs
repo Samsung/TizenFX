@@ -72,7 +72,7 @@ namespace Tizen.NUI.Components
         /// This is used to improve theme performance.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public void Preload()
+        static public new void Preload()
         {
             DefaultThemeCreator.Preload();
         }
@@ -152,10 +152,6 @@ namespace Tizen.NUI.Components
                     catch (InvalidOperationException e)
                     {
                         Log.Error("NUI", $"[ERROR] Fail to initialize Feedback: {e}");
-                    }
-                    catch (NullReferenceException e)
-                    {
-                        Log.Error("NUI", $"[ERROR] Null reference error in Feedback: {e}");
                     }
                 }
                 else

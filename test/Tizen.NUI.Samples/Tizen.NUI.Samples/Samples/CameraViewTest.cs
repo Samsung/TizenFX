@@ -9,7 +9,6 @@ namespace Tizen.NUI.Samples
 
     public class CameraViewTest : IExample
     {
-
         Window win;
         CameraView overlayCameraView;
         CameraView imageCameraView;
@@ -50,7 +49,6 @@ namespace Tizen.NUI.Samples
             sizeButton.Clicked += sizeButtonClicked;
             win.Add(sizeButton);
 
-
             rotationButton = new Button();
             rotationButton.Text = "Rotation";
             rotationButton.Size = new Size(100, 100);
@@ -60,17 +58,15 @@ namespace Tizen.NUI.Samples
 
             OverlayCamera();
             // ImageCamera();
-
         }
 
         private int rotationCnt = 0;
         private void rotationButtonClicked(object sender, ClickedEventArgs e)
         {
             int rotation = rotationCnt % 4;
-            Vector3 axis;
-            Degree degree;
-            if(overlayCamera != null) {
-                switch(rotation)
+            if (overlayCamera != null) 
+            {
+                switch (rotation)
                 {
                     case 0 :
                         overlayCamera.DisplaySettings.Rotation = Tizen.Multimedia.Rotation.Rotate0;
@@ -99,14 +95,14 @@ namespace Tizen.NUI.Samples
 
         private void OverlayButtonClicked(object sender, ClickedEventArgs e)
         {
-            if(imageCamera != null)
+            if (imageCamera != null)
             {
                 imageCamera.StopPreview();
                 imageCamera.Dispose();
                 imageCamera = null;
                 win.Remove(imageCameraView);
             }
-            if(overlayCamera == null)
+            if (overlayCamera == null)
             {
                 OverlayCamera();
             }
@@ -114,14 +110,14 @@ namespace Tizen.NUI.Samples
 
         private void NativeButtonClicked(object sender, ClickedEventArgs e)
         {
-            if(overlayCamera != null)
+            if (overlayCamera != null)
             {
                 overlayCamera.StopPreview();
                 overlayCamera.Dispose();
                 overlayCamera = null;
                 win.Remove(overlayCameraView);
             }
-            if(imageCamera == null)
+            if (imageCamera == null)
             {
                 ImageCamera();
             }
@@ -164,10 +160,14 @@ namespace Tizen.NUI.Samples
         private int size = 300;
         private void sizeButtonClicked(object sender, ClickedEventArgs e)
         {
-            if(overlayCameraView != null)
+            if (overlayCameraView != null)
+            {
                 overlayCameraView.Size = new Size(size, size);
-            if(imageCameraView != null)
+            }
+            if (imageCameraView != null)
+            {
                 imageCameraView.Size = new Size(size, size);
+            }
             size += 20;
         }
 
@@ -176,9 +176,8 @@ namespace Tizen.NUI.Samples
         {
             win.KeyEvent -= Win_KeyEvent;
 
-             if(imageCamera != null)
+            if (imageCamera != null)
             {
-
                 imageCamera.StopPreview();
                 imageCamera.Dispose();
                 imageCamera = null;
@@ -187,7 +186,7 @@ namespace Tizen.NUI.Samples
                 imageCameraView.Dispose();
             }
 
-            if(overlayCamera != null)
+            if (overlayCamera != null)
             {
                 overlayCamera.StopPreview();
                 overlayCamera.Dispose();
@@ -195,7 +194,6 @@ namespace Tizen.NUI.Samples
                 win.Remove(overlayCameraView);
                 overlayCameraView.Dispose();
             }
-
 
             tlog.Fatal(tag, $"Deactivate()! cameraView disposed");
         }

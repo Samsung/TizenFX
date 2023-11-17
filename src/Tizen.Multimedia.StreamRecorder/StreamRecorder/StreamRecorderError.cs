@@ -40,14 +40,14 @@ namespace Tizen.Multimedia
             return (ignore == errorCode) ? StreamRecorderErrorCode.None : errorCode;
         }
 
-        internal static void ThrowIfError(this StreamRecorderErrorCode err, string errorMessage)
+        internal static void ThrowIfError(this StreamRecorderErrorCode errorCode, string errorMessage)
         {
-            if (err == StreamRecorderErrorCode.None)
+            if (errorCode == StreamRecorderErrorCode.None)
             {
                 return;
             }
 
-            switch (err)
+            switch (errorCode)
             {
                 case StreamRecorderErrorCode.InvalidParameter:
                     throw new ArgumentException(errorMessage);
@@ -67,6 +67,10 @@ namespace Tizen.Multimedia
 
                 case StreamRecorderErrorCode.OutOfStorage:
                     throw new IOException(errorMessage);
+
+                default:
+                    Log.Error("Tizen.Multimedia.StreamRecorder", $"Unknown error : {errorCode.ToString()}");
+                    break;
             }
         }
     }

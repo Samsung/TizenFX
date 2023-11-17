@@ -82,6 +82,13 @@ namespace Tizen.NUI.Components.Extension
             }
         }
 
+        /// <inheritdoc />
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnTrackOrThumbResized(Switch switchButton, ImageView track, ImageView thumb)
+        {
+            var destX = switchButton.IsSelected ? switchButton.Track.Size.Width - thumb.Size.Width : 0;
+            if (destX != thumb.PositionX) thumb.PositionX = destX;
+        }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(bool disposing)

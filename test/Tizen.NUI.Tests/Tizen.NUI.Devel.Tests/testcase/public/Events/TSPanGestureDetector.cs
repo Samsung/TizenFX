@@ -44,7 +44,6 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"PanGestureDetectorConstructor END (OK)");
-            Assert.Pass("PanGestureDetectorConstructor");
         }
 
         [Test]
@@ -69,15 +68,14 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             tlog.Debug(tag, $"PanGestureDetectorConstructorWithPanGestureDetector END (OK)");
-            Assert.Pass("PanGestureDetectorConstructor");
         }
 
         [Test]
         [Category("P1")]
-        [Description("Test DirectionLeft property.")]
+        [Description("PanGestureDetector DirectionLeft.")]
         [Property("SPEC", "Tizen.NUI.PanGestureDetector.DirectionLeft A")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
+        [Property("CRITERIA", "PRO")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void PanGestureDetectorDirectionLeft()
         {
@@ -88,15 +86,14 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<Radian>(testingTarget, "Should be an instance of Radian type.");
 
             tlog.Debug(tag, $"PanGestureDetectorDirectionLeft END (OK)");
-            Assert.Pass("PanGestureDetectorDirectionLeft");
         }
 
         [Test]
         [Category("P1")]
-        [Description("Test DirectionRight property.")]
+        [Description("PanGestureDetector DirectionRight.")]
         [Property("SPEC", "Tizen.NUI.PanGestureDetector.DirectionRight A")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
+        [Property("CRITERIA", "PRO")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void PanGestureDetectorDirectionRight()
         {
@@ -107,15 +104,14 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<Radian>(testingTarget, "Should be an instance of Radian type.");
 
             tlog.Debug(tag, $"PanGestureDetectorDirectionRight END (OK)");
-            Assert.Pass("PanGestureDetectorDirectionLeft");
         }
 
         [Test]
         [Category("P1")]
-        [Description("Test DirectionUp property.")]
+        [Description("PanGestureDetector DirectionUp.")]
         [Property("SPEC", "Tizen.NUI.PanGestureDetector.DirectionUp A")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
+        [Property("CRITERIA", "PRO")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void PanGestureDetectorDirectionUp()
         {
@@ -126,15 +122,14 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<Radian>(testingTarget, "Should be an instance of Radian type.");
 
             tlog.Debug(tag, $"PanGestureDetectorDirectionUp END (OK)");
-            Assert.Pass("PanGestureDetectorDirectionUp");
         }
 
         [Test]
         [Category("P1")]
-        [Description("Test DirectionDown property.")]
+        [Description("PanGestureDetector DirectionDown.")]
         [Property("SPEC", "Tizen.NUI.PanGestureDetector.DirectionDown A")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
+        [Property("CRITERIA", "PRO")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void PanGestureDetectorDirectionDown()
         {
@@ -145,15 +140,14 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<Radian>(testingTarget, "Should be an instance of Radian type.");
 
             tlog.Debug(tag, $"PanGestureDetectorDirectionDown END (OK)");
-            Assert.Pass("PanGestureDetectorDirectionDown");
         }
 
         [Test]
         [Category("P1")]
-        [Description("Test DirectionHorizontal property.")]
+        [Description("PanGestureDetector DirectionHorizontal.")]
         [Property("SPEC", "Tizen.NUI.PanGestureDetector.DirectionHorizontal A")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
+        [Property("CRITERIA", "PRO")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void PanGestureDetectorDirectionHorizontal()
         {
@@ -164,15 +158,14 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<Radian>(testingTarget, "Should be an instance of Radian type.");
 
             tlog.Debug(tag, $"PanGestureDetectorDirectionHorizontal END (OK)");
-            Assert.Pass("PanGestureDetectorDirectionHorizontal");
         }
 
         [Test]
         [Category("P1")]
-        [Description("Test DirectionVertical property.")]
+        [Description("PanGestureDetector DirectionVertical.")]
         [Property("SPEC", "Tizen.NUI.PanGestureDetector.DirectionVertical A")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
+        [Property("CRITERIA", "PRO")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void PanGestureDetectorDirectionVertical()
         {
@@ -183,15 +176,14 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<Radian>(testingTarget, "Should be an instance of Radian type.");
 
             tlog.Debug(tag, $"PanGestureDetectorDirectionVertical END (OK)");
-            Assert.Pass("PanGestureDetectorDirectionVertical");
         }
 
         [Test]
         [Category("P1")]
-        [Description("Test DefaultThreshold property.")]
+        [Description("PanGestureDetector DefaultThreshold.")]
         [Property("SPEC", "Tizen.NUI.PanGestureDetector.DefaultThreshold A")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
+        [Property("CRITERIA", "PRO")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void PanGestureDetectorDefaultThreshold()
         {
@@ -202,15 +194,14 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<Radian>(testingTarget, "Should be an instance of Radian type.");
 
             tlog.Debug(tag, $"PanGestureDetectorDefaultThreshold END (OK)");
-            Assert.Pass("PanGestureDetectorDefaultThreshold");
         }
 
         [Test]
         [Category("P1")]
-        [Description("Test ScreenPosition property.")]
+        [Description("PanGestureDetector ScreenPosition.")]
         [Property("SPEC", "Tizen.NUI.PanGestureDetector.ScreenPosition A")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
+        [Property("CRITERIA", "PRO")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void PanGestureDetectorScreenPosition()
         {
@@ -220,18 +211,19 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object Hover");
             Assert.IsInstanceOf<PanGestureDetector>(testingTarget, "Should be an instance of PanGestureDetector type.");
 
-            tlog.Debug(tag, "ScreenPosition : " + testingTarget.ScreenPosition);
+            var result = testingTarget.ScreenPosition;
+            Assert.IsInstanceOf<Vector2>(result, "Should be an instance of Vector2 type.");
 
+            testingTarget.Dispose();
             tlog.Debug(tag, $"PanGestureDetectorScreenPosition END (OK)");
-            Assert.Pass("PanGestureDetectorScreenPosition");
         }
 
         [Test]
         [Category("P1")]
-        [Description("Test ScreenDisplacement property.")]
+        [Description("PanGestureDetector ScreenDisplacement.")]
         [Property("SPEC", "Tizen.NUI.PanGestureDetector.ScreenDisplacement A")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
+        [Property("CRITERIA", "PRO")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void PanGestureDetectorScreenDisplacement()
         {
@@ -241,18 +233,19 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object Hover");
             Assert.IsInstanceOf<PanGestureDetector>(testingTarget, "Should be an instance of PanGestureDetector type.");
 
-            tlog.Debug(tag, "ScreenDisplacement : " + testingTarget.ScreenDisplacement);
-            
+            var result = testingTarget.ScreenDisplacement;
+            Assert.IsInstanceOf<Vector2>(result, "Should be an instance of Vector2 type.");
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"PanGestureDetectorScreenDisplacement END (OK)");
-            Assert.Pass("PanGestureDetectorScreenDisplacement");
         }
 
         [Test]
         [Category("P1")]
-        [Description("Test ScreenVelocity property.")]
+        [Description("PanGestureDetector ScreenVelocity.")]
         [Property("SPEC", "Tizen.NUI.PanGestureDetector.ScreenVelocity A")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
+        [Property("CRITERIA", "PRO")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void PanGestureDetectorScreenVelocity()
         {
@@ -262,18 +255,19 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object Hover");
             Assert.IsInstanceOf<PanGestureDetector>(testingTarget, "Should be an instance of PanGestureDetector type.");
 
-            tlog.Debug(tag, "ScreenVelocity : " + testingTarget.ScreenVelocity);
+            var result = testingTarget.ScreenVelocity;
+            Assert.IsInstanceOf<Vector2>(result, "Should be an instance of Vector2 type.");
 
+            testingTarget.Dispose();
             tlog.Debug(tag, $"PanGestureDetectorScreenVelocity END (OK)");
-            Assert.Pass("PanGestureDetectorScreenVelocity");
         }
 
         [Test]
         [Category("P1")]
-        [Description("Test LocalPosition property.")]
+        [Description("PanGestureDetector LocalPosition.")]
         [Property("SPEC", "Tizen.NUI.PanGestureDetector.LocalPosition A")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
+        [Property("CRITERIA", "PRO")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void PanGestureDetectorLocalPosition()
         {
@@ -283,18 +277,19 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object Hover");
             Assert.IsInstanceOf<PanGestureDetector>(testingTarget, "Should be an instance of PanGestureDetector type.");
 
-            tlog.Debug(tag, "LocalPosition : " + testingTarget.LocalPosition);
+            var result = testingTarget.LocalPosition;
+            Assert.IsInstanceOf<Vector2>(result, "Should be an instance of Vector2 type.");
 
+            testingTarget.Dispose();
             tlog.Debug(tag, $"PanGestureDetectorLocalPosition END (OK)");
-            Assert.Pass("PanGestureDetectorLocalPosition");
         }
 
         [Test]
         [Category("P1")]
-        [Description("Test LocalDisplacement property.")]
+        [Description("PanGestureDetector LocalDisplacement.")]
         [Property("SPEC", "Tizen.NUI.PanGestureDetector.LocalDisplacement A")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
+        [Property("CRITERIA", "PRO")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void PanGestureDetectorLocalDisplacement()
         {
@@ -304,18 +299,19 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object Hover");
             Assert.IsInstanceOf<PanGestureDetector>(testingTarget, "Should be an instance of PanGestureDetector type.");
 
-            tlog.Debug(tag, "LocalDisplacement : " + testingTarget.LocalDisplacement);
+            var result = testingTarget.LocalDisplacement;
+            Assert.IsInstanceOf<Vector2>(result, "Should be an instance of Vector2 type.");
 
+            testingTarget.Dispose();
             tlog.Debug(tag, $"PanGestureDetectorLocalDisplacement END (OK)");
-            Assert.Pass("PanGestureDetectorLocalDisplacement");
         }
 
         [Test]
         [Category("P1")]
-        [Description("Test LocalVelocity property.")]
+        [Description("PanGestureDetector LocalVelocity.")]
         [Property("SPEC", "Tizen.NUI.PanGestureDetector.LocalVelocity A")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
+        [Property("CRITERIA", "PRO")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void PanGestureDetectorLocalVelocity()
         {
@@ -325,32 +321,37 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object Hover");
             Assert.IsInstanceOf<PanGestureDetector>(testingTarget, "Should be an instance of PanGestureDetector type.");
 
-            tlog.Debug(tag, "LocalVelocity : " + testingTarget.LocalVelocity);
+            var result = testingTarget.LocalVelocity;
+            Assert.IsInstanceOf<Vector2>(result, "Should be an instance of Vector2 type.");
 
+            testingTarget.Dispose();
             tlog.Debug(tag, $"PanGestureDetectorLocalVelocity END (OK)");
-            Assert.Pass("PanGestureDetectorLocalVelocity");
         }
 
         [Test]
         [Category("P1")]
-        [Description("Test Panning property.")]
+        [Description("PanGestureDetector Panning.")]
         [Property("SPEC", "Tizen.NUI.PanGestureDetector.Panning A")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
+        [Property("CRITERIA", "PRO")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void PanGestureDetectorPanning()
         {
             tlog.Debug(tag, $"PanGestureDetectorPanning START");
-            PanGestureDetector a1 = new PanGestureDetector();
-            bool b1 = a1.Panning;
+
+            var testingTarget = new PanGestureDetector();
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<PanGestureDetector>(testingTarget, "Should be an instance of PanGestureDetector type.");
+
+            var result = testingTarget.Panning;
+            tlog.Debug(tag, "Panning : " + result);
             
             tlog.Debug(tag, $"PanGestureDetectorPanning END (OK)");
-            Assert.Pass("PanGestureDetectorPanning");
         }
 
         [Test]
         [Category("P1")]
-        [Description("Test SetMinimumTouchesRequired property.")]
+        [Description("PanGestureDetector SetMinimumTouchesRequired.")]
         [Property("SPEC", "Tizen.NUI.PanGestureDetector.SetMinimumTouchesRequired M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
@@ -358,17 +359,28 @@ namespace Tizen.NUI.Devel.Tests
         public void PanGestureDetectorSetMinimumTouchesRequired()
         {
             tlog.Debug(tag, $"PanGestureDetectorSetMinimumTouchesRequired START");
-            PanGestureDetector a1 = new PanGestureDetector();
 
-            a1.SetMinimumTouchesRequired(2);
-            
+            var testingTarget = new PanGestureDetector();
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<PanGestureDetector>(testingTarget, "Should be an instance of PanGestureDetector type.");
+
+            try
+            {
+                testingTarget.SetMinimumTouchesRequired(2);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"PanGestureDetectorSetMinimumTouchesRequired END (OK)");
-            Assert.Pass("PanGestureDetectorSetMinimumTouchesRequired");
         }
 
         [Test]
         [Category("P1")]
-        [Description("Test SetMaximumTouchesRequired property.")]
+        [Description("PanGestureDetector SetMaximumTouchesRequired.")]
         [Property("SPEC", "Tizen.NUI.PanGestureDetector.SetMaximumTouchesRequired M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
@@ -376,16 +388,57 @@ namespace Tizen.NUI.Devel.Tests
         public void PanGestureDetectorSetMaximumTouchesRequired()
         {
             tlog.Debug(tag, $"PanGestureDetectorSetMaximumTouchesRequired START");
-            PanGestureDetector a1 = new PanGestureDetector();
-            a1.SetMaximumTouchesRequired(4);
-            
+
+            var testingTarget = new PanGestureDetector();
+            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
+            Assert.IsInstanceOf<PanGestureDetector>(testingTarget, "Should be an instance of PanGestureDetector type.");
+
+            try
+            {
+                testingTarget.SetMaximumTouchesRequired(4);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"PanGestureDetectorSetMaximumTouchesRequired END (OK)");
-            Assert.Pass("PanGestureDetectorSetMaximumTouchesRequired");
         }
 
         [Test]
         [Category("P1")]
-        [Description("Test GetMinimumTouchesRequired property.")]
+        [Description("PanGestureDetector SetMaximumMotionEventAge.")]
+        [Property("SPEC", "Tizen.NUI.PanGestureDetector.SetMaximumMotionEventAge M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void PanGestureDetectorSetMaximumMotionEventAge()
+        {
+            tlog.Debug(tag, $"PanGestureDetectorSetMaximumMotionEventAge START");
+            
+            var testingTarget = new PanGestureDetector();
+            Assert.IsNotNull(testingTarget, "Can't create success object DetectedEventArgs.");
+            Assert.IsInstanceOf<PanGestureDetector>(testingTarget, "Should return PanGestureDetector instance.");
+
+            try
+			{
+                testingTarget.SetMaximumMotionEventAge(4);
+            }
+			catch(Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught exception : Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"PanGestureDetectorSetMaximumMotionEventAge END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("PanGestureDetector GetMinimumTouchesRequired.")]
         [Property("SPEC", "Tizen.NUI.PanGestureDetector.GetMinimumTouchesRequired M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
@@ -393,18 +446,29 @@ namespace Tizen.NUI.Devel.Tests
         public void PanGestureDetectorGetMinimumTouchesRequired()
         {
             tlog.Debug(tag, $"PanGestureDetectorGetMinimumTouchesRequired START");
-            PanGestureDetector a1 = new PanGestureDetector();
-            a1.SetMinimumTouchesRequired(4);
 
-            a1.GetMinimumTouchesRequired();
-            
+            var testingTarget = new PanGestureDetector();
+            Assert.IsNotNull(testingTarget, "Can't create success object DetectedEventArgs.");
+            Assert.IsInstanceOf<PanGestureDetector>(testingTarget, "Should return PanGestureDetector instance.");
+
+            try
+            {
+                testingTarget.SetMinimumTouchesRequired(4);
+                testingTarget.GetMinimumTouchesRequired();
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught exception : Failed!");
+            }
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"PanGestureDetectorGetMinimumTouchesRequired END (OK)");
-            Assert.Pass("PanGestureDetectorSetMaximumTouchesRequired");
         }
 
         [Test]
         [Category("P1")]
-        [Description("Test GetMaximumTouchesRequired property.")]
+        [Description("PanGestureDetector GetMaximumTouchesRequired.")]
         [Property("SPEC", "Tizen.NUI.PanGestureDetector.GetMaximumTouchesRequired M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
@@ -412,18 +476,59 @@ namespace Tizen.NUI.Devel.Tests
         public void PanGestureDetectorGetMaximumTouchesRequired()
         {
             tlog.Debug(tag, $"PanGestureDetectorGetMaximumTouchesRequired START");
-            PanGestureDetector a1 = new PanGestureDetector();
-            a1.SetMaximumTouchesRequired(4);
 
-            a1.GetMaximumTouchesRequired();
-            
+            var testingTarget = new PanGestureDetector();
+            Assert.IsNotNull(testingTarget, "Can't create success object DetectedEventArgs.");
+            Assert.IsInstanceOf<PanGestureDetector>(testingTarget, "Should return PanGestureDetector instance.");
+
+            try
+            {
+                testingTarget.SetMaximumTouchesRequired(4);
+                testingTarget.GetMaximumTouchesRequired();
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught exception : Failed!");
+            }
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"PanGestureDetectorGetMaximumTouchesRequired END (OK)");
-            Assert.Pass("PanGestureDetectorSetMaximumTouchesRequired");
         }
+        
+        [Test]
+        [Category("P1")]
+        [Description("PanGestureDetector GetMaximumMotionEventAge.")]
+        [Property("SPEC", "Tizen.NUI.PanGestureDetector.GetMaximumMotionEventAge M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void PanGestureDetectorGetMaximumMotionEventAge()
+        {
+            tlog.Debug(tag, $"PanGestureDetectorGetMaximumMotionEventAge START");
+            
+            var testingTarget = new PanGestureDetector();
+            Assert.IsNotNull(testingTarget, "Can't create success object DetectedEventArgs.");
+            Assert.IsInstanceOf<PanGestureDetector>(testingTarget, "Should return PanGestureDetector instance.");
+
+            try
+			{
+                testingTarget.SetMaximumMotionEventAge(16);
+                testingTarget.GetMaximumMotionEventAge();
+            }
+			catch(Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught exception : Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"PanGestureDetectorGetMaximumMotionEventAge END (OK)");
+        }		
 
         [Test]
         [Category("P1")]
-        [Description("Test AddAngle property.")]
+        [Description("PanGestureDetector AddAngle.")]
         [Property("SPEC", "Tizen.NUI.PanGestureDetector.AddAngle M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
@@ -431,18 +536,44 @@ namespace Tizen.NUI.Devel.Tests
         public void PanGestureDetectorAddAngle()
         {
             tlog.Debug(tag, $"PanGestureDetectorAddAngle START");
-            PanGestureDetector a1 = new PanGestureDetector();
-            Radian angle = new Radian(4);
-            Radian threshold = new Radian(15);
-            a1.AddAngle(angle);
-            a1.AddAngle(angle, threshold);
+
+            var testingTarget = new PanGestureDetector();
+            Assert.IsNotNull(testingTarget, "Can't create success object DetectedEventArgs.");
+            Assert.IsInstanceOf<PanGestureDetector>(testingTarget, "Should return PanGestureDetector instance.");
+
+            using (Radian angle = new Radian(4))
+            {
+                try
+                {
+                    testingTarget.AddAngle(angle);
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught exception : Failed!");
+                }
+
+                using (Radian threshold = new Radian(15))
+                {
+                    try
+                    {
+                        testingTarget.AddAngle(angle, threshold);
+                    }
+                    catch (Exception e)
+                    {
+                        tlog.Debug(tag, e.Message.ToString());
+                        Assert.Fail("Caught exception : Failed!");
+                    }
+                }
+            }
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"PanGestureDetectorAddAngle END (OK)");
-            Assert.Pass("PanGestureDetectorAddAngle");
         }
 
         [Test]
         [Category("P1")]
-        [Description("Test AddDirection property.")]
+        [Description("PanGestureDetector AddDirection.")]
         [Property("SPEC", "Tizen.NUI.PanGestureDetector.AddDirection M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
@@ -450,22 +581,44 @@ namespace Tizen.NUI.Devel.Tests
         public void PanGestureDetectorAddDirection()
         {
             tlog.Debug(tag, $"PanGestureDetectorAddDirection START");
-            PanGestureDetector a1 = new PanGestureDetector();
 
-            Radian angle = new Radian(4);
-            Radian threshold = new Radian(15);
-            a1.AddDirection(angle);
+            var testingTarget = new PanGestureDetector();
+            Assert.IsNotNull(testingTarget, "Can't create success object DetectedEventArgs.");
+            Assert.IsInstanceOf<PanGestureDetector>(testingTarget, "Should return PanGestureDetector instance.");
 
-            a1.AddDirection(angle, threshold);
+            using (Radian angle = new Radian(4))
+            {
+                try
+                {
+                    testingTarget.AddDirection(angle);
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught exception : Failed!");
+                }
 
-            
+                using (Radian threshold = new Radian(15))
+                {
+                    try
+                    {
+                        testingTarget.AddDirection(angle, threshold);
+                    }
+                    catch (Exception e)
+                    {
+                        tlog.Debug(tag, e.Message.ToString());
+                        Assert.Fail("Caught exception : Failed!");
+                    }
+                }
+            }
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"PanGestureDetectorAddDirection END (OK)");
-            Assert.Pass("PanGestureDetectorAddDirection");
         }
 
         [Test]
         [Category("P1")]
-        [Description("Test GetAngleCount property.")]
+        [Description("PanGestureDetector GetAngleCount.")]
         [Property("SPEC", "Tizen.NUI.PanGestureDetector.GetAngleCount M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
@@ -473,20 +626,58 @@ namespace Tizen.NUI.Devel.Tests
         public void PanGestureDetectorGetAngleCount()
         {
             tlog.Debug(tag, $"PanGestureDetectorGetAngleCount START");
-            PanGestureDetector a1 = new PanGestureDetector();
 
-            Radian angle = new Radian(4);
-            a1.AddAngle(angle);
+            var testingTarget = new PanGestureDetector();
+            Assert.IsNotNull(testingTarget, "Can't create success object DetectedEventArgs.");
+            Assert.IsInstanceOf<PanGestureDetector>(testingTarget, "Should return PanGestureDetector instance.");
 
-            a1.GetAngleCount();
-            
+            using (Radian angle = new Radian(4))
+            {
+                testingTarget.AddAngle(angle);
+                var result = testingTarget.GetAngleCount();
+                tlog.Debug(tag, "GetAngleCount :" + result);
+            }
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"PanGestureDetectorGetAngleCount END (OK)");
-            Assert.Pass("PanGestureDetectorAddDirection");
         }
 
         [Test]
         [Category("P1")]
-        [Description("Test ClearAngles property.")]
+        [Description("PanGestureDetector GetAngle.")]
+        [Property("SPEC", "Tizen.NUI.PanGestureDetector.GetAngle M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void PanGestureDetectorGetAngle()
+        {
+            tlog.Debug(tag, $"PanGestureDetectorGetAngle START");
+
+            var testingTarget = new PanGestureDetector();
+            Assert.IsNotNull(testingTarget, "Can't create success object DetectedEventArgs.");
+            Assert.IsInstanceOf<PanGestureDetector>(testingTarget, "Should return PanGestureDetector instance.");
+
+            using (Radian angle = new Radian(4))
+            {
+                testingTarget.AddAngle(angle);
+
+                try
+                {
+                    testingTarget.GetAngle(1);
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception : Failed!");
+                }
+            }
+            
+            tlog.Debug(tag, $"PanGestureDetectorGetAngle END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("PanGestureDetector ClearAngles.")]
         [Property("SPEC", "Tizen.NUI.PanGestureDetector.ClearAngles M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
@@ -494,20 +685,33 @@ namespace Tizen.NUI.Devel.Tests
         public void PanGestureDetectorClearAngles()
         {
             tlog.Debug(tag, $"PanGestureDetectorClearAngles START");
-            PanGestureDetector a1 = new PanGestureDetector();
 
-            Radian angle = new Radian(4);
-            a1.AddAngle(angle);
+            var testingTarget = new PanGestureDetector();
+            Assert.IsNotNull(testingTarget, "Can't create success object DetectedEventArgs.");
+            Assert.IsInstanceOf<PanGestureDetector>(testingTarget, "Should return PanGestureDetector instance.");
 
-            a1.ClearAngles();
-            
+            using (Radian angle = new Radian(4))
+            {
+                testingTarget.AddAngle(angle);
+
+                try
+                {
+                    testingTarget.ClearAngles();
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception : Failed!");
+                }
+            }
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"PanGestureDetectorClearAngles END (OK)");
-            Assert.Pass("PanGestureDetectorClearAngles");
         }
 
         [Test]
         [Category("P1")]
-        [Description("Test RemoveAngle property.")]
+        [Description("PanGestureDetector RemoveAngle.")]
         [Property("SPEC", "Tizen.NUI.PanGestureDetector.RemoveAngle M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
@@ -515,21 +719,33 @@ namespace Tizen.NUI.Devel.Tests
         public void PanGestureDetectorRemoveAngle()
         {
             tlog.Debug(tag, $"PanGestureDetectorRemoveAngle START");
-            PanGestureDetector a1 = new PanGestureDetector();
 
-            Radian angle = new Radian(4);
-            a1.AddAngle(angle);
+            var testingTarget = new PanGestureDetector();
+            Assert.IsNotNull(testingTarget, "Can't create success object DetectedEventArgs.");
+            Assert.IsInstanceOf<PanGestureDetector>(testingTarget, "Should return PanGestureDetector instance.");
 
-            a1.RemoveAngle(angle);
-            
+            using (Radian angle = new Radian(4))
+            {
+                testingTarget.AddAngle(angle);
+
+                try
+                {
+                    testingTarget.RemoveAngle(angle);
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception : Failed!");
+                }
+            }
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"PanGestureDetectorRemoveAngle END (OK)");
-            Assert.Pass("PanGestureDetectorClearAngles");
         }
-
 
         [Test]
         [Category("P1")]
-        [Description("Test RemoveDirection property.")]
+        [Description("PanGestureDetector RemoveDirection.")]
         [Property("SPEC", "Tizen.NUI.PanGestureDetector.RemoveDirection M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
@@ -537,20 +753,33 @@ namespace Tizen.NUI.Devel.Tests
         public void PanGestureDetectorRemoveDirection()
         {
             tlog.Debug(tag, $"PanGestureDetectorRemoveDirection START");
-            PanGestureDetector a1 = new PanGestureDetector();
 
-            Radian angle = new Radian(4);
-            a1.AddDirection(angle);
+            var testingTarget = new PanGestureDetector();
+            Assert.IsNotNull(testingTarget, "Can't create success object DetectedEventArgs.");
+            Assert.IsInstanceOf<PanGestureDetector>(testingTarget, "Should return PanGestureDetector instance.");
 
-            a1.RemoveDirection(angle);
-            
+            using (Radian angle = new Radian(4))
+            {
+                testingTarget.AddDirection(angle);
+
+                try
+                {
+                    testingTarget.RemoveDirection(angle);
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception : Failed!");
+                }   
+            }
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"PanGestureDetectorRemoveDirection END (OK)");
-            Assert.Pass("PanGestureDetectorClearAngles");
         }
 
         [Test]
         [Category("P1")]
-        [Description("Test SetPanGestureProperties property.")]
+        [Description("PanGestureDetector SetPanGestureProperties.")]
         [Property("SPEC", "Tizen.NUI.PanGestureDetector.SetPanGestureProperties M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
@@ -558,17 +787,26 @@ namespace Tizen.NUI.Devel.Tests
         public void PanGestureDetectorSetPanGestureProperties()
         {
             tlog.Debug(tag, $"PanGestureDetectorSetPanGestureProperties START");
-            PanGesture pan = new PanGesture();
 
-            PanGestureDetector.SetPanGestureProperties(pan);
+            using (PanGesture pan = new PanGesture())
+            {
+                try
+                {
+                    PanGestureDetector.SetPanGestureProperties(pan);
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception : Failed!");
+                }
+            }
             
             tlog.Debug(tag, $"PanGestureDetectorSetPanGestureProperties END (OK)");
-            Assert.Pass("PanGestureDetectorClearAngles");
         }
 
         [Test]
         [Category("P1")]
-        [Description("Test GetPanGestureDetectorFromPtr property.")]
+        [Description("PanGestureDetector GetPanGestureDetectorFromPtr.")]
         [Property("SPEC", "Tizen.NUI.PanGestureDetector.GetPanGestureDetectorFromPtr M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
@@ -576,18 +814,66 @@ namespace Tizen.NUI.Devel.Tests
         public void PanGestureDetectorGetPanGestureDetectorFromPtr()
         {
             tlog.Debug(tag, $"PanGestureDetectorGetPanGestureDetectorFromPtr START");
-            PanGestureDetector a1 = new PanGestureDetector();
-			           
-            PanGestureDetector.GetPanGestureDetectorFromPtr(a1.SwigCPtr.Handle);
-            a1.Dispose();
-					
+
+            using (PanGestureDetector detector = new PanGestureDetector())
+            {
+                var testingTarget = PanGestureDetector.GetPanGestureDetectorFromPtr(detector.SwigCPtr.Handle);
+                Assert.IsNotNull(testingTarget, "Can't create success object DetectedEventArgs.");
+                Assert.IsInstanceOf<PanGestureDetector>(testingTarget, "Should return PanGestureDetector instance.");
+
+                testingTarget.Dispose();
+            }
+           		
             tlog.Debug(tag, $"PanGestureDetectorGetPanGestureDetectorFromPtr END (OK)");
-            Assert.Pass("PanGestureDetectorGetPanGestureDetectorFromPtr");
+        }
+
+		[Test]
+        [Category("P1")]
+        [Description("PanGestureDetector DownCast.")]
+        [Property("SPEC", "Tizen.NUI.PanGestureDetector.DownCast M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void PanGestureDetectorDownCast()
+        {
+            tlog.Debug(tag, $"PanGestureDetectorDownCast START");
+
+            using (PanGestureDetector detector = new PanGestureDetector())
+            {
+                var testingTarget = PanGestureDetector.DownCast(detector);
+                Assert.IsInstanceOf<PanGestureDetector>(testingTarget, "Should be an instance of PanGestureDetector type.");
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"PanGestureDetectorDownCast END (OK)");
         }
 		
 		[Test]
         [Category("P1")]
-        [Description("Test Detected property.")]
+        [Description("PanGestureDetector Assign")]
+        [Property("SPEC", "Tizen.NUI.PanGestureDetector.Assign M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void PanGestureDetectorAssign()
+        {
+            tlog.Debug(tag, $"PanGestureDetectorAssign START");
+
+            using (PanGestureDetector detector = new PanGestureDetector())
+            {
+                var testingTarget = detector.Assign(detector);
+                Assert.IsInstanceOf<PanGestureDetector>(testingTarget, "Should be an instance of PanGestureDetector type.");
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"PanGestureDetectorAssign END (OK)");		
+        }		
+
+		[Test]
+        [Category("P1")]
+        [Description("PanGestureDetector Detected.")]
         [Property("SPEC", "Tizen.NUI.PanGestureDetector.Detected A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
@@ -595,14 +881,16 @@ namespace Tizen.NUI.Devel.Tests
         public void PanGestureDetectorDetected()
         {
             tlog.Debug(tag, $"PanGestureDetectorDetected START");
-            PanGestureDetector a1 = new PanGestureDetector();
-			
-            a1.Detected += OnDetected;
-            a1.Detected -= OnDetected;
 
-            a1.Dispose();
+            var testingTarget = new PanGestureDetector();
+            Assert.IsNotNull(testingTarget, "Can't create success object DetectedEventArgs.");
+            Assert.IsInstanceOf<PanGestureDetector>(testingTarget, "Should return PanGestureDetector instance.");
+
+            testingTarget.Detected += OnDetected;
+            testingTarget.Detected -= OnDetected;
+
+            testingTarget.Dispose();
             tlog.Debug(tag, $"PanGestureDetectorDetected END (OK)");
-            Assert.Pass("PanGestureDetectorDetected");
         }		
 		
 		private void OnDetected(object obj, PanGestureDetector.DetectedEventArgs e)
@@ -623,7 +911,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void LongPressGestureDetectedEventArgsView()
+        public void PanGestureDetectedEventArgsView()
         {
             tlog.Debug(tag, $"PanGestureDetectedEventArgsView START");
 
@@ -645,5 +933,4 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"PanGestureDetectedEventArgsView END (OK)");
         }
     }
-
 }

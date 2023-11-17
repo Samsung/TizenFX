@@ -29,10 +29,7 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty ResourceURLProperty = BindableProperty.Create(nameof(ResourceURL), typeof(string), typeof(AnimatedVectorImageView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
-            if (newValue != null)
-            {
-                instance.InternalResourceURL = (string)newValue;
-            }
+            instance.InternalResourceURL = (string)newValue;
         },
         defaultValueCreator: (bindable) =>
         {
@@ -47,10 +44,7 @@ namespace Tizen.NUI.BaseComponents
         public static new readonly BindableProperty ResourceUrlProperty = BindableProperty.Create(nameof(ResourceUrl), typeof(string), typeof(AnimatedVectorImageView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
-            if (newValue != null)
-            {
-                instance.InternalResourceUrl = (string)newValue;
-            }
+            instance.InternalResourceUrl = (string)newValue;
         },
         defaultValueCreator: (bindable) =>
         {

@@ -218,6 +218,26 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
+        /// Gets or sets the timestamp of the media source.
+        /// </summary>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaVisionSource"/> has already been disposed.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        public ulong Timestamp
+        {
+            get
+            {
+                var ret = InteropSource.GetTimestamp(Handle, out ulong timestamp);
+                MultimediaDebug.AssertNoError(ret);
+                return timestamp;
+            }
+            set
+            {
+                var ret = InteropSource.SetTimestamp(Handle, value);
+                MultimediaDebug.AssertNoError(ret);
+            }
+        }
+
+        /// <summary>
         /// Gets the supported colorspaces for <see cref="MediaVisionSource"/>.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>

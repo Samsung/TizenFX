@@ -4,6 +4,7 @@ using NUnit.Framework.TUnit;
 using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Tizen.NUI.Devel.Tests
 {
@@ -491,15 +492,18 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void PaletteGenerateAsync()
+        public async Task PaletteGenerateAsync()
         {
             tlog.Debug(tag, $"PaletteGenerateAsync START");
 
             try
             {
-                using (PixelBuffer buffer = new PixelBuffer(2, 2, PixelFormat.A8))
+                using (PixelBuffer buffer = new PixelBuffer(100, 200, PixelFormat.A8))
                 {
-                    _ = Palette.GenerateAsync(buffer);
+                    var result = Palette.GenerateAsync(buffer);
+
+                    await Task.Delay(5000);
+                    Assert.IsNotNull(result, "Should not be null!");
                 }
             }
             catch (Exception e)
@@ -518,17 +522,20 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void PaletteGenerateAsyncWithRectangle()
+        public async Task PaletteGenerateAsyncWithRectangle()
         {
             tlog.Debug(tag, $"PaletteGenerateAsyncWithRectangle START");
 
             try
             {
-                using (PixelBuffer buffer = new PixelBuffer(2, 2, PixelFormat.A8))
+                using (PixelBuffer buffer = new PixelBuffer(100, 200, PixelFormat.A8))
                 {
-                    using (Rectangle region = new Rectangle(1, 1, 1, 1))
+                    using (Rectangle region = new Rectangle(4, 4, 4, 4))
                     {
-                        _ = Palette.GenerateAsync(buffer, region);
+                        var result = Palette.GenerateAsync(buffer, region);
+
+                        await Task.Delay(5000);
+                        Assert.IsNotNull(result, "Should not be null!");
                     }
                 }
             }

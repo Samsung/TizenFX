@@ -13,7 +13,6 @@ namespace Tizen.NUI.Devel.Tests
     public class InternalAnimationSignalTest
     {
         private const string tag = "NUITEST";
-        private global::System.IntPtr OnIntPtrCallback; 
         private delegate bool dummyCallback(IntPtr animation);
         private bool OnDummyCallback(IntPtr data)
         {
@@ -113,8 +112,9 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "should be not null");
             Assert.IsInstanceOf<AnimationSignal>(testingTarget, "should be an instance of testing target class!");
 
-            testingTarget.Connect(OnIntPtrCallback);
-            testingTarget.Disconnect(OnIntPtrCallback);
+            dummyCallback callback = OnDummyCallback;
+            testingTarget.Connect(callback);
+            testingTarget.Disconnect(callback);
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"AnimationSignalConnectionWithIntPtr END (OK)");
@@ -150,8 +150,9 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "should be not null");
             Assert.IsInstanceOf<AnimationSignal>(testingTarget, "should be an instance of testing target class!");
 
-            testingTarget.Connect(OnIntPtrCallback);
-            testingTarget.Disconnect(OnIntPtrCallback);
+            dummyCallback callback = OnDummyCallback;
+            testingTarget.Connect(callback);
+            testingTarget.Disconnect(callback);
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"AnimationSignalDisconnectionWithIntPtr END (OK)");

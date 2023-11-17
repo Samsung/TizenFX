@@ -41,7 +41,13 @@ namespace Tizen.NUI.Samples
         private void CreateNullStylePart()
         {
             null_style_parent = new View() { Size = new Size(960, 540) };
-            null_style_parent.Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical, LinearAlignment = LinearLayout.Alignment.Center, CellPadding = new Size2D(0, 50) };
+            null_style_parent.Layout = new LinearLayout() 
+            {
+                LinearOrientation = LinearLayout.Orientation.Vertical,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                CellPadding = new Size2D(0, 50)
+            };
             top_parent.Add(null_style_parent);
 
             // Add Textlabel of "Null style construction"
@@ -81,7 +87,13 @@ namespace Tizen.NUI.Samples
         private void CreateStylePart()
         {
             style_parent = new View() { Size = new Size(960, 540) };
-            style_parent.Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical, LinearAlignment = LinearLayout.Alignment.CenterVertical, CellPadding = new Size2D(0, 50) };
+            style_parent.Layout = new LinearLayout() 
+            {
+                LinearOrientation = LinearLayout.Orientation.Vertical,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                CellPadding = new Size2D(0, 50)
+            };
             top_parent.Add(style_parent);
 
             // Add Textlabel of "Style construction"
@@ -125,7 +137,13 @@ namespace Tizen.NUI.Samples
         private void CreateBottomView()
         {
             bottom_parent = new View() { Size = new Size(1920, 540) };
-            bottom_parent.Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Horizontal, LinearAlignment = LinearLayout.Alignment.Center, CellPadding = new Size2D(50, 50) };
+            bottom_parent.Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                CellPadding = new Size2D(50, 50)
+            };
             root.Add(bottom_parent);
 
             // Create buttons

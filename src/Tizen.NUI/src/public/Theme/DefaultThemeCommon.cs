@@ -14,7 +14,6 @@
  * limitations under the License.
  *
  */
-#if !PROFILE_TV
 
 using System.Diagnostics.CodeAnalysis;
 using Tizen.NUI.BaseComponents;
@@ -38,19 +37,20 @@ namespace Tizen.NUI
             // TextLabel style.
             theme.AddStyleWithoutClone("Tizen.NUI.BaseComponents.TextLabel", new TextLabelStyle()
             {
-                FontFamily = "TizenSans",
+                FontFamily = Tizen.NUI.FontFamily.UseSystemSetting,
                 PixelSize = 24,
                 TextColor = new Color(0.04f, 0.05f, 0.13f, 1),
                 FontStyle = new PropertyMap().Add("weight", new PropertyValue("regular")),
                 AutoScrollLoopCount = 2,
                 AutoScrollGap = 50.0f,
                 AutoScrollSpeed = 80,
+                FontSizeScale = Tizen.NUI.FontSizeScale.UseSystemSetting,
             });
 
             // TextField style.
             theme.AddStyleWithoutClone("Tizen.NUI.BaseComponents.TextField", new TextFieldStyle()
             {
-                FontFamily = "TizenSans",
+                FontFamily = Tizen.NUI.FontFamily.UseSystemSetting,
                 PixelSize = 24,
                 TextColor = new Color(0.04f, 0.05f, 0.13f, 1),
                 PlaceholderTextColor = new Vector4(0.79f, 0.79f, 0.79f, 1),
@@ -58,6 +58,7 @@ namespace Tizen.NUI
                 PrimaryCursorColor = new Vector4(0.04f, 0.05f, 0.13f, 1),
                 SecondaryCursorColor = new Vector4(0.04f, 0.05f, 0.13f, 1),
                 CursorWidth = 2,
+                FontSizeScale = Tizen.NUI.FontSizeScale.UseSystemSetting,
                 SelectionHighlightColor = new Vector4(1.00f, 0.38f, 0.00f, 0.30f),
                 GrabHandleColor = new Color(1.00f, 1.00f, 1.00f, 1),
                 GrabHandleImage = FrameworkInformation.ResourcePath + "IoT_handler_center_downW.png",
@@ -86,7 +87,7 @@ namespace Tizen.NUI
             // TextEditor style.
             theme.AddStyleWithoutClone("Tizen.NUI.BaseComponents.TextEditor", new TextEditorStyle()
             {
-                FontFamily = "TizenSans",
+                FontFamily = Tizen.NUI.FontFamily.UseSystemSetting,
                 PixelSize = 24,
                 TextColor = new Color(0.04f, 0.05f, 0.13f, 1),
                 PlaceholderTextColor = new Color(0.79f, 0.79f, 0.79f, 1),
@@ -94,6 +95,10 @@ namespace Tizen.NUI
                 PrimaryCursorColor = new Vector4(0.04f, 0.05f, 0.13f, 1),
                 SecondaryCursorColor = new Vector4(0.04f, 0.05f, 0.13f, 1),
                 CursorWidth = 2,
+                EnableScrollBar = true,
+                ScrollBarShowDuration = 0.8f,
+                ScrollBarFadeDuration = 0.5f,
+                FontSizeScale = Tizen.NUI.FontSizeScale.UseSystemSetting,
                 SelectionHighlightColor = new Vector4(1.00f, 0.38f, 0.00f, 0.30f),
                 GrabHandleColor = new Color(1.00f, 1.00f, 1.00f, 1),
                 GrabHandleImage = FrameworkInformation.ResourcePath + "IoT_handler_center_downW.png",
@@ -124,4 +129,3 @@ namespace Tizen.NUI
     }
 }
 
-#endif // !PROFILE_TV

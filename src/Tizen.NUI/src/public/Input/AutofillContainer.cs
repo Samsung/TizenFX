@@ -34,7 +34,7 @@ namespace Tizen.NUI
         private event EventHandler<AuthenticationEventArgs> authenticationEventHandler;
         private event EventHandler<ListEventArgs> listEventHandler;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void AuthenticationEventCallbackType(IntPtr autofillContainer);
         private delegate void ListEventCallbackType(IntPtr control);
 
@@ -105,11 +105,15 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal AutofillContainer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal AutofillContainer(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
         {
         }
 
-        internal AutofillContainer(AutofillContainer autofillContainer) : this(Interop.AutofillContainer.NewAutofillContainer(AutofillContainer.getCPtr(autofillContainer)), true)
+        internal AutofillContainer(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
+        {
+        }
+
+        internal AutofillContainer(AutofillContainer autofillContainer) : this(Interop.AutofillContainer.NewAutofillContainer(AutofillContainer.getCPtr(autofillContainer)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

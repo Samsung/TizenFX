@@ -17,6 +17,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Tizen.NUI
 {
@@ -147,6 +148,18 @@ namespace Tizen.NUI
         }
         protected static SWIGExceptionHelper swigExceptionHelper = new SWIGExceptionHelper();
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        internal static void ThrowExceptionIfExists()
+        {
+            if (SWIGPendingException.Pending) throw SWIGPendingException.Retrieve();
+        }
+
+        [System.Diagnostics.Conditional("DEBUG")]
+        internal static void ThrowExceptionIfExistsDebug()
+        {
+            if (SWIGPendingException.Pending) throw SWIGPendingException.Retrieve();
+        }
+
         /// <since_tizen> 3 </since_tizen>
         public class SWIGPendingException
         {
@@ -232,6 +245,14 @@ namespace Tizen.NUI
         {
         }
 
+        static internal void Preload()
+        {
+            // Do nothing. Just call for load static values.
+            var temporalSwigExceptionHelper = swigExceptionHelper;
+            var temporalSwigStringHelper = swigStringHelper;
+            ThrowExceptionIfExists();
+        }
+
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_BaseHandle")]
         public static extern void DeleteBaseHandle(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -277,6 +298,9 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_LowMemorySignal")]
         public static extern global::System.IntPtr ApplicationLowMemorySignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_DeviceOrientationChangedSignal")]
+        public static extern global::System.IntPtr ApplicationDeviceOrientationChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
         //Task
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_TaskInitSignal")]
         public static extern global::System.IntPtr ApplicationTaskInitSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -299,9 +323,20 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_TaskLowMemorySignal")]
         public static extern global::System.IntPtr ApplicationTaskLowMemorySignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_TaskDeviceOrientationChangedSignal")]
+        public static extern global::System.IntPtr ApplicationTaskDeviceOrientationChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
         [Obsolete("This has been deprecated in API9 and will be removed in API11. Use NDalicPINVOKE.DeleteBaseHandle(...) instead.")]
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_BaseHandle")]
         public static extern void delete_BaseHandle(global::System.Runtime.InteropServices.HandleRef jarg1);
+    }
+
+    internal static class NDalicExtension
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        internal static global::System.Runtime.InteropServices.HandleRef ToHandleRef(this Delegate caller, object wrapper)
+        {
+            return new global::System.Runtime.InteropServices.HandleRef(wrapper, global::System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<Delegate>(caller));
+        }
     }
 }

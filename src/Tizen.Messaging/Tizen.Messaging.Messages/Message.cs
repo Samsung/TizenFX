@@ -24,6 +24,7 @@ namespace Tizen.Messaging.Messages
     /// This class represents all the messages.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public abstract class Message : IDisposable
     {
         internal IntPtr _messageHandle = IntPtr.Zero;
@@ -72,6 +73,7 @@ namespace Tizen.Messaging.Messages
         /// Releases all resources used by the Message.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public void Dispose()
         {
             Dispose(true);
@@ -189,6 +191,7 @@ namespace Tizen.Messaging.Messages
         /// After creating the Message object, the default value of this property is 0. After sending, this value is changed.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public int Id
         {
             get
@@ -208,6 +211,7 @@ namespace Tizen.Messaging.Messages
         /// The destination port of the message.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public int Port
         {
             get
@@ -227,6 +231,7 @@ namespace Tizen.Messaging.Messages
         /// The message box type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public MessageBoxType BoxType
         {
             get
@@ -255,6 +260,7 @@ namespace Tizen.Messaging.Messages
         /// The text of the message.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Text
         {
             get
@@ -283,6 +289,7 @@ namespace Tizen.Messaging.Messages
         /// The time of the message.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public DateTime Time
         {
             get
@@ -311,6 +318,7 @@ namespace Tizen.Messaging.Messages
         /// The SIM slot index of the message.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public SimSlotId SimId
         {
             get
@@ -339,6 +347,7 @@ namespace Tizen.Messaging.Messages
         /// Indicates the sender of the message.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public IReadOnlyCollection<MessagesAddress> From
         {
             get

@@ -23,6 +23,7 @@ namespace Tizen.Security.DevicePolicyManager
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     /// <remarks>The BluetoothPolicy is created by <seealso cref="DevicePolicyManager.GetPolicy{T}"/>. and the DevicePolicyManager instance must exists when using the BluetoothPolicy.</remarks>
+    [Obsolete("Deprecated since API level 11.")]
     public class BluetoothPolicy : DevicePolicy, IDisposable
     {
         /// <summary>
@@ -30,6 +31,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// </summary>
         /// <remarks>This is used in <see cref="PolicyChangedEventArgs.PolicyName"/>.</remarks>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API level 11.")]
         public static readonly string BluetoothPolicyName = "Bluetooth";
 
         /// <summary>
@@ -37,6 +39,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// </summary>
         /// <remarks>This is used in <see cref="PolicyChangedEventArgs.PolicyName"/>.</remarks>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API level 11.")]
         public static readonly string BluetoothTetheringPolicyName = "BluetoothTethering";
 
         private readonly string _bluetoothPolicyName = "bluetooth";
@@ -57,6 +60,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <summary>
         /// A Destructor of BluetoothPolicy.
         /// </summary>
+        [Obsolete("Deprecated since API level 11.")]
         ~BluetoothPolicy()
         {
             this.Dispose(false);
@@ -67,6 +71,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// </summary>
         /// <value>true if the change is allowed, false otherwise. The default value is true.</value>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API level 11.")]
         public bool IsBluetoothAllowed
         {
             get
@@ -88,6 +93,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// </summary>
         /// <value>true if the change is allowed, false otherwise. The default value is true.</value>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API level 11.")]
         public bool IsBluetoothTetheringAllowed
         {
             get
@@ -107,6 +113,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <summary>
         /// Releases any unmanaged resources used by this object.
         /// </summary>
+        [Obsolete("Deprecated since API level 11.")]
         public void Dispose()
         {
             this.Dispose(true);
@@ -117,6 +124,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        [Obsolete("Deprecated since API level 11.")]
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -159,6 +167,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// </summary>
         /// <remarks>This event will be removed automatically when BluetoothPolicy is destroyed.</remarks>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API level 11.")]
         public event EventHandler<PolicyChangedEventArgs> BluetoothPolicyChanged
         {
             add
@@ -217,6 +226,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// </summary>
         /// <remarks>This event will be removed automatically when BluetoothPolicy is destroyed.</remarks>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API level 11.")]
         public event EventHandler<PolicyChangedEventArgs> BluetoothTetheringPolicyChanged
         {
             add

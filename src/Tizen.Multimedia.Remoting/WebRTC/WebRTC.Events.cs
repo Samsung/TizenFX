@@ -186,7 +186,7 @@ namespace Tizen.Multimedia.Remoting
         {
             _webRtcErrorOccurredCallback = (handle, error, state, _) =>
             {
-                // Log.Info(WebRTCLog.Tag, $"{error}, {state}");
+                Log.Info(WebRTCLog.Tag, $"{error}, {state}");
 
                 ErrorOccurred?.Invoke(this, new WebRTCErrorOccurredEventArgs((WebRTCError)error, state));
             };
@@ -205,7 +205,7 @@ namespace Tizen.Multimedia.Remoting
         {
             _webRtcStateChangedCallback = (handle, previous, current, _) =>
             {
-                // Log.Info(WebRTCLog.Tag, $"{previous}, {current}");
+                Log.Info(WebRTCLog.Tag, $"{previous}, {current}");
 
                 StateChanged?.Invoke(this, new WebRTCStateChangedEventArgs(previous, current));
             };
@@ -224,7 +224,7 @@ namespace Tizen.Multimedia.Remoting
         {
             _webRtcIceGatheringStateChangedCallback = (handle, state, _) =>
             {
-                // Log.Info(WebRTCLog.Tag, $"Ice gathering state : {state}");
+                Log.Info(WebRTCLog.Tag, $"Ice gathering state : {state}");
 
                 IceGatheringStateChanged?.Invoke(this, new WebRTCIceGatheringStateChangedEventArgs(state));
             };
@@ -243,7 +243,7 @@ namespace Tizen.Multimedia.Remoting
         {
             _webRtcSignalingStateChangedCallback = (handle, state, _) =>
             {
-                // Log.Info(WebRTCLog.Tag, $"Signaling state : {state}");
+                Log.Info(WebRTCLog.Tag, $"Signaling state : {state}");
 
                 SignalingStateChanged?.Invoke(this, new WebRTCSignalingStateChangedEventArgs(state));
             };
@@ -281,7 +281,7 @@ namespace Tizen.Multimedia.Remoting
         {
             _webRtcIceConnectionStateChangedCallback = (handle, state, _) =>
             {
-                // Log.Info(WebRTCLog.Tag, $"Ice connection state : {state}");
+                Log.Info(WebRTCLog.Tag, $"Ice connection state : {state}");
 
                 IceConnectionStateChanged?.Invoke(this, new WebRTCIceConnectionStateChangedEventArgs(state));
             };
@@ -334,7 +334,7 @@ namespace Tizen.Multimedia.Remoting
         {
             _webRtcTrackAddedCallback = (handle, type, id, _) =>
             {
-                // Log.Info(WebRTCLog.Tag, $"Track type[{type}], id[{id}]");
+                Log.Info(WebRTCLog.Tag, $"Track type[{type}], id[{id}]");
 
                 TrackAdded?.Invoke(this, new WebRTCTrackAddedEventArgs(new MediaStreamTrack(this, type, id)));
             };

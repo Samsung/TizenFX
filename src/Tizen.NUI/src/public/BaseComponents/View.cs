@@ -72,149 +72,20 @@ namespace Tizen.NUI.BaseComponents
         private int layoutCount = 0;
         private ControlState propagatableControlStates = ControlState.All;
 
-        // List of dispatch Event
-        private PanGestureDetector panGestureDetector = null;
-        private LongPressGestureDetector longGestureDetector = null;
-        private PinchGestureDetector pinchGestureDetector = null;
-        private TapGestureDetector tapGestureDetector = null;
-        private RotationGestureDetector rotationGestureDetector = null;
-        private int configGestureCount = 0;
-        private bool dispatchTouchEvents = true;
-        private bool dispatchGestureEvents = true;
-        private bool dispatchParentGestureEvents = true;
+        private string internalName = string.Empty;
+        private Position internalCurrentParentOrigin = null;
+        private Position internalCurrentAnchorPoint = null;
+        private Vector3 internalTargetSize = null;
+        private Size2D internalCurrentSize = null;
+        private Position internalCurrentPosition = null;
+        private Vector3 internalCurrentWorldPosition = null;
+        private Vector3 internalCurrentScale = null;
+        private Vector3 internalCurrentWorldScale = null;
+        private Vector4 internalCurrentColor = null;
+        private Vector4 internalCurrentWorldColor = null;
+        private Vector2 internalCurrentScreenPosition = null;
 
-#if NUI_PROPERTY_CHANGE_DEBUG
-internal static int LayoutSetGetter = 0;
-internal static int SizeGetter = 0;
-internal static int SizeSetter = 0;
-internal static int Size2DGetter = 0;
-internal static int Size2DSetter = 0;
-internal static int MaximumSizeGetter = 0;
-internal static int MaximumSizeSetter = 0;
-internal static int MinimumSizeGetter = 0;
-internal static int MinimumSizeSetter = 0;
-internal static int PositionGetter = 0;
-internal static int PositionSetter = 0;
-internal static int Position2DGetter = 0;
-internal static int Position2DSetter = 0;
-internal static int SizeWidthGetter = 0;
-internal static int SizeWidthSetter = 0;
-internal static int SizeHeightGetter = 0;
-internal static int SizeHeightSetter = 0;
-internal static int PositionXGetter = 0;
-internal static int PositionXSetter = 0;
-internal static int PositionYGetter = 0;
-internal static int PositionYSetter = 0;
-internal static int PositionZGetter = 0;
-internal static int PositionZSetter = 0;
-internal static int StyleNameGetter = 0;
-internal static int StyleNameSetter = 0;
-internal static int KeyInputFocusGetter = 0;
-internal static int KeyInputFocusSetter = 0;
-internal static int ColorGetter = 0;
-internal static int ColorSetter = 0;
-
-
-internal static int ColorRedSetter = 0;
-internal static int ColorGreenSetter = 0;
-internal static int ColorBlueSetter = 0;
-internal static int StateSetter = 0;
-internal static int SubStateSetter = 0;
-internal static int FlexSetter = 0;
-internal static int AlignSelfSetter = 0;
-internal static int FlexMarginSetter = 0;
-internal static int CellIndexSetter = 0;
-internal static int RowSpanSetter = 0;
-internal static int ColumnSpanSetter = 0;
-internal static int CellHorizontalAlignmentSetter = 0;
-internal static int CellVerticalAlignmentSetter = 0;
-internal static int OpacitySetter = 0;
-internal static int PositionUsesPivotPointSetter = 0;
-internal static int ParentOriginSetter = 0;
-internal static int PivotPointSetter = 0;
-internal static int OrientationSetter = 0;
-internal static int ScaleSetter = 0;
-internal static int ScaleXSetter = 0;
-internal static int ScaleYSetter = 0;
-internal static int ScaleZSetter = 0;
-internal static int NameSetter = 0;
-internal static int SensitiveSetter = 0;
-internal static int IsEnabledSetter = 0;
-internal static int DispatchKeyEventsSetter = 0;
-internal static int LeaveRequiredSetter = 0;
-internal static int InheritOrientationSetter = 0;
-internal static int InheritScaleSetter = 0;
-internal static int DrawModeSetter = 0;
-internal static int SizeModeFactorSetter = 0;
-internal static int WidthResizePolicySetter = 0;
-internal static int HeightResizePolicySetter = 0;
-internal static int SizeScalePolicySetter = 0;
-internal static int WidthForHeightSetter = 0;
-internal static int HeightForWidthSetter = 0;
-internal static int InheritPositionSetter = 0;
-internal static int ClippingModeSetter = 0;
-internal static int InheritLayoutDirectionSetter = 0;
-internal static int LayoutDirectionSetter = 0;
-internal static int UpdateAreaHintSetter = 0;
-internal static int AccessibilityNameSetter = 0;
-internal static int AccessibilityDescriptionSetter = 0;
-internal static int AccessibilityTranslationDomainSetter = 0;
-internal static int AccessibilityRoleSetter = 0;
-internal static int AccessibilityHighlightableSetter = 0;
-internal static int AccessibilityHiddenSetter = 0;
-internal static int AutomationIdSetter = 0;
-
-internal static int ColorRedGetter = 0;
-internal static int ColorGreenGetter = 0;
-internal static int ColorBlueGetter = 0;
-internal static int StateGetter = 0;
-internal static int SubStateGetter = 0;
-internal static int FlexGetter = 0;
-internal static int AlignSelfGetter = 0;
-internal static int FlexMarginGetter = 0;
-internal static int CellIndexGetter = 0;
-internal static int RowSpanGetter = 0;
-internal static int ColumnSpanGetter = 0;
-internal static int CellHorizontalAlignmentGetter = 0;
-internal static int CellVerticalAlignmentGetter = 0;
-internal static int OpacityGetter = 0;
-internal static int PositionUsesPivotPointGetter = 0;
-internal static int ParentOriginGetter = 0;
-internal static int PivotPointGetter = 0;
-internal static int OrientationGetter = 0;
-internal static int ScaleGetter = 0;
-internal static int ScaleXGetter = 0;
-internal static int ScaleYGetter = 0;
-internal static int ScaleZGetter = 0;
-internal static int NameGetter = 0;
-internal static int SensitiveGetter = 0;
-internal static int IsEnabledGetter = 0;
-internal static int DispatchKeyEventsGetter = 0;
-internal static int LeaveRequiredGetter = 0;
-internal static int InheritOrientationGetter = 0;
-internal static int InheritScaleGetter = 0;
-internal static int DrawModeGetter = 0;
-internal static int SizeModeFactorGetter = 0;
-internal static int WidthResizePolicyGetter = 0;
-internal static int HeightResizePolicyGetter = 0;
-internal static int SizeScalePolicyGetter = 0;
-internal static int WidthForHeightGetter = 0;
-internal static int HeightForWidthGetter = 0;
-internal static int InheritPositionGetter = 0;
-internal static int ClippingModeGetter = 0;
-internal static int InheritLayoutDirectionGetter = 0;
-internal static int LayoutDirectionGetter = 0;
-internal static int UpdateAreaHintGetter = 0;
-internal static int AccessibilityNameGetter = 0;
-internal static int AccessibilityDescriptionGetter = 0;
-internal static int AccessibilityTranslationDomainGetter = 0;
-internal static int AccessibilityRoleGetter = 0;
-internal static int AccessibilityHighlightableGetter = 0;
-internal static int AccessibilityHiddenGetter = 0;
-internal static int AutomationIdGetter = 0;
-
-
-#endif
+        private static int aliveCount = 0;
 
         static View()
         {
@@ -236,11 +107,65 @@ internal static int AutomationIdGetter = 0;
             RegisterAccessibilityDelegate();
         }
 
+        static internal new void Preload()
+        {
+            Container.Preload();
+
+            // Do nothing. Just call for load static values.
+            var temporalPositionPropertyGroup = positionPropertyGroup;
+            var temporalSizePropertyGroup = sizePropertyGroup;
+            var temporalScalePropertyGroup = scalePropertyGroup;
+        }
+
+        /// <summary>
+        /// Accessibility mode for controlling View's Accessible implementation.
+        /// It is only relevant when deriving custom controls from View directly,
+        /// as classes derived from CustomView (or any of its subclasses) get the
+        /// Custom mode by default.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum ViewAccessibilityMode
+        {
+            /// <summary>
+            /// Default accessibility implementation. Overriding View.Accessibility...()
+            /// virtual methods will have no effect.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Default,
+            /// <summary>
+            /// Custom accessibility implementation. Overriding View.Accessibility...()
+            /// will be necessary to provide accessibility support for the View.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Custom,
+        }
+
+        private static IntPtr NewWithAccessibilityMode(ViewAccessibilityMode accessibilityMode)
+        {
+            switch (accessibilityMode)
+            {
+                case ViewAccessibilityMode.Custom:
+                {
+                    return Interop.View.NewCustom();
+                }
+                case ViewAccessibilityMode.Default:
+                default:
+                {
+                    return Interop.View.New();
+                }
+            }
+        }
+
         /// <summary>
         /// Creates a new instance of a view.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public View() : this(Interop.View.New(), true)
+        public View() : this(ViewAccessibilityMode.Default)
+        {
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View(ViewAccessibilityMode accessibilityMode) : this(NewWithAccessibilityMode(accessibilityMode), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -263,44 +188,30 @@ internal static int AutomationIdGetter = 0;
             SetVisible(shown);
         }
 
-        internal View(View uiControl, bool shown = true) : this(Interop.View.NewView(View.getCPtr(uiControl)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            if (!shown)
-            {
-                SetVisible(false);
-            }
-
-            backgroundExtraData = uiControl.backgroundExtraData == null ? null : new BackgroundExtraData(uiControl.backgroundExtraData);
-        }
-
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : this(cPtr, cMemoryOwn, shown)
         {
             InitializeStyle(viewStyle);
         }
 
-        internal View(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(cPtr, cMemoryOwn)
+        internal View(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : this(cPtr, cMemoryOwn, shown, cMemoryOwn)
+        {
+        }
+
+        internal View(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
             if (HasBody())
             {
                 PositionUsesPivotPoint = false;
+                GrabTouchAfterLeave = defaultGrabTouchAfterLeave;
+                AllowOnlyOwnTouch = defaultAllowOnlyOwnTouch;
             }
-
-            onWindowSendEventCallback = SendViewAddedEventToWindow;
-            using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOnSceneSignal(SwigCPtr), false);
-            signal?.Connect(onWindowSendEventCallback);
-
-            hitTestResultDataCallback = OnHitTestResult;
-            using TouchDataSignal touchDataSignal = new TouchDataSignal(Interop.ActorSignal.ActorHitTestResultSignal(SwigCPtr), false);
-            touchDataSignal?.Connect(hitTestResultDataCallback);
 
             if (!shown)
             {
                 SetVisible(false);
             }
 
-            GrabTouchAfterLeave = defaultGrabTouchAfterLeave;
-            AllowOnlyOwnTouch = defaultAllowOnlyOwnTouch;
+            aliveCount++;
         }
 
         internal View(ViewImpl implementation, bool shown = true) : this(Interop.View.NewViewInternal(ViewImpl.getCPtr(implementation)), true)
@@ -331,9 +242,6 @@ internal static int AutomationIdGetter = 0;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-LayoutSetGetter++;
-#endif
                 return layoutSet;
             }
         }
@@ -559,16 +467,10 @@ LayoutSetGetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-StyleNameGetter++;
-#endif
                 return (string)GetValue(StyleNameProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-StyleNameSetter++;
-#endif
                 SetValue(StyleNameProperty, value);
                 NotifyPropertyChanged();
             }
@@ -582,16 +484,10 @@ StyleNameSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-KeyInputFocusGetter++;
-#endif
                 return (bool)GetValue(KeyInputFocusProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-KeyInputFocusSetter++;
-#endif
                 SetValue(KeyInputFocusProperty, value);
                 NotifyPropertyChanged();
             }
@@ -902,16 +798,10 @@ KeyInputFocusSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-StateGetter++;
-#endif
                 return (States)GetValue(StateProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-StateSetter++;
-#endif
                 SetValue(StateProperty, value);
                 NotifyPropertyChanged();
             }
@@ -925,16 +815,10 @@ StateSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-SubStateGetter++;
-#endif
                 return (States)GetValue(SubStateProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-SubStateSetter++;
-#endif
                 SetValue(SubStateProperty, value);
                 NotifyPropertyChanged();
             }
@@ -979,12 +863,24 @@ SubStateSetter++;
             {
                 using (var propertyValue = GetProperty(Property.TOOLTIP))
                 {
-                    if (propertyValue != null && propertyValue.Get(out string retrivedValue))
+                    using var propertyMap = new PropertyMap();
+                    if (propertyValue != null && propertyValue.Get(propertyMap))
                     {
-                        return retrivedValue;
+                        using var retrivedContentValue = propertyMap?.Find(NDalic.TooltipContent);
+                        if (retrivedContentValue != null)
+                        {
+                            using var contextPropertyMap = new PropertyMap();
+                            if (retrivedContentValue.Get(contextPropertyMap))
+                            {
+                                using var retrivedTextValue = contextPropertyMap?.Find(NDalic.TextVisualText);
+                                if (retrivedTextValue != null && retrivedTextValue.Get(out string retrivedValue))
+                                {
+                                    return retrivedValue;
+                                }
+                            }
+                        }
                     }
-                    NUILog.Error($"[ERROR] Fail to get TooltipText! Return error MSG (error to get TooltipText)!");
-                    return "error to get TooltipText";
+                    return "";
                 }
             }
             set
@@ -1007,16 +903,10 @@ SubStateSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-FlexGetter++;
-#endif
                 return (float)GetValue(FlexProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-FlexSetter++;
-#endif
                 SetValue(FlexProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1032,16 +922,10 @@ FlexSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-AlignSelfGetter++;
-#endif
                 return (int)GetValue(AlignSelfProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-AlignSelfSetter++;
-#endif
                 SetValue(AlignSelfProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1060,17 +944,11 @@ AlignSelfSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-FlexMarginGetter++;
-#endif
                 Vector4 temp = (Vector4)GetValue(FlexMarginProperty);
                 return new Vector4(OnFlexMarginChanged, temp.X, temp.Y, temp.Z, temp.W);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-FlexMarginSetter++;
-#endif
                 SetValue(FlexMarginProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1099,16 +977,10 @@ FlexMarginSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-CellIndexGetter++;
-#endif
                 return (Vector2)GetValue(CellIndexProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-CellIndexSetter++;
-#endif
                 SetValue(CellIndexProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1125,16 +997,10 @@ CellIndexSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-RowSpanGetter++;
-#endif
                 return (float)GetValue(RowSpanProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-RowSpanSetter++;
-#endif
                 SetValue(RowSpanProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1151,16 +1017,10 @@ RowSpanSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-ColumnSpanGetter++;
-#endif
                 return (float)GetValue(ColumnSpanProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-ColumnSpanSetter++;
-#endif
                 SetValue(ColumnSpanProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1177,16 +1037,10 @@ ColumnSpanSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-CellHorizontalAlignmentGetter++;
-#endif
                 return (HorizontalAlignmentType)GetValue(CellHorizontalAlignmentProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-CellHorizontalAlignmentSetter++;
-#endif
                 SetValue(CellHorizontalAlignmentProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1203,16 +1057,10 @@ CellHorizontalAlignmentSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-CellVerticalAlignmentGetter++;
-#endif
                 return (VerticalAlignmentType)GetValue(CellVerticalAlignmentProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-CellVerticalAlignmentSetter++;
-#endif
                 SetValue(CellVerticalAlignmentProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1436,10 +1284,6 @@ CellVerticalAlignmentSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-Size2DGetter++;
-#endif
-
                 var temp = (Size2D)GetValue(Size2DProperty);
 
                 if (this.Layout == null)
@@ -1452,10 +1296,6 @@ Size2DGetter++;
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-Size2DSetter++;
-#endif
-
                 SetValue(Size2DProperty, value);
 
                 NotifyPropertyChanged();
@@ -1497,16 +1337,10 @@ Size2DSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-OpacityGetter++;
-#endif
                 return (float)GetValue(OpacityProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-OpacitySetter++;
-#endif
                 SetValue(OpacityProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1536,18 +1370,10 @@ OpacitySetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-Position2DGetter++;
-#endif
-
                 return (Position2D)GetValue(Position2DProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-Position2DSetter++;
-#endif
-
                 SetValue(Position2DProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1561,11 +1387,24 @@ Position2DSetter++;
         {
             get
             {
-                Vector2 temp = new Vector2(0.0f, 0.0f);
-                var pValue = GetProperty(View.Property.ScreenPosition);
-                pValue.Get(temp);
-                pValue.Dispose();
-                return temp;
+                return GetCurrentScreenPosition();
+            }
+        }
+
+        /// <summary>
+        /// Retrieves the screen position and size of the view.<br />
+        /// </summary>
+        /// <remarks>
+        /// The float type Rectangle class is not ready yet.
+        /// Therefore, it transmits data in Vector4 class.
+        /// This type should later be changed to the appropriate data type.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector4 ScreenPositionSize
+        {
+            get
+            {
+                return GetCurrentScreenPositionSize();
             }
         }
 
@@ -1581,16 +1420,10 @@ Position2DSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-PositionUsesPivotPointGetter++;
-#endif
                 return (bool)GetValue(PositionUsesPivotPointProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-PositionUsesPivotPointSetter++;
-#endif
                 SetValue(PositionUsesPivotPointProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1623,17 +1456,11 @@ PositionUsesPivotPointSetter++;
         {
             get
             {
-                bool temp = false;
-                var pValue = GetProperty(View.Property.PositionUsesAnchorPoint);
-                pValue.Get(out temp);
-                pValue.Dispose();
-                return temp;
+                return Object.InternalGetPropertyBool(SwigCPtr, View.Property.PositionUsesAnchorPoint);
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                SetProperty(View.Property.PositionUsesAnchorPoint, temp);
-                temp.Dispose();
+                Object.InternalSetPropertyBool(SwigCPtr, View.Property.PositionUsesAnchorPoint, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1718,9 +1545,12 @@ PositionUsesPivotPointSetter++;
             {
                 Vector3 temp = GetNaturalSize();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-
-                Size2D sz = new Size2D((int)temp.Width, (int)temp.Height);
-                temp.Dispose();
+                Size2D sz = null;
+                if (temp != null)
+                {
+                    sz = new Size2D((int)temp.Width, (int)temp.Height);
+                    temp.Dispose();
+                }
                 return sz;
             }
         }
@@ -1737,17 +1567,11 @@ PositionUsesPivotPointSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-ParentOriginGetter++;
-#endif
                 Position tmp = (Position)GetValue(ParentOriginProperty);
                 return new Position(OnParentOriginChanged, tmp.X, tmp.Y, tmp.Z);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-ParentOriginSetter++;
-#endif
                 SetValue(ParentOriginProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1780,16 +1604,10 @@ ParentOriginSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-PivotPointGetter++;
-#endif
                 return (Position)GetValue(PivotPointProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-PivotPointSetter++;
-#endif
                 SetValue(PivotPointProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1811,18 +1629,10 @@ PivotPointSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-SizeWidthGetter++;
-#endif
-
                 return (float)GetValue(SizeWidthProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-SizeWidthSetter++;
-#endif
-
                 SetValue(SizeWidthProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1844,18 +1654,10 @@ SizeWidthSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-SizeHeightGetter++;
-#endif
-
                 return (float)GetValue(SizeHeightProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-SizeHeightSetter++;
-#endif
-
                 SetValue(SizeHeightProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1891,18 +1693,10 @@ SizeHeightSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-PositionGetter++;
-#endif
-
                 return (Position)GetValue(PositionProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-PositionSetter++;
-#endif
-
                 SetValue(PositionProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1924,16 +1718,10 @@ PositionSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-PositionXGetter++;
-#endif
                 return (float)GetValue(PositionXProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-PositionXSetter++;
-#endif
                 SetValue(PositionXProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1955,16 +1743,10 @@ PositionXSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-PositionYGetter++;
-#endif
                 return (float)GetValue(PositionYProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-PositionYSetter++;
-#endif
                 SetValue(PositionYProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1986,18 +1768,10 @@ PositionYSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-PositionZGetter++;
-#endif
-
                 return (float)GetValue(PositionZProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-PositionZSetter++;
-#endif
-
                 SetValue(PositionZProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2011,11 +1785,7 @@ PositionZSetter++;
         {
             get
             {
-                Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
-                var pValue = GetProperty(View.Property.WorldPosition);
-                pValue.Get(temp);
-                pValue.Dispose();
-                return temp;
+                return GetCurrentWorldPosition();
             }
         }
 
@@ -2039,16 +1809,10 @@ PositionZSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-OrientationGetter++;
-#endif
                 return (Rotation)GetValue(OrientationProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-OrientationSetter++;
-#endif
                 SetValue(OrientationProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2098,16 +1862,10 @@ OrientationSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-ScaleGetter++;
-#endif
                 return (Vector3)GetValue(ScaleProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-ScaleSetter++;
-#endif
                 SetValue(ScaleProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2129,16 +1887,10 @@ ScaleSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-ScaleXGetter++;
-#endif
                 return (float)GetValue(ScaleXProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-ScaleXSetter++;
-#endif
                 SetValue(ScaleXProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2160,16 +1912,10 @@ ScaleXSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-ScaleYGetter++;
-#endif
                 return (float)GetValue(ScaleYProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-ScaleYSetter++;
-#endif
                 SetValue(ScaleYProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2191,16 +1937,10 @@ ScaleYSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-ScaleZGetter++;
-#endif
                 return (float)GetValue(ScaleZProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-ScaleZSetter++;
-#endif
                 SetValue(ScaleZProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2214,11 +1954,7 @@ ScaleZSetter++;
         {
             get
             {
-                Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
-                var pValue = GetProperty(View.Property.WorldScale);
-                pValue.Get(temp);
-                pValue.Dispose();
-                return temp;
+                return GetCurrentWorldScale();
             }
         }
 
@@ -2242,11 +1978,7 @@ ScaleZSetter++;
         {
             get
             {
-                bool temp = false;
-                var pValue = GetProperty(View.Property.VISIBLE);
-                pValue.Get(out temp);
-                pValue.Dispose();
-                return temp;
+                return Object.InternalGetPropertyBool(SwigCPtr, View.Property.VISIBLE);
             }
         }
 
@@ -2258,11 +1990,7 @@ ScaleZSetter++;
         {
             get
             {
-                Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-                var pValue = GetProperty(View.Property.WorldColor);
-                pValue.Get(temp);
-                pValue.Dispose();
-                return temp;
+                return GetCurrentWorldColor();
             }
         }
 
@@ -2274,16 +2002,10 @@ ScaleZSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-NameGetter++;
-#endif
                 return (string)GetValue(NameProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-NameSetter++;
-#endif
                 SetValue(NameProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2323,16 +2045,10 @@ NameSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-SensitiveGetter++;
-#endif
                 return (bool)GetValue(SensitiveProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-SensitiveSetter++;
-#endif
                 SetValue(SensitiveProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2348,16 +2064,10 @@ SensitiveSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-IsEnabledGetter++;
-#endif
                 return (bool)GetValue(IsEnabledProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-IsEnabledSetter++;
-#endif
                 SetValue(IsEnabledProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2371,16 +2081,10 @@ IsEnabledSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-LeaveRequiredGetter++;
-#endif
                 return (bool)GetValue(LeaveRequiredProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-LeaveRequiredSetter++;
-#endif
                 SetValue(LeaveRequiredProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2411,16 +2115,10 @@ LeaveRequiredSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-InheritScaleGetter++;
-#endif
                 return (bool)GetValue(InheritScaleProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-InheritScaleSetter++;
-#endif
                 SetValue(InheritScaleProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2439,16 +2137,10 @@ InheritScaleSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-DrawModeGetter++;
-#endif
                 return (DrawModeType)GetValue(DrawModeProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-DrawModeSetter++;
-#endif
                 SetValue(DrawModeProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2478,16 +2170,10 @@ DrawModeSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-SizeModeFactorGetter++;
-#endif
                 return (Vector3)GetValue(SizeModeFactorProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-SizeModeFactorSetter++;
-#endif
                 SetValue(SizeModeFactorProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2501,16 +2187,10 @@ SizeModeFactorSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-WidthResizePolicyGetter++;
-#endif
                 return (ResizePolicyType)GetValue(WidthResizePolicyProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-WidthResizePolicySetter++;
-#endif
                 SetValue(WidthResizePolicyProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2524,16 +2204,10 @@ WidthResizePolicySetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-HeightResizePolicyGetter++;
-#endif
                 return (ResizePolicyType)GetValue(HeightResizePolicyProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-HeightResizePolicySetter++;
-#endif
                 SetValue(HeightResizePolicyProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2548,16 +2222,10 @@ HeightResizePolicySetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-SizeScalePolicyGetter++;
-#endif
                 return (SizeScalePolicyType)GetValue(SizeScalePolicyProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-SizeScalePolicySetter++;
-#endif
                 SetValue(SizeScalePolicyProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2571,16 +2239,10 @@ SizeScalePolicySetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-WidthForHeightGetter++;
-#endif
                 return (bool)GetValue(WidthForHeightProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-WidthForHeightSetter++;
-#endif
                 SetValue(WidthForHeightProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2594,16 +2256,10 @@ WidthForHeightSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-HeightForWidthGetter++;
-#endif
                 return (bool)GetValue(HeightForWidthProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-HeightForWidthSetter++;
-#endif
                 SetValue(HeightForWidthProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2663,16 +2319,10 @@ HeightForWidthSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-MinimumSizeGetter++;
-#endif
                 return (Size2D)GetValue(MinimumSizeProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-MinimumSizeSetter++;
-#endif
                 if (value == null)
                 {
                     throw new ArgumentNullException(nameof(value));
@@ -2709,16 +2359,10 @@ MinimumSizeSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-MaximumSizeGetter++;
-#endif
                 return (Size2D)GetValue(MaximumSizeProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-MaximumSizeSetter++;
-#endif
                 // We don't have Layout.Maximum(Width|Height) so we cannot apply it to layout.
                 // MATCH_PARENT spec + parent container size can be used to limit
                 if (layout != null)
@@ -2740,16 +2384,10 @@ MaximumSizeSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-InheritPositionGetter++;
-#endif
                 return (bool)GetValue(InheritPositionProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-InheritPositionSetter++;
-#endif
                 SetValue(InheritPositionProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2763,16 +2401,10 @@ InheritPositionSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-ClippingModeGetter++;
-#endif
                 return (ClippingModeType)GetValue(ClippingModeProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-ClippingModeSetter++;
-#endif
                 SetValue(ClippingModeProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2819,19 +2451,11 @@ ClippingModeSetter++;
         {
             get
             {
-                Position temp = new Position(0.0f, 0.0f, 0.0f);
-                var pValue = GetProperty(View.Property.AnchorPoint);
-                pValue.Get(temp);
-                pValue.Dispose();
-                Position ret = new Position(OnAnchorPointChanged, temp.X, temp.Y, temp.Z);
-                temp.Dispose();
-                return ret;
+                return GetCurrentAnchorPoint();
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                SetProperty(View.Property.AnchorPoint, temp);
-                temp.Dispose();
+                SetAnchorPoint(value);
                 NotifyPropertyChanged();
             }
         }
@@ -2867,16 +2491,10 @@ ClippingModeSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-SizeGetter++;
-#endif
                 return (Size)GetValue(SizeProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-SizeSetter++;
-#endif
                 SetValue(SizeProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2926,16 +2544,10 @@ SizeSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-InheritLayoutDirectionGetter++;
-#endif
                 return (bool)GetValue(InheritLayoutDirectionProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-InheritLayoutDirectionSetter++;
-#endif
                 SetValue(InheritLayoutDirectionProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2949,16 +2561,10 @@ InheritLayoutDirectionSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-LayoutDirectionGetter++;
-#endif
                 return (ViewLayoutDirectionType)GetValue(LayoutDirectionProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-LayoutDirectionSetter++;
-#endif
                 SetValue(LayoutDirectionProperty, value);
                 NotifyPropertyChanged();
                 layout?.RequestLayout();
@@ -3045,11 +2651,7 @@ LayoutDirectionSetter++;
                 widthPolicy = value;
                 if (widthPolicy >= 0)
                 {
-                    if (heightPolicy >= 0) // Policy an exact value
-                    {
-                        // Create Size2D only both _widthPolicy and _heightPolicy are set.
-                        Size2D = new Size2D(widthPolicy, heightPolicy);
-                    }
+                    SizeWidth = widthPolicy;
                 }
                 layout?.RequestLayout();
             }
@@ -3102,11 +2704,7 @@ LayoutDirectionSetter++;
                 heightPolicy = value;
                 if (heightPolicy >= 0)
                 {
-                    if (widthPolicy >= 0) // Policy an exact value
-                    {
-                        // Create Size2D only both _widthPolicy and _heightPolicy are set.
-                        Size2D = new Size2D(widthPolicy, heightPolicy);
-                    }
+                    SizeHeight = heightPolicy;
                 }
                 layout?.RequestLayout();
             }
@@ -3246,16 +2844,10 @@ LayoutDirectionSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-ColorGetter++;
-#endif
                 return (Color)GetValue(ColorProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-ColorSetter++;
-#endif
                 SetValue(ColorProperty, value);
                 NotifyPropertyChanged();
             }
@@ -3274,16 +2866,10 @@ ColorSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-ColorRedGetter++;
-#endif
                 return (float)GetValue(ColorRedProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-ColorRedSetter++;
-#endif
                 SetValue(ColorRedProperty, value);
                 NotifyPropertyChanged();
             }
@@ -3302,16 +2888,10 @@ ColorRedSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-ColorGreenGetter++;
-#endif
                 return (float)GetValue(ColorGreenProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-ColorGreenSetter++;
-#endif
                 SetValue(ColorGreenProperty, value);
                 NotifyPropertyChanged();
             }
@@ -3330,16 +2910,10 @@ ColorGreenSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-ColorBlueGetter++;
-#endif
                 return (float)GetValue(ColorBlueProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-ColorBlueSetter++;
-#endif
                 SetValue(ColorBlueProperty, value);
                 NotifyPropertyChanged();
             }
@@ -3538,12 +3112,7 @@ ColorBlueSetter++;
             {
                 backgroundImageSynchronousLoading = value;
 
-                string bgUrl = null;
-                var pValue = Background.Find(ImageVisualProperty.URL);
-                pValue?.Get(out bgUrl);
-                pValue?.Dispose();
-
-                if (!string.IsNullOrEmpty(bgUrl))
+                if (!string.IsNullOrEmpty(BackgroundImage))
                 {
                     PropertyMap bgMap = this.Background;
                     var temp = new PropertyValue(backgroundImageSynchronousLoading);
@@ -3560,16 +3129,10 @@ ColorBlueSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-UpdateAreaHintGetter++;
-#endif
                 return (Vector4)GetValue(UpdateAreaHintProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-UpdateAreaHintSetter++;
-#endif
                 SetValue(UpdateAreaHintProperty, value);
                 NotifyPropertyChanged();
             }
@@ -3678,17 +3241,22 @@ UpdateAreaHintSetter++;
         {
             get
             {
-                bool temp = false;
-                var pValue = GetProperty(View.Property.CaptureAllTouchAfterStart);
-                pValue.Get(out temp);
-                pValue.Dispose();
-                return temp;
+                return Object.InternalGetPropertyBool(SwigCPtr, View.Property.CaptureAllTouchAfterStart);
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                SetProperty(View.Property.CaptureAllTouchAfterStart, temp);
-                temp.Dispose();
+                Object.InternalSetPropertyBool(SwigCPtr, View.Property.CaptureAllTouchAfterStart, value);
+
+                // Use custom HitTest callback only if GrabTouchAfterLeave is true.
+                if (value)
+                {
+                    RegisterHitTestCallback();
+                }
+                else
+                {
+                    UnregisterHitTestCallback();
+                }
+
                 NotifyPropertyChanged();
             }
         }
@@ -3714,17 +3282,11 @@ UpdateAreaHintSetter++;
         {
             get
             {
-                bool temp = false;
-                var pValue = GetProperty(View.Property.AllowOnlyOwnTouch);
-                pValue.Get(out temp);
-                pValue.Dispose();
-                return temp;
+                return Object.InternalGetPropertyBool(SwigCPtr, View.Property.AllowOnlyOwnTouch);
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue(value);
-                SetProperty(View.Property.AllowOnlyOwnTouch, temp);
-                temp.Dispose();
+                Object.InternalSetPropertyBool(SwigCPtr, View.Property.AllowOnlyOwnTouch, value);
                 NotifyPropertyChanged();
             }
         }
@@ -3751,17 +3313,11 @@ UpdateAreaHintSetter++;
         {
             get
             {
-                int temp = 0;
-                var pValue = GetProperty(View.Property.BlendEquation);
-                pValue.Get(out temp);
-                pValue.Dispose();
-                return (BlendEquationType)temp;
+                return (BlendEquationType)Object.InternalGetPropertyInt(SwigCPtr, View.Property.BlendEquation);
             }
             set
             {
-                var temp = new Tizen.NUI.PropertyValue((int)value);
-                SetProperty(View.Property.BlendEquation, temp);
-                temp.Dispose();
+                Object.InternalSetPropertyInt(SwigCPtr, View.Property.BlendEquation, (int)value);
                 NotifyPropertyChanged();
             }
         }
@@ -3871,11 +3427,7 @@ UpdateAreaHintSetter++;
         {
             get
             {
-                bool temp = false;
-                var pValue = GetProperty(View.Property.Culled);
-                pValue.Get(out temp);
-                pValue.Dispose();
-                return temp;
+                return Object.InternalGetPropertyBool(SwigCPtr, View.Property.Culled);
             }
         }
 
@@ -3907,168 +3459,6 @@ UpdateAreaHintSetter++;
             {
                 return transitionOptions;
             }
-        }
-
-        /// <summary>
-        /// Gets or sets the status of whether the view should emit key event signals.
-        /// If a View's DispatchKeyEvents is set to false, then itself and parents will not receive key event signals.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool DispatchKeyEvents
-        {
-            get
-            {
-#if NUI_PROPERTY_CHANGE_DEBUG
-DispatchKeyEventsGetter++;
-#endif
-                return (bool)GetValue(DispatchKeyEventsProperty);
-            }
-            set
-            {
-#if NUI_PROPERTY_CHANGE_DEBUG
-DispatchKeyEventsSetter++;
-#endif
-                SetValue(DispatchKeyEventsProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the status of whether touch events can be dispatched.
-        /// If a View's DispatchTouchEvents is set to false, then it's can not will receive touch and parents will not receive a touch event signal either.
-        /// This works without adding a TouchEvent callback in the View.
-        /// <note>
-        /// If the <see cref="Tizen.NUI.BaseComponents.View.Sensitive"/> is a property that determines whether or not to be hittable, then this property prevents the propagation of the hit touch event.
-        /// </note>
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool DispatchTouchEvents
-        {
-            get
-            {
-                return dispatchTouchEvents;
-            }
-            set
-            {
-                if (dispatchTouchEvents != value)
-                {
-                    dispatchTouchEvents = value;
-                    if (dispatchTouchEvents == false)
-                    {
-                        TouchEvent += OnDispatchTouchEvent;
-                    }
-                    else
-                    {
-                        TouchEvent -= OnDispatchTouchEvent;
-                    }
-                }
-            }
-        }
-
-        private bool OnDispatchTouchEvent(object source, View.TouchEventArgs e)
-        {
-            return true;
-        }
-
-        /// <summary>
-        /// Gets or sets the status of whether the view should emit Gesture event signals.
-        /// If a View's DispatchGestureEvents is set to false, then itself and parents will not receive all gesture event signals.
-        /// The itself and parents does not receive tap, pinch, pan, rotation, or longpress gestures.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool DispatchGestureEvents
-        {
-            get
-            {
-                return dispatchGestureEvents;
-            }
-            set
-            {
-                if (dispatchGestureEvents != value)
-                {
-                    dispatchGestureEvents = value;
-                    ConfigGestureDetector(dispatchGestureEvents);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the status of whether the view should emit Gesture event signals.
-        /// If a View's DispatchParentGestureEvents is set to false, then parents will not receive all gesture event signals.
-        /// The parents does not receive tap, pinch, pan, rotation, or longpress gestures.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool DispatchParentGestureEvents
-        {
-            get
-            {
-                return dispatchParentGestureEvents;
-            }
-            set
-            {
-                if (dispatchParentGestureEvents != value)
-                {
-                    dispatchParentGestureEvents = value;
-                    ConfigGestureDetector(dispatchParentGestureEvents);
-                }
-            }
-        }
-
-        private void ConfigGestureDetector(bool dispatch)
-        {
-            if (panGestureDetector == null) panGestureDetector = new PanGestureDetector();
-            if (longGestureDetector == null) longGestureDetector = new LongPressGestureDetector();
-            if (pinchGestureDetector == null) pinchGestureDetector = new PinchGestureDetector();
-            if (tapGestureDetector == null) tapGestureDetector = new TapGestureDetector();
-            if (rotationGestureDetector == null) rotationGestureDetector = new RotationGestureDetector();
-
-            if (dispatch == true)
-            {
-                configGestureCount = configGestureCount > 0 ? configGestureCount-- : 0;
-                if (configGestureCount == 0)
-                {
-                    panGestureDetector.Detach(this);
-                    longGestureDetector.Detach(this);
-                    pinchGestureDetector.Detach(this);
-                    tapGestureDetector.Detach(this);
-                    rotationGestureDetector.Detach(this);
-
-                    panGestureDetector.Detected -= OnGestureDetected;
-                    longGestureDetector.Detected -= OnGestureDetected;
-                    pinchGestureDetector.Detected -= OnGestureDetected;
-                    tapGestureDetector.Detected -= OnGestureDetected;
-                    rotationGestureDetector.Detected -= OnGestureDetected;
-
-                    panGestureDetector = null;
-                    longGestureDetector = null;
-                    pinchGestureDetector = null;
-                    tapGestureDetector = null;
-                    rotationGestureDetector = null;
-                }
-            }
-            else
-            {
-                if (configGestureCount == 0)
-                {
-                    panGestureDetector.Attach(this);
-                    longGestureDetector.Attach(this);
-                    pinchGestureDetector.Attach(this);
-                    tapGestureDetector.Attach(this);
-                    rotationGestureDetector.Attach(this);
-
-                    panGestureDetector.Detected += OnGestureDetected;
-                    longGestureDetector.Detected += OnGestureDetected;
-                    pinchGestureDetector.Detected += OnGestureDetected;
-                    tapGestureDetector.Detected += OnGestureDetected;
-                    rotationGestureDetector.Detected += OnGestureDetected;
-                }
-                configGestureCount++;
-            }
-        }
-
-        private void OnGestureDetected(object source, EventArgs e)
-        {
-            // Does notting. This is to consume the gesture.
         }
 
         /// <summary>
@@ -4109,6 +3499,12 @@ DispatchKeyEventsSetter++;
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector3 CurrentScale => GetCurrentScale();
+
+        /// <summary>
+        /// Gets the number of currently alived View object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int AliveCount => aliveCount;
 
     }
 }

@@ -15,6 +15,7 @@
  *
  */
 
+using global::System.Runtime.InteropServices;
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -136,6 +137,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_ScaleBy")]
             public static extern void ScaleBy(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_LookAt")]
+            public static extern void LookAt(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, global::System.Runtime.InteropServices.HandleRef jarg5);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_GetCurrentScale")]
             public static extern global::System.IntPtr GetCurrentScale(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -241,6 +245,21 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_DevelActor_Property_GetTouchAreaOffset")]
             public static extern void GetTouchAreaOffset(global::System.Runtime.InteropServices.HandleRef jarg1, out int jarg2, out int jarg3, out int jarg4, out int jarg5);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_RetrieveTargetSize")]
+            public static extern int RetrieveTargetSize(HandleRef actor, HandleRef retrievingVector3);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_RetrieveCurrentPropertyVector3")]
+            public static extern int RetrieveCurrentPropertyVector3(HandleRef actor, int propertyType, HandleRef retrievingVector3);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_RetrieveCurrentPropertyVector2ActualVector3")]
+            public static extern int RetrieveCurrentPropertyVector2ActualVector3(HandleRef actor, int propertyType, HandleRef retrievingVector2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_RetrieveNaturalSize")]
+            public static extern int RetrieveNaturalSize(HandleRef actor, HandleRef retrievingVector3);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_RetrieveCurrentPropertyVector4")]
+            public static extern int RetrieveCurrentPropertyVector4(HandleRef actor, int propertyType, HandleRef retrievingVector4);
         }
     }
 }

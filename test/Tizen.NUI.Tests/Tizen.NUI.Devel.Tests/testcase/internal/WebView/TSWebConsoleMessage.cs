@@ -14,29 +14,24 @@ namespace Tizen.NUI.Devel.Tests
     public class InternalWebConsoleMessageTest
     {
         private const string tag = "NUITEST";
-        private static string[] runtimeArgs = { "Tizen.NUI.Devel.Tests", "--enable-dali-window", "--enable-spatial-navigation" };
-        private const string USER_AGENT = "Mozilla/5.0 (SMART-TV; Linux; Tizen 6.0) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/76.0.3809.146 TV Safari/537.36";
-
-        internal class MyWebConsoleMessage : WebConsoleMessage
-        {
-            public MyWebConsoleMessage(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
-            { }
-
-            public void OnReleaseSwigCPtr(global::System.Runtime.InteropServices.HandleRef swigCPtr)
-            {
-                base.ReleaseSwigCPtr(swigCPtr);
-            }
-        }
+        private string urlForConsoleMessageTest = $"file://{Applications.Application.Current.DirectoryInfo.Resource}webview/console_info.html";
+        private BaseComponents.WebView webView = null;
 
         [SetUp]
         public void Init()
         {
+            webView = new BaseComponents.WebView()
+            {
+                Size = new Size(150, 100),
+            };
             tlog.Info(tag, "Init() is called!");
         }
 
         [TearDown]
         public void Destroy()
         {
+            tlog.Info(tag, "Destroy() is being called!");
+            webView.Dispose();
             tlog.Info(tag, "Destroy() is called!");
         }
 
@@ -48,18 +43,27 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "CONSTR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebConsoleMessageConstructor()
+        public async Task WebConsoleMessageConstructor()
         {
             tlog.Debug(tag, $"WebConsoleMessageConstructor START");
 
-            using (Tizen.NUI.BaseComponents.WebView webview = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai"))
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewConsoleMessageReceivedEventArgs> onConsoleMessageReceive = (s, e) =>
             {
-                var testingTarget = new WebConsoleMessage(webview.SwigCPtr.Handle, false);
-                Assert.IsNotNull(testingTarget, "null handle");
-                Assert.IsInstanceOf<WebConsoleMessage>(testingTarget, "Should return WebConsoleMessage instance.");
+                Assert.IsNotNull(e.ConsoleMessage, "null handle");
+                Assert.IsInstanceOf<WebConsoleMessage>(e.ConsoleMessage, "Should return WebConsoleMessage instance.");
+                tcs.TrySetResult(true);
+            };
+            webView.ConsoleMessageReceived += onConsoleMessageReceive;
 
-                testingTarget.Dispose();
-            }
+            webView.LoadUrl(urlForConsoleMessageTest);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "ConsoleMessageReceived event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.ConsoleMessageReceived -= onConsoleMessageReceive;
 
             tlog.Debug(tag, $"WebConsoleMessageConstructor END (OK)");
         }
@@ -76,34 +80,28 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebConsoleMessageSource START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView(runtimeArgs)
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewConsoleMessageReceivedEventArgs> onConsoleMessageReceive = (s, e) =>
             {
-                Size = new Size(500, 200),
-                UserAgent = USER_AGENT
+                tlog.Info(tag, $"console message, Source: {e.ConsoleMessage.Source}");
+                tlog.Info(tag, $"console message, Line: {e.ConsoleMessage.Line}");
+                tlog.Info(tag, $"console message, Level: {e.ConsoleMessage.Level}");
+                tlog.Info(tag, $"console message, Text: {e.ConsoleMessage.Text}");
+
+                tcs.TrySetResult(true);
             };
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return Tizen.NUI.BaseComponents.WebView instance.");
+            webView.ConsoleMessageReceived += onConsoleMessageReceive;
 
-            testingTarget.ConsoleMessageReceived += OnConsoleMessageReceived;
-            NUIApplication.GetDefaultWindow().Add(testingTarget);
+            webView.LoadUrl(urlForConsoleMessageTest);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "ConsoleMessageReceived event should be invoked");
 
-            testingTarget.LoadUrl("https://www.youtube.com");
-     
-            await Task.Delay(60000);
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-            NUIApplication.GetDefaultWindow().Remove(testingTarget);
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
-            testingTarget.Dispose();
+            webView.ConsoleMessageReceived -= onConsoleMessageReceive;
+
             tlog.Debug(tag, $"WebConsoleMessageSource END (OK)");
-        }
-
-        private void OnConsoleMessageReceived(object sender, WebViewConsoleMessageReceivedEventArgs e)
-        {
-            tlog.Info(tag, $"console message, Source: {e.ConsoleMessage.Source}");
-            tlog.Info(tag, $"console message, Line: {e.ConsoleMessage.Line}");
-            tlog.Info(tag, $"console message, Level: {e.ConsoleMessage.Level}");
-            tlog.Info(tag, $"console message, Text: {e.ConsoleMessage.Text}");
         }
     }
 }

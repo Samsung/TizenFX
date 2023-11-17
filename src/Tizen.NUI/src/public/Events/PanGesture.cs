@@ -49,7 +49,11 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal PanGesture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PanGestureDetector.PanGestureUpcast(cPtr), cMemoryOwn)
+        internal PanGesture(global::System.IntPtr cPtr, bool cMemoryOwn) : this(Interop.PanGestureDetector.PanGestureUpcast(cPtr), cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal PanGesture(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(Interop.PanGestureDetector.PanGestureUpcast(cPtr), cMemoryOwn, cRegister)
         {
         }
 

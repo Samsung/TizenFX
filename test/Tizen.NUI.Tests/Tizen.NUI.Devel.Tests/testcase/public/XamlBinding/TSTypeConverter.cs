@@ -35,14 +35,16 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC", "Tizen.NUI.Binding.TypeConverter.CanConvertFrom M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
-        public void CanConvertFromTest1()
+        public void TypeConverterCanConvertFrom()
         {
-            tlog.Debug(tag, $"CanConvertFromTest1 START");
-            MyTypeConverter tc = new MyTypeConverter();
-            Assert.IsNotNull(tc, "null TypeConverter");
-            Assert.Throws<ArgumentNullException>(() => tc.CanConvertFrom(null));
+            tlog.Debug(tag, $"TypeConverterCanConvertFrom START");
+
+            var testingTarget = new MyTypeConverter();
+            Assert.IsNotNull(testingTarget, "null TypeConverter");
+
+            Assert.Throws<ArgumentNullException>(() => testingTarget.CanConvertFrom(null));
             
-            tlog.Debug(tag, $"CanConvertFromTest1 END");
+            tlog.Debug(tag, $"TypeConverterCanConvertFrom END");
         }
 
         [Test]
@@ -51,39 +53,43 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC", "Tizen.NUI.Binding.TypeConverter.ConvertFrom M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
-        public void ConvertFromTest1()
+        [Obsolete]
+        public void TypeConverterConvertFrom()
         {
-            tlog.Debug(tag, $"ConvertFromTest1 START");
+            tlog.Debug(tag, $"TypeConverterConvertFrom START");
 
-            MyTypeConverter tc = new MyTypeConverter();
-            Assert.IsNotNull(tc, "null TypeConverter");
-            var ret = tc.ConvertFrom(null);
+            var testingTarget = new MyTypeConverter();
+            Assert.IsNotNull(testingTarget, "null TypeConverter");
+
+            var ret = testingTarget.ConvertFrom(null);
             Assert.IsNull(ret, "Should be null");
 
-            ret = tc.ConvertFrom(null, null);
+            ret = testingTarget.ConvertFrom(null, null);
             Assert.IsNull(ret, "Should be null");
-            tlog.Debug(tag, $"ConvertFromTest1 END");
+
+            tlog.Debug(tag, $"TypeConverterConvertFrom END");
         }
 
         [Test]
         [Category("P1")]
-        [Description("ImageTypeConverter  ConvertFromInvariantString")]
+        [Description("TypeConverter ConvertFromInvariantString")]
         [Property("SPEC", "Tizen.NUI.Binding.TypeConverter.ConvertFromInvariantString M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
-        public void ConvertFromInvariantStringTestc()
+        public void TypeConverterConvertFromInvariantString()
         {
-            tlog.Debug(tag, $"ConvertFromInvariantStringTestc START");
-            MyTypeConverter tc = new MyTypeConverter();
-            Assert.IsNotNull(tc, "null TypeConverter");
-            var ret1 = tc.ConvertFromInvariantString(null);
+            tlog.Debug(tag, $"TypeConverterConvertFromInvariantString START");
+
+            var testingTarget = new MyTypeConverter();
+            Assert.IsNotNull(testingTarget, "null TypeConverter");
+
+            var ret1 = testingTarget.ConvertFromInvariantString(null);
             Assert.IsNull(ret1, "Should be null");
 
-            ret1 = tc.ConvertToString(null);
+            ret1 = testingTarget.ConvertToString(null);
             Assert.IsNull(ret1, "Should be null");
             
-            tlog.Debug(tag, $"ConvertFromInvariantStringTestc END");
+            tlog.Debug(tag, $"TypeConverterConvertFromInvariantString END");
         }
-
     }
 }

@@ -222,8 +222,8 @@ namespace Tizen.Multimedia
             }
             finally
             {
-                LibcSupport.Free(audioPtr);
-                LibcSupport.Free(videoPtr);
+                Marshal.FreeHGlobal(audioPtr);
+                Marshal.FreeHGlobal(videoPtr);
             }
         }
 
@@ -394,7 +394,7 @@ namespace Tizen.Multimedia
             }
             finally
             {
-                LibcSupport.Free(ptr);
+                Marshal.FreeHGlobal(ptr);
             }
         }
 

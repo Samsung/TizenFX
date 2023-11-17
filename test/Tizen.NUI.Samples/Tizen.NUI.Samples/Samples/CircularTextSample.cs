@@ -135,7 +135,6 @@ namespace Tizen.NUI.Samples
                 default:
                 return 4;
             }
-            return 0;
         }
 
         TextureSet CreateTextureSet( RendererParameters textParameters, List<string> embeddedItems )

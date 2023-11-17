@@ -30,12 +30,16 @@ namespace Tizen.NUI.Devel.Tests
 
         internal class MyAttachedCollection<T> : AttachedCollection<T> where T : BindableObject, IAttachedObject
         {
+#pragma warning disable CS0108 // Member hides inherited member; missing new keyword
             public void Clear()
+#pragma warning restore CS0108 // Member hides inherited member; missing new keyword
             {
                 ClearItems();
             }
 
+#pragma warning disable CS0108 // Member hides inherited member; missing new keyword
             public void Insert(int index, T item)
+#pragma warning restore CS0108 // Member hides inherited member; missing new keyword
             {
                 InsertItem(index, item);
             }

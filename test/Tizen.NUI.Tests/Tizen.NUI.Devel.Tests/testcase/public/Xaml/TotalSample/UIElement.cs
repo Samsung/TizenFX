@@ -1,18 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
-using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Devel.Tests
 {
     public class GenericTemple<T>
     {
-
     }
 
     public class CustomList : List<string>
@@ -43,20 +38,11 @@ namespace Tizen.NUI.Devel.Tests
     [ContentProperty("VisualStateGroup")]
     public partial class UIElement : View, IResourcesProvider
     {
-        public UIElement()
-        {
+        public UIElement() { }
 
-        }
+        public UIElement(int p) { }
 
-        public UIElement(int p)
-        {
-
-        }
-
-        public UIElement(int[] p)
-        {
-
-        }
+        public UIElement(int[] p) { }
 
         public enum TestEnum
         {
@@ -64,10 +50,7 @@ namespace Tizen.NUI.Devel.Tests
             V2
         }
 
-        public UIElement(TestEnum p)
-        {
-
-        }
+        public UIElement(TestEnum p) { }
 
         public CustomList CustomList
         {
@@ -107,31 +90,16 @@ namespace Tizen.NUI.Devel.Tests
 
         public class TestNestType
         {
-            public TestNestType(int p = 0)
-            {
-
-            }
+            public TestNestType(int p = 0) { }
         }
 
-        public UIElement(TestNestType p)
-        {
+        public UIElement(TestNestType p) { }
 
-        }
+        public UIElement(UIElement p) { }
 
-        public UIElement(UIElement p)
-        {
+        public UIElement([Parameter("CharP")]char c) { }
 
-        }
-
-        public UIElement([Parameter("CharP")]char c)
-        {
-
-        }
-
-        public UIElement(List<object> p)
-        {
-
-        }
+        public UIElement(List<object> p) { }
 
         public static UIElement FactoryMethod(int p1, string p2, float p3)
         {
@@ -145,14 +113,8 @@ namespace Tizen.NUI.Devel.Tests
 
         public int IntP
         {
-            get
-            {
-                return (int)GetValue(IntPProperty);
-            }
-            set
-            {
-                SetValue(IntPProperty, value);
-            }
+            get => (int)GetValue(IntPProperty);
+            set => SetValue(IntPProperty, value);
         }
 
         public BindableProperty CustomBindableProperty
@@ -164,14 +126,8 @@ namespace Tizen.NUI.Devel.Tests
         private string stringP;
         public string StringP
         {
-            get
-            {
-                return (string)GetValue(StringPProperty);
-            }
-            set
-            {
-                SetValue(StringPProperty, value);
-            }
+            get => (string)GetValue(StringPProperty);
+            set => SetValue(StringPProperty, value);
         }
 
         private string[] stringIndexer;
@@ -187,22 +143,13 @@ namespace Tizen.NUI.Devel.Tests
 
                 return stringIndexer;
             }
-            set
-            {
-                stringIndexer = value;
-            }
+            set => stringIndexer = value;
         }
 
         public float FloatP
         {
-            get
-            {
-                return (float)GetValue(FloatPProperty);
-            }
-            set
-            {
-                SetValue(FloatPProperty, value);
-            }
+            get => (float)GetValue(FloatPProperty);
+            set => SetValue(FloatPProperty, value);
         }
 
         public event EventHandler<EventArgs> Event;
@@ -212,7 +159,6 @@ namespace Tizen.NUI.Devel.Tests
             get { return (ICommand)GetValue(CommandProperty); }
             set { SetValue(CommandProperty, value); }
         }
-
 
         public object CommandParameter
         {

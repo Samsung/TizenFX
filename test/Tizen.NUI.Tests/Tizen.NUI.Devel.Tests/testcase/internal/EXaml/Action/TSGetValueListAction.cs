@@ -83,5 +83,89 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"EXamlGetValueListActionInit END (OK)");
         }
+        
+        [Test]
+        [Category("P1")]
+        [Description("GetValueListAction OnActive.")]
+        [Property("SPEC", "Tizen.NUI.EXaml.GetValueListAction.OnActive M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void EXamlGetValueListActionOnActive()
+        {
+            tlog.Debug(tag, $"EXamlGetValueListActionOnActive START");
+            
+            var testingTarget = new Tizen.NUI.EXaml.GetValueListAction(')', new MyAction());
+            Assert.IsNotNull(testingTarget, "Can't create success object GetValueListAction");
+            Assert.IsInstanceOf<Tizen.NUI.EXaml.GetValueListAction>(testingTarget, "Should be an instance of GetValueListAction type.");
+
+            try
+            {
+                testingTarget.OnActive();
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"EXamlGetValueListActionOnActive END (OK)");
+        }
+        
+        [Test]
+        [Category("P1")]
+        [Description("GetValueListAction DealChar.")]
+        [Property("SPEC", "Tizen.NUI.EXaml.GetValueListAction.DealChar M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void EXamlGetValueListActionDealChar()
+        {
+            tlog.Debug(tag, $"EXamlGetValueListActionDealChar START");
+
+            var testingTarget = new Tizen.NUI.EXaml.GetValueListAction(')', new MyAction());
+            Assert.IsNotNull(testingTarget, "Can't create success object GetValueListAction");
+            Assert.IsInstanceOf<Tizen.NUI.EXaml.GetValueListAction>(testingTarget, "Should be an instance of GetValueListAction type.");
+
+            try
+            {
+                testingTarget.DealChar(' ');
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+            try
+            {
+                testingTarget.DealChar('(');
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+            try
+            {
+                testingTarget.DealChar('m');
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+            
+             try
+            {
+                testingTarget.DealChar(')');
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"EXamlGetValueListActionDealChar END (OK)");
+        }
     }
 }

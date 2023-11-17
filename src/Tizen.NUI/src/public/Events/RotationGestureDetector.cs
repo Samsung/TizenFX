@@ -45,17 +45,21 @@ namespace Tizen.NUI
         /// <param name="handle">A reference to the copied handle</param>
         /// This will be made public in the next tizen release after an ACR is done. Till then, it needs to be hidden as an inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public RotationGestureDetector(RotationGestureDetector handle) : this(Interop.RotationGesture.NewRotationGestureDetector(RotationGestureDetector.getCPtr(handle)), true)
+        public RotationGestureDetector(RotationGestureDetector handle) : this(Interop.RotationGesture.NewRotationGestureDetector(RotationGestureDetector.getCPtr(handle)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal RotationGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.RotationGesture.RotationGestureDetectorUpcast(cPtr), cMemoryOwn)
+        internal RotationGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal RotationGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
         }
 
         private DaliEventHandler<object, DetectedEventArgs> detectedEventHandler;
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void DetectedCallbackType(IntPtr actor, IntPtr rotationGesture);
         private DetectedCallbackType detectedCallback;
 
@@ -117,15 +121,45 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// override it to clean-up your own resources.
+        /// </summary>
+        /// <param name="type"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (HasBody())
+            {
+                if (detectedCallback != null)
+                {
+                    using RotationGestureDetectedSignal signal = new RotationGestureDetectedSignal(Interop.RotationGesture.RotationGestureDetectorDetectedSignal(GetBaseHandleCPtrHandleRef), false);
+                    signal?.Disconnect(detectedCallback);
+                    detectedCallback = null;
+                }
+            }
+            base.Dispose(type);
+        }
+
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (detectedCallback != null)
-            {
-                DetectedSignal().Disconnect(detectedCallback);
-            }
-
             Interop.RotationGesture.DeleteRotationGestureDetector(swigCPtr);
         }
 

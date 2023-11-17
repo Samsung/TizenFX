@@ -112,6 +112,34 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("Container ChildCount.")]
+        [Property("SPEC", "Tizen.NUI.Container.ChildCount A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRO")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
+        public void ContainerChildCount1()
+        {
+            tlog.Debug(tag, $"ContainerChildCount START");
+
+            var testingTarget = new View();
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<View>(testingTarget, "Should return View instance.");
+
+            using (View view = new View())
+            {
+                testingTarget.Add(view);
+                var result = testingTarget.ChildCount;
+                Assert.IsNotNull(result, "Should be not null!");
+                Assert.AreEqual(1, result, "Should be equal!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ContainerChildCount END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("Container GetParent.")]
         [Property("SPEC", "Tizen.NUI.Container.Parent M")]
         [Property("SPEC_URL", "-")]
@@ -321,6 +349,39 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"ContainerAddContainerIsLayer END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Container CopyAndKeepXNameInstance.")]
+        [Property("SPEC", "Tizen.NUI.Container.CopyAndKeepXNameInstance M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "Feng Jin, feng16.jin@samsung.com")]
+        public void ContainerCopyAndKeepXNameInstanceTest()
+        {
+            tlog.Debug(tag, $"ContainerCopyAndKeepXNameInstance START");
+
+            var testingTarget = new View();
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<View>(testingTarget, "Should return View instance.");
+
+            using (View view = new View())
+            {
+                testingTarget.Add(view);
+
+                try
+                {
+                    testingTarget.CopyAndKeepXNameInstance(view);
+                }
+                catch (Exception e)
+                {
+                    Assert.Fail("Caught Exception" + e.ToString());
+                }
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ContainerCopyAndKeepXNameInstance END (OK)");
         }
     }
 }

@@ -54,14 +54,11 @@ namespace Tizen.NUI.BaseComponents
                                                  AlphaFunction.BuiltinFunctions? alphaFunction = null,
                                                  object initialValue = null)
         {
-            Tizen.NUI.PropertyMap background = Background;
-
-            if (background.Empty())
+            if (IsBackgroundEmpty())
             {
                 // If there is no background yet, ensure there is a transparent
                 // color visual
                 BackgroundColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-                background = Background;
             }
             return AnimateColor("background", destinationValue, startTime, endTime, alphaFunction, initialValue);
         }
@@ -212,6 +209,25 @@ namespace Tizen.NUI.BaseComponents
             if (index < Children.Count)
             {
                 return Children[Convert.ToInt32(index)];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Retrieves a child view as Animatable by index.
+        /// </summary>
+        /// <param name="index">The index of the Animatable to find.</param>
+        /// <returns>A handle to the view as Animatable if found, or an empty handle if not.</returns>
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Animatable GetChildAnimatableAt(uint index)
+        {
+            if (index < Children.Count)
+            {
+                return Children[Convert.ToInt32(index)] as Animatable;
             }
             else
             {
@@ -450,6 +466,36 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Search through this view's hierarchy for a view as Animatable with the given name.
+        /// The view itself is also considered in the search.
+        /// </summary>
+        /// <pre>The view has been initialized.</pre>
+        /// <param name="childName">The name of the Animatable to find.</param>
+        /// <returns>A handle to the view as Animatable if found, or an empty handle if not.</returns>
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Animatable FindChildAnimatableByName(string childName)
+        {
+            //to fix memory leak issue, match the handle count with native side.
+            IntPtr cPtr = Interop.Actor.FindChildByName(SwigCPtr, childName);
+            Animatable ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Animatable;
+            if(ret == null)
+            {
+                // Register new camera into Registry.
+                ret = new Animatable(cPtr, true);
+            }
+            else
+            {
+                // We found matched NUI camera. Reduce cPtr reference count.
+                HandleRef handle = new HandleRef(this, cPtr);
+                Interop.Actor.DeleteActor(handle);
+                handle = new HandleRef(null, IntPtr.Zero);
+            }
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Converts screen coordinates into the view's coordinate system using the default camera.
         /// </summary>
         /// <pre>The view has been initialized.</pre>
@@ -571,7 +617,7 @@ namespace Tizen.NUI.BaseComponents
             IntPtr cPtr = Interop.Actor.GetRendererAt(SwigCPtr, index);
             HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             Renderer ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as Renderer;
-            if (cPtr != null && ret == null)
+            if (cPtr != IntPtr.Zero && ret == null)
             {
                 ret = new Renderer(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -634,6 +680,24 @@ namespace Tizen.NUI.BaseComponents
         public void ScaleBy(Vector3 relativeScale)
         {
             Interop.ActorInternal.ScaleBy(SwigCPtr, Vector3.getCPtr(relativeScale));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Rotate the view look at specific position.
+        /// It will change the view's orientation property.
+        /// </summary>
+        /// <remark>Target position should be setup by world coordinates.</remark>
+        /// <param name="target">The target world position to look at.</param>
+        /// <param name="up">The up vector after target look at. If it is null, up vector become +Y axis</param>
+        /// <param name="localForward">The forward vector of view when it's orientation is not applied. If it is null, localForward vector become +Z axis</param>
+        /// <param name="localUp">The up vector of view when it's orientation is not applied. If it is null, localUp vector become +Y axis</param>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void LookAt(Vector3 target, Vector3 up = null, Vector3 localForward = null, Vector3 localUp = null)
+        {
+            Interop.ActorInternal.LookAt(SwigCPtr, Vector3.getCPtr(target), Vector3.getCPtr(up), Vector3.getCPtr(localForward), Vector3.getCPtr(localUp));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -878,5 +942,72 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Register custom HitTest function for this view.
+        /// </summary>
+        /// <seealso cref="View.HitTest" />
+        /// <remarks>
+        /// This is a hidden API(inhouse API) only for internal purpose.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void RegisterHitTestCallback()
+        {
+            if (hitTestResultDataCallback == null)
+            {
+                hitTestResultDataCallback = OnHitTestResult;
+                Interop.ActorSignal.HitTestResultConnect(SwigCPtr, hitTestResultDataCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
+            }
+        }
+
+        /// <summary>
+        /// Unregister custom HitTest function.
+        /// </summary>
+        /// <remarks>
+        /// This is a hidden API(inhouse API) only for internal purpose.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void UnregisterHitTestCallback()
+        {
+            if (hitTestResultDataCallback != null)
+            {
+                Interop.ActorSignal.HitTestResultDisconnect(SwigCPtr, hitTestResultDataCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
+                hitTestResultDataCallback = null;
+            }
+        }
+
+        /// <summary>
+        /// Calculate the screen position of the view.<br />
+        /// </summary>
+        /// <remarks>
+        /// This is a hidden API(inhouse API) only for internal purpose.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector2 CalculateScreenPosition()
+        {
+            Vector2 ret = new Vector2(Interop.Actor.CalculateScreenPosition(SwigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Calculate the screen position and size of the view.<br />
+        /// </summary>
+        /// <remarks>
+        /// The float type Rectangle class is not ready yet.
+        /// Therefore, it transmits data in Vector4 class.
+        /// This type should later be changed to the appropriate data type.
+        /// </remarks>
+        /// <remarks>
+        /// This is a hidden API(inhouse API) only for internal purpose.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector4 CalculateScreenPositionSize()
+        {
+            Vector4 ret = new Vector4(Interop.Actor.CalculateScreenExtents(SwigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
     }
 }

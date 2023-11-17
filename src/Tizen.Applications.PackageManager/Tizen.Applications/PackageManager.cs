@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.IO;
 using System.Linq;
+using System.ComponentModel;
 
 namespace Tizen.Applications
 {
@@ -353,6 +354,28 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Removes a file or directory specified with <paramref name="path"/> from user data internal storage for the application.
+        /// </summary>
+        /// <param name="packageId">ID of the package.</param>
+        /// <param name="path">The path of the file or directory in the package user data folder.</param>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception>
+        /// <exception cref="System.IO.IOException">Thrown when the method failed due to an internal IO error.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
+        /// <exception cref="SystemException">Thrown when the method failed due to an internal system error.</exception>
+        /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <since_tizen> 11 </since_tizen>
+        public static void ClearUserData(string packageId, string path)
+        {
+            Interop.PackageManager.ErrorCode err = Interop.PackageManager.PackageManagerClearUserDataWithPath(packageId, path);
+            if (err != Interop.PackageManager.ErrorCode.None)
+            {
+                Log.Warn(LogTag, string.Format("Failed to clear user data for {0} of {1}. err = {2}", path, packageId, err));
+                throw PackageManagerErrorFactory.GetException(err, "Failed to clear user data");
+            }
+        }
+
+        /// <summary>
         /// Retrieves the package information of all installed packages.
         /// </summary>
         /// <returns>Returns the list of packages.</returns>
@@ -683,7 +706,7 @@ namespace Tizen.Applications
             {
                 if (type != PackageType.UNKNOWN)
                 {
-                    err = Interop.PackageManager.PackageManagerRequestSetType(RequestHandle, type.ToString().ToLower());
+                    err = Interop.PackageManager.PackageManagerRequestSetType(RequestHandle, type.ToString().ToLowerInvariant());
                     if (err != Interop.PackageManager.ErrorCode.None)
                     {
                         Log.Warn(LogTag, string.Format("Failed to install packages. Error in setting request package type. err = {0}", err));
@@ -893,7 +916,7 @@ namespace Tizen.Applications
 
             try
             {
-                err = Interop.PackageManager.PackageManagerRequestSetType(RequestHandle, type.ToString().ToLower());
+                err = Interop.PackageManager.PackageManagerRequestSetType(RequestHandle, type.ToString().ToLowerInvariant());
                 if (err != Interop.PackageManager.ErrorCode.None)
                 {
                     Log.Warn(LogTag, string.Format("Failed to uninstall package {0}. Error in setting request package type. err = {1}", packageId, err));
@@ -1024,7 +1047,7 @@ namespace Tizen.Applications
             try
             {
                 bool result = true;
-                err = Interop.PackageManager.PackageManagerRequestSetType(RequestHandle, type.ToString().ToLower());
+                err = Interop.PackageManager.PackageManagerRequestSetType(RequestHandle, type.ToString().ToLowerInvariant());
                 if (err != Interop.PackageManager.ErrorCode.None)
                 {
                     Log.Warn(LogTag, string.Format("Failed to move package. Error in setting request package type. err = {0}", err));
@@ -1169,6 +1192,76 @@ namespace Tizen.Applications
         public static PackageArchive GetPackageArchive(string archivePath)
         {
             return PackageArchive.GetPackageArchive(archivePath);
+        }
+
+        /// <summary>
+        /// Enable the given package.
+        /// </summary>
+        /// <param name="packageId">The ID of the package.</param>
+        /// <remarks>
+        /// This API is for inhouse app only.
+        /// </remarks>
+        /// <returns>Returns true if succeeds, otherwise false.</returns>
+        /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <exception cref="ArgumentException">Thrown when failed when input package ID is invalid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
+        /// <exception cref="SystemException">Thrown when the method failed due to an internal system error.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void EnablePackage(string packageId)
+        {
+            // 0 is PC_REQUEST
+            IntPtr clientHandle = Interop.PackageManagerInternal.PkgmgrClientNew(0);
+            if (clientHandle == null)
+            {
+                throw PackageManagerErrorFactory.GetException(Interop.PackageManager.ErrorCode.OutOfMemory, "Failed to create internal handle");
+            }
+
+            Interop.PackageManager.ErrorCode err = Interop.PackageManagerInternal.PkgmgrClientActivate(clientHandle, null, packageId);
+            if (err != Interop.PackageManager.ErrorCode.None)
+            {
+                Interop.PackageManagerInternal.PkgmgrClientFree(clientHandle);
+                throw PackageManagerErrorFactory.GetException(err, "Failed to activate the package");
+            }
+
+            Interop.PackageManagerInternal.PkgmgrClientFree(clientHandle);
+        }
+
+        /// <summary>
+        /// Disable the given package.
+        /// </summary>
+        /// <param name="packageId">The ID of the package.</param>
+        /// <remarks>
+        /// This API is for inhouse app only.
+        /// </remarks>
+        /// <returns>Returns true if succeeds, otherwise false.</returns>
+        /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <exception cref="ArgumentException">Thrown when failed when input package ID is invalid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
+        /// <exception cref="SystemException">Thrown when the method failed due to an internal system error.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void DisablePackage(string packageId)
+        {
+            // 0 is PC_REQUEST
+            IntPtr clientHandle = Interop.PackageManagerInternal.PkgmgrClientNew(0);
+            if (clientHandle == null)
+            {
+                throw PackageManagerErrorFactory.GetException(Interop.PackageManager.ErrorCode.OutOfMemory, "Failed to create internal handle");
+            }
+
+            Interop.PackageManager.ErrorCode err = Interop.PackageManagerInternal.PkgmgrClientDeactivate(clientHandle, null, packageId);
+            if (err != Interop.PackageManager.ErrorCode.None)
+            {
+                Interop.PackageManagerInternal.PkgmgrClientFree(clientHandle);
+                throw PackageManagerErrorFactory.GetException(err, "Failed to activate the package");
+            }
+
+            Interop.PackageManagerInternal.PkgmgrClientFree(clientHandle);
         }
 
         /// <summary>

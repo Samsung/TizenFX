@@ -313,45 +313,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("PropertyNotification NotifySignal")]
-        [Property("SPEC", "Tizen.NUI.PropertyNotification.NotifySignal M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public async Task PropertyNotificationNotifySignal()
-        {
-            tlog.Debug(tag, $"PropertyNotificationNotifySignal START");
-
-            var view = new View();
-            Assert.IsNotNull(view, "should not be null.");
-            Assert.IsInstanceOf<View>(view, "should be an instance of View class!");
-
-            Window.Instance.Add(view);
-            var testingTarget = view.AddPropertyNotification("positionX", PropertyCondition.GreaterThan(100.0f));
-            Assert.IsNotNull(testingTarget, "should not be null.");
-            Assert.IsInstanceOf<PropertyNotification>(testingTarget, "should be an instance of PropertyNotification class!");
-
-            testingTarget.SetNotifyMode(PropertyNotification.NotifyMode.NotifyOnChanged);
-            bool flag = false;
-            testingTarget.Notified += (obj, e) =>
-            {
-                flag = true;
-            };
-            view.Position = new Position(300.0f, 0.0f, 0.0f);
-            await Task.Delay(200);
-
-            var result = testingTarget.NotifySignal();
-            Assert.IsNotNull(result, "Should be not null");
-            Assert.IsInstanceOf<PropertyNotifySignal>(result, "Should be an instance of propertyNotifySignal");
-
-            Window.Instance.Remove(view);
-            testingTarget.Dispose();
-            view.Dispose();
-            tlog.Debug(tag, $"PropertyNotificationNotifySignal END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("PropertyNotification Assign")]
         [Property("SPEC", "Tizen.NUI.PropertyNotification.Assign M")]
         [Property("SPEC_URL", "-")]
@@ -397,9 +358,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"PropertyNotificationAssignNegative START");
 
-            var view = new View();
-            Assert.IsNotNull(view, "should not be null.");
-            Assert.IsInstanceOf<View>(view, "should be an instance of View class!");
+            View view = new View();
             Window.Instance.Add(view);
 
             var testingTarget = view.AddPropertyNotification("positionX", PropertyCondition.GreaterThan(100.0f));
@@ -409,17 +368,18 @@ namespace Tizen.NUI.Devel.Tests
             try
             {
                 testingTarget.Assign(null);
-                Assert.Fail("Should throw the System.ArgumentNullException!");
             }
             catch (ArgumentNullException e)
             {
-                Assert.True(true);
-            }
+                tlog.Debug(tag, e.Message.ToString());
+                
+                Window.Instance.Remove(view);
+                testingTarget.Dispose();
+                view.Dispose();
+                Assert.Pass("Caught ArgumentNullException : Passed!");
 
-            Window.Instance.Remove(view);
-            testingTarget.Dispose();
-            view.Dispose();
-            tlog.Debug(tag, $"PropertyNotificationAssignNegative END (OK)");
+                tlog.Debug(tag, $"PropertyNotificationAssignNegative END (OK)");
+            }
         }
 
         [Test]

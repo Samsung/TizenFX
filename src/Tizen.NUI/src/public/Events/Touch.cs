@@ -32,17 +32,16 @@ namespace Tizen.NUI
         /// Calling member functions with an uninitialized touch handle is not allowed.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Touch() : this(Interop.Touch.NewTouch(), true)
+        public Touch() : this(Interop.Touch.NewTouch(), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Touch(Touch other) : this(Interop.Touch.NewTouch(Touch.getCPtr(other)), true)
+        internal Touch(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Touch(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Touch.Upcast(cPtr), cMemoryOwn)
+        internal Touch(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
         }
 
@@ -212,14 +211,34 @@ namespace Tizen.NUI
             return (MouseButton)ret;
         }
 
+        /// <summary>
+        /// Gets the device class type from which the mouse/touch event is originated.
+        /// </summary>
+        /// <param name="point">The index of a touch point.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public DeviceClassType GetDeviceClass(uint point)
+        {
+            int ret = Interop.Touch.GetDeviceClass(SwigCPtr, point);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return (DeviceClassType)ret;
+        }
+
+        /// <summary>
+        /// Gets the subclass type of the device from which the mouse/touch event is originated.
+        /// </summary>
+        /// <param name="point">The index of a touch point.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public DeviceSubClassType GetDeviceSubClass(uint point)
+        {
+            int ret = Interop.Touch.GetDeviceSubClass(SwigCPtr, point);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return (DeviceSubClassType)ret;
+        }
+
+
         internal static Touch GetTouchFromPtr(global::System.IntPtr cPtr)
         {
-            Touch ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Touch;
-            if (ret == null)
-            {
-                ret = new Touch(cPtr, false);
-            }
-
+            Touch ret = new Touch(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

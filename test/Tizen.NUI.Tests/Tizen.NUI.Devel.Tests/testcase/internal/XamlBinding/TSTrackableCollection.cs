@@ -19,7 +19,9 @@ namespace Tizen.NUI.Devel.Tests
 
         internal class MyTrackableCollection<T> : TrackableCollection<T>
         {
+#pragma warning disable CS0108 // Member hides inherited member; missing new keyword
             public void Clear()
+#pragma warning restore CS0108 // Member hides inherited member; missing new keyword
             {
                 ClearItems();
             }

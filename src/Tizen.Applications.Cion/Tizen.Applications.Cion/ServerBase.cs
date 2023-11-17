@@ -135,7 +135,7 @@ namespace Tizen.Applications.Cion
                     Marshal.Copy(data, receivedData, 0, dataSize);
                     byte[] returnDataRaw = OnDataReceived(receivedData, new PeerInfo(clone));
                     returnDataSize = returnDataRaw.Length;
-                    returnData = Interop.Cion.Malloc(returnDataSize);
+                    returnData = Marshal.AllocHGlobal(returnDataSize);
                     Marshal.Copy(returnDataRaw, 0, returnData, returnDataSize);
                 });
             ret = Interop.CionServer.CionServerSetDataReceivedCb(_handle, _dataReceivedCb, IntPtr.Zero);

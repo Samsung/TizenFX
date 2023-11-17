@@ -1273,6 +1273,195 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"ScrollViewScrollToSpecifyDuration END (OK)");
         }
 
+		[Test]
+        [Category("P1")]
+        [Description("ScrollView ScrollTo. With duration and alpha.")]
+        [Property("SPEC", "Tizen.NUI.ScrollView.ScrollTo M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ScrollViewScrollToSpecifyDurationAlpha()
+        {
+            tlog.Debug(tag, $"ScrollViewScrollToSpecifyDurationAlpha START");
+
+            var testingTarget = new ScrollView();
+            Assert.IsNotNull(testingTarget, "Can't create success object ScrollView");
+            Assert.IsInstanceOf<ScrollView>(testingTarget, "Should be an instance of ScrollView type.");
+
+            try
+            {
+                using (Vector2 vector = new Vector2(0.3f, 0.5f))
+                {
+					using (AlphaFunction alpha = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutBack))
+                    {
+                      testingTarget.ScrollTo(vector, 300, alpha);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ScrollViewScrollToSpecifyDurationAlpha END (OK)");
+        }
+
+		[Test]
+        [Category("P1")]
+        [Description("ScrollView ScrollTo.")]
+        [Property("SPEC", "Tizen.NUI.ScrollView.ScrollTo M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ScrollViewScrollToPage()
+        {
+            tlog.Debug(tag, $"ScrollViewScrollToPage START");
+
+            var testingTarget = new ScrollView();
+            Assert.IsNotNull(testingTarget, "Can't create success object ScrollView");
+            Assert.IsInstanceOf<ScrollView>(testingTarget, "Should be an instance of ScrollView type.");
+
+            try
+            {       
+                testingTarget.ScrollTo(1);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ScrollViewScrollToPage END (OK)");
+        }
+		
+		[Test]
+        [Category("P1")]
+        [Description("ScrollView ScrollTo. With Duration.")]
+        [Property("SPEC", "Tizen.NUI.ScrollView.ScrollTo M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ScrollViewScrollToWithDuration()
+        {
+            tlog.Debug(tag, $"ScrollViewScrollToWithDuration START");
+
+            var testingTarget = new ScrollView();
+            Assert.IsNotNull(testingTarget, "Can't create success object ScrollView");
+            Assert.IsInstanceOf<ScrollView>(testingTarget, "Should be an instance of ScrollView type.");
+
+            try
+            {
+                testingTarget.ScrollTo(1, 300);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ScrollViewScrollToWithDuration END (OK)");
+        }
+		
+		[Test]
+        [Category("P1")]
+        [Description("ScrollView ScrollTo. With View.")]
+        [Property("SPEC", "Tizen.NUI.ScrollView.ScrollTo M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ScrollViewScrollToWithView()
+        {
+            tlog.Debug(tag, $"ScrollViewScrollToWithView START");
+
+            var testingTarget = new ScrollView()
+            {
+                Size = new Size(Window.Instance.WindowSize.Width / 2, Window.Instance.WindowSize.Height / 3),
+            };
+            Assert.IsNotNull(testingTarget, "Can't create success object ScrollView");
+            Assert.IsInstanceOf<ScrollView>(testingTarget, "Should be an instance of ScrollView type.");
+
+            View[] items = new View[10];
+            for (int i = 0; i < 10; i++) 
+            {
+                items[i] = new View()
+                { 
+                    Position = new Position(i * (Window.Instance.WindowSize.Width / 2), 0),
+                    Size = new Size(Window.Instance.WindowSize.Width / 2, Window.Instance.WindowSize.Height / 3)
+                };
+                testingTarget.Add(items[i]);
+            }
+
+            try
+            {
+                testingTarget.ScrollTo(items[8]);
+            }
+            catch (Exception e)
+            {
+                tlog.Error(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                items[i].Dispose();
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ScrollViewScrollToWithView END (OK)");
+        }
+		
+		[Test]
+        [Category("P1")]
+        [Description("ScrollView ScrollTo. With (View, Duration).")]
+        [Property("SPEC", "Tizen.NUI.ScrollView.ScrollTo M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ScrollViewScrollToWithViewAndDuration()
+        {
+            tlog.Debug(tag, $"ScrollViewScrollToWithViewAndDuration START");
+
+            var testingTarget = new ScrollView()
+            {
+                Size = new Size(Window.Instance.WindowSize.Width / 2, Window.Instance.WindowSize.Height / 3),
+            };
+            Assert.IsNotNull(testingTarget, "Can't create success object ScrollView");
+            Assert.IsInstanceOf<ScrollView>(testingTarget, "Should be an instance of ScrollView type.");
+
+            View[] items = new View[10];
+            for (int i = 0; i < 10; i++)
+            {
+                items[i] = new View()
+                {
+                    Position = new Position(i * (Window.Instance.WindowSize.Width / 2), 0),
+                    Size = new Size(Window.Instance.WindowSize.Width / 2, Window.Instance.WindowSize.Height / 3)
+                };
+                testingTarget.Add(items[i]);
+            }
+
+            try
+            {
+                testingTarget.ScrollTo(items[8], 300);
+            }
+            catch (Exception e)
+            {
+                tlog.Error(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                items[i].Dispose();
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ScrollViewScrollToWithViewAndDuration END (OK)");
+        }
+		
         [Test]
         [Category("P1")]
         [Description("ScrollView ScrollToSnapPoint.")]
@@ -1345,7 +1534,7 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"ScrollViewApplyEffect END (OK)");
         }
-
+       
         [Test]
         [Category("P1")]
         [Description("ScrollView RemoveEffect.")]
@@ -1389,6 +1578,51 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"ScrollViewRemoveEffect END (OK)");
+        }
+        
+        [Test]
+        [Category("P1")]
+        [Description("ScrollView RemoveAllEffects.")]
+        [Property("SPEC", "Tizen.NUI.ScrollView.RemoveAllEffects M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ScrollViewRemoveAllEffects()
+        {
+            tlog.Debug(tag, $"ScrollViewRemoveAllEffects START");
+
+            var testingTarget = new ScrollView();
+            Assert.IsNotNull(testingTarget, "Can't create success object ScrollView");
+            Assert.IsInstanceOf<ScrollView>(testingTarget, "Should be an instance of ScrollView type.");
+
+            using (Path path = new Path())
+            {
+                using (Vector2 stageSize = Window.Instance.WindowSize)
+                {
+                    using (Vector3 TABLE_RELATIVE_SIZE = new Vector3(0.95f, 0.9f, 0.8f))
+                    {
+                        ScrollViewPagePathEffect effect = new ScrollViewPagePathEffect(path,
+                                                             new Vector3(-1.0f, 0.0f, 0.0f),
+                                                             ScrollView.Property.ScrollFinalX,
+                                                             new Vector3(stageSize.X * TABLE_RELATIVE_SIZE.X, stageSize.Y * TABLE_RELATIVE_SIZE.Y, 0.0f),
+                                                             3);
+                        testingTarget.ApplyEffect(effect);
+                        
+                        try
+                        {
+                            testingTarget.RemoveAllEffects();
+                        }
+                        catch (Exception e)
+                        {
+                            tlog.Debug(tag, e.Message.ToString());
+                            Assert.Fail("Caught Exception: Failed!");
+                        }
+                    }
+                }
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ScrollViewRemoveAllEffects END (OK)");
         }
 
         [Test]

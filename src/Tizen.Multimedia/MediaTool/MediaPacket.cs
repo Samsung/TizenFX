@@ -547,7 +547,11 @@ namespace Tizen.Multimedia
 
             if (_handle != IntPtr.Zero)
             {
-                Native.Unref(_handle);
+                if (_isNativeHandleDestroyEnabled)
+                {
+                    Native.Unref(_handle);
+                }
+
                 _handle = IntPtr.Zero;
             }
 
@@ -564,6 +568,15 @@ namespace Tizen.Multimedia
             {
                 throw new ObjectDisposedException("This packet has already been disposed.");
             }
+        }
+
+        private bool _isNativeHandleDestroyEnabled = true;
+        /// <summary>
+        /// Disables native handle destruction when native fw destroys media packet handle itself.
+        /// </summary>
+        internal void DisableNativeHandleDestroy()
+        {
+            _isNativeHandleDestroyEnabled = false;
         }
         #endregion
 

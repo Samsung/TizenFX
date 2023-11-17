@@ -28,6 +28,11 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class BaseHandle : Element, global::System.IDisposable
     {
+        static internal void Preload()
+        {
+            // Do nothing. Just call for load static values.
+        }
+
         /// <summary>
         /// swigCMemOwn
         /// </summary>
@@ -45,7 +50,6 @@ namespace Tizen.NUI
         protected bool disposed = false;
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-        private global::System.Runtime.InteropServices.HandleRef swigCPtrCopy;
         private bool registerMe;
 
         //The flag to check who called Dispose(). (By User or DisposeQueue)
@@ -55,8 +59,9 @@ namespace Tizen.NUI
         /// Create an instance of BaseHandle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public BaseHandle() : this(Interop.BaseHandle.NewBaseHandle())
+        public BaseHandle() : this(Interop.BaseHandle.NewBaseHandle(), true, false)
         {
+            // Note : Empty BaseHandle instance don't need to be register in Registry.
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -65,9 +70,36 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="handle">The BaseHandle instance.</param>
         /// <since_tizen> 3 </since_tizen>
-        public BaseHandle(BaseHandle handle) : this(Interop.BaseHandle.NewBaseHandle(BaseHandle.getCPtr(handle)))
+        public BaseHandle(BaseHandle handle) : this(Interop.BaseHandle.NewBaseHandle(BaseHandle.getCPtr(handle)), true, false)
         {
+            // Note : Copyed BaseHandle instance don't need to be register in Registry.
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal BaseHandle(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister)
+        {
+            //to catch derived classes dali native exceptions
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            DebugFileLogging.Instance.WriteLog($"BaseHandle.contructor with cMemeryOwn:{cMemoryOwn} and cRegister:{cRegister} START");
+
+            registerMe = cRegister;
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            if (registerMe)
+            {
+                // Register this instance of BaseHandle in the registry.
+                if (!Registry.Register(this))
+                {
+                    registerMe = false;
+                }
+            }
+
+            disposeDebuggingCtor();
+            DebugFileLogging.Instance.WriteLog($" BaseHandle.contructor with cMemeryOwn and cRegister END");
+            DebugFileLogging.Instance.WriteLog($"=============================");
         }
 
         internal BaseHandle(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -79,14 +111,15 @@ namespace Tizen.NUI
 
             registerMe = swigCMemOwn = cMemoryOwn;
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            // using copy constructor to create another native handle so Registry.Unregister works fine.
-            swigCPtrCopy = new global::System.Runtime.InteropServices.HandleRef(this, Interop.BaseHandle.NewBaseHandle(swigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             if (registerMe)
             {
                 // Register this instance of BaseHandle in the registry.
-                Registry.Register(this);
+                if (!Registry.Register(this))
+                {
+                    registerMe = false;
+                }
             }
 
             disposeDebuggingCtor();
@@ -101,15 +134,15 @@ namespace Tizen.NUI
             registerMe = swigCMemOwn = true;
 
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-
-            // using copy constructor to create another native handle so Registry.Unregister works fine.
-            swigCPtrCopy = new global::System.Runtime.InteropServices.HandleRef(this, Interop.BaseHandle.NewBaseHandle(SwigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             if (registerMe)
             {
                 // Register this instance of BaseHandle in the registry.
-                Registry.Register(this);
+                if (!Registry.Register(this))
+                {
+                    registerMe = false;
+                }
             }
 
             disposeDebuggingCtor();
@@ -136,7 +169,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return swigCPtrCopy;
+                return swigCPtr;
             }
         }
 
@@ -342,15 +375,16 @@ namespace Tizen.NUI
                 //Throw exception if Dispose() is called in separate thread.
                 if (!Window.IsInstalled())
                 {
-                    var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
+                    using var process = global::System.Diagnostics.Process.GetCurrentProcess();
+                    var processId = process.Id;
                     var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
                     var me = this.GetType().FullName;
 
                     DebugFileLogging.Instance.WriteLog("[NUI][BaseHandle] This API called from separate thread. This API must be called from MainThread. \n" +
-                        $" process:{process} thread:{thread}, disposing:{disposing}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
+                        $" process:{processId} thread:{thread}, disposing:{disposing}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
 
                     Tizen.Log.Fatal("NUI", $"[NUI][BaseHandle] This API called from separate thread. This API must be called from MainThread. \n" +
-                        $" process:{process} thread:{thread}, disposing:{disposing}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
+                        $" process:{processId} thread:{thread}, disposing:{disposing}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
 
                     //to fix ArtApp black screen issue. this will be enabled after talking with ArtApp team and fixing it.
                     // throw new global::System.InvalidOperationException("[NUI][BaseHandle] This API called from separate thread. This API must be called from MainThread. \n" +
@@ -396,7 +430,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool DoAction(string actionName, PropertyMap attributes)
         {
-            bool ret = Interop.BaseHandle.DoAction(swigCPtrCopy, actionName, PropertyMap.getCPtr(attributes));
+            bool ret = Interop.BaseHandle.DoAction(swigCPtr, actionName, PropertyMap.getCPtr(attributes));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -410,7 +444,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public string GetTypeName()
         {
-            string ret = Interop.BaseHandle.GetTypeName(swigCPtrCopy);
+            string ret = Interop.BaseHandle.GetTypeName(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -423,7 +457,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool GetTypeInfo(Tizen.NUI.TypeInfo info)
         {
-            bool ret = Interop.BaseHandle.GetTypeInfo(swigCPtrCopy, Tizen.NUI.TypeInfo.getCPtr(info));
+            bool ret = Interop.BaseHandle.GetTypeInfo(swigCPtr, Tizen.NUI.TypeInfo.getCPtr(info));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -432,10 +466,13 @@ namespace Tizen.NUI
         /// Resets the handle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <remark>
+        /// This will be deprecated, please use Dispose() instead.
+        /// </remark>
         public void Reset()
         {
-            Interop.BaseHandle.Reset(swigCPtrCopy);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            this.Dispose();
+            NUILog.Error("[ERROR] This(BaseHandle.Reset) will be deprecated, please use Dispose() instead!");
         }
 
         /// <summary>
@@ -446,7 +483,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool EqualTo(BaseHandle rhs)
         {
-            bool ret = Interop.BaseHandle.EqualTo(swigCPtrCopy, BaseHandle.getCPtr(rhs));
+            bool ret = Interop.BaseHandle.EqualTo(swigCPtr, BaseHandle.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -459,7 +496,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool NotEqualTo(BaseHandle rhs)
         {
-            bool ret = Interop.BaseHandle.NotEqualTo(swigCPtrCopy, BaseHandle.getCPtr(rhs));
+            bool ret = Interop.BaseHandle.NotEqualTo(swigCPtr, BaseHandle.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -471,7 +508,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool HasBody()
         {
-            if (swigCPtrCopy.Handle == IntPtr.Zero)
+            if (swigCPtr.Handle == IntPtr.Zero)
             {
                 return false;
             }
@@ -480,7 +517,7 @@ namespace Tizen.NUI
             {
                 return false;
             }
-            bool ret = Interop.BaseHandle.HasBody(swigCPtrCopy);
+            bool ret = Interop.BaseHandle.HasBody(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -498,19 +535,28 @@ namespace Tizen.NUI
                 return false;
             }
 
-            bool ret = Interop.BaseHandle.IsEqual(swigCPtrCopy, BaseHandle.getCPtr(rhs));
+            bool ret = Interop.BaseHandle.IsEqual(swigCPtr, BaseHandle.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(BaseHandle obj)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtrCopy;
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
         internal void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
             PropertySet?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        internal void UnregisterFromRegistry()
+        {
+            if (registerMe)
+            {
+                Registry.Unregister(this);
+                registerMe = false;
+            }
         }
 
         /// <summary>
@@ -539,40 +585,25 @@ namespace Tizen.NUI
             //because the execution order of Finalizes is non-deterministic.
 
             //Unreference this instance from Registry.
-            if (registerMe)
-            {
-                Registry.Unregister(this);
-            }
+            UnregisterFromRegistry();
 
             disposeDebuggingDispose(type);
 
             if (SwigCPtr.Handle != IntPtr.Zero)
             {
+                var nativeSwigCPtr = swigCPtr.Handle;
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    ReleaseSwigCPtr(SwigCPtr);
+                    ReleaseSwigCPtr(new global::System.Runtime.InteropServices.HandleRef(this, nativeSwigCPtr));
                 }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
             else
             {
                 var me = this.GetType().FullName;
                 DebugFileLogging.Instance.WriteLog($"[ERR] SwigCPtr is NULL, need to check! me:{me}");
                 Log.Error("NUI", $"[ERR] SwigCPtr is NULL, need to check! me:{me}");
-            }
-
-            if (swigCPtrCopy.Handle != global::System.IntPtr.Zero)
-            {
-                swigCMemOwn = false;
-                Interop.BaseHandle.DeleteBaseHandle(swigCPtrCopy);
-                swigCPtrCopy = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-            else
-            {
-                var me = this.GetType().FullName;
-                DebugFileLogging.Instance.WriteLog($"[ERR] swigCPtrCopy is NULL, need to check! me:{me}");
-                Log.Error("NUI", $"[ERR] swigCPtrCopy is NULL, need to check! me:{me}");
             }
 
             disposed = true;
@@ -590,6 +621,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
+            Interop.BaseHandle.DeleteBaseHandle(swigCPtr.Handle);
         }
 
         /// <summary>
@@ -616,13 +648,23 @@ namespace Tizen.NUI
             {
                 if (swigCPtr.Handle == IntPtr.Zero)
                 {
-                    var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
+                    using var process = global::System.Diagnostics.Process.GetCurrentProcess();
+                    var processId = process.Id;
                     var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
                     var me = this.GetType().FullName;
 
                     Tizen.Log.Fatal("NUI", $"SwigCPtr Error! NUI's native dali object is already disposed. " +
                         $"OR the native dali object handle of NUI becomes null! \n" +
-                        $" process:{process} thread:{thread}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
+                        $" process:{processId} thread:{thread}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
+
+                    Tizen.Log.Fatal("NUI", $"[ERROR] back trace!");
+                    global::System.Diagnostics.StackTrace st = new global::System.Diagnostics.StackTrace(true);
+                    for (int i = 0; i < st.FrameCount; i++)
+                    {
+                        global::System.Diagnostics.StackFrame sf = st.GetFrame(i);
+                        Tizen.Log.Fatal("NUI", " Method " + sf.GetMethod() + ":" + sf.GetFileName() + ":" + sf.GetFileLineNumber());
+                    }
+                    Tizen.Log.Fatal("NUI", "Error! just return here with null swigCPtr! this can cause unknown error or crash in next step");
 
                     //to fix ArtApp black screen issue. this will be enabled after talking with ArtApp team and fixing it.
                     // throw new ObjectDisposedException(nameof(SwigCPtr), $"Error! NUI's native dali object is already disposed. " +
@@ -659,7 +701,7 @@ namespace Tizen.NUI
         [Conditional("NUI_DISPOSE_DEBUG_ON")]
         private void disposeDebuggingCtor()
         {
-            DebugFileLogging.Instance.WriteLog($"type:{GetType()} copyNativeHandle:{swigCPtrCopy.Handle.ToString("X8")}");
+            DebugFileLogging.Instance.WriteLog($"type:{GetType()} copyNativeHandle:{swigCPtr.Handle.ToString("X8")}");
             if (this is BaseComponents.View view)
             {
                 DebugFileLogging.Instance.WriteLog($"ID:{view.ID} Name:{view.Name}");
@@ -668,7 +710,7 @@ namespace Tizen.NUI
                 for (int i = 0; i < st.FrameCount; i++)
                 {
                     global::System.Diagnostics.StackFrame sf = st.GetFrame(i);
-                    DebugFileLogging.Instance.WriteLog($"[{i}] {sf.GetMethod()}");
+                    DebugFileLogging.Instance.WriteLog($"[{i}] {sf.GetMethod()}:{sf.GetFileName()}:{sf.GetFileLineNumber()}");
                 }
             }
         }
@@ -676,9 +718,9 @@ namespace Tizen.NUI
         [Conditional("NUI_DISPOSE_DEBUG_ON")]
         private void disposeDebuggingDispose(DisposeTypes type)
         {
-            DebugFileLogging.Instance.WriteLog($"swigCMemOwn:{swigCMemOwn} type:{GetType()} copyNativeHandle:{swigCPtrCopy.Handle.ToString("X8")} HasBody:{HasBody()}");
+            DebugFileLogging.Instance.WriteLog($"swigCMemOwn:{swigCMemOwn} type:{GetType()} copyNativeHandle:{swigCPtr.Handle.ToString("X8")} HasBody:{HasBody()}");
 
-            if (swigCPtr.Handle != IntPtr.Zero && swigCPtrCopy.Handle != IntPtr.Zero && HasBody())
+            if (HasBody())
             {
                 using var currentProcess = global::System.Diagnostics.Process.GetCurrentProcess();
                 var process = currentProcess.Id;
@@ -690,9 +732,9 @@ namespace Tizen.NUI
 
                 if (this is BaseComponents.View)
                 {
-                    daliId = Interop.Actor.GetId(swigCPtrCopy).ToString();
-                    name = Interop.Actor.GetName(swigCPtrCopy);
-                    BaseObject tmp = new BaseObject(Interop.BaseHandle.GetBaseObject(swigCPtrCopy), false);
+                    daliId = Interop.Actor.GetId(swigCPtr).ToString();
+                    name = Interop.Actor.GetName(swigCPtr);
+                    BaseObject tmp = new BaseObject(Interop.BaseHandle.GetBaseObject(swigCPtr), false);
                     var refCnt = tmp.ReferenceCount();
                     tmp.Dispose();
                     if (refCnt > 2)

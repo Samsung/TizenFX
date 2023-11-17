@@ -30,6 +30,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC", "Device SetIdiom M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
+        [Obsolete]
         public void DeviceSetIdiom()
         {
             tlog.Debug(tag, $"DeviceSetIdiom START");

@@ -24,6 +24,7 @@ namespace Tizen.NUI.Devel.Tests
 
         internal class IServiceProviderImpl2 : IServiceProvider
         {
+            [Obsolete]
             public object GetService(Type serviceType) { return new NameScopeProvider() { NameScope = new NameScope() { } }; }
         }
 

@@ -39,6 +39,9 @@ namespace Tizen.Applications.NotificationEventListener
             IntPtr dummy = IntPtr.Zero;
             SafeAppControlHandle appcontrol = null;
 
+            bool checkBoxFlag = false;
+            bool checkedValue = false;
+
             NotificationEventArgs eventargs = new NotificationEventArgs();
 
             eventargs.Handle = new Interop.NotificationEventListener.NotificationSafeHandle(notification, data);
@@ -202,6 +205,15 @@ namespace Tizen.Applications.NotificationEventListener
             }
 
             eventargs.HasEventFlag = eventFlag;
+
+            err = Interop.NotificationEventListener.GetCheckBox(eventargs.Handle, out checkBoxFlag, out checkedValue);
+            if (err != Interop.NotificationEventListener.ErrorCode.None)
+            {
+                Log.Error(LogTag, "unable to get checkbox flag");
+            }
+
+            eventargs.CheckBox = checkBoxFlag;
+            eventargs.CheckedValue = checkedValue;
 
             NotificationAccessoryAgsBinder.BindObject(eventargs);
             NotificationStyleArgBinder.BindObject(eventargs);

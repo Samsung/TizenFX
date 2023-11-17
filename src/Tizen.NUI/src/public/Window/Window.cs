@@ -36,10 +36,15 @@ namespace Tizen.NUI
     {
         private HandleRef stageCPtr;
         private Layer rootLayer;
+        private Layer overlayLayer;
         private Layer borderLayer;
         private string windowTitle;
         private List<Layer> childLayers = new List<Layer>();
         private LayoutController localController;
+        private Key internalLastKeyEvent;
+        private Touch internalLastTouchEvent;
+        private Hover internalLastHoverEvent;
+        private Timer internalHoverTimer;
 
         static internal bool IsSupportedMultiWindow()
         {
@@ -54,9 +59,7 @@ namespace Tizen.NUI
             }
             return isSupported;
         }
-#if NUI_PROPERTY_CHANGE_DEBUG
-private bool flag1 = false;
-#endif
+
         internal Window(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
             if (Interop.Stage.IsInstalled())
@@ -65,101 +68,8 @@ private bool flag1 = false;
 
                 localController = new LayoutController(this);
                 NUILog.Debug("layoutController id:" + localController.GetId());
-
-#if NUI_PROPERTY_CHANGE_DEBUG
-Tizen.Log.Fatal("NUITEST", $"Window constructor called!");
-if(flag1 == false)
-{
-    flag1 = true;
-    var curTh = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
-    Tizen.Log.Fatal("NUITEST", $"current threadID : {curTh}");
-    if(curTh == 1)
-    {
-        this.KeyEvent += TestWindowKeyEventHandler;
-        Tizen.Log.Fatal("NUITEST", $"TestWindowKeyEventHandler() added");
-    }
-}
-#endif
-
             }
         }
-
-#if NUI_PROPERTY_CHANGE_DEBUG
-private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
-{
-    if(e.Key.State == Key.StateType.Down && e.Key.KeyPressedName == "1")
-    {
-#if NUI_PROPERTY_CHANGE_1
-        Tizen.Log.Fatal("NUITEST", $"### (FIXED) currently used View's properties ###");
-#else
-        Tizen.Log.Fatal("NUITEST", $"### currently used View's properties ###");
-#endif
-        Tizen.Log.Fatal("NUITEST", $"PropertyValueConstructor: {Tizen.NUI.PropertyValue.PropertyValueConstructor}");
-        Tizen.Log.Fatal("NUITEST", $"SizeGetter: {View.SizeGetter}, SizeSetter: {View.SizeSetter}");
-        Tizen.Log.Fatal("NUITEST", $"Size2DGetter: {View.Size2DGetter}, Size2DSetter: {View.Size2DSetter}");
-        Tizen.Log.Fatal("NUITEST", $"SizeWidthGetter: {View.SizeWidthGetter}, SizeWidthSetter: {View.SizeWidthSetter}");
-        Tizen.Log.Fatal("NUITEST", $"SizeHeightGetter: {View.SizeHeightGetter}, SizeHeightSetter: {View.SizeHeightSetter}");
-        Tizen.Log.Fatal("NUITEST", $"PositionGetter: {View.PositionGetter}, PositionSetter: {View.PositionSetter}");
-        Tizen.Log.Fatal("NUITEST", $"Position2DGetter: {View.Position2DGetter}, Position2DSetter: {View.Position2DSetter}");
-        Tizen.Log.Fatal("NUITEST", $"PositionXGetter: {View.PositionXGetter}, PositionXSetter: {View.PositionXSetter}");
-        Tizen.Log.Fatal("NUITEST", $"PositionYGetter: {View.PositionYGetter}, PositionYSetter: {View.PositionYSetter}");
-        Tizen.Log.Fatal("NUITEST", $"PositionZGetter: {View.PositionZGetter}, PositionZSetter: {View.PositionZSetter}");
-        Tizen.Log.Fatal("NUITEST", $"MaximumSizeGetter: {View.MaximumSizeGetter}, MaximumSizeSetter: {View.MaximumSizeSetter}");
-        Tizen.Log.Fatal("NUITEST", $"MinimumSizeGetter: {View.MinimumSizeGetter}, MinimumSizeSetter: {View.MinimumSizeSetter}");
-        Tizen.Log.Fatal("NUITEST", $"StyleNameGetter: {View.StyleNameGetter}, StyleNameSetter: {View.StyleNameSetter}");
-        Tizen.Log.Fatal("NUITEST", $"KeyInputFocusGetter: {View.KeyInputFocusGetter}, KeyInputFocusSetter: {View.KeyInputFocusSetter}");
-        Tizen.Log.Fatal("NUITEST", $"ColorGetter: {View.ColorGetter}, ColorSetter: {View.ColorSetter}");
-        Tizen.Log.Fatal("NUITEST", $"ColorRedGetter: {View.ColorRedGetter}, ColorRedSetter: {View.ColorRedSetter}");
-        Tizen.Log.Fatal("NUITEST", $"ColorGreenGetter: {View.ColorGreenGetter}, ColorGreenSetter: {View.ColorGreenSetter}");
-        Tizen.Log.Fatal("NUITEST", $"ColorBlueGetter: {View.ColorBlueGetter}, ColorBlueSetter: {View.ColorBlueSetter}");
-        Tizen.Log.Fatal("NUITEST", $"StateGetter: {View.StateGetter}, StateSetter: {View.StateSetter}");
-        Tizen.Log.Fatal("NUITEST", $"SubStateGetter: {View.SubStateGetter}, SubStateSetter: {View.SubStateSetter}");
-        Tizen.Log.Fatal("NUITEST", $"FlexGetter: {View.FlexGetter}, FlexSetter: {View.FlexSetter}");
-        Tizen.Log.Fatal("NUITEST", $"AlignSelfGetter: {View.AlignSelfGetter}, AlignSelfSetter: {View.AlignSelfSetter}");
-        Tizen.Log.Fatal("NUITEST", $"FlexMarginGetter: {View.FlexMarginGetter}, FlexMarginSetter: {View.FlexMarginSetter}");
-        Tizen.Log.Fatal("NUITEST", $"CellIndexGetter: {View.CellIndexGetter}, CellIndexSetter: {View.CellIndexSetter}");
-        Tizen.Log.Fatal("NUITEST", $"RowSpanGetter: {View.RowSpanGetter}, RowSpanSetter: {View.RowSpanSetter}");
-        Tizen.Log.Fatal("NUITEST", $"ColumnSpanGetter: {View.ColumnSpanGetter}, ColumnSpanSetter: {View.ColumnSpanSetter}");
-        Tizen.Log.Fatal("NUITEST", $"CellHorizontalAlignmentGetter: {View.CellHorizontalAlignmentGetter}, CellHorizontalAlignmentSetter: {View.CellHorizontalAlignmentSetter}");
-        Tizen.Log.Fatal("NUITEST", $"CellVerticalAlignmentGetter: {View.CellVerticalAlignmentGetter}, CellVerticalAlignmentSetter: {View.CellVerticalAlignmentSetter}");
-        Tizen.Log.Fatal("NUITEST", $"OpacityGetter: {View.OpacityGetter}, OpacitySetter: {View.OpacitySetter}");
-        Tizen.Log.Fatal("NUITEST", $"PositionUsesPivotPointGetter: {View.PositionUsesPivotPointGetter}, PositionUsesPivotPointSetter: {View.PositionUsesPivotPointSetter}");
-        Tizen.Log.Fatal("NUITEST", $"ParentOriginGetter: {View.ParentOriginGetter}, ParentOriginSetter: {View.ParentOriginSetter}");
-        Tizen.Log.Fatal("NUITEST", $"PivotPointGetter: {View.PivotPointGetter}, PivotPointSetter: {View.PivotPointSetter}");
-        Tizen.Log.Fatal("NUITEST", $"OrientationGetter: {View.OrientationGetter}, OrientationSetter: {View.OrientationSetter}");
-        Tizen.Log.Fatal("NUITEST", $"ScaleGetter: {View.ScaleGetter}, ScaleSetter: {View.ScaleSetter}");
-        Tizen.Log.Fatal("NUITEST", $"ScaleXGetter: {View.ScaleXGetter}, ScaleXSetter: {View.ScaleXSetter}");
-        Tizen.Log.Fatal("NUITEST", $"ScaleYGetter: {View.ScaleYGetter}, ScaleYSetter: {View.ScaleYSetter}");
-        Tizen.Log.Fatal("NUITEST", $"ScaleZGetter: {View.ScaleZGetter}, ScaleZSetter: {View.ScaleZSetter}");
-        Tizen.Log.Fatal("NUITEST", $"NameGetter: {View.NameGetter}, NameSetter: {View.NameSetter}");
-        Tizen.Log.Fatal("NUITEST", $"SensitiveGetter: {View.SensitiveGetter}, SensitiveSetter: {View.SensitiveSetter}");
-        Tizen.Log.Fatal("NUITEST", $"IsEnabledGetter: {View.IsEnabledGetter}, IsEnabledSetter: {View.IsEnabledSetter}");
-        Tizen.Log.Fatal("NUITEST", $"DispatchKeyEventsGetter: {View.DispatchKeyEventsGetter}, DispatchKeyEventsSetter: {View.DispatchKeyEventsSetter}");
-        Tizen.Log.Fatal("NUITEST", $"LeaveRequiredGetter: {View.LeaveRequiredGetter}, LeaveRequiredSetter: {View.LeaveRequiredSetter}");
-        Tizen.Log.Fatal("NUITEST", $"InheritOrientationGetter: {View.InheritOrientationGetter}, InheritOrientationSetter: {View.InheritOrientationSetter}");
-        Tizen.Log.Fatal("NUITEST", $"InheritScaleGetter: {View.InheritScaleGetter}, InheritScaleSetter: {View.InheritScaleSetter}");
-        Tizen.Log.Fatal("NUITEST", $"DrawModeGetter: {View.DrawModeGetter}, DrawModeSetter: {View.DrawModeSetter}");
-        Tizen.Log.Fatal("NUITEST", $"SizeModeFactorGetter: {View.SizeModeFactorGetter}, SizeModeFactorSetter: {View.SizeModeFactorSetter}");
-        Tizen.Log.Fatal("NUITEST", $"WidthResizePolicyGetter: {View.WidthResizePolicyGetter}, WidthResizePolicySetter: {View.WidthResizePolicySetter}");
-        Tizen.Log.Fatal("NUITEST", $"HeightResizePolicyGetter: {View.HeightResizePolicyGetter}, HeightResizePolicySetter: {View.HeightResizePolicySetter}");
-        Tizen.Log.Fatal("NUITEST", $"SizeScalePolicyGetter: {View.SizeScalePolicyGetter}, SizeScalePolicySetter: {View.SizeScalePolicySetter}");
-        Tizen.Log.Fatal("NUITEST", $"WidthForHeightGetter: {View.WidthForHeightGetter}, WidthForHeightSetter: {View.WidthForHeightSetter}");
-        Tizen.Log.Fatal("NUITEST", $"HeightForWidthGetter: {View.HeightForWidthGetter}, HeightForWidthSetter: {View.HeightForWidthSetter}");
-        Tizen.Log.Fatal("NUITEST", $"InheritPositionGetter: {View.InheritPositionGetter}, InheritPositionSetter: {View.InheritPositionSetter}");
-        Tizen.Log.Fatal("NUITEST", $"ClippingModeGetter: {View.ClippingModeGetter}, ClippingModeSetter: {View.ClippingModeSetter}");
-        Tizen.Log.Fatal("NUITEST", $"InheritLayoutDirectionGetter: {View.InheritLayoutDirectionGetter}, InheritLayoutDirectionSetter: {View.InheritLayoutDirectionSetter}");
-        Tizen.Log.Fatal("NUITEST", $"LayoutDirectionGetter: {View.LayoutDirectionGetter}, LayoutDirectionSetter: {View.LayoutDirectionSetter}");
-        Tizen.Log.Fatal("NUITEST", $"UpdateAreaHintGetter: {View.UpdateAreaHintGetter}, UpdateAreaHintSetter: {View.UpdateAreaHintSetter}");
-        Tizen.Log.Fatal("NUITEST", $"AccessibilityNameGetter: {View.AccessibilityNameGetter}, AccessibilityNameSetter: {View.AccessibilityNameSetter}");
-        Tizen.Log.Fatal("NUITEST", $"AccessibilityDescriptionGetter: {View.AccessibilityDescriptionGetter}, AccessibilityDescriptionSetter: {View.AccessibilityDescriptionSetter}");
-        Tizen.Log.Fatal("NUITEST", $"AccessibilityTranslationDomainGetter: {View.AccessibilityTranslationDomainGetter}, AccessibilityTranslationDomainSetter: {View.AccessibilityTranslationDomainSetter}");
-        Tizen.Log.Fatal("NUITEST", $"AccessibilityRoleGetter: {View.AccessibilityRoleGetter}, AccessibilityRoleSetter: {View.AccessibilityRoleSetter}");
-        Tizen.Log.Fatal("NUITEST", $"AccessibilityHighlightableGetter: {View.AccessibilityHighlightableGetter}, AccessibilityHighlightableSetter: {View.AccessibilityHighlightableSetter}");
-        Tizen.Log.Fatal("NUITEST", $"AccessibilityHiddenGetter: {View.AccessibilityHiddenGetter}, AccessibilityHiddenSetter: {View.AccessibilityHiddenSetter}");
-        Tizen.Log.Fatal("NUITEST", $"AutomationIdGetter: {View.AutomationIdGetter}, AutomationIdSetter: {View.AutomationIdSetter}");
-    }
-}
-#endif
 
         /// <summary>
         /// A helper method to get the current window where the view is added
@@ -177,7 +87,7 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
 
             //to fix memory leak issue, match the handle count with native side.
             Window ret = view.GetInstanceSafely<Window>(Interop.Window.Get(View.getCPtr(view)));
-            if (NDalicPINVOKE.SWIGPendingException.Pending)throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -243,6 +153,28 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
             this.EnableBorder(borderInterface);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
+        /// <summary>
+        /// Creates a new Window with a specific name using WindowData.<br />
+        /// This creates an extra window in addition to the default main window<br />
+        /// </summary>
+        /// <param name="name">The name for extra window. </param>
+        /// <param name="windowData">The window data</param>
+        /// <returns>A new Window.</returns>
+        /// <feature> http://tizen.org/feature/opengles.surfaceless_context </feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Window(string name, WindowData windowData) : this(Interop.Window.New(name, "", WindowData.getCPtr(windowData)), true)
+        {
+            if (IsSupportedMultiWindow() == false)
+            {
+                NUILog.Error("This device does not support surfaceless_context. So Window cannot be created. ");
+            }
+            this.windowTitle = name;
+            this.EnableBorder(windowData.BorderInterface);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
 
 
         /// <summary>
@@ -647,13 +579,31 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
             {
                 Position2D position = GetPosition();
                 Size2D size = GetSize();
-                Rectangle ret = new Rectangle(position.X, position.Y, size.Width, size.Height);
+                Rectangle ret = new Rectangle(position?.X ?? 0, position?.Y ?? 0, size?.Width ?? 0, size?.Height ?? 0);
                 position.Dispose();
                 return ret;
             }
             set
             {
                 SetPositionSize(value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether the window will update partial area or full area.
+        /// If this value is true, window will update and render partial area.
+        /// If false, full area updated.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool PartialUpdate
+        {
+            get
+            {
+                return IsPartialUpdate();
+            }
+            set
+            {
+                SetPartialUpdate(value);
             }
         }
 
@@ -865,7 +815,7 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
         /// <since_tizen> 3 </since_tizen>
         public void SetInputRegion(Rectangle inputRegion)
         {
-            Interop.Window.IncludeInputRegion(SwigCPtr, Rectangle.getCPtr(inputRegion));
+            Interop.Window.SetInputRegion(SwigCPtr, Rectangle.getCPtr(inputRegion));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1026,6 +976,25 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
         }
 
         /// <summary>
+        /// Gets the overlay layer.
+        /// </summary>
+        /// <returns>The overlay layer.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Layer GetOverlayLayer()
+        {
+            // Window.IsInstalled() is actually true only when called from event thread and
+            // Core has been initialized, not when Stage is ready.
+            if (overlayLayer == null && Window.IsInstalled())
+            {
+                overlayLayer = new Layer(Interop.Window.GetOverlayLayer(SwigCPtr), true);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                LayersChildren?.Add(overlayLayer);
+                overlayLayer.SetWindow(this);
+            }
+            return overlayLayer;
+        }
+
+        /// <summary>
         /// Add a child view to window.
         /// </summary>
         /// <param name="view">the child should be added to the window.</param>
@@ -1080,7 +1049,7 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
         /// <since_tizen> 3 </since_tizen>
         public void KeepRendering(float durationSeconds)
         {
-            Interop.Stage.KeepRendering(stageCPtr, durationSeconds);
+            Interop.Window.KeepRendering(SwigCPtr, durationSeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1174,6 +1143,62 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
         }
 
         /// <summary>
+        /// Sets the keyboard repeat information of horizontal way.
+        /// </summary>
+        /// <param name="rate">The key repeat rate value in seconds.</param>
+        /// <param name="delay">The key repeat delay value in seconds.</param>
+        /// <returns>True if setting the keyboard repeat succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool SetKeyboardHorizentalRepeatInfo(float rate, float delay)
+        {
+            bool ret = Interop.Window.SetKeyboardHorizentalRepeatInfo(rate, delay);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets the keyboard repeat information of horizontal way.
+        /// </summary>
+        /// <param name="rate">The key repeat rate value in seconds.</param>
+        /// <param name="delay">The key repeat delay value in seconds.</param>
+        /// <returns>True if setting the keyboard repeat succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool GetKeyboardHorizentalRepeatInfo(out float rate, out float delay)
+        {
+            bool ret = Interop.Window.GetKeyboardHorizentalRepeatInfo(out rate, out delay);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Sets the keyboard repeat information of vertical way.
+        /// </summary>
+        /// <param name="rate">The key repeat rate value in seconds.</param>
+        /// <param name="delay">The key repeat delay value in seconds.</param>
+        /// <returns>True if setting the keyboard repeat succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool SetKeyboardVerticalRepeatInfo(float rate, float delay)
+        {
+            bool ret = Interop.Window.SetKeyboardVerticalRepeatInfo(rate, delay);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets the keyboard repeat information of vertical way.
+        /// </summary>
+        /// <param name="rate">The key repeat rate value in seconds.</param>
+        /// <param name="delay">The key repeat delay value in seconds.</param>
+        /// <returns>True if setting the keyboard repeat succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool GetKeyboardVerticalRepeatInfo(out float rate, out float delay)
+        {
+            bool ret = Interop.Window.GetKeyboardVerticalRepeatInfo(out rate, out delay);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Adds a layer to the stage.
         /// </summary>
         /// <param name="layer">Layer to add.</param>
@@ -1207,6 +1232,36 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
         }
 
         /// <summary>
+        /// Feeds a hover event into the window. <br />
+        /// This is feed after a default time of 48 ms. You can also set this time.
+        /// </summary>
+        /// <param name="time">The time of how much later it will be feed (default is 48ms)</param>
+        /// <remarks>If you want to do FeedHover after the UI is updated, it is recommended to set the time to at least 16ms. This will be a good time waiting for the UI to update.<br />
+        /// and LazyFeedHover called within the set time are ignored. Only the last request becomes a FeedHover.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void LazyFeedHover(uint time = 48)
+        {
+            if (internalHoverTimer == null)
+            {
+                internalHoverTimer = new Timer(time);
+                internalHoverTimer.Tick += (s, e) =>
+                {
+                    FeedHover();
+                    internalHoverTimer?.Stop();
+                    internalHoverTimer?.Dispose();
+                    internalHoverTimer = null;
+                    return false;
+                };
+                internalHoverTimer.Start();
+            }
+            else
+            {
+                internalHoverTimer.Start();
+            }
+        }
+
+        /// <summary>
         /// Feeds a touch point into the window.
         /// </summary>
         /// <param name="touchPoint">The touch point to feed.</param>
@@ -1224,6 +1279,27 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
         internal void FeedWheel(Wheel wheelEvent)
         {
             Interop.Window.FeedWheelEvent(SwigCPtr, Wheel.getCPtr(wheelEvent));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Feeds a hover event into the window.
+        /// </summary>
+        /// <param name="touchPoint">The touch point to feed hover event. If null is entered, the feed hover event is generated with the last inputed touch point.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal void FeedHover(TouchPoint touchPoint = null)
+        {
+            if (touchPoint == null)
+            {
+                Hover hover = GetLastHoverEvent();
+                if (hover == null || hover.GetPointCount() < 1)
+                {
+                    return;
+                }
+                using Vector2 screenPosition = hover.GetScreenPosition(0);
+                touchPoint = new TouchPoint(hover.GetDeviceId(0), TouchPoint.StateType.Motion, screenPosition.X, screenPosition.Y);
+            }
+            Interop.Window.FeedHoverEvent(SwigCPtr, TouchPoint.getCPtr(touchPoint));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1458,7 +1534,7 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
 
             if (isBorderWindow)
             {
-                Interop.Actor.Add(GetBorderWindowRootLayer().SwigCPtr, layer.SwigCPtr);
+                Interop.Actor.Add(GetRootLayer().SwigCPtr, layer.SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) { throw NDalicPINVOKE.SWIGPendingException.Retrieve(); }
             }
             else
@@ -1500,7 +1576,20 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public RenderTaskList GetRenderTaskList()
         {
-            RenderTaskList ret = new RenderTaskList(Interop.Stage.GetRenderTaskList(stageCPtr), true);
+            global::System.IntPtr cPtr = Interop.Stage.GetRenderTaskList(stageCPtr);
+
+            RenderTaskList ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as RenderTaskList;
+            if (ret != null)
+            {
+                HandleRef CPtr = new HandleRef(this, cPtr);
+                Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                CPtr = new HandleRef(null, global::System.IntPtr.Zero);
+            }
+            else
+            {
+                ret = new RenderTaskList(cPtr, true);
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1522,7 +1611,7 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
         {
             if (isBorderWindow)
             {
-                if(borderLayer == null)
+                if (borderLayer == null)
                 {
                     borderLayer = GetBorderWindowRootLayer();
                     LayersChildren?.Add(borderLayer);
@@ -1567,7 +1656,20 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
 
         internal ObjectRegistry GetObjectRegistry()
         {
-            ObjectRegistry ret = new ObjectRegistry(Interop.Stage.GetObjectRegistry(stageCPtr), true);
+            global::System.IntPtr cPtr = Interop.Stage.GetObjectRegistry(stageCPtr);
+
+            ObjectRegistry ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as ObjectRegistry;
+            if (ret != null)
+            {
+                global::System.Runtime.InteropServices.HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+                Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+            else
+            {
+                ret = new ObjectRegistry(cPtr, true);
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1620,8 +1722,8 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
             {
                 throw new ArgumentNullException(nameof(position));
             }
-            var val = new IntPair(position.X, position.Y);
-            Interop.Window.SetPosition(SwigCPtr, IntPair.getCPtr(val));
+            var val = new Int32Pair(position.X, position.Y);
+            Interop.Window.SetPosition(SwigCPtr, Int32Pair.getCPtr(val));
             val.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             // Setting Position of the window should request a relayout of the tree.
@@ -1629,7 +1731,7 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
 
         internal Position2D GetPosition()
         {
-            var val = new IntPair(Interop.Window.GetPosition(SwigCPtr), true);
+            var val = new Int32Pair(Interop.Window.GetPosition(SwigCPtr), true);
             Position2D ret = new Position2D((int)val.GetX(), (int)val.GetY());
             val.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1658,6 +1760,27 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
         }
 
         /// <summary>
+        /// Set the window use partial update or not.
+        /// </summary>
+        /// <param name="enabled">If window enable partial update or disable.</param>
+        internal void SetPartialUpdate(bool enabled)
+        {
+            Interop.Window.SetPartialUpdateEnabled(SwigCPtr, enabled);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Returns whether the window is enabled partial update or not.
+        /// </summary>
+        /// <returns>True if the window is enabled partial update, false otherwise.</returns>
+        internal bool IsPartialUpdate()
+        {
+            bool ret = Interop.Window.IsPartialUpdateEnabled(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Enables the floating mode of window.
         /// The floating mode is to support window is moved or resized by display server.
         /// For example, if the video-player window sets the floating mode,
@@ -1671,6 +1794,18 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
         {
             Interop.Window.EnableFloatingMode(SwigCPtr, enable);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Returns whether the window is floating mode or not.
+        /// </summary>
+        /// <returns>True if the window is enabled floating mode, false otherwise.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsFloatingModeEnabled()
+        {
+            bool ret = Interop.Window.IsFloatingModeEnabled(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         /// <summary>
@@ -1729,6 +1864,107 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
             Interop.Window.ExcludeInputRegion(SwigCPtr, Rectangle.getCPtr(inputRegion));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
+        /// <summary>
+        /// Sets the pointer constraints lock.
+        /// </summary>
+        /// <returns>True if PointerConstraintsLock succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool PointerConstraintsLock()
+        {
+            bool ret = Interop.Window.PointerConstraintsLock(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Sets the pointer constraints unlock.
+        /// </summary>
+        /// <returns>True if PointerConstraintsUnlock succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool PointerConstraintsUnlock()
+        {
+            bool ret = Interop.Window.PointerConstraintsUnlock(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Sets the locked pointer region.
+        /// </summary>
+        /// <param name="x">The x position.</param>
+        /// <param name="y">The y position.</param>
+        /// <param name="width">The width.</param>
+        /// <param name="height">The height.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void LockedPointerRegionSet(int x, int y, int width, int height)
+        {
+            Interop.Window.LockedPointerRegionSet(SwigCPtr, x, y, width, height);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Sets the locked pointer cursor position hintset
+        /// </summary>
+        /// <param name="x">The x position.</param>
+        /// <param name="y">The y position.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void LockedPointerCursorPositionHintSet(int x, int y)
+        {
+            Interop.Window.LockedPointerCursorPositionHintSet(SwigCPtr, x, y);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Sets the pointer warp. The pointer moves to the set coordinates.
+        /// </summary>
+        /// <param name="x">The x position.</param>
+        /// <param name="y">The y position.</param>
+        /// <returns>True if PointerWarp succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool PointerWarp(int x, int y)
+        {
+            bool ret = Interop.Window.PointerWarp(SwigCPtr, x, y);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Sets visibility on/off of cursor
+        /// </summary>
+        /// <param name="visible">The visibility of cursor.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void CursorVisibleSet(bool visible)
+        {
+            Interop.Window.CursorVisibleSet(SwigCPtr, visible);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Requests grab key events according to the requested device subtype
+        /// </summary>
+        /// <param name="deviceSubclass">The deviceSubclass type.</param>
+        /// <returns>True if KeyboardGrab succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool KeyboardGrab(DeviceSubClassType deviceSubclass)
+        {
+            bool ret = Interop.Window.KeyboardGrab(SwigCPtr, (uint)deviceSubclass);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Requests ungrab key events
+        /// </summary>
+        /// <returns>True if KeyboardUnGrab succeeds.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool KeyboardUnGrab()
+        {
+            bool ret = Interop.Window.KeyboardUnGrab(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
 
         /// <summary>
         /// Maximizes window's size.
@@ -1829,6 +2065,83 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
         }
 
         /// <summary>
+        /// Sets the layout of the window.
+        /// </summary>
+        /// <param name="numCols">The number of columns in the layout.</param>
+        /// <param name="numRows">The number of rows in the layout.</param>
+        /// <param name="column">The column number of the window within the layout.</param>
+        /// <param name="row">The row number of the window within the layout.</param>
+        /// <param name="colSpan">The number of columns the window should span within the layout.</param>
+        /// <param name="rowSpan">The number of rows the window should span within the layout.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetLayout(uint numCols, uint numRows, uint column, uint row, uint colSpan, uint rowSpan)
+        {
+            Interop.Window.SetLayout(SwigCPtr, numCols, numRows, column, row, colSpan, rowSpan);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+
+        /// <summary>
+        /// Sets the layout of the window.
+        /// </summary>
+        /// <param name="layoutType">The type of layout to set for the window.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetLayout(WindowLayoutType layoutType)
+        {
+            switch (layoutType)
+            {
+                case WindowLayoutType.LeftHalf:
+                    Interop.Window.SetLayout(SwigCPtr, 2, 1, 0, 0, 1, 1);
+                    break;
+                case WindowLayoutType.RightHalf:
+                    Interop.Window.SetLayout(SwigCPtr, 2, 1, 1, 0, 1, 1);
+                    break;
+
+                case WindowLayoutType.TopHalf:
+                    Interop.Window.SetLayout(SwigCPtr, 1, 2, 0, 0, 1, 1);
+                    break;
+                case WindowLayoutType.BottomHalf:
+                    Interop.Window.SetLayout(SwigCPtr, 1, 2, 0, 1, 1, 1);
+                    break;
+
+                case WindowLayoutType.UpperLeftQuarter:
+                    Interop.Window.SetLayout(SwigCPtr, 2, 2, 0, 0, 1, 1);
+                    break;
+                case WindowLayoutType.UpperRightQuarter:
+                    Interop.Window.SetLayout(SwigCPtr, 2, 2, 1, 0, 1, 1);
+                    break;
+                case WindowLayoutType.LowerLeftQuarter:
+                    Interop.Window.SetLayout(SwigCPtr, 2, 2, 0, 1, 1, 1);
+                    break;
+                case WindowLayoutType.LowerRightQuarter:
+                    Interop.Window.SetLayout(SwigCPtr, 2, 2, 1, 1, 1, 1);
+                    break;
+
+                case WindowLayoutType.LeftThird:
+                    Interop.Window.SetLayout(SwigCPtr, 3, 1, 0, 0, 1, 1);
+                    break;
+                case WindowLayoutType.CenterThird:
+                    Interop.Window.SetLayout(SwigCPtr, 3, 1, 1, 0, 1, 1);
+                    break;
+                case WindowLayoutType.RightThird:
+                    Interop.Window.SetLayout(SwigCPtr, 3, 1, 2, 0, 1, 1);
+                    break;
+
+                case WindowLayoutType.TopThird:
+                    Interop.Window.SetLayout(SwigCPtr, 1, 3, 0, 0, 1, 1);
+                    break;
+                case WindowLayoutType.MiddleThird:
+                    Interop.Window.SetLayout(SwigCPtr, 1, 3, 0, 1, 1, 1);
+                    break;
+                case WindowLayoutType.BottomThird:
+                    Interop.Window.SetLayout(SwigCPtr, 1, 3, 0, 2, 1, 1);
+                    break;
+            }
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+
+        /// <summary>
         /// Query whether window is rotating or not.
         /// </summary>
         /// <returns>True if window is rotating, false otherwise.</returns>
@@ -1843,25 +2156,92 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
         /// <summary>
         /// Gets the last key event the window gets.
         /// </summary>
+        /// <remarks>
+        /// We will use weak reference of last key events.
+        /// Return value will be invalidated if last key event changed internally.
+        /// </remarks>
         /// <returns>The last key event the window gets.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Key GetLastKeyEvent()
         {
-            Key ret = new Key(Interop.Window.GetLastKeyEvent(SwigCPtr), false);
+            if (internalLastKeyEvent == null)
+            {
+                // Create empty event handle without register.
+                internalLastKeyEvent = new Key(Interop.Key.New(), true, false);
+            }
+            Interop.Window.InternalRetrievingLastKeyEvent(SwigCPtr, internalLastKeyEvent.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            return internalLastKeyEvent;
         }
 
         /// <summary>
         /// Gets the last touch event the window gets.
         /// </summary>
+        /// <remarks>
+        /// We will use weak reference of last touch events.
+        /// Return value will be invalidated if last touch event changed internally.
+        /// </remarks>
         /// <returns>The last touch event the window gets.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Touch GetLastTouchEvent()
         {
-            Touch ret = new Touch(Interop.Window.GetLastTouchEvent(SwigCPtr), false);
+            if (internalLastTouchEvent == null)
+            {
+                // Create empty event handle without register.
+                internalLastTouchEvent = new Touch(Interop.Touch.NewTouch(), true, false);
+            }
+            Interop.Window.InternalRetrievingLastTouchEvent(SwigCPtr, internalLastTouchEvent.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            return internalLastTouchEvent;
+        }
+
+        /// <summary>
+        /// Gets the last hover event the window gets.
+        /// </summary>
+        /// <remarks>
+        /// We will use weak reference of last hover events.
+        /// Return value will be invalidated if last hover event changed internally.
+        /// </remarks>
+        /// <returns>The last hover event the window gets.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Hover GetLastHoverEvent()
+        {
+            if (internalLastHoverEvent == null)
+            {
+                // Create empty event handle without register.
+                internalLastHoverEvent = new Hover(Interop.Hover.New(0u), true, false);
+            }
+            Interop.Window.InternalRetrievingLastHoverEvent(SwigCPtr, internalLastHoverEvent.SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return internalLastHoverEvent;
+        }
+
+        /// <summary>
+        /// Sets the necessary for window rotation Acknowledgement.
+        /// After this function called, SendRotationCompletedAcknowledgement() should be called to complete window rotation.
+        ///
+        /// This function is supprot that application has the window rotation acknowledgement's control.
+        /// It means display server waits when application's rotation work is finished.
+        /// It is useful application has the other rendering engine which works asynchronous.
+        /// For instance, GlView.
+        /// </summary>
+        /// <param name="needAcknowledgement">the flag is true if window rotation acknowledge is sent.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetNeedsRotationCompletedAcknowledgement(bool needAcknowledgement)
+        {
+            Interop.Window.SetNeedsRotationCompletedAcknowledgement(SwigCPtr, needAcknowledgement);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// send the Acknowledgement to complete window rotation.
+        /// For this function, SetNeedsRotationCompletedAcknowledgement should be already called with true.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SendRotationCompletedAcknowledgement()
+        {
+            Interop.Window.SendRotationCompletedAcknowledgement(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1871,6 +2251,19 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
         public void AddFrameUpdateCallback(FrameUpdateCallbackInterface frameUpdateCallback)
         {
             frameUpdateCallback?.AddFrameUpdateCallback(stageCPtr, Layer.getCPtr(GetRootLayer()));
+        }
+
+        /// <summary>
+        /// Add FrameUpdateCallback with root view.
+        /// FrameUpdateCallbackInterface can only detach Views under given view.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddFrameUpdateCallback(FrameUpdateCallbackInterface frameUpdateCallback, View rootView)
+        {
+            if(rootView != null)
+            {
+                frameUpdateCallback?.AddFrameUpdateCallback(stageCPtr, View.getCPtr(rootView));
+            }
         }
 
         /// <summary>
@@ -1892,6 +2285,8 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
             {
                 return;
             }
+
+            this.DisconnectNativeSignals();
 
             if (type == DisposeTypes.Explicit)
             {
@@ -1915,9 +2310,19 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
                 childLayers.Clear();
 
                 localController?.Dispose();
+
+                internalLastKeyEvent?.Dispose();
+                internalLastKeyEvent = null;
+                internalLastTouchEvent?.Dispose();
+                internalLastTouchEvent = null;
+                internalLastHoverEvent?.Dispose();
+                internalLastHoverEvent = null;
+
+                internalHoverTimer?.Stop();
+                internalHoverTimer?.Dispose();
+                internalHoverTimer = null;
             }
 
-            this.DisconnectNativeSignals();
 
             base.Dispose(type);
         }
@@ -2049,6 +2454,32 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
             IntPtr cPtr = Interop.Actor.FindChildById(defaultLayer.SwigCPtr, id);
             Layer ret = this.GetInstanceSafely<Layer>(cPtr);
 
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Sets to resize window with full screen.
+        /// If full screen size is set for the window,
+        /// window will be resized with full screen.
+        /// In addition, the full screen sized window's z-order is the highest.
+        /// </summary>
+        /// <param name="fullscreen"> If fullscreen is true, set fullscreen or unset.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetFullScreen(bool fullscreen)
+        {
+            Interop.Window.SetFullScreen(SwigCPtr, fullscreen);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Gets whether the full screen sized window or not.
+        /// </summary>
+        /// <returns>Returns true if the full screen sized window is.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool GetFullScreen()
+        {
+            bool ret = Interop.Window.GetFullScreen(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

@@ -848,13 +848,32 @@ namespace Tizen.NUI.Components
         }
         private float stepScrollDistance = 0f;
 
+        /// <summary>
+        /// Wheel scroll move distance.
+        /// This value decide how long distance will it moves in wheel event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float WheelScrollDistance
+        {
+            get
+            {
+                return (float)GetValue(WheelScrollDistanceProperty);
+            }
+            set
+            {
+                SetValue(WheelScrollDistanceProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private float wheelScrollDistance = 50f;
+
 
         // Let's consider more whether this needs to be set as protected.
         private float finalTargetPosition;
 
         private Animation scrollAnimation;
         // Declare user alpha function delegate
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate float UserAlphaFunctionDelegate(float progress);
         private UserAlphaFunctionDelegate customScrollAlphaFunction;
         private float velocityOfLastPan = 0.0f;
@@ -873,11 +892,7 @@ namespace Tizen.NUI.Components
         private bool isOverShootingShadowShown = false;
         private float startShowShadowDisplacement;
 
-        /// <summary>
-        /// Default Constructor
-        /// </summary>
-        /// <since_tizen> 8 </since_tizen>
-        public ScrollableBase() : base()
+        private void Initialize()
         {
             DecelerationRate = 0.998f;
 
@@ -946,9 +961,40 @@ namespace Tizen.NUI.Components
                 PivotPoint = NUI.PivotPoint.CenterRight,
             };
 
+            WheelEvent += OnWheelEvent;
+
             AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "ScrollableBase");
 
             SetKeyboardNavigationSupport(true);
+        }
+
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public ScrollableBase() : base()
+        {
+            Initialize();
+        }
+
+        /// <summary>
+        /// Creates a new instance of a ScrollableBase with style.
+        /// </summary>
+        /// <param name="style">Creates ScrollableBase by special style defined in UX.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ScrollableBase(string style) : base(style)
+        {
+            Initialize();
+        }
+
+        /// <summary>
+        /// Creates a new instance of a ScrollableBase with style.
+        /// </summary>
+        /// <param name="style">A style applied to the newly created ScrollableBase.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ScrollableBase(ControlStyle style) : base(style)
+        {
+            Initialize();
         }
 
         private bool OnInterruptTouchingChildTouched(object source, View.TouchEventArgs args)
@@ -1075,7 +1121,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public void ScrollToIndex(int index)
         {
-            if (ContentContainer.ChildCount - 1 < index || index < 0)
+            if ((int)ContentContainer.ChildCount - 1 < index || index < 0)
             {
                 return;
             }
@@ -1095,11 +1141,11 @@ namespace Tizen.NUI.Components
 
             bool isHorizontal = (ScrollingDirection == Direction.Horizontal);
 
-            float viewScreenPosition = (isHorizontal? ScreenPosition.X : ScreenPosition.Y);
-            float childScreenPosition = (isHorizontal? child.ScreenPosition.X : child.ScreenPosition.Y);
-            float scrollPosition = (isHorizontal? ScrollPosition.X : ScrollPosition.Y);
-            float viewSize = (isHorizontal? SizeWidth : SizeHeight);
-            float childSize = (isHorizontal? child.SizeWidth : child.SizeHeight);
+            float viewScreenPosition = (isHorizontal ? ScreenPosition.X : ScreenPosition.Y);
+            float childScreenPosition = (isHorizontal ? child.ScreenPosition.X : child.ScreenPosition.Y);
+            float scrollPosition = (isHorizontal ? ScrollPosition.X : ScrollPosition.Y);
+            float viewSize = (isHorizontal ? SizeWidth : SizeHeight);
+            float childSize = (isHorizontal ? child.SizeWidth : child.SizeHeight);
 
             if (viewScreenPosition > childScreenPosition ||
                 viewScreenPosition + viewSize < childScreenPosition + childSize)
@@ -1122,6 +1168,7 @@ namespace Tizen.NUI.Components
         {
             ScrollEventArgs eventArgs = new ScrollEventArgs(ContentContainer.CurrentPosition);
             ScrollDragStarted?.Invoke(this, eventArgs);
+            EmitScrollStartedEvent();
 
             if (!hideScrollbar && fadeScrollbar)
             {
@@ -1133,6 +1180,7 @@ namespace Tizen.NUI.Components
         {
             ScrollEventArgs eventArgs = new ScrollEventArgs(ContentContainer.CurrentPosition);
             ScrollDragEnded?.Invoke(this, eventArgs);
+            EmitScrollFinishedEvent();
 
             if (!hideScrollbar && fadeScrollbar)
             {
@@ -1144,6 +1192,7 @@ namespace Tizen.NUI.Components
         {
             ScrollEventArgs eventArgs = new ScrollEventArgs(ContentContainer.CurrentPosition);
             ScrollAnimationStarted?.Invoke(this, eventArgs);
+            EmitScrollStartedEvent();
 
             if (!hideScrollbar && fadeScrollbar)
             {
@@ -1158,6 +1207,7 @@ namespace Tizen.NUI.Components
 
             ScrollEventArgs eventArgs = new ScrollEventArgs(ContentContainer.CurrentPosition);
             ScrollAnimationEnded?.Invoke(this, eventArgs);
+            EmitScrollFinishedEvent();
 
             if (!hideScrollbar && fadeScrollbar)
             {
@@ -1330,19 +1380,27 @@ namespace Tizen.NUI.Components
                 return;
             }
 
+            StopOverShootingShadowAnimation();
+            StopScroll();
+
             if (type == DisposeTypes.Explicit)
             {
-                StopOverShootingShadowAnimation();
-                StopScroll();
+                mPanGestureDetector?.Dispose();
+                mPanGestureDetector = null;
 
-                if (mPanGestureDetector != null)
+                if(!(ContentContainer?.Disposed ?? true) && propertyNotification != null)
                 {
-                    mPanGestureDetector.Detected -= OnPanGestureDetected;
-                    mPanGestureDetector.Dispose();
-                    mPanGestureDetector = null;
+                    ContentContainer?.RemovePropertyNotification(propertyNotification);
                 }
+                propertyNotification?.Dispose();
+                propertyNotification = null;
+            }
 
-                propertyNotification.Dispose();
+            WheelEvent -= OnWheelEvent;
+
+            if (type == DisposeTypes.Explicit)
+            {
+
             }
             base.Dispose(type);
         }
@@ -1675,7 +1733,7 @@ namespace Tizen.NUI.Components
                 var checkFinalTargetPosition = BoundScrollPosition(checkChildTargetPosition);
                 handled = !((int)checkFinalTargetPosition == 0 || -(int)checkFinalTargetPosition == (int)maxScrollDistance);
                 // If you propagate a gesture event, return;
-                if(!handled)
+                if (!handled)
                 {
                     return handled;
                 }
@@ -1781,6 +1839,10 @@ namespace Tizen.NUI.Components
                 float realDuration = progress * panAnimationDuration;
                 float realDistance = velocityOfLastPan * ((float)Math.Pow(decelerationRate, realDuration) - 1) / logValueOfDeceleration;
                 float result = Math.Min(realDistance / Math.Abs(panAnimationDelta), 1.0f);
+
+                // This is hot-fix for if the velocity has very small value, result is not updated even progress done.
+                if (progress > 0.99) result = 1.0f;
+
                 return result;
             }
         }
@@ -1978,7 +2040,7 @@ namespace Tizen.NUI.Components
         {
             bool isHorizontal = (ScrollingDirection == Direction.Horizontal);
             float targetPosition = -(ScrollingDirection == Direction.Horizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y);
-            float stepDistance = (stepScrollDistance != 0? stepScrollDistance : (isHorizontal ? Size.Width * 0.25f :  Size.Height * 0.25f));
+            float stepDistance = (stepScrollDistance != 0 ? stepScrollDistance : (isHorizontal ? Size.Width * 0.25f : Size.Height * 0.25f));
 
             bool forward = ((isHorizontal && direction == View.FocusDirection.Right) ||
                             (!isHorizontal && direction == View.FocusDirection.Down) ||
@@ -2120,6 +2182,26 @@ namespace Tizen.NUI.Components
             }
 
             return true;
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool OnWheel(Wheel wheel)
+        {
+            if (wheel == null)
+            {
+                return false;
+            }
+
+            float currentScrollPosition = -(ScrollingDirection == Direction.Horizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y);
+            ScrollTo(currentScrollPosition + (wheelScrollDistance * wheel.Z), false);
+
+            return true;
+        }
+
+        private bool OnWheelEvent(object o, WheelEventArgs e)
+        {
+            return OnWheel(e?.Wheel);
         }
     }
 

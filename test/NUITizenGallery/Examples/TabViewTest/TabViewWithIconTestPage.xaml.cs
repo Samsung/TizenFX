@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2022 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2023 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,19 +22,11 @@ namespace NUITizenGallery
 {
     public partial class TabViewWithIconTestPage : ContentPage
     {
-        private int tabCount = 0;
+        private int tabCount = 2;
 
         public TabViewWithIconTestPage()
         {
             InitializeComponent();
-
-            tabView.SizeHeight = Window.Instance.WindowSize.Height - appBar.SizeHeight;
-
-            tabView.AddTab(CreateTabButton(), CreateView());
-            tabCount++;
-
-            tabView.AddTab(CreateTabButton(), CreateView());
-            tabCount++;
         }
 
         private TabButton CreateTabButton()
@@ -44,6 +36,24 @@ namespace NUITizenGallery
                 Text = "Tab" + (tabCount + 1),
                 IconURL = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "home.png",
             };
+        }
+
+        private void AddTabClickedCb(object sender, ClickedEventArgs args)
+        {
+            if (tabCount < 4)
+            {
+                tabView.AddTab(CreateTabButton(), CreateView());
+                tabCount++;
+            }
+        }
+
+        private void RemoveTabClickedCb(object sender, ClickedEventArgs args)
+        {
+            if (tabCount > 1)
+            {
+                tabView.RemoveTab(tabCount - 1);
+                tabCount--;
+            }
         }
 
         private View CreateView()
@@ -77,7 +87,8 @@ namespace NUITizenGallery
                 Layout = new LinearLayout()
                 {
                     LinearOrientation = LinearLayout.Orientation.Vertical,
-                    LinearAlignment = LinearLayout.Alignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
                     CellPadding = new Size2D(0, 20),
                 },
                 BackgroundColor = backgroundColor,
@@ -90,14 +101,7 @@ namespace NUITizenGallery
                 Text = "Add Tab",
                 BackgroundColor = buttonBackgroundColor,
             };
-            buttonAddTab.Clicked += (object sender, ClickedEventArgs args) =>
-            {
-                if (tabCount < 4)
-                {
-                    tabView.AddTab(CreateTabButton(), CreateView());
-                    tabCount++;
-                }
-            };
+            buttonAddTab.Clicked += AddTabClickedCb;
             container.Add(buttonAddTab);
 
             var buttonRemoveTab = new Button()
@@ -105,14 +109,7 @@ namespace NUITizenGallery
                 Text = "Remove Tab",
                 BackgroundColor = buttonBackgroundColor,
             };
-            buttonRemoveTab.Clicked += (object sender, ClickedEventArgs args) =>
-            {
-                if (tabCount > 1)
-                {
-                    tabView.RemoveTab(tabCount - 1);
-                    tabCount--;
-                }
-            };
+            buttonRemoveTab.Clicked += RemoveTabClickedCb;
             container.Add(buttonRemoveTab);
 
             return container;

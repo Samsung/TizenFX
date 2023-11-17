@@ -106,6 +106,7 @@ namespace Tizen.NUI.Devel.Tests
             try
             {
                 widget.SetContentInfo("PublicWidgetTest");
+				widget.SetUsingKeyEvent(true);
             }
             catch (Exception e)
             {

@@ -264,6 +264,22 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// The constructor with a ThemeOptions, WindowData
+        /// </summary>
+        /// <param name="option">The theme option.</param>
+        /// <param name="windowData">The default window data</param>
+        [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public NUIApplication(ThemeOptions option, WindowData windowData) : base(new NUICoreBackend(windowData))
+        {
+            if (windowData.BorderInterface != null)
+            {
+                EnableBorder(windowData.BorderInterface);
+            }
+            ApplyThemeOption(option);
+        }
+
+        /// <summary>
         /// Occurs whenever the application is resumed.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
@@ -453,6 +469,20 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Flush render/update thread messages synchronously.
+        /// </summary>
+        /// <remarks>
+        /// This function will relayout forcibily.
+        /// This function is used for advanced developer. It will make main-thread overhead if you call this function frequencely.
+        /// </remarks>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void FlushUpdateMessages()
+        {
+            ApplicationHandle.FlushUpdateMessages();
+        }
+
+        /// <summary>
         /// Sets the number of frames per render.
         /// </summary>
         /// <param name="numberOfVSyncsPerRender">The number of vsyncs between successive renders.</param>
@@ -469,6 +499,18 @@ namespace Tizen.NUI
         public static void SetRenderRefreshRate(uint numberOfVSyncsPerRender)
         {
             Adaptor.Instance.SetRenderRefreshRate(numberOfVSyncsPerRender);
+        }
+
+        /// <summary>
+        /// Gets the screen size
+        /// </summary>
+        /// <returns>Screen size</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static public Size GetScreenSize()
+        {
+            var ret = new Size(Interop.Application.GetScreenSize(), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         /// <summary>
@@ -508,6 +550,20 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// This method is to handle behavior when the device orientation is changed.
+        ///
+        /// When device is rotated to ccw or cw, this event occurs.
+        /// In addition, this event is different to window orientation changed event.
+        /// The window orientation event is for per a window and occurs when some flags should be set before.
+        /// </summary>
+        /// <param name="e">The device orientation changed event argument</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnDeviceOrientationChanged(DeviceOrientationEventArgs e)
+        {
+            base.OnDeviceOrientationChanged(e);
+        }
+
+        /// <summary>
         /// Overrides this method if you want to handle behavior.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -542,7 +598,7 @@ namespace Tizen.NUI
         {
             Tizen.Tracer.Begin("[NUI] OnPreCreate()");
 
-            if (borderEnabled)
+            if (borderEnabled && GetDefaultWindow() != null)
             {
                 GetDefaultWindow().EnableBorder(borderInterface, new Window.BorderCloseDelegate(Exit));
             }
@@ -556,7 +612,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
         {
-            if (e != null)
+            if (e != null && e.ReceivedAppControl != null)
             {
                 Log.Info("NUI", "OnAppControlReceived() is called! ApplicationId=" + e.ReceivedAppControl.ApplicationId);
                 Log.Info("NUI", "CallerApplicationId=" + e.ReceivedAppControl.CallerApplicationId + "   IsReplyRequest=" + e.ReceivedAppControl.IsReplyRequest);
@@ -584,9 +640,22 @@ namespace Tizen.NUI
         static public void Preload()
         {
             Interop.Application.PreInitialize();
-#if ExternalThemeEnabled
-            ThemeManager.Preload();
-#endif
+
+            // Initialize some static utility
+            var disposalbeQueue = DisposeQueue.Instance;
+            var registry = Registry.Instance;
+
+            // Initialize some BaseComponent static variables now
+            BaseComponents.View.Preload();
+            BaseComponents.ImageView.Preload();
+            BaseComponents.TextLabel.Preload();
+            BaseComponents.TextEditor.Preload();
+            BaseComponents.TextField.Preload();
+            Disposable.Preload();
+
+            // Initialize exception tasks. It must be called end of Preload()
+            NDalicPINVOKE.Preload();
+
             IsPreload = true;
         }
 

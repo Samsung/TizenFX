@@ -188,7 +188,7 @@ namespace Tizen.NUI
         /// This function can be used inside or outside WebContext.HttpRequestIntercepted.
         /// After this call, any further call on WebHttpRequestInterceptor results in undefined behavior.
         /// </summary>
-        /// <param name="body">Contents of response</param>
+        /// <param name="body">Contents of response. For UTF-8 encoding, body would be got like System.Text.Encoding.UTF8.GetString(...)</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool SetResponseBody(string body)
         {
@@ -223,7 +223,7 @@ namespace Tizen.NUI
         /// After this call, any further call on WebHttpRequestInterceptor results in undefined behavior.
         /// </summary>
         /// <param name="headers">Headers of response</param>
-        /// <param name="body">Contents of response</param>
+        /// <param name="body">Contents of response. For UTF-8 encoding, body would be got like System.Text.Encoding.UTF8.GetString(...)</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool SetResponse(string headers, string body)
         {
@@ -263,7 +263,7 @@ namespace Tizen.NUI
         /// After writing full response body in chunks using this function,
         /// call it again with null as chunk, to signal that response body is finished.
         /// </summary>
-        /// <param name="chunk">Chunk of response</param>
+        /// <param name="chunk">Chunk of response. For UTF-8 encoding, chunk would be got like System.Text.Encoding.UTF8.GetString(...)</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool WriteResponseChunk(string chunk)
         {

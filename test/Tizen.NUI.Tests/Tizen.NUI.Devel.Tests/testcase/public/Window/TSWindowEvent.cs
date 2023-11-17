@@ -13,7 +13,19 @@ namespace Tizen.NUI.Devel.Tests
     public class PublicWindowEventTest
     {
         private const string tag = "NUITEST";
+        private bool IsFocusChanged = false;
+        private bool IsResized = false;
 
+        private bool OnWindowInterceptTouchEvent(object source, Window.TouchEventArgs e)
+        {
+            return true;
+        }
+		
+		private bool OnStageInterceptKeyEvent(object source, Window.KeyEventArgs e)
+        {
+            return true;
+        }
+		
         [SetUp]
         public void Init()
         {
@@ -119,11 +131,202 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object Window");
             Assert.IsInstanceOf<Window>(testingTarget, "Should be an instance of Window type.");
 
+            Assert.IsFalse(IsFocusChanged);
+
             testingTarget.FocusChanged += OnFocusChanged;
+
+            View current = new View()
+            {
+                Size = new Size(100, 200),
+                Position = new Position(0, 0)
+            };
+            testingTarget.GetDefaultLayer().Add(current);
+            FocusManager.Instance.SetCurrentFocusView(current);
+
+            View next = new View()
+            {
+                Size = new Size(100, 200),
+                Position = new Position(200, 0)
+            };
+            testingTarget.GetDefaultLayer().Add(next);
+            FocusManager.Instance.MoveFocus(View.FocusDirection.Right);
+
+            tlog.Debug(tag, "FocusChanged : " + IsFocusChanged);
             testingTarget.FocusChanged -= OnFocusChanged;
 
+            testingTarget.Dispose();
             tlog.Debug(tag, $"WindowEventFocusChanged END (OK)");
         }
+
+   //     [Test]
+   //     [Category("P1")]
+   //     [Description("WindowEvent InterceptKeyEvent.")]
+   //     [Property("SPEC", "Tizen.NUI.WindowEvent.InterceptKeyEvent A")]
+   //     [Property("SPEC_URL", "-")]
+   //     [Property("CRITERIA", "PRW")]
+   //     [Property("AUTHOR", "guowei.wang@samsung.com")]
+   //     public void WindowEventInterceptKeyEvent()
+   //     {
+   //         tlog.Debug(tag, $"WindowEventInterceptKeyEvent START");
+
+   //         var testingTarget = Window.Instance;
+   //         Assert.IsNotNull(testingTarget, "Can't create success object Window");
+   //         Assert.IsInstanceOf<Window>(testingTarget, "Should be an instance of Window type.");
+
+   //         testingTarget.InterceptKeyEvent += OnStageInterceptKeyEvent;
+   //         testingTarget.InterceptKeyEvent -= OnStageInterceptKeyEvent;
+
+   //         tlog.Debug(tag, $"WindowEventInterceptKeyEvent END (OK)");
+   //     }
+       
+   //     [Test]
+   //     [Category("P1")]
+   //     [Description("WindowEvent InterceptKeyEventSignal.")]
+   //     [Property("SPEC", "Tizen.NUI.WindowEvent.InterceptKeyEventSignal A")]
+   //     [Property("SPEC_URL", "-")]
+   //     [Property("CRITERIA", "PRW")]
+   //     [Property("AUTHOR", "guowei.wang@samsung.com")]
+   //     public void WindowEventInterceptKeyEventSignal()
+   //     {
+   //         tlog.Debug(tag, $"WindowEventInterceptKeyEventSignal START");
+
+   //         var testingTarget = Window.Instance;
+   //         Assert.IsNotNull(testingTarget, "Can't create success object Window");
+   //         Assert.IsInstanceOf<Window>(testingTarget, "Should be an instance of Window type.");
+            
+			//try
+			//{
+   //              testingTarget.InterceptKeyEventSignal();
+   //         }
+   //         catch (Exception e)
+   //         {
+   //             tlog.Debug(tag, e.Message.ToString());
+   //             Assert.Fail("Caught ArgumentNullException : Failed!");
+   //         } 
+
+   //         testingTarget.Dispose();
+   //         tlog.Debug(tag, $"ViewEventInterceptKeyEventSignal END (OK)");
+   //     }
+
+        [Test]
+        [Category("P1")]
+        [Description("WindowEvent DisconnectNativeSignals.")]
+        [Property("SPEC", "Tizen.NUI.WindowEvent.DisconnectNativeSignals A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void WindowEventDisconnectNativeSignals()
+        {
+            tlog.Debug(tag, $"WindowEventDisconnectNativeSignals START");
+
+            var testingTarget = Window.Instance;
+            Assert.IsNotNull(testingTarget, "Can't create success object Window");
+            Assert.IsInstanceOf<Window>(testingTarget, "Should be an instance of Window type.");
+            
+			try
+			{
+                testingTarget.DisconnectNativeSignals();
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught ArgumentNullException : Failed!");
+            }
+            
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ViewEventDisconnectNativeSignals END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("WindowEvent.FocusChangedEventArgs FocusGained.")]
+        [Property("SPEC", "Tizen.NUI.WindowEvent.FocusChangedEventArgs .FocusGained A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void WindowEventFocusChangedEventArgsFocusGained()
+        {
+            tlog.Debug(tag, $"WindowEventFocusChangedEventArgsFocusGained START");
+
+            var testingTarget = new Window.FocusChangedEventArgs ();
+            Assert.IsNotNull(testingTarget, "Can't create success object Window");
+            Assert.IsInstanceOf<Window.FocusChangedEventArgs >(testingTarget, "Should be an instance of Window.FocusChangedEventArgs  type.");
+
+            testingTarget.FocusGained = true;
+            tlog.Debug(tag, "FocusGained : " + testingTarget.FocusGained);
+
+            tlog.Debug(tag, $"WindowEventFocusChangedEventArgsFocusGained  END (OK)");
+        }
+  
+        [Test]
+        [Category("P1")]
+        [Description("WindowEvent.WindowFocusChangedEventArgs FocusGained.")]
+        [Property("SPEC", "Tizen.NUI.WindowEvent.WindowFocusChangedEventArgs  .FocusGained A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
+        public void WindowEventWindowFocusChangedEventArgsFocusGained()
+        {
+            tlog.Debug(tag, $"WindowEventWindowFocusChangedEventArgsFocusGained START");
+
+            var testingTarget = new Window.WindowFocusChangedEventArgs ();
+            Assert.IsNotNull(testingTarget, "Can't create success object Window");
+            Assert.IsInstanceOf<Window.WindowFocusChangedEventArgs >(testingTarget, "Should be an instance of Window.WindowFocusChangedEventArgs   type.");
+
+            testingTarget.FocusGained = true;
+            tlog.Debug(tag, "FocusGained : " + testingTarget.FocusGained);
+
+            tlog.Debug(tag, $"WindowEventWindowFocusChangedEventArgsFocusGained  END (OK)");
+        }
+  
+        [Test]
+        [Category("P1")]
+        [Description("WindowEvent.AccessibilityHighlightEventArgs AccessibilityHighlight.")]
+        [Property("SPEC", "Tizen.NUI.WindowEvent.AccessibilityHighlightEventArgs  .AccessibilityHighlight A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void WindowEventAccessibilityHighlightEventArgsAccessibilityHighlight()
+        {
+            tlog.Debug(tag, $"WindowEventAccessibilityHighlightEventArgsFocusGained START");
+
+            var testingTarget = new Window.AccessibilityHighlightEventArgs ();
+            Assert.IsNotNull(testingTarget, "Can't create success object Window");
+            Assert.IsInstanceOf<Window.AccessibilityHighlightEventArgs >(testingTarget, "Should be an instance of Window.AccessibilityHighlightEventArgs   type.");
+
+            testingTarget.AccessibilityHighlight = true;
+            tlog.Debug(tag, "AccessibilityHighlight : " + testingTarget.AccessibilityHighlight);
+
+            tlog.Debug(tag, $"WindowEventAccessibilityHighlightEventArgsAccessibilityHighlight  END (OK)");
+        }
+
+		[Test]
+        [Category("P1")]
+        [Description("WindowEvent.KeyEventArgs Key.")]
+        [Property("SPEC", "Tizen.NUI.WindowEvent.KeyEventArgs.Key A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void WindowEventKeyEventArgsKey()
+        {
+            tlog.Debug(tag, $"WindowEventKeyEventArgsKey START");
+
+            var testingTarget = new Window.KeyEventArgs();
+            Assert.IsNotNull(testingTarget, "Can't create success object Window");
+            Assert.IsInstanceOf<Window.KeyEventArgs >(testingTarget, "Should be an instance of Window.KeyEventArgs  type.");
+
+            using (Key key = new Key())
+            {
+                key.KeyCode = 911;
+                key.KeyString = "myKey";
+                testingTarget.Key = key;
+
+                Assert.AreEqual(911, testingTarget.Key.KeyCode, "Should be equal!");
+            }
+
+            tlog.Debug(tag, $"WindowEventKeyEventArgsKey  END (OK)");
+        }	
 
         [Test]
         [Category("P1")]
@@ -188,13 +391,18 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WindowEventResized START");
 
-            using (Rectangle rec = new Rectangle(0, 0, 2, 2))
+            using (Rectangle rec = new Rectangle(0, 0, 100, 200))
             {
+                Assert.IsFalse(IsResized) ;
+
                 var testingTarget = new Window(rec);
                 Assert.IsNotNull(testingTarget, "Can't create success object Window");
                 Assert.IsInstanceOf<Window>(testingTarget, "Should be an instance of Window type.");
 
                 testingTarget.Resized += OnResized;
+                testingTarget.WindowSize = new Size2D(200, 400);
+                
+                tlog.Debug(tag, "Resized : " + IsResized);
                 testingTarget.Resized -= OnResized;
 
                 testingTarget.Dispose();
@@ -210,6 +418,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void WindowEventWindowFocusChanged()
         {
             tlog.Debug(tag, $"WindowEventWindowFocusChanged START");
@@ -220,8 +429,8 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.IsNotNull(testingTarget, "Can't create success object Window");
                 Assert.IsInstanceOf<Window>(testingTarget, "Should be an instance of Window type.");
 
-                testingTarget.WindowFocusChanged += OnWindowFocusedChanged2;
-                testingTarget.WindowFocusChanged -= OnWindowFocusedChanged2;
+                testingTarget.WindowFocusChanged += OnWindowFocusedChanged;
+                testingTarget.WindowFocusChanged -= OnWindowFocusedChanged;
 
                 testingTarget.Dispose();
             }
@@ -390,18 +599,99 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"WindowEventWheelEvent END (OK)");
         }
+		
+        [Test]
+        [Category("P1")]
+        [Description("WindowEvent VisibilityChanged.")]
+        [Property("SPEC", "Tizen.NUI.WindowEvent.VisibilityChanged A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void WindowEventVisibilityChanged()
+        {
+            tlog.Debug(tag, $"WindowEventVisibilityChanged START");
 
-        private void OnFocusChanged(object sender, Window.FocusChangedEventArgs e) { }
+            using (Rectangle rec = new Rectangle(0, 0, 2, 2))
+            {
+                var testingTarget = new Window(rec);
+                Assert.IsNotNull(testingTarget, "Can't create success object Window");
+                Assert.IsInstanceOf<Window>(testingTarget, "Should be an instance of Window type.");
+
+                testingTarget.VisibilityChanged += OnVisibilityChanged;
+                testingTarget.VisibilityChanged -= OnVisibilityChanged;
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"WindowEventVisibilityChanged END (OK)");	
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("WindowEvent AuxiliaryMessage.")]
+        [Property("SPEC", "Tizen.NUI.WindowEvent.AuxiliaryMessage A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void WindowEventAuxiliaryMessage()
+        {
+            tlog.Debug(tag, $"WindowEventAuxiliaryMessage START");
+
+            using (Rectangle rec = new Rectangle(0, 0, 2, 2))
+            {
+                var testingTarget = new Window(rec);
+                Assert.IsNotNull(testingTarget, "Can't create success object Window");
+                Assert.IsInstanceOf<Window>(testingTarget, "Should be an instance of Window type.");
+
+                testingTarget.AuxiliaryMessage += OnAuxiliaryMessage;
+                testingTarget.AuxiliaryMessage -= OnAuxiliaryMessage;
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"WindowEventVisibilityChanged END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("WindowEvent AccessibilityHighlight.")]
+        [Property("SPEC", "Tizen.NUI.WindowEvent.AccessibilityHighlight A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void WindowEventAccessibilityHighlight()
+        {
+            tlog.Debug(tag, $"WindowEventAccessibilityHighlight START");
+
+            using (Rectangle rec = new Rectangle(0, 0, 2, 2))
+            {
+                var testingTarget = new Window(rec);
+                Assert.IsNotNull(testingTarget, "Can't create success object Window");
+                Assert.IsInstanceOf<Window>(testingTarget, "Should be an instance of Window type.");
+
+                testingTarget.AccessibilityHighlight += OnAccessibilityHighlight;
+                testingTarget.AccessibilityHighlight -= OnAccessibilityHighlight;
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"WindowEventAccessibilityHighlight END (OK)");
+        }
+
+        private void OnFocusChanged(object sender, Window.FocusChangedEventArgs e) { IsFocusChanged = true; }
         private void OnWindowTouch(object sender, Window.TouchEventArgs e) { }
         private void OnStageWheel(object sender, Window.WheelEventArgs e) { }
         private void OnStageKey(object sender, Window.KeyEventArgs e) { }
-        private void OnResized(object sender, Window.ResizedEventArgs e) { }
+        private void OnResized(object sender, Window.ResizedEventArgs e) { IsResized = true; }
         private void OnTransitionEffect(object sender, Window.TransitionEffectEventArgs e) { }
-        private void OnWindowFocusedChanged2(object sender, Window.FocusChangedEventArgs e) { }
+        private void OnWindowFocusedChanged(object sender, Window.FocusChangedEventArgs e) { }
         private void OnKeyboardRepeatSettingsChanged(object sender, EventArgs e) { }
         private void OnEventProcessingFinished(object sender, EventArgs e) { }
         private void OnContextLost(object sender, EventArgs e) { }
         private void OnContextRegained(object sender, EventArgs e) { }
         private void OnSceneCreated(object sender, EventArgs e) { }
+		private void OnVisibilityChanged(object sender, Window.VisibilityChangedEventArgs e) { }
+		private void OnAuxiliaryMessage(object sender, EventArgs e) { }
+		private void OnAccessibilityHighlight(object sender, Window.AccessibilityHighlightEventArgs e) { }
     }
 }

@@ -14,6 +14,13 @@ namespace Tizen.NUI.Samples
         {
             Window window = NUIApplication.GetDefaultWindow();
 
+            // Use LazyFeedHover if you want to trigger the HoverEvent again when a Wheel event is received.
+            window.InterceptWheelEvent += (s, e) =>
+            {
+                window.LazyFeedHover();
+                return false;
+            };
+
             root = new View();
             root.Layout = new AbsoluteLayout();
             root.Size = new Size(500, 800);
@@ -97,6 +104,20 @@ namespace Tizen.NUI.Samples
                 Focusable = true,
                 FocusableInTouch = true,
                 Text = $"Item {index}",
+                LeaveRequired = true,
+                BackgroundColor = Color.DarkOrange,
+            };
+            btn.HoverEvent += (s, e) =>
+            {
+                if(e.Hover.GetState(0) == PointStateType.Started)
+                {
+                    btn.BackgroundColor = Color.Red;
+                }
+                else if (e.Hover.GetState(0) == PointStateType.Leave)
+                {
+                    btn.BackgroundColor = Color.DarkOrange;
+                }
+                return true;
             };
             // btn.FocusGained += (s, e) =>
             // {

@@ -50,6 +50,17 @@ namespace Tizen.NUI.BaseComponents
             var textFieldStyle = (TextFieldStyle)bindable;
             return textFieldStyle.pointSize;
         });
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FontSizeScaleProperty = BindableProperty.Create(nameof(FontSizeScale), typeof(float?), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textFieldStyle = (TextFieldStyle)bindable;
+            textFieldStyle.fontSizeScale = (float?)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textFieldStyle = (TextFieldStyle)bindable;
+            return textFieldStyle.fontSizeScale;
+        });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
@@ -545,6 +556,7 @@ namespace Tizen.NUI.BaseComponents
         private string fontFamily;
         private Color textColor;
         private float? pointSize;
+        private float? fontSizeScale;
         private Vector4 placeholderTextColor;
         private Vector4 primaryCursorColor;
         private PropertyMap fontStyle;
@@ -843,6 +855,13 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (float?)GetValue(PointSizeProperty);
             set => SetValue(PointSizeProperty, value);
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float? FontSizeScale
+        {
+            get => (float?)GetValue(FontSizeScaleProperty);
+            set => SetValue(FontSizeScaleProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.

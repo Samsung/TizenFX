@@ -38,7 +38,7 @@ namespace Tizen.NUI
     /// </para>
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
-    public class Theme : BindableObject
+    public class Theme : BindableObject, IResourcesProvider
     {
         private readonly Dictionary<string, ViewStyle> map;
         private IEnumerable<KeyValuePair<string, string>> changedResources = null;
@@ -162,7 +162,7 @@ namespace Tizen.NUI
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal ResourceDictionary Resources
+        public ResourceDictionary XamlResources
         {
             get
             {
@@ -195,7 +195,8 @@ namespace Tizen.NUI
         /// Note that it is not a normal indexer.
         /// Setter will merge the new value with existing item.
         /// </summary>
-        internal ViewStyle this[string styleName]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ViewStyle this[string styleName]
         {
             get => map[styleName];
             set
@@ -307,7 +308,7 @@ namespace Tizen.NUI
             var result = new Theme()
             {
                 Id = this.Id,
-                Resources = Resources,
+                XamlResources = this.XamlResources,
                 SmallBrokenImageUrl = this.SmallBrokenImageUrl,
                 BrokenImageUrl = this.BrokenImageUrl,
                 LargeBrokenImageUrl = this.LargeBrokenImageUrl
@@ -364,6 +365,14 @@ namespace Tizen.NUI
                     map[item.Key] = item.Value.Clone();
                 }
             }
+
+            if (theme.resources != null)
+            {
+                foreach (var res in theme.resources)
+                {
+                    XamlResources[res.Key] = res.Value;
+                }
+            }
         }
 
         internal void MergeWithoutClone(Theme theme)
@@ -408,7 +417,7 @@ namespace Tizen.NUI
             {
                 foreach (var res in theme.resources)
                 {
-                    Resources[res.Key] = res.Value;
+                    XamlResources[res.Key] = res.Value;
                 }
             }
         }

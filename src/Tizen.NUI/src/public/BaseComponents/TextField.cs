@@ -31,22 +31,45 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class TextField : View
     {
+        static private string defaultStyleName = "Tizen.NUI.BaseComponents.TextField";
+        static private string defaultFontFamily = "TizenSans";
+        private static SystemFontTypeChanged systemFontTypeChanged = new SystemFontTypeChanged();
+        private static SystemLocaleLanguageChanged systemLocaleLanguageChanged = new SystemLocaleLanguageChanged();
         private string textFieldTextSid = null;
         private string textFieldPlaceHolderTextSid = null;
         private string textFieldPlaceHolderTextFocusedSid = null;
-        private bool systemlangTextFlag = false;
         private InputMethodContext inputMethodCotext = null;
+        private string fontFamily = defaultFontFamily;
         private float fontSizeScale = 1.0f;
-        private bool hasFontSizeChangedCallback = false;
+        private bool hasSystemLanguageChanged = false;
+        private bool hasSystemFontSizeChanged = false;
+        private bool hasSystemFontTypeChanged = false;
         private bool isSettingTextInCSharp = false;
 
+        private Vector4 internalPlaceholderTextColor = null;
+        private Vector4 internalPrimaryCursorColor = null;
+        private Vector4 internalSecondaryCursorColor = null;
+        private Vector4 internalSelectionHighlightColor = null;
+        private Vector4 internalInputColor = null;
+        private Color internalTextColor = null;
+        private Color internalGrabHandleColor = null;
+
+
         static TextField() { }
+
+        static internal new void Preload()
+        {
+            // Do not call View.Preload(), since we already call it
+
+            Property.Preload();
+            // Do nothing. Just call for load static values.
+        }
 
         /// <summary>
         /// Creates the TextField control.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public TextField() : this(Interop.TextField.New(), true)
+        public TextField() : this(Interop.TextField.New(ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -57,7 +80,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="shown">false : Not displayed (hidden), true : displayed (shown)</param>
         /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextField(bool shown) : this(Interop.TextField.New(), true)
+        public TextField(bool shown) : this(Interop.TextField.New(ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             SetVisible(shown);
@@ -92,15 +115,15 @@ namespace Tizen.NUI.BaseComponents
             TextChanged += TextFieldTextChanged;
         }
 
-        internal TextField(TextField handle, bool shown = true) : this(Interop.TextField.NewTextField(TextField.getCPtr(handle)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         internal enum ExceedPolicyType
         {
             ExceedPolicyOriginal,
             ExceedPolicyClip
+        }
+
+        private bool HasStyle()
+        {
+            return ThemeManager.GetStyle(this.GetType()) == null ? false : true;
         }
 
         /// <summary>
@@ -285,6 +308,50 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(FontFamilyProperty, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        private string InternalFontFamily
+        {
+            get
+            {
+                if (HasStyle())
+                    return fontFamily;
+                else
+                    return Object.InternalGetPropertyString(this.SwigCPtr, TextField.Property.FontFamily);
+            }
+            set
+            {
+                string newFontFamily;
+
+                if (string.Equals(fontFamily, value)) return;
+
+                fontFamily = value;
+                if (fontFamily == Tizen.NUI.FontFamily.UseSystemSetting)
+                {
+                    try
+                    {
+                        newFontFamily = SystemSettings.FontType;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("{0} Exception caught.", e);
+                        newFontFamily = defaultFontFamily;
+                    }
+                    AddSystemSettingsFontTypeChanged();
+                }
+                else
+                {
+                    newFontFamily = fontFamily;
+                    RemoveSystemSettingsFontTypeChanged();
+                }
+
+                SetInternalFontFamily(newFontFamily);
+            }
+        }
+
+        private void SetInternalFontFamily(string fontFamily)
+        {
+            Object.InternalSetPropertyString(this.SwigCPtr, TextField.Property.FontFamily, (string)fontFamily);
         }
 
         /// <summary>
@@ -2278,6 +2345,19 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (float)GetValue(FontSizeScaleProperty);
+            }
+            set
+            {
+                SetValue(FontSizeScaleProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private float InternalFontSizeScale
+        {
+            get
+            {
                 return fontSizeScale;
             }
             set
@@ -2301,17 +2381,22 @@ namespace Tizen.NUI.BaseComponents
                         systemSettingsFontSize = SystemSettingsFontSize.Normal;
                     }
                     newFontSizeScale = TextUtils.GetFontSizeScale(systemSettingsFontSize);
-                    addFontSizeChangedCallback();
+                    AddSystemSettingsFontSizeChanged();
                 }
                 else
                 {
                     newFontSizeScale = fontSizeScale;
-                    removeFontSizeChangedCallback();
+                    RemoveSystemSettingsFontSizeChanged();
                 }
 
-                SetValue(FontSizeScaleProperty, newFontSizeScale);
-                NotifyPropertyChanged();
+                SetInternalFontSizeScale(newFontSizeScale);
             }
+        }
+
+        private void SetInternalFontSizeScale(float fontSizeScale)
+        {
+
+            Object.InternalSetPropertyFloat(this.SwigCPtr, TextField.Property.FontSizeScale, (float)fontSizeScale);
         }
 
         /// <summary>
@@ -2405,16 +2490,24 @@ namespace Tizen.NUI.BaseComponents
         {
             if (disposed)
             {
-                DisposeQueue.Instance.Add(this);
                 return;
             }
 
-            if (systemlangTextFlag)
+            internalPlaceholderTextColor?.Dispose();
+            internalPrimaryCursorColor?.Dispose();
+            internalSecondaryCursorColor?.Dispose();
+            internalSelectionHighlightColor?.Dispose();
+            internalInputColor?.Dispose();
+            internalTextColor?.Dispose();
+            internalGrabHandleColor?.Dispose();
+
+            if (hasSystemLanguageChanged)
             {
-                SystemSettings.LocaleLanguageChanged -= SystemSettings_LocaleLanguageChanged;
+                systemLocaleLanguageChanged.Remove(SystemSettingsLocaleLanguageChanged);
             }
 
-            removeFontSizeChangedCallback();
+            RemoveSystemSettingsFontTypeChanged();
+            RemoveSystemSettingsFontSizeChanged();
 
             if (type == DisposeTypes.Explicit)
             {
@@ -2460,6 +2553,7 @@ namespace Tizen.NUI.BaseComponents
             }
 
             TextChanged -= TextFieldTextChanged;
+            GetInputMethodContext()?.DestroyContext();
 
             base.Dispose(type);
         }
@@ -2468,8 +2562,6 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            // In order to speed up IME hide, temporarily add
-            GetInputMethodContext()?.DestroyContext();
             Interop.TextField.DeleteTextField(swigCPtr);
         }
 
@@ -2491,10 +2583,10 @@ namespace Tizen.NUI.BaseComponents
             translatableText = NUIApplication.MultilingualResourceManager?.GetString(textFieldSid, new CultureInfo(SystemSettings.LocaleLanguage.Replace("_", "-")));
             if (translatableText != null)
             {
-                if (systemlangTextFlag == false)
+                if (hasSystemLanguageChanged == false)
                 {
-                    SystemSettings.LocaleLanguageChanged += SystemSettings_LocaleLanguageChanged;
-                    systemlangTextFlag = true;
+                    systemLocaleLanguageChanged.Add(SystemSettingsLocaleLanguageChanged);
+                    hasSystemLanguageChanged = true;
                 }
                 return translatableText;
             }
@@ -2505,7 +2597,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private void SystemSettings_LocaleLanguageChanged(object sender, LocaleLanguageChangedEventArgs e)
+        private void SystemSettingsLocaleLanguageChanged(object sender, LocaleLanguageChangedEventArgs e)
         {
             if (textFieldTextSid != null)
             {
@@ -2524,40 +2616,78 @@ namespace Tizen.NUI.BaseComponents
         private void SystemSettingsFontSizeChanged(object sender, FontSizeChangedEventArgs e)
         {
             float newFontSizeScale = TextUtils.GetFontSizeScale(e.Value);
-            SetValue(FontSizeScaleProperty, newFontSizeScale);
-            NotifyPropertyChanged();
+            SetInternalFontSizeScale(newFontSizeScale);
         }
 
-        private void addFontSizeChangedCallback()
+        private void AddSystemSettingsFontSizeChanged()
         {
-            if (hasFontSizeChangedCallback != true)
+            if (hasSystemFontSizeChanged != true)
             {
                 try
                 {
-                    SystemSettings.FontSizeChanged += SystemSettingsFontSizeChanged;
-                    hasFontSizeChangedCallback = true;
+                    SystemFontSizeChangedManager.Add(SystemSettingsFontSizeChanged);
+                    hasSystemFontSizeChanged = true;
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine("{0} Exception caught.", e);
-                    hasFontSizeChangedCallback = false;
+                    hasSystemFontSizeChanged = false;
                 }
             }
         }
 
-        private void removeFontSizeChangedCallback()
+        private void RemoveSystemSettingsFontSizeChanged()
         {
-            if (hasFontSizeChangedCallback == true)
+            if (hasSystemFontSizeChanged == true)
             {
                 try
                 {
-                    SystemSettings.FontSizeChanged -= SystemSettingsFontSizeChanged;
-                    hasFontSizeChangedCallback = false;
+                    SystemFontSizeChangedManager.Remove(SystemSettingsFontSizeChanged);
+                    hasSystemFontSizeChanged = false;
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine("{0} Exception caught.", e);
-                    hasFontSizeChangedCallback = true;
+                    hasSystemFontSizeChanged = true;
+                }
+            }
+        }
+
+        private void SystemSettingsFontTypeChanged(object sender, FontTypeChangedEventArgs e)
+        {
+            SetInternalFontFamily(e.Value);
+        }
+
+        private void AddSystemSettingsFontTypeChanged()
+        {
+            if (HasStyle() && !hasSystemFontTypeChanged)
+            {
+                try
+                {
+                    systemFontTypeChanged.Add(SystemSettingsFontTypeChanged);
+                    hasSystemFontTypeChanged = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0} Exception caught.", e);
+                    hasSystemFontTypeChanged = false;
+                }
+            }
+        }
+        
+        private void RemoveSystemSettingsFontTypeChanged()
+        {
+            if (hasSystemFontTypeChanged)
+            {
+                try
+                {
+                    systemFontTypeChanged.Remove(SystemSettingsFontTypeChanged);
+                    hasSystemFontTypeChanged = false;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0} Exception caught.", e);
+                    hasSystemFontTypeChanged = true;
                 }
             }
         }
@@ -2638,6 +2768,11 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int InputFilter = Interop.TextField.InputFilterGet();
             internal static readonly int Strikethrough = Interop.TextField.StrikethroughGet();
             internal static readonly int CharacterSpacing = Interop.TextField.CharacterSpacingGet();
+
+            internal static void Preload()
+            {
+                // Do nothing. Just call for load static values.
+            }
         }
 
         internal class InputStyle
@@ -2738,12 +2873,14 @@ namespace Tizen.NUI.BaseComponents
 
                 if (widthMeasureSpec.Mode != MeasureSpecification.ModeType.Exactly)
                 {
-                    totalWidth = Math.Min(Math.Max(naturalSize.Width, minSize.Width), maxSize.Width);
+                    float width = naturalSize != null ? naturalSize.Width : 0;
+                    totalWidth = Math.Min(Math.Max(width, minSize.Width), maxSize.Width);
                 }
 
                 if (heightMeasureSpec.Mode != MeasureSpecification.ModeType.Exactly)
                 {
-                    totalHeight = Math.Min(Math.Max(naturalSize.Height, minSize.Height), maxSize.Height);
+                    float height = naturalSize != null ? naturalSize.Height : 0;
+                    totalHeight = Math.Min(Math.Max(height, minSize.Height), maxSize.Height);
                 }
 
                 widthMeasureSpec = new MeasureSpecification(new LayoutLength(totalWidth), MeasureSpecification.ModeType.Exactly);

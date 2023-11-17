@@ -244,18 +244,18 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"ViewImplSetKeyInputFocus (OK)");
         }
-
+        
         [Test]
         [Category("P1")]
-        [Description("ViewImpl KeyEventSignal.")]
-        [Property("SPEC", "Tizen.NUI.ViewImpl.KeyEventSignal M")]
+        [Description("ViewImpl OnInitialize.")]
+        [Property("SPEC", "Tizen.NUI.ViewImpl.OnInitialize M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewImplSignal()
+        public void ViewImplOnInitialize()
         {
-            tlog.Debug(tag, $"ViewImplSignal START");
+            tlog.Debug(tag, $"ViewImplOnInitialize START");
 
             using (ViewWrapperImpl impl = new ViewWrapperImpl(CustomViewBehaviour.ViewBehaviourDefault))
             {
@@ -263,19 +263,156 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.IsNotNull(testingTarget, "should be not null");
                 Assert.IsInstanceOf<ViewWrapper>(testingTarget, "should be an instance of testing target class!");
 
-                var signal = testingTarget.viewWrapperImpl.KeyEventSignal();
-                Assert.IsInstanceOf<ControlKeySignal>(signal, "Should return ControlKeySignal instance.");
-
-                var focusGained = testingTarget.viewWrapperImpl.KeyInputFocusGainedSignal();
-                Assert.IsInstanceOf<KeyInputFocusSignal>(focusGained, "Should return ControlKeySignal instance.");
-
-                var focusLost = testingTarget.viewWrapperImpl.KeyInputFocusLostSignal();
-                Assert.IsInstanceOf<KeyInputFocusSignal>(focusLost, "Should return ControlKeySignal instance.");
+                testingTarget.viewWrapperImpl.OnInitialize();
 
                 testingTarget.Dispose();
             }
 
-            tlog.Debug(tag, $"ViewImplSignal (OK)");
+            tlog.Debug(tag, $"ViewImplOnInitialize (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ViewImpl OnAccessibilityActivated.")]
+        [Property("SPEC", "Tizen.NUI.ViewImpl.OnAccessibilityActivated M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ViewImplOnAccessibilityActivated()
+        {
+            tlog.Debug(tag, $"ViewImplOnAccessibilityActivated START");
+
+            var testingTarget = NDalic.GetImplementation(new View());
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<ViewImpl>(testingTarget, "should be an instance of testing target class!");
+
+            var result = testingTarget.OnAccessibilityActivated();
+            Assert.IsTrue(!result);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ViewImplOnAccessibilityActivated (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ViewImpl OnAccessibilityValueChange.")]
+        [Property("SPEC", "Tizen.NUI.ViewImpl.OnAccessibilityValueChange M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ViewImplOnAccessibilityValueChange()
+        {
+            tlog.Debug(tag, $"ViewImplOnAccessibilityValueChange START");
+
+            var testingTarget = NDalic.GetImplementation(new View());
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<ViewImpl>(testingTarget, "should be an instance of testing target class!");
+
+            var result = testingTarget.OnAccessibilityValueChange(true);
+            Assert.IsTrue(!result);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ViewImplOnAccessibilityValueChange (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ViewImpl OnAccessibilityZoom.")]
+        [Property("SPEC", "Tizen.NUI.ViewImpl.OnAccessibilityZoom M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ViewImplOnAccessibilityZoom()
+        {
+            tlog.Debug(tag, $"ViewImplOnAccessibilityZoom START");
+
+            var testingTarget = NDalic.GetImplementation(new View());
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<ViewImpl>(testingTarget, "should be an instance of testing target class!");
+
+            var result = testingTarget.OnAccessibilityZoom();
+            Assert.IsTrue(!result);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ViewImplOnAccessibilityZoom (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ViewImpl OnKeyboardEnter.")]
+        [Property("SPEC", "Tizen.NUI.ViewImpl.OnKeyboardEnter M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ViewImplOnKeyboardEnter()
+        {
+            tlog.Debug(tag, $"ViewImplOnKeyboardEnter START");
+
+            var testingTarget = NDalic.GetImplementation(new View());
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<ViewImpl>(testingTarget, "should be an instance of testing target class!");
+
+            var result = testingTarget.OnKeyboardEnter();
+            Assert.IsTrue(!result);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ViewImplOnKeyboardEnter (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ViewImpl OnKeyInputFocusGained.")]
+        [Property("SPEC", "Tizen.NUI.ViewImpl.OnKeyInputFocusGained M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ViewImplOnKeyInputFocusGained()
+        {
+            tlog.Debug(tag, $"ViewImplOnKeyInputFocusGained START");
+
+            using (ViewWrapperImpl impl = new ViewWrapperImpl(CustomViewBehaviour.ViewBehaviourDefault))
+            {
+                var testingTarget = new ViewWrapper("CustomView", impl);
+                Assert.IsNotNull(testingTarget, "should be not null");
+                Assert.IsInstanceOf<ViewWrapper>(testingTarget, "should be an instance of testing target class!");
+
+                testingTarget.viewWrapperImpl.OnKeyInputFocusGained();
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"ViewImplOnKeyInputFocusGained (OK)");
+        }
+        
+        [Test]
+        [Category("P1")]
+        [Description("ViewImpl OnKeyInputFocusLost.")]
+        [Property("SPEC", "Tizen.NUI.ViewImpl.OnKeyInputFocusLost M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ViewImplOnKeyInputFocusLost()
+        {
+            tlog.Debug(tag, $"ViewImplOnKeyInputFocusLost START");
+
+            using (ViewWrapperImpl impl = new ViewWrapperImpl(CustomViewBehaviour.ViewBehaviourDefault))
+            {
+                var testingTarget = new ViewWrapper("CustomView", impl);
+                Assert.IsNotNull(testingTarget, "should be not null");
+                Assert.IsInstanceOf<ViewWrapper>(testingTarget, "should be an instance of testing target class!");
+
+                testingTarget.viewWrapperImpl.OnKeyInputFocusLost();
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"ViewImplOnKeyInputFocusLost (OK)");
         }
     }
 }

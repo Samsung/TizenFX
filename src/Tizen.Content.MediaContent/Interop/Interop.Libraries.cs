@@ -19,6 +19,5 @@ internal static partial class Interop
     internal static partial class Libraries
     {
         public const string MediaContent = "libcapi-content-media-content.so.0";
-        public const string Libc = "libc.so.6";
     }
 }

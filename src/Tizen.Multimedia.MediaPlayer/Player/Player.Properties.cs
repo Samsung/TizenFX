@@ -14,11 +14,7 @@
  * limitations under the License.
  */
 using System;
-using System.Threading.Tasks;
-using System.Runtime.InteropServices;
 using System.Diagnostics;
-using System.IO;
-using System.Threading;
 using NativeDisplay = Interop.Display;
 using static Interop;
 
@@ -737,6 +733,48 @@ namespace Tizen.Multimedia
 
                 NativePlayer.SetAudioCodecType(Handle, value).
                     ThrowIfFailed(this, "Failed to set the type of the audio codec");
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the codec type of the video decoder.
+        /// </summary>
+        /// <value>A <see cref="CodecType"/> specifies the type.
+        /// The default codec type could be different depending on the device capability.</value>
+        /// <remarks>
+        /// <para>To set, the player must be in the <see cref="PlayerState.Idle"/> state.</para>
+        /// <para>If H/W video codec type is not supported in some cases, S/W video codec type could be used instead.</para>
+        /// <para>The availability could be changed depending on the codec capability.</para>
+        /// </remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed.</exception>
+        /// <exception cref="ArgumentException">The value is not valid.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The player is not in the valid state.
+        ///     -or-<br/>
+        ///     Operation failed; internal error.
+        /// </exception>
+        /// <exception cref="CodecNotSupportedException">The selected codec is not supported.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        public CodecType VideoCodecType
+        {
+            get
+            {
+                ValidateNotDisposed();
+
+                NativePlayer.GetVideoCodecType(Handle, out var value).
+                    ThrowIfFailed(this, "Failed to get the type of the video codec");
+
+                return value;
+            }
+            set
+            {
+                ValidateNotDisposed();
+                ValidatePlayerState(PlayerState.Idle);
+
+                ValidationUtil.ValidateEnum(typeof(CodecType), value, nameof(value));
+
+                NativePlayer.SetVideoCodecType(Handle, value).
+                    ThrowIfFailed(this, "Failed to set the type of the video codec");
             }
         }
 

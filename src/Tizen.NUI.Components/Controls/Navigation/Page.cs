@@ -94,6 +94,24 @@ namespace Tizen.NUI.Components
             return instance.InternalDisappearingTransition;
         });
 
+        /// <summary>
+        /// EnableBackNavigationProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty EnableBackNavigationProperty = BindableProperty.Create(nameof(EnableBackNavigation), typeof(bool), typeof(Page), default(bool), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Page)bindable;
+            if (newValue != null)
+            {
+                instance.InternalEnableBackNavigation = (bool)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Page)bindable;
+            return instance.InternalEnableBackNavigation;
+        });
+
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal BaseComponents.View LastFocusedView = null;
@@ -105,11 +123,31 @@ namespace Tizen.NUI.Components
 
         private TransitionBase disappearingTransition = null;
 
+        private bool enableBackNavigation = true;
+
         /// <summary>
         /// Creates a new instance of a Page.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public Page() : base()
+        {
+        }
+
+        /// <summary>
+        /// Creates a new instance of Page with style.
+        /// </summary>
+        /// <param name="style">Creates Page by special style defined in UX.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Page(string style) : base(style)
+        {
+        }
+
+        /// <summary>
+        /// Creates a new instance of a Page with style.
+        /// </summary>
+        /// <param name="style">A style applied to the newly created Page.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Page(ControlStyle style) : base(style)
         {
         }
 
@@ -215,6 +253,37 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public event EventHandler<PageDisappearedEventArgs> Disappeared;
 
+        /// <summary>
+        /// Gets or sets if this page proceeds back navigation when back button or back key is pressed and released.
+        /// Back navigation pops the peek page if Navigator has more than one page.
+        /// If Navigator has only one page, then the current program is exited.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableBackNavigation
+        {
+            get
+            {
+                return (bool)GetValue(EnableBackNavigationProperty);
+            }
+            set
+            {
+                SetValue(EnableBackNavigationProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool InternalEnableBackNavigation
+        {
+            set
+            {
+                enableBackNavigation = value;
+            }
+            get
+            {
+                return enableBackNavigation;
+            }
+        }
+
         internal void InvokeAppearing()
         {
             Appearing?.Invoke(this, new PageAppearingEventArgs());
@@ -305,8 +374,41 @@ namespace Tizen.NUI.Components
                     FocusManager.Instance.SetFocusFinderRootView(this);
                 }
             }
-
         }
 
+        /// <summary>
+        /// Called when the back navigation is started.
+        /// Back navigation pops the peek page if Navigator has more than one page.
+        /// If Navigator has only one page, then the current program is exited.
+        /// </summary>
+        /// <param name="eventArgs">The back navigation information.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnBackNavigation(PageBackNavigationEventArgs eventArgs)
+        {
+            if (Navigator.PageCount > 1)
+            {
+                Navigator.Pop();
+            }
+            else
+            {
+                NUIApplication.Current?.Exit();
+            }
+        }
+
+        /// <summary>
+        /// Called when the back navigation is required outside Navigator.
+        /// </summary>
+        internal void NavigateBack()
+        {
+            OnBackNavigation(new PageBackNavigationEventArgs());
+        }
+    }
+
+    /// <summary>
+    /// PageBackNavigationEventArgs is a class to record back navigation event arguments which will sent to user.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class PageBackNavigationEventArgs : EventArgs
+    {
     }
 }

@@ -164,23 +164,32 @@ namespace Tizen.NUI.Components
             }
         }
 
-        /* open when ImageView using Uri not string
-                /// <summary>
-                /// Image image's resource url in DefaultGridItem.
-                /// </summary>
-                [EditorBrowsable(EditorBrowsableState.Never)]
-                public string ImageUrl
-                {
-                    get
-                    {
-                        return Image.ResourceUrl;
-                    }
-                    set
-                    {
-                        Image.ResourceUrl = value;
-                    }
-                }
-        */
+        /// <summary>
+        /// Image resource url in DefaultGridItem.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string ResourceUrl
+        {
+            get => GetValue(ResourceUrlProperty) as string;
+            set
+            {
+                SetValue(ResourceUrlProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        internal string InternalResourceUrl
+        {
+            get
+            {
+                return Image.ResourceUrl;
+            }
+            set
+            {
+                Image.ResourceUrl = value;
+            }
+        }
+
 
         /// <summary>
         /// DefaultGridItem's text part.
@@ -336,6 +345,8 @@ namespace Tizen.NUI.Components
             RelativeLayout.SetRightTarget(itemImage, this);
             RelativeLayout.SetRightRelativeOffset(itemImage, 1.0F);
             RelativeLayout.SetHorizontalAlignment(itemImage, RelativeLayout.Alignment.Center);
+            RelativeLayout.SetFillHorizontal(itemImage, true);
+            RelativeLayout.SetFillVertical(itemImage, true);
 
             if (itemLabel != null)
             {

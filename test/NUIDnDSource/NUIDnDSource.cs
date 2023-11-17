@@ -12,6 +12,8 @@ namespace NUIDnDSource
         ImageView targetViewA;
         ImageView targetViewB;
         DragAndDrop dnd;
+
+        LongPressGestureDetector longPressed;
         protected override void OnCreate()
         {
             base.OnCreate();
@@ -22,11 +24,11 @@ namespace NUIDnDSource
         {
             // Create DnD Instance
             dnd = DragAndDrop.Instance;
+            dnd.SetDragWindowOffset(-75, -75);
 
             Window.Instance.KeyEvent += OnKeyEvent;
             Window.Instance.WindowSize = new Size(900, 1080);
             Window.Instance.BackgroundColor = Color.White;
-            Window.Instance.TouchEvent += OnTouchEvent;
 
             TextLabel text = new TextLabel("DragSource Application");
             text.Position = new Position(0, 0);
@@ -79,6 +81,22 @@ namespace NUIDnDSource
 
             // Add Drop Target B
             dnd.AddListener(targetViewB, OnSourceAppDnDFuncB);
+
+            longPressed = new LongPressGestureDetector();
+            longPressed.Attach(sourceView);
+            longPressed.Detected += (s, e) =>
+            {
+              if(e.LongPressGesture.State == Gesture.StateType.Started)
+              {
+                Tizen.Log.Debug("NUIDnDSource", "StartDragAndDrop");
+                shadowView = new ImageView(Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "dragsource.png");
+                shadowView.Size = new Size(150, 150);
+                DragData dragData;
+                dragData.MimeType = "text/uri-list";
+                dragData.Data = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "dragsource.png";
+                dnd.StartDragAndDrop(sourceView, shadowView, dragData, OnSourceEventFunc);
+              }
+            };
         }
 
         public void OnSourceAppDnDFuncA(View targetView, DragEvent dragEvent)
@@ -149,20 +167,6 @@ namespace NUIDnDSource
           {
             Tizen.Log.Debug("NUIDnDSource", "Source App DragSourceEventType: " + "Finish");
           }
-        }
-
-        private void OnTouchEvent(object source, Window.TouchEventArgs e)
-        {
-            if (e.Touch.GetState(0) == PointStateType.Down)
-            {
-                Tizen.Log.Debug("NUIDnDSource", "StartDragAndDrop");
-                shadowView = new ImageView(Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "dragsource.png");
-                shadowView.Size = new Size(150, 150);
-                DragData dragData;
-                dragData.MimeType = "text/uri-list";
-                dragData.Data = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "dragsource.png";
-                dnd.StartDragAndDrop(sourceView, shadowView, dragData, OnSourceEventFunc);
-            }
         }
 
         static void Main(string[] args)

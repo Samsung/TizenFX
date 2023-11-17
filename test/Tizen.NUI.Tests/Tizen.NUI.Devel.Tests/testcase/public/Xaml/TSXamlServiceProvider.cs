@@ -234,7 +234,9 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
+#pragma warning disable Reflection // The code contains reflection
                 provider.GetService(typeof(string));
+#pragma warning restore Reflection // The code contains reflection
             }
             catch (Exception e)
             {
@@ -257,7 +259,9 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
+#pragma warning disable Reflection // The code contains reflection
                 provider.Add(typeof(string), new object());
+#pragma warning restore Reflection // The code contains reflection
             }
             catch (Exception e)
             {
@@ -371,6 +375,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC", "Tizen.NUI.XamlServiceProvider.SimpleValueTargetProvider M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
+        [Obsolete]
         public void XamlServiceProviderSimpleValueTargetProvider1()
         {
             tlog.Debug(tag, $"XamlServiceProviderTargetProperty START");

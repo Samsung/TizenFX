@@ -163,34 +163,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("test Theme Resources .")]
-        [Property("SPEC", "Tizen.NUI.Theme.Resources  A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        [Property("COVPARAM", "")]
-        public void ThemeResources()
-        {
-            tlog.Debug(tag, $"ThemeResources START");
-
-            var result = theme.Resources;
-            tlog.Debug(tag, "Resources : " + result);
-
-            theme.SetChangedResources(changedResources);
-
-            // resources == value
-            theme.Resources = result;
-            tlog.Debug(tag, "Resouces : " + theme.Resources);
-
-            // resources != null
-            ResourceDictionary dic = new ResourceDictionary();
-            theme.Resources = dic;
-            tlog.Debug(tag, "Resouces : " + theme.Resources);
-
-            tlog.Debug(tag, $"ThemeResources END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("test Theme this .")]
         [Property("SPEC", "Tizen.NUI.Theme.this  A")]
         [Property("SPEC_URL", "-")]

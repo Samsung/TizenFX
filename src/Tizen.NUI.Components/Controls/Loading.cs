@@ -66,6 +66,19 @@ namespace Tizen.NUI.Components
             Debug.Assert(((Loading)bindable).imageVisual != null);
             return ((Loading)bindable).imageVisual.URLS;
         });
+        /// <summary>The lottie resource url bindable property.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty LottieResourceUrlProperty = BindableProperty.Create(nameof(LottieResourceUrl), typeof(string), typeof(Loading), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Loading)bindable;
+            instance.RemoveImageVisual();
+            instance.EnsureLottieView(newValue as string ?? string.Empty);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var lottie = ((Loading)bindable).defaultLottieView;
+            return lottie == null ? string.Empty : lottie.URL;
+        });
         /// <summary>The Size bindable property.</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new static readonly BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(Size), typeof(Loading), new Size(0, 0), propertyChanged: (bindable, oldValue, newValue) =>
@@ -98,6 +111,7 @@ namespace Tizen.NUI.Components
             return ((Loading)bindable).frameRate;
         });
 
+        private const string ImageVisualName = "loadingImageVisual";
         private AnimatedImageVisual imageVisual = null;
         private LottieAnimationView defaultLottieView = null;
         private int frameRate = (int)(1000 / 16.6f);
@@ -162,6 +176,7 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// Gets or sets loading image resource array.
+        /// The mutually exclusive with "LottieResourceUrl".
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public string[] ImageArray
@@ -172,11 +187,8 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                defaultLottieView?.Stop();
-                defaultLottieView?.Dispose();
-                defaultLottieView = null;
-
-                CreateImageVisual();
+                RemoveLottieView();
+                EnsureImageVisual();
 
                 SetValue(ImageArrayProperty, value);
                 NotifyPropertyChanged();
@@ -198,6 +210,17 @@ namespace Tizen.NUI.Components
             {
                 return GetValue(ImageListProperty) as List<string>;
             }
+        }
+
+        /// <summary>
+        /// Gets or sets an lottie resource url.
+        /// The mutually exclusive with "ImageArray".
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string LottieResourceUrl
+        {
+            get => GetValue(LottieResourceUrlProperty) as string;
+            set => SetValue(LottieResourceUrlProperty, value);
         }
 
         /// <summary>
@@ -243,14 +266,7 @@ namespace Tizen.NUI.Components
             base.OnInitialize();
             AccessibilityRole = Role.ProgressBar;
 
-            defaultLottieView = new LottieAnimationView()
-            {
-                URL = lottieResource,
-                LoopCount = -1,
-            };
-
-            Add(defaultLottieView);
-            defaultLottieView.Play();
+            EnsureLottieView(lottieResource);
 
             AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "Loading");
         }
@@ -374,7 +390,28 @@ namespace Tizen.NUI.Components
             AccessibilityHighlightable = true;
         }
 
-        private void CreateImageVisual()
+        private void EnsureLottieView(string url)
+        {
+            if (defaultLottieView != null)
+            {
+                if (defaultLottieView.URL == url) return;
+                defaultLottieView.Stop();
+            }
+            else Add(defaultLottieView = new LottieAnimationView() { LoopCount = -1 });
+
+            defaultLottieView.URL = url;
+            defaultLottieView.Play();
+        }
+
+        private void RemoveLottieView()
+        {
+            if (defaultLottieView == null) return;
+            defaultLottieView.Stop();
+            defaultLottieView.Dispose();
+            defaultLottieView = null;
+        }
+
+        private void EnsureImageVisual()
         {
             if (imageVisual == null)
             {
@@ -390,8 +427,16 @@ namespace Tizen.NUI.Components
                     Size = new Size2D(1, 1)
                 };
 
-                AddVisual("loadingImageVisual", imageVisual);
+                AddVisual(ImageVisualName, imageVisual);
             }
+        }
+
+        private void RemoveImageVisual()
+        {
+            if (imageVisual == null) return;
+            RemoveVisual(ImageVisualName);
+            imageVisual.Dispose();
+            imageVisual = null;
         }
     }
 }

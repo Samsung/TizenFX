@@ -237,9 +237,26 @@ namespace Tizen.NUI.Components.Devel.Tests
         {
             tlog.Debug(tag, $"ToastConstructorWithString START");
 
+            //Theme theme = new Theme()
+            //{
+            //    Id = Tizen.NUI.DefaultThemeCreator.DefaultId,
+            //    Version = Tizen.NUI.DefaultThemeCreator.DefaultVersion
+            //};
+
+            //theme.AddStyleWithoutClone("Tizen.NUI.Components.Toast", new ToastStyle()
+            //{
+
+            //    Duration = 500,
+            //    Text = new TextLabelStyle()
+            //    {
+            //        Size = new Size(2, 18),
+            //        PointSize = 15.0f
+            //    }
+            //});
+
             try
             {
-                new Toast(Tizen.NUI.DefaultThemeCreator.DefaultId);
+                new Toast("Tizen.NUI.Components.DialogPage.Scrim");
             }
             catch (Exception e)
             {

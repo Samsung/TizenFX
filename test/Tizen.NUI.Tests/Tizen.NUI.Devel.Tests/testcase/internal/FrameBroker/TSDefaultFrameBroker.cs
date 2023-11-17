@@ -4,7 +4,7 @@ using NUnit.Framework.TUnit;
 using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using System.Collections.Generic;
-
+using Tizen.NUI;
 namespace Tizen.NUI.Devel.Tests
 {
     using tlog = Tizen.Log;
@@ -76,15 +76,11 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"DefaultFrameBrokerConstructor START");
 
-            using (Window window = new Window(new Rectangle(0, 0, 1920, 1080), false))
-            {
-                var testingTarget = new DefaultFrameBroker(window);
-                Assert.IsNotNull(testingTarget, "Can't create success object CustomView");
-                Assert.IsInstanceOf<DefaultFrameBroker>(testingTarget, "Should be an instance of DefaultFrameBroker type.");
+            var testingTarget = new DefaultFrameBroker(Window.Instance);
+            Assert.IsNotNull(testingTarget, "Can't create success object CustomView");
+            Assert.IsInstanceOf<DefaultFrameBroker>(testingTarget, "Should be an instance of DefaultFrameBroker type.");
 
-                testingTarget.Dispose();
-            }
-
+            testingTarget.Dispose();
             tlog.Debug(tag, $"DefaultFrameBrokerConstructor END (OK)");
         }
 

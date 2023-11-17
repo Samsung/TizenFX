@@ -241,5 +241,55 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"Uint16PairGreaterThan END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("Uint16Pair ==.")]
+        [Property("SPEC", "Tizen.NUI.Uint16Pair.EqualTo M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void Uint16PairEqualTo()
+        {
+            tlog.Debug(tag, $"Uint16PairEqualTo START");
+
+            var testingTarget = new Uint16Pair(1, 2);
+            Assert.IsNotNull(testingTarget, "Can't create success object Uint16Pair");
+            Assert.IsInstanceOf<Uint16Pair>(testingTarget, "Should be an instance of Uint16Pair type.");
+
+            using (Uint16Pair obj = testingTarget)
+            {
+                Assert.IsTrue(testingTarget == obj);
+            }
+
+            testingTarget.Dispose();
+
+            tlog.Debug(tag, $"Uint16PairEqualTo END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Uint16Pair !=.")]
+        [Property("SPEC", "Tizen.NUI.Uint16Pair.NotEqualTo M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void Uint16PairNotEqualTo()
+        {
+            tlog.Debug(tag, $"Uint16PairNotEqualTo START");
+
+            var testingTarget = new Uint16Pair(1, 2);
+            Assert.IsNotNull(testingTarget, "Can't create success object Uint16Pair");
+            Assert.IsInstanceOf<Uint16Pair>(testingTarget, "Should be an instance of Uint16Pair type.");
+
+            using (Uint16Pair obj = new Uint16Pair(1, 0))
+            {
+                Assert.IsTrue(testingTarget != obj);
+            }
+
+            testingTarget.Dispose();
+
+            tlog.Debug(tag, $"Uint16PairNotEqualTo END (OK)");
+        }
     }
 }

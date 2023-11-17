@@ -123,9 +123,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Return a null object of FontClient");
             Assert.IsInstanceOf<ApplicationTransitionManager>(testingTarget, "Should be an instance of ApplicationTransitionManager type.");
 
-            testingTarget.ApplicationFrameType = FrameType.FrameBroker;
-            tlog.Debug(tag, "FrameType : " + testingTarget.ApplicationFrameType);
-
             using (TransitionBase appearing = new TransitionBase())
             {
                 appearing.TimePeriod = new TimePeriod(300);
@@ -135,6 +132,16 @@ namespace Tizen.NUI.Devel.Tests
 
                 testingTarget.AppearingTransition = appearing;
                 tlog.Debug(tag, "AppearingTransition : " + testingTarget.AppearingTransition);
+
+                // frameBroker != null
+                using (Rectangle rec = new Rectangle(20, 20, 20, 20))
+                {
+                    using (Window win = new Window(rec, true))
+                    {
+                        testingTarget.TransitionWindow = win;
+                        tlog.Debug(tag, "TransitionWindow : " + testingTarget.TransitionWindow);
+                    }
+                }
             }
 
             using (TransitionBase disappearing = new TransitionBase())
@@ -168,6 +175,17 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<ApplicationTransitionManager>(testingTarget, "Should be an instance of ApplicationTransitionManager type.");
 
             testingTarget.ApplicationFrameType = FrameType.FrameProvider;
+            tlog.Debug(tag, "FrameType : " + testingTarget.ApplicationFrameType);
+
+            // FrameType is already set
+            testingTarget.ApplicationFrameType = FrameType.FrameProvider;
+            tlog.Debug(tag, "FrameType : " + testingTarget.ApplicationFrameType);
+
+            // value == null
+            testingTarget.ApplicationFrameType = null;
+            tlog.Debug(tag, "FrameType : " + testingTarget.ApplicationFrameType);
+
+            testingTarget.ApplicationFrameType = FrameType.FrameBroker;
             tlog.Debug(tag, "FrameType : " + testingTarget.ApplicationFrameType);
 
             testingTarget.Dispose();

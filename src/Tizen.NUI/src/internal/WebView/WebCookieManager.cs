@@ -34,7 +34,7 @@ namespace Tizen.NUI
         {
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void CookieChangedCallback();
 
         /// <summary>
@@ -56,6 +56,11 @@ namespace Tizen.NUI
             remove
             {
                 cookieChangedEventHandler -= value;
+                if (cookieChangedEventHandler == null)
+                {
+                    IntPtr ip = IntPtr.Zero;
+                    Interop.WebCookieManager.CookieChangedCallback(SwigCPtr, new HandleRef(this, ip));
+                }
             }
         }
 

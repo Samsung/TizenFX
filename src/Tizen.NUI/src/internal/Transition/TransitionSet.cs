@@ -46,7 +46,7 @@ namespace Tizen.NUI
             finishedCallbackOfNative = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(transitionSetFinishedEventCallback);
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void TransitionSetFinishedEventCallbackType(IntPtr data);
 
         private event EventHandler transitionSetFinishedEventHandler;
@@ -122,7 +122,7 @@ namespace Tizen.NUI
             IntPtr cPtr = Interop.TransitionSet.GetTransitionAt(SwigCPtr, index);
             HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             TransitionItemBase ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as TransitionItemBase;
-            if (cPtr != null && ret == null)
+            if (cPtr != IntPtr.Zero && ret == null)
             {
                 ret = new TransitionItemBase(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -197,9 +197,9 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (swigCPtr.Handle == IntPtr.Zero || this.HasBody() == false)
+            if (swigCPtr.Handle == IntPtr.Zero || Disposed)
             {
-                Tizen.Log.Fatal("NUI", $"[ERROR] TransitionSet ReleaseSwigCPtr()! IntPtr=0x{swigCPtr.Handle:X} HasBody={this.HasBody()}");
+                Tizen.Log.Fatal("NUI", $"[ERROR] TransitionSet ReleaseSwigCPtr()! IntPtr=0x{swigCPtr.Handle:X} Disposed={Disposed}");
                 return;
             }
             Interop.TransitionSet.Delete(swigCPtr);

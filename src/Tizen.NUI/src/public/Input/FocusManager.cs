@@ -60,19 +60,19 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate IntPtr PreFocusChangeEventCallback(IntPtr current, IntPtr proposed, View.FocusDirection direction);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void FocusChangedEventCallback(IntPtr current, IntPtr next);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void FocusGroupChangedEventCallback(IntPtr current, bool forwardDirection);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void FocusedViewEnterKeyEventCallback(IntPtr view);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void FocusedViewEnterKeyEventCallback2(IntPtr view);
 
         private View internalFocusIndicator = null;
@@ -217,19 +217,19 @@ namespace Tizen.NUI
                 if (focusedViewEnterKeyEventCallback == null)
                 {
                     focusedViewEnterKeyEventCallback = OnFocusedViewEnterKey;
-                    using ViewSignal signal = FocusedViewEnterKeySignal();
-                    signal?.Connect(focusedViewEnterKeyEventCallback);
+                    Interop.FocusManager.FocusedActorEnterKeySignalConnect(SwigCPtr, focusedViewEnterKeyEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                 }
                 focusedViewEnterKeyEventHandler += value;
             }
             remove
             {
                 focusedViewEnterKeyEventHandler -= value;
-
-                using ViewSignal signal = FocusedViewEnterKeySignal();
-                if (focusedViewEnterKeyEventCallback != null && signal?.Empty() == false)
+                if (focusedViewEnterKeyEventHandler == null && focusedViewEnterKeyEventCallback != null)
                 {
-                    signal?.Disconnect(focusedViewEnterKeyEventCallback);
+                    Interop.FocusManager.FocusedActorEnterKeySignalDisconnect(SwigCPtr, focusedViewEnterKeyEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    focusedViewEnterKeyEventCallback = null;
                 }
             }
         }
@@ -252,8 +252,8 @@ namespace Tizen.NUI
                 if (focusedViewEnterKeyEventCallback2 == null)
                 {
                     focusedViewEnterKeyEventCallback2 = OnFocusedViewEnterKey2;
-                    using ViewSignal signal = FocusedViewEnterKeySignal();
-                    signal?.Connect(focusedViewEnterKeyEventCallback2);
+                    Interop.FocusManager.FocusedActorEnterKeySignalConnect(SwigCPtr, focusedViewEnterKeyEventCallback2.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                 }
                 focusedViewEnterKeyEventHandler2 += value;
             }
@@ -261,10 +261,11 @@ namespace Tizen.NUI
             {
                 focusedViewEnterKeyEventHandler2 -= value;
 
-                using ViewSignal signal = FocusedViewEnterKeySignal();
-                if (focusedViewEnterKeyEventCallback2 != null && signal?.Empty() == false)
+                if (focusedViewEnterKeyEventHandler2 == null && focusedViewEnterKeyEventCallback2 != null)
                 {
-                    signal?.Disconnect(focusedViewEnterKeyEventCallback2);
+                    Interop.FocusManager.FocusedActorEnterKeySignalDisconnect(SwigCPtr, focusedViewEnterKeyEventCallback2.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    focusedViewEnterKeyEventCallback2 = null;
                 }
             }
         }
@@ -542,6 +543,29 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Decide using focus indicator or not
+        /// </summary>
+        /// <param name="enable">Whether using focus indicator or not</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void EnableFocusIndicator(bool enable)
+        {
+            Interop.FocusManager.EnableFocusIndicator(SwigCPtr, enable);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Check focus indicator is enabled or not
+        /// </summary>
+        /// <returns>Whether focus indicator is enabled</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsFocusIndicatorEnabled()
+        {
+            bool ret = Interop.FocusManager.IsFocusIndicatorEnabled(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Get a default focus indicator
         /// </summary>
         /// <remarks>
@@ -583,7 +607,10 @@ namespace Tizen.NUI
             FocusManager ret = new FocusManager(Interop.FocusManager.Get(), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
+#if !PROFILE_TV
+            //tv profile never use default focus indicator, so this is not needed!
             ret.FocusIndicator = ret.GetDefaultFocusIndicator();
+#endif
             return ret;
         }
 
@@ -630,13 +657,6 @@ namespace Tizen.NUI
         internal FocusGroupChangedSignal FocusGroupChangedSignal()
         {
             FocusGroupChangedSignal ret = new FocusGroupChangedSignal(Interop.FocusManager.FocusGroupChangedSignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal ViewSignal FocusedViewEnterKeySignal()
-        {
-            ViewSignal ret = new ViewSignal(Interop.FocusManager.FocusedActorEnterKeySignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

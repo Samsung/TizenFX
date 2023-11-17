@@ -321,7 +321,7 @@ namespace Tizen.NUI.Devel.Tests
                 button.TextSelector = null;
                 Assert.Fail("Should throw the NullReferenceException!");
             }
-            catch (NullReferenceException e)
+            catch (NullReferenceException)
             {
                 Assert.Pass("NullReferenceException: passed!");
             }
@@ -379,7 +379,7 @@ namespace Tizen.NUI.Devel.Tests
                 button.TranslatableTextSelector = null;
                 Assert.Fail("Should throw the NullReferenceException!");
             }
-            catch (NullReferenceException e)
+            catch (NullReferenceException)
             {
                 Assert.Pass("NullReferenceException: passed!");
             }
@@ -441,7 +441,7 @@ namespace Tizen.NUI.Devel.Tests
                 button.TextColorSelector = null;
                 Assert.Fail("Should throw the NullReferenceException!");
             }
-            catch (NullReferenceException e)
+            catch (NullReferenceException)
             {
                 Assert.Pass("NullReferenceException: passed!");
             }
@@ -496,7 +496,7 @@ namespace Tizen.NUI.Devel.Tests
                 button.PointSizeSelector = null;
                 Assert.Fail("Should throw the NullReferenceException!");
             }
-            catch (NullReferenceException e)
+            catch (NullReferenceException)
             {
                 Assert.Pass("NullReferenceException: passed!");
             }
@@ -550,7 +550,7 @@ namespace Tizen.NUI.Devel.Tests
                 button.IconURLSelector = null;
                 Assert.Fail("Should throw the NullReferenceException!");
             }
-            catch (NullReferenceException e)
+            catch (NullReferenceException)
             {
                 Assert.Pass("NullReferenceException: passed!");
             }

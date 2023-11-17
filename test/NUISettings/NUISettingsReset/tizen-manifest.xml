@@ -3,7 +3,7 @@
   <profile name="common" />
   <widget-application appid="NUISettingsReset"
 					exec="NUISettingsReset.dll"
-					type="dotnet"
+					type="dotnet-nui"
 					multiple="false"
 					taskmanage="true"
 					nodisplay="false"
@@ -22,4 +22,3 @@
     <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
   </widget-application>
 </manifest>
-

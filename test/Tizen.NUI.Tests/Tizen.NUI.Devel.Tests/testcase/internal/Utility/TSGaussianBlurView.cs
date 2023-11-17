@@ -176,6 +176,33 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("GaussianBlurView SetUserImageAndOutputRenderTarget.")]
+        [Property("SPEC", "Tizen.NUI.GaussianBlurView.SetUserImageAndOutputRenderTarget M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void GaussianBlurViewSetUserImageAndOutputRenderTarget()
+        {
+            tlog.Debug(tag, $"GaussianBlurViewSetUserImageAndOutputRenderTarget START");
+
+            var testingTarget = new GaussianBlurView(3, 0.3f, PixelFormat.BGR8888, 1.0f, 1.0f, true);
+            Assert.IsNotNull(testingTarget, "Should be not null!");
+            Assert.IsInstanceOf<GaussianBlurView>(testingTarget, "Should be an Instance of GaussianBlurView!");
+
+            using (Texture texture = new Texture(TextureType.TEXTURE_2D, PixelFormat.BGR8888, 100, 80))
+            {
+                using (FrameBuffer framebuffer = new FrameBuffer(100, 200, 3))
+                {
+                    testingTarget.SetUserImageAndOutputRenderTarget(texture, framebuffer);
+                }
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"GaussianBlurViewSetUserImageAndOutputRenderTarget END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("GaussianBlurView ActivateOnce.")]
         [Property("SPEC", "Tizen.NUI.GaussianBlurView.ActivateOnce M")]
         [Property("SPEC_URL", "-")]

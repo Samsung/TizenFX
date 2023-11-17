@@ -89,6 +89,10 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Property_Value")]
             public static extern void DeletePropertyValue(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Property_Value")]
+            public static extern void DeletePropertyValueIntPtr(global::System.IntPtr jarg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_Value_GetType")]
             public static extern int PropertyValueGetType(global::System.Runtime.InteropServices.HandleRef jarg1);
 

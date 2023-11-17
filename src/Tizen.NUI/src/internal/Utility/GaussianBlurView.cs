@@ -37,21 +37,23 @@ namespace Tizen.NUI
             var gaussianBlurView = (GaussianBlurView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(gaussianBlurView.swigCPtr, gaussianBlurView.GetBlurStrengthPropertyIndex(), new Tizen.NUI.PropertyValue((float)newValue));
+                Tizen.NUI.Object.SetProperty(gaussianBlurView.SwigCPtr, gaussianBlurView.GetBlurStrengthPropertyIndex(), new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var gaussianBlurView = (GaussianBlurView)bindable;
             float temp;
-            Tizen.NUI.Object.GetProperty(gaussianBlurView.swigCPtr, gaussianBlurView.GetBlurStrengthPropertyIndex()).Get(out temp);
+            Tizen.NUI.Object.GetProperty(gaussianBlurView.SwigCPtr, gaussianBlurView.GetBlurStrengthPropertyIndex()).Get(out temp);
             return temp;
         });
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal GaussianBlurView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal GaussianBlurView(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+        }
+
+        internal GaussianBlurView(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
+        {
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
@@ -82,7 +84,7 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void FinishedCallbackType(IntPtr application);
         private DaliEventHandler<object, EventArgs> finishedEventHandler;
         private FinishedCallbackType finishedCallback;
@@ -193,7 +195,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public GaussianBlurView(GaussianBlurView handle) : this(Interop.GaussianBlurView.NewGaussianBlurView(GaussianBlurView.getCPtr(handle)), true)
+        public GaussianBlurView(GaussianBlurView handle) : this(Interop.GaussianBlurView.NewGaussianBlurView(GaussianBlurView.getCPtr(handle)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -205,7 +207,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Activate()
         {
-            Interop.GaussianBlurView.Activate(swigCPtr);
+            Interop.GaussianBlurView.Activate(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -218,7 +220,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ActivateOnce()
         {
-            Interop.GaussianBlurView.ActivateOnce(swigCPtr);
+            Interop.GaussianBlurView.ActivateOnce(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -229,13 +231,13 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Deactivate()
         {
-            Interop.GaussianBlurView.Deactivate(swigCPtr);
+            Interop.GaussianBlurView.Deactivate(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         private int GetBlurStrengthPropertyIndex()
         {
-            int ret = Interop.GaussianBlurView.GetBlurStrengthPropertyIndex(swigCPtr);
+            int ret = Interop.GaussianBlurView.GetBlurStrengthPropertyIndex(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -243,27 +245,27 @@ namespace Tizen.NUI
 
         internal void SetBackgroundColor(Vector4 color)
         {
-            Interop.GaussianBlurView.SetBackgroundColor(swigCPtr, Vector4.getCPtr(color));
+            Interop.GaussianBlurView.SetBackgroundColor(SwigCPtr, Vector4.getCPtr(color));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal Vector4 GetBackgroundColor()
         {
-            Vector4 ret = new Vector4(Interop.GaussianBlurView.GetBackgroundColor(swigCPtr), true);
+            Vector4 ret = new Vector4(Interop.GaussianBlurView.GetBackgroundColor(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private GaussianBlurViewSignal FinishedSignal()
         {
-            GaussianBlurViewSignal ret = new GaussianBlurViewSignal(Interop.GaussianBlurView.FinishedSignal(swigCPtr), false);
+            GaussianBlurViewSignal ret = new GaussianBlurViewSignal(Interop.GaussianBlurView.FinishedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetUserImageAndOutputRenderTarget(Texture inputTexture, FrameBuffer outputRenderTarget)
         {
-            Interop.GaussianBlurView.SetUserImageAndOutputRenderTarget(swigCPtr, Texture.getCPtr(inputTexture), FrameBuffer.getCPtr(outputRenderTarget));
+            Interop.GaussianBlurView.SetUserImageAndOutputRenderTarget(SwigCPtr, Texture.getCPtr(inputTexture), FrameBuffer.getCPtr(outputRenderTarget));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }

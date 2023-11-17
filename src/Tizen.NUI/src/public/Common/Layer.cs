@@ -17,6 +17,7 @@
 using System;
 using Tizen.NUI.BaseComponents;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
 {
@@ -28,6 +29,10 @@ namespace Tizen.NUI
     {
         private Window window;
         private int layoutCount = 0;
+        private EventHandler<VisibilityChangedEventArgs> visibilityChangedEventHandler;
+        private VisibilityChangedEventCallbackType visibilityChangedEventCallback;
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void VisibilityChangedEventCallbackType(IntPtr data, bool visibility, VisibilityChangeType type);
 
         /// <summary>
         /// Creates a Layer object.
@@ -53,6 +58,15 @@ namespace Tizen.NUI
             if (Disposed)
             {
                 return;
+            }
+
+            if (visibilityChangedEventCallback != null)
+            {
+                NUILog.Debug($"[Dispose] visibilityChangedEventCallback");
+
+                Interop.ActorSignal.VisibilityChangedDisconnect(GetBaseHandleCPtrHandleRef, visibilityChangedEventCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
+                visibilityChangedEventCallback = null;
             }
 
             LayoutCount = 0;
@@ -334,6 +348,12 @@ namespace Tizen.NUI
                 Tizen.Log.Error("NUI", "You have deleted a view that is not a child of this layer.");
                 return;
             }
+            // If the view had focus, it clears focus.
+            if (child == FocusManager.Instance.GetCurrentFocusView())
+            {
+                FocusManager.Instance.ClearFocus();
+            }
+
             Interop.Actor.Remove(SwigCPtr, View.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -527,8 +547,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void MoveAbove(Layer target)
         {
-            Interop.Layer.MoveAbove(SwigCPtr, Layer.getCPtr(target));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            RaiseAbove(target);
         }
 
         /// <summary>
@@ -539,8 +558,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void MoveBelow(Layer target)
         {
-            Interop.Layer.MoveBelow(SwigCPtr, Layer.getCPtr(target));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            LowerBelow(target);
         }
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -603,6 +621,78 @@ namespace Tizen.NUI
         {
             Interop.Layer.SetHoverConsumed(SwigCPtr, consume);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// An event for visibility change which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when the visible property of this or a parent view is changed.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<VisibilityChangedEventArgs> VisibilityChanged
+        {
+            add
+            {
+                if (visibilityChangedEventHandler == null)
+                {
+                    visibilityChangedEventCallback = OnVisibilityChanged;
+                    Interop.ActorSignal.VisibilityChangedConnect(SwigCPtr, visibilityChangedEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                }
+                visibilityChangedEventHandler += value;
+            }
+
+            remove
+            {
+                visibilityChangedEventHandler -= value;
+                if (visibilityChangedEventHandler == null && visibilityChangedEventCallback != null)
+                {
+                    Interop.ActorSignal.VisibilityChangedDisconnect(SwigCPtr, visibilityChangedEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    visibilityChangedEventCallback = null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event arguments of visibility changed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class VisibilityChangedEventArgs : EventArgs
+        {
+            private Layer layer;
+            private bool visibility;
+
+            /// <summary>
+            /// The layer whose visibility has changed.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public Layer Layer
+            {
+                get
+                {
+                    return layer;
+                }
+                set
+                {
+                    layer = value;
+                }
+            }
+
+            /// <summary>
+            /// Whether the layer is now visible or not.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public bool Visibility
+            {
+                get
+                {
+                    return visibility;
+                }
+                set
+                {
+                    visibility = value;
+                }
+            }
         }
 
         internal uint GetDepth()
@@ -792,6 +882,23 @@ namespace Tizen.NUI
         internal class Property
         {
             internal static readonly int BEHAVIOR = Interop.Layer.BehaviorGet();
+        }
+
+        // Callback for View visibility change signal
+        // type is not used because layer does not have parent so layer's visibility cannot be changed by its parent.
+        private void OnVisibilityChanged(IntPtr data, bool visibility, VisibilityChangeType type)
+        {
+            VisibilityChangedEventArgs e = new VisibilityChangedEventArgs();
+            if (data != IntPtr.Zero)
+            {
+                e.Layer = Registry.GetManagedBaseHandleFromNativePtr(data) as Layer;
+            }
+            e.Visibility = visibility;
+
+            if (visibilityChangedEventHandler != null)
+            {
+                visibilityChangedEventHandler(this, e);
+            }
         }
     }
 }

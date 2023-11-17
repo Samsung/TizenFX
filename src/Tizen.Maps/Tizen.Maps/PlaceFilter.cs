@@ -22,6 +22,7 @@ namespace Tizen.Maps
     /// Place filter information, used in place discovery and search requests.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class PlaceFilter : IDisposable
     {
         internal Interop.PlaceFilterHandle handle;
@@ -31,6 +32,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="System.InvalidOperationException">Thrown when native operation failed to allocate memory.</exception>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public PlaceFilter()
         {
             handle = new Interop.PlaceFilterHandle();
@@ -51,6 +53,7 @@ namespace Tizen.Maps
         /// <remarks>Depending on maps provider which the application has selected,
         /// it may treat <see cref="PlaceFilter.Name"/>, <see cref="PlaceFilter.Keyword"/> and <see cref="PlaceFilter.Address"/>
         /// as the same kind of strings to search places.</remarks>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Address
         {
             get
@@ -67,6 +70,7 @@ namespace Tizen.Maps
         /// Gets or sets an instance of <see cref="PlaceCategory"/> object for this place filter.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public PlaceCategory Category
         {
             get
@@ -86,6 +90,7 @@ namespace Tizen.Maps
         /// <remarks>Depending on maps provider which the application has selected,
         /// it may treat <see cref="PlaceFilter.Name"/>, <see cref="PlaceFilter.Keyword"/> and <see cref="PlaceFilter.Address"/>
         /// as the same kind of strings to search places.</remarks>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Keyword
         {
             get
@@ -105,6 +110,7 @@ namespace Tizen.Maps
         /// <remarks>Depending on maps provider which the application has selected,
         /// it may treat <see cref="PlaceFilter.Name"/>, <see cref="PlaceFilter.Keyword"/> and <see cref="PlaceFilter.Address"/>
         /// as the same kind of strings to search places.</remarks>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Name
         {
             get
@@ -125,6 +131,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <param name="disposing">If true, managed and unmanaged resources can be disposed, otherwise only unmanaged resources can be disposed.</param>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposedValue)
@@ -138,6 +145,7 @@ namespace Tizen.Maps
         /// Releases all the resources used by this object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public void Dispose()
         {
             Dispose(true);

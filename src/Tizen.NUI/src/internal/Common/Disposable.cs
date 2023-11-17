@@ -25,6 +25,11 @@ namespace Tizen.NUI
     /// <since_tizen> 6 </since_tizen>
     public class Disposable : global::System.IDisposable
     {
+        static internal void Preload()
+        {
+            // Do nothing. Just call for load static values.
+        }
+
         /// <summary>
         /// The flag to check if it is already disposed of.
         /// </summary>
@@ -106,21 +111,6 @@ namespace Tizen.NUI
                 // TODO: dispose managed state (managed objects).
                 // Explicit call. user calls Dispose()
 
-                //Throw exception if Dispose() is called in separate thread.
-                if (!Window.IsInstalled())
-                {
-                    var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
-                    var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
-                    var me = this.GetType().FullName;
-
-                    Tizen.Log.Fatal("NUI", $"[NUI][Disposable]This API called from separate thread. This API must be called from MainThread. \n" +
-                        $" process:{process} thread:{thread}, disposing:{disposing}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
-
-                    //to fix ArtApp black screen issue. this will be enabled after talking with ArtApp team and fixing it.
-                    // throw new global::System.InvalidOperationException("[NUI][Disposable]This API called from separate thread. This API must be called from MainThread. \n" +
-                    //     $" process:{process} thread:{thread}, disposing:{disposing}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
-                }
-
                 if (isDisposeQueued)
                 {
                     Tizen.Log.Fatal("NUI", $"[Disposable]should not be here! (dead code) this will be removed!");
@@ -171,12 +161,13 @@ namespace Tizen.NUI
             //because the execution order of Finalizes is non-deterministic.
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
-                if (SwigCMemOwn)
+                var nativeSwigCPtr = swigCPtr.Handle;
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    ReleaseSwigCPtr(swigCPtr);
+                    ReleaseSwigCPtr(new global::System.Runtime.InteropServices.HandleRef(this, nativeSwigCPtr));
                 }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
 
             disposed = true;
@@ -208,5 +199,13 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal bool Disposed => disposed;
+    }
+
+    internal static class DisposableExtension
+    {
+        internal static T Ensure<T>(this T caller) where T : Disposable
+        {
+            return (caller.SwigCPtr.Handle == System.IntPtr.Zero ? null : caller);
+        }
     }
 }

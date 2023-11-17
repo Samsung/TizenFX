@@ -87,8 +87,10 @@ namespace Tizen.NUI.StyleGuide
                 MaxValue = 100,
                 CurrentValue = 100,
                 WidthSpecification = 300,
+                IsValueShown = true,
             };
             rootContent.Add(completedSlider);
+            completedSlider.ValueChanged += OnValueChanged;
 
             verticalSlider = new Slider()
             {
@@ -101,6 +103,15 @@ namespace Tizen.NUI.StyleGuide
             rootContent.Add(verticalSlider);
 
             Content = rootContent;
+        }
+
+        private void OnValueChanged(object sender, SliderValueChangedEventArgs args)
+        {
+            Slider source = sender as Slider;
+            if (source != null)
+            {
+                source.ValueIndicatorText = args.CurrentValue.ToString();
+            }
         }
     }
 }

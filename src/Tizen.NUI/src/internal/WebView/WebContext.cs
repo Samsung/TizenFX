@@ -80,52 +80,52 @@ namespace Tizen.NUI
         /// <summary>
         /// The callback function that is invoked when security origin list is acquired.
         /// </summary>
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void SecurityOriginListAcquiredCallback(IList<WebSecurityOrigin> list);
 
         /// <summary>
         /// The callback function that is invoked when storage usage is acquired.
         /// </summary>
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void StorageUsageAcquiredCallback(ulong usage);
 
         /// <summary>
         /// The callback function that is invoked when password data list is acquired.
         /// </summary>
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void PasswordDataListAcquiredCallback(IList<WebPasswordData> list);
 
         /// <summary>
         /// The callback function that is invoked when download is started.
         /// </summary>
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void DownloadStartedCallback(string url);
 
         /// <summary>
         /// The callback function that is invoked when current mime type need be overridden.
         /// </summary>
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate bool MimeOverriddenCallback(string url, string currentMime, out string newMime);
 
         /// <summary>
         /// The callback function that is invoked when http request need be intercepted.
         /// </summary>
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void HttpRequestInterceptedCallback(WebHttpRequestInterceptor interceptor);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebContextSecurityOriginListAcquiredProxyCallback(IntPtr list);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebContextPasswordDataListAcquiredProxyCallback(IntPtr list);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebContextHttpRequestInterceptedProxyCallback(IntPtr interceptor);
 
         /// <summary>
@@ -518,7 +518,11 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterDownloadStartedCallback(DownloadStartedCallback callback)
         {
-            IntPtr ip = Marshal.GetFunctionPointerForDelegate(callback);
+            IntPtr ip = IntPtr.Zero;
+            if (callback != null)
+            {
+                ip = Marshal.GetFunctionPointerForDelegate(callback);
+            }
             Interop.WebContext.RegisterDownloadStartedCallback(SwigCPtr, new HandleRef(this, ip));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -530,13 +534,20 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterMimeOverriddenCallback(MimeOverriddenCallback callback)
         {
-            IntPtr ip = Marshal.GetFunctionPointerForDelegate(callback);
+            IntPtr ip = IntPtr.Zero;
+            if (callback != null)
+            {
+                ip = Marshal.GetFunctionPointerForDelegate(callback);
+            }
             Interop.WebContext.RegisterMimeOverriddenCallback(SwigCPtr, new HandleRef(this, ip));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
         /// Registers callback for http request interceptor.
+        /// This callback is not called on UI(Main) thread, so users should be cautious
+        /// when accessing their data also used on UI thread.
+        /// No other than WebEngineRequestInterceptor API should be used in the callback.
         /// </summary>
         /// <param name="callback">callback for intercepting http request</param>
         [EditorBrowsable(EditorBrowsableState.Never)]

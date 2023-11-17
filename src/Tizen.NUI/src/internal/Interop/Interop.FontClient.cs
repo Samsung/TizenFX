@@ -22,6 +22,12 @@ namespace Tizen.NUI
         internal static partial class FontClient
         {
             //for FontClient
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_PreCache")]
+            public static extern void PreCache(string[] fallbackFamilyArray, int fallbackFamilySize, string[] extraFamilyArray, int extraFamilySize, string localeFamily, bool useThread, bool syncCreation);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_FontPreLoad")]
+            public static extern void FontPreLoad(string[] fontPathArray, int fontPathSize, string[] memoryFontPathArray, int memoryFontPathSize, bool useThread, bool syncCreation);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_DEFAULT_POINT_SIZE_get")]
             public static extern uint DefaultPointSizeGet();
 
@@ -90,7 +96,7 @@ namespace Tizen.NUI
             public static extern void GetDefaultPlatformFontDescription(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetSystemFonts")]
-            public static extern void GetSystemFonts(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static extern global::System.IntPtr GetSystemFonts(global::System.Runtime.InteropServices.HandleRef fontClient);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetDescription")]
             public static extern void GetDescription(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);

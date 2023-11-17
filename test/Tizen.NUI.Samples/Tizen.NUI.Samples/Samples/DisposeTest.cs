@@ -12,6 +12,14 @@ namespace Tizen.NUI.Samples
         // So we need to create CustomView whitch CustomViewBehavior.DisableSizeNegotiation.
         public Custom3DView() : base("Custom3DView", CustomViewBehaviour.DisableSizeNegotiation)
         {
+            // Make this object use centered.
+            PositionUsesPivotPoint = true;
+            ParentOrigin = Position.ParentOriginCenter;
+            PivotPoint = Position.PivotPointCenter;
+        }
+
+        public override void OnInitialize()
+        {
         }
     }
 
@@ -207,12 +215,14 @@ namespace Tizen.NUI.Samples
 
         private const int AutoDisposedObjectCount = 10;
         private const int ManualDisposedObjectCount = 10;
+        private const int RecuvelyDisposedObjectCount = 10;
         private Window win;
         private View root;
         private Timer timer;
         private bool toggle = false;
         private string resource;
         private List<Custom3DView> views;
+        private List<Custom3DView> depthViews; // List of tree-formed views. 0 indexes view is root.
         private Animation rotateAnimation;
 
         public void Activate()
@@ -224,12 +234,13 @@ namespace Tizen.NUI.Samples
             root = new View()
             {
                 Name = "root",
-                Size = new Size(10, 10),
-                BackgroundColor = Color.Blue,
+                WidthResizePolicy = ResizePolicyType.FillToParent,
+                HeightResizePolicy = ResizePolicyType.FillToParent,
             };
             win.Add(root);
 
             views = new List<Custom3DView>();
+            depthViews = new List<Custom3DView>();
             rotateAnimation = new Animation(1500); //1.5s
 
             AddManyViews();
@@ -246,11 +257,15 @@ namespace Tizen.NUI.Samples
             toggle = !toggle;
             if (toggle)
             {
+                Tizen.Log.Error("NUI", $"View Creation Start\n");
                 AddManyViews();
+                Tizen.Log.Error("NUI", $"View Creation Finish\n");
             }
             else
             {
+                Tizen.Log.Error("NUI", $"Manual Dispose Start\n");
                 RemoveAllViews();
+                Tizen.Log.Error("NUI", $"Manual Dispose Finish\n");
                 FullGC();
             }
             return true;
@@ -286,10 +301,11 @@ namespace Tizen.NUI.Samples
                 {
                     Size = new Size(viewSize, viewSize, viewSize),
                     Position = new Position(
-                        rand.Next(10, win.WindowSize.Width - 10),
-                        rand.Next(10, win.WindowSize.Height - 10),
+                        rand.Next(10, win.WindowSize.Width - 10) - win.WindowSize.Width / 2,
+                        rand.Next(10, win.WindowSize.Height - 10) - win.WindowSize.Height / 2,
                         rand.Next(-3 * viewSize, 3 * viewSize)
                     ),
+                    Name = "Auto_" + i.ToString(),
                 };
                 root.Add(view);
 
@@ -321,10 +337,11 @@ namespace Tizen.NUI.Samples
                 {
                     Size = new Size(viewSize, viewSize, viewSize),
                     Position = new Position(
-                        rand.Next(10, win.WindowSize.Width - 10),
-                        rand.Next(10, win.WindowSize.Height - 10),
+                        rand.Next(10, win.WindowSize.Width - 10) - win.WindowSize.Width / 2,
+                        rand.Next(10, win.WindowSize.Height - 10) - win.WindowSize.Height / 2,
                         rand.Next(-3 * viewSize, 3 * viewSize)
                     ),
+                    Name = "Manual_" + i.ToString(),
                 };
                 root.Add(view);
                 views.Add(view);
@@ -349,6 +366,59 @@ namespace Tizen.NUI.Samples
 
                 rotateAnimation.AnimateBy(view, "Orientation", new Rotation(new Radian(new Degree(-360.0f)), Vector3.YAxis));
             }
+
+            for (int i = 0; i < RecuvelyDisposedObjectCount; i++)
+            {
+                int viewSize = 150;
+                var view = new Custom3DView()
+                {
+                    // Note that we need to disconnect inherit to make this view shows well.
+                    InheritPosition = false,
+                    InheritOrientation = false,
+
+                    Size = new Size(viewSize, viewSize, viewSize),
+
+                    Position = new Position(
+                        rand.Next(10, win.WindowSize.Width - 10) - win.WindowSize.Width / 2,
+                        rand.Next(10, win.WindowSize.Height - 10) - win.WindowSize.Height / 2,
+                        rand.Next(-3 * viewSize, 3 * viewSize)
+                    ),
+                    Name = "Recursive_" + i.ToString(),
+                };
+
+                // Add view recursively.
+                if(i == 0)
+                {
+                    root.Add(view);
+                }
+                else
+                {
+                    int parentIndex = rand.Next(i);
+                    var parent = depthViews[parentIndex];
+                    parent.Add(view);
+                }
+                depthViews.Add(view);
+
+                PixelData pixelData = PixelBuffer.Convert(ImageLoader.LoadImageFromFile(
+                    resource + "/images/PaletteTest/rock.jpg",
+                    new Size2D(),
+                    FittingModeType.ScaleToFill
+                ));
+                Texture texture = new Texture(
+                    TextureType.TEXTURE_2D,
+                    pixelData.GetPixelFormat(),
+                    pixelData.GetWidth(),
+                    pixelData.GetHeight()
+                );
+                texture.Upload(pixelData);
+                TextureSet textureSet = new TextureSet();
+                textureSet.SetTexture(0u, texture);
+                Renderer renderer = new Renderer(GenerateGeometry(), new Shader(VERTEX_SHADER, FRAGMENT_SHADER));
+                renderer.SetTextures(textureSet);
+                view.AddRenderer(renderer);
+
+                //rotateAnimation.AnimateBy(view, "Orientation", new Rotation(new Radian(new Degree(360.0f)), Vector3.ZAxis));
+            }
             rotateAnimation.Looping = true;
             rotateAnimation.Play();
         }
@@ -365,7 +435,13 @@ namespace Tizen.NUI.Samples
                 renderer.Dispose();
                 view.Dispose();
             }
+            if(depthViews?.Count > 0)
+            {
+                depthViews[0].DisposeRecursively();
+            }
+
             views.Clear();
+            depthViews.Clear();
             rotateAnimation.Clear();
         }
 
@@ -383,6 +459,9 @@ namespace Tizen.NUI.Samples
             rotateAnimation?.Dispose();
             root.Unparent();
             root.Dispose();
+
+            // Revert default layer behavior as LayerUI
+            win.GetDefaultLayer().Behavior = Layer.LayerBehavior.LayerUI;
         }
     }
 }

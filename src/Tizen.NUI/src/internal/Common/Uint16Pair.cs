@@ -15,8 +15,8 @@
  *
  */
 
-using System;
-using System.ComponentModel;
+using global::System;
+using global::System.Runtime.InteropServices;
 
 namespace Tizen.NUI
 {
@@ -31,11 +31,11 @@ namespace Tizen.NUI
     internal class Uint16Pair : Disposable
     {
 
-        internal Uint16Pair(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Uint16Pair(IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        protected override void ReleaseSwigCPtr(HandleRef swigCPtr)
         {
             Interop.Uint16Pair.DeleteUint16Pair(swigCPtr);
         }
@@ -95,6 +95,10 @@ namespace Tizen.NUI
         /// <param name="width">The x dimension to be stored in this 2-tuple.</param>
         public void SetWidth(ushort width)
         {
+            if (SwigCPtr.Handle == IntPtr.Zero)
+            {
+                throw new InvalidOperationException("Error! NUI.Uint16Pair's native DALi object is already disposed! OR the native DALi object handle of NUI.Uint16Pair's became null by unknown reason!");
+            }
             Interop.Uint16Pair.SetWidth(SwigCPtr, width);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -107,6 +111,10 @@ namespace Tizen.NUI
         /// </return>
         public ushort GetWidth()
         {
+            if (SwigCPtr.Handle == IntPtr.Zero)
+            {
+                throw new InvalidOperationException("Error! NUI.Uint16Pair's native DALi object is already disposed! OR the native DALi object handle of NUI.Uint16Pair's became null by unknown reason!");
+            }
             ushort ret = Interop.Uint16Pair.GetWidth(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -118,6 +126,10 @@ namespace Tizen.NUI
         /// <param name="height">The y dimension to be stored in this 2-tuple.</param>
         public void SetHeight(ushort height)
         {
+            if (SwigCPtr.Handle == IntPtr.Zero)
+            {
+                throw new InvalidOperationException("Error! NUI.Uint16Pair's native DALi object is already disposed! OR the native DALi object handle of NUI.Uint16Pair's became null by unknown reason!");
+            }
             Interop.Uint16Pair.SetHeight(SwigCPtr, height);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -130,6 +142,10 @@ namespace Tizen.NUI
         /// </return>
         public ushort GetHeight()
         {
+            if (SwigCPtr.Handle == IntPtr.Zero)
+            {
+                throw new InvalidOperationException("Error! NUI.Uint16Pair's native DALi object is already disposed! OR the native DALi object handle of NUI.Uint16Pair's became null by unknown reason!");
+            }
             ushort ret = Interop.Uint16Pair.GetHeight(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -141,6 +157,10 @@ namespace Tizen.NUI
         /// <param name="x">The x dimension to be stored in this 2-tuple.</param>
         public void SetX(ushort x)
         {
+            if (SwigCPtr.Handle == IntPtr.Zero)
+            {
+                throw new InvalidOperationException("Error! NUI.Uint16Pair's native DALi object is already disposed! OR the native DALi object handle of NUI.Uint16Pair's became null by unknown reason!");
+            }
             Interop.Uint16Pair.SetX(SwigCPtr, x);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -153,6 +173,10 @@ namespace Tizen.NUI
         /// </return>
         public ushort GetX()
         {
+            if (SwigCPtr.Handle == IntPtr.Zero)
+            {
+                throw new InvalidOperationException("Error! NUI.Uint16Pair's native DALi object is already disposed! OR the native DALi object handle of NUI.Uint16Pair's became null by unknown reason!");
+            }
             ushort ret = Interop.Uint16Pair.GetX(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -164,6 +188,10 @@ namespace Tizen.NUI
         /// <param name="y">The y dimension to be stored in this 2-tuple.</param>
         public void SetY(ushort y)
         {
+            if (SwigCPtr.Handle == IntPtr.Zero)
+            {
+                throw new InvalidOperationException("Error! NUI.Uint16Pair's native DALi object is already disposed! OR the native DALi object handle of NUI.Uint16Pair's became null by unknown reason!");
+            }
             Interop.Uint16Pair.SetY(SwigCPtr, y);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -176,6 +204,10 @@ namespace Tizen.NUI
         /// </return>
         public ushort GetY()
         {
+            if (SwigCPtr.Handle == IntPtr.Zero)
+            {
+                throw new InvalidOperationException("Error! NUI.Uint16Pair's native DALi object is already disposed! OR the native DALi object handle of NUI.Uint16Pair's became null by unknown reason!");
+            }
             ushort ret = Interop.Uint16Pair.GetY(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -188,6 +220,10 @@ namespace Tizen.NUI
         /// <return>The created object.</return>
         public Uint16Pair Assign(Uint16Pair rhs)
         {
+            if (SwigCPtr.Handle == IntPtr.Zero)
+            {
+                throw new InvalidOperationException("Error! NUI.Uint16Pair's native DALi object is already disposed! OR the native DALi object handle of NUI.Uint16Pair's became null by unknown reason!");
+            }
             Uint16Pair ret = new Uint16Pair(Interop.Uint16Pair.Assign(SwigCPtr, Uint16Pair.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -195,6 +231,10 @@ namespace Tizen.NUI
 
         private bool EqualTo(Uint16Pair rhs)
         {
+            if (SwigCPtr.Handle == IntPtr.Zero)
+            {
+                throw new InvalidOperationException("Error! NUI.Uint16Pair's native DALi object is already disposed! OR the native DALi object handle of NUI.Uint16Pair's became null by unknown reason!");
+            }
             bool ret = Interop.Uint16Pair.EqualTo(SwigCPtr, Uint16Pair.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -202,6 +242,10 @@ namespace Tizen.NUI
 
         private bool NotEqualTo(Uint16Pair rhs)
         {
+            if (SwigCPtr.Handle == IntPtr.Zero)
+            {
+                throw new InvalidOperationException("Error! NUI.Uint16Pair's native DALi object is already disposed! OR the native DALi object handle of NUI.Uint16Pair's became null by unknown reason!");
+            }
             bool ret = Interop.Uint16Pair.NotEqualTo(SwigCPtr, Uint16Pair.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -209,6 +253,10 @@ namespace Tizen.NUI
 
         private bool LessThan(Uint16Pair rhs)
         {
+            if (SwigCPtr.Handle == IntPtr.Zero)
+            {
+                throw new InvalidOperationException("Error! NUI.Uint16Pair's native DALi object is already disposed! OR the native DALi object handle of NUI.Uint16Pair's became null by unknown reason!");
+            }
             bool ret = Interop.Uint16Pair.LessThan(SwigCPtr, Uint16Pair.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -216,9 +264,14 @@ namespace Tizen.NUI
 
         private bool GreaterThan(Uint16Pair rhs)
         {
+            if (SwigCPtr.Handle == IntPtr.Zero)
+            {
+                throw new InvalidOperationException("Error! NUI.Uint16Pair's native DALi object is already disposed! OR the native DALi object handle of NUI.Uint16Pair's became null by unknown reason!");
+            }
             bool ret = Interop.Uint16Pair.GreaterThan(SwigCPtr, Uint16Pair.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
     }
 }

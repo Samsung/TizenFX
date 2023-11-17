@@ -1,13 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <NoWarn>$(NoWarn);CS0618;CA1054;CA1056</NoWarn>
   </PropertyGroup>
 
-  <ItemGroup>
-    <TizenPreloadFile Include="Tizen.NUI.Components.preload" Sequence="31" />
-  </ItemGroup>
+  <Choose>
+    <When Condition="'$(BuildProfile)' != 'tv'">
+      <ItemGroup>
+        <TizenPreloadFile Include="Tizen.NUI.Components.preload" Sequence="31" />
+      </ItemGroup>
+    </When>
+  </Choose>
 
   <ItemGroup>
     <ProjectReference Include="..\Tizen.Log\Tizen.Log.csproj" />
@@ -17,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="res\*.png;res\*.svg">
+    <None Update="res\*.png;res\*.svg;res\*.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

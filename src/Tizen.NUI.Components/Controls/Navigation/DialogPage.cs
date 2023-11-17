@@ -32,11 +32,7 @@ namespace Tizen.NUI.Components
         private View scrim = null;
         private bool enableScrim = true;
 
-        /// <summary>
-        /// Creates a new instance of a DialogPage.
-        /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        public DialogPage() : base()
+        private void Initialize()
         {
             Layout = new AbsoluteLayout();
 
@@ -49,6 +45,35 @@ namespace Tizen.NUI.Components
             EnableControlState = false;
 
             Scrim = CreateDefaultScrim();
+        }
+
+        /// <summary>
+        /// Creates a new instance of a DialogPage.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public DialogPage() : base()
+        {
+            Initialize();
+        }
+
+        /// <summary>
+        /// Creates a new instance of DialogPage with style.
+        /// </summary>
+        /// <param name="style">Creates DialogPage by special style defined in UX.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public DialogPage(string style) : base(style)
+        {
+            Initialize();
+        }
+
+        /// <summary>
+        /// Creates a new instance of a DialogPage with style.
+        /// </summary>
+        /// <param name="style">A style applied to the newly created DialogPage.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public DialogPage(ControlStyle style) : base(style)
+        {
+            Initialize();
         }
 
         /// <summary>
@@ -300,6 +325,7 @@ namespace Tizen.NUI.Components
                 }
                 return true;
             };
+            scrim.DispatchParentGestureEvents = false;
 
             return scrim;
         }

@@ -287,6 +287,32 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Terminates the application without restarting.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of system error.</exception>
+        /// <privilege>http://tizen.org/privilege/appmanager.kill</privilege>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void TerminateWithoutRestarting()
+        {
+            err = Interop.ApplicationManager.AppManagerTerminateAppWithoutRestarting(_contextHandle);
+            if (err != Interop.ApplicationManager.ErrorCode.None)
+            {
+                switch (err)
+                {
+                    case Interop.ApplicationManager.ErrorCode.InvalidParameter:
+                        throw new ArgumentException("Invalid argument.");
+                    case Interop.ApplicationManager.ErrorCode.PermissionDenied:
+                        throw new UnauthorizedAccessException("Permission denied.");
+                    default:
+                        throw new InvalidOperationException("Invalid Operation.");
+                }
+            }
+        }
+
+        /// <summary>
         /// Resumes the running application.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
@@ -321,7 +347,11 @@ namespace Tizen.Applications
             GC.SuppressFinalize(this);
         }
 
+#pragma warning disable CA1801
+#pragma warning disable CA1063
         private void Dispose(bool disposing)
+#pragma warning restore CA1063
+#pragma warning restore CA1801
         {
             if (_disposed)
                 return;

@@ -660,6 +660,108 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"PositionPivotPointBottomRight END (OK)");
         }
 
+		[Test]
+        [Category("P1")]
+        [Description("Position XAxis.")]
+        [Property("SPEC", "Tizen.NUI.Position.XAxis A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRO")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void PositionXAxis()
+        {
+            tlog.Debug(tag, $"PositionXAxis START");
+
+            var result = Position.XAxis;
+            tlog.Debug(tag, "XAxis : " + result);
+            
+            tlog.Debug(tag, $"PositionXAxis END (OK)");
+        }
+
+		[Test]
+        [Category("P1")]
+        [Description("Position YAxis.")]
+        [Property("SPEC", "Tizen.NUI.Position.YAxis A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRO")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void PositionYAxis()
+        {
+            tlog.Debug(tag, $"PositionYAxis START");
+
+            var result = Position.YAxis;
+            tlog.Debug(tag, "YAxis : " + result);
+
+            tlog.Debug(tag, $"PositionYAxis END (OK)");
+        }
+
+		[Test]
+        [Category("P1")]
+        [Description("Position ZAxis.")]
+        [Property("SPEC", "Tizen.NUI.Position.ZAxis A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRO")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void PositionZAxis()
+        {
+            tlog.Debug(tag, $"PositionZAxis START");
+
+            var result = Position.ZAxis;
+            tlog.Debug(tag, "ZAxis : " + result);
+
+            tlog.Debug(tag, $"PositionZAxis END (OK)");
+        }
+
+		[Test]
+        [Category("P1")]
+        [Description("Position NegativeXAxis.")]
+        [Property("SPEC", "Tizen.NUI.Position.NegativeXAxis A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRO")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void PositionNegativeXAxis()
+        {
+            tlog.Debug(tag, $"PositionNegativeXAxis START");
+
+            var result = Position.NegativeXAxis;
+            tlog.Debug(tag, "NegativeXAxis : " + result);
+
+            tlog.Debug(tag, $"PositionNegativeXAxis END (OK)");
+        }
+
+		[Test]
+        [Category("P1")]
+        [Description("Position NegativeYAxis.")]
+        [Property("SPEC", "Tizen.NUI.Position.NegativeYAxis A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRO")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void PositionNegativeYAxis()
+        {
+            tlog.Debug(tag, $"PositionNegativeYAxis START");
+
+            var result = Position.NegativeYAxis;
+            tlog.Debug(tag, "NegativeYAxis : " + result);
+
+            tlog.Debug(tag, $"PositionNegativeYAxis END (OK)");
+        }
+
+		[Test]
+        [Category("P1")]
+        [Description("Position NegativeZAxis.")]
+        [Property("SPEC", "Tizen.NUI.Position.NegativeZAxis A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRO")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void PositionNegativeZAxis()
+        {
+            tlog.Debug(tag, $"PositionNegativeZAxis START");
+
+            var result = Position.NegativeZAxis;
+            tlog.Debug(tag, "NegativeZAxis : " + result);
+
+            tlog.Debug(tag, $"PositionNegativeZAxis END (OK)");
+        }
+
         [Test]
         [Category("P1")]
         [Description("Position this[uint index].")]
@@ -1018,6 +1120,29 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"PositionImplicitConvertPositionToVector3 END (OK)");
+        }
+        
+        [Test]
+        [Category("P1")]
+        [Description("Position implicit. Convert Position to Position2D .")]
+        [Property("SPEC", "Tizen.NUI.Position.implicit M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void PositionImplicitConvertPositionToPosition2D()
+        {
+            tlog.Debug(tag, $"PositionImplicitConvertPositionToPosition2D START");
+
+            var testingTarget = new Position(10.0f, 20.0f, 30.0f);
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<Position>(testingTarget, "Should return Position instance.");
+
+            Position2D position2d = testingTarget;
+            Assert.AreEqual(10.0f, position2d.X, "Should be equal.");
+            Assert.AreEqual(20.0f, position2d.Y, "Should be equal.");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"PositionImplicitConvertPositionToPosition2D END (OK)");
         }
 
         [Test]

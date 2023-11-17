@@ -333,6 +333,43 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"ViewScaleBy END (OK)");
         }
 
+		[Test]
+        [Category("P1")]
+        [Description("View.ObjectDump")]
+        [Property("SPEC", "Tizen.NUI.View.ObjectDump M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ViewObjectDump()
+        {
+            tlog.Debug(tag, $"ViewObjectDump START");
+
+            var view = new View()
+            {
+                Size = new Size2D(200, 200),
+                PositionUsesPivotPoint = true,
+                ParentOrigin = ParentOrigin.CenterRight,
+                PivotPoint = PivotPoint.CenterRight,
+                BackgroundColor = Color.Azure,
+                Focusable = true,
+            };
+            NUIApplication.GetDefaultWindow().Add(view);
+
+            try
+            {                
+                view.ObjectDump();               
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            NUIApplication.GetDefaultWindow().Remove(view);
+            view.Dispose();
+            tlog.Debug(tag, $"ViewObjectDump END (OK)");
+        }
+
         [Test]
         [Category("P1")]
         [Description("View.FindDescendantByID")]
@@ -368,6 +405,44 @@ namespace Tizen.NUI.Devel.Tests
             NUIApplication.GetDefaultWindow().Remove(view);
             view.Dispose();
             tlog.Debug(tag, $"ViewFindDescendantByID END (OK)");
+        }
+		
+		[Test]
+        [Category("P1")]
+        [Description("View.FindChildByID")]
+        [Property("SPEC", "Tizen.NUI.View.FindChildByID M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
+        public void ViewFindChildByID()
+        {
+            tlog.Debug(tag, $"ViewFindChildByID START");
+
+            var view = new View()
+            {
+                Size = new Size2D(200, 200),
+            };
+            NUIApplication.GetDefaultWindow().Add(view);
+
+            var child = new View()
+            {
+                Size = new Size2D(100, 100),
+                PositionUsesPivotPoint = true,
+                ParentOrigin = ParentOrigin.CenterRight,
+                PivotPoint = PivotPoint.CenterRight,
+                BackgroundColor = Color.Azure,
+                Focusable = true,
+            };
+
+            view.Add(child);
+            
+            var result = view.FindChildByID(child.ID);
+            Assert.IsNotNull(result, "should be not null");
+
+            NUIApplication.GetDefaultWindow().Remove(view);
+            view.Dispose();
+            tlog.Debug(tag, $"ViewFindChildByID END (OK)");
         }
     }
 }

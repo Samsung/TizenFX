@@ -1,5 +1,8 @@
 ﻿using NUnit.Framework;
 using System;
+using System.IO;
+using System.Text;
+using System.Xml;
 using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Devel.Tests
@@ -30,6 +33,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC", "Tizen.NUI.Xaml.Internals.XamlLoader.XamlFileProvider A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRO")]
+        [Obsolete]
         public void XamlFileProvider()
         {
             tlog.Debug(tag, $"XamlFileProvider START");
@@ -58,21 +62,26 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC", "Tizen.NUI.Xaml.XamlLoader.Create M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
-        public void Create()
+        public void XamlLoaderCreate()
         {
-            tlog.Debug(tag, $"Create START");
+            tlog.Debug(tag, $"XamlLoaderCreate START");
 
             try
             {
                 string content = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>" +
-                             "\r\n<View x:Class=\"Tizen.NUI.Devel.Tests.TotalSample\"" +
+                             "\r\n<View x:Class=\"Tizen.NUI.Devel.Tests.XamlLoaderSample\"" +
                              "\r\n        xmlns=\"http://tizen.org/Tizen.NUI/2018/XAML\"" +
                              "\r\n        xmlns:x=\"http://schemas.microsoft.com/winfx/2009/xaml\" >" +
                              "\r\n" +
                              "\r\n  <View Size=\"100,100\"  BackgroundColor=\"Red\" />" +
                              "\r\n</View>";
-                //var view = XamlLoader.Create(content);
-                //Assert.IsNotNull(view, "Should not be null");
+
+                byte[] buffer = Encoding.ASCII.GetBytes(content);
+                MemoryStream stream = new MemoryStream(buffer);
+                XmlReader reader = XmlReader.Create(stream);
+                
+                var view = XamlLoader.Create(reader);
+                Assert.IsNotNull(view, "Should not be null");
             }
             catch (Exception e)
             {
@@ -80,7 +89,7 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"Create END");
+            tlog.Debug(tag, $"XamlLoaderCreate END");
         }
     }
 }

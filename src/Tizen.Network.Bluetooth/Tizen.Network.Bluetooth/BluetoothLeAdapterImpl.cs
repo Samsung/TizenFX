@@ -187,10 +187,10 @@ namespace Tizen.Network.Bluetooth
             foreach (IntPtr uuids in uuidList)
             {
                 list.Add(Marshal.PtrToStringAnsi(uuids));
-                Interop.Libc.Free(uuids);
+                Interop.Glib.Gfree(uuids);
             }
 
-            Interop.Libc.Free(uuidListArray);
+            Interop.Glib.Gfree(uuidListArray);
             Marshal.FreeHGlobal(scanDataStruct.AdvData);
             Marshal.FreeHGlobal(scanDataStruct.ScanData);
             return list;
@@ -295,10 +295,10 @@ namespace Tizen.Network.Bluetooth
             foreach (IntPtr uuids in uuidList)
             {
                 list.Add(Marshal.PtrToStringAnsi(uuids));
-                Interop.Libc.Free(uuids);
+                Interop.Glib.Gfree(uuids);
             }
 
-            Interop.Libc.Free(uuidListArray);
+            Interop.Glib.Gfree(uuidListArray);
             Marshal.FreeHGlobal(scanDataStruct.AdvData);
             Marshal.FreeHGlobal(scanDataStruct.ScanData);
             return list;
@@ -337,7 +337,7 @@ namespace Tizen.Network.Bluetooth
             int sizePointerToABC = Marshal.SizeOf(new BluetoothLeServiceDataStruct());
             for (int i = 0; i < _serviceListCount; i++)
             {
-                var svc = (BluetoothLeServiceDataStruct)Marshal.PtrToStructure(new IntPtr(serviceListArray.ToInt32() + (i * sizePointerToABC)), typeof(BluetoothLeServiceDataStruct));
+                var svc = (BluetoothLeServiceDataStruct)Marshal.PtrToStructure(IntPtr.Add(serviceListArray, (i * sizePointerToABC)), typeof(BluetoothLeServiceDataStruct));
                 list.Add(BluetoothUtils.ConvertStructToLeServiceData(svc));
             }
 
@@ -417,7 +417,7 @@ namespace Tizen.Network.Bluetooth
                 Marshal.Copy(manufData, data.Data, 0, data.DataLength);
             }
 
-            Interop.Libc.Free(manufData);
+            Interop.Glib.Gfree(manufData);
             Marshal.FreeHGlobal(scanDataStruct.AdvData);
             Marshal.FreeHGlobal(scanDataStruct.ScanData);
             return data;

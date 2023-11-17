@@ -23,150 +23,142 @@ namespace Tizen.NUI.Accessibility
 {
     public partial class AccessibilityManager
     {
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool StatusChangedEventCallbackDelegate(IntPtr accessibilityManager);
         private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerStatusChangedEventHandler;
         private StatusChangedEventCallbackDelegate accessibilityManagerStatusChangedEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool ActionNextEventCallbackDelegate(IntPtr accessibilityManager);
         private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionNextEventHandler;
         private ActionNextEventCallbackDelegate accessibilityManagerActionNextEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool ActionPreviousEventCallbackDelegate(IntPtr accessibilityManager);
         private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionPreviousEventHandler;
         private ActionPreviousEventCallbackDelegate accessibilityManagerActionPreviousEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool ActionActivateEventCallbackDelegate(IntPtr accessibilityManager);
         private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionActivateEventHandler;
         private ActionActivateEventCallbackDelegate accessibilityManagerActionActivateEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool ActionReadEventCallbackDelegate(IntPtr accessibilityManager);
         private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionReadEventHandler;
         private ActionReadEventCallbackDelegate accessibilityManagerActionReadEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool ActionOverEventCallbackDelegate(IntPtr accessibilityManager);
         private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionOverEventHandler;
         private ActionOverEventCallbackDelegate accessibilityManagerActionOverEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool ActionReadNextEventCallbackDelegate(IntPtr accessibilityManager);
         private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionReadNextEventHandler;
         private ActionReadNextEventCallbackDelegate accessibilityManagerActionReadNextEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool ActionReadPreviousEventCallbackDelegate(IntPtr accessibilityManager);
         private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionReadPreviousEventHandler;
         private ActionReadPreviousEventCallbackDelegate accessibilityManagerActionReadPreviousEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool ActionUpEventCallbackDelegate(IntPtr accessibilityManager);
         private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionUpEventHandler;
         private ActionUpEventCallbackDelegate accessibilityManagerActionUpEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool ActionDownEventCallbackDelegate(IntPtr accessibilityManager);
         private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionDownEventHandler;
         private ActionDownEventCallbackDelegate accessibilityManagerActionDownEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool ActionClearFocusEventCallbackDelegate(IntPtr accessibilityManager);
         private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionClearFocusEventHandler;
         private ActionClearFocusEventCallbackDelegate accessibilityManagerActionClearFocusEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool ActionBackEventCallbackDelegate(IntPtr accessibilityManager);
         private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionBackEventHandler;
         private ActionBackEventCallbackDelegate accessibilityManagerActionBackEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool ActionScrollUpEventCallbackDelegate(IntPtr accessibilityManager);
         private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionScrollUpEventHandler;
         private ActionScrollUpEventCallbackDelegate accessibilityManagerActionScrollUpEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool ActionScrollDownEventCallbackDelegate(IntPtr accessibilityManager);
         private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionScrollDownEventHandler;
         private ActionScrollDownEventCallbackDelegate accessibilityManagerActionScrollDownEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool ActionPageLeftEventCallbackDelegate(IntPtr accessibilityManager);
         private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionPageLeftEventHandler;
         private ActionPageLeftEventCallbackDelegate accessibilityManagerActionPageLeftEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool ActionPageRightEventCallbackDelegate(IntPtr accessibilityManager);
         private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionPageRightEventHandler;
         private ActionPageRightEventCallbackDelegate accessibilityManagerActionPageRightEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool ActionPageUpEventCallbackDelegate(IntPtr accessibilityManager);
         private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionPageUpEventHandler;
         private ActionPageUpEventCallbackDelegate accessibilityManagerActionPageUpEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool ActionPageDownEventCallbackDelegate(IntPtr accessibilityManager);
         private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionPageDownEventHandler;
         private ActionPageDownEventCallbackDelegate accessibilityManagerActionPageDownEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool ActionMoveToFirstEventCallbackDelegate(IntPtr accessibilityManager);
         private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionMoveToFirstEventHandler;
         private ActionMoveToFirstEventCallbackDelegate accessibilityManagerActionMoveToFirstEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool ActionMoveToLastEventCallbackDelegate(IntPtr accessibilityManager);
         private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionMoveToLastEventHandler;
         private ActionMoveToLastEventCallbackDelegate accessibilityManagerActionMoveToLastEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool ActionReadFromTopEventCallbackDelegate(IntPtr accessibilityManager);
         private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionReadFromTopEventHandler;
         private ActionReadFromTopEventCallbackDelegate accessibilityManagerActionReadFromTopEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool ActionReadFromNextEventCallbackDelegate(IntPtr accessibilityManager);
         private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionReadFromNextEventHandler;
         private ActionReadFromNextEventCallbackDelegate accessibilityManagerActionReadFromNextEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool ActionZoomEventCallbackDelegate(IntPtr accessibilityManager);
         private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionZoomEventHandler;
         private ActionZoomEventCallbackDelegate accessibilityManagerActionZoomEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool ActionReadPauseResumeEventCallbackDelegate(IntPtr accessibilityManager);
         private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionReadPauseResumeEventHandler;
         private ActionReadPauseResumeEventCallbackDelegate accessibilityManagerActionReadPauseResumeEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool ActionStartStopEventCallbackDelegate(IntPtr accessibilityManager);
         private ReturnTypeEventHandler<object, EventArgs, bool> accessibilityManagerActionStartStopEventHandler;
         private ActionStartStopEventCallbackDelegate accessibilityManagerActionStartStopEventCallbackDelegate;
 
-        /*
-            // To be replaced by a new event that takes Touch
-            [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-            private delegate bool ActionScrollEventCallbackDelegate(IntPtr accessibilityManager, IntPtr touchEvent);
-            private EventHandlerWithReturnType<object,ActionScrollEventArgs,bool> _accessibilityManagerActionScrollEventHandler;
-            private ActionScrollEventCallbackDelegate _accessibilityManagerActionScrollEventCallbackDelegate;
-        */
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void FocusChangedEventCallbackDelegate(IntPtr view1, IntPtr view2);
         private EventHandler<FocusChangedEventArgs> accessibilityManagerFocusChangedEventHandler;
         private FocusChangedEventCallbackDelegate accessibilityManagerFocusChangedEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void FocusedViewActivatedEventCallbackDelegate(IntPtr view);
         private EventHandler<FocusedViewActivatedEventArgs> accessibilityManagerFocusedViewActivatedEventHandler;
         private FocusedViewActivatedEventCallbackDelegate accessibilityManagerFocusedViewActivatedEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void FocusOvershotEventCallbackDelegate(IntPtr currentFocusedView, AccessibilityManager.FocusOvershotDirection direction);
         private EventHandler<FocusOvershotEventArgs> accessibilityManagerFocusOvershotEventHandler;
         private FocusOvershotEventCallbackDelegate accessibilityManagerFocusOvershotEventCallbackDelegate;
@@ -1082,7 +1074,8 @@ namespace Tizen.NUI.Accessibility
                 if (accessibilityManagerFocusedViewActivatedEventHandler == null)
                 {
                     accessibilityManagerFocusedViewActivatedEventCallbackDelegate = new FocusedViewActivatedEventCallbackDelegate(OnFocusedViewActivated);
-                    this.FocusedViewActivatedSignal().Connect(accessibilityManagerFocusedViewActivatedEventCallbackDelegate);
+                    Interop.AccessibilityManager.FocusedActorActivatedSignalConnect(SwigCPtr, accessibilityManagerFocusedViewActivatedEventCallbackDelegate.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                 }
 
                 accessibilityManagerFocusedViewActivatedEventHandler += value;
@@ -1092,9 +1085,11 @@ namespace Tizen.NUI.Accessibility
             {
                 accessibilityManagerFocusedViewActivatedEventHandler -= value;
 
-                if (accessibilityManagerFocusedViewActivatedEventHandler == null && FocusedViewActivatedSignal().Empty() == false)
+                if (accessibilityManagerFocusedViewActivatedEventHandler == null && accessibilityManagerFocusedViewActivatedEventCallbackDelegate != null)
                 {
-                    this.FocusedViewActivatedSignal().Disconnect(accessibilityManagerFocusedViewActivatedEventCallbackDelegate);
+                    Interop.AccessibilityManager.FocusedActorActivatedSignalDisconnect(SwigCPtr, accessibilityManagerFocusedViewActivatedEventCallbackDelegate.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    accessibilityManagerFocusedViewActivatedEventCallbackDelegate = null;
                 }
             }
         }

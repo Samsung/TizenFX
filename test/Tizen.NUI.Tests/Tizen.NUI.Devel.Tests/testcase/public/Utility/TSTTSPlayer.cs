@@ -15,7 +15,6 @@ namespace Tizen.NUI.Devel.Tests
     class PublicTTSPlayerTest
     {
         private const string tag = "NUITEST";
-        private bool flagStateChanged = false;
         private string image_path = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "picture.png";
 
         [SetUp]
@@ -176,7 +175,7 @@ namespace Tizen.NUI.Devel.Tests
 
         private void StateChangedEvent(object sender, TTSPlayer.StateChangedEventArgs args)
         {
-            flagStateChanged = true;
+            // To implement
         }
     }
 }

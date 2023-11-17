@@ -42,6 +42,11 @@ namespace UIThreadApp
         {
             Tizen.Log.Info("UIThreadApp", "CoreTask OnRegionFormatChanged " + e.Region);
         }
+
+        public override void OnDeviceOrientationChanged(DeviceOrientationEventArgs e)
+        {
+            Tizen.Log.Info("UIThreadApp", "CoreTask OnDeviceOrientationChanged " + e.DeviceOrientation);
+        }
     }
 
     class Program : NUIApplication
@@ -78,6 +83,11 @@ namespace UIThreadApp
         protected override void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
         {
             Tizen.Log.Info("UIThreadApp", "NUIApplication OnRegionFormatChanged " + e.Region);
+        }
+
+        protected override void OnDeviceOrientationChanged(DeviceOrientationEventArgs e)
+        {
+            Tizen.Log.Info("UIThreadApp", "NUIApplication OnDeviceOrientationChanged " + e.DeviceOrientation);
         }
 
         protected override void OnTerminate()

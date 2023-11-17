@@ -915,6 +915,7 @@ namespace Tizen.NUI.Devel.Tests
         private void MyOnRegionChanged(object sender, NUIApplicationRegionChangedEventArgs e) { }
         private void MyOnTerminating(object sender, NUIApplicationTerminatingEventArgs e) { }
         private void MyOnInitialized(object sender, NUIApplicationInitEventArgs e) { }
+        private void MyOnTaskInitialized(object sender, NUIApplicationInitEventArgs e) { }
 
         [Test]
         [Category("P1")]
@@ -943,6 +944,10 @@ namespace Tizen.NUI.Devel.Tests
                 testingTarget.BatteryLow += MyOnBatteryLow;
                 testingTarget.MemoryLow += MyOnMemoryLow;
                 testingTarget.AppControl += MyOnAppControl;
+
+                // task
+                testingTarget.TaskInitialized += MyOnTaskInitialized;
+                testingTarget.TaskInitialized -= MyOnTaskInitialized;
 
                 testingTarget.OnDispose(DisposeTypes.Explicit);
             }
@@ -1245,6 +1250,123 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             tlog.Debug(tag, $"ApplicationGetWindowList END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Application Application.NewApplication.")]
+        [Property("SPEC", "Tizen.NUI.Application.Application.NewApplication M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ApplicationApplicationNewApplication()
+        {
+            tlog.Debug(tag, $"ApplicationApplicationNewApplication START");
+
+            var dummy = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "/style/Test_Style_Manager.json";
+
+            try
+            {
+                Application application = Application.NewApplication(dummy, NUIApplication.WindowMode.Opaque, WindowType.Normal);
+            }
+            catch (Exception e)
+            {
+                tlog.Error(tag, "Caught Exception" + e.ToString());
+                Assert.Fail("Caught Exception" + e.ToString());
+            }
+
+            tlog.Debug(tag, $"ApplicationApplicationNewApplication END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Application Application.NewApplication.")]
+        [Property("SPEC", "Tizen.NUI.Application.Application.NewApplication M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ApplicationApplicationNewApplication2()
+        {
+            tlog.Debug(tag, $"ApplicationApplicationNewApplication START");
+
+            string[] args = new string[10];
+            args[0] = Tizen.Applications.Application.Current.ApplicationInfo.ExecutablePath;
+            var dummy = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "/style/Test_Style_Manager.json";
+
+            Rectangle windowRectangle = new Rectangle(200, 300, 400, 400);
+
+            try
+            {
+                Application application = Application.NewApplication(args, dummy, NUIApplication.WindowMode.Opaque, windowRectangle, true);
+            }
+            catch (Exception e)
+            {
+                tlog.Error(tag, "Caught Exception" + e.ToString());
+                Assert.Fail("Caught Exception" + e.ToString());
+            }
+
+            tlog.Debug(tag, $"ApplicationApplicationNewApplication END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Application Application.NewApplication.")]
+        [Property("SPEC", "Tizen.NUI.Application.Application.NewApplication M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ApplicationApplicationNewApplication3()
+        {
+            tlog.Debug(tag, $"ApplicationApplicationNewApplication START");
+
+            string[] args = new string[10];
+            args[0] = Tizen.Applications.Application.Current.ApplicationInfo.ExecutablePath;
+            var dummy = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "/style/Test_Style_Manager.json";
+
+            Rectangle windowRectangle = new Rectangle(200, 300, 400, 400);
+
+            try
+            {
+                Application application = Application.NewApplication(args, dummy, NUIApplication.WindowMode.Opaque, windowRectangle);
+            }
+            catch (Exception e)
+            {
+                tlog.Error(tag, "Caught Exception" + e.ToString());
+                Assert.Fail("Caught Exception" + e.ToString());
+            }
+
+            tlog.Debug(tag, $"ApplicationApplicationNewApplication END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Application Application.NewApplication.")]
+        [Property("SPEC", "Tizen.NUI.Application.Application.NewApplication M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ApplicationApplicationNewApplication4()
+        {
+            tlog.Debug(tag, $"ApplicationApplicationNewApplication START");
+
+            string[] args = new string[10];
+            args[0] = Tizen.Applications.Application.Current.ApplicationInfo.ExecutablePath;
+            var dummy = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "/style/Test_Style_Manager.json";
+
+            try
+            {
+                using (Rectangle windowRectangle = new Rectangle(0, 0, 0, 0))
+                {
+                    Application application = Application.NewApplication(args, dummy, NUIApplication.WindowMode.Opaque, windowRectangle);
+                }
+            }
+            catch (Exception e)
+            {
+                tlog.Error(tag, "Caught Exception" + e.ToString());
+                Assert.Fail("Caught Exception" + e.ToString());
+            }
+
+            tlog.Debug(tag, $"ApplicationApplicationNewApplication END (OK)");
         }
     }
 }

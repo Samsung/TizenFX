@@ -32,6 +32,7 @@ namespace Tizen.Nlp
     /// This class contains the methods in the NLP processing.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
+    [Obsolete("Deprecated since API11. Will be removed in API13.")]
     public class NaturalLanguageProcess : IDisposable
     {
         private Message _msg;
@@ -65,6 +66,7 @@ namespace Tizen.Nlp
         /// http://tizen.org/feature/nlp
         /// </feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         public NaturalLanguageProcess()
         {
             _noti.Received += ResultReceived;
@@ -82,6 +84,7 @@ namespace Tizen.Nlp
         /// A connection status change event
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         public event EventHandler Disconnected;
         private enum ConnectedState
         {
@@ -176,6 +179,7 @@ namespace Tizen.Nlp
         /// <since_tizen> 5 </since_tizen>
         /// <returns>A task representing the asynchronous connect operation.</returns>
         /// <exception cref="InvalidOperationException">Thrown when the connect is rejected.</exception>
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         public Task Connect()
         {
             if (_connectionState == ConnectedState.Connected)
@@ -224,6 +228,7 @@ namespace Tizen.Nlp
         /// A method to close message connection
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         public void Close()
         {
             if (_connectionState == ConnectedState.Disconnected) return;
@@ -248,6 +253,7 @@ namespace Tizen.Nlp
         /// A method to release resource of library
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         public void Dispose()
         {
             Dispose(true);
@@ -276,6 +282,7 @@ namespace Tizen.Nlp
         /// <param name="sentence">A sentence need to be processed.</param>
         /// <returns>PosTagResult</returns>
         /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         public Task<PosTagResult> PosTagAsync(string sentence)
         {
             int id = _requestIdPos++;
@@ -300,6 +307,7 @@ namespace Tizen.Nlp
         /// <param name="sentence">A sentence need to be processed.</param>
         /// <returns>NamedEntityRecognitionResult</returns>
         /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         public Task<NamedEntityRecognitionResult> NamedEntityRecognitionAsync(string sentence)
         {
             int id = _requestIdNeChunk++;
@@ -324,6 +332,7 @@ namespace Tizen.Nlp
         /// <param name="sentence">A sentence need to be processed.</param>
         /// <returns>LanguageDetectedResult</returns>
         /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         public Task<LanguageDetectedResult> LanguageDetectAsync(string sentence)
         {
             int id = _requestIdLang++;
@@ -346,6 +355,7 @@ namespace Tizen.Nlp
         /// <param name="sentence">A sentence need to be processed.</param>
         /// <returns>ProcessResult</returns>
         /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         public Task<WordTokenizeResult> WordTokenizeAsync(string sentence)
         {
             int id = _requestIdWordTokenize++;

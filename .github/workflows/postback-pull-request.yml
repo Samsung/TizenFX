@@ -8,7 +8,7 @@ on:
 
 jobs:
   postback:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
 
     - name: Download Artifacts from Build
@@ -21,12 +21,12 @@ jobs:
 
     - name: Find Pull Request
       id: pull_request
-      uses: actions/github-script@v2
+      uses: actions/github-script@v6
       env:
         WORKFLOW_HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
       with:
         script: |
-          const res = await github.pulls.list({
+          const res = await github.rest.pulls.list({
             owner: context.repo.owner,
             repo: context.repo.repo,
             state: 'open'
@@ -41,16 +41,16 @@ jobs:
 
     - name: Report Error if Failure
       if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-      uses: actions/github-script@v2
+      uses: actions/github-script@v6
       env:
         PR_NUMBER: ${{ steps.pull_request.outputs.number }}
       with:
-        github-token: ${{ secrets.TIZENAPI_GITHUB_TOKEN }}
+        github-token: ${{ secrets.TIZENAPI_GITHUB_TOKEN_FINEGRAINED }}
         script: |
           const fs = require('fs');
           const json = fs.readFileSync('Artifacts/errors.json', 'utf8');
           const errors = JSON.parse(json).join('\n');
-          github.issues.createComment({
+          github.rest.issues.createComment({
             issue_number: process.env.PR_NUMBER,
             owner: context.repo.owner,
             repo: context.repo.repo,
@@ -61,6 +61,6 @@ jobs:
       if: ${{ github.event.workflow_run.conclusion == 'success' }}
       uses: TizenAPI/tizenfx-build-actions/apidb-report@master
       with:
-        token: ${{ secrets.TIZENAPI_GITHUB_TOKEN }}
+        token: ${{ secrets.TIZENAPI_GITHUB_TOKEN_FINEGRAINED }}
         issue-number: ${{ steps.pull_request.outputs.number }}
         path: Artifacts/api-comp.json

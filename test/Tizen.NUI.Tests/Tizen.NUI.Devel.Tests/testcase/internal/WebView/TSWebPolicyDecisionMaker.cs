@@ -14,72 +14,135 @@ namespace Tizen.NUI.Devel.Tests
     public class InternalWebPolicyDecisionMakerTest
     {
         private const string tag = "NUITEST";
-        private string url = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "picture.png";
-        private static string[] runtimeArgs = { "Tizen.NUI.Devel.Tests", "--enable-dali-window", "--enable-spatial-navigation" };
-        private const string USER_AGENT = "Mozilla/5.0 (SMART-TV; Linux; Tizen 6.0) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/76.0.3809.146 TV Safari/537.36";
+        private string urlForResponsePolicyTest = "http://www.samsung.com";
+        private BaseComponents.WebView webView = null;
 
         [SetUp]
         public void Init()
         {
+            webView = new BaseComponents.WebView()
+            {
+                Size = new Size(150, 100),
+            };
             tlog.Info(tag, "Init() is called!");
         }
 
         [TearDown]
         public void Destroy()
         {
+            tlog.Info(tag, "Destroy() is being called!");
+            webView.Dispose();
             tlog.Info(tag, "Destroy() is called!");
         }
 
         [Test]
         [Category("P1")]
         [Description("WebPolicyDecisionMaker Url.")]
-        [Property("SPEC", "Tizen.NUI.WebPolicyDecisionMaker.Url A")]
+        [Property("SPEC", "Tizen.NUI.WebPolicyDecisionMaker.Ignore M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRO")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public async Task WebPolicyDecisionMakerUrl()
+        public async Task WebPolicyDecisionMakerIgnore()
         {
             tlog.Debug(tag, $"ResponsePolicyDecided START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView(runtimeArgs)
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPolicyDecidedEventArgs> onResponsePolicyDecide = (s, e) =>
             {
-                Size = new Size(500, 200),
-                UserAgent = USER_AGENT
+                tlog.Info(tag, $"response policy decided, Url: {e.ResponsePolicyDecisionMaker.Url}");
+                tlog.Info(tag, $"response policy decided, Cookie: {e.ResponsePolicyDecisionMaker.Cookie}");
+                tlog.Info(tag, $"response policy decided, PolicyDecisionType: {e.ResponsePolicyDecisionMaker.PolicyDecisionType}");
+                tlog.Info(tag, $"response policy decided, ResponseMime: {e.ResponsePolicyDecisionMaker.ResponseMime}");
+                tlog.Info(tag, $"response policy decided, ResponseStatusCode: {e.ResponsePolicyDecisionMaker.ResponseStatusCode}");
+                tlog.Info(tag, $"response policy decided, DecisionNavigationType: {e.ResponsePolicyDecisionMaker.DecisionNavigationType}");
+                tlog.Info(tag, $"response policy decided, Scheme: {e.ResponsePolicyDecisionMaker.Scheme}");
+                tlog.Info(tag, $"response policy decided, MainFrame: {e.ResponsePolicyDecisionMaker.Frame.IsMainFrame}");
+
+                if (e.ResponsePolicyDecisionMaker.Frame != null)
+                {
+                    tlog.Info(tag, $"response policy decided, Frame.IsMainFrame: {e.ResponsePolicyDecisionMaker.Frame.IsMainFrame}");
+                }
+                e.ResponsePolicyDecisionMaker.Ignore();
+
+                tcs.TrySetResult(true);
             };
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return Tizen.NUI.BaseComponents.WebView instance.");
+            webView.ResponsePolicyDecided += onResponsePolicyDecide;
 
-            testingTarget.ResponsePolicyDecided += OnResponsePolicyDecided;
-            NUIApplication.GetDefaultWindow().Add(testingTarget);
-            
-            testingTarget.LoadUrl("https://www.youtube.com");
+            webView.LoadUrl(urlForResponsePolicyTest);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "ResponsePolicyDecided event should be invoked");
 
-            await Task.Delay(30000);
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-            NUIApplication.GetDefaultWindow().Remove(testingTarget);
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
-            testingTarget.Dispose();
+            webView.ResponsePolicyDecided -= onResponsePolicyDecide;
+
             tlog.Debug(tag, $"WebPolicyDecisionMakerUrl END (OK)");
         }
 
-        private void OnResponsePolicyDecided(object sender, WebViewPolicyDecidedEventArgs e)
+        [Test]
+        [Category("P1")]
+        [Description("WebPolicyDecisionMaker Url.")]
+        [Property("SPEC", "Tizen.NUI.WebPolicyDecisionMaker.Suspend M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRO")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public async Task WebPolicyDecisionMakerSuspend()
         {
-            tlog.Info(tag, $"response policy decided, Url: {e.ResponsePolicyDecisionMaker.Url}");
-            tlog.Info(tag, $"response policy decided, Cookie: {e.ResponsePolicyDecisionMaker.Cookie}");
-            tlog.Info(tag, $"response policy decided, PolicyDecisionType: {e.ResponsePolicyDecisionMaker.PolicyDecisionType}");
-            tlog.Info(tag, $"response policy decided, ResponseMime: {e.ResponsePolicyDecisionMaker.ResponseMime}");
-            tlog.Info(tag, $"response policy decided, ResponseStatusCode: {e.ResponsePolicyDecisionMaker.ResponseStatusCode}");
-            tlog.Info(tag, $"response policy decided, DecisionNavigationType: {e.ResponsePolicyDecisionMaker.DecisionNavigationType}");
-            tlog.Info(tag, $"response policy decided, Scheme: {e.ResponsePolicyDecisionMaker.Scheme}");
-            if (e.ResponsePolicyDecisionMaker.Frame != null)
+            tlog.Debug(tag, $"WebPolicyDecisionMakerIgnore START");
+
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPolicyDecidedEventArgs> onResponsePolicyDecide = (s, e) =>
             {
-                tlog.Info(tag, $"response policy decided, Frame.IsMainFrame: {e.ResponsePolicyDecisionMaker.Frame.IsMainFrame}");
-            }
-            e.ResponsePolicyDecisionMaker.Ignore();
-            e.ResponsePolicyDecisionMaker.Suspend();
-            e.ResponsePolicyDecisionMaker.Use();
+                e.ResponsePolicyDecisionMaker.Suspend();
+                tcs.TrySetResult(true);
+            };
+            webView.ResponsePolicyDecided += onResponsePolicyDecide;
+
+            webView.LoadUrl(urlForResponsePolicyTest);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "ResponsePolicyDecided event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.ResponsePolicyDecided -= onResponsePolicyDecide;
+
+            tlog.Debug(tag, $"WebPolicyDecisionMakerIgnore END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("WebPolicyDecisionMaker Url.")]
+        [Property("SPEC", "Tizen.NUI.WebPolicyDecisionMaker.Use M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRO")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public async Task WebPolicyDecisionMakerUse()
+        {
+            tlog.Debug(tag, $"ResponsePolicyDecided START");
+
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPolicyDecidedEventArgs> onResponsePolicyDecide = (s, e) =>
+            {
+                e.ResponsePolicyDecisionMaker.Use();
+                tcs.TrySetResult(true);
+            };
+            webView.ResponsePolicyDecided += onResponsePolicyDecide;
+
+            webView.LoadUrl(urlForResponsePolicyTest);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "ResponsePolicyDecided event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.ResponsePolicyDecided -= onResponsePolicyDecide;
+
+            tlog.Debug(tag, $"WebPolicyDecisionMakerUse END (OK)");
         }
     }
 }

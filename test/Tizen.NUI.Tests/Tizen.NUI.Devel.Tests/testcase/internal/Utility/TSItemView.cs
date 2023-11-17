@@ -293,7 +293,7 @@ namespace Tizen.NUI.Devel.Tests
                 {
                     using (Item item = new Item())
                     {
-                        testingTarget.InsertItem(new Item(), 30.0f);
+                        testingTarget.InsertItem(item, 30.0f);
                     }
                 }
                 catch (Exception e)
@@ -306,6 +306,79 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             tlog.Debug(tag, $"ItemViewInsertItem END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ItemView ReplaceItem.")]
+        [Property("SPEC", "Tizen.NUI.ItemView.ReplaceItem M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ItemViewReplaceItem()
+        {
+            tlog.Debug(tag, $"ItemViewReplaceItem START");
+
+            using (ItemFactory factory = new ItemFactory())
+            {
+                var testingTarget = new ItemView(factory);
+                Assert.IsNotNull(testingTarget, "Should be not null!");
+                Assert.IsInstanceOf<ItemView>(testingTarget, "Should be an Instance of ItemView!");
+
+                try
+                {
+                    using (Item item = new Item(2, new View()))
+                    {
+                        testingTarget.InsertItem(item, 30.0f);
+                        testingTarget.ReplaceItem(new Item(1, new View()), 30.0f);
+                    }
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception: Failed!");
+                }
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"ItemViewReplaceItem END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ItemView InsertItems.")]
+        [Property("SPEC", "Tizen.NUI.ItemView.InsertItems M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ItemViewInsertItems()
+        {
+            tlog.Debug(tag, $"ItemViewInsertItems START");
+
+            using (ItemFactory factory = new ItemFactory())
+            {
+                var testingTarget = new ItemView(factory);
+                Assert.IsNotNull(testingTarget, "Should be not null!");
+                Assert.IsInstanceOf<ItemView>(testingTarget, "Should be an Instance of ItemView!");
+
+                try
+                {
+                    using (ItemCollection  newItems = new ItemCollection())
+                    {
+                        testingTarget.InsertItems(new ItemCollection(), 30.0f);
+                    }
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception: Failed!");
+                }
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"ItemViewInsertItems END (OK)");
         }
 
         [Test]

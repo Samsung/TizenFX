@@ -13,7 +13,36 @@
     <!-- Content is main placeholder of ContentPage. Add your content into this view. -->
     <ContentPage.Content>
         <TabView x:Name="tabView"
-                   WidthSpecification="{Static LayoutParamPolicies.MatchParent}">
+            WidthSpecification="{Static LayoutParamPolicies.MatchParent}">
+            <TabItem IconUrl="res/home.png">
+                <TabItem.Content>
+                    <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                        HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+                        BackgroundColor="Red">
+                        <View.Layout>
+                            <LinearLayout LinearOrientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" CellPadding="0,20"/>
+                        </View.Layout>
+
+                        <Button Text="Add Tab" BackgroundColor="Magenta" Clicked="AddTabClickedCb" />
+                        <Button Text="Remove Tab" BackgroundColor="Magenta" Clicked="RemoveTabClickedCb"/>
+                    </View>
+                </TabItem.Content>
+            </TabItem>
+
+            <TabItem IconUrl="res/home.png">
+                <TabItem.Content>
+                    <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                        HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+                        BackgroundColor="Blue">
+                        <View.Layout>
+                            <LinearLayout LinearOrientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" CellPadding="0,20"/>
+                        </View.Layout>
+
+                        <Button Text="Add Tab" BackgroundColor="Cyan" Clicked="AddTabClickedCb"/>
+                        <Button Text="Remove Tab" BackgroundColor="Cyan" Clicked="RemoveTabClickedCb"/>
+                    </View>
+                </TabItem.Content>
+            </TabItem>
         </TabView>
     </ContentPage.Content>
 

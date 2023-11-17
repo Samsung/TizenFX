@@ -116,7 +116,8 @@ namespace Tizen.NUI
             application.BatteryLow += OnBatteryLow;
             application.LanguageChanged += OnLanguageChanged;
             application.MemoryLow += OnMemoryLow;
-            application.RegionChanged += OnRegionChanged; ;
+            application.RegionChanged += OnRegionChanged;
+            application.DeviceOrientationChanged += OnDeviceOrientationChanged;
             application.Initialized += OnInitialized;
             application.Terminating += OnTerminated;
 
@@ -224,6 +225,40 @@ namespace Tizen.NUI
                 case Application.BatteryStatus.PowerOff:
                     {
                         handler?.Invoke(new LowBatteryEventArgs(LowBatteryStatus.PowerOff));
+                        break;
+                    }
+            }
+        }
+
+        /// <summary>
+        /// The Device Orientation changed event callback function.
+        /// </summary>
+        /// <param name="source">The application instance.</param>
+        /// <param name="e">The event argument for DeviceOrientationChanged.</param>
+        private void OnDeviceOrientationChanged(object source, NUIApplicationDeviceOrientationChangedEventArgs e)
+        {
+            var handler = handlers[EventType.DeviceOrientationChanged] as Action<DeviceOrientationEventArgs>;
+
+            switch (e.DeviceOrientationStatus)
+            {
+                case Application.DeviceOrientationStatus.Orientation_0:
+                    {
+                        handler?.Invoke(new DeviceOrientationEventArgs(DeviceOrientation.Orientation_0));
+                        break;
+                    }
+                case Application.DeviceOrientationStatus.Orientation_90:
+                    {
+                        handler?.Invoke(new DeviceOrientationEventArgs(DeviceOrientation.Orientation_90));
+                        break;
+                    }
+                case Application.DeviceOrientationStatus.Orientation_180:
+                    {
+                        handler?.Invoke(new DeviceOrientationEventArgs(DeviceOrientation.Orientation_180));
+                        break;
+                    }
+                case Application.DeviceOrientationStatus.Orientation_270:
+                    {
+                        handler?.Invoke(new DeviceOrientationEventArgs(DeviceOrientation.Orientation_270));
                         break;
                     }
             }

@@ -7,6 +7,10 @@ on:
         description: 'Branch to deploy'
         required: true
         default: 'master'
+      deploy_to_gpr:
+        description: 'Deploy packages to Github Packages Registry?'
+        required: true
+        default: true
       deploy_to_myget:
         description: 'Deploy packages to MyGet?'
         required: true
@@ -21,14 +25,14 @@ env:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         ref: ${{ env.TARGET_BRANCH }}
         fetch-depth: 0
     
-    - uses: actions/setup-dotnet@v1
+    - uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '6.0.102'
 
@@ -51,7 +55,7 @@ jobs:
       run: |
         VERSION=$VERSION_PREFIX.$((10000+$(git rev-list --count HEAD)))
         echo VERSION=$VERSION
-        echo "::set-output name=version::$VERSION"
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
 
     - name: Build
       env:
@@ -67,6 +71,14 @@ jobs:
         git tag -fa "v$VERSION" -m "Release $VERSION"
         git push -f --tags origin refs/tags/"v$VERSION"
 
+    - name: Deploy NuGet packages to Github Packages Registry
+      if: github.event.inputs.deploy_to_gpr == 'true'
+      env:
+        PACKAGES_SOURCE: https://nuget.pkg.github.com/Samsung/index.json
+        APIKEY: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        dotnet nuget push Artifacts/*.nupkg -k $APIKEY -s $PACKAGES_SOURCE -t 3000
+
     - name: Deploy NuGet packages to MyGet
       if: github.event.inputs.deploy_to_myget == 'true'
       env:
@@ -76,7 +88,7 @@ jobs:
         dotnet nuget push Artifacts/*.nupkg -k $APIKEY -s $NUGET_SOURCE -t 3000
 
     - name: Setup SSH private keys
-      uses: webfactory/ssh-agent@v0.5.2
+      uses: webfactory/ssh-agent@v0.7.0
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 

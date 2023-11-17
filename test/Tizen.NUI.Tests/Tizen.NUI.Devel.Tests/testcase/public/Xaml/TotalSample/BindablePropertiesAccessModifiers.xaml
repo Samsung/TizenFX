@@ -8,5 +8,4 @@
 								    InternalBar="{Binding Bar}"
 									x:Name="AMC"
 									x:FieldModifier="public"/>
-
 </View>

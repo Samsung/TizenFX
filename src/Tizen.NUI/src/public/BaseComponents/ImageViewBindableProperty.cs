@@ -116,7 +116,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.GetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.IMAGE).Get(returnValue);
 
                 // Update cached property map
-                if(returnValue != null)
+                if (returnValue != null)
                 {
                     imageView.MergeCachedImageVisualProperty(returnValue);
                 }
@@ -135,7 +135,7 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                if(imageView.imagePropertyUpdatedFlag)
+                if (imageView.imagePropertyUpdatedFlag)
                 {
                     // If imageView Property still not send to the dali, Append cached property.
                     imageView.UpdateImage(Visual.Property.PremultipliedAlpha, new PropertyValue((bool)newValue));
@@ -143,7 +143,7 @@ namespace Tizen.NUI.BaseComponents
                 else
                 {
                     // Else, we don't need to re-create view. Get value from current ImageView.
-                    Tizen.NUI.Object.SetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.PreMultipliedAlpha, new Tizen.NUI.PropertyValue((bool)newValue));
+                    Object.InternalSetPropertyBool(imageView.SwigCPtr, ImageView.Property.PreMultipliedAlpha, (bool)newValue);
                 }
             }
         }),
@@ -152,7 +152,7 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             bool temp = false;
 
-            if(imageView.imagePropertyUpdatedFlag)
+            if (imageView.imagePropertyUpdatedFlag)
             {
                 // If imageView Property still not send to the dali, just get cached property.
                 imageView.GetCachedImageVisualProperty(Visual.Property.PremultipliedAlpha)?.Get(out temp);
@@ -160,7 +160,7 @@ namespace Tizen.NUI.BaseComponents
             else
             {
                 // Else, PremultipliedAlpha may not setuped in cached property. Get value from current ImageView.
-                Tizen.NUI.Object.GetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.PreMultipliedAlpha).Get(out temp);
+                temp = Object.InternalGetPropertyBool(imageView.SwigCPtr, ImageView.Property.PreMultipliedAlpha);
             }
             return temp;
         }));
@@ -172,16 +172,20 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.PixelArea, new Tizen.NUI.PropertyValue((RelativeVector4)newValue));
+
+                Object.InternalSetPropertyVector4(imageView.SwigCPtr, ImageView.Property.PixelArea, ((RelativeVector4)newValue).SwigCPtr);
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var imageView = (ImageView)bindable;
-            Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.PixelArea).Get(temp);
-            RelativeVector4 relativeTemp = new RelativeVector4(temp.X, temp.Y, temp.Z, temp.W);
-            return relativeTemp;
+
+            if (imageView.internalPixelArea == null)
+            {
+                imageView.internalPixelArea = new RelativeVector4(imageView.OnPixelAreaChanged, 0, 0, 0, 0);
+            }
+            Object.InternalRetrievingPropertyVector4(imageView.SwigCPtr, ImageView.Property.PixelArea, imageView.internalPixelArea.SwigCPtr);
+            return imageView.internalPixelArea;
         }));
 
         /// Intenal used, will never be opened.
@@ -214,11 +218,11 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                if(oldValue != null)
+                if (oldValue != null)
                 {
                     bool oldBool = (bool)oldValue;
                     bool newBool = (bool)newValue;
-                    if(oldBool == newBool)
+                    if (oldBool == newBool)
                     {
                         return;
                     }
@@ -243,16 +247,17 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                if(oldValue != null)
+                if (oldValue != null)
                 {
                     bool oldBool = (bool)oldValue;
                     bool newBool = (bool)newValue;
-                    if(oldBool == newBool)
+                    if (oldBool == newBool)
                     {
                         return;
                     }
                 }
-                imageView.UpdateImage(ImageVisualProperty.SynchronousLoading, new PropertyValue((bool)newValue));
+                // Note : We need to create new visual if previous visual was async, and now we set value as sync.
+                imageView.UpdateImage(ImageVisualProperty.SynchronousLoading, new PropertyValue((bool)newValue), (bool)newValue);
             }
         },
         defaultValueCreator: (bindable) =>
@@ -272,16 +277,17 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                if(oldValue != null)
+                if (oldValue != null)
                 {
                     bool oldBool = (bool)oldValue;
                     bool newBool = (bool)newValue;
-                    if(oldBool == newBool)
+                    if (oldBool == newBool)
                     {
                         return;
                     }
                 }
-                imageView.UpdateImage(ImageVisualProperty.SynchronousLoading, new PropertyValue((bool)newValue));
+                // Note : We need to create new visual if previous visual was async, and now we set value as sync.
+                imageView.UpdateImage(ImageVisualProperty.SynchronousLoading, new PropertyValue((bool)newValue), (bool)newValue);
             }
         },
         defaultValueCreator: (bindable) =>
@@ -301,11 +307,11 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                if(oldValue != null)
+                if (oldValue != null)
                 {
                     bool oldBool = (bool)oldValue;
                     bool newBool = (bool)newValue;
-                    if(oldBool == newBool)
+                    if (oldBool == newBool)
                     {
                         return;
                     }
@@ -340,6 +346,24 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             return instance.InternalMaskingMode;
+        });
+
+        /// <summary>
+        /// FastTrackUploadingProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FastTrackUploadingProperty = BindableProperty.Create(nameof(FastTrackUploading), typeof(bool), typeof(ImageView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
+            if (newValue != null)
+            {
+                instance.InternalFastTrackUploading = (bool)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
+            return instance.InternalFastTrackUploading;
         });
 
         /// <summary>
@@ -520,6 +544,63 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             return instance.adjustViewSize;
+        });
+
+        /// <summary>
+        /// PlaceHolderUrlProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty PlaceHolderUrlProperty = BindableProperty.Create(nameof(PlaceHolderUrl), typeof(string), typeof(ImageView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var imageView = (Tizen.NUI.BaseComponents.ImageView)bindable;
+            if (newValue != null)
+            {
+                Object.InternalSetPropertyString(imageView.SwigCPtr, ImageView.Property.PlaceHolderUrl, (string)newValue);
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var imageView = (Tizen.NUI.BaseComponents.ImageView)bindable;
+            return Object.InternalGetPropertyString(imageView.SwigCPtr, ImageView.Property.PlaceHolderUrl);
+        });
+
+        /// Intenal used, will never be opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TransitionEffectProperty = BindableProperty.Create(nameof(TransitionEffect), typeof(bool), typeof(ImageView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var imageView = (ImageView)bindable;
+            if (newValue != null)
+            {
+                Object.InternalSetPropertyBool(imageView.SwigCPtr, ImageView.Property.TransitionEffect, (bool)newValue);
+            }
+        },
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        {
+            var imageView = (ImageView)bindable;
+            return Object.InternalGetPropertyBool(imageView.SwigCPtr, ImageView.Property.TransitionEffect);
+        }));
+
+        /// <summary>
+        /// ImageColorProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ImageColorProperty = BindableProperty.Create(nameof(ImageColor), typeof(Color), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var imageView = (ImageView)bindable;
+            if (newValue != null)
+            {
+                imageView.UpdateImage(Visual.Property.Opacity, new PropertyValue(((Color)newValue).A), false);
+                imageView.UpdateImage(Visual.Property.MixColor, new PropertyValue((Color)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var imageView = (ImageView)bindable;
+            Color ret = new Color();
+
+            imageView.GetCachedImageVisualProperty(Visual.Property.MixColor)?.Get(ret);
+
+            return ret;
         });
     }
 }

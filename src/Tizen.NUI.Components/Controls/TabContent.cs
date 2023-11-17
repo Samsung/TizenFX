@@ -29,14 +29,39 @@ namespace Tizen.NUI.Components
     {
         private IList<View> views;
 
+        private void Initialize()
+        {
+            SelectedIndex = -1;
+            views = new List<View>();
+        }
+
         /// <summary>
         /// Creates a new instance of TabContent.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public TabContent()
         {
-            SelectedIndex = -1;
-            views = new List<View>();
+            Initialize();
+        }
+
+        /// <summary>
+        /// Creates a new instance of TabContent with style.
+        /// </summary>
+        /// <param name="style">Creates TabContent by special style defined in UX.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TabContent(string style) : base(style)
+        {
+            Initialize();
+        }
+
+        /// <summary>
+        /// Creates a new instance of a TabContent with style.
+        /// </summary>
+        /// <param name="style">A style applied to the newly created TabContent.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TabContent(ControlStyle style) : base(style)
+        {
+            Initialize();
         }
 
         /// <summary>
@@ -48,10 +73,22 @@ namespace Tizen.NUI.Components
         protected int SelectedIndex { get; set; }
 
         /// <summary>
+        /// A list of content views.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected IList<View> Views
+        {
+            get
+            {
+                return views;
+            }
+        }
+
+        /// <summary>
         /// Gets the count of views.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public int ViewCount => views.Count;
+        public int ViewCount => Views.Count;
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -68,19 +105,29 @@ namespace Tizen.NUI.Components
         /// <param name="view">A view to be added to TabContent.</param>
         /// <exception cref="ArgumentNullException">Thrown when the argument view is null.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected internal void AddView(View view)
+        protected virtual void AddView(View view)
         {
             if (view == null)
             {
                 throw new ArgumentNullException(nameof(view), "view should not be null.");
             }
 
-            views.Add(view);
+            Views.Add(view);
 
             if (SelectedIndex == -1)
             {
-                Select(0);
+                SelectView(0);
             }
+        }
+
+        /// <summary>
+        /// Adds a view to TabContent.
+        /// </summary>
+        /// <param name="view">A view to be added to TabContent.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the argument view is null.</exception>
+        internal void AddContentView(View view)
+        {
+            AddView(view);
         }
 
         /// <summary>
@@ -90,33 +137,44 @@ namespace Tizen.NUI.Components
         /// <exception cref="ArgumentNullException">Thrown when the argument view is null.</exception>
         /// <exception cref="ArgumentException">Thrown when the argument view does not exist in TabContent.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected internal void RemoveView(View view)
+        protected virtual void RemoveView(View view)
         {
             if (view == null)
             {
                 throw new ArgumentNullException(nameof(view), "view should not be null.");
             }
 
-            if (views.Contains(view) == false)
+            if (Views.Contains(view) == false)
             {
                 throw new ArgumentException("view does not exist in TabContent.", nameof(view));
             }
 
-            int index = views.IndexOf(view);
+            int index = Views.IndexOf(view);
 
-            views.Remove(view);
+            Views.Remove(view);
 
             if (index == SelectedIndex)
             {
-                if (views.Count == 0)
+                if (Views.Count == 0)
                 {
-                    Select(-1);
+                    SelectView(-1);
                 }
-                else if (SelectedIndex == views.Count)
+                else if (SelectedIndex == Views.Count)
                 {
-                    Select(SelectedIndex - 1);
+                    SelectView(SelectedIndex - 1);
                 }
             }
+        }
+
+        /// <summary>
+        /// Removes a view from TabContent.
+        /// </summary>
+        /// <param name="view">A view to be removed from TabContent.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the argument view is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the argument view does not exist in TabContent.</exception>
+        internal void RemoveContentView(View view)
+        {
+            RemoveView(view);
         }
 
         /// <summary>
@@ -127,24 +185,36 @@ namespace Tizen.NUI.Components
         /// <param name="index">The index of a view in TabContent where the view will be selected.</param>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the index is less than -1, or greater than or equal to the number of views.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected internal void Select(int index)
+        protected virtual void SelectView(int index)
         {
-            if ((index < -1) || (index >= views.Count))
+            if ((index < -1) || (index >= Views.Count))
             {
                 throw new ArgumentOutOfRangeException(nameof(index), "index should not be greater than or equal to -1, and less than the number of views.");
             }
 
             if (SelectedIndex != -1)
             {
-                Remove(views[SelectedIndex]);
+                Remove(Views[SelectedIndex]);
             }
 
             if (index != -1)
             {
-                Add(views[index]);
+                Add(Views[index]);
             }
 
             SelectedIndex = index;
+        }
+
+        /// <summary>
+        /// Selects a view at the specified index of TabContent.
+        /// The indices of views in TabContent are basically the order of adding to TabContent by <see cref="TabView.AddTab"/>.
+        /// So a view's index in TabContent can be changed whenever <see cref="TabView.AddTab"/> or <see cref="TabView.RemoveTab"/> is called.
+        /// </summary>
+        /// <param name="index">The index of a view in TabContent where the view will be selected.</param>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when the index is less than -1, or greater than or equal to the number of views.</exception>
+        internal void SelectContentView(int index)
+        {
+            SelectView(index);
         }
 
         /// <summary>
@@ -157,12 +227,12 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public View GetView(int index)
         {
-            if ((index < 0) || (index >= views.Count))
+            if ((index < 0) || (index >= Views.Count))
             {
                 throw new ArgumentOutOfRangeException(nameof(index), "index should not be greater than or equal to 0, and less than the number of views.");
             }
 
-            return views[index];
+            return Views[index];
         }
 
         /// <inheritdoc/>
@@ -176,9 +246,9 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
-                if (views != null)
+                if (Views != null)
                 {
-                    foreach (View view in views)
+                    foreach (View view in Views)
                     {
                         Utility.Dispose(view);
                     }

@@ -225,6 +225,9 @@ namespace Tizen.Multimedia.Remoting
                 throw new ArgumentException("Audio is not configured with the current source.");
             }
 
+            // MediaPacket native handle will be destroyed internally in native webrtc fw
+            packet.DisableNativeHandleDestroy();
+
             NativeWebRTC.PushMediaPacket(WebRtc.Handle, SourceId.Value, packet.GetHandle()).
                 ThrowIfFailed("Failed to push the packet to the WebRTC");
         }

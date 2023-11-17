@@ -79,6 +79,23 @@ namespace Tizen.NUI.Scene3D
         });
 
         /// <summary>
+        /// OrthographicSizeProperty
+        /// </summary>
+        internal static readonly BindableProperty OrthographicSizeProperty = BindableProperty.Create(nameof(OrthographicSize), typeof(float), typeof(Tizen.NUI.Scene3D.Camera), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.Scene3D.Camera)bindable;
+            if (newValue != null)
+            {
+                instance.InternalOrthographicSize = (float)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.Scene3D.Camera)bindable;
+            return instance.InternalOrthographicSize;
+        });
+
+        /// <summary>
         /// AspectRatioProperty
         /// </summary>
         internal static readonly BindableProperty AspectRatioProperty = BindableProperty.Create(nameof(AspectRatio), typeof(float), typeof(Tizen.NUI.Scene3D.Camera), default(float), propertyChanged: (bindable, oldValue, newValue) =>

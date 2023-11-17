@@ -38,10 +38,10 @@ internal static partial class Interop
             DLOG_SILENT,
             DLOG_PRIO_MAX,
         }
-        [DllImportAttribute(Libraries.Dlog, EntryPoint = "dlog_print", CallingConvention = CallingConvention.Cdecl)]
+        [DllImportAttribute(Libraries.Dlog, EntryPoint = "dlog_print_dotnet", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int Print(LogPriority prio, string tag, string fmt, string msg);
 
-        [DllImportAttribute(Libraries.Dlog, EntryPoint = "dlog_print", CallingConvention = CallingConvention.Cdecl)]
+        [DllImportAttribute(Libraries.Dlog, EntryPoint = "dlog_print_dotnet", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int Print(LogPriority prio, string tag, string fmt, string file, string func, int line, string msg);
     }
 }

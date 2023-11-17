@@ -494,7 +494,7 @@ namespace Tizen.NUI
                         childLayout.Owner.HeightSpecification = LayoutParamPolicies.MatchParent;
                     }
 
-                    MeasureChildWithMargins(childLayout, childWidthMeasureSpec, new LayoutLength(0), childHeightMeasureSpec, new LayoutLength(0));
+                    MeasureChild(childLayout, childWidthMeasureSpec, childHeightMeasureSpec);
 
                     if (ellipsisTextWidth || needMeasuredWidth)
                     {

@@ -14,11 +14,7 @@
  * limitations under the License.
  *
  */
-
-#if !PROFILE_TV
-#define ExternalThemeEnabled
-#endif
-
+#pragma warning disable CS0162 // Unreachable code detected: Some lines can be unreachable in TV profile
 namespace Tizen.NUI.Components
 {
     internal partial class DefaultThemeCreator
@@ -29,14 +25,7 @@ namespace Tizen.NUI.Components
 
         public static void Preload()
         {
-#if ExternalThemeEnabled
-            ThemeManager.AddPackageTheme(Instance);
-
-            if (string.IsNullOrEmpty(ExternalThemeManager.CurrentThemeId)) return;
-
-            ThemeManager.LoadPlatformTheme(ExternalThemeManager.CurrentThemeId);
-#endif
         }
     }
 }
-
+#pragma warning restore CS0162

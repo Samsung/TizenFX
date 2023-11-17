@@ -24,6 +24,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Linq;
 
 namespace Tizen.NUI
@@ -36,7 +37,7 @@ namespace Tizen.NUI
         private const int componentGreen = -2;
         private const int componentBlue = -1;
 
-        private static Dictionary<int, int> colorPopulations;
+        private static ConcurrentDictionary<int, int> colorPopulations;
         private static int[] colors;
         private List<Palette.Swatch> quantizedColors;
         private float[] tempHsl = new float[3];
@@ -59,11 +60,11 @@ namespace Tizen.NUI
 
             // First, lets pack the populations into a SparseIntArray so that they can be easily
             // retrieved without knowing a color's index
-            colorPopulations = new Dictionary<int, int>();
+            colorPopulations = new ConcurrentDictionary<int, int>();
 
             for (int i = 0; i < rawColors.Length; i++)
             {
-                colorPopulations.Add(rawColors[i], rawColorCounts[i]);
+                colorPopulations.TryAdd(rawColors[i], rawColorCounts[i]);
             }
 
             // Now go through all of the colors and keep those which we do not want to ignore

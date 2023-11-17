@@ -94,7 +94,7 @@ namespace Tizen.NUI.BaseComponents
         /// <returns>True if equal GestureInfoType, otherwise false</returns>
         public bool Equals(GestureInfoType other)
         {
-            if ((other == null) || !this.GetType().Equals(other.GetType()))
+            if (!this.GetType().Equals(other.GetType()))
             {
                 return false;
             }
@@ -419,6 +419,18 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
+        // AccessibilityValueTextRequested
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class AccessibilityValueTextRequestedEventArgs : EventArgs
+        {
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public string Text { get; set; }
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<AccessibilityValueTextRequestedEventArgs> AccessibilityValueTextRequested;
 
         ///////////////////////////////////////////////////////////////////
         // **************** AccessibilityActivatedSignal **************** //

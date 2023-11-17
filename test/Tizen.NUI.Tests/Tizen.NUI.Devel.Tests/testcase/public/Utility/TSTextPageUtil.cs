@@ -46,18 +46,20 @@ namespace Tizen.NUI.Devel.Tests
 
             using (TextLabel label = new TextLabel())
             {
+                label.Size = new Size(200, 100);
                 label.EnableMarkup = true;
                 label.Text = "PublicPageUtilTest";
-                var result = testingTarget.SetText(label, "My PageUtil");
+                var result = testingTarget.SetText(label, "1 My love 2 Just one last dance 3 As long as you love me 4 Because of you 5 God is a girl 6 Hero 7 Yesterday once more 8 Lonely 9 All rise 10 One love 11 Big big world 12 My heart will go on");
                 Assert.IsNotNull(result);
             }
 
             // label.EnableMarkup = false
             using (TextLabel label = new TextLabel())
             {
+                label.Size = new Size(200, 100);
                 label.EnableMarkup = false;
                 label.Text = "PublicPageUtilTest";
-                var result = testingTarget.SetText(label, "MyPageUtil");
+                var result = testingTarget.SetText(label, "1 My love 2 Just one last dance 3 As long as you love me 4 Because of you 5 God is a girl 6 Hero 7 Yesterday once more 8 Lonely 9 All rise 10 One love 11 Big big world 12 My heart will go on");
                 Assert.IsNotNull(result);
             }
 
@@ -82,9 +84,10 @@ namespace Tizen.NUI.Devel.Tests
 
             using (TextLabel label = new TextLabel())
             {
+                label.Size = new Size(200, 100);
                 label.EnableMarkup = true;
                 label.Text = "PublicPageUtilTest";
-                var result = testingTarget.SetText(label, "MyPageUtil");
+                var result = testingTarget.SetText(label, "1 My love 2 Just one last dance 3 As long as you love me 4 Because of you 5 God is a girl 6 Hero 7 Yesterday once more 8 Lonely 9 All rise 10 One love 11 Big big world 12 My heart will go on");
                 Assert.IsNotNull(result);
 
                 /** if param is 0 will return */
@@ -111,6 +114,45 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextPageUtilGetText END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextPageUtil GetText situation.")]
+        [Property("SPEC", "Tizen.NUI.TextPageUtil.GetText situation M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TextPageUtilGetTextsituation()
+        {
+            tlog.Debug(tag, $"TextPageUtilGetTextsituation START");
+
+            TextPageUtil testingTarget = new TextPageUtil();
+            Assert.IsNotNull(testingTarget, "Can't create success object TextPageUtil");
+            Assert.IsInstanceOf<TextPageUtil>(testingTarget, "Should be an instance of TextPageUtil type.");
+
+            using (TextLabel label = new TextLabel())
+            {
+                label.EnableMarkup = true;
+                label.Text = "PublicPageUtilTest";
+                
+                var result = testingTarget.SetText(label, "MyPageUtil");
+                Assert.IsNotNull(result);
+
+                /** if param is 0 will return */
+                try
+                {
+                    testingTarget.GetText(-1);
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception: Failed!");
+                }
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextPageUtilGetTextsituation END (OK)");
         }
 
         [Test]

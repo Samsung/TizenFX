@@ -26,8 +26,11 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class TypeRegistry : BaseHandle
     {
+        internal TypeRegistry(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
 
-        internal TypeRegistry(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal TypeRegistry(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
         }
 
@@ -46,7 +49,22 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static TypeRegistry Get()
         {
-            TypeRegistry ret = new TypeRegistry(Interop.TypeRegistry.Get(), true);
+            global::System.IntPtr cPtr = Interop.TypeRegistry.Get();
+
+            TypeRegistry ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as TypeRegistry;
+            if (ret != null)
+            {
+                object dummyObect = new object();
+
+                global::System.Runtime.InteropServices.HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(dummyObect, cPtr);
+                Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+            else
+            {
+                ret = new TypeRegistry(cPtr, true);
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -56,12 +74,12 @@ namespace Tizen.NUI
         /// </summary>
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TypeRegistry() : this(Interop.TypeRegistry.NewTypeRegistry(), true)
+        public TypeRegistry() : this(Interop.TypeRegistry.NewTypeRegistry(), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal TypeRegistry(TypeRegistry handle) : this(Interop.TypeRegistry.NewTypeRegistry(TypeRegistry.getCPtr(handle)), true)
+        internal TypeRegistry(TypeRegistry handle) : this(Interop.TypeRegistry.NewTypeRegistry(TypeRegistry.getCPtr(handle)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -82,7 +100,20 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.TypeInfo GetTypeInfo(string uniqueTypeName)
         {
-            Tizen.NUI.TypeInfo ret = new Tizen.NUI.TypeInfo(Interop.TypeRegistry.GetTypeInfo(SwigCPtr, uniqueTypeName), true);
+            global::System.IntPtr cPtr = Interop.TypeRegistry.GetTypeInfo(SwigCPtr, uniqueTypeName);
+
+            Tizen.NUI.TypeInfo ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Tizen.NUI.TypeInfo;
+            if (ret != null)
+            {
+                global::System.Runtime.InteropServices.HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+                Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+            else
+            {
+                ret = new Tizen.NUI.TypeInfo(cPtr, true);
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

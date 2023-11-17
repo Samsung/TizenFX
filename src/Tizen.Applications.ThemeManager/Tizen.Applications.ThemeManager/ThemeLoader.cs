@@ -22,7 +22,7 @@ using System.Runtime.InteropServices;
 namespace Tizen.Applications.ThemeManager
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -49,12 +49,25 @@ namespace Tizen.Applications.ThemeManager
             {
                 throw Interop.ThemeManager.ThemeManagerErrorFactory.GetException(err, "Failed to create themeloader");
             }
+
+            _callback = new Interop.ThemeManager.ThemeLoaderChangedCallback(OnThemeChanged);
+            err = Interop.ThemeManager.LoaderAddEvent(_loaderHandle, _callback, IntPtr.Zero, out _eventId);
+            if (err != Interop.ThemeManager.ErrorCode.None)
+            {
+                throw Interop.ThemeManager.ThemeManagerErrorFactory.GetException(err, "Failed to add event");
+            }
         }
 
-        private void OnThemeChanged(IntPtr handle, IntPtr userData)
+        private int OnThemeChanged(IntPtr handle, IntPtr userData)
         {
-            Interop.ThemeManager.ThemeClone(handle, out IntPtr cloned);
+            _currentTheme = null;
+
+            Interop.ThemeManager.ErrorCode err = Interop.ThemeManager.ThemeClone(handle, out IntPtr cloned);
+            if (err != Interop.ThemeManager.ErrorCode.None)
+                return -1;
+
             _changedEventHandler?.Invoke(this, new ThemeEventArgs(new Theme(cloned)));
+            return 0;
         }
 
         /// <summary>
@@ -68,34 +81,12 @@ namespace Tizen.Applications.ThemeManager
         {
             add
             {
-                if (_changedEventHandler == null)
-                {
-                    if (_callback == null)
-                        _callback = new Interop.ThemeManager.ThemeLoaderChangedCallback(OnThemeChanged);
-                    Interop.ThemeManager.ErrorCode err = Interop.ThemeManager.LoaderAddEvent(_loaderHandle, _callback, IntPtr.Zero, out _eventId);
-
-                    if (err != Interop.ThemeManager.ErrorCode.None)
-                    {
-                        throw Interop.ThemeManager.ThemeManagerErrorFactory.GetException(err, "Failed to add event");
-                    }
-
-                }
                 _changedEventHandler += value;
 
             }
             remove
             {
                 _changedEventHandler -= value;
-                if (_changedEventHandler == null)
-                {
-                    Interop.ThemeManager.ErrorCode err = Interop.ThemeManager.LoaderRemoveEvent(_loaderHandle, _eventId);
-
-                    if (err != Interop.ThemeManager.ErrorCode.None)
-                    {
-                        throw Interop.ThemeManager.ThemeManagerErrorFactory.GetException(err, "Failed to remove event");
-                    }
-                    _callback = null;
-                }
             }
         }
 
@@ -213,6 +204,12 @@ namespace Tizen.Applications.ThemeManager
 
             if (_loaderHandle != IntPtr.Zero)
             {
+                Interop.ThemeManager.ErrorCode err = Interop.ThemeManager.LoaderRemoveEvent(_loaderHandle, _eventId);
+                if (err != Interop.ThemeManager.ErrorCode.None)
+                {
+                    Log.Error(LogTag, "Failed to remove event");
+                }
+
                 Interop.ThemeManager.LoaderDestroy(_loaderHandle);
                 _loaderHandle = IntPtr.Zero;
             }

@@ -92,6 +92,24 @@ namespace Tizen.NUI.Components
             return instance.InternalTransition;
         });
 
+        /// <summary>
+        /// EnableBackNavigationProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty EnableBackNavigationProperty = BindableProperty.Create(nameof(EnableBackNavigation), typeof(bool), typeof(Navigator), default(bool), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Navigator)bindable;
+            if (newValue != null)
+            {
+                instance.InternalEnableBackNavigation = (bool)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Navigator)bindable;
+            return instance.InternalEnableBackNavigation;
+        });
+
         private const int DefaultTransitionDuration = 300;
 
         //This will be replaced with view transition class instance.
@@ -117,13 +135,76 @@ namespace Tizen.NUI.Components
 
         private List<Page> navigationPages = new List<Page>();
 
+        private bool enableBackNavigation = true;
+
+        private Window parentWindow;
+
+        private void OnWindowKeyEvent(object sender, Window.KeyEventArgs e)
+        {
+            if (!EnableBackNavigation)
+            {
+                return;
+            }
+
+            if ((e.Key.State == Key.StateType.Up) && ((e.Key.KeyPressedName == "Escape") || (e.Key.KeyPressedName == "BackSpace") || (e.Key.KeyPressedName == "XF86Back")))
+            {
+                OnBackNavigation(new BackNavigationEventArgs());
+            }
+        }
+
+        private void OnAddedToWindow(object sender, EventArgs e)
+        {
+            parentWindow = Window.Get(this);
+            if (null != parentWindow)
+            {
+                parentWindow.KeyEvent += OnWindowKeyEvent;
+            }
+        }
+
+        private void OnRemovedFromWindow(object sender, EventArgs e)
+        {
+            if (null != parentWindow)
+            {
+                parentWindow.KeyEvent -= OnWindowKeyEvent;
+                parentWindow = null;
+            }
+        }
+
+        private void Initialize()
+        {
+            Layout = new AbsoluteLayout();
+
+            AddedToWindow += OnAddedToWindow;
+            RemovedFromWindow += OnRemovedFromWindow;
+        }
+
         /// <summary>
         /// Creates a new instance of a Navigator.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public Navigator() : base()
         {
-            Layout = new AbsoluteLayout();
+            Initialize();
+        }
+
+        /// <summary>
+        /// Creates a new instance of Navigator with style.
+        /// </summary>
+        /// <param name="style">Creates Navigator by special style defined in UX.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Navigator(string style) : base(style)
+        {
+            Initialize();
+        }
+
+        /// <summary>
+        /// Creates a new instance of a Navigator with style.
+        /// </summary>
+        /// <param name="style">A style applied to the newly created Navigator.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Navigator(ControlStyle style) : base(style)
+        {
+            Initialize();
         }
 
         /// <inheritdoc/>
@@ -328,6 +409,9 @@ namespace Tizen.NUI.Components
             //Duplicate page is not pushed.
             if (navigationPages.Contains(page)) return;
 
+            //TODO: The following transition codes will be replaced with view transition.
+            InitializeAnimation();
+
             var curTop = Peek();
 
             if (!curTop)
@@ -345,9 +429,6 @@ namespace Tizen.NUI.Components
             curTop.InvokeDisappearing();
 
             curTop.SaveKeyFocus();
-
-            //TODO: The following transition codes will be replaced with view transition.
-            InitializeAnimation();
 
             if (page is DialogPage == false)
             {
@@ -410,6 +491,9 @@ namespace Tizen.NUI.Components
                 throw new InvalidOperationException("There is no page in Navigator.");
             }
 
+            //TODO: The following transition codes will be replaced with view transition.
+            InitializeAnimation();
+
             var curTop = Peek();
 
             if (navigationPages.Count == 1)
@@ -429,9 +513,6 @@ namespace Tizen.NUI.Components
             curTop.InvokeDisappearing();
             curTop.SaveKeyFocus();
 
-            //TODO: The following transition codes will be replaced with view transition.
-            InitializeAnimation();
-
             if (curTop is DialogPage == false)
             {
                 curAnimation = new Animation(DefaultTransitionDuration);
@@ -441,6 +522,7 @@ namespace Tizen.NUI.Components
                 {
                     //Removes the current top page after transition is finished.
                     Remove(curTop);
+
                     curTop.PositionX = 0.0f;
 
                     //Invoke Page events
@@ -567,6 +649,7 @@ namespace Tizen.NUI.Components
 
             navigationPages.Insert(index, page);
             Add(page);
+            page.SiblingOrder = index;
             page.Navigator = this;
             if (index == PageCount - 1)
             {
@@ -682,6 +765,37 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Gets or sets if Navigator proceeds back navigation when back button or back key is pressed and released.
+        /// Back navigation pops the peek page if Navigator has more than one page.
+        /// If Navigator has only one page, then the current program is exited.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableBackNavigation
+        {
+            get
+            {
+                return (bool)GetValue(EnableBackNavigationProperty);
+            }
+            set
+            {
+                SetValue(EnableBackNavigationProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool InternalEnableBackNavigation
+        {
+            set
+            {
+                enableBackNavigation = value;
+            }
+            get
+            {
+                return enableBackNavigation;
+            }
+        }
+
+        /// <summary>
         /// Disposes Navigator and all children on it.
         /// </summary>
         /// <param name="type">Dispose type.</param>
@@ -708,6 +822,9 @@ namespace Tizen.NUI.Components
                     navigatorWindow.Remove(this);
                     windowNavigator.Remove(window);
                 }
+
+                AddedToWindow -= OnAddedToWindow;
+                RemovedFromWindow -= OnRemovedFromWindow;
             }
 
             base.Dispose(type);
@@ -739,6 +856,73 @@ namespace Tizen.NUI.Components
             navigatorWindow.Add(defaultNavigator, window);
 
             return defaultNavigator;
+        }
+
+        /// <summary>
+        /// Sets the default navigator of the given window.
+        /// SetDefaultNavigator does not remove the previous default navigator from the window.
+        /// Therefore, if a user does not want to show the previous default navigator, then it should be removed from the window manually.
+        /// </summary>
+        /// <exception cref="ArgumentNullException">Thrown when the argument window is null.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when the argument newNavigator is null.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetDefaultNavigator(Window window, Navigator newNavigator)
+        {
+            if (window == null)
+            {
+                throw new ArgumentNullException(nameof(window), "window should not be null.");
+            }
+
+            if (newNavigator == null)
+            {
+                throw new ArgumentNullException(nameof(newNavigator), "newNavigator should not be null.");
+            }
+
+            if (windowNavigator.ContainsKey(window) == true)
+            {
+                var oldNavigator = windowNavigator[window];
+                if (oldNavigator == newNavigator)
+                {
+                    return;
+                }
+
+                navigatorWindow.Remove(oldNavigator);
+                windowNavigator.Remove(window);
+            }
+
+            window.Add(newNavigator);
+            windowNavigator.Add(window, newNavigator);
+            navigatorWindow.Add(newNavigator, window);
+        }
+
+        /// <summary>
+        /// Called when the back navigation is started.
+        /// Back navigation pops the peek page if Navigator has more than one page.
+        /// If Navigator has only one page, then the current program is exited.
+        /// </summary>
+        /// <param name="eventArgs">The back navigation information.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnBackNavigation(BackNavigationEventArgs eventArgs)
+        {
+            if (PageCount >= 1)
+            {
+                if (Peek().EnableBackNavigation)
+                {
+                    Peek().NavigateBack();
+                }
+            }
+            else
+            {
+                NUIApplication.Current?.Exit();
+            }
+        }
+
+        /// <summary>
+        /// Called when the back navigation is required outside Navigator.
+        /// </summary>
+        internal void NavigateBack()
+        {
+            OnBackNavigation(new BackNavigationEventArgs());
         }
 
         /// <summary>
@@ -903,17 +1087,50 @@ namespace Tizen.NUI.Components
         //TODO: The following transition codes will be replaced with view transition.
         private void InitializeAnimation()
         {
+            bool isCurAnimPlaying = false;
+            bool isNewAnimPlaying = false;
+
             if (curAnimation != null)
             {
-                curAnimation.Stop();
-                curAnimation.Clear();
-                curAnimation = null;
+                if (curAnimation.State == Animation.States.Playing)
+                {
+                    isCurAnimPlaying = true;
+                    curAnimation.Stop();
+                }
             }
 
             if (newAnimation != null)
             {
-                newAnimation.Stop();
+                if (newAnimation.State == Animation.States.Playing)
+                {
+                    isNewAnimPlaying = true;
+                    newAnimation.Stop();
+                }
+            }
+
+            if (isCurAnimPlaying)
+            {
+                // To enable multiple Pop(), animation's Finished callback is required.
+                // To call animation's Finished callback, FinishedSignal is emitted.
+                curAnimation.FinishedSignal().Emit(curAnimation);
+                curAnimation.Clear();
+
+                // InitializeAnimation() can be called by FinishedSignal().Emit().
+                // Not to cause null pointer dereference by calling InitializeAnimation() in InitializeAnimation(),
+                // animation handle is assigned to be null only if the animation is playing.
+                curAnimation = null;
+            }
+
+            if (isNewAnimPlaying)
+            {
+                // To enable multiple Pop(), animation's Finished callback is required.
+                // To call animation's Finished callback, FinishedSignal is emitted.
+                newAnimation.FinishedSignal().Emit(newAnimation);
                 newAnimation.Clear();
+
+                // InitializeAnimation() can be called by FinishedSignal().Emit().
+                // Not to cause null pointer dereference by calling InitializeAnimation() in InitializeAnimation(),
+                // animation handle is assigned to be null only if the animation is playing.
                 newAnimation = null;
             }
         }
@@ -937,5 +1154,13 @@ namespace Tizen.NUI.Components
                 content.Hide(); // Calls UnregisterDefaultLabel()
             }
         }
+    }
+
+    /// <summary>
+    /// BackNavigationEventArgs is a class to record back navigation event arguments which will sent to user.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class BackNavigationEventArgs : EventArgs
+    {
     }
 }

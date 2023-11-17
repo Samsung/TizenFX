@@ -67,9 +67,9 @@ namespace Tizen.NUI.Components
         public static readonly new BindableProperty PaddingProperty = BindableProperty.Create(nameof(Padding), typeof(Extents), typeof(FlexibleView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (FlexibleView)bindable;
-            if (newValue != null)
+            if (newValue is Extents extents)
             {
-                instance.InternalPadding = newValue as Extents;
+                instance.InternalPadding = extents;
             }
         },
         defaultValueCreator: (bindable) =>

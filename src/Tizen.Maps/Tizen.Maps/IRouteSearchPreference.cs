@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using System;
 
 namespace Tizen.Maps
 {
@@ -21,42 +22,49 @@ namespace Tizen.Maps
     /// The preferences for route search.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public interface IRouteSearchPreference
     {
         /// <summary>
         /// Gets or sets the distance unit.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         DistanceUnit Unit { get; set; }
 
         /// <summary>
         /// Gets or sets the route optimization.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         RouteOptimization Optimization { get; set; }
 
         /// <summary>
         /// Gets or sets the route transport mode.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         TransportMode Mode { get; set; }
 
         /// <summary>
         /// Gets or sets the route feature weight.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         RouteFeatureWeight RouteFeatureWeight { get; set; }
 
         /// <summary>
         /// Gets or sets the route feature.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         RouteFeature RouteFeature { get; set; }
 
         /// <summary>
         /// Gets or sets if a search for alternative routes is enabled.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         bool SearchAlternativeRoutes { get; set; }
     }
 }

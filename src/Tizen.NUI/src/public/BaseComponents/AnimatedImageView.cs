@@ -28,6 +28,10 @@ namespace Tizen.NUI.BaseComponents
     public partial class AnimatedImageView : ImageView
     {
         #region Internal
+        /// <summary>
+        /// Actions property value to Jump to the specified frame.
+        /// </summary>
+        internal static readonly int ActionJumpTo = Interop.AnimatedImageView.AnimatedImageVisualActionJumpToGet();
         #endregion Internal
 
         #region Private
@@ -50,9 +54,6 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AnimatedImageView() : base()
         {
-            ActionPlay = Interop.AnimatedImageView.AnimatedImageVisualActionPlayGet();
-            ActionPause = Interop.AnimatedImageView.AnimatedImageVisualActionPauseGet();
-            ActionStop = Interop.AnimatedImageView.AnimatedImageVisualActionStopGet();
         }
 
         /// <summary>
@@ -355,13 +356,6 @@ namespace Tizen.NUI.BaseComponents
                 return ret;
             }
         }
-
-        /// <summary>
-        /// Actions property value to Jump to the specified frame.
-        /// This property can be redefined by child class if it use different value.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected int ActionJumpTo { get; set; } = Interop.AnimatedImageView.AnimatedImageVisualActionJumpToGet();
         #endregion Property
 
         #region Method
@@ -388,6 +382,13 @@ namespace Tizen.NUI.BaseComponents
         {
             if (!imagePropertyUpdatedFlag) return;
 
+            // Assume that we are using standard Image at first.
+            // (Since we might cache Visual.Property.Type as Visual.Type.AnimatedImage even we don't use URLs.)
+            using (PropertyValue imageType = new PropertyValue((int)Visual.Type.Image))
+            {
+                UpdateImage(Visual.Property.Type, imageType, false);
+            }
+
             if (resourceURLs != null && resourceURLs.Count != 0)
             {
                 using (PropertyArray indexPropertyArray = new PropertyArray())
@@ -404,12 +405,13 @@ namespace Tizen.NUI.BaseComponents
                     using PropertyValue arrayProperty = new PropertyValue(indexPropertyArray);
 
                     // Trigger the ImageView so that we have something update
-                    UpdateImage(ImageVisualProperty.URL, arrayProperty);
+                    UpdateImage(ImageVisualProperty.URL, arrayProperty, false);
                 }
-            }
 
-            using PropertyValue animatiedImage = new PropertyValue((int)Visual.Type.AnimatedImage);
-            UpdateImage(Visual.Property.Type, animatiedImage);
+                // Trick that we are using resourceURLs without ResourceUrl API.
+                using PropertyValue animatiedImage = new PropertyValue((int)Visual.Type.AnimatedImage);
+                UpdateImage(Visual.Property.Type, animatiedImage, false);
+            }
 
             base.UpdateImage();
         }

@@ -300,13 +300,14 @@ namespace Tizen.NUI.Components
                 {
                     WidthResizePolicy = ResizePolicyType.Fixed,
                     HeightResizePolicy = ResizePolicyType.Fixed,
-                    ParentOrigin = NUI.ParentOrigin.Center,
-                    PivotPoint = NUI.PivotPoint.Center,
-                    PositionUsesPivotPoint = true,
                     EnableControlState = true,
                     GrabTouchAfterLeave = true,
                     AccessibilityHidden = true,
                 };
+                if (valueIndicatorImage != null)
+                {
+                    thumbImage.Add(valueIndicatorImage);
+                }
                 if (bgTrackImage != null)
                 {
                     bgTrackImage.Add(thumbImage);
@@ -324,19 +325,24 @@ namespace Tizen.NUI.Components
             {
                 valueIndicatorImage = new ImageView()
                 {
-                    PositionUsesPivotPoint = true,
-                    ParentOrigin = Tizen.NUI.ParentOrigin.Center,
-                    PivotPoint = Tizen.NUI.PivotPoint.Center,
-                    WidthResizePolicy = ResizePolicyType.Fixed,
-                    HeightResizePolicy = ResizePolicyType.Fixed,
                     AccessibilityHidden = true,
+                    Layout = new LinearLayout()
+                    {
+                        LinearOrientation = LinearLayout.Orientation.Horizontal,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                    },
+                    WidthSpecification = LayoutParamPolicies.WrapContent,
                 };
+                if (thumbImage != null)
+                {
+                    thumbImage.Add(valueIndicatorImage);
+                }
                 if (valueIndicatorText != null)
                 {
                     valueIndicatorImage.Add(valueIndicatorText);
+                    valueIndicatorText.RaiseToTop();
                 }
-                // TODO : ValueIndicator can be a child of Thumb
-                this.Add(valueIndicatorImage);
             }
 
             valueIndicatorImage.Hide();
@@ -349,7 +355,7 @@ namespace Tizen.NUI.Components
             {
                 valueIndicatorText = new TextLabel()
                 {
-                    WidthResizePolicy = ResizePolicyType.Fixed,
+                    WidthResizePolicy = ResizePolicyType.UseNaturalSize,
                     HeightResizePolicy = ResizePolicyType.Fixed,
                     AccessibilityHidden = true,
                 };
@@ -357,6 +363,7 @@ namespace Tizen.NUI.Components
                 {
                     valueIndicatorImage.Add(valueIndicatorText);
                 }
+                valueIndicatorText.RaiseToTop();
             }
 
             return valueIndicatorText;
@@ -487,16 +494,16 @@ namespace Tizen.NUI.Components
                 }
                 if (valueIndicatorImage != null)
                 {
-                    valueIndicatorImage.ParentOrigin = NUI.ParentOrigin.TopLeft;
+                    valueIndicatorImage.ParentOrigin = NUI.ParentOrigin.TopCenter;
                     valueIndicatorImage.PivotPoint = NUI.PivotPoint.BottomCenter;
                     valueIndicatorImage.PositionUsesPivotPoint = true;
+                    valueIndicatorImage.PositionY = -10.0f;
                 }
                 if (valueIndicatorText != null)
                 {
-                    valueIndicatorText.ParentOrigin = NUI.ParentOrigin.TopCenter;
-                    valueIndicatorText.PivotPoint = NUI.PivotPoint.TopCenter;
+                    valueIndicatorText.ParentOrigin = NUI.ParentOrigin.Center;
+                    valueIndicatorText.PivotPoint = NUI.PivotPoint.Center;
                     valueIndicatorText.PositionUsesPivotPoint = true;
-                    valueIndicatorText.Padding = new Extents(0, 0, 5, 0); // TODO : How to set the text as center
                 }
                 if (panGestureDetector != null)
                 {
@@ -559,16 +566,16 @@ namespace Tizen.NUI.Components
                 }
                 if (valueIndicatorImage != null)
                 {
-                    valueIndicatorImage.ParentOrigin = NUI.ParentOrigin.BottomCenter;
-                    valueIndicatorImage.PivotPoint = NUI.PivotPoint.BottomCenter;
+                    valueIndicatorImage.ParentOrigin = NUI.ParentOrigin.CenterLeft;
+                    valueIndicatorImage.PivotPoint = NUI.PivotPoint.CenterRight;
                     valueIndicatorImage.PositionUsesPivotPoint = true;
+                    valueIndicatorImage.PositionX = -14.0f;
                 }
                 if (valueIndicatorText != null)
                 {
-                    valueIndicatorText.ParentOrigin = NUI.ParentOrigin.TopCenter;
-                    valueIndicatorText.PivotPoint = NUI.PivotPoint.TopCenter;
+                    valueIndicatorText.ParentOrigin = NUI.ParentOrigin.Center;
+                    valueIndicatorText.PivotPoint = NUI.PivotPoint.Center;
                     valueIndicatorText.PositionUsesPivotPoint = true;
-                    valueIndicatorText.Padding = new Extents(0, 0, 5, 0); // TODO : How to set the text as center
                 }
                 if (panGestureDetector != null)
                 {
@@ -786,11 +793,6 @@ namespace Tizen.NUI.Components
                 slidedTrackImage.Size2D = new Size2D((int)(slidedTrackLength + round), (int)curTrackThickness); //Add const round to reach Math.Round function.
                 thumbImage.Position = new Position(slidedTrackImage.Size2D.Width, 0);
                 thumbImage.RaiseToTop();
-
-                if (isValueShown)
-                {
-                    valueIndicatorImage.Position = new Position(slidedTrackImage.Size2D.Width, 0);
-                }
             }
             else if (direction == DirectionType.Vertical)
             {
@@ -798,11 +800,6 @@ namespace Tizen.NUI.Components
                 slidedTrackImage.Size2D = new Size2D((int)curTrackThickness, (int)(slidedTrackLength + round)); //Add const round to reach Math.Round function.
                 thumbImage.Position = new Position(0, -slidedTrackImage.Size2D.Height);
                 thumbImage.RaiseToTop();
-
-                if (isValueShown)
-                {
-                    valueIndicatorImage.Position = new Position(0, -(slidedTrackImage.Size2D.Height + thumbImage.Size.Height / 2));
-                }
             }
 
             // Update the track and thumb when the value is over warning value.

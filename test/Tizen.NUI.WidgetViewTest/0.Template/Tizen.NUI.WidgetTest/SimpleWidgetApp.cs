@@ -122,7 +122,17 @@ namespace WidgetTemplate
 
         protected override void OnTerminate(string contentInfo, TerminationType type)
         {
+            Tizen.Log.Info("NUI", "OnTerminate(BlueWidget) \n");
+            mAnimation.Stop();
+            mAnimation = null;
+            mRootView.Dispose();
+            mRootView = null;
             base.OnTerminate(contentInfo, type);
+
+            // Call GC for deleting window directly
+            global::System.GC.Collect();
+            global::System.GC.WaitForPendingFinalizers();
+            global::System.GC.Collect();
         }
 
         protected override void OnUpdate(string contentInfo, int force)

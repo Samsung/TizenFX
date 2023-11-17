@@ -59,7 +59,13 @@ namespace Tizen.NUI.BaseComponents
         /// Dictionary of accessibility attributes (key-value pairs of strings).
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected Dictionary<string, string> AccessibilityAttributes { get; } = new Dictionary<string, string>();
+        public Dictionary<string, string> AccessibilityAttributes { get; } = new Dictionary<string, string>();
+
+        /// <summary>
+        /// Dictionary of dynamically-evaluated accessibility attributes (key-value pairs of strings).
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Dictionary<string, Func<string>> AccessibilityDynamicAttributes { get; } = new Dictionary<string, Func<string>>();
 
         ///////////////////////////////////////////////////////////////////
         // ************************** Highlight ************************ //
@@ -250,7 +256,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AccessibilityStates GetAccessibilityStates()
         {
-            var result = new AccessibilityStates {BitMask = Interop.ControlDevel.DaliToolkitDevelControlGetAccessibilityStates(SwigCPtr)};
+            var result = new AccessibilityStates { BitMask = Interop.ControlDevel.DaliToolkitDevelControlGetAccessibilityStates(SwigCPtr) };
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
         }
@@ -320,6 +326,26 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Emits accessibility scroll started event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void EmitScrollStartedEvent()
+        {
+            Interop.ControlDevel.DaliAccessibilityEmitScrollStartedEvent(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Emits accessibility scroll finished event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void EmitScrollFinishedEvent()
+        {
+            Interop.ControlDevel.DaliAccessibilityEmitScrollFinishedEvent(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Modifiable collection of suppressed AT-SPI events (D-Bus signals).
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -327,7 +353,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return new AccessibilityEvents {Owner = this};
+                return new AccessibilityEvents { Owner = this };
             }
         }
 
@@ -369,12 +395,15 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
+            internalName = null;
+
             if (disposing == false)
             {
                 if (IsNativeHandleInvalid() || SwigCMemOwn == false)
                 {
                     // at this case, implicit nor explicit dispose is not required. No native object is made.
                     disposed = true;
+                    aliveCount--;
                     return;
                 }
             }
@@ -425,7 +454,82 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual bool AccessibilityDoAction(string name)
         {
-            return false;
+            if (name == AccessibilityActivateAction)
+            {
+                if (ActivateSignal?.Empty() == false)
+                {
+                    ActivateSignal?.Emit();
+                    return true;
+                }
+                else
+                {
+                    return OnAccessibilityActivated();
+                }
+            }
+            else if (name == AccessibilityReadingSkippedAction)
+            {
+                if (ReadingSkippedSignal?.Empty() == false)
+                {
+                    ReadingSkippedSignal?.Emit();
+                    return true;
+                }
+                else
+                {
+                    return OnAccessibilityReadingSkipped();
+                }
+            }
+            else if (name == AccessibilityReadingCancelledAction)
+            {
+                if (ReadingCancelledSignal?.Empty() == false)
+                {
+                    ReadingCancelledSignal?.Emit();
+                    return true;
+                }
+                else
+                {
+                    return OnAccessibilityReadingCancelled();
+                }
+            }
+            else if (name == AccessibilityReadingStoppedAction)
+            {
+                if (ReadingStoppedSignal?.Empty() == false)
+                {
+                    ReadingStoppedSignal?.Emit();
+                    return true;
+                }
+                else
+                {
+                    return OnAccessibilityReadingStopped();
+                }
+            }
+            else if (name == AccessibilityReadingPausedAction)
+            {
+                if (ReadingPausedSignal?.Empty() == false)
+                {
+                    ReadingPausedSignal?.Emit();
+                    return true;
+                }
+                else
+                {
+                    return OnAccessibilityReadingPaused();
+                }
+            }
+            else if (name == AccessibilityReadingResumedAction)
+            {
+                if (ReadingResumedSignal?.Empty() == false)
+                {
+                    ReadingResumedSignal?.Emit();
+                    return true;
+                }
+                else
+                {
+                    return OnAccessibilityReadingResumed();
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -467,6 +571,67 @@ namespace Tizen.NUI.BaseComponents
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual bool AccessibilityScrollToChild(View child)
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// This method is called when the control accessibility is activated.<br />
+        /// Derived classes should override this to perform custom accessibility activation.<br />
+        /// </summary>
+        /// <returns>True if this control can perform accessibility activation.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool OnAccessibilityActivated()
+        {
+            return FocusManager.Instance.SetCurrentFocusView(this);
+        }
+
+        /// <summary>
+        /// This method is called when reading is skipped.
+        /// </summary>
+        /// <returns>True if information was served.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool OnAccessibilityReadingSkipped()
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// This method is called when reading is cancelled.
+        /// </summary>
+        /// <returns>True if information was served.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool OnAccessibilityReadingCancelled()
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// This method is called when reading is stopped.
+        /// </summary>
+        /// <returns>True if information was served.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool OnAccessibilityReadingStopped()
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// This method is called when reading was paused.
+        /// </summary>
+        /// <returns>True if information was served.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool OnAccessibilityReadingPaused()
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// This method is called when reading is resumed.
+        /// </summary>
+        /// <returns>True if information was served.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool OnAccessibilityReadingResumed()
         {
             return false;
         }

@@ -119,9 +119,9 @@ namespace Tizen.NUI.Components
             }
 
             // Apply ItemSpacing.
-            if ((alertDialogStyle.ItemSpacing != null) && Layout is LinearLayout)
+            if ((alertDialogStyle.ItemSpacing != null) && (Layout is LinearLayout linearLayout))
             {
-                (Layout as LinearLayout).CellPadding = new Size2D(alertDialogStyle.ItemSpacing.Width, alertDialogStyle.ItemSpacing.Height);
+                linearLayout.CellPadding = new Size2D(alertDialogStyle.ItemSpacing.Width, alertDialogStyle.ItemSpacing.Height);
             }
 
             // Apply Title style.
@@ -346,6 +346,19 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(ActionsProperty) as IEnumerable<View>;
+            }
+            set
+            {
+                SetValue(ActionsProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private IEnumerable<View> InternalActions
+        {
+            get
+            {
                 return actionContentViews;
             }
             set
@@ -553,9 +566,9 @@ namespace Tizen.NUI.Components
                 VerticalAlignment = VerticalAlignment.Center,
             };
 
-            if (styleApplied && (alertDialogStyle != null) && (alertDialogStyle.ItemSpacing != null) && (Layout is LinearLayout))
+            if (styleApplied && (alertDialogStyle != null) && (alertDialogStyle.ItemSpacing != null) && (Layout is LinearLayout linearLayout))
             {
-                (Layout as LinearLayout).CellPadding = new Size2D(alertDialogStyle.ItemSpacing.Width, alertDialogStyle.ItemSpacing.Height);
+                linearLayout.CellPadding = new Size2D(alertDialogStyle.ItemSpacing.Width, alertDialogStyle.ItemSpacing.Height);
             }
 
             this.Relayout += OnRelayout;

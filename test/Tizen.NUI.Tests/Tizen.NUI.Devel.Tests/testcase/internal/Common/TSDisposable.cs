@@ -1,7 +1,5 @@
 using NUnit.Framework;
-using NUnit.Framework.TUnit;
 using System;
-using Tizen.NUI;
 
 namespace Tizen.NUI.Devel.Tests
 {
@@ -35,12 +33,12 @@ namespace Tizen.NUI.Devel.Tests
         public void Disposable_INIT()
         {
             tlog.Debug(tag, $"DisposableConstructor START");
-			
+
             var disposable = new Disposable();
             Assert.IsNotNull(disposable, "Can't create success object Disposable");
             Assert.IsInstanceOf<Disposable>(disposable, "Should be an instance of Disposable type.");
-			
-			tlog.Debug(tag, $"DisposableConstructor END (OK)");
+
+            tlog.Debug(tag, $"DisposableConstructor END (OK)");
         }
 
         [Test]
@@ -53,7 +51,7 @@ namespace Tizen.NUI.Devel.Tests
         public void Dispose_TEST()
         {
             tlog.Debug(tag, $"DisposableWithDisposable START");
-			
+
             try
             {
                 Disposable disposable = new Disposable();
@@ -64,8 +62,8 @@ namespace Tizen.NUI.Devel.Tests
                 tlog.Error(tag, "Caught Exception" + e.ToString());
                 Assert.Fail("Caught Exception" + e.ToString());
             }
-			
-			tlog.Debug(tag, $"DisposableWithDisposable END (OK)");
+
+            tlog.Debug(tag, $"DisposableWithDisposable END (OK)");
         }
 
         [Test]
@@ -79,7 +77,7 @@ namespace Tizen.NUI.Devel.Tests
         public void Dispose_Implicit_TEST_WITH_DISPOSETYPE()
         {
             tlog.Debug(tag, $"DisposableImplicit START");
-			
+
             try
             {
                 MyDisposable myDisposable = new MyDisposable();
@@ -90,8 +88,8 @@ namespace Tizen.NUI.Devel.Tests
                 tlog.Error(tag, "Caught Exception" + e.ToString());
                 Assert.Fail("Caught Exception" + e.ToString());
             }
-			
-			tlog.Debug(tag, $"DisposableImplicit END (OK)");
+
+            tlog.Debug(tag, $"DisposableImplicit END (OK)");
         }
 
         [Test]
@@ -105,7 +103,7 @@ namespace Tizen.NUI.Devel.Tests
         public void Dispose_Explicit_TEST_WITH_DISPOSETYPE()
         {
             tlog.Debug(tag, $"DisposableExplicit START");
-			
+
             try
             {
                 MyDisposable myDisposable = new MyDisposable();
@@ -116,8 +114,8 @@ namespace Tizen.NUI.Devel.Tests
                 tlog.Error(tag, "Caught Exception" + e.ToString());
                 Assert.Fail("Caught Exception" + e.ToString());
             }
-			
-			tlog.Debug(tag, $"DisposableExplicit END (OK)");
+
+            tlog.Debug(tag, $"DisposableExplicit END (OK)");
         }
     }
 
@@ -133,16 +131,13 @@ namespace Tizen.NUI.Devel.Tests
             Dispose(DisposeTypes.Explicit);
         }
 
+        [Obsolete]
+#pragma warning disable CS0108 // Member hides inherited member; missing new keyword
         public bool Disposed
+#pragma warning restore CS0108 // Member hides inherited member; missing new keyword
         {
-            get
-            {
-                return disposed;
-            }
-            set
-            {
-                disposed = value;
-            }
+            get => disposed;
+            set => disposed = value;
         }
     }
 }

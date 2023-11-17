@@ -3,6 +3,7 @@ using NUnit.Framework;
 using NUnit.Framework.TUnit;
 using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
+using System.Threading.Tasks;
 
 namespace Tizen.NUI.Devel.Tests
 {
@@ -13,18 +14,25 @@ namespace Tizen.NUI.Devel.Tests
     public class PublicWebViewTest
     {
         private const string tag = "NUITEST";
-        private string url = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "picture.png";
+        private string url = $"file://{Applications.Application.Current.DirectoryInfo.Resource}webview/index.html";
+        private string secondUrl = $"file://{Applications.Application.Current.DirectoryInfo.Resource}webview/second.html";
+        private string urlForNavigationPolicyTest = "http://www.google.com";
+        private string urlForCertificateConfirmTest = "https://wrong.host.badssl.com/";
+        private string urlForResponsePolicyTest = "http://www.samsung.com";
+        private string urlForConsoleMessageTest = $"file://{Applications.Application.Current.DirectoryInfo.Resource}webview/console_info.html";
 
-        private static string[] runtimeArgs = { "Tizen.NUI.Devel.Tests", "--enable-dali-window", "--enable-spatial-navigation" };
+        private static string[] runtimeArgs = { "--enable-dali-window", "--enable-spatial-navigation" };
         private const string USER_AGENT = "Mozilla/5.0 (SMART-TV; Linux; Tizen 6.0) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/76.0.3809.146 TV Safari/537.36";
-        private Tizen.NUI.BaseComponents.WebView webView = null;
+        private BaseComponents.WebView webView = null;
 
         private void JsCallback(string arg) { }
-        private void VideoCallback (bool arg) { }
-        private void GeolocationCallback (string arg1, string arg2) { }
-        private void PromptCallback (string arg1, string arg2) { }
+        private void VideoCallback(bool arg) { }
+        private void GeolocationCallback(string arg1, string arg2) { }
+        private void PromptCallback(string arg1, string arg2) { }
+        private void PlainReceivedCallback(string arg2) { }
+        private void ScreenshotAcquiredCallbackCase(ImageView image) { }
 
-        internal class MyWebView : Tizen.NUI.BaseComponents.WebView
+        internal class MyWebView : BaseComponents.WebView
         {
             public MyWebView() : base()
             { }
@@ -38,22 +46,17 @@ namespace Tizen.NUI.Devel.Tests
         [SetUp]
         public void Init()
         {
-            tlog.Info(tag, "Init() is called!");
-
-            webView = new Tizen.NUI.BaseComponents.WebView(runtimeArgs)
+            webView = new BaseComponents.WebView(runtimeArgs)
             {
-                Size = new Size(500, 200),
-                UserAgent = USER_AGENT
+                Size = new Size(150, 100),
             };
-
-            webView.LoadUrl("http://www.baidu.com");
+            tlog.Info(tag, "Init() is called!");
         }
 
         [TearDown]
         public void Destroy()
         {
-            webView.ClearCache();
-            webView.ClearCookies();
+            tlog.Info(tag, "Destroy() is being called!");
             webView.Dispose();
             tlog.Info(tag, "Destroy() is called!");
         }
@@ -70,11 +73,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewConstructor START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView();
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            Assert.IsNotNull(webView, "null handle");
+            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(webView, "Should return WebView instance.");
 
-            testingTarget?.Dispose();
             tlog.Debug(tag, $"WebViewConstructor END (OK)");
         }
 
@@ -114,8 +115,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "null handle");
             Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
             testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewConstructorWithWebView END (OK)");
         }
@@ -123,17 +122,27 @@ namespace Tizen.NUI.Devel.Tests
         [Test]
         [Category("P1")]
         [Description("WebView PageLoadStarted.")]
-        [Property("SPEC", "Tizen.NUI.WebView.PageLoadStarted A")]
+        [Property("SPEC", "Tizen.NUI.WebView.PageLoadStarted E")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewPageLoadStarted()
+        public async Task WebViewPageLoadStarted()
         {
             tlog.Debug(tag, $"WebViewPageLoadStarted START");
 
-            webView.PageLoadStarted += OnLoadStarted;
-            webView.PageLoadStarted -= OnLoadStarted;
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadStarted = (s, e) => { tcs.TrySetResult(true); };
+            webView.PageLoadStarted += onLoadStarted;
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadStarted event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.PageLoadStarted -= onLoadStarted;
 
             tlog.Debug(tag, $"WebViewPageLoadStarted END (OK)");
         }
@@ -141,17 +150,27 @@ namespace Tizen.NUI.Devel.Tests
         [Test]
         [Category("P1")]
         [Description("WebView PageLoading.")]
-        [Property("SPEC", "Tizen.NUI.WebView.PageLoading A")]
+        [Property("SPEC", "Tizen.NUI.WebView.PageLoading E")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewPageLoading()
+        public async Task WebViewPageLoading()
         {
             tlog.Debug(tag, $"WebViewPageLoading START");
 
-            webView.PageLoading += OnLoading;
-            webView.PageLoading -= OnLoading;
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoading = (s, e) => { tcs.TrySetResult(true); };
+            webView.PageLoading += onLoading;
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoading event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.PageLoading -= onLoading;
 
             tlog.Debug(tag, $"WebViewPageLoading END (OK)");
         }
@@ -159,91 +178,62 @@ namespace Tizen.NUI.Devel.Tests
         [Test]
         [Category("P1")]
         [Description("WebView PageLoadFinished.")]
-        [Property("SPEC", "Tizen.NUI.WebView.PageLoadFinished A")]
+        [Property("SPEC", "Tizen.NUI.WebView.PageLoadFinished E")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewPageLoadFinished()
+        public async Task WebViewPageLoadFinished()
         {
             tlog.Debug(tag, $"WebViewPageLoadFinished START");
 
-            webView.PageLoadFinished += OnLoadFinished;
-            webView.PageLoadFinished -= OnLoadFinished;
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) => { tcs.TrySetResult(true); };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewPageLoadFinished END (OK)");
         }
 
         [Test]
         [Category("P1")]
-        [Description("WebView PageLoadError.")]
-        [Property("SPEC", "Tizen.NUI.WebView.PageLoadError A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewPageLoadError()
-        {
-            tlog.Debug(tag, $"WebViewPageLoadError START");
-
-            webView.PageLoadError += OnLoadError;
-            webView.PageLoadError -= OnLoadError;
-
-            tlog.Debug(tag, $"WebViewPageLoadError END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("WebView ScrollEdgeReached.")]
-        [Property("SPEC", "Tizen.NUI.WebView.ScrollEdgeReached A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewScrollEdgeReached()
-        {
-            tlog.Debug(tag, $"WebViewScrollEdgeReached START");
-
-            webView.ScrollEdgeReached += OnEdgeReached;
-            webView.ScrollEdgeReached -= OnEdgeReached;
-
-            tlog.Debug(tag, $"WebViewPageLoadError END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("WebView UrlChanged.")]
-        [Property("SPEC", "Tizen.NUI.WebView.UrlChanged A")]
+        [Property("SPEC", "Tizen.NUI.WebView.UrlChanged E")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewUrlChanged()
+        public async Task WebViewUrlChanged()
         {
             tlog.Debug(tag, $"WebViewUrlChanged START");
 
-            webView.UrlChanged += OnUrlChange;
-            webView.UrlChanged -= OnUrlChange;
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+
+            EventHandler<WebViewUrlChangedEventArgs> onUrlChange = (s, e) =>
+            {
+                Assert.IsNotNull(e.NewPageUrl, "New page url should not be null");
+                tcs.TrySetResult(true);
+            };
+            webView.UrlChanged += onUrlChange;
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "UrlChanged event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.UrlChanged -= onUrlChange;
 
             tlog.Debug(tag, $"WebViewUrlChanged END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("WebView FormRepostPolicyDecided.")]
-        [Property("SPEC", "Tizen.NUI.WebView.FormRepostPolicyDecided A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewFormRepostPolicyDecided()
-        {
-            tlog.Debug(tag, $"WebViewFormRepostPolicyDecided START");
-
-            webView.FormRepostPolicyDecided += OnFormRepostPolicyDecide;
-            webView.FormRepostPolicyDecided -= OnFormRepostPolicyDecide;
-
-            tlog.Debug(tag, $"WebViewFormRepostPolicyDecided END (OK)");
         }
 
         [Test]
@@ -254,12 +244,22 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "PRW")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewFrameRendered()
+        public async Task WebViewFrameRendered()
         {
             tlog.Debug(tag, $"WebViewFrameRendered START");
 
-            webView.FrameRendered += OnFrameRender;
-            webView.FrameRendered -= OnFrameRender;
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<EventArgs> onFrameRender = (s, e) => { tcs.TrySetResult(true); };
+            webView.FrameRendered += onFrameRender;
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "FrameRendered event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.FrameRendered -= onFrameRender;
 
             tlog.Debug(tag, $"WebViewFrameRendered END (OK)");
         }
@@ -272,14 +272,57 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "PRW")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewResponsePolicyDecided()
+        public async Task WebViewResponsePolicyDecided()
         {
             tlog.Debug(tag, $"WebViewResponsePolicyDecided START");
 
-            webView.ResponsePolicyDecided += OnResponsePolicyDecide;
-            webView.ResponsePolicyDecided -= OnResponsePolicyDecide;
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPolicyDecidedEventArgs> onResponsePolicyDecide = (s, e) => { tcs.TrySetResult(true); };
+            webView.ResponsePolicyDecided += onResponsePolicyDecide;
+
+            webView.LoadUrl(urlForResponsePolicyTest);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "ResponsePolicyDecided event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.ResponsePolicyDecided -= onResponsePolicyDecide;
 
             tlog.Debug(tag, $"WebViewResponsePolicyDecided END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("WebView NavigationPolicyDecided.")]
+        [Property("SPEC", "Tizen.NUI.WebView.NavigationPolicyDecided A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public async Task WebViewNavigationPolicyDecided()
+        {
+            tlog.Debug(tag, $"WebViewNavigationPolicyDecided START");
+
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+
+            EventHandler<WebViewPolicyDecidedEventArgs> onNavigationPolicyDecided = (s, e) =>
+            {
+                tlog.Info(tag, "onNavigationPolicyDecided is being called!");
+                tcs.TrySetResult(true);
+            };
+            webView.NavigationPolicyDecided += onNavigationPolicyDecided;
+
+            webView.LoadUrl(urlForNavigationPolicyTest);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "NavigationPolicyDecided event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.NavigationPolicyDecided -= onNavigationPolicyDecided;
+
+            tlog.Debug(tag, $"WebViewNavigationPolicyDecided END (OK)");
         }
 
         [Test]
@@ -290,12 +333,27 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "PRW")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewCertificateConfirmed()
+        public async Task WebViewCertificateConfirmed()
         {
             tlog.Debug(tag, $"WebViewCertificateConfirmed START");
 
-            webView.CertificateConfirmed += OnCertificateConfirme;
-            webView.CertificateConfirmed -= OnCertificateConfirme;
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+
+            EventHandler<WebViewCertificateReceivedEventArgs> onCertificateConfirme = (s, e) =>
+            {
+                tlog.Info(tag, "CertificateConfirmed is being called!");
+                tcs.TrySetResult(true);
+            };
+            webView.CertificateConfirmed += onCertificateConfirme;
+
+            webView.LoadUrl(urlForCertificateConfirmTest);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "CertificateConfirmed event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.CertificateConfirmed -= onCertificateConfirme;
 
             tlog.Debug(tag, $"WebViewCertificateConfirmed END (OK)");
         }
@@ -308,32 +366,24 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "PRW")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewSslCertificateChanged()
+        public async Task WebViewSslCertificateChanged()
         {
             tlog.Debug(tag, $"WebViewSslCertificateChanged START");
 
-            webView.SslCertificateChanged += OnSslCertificateChange;
-            webView.SslCertificateChanged -= OnSslCertificateChange;
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewCertificateReceivedEventArgs> onSslCertificateChange = (s, e) => { tcs.TrySetResult(true); };
+            webView.SslCertificateChanged += onSslCertificateChange;
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "SslCertificateChanged event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.SslCertificateChanged -= onSslCertificateChange;
 
             tlog.Debug(tag, $"WebViewSslCertificateChanged END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("WebView HttpAuthRequested.")]
-        [Property("SPEC", "Tizen.NUI.WebView.HttpAuthRequested A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewHttpAuthRequested()
-        {
-            tlog.Debug(tag, $"WebViewHttpAuthRequested START");
-
-            webView.HttpAuthRequested += OnHttpAuthRequeste;
-            webView.HttpAuthRequested -= OnHttpAuthRequeste;
-
-            tlog.Debug(tag, $"WebViewHttpAuthRequested END (OK)");
         }
 
         [Test]
@@ -344,12 +394,22 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "PRW")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewConsoleMessageReceived()
+        public async Task WebViewConsoleMessageReceived()
         {
-            tlog.Debug(tag, $"WebViewHttpAuthRequested START");
+            tlog.Debug(tag, $"WebViewConsoleMessageReceived START");
 
-            webView.ConsoleMessageReceived += OnConsoleMessageReceive;
-            webView.ConsoleMessageReceived -= OnConsoleMessageReceive;
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewConsoleMessageReceivedEventArgs> onConsoleMessageReceive = (s, e) => { tcs.TrySetResult(true); };
+            webView.ConsoleMessageReceived += onConsoleMessageReceive;
+
+            webView.LoadUrl(urlForConsoleMessageTest);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "ConsoleMessageReceived event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.ConsoleMessageReceived -= onConsoleMessageReceive;
 
             tlog.Debug(tag, $"WebViewConsoleMessageReceived END (OK)");
         }
@@ -434,13 +494,26 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "PRW")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewUrl()
+        public async Task WebViewUrl()
         {
             tlog.Debug(tag, $"WebViewUrl START");
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
+            {
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
 
             webView.Url = url;
-            tlog.Debug(tag, "Url : " + webView.Url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.PageLoadFinished -= onLoadFinished;
+
+            tlog.Debug(tag, "Url : " + webView.Url);
             tlog.Debug(tag, $"WebViewUrl END (OK)");
         }
 
@@ -500,13 +573,27 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "PRW")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewUserAgent()
+        public async Task WebViewUserAgent()
         {
             tlog.Debug(tag, $"WebViewUserAgent START");
 
-            webView.UserAgent = "Mozilla/5.0 (Linux; Android 4.2.1; M040 Build/JOP40D) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.59 Mobile Safari/537.36";
-            tlog.Debug(tag, "UserAgent : " + webView.UserAgent);
+            webView.UserAgent = USER_AGENT;
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
+            {
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.PageLoadFinished -= onLoadFinished;
+
+            tlog.Debug(tag, "UserAgent : " + webView.UserAgent);
             tlog.Debug(tag, $"WebViewUserAgent END (OK)");
         }
 
@@ -701,11 +788,26 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "PRW")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewContentBackgroundColor()
+        public async Task WebViewContentBackgroundColor()
         {
             tlog.Debug(tag, $"WebViewContentBackgroundColor START");
 
-            webView.ContentBackgroundColor = new Vector4(0.3f, 0.5f, 1.0f, 0.0f);
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
+            {
+                webView.ContentBackgroundColor = new Vector4(0.3f, 0.5f, 1.0f, 0.0f);
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.PageLoadFinished -= onLoadFinished;
+
             tlog.Debug(tag, "ContentBackgroundColor : " + webView.ContentBackgroundColor);
 
             tlog.Debug(tag, $"WebViewContentBackgroundColor END (OK)");
@@ -887,21 +989,62 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewLoadHtmlString()
+        public async Task WebViewLoadHtmlString()
         {
             tlog.Debug(tag, $"WebViewLoadHtmlString START");
 
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                webView.LoadHtmlString("<html><head lang=\"en\"></head></html>");
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.LoadHtmlString("<html><head lang=\"en\"></head></html>");
+
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewLoadHtmlString END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("WebView LoadHTMLString.")]
+        [Property("SPEC", "Tizen.NUI.WebView.LoadHTMLString M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public async Task WebViewLoadHTMLString()
+        {
+            tlog.Debug(tag, $"WebViewLoadHTMLString START");
+
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
+            {
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.LoadHTMLString("<html><head lang=\"en\"></head></html>");
+
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.PageLoadFinished -= onLoadFinished;
+
+            tlog.Debug(tag, $"WebViewLoadHTMLString END (OK)");
         }
 
         [Test]
@@ -912,19 +1055,27 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewLoadContents()
+        public async Task WebViewLoadContents()
         {
             tlog.Debug(tag, $"WebViewLoadContents START");
 
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                webView.LoadContents("body", 18, " ", "gbk", "http://www.runoob.com/jsref/prop-doc-baseuri.html");
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.LoadContents("body", 18, " ", "gbk", null);
+
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewLoadContents END (OK)");
         }
@@ -937,19 +1088,29 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewReload()
+        public async Task WebViewReload()
         {
             tlog.Debug(tag, $"WebViewReload START");
 
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                webView.Reload();
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.LoadUrl(url);
+
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.Reload();
+
+            webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewReload END (OK)");
         }
@@ -962,19 +1123,29 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewReloadWithoutCache()
+        public async Task WebViewReloadWithoutCache()
         {
             tlog.Debug(tag, $"WebViewReloadWithoutCache START");
 
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                webView.ReloadWithoutCache();
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.LoadUrl(url);
+
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.ReloadWithoutCache();
+
+            webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewReloadWithoutCache END (OK)");
         }
@@ -987,19 +1158,29 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewStopLoading()
+        public async Task WebViewStopLoading()
         {
             tlog.Debug(tag, $"WebViewStopLoading START");
 
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadStarted = (s, e) =>
             {
-                webView.StopLoading();
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadStarted += onLoadStarted;
+
+            webView.LoadUrl(url);
+
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadStarted event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.StopLoading();
+
+            webView.PageLoadStarted -= onLoadStarted;
 
             tlog.Debug(tag, $"WebViewStopLoading END (OK)");
         }
@@ -1012,20 +1193,29 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewSuspend()
+        public async Task WebViewSuspend()
         {
             tlog.Debug(tag, $"WebViewSuspend START");
 
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                webView.Suspend();
-                webView.Resume();
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
+                tlog.Info(tag, "onLoadFinished is called!");          
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
+            webView.LoadUrl(url);
+
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.Suspend();
+            webView.Resume();
+
+            webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewSuspend END (OK)");
         }
@@ -1038,20 +1228,30 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewSuspendNetworkLoading()
+        public async Task WebViewSuspendNetworkLoading()
         {
             tlog.Debug(tag, $"WebViewSuspendNetworkLoading START");
 
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                webView.SuspendNetworkLoading();
-                webView.ResumeNetworkLoading();
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.LoadUrl(url);
+
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.SuspendNetworkLoading();
+            webView.ResumeNetworkLoading();
+
+            webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewSuspendNetworkLoading END (OK)");
         }
@@ -1085,19 +1285,28 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewScrollBy()
+        public async Task WebViewScrollBy()
         {
             tlog.Debug(tag, $"WebViewScrollBy START");
 
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                webView.ScrollBy(1, 1);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "ScrollEdgeReached event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.ScrollBy(0, 60);
+
+            webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewScrollBy END (OK)");
         }
@@ -1110,12 +1319,28 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewScrollEdgeBy()
+        public async Task WebViewScrollEdgeBy()
         {
             tlog.Debug(tag, $"WebViewScrollEdgeBy START");
 
-            var result = webView.ScrollEdgeBy(1, 1);
-            tlog.Debug(tag, "ScrollEdgeBy : " + result);
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
+            {
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.ScrollEdgeBy(0, 60);
+
+            webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewScrollEdgeBy END (OK)");
         }
@@ -1128,19 +1353,36 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewGoBack()
+        public async Task WebViewGoBack()
         {
             tlog.Debug(tag, $"WebViewGoBack START");
 
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                webView.GoBack();
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
+                if (webView.Url.Contains("index.html"))
+                {
+                    tlog.Info(tag, "onLoadFinished is called!");
+                    webView.LoadUrl(secondUrl);
+                }
+                else
+                {
+                    tlog.Info(tag, "onLoadFinished is called!");
+                    tcs.TrySetResult(true);
+                }
+            };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.GoBack();
+
+            webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewGoBack END (OK)");
         }
@@ -1153,19 +1395,37 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewGoForward()
+        public async Task WebViewGoForward()
         {
             tlog.Debug(tag, $"WebViewGoForward START");
 
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                webView.GoForward();
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
+                if (webView.Url.Contains("index.html"))
+                {
+                    tlog.Info(tag, "onLoadFinished is called!");
+                    webView.LoadUrl(secondUrl);
+                }
+                else
+                {
+                    tlog.Info(tag, "onLoadFinished is called!");
+                    tcs.TrySetResult(true);
+                }
+            };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.GoBack();
+            webView.GoForward();
+
+            webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewGoForward END (OK)");
         }
@@ -1178,12 +1438,37 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewCanGoBack()
+        public async Task WebViewCanGoBack()
         {
             tlog.Debug(tag, $"WebViewCanGoBack START");
 
-            var result = webView.CanGoBack();
-            tlog.Debug(tag, "CanGoBack : " + result);
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
+            {
+                if (webView.Url.Contains("index.html"))
+                {
+                    tlog.Info(tag, "onLoadFinished is called!");
+                    webView.LoadUrl(secondUrl);
+                }
+                else
+                {
+                    tlog.Info(tag, "onLoadFinished is called!");
+                    tcs.TrySetResult(true);
+                }
+            };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            var canGo = webView.CanGoBack();
+            Assert.IsTrue(canGo, "CanGoBack should be invoked");
+
+            webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewCanGoBack END (OK)");
         }
@@ -1196,12 +1481,39 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewCanGoForward()
+        public async Task WebViewCanGoForward()
         {
             tlog.Debug(tag, $"WebViewCanGoForward START");
 
-            var result = webView.CanGoForward();
-            tlog.Debug(tag, "CanGoForward : " + result);
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
+            {
+                if (webView.Url.Contains("index.html"))
+                {
+                    tlog.Info(tag, "onLoadFinished is called!");
+                    webView.LoadUrl(secondUrl);
+                }
+                else
+                {
+                    tlog.Info(tag, "onLoadFinished is called!");
+                    tcs.TrySetResult(true);
+                }
+            };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            if (webView.CanGoForward())
+            {
+                webView.GoBack();
+            }
+
+            webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewCanGoForward END (OK)");
         }
@@ -1214,19 +1526,28 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewEvaluateJavaScript()
+        public async Task WebViewEvaluateJavaScript()
         {
             tlog.Debug(tag, $"WebViewEvaluateJavaScript START");
 
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                webView.EvaluateJavaScript("<script type=\"text / javascript\">document.write(\"page\");</script>");
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.EvaluateJavaScript("<script type=\"text / javascript\">document.write(\"page\");</script>");
+
+            webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewEvaluateJavaScript END (OK)");
         }
@@ -1239,19 +1560,28 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewAddJavaScriptMessageHandler()
+        public async Task WebViewAddJavaScriptMessageHandler()
         {
             tlog.Debug(tag, $"WebViewAddJavaScriptMessageHandler START");
 
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                webView.AddJavaScriptMessageHandler("AllowOrigin", JsCallback);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.AddJavaScriptMessageHandler("AllowOrigin", JsCallback);
+
+            webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewAddJavaScriptMessageHandler END (OK)");
         }
@@ -1264,19 +1594,28 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewRegisterJavaScriptAlertCallback()
+        public async Task WebViewRegisterJavaScriptAlertCallback()
         {
             tlog.Debug(tag, $"WebViewRegisterJavaScriptAlertCallback START");
 
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                webView.RegisterJavaScriptAlertCallback(JsCallback);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.RegisterJavaScriptAlertCallback(JsCallback);
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewRegisterJavaScriptAlertCallback END (OK)");
         }
@@ -1289,19 +1628,28 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewRegisterJavaScriptConfirmCallback()
+        public async Task WebViewRegisterJavaScriptConfirmCallback()
         {
             tlog.Debug(tag, $"WebViewRegisterJavaScriptConfirmCallback START");
 
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                webView.RegisterJavaScriptConfirmCallback(JsCallback);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.RegisterJavaScriptConfirmCallback(JsCallback);
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewRegisterJavaScriptConfirmCallback END (OK)");
         }
@@ -1314,19 +1662,28 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewRegisterJavaScriptPromptCallback()
+        public async Task WebViewRegisterJavaScriptPromptCallback()
         {
             tlog.Debug(tag, $"WebViewRegisterJavaScriptPromptCallback START");
 
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                webView.RegisterJavaScriptPromptCallback(PromptCallback);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.RegisterJavaScriptPromptCallback(PromptCallback);
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewRegisterJavaScriptPromptCallback END (OK)");
         }
@@ -1339,19 +1696,28 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewClearAllTilesResources()
+        public async Task WebViewClearAllTilesResources()
         {
             tlog.Debug(tag, $"WebViewClearAllTilesResources START");
 
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                webView.ClearAllTilesResources();
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.ClearAllTilesResources();
+
+            webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewClearAllTilesResources END (OK)");
         }
@@ -1364,19 +1730,28 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewClearHistory()
+        public async Task WebViewClearHistory()
         {
             tlog.Debug(tag, $"WebViewClearHistory START");
 
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                webView.ClearHistory();
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.ClearHistory();
+
+            webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewClearHistory END (OK)");
         }
@@ -1389,25 +1764,34 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewSetScaleFactor()
+        public async Task WebViewSetScaleFactor()
         {
             tlog.Debug(tag, $"WebViewSetScaleFactor START");
 
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                using (Vector2 point = new Vector2(1.0f, 1.0f))
-                {
-                    webView.SetScaleFactor(0.2f, point);
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
 
-                    var result = webView.GetScaleFactor();
-                    tlog.Debug(tag, "ScaleFactor : " + result);
-                }
-            }
-            catch (Exception e)
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            using (Vector2 point = new Vector2(1.0f, 1.0f))
             {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
+                webView.SetScaleFactor(0.2f, point);
+
+                var factor = webView.GetScaleFactor();
+                tlog.Debug(tag, "ScaleFactor : " + factor);
             }
+
+            webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewSetScaleFactor END (OK)");
         }
@@ -1420,19 +1804,28 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewActivateAccessibility()
+        public async Task WebViewActivateAccessibility()
         {
             tlog.Debug(tag, $"WebViewActivateAccessibility START");
 
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                webView.ActivateAccessibility(false);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.ActivateAccessibility(false);
+
+            webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewActivateAccessibility END (OK)");
         }
@@ -1445,19 +1838,28 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewHighlightText()
+        public async Task WebViewHighlightText()
         {
             tlog.Debug(tag, $"WebViewHighlightText START");
 
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                webView.HighlightText("web", Tizen.NUI.BaseComponents.WebView.FindOption.AtWordStart, 3);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.HighlightText("web", BaseComponents.WebView.FindOption.AtWordStart, 3);
+
+            webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewHighlightText END (OK)");
         }
@@ -1470,19 +1872,28 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewAddDynamicCertificatePath()
+        public async Task WebViewAddDynamicCertificatePath()
         {
             tlog.Debug(tag, $"WebViewAddDynamicCertificatePath START");
 
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                webView.AddDynamicCertificatePath("127.0.0.0", "/");
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.AddDynamicCertificatePath("127.0.0.0", "/");
+
+            webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewAddDynamicCertificatePath END (OK)");
         }
@@ -1495,19 +1906,28 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewCheckVideoPlayingAsynchronously()
+        public async Task WebViewCheckVideoPlayingAsynchronously()
         {
             tlog.Debug(tag, $"WebViewCheckVideoPlayingAsynchronously START");
 
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                webView.CheckVideoPlayingAsynchronously(VideoCallback);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.CheckVideoPlayingAsynchronously(VideoCallback);
+
+            webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewCheckVideoPlayingAsynchronously END (OK)");
         }
@@ -1520,21 +1940,202 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewRegisterGeolocationPermissionCallback()
+        public async Task WebViewRegisterGeolocationPermissionCallback()
         {
             tlog.Debug(tag, $"WebViewRegisterGeolocationPermissionCallback START");
 
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                webView.RegisterGeolocationPermissionCallback(GeolocationCallback);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.RegisterGeolocationPermissionCallback(GeolocationCallback);
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewRegisterGeolocationPermissionCallback END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("WebView GetPlainTextAsynchronously.")]
+        [Property("SPEC", "Tizen.NUI.WebView.GetPlainTextAsynchronously M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public async Task WebViewGetPlainTextAsynchronously()
+        {
+            tlog.Debug(tag, $"WebViewGetPlainTextAsynchronously START");
+
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
+            {
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.GetPlainTextAsynchronously(PlainReceivedCallback);
+
+            webView.PageLoadFinished -= onLoadFinished;
+
+            tlog.Debug(tag, $"WebViewGetPlainTextAsynchronously END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("WebView SetTtsFocus.")]
+        [Property("SPEC", "Tizen.NUI.WebView.SetTtsFocus M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public async Task WebViewSetTtsFocus()
+        {
+            tlog.Debug(tag, $"WebViewSetTtsFocus START");
+
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
+            {
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.SetTtsFocus(true);
+
+            webView.PageLoadFinished -= onLoadFinished;
+
+            tlog.Debug(tag, $"WebViewSetTtsFocus END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("WebView GetScreenshot.")]
+        [Property("SPEC", "Tizen.NUI.WebView.GetScreenshot M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public async Task WebViewGetScreenshot()
+        {
+            tlog.Debug(tag, $"WebViewGetScreenshot START");
+
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
+            {
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            var factor = webView.GetScaleFactor();
+            webView.GetScreenshot(new Rectangle(5, 6, 100, 200), factor);
+
+            webView.PageLoadFinished -= onLoadFinished;
+
+            tlog.Debug(tag, $"WebViewGetScreenshot END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("WebView GetScreenshotAsynchronously.")]
+        [Property("SPEC", "Tizen.NUI.WebView.GetScreenshotAsynchronously M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public async Task WebViewGetScreenshotAsynchronously()
+        {
+            tlog.Debug(tag, $"WebViewGetScreenshotAsynchronously START");
+
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
+            {
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            var factor = webView.GetScaleFactor();
+            webView.GetScreenshotAsynchronously(new Rectangle(5, 6, 50, 50), factor, ScreenshotAcquiredCallbackCase);
+
+            webView.PageLoadFinished -= onLoadFinished;
+
+            tlog.Debug(tag, $"WebViewGetScreenshotAsynchronously END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("WebView EvaluateJavaScript.")]
+        [Property("SPEC", "Tizen.NUI.WebView.EvaluateJavaScript M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public async Task WebViewEvaluateJavaScriptWithCallback()
+        {
+            tlog.Debug(tag, $"WebViewEvaluateJavaScriptWithCallback START");
+
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
+            {
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.EvaluateJavaScript("<script type=\"text / javascript\">document.write(\"page\");</script>", JsCallback);
+
+            webView.PageLoadFinished -= onLoadFinished;
+
+            tlog.Debug(tag, $"WebViewEvaluateJavaScriptWithCallback END (OK)");
         }
 
         [Test]
@@ -1545,19 +2146,28 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewClearCache()
+        public async Task WebViewClearCache()
         {
             tlog.Debug(tag, $"WebViewClearCache START");
 
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                webView.ClearCache();
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.ClearCache();
+
+            webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewClearCache END (OK)");
         }
@@ -1570,19 +2180,28 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewClearCookies()
+        public async Task WebViewClearCookies()
         {
             tlog.Debug(tag, $"WebViewClearCookies START");
 
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                webView.ClearCookies();
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.ClearCookies();
+
+            webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewClearCookies END (OK)");
         }
@@ -1595,46 +2214,15 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewDownCast()
+        public async Task WebViewDownCast()
         {
             tlog.Debug(tag, $"WebViewDownCast START");
 
-            try
-            {
-                Tizen.NUI.BaseComponents.WebView.DownCast(webView);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
+            BaseComponents.WebView.DownCast(webView);
+
+            await Task.Delay(1);
 
             tlog.Debug(tag, $"WebViewDownCast END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("WebView Assign.")]
-        [Property("SPEC", "Tizen.NUI.WebView.Assign M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewAssign()
-        {
-            tlog.Debug(tag, $"WebViewAssign START");
-
-            try
-            {
-                webView.Assign(webView);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            tlog.Debug(tag, $"WebViewAssign END (OK)");
         }
 
         [Test]
@@ -1659,19 +2247,5 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"WebViewDispose END (OK)");
         }
-
-        private void OnLoadStarted(object sender, WebViewPageLoadEventArgs e) { }
-        private void OnLoading(object sender, WebViewPageLoadEventArgs e) { }
-        private void OnLoadFinished(object sender, WebViewPageLoadEventArgs e) { }
-        private void OnLoadError(object sender, WebViewPageLoadErrorEventArgs e) { }
-        private void OnEdgeReached(object sender, WebViewScrollEdgeReachedEventArgs e) { }
-        private void OnUrlChange(object sender, WebViewUrlChangedEventArgs e) { }
-        private void OnFormRepostPolicyDecide(object sender, WebViewFormRepostPolicyDecidedEventArgs e) { }
-        private void OnFrameRender(object sender, EventArgs e) { }
-        private void OnResponsePolicyDecide(object sender, WebViewPolicyDecidedEventArgs e) { }
-        private void OnCertificateConfirme(object sender, WebViewCertificateReceivedEventArgs e) { }
-        private void OnSslCertificateChange(object sender, WebViewCertificateReceivedEventArgs e) {  }
-        private void OnHttpAuthRequeste(object sender, WebViewHttpAuthRequestedEventArgs e) { }
-        private void OnConsoleMessageReceive(object sender, WebViewConsoleMessageReceivedEventArgs e) { }
     }
 }

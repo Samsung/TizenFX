@@ -327,7 +327,6 @@ namespace Tizen.Multimedia
         NoSyncAndDeinterleave = 0x03,
     }
 
-
     /// <summary>
     /// Specifies the types of a codec for <see cref="Player"/>.
     /// </summary>

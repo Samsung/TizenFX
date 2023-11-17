@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2022 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2023 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -74,13 +74,15 @@ namespace Tizen.NUI.Scene3D
     /// </code>
     /// </example>
     /// <since_tizen> 10 </since_tizen>
-    public class Model : View
+    public partial class Model : View
     {
-        internal Model(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        private bool isBuilt = false;
+        internal Model(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
         {
-            // Currenly, Model don't have API to access it's child. So, we make it false.
-            this.ChildrenSensitive = false;
-            this.FocusableChildren = false;
+        }
+
+        internal Model(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, true, cRegister)
+        {
         }
 
         /// <summary>
@@ -98,7 +100,19 @@ namespace Tizen.NUI.Scene3D
         public Model(string modelUrl, string resourceDirectoryUrl = "") : this(Interop.Model.ModelNew(modelUrl, resourceDirectoryUrl), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            this.PositionUsesAnchorPoint = true;
+            this.PositionUsesPivotPoint = true;
+            ResourcesLoaded += OnResourcesLoaded;
+        }
+
+        /// <summary>
+        /// Create an initialized Model.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Model() : this(Interop.Model.ModelNew(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            this.PositionUsesPivotPoint = true;
         }
 
         /// <summary>
@@ -106,9 +120,10 @@ namespace Tizen.NUI.Scene3D
         /// </summary>
         /// <param name="model">Source object to copy.</param>
         /// <since_tizen> 10 </since_tizen>
-        public Model(Model model) : this(Interop.Model.NewModel(Model.getCPtr(model)), true)
+        public Model(Model model) : this(Interop.Model.NewModel(Model.getCPtr(model)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            this.PositionUsesPivotPoint = model.PositionUsesPivotPoint;
         }
 
         /// <summary>
@@ -120,32 +135,8 @@ namespace Tizen.NUI.Scene3D
         {
             Model ret = new Model(Interop.Model.ModelAssign(SwigCPtr, Model.getCPtr(model)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            ret.PositionUsesPivotPoint = model.PositionUsesPivotPoint;
             return ret;
-        }
-
-        /// <summary>
-        /// Set/Get whether allow this model's children allow to use touch events.
-        /// This property doesn't change Model itself's Sensitive info.
-        /// If this property is true, event can traversal this models children.
-        /// If this property is false, event traversal blocked.
-        /// Default is false.
-        /// </summary>
-        /// <remarks>
-        /// If ChildrenSensitive is true, it could decrease performance but we can connect events into it's children.
-        /// If ChildrenSensitive is false, the performance becomes better but we cannot connect events into it's children.
-        ///
-        /// Currenly, Model don't have API to access it's child. So, we make it as private.
-        /// </remarks>
-        private bool ChildrenSensitive
-        {
-            set
-            {
-                SetChildrenSensitive(value);
-            }
-            get
-            {
-                return GetChildrenSensitive();
-            }
         }
 
         /// <summary>
@@ -164,6 +155,81 @@ namespace Tizen.NUI.Scene3D
             {
                 return GetImageBasedLightScaleFactor();
             }
+        }
+
+        /// <summary>
+        /// Retrieves root ModelNode of this Model.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ModelNode ModelRoot
+        {
+            get
+            {
+                return GetModelRoot();
+            }
+        }
+
+        /// <summary>
+        /// Adds modelNode to this Model.
+        /// </summary>
+        /// <param name="modelNode">Root of a ModelNode tree</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddModelNode(ModelNode modelNode)
+        {
+            Interop.Model.AddModelNode(SwigCPtr, ModelNode.getCPtr(modelNode));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Removes modelNode from this Model.
+        /// </summary>
+        /// <param name="modelNode">Root of a ModelNode tree to be removed</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveModelNode(ModelNode modelNode)
+        {
+            Interop.Model.RemoveModelNode(SwigCPtr, ModelNode.getCPtr(modelNode));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Removes Returns a child ModelNode object with a name that matches nodeName.
+        /// </summary>
+        /// <param name="nodeName">The name of the child ModelNode object you want to find.</param>
+        /// <returns>Child ModelNode that has nodeName as name.</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ModelNode FindChildModelNodeByName(string nodeName)
+        {
+            global::System.IntPtr cPtr = Interop.Model.FindChildModelNodeByName(SwigCPtr, nodeName);
+            ModelNode ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as ModelNode;
+            if (ret == null)
+            {
+                // Store the value of PositionUsesAnchorPoint from dali object (Since View object automatically change PositionUsesPivotPoint value as false, we need to keep value.)
+                HandleRef handle = new HandleRef(this, cPtr);
+
+                // Use original value as 'true' if we got invalid ModelNode.
+                bool originalPositionUsesAnchorPoint = (cPtr == global::System.IntPtr.Zero || !Tizen.NUI.Interop.BaseHandle.HasBody(handle)) || Object.InternalGetPropertyBool(handle, View.Property.PositionUsesAnchorPoint);
+                handle = new HandleRef(null, IntPtr.Zero);
+
+                // Register new animatable into Registry.
+                ret = new ModelNode(cPtr, true);
+                if (ret != null)
+                {
+                    ret.PositionUsesPivotPoint = originalPositionUsesAnchorPoint;
+                }
+            }
+            else
+            {
+                // We found matched NUI animatable. Reduce cPtr reference count.
+                HandleRef handle = new HandleRef(this, cPtr);
+                Tizen.NUI.Interop.BaseHandle.DeleteBaseHandle(handle);
+                handle = new HandleRef(null, IntPtr.Zero);
+            }
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         /// <summary>
@@ -209,7 +275,20 @@ namespace Tizen.NUI.Scene3D
         /// <since_tizen> 10 </since_tizen>
         public Animation GetAnimation(uint index)
         {
-            Animation ret = new Animation(Interop.Model.GetAnimation(SwigCPtr, index), false);
+            global::System.IntPtr cPtr = Interop.Model.GetAnimation(SwigCPtr, index);
+            Animation ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Animation;
+            if (ret == null)
+            {
+                // Register new animation into Registry.
+                ret = new Animation(cPtr, true);
+            }
+            else
+            {
+                // We found matched NUI animation. Reduce cPtr reference count.
+                HandleRef handle = new HandleRef(this, cPtr);
+                Tizen.NUI.Interop.Animation.DeleteAnimation(handle);
+                handle = new HandleRef(null, IntPtr.Zero);
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -223,9 +302,278 @@ namespace Tizen.NUI.Scene3D
         /// <since_tizen> 10 </since_tizen>
         public Animation GetAnimation(string name)
         {
-            Animation ret = new Animation(Interop.Model.GetAnimation(SwigCPtr, name), false);
+            global::System.IntPtr cPtr = Interop.Model.GetAnimation(SwigCPtr, name);
+            Animation ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Animation;
+            if (ret == null)
+            {
+                // Register new animation into Registry.
+                ret = new Animation(cPtr, true);
+            }
+            else
+            {
+                // We found matched NUI animation. Reduce cPtr reference count.
+                HandleRef handle = new HandleRef(this, cPtr);
+                Tizen.NUI.Interop.Animation.DeleteAnimation(handle);
+                handle = new HandleRef(null, IntPtr.Zero);
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// <summary>
+        /// Gets number of camera parameters that has been loaded from model file.
+        /// </summary>
+        /// <remarks>
+        /// This method should be called after Model load has been finished.
+        /// </remarks>
+        /// <returns>The number of loaded camera parameters.</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint GetCameraCount()
+        {
+            uint ret = Interop.Model.GetCameraCount(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Generate Camera using camera parameters at the index.
+        /// If camera parameter is valid, create new Camera.
+        /// Else, return empty Handle.
+        /// </summary>
+        /// <remarks>
+        /// This method should be called after Model load has been finished.
+        /// </remarks>
+        /// <param name="index">Index of camera to be generated.</param>
+        /// <returns>Generated Camera by the index, or empty Handle if generation failed.</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Camera GenerateCamera(uint index)
+        {
+            global::System.IntPtr cPtr = Interop.Model.GenerateCamera(SwigCPtr, index);
+            Camera ret = new Camera(cPtr, true); // Always create new camera.
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Apply camera parameters at the index to inputed Camera.
+        /// If camera parameter is valid and camera is not empty, apply parameters.
+        /// It will change camera's transform and near / far / fov or orthographic size / aspect ratio (if defined)
+        /// </summary>
+        /// <remarks>
+        /// This method should be called after Model load has been finished.
+        /// </remarks>
+        /// <param name="index">Index of camera to be retrieved.</param>
+        /// <param name="camera">Camera to be applied parameter.</param>
+        /// <returns>True if Apply successed. False otherwise.</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ApplyCamera(uint index, Camera camera)
+        {
+            bool ret = false;
+            if (camera?.HasBody() == true)
+            {
+                ret = Interop.Model.ApplyCamera(SwigCPtr, index, Camera.getCPtr(camera));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            return ret;
+        }
+
+        /// <summary>
+        /// Load bvh animation and assign to model.
+        /// Scale is additional scale factor of bvh animation. It is possible that
+        /// Model's scale may not matched with bvh animation scale.
+        /// If scale is null, default use as Vector3.ONE
+        /// </summary>
+        /// <param name="bvhFilename">Name of bvh format file.</param>
+        /// <param name="scale">Scale value of bvh animation match with model.</param>
+        /// <param name="translateRootFromModelNode">Whether we should translate the bvh root from it's ModelNode position or not.</param>
+        /// <returns>Animaion of bvh</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Do not use this LoadBvhAnimation. Use MotionData.LoadMotionCaptureAnimation and GenerateMotionDataAnimation instead.")]
+        public Animation LoadBvhAnimation(string bvhFilename, Vector3 scale = null, bool translateRootFromModelNode = true)
+        {
+            global::System.IntPtr cPtr = Interop.Model.LoadBvhAnimation(SwigCPtr, bvhFilename, Vector3.getCPtr(scale), translateRootFromModelNode);
+            Animation ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Animation;
+            if (ret == null)
+            {
+                // Register new animation into Registry.
+                ret = new Animation(cPtr, true);
+            }
+            else
+            {
+                // We found matched NUI animation. Reduce cPtr reference count.
+                HandleRef handle = new HandleRef(this, cPtr);
+                Tizen.NUI.Interop.Animation.DeleteAnimation(handle);
+                handle = new HandleRef(null, IntPtr.Zero);
+            }
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Load bvh animation and assign to model.
+        /// Scale is additional scale factor of bvh animation. It is possible that
+        /// Model's scale may not matched with bvh animation scale.
+        /// If scale is null, default use as Vector3.ONE
+        /// </summary>
+        /// <param name="bvhBuffer">Contents of bvh format file.</param>
+        /// <param name="scale">Scale value of bvh animation match with model.</param>
+        /// <param name="translateRootFromModelNode">Whether we should translate the bvh root from it's ModelNode position or not.</param>
+        /// <returns>Animaion of bvh</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Do not use this LoadBvhAnimationFromBuffer. Use MotionData.LoadMotionCaptureAnimationFromBuffer and GenerateMotionDataAnimation instead.")]
+        public Animation LoadBvhAnimationFromBuffer(string bvhBuffer, Vector3 scale = null, bool translateRootFromModelNode = true)
+        {
+            global::System.IntPtr cPtr = Interop.Model.LoadBvhAnimationFromBuffer(SwigCPtr, bvhBuffer, bvhBuffer.Length, Vector3.getCPtr(scale), translateRootFromModelNode);
+            Animation ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Animation;
+            if (ret == null)
+            {
+                // Register new animation into Registry.
+                ret = new Animation(cPtr, true);
+            }
+            else
+            {
+                // We found matched NUI animation. Reduce cPtr reference count.
+                HandleRef handle = new HandleRef(this, cPtr);
+                Tizen.NUI.Interop.Animation.DeleteAnimation(handle);
+                handle = new HandleRef(null, IntPtr.Zero);
+            }
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Load facial animation and assign to model.
+        /// </summary>
+        /// <param name="facialFilename">Name of json format file what we predefined.</param>
+        /// <returns>Animaion of facial</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Do not use this LoadFacialAnimation. Use MotionData.LoadBlendShapeAnimation and GenerateMotionDataAnimation instead.")]
+        public Animation LoadFacialAnimation(string facialFilename)
+        {
+            return LoadBlendShapeAnimation(facialFilename);
+        }
+
+        /// <summary>
+        /// Load facial animation and assign to model.
+        /// </summary>
+        /// <param name="facialBuffer">Contents of json format file what we predefined.</param>
+        /// <returns>Animaion of facial</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Do not use this LoadFacialAnimationFromBuffer. Use MotionData.LoadBlendShapeAnimationFromBuffer and GenerateMotionDataAnimation instead.")]
+        public Animation LoadFacialAnimationFromBuffer(string facialBuffer)
+        {
+            return LoadBlendShapeAnimationFromBuffer(facialBuffer);
+        }
+
+        /// <summary>
+        /// Load blendshape animation and assign to model from json file.
+        /// </summary>
+        /// <param name="jsonFilename">Name of json format file what we predefined.</param>
+        /// <returns>Animaion of facial</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Do not use this LoadBlendShapeAnimation. Use MotionData.LoadBlendShapeAnimation and GenerateMotionDataAnimation instead.")]
+        public Animation LoadBlendShapeAnimation(string jsonFilename)
+        {
+            global::System.IntPtr cPtr = Interop.Model.LoadBlendShapeAnimation(SwigCPtr, jsonFilename);
+            Animation ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Animation;
+            if (ret == null)
+            {
+                // Register new animation into Registry.
+                ret = new Animation(cPtr, true);
+            }
+            else
+            {
+                // We found matched NUI animation. Reduce cPtr reference count.
+                HandleRef handle = new HandleRef(this, cPtr);
+                Tizen.NUI.Interop.Animation.DeleteAnimation(handle);
+                handle = new HandleRef(null, IntPtr.Zero);
+            }
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Load morphing animation and assign to model from json string.
+        /// </summary>
+        /// <param name="jsonBuffer">Contents of json format file what we predefined.</param>
+        /// <returns>Animaion of facial</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Do not use this LoadBlendShapeAnimationFromBuffer. Use MotionData.LoadBlendShapeAnimationFromBuffer and GenerateMotionDataAnimation instead.")]
+        public Animation LoadBlendShapeAnimationFromBuffer(string jsonBuffer)
+        {
+            global::System.IntPtr cPtr = Interop.Model.LoadBlendShapeAnimationFromBuffer(SwigCPtr, jsonBuffer, jsonBuffer.Length);
+            Animation ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Animation;
+            if (ret == null)
+            {
+                // Register new animation into Registry.
+                ret = new Animation(cPtr, true);
+            }
+            else
+            {
+                // We found matched NUI animation. Reduce cPtr reference count.
+                HandleRef handle = new HandleRef(this, cPtr);
+                Tizen.NUI.Interop.Animation.DeleteAnimation(handle);
+                handle = new HandleRef(null, IntPtr.Zero);
+            }
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Generate animation by MotionData.
+        /// If there is no animatable item for MotionData, return null.
+        /// </summary>
+        /// <param name="motionData">Source motion data.</param>
+        /// <returns>Generated animation from then given motion data, or null if there is no animatable item in <paramref name="motionData"/></returns>
+        /// <since_tizen> 11 </since_tizen>
+        public Animation GenerateMotionDataAnimation(MotionData motionData)
+        {
+            global::System.IntPtr cPtr = Interop.Model.GenerateMotionDataAnimation(SwigCPtr, MotionData.getCPtr(motionData));
+            Animation ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Animation;
+            if (ret == null)
+            {
+                // Register new animation into Registry.
+                ret = new Animation(cPtr, true);
+            }
+            else
+            {
+                // We found matched NUI animation. Reduce cPtr reference count.
+                HandleRef handle = new HandleRef(this, cPtr);
+                Tizen.NUI.Interop.Animation.DeleteAnimation(handle);
+                handle = new HandleRef(null, IntPtr.Zero);
+            }
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            // It is possible if there is no animatable properties exist on inputed motionData.
+            // In this case, let we return null.
+            if (!ret.HasBody())
+            {
+                ret.Dispose();
+                ret = null;
+            }
+            return ret;
+        }
+
+        /// <summary>
+        /// Set values from MotionData.
+        /// Note that this method doesn not apply KeyFrames animation.
+        /// If you want to apply the animation, please use <see cref="GenerateMotionDataAnimation(MotionData)"/> and play the result.
+        /// </summary>
+        /// <param name="motionData">Source motion data.</param>
+        /// <since_tizen> 11 </since_tizen>
+        public void SetMotionData(MotionData motionData)
+        {
+            Interop.Model.SetMotionData(SwigCPtr, MotionData.getCPtr(motionData));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -234,24 +582,35 @@ namespace Tizen.NUI.Scene3D
         /// <returns>Root View of the model.</returns>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        private View GetModelRoot()
+        private ModelNode GetModelRoot()
         {
-            View ret = new View(Interop.Model.GetModelRoot(SwigCPtr), false);
+            global::System.IntPtr cPtr = Interop.Model.GetModelRoot(SwigCPtr);
+            ModelNode ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as ModelNode;
+            if (ret == null)
+            {
+                // Store the value of PositionUsesAnchorPoint from dali object (Since View object automatically change PositionUsesPivotPoint value as false, we need to keep value.)
+                HandleRef handle = new HandleRef(this, cPtr);
+
+                // Use original value as 'true' if we got invalid ModelNode.
+                bool originalPositionUsesAnchorPoint = (cPtr == global::System.IntPtr.Zero || !Tizen.NUI.Interop.BaseHandle.HasBody(handle)) || Object.InternalGetPropertyBool(handle, View.Property.PositionUsesAnchorPoint);
+                handle = new HandleRef(null, IntPtr.Zero);
+
+                // Register new animatable into Registry.
+                ret = new ModelNode(cPtr, true);
+                if (ret != null)
+                {
+                    ret.PositionUsesPivotPoint = originalPositionUsesAnchorPoint;
+                }
+            }
+            else
+            {
+                // We found matched NUI animatable. Reduce cPtr reference count.
+                HandleRef handle = new HandleRef(this, cPtr);
+                Tizen.NUI.Interop.BaseHandle.DeleteBaseHandle(handle);
+                handle = new HandleRef(null, IntPtr.Zero);
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        internal void SetChildrenSensitive(bool enable)
-        {
-            Interop.Model.SetChildrenSensitive(SwigCPtr, enable);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal bool GetChildrenSensitive()
-        {
-            bool result = Interop.Model.GetChildrenSensitive(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return result;
         }
 
         /// <summary>
@@ -273,6 +632,29 @@ namespace Tizen.NUI.Scene3D
             float scaleFactor = Interop.Model.GetImageBasedLightScaleFactor(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return scaleFactor;
+        }
+
+        private void OnResourcesLoaded(object sender, EventArgs e)
+        {
+            if (!isBuilt && this.ModelRoot != null)
+            {
+                this.ModelRoot.Build();
+                isBuilt = true;
+            }
+        }
+
+        /// <summary>
+        /// To make transitionSet instance be disposed.
+        /// </summary>
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            ResourcesLoaded -= OnResourcesLoaded;
+            base.Dispose(type);
         }
 
         /// <summary>

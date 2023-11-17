@@ -471,6 +471,15 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Formatted current value.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        string IAtspiValue.AccessibilityGetValueText()
+        {
+            return $"{SelectedIndex}";
+        }
+
+        /// <summary>
         /// Maximum value.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -710,21 +719,21 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            if (container != null && container.Layout is LinearLayout)
+            if (container != null && (container.Layout is LinearLayout linearLayout))
             {
-                (container.Layout as LinearLayout).CellPadding = new Size2D(indicatorSpacing, 0);
+                linearLayout.CellPadding = new Size2D(indicatorSpacing, 0);
             }
 
             for (int i = 0; i < indicatorList.Count; i++)
             {
                 ImageView indicator = indicatorList[i];
-                indicator.ResourceUrl = indicatorImageUrl?.Normal;
+                indicator.ResourceUrl = selectedIndex == i ? indicatorImageUrl.Selected : indicatorImageUrl.Normal;
                 indicator.Size = indicatorSize;
             }
 
             if (lastIndicatorImageUrl != null && indicatorCount > 0)
             {
-                indicatorList[LastIndicatorIndex].ResourceUrl = lastIndicatorImageUrl.Normal;
+                indicatorList[LastIndicatorIndex].ResourceUrl = IsLastSelected ? lastIndicatorImageUrl.Selected : lastIndicatorImageUrl.Normal;
             }
         }
 

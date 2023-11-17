@@ -43,12 +43,12 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Deprecated in API9, will be removed in API11. Use ThemeManager instead.")]
-        public StyleManager() : this(Interop.StyleManager.NewStyleManager(), true)
+        public StyleManager() : this(Interop.StyleManager.NewStyleManager(), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void StyleChangedCallbackDelegate(IntPtr styleManager, Tizen.NUI.StyleChangeType styleChange);
 
         /// <summary>
@@ -101,7 +101,22 @@ namespace Tizen.NUI
         [Obsolete("Deprecated in API9, will be removed in API11. Use ThemeManager instead.")]
         public static StyleManager Get()
         {
-            StyleManager ret = new StyleManager(Interop.StyleManager.Get(), true);
+            global::System.IntPtr cPtr = Interop.StyleManager.Get();
+
+            StyleManager ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as StyleManager;
+            if (ret != null)
+            {
+                object dummyObect = new object();
+
+                HandleRef CPtr = new HandleRef(dummyObect, cPtr);
+                Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                CPtr = new HandleRef(null, global::System.IntPtr.Zero);
+            }
+            else
+            {
+                ret = new StyleManager(cPtr, true);
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -212,7 +227,11 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal StyleManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal StyleManager(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal StyleManager(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
         }
 
@@ -282,6 +301,18 @@ namespace Tizen.NUI
                     styleChange = value;
                 }
             }
+        }
+
+        internal static void SetBrokenImage(BrokenImageType type, string url)
+        {
+            Interop.StyleManager.SetBrokenImageUrl(Instance.SwigCPtr, (uint)type, url);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+        internal static string GetBrokenImageURL(BrokenImageType type)
+        {
+            string ret = Interop.StyleManager.GetBrokenImageUrl(Instance.SwigCPtr, (uint)type);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
     }
 }

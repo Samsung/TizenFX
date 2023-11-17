@@ -58,6 +58,16 @@ namespace Tizen.NUI.Components
             Initialize();
         }
 
+        /// <summary>
+        /// Creates a new instance of a Menu with style.
+        /// </summary>
+        /// <param name="style">A style applied to the newly created Menu.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Menu(MenuStyle style) : base(style)
+        {
+            Initialize();
+        }
+
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
@@ -155,13 +165,22 @@ namespace Tizen.NUI.Components
 
             set
             {
+                if (Content == null)
+                {
+                    Content = CreateDefaultContent();
+                    if (styleApplied && (menuStyle != null))
+                    {
+                        Content.ApplyStyle(menuStyle.Content);
+                    }
+                }
+
                 if (menuItems != null)
                 {
                     foreach (var oldItem in menuItems)
                     {
-                        if (content.Children?.Contains(oldItem) == true)
+                        if (Content.Children?.Contains(oldItem) == true)
                         {
-                            content.Remove(oldItem);
+                            Content.Remove(oldItem);
                         }
                     }
                 }
@@ -170,12 +189,18 @@ namespace Tizen.NUI.Components
 
                 if (menuItems == null)
                 {
+                    Content.SetVisible(false);
                     return;
+                }
+
+                if (Content.Visibility == false)
+                {
+                    Content.SetVisible(true);
                 }
 
                 foreach (var item in menuItems)
                 {
-                    content.Add(item);
+                    Content.Add(item);
                     menuItemGroup.Add(item);
                 }
             }
@@ -468,17 +493,9 @@ namespace Tizen.NUI.Components
             WidthSpecification = LayoutParamPolicies.WrapContent;
             HeightSpecification = LayoutParamPolicies.WrapContent;
 
-            BackgroundColor = Color.Transparent;
-
             // Menu is added to Anchor so Menu should exclude layouting because
             // if Anchor has Layout, then Menu is displayed at an incorrect position.
             ExcludeLayouting = true;
-
-            Content = CreateDefaultContent();
-            if (styleApplied && (menuStyle != null))
-            {
-                Content.ApplyStyle(menuStyle.Content);
-            }
 
             Scrim = CreateDefaultScrim();
 
@@ -512,6 +529,7 @@ namespace Tizen.NUI.Components
                 ExcludeLayouting = true,
                 BackgroundColor = Color.Transparent,
                 Size = new Size(NUIApplication.GetDefaultWindow().Size),
+                DispatchParentGestureEvents = false,
             };
 
             scrim.TouchEvent += (object source, TouchEventArgs e) =>
@@ -528,24 +546,9 @@ namespace Tizen.NUI.Components
 
         private void CalculateSizeAndPosition()
         {
-            CalculateMenuSize();
-
             CalculateMenuPosition();
 
             CalculateScrimPosition();
-        }
-
-        // Calculate menu's size based on content's size
-        private void CalculateMenuSize()
-        {
-            if (Content == null)
-            {
-                return;
-            }
-            if (Size.Equals(Content.Size) == false)
-            {
-                Size = new Size(Content.SizeWidth, Content.SizeHeight);
-            }
         }
 
         private View GetRootView()
@@ -566,12 +569,7 @@ namespace Tizen.NUI.Components
         // If there is not enought space, then menu's size can be also resized.
         private void CalculateMenuPosition()
         {
-            if ((Anchor == null) || (Content == null))
-            {
-                return;
-            }
-
-            if (Items == null)
+            if (Anchor == null)
             {
                 return;
             }
@@ -642,7 +640,11 @@ namespace Tizen.NUI.Components
             if (menuScreenPosX < 0)
             {
                 menuScreenPosX = 0;
-                menuSizeW = Window.Size.Width;
+
+                if (menuSizeW > Window.Size.Width)
+                {
+                    menuSizeW = Window.Size.Width;
+                }
             }
 
             // Check if menu is not inside parent's boundary in y coordinate system.
@@ -660,7 +662,11 @@ namespace Tizen.NUI.Components
             if (menuScreenPosY < 0)
             {
                 menuScreenPosY = 0;
-                menuSizeH = Window.Size.Height;
+
+                if (menuSizeH > Window.Size.Height)
+                {
+                    menuSizeH = Window.Size.Height;
+                }
             }
 
             // Position is relative to parent's coordinate system.

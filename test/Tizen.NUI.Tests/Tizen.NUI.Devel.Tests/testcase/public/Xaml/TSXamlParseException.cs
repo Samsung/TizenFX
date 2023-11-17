@@ -70,6 +70,7 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget = null;
             tlog.Debug(tag, $"XamlParseExceptionConstructorWithMessage END");
         }
+
         [Test]
         [Category("P1")]
         [Description("XamlParseException XamlParseException")]

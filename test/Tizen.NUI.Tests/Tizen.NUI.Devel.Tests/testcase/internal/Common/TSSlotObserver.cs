@@ -13,7 +13,6 @@ namespace Tizen.NUI.Devel.Tests
     public class InternalSlotObserverTest
     {
         private const string tag = "NUITEST";
-        private SWIGTYPE_p_Dali__CallbackBase callback;
 
         [SetUp]
         public void Init()

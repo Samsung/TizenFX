@@ -16,14 +16,19 @@ namespace Tizen.NUI.Devel.Tests
         private const string tag = "NUITEST";
         private string url = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "button_9patch.png";
 
-        internal class MyAnimatedVectorImageView : AnimatedVectorImageView
+        internal class AnimatedVectorImageViewImpl : AnimatedVectorImageView
         {
-            public MyAnimatedVectorImageView()
+            public AnimatedVectorImageViewImpl()
             { }
 
             public void OnDispose(DisposeTypes type)
             {
                 base.Dispose(type);
+            }
+
+            public void OnSetMinMaxFrameByMarker(string marker1, string marker2 = null)
+            {
+                base.SetMinMaxFrameByMarker(marker1, marker2);
             }
         }
 
@@ -86,7 +91,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"AnimatedVectorImageViewDispose START");
 
-            var testingTarget = new MyAnimatedVectorImageView()
+            var testingTarget = new AnimatedVectorImageViewImpl()
             { 
                 Size = new Size(200, 200),
                 BackgroundColor = Color.Cyan,
@@ -404,19 +409,20 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"AnimatedVectorImageViewSetMinMaxFrameByMarker START");
 
-            var testingTarget = new AnimatedVectorImageView();
+            var testingTarget = new AnimatedVectorImageViewImpl();
             Assert.IsNotNull(testingTarget, "Can't create success object AnimatedVectorImageView");
-            Assert.IsInstanceOf<AnimatedVectorImageView>(testingTarget, "Should be an instance of AnimatedVectorImageView type.");
+            Assert.IsInstanceOf<AnimatedVectorImageViewImpl>(testingTarget, "Should be an instance of AnimatedVectorImageViewImpl type.");
 
-            string maker = "startframe: 1; endframe: 10";
+            string marker1 = "startframe: 1; endframe: 10";
+            string marker2 = "startframe: 2; endframe: 20";
 
             try
             {
-                testingTarget.SetMinMaxFrameByMarker(maker, null);
+                testingTarget.SetMinMaxFrameByMarker(marker1, marker2);
             }
             catch (Exception e)
             {
-                tlog.Debug(tag, e.Message.ToString());
+                tlog.Error(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception: Failed!");
             }
 

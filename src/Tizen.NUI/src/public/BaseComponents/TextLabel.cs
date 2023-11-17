@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2023 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,13 +58,16 @@ namespace Tizen.NUI.BaseComponents
                     if (heightMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly)
                     {
                         // GetWidthForHeight is not implemented.
-                        totalWidth = Math.Min(Math.Max(naturalSize.Width, minSize.Width), (maxSize.Width < 0 ? Int32.MaxValue : maxSize.Width));
+                        float width = naturalSize != null ? naturalSize.Width : 0;
+                        totalWidth = Math.Min(Math.Max(width, minSize.Width), (maxSize.Width < 0 ? Int32.MaxValue : maxSize.Width));
                         widthMeasureSpec = new MeasureSpecification(new LayoutLength(totalWidth), MeasureSpecification.ModeType.Exactly);
                     }
                     else
                     {
-                        totalWidth = Math.Min(Math.Max(naturalSize.Width, minSize.Width), (maxSize.Width < 0 ? Int32.MaxValue : maxSize.Width));
-                        totalHeight = Math.Min(Math.Max(naturalSize.Height, minSize.Height), (maxSize.Height < 0 ? Int32.MaxValue : maxSize.Height));
+                        float width = naturalSize != null ? naturalSize.Width : 0;
+                        float height = naturalSize != null ? naturalSize.Height : 0;
+                        totalWidth = Math.Min(Math.Max(width, minSize.Width), (maxSize.Width < 0 ? Int32.MaxValue : maxSize.Width));
+                        totalHeight = Math.Min(Math.Max(height, minSize.Height), (maxSize.Height < 0 ? Int32.MaxValue : maxSize.Height));
 
                         heightMeasureSpec = new MeasureSpecification(new LayoutLength(totalHeight), MeasureSpecification.ModeType.Exactly);
                         widthMeasureSpec = new MeasureSpecification(new LayoutLength(totalWidth), MeasureSpecification.ModeType.Exactly);
@@ -81,24 +84,40 @@ namespace Tizen.NUI.BaseComponents
 
         static TextLabel() { }
 
+        static internal new void Preload()
+        {
+            // Do not call View.Preload(), since we already call it
+
+            Property.Preload();
+            // Do nothing. Just call for load static values.
+        }
+
+        private static SystemFontTypeChanged systemFontTypeChanged = new SystemFontTypeChanged();
+        private static SystemLocaleLanguageChanged systemLocaleLanguageChanged = new SystemLocaleLanguageChanged();
+        static private string defaultStyleName = "Tizen.NUI.BaseComponents.TextLabel";
+        static private string defaultFontFamily = "BreezeSans";
         private string textLabelSid = null;
-        private bool systemlangTextFlag = false;
         private TextLabelSelectorData selectorData;
+        private string fontFamily = defaultFontFamily;
         private float fontSizeScale = 1.0f;
-        private bool hasFontSizeChangedCallback = false;
+        private bool hasSystemLanguageChanged = false;
+        private bool hasSystemFontSizeChanged = false;
+        private bool hasSystemFontTypeChanged = false;
+
+        private Color internalTextColor;
 
         /// <summary>
         /// Creates the TextLabel control.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public TextLabel() : this(Interop.TextLabel.New(), true)
+        public TextLabel() : this(Interop.TextLabel.New(ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabel(TextLabelStyle viewStyle) : this(Interop.TextLabel.New(), true, viewStyle)
+        public TextLabel(TextLabelStyle viewStyle) : this(Interop.TextLabel.New(ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true, viewStyle)
         {
         }
 
@@ -108,7 +127,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="shown">false : Not displayed (hidden), true : displayed (shown)</param>
         /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabel(bool shown) : this(Interop.TextLabel.New(), true)
+        public TextLabel(bool shown) : this(Interop.TextLabel.New(ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             SetVisible(shown);
@@ -119,7 +138,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="text">The text to display</param>
         /// <since_tizen> 3 </since_tizen>
-        public TextLabel(string text) : this(Interop.TextLabel.New(text), true)
+        public TextLabel(string text) : this(Interop.TextLabel.New(text, ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -131,20 +150,10 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="shown">false : Not displayed (hidden), true : displayed (shown)</param>
         /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabel(string text, bool shown) : this(Interop.TextLabel.New(text), true)
+        public TextLabel(string text, bool shown) : this(Interop.TextLabel.New(text, ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             SetVisible(shown);
-        }
-
-        internal TextLabel(TextLabel handle, bool shown = true) : this(Interop.TextLabel.NewTextLabel(TextLabel.getCPtr(handle)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            if (!shown)
-            {
-                SetVisible(false);
-            }
         }
 
         internal TextLabel(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : base(cPtr, cMemoryOwn, viewStyle)
@@ -161,6 +170,11 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
+        }
+
+        private bool HasStyle()
+        {
+            return ThemeManager.GetStyle(this.GetType()) == null ? false : true;
         }
 
         /// <summary>
@@ -200,10 +214,10 @@ namespace Tizen.NUI.BaseComponents
                 if (translatableText != null)
                 {
                     Text = translatableText;
-                    if (systemlangTextFlag == false)
+                    if (hasSystemLanguageChanged == false)
                     {
-                        SystemSettings.LocaleLanguageChanged += SystemSettings_LocaleLanguageChanged;
-                        systemlangTextFlag = true;
+                        systemLocaleLanguageChanged.Add(SystemSettingsLocaleLanguageChanged);
+                        hasSystemLanguageChanged = true;
                     }
                 }
                 else
@@ -248,6 +262,51 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(FontFamilyProperty, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        private string InternalFontFamily
+        {
+            get
+            {
+                if (HasStyle())
+                    return fontFamily;
+                else
+                    return Object.InternalGetPropertyString(this.SwigCPtr, TextLabel.Property.FontFamily);
+            }
+            set
+            {
+                string newFontFamily;
+
+                if (string.Equals(fontFamily, value)) return;
+
+                fontFamily = value;
+                if (fontFamily == Tizen.NUI.FontFamily.UseSystemSetting)
+                {
+                    try
+                    {
+                        newFontFamily = SystemSettings.FontType;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("{0} Exception caught.", e);
+                        newFontFamily = defaultFontFamily;
+                    }
+                    AddSystemSettingsFontTypeChanged();
+                }
+                else
+                {
+                    newFontFamily = fontFamily;
+                    RemoveSystemSettingsFontTypeChanged();
+                }
+
+                SetInternalFontFamily(newFontFamily);
+            }
+        }
+
+        private void SetInternalFontFamily(string fontFamily)
+        {
+            Object.InternalSetPropertyString(this.SwigCPtr, TextLabel.Property.FontFamily, (string)fontFamily);
+            RequestLayout();
         }
 
         /// <summary>
@@ -1344,6 +1403,105 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Set TextFitArray to TextLabel. <br />
+        /// TextFitArray finds and applies the largest PointSize that fits among OptionList.
+        /// </summary>
+        /// <param name="textFitArray">The TextFitArray</param>
+        /// <remarks>
+        /// TextFitArray tries binary search by default. <br />
+        /// The precondition for TextFitArray to perform binary search is sorting in ascending order of MinLineSize. <br />
+        /// Because if MinLineSize is not sorted in ascending order, <br />
+        /// binary search cannot guarantee that it will always find the best value. <br />
+        /// In this case, the search sequentially starts from the largest PointSize. <br />
+        /// If TextFitArrayOption's MinLineSize is set to null or 0, <br />
+        /// TextFitArray is calculated without applying MinLineSize. <br />
+        /// If TextFitArray is enabled, TextLabel's MinLineSize property is ignored. <br />
+        /// See <see cref="Tizen.NUI.Text.TextFitArray"/> and <see cref="Tizen.NUI.Text.TextFitArrayOption"/>.
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetTextFitArray method. <br />
+        /// <code>
+        /// var textFitArray = new Tizen.NUI.Text.TextFitArray();
+        /// textFitArray.Enable = true;
+        /// textFitArray.OptionList = new List&lt;Tizen.NUI.Text.TextFitArrayOption&gt;()
+        /// {
+        ///     new Tizen.NUI.Text.TextFitArrayOption(12, 18),
+        ///     new Tizen.NUI.Text.TextFitArrayOption(24, 40),
+        ///     new Tizen.NUI.Text.TextFitArrayOption(28, 48),
+        ///     new Tizen.NUI.Text.TextFitArrayOption(32, 56),
+        ///     new Tizen.NUI.Text.TextFitArrayOption(50, 72),
+        /// };
+        /// label.SetTextFitArray(textFitArray);
+        /// </code>
+        /// <br />
+        /// The table below shows cases where binary search is possible and where it is not possible. <br />
+        /// <code>
+        /// [Binary search possible]
+        /// |            | List index  |  0 |  1 |  2 |  3 |
+        /// | OptionList | PointSize   | 24 | 28 | 32 | 48 |
+        /// |            | MinLineSize | 40 | 48 | 48 | 62 | &lt;&lt; MinLineSize sorted in ascending order
+        ///                                    ^    ^
+        ///                                    same values ​are not a problem
+        ///
+        /// [Binary search not possible]
+        /// |            | List index  |  0 |  1 |  2 |  3 |
+        /// | OptionList | PointSize   | 24 | 28 | 32 | 48 |
+        /// |            | MinLineSize | 40 | 48 | 38 | 62 | &lt;&lt; MinLineSize is not sorted in ascending order
+        ///                                         ^
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetTextFitArray(TextFitArray textFitArray)
+        {
+            bool enable = textFitArray.Enable;
+            int optionListSize = textFitArray.OptionList?.Count ?? 0;
+
+            float[] pointSizeArray = new float[optionListSize];
+            float[] minLineSizeArray = new float[optionListSize];
+
+            for (int i = 0 ; i < optionListSize ; i ++)
+            {
+                TextFitArrayOption option = textFitArray.OptionList[i];
+                pointSizeArray[i] = option.PointSize;
+                minLineSizeArray[i] = option.MinLineSize ?? 0;
+            }
+
+            Interop.TextLabel.SetTextFitArray(SwigCPtr, enable, (uint)optionListSize, pointSizeArray, minLineSizeArray);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Get TextFitArray from TextLabel.
+        /// </summary>
+        /// <returns>The TextFitArray</returns>
+        /// <remarks>
+        /// See <see cref="Tizen.NUI.Text.TextFitArray"/> and <see cref="Tizen.NUI.Text.TextFitArrayOption"/>.
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the GetTextFitArray method. <br />
+        /// <code>
+        /// Tizen.NUI.Text.TextFitArray textFitArray = label.GetTextFitArray();
+        /// bool enable = textFitArray.Enable;
+        /// var optionList = textFitArray.OptionList;
+        /// foreach(Tizen.NUI.Text.TextFitArrayOption option in optionList)
+        /// {
+        ///     float pointSize = option.PointSize;
+        ///     float minLinesize = option.MinLineSize;
+        /// }
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextFitArray GetTextFitArray()
+        {
+            using PropertyMap textFitArrayMap = new PropertyMap(Interop.TextLabel.GetTextFitArray(SwigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            TextFitArray textFitArray;
+            textFitArray = TextUtils.GetMapToTextFitArray(textFitArrayMap);
+            return textFitArray;
+        }
+
+        /// <summary>
         /// The MinLineSize property.<br />
         /// The height of the line in points. <br />
         /// If the font size is larger than the line size, it works with the font size. <br />
@@ -1395,6 +1553,19 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (float)GetValue(FontSizeScaleProperty);
+            }
+            set
+            {
+                SetValue(FontSizeScaleProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private float InternalFontSizeScale
+        {
+            get
+            {
                 return fontSizeScale;
             }
             set
@@ -1418,17 +1589,23 @@ namespace Tizen.NUI.BaseComponents
                         systemSettingsFontSize = SystemSettingsFontSize.Normal;
                     }
                     newFontSizeScale = TextUtils.GetFontSizeScale(systemSettingsFontSize);
-                    addFontSizeChangedCallback();
+                    AddSystemSettingsFontSizeChanged();
                 }
                 else
                 {
                     newFontSizeScale = fontSizeScale;
-                    removeFontSizeChangedCallback();
+                    RemoveSystemSettingsFontSizeChanged();
                 }
 
-                SetValue(FontSizeScaleProperty, newFontSizeScale);
-                NotifyPropertyChanged();
+                SetInternalFontSizeScale(newFontSizeScale);
             }
+        }
+
+        private void SetInternalFontSizeScale(float fontSizeScale)
+        {
+
+            Object.InternalSetPropertyFloat(this.SwigCPtr, TextLabel.Property.FontSizeScale, (float)fontSizeScale);
+            RequestLayout();
         }
 
         /// <summary>
@@ -1484,12 +1661,15 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            if (systemlangTextFlag)
+            internalTextColor?.Dispose();
+
+            if (hasSystemLanguageChanged)
             {
-                SystemSettings.LocaleLanguageChanged -= SystemSettings_LocaleLanguageChanged;
+                systemLocaleLanguageChanged.Remove(SystemSettingsLocaleLanguageChanged);
             }
 
-            removeFontSizeChangedCallback();
+            RemoveSystemSettingsFontTypeChanged();
+            RemoveSystemSettingsFontSizeChanged();
 
             if (type == DisposeTypes.Explicit)
             {
@@ -1539,7 +1719,7 @@ namespace Tizen.NUI.BaseComponents
             base.OnBindingContextChanged();
         }
 
-        private void SystemSettings_LocaleLanguageChanged(object sender, LocaleLanguageChangedEventArgs e)
+        private void SystemSettingsLocaleLanguageChanged(object sender, LocaleLanguageChangedEventArgs e)
         {
             Text = NUIApplication.MultilingualResourceManager?.GetString(textLabelSid, new CultureInfo(e.Value.Replace("_", "-")));
         }
@@ -1547,39 +1727,78 @@ namespace Tizen.NUI.BaseComponents
         private void SystemSettingsFontSizeChanged(object sender, FontSizeChangedEventArgs e)
         {
             float newFontSizeScale = TextUtils.GetFontSizeScale(e.Value);
-            SetValue(FontSizeScaleProperty, newFontSizeScale);
+            SetInternalFontSizeScale(newFontSizeScale);
         }
 
-        private void addFontSizeChangedCallback()
+        private void AddSystemSettingsFontSizeChanged()
         {
-            if (hasFontSizeChangedCallback != true)
+            if (hasSystemFontSizeChanged != true)
             {
                 try
                 {
-                    SystemSettings.FontSizeChanged += SystemSettingsFontSizeChanged;
-                    hasFontSizeChangedCallback = true;
+                    SystemFontSizeChangedManager.Add(SystemSettingsFontSizeChanged);
+                    hasSystemFontSizeChanged = true;
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine("{0} Exception caught.", e);
-                    hasFontSizeChangedCallback = false;
+                    hasSystemFontSizeChanged = false;
                 }
             }
         }
 
-        private void removeFontSizeChangedCallback()
+        private void RemoveSystemSettingsFontSizeChanged()
         {
-            if (hasFontSizeChangedCallback == true)
+            if (hasSystemFontSizeChanged == true)
             {
                 try
                 {
-                    SystemSettings.FontSizeChanged -= SystemSettingsFontSizeChanged;
-                    hasFontSizeChangedCallback = false;
+                    SystemFontSizeChangedManager.Remove(SystemSettingsFontSizeChanged);
+                    hasSystemFontSizeChanged = false;
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine("{0} Exception caught.", e);
-                    hasFontSizeChangedCallback = true;
+                    hasSystemFontSizeChanged = true;
+                }
+            }
+        }
+
+        private void SystemSettingsFontTypeChanged(object sender, FontTypeChangedEventArgs e)
+        {
+            SetInternalFontFamily(e.Value);
+        }
+
+        private void AddSystemSettingsFontTypeChanged()
+        {
+            if (HasStyle() && !hasSystemFontTypeChanged)
+            {
+                try
+                {
+                    systemFontTypeChanged.Add(SystemSettingsFontTypeChanged);
+                    hasSystemFontTypeChanged = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0} Exception caught.", e);
+                    hasSystemFontTypeChanged = false;
+                }
+            }
+        }
+        
+        private void RemoveSystemSettingsFontTypeChanged()
+        {
+            if (hasSystemFontTypeChanged)
+            {
+                try
+                {
+                    systemFontTypeChanged.Remove(SystemSettingsFontTypeChanged);
+                    hasSystemFontTypeChanged = false;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0} Exception caught.", e);
+                    hasSystemFontTypeChanged = true;
                 }
             }
         }
@@ -1626,6 +1845,11 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int EllipsisPosition = Interop.TextLabel.EllipsisPositionGet();
             internal static readonly int Strikethrough = Interop.TextLabel.StrikethroughGet();
             internal static readonly int CharacterSpacing = Interop.TextLabel.CharacterSpacingGet();
+
+            internal static void Preload()
+            {
+                // Do nothing. Just call for load static values.
+            }
         }
 
         private void OnShadowColorChanged(float x, float y, float z, float w)

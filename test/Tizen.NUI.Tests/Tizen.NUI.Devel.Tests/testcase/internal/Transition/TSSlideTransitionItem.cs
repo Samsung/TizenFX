@@ -59,5 +59,38 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"SlideTransitionItemConstructor END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("SlideTransitionItem Assign.")]
+        [Property("SPEC", "Tizen.NUI.SlideTransitionItem.Assign M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void SlideTransitionItemAssign()
+        {
+            tlog.Debug(tag, $"SlideTransitionItemAssign START");
+
+            using (View view = new View())
+            {
+                var testingTarget = new SlideTransitionItem(view.SwigCPtr.Handle, false);
+                Assert.IsNotNull(testingTarget, "Should be not null!");
+                Assert.IsInstanceOf<SlideTransitionItem>(testingTarget, "Should be an Instance of SlideTransitionItem!");
+
+                try
+                {
+                    testingTarget.Assign(testingTarget);
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception: Failed!");
+                }
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"SlideTransitionItemAssign END (OK)");
+        }
     }
 }

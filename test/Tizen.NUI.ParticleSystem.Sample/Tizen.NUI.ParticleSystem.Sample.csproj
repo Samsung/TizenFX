@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+        <ProjectReference Include="../../src/Tizen/Tizen.csproj" />
+        <ProjectReference Include="../../src/Tizen.NUI/Tizen.NUI.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+      <None Update="res\image\*.png">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+  </ItemGroup>  
+  <PropertyGroup>
+        <NeedInjection>True</NeedInjection>
+  </PropertyGroup>
+</Project>

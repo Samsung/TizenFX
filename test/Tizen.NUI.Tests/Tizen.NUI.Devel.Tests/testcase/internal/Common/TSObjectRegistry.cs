@@ -13,7 +13,6 @@ namespace Tizen.NUI.Devel.Tests
     public class InternalObjectRegistryTest
     {
         private const string tag = "NUITEST";
-        private ObjectRegistry registry = null;
 
         [SetUp]
         public void Init()

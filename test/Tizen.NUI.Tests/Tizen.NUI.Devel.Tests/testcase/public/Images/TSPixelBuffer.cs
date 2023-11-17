@@ -278,6 +278,28 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"PixelBufferRotate END (OK)");
         }
+        
+        [Test]
+        [Category("P1")]
+        [Description("PixelBuffer GetBrightness.")]
+        [Property("SPEC", "Tizen.NUI.PixelBuffer.GetBrightness M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void PixelBufferGetBrightness()
+        {
+            tlog.Debug(tag, $"PixelBufferGetBrightness START");
+ 
+            var testingTarget = new PixelBuffer(10, 5, PixelFormat.BGR8888);
+            Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
+            Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should be an instance of PixelData type.");
+
+            var result = testingTarget.GetBrightness();
+            tlog.Debug(tag, "GetBrightness : " + result);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"PixelBufferGetBrightness END (OK)");
+        }
 
         [Test]
         [Category("P1")]
@@ -352,7 +374,8 @@ namespace Tizen.NUI.Devel.Tests
             }
             catch (Exception e)
             {
-                Assert.Fail("Fail!");
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
             testingTarget.Dispose();
@@ -383,7 +406,8 @@ namespace Tizen.NUI.Devel.Tests
             }
             catch (Exception e)
             {
-                Assert.Fail("Fail!");
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
             testingTarget.Dispose();
@@ -414,7 +438,8 @@ namespace Tizen.NUI.Devel.Tests
             }
             catch (Exception e)
             {
-                Assert.Fail("Fail!");
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
             testingTarget.Dispose();
@@ -445,7 +470,8 @@ namespace Tizen.NUI.Devel.Tests
             }
             catch (Exception e)
             {
-                Assert.Fail("Fail!");
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
             testingTarget.Dispose();

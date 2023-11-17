@@ -202,9 +202,9 @@ namespace Tizen.NUI.Xaml
 
                 Values[node] = value;
             }
-
-            if (value is BindableObject)
-                NameScope.SetNameScope(value as BindableObject, node.Namescope);
+            var bindableObject = value as BindableObject;
+            if (bindableObject != null)
+                NameScope.SetNameScope(bindableObject, node.Namescope);
         }
 
         public void Visit(RootNode node, INode parentNode)

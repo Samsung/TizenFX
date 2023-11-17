@@ -92,13 +92,15 @@
 
     <l:UIElement>
         <x:Arguments>
-            <l:UIElement-TestNestType />
+            <l:UIElement-TestNestType>
+            </l:UIElement-TestNestType>
         </x:Arguments>
     </l:UIElement>
 
     <l:UIElement>
         <x:Arguments>
-            <l:UIElement />
+            <l:UIElement>
+            </l:UIElement>
         </x:Arguments>
     </l:UIElement>
 

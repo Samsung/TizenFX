@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2023 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,10 +15,6 @@
  *
  */
 
-// TODO : borderline, blur type need to solve partial update issue.
-// Until that issue exist, just block it.
-// #define ALLOW_BORDER_AND_BLUR
-
 using System;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
@@ -27,22 +23,25 @@ using Tizen.NUI.Constants;
 
 class PerformanceTestExample : NUIApplication
 {
-    const uint ROWS_COUNT = 32;
-    const uint COLUMNS_COUNT = 32;
+    const uint ROWS_COUNT = 40;
+    const uint COLUMNS_COUNT = 40;
     const uint TOTAL_COLUMNS_COUNT = 80;
     const uint DURATION_PER_COLUMNS = 50; // miliseconds
-    const float VIEW_MARGIN_RATE = 0.1f;
-    enum ViewTestType{
+    // Increase animation time cause OnTick time can be delayed.
+    const uint DURATION_OF_ANIMATION = (DURATION_PER_COLUMNS * (COLUMNS_COUNT * 4 / 3)); // miliseconds.
+    
+
+    const float VIEW_MARGIN_RATE = 0.2f;
+    enum ViewTestType
+    {
         TEST_TYPE_COLOR = 0,            ///< Test with simple color
         TEST_TYPE_IMAGE,                ///< Test with simple image
         TEST_TYPE_TEXT,                 ///< Test with simple text label
         TEST_TYPE_ROUNDED_COLOR,        ///< Test with rounded color
-#if ALLOW_BORDER_AND_BLUR
         TEST_TYPE_BORDER_COLOR,         ///< Test with borderline color
         TEST_TYPE_ROUNDED_BORDER_COLOR, ///< Test with rounded borderline color
         TEST_TYPE_BLUR_COLOR,           ///< Test with blur color
         TEST_TYPE_ROUNDED_BLUR_COLOR,   ///< Test with blur color
-#endif
         TEST_TYPE_MAX,
     };
 
@@ -54,71 +53,18 @@ class PerformanceTestExample : NUIApplication
             case ViewTestType.TEST_TYPE_IMAGE:               return "IMAGE";
             case ViewTestType.TEST_TYPE_TEXT:                return "TEXT";
             case ViewTestType.TEST_TYPE_ROUNDED_COLOR:       return "ROUNDED COLOR";
-        #if ALLOW_BORDER_AND_BLUR
             case ViewTestType.TEST_TYPE_BORDER_COLOR:        return "BORDER COLOR";
             case ViewTestType.TEST_TYPE_ROUNDED_BORDER_COLOR:return "ROUNDED BORDER COLOR";
             case ViewTestType.TEST_TYPE_BLUR_COLOR:          return "BLUR COLOR";
             case ViewTestType.TEST_TYPE_ROUNDED_BLUR_COLOR:  return "ROUNDED BLUR COLOR";
-        #endif
             default:                                         return "UNKNOWN";
         }
     }
 
     static string IMAGE_DIR = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "image/";
-    readonly static string[] IMAGE_PATH = {
-    IMAGE_DIR + "gallery-medium-1.jpg",
-    IMAGE_DIR + "gallery-medium-2.jpg",
-    IMAGE_DIR + "gallery-medium-3.jpg",
-    IMAGE_DIR + "gallery-medium-4.jpg",
-    IMAGE_DIR + "gallery-medium-5.jpg",
-    IMAGE_DIR + "gallery-medium-6.jpg",
-    IMAGE_DIR + "gallery-medium-7.jpg",
-    IMAGE_DIR + "gallery-medium-8.jpg",
-    IMAGE_DIR + "gallery-medium-9.jpg",
-    IMAGE_DIR + "gallery-medium-10.jpg",
-    IMAGE_DIR + "gallery-medium-11.jpg",
-    IMAGE_DIR + "gallery-medium-12.jpg",
-    IMAGE_DIR + "gallery-medium-13.jpg",
-    IMAGE_DIR + "gallery-medium-14.jpg",
-    IMAGE_DIR + "gallery-medium-15.jpg",
-    IMAGE_DIR + "gallery-medium-16.jpg",
-    IMAGE_DIR + "gallery-medium-17.jpg",
-    IMAGE_DIR + "gallery-medium-18.jpg",
-    IMAGE_DIR + "gallery-medium-19.jpg",
-    IMAGE_DIR + "gallery-medium-20.jpg",
-    IMAGE_DIR + "gallery-medium-21.jpg",
-    IMAGE_DIR + "gallery-medium-22.jpg",
-    IMAGE_DIR + "gallery-medium-23.jpg",
-    IMAGE_DIR + "gallery-medium-24.jpg",
-    IMAGE_DIR + "gallery-medium-25.jpg",
-    IMAGE_DIR + "gallery-medium-26.jpg",
-    IMAGE_DIR + "gallery-medium-27.jpg",
-    IMAGE_DIR + "gallery-medium-28.jpg",
-    IMAGE_DIR + "gallery-medium-29.jpg",
-    IMAGE_DIR + "gallery-medium-30.jpg",
-    IMAGE_DIR + "gallery-medium-31.jpg",
-    IMAGE_DIR + "gallery-medium-32.jpg",
-    IMAGE_DIR + "gallery-medium-33.jpg",
-    IMAGE_DIR + "gallery-medium-34.jpg",
-    IMAGE_DIR + "gallery-medium-35.jpg",
-    IMAGE_DIR + "gallery-medium-36.jpg",
-    IMAGE_DIR + "gallery-medium-37.jpg",
-    IMAGE_DIR + "gallery-medium-38.jpg",
-    IMAGE_DIR + "gallery-medium-39.jpg",
-    IMAGE_DIR + "gallery-medium-40.jpg",
-    IMAGE_DIR + "gallery-medium-41.jpg",
-    IMAGE_DIR + "gallery-medium-42.jpg",
-    IMAGE_DIR + "gallery-medium-43.jpg",
-    IMAGE_DIR + "gallery-medium-44.jpg",
-    IMAGE_DIR + "gallery-medium-45.jpg",
-    IMAGE_DIR + "gallery-medium-46.jpg",
-    IMAGE_DIR + "gallery-medium-47.jpg",
-    IMAGE_DIR + "gallery-medium-48.jpg",
-    IMAGE_DIR + "gallery-medium-49.jpg",
-    IMAGE_DIR + "gallery-medium-50.jpg",
-    IMAGE_DIR + "gallery-medium-51.jpg",
-    IMAGE_DIR + "gallery-medium-52.jpg",
-    IMAGE_DIR + "gallery-medium-53.jpg",
+    readonly static string[] IMAGE_PATH = 
+    {
+        IMAGE_DIR + "gallery-small-1.jpg",
     };
 
     class Statistic
@@ -153,7 +99,7 @@ class PerformanceTestExample : NUIApplication
             if(vcnt == 0)return 0.0;
             v.Sort();
             double trimVsum = 0;
-            int removedCnt = (int)(vcnt * trimRate * 0.5);
+            int removedCnt = (int)(vcnt * trimRate * 0.5); // floor
             int trimVcnt = vcnt - removedCnt * 2;
             if(trimVcnt == 0)
             {
@@ -175,17 +121,20 @@ class PerformanceTestExample : NUIApplication
     ViewTestType mTestType = ViewTestType.TEST_TYPE_COLOR;
 
     // To keep reference count.
-    global::System.Collections.Generic.LinkedList<View> mViewList;
+    global::System.Collections.Generic.LinkedList<View> mCreatingControlList;
+    global::System.Collections.Generic.LinkedList<View> mRemovingControlList;
     global::System.Collections.Generic.LinkedList<Timer> mTimerList;
-    global::System.Collections.Generic.LinkedList<Animation> mAnimationList;
+    global::System.Collections.Generic.LinkedList<Animation> mCreatingAnimationList;
+    global::System.Collections.Generic.LinkedList<Animation> mRemovingAnimationList;
 
     uint mColumnsCount = ROWS_COUNT;
     uint mRowsCount = COLUMNS_COUNT;
     uint mTotalColumnsCount = TOTAL_COLUMNS_COUNT;
     uint mDurationPerColumns = DURATION_PER_COLUMNS; // miliseconds
-
-    uint tickCount;
-    uint deleteCount;
+    
+    uint mCreateCount = 0u;
+    uint mDeleteCount = 0u;
+    uint mImageCount  = 0u;
 
     DateTime appStartTime;
     DateTime appEndTime;
@@ -193,9 +142,11 @@ class PerformanceTestExample : NUIApplication
     {
         appStartTime = DateTime.Now;
 
-        mViewList  = new global::System.Collections.Generic.LinkedList<View>();
+        mCreatingControlList  = new global::System.Collections.Generic.LinkedList<View>();
+        mRemovingControlList  = new global::System.Collections.Generic.LinkedList<View>();
         mTimerList = new global::System.Collections.Generic.LinkedList<Timer>();
-        mAnimationList = new global::System.Collections.Generic.LinkedList<Animation>();
+        mCreatingAnimationList = new global::System.Collections.Generic.LinkedList<Animation>();
+        mRemovingAnimationList = new global::System.Collections.Generic.LinkedList<Animation>();
 
         mWindow = Window.Instance;
         mWindow.BackgroundColor = Color.White;
@@ -207,8 +158,7 @@ class PerformanceTestExample : NUIApplication
         timer.Tick += OnTick;
         mTimerList.AddLast(timer);
 
-        tickCount = 0;
-        deleteCount = 0;
+        mDeleteCount = 0;
 
         mCreationStatistic = new Statistic();
 
@@ -218,8 +168,8 @@ class PerformanceTestExample : NUIApplication
     }
     bool OnTick(object o, EventArgs e)
     {
-        tickCount++;
-        if(tickCount < mTotalColumnsCount * (int)ViewTestType.TEST_TYPE_MAX)
+        CreateColumnView();
+        if(mCreateCount < mColumnsCount)
         {
             // Start next phase.
             Timer timer = new Timer(mDurationPerColumns);
@@ -228,6 +178,10 @@ class PerformanceTestExample : NUIApplication
 
             timer.Start();
         }
+        return false;
+    }
+    void CreateColumnView()
+    {
         DateTime startTime;
         DateTime endTime;
 
@@ -237,7 +191,11 @@ class PerformanceTestExample : NUIApplication
         {
             BackgroundColor = Color.Blue,
             Size = new Size(mSize.X, mWindowSize.Y),
-            Position = new Position(mWindowSize.X, 0.0f),
+            Position = new Position(mSize.X * (mCreateCount % mColumnsCount), -mWindowSize.Y),
+
+            ParentOrigin = Position.ParentOriginTopLeft,
+            PivotPoint = Position.PivotPointTopLeft,
+            PositionUsesPivotPoint = true,
         };
 
         for(int i = 0; i < mRowsCount; ++i)
@@ -266,7 +224,6 @@ class PerformanceTestExample : NUIApplication
                     bgView = CreateRoundedColor();
                     break;
                 }
-#if ALLOW_BORDER_AND_BLUR
                 case ViewTestType.TEST_TYPE_BORDER_COLOR:
                 {
                     bgView = CreateBorderColor(Math.Min(mSize.X, mSize.Y) * VIEW_MARGIN_RATE);
@@ -287,7 +244,6 @@ class PerformanceTestExample : NUIApplication
                     bgView = CreateRoundedBlurColor(Math.Min(mSize.X, mSize.Y) * VIEW_MARGIN_RATE * 0.5f);
                     break;
                 }
-#endif
             }
             bgView.Size = new Size(mSize.X * (1.0f - VIEW_MARGIN_RATE), mSize.Y * (1.0f - VIEW_MARGIN_RATE));
             bgView.Position = new Position(mSize.X * VIEW_MARGIN_RATE * 0.5f, (mSize.Y * VIEW_MARGIN_RATE * 0.5f) + (mSize.Y * (float)i));
@@ -295,28 +251,28 @@ class PerformanceTestExample : NUIApplication
         }
 
         mWindow.Add(columnView);
-        mViewList.AddLast(columnView);
+        mCreatingControlList.AddLast(columnView);
 
-        // Add move animation
-        Animation animation = new Animation((int)(mDurationPerColumns * (mColumnsCount + 1)));
-        animation.AnimateTo(columnView, "PositionX", -mSize.X);
-        animation.Finished += OnAnimationFinished;
-        animation.Play();
+        // Add appearing animation
+        Animation appearingAnimation = new Animation((int)(DURATION_OF_ANIMATION));
+        appearingAnimation.AnimateTo(columnView, "PositionY", 0.0f);
+        appearingAnimation.Finished += OnAppearAnimationFinished;
+        appearingAnimation.Play();
 
-        mAnimationList.AddLast(animation);
+        mCreatingAnimationList.AddLast(appearingAnimation);
 
         endTime = DateTime.Now;
 
         mCreationStatistic.add((endTime - startTime).TotalMilliseconds);
 
-        if(tickCount % mTotalColumnsCount == 0)
+        mCreateCount++;
+
+        if(mCreateCount % mTotalColumnsCount == 0)
         {
             Tizen.Log.Error("NUI.PerfNew", $"Average of creation {mRowsCount} NUI({TestTypeString(mTestType)}) : {mCreationStatistic.getTrimedAverage()} ms\n");
             mCreationStatistic.clear();
             mTestType = (ViewTestType)(((int)(mTestType) + 1) % (int)(ViewTestType.TEST_TYPE_MAX));
         }
-
-        return false;
     }
 
     void OnKeyEvent(object source, Window.KeyEventArgs e)
@@ -339,27 +295,54 @@ class PerformanceTestExample : NUIApplication
         }
     }
 
-    void OnAnimationFinished(object o, EventArgs e)
+    void OnAppearAnimationFinished(object o, EventArgs e)
     {
-        // We can assume that front of mViewLIst must be deleted.
-        mViewList.First.Value.Unparent();
-        mViewList.First.Value.Dispose();
-        mViewList.RemoveFirst();
+        // We can assume that front of mControlList must be disappearing.
+        var currentControl = mCreatingControlList.First.Value;
+        mCreatingControlList.RemoveFirst();
 
         // Dereference timer safety
-        mTimerList.First.Value.Dispose();
-        mTimerList.RemoveFirst();
+        if(mTimerList.Count > 0)
+        {
+            mTimerList.First.Value.Dispose();
+            mTimerList.RemoveFirst();
+        }
 
         // Dereference animation safety
-        mAnimationList.RemoveFirst();
+        mCreatingAnimationList.RemoveFirst();
 
-        deleteCount++;
+        mRemovingControlList.AddLast(currentControl);
 
-        Animation me = o as Animation;
-        me.Dispose();
+        if(mCreateCount < mTotalColumnsCount * (int)(ViewTestType.TEST_TYPE_MAX))
+        {
+            CreateColumnView();
+        }
+
+        // Add disappearing animation
+        Animation disappearingAnimation = new Animation((int)(DURATION_OF_ANIMATION));
+        disappearingAnimation.AnimateTo(currentControl, "PositionY", (float)mWindowSize.Y);
+        disappearingAnimation.Finished += OnDisappearAnimationFinished;
+        disappearingAnimation.Play();
+
+        mRemovingAnimationList.AddLast(disappearingAnimation);
+    }
+    void OnDisappearAnimationFinished(object o, EventArgs e)
+    {
+        // We can assume that front of mControlList must be disappearing.
+        var currentControl = mRemovingControlList.First.Value;
+        mRemovingControlList.RemoveFirst();
+
+        // We can assume that front of mViewList must be deleted.
+        currentControl.Unparent();
+        currentControl.DisposeRecursively();
+
+        // Dereference animation safety
+        mRemovingAnimationList.RemoveFirst();
+
+        mDeleteCount++;
 
         // If all views are deleted, quit this application. byebye~
-        if(deleteCount == mTotalColumnsCount * (int)ViewTestType.TEST_TYPE_MAX)
+        if(mDeleteCount == mTotalColumnsCount * (int)ViewTestType.TEST_TYPE_MAX)
         {
             appEndTime = DateTime.Now;
             Tizen.Log.Error("NUI.PerfNew", $"Duration of all app running time : {((appEndTime - appStartTime)).TotalMilliseconds} ms\n");
@@ -371,61 +354,93 @@ class PerformanceTestExample : NUIApplication
 
     private View CreateColor()
     {
-        View bgView = new View(){
+        View bgView = new View()
+        {
             BackgroundColor = Color.Yellow,
+
+            ParentOrigin = Position.ParentOriginTopLeft,
+            PivotPoint = Position.PivotPointTopLeft,
+            PositionUsesPivotPoint = true,
         };
         return bgView;
     }
-    private int gImageCount = 0;
     private View CreateImage()
     {
-        ImageView bgView = new ImageView(){
-            BackgroundColor = Color.Yellow,
-            ResourceUrl = IMAGE_PATH[(gImageCount++) % (IMAGE_PATH.Length)],
+        ImageView bgView = new ImageView()
+        {
+            ResourceUrl = IMAGE_PATH[(mImageCount++) % (IMAGE_PATH.Length)],
+
+            ParentOrigin = Position.ParentOriginTopLeft,
+            PivotPoint = Position.PivotPointTopLeft,
+            PositionUsesPivotPoint = true,
         };
         return bgView;
     }
     private View CreateTextLabel()
     {
-        TextLabel bgView = new TextLabel(){
+        TextLabel bgView = new TextLabel()
+        {
             Text = "Hello, World!",
+
+            ParentOrigin = Position.ParentOriginTopLeft,
+            PivotPoint = Position.PivotPointTopLeft,
+            PositionUsesPivotPoint = true,
         };
         return bgView;
     }
     private View CreateRoundedColor()
     {
-        View bgView = new View(){
+        View bgView = new View()
+        {
             BackgroundColor = Color.Yellow,
             CornerRadius = 0.5f,
             CornerRadiusPolicy = VisualTransformPolicyType.Relative,
+
+            ParentOrigin = Position.ParentOriginTopLeft,
+            PivotPoint = Position.PivotPointTopLeft,
+            PositionUsesPivotPoint = true,
         };
         return bgView;
     }
 
-#if ALLOW_BORDER_AND_BLUR
     private View CreateBorderColor(float requiredBorderlineWidth)
     {
-        View bgView = new View(){
+        View bgView = new View()
+        {
             BackgroundColor = Color.Yellow,
             BorderlineColor = Color.Red,
             BorderlineWidth = requiredBorderlineWidth,
+
+            ParentOrigin = Position.ParentOriginTopLeft,
+            PivotPoint = Position.PivotPointTopLeft,
+            PositionUsesPivotPoint = true,
         };
         return bgView;
     }
     private View CreateRoundedBorderColor(float requiredBorderlineWidth)
     {
-        View bgView = new View(){
+        View bgView = new View()
+        {
             BackgroundColor = Color.Yellow,
             CornerRadius = 0.5f,
             CornerRadiusPolicy = VisualTransformPolicyType.Relative,
             BorderlineColor = Color.Red,
             BorderlineWidth = requiredBorderlineWidth,
+
+            ParentOrigin = Position.ParentOriginTopLeft,
+            PivotPoint = Position.PivotPointTopLeft,
+            PositionUsesPivotPoint = true,
         };
         return bgView;
     }
     private View CreateBlurColor(float requiredBlurRadius)
     {
-        View bgView = new View();
+        View bgView = new View()
+        {
+            ParentOrigin = Position.ParentOriginTopLeft,
+            PivotPoint = Position.PivotPointTopLeft,
+            PositionUsesPivotPoint = true,
+        };
 
         using(PropertyMap map = new PropertyMap())
         {
@@ -440,7 +455,12 @@ class PerformanceTestExample : NUIApplication
     }
     private View CreateRoundedBlurColor(float requiredBlurRadius)
     {
-        View bgView = new View();
+        View bgView = new View()
+        {
+            ParentOrigin = Position.ParentOriginTopLeft,
+            PivotPoint = Position.PivotPointTopLeft,
+            PositionUsesPivotPoint = true,
+        };;
 
         using(PropertyMap map = new PropertyMap())
         {
@@ -455,13 +475,13 @@ class PerformanceTestExample : NUIApplication
 
         return bgView;
     }
-#endif
 
     public void Activate()
     {
         CreateScene();
     }
-    public void FullGC(){
+    public void FullGC()
+    {
         global::System.GC.Collect();
         global::System.GC.WaitForPendingFinalizers();
         global::System.GC.Collect();
@@ -471,8 +491,25 @@ class PerformanceTestExample : NUIApplication
     {
         DestroyScene();
     }
+
+    private void CleanList<T>(ref global::System.Collections.Generic.LinkedList<T> list) where T : BaseHandle
+    {
+        while(list.Count > 0)
+        {
+            list.First.Value.Dispose();
+            list.RemoveFirst();
+        }
+        list = null;
+    }
+
     private void DestroyScene()
     {
+        // Dereference safety
+        CleanList(ref mCreatingControlList);
+        CleanList(ref mRemovingControlList);
+        CleanList(ref mTimerList);
+        CleanList(ref mCreatingAnimationList);
+        CleanList(ref mRemovingAnimationList);
     }
 
     protected override void OnCreate()

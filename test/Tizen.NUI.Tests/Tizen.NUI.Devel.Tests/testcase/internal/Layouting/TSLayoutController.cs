@@ -139,11 +139,51 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object LayoutController");
             Assert.IsInstanceOf<LayoutController>(testingTarget, "Should be an instance of LayoutController type.");
 
+            testingTarget.OverrideCoreAnimation = true;
+
             var result = testingTarget.GetCoreAnimation();
             tlog.Debug(tag, "Get core animation : " + result);
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"LayoutControllerGetCoreAnimation END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("LayoutController Process.")]
+        [Property("SPEC", "Tizen.NUI.LayoutController.Process M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void LayoutControllerProcess()
+        {
+            tlog.Debug(tag, $"LayoutControllerProcess START");
+
+            var testingTarget = new LayoutController(Window.Instance);
+            Assert.IsNotNull(testingTarget, "Can't create success object LayoutController");
+            Assert.IsInstanceOf<LayoutController>(testingTarget, "Should be an instance of LayoutController type.");
+
+            testingTarget.OverrideCoreAnimation = true;
+
+            using (Button btn = new Button() { Size = new Size(100, 200) })
+            {
+                Window.Instance.GetDefaultLayer().Add(btn);
+
+                try
+                {
+                    testingTarget.Process(btn, EventArgs.Empty);
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message);
+                    Assert.Fail("Caught Exception : Failed!");
+                }
+
+                Window.Instance.GetDefaultLayer().Remove(btn);
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"LayoutControllerProcess END (OK)");
         }
     }
 }

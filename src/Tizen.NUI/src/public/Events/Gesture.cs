@@ -32,12 +32,16 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="rhs">A reference to the copied handle</param>
         /// <since_tizen> 3 </since_tizen>
-        public Gesture(Gesture rhs) : this(Interop.Gesture.NewGesture(Gesture.getCPtr(rhs)), true)
+        public Gesture(Gesture rhs) : this(Interop.Gesture.NewGesture(Gesture.getCPtr(rhs)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Gesture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Gesture(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal Gesture(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
         }
 
@@ -108,6 +112,57 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// This is the value of which source the gesture was started with. (ex : mouse)
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum SourceType
+        {
+            /// <summary>
+            /// invalid data.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Invalid,
+            /// <summary>
+            /// Mouse.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Mouse,
+            /// <summary>
+            /// Touch.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Touch,
+        }
+
+        /// <summary>
+        /// This is the data of source type
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum SourceDataType
+        {
+            /// <summary>
+            /// invalid data.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Invalid = -1,
+            /// <summary>
+            /// Primary(Left) mouse button.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            MousePrimary = 1,
+            /// <summary>
+            /// Secondary(Right) mouse button.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            MouseSecondary = 3,
+            /// <summary>
+            /// Tertiary(Third) mouse button.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            MouseTertiary = 2,
+        }
+
+        /// <summary>
         /// The gesture type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -140,6 +195,32 @@ namespace Tizen.NUI
             get
             {
                 return time;
+            }
+        }
+
+        /// <summary>
+        /// This is the property of which source type the gesture (read-only).
+        /// If you started the gesture with the mouse, it will tell you what type of mouse it is.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Gesture.SourceType Source
+        {
+            get
+            {
+                return sourceType;
+            }
+        }
+
+        /// <summary>
+        /// This is a property of the source type data (read-only).
+        /// If you started the gesture with the mouse, it will tell you which mouse button you started the gesture with.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Gesture.SourceDataType SourceData
+        {
+            get
+            {
+                return sourceDataType;
             }
         }
 
@@ -188,6 +269,26 @@ namespace Tizen.NUI
             }
         }
 
+        private Gesture.SourceType sourceType
+        {
+            get
+            {
+                Gesture.SourceType ret = (Gesture.SourceType)Interop.Gesture.SourceTypeGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        private Gesture.SourceDataType sourceDataType
+        {
+            get
+            {
+                Gesture.SourceDataType ret = (Gesture.SourceDataType)Interop.Gesture.SourceDataGet(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
         internal static Gesture GetGestureFromPtr(global::System.IntPtr cPtr)
         {
             Gesture ret = new Gesture(cPtr, false);
@@ -202,4 +303,5 @@ namespace Tizen.NUI
             Interop.Gesture.DeleteGesture(swigCPtr);
         }
     }
+
 }

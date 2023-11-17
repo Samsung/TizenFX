@@ -60,7 +60,7 @@ namespace Tizen.NUI
         internal static Property GetPropertyFromString(Animatable handle, string stringProperty)
         {
             Property property = new Property(handle, LowerFirstLetter(stringProperty));
-            if (property.propertyIndex == Property.InvalidIndex)
+            if (property.PropertyIndex == Property.InvalidIndex)
             {
                 throw new System.ArgumentException("string property is invalid");
             }
@@ -71,25 +71,30 @@ namespace Tizen.NUI
         ///<summary>
         /// Returns a Property if stringProperty is a valid index
         ///</summary>
-        internal static SearchResult Search(View view, string stringProperty)
+        internal static SearchResult Search(Animatable animatable, string stringProperty)
         {
             var propertyName = LowerFirstLetter(stringProperty);
 
-            return SearchProperty(view, propertyName) ?? SearchVisualProperty(view, propertyName);
+            if(animatable is View)
+            {
+                View view = animatable as View;
+                return SearchProperty(view, propertyName) ?? SearchVisualProperty(view, propertyName);
+            }
+            return SearchProperty(animatable, propertyName);
         }
 
-        private static SearchResult SearchProperty(View view, string lowercasePropertyString)
+        private static SearchResult SearchProperty(Animatable animatable, string lowercasePropertyString)
         {
-            Property property = new Property(view, lowercasePropertyString);
+            Property property = new Property(animatable, lowercasePropertyString);
 
-            if (property.propertyIndex == Property.InvalidIndex)
+            if (property.PropertyIndex == Property.InvalidIndex)
             {
                 property.Dispose();
                 return null;
             }
 
             OOConverter converter = null;
-            if (view.GetPropertyType(property.propertyIndex).Equals(PropertyType.Float))
+            if (animatable.GetPropertyType(property.PropertyIndex).Equals(PropertyType.Float))
             {
                 converter = ObjectIntToFloat;
             }
@@ -113,7 +118,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             var property = new Property(propertyIntPtr, true);
-            if (property.propertyIndex == Property.InvalidIndex)
+            if (property.PropertyIndex == Property.InvalidIndex)
             {
                 property.Dispose();
                 return data.RelatedData == null ? null : GenerateVisualPropertySearchResult(view, data.RelatedData);
@@ -258,6 +263,28 @@ namespace Tizen.NUI
                 }
 
                 return PropertyValue.CreateFromObject(refined);
+            }
+
+
+            // Refine object as IntPtr of PropertyValue to optimize.
+            // Warning : This API don't automatically release memory.
+            internal global::System.IntPtr RefineValueIntPtr(object value)
+            {
+                Debug.Assert(Property != null && value != null);
+
+                var refined = value;
+
+                if (objectConverter != null)
+                {
+                    refined = objectConverter(value);
+                }
+
+                if (refined == null)
+                {
+                    return global::System.IntPtr.Zero;
+                }
+
+                return PropertyValue.CreateFromObjectIntPtr(refined);
             }
 
             internal KeyFrames RefineKeyFrames(KeyFrames keyFrames)

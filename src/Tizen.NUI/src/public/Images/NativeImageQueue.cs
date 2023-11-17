@@ -100,12 +100,15 @@ namespace Tizen.NUI
         /// <summary>
         /// Generate Url from native image queue.
         /// </summary>
+        /// <remarks>
+        /// This API should not be called at worker thread.
+        /// </remarks>
         /// <returns>The ImageUrl of NativeImageQueue.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageUrl GenerateUrl()
+        public override ImageUrl GenerateUrl()
         {
-            ImageUrl ret = new ImageUrl(Interop.NativeImageSource.GenerateUrl(this.SwigCPtr.Handle), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+            ImageUrl ret = new ImageUrl(Interop.NativeImageQueue.GenerateUrl(this.SwigCPtr.Handle), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

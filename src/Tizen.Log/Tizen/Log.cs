@@ -15,11 +15,139 @@
  */
 
 using System;
+using System.Text;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.ComponentModel;
 
 namespace Tizen
 {
+    internal static class LogPrinter
+    {
+        private static char[] sep = { '\\', '/' };
+        private static byte[] fmt1 = Encoding.UTF8.GetBytes("%s");
+        private static byte[] fmt2 = Encoding.UTF8.GetBytes("%s: %s(%d) > %s");
+
+        private static unsafe void _Print(Interop.Dlog.LogID log_id, Interop.Dlog.LogPriority priority, string tag, string message, string file, string func, int line)
+        {
+            if (tag == null)
+                tag = String.Empty;
+            if (message == null)
+                message = String.Empty;
+            if (file == null)
+                file = String.Empty;
+            if (func == null)
+                func = String.Empty;
+
+            int tagByteLength = Encoding.UTF8.GetMaxByteCount(tag.Length);
+            Span<byte> tagByte = tagByteLength < 1024 ? stackalloc byte[tagByteLength + 1] : new byte[tagByteLength + 1];
+
+            int messageByteLength = Encoding.UTF8.GetMaxByteCount(message.Length);
+            Span<byte> messageByte = messageByteLength < 1024 ? stackalloc byte[messageByteLength + 1] : new byte[messageByteLength + 1];
+
+            fixed (char* pTagChar = tag)
+            fixed (char* pMessageChar = message)
+            fixed (byte* pTagByte = &MemoryMarshal.GetReference(tagByte))
+            fixed (byte* pMessageByte = &MemoryMarshal.GetReference(messageByte))
+            fixed (byte* pFmt1Byte = fmt1)
+            fixed (byte* pFmt2Byte = fmt2)
+            {
+                int len = Encoding.UTF8.GetBytes(pTagChar, tag.Length, pTagByte, tagByteLength);
+                pTagByte[len] = 0;
+                len = Encoding.UTF8.GetBytes(pMessageChar, message.Length, pMessageByte, messageByteLength);
+                pMessageByte[len] = 0;
+
+                if (String.IsNullOrEmpty(file))
+                {
+                    if (log_id == Interop.Dlog.LogID.LOG_ID_INVALID)
+                        Interop.Dlog.Print(priority, pTagByte, pFmt1Byte, pMessageByte);
+                    else
+                        Interop.Dlog.InternalPrint(log_id, priority, pTagByte, pFmt1Byte, pMessageByte);
+                    return;
+                }
+
+                int index = file.LastIndexOfAny(sep) + 1;
+                int filenameLength = file.Length - index;
+
+                int filenameByteLength = Encoding.UTF8.GetMaxByteCount(filenameLength);
+                Span<byte> filenameByte = filenameByteLength < 1024 ? stackalloc byte[filenameByteLength + 1] : new byte[filenameByteLength + 1];
+
+                int funcByteLength = Encoding.UTF8.GetMaxByteCount(func.Length);
+                Span<byte> funcByte = funcByteLength < 1024 ? stackalloc byte[funcByteLength + 1] : new byte[funcByteLength + 1];
+
+                fixed (char* pFilenameChar = file)
+                fixed (char* pFuncChar = func)
+                fixed (byte* pFilenameByte = &MemoryMarshal.GetReference(filenameByte))
+                fixed (byte* pFuncByte = &MemoryMarshal.GetReference(funcByte))
+                {
+                    len = Encoding.UTF8.GetBytes(pFilenameChar + index, filenameLength, pFilenameByte, filenameByteLength);
+                    pFilenameByte[len] = 0;
+                    len = Encoding.UTF8.GetBytes(pFuncChar, func.Length, pFuncByte, funcByteLength);
+                    pFuncByte[len] = 0;
+
+                    if (log_id == Interop.Dlog.LogID.LOG_ID_INVALID)
+                        Interop.Dlog.Print(priority, pTagByte, pFmt2Byte, pFilenameByte, pFuncByte, line, pMessageByte);
+                    else
+                        Interop.Dlog.InternalPrint(log_id, priority, pTagByte, pFmt2Byte, pFilenameByte, pFuncByte, line, pMessageByte);
+                }
+            }
+        }
+
+        private static unsafe void _PrintFallback(Interop.Dlog.LogID log_id, Interop.Dlog.LogPriority priority, string tag, string message, string file, string func, int line)
+        {
+            fixed (byte* pTagByte = Encoding.UTF8.GetBytes(tag))
+            fixed (byte* pMessageByte = Encoding.UTF8.GetBytes(message))
+            fixed (byte* pFmt1Byte = fmt1)
+            fixed (byte* pFmt2Byte = fmt2)
+            {
+                if (String.IsNullOrEmpty(file))
+                {
+                    if (log_id == Interop.Dlog.LogID.LOG_ID_INVALID)
+                        Interop.Dlog.Print(priority, pTagByte, pFmt1Byte, pMessageByte);
+                    else
+                        Interop.Dlog.InternalPrint(log_id, priority, pTagByte, pFmt1Byte, pMessageByte);
+                    return;
+                }
+
+                int index = file.LastIndexOfAny(sep);
+                string filename = file.Substring(index + 1);
+
+                fixed (byte* pFilenameByte = Encoding.UTF8.GetBytes(filename))
+                fixed (byte* pFuncByte = Encoding.UTF8.GetBytes(func))
+                {
+                    if (log_id == Interop.Dlog.LogID.LOG_ID_INVALID)
+                        Interop.Dlog.Print(priority, pTagByte, pFmt2Byte, pFilenameByte, pFuncByte, line, pMessageByte);
+                    else
+                        Interop.Dlog.InternalPrint(log_id, priority, pTagByte, pFmt2Byte, pFilenameByte, pFuncByte, line, pMessageByte);
+                }
+            }
+        }
+
+        public static unsafe void Print(Interop.Dlog.LogPriority priority, string tag, string message, string file, string func, int line)
+        {
+            try
+            {
+                _Print(Interop.Dlog.LogID.LOG_ID_INVALID, priority, tag, message, file, func, line);
+            }
+            catch (StackOverflowException)
+            {
+                _PrintFallback(Interop.Dlog.LogID.LOG_ID_INVALID, priority, tag, message, file, func, line);
+            }
+        }
+
+        public static unsafe void Print(Interop.Dlog.LogID log_id, Interop.Dlog.LogPriority priority, string tag, string message, string file, string func, int line)
+        {
+            try
+            {
+                _Print(log_id, priority, tag, message, file, func, line);
+            }
+            catch (StackOverflowException)
+            {
+                _PrintFallback(log_id, priority, tag, message, file, func, line);
+            }
+        }
+    }
+
     /// <summary>
     /// Provides methods to print log messages to the Tizen logging system.
     /// Depending on products, some priorities (e.g., Vervose and Debug) can be disabled by default to prevent too many logs.
@@ -112,18 +240,9 @@ namespace Tizen
             Print(Interop.Dlog.LogPriority.DLOG_FATAL, tag, message, file, func, line);
         }
 
-        static void Print(Interop.Dlog.LogPriority priority, string tag, string message, string file, string func, int line)
+        static unsafe void Print(Interop.Dlog.LogPriority priority, string tag, string message, string file, string func, int line)
         {
-            if (String.IsNullOrEmpty(file))
-            {
-                Interop.Dlog.Print(priority, tag, "%s", message);
-            }
-            else
-            {
-                int index = file.LastIndexOfAny(sep);
-                string filename = file.Substring(index + 1);
-                Interop.Dlog.Print(priority, tag, "%s: %s(%d) > %s", filename, func, line, message);
-            }
+            LogPrinter.Print(priority, tag, message, file, func, line);
         }
     }
 
@@ -220,18 +339,9 @@ namespace Tizen
             Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_FATAL, tag, message, file, func, line);
         }
 
-        static void Print(Interop.Dlog.LogID log_id, Interop.Dlog.LogPriority priority, string tag, string message, string file, string func, int line)
+        static unsafe void Print(Interop.Dlog.LogID log_id, Interop.Dlog.LogPriority priority, string tag, string message, string file, string func, int line)
         {
-            if (String.IsNullOrEmpty(file))
-            {
-                Interop.Dlog.InternalPrint(log_id, priority, tag, "%s", message);
-            }
-            else
-            {
-                int index = file.LastIndexOfAny(sep);
-                string filename = file.Substring(index + 1);
-                Interop.Dlog.InternalPrint(log_id, priority, tag, "%s: %s(%d) > %s", filename, func, line, message);
-            }
+            LogPrinter.Print(log_id, priority, tag, message, file, func, line);
         }
     }
 
@@ -328,19 +438,10 @@ namespace Tizen
             Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_FATAL, tag, message, file, func, line);
         }
 
-        static void Print(Interop.Dlog.LogID log_id, Interop.Dlog.LogPriority priority, string tag, string message, string file, string func, int line)
+        static unsafe void Print(Interop.Dlog.LogID log_id, Interop.Dlog.LogPriority priority, string tag, string message, string file, string func, int line)
         {
 #if !DISABLE_SECURELOG
-            if (String.IsNullOrEmpty(file))
-            {
-                Interop.Dlog.InternalPrint(log_id, priority, tag, "[SECURE_LOG] %s", message);
-            }
-            else
-            {
-                int index = file.LastIndexOfAny(sep);
-                string filename = file.Substring(index + 1);
-                Interop.Dlog.InternalPrint(log_id, priority, tag, "%s: %s(%d) > %s", filename, func, line, message);
-            }
+            LogPrinter.Print(log_id, priority, tag, message, file, func, line);
 #endif
         }
     }

@@ -63,6 +63,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void LayerDownCast()
         {
             tlog.Debug(tag, $"LayerDownCast START");
@@ -388,6 +389,39 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"LayerBehavior END (OK)");
+        }
+		
+        [Test]
+        [Category("P1")]
+        [Description("Layer AddViewToLayerList.")]
+        [Property("SPEC", "Tizen.NUI.Layer.AddViewToLayerList M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void LayerAddViewToLayerList()
+        {
+            tlog.Debug(tag, $"LayerAddViewToLayerList START");
+
+            var testingTarget = new Layer();
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<Layer>(testingTarget, "Should return Layer instance.");
+
+            using (View view = new View())
+            {
+				try
+				{
+                    testingTarget.AddViewToLayerList(view);
+				    testingTarget.RemoveViewFromLayerList(view);
+				}
+				catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception: Failed!");
+                }
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"LayerAddViewToLayerList END (OK)");
         }
     }
 }

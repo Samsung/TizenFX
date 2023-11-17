@@ -175,7 +175,7 @@ namespace Tizen.NUI
 
             Geometry viewGeometry = new Geometry(startPosition + ((endPosition - startPosition - viewSize) * alignment), viewSize);
             Geometry spaceGeometry = new Geometry(startPosition, Math.Abs(endPosition - startPosition));
-            if (fill && spaceGeometry.Size > viewGeometry.Size)
+            if (fill)
             {
                 viewGeometry = spaceGeometry;
             }
