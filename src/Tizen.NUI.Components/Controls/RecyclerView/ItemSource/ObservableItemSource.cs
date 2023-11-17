@@ -187,7 +187,7 @@ namespace Tizen.NUI.Components
             startIndex = AdjustPositionForHeader(startIndex);
 
             // If we have a start index, we can be more clever about removing the item(s) (and get the nifty animations)
-            var count = args.OldItems.Count;
+            int count = args.OldItems?.Count ?? 0;
 
             if (count == 1)
             {
@@ -200,11 +200,18 @@ namespace Tizen.NUI.Components
 
         void Replace(NotifyCollectionChangedEventArgs args)
         {
+            var newItems = args.NewItems;
+            var oldItems = args.OldItems;
+            if (newItems == null || oldItems == null)
+            {
+                return;
+            }
             var startIndex = args.NewStartingIndex > -1 ? args.NewStartingIndex : IndexOf(args.NewItems[0]);
             startIndex = AdjustPositionForHeader(startIndex);
-            var newCount = args.NewItems.Count;
-
-            if (newCount == args.OldItems.Count)
+            
+            int newCount = newItems.Count;
+            int oldCount = oldItems.Count;
+            if (newCount == oldCount)
             {
                 // We are replacing one set of items with a set of equal size; we can do a simple item or range 
                 // notification to the adapter
