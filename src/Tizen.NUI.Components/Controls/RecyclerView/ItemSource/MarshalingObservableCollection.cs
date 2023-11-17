@@ -110,7 +110,7 @@ namespace Tizen.NUI.Components
 
         void Move(NotifyCollectionChangedEventArgs args)
         {
-            var count = args.OldItems.Count;
+            int count = args.OldItems?.Count ?? 0;
 
             for (int n = 0; n < count; n++)
             {
@@ -124,7 +124,8 @@ namespace Tizen.NUI.Components
 
         void Remove(NotifyCollectionChangedEventArgs args)
         {
-            var startIndex = args.OldStartingIndex + args.OldItems.Count - 1;
+            int count=args.OldItems?.Count ?? 0;
+            int startIndex = args.OldStartingIndex + count - 1;
             for (int n = startIndex; n >= args.OldStartingIndex; n--)
             {
                 RemoveAt(n);
