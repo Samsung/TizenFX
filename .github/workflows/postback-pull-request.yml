@@ -14,7 +14,7 @@ jobs:
     - name: Download Artifacts from Build
       uses: TizenAPI/tizenfx-build-actions/download-workflow-artifacts@master
       with:
-        token: ${{ secrets.TIZENAPI_GITHUB_TOKEN }}
+        token: ${{ secrets.TIZENAPI_GITHUB_TOKEN_FINEGRAINED }}
         run-id: ${{ github.event.workflow_run.id }}
         name: reports
         path: Artifacts
