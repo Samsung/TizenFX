@@ -46,8 +46,8 @@ namespace Tizen.NUI
         private const float DefaultHeight = 50;
         private const uint DefaultLineThickness = 5;
         private const uint DefaultTouchThickness = 0;
-        private static readonly Color DefaultBackgroundColor = new Color(1, 1, 1, 0.3f);
-        private static readonly Color DefaultClickedBackgroundColor = new Color(1, 1, 1, 0.4f);
+        private static readonly Color DefaultBackgroundColor = new Color(0.7f, 0.7f, 0.7f, 0.6f);
+        private static readonly Color DefaultClickedBackgroundColor = new Color(0.7f, 0.7f, 0.7f, 0.7f);
         private static readonly Size2D DefaultMinSize = new Size2D(100, 0);
         #endregion //Constant Fields
 
