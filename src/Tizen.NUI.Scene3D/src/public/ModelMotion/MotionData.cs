@@ -262,7 +262,28 @@ namespace Tizen.NUI.Scene3D
         /// <since_tizen> 11 </since_tizen>
         public void LoadMotionCaptureAnimation(string motionCaptureFilename, Vector3 scale = null, bool synchronousLoad = false)
         {
-            Interop.MotionData.LoadMotionCaptureAnimation(SwigCPtr, motionCaptureFilename, Vector3.getCPtr(scale), synchronousLoad);
+            Interop.MotionData.LoadMotionCaptureAnimation(SwigCPtr, motionCaptureFilename, false, Vector3.getCPtr(scale), synchronousLoad);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Load motion capture animation.
+        /// We support bvh format.
+        /// After load completes, <see cref="LoadCompleted"/> event will be invoked.
+        /// </summary>
+        /// <remarks>
+        /// Scale is additional scale factor of motion capture animation. It is possible that
+        /// Model's scale may not match with motion capture animation scale.
+        /// If scale is null, default value will be used: <cref name="Vector3.ONE"/>
+        /// </remarks>
+        /// <param name="motionCaptureFilename">Name of motion capture format file.</param>
+        /// <param name="useRootTranslationOnly">True to use only root translation with rotation animation.</param>
+        /// <param name="scale">Scale value of motion capture animation match with model.</param>
+        /// <param name="synchronousLoad">Load synchronously or not. Default is async load.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void LoadMotionCaptureAnimation(string motionCaptureFilename, bool useRootTranslationOnly, Vector3 scale = null, bool synchronousLoad = false)
+        {
+            Interop.MotionData.LoadMotionCaptureAnimation(SwigCPtr, motionCaptureFilename, useRootTranslationOnly, Vector3.getCPtr(scale), synchronousLoad);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -282,7 +303,28 @@ namespace Tizen.NUI.Scene3D
         /// <since_tizen> 11 </since_tizen>
         public void LoadMotionCaptureAnimationFromBuffer(string motionCaptureBuffer, Vector3 scale = null, bool synchronousLoad = false)
         {
-            Interop.MotionData.LoadMotionCaptureAnimationFromBuffer(SwigCPtr, motionCaptureBuffer, motionCaptureBuffer.Length, Vector3.getCPtr(scale), synchronousLoad);
+            Interop.MotionData.LoadMotionCaptureAnimationFromBuffer(SwigCPtr, motionCaptureBuffer, motionCaptureBuffer.Length, false, Vector3.getCPtr(scale), synchronousLoad);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Load motion capture animation from string.
+        /// We support bvh format.
+        /// After load completes, <see cref="LoadCompleted"/> event will be invoked.
+        /// </summary>
+        /// <remarks>
+        /// Scale is additional scale factor of motion capture animation. It is possible that
+        /// Model's scale may not match with motion capture animation scale.
+        /// If scale is null, default value will be used: <cref name="Vector3.ONE"/>
+        /// </remarks>
+        /// <param name="motionCaptureBuffer">Contents of motion capture format string.</param>
+        /// <param name="useRootTranslationOnly">True to use only root translation with rotation animation.</param>
+        /// <param name="scale">Scale value of motion capture animation match with model.</param>
+        /// <param name="synchronousLoad">Load synchronously or not. Default is async load.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void LoadMotionCaptureAnimationFromBuffer(string motionCaptureBuffer, bool useRootTranslationOnly, Vector3 scale = null, bool synchronousLoad = false)
+        {
+            Interop.MotionData.LoadMotionCaptureAnimationFromBuffer(SwigCPtr, motionCaptureBuffer, motionCaptureBuffer.Length, useRootTranslationOnly, Vector3.getCPtr(scale), synchronousLoad);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
