@@ -675,7 +675,7 @@ namespace Tizen.Multimedia.Remoting
             return trackId;
         }
 
-        uint IDisplayable<uint>.ApplyEcoreWindow(IntPtr windowHandle)
+        uint IDisplayable<uint>.ApplyEcoreWindow(IntPtr windowHandle, NUI.Rectangle rect)
         {
             NativeWebRTC.SetEcoreVideoLoopback(WebRtc.Handle, SourceId.Value, windowHandle, out uint trackId).
                 ThrowIfFailed("Failed to set ecore video loopback");
