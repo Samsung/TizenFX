@@ -39,7 +39,7 @@ namespace Tizen.Multimedia
     internal interface IDisplayable<TError>
     {
         TError ApplyEvasDisplay(DisplayType type, EvasObject evasObject);
-        TError ApplyEcoreWindow(IntPtr windowHandle);
+        TError ApplyEcoreWindow(IntPtr windowHandle, NUI.Rectangle rect);
     }
 
     internal interface IDisplaySetter
@@ -72,15 +72,17 @@ namespace Tizen.Multimedia
     internal class EcoreDisplaySetter : IDisplaySetter
     {
         private readonly IntPtr _windowHandle;
+        private readonly NUI.Rectangle _rect;
 
-        internal EcoreDisplaySetter(IntPtr windowHandle)
+        internal EcoreDisplaySetter(IntPtr windowHandle, NUI.Rectangle rect)
         {
             _windowHandle = windowHandle;
+            _rect = rect;
         }
 
         public TError SetDisplay<TError>(IDisplayable<TError> target)
         {
-            return target.ApplyEcoreWindow(_windowHandle);
+            return target.ApplyEcoreWindow(_windowHandle, _rect);
         }
     }
 
@@ -161,8 +163,7 @@ namespace Tizen.Multimedia
             {
                 throw new ArgumentNullException(nameof(window));
             }
-
-            _setter = new EcoreDisplaySetter(window.GetNativeWindowHandler());
+            _setter = new EcoreDisplaySetter(window.GetNativeWindowHandler(), window.WindowPositionSize);
 
             UiSync = uiSync;
         }
