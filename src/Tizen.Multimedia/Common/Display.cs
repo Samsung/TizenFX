@@ -39,7 +39,7 @@ namespace Tizen.Multimedia
     internal interface IDisplayable<TError>
     {
         TError ApplyEvasDisplay(DisplayType type, EvasObject evasObject);
-        TError ApplyEcoreWindow(IntPtr windowHandle, NUI.Rectangle rect);
+        TError ApplyEcoreWindow(IntPtr windowHandle, Rectangle rect, Rotation rotation);
     }
 
     internal interface IDisplaySetter
@@ -72,17 +72,19 @@ namespace Tizen.Multimedia
     internal class EcoreDisplaySetter : IDisplaySetter
     {
         private readonly IntPtr _windowHandle;
-        private readonly NUI.Rectangle _rect;
+        private readonly Rectangle _rect;
+        private readonly Rotation _rotation;
 
-        internal EcoreDisplaySetter(IntPtr windowHandle, NUI.Rectangle rect)
+        internal EcoreDisplaySetter(IntPtr windowHandle, Rectangle rect, Rotation rotation)
         {
             _windowHandle = windowHandle;
             _rect = rect;
+            _rotation = rotation;
         }
 
         public TError SetDisplay<TError>(IDisplayable<TError> target)
         {
-            return target.ApplyEcoreWindow(_windowHandle, _rect);
+            return target.ApplyEcoreWindow(_windowHandle, _rect, _rotation);
         }
     }
 
@@ -163,7 +165,11 @@ namespace Tizen.Multimedia
             {
                 throw new ArgumentNullException(nameof(window));
             }
-            _setter = new EcoreDisplaySetter(window.GetNativeWindowHandler(), window.WindowPositionSize);
+
+            var windowSize = new Rectangle(window.WindowPositionSize.X, window.WindowPositionSize.Y,
+                window.WindowPositionSize.Width, window.WindowPositionSize.Height);
+
+            _setter = new EcoreDisplaySetter(window.GetNativeWindowHandler(), windowSize, window.GetCurrentOrientation().ToMmRotation());
 
             UiSync = uiSync;
         }
@@ -193,6 +199,28 @@ namespace Tizen.Multimedia
         internal TError ApplyTo<TError>(IDisplayable<TError> target)
         {
             return _setter.SetDisplay(target);
+        }
+    }
+
+    internal static class WindowOrientationExtension
+    {
+        internal static Tizen.Multimedia.Rotation ToMmRotation(this NUI.Window.WindowOrientation rotation)
+        {
+            switch (rotation)
+            {
+                case NUI.Window.WindowOrientation.Portrait:
+                    return Tizen.Multimedia.Rotation.Rotate0;
+                case NUI.Window.WindowOrientation.Landscape:
+                    return Tizen.Multimedia.Rotation.Rotate90;
+                case NUI.Window.WindowOrientation.PortraitInverse:
+                    return Tizen.Multimedia.Rotation.Rotate180;
+                case NUI.Window.WindowOrientation.LandscapeInverse:
+                    return Tizen.Multimedia.Rotation.Rotate270;
+                default:
+                    break;
+            }
+
+            return Tizen.Multimedia.Rotation.Rotate90;
         }
     }
 }
