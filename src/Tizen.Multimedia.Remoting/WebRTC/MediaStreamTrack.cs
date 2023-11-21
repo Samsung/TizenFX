@@ -126,7 +126,7 @@ namespace Tizen.Multimedia.Remoting
                 type == DisplayType.Overlay ? WebRTCDisplayType.Overlay : WebRTCDisplayType.Evas, evasObject);
         }
 
-        WebRTCErrorCode IDisplayable<WebRTCErrorCode>.ApplyEcoreWindow(IntPtr windowHandle)
+        WebRTCErrorCode IDisplayable<WebRTCErrorCode>.ApplyEcoreWindow(IntPtr windowHandle, NUI.Rectangle rect)
         {
             return NativeWebRTC.SetEcoreDisplay(_webRtc.Handle, _trackId, windowHandle);
         }
