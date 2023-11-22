@@ -16,11 +16,11 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the x-coordinate of the window's position.
         /// </summary>
-        float PositionX { get; }
+        float X { get; }
         /// <summary>
         /// Gets the y-coordinate of the window's position.
         /// </summary>
-        float PositionY { get; }
+        float Y { get; }
 
         /// <summary>
         /// Gets the width of the window.

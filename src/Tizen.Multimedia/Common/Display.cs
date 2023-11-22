@@ -202,7 +202,7 @@ namespace Tizen.Multimedia
             }
 
             _setter = new EcoreDisplaySetter(window.WindowHandle,
-                new Rectangle((int)window.PositionX, (int)window.PositionY, (int)window.Width, (int)window.Height),
+                new Rectangle((int)window.X, (int)window.Y, (int)window.Width, (int)window.Height),
                 window.Rotation.ToMmRotation());
 
             UiSync = uiSync;
