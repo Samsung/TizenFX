@@ -702,6 +702,35 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Query whether the view is actually hittable.
+        /// This method checks whether the view is sensitive, has the visibility flag set to true and is not fully transparent.
+        /// </summary>
+        /// <returns>True if it can be hit.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsHittable()
+        {
+            bool ret = Interop.ActorInternal.IsHittable(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Query whether the application or derived view type requires touch events.
+        /// </summary>
+        /// <returns>True if touch events are required.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool GetTouchRequired()
+        {
+            bool ret = Interop.ActorInternal.GetTouchRequired(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetColorMode(ColorMode colorMode)
