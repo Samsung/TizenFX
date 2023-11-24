@@ -45,10 +45,10 @@ namespace Tizen.NUI.Scene3D
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_Node_AddModelPrimitive")]
             public static extern void AddModelPrimitive(global::System.Runtime.InteropServices.HandleRef model, global::System.Runtime.InteropServices.HandleRef modelPrimitive);
 
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_Node_RemoveModelPrimitive")]
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_Node_RemoveModelPrimitive1")]
             public static extern void RemoveModelPrimitive(global::System.Runtime.InteropServices.HandleRef model, global::System.Runtime.InteropServices.HandleRef modelPrimitive);
 
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_Node_RemoveModelPrimitive")]
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_Node_RemoveModelPrimitive2")]
             public static extern void RemoveModelPrimitive(global::System.Runtime.InteropServices.HandleRef model, uint index);
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_Node_GetModelPrimitive")]
