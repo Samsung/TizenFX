@@ -64,9 +64,6 @@ internal static partial class Interop
         [DllImport(Libraries.PackageManager, EntryPoint = "package_info_foreach_app_from_package")]
         internal static extern ErrorCode PackageInfoForeachAppInfo(IntPtr handle, AppType appType, PackageInfoAppInfoCallback callback, IntPtr userData);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_info_foreach_cert_info")]
-        internal static extern ErrorCode PackageInfoForeachCertificateInfo(IntPtr handle, PackageInfoCertificateInfoCallback callback, IntPtr user_data);
-
         [DllImport(Libraries.PackageManager, EntryPoint = "package_info_foreach_privilege_info")]
         internal static extern ErrorCode PackageInfoForeachPrivilegeInfo(IntPtr handle, PackageInfoPrivilegeInfoCallback callback, IntPtr userData);
 
