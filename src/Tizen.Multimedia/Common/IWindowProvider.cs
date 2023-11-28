@@ -3,14 +3,17 @@
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// The IWindowHandleProvider interface provides the window handle and information about the window's position, size, and rotation.
+    /// The IWindowProvider interface provides the window handle and information about the window's position, size, and rotation.
     /// </summary>
     /// <since_tizen> 12 </since_tizen>
-    public interface IWindowHandleProvider
+    public interface IWindowProvider
     {
         /// <summary>
         /// Gets the window handle
         /// </summary>
+        /// <remarks>
+        /// This handle represents Ecore_Wl2_Window on native.
+        /// </remarks>
         IntPtr WindowHandle { get; }
 
         /// <summary>

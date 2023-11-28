@@ -175,26 +175,26 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Display"/> class with an <see cref="IWindowHandleProvider"/> interface.
+        /// Initializes a new instance of the <see cref="Display"/> class with an <see cref="IWindowProvider"/> interface.
         /// </summary>
-        /// <param name="window">An <see cref="IWindowHandleProvider"/> object that provides a handle to a window.</param>
+        /// <param name="window">An <see cref="IWindowProvider"/> object that provides a handle to a window.</param>
         /// <since_tizen> 12 </since_tizen>
-        public Display(IWindowHandleProvider window)
+        public Display(IWindowProvider window)
             : this(window, false)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Display"/> class with an <see cref="IWindowHandleProvider"/> interface.
+        /// Initializes a new instance of the <see cref="Display"/> class with an <see cref="IWindowProvider"/> interface.
         /// </summary>
-        /// <param name="window">An <see cref="IWindowHandleProvider"/> object that provides a handle to a window.</param>
+        /// <param name="window">An <see cref="IWindowProvider"/> object that provides a handle to a window.</param>
         /// <param name="uiSync">A value indicating whether video and UI are in sync or not.</param>
         /// <remarks>
         /// UI sync is only for <see cref="T:Tizen.Multimedia.Player"/> and
         /// <see cref="T:Tizen.Multimedia.Player.DisplaySettings"/> will not work in UI sync mode.
         /// </remarks>
         /// <since_tizen> 12 </since_tizen>
-        public Display(IWindowHandleProvider window, bool uiSync)
+        public Display(IWindowProvider window, bool uiSync)
         {
             if (window == null)
             {
