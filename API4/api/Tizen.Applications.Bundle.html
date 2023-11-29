@@ -259,7 +259,7 @@ Console.WriteLine(&quot;There are {0} items in the bundle&quot;, bundle.Count);<
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.String</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -343,7 +343,7 @@ foreach(string key in bundle.Keys)
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">System.String</span></td>
         <td><span class="parametername">key</span></td>
         <td><p>The key to identify the item with. If an item with the key already exists in the bundle, this method will not succeed.</p>
 </td>
@@ -371,7 +371,7 @@ bundle.AddItem(&quot;byte_array&quot;, byteArray);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><span class="xref">System.ArgumentException</span></td>
         <td><p>Thrown when the key already exists or when there is an invalid parameter.</p>
 </td>
       </tr>
@@ -418,7 +418,7 @@ bundle.AddItem(&quot;byte_array&quot;, byteArray);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">System.String</span></td>
         <td><span class="parametername">key</span></td>
         <td><p>The key to identify the item with. If an item with the key already exists in the bundle, this method will not succeed.</p>
 </td>
@@ -463,7 +463,7 @@ bundle.AddItem(&quot;byte_array&quot;, byteArray, 2, 3);</code></pre>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><span class="xref">System.ArgumentException</span></td>
         <td><p>Thrown when the key already exists or when there is an invalid parameter.</p>
 </td>
       </tr>
@@ -510,13 +510,13 @@ bundle.AddItem(&quot;byte_array&quot;, byteArray, 2, 3);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">System.String</span></td>
         <td><span class="parametername">key</span></td>
         <td><p>The key to identify the item with. If an item with the key already exists in the bundle, this method will not succeed.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.String</span>&gt;</td>
         <td><span class="parametername">value</span></td>
         <td><p>The value of the item.</p>
 </td>
@@ -538,7 +538,7 @@ bundle.AddItem(&quot;string_array&quot;, stringArray);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><span class="xref">System.ArgumentException</span></td>
         <td><p>Thrown when the key already exists or when there is an invalid parameter.</p>
 </td>
       </tr>
@@ -580,13 +580,13 @@ bundle.AddItem(&quot;string_array&quot;, stringArray);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">System.String</span></td>
         <td><span class="parametername">key</span></td>
         <td><p>The key to identify the item with. If an item with the key already exists in the bundle, this method will not succeed.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">System.String</span></td>
         <td><span class="parametername">value</span></td>
         <td><p>The value of the item.</p>
 </td>
@@ -607,7 +607,7 @@ bundle.AddItem(&quot;string&quot;, &quot;a_string&quot;);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><span class="xref">System.ArgumentException</span></td>
         <td><p>Thrown when the key already exists or when there is an invalid parameter.</p>
 </td>
       </tr>
@@ -649,7 +649,7 @@ bundle.AddItem(&quot;string&quot;, &quot;a_string&quot;);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">System.String</span></td>
         <td><span class="parametername">key</span></td>
         <td><p>The key to check for.</p>
 </td>
@@ -712,7 +712,7 @@ if (bundle.Contains(&quot;string&quot;))
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">System.String</span></td>
         <td><span class="parametername">bundleRaw</span></td>
         <td><p>The encoded bundle data. bundleRaw should be the returned value of Tizen.Applications.Bundle.Encode, otherwise this method will not succeed.</p>
 </td>
@@ -750,7 +750,7 @@ Bundle data = bundle.Decode(bundleRaw);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><span class="xref">System.ArgumentException</span></td>
         <td><p>Thrown when there is an invalid parameter.</p>
 </td>
       </tr>
@@ -844,7 +844,7 @@ Bundle data = bundle.Decode(bundleRaw);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">System.String</span></td>
         <td><p>Encoded bundle data in string.</p>
 </td>
       </tr>
@@ -920,7 +920,7 @@ string bundleRaw = bundle.Encode();</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">System.String</span></td>
         <td><span class="parametername">key</span></td>
         <td><p>The key of the bundle item whose value is desired.</p>
 </td>
@@ -966,7 +966,7 @@ if (bundle.Contains(&quot;string&quot;))
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><span class="xref">System.ArgumentException</span></td>
         <td><p>Thrown when the key does not exist or when there is an invalid parameter.</p>
 </td>
       </tr>
@@ -1009,7 +1009,7 @@ Note that this is a generic method.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">System.String</span></td>
         <td><span class="parametername">key</span></td>
         <td><p>The key of the bundle item whose value is desired.</p>
 </td>
@@ -1077,12 +1077,12 @@ else if (bundle.Is&lt;string[]>(&quot;string_array&quot;))
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><span class="xref">System.ArgumentException</span></td>
         <td><p>Thrown when the key does not exist or when there is an invalid parameter.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidcastexception">InvalidCastException</a></td>
+        <td><span class="xref">System.InvalidCastException</span></td>
         <td><p>Thrown when the value of the bundle item cannot be converted to the specified generic type.</p>
 </td>
       </tr>
@@ -1124,7 +1124,7 @@ else if (bundle.Is&lt;string[]>(&quot;string_array&quot;))
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">System.String</span></td>
         <td><span class="parametername">key</span></td>
         <td><p>The key whose type wants to be checked.</p>
 </td>
@@ -1187,7 +1187,7 @@ if (bundle.Is&lt;string[]>(&quot;string_array&quot;))
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><span class="xref">System.ArgumentException</span></td>
         <td><p>Thrown when the key does not exist or when there is an invalid parameter.</p>
 </td>
       </tr>
@@ -1229,7 +1229,7 @@ if (bundle.Is&lt;string[]>(&quot;string_array&quot;))
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">System.String</span></td>
         <td><span class="parametername">key</span></td>
         <td><p>The key of the item to delete.</p>
 </td>
@@ -1273,7 +1273,7 @@ if (bundle.Contains(&quot;string&quot;))
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><span class="xref">System.ArgumentException</span></td>
         <td><p>Thrown when there is an invalid parameter.</p>
 </td>
       </tr>
@@ -1315,7 +1315,7 @@ if (bundle.Contains(&quot;string&quot;))
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">System.String</span></td>
         <td><span class="parametername">key</span></td>
         <td><p>The key of the bundle item whose value is desired.</p>
 </td>
@@ -1401,13 +1401,13 @@ if (bundle.TryGetItem(&quot;byte_array&quot;, out aByteArray))
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">System.String</span></td>
         <td><span class="parametername">key</span></td>
         <td><p>The key of the bundle item whose value is desired.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.String</span>&gt;</td>
         <td><span class="parametername">value</span></td>
         <td><p>The value of the bundle item. If the key does not exist or the type of this parameter is incorrect, it is the default value for the value parameter type.</p>
 </td>
@@ -1490,13 +1490,13 @@ if (bundle.TryGetItem(&quot;string&quot;, out aStringEnumerable))
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">System.String</span></td>
         <td><span class="parametername">key</span></td>
         <td><p>The key of the bundle item whose value is desired.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">System.String</span></td>
         <td><span class="parametername">value</span></td>
         <td><p>The value of the bundle item. If the key does not exist or the type of this parameter is incorrect, it is the default value for the value parameter type.</p>
 </td>
