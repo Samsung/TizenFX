@@ -337,7 +337,7 @@ namespace Tizen.NUI.Components
             }
 
             // If we have a start index, we can be more clever about removing the group(s) (and get the nifty animations)
-            var groupCount = args.OldItems.Count;
+            int groupCount = args.OldItems?.Count ?? 0;
 
             var absolutePosition = GetAbsolutePosition(groups[groupIndex], 0);
 
@@ -360,9 +360,15 @@ namespace Tizen.NUI.Components
 
         void Replace(NotifyCollectionChangedEventArgs args)
         {
-            var groupCount = args.NewItems.Count;
-
-            if (groupCount != args.OldItems.Count)
+            var newItems = args.NewItems;
+            var oldItems = args.OldItems;
+            if(newItems == null || oldItems == null)
+            {
+                return;
+            }       
+            int groupCount = newItems.Count;
+            int oldCount = oldItems.Count;
+            if (groupCount != oldCount)
             {
                 // The original and replacement sets are of unequal size; this means that most everything currently in 
                 // view will have to be updated. So just reload the whole thing.
@@ -370,8 +376,8 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            var newStartIndex = args.NewStartingIndex > -1 ? args.NewStartingIndex : groupSource.IndexOf(args.NewItems[0]);
-            var oldStartIndex = args.OldStartingIndex > -1 ? args.OldStartingIndex : groupSource.IndexOf(args.OldItems[0]);
+            var newStartIndex = args.NewStartingIndex > -1 ? args.NewStartingIndex : groupSource.IndexOf(newItems[0]);
+            var oldStartIndex = args.OldStartingIndex > -1 ? args.OldStartingIndex : groupSource.IndexOf(oldItems[0]);
 
             var newItemCount = CountItemsInGroups(newStartIndex, groupCount);
             var oldItemCount = CountItemsInGroups(oldStartIndex, groupCount);
@@ -402,7 +408,7 @@ namespace Tizen.NUI.Components
 
         void Move(NotifyCollectionChangedEventArgs args)
         {
-            var itemCount = CountItemsInGroups(args.OldStartingIndex, args.OldItems.Count);
+            var itemCount = CountItemsInGroups(args.OldStartingIndex, args.OldItems?.Count ?? 0);
             var start = Math.Min(args.OldStartingIndex, args.NewStartingIndex);
             var end = Math.Max(args.OldStartingIndex, args.NewStartingIndex) + itemCount;
 
