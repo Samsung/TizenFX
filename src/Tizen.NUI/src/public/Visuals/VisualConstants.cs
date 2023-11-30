@@ -959,6 +959,18 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly int MaskingMode = NDalic.ImageVisualOrientationCorrection + 12;
+
+
+        /// <summary>
+        /// @brief Whether to animated image visual uses fixed cache or not.
+        /// @details type Property::BOOLEAN.
+        /// If this property is true, animated image visual uses fixed cache for loading and keeps loaded frame
+        /// until the visual is removed. It reduces CPU cost when the animated image will be looping.
+        /// But it can spend a lot of memory if the resource has high resolution image or many frame count.
+        /// @note It is used in the AnimatedImageVisual. The default is false
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int EnableFrameCache = NDalic.ImageVisualOrientationCorrection + 13;
     }
 
     /// <summary>
