@@ -79,6 +79,18 @@ namespace Tizen.NUI.Scene3D
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool IsUsingFramebuffer(global::System.Runtime.InteropServices.HandleRef sceneView);
 
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_SetResolution")]
+            public static extern void SetResolution(global::System.Runtime.InteropServices.HandleRef sceneView, uint width, uint height);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_GetResolutionWidth")]
+            public static extern uint GetResolutionWidth(global::System.Runtime.InteropServices.HandleRef sceneView);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_GetResolutionHeight")]
+            public static extern uint GetResolutionHeight(global::System.Runtime.InteropServices.HandleRef sceneView);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_ResetResolution")]
+            public static extern void ResetResolution(global::System.Runtime.InteropServices.HandleRef sceneView);
+
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_SetFramebufferMultiSamplingLevel")]
             public static extern void SetFramebufferMultiSamplingLevel(global::System.Runtime.InteropServices.HandleRef sceneView, uint multiSamplingLevel);
 
