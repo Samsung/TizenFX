@@ -81,6 +81,9 @@ namespace Tizen.NUI.Physics2D.Chipmunk
         public static IntPtr AllocStructure<T>()
         {
             int size = SizeOf<T>();
+
+            Debug.Assert(size>0, "The memory size to be allocated should be greater than 0");
+
             return Marshal.AllocHGlobal(size);
         }
 
