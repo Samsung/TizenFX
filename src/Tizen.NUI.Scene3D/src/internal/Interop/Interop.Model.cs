@@ -22,19 +22,7 @@ namespace Tizen.NUI.Scene3D
     internal static partial class Interop
     {
         internal static partial class Model
-        {
-            [StructLayout(LayoutKind.Sequential)]
-            internal struct Vec3
-            {
-                internal float x, y, z;
-            }
-        
-            [StructLayout(LayoutKind.Sequential)]
-            internal struct ElementIndex
-            {
-                internal Int32 index;
-            }
-            
+        {            
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_New_SWIG_0")]
             public static extern global::System.IntPtr ModelNew(string modelUrl, string resourcePasth);
 

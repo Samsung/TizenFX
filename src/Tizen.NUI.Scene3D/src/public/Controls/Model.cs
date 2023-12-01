@@ -187,7 +187,7 @@ namespace Tizen.NUI.Scene3D
                 return GetModelRoot();
             }
         }
-        
+
         /// <summary>
         /// Adds modelNode to this Model.
         /// </summary>
@@ -725,7 +725,7 @@ namespace Tizen.NUI.Scene3D
         /// It will be invoked when collider mesh is hit.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<MeshHitEventArgs> MeshHitSignal
+        public event EventHandler<MeshHitEventArgs> ColliderMeshHitted
         {
             add
             {
