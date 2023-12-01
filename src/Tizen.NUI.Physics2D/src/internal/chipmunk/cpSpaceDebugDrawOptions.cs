@@ -104,10 +104,6 @@ namespace Tizen.NUI.Physics2D.Chipmunk
         private IntPtr ToPointer()
         {
             IntPtr drawOptionsPtr = NativeInterop.AllocStructure<cpSpaceDebugDrawOptions>();
-            if (Marshal.SizeOf(typeof(cpSpaceDebugDrawOptions)) == 0)
-            {
-                throw new ArgumentNullException("The size of type cpSpaceDebugDrawOptions should not be 0.");
-            }
 
             Marshal.StructureToPtr<cpSpaceDebugDrawOptions>(this, drawOptionsPtr, false);
 
