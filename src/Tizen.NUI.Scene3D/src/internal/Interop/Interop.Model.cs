@@ -14,13 +14,15 @@
  * limitations under the License.
  *
  */
-
+using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 namespace Tizen.NUI.Scene3D
 {
     internal static partial class Interop
     {
         internal static partial class Model
-        {
+        {            
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_New_SWIG_0")]
             public static extern global::System.IntPtr ModelNew(string modelUrl, string resourcePasth);
 
@@ -106,6 +108,13 @@ namespace Tizen.NUI.Scene3D
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_LoadFacialAnimation_2")]
             public static extern global::System.IntPtr LoadBlendShapeAnimationFromBuffer(global::System.Runtime.InteropServices.HandleRef model, string jsonBuffer, int jsonBufferLength);
+            
+            // Signals
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_MeshHitSignal_Connect")]
+            public static extern void MeshHitSignalConnect(global::System.Runtime.InteropServices.HandleRef model, global::System.Runtime.InteropServices.HandleRef handler);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_MotionData_MeshHitSignal_Disconnect")]
+            public static extern void MeshHitSignalDisconnect(global::System.Runtime.InteropServices.HandleRef model, global::System.Runtime.InteropServices.HandleRef handler);
         }
     }
 }
