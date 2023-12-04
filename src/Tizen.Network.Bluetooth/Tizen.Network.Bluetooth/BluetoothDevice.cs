@@ -636,7 +636,7 @@ namespace Tizen.Network.Bluetooth
                 {
                     if (!profile.Equals(null))
                     {
-                        profileList.Add((BluetoothProfileType)profile);
+                        profileList.Add(BluetoothUtils.ConvertBtProfileToProfileType(profile));
                     }
                     return true;
                 };
@@ -670,7 +670,7 @@ namespace Tizen.Network.Bluetooth
             if (BluetoothAdapter.IsBluetoothEnabled)
             {
                 bool isConnected;
-                int ret = Interop.Bluetooth.IsProfileConnected(RemoteDeviceAddress, (int)profileType, out isConnected);
+                int ret = Interop.Bluetooth.IsProfileConnected(RemoteDeviceAddress, BluetoothUtils.ConvertProfileTypeToBtProfile(profileType), out isConnected);
                 if (ret != (int)BluetoothError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get profile connected state, Error - " + (BluetoothError)ret);
