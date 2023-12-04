@@ -465,6 +465,39 @@ namespace Tizen.Network.Bluetooth
 
             return connectionInfo;
         }
+
+        internal static int ConvertProfileTypeToBtProfile(BluetoothProfileType profileType)
+        {
+            return profileType switch
+            {
+                BluetoothProfileType.Rfcomm => 0x01,
+                BluetoothProfileType.AdvancedAudioDistribution => 0x02,
+                BluetoothProfileType.Headset => 0x04,
+                BluetoothProfileType.HumanInterfaceDevice => 0x08,
+                BluetoothProfileType.NetworkAccessPoint => 0x10,
+                BluetoothProfileType.AudioGateway => 0x20,
+                BluetoothProfileType.GenericAttribute => 0x40,
+                BluetoothProfileType.NapServer => 0x80,
+                BluetoothProfileType.AdvancedAudioDistributionSink => 0x100,
+                _ => -1,
+            };
+        }
+
+        internal static BluetoothProfileType ConvertBtProfileToProfileType(int btProfile)
+        {
+            return btProfile switch
+            {
+                0x01 => BluetoothProfileType.Rfcomm,
+                0x02 => BluetoothProfileType.AdvancedAudioDistribution,
+                0x04 => BluetoothProfileType.Headset,
+                0x08 => BluetoothProfileType.HumanInterfaceDevice,
+                0x10 => BluetoothProfileType.NetworkAccessPoint,
+                0x20 => BluetoothProfileType.AudioGateway,
+                0x40 => BluetoothProfileType.GenericAttribute,
+                0x80 => BluetoothProfileType.NapServer,
+                0x100 => BluetoothProfileType.AdvancedAudioDistributionSink,
+            };
+        }
     }
 }
 
