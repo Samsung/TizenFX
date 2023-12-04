@@ -1,9 +1,9 @@
 name: "Deploy Documents Test"
 
 on:
-  schedule:
-  - cron: "0 16 * * *"
-  workflow_dispatch:
+  push:
+    branches:
+    - test-actions
 
 jobs:
 
@@ -20,7 +20,7 @@ jobs:
 
     - name: Checkout TizenFX sources
       run: |
-        ./build.sh clone
+        ./build_12.sh clone
 
     - name: Cache DocFX output
       id: cache-site
@@ -32,9 +32,9 @@ jobs:
     - name: Build Documents
       if: steps.cache-site.outputs.cache-hit != 'true'
       run: |
-        ./build.sh restore
-        ./build.sh build
-        ./build.sh index
+        ./build_12.sh restore
+        ./build_12.sh build
+        ./build_12.sh index
 
     - name: Archive Artifacts
       run: |
