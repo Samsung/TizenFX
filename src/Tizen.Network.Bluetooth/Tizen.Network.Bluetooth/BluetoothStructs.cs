@@ -465,6 +465,60 @@ namespace Tizen.Network.Bluetooth
 
             return connectionInfo;
         }
+
+        internal static int ConvertProfileTypeToBtProfile(BluetoothProfileType profileType)
+        {
+            switch (profileType)
+            {
+                case BluetoothProfileType.Rfcomm:
+                    return 0x01;
+                case BluetoothProfileType.AdvancedAudioDistribution:
+                    return 0x02;
+                case BluetoothProfileType.Headset:
+                    return 0x04;
+                case BluetoothProfileType.HumanInterfaceDevice:
+                    return 0x08;
+                case BluetoothProfileType.NetworkAccessPoint:
+                    return 0x10;
+                case BluetoothProfileType.AudioGateway:
+                    return 0x20;
+                case BluetoothProfileType.GenericAttribute:
+                    return 0x40;
+                case BluetoothProfileType.NapServer:
+                    return 0x80;
+                case BluetoothProfileType.AdvancedAudioDistributionSink:
+                    return 0x100;
+                default:
+                    return -1;
+            }
+        }
+
+        internal static int ConvertBtProfileToProfileType(int btProfile)
+        {
+            switch (btProfile)
+            {
+                case 0x01:
+                    return (int)BluetoothProfileType.Rfcomm;
+                case 0x02:
+                    return (int)BluetoothProfileType.AdvancedAudioDistribution;
+                case 0x04:
+                    return (int)BluetoothProfileType.Headset;
+                case 0x08:
+                    return (int)BluetoothProfileType.HumanInterfaceDevice;
+                case 0x10:
+                    return (int)BluetoothProfileType.NetworkAccessPoint;
+                case 0x20:
+                    return (int)BluetoothProfileType.AudioGateway;
+                case 0x40:
+                    return (int)BluetoothProfileType.GenericAttribute;
+                case 0x80:
+                    return (int)BluetoothProfileType.NapServer;
+                case 0x100:
+                    return (int)BluetoothProfileType.AdvancedAudioDistributionSink;
+                default:
+                    return -1;
+            }
+        }
     }
 }
 
