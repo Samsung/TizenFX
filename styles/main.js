@@ -1,5 +1,6 @@
 $(function () {
   const apiVersions = {
+    "API12": "version 12",
     "API11": "version 11",
     "API10": "version 10",
     "API9": "version 9",
