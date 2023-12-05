@@ -1146,6 +1146,7 @@ namespace Tizen.NUI.BaseComponents
             // If the view had focus, it clears focus.
             if (child == FocusManager.Instance.GetCurrentFocusView())
             {
+                Tizen.Log.Debug("NUI", $"ClearFocus due to View id:({child.ID}) removed from scene\n");
                 FocusManager.Instance.ClearFocus();
             }
             // Do actual child removal
@@ -1468,7 +1469,7 @@ namespace Tizen.NUI.BaseComponents
             NUILog.Debug($"=============================");
 
             base.Dispose(type);
-            
+
             aliveCount--;
         }
 
