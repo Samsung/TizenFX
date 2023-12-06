@@ -21,8 +21,8 @@ jobs:
 
     - name: Checkout TizenFX sources
       run: |
-        ulimit -a
-        cat /proc/sys/fs/file-max
+        #ulimit -a
+        #cat /proc/sys/fs/file-max
         ./build_12.sh clone
 
     - name: Cache DocFX output
