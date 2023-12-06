@@ -15,12 +15,27 @@
  *
  */
 
+using System;
+using System.Runtime.InteropServices;
+
 namespace Tizen.NUI.Scene3D
 {
     internal static partial class Interop
     {
         internal static partial class ModelNode
         {
+            [StructLayout(LayoutKind.Sequential)]
+            internal struct Vec3
+            {
+                internal float x, y, z;
+            }
+        
+            [StructLayout(LayoutKind.Sequential)]
+            internal struct ElementIndex
+            {
+                internal Int32 index;
+            }
+            
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_Node_New_SWIG_0")]
             public static extern global::System.IntPtr ModelNodeNew();
 
@@ -56,6 +71,17 @@ namespace Tizen.NUI.Scene3D
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_Node_FindChildModelNodeByName")]
             public static extern global::System.IntPtr FindChildModelNodeByName(global::System.Runtime.InteropServices.HandleRef model, string nodeName);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_Node_GetChildModelNodeCount")]
+            public static extern uint GetChildModelNodeCount(global::System.Runtime.InteropServices.HandleRef model);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_Node_GetChildModelNodeAt")]
+            public static extern global::System.IntPtr GetChildModelNodeAt(global::System.Runtime.InteropServices.HandleRef model, uint index);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_ModelNode_SetColliderMesh")]
+            public static extern global::System.IntPtr SetColliderMesh(global::System.Runtime.InteropServices.HandleRef modelNode,
+                Vec3[] vPtr,
+                Vec3[] nPtr, int vLength, int[] iPtr, int iLength);            
         }
     }
 }

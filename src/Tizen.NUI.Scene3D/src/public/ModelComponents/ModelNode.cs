@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
 using Tizen.NUI;
@@ -191,6 +192,40 @@ namespace Tizen.NUI.Scene3D
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+        
+        /// <summary>
+        /// Sets collider mesh on current node
+        /// </summary>
+        /// <param name="vertexList">List of vertices</param>
+        /// <param name="normalList">List of vertex normals</param>
+        /// <param name="indexList">List of mesh indices</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetColliderMesh(List<Vector3> vertexList, List<Vector3> normalList, List<int> indexList)
+        {
+            var vertices = new Interop.ModelNode.Vec3[vertexList.Count];
+            var idx = 0;
+            foreach (var vertex in vertexList)
+            {
+                vertices[idx].x = vertex.X;
+                vertices[idx].y = vertex.Y;
+                vertices[idx].z = vertex.Z;
+                ++idx;
+            }
+            
+            var normals = new Interop.ModelNode.Vec3[normalList.Count];
+            idx = 0;
+            foreach (var normal in normalList)
+            {
+                normals[idx].x = normal.X;
+                normals[idx].y = normal.Y;
+                normals[idx].z = normal.Z;
+                ++idx;
+            }
+            
+            Interop.ModelNode.SetColliderMesh(SwigCPtr,vertices, normals, vertexList.Count, indexList.ToArray(), indexList.Count);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
