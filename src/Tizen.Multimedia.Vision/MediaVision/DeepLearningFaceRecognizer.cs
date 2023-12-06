@@ -23,6 +23,8 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Provides the ability to recognize face based on previously registered face data.
     /// </summary>
+    /// <feature>http://tizen.org/feature/vision.inference</feature>
+    /// <feature>http://tizen.org/feature/vision.training</feature>
     /// <since_tizen> 10 </since_tizen>
     public class DeepLearningFaceRecognizer : IDisposable
     {
@@ -34,11 +36,11 @@ namespace Tizen.Multimedia.Vision
         /// This class is different from <see cref="FaceRecognizer"/> in aspect of using internal machine learning algorithm.
         /// </remarks>
         /// <exception cref="NotSupportedException">The required features are not supported.</exception>
-        /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
         /// <since_tizen> 10 </since_tizen>
         public DeepLearningFaceRecognizer()
         {
-            ValidationUtil.ValidateFeatureSupported(VisionFeatures.FaceRecognition);
+            ValidationUtil.ValidateFeatureSupported(VisionFeatures.Inference);
+            ValidationUtil.ValidateFeatureSupported(VisionFeatures.Training);
 
             InteropFace.Create(out _handle).Validate("Failed to create face recognizer");
 
@@ -67,12 +69,18 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <param name="source">The face data to register.</param>
         /// <param name="label">The name of face data.</param>
+        /// <exception cref="NotSupportedException">The required features are not supported.</exception>
         /// <exception cref="ObjectDisposedException">The DeepLearningFaceRecognizer already has been disposed.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="label"/> is null.</exception>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <feature>http://tizen.org/feature/vision.inference.face_recognition</feature>
+        /// <feature>http://tizen.org/feature/vision.training.face_recognition</feature>
         /// <since_tizen> 10 </since_tizen>
         public void RegisterFace(MediaVisionSource source, string label)
         {
+            ValidationUtil.ValidateFeatureSupported(VisionFeatures.InferenceFaceRecognition);
+            ValidationUtil.ValidateFeatureSupported(VisionFeatures.TrainingFaceRecognition);
+
             ValidateNotDisposed();
 
             if (source == null)
@@ -91,12 +99,18 @@ namespace Tizen.Multimedia.Vision
         /// Unregisters face data from internal database.
         /// </summary>
         /// <param name="label">The name of face data.</param>
+        /// <exception cref="NotSupportedException">The required features are not supported.</exception>
         /// <exception cref="ObjectDisposedException">The DeepLearningFaceRecognizer already has been disposed.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="label"/> is null.</exception>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <feature>http://tizen.org/feature/vision.inference.face_recognition</feature>
+        /// <feature>http://tizen.org/feature/vision.training.face_recognition</feature>
         /// <since_tizen> 10 </since_tizen>
         public void UnregisterFace(string label)
         {
+            ValidationUtil.ValidateFeatureSupported(VisionFeatures.InferenceFaceRecognition);
+            ValidationUtil.ValidateFeatureSupported(VisionFeatures.TrainingFaceRecognition);
+
             ValidateNotDisposed();
 
             if (label == null)
@@ -115,12 +129,16 @@ namespace Tizen.Multimedia.Vision
         /// </remarks>
         /// <param name="source">The face data to recognize.</param>
         /// <returns>A label of recognized face.</returns>
+        /// <exception cref="NotSupportedException">The required features are not supported.</exception>
         /// <exception cref="ObjectDisposedException">The DeepLearningFaceRecognizer already has been disposed.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <feature>http://tizen.org/feature/vision.inference.face_recognition</feature>
         /// <since_tizen> 10 </since_tizen>
         public DeepLearningFaceRecognitionResult Recognize(MediaVisionSource source)
         {
+            ValidationUtil.ValidateFeatureSupported(VisionFeatures.InferenceFaceRecognition);
+
             ValidateNotDisposed();
 
             if (source == null)
