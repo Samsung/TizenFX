@@ -11,6 +11,7 @@ jobs:
     runs-on: [self-hosted, linux, x64]
     container:
       image: tizendotnet/tizenfx-build-worker:2.2
+      options: --ulimit 65535
 
     steps:
     - uses: actions/checkout@v2
