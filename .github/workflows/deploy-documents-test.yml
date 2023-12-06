@@ -20,7 +20,7 @@ jobs:
 
     - name: Checkout TizenFX sources
       run: |
-        unlimit -a
+        ulimit -a
         cat /proc/sys/fs/file-max
         ./build_12.sh clone
 
