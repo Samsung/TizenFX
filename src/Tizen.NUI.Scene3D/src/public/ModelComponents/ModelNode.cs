@@ -19,7 +19,6 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
-using System.Collections.Generic;
 using Tizen.NUI;
 using Tizen.NUI.Binding;
 using Tizen.NUI.BaseComponents;
