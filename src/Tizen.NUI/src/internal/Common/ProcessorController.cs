@@ -34,6 +34,7 @@ namespace Tizen.NUI
     internal sealed class ProcessorController : Disposable
     {
         private static ProcessorController instance = null;
+        private bool initialied = false;
 
         private ProcessorController() : this(Interop.ProcessorController.New(), true)
         {
@@ -41,13 +42,6 @@ namespace Tizen.NUI
 
         internal ProcessorController(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            onceEventIndex = 0u;
-            internalProcessorOnceEvent = new EventHandler[2];
-            internalProcessorOnceEvent[0] = null;
-            internalProcessorOnceEvent[1] = null;
-
-            processorCallback = new ProcessorEventHandler(Process);
-            Interop.ProcessorController.SetCallback(SwigCPtr, processorCallback);
         }
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -73,6 +67,8 @@ namespace Tizen.NUI
         public event EventHandler ProcessorEvent;
         public event EventHandler LayoutProcessorEvent;
 
+        public bool Initialized => initialied;
+
         public static ProcessorController Instance
         {
             get
@@ -82,6 +78,25 @@ namespace Tizen.NUI
                     instance = new ProcessorController();
                 }
                 return instance;
+            }
+        }
+
+        public void Initialize()
+        {
+            if (initialied == false)
+            {
+                initialied = true;
+
+                Interop.ProcessorController.Initialize(SwigCPtr);
+
+                onceEventIndex = 0u;
+                internalProcessorOnceEvent = new EventHandler[2];
+                internalProcessorOnceEvent[0] = null;
+                internalProcessorOnceEvent[1] = null;
+
+                processorCallback = new ProcessorEventHandler(Process);
+                Interop.ProcessorController.SetCallback(SwigCPtr, processorCallback);
+                NDalicPINVOKE.ThrowExceptionIfExists();
             }
         }
 
@@ -130,6 +145,7 @@ namespace Tizen.NUI
         public void Awake()
         {
             Interop.ProcessorController.Awake(SwigCPtr);
+            NDalicPINVOKE.ThrowExceptionIfExists();
         }
     } // class ProcessorController
 } // namespace Tizen.NUI
