@@ -99,6 +99,9 @@ namespace Tizen.NUI.Scene3D
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Material_property_SPECULAR_COLOR_FACTOR_get")]
             public static extern int PropertySpecularColorFactorIndexGet();
 
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Material_property_DEPTH_INDEX_get")]
+            public static extern int PropertyDepthIndexIndexGet();
+
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Material_SetProperty")]
             public static extern void SetProperty(global::System.Runtime.InteropServices.HandleRef model, int index, global::System.Runtime.InteropServices.HandleRef propertyValue);
 
