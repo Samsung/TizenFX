@@ -39,6 +39,7 @@ namespace Tizen.NUI.BaseComponents
             Property.Preload();
             // Do nothing. Just call for load static values.
             var temporalCachedImagePropertyKeyList = cachedImagePropertyKeyList;
+            var temporalCachedNUIImageViewPropertyKeyList = cachedNUIImageViewPropertyKeyList;
         }
 
         private EventHandler<ResourceReadyEventArgs> _resourceReadyEventHandler;
@@ -83,15 +84,26 @@ namespace Tizen.NUI.BaseComponents
             NpatchImageVisualProperty.Border,
             NpatchImageVisualProperty.BorderOnly,
         };
+
+        // Collection of image-sensitive properties, and need to update C# side cache value.
+        private static readonly List<int> cachedNUIImageViewPropertyKeyList = new List<int> {
+            ImageVisualProperty.URL,
+            ImageVisualProperty.DesiredWidth,
+            ImageVisualProperty.DesiredHeight,
+            ImageVisualProperty.FastTrackUploading,
+        };
         internal PropertyMap cachedImagePropertyMap;
         internal bool imagePropertyUpdatedFlag = false;
 
         private bool imagePropertyUpdateProcessAttachedFlag = false;
         private Rectangle _border;
+
+        // Development Guide : Please make ensure that these 4 values are matched with current image.
         private string _resourceUrl = "";
         private int _desired_width = -1;
         private int _desired_height = -1;
         private bool _fastTrackUploading = false;
+
         private TriggerableSelector<string> resourceUrlSelector;
         private TriggerableSelector<Rectangle> borderSelector;
 
@@ -381,17 +393,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (_border == null)
                 {
-                    PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
-                    SetProperty(ImageView.Property.IMAGE, setValue);
-
-                    // Image properties are changed hardly. We should ignore lazy UpdateImage
-                    imagePropertyUpdatedFlag = false;
-                    cachedImagePropertyMap?.Dispose();
-                    cachedImagePropertyMap = null;
-                    MergeCachedImageVisualProperty(value);
+                    SetImageByPropertyMap(value);
 
                     NotifyPropertyChanged();
-                    setValue?.Dispose();
                 }
             }
         }
@@ -1486,14 +1490,14 @@ namespace Tizen.NUI.BaseComponents
         {
             if (_resourceUrl != ConvertResourceUrl(ref value))
             {
-                _resourceUrl = value;
-                if (string.IsNullOrEmpty(_resourceUrl))
+                if (string.IsNullOrEmpty(value))
                 {
                     // Special case. If we set ResourceUrl as empty, Unregist visual.
                     RemoveImage();
                 }
                 else
                 {
+                    _resourceUrl = value;
                     using (PropertyValue setValue = new PropertyValue(value))
                     {
                         UpdateImage(ImageVisualProperty.URL, setValue);
@@ -1527,9 +1531,7 @@ namespace Tizen.NUI.BaseComponents
         {
             // If previous resourceUrl was already empty, we don't need to do anything. just ignore.
             // Unregist and detach process only if previous resourceUrl was not empty
-            string currentResourceUrl = "";
-            PropertyValue currentResourceUrlValue = GetCachedImageVisualProperty(ImageVisualProperty.URL);
-            if ((currentResourceUrlValue?.Get(out currentResourceUrl) ?? false) && !string.IsNullOrEmpty(currentResourceUrl))
+            if (!string.IsNullOrEmpty(_resourceUrl))
             {
                 PropertyValue emptyValue = new PropertyValue();
 
@@ -1544,13 +1546,58 @@ namespace Tizen.NUI.BaseComponents
                     imagePropertyUpdateProcessAttachedFlag = false;
                 }
                 // Update resourceUrl as empty value
+                _resourceUrl = "";
                 cachedImagePropertyMap[ImageVisualProperty.URL] = emptyValue;
-
-                emptyValue?.Dispose();
             }
-            currentResourceUrlValue?.Dispose();
         }
 
+        internal void SetImageByPropertyMap(PropertyMap map)
+        {
+            // Image properties are changed hardly. We should ignore lazy UpdateImage
+            imagePropertyUpdatedFlag = false;
+            cachedImagePropertyMap?.Dispose();
+            cachedImagePropertyMap = null;
+            MergeCachedImageVisualProperty(map);
+
+            // Update _resourceUrl, _desired_width, _desired_height, _fastTrackUploading here.
+            // Those values are C# side cached value.
+            _desired_width = _desired_height = -1;
+            _fastTrackUploading = false;
+
+            if (map != null)
+            {
+                _resourceUrl = "";
+                foreach (int key in cachedNUIImageViewPropertyKeyList)
+                {
+                    using PropertyValue propertyValue = map.Find(key);
+                    if (propertyValue != null)
+                    {
+                        if (key == ImageVisualProperty.URL)
+                        {
+                            propertyValue.Get(out _resourceUrl);
+                        }
+                        else if (key == ImageVisualProperty.DesiredWidth)
+                        {
+                            propertyValue.Get(out _desired_width);
+                        }
+                        else if (key == ImageVisualProperty.DesiredHeight)
+                        {
+                            propertyValue.Get(out _desired_height);
+                        }
+                        else if (key == ImageVisualProperty.FastTrackUploading)
+                        {
+                            propertyValue.Get(out _fastTrackUploading);
+                        }
+                    }
+                }
+
+                SetProperty(ImageView.Property.IMAGE, new Tizen.NUI.PropertyValue(map));
+            }
+            else
+            {
+                RemoveImage();
+            }
+        }
         /// <summary>
         /// Lazy call to UpdateImage.
         /// Collect Properties need to be update, and set properties that starts the Processing.
@@ -1689,7 +1736,7 @@ namespace Tizen.NUI.BaseComponents
             // TODO : Couldn't we do this job in dali-engine side.
             if (_desired_width != -1 && _desired_height != -1)
             {
-                if (_resourceUrl != null)
+                if (!string.IsNullOrEmpty(_resourceUrl))
                 {
                     Size2D imageSize = ImageLoader.GetOriginalImageSize(_resourceUrl, true);
                     if (imageSize.Height > 0 && imageSize.Width > 0 && _desired_width > 0 && _desired_height > 0)
@@ -1800,11 +1847,6 @@ namespace Tizen.NUI.BaseComponents
                 {
                     // Update-or-Insert new value
                     cachedImagePropertyMap[key] = value;
-                    if (key == ImageVisualProperty.URL)
-                    {
-                        // Special case. If key is Url, update _resourceUrl here.
-                        value.Get(out _resourceUrl);
-                    }
                 }
             }
         }
