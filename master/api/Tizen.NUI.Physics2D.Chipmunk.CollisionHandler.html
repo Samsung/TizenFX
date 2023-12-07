@@ -1,0 +1,408 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class CollisionHandler
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class CollisionHandler
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.NUI.Physics2D.Chipmunk.CollisionHandler">
+
+
+  <h1 id="Tizen_NUI_Physics2D_Chipmunk_CollisionHandler" data-uid="Tizen.NUI.Physics2D.Chipmunk.CollisionHandler" class="text-break">Class CollisionHandler
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.Physics2D.html">Physics2D</a>.<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.html">Chipmunk</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.Physics2D.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>A collision handler is a set of 4 function callbacks for the different collision events that
+Chipmunk recognizes. Collision callbacks are closely associated with <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Arbiter.html">Arbiter</a>
+objects. You should familiarize yourself with those as well. Note #1: Shapes tagged as
+sensors (<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Shape.html#Tizen_NUI_Physics2D_Chipmunk_Shape_Sensor">Sensor</a> == true) never generate collisions that get processed,
+so collisions between sensor shapes and other shapes will never call the post_solve()
+callback. They still generate begin() and separate() callbacks, and the pre_solve() callback
+is also called every frame even though there is no collision response. Note #2: pre_solve()
+callbacks are called before the sleeping algorithm runs. If an object falls asleep, its
+post_solve() callback won’t be called until it’s re-awoken.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class CollisionHandler</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">CollisionHandler</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Physics2D/src/public/chipmunk/CollisionHandler.cs/#L113">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_CollisionHandler_Begin_" data-uid="Tizen.NUI.Physics2D.Chipmunk.CollisionHandler.Begin*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_CollisionHandler_Begin" data-uid="Tizen.NUI.Physics2D.Chipmunk.CollisionHandler.Begin">Begin</h4>
+  <div class="markdown level1 summary"><p>This function is called when two shapes with types that match this collision handler begin colliding</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Action&lt;Arbiter, Space, object&gt; Begin { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Action&lt;, , &gt;</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Arbiter.html">Arbiter</a>, <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Space.html">Space</a>, <span class="xref">object</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Physics2D/src/public/chipmunk/CollisionHandler.cs/#L235">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_CollisionHandler_Data_" data-uid="Tizen.NUI.Physics2D.Chipmunk.CollisionHandler.Data*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_CollisionHandler_Data" data-uid="Tizen.NUI.Physics2D.Chipmunk.CollisionHandler.Data">Data</h4>
+  <div class="markdown level1 summary"><p>User definable context pointer that is passed to all of the collision handler functions.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object Data { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Physics2D/src/public/chipmunk/CollisionHandler.cs/#L178">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_CollisionHandler_PostSolve_" data-uid="Tizen.NUI.Physics2D.Chipmunk.CollisionHandler.PostSolve*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_CollisionHandler_PostSolve" data-uid="Tizen.NUI.Physics2D.Chipmunk.CollisionHandler.PostSolve">PostSolve</h4>
+  <div class="markdown level1 summary"><p>This function is called each step when two shapes with types that match this collision
+handler are colliding. It's called after the collision solver runs so that you can read
+back information about the collision to trigger events in your game.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Action&lt;Arbiter, Space, object&gt; PostSolve { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Action&lt;, , &gt;</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Arbiter.html">Arbiter</a>, <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Space.html">Space</a>, <span class="xref">object</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Physics2D/src/public/chipmunk/CollisionHandler.cs/#L147">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_CollisionHandler_PreSolve_" data-uid="Tizen.NUI.Physics2D.Chipmunk.CollisionHandler.PreSolve*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_CollisionHandler_PreSolve" data-uid="Tizen.NUI.Physics2D.Chipmunk.CollisionHandler.PreSolve">PreSolve</h4>
+  <div class="markdown level1 summary"><p>This function is called each step when two shapes with types that match this collision
+handler are colliding. It's called before the collision solver runs so that you can
+affect a collision's outcome.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Func&lt;Arbiter, Space, object, bool&gt; PreSolve { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Func&lt;, , , &gt;</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Arbiter.html">Arbiter</a>, <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Space.html">Space</a>, <span class="xref">object</span>, <span class="xref">bool</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Physics2D/src/public/chipmunk/CollisionHandler.cs/#L208">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_CollisionHandler_Separate_" data-uid="Tizen.NUI.Physics2D.Chipmunk.CollisionHandler.Separate*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_CollisionHandler_Separate" data-uid="Tizen.NUI.Physics2D.Chipmunk.CollisionHandler.Separate">Separate</h4>
+  <div class="markdown level1 summary"><p>This function is called when two shapes with types that match this collision handler
+stop colliding.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Action&lt;Arbiter, Space, object&gt; Separate { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Action&lt;, , &gt;</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Arbiter.html">Arbiter</a>, <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Space.html">Space</a>, <span class="xref">object</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Physics2D/src/public/chipmunk/CollisionHandler.cs/#L242">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_CollisionHandler_TypeA_" data-uid="Tizen.NUI.Physics2D.Chipmunk.CollisionHandler.TypeA*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_CollisionHandler_TypeA" data-uid="Tizen.NUI.Physics2D.Chipmunk.CollisionHandler.TypeA">TypeA</h4>
+  <div class="markdown level1 summary"><p>In the collision handler callback, the shape with this type will be the first argument.
+Read only.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int TypeA { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Physics2D/src/public/chipmunk/CollisionHandler.cs/#L249">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_CollisionHandler_TypeB_" data-uid="Tizen.NUI.Physics2D.Chipmunk.CollisionHandler.TypeB*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_CollisionHandler_TypeB" data-uid="Tizen.NUI.Physics2D.Chipmunk.CollisionHandler.TypeB">TypeB</h4>
+  <div class="markdown level1 summary"><p>In the collision handler callback, the shape with this type will be the second argument.
+Read only.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int TypeB { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Physics2D/src/public/chipmunk/CollisionHandler.cs/#L49" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,1277 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Selector&lt;T&gt;
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Selector&lt;T&gt;
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.NUI.BaseComponents.Selector`1">
+
+
+  <h1 id="Tizen_NUI_BaseComponents_Selector_1" data-uid="Tizen.NUI.BaseComponents.Selector`1" class="text-break">Class Selector&lt;T&gt;
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.BaseComponents.html">BaseComponents</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>The selector class is a collection of a <a class="xref" href="Tizen.NUI.BaseComponents.ControlState.html">ControlState</a> and a T value pair.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Selector&lt;T&gt; : IEnumerable&lt;SelectorItem&lt;T&gt;&gt;</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">Selector&lt;T&gt;</span></div>
+      </div>
+    </dd>
+  </dl>
+
+  <dl class="attribute-list stack">
+    <dt>Derived</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.ColorSelector.html">ColorSelector</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.FloatSelector.html">FloatSelector</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.IntSelector.html">IntSelector</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.RectangleSelector.html">RectangleSelector</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.StringSelector.html">StringSelector</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Vector2Selector.html">Vector2Selector</a></div>
+    </dd>
+  </dl>
+
+
+
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L58">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Selector_1__ctor_" data-uid="Tizen.NUI.BaseComponents.Selector`1.#ctor*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Selector_1__ctor" data-uid="Tizen.NUI.BaseComponents.Selector`1.#ctor">Selector()</h4>
+  <div class="markdown level1 summary"><p>Create an empty selector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Selector()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L63">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Selector_1__ctor_" data-uid="Tizen.NUI.BaseComponents.Selector`1.#ctor*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Selector_1__ctor__0_" data-uid="Tizen.NUI.BaseComponents.Selector`1.#ctor(`0)">Selector(T)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Selector(T value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L70">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Selector_1__ctor_" data-uid="Tizen.NUI.BaseComponents.Selector`1.#ctor*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Selector_1__ctor_Tizen_NUI_BaseComponents_Selector__0__" data-uid="Tizen.NUI.BaseComponents.Selector`1.#ctor(Tizen.NUI.BaseComponents.Selector{`0})">Selector(Selector&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Selector(Selector&lt;T&gt; value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.Selector-1.html">Selector</a>&lt;T&gt;</td>
+        <td><span class="parametername">value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L80">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Selector_1_All_" data-uid="Tizen.NUI.BaseComponents.Selector`1.All*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Selector_1_All" data-uid="Tizen.NUI.BaseComponents.Selector`1.All">All</h4>
+  <div class="markdown level1 summary"><p>All State.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T All { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L196">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Selector_1_Count_" data-uid="Tizen.NUI.BaseComponents.Selector`1.Count*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Selector_1_Count" data-uid="Tizen.NUI.BaseComponents.Selector`1.Count">Count</h4>
+  <div class="markdown level1 summary"><p>Gets the number of elements.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Count { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L135">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Selector_1_Disabled_" data-uid="Tizen.NUI.BaseComponents.Selector`1.Disabled*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Selector_1_Disabled" data-uid="Tizen.NUI.BaseComponents.Selector`1.Disabled">Disabled</h4>
+  <div class="markdown level1 summary"><p>Disabled State.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T Disabled { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L145">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Selector_1_DisabledFocused_" data-uid="Tizen.NUI.BaseComponents.Selector`1.DisabledFocused*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Selector_1_DisabledFocused" data-uid="Tizen.NUI.BaseComponents.Selector`1.DisabledFocused">DisabledFocused</h4>
+  <div class="markdown level1 summary"><p>DisabledFocused State.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T DisabledFocused { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L164">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Selector_1_DisabledSelected_" data-uid="Tizen.NUI.BaseComponents.Selector`1.DisabledSelected*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Selector_1_DisabledSelected" data-uid="Tizen.NUI.BaseComponents.Selector`1.DisabledSelected">DisabledSelected</h4>
+  <div class="markdown level1 summary"><p>DisabledSelected State.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T DisabledSelected { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L115">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Selector_1_Focused_" data-uid="Tizen.NUI.BaseComponents.Selector`1.Focused*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Selector_1_Focused" data-uid="Tizen.NUI.BaseComponents.Selector`1.Focused">Focused</h4>
+  <div class="markdown level1 summary"><p>Focused State.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T Focused { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L202">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Selector_1_IsReadOnly_" data-uid="Tizen.NUI.BaseComponents.Selector`1.IsReadOnly*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Selector_1_IsReadOnly" data-uid="Tizen.NUI.BaseComponents.Selector`1.IsReadOnly">IsReadOnly</h4>
+  <div class="markdown level1 summary"><p>Gets a value indicating whether the selector is read-only.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsReadOnly { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L93">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Selector_1_Normal_" data-uid="Tizen.NUI.BaseComponents.Selector`1.Normal*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Selector_1_Normal" data-uid="Tizen.NUI.BaseComponents.Selector`1.Normal">Normal</h4>
+  <div class="markdown level1 summary"><p>Normal State.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T Normal { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L186">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Selector_1_Other_" data-uid="Tizen.NUI.BaseComponents.Selector`1.Other*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Selector_1_Other" data-uid="Tizen.NUI.BaseComponents.Selector`1.Other">Other</h4>
+  <div class="markdown level1 summary"><p>Other State.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T Other { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L105">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Selector_1_Pressed_" data-uid="Tizen.NUI.BaseComponents.Selector`1.Pressed*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Selector_1_Pressed" data-uid="Tizen.NUI.BaseComponents.Selector`1.Pressed">Pressed</h4>
+  <div class="markdown level1 summary"><p>Pressed State.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T Pressed { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L125">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Selector_1_Selected_" data-uid="Tizen.NUI.BaseComponents.Selector`1.Selected*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Selector_1_Selected" data-uid="Tizen.NUI.BaseComponents.Selector`1.Selected">Selected</h4>
+  <div class="markdown level1 summary"><p>Selected State.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T Selected { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L155">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Selector_1_SelectedFocused_" data-uid="Tizen.NUI.BaseComponents.Selector`1.SelectedFocused*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Selector_1_SelectedFocused" data-uid="Tizen.NUI.BaseComponents.Selector`1.SelectedFocused">SelectedFocused</h4>
+  <div class="markdown level1 summary"><p>SelectedFocused State.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T SelectedFocused { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L175">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Selector_1_SelectedPressed_" data-uid="Tizen.NUI.BaseComponents.Selector`1.SelectedPressed*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Selector_1_SelectedPressed" data-uid="Tizen.NUI.BaseComponents.Selector`1.SelectedPressed">SelectedPressed</h4>
+  <div class="markdown level1 summary"><p>SelectedPressed State.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T SelectedPressed { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L210">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Selector_1_Add_" data-uid="Tizen.NUI.BaseComponents.Selector`1.Add*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Selector_1_Add_Tizen_NUI_BaseComponents_ControlState__0_" data-uid="Tizen.NUI.BaseComponents.Selector`1.Add(Tizen.NUI.BaseComponents.ControlState,`0)">Add(ControlState, T)</h4>
+  <div class="markdown level1 summary"><p>Adds the specified state and value to the selector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(ControlState state, T value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.ControlState.html">ControlState</a></td>
+        <td><span class="parametername">state</span></td>
+        <td><p>The state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value associated with state.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L235">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Selector_1_Add_" data-uid="Tizen.NUI.BaseComponents.Selector`1.Add*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Selector_1_Add_Tizen_NUI_BaseComponents_SelectorItem__0__" data-uid="Tizen.NUI.BaseComponents.Selector`1.Add(Tizen.NUI.BaseComponents.SelectorItem{`0})">Add(SelectorItem&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Adds the specified state and value to the selector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(SelectorItem&lt;T&gt; item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.SelectorItem-1.html">SelectorItem</a>&lt;T&gt;</td>
+        <td><span class="parametername">item</span></td>
+        <td><p>The selector item includes state and value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L386">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Selector_1_Clear_" data-uid="Tizen.NUI.BaseComponents.Selector`1.Clear*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Selector_1_Clear" data-uid="Tizen.NUI.BaseComponents.Selector`1.Clear">Clear()</h4>
+  <div class="markdown level1 summary"><p>Removes all elements.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Clear()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L413">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Selector_1_Clone_" data-uid="Tizen.NUI.BaseComponents.Selector`1.Clone*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Selector_1_Clone" data-uid="Tizen.NUI.BaseComponents.Selector`1.Clone">Clone()</h4>
+  <div class="markdown level1 summary"><p>Clone itself.
+If type T implements ICloneable, it calls Clone() method to clone values, otherwise use operator=.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Selector&lt;T&gt; Clone()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.Selector-1.html">Selector</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L441">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Selector_1_Clone_" data-uid="Tizen.NUI.BaseComponents.Selector`1.Clone*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Selector_1_Clone_Tizen_NUI_BaseComponents_Selector__0__" data-uid="Tizen.NUI.BaseComponents.Selector`1.Clone(Tizen.NUI.BaseComponents.Selector{`0})">Clone(Selector&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Copy values from other selector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Clone(Selector&lt;T&gt; other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.Selector-1.html">Selector</a>&lt;T&gt;</td>
+        <td><span class="parametername">other</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L425">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Selector_1_Clone_" data-uid="Tizen.NUI.BaseComponents.Selector`1.Clone*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Selector_1_Clone__1_Converter__0___0__" data-uid="Tizen.NUI.BaseComponents.Selector`1.Clone``1(Converter{`0,``0})">Clone&lt;TOut&gt;(Converter&lt;T, TOut&gt;)</h4>
+  <div class="markdown level1 summary"><p>Clone with type converter.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Selector&lt;TOut&gt; Clone&lt;TOut&gt;(Converter&lt;T, TOut&gt; converter)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Converter&lt;, &gt;</span>&lt;T, TOut&gt;</td>
+        <td><span class="parametername">converter</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.Selector-1.html">Selector</a>&lt;TOut&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">TOut</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L282">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Selector_1_Contains_" data-uid="Tizen.NUI.BaseComponents.Selector`1.Contains*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Selector_1_Contains_Tizen_NUI_BaseComponents_SelectorItem__0__" data-uid="Tizen.NUI.BaseComponents.Selector`1.Contains(Tizen.NUI.BaseComponents.SelectorItem{`0})">Contains(SelectorItem&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Determines whether the selector contains a specific value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Contains(SelectorItem&lt;T&gt; item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.SelectorItem-1.html">SelectorItem</a>&lt;T&gt;</td>
+        <td><span class="parametername">item</span></td>
+        <td><p>The selector item includes state and value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if item is found in the selector. otherwise, false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L298">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Selector_1_CopyTo_" data-uid="Tizen.NUI.BaseComponents.Selector`1.CopyTo*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Selector_1_CopyTo_Tizen_NUI_BaseComponents_SelectorItem__0____System_Int32_" data-uid="Tizen.NUI.BaseComponents.Selector`1.CopyTo(Tizen.NUI.BaseComponents.SelectorItem{`0}[],System.Int32)">CopyTo(SelectorItem&lt;T&gt;[], int)</h4>
+  <div class="markdown level1 summary"><p>Copies the elements of the selector to an Array, starting at a particular Array index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CopyTo(SelectorItem&lt;T&gt;[] items, int startIndex)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.SelectorItem-1.html">SelectorItem</a>&lt;T&gt;[]</td>
+        <td><span class="parametername">items</span></td>
+        <td><p>The one-dimensional array that is the destination of the elements copied from selector. The Array must have zero-based indexing.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">startIndex</span></td>
+        <td><p>The zero-based index in array at which copying begins.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L470">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Selector_1_Equals_" data-uid="Tizen.NUI.BaseComponents.Selector`1.Equals*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Selector_1_Equals_System_Object_" data-uid="Tizen.NUI.BaseComponents.Selector`1.Equals(System.Object)">Equals(object)</h4>
+  <div class="markdown level1 summary"><p>Determines whether the specified object is equal to the current object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">other</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L315">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Selector_1_GetEnumerator_" data-uid="Tizen.NUI.BaseComponents.Selector`1.GetEnumerator*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Selector_1_GetEnumerator" data-uid="Tizen.NUI.BaseComponents.Selector`1.GetEnumerator">GetEnumerator()</h4>
+  <div class="markdown level1 summary"><p>Returns an enumerator that iterates through the collection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerator&lt;SelectorItem&lt;T&gt;&gt; GetEnumerator()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerator&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.BaseComponents.SelectorItem-1.html">SelectorItem</a>&lt;T&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L500">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Selector_1_GetHashCode_" data-uid="Tizen.NUI.BaseComponents.Selector`1.GetHashCode*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Selector_1_GetHashCode" data-uid="Tizen.NUI.BaseComponents.Selector`1.GetHashCode">GetHashCode()</h4>
+  <div class="markdown level1 summary"><p>Serves as the default hash function.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L339">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Selector_1_GetValue_" data-uid="Tizen.NUI.BaseComponents.Selector`1.GetValue*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Selector_1_GetValue_Tizen_NUI_BaseComponents_ControlState__0__" data-uid="Tizen.NUI.BaseComponents.Selector`1.GetValue(Tizen.NUI.BaseComponents.ControlState,`0@)">GetValue(ControlState, out T)</h4>
+  <div class="markdown level1 summary"><p>Get value by State.
+It will traverse from the first item to find proper fit when there is no perfect state match.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool GetValue(ControlState state, out T result)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.ControlState.html">ControlState</a></td>
+        <td><span class="parametername">state</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">result</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if the selector has a given state value, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L259">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Selector_1_Remove_" data-uid="Tizen.NUI.BaseComponents.Selector`1.Remove*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Selector_1_Remove_Tizen_NUI_BaseComponents_SelectorItem__0__" data-uid="Tizen.NUI.BaseComponents.Selector`1.Remove(Tizen.NUI.BaseComponents.SelectorItem{`0})">Remove(SelectorItem&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Remove an item from the selector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Remove(SelectorItem&lt;T&gt; item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.SelectorItem-1.html">SelectorItem</a>&lt;T&gt;</td>
+        <td><span class="parametername">item</span></td>
+        <td><p>The selector item includes state and value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L394">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Selector_1_ToString_" data-uid="Tizen.NUI.BaseComponents.Selector`1.ToString*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Selector_1_ToString" data-uid="Tizen.NUI.BaseComponents.Selector`1.ToString">ToString()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="operators">Operators
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L49">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Selector_1_op_Implicit_" data-uid="Tizen.NUI.BaseComponents.Selector`1.op_Implicit*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Selector_1_op_Implicit__0__Tizen_NUI_BaseComponents_Selector__0_" data-uid="Tizen.NUI.BaseComponents.Selector`1.op_Implicit(`0)~Tizen.NUI.BaseComponents.Selector{`0}">implicit operator Selector&lt;T&gt;(T)</h4>
+  <div class="markdown level1 summary"><p>Implicitly convert T type value to selector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator Selector&lt;T&gt;(T value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value will be converted to a selector.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.Selector-1.html">Selector</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/Style/Selector.cs/#L30" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

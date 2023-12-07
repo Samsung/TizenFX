@@ -1,0 +1,1946 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Body
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Body
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API11">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body">
+
+
+  <h1 id="Tizen_NUI_Physics2D_Chipmunk_Body" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body" class="text-break">Class Body
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.Physics2D.html">Physics2D</a>.<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.html">Chipmunk</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.Physics2D.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Mass and moment are ignored when <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.BodyType.html">BodyType</a> is <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.BodyType.html#Tizen_NUI_Physics2D_Chipmunk_BodyType_Kinematic">Kinematic</a>
+or <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.BodyType.html#Tizen_NUI_Physics2D_Chipmunk_BodyType_Static">Static</a>. Guessing the mass for a body is usually fine, but guessing
+a moment of inertia can lead to a very poor simulation. It’s recommended to use Chipmunk’s
+moment-calculating functions to estimate the moment for you.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Body : IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">Body</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L64">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body__ctor_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.#ctor*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body__ctor" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.#ctor">Body()</h4>
+  <div class="markdown level1 summary"><p>Create a Dynamic Body with no mass and no moment.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Body()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L97">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body__ctor_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.#ctor*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body__ctor_System_Double_System_Double_Tizen_NUI_Physics2D_Chipmunk_BodyType_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.#ctor(System.Double,System.Double,Tizen.NUI.Physics2D.Chipmunk.BodyType)">Body(double, double, BodyType)</h4>
+  <div class="markdown level1 summary"><p>Creates a body with the given mass and moment, of the give <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.BodyType.html">BodyType</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Body(double mass, double moment, BodyType type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td><span class="parametername">mass</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td><span class="parametername">moment</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.BodyType.html">BodyType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L89">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body__ctor_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.#ctor*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body__ctor_System_Double_System_Double_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.#ctor(System.Double,System.Double)">Body(double, double)</h4>
+  <div class="markdown level1 summary"><p>Creates a body with the given mass and moment.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Body(double mass, double moment)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td><span class="parametername">mass</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td><span class="parametername">moment</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L79">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body__ctor_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.#ctor*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body__ctor_Tizen_NUI_Physics2D_Chipmunk_BodyType_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.#ctor(Tizen.NUI.Physics2D.Chipmunk.BodyType)">Body(BodyType)</h4>
+  <div class="markdown level1 summary"><p>Create a <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Body.html">Body</a> of the given <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.BodyType.html">BodyType</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Body(BodyType type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.BodyType.html">BodyType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L725">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_AllContactedBodies_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.AllContactedBodies*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_AllContactedBodies" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.AllContactedBodies">AllContactedBodies</h4>
+  <div class="markdown level1 summary"><p>Get the list of all bodies in contact with this one</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;Body&gt; AllContactedBodies { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IReadOnlyList&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Body.html">Body</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L209">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_Angle_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Angle*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_Angle" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Angle">Angle</h4>
+  <div class="markdown level1 summary"><p>Rotation of the body in radians. When changing the rotation, you may also want to call
+<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Space.html#Tizen_NUI_Physics2D_Chipmunk_Space_ReindexShapesForBody_Tizen_NUI_Physics2D_Chipmunk_Body_">ReindexShapesForBody(Body)</a> to update the collision detection information
+for the attached shapes if you plan to make any queries against the space. A body
+rotates around its center of gravity, not its position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double Angle { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L331">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_AngularVelocity_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.AngularVelocity*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_AngularVelocity" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.AngularVelocity">AngularVelocity</h4>
+  <div class="markdown level1 summary"><p>The angular velocity of the body in radians per second.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double AngularVelocity { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L371">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_Arbiters_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Arbiters*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_Arbiters" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Arbiters">Arbiters</h4>
+  <div class="markdown level1 summary"><p>Get the list of body Arbiters</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;Arbiter&gt; Arbiters { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IReadOnlyList&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Arbiter.html">Arbiter</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L300">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_CenterOfGravity_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.CenterOfGravity*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_CenterOfGravity" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.CenterOfGravity">CenterOfGravity</h4>
+  <div class="markdown level1 summary"><p>Location of the center of gravity in body-local coordinates. The default value is
+(0, 0), meaning the center of gravity is the same as the position of the body.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vect CenterOfGravity { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L401">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_Constraints_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Constraints*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_Constraints" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Constraints">Constraints</h4>
+  <div class="markdown level1 summary"><p>All constraints attached to the body</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;Constraint&gt; Constraints { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IReadOnlyList&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Constraint.html">Constraint</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L200">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_Data_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Data*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_Data" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Data">Data</h4>
+  <div class="markdown level1 summary"><p>Arbitrary user data.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object Data { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L321">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_Force_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Force*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_Force" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Force">Force</h4>
+  <div class="markdown level1 summary"><p>Force applied to the center of gravity of the body. This value is reset for every time
+step.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vect Force { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L58">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_Handle_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Handle*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_Handle" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Handle">Handle</h4>
+  <div class="markdown level1 summary"><p>The native handle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public System.IntPtr Handle { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IntPtr</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L447">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_IsSleeping_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.IsSleeping*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_IsSleeping" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.IsSleeping">IsSleeping</h4>
+  <div class="markdown level1 summary"><p>Returns true if body is sleeping.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsSleeping { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L706">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_KineticEnergy_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.KineticEnergy*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_KineticEnergy" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.KineticEnergy">KineticEnergy</h4>
+  <div class="markdown level1 summary"><p>Get the kinetic energy of a body.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double KineticEnergy { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L252">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_Mass_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Mass*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_Mass" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Mass">Mass</h4>
+  <div class="markdown level1 summary"><p>Mass of the rigid body. Mass does not have to be expressed in any particular units, but
+relative masses should be consistent.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double Mass { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L264">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_Moment_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Moment*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_Moment" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Moment">Moment</h4>
+  <div class="markdown level1 summary"><p>Moment of inertia of the body. The mass tells you how hard it is to push an object,
+the MoI tells you how hard it is to spin the object. Don't try to guess the MoI, use the
+MomentFor*() functions to estimate it, or the physics may behave strangely.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double Moment { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L289">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_Position_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Position*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_Position" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Position">Position</h4>
+  <div class="markdown level1 summary"><p>Position of the body. When changing the position, you may also want to call
+<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Space.html#Tizen_NUI_Physics2D_Chipmunk_Space_ReindexShapesForBody_Tizen_NUI_Physics2D_Chipmunk_Body_">ReindexShapesForBody(Body)</a> to update the collision detection information
+for the attached shapes if you plan to make any queries against the space.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vect Position { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L618">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_PositionUpdateFunction_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.PositionUpdateFunction*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_PositionUpdateFunction" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.PositionUpdateFunction">PositionUpdateFunction</h4>
+  <div class="markdown level1 summary"><p>Set the callback used to update a body's position.
+Parameters: body, deltaTime</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Action&lt;Body, double&gt; PositionUpdateFunction { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Action&lt;, &gt;</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Body.html">Body</a>, <span class="xref">double</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L365">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_Rotation_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Rotation*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_Rotation" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Rotation">Rotation</h4>
+  <div class="markdown level1 summary"><p>The rotation vector for the body. Can be used with cpvrotate() or cpvunrotate() to perform fast rotations.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vect Rotation { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L431">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_Shapes_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Shapes*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_Shapes" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Shapes">Shapes</h4>
+  <div class="markdown level1 summary"><p>All shapes attached to the body</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;Shape&gt; Shapes { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IReadOnlyList&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Shape.html">Shape</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L274">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_Space_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Space*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_Space" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Space">Space</h4>
+  <div class="markdown level1 summary"><p>Get the space this body is associated with, or null if it is not currently associated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Space Space { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Space.html">Space</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L341">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_Torque_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Torque*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_Torque" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Torque">Torque</h4>
+  <div class="markdown level1 summary"><p>The torque applied to the body. This value is reset for every time step.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double Torque { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L241">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_Type_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Type*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_Type" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Type">Type</h4>
+  <div class="markdown level1 summary"><p>The way the body behaves in physics simulations.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BodyType Type { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.BodyType.html">BodyType</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L310">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_Velocity_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Velocity*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_Velocity" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Velocity">Velocity</h4>
+  <div class="markdown level1 summary"><p>Linear velocity of the center of gravity of the body.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vect Velocity { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L579">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_VelocityUpdateFunction_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.VelocityUpdateFunction*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_VelocityUpdateFunction" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.VelocityUpdateFunction">VelocityUpdateFunction</h4>
+  <div class="markdown level1 summary"><p>Set the callback used to update a body's velocity.
+Parameters: body, gravity, damping and deltaTime</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Action&lt;Body, Vect, double, double&gt; VelocityUpdateFunction { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Action&lt;, , , &gt;</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Body.html">Body</a>, <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a>, <span class="xref">double</span>, <span class="xref">double</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L456">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_Activate_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Activate*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_Activate" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Activate">Activate()</h4>
+  <div class="markdown level1 summary"><p>Reset the idle timer on a body.
+If it was sleeping, wake it and any other bodies it was touching.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Activate()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L463">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_ActivateStatic_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.ActivateStatic*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_ActivateStatic_Tizen_NUI_Physics2D_Chipmunk_Shape_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.ActivateStatic(Tizen.NUI.Physics2D.Chipmunk.Shape)">ActivateStatic(Shape)</h4>
+  <div class="markdown level1 summary"><p>Similar in function to Activate(). Activates all bodies touching body. If filter is not NULL, then only bodies touching through filter will be awoken.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ActivateStatic(Shape filter)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Shape.html">Shape</a></td>
+        <td><span class="parametername">filter</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L491">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_ApplyAngularImpulse_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.ApplyAngularImpulse*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_ApplyAngularImpulse_System_Double_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.ApplyAngularImpulse(System.Double)">ApplyAngularImpulse(double)</h4>
+  <div class="markdown level1 summary"><p>Apply angular impulse.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ApplyAngularImpulse(double impulse)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td><span class="parametername">impulse</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L471">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_ApplyForceAtLocalPoint_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.ApplyForceAtLocalPoint*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_ApplyForceAtLocalPoint_Tizen_NUI_Physics2D_Chipmunk_Vect_Tizen_NUI_Physics2D_Chipmunk_Vect_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.ApplyForceAtLocalPoint(Tizen.NUI.Physics2D.Chipmunk.Vect,Tizen.NUI.Physics2D.Chipmunk.Vect)">ApplyForceAtLocalPoint(Vect, Vect)</h4>
+  <div class="markdown level1 summary"><p>Add the local force force to body as if applied from the body local point.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ApplyForceAtLocalPoint(Vect force, Vect point)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td><span class="parametername">force</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td><span class="parametername">point</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L508">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_ApplyForceAtWorldPoint_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.ApplyForceAtWorldPoint*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_ApplyForceAtWorldPoint_Tizen_NUI_Physics2D_Chipmunk_Vect_Tizen_NUI_Physics2D_Chipmunk_Vect_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.ApplyForceAtWorldPoint(Tizen.NUI.Physics2D.Chipmunk.Vect,Tizen.NUI.Physics2D.Chipmunk.Vect)">ApplyForceAtWorldPoint(Vect, Vect)</h4>
+  <div class="markdown level1 summary"><p>Add the force force to body as if applied from the world point.
+People are sometimes confused by the difference between a force and an impulse.
+An impulse is a very large force applied over a very short period of time.
+Some examples are a ball hitting a wall or cannon firing.
+Chipmunk treats impulses as if they occur instantaneously by adding directly to the velocity of an object.
+Both impulses and forces are affected the mass of an object.
+Doubling the mass of the object will halve the effect.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ApplyForceAtWorldPoint(Vect force, Vect point)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td><span class="parametername">force</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td><span class="parametername">point</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L530">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_ApplyImpulseAtLocalPoint_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.ApplyImpulseAtLocalPoint*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_ApplyImpulseAtLocalPoint_Tizen_NUI_Physics2D_Chipmunk_Vect_Tizen_NUI_Physics2D_Chipmunk_Vect_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.ApplyImpulseAtLocalPoint(Tizen.NUI.Physics2D.Chipmunk.Vect,Tizen.NUI.Physics2D.Chipmunk.Vect)">ApplyImpulseAtLocalPoint(Vect, Vect)</h4>
+  <div class="markdown level1 summary"><p>Apply an impulse to a body. Both the impulse and point are expressed in body local coordinates.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ApplyImpulseAtLocalPoint(Vect impulse, Vect point)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td><span class="parametername">impulse</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td><span class="parametername">point</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L519">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_ApplyImpulseAtWorldPoint_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.ApplyImpulseAtWorldPoint*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_ApplyImpulseAtWorldPoint_Tizen_NUI_Physics2D_Chipmunk_Vect_Tizen_NUI_Physics2D_Chipmunk_Vect_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.ApplyImpulseAtWorldPoint(Tizen.NUI.Physics2D.Chipmunk.Vect,Tizen.NUI.Physics2D.Chipmunk.Vect)">ApplyImpulseAtWorldPoint(Vect, Vect)</h4>
+  <div class="markdown level1 summary"><p>Apply an impulse to a body. Both the impulse and point are expressed in world coordinates.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ApplyImpulseAtWorldPoint(Vect impulse, Vect point)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td><span class="parametername">impulse</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td><span class="parametername">point</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L481">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_ApplyTorque_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.ApplyTorque*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_ApplyTorque_System_Double_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.ApplyTorque(System.Double)">ApplyTorque(double)</h4>
+  <div class="markdown level1 summary"><p>Apply torque.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ApplyTorque(double torque)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td><span class="parametername">torque</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L762">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_ContactWith_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.ContactWith*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_ContactWith_Tizen_NUI_Physics2D_Chipmunk_Body_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.ContactWith(Tizen.NUI.Physics2D.Chipmunk.Body)">ContactWith(Body)</h4>
+  <div class="markdown level1 summary"><p>Check if a Body is in contact with another</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ContactWith(Body other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Body.html">Body</a></td>
+        <td><span class="parametername">other</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L188">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_Dispose_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Dispose*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_Dispose" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Dispose the body.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L175">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_Dispose_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Dispose*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_Dispose_System_Boolean_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Dispose(System.Boolean)">Dispose(bool)</h4>
+  <div class="markdown level1 summary"><p>Dispose the body.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool dispose)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">dispose</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L160">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_Free_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Free*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_Free" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Free">Free()</h4>
+  <div class="markdown level1 summary"><p>Destroy and free the body.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Free()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L121">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_FromHandle_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.FromHandle*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_FromHandle_System_IntPtr_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.FromHandle(System.IntPtr)">FromHandle(IntPtr)</h4>
+  <div class="markdown level1 summary"><p>Get a <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Body.html">Body</a> object from a native cpBody handle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Body FromHandle(System.IntPtr body)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IntPtr</span></td>
+        <td><span class="parametername">body</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Body.html">Body</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L131">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_FromHandleSafe_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.FromHandleSafe*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_FromHandleSafe_System_IntPtr_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.FromHandleSafe(System.IntPtr)">FromHandleSafe(IntPtr)</h4>
+  <div class="markdown level1 summary"><p>Get the managed <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Body.html">Body</a> object from the native handle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Body FromHandleSafe(System.IntPtr nativeBodyHandle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IntPtr</span></td>
+        <td><span class="parametername">nativeBodyHandle</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Body.html">Body</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L232">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_GetTransform_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.GetTransform*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_GetTransform_Tizen_NUI_Physics2D_Chipmunk_Vect__System_Double__" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.GetTransform(Tizen.NUI.Physics2D.Chipmunk.Vect@,System.Double@)">GetTransform(out Vect, out double)</h4>
+  <div class="markdown level1 summary"><p>Get body position and rotation angle (in radians)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void GetTransform(out Vect position, out double angle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td><span class="parametername">position</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td><span class="parametername">angle</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L697">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_GetVelocityAtLocalPoint_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.GetVelocityAtLocalPoint*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_GetVelocityAtLocalPoint_Tizen_NUI_Physics2D_Chipmunk_Vect_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.GetVelocityAtLocalPoint(Tizen.NUI.Physics2D.Chipmunk.Vect)">GetVelocityAtLocalPoint(Vect)</h4>
+  <div class="markdown level1 summary"><p>Get the velocity on a body (in world units) at a point on the body in local coordinates.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vect GetVelocityAtLocalPoint(Vect point)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td><span class="parametername">point</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L686">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_GetVelocityAtWorldPoint_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.GetVelocityAtWorldPoint*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_GetVelocityAtWorldPoint_Tizen_NUI_Physics2D_Chipmunk_Vect_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.GetVelocityAtWorldPoint(Tizen.NUI.Physics2D.Chipmunk.Vect)">GetVelocityAtWorldPoint(Vect)</h4>
+  <div class="markdown level1 summary"><p>Get the velocity on a body (in world units) at a point on the body in world coordinates.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vect GetVelocityAtWorldPoint(Vect point)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td><span class="parametername">point</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L664">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_LocalToWorld_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.LocalToWorld*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_LocalToWorld_Tizen_NUI_Physics2D_Chipmunk_Vect_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.LocalToWorld(Tizen.NUI.Physics2D.Chipmunk.Vect)">LocalToWorld(Vect)</h4>
+  <div class="markdown level1 summary"><p>Convert body relative/local coordinates to absolute/world coordinates.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vect LocalToWorld(Vect point)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td><span class="parametername">point</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L716">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_MomentForBox_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.MomentForBox*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_MomentForBox_System_Double_System_Double_System_Double_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.MomentForBox(System.Double,System.Double,System.Double)">MomentForBox(double, double, double)</h4>
+  <div class="markdown level1 summary"><p>Calculate the moment of inertia for a solid box centered on the body.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static double MomentForBox(double mass, double width, double height)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td><span class="parametername">mass</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td><span class="parametername">width</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td><span class="parametername">height</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L221">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_SetTransform_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.SetTransform*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_SetTransform_Tizen_NUI_Physics2D_Chipmunk_Vect_System_Double_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.SetTransform(Tizen.NUI.Physics2D.Chipmunk.Vect,System.Double)">SetTransform(Vect, double)</h4>
+  <div class="markdown level1 summary"><p>Set body position and rotation angle (in radians)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetTransform(Vect position, double angle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td><span class="parametername">position</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td><span class="parametername">angle</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L539">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_Sleep_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Sleep*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_Sleep" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Sleep">Sleep()</h4>
+  <div class="markdown level1 summary"><p>Forces a body to fall asleep immediately even if it’s in midair. Cannot be called from a callback.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Sleep()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L554">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_SleepWithGroup_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.SleepWithGroup*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_SleepWithGroup_Tizen_NUI_Physics2D_Chipmunk_Body_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.SleepWithGroup(Tizen.NUI.Physics2D.Chipmunk.Body)">SleepWithGroup(Body)</h4>
+  <div class="markdown level1 summary"><p>When objects in Chipmunk sleep, they sleep as a group of all objects that are touching or jointed together.
+When an object is woken up, all of the objects in its group are woken up.
+SleepWithGroup() allows you group sleeping objects together. It acts identically to Sleep() if you pass null as
+group by starting a new group.
+If you pass a sleeping body for group, body will be awoken when group is awoken.
+You can use this to initialize levels and start stacks of objects in a pre-sleeping state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SleepWithGroup(Body group)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Body.html">Body</a></td>
+        <td><span class="parametername">group</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L653">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_UpdatePosition_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.UpdatePosition*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_UpdatePosition_System_Double_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.UpdatePosition(System.Double)">UpdatePosition(double)</h4>
+  <div class="markdown level1 summary"><p>Default position integration function.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdatePosition(double dt)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td><span class="parametername">dt</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L643">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_UpdateVelocity_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.UpdateVelocity*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_UpdateVelocity_Tizen_NUI_Physics2D_Chipmunk_Vect_System_Double_System_Double_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.UpdateVelocity(Tizen.NUI.Physics2D.Chipmunk.Vect,System.Double,System.Double)">UpdateVelocity(Vect, double, double)</h4>
+  <div class="markdown level1 summary"><p>Default velocity integration function..</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdateVelocity(Vect gravity, double damping, double dt)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td><span class="parametername">gravity</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td><span class="parametername">damping</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td><span class="parametername">dt</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L675">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body_WorldToLocal_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.WorldToLocal*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_WorldToLocal_Tizen_NUI_Physics2D_Chipmunk_Vect_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.WorldToLocal(Tizen.NUI.Physics2D.Chipmunk.Vect)">WorldToLocal(Vect)</h4>
+  <div class="markdown level1 summary"><p>Convert body absolute/world coordinates to  relative/local coordinates.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vect WorldToLocal(Vect point)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td><span class="parametername">point</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L48" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

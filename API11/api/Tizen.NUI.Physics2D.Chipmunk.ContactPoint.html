@@ -1,0 +1,546 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ContactPoint
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ContactPoint
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API11">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.NUI.Physics2D.Chipmunk.ContactPoint">
+
+
+  <h1 id="Tizen_NUI_Physics2D_Chipmunk_ContactPoint" data-uid="Tizen.NUI.Physics2D.Chipmunk.ContactPoint" class="text-break">Class ContactPoint
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.Physics2D.html">Physics2D</a>.<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.html">Chipmunk</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.Physics2D.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Contains information about a contact point. <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.ContactPoint.html#Tizen_NUI_Physics2D_Chipmunk_ContactPoint_PointA">PointA</a> and <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.ContactPoint.html#Tizen_NUI_Physics2D_Chipmunk_ContactPoint_PointB">PointB</a>
+are the contact positions on the surface of each shape. <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.ContactPoint.html#Tizen_NUI_Physics2D_Chipmunk_ContactPoint_Distance">Distance</a> is the
+penetration distance of the two, which is a negative value. This value is calculated as
+dot(point2 - point1), normal) and is ignored when you set the
+<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Arbiter.html#Tizen_NUI_Physics2D_Chipmunk_Arbiter_ContactPointSet">ContactPointSet</a>.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class ContactPoint : IEquatable&lt;ContactPoint&gt;</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">ContactPoint</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/ContactPoint.cs/#L61">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_ContactPoint_Distance_" data-uid="Tizen.NUI.Physics2D.Chipmunk.ContactPoint.Distance*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_ContactPoint_Distance" data-uid="Tizen.NUI.Physics2D.Chipmunk.ContactPoint.Distance">Distance</h4>
+  <div class="markdown level1 summary"><p>The penetration distance of the two shapes (as a negative value). This value is
+calculated as  dot(point2 - point1), normal) and is ignored when you set the
+<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Arbiter.html#Tizen_NUI_Physics2D_Chipmunk_Arbiter_ContactPointSet">ContactPointSet</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double Distance { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/ContactPoint.cs/#L47">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_ContactPoint_PointA_" data-uid="Tizen.NUI.Physics2D.Chipmunk.ContactPoint.PointA*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_ContactPoint_PointA" data-uid="Tizen.NUI.Physics2D.Chipmunk.ContactPoint.PointA">PointA</h4>
+  <div class="markdown level1 summary"><p>Point A in the contact point.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vect PointA { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/ContactPoint.cs/#L53">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_ContactPoint_PointB_" data-uid="Tizen.NUI.Physics2D.Chipmunk.ContactPoint.PointB*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_ContactPoint_PointB" data-uid="Tizen.NUI.Physics2D.Chipmunk.ContactPoint.PointB">PointB</h4>
+  <div class="markdown level1 summary"><p>Point B in the contact point.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vect PointB { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/ContactPoint.cs/#L92">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_ContactPoint_Equals_" data-uid="Tizen.NUI.Physics2D.Chipmunk.ContactPoint.Equals*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_ContactPoint_Equals_System_Object_" data-uid="Tizen.NUI.Physics2D.Chipmunk.ContactPoint.Equals(System.Object)">Equals(object)</h4>
+  <div class="markdown level1 summary"><p>Check if this <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.ContactPoint.html">ContactPoint</a> is equal to an object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/ContactPoint.cs/#L75">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_ContactPoint_Equals_" data-uid="Tizen.NUI.Physics2D.Chipmunk.ContactPoint.Equals*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_ContactPoint_Equals_Tizen_NUI_Physics2D_Chipmunk_ContactPoint_" data-uid="Tizen.NUI.Physics2D.Chipmunk.ContactPoint.Equals(Tizen.NUI.Physics2D.Chipmunk.ContactPoint)">Equals(ContactPoint)</h4>
+  <div class="markdown level1 summary"><p>Returns true if neither <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.ContactPoint.html">ContactPoint</a> is null and the points are within
+<see cref="!:float.Epsilon"></see> distance of each other.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(ContactPoint other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.ContactPoint.html">ContactPoint</a></td>
+        <td><span class="parametername">other</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/ContactPoint.cs/#L108">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_ContactPoint_GetHashCode_" data-uid="Tizen.NUI.Physics2D.Chipmunk.ContactPoint.GetHashCode*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_ContactPoint_GetHashCode" data-uid="Tizen.NUI.Physics2D.Chipmunk.ContactPoint.GetHashCode">GetHashCode()</h4>
+  <div class="markdown level1 summary"><p>Get the <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.ContactPoint.html">ContactPoint</a> hash set.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/ContactPoint.cs/#L126">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_ContactPoint_ToString_" data-uid="Tizen.NUI.Physics2D.Chipmunk.ContactPoint.ToString*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_ContactPoint_ToString" data-uid="Tizen.NUI.Physics2D.Chipmunk.ContactPoint.ToString">ToString()</h4>
+  <div class="markdown level1 summary"><p>Returns a string in the format of &quot;a: {pointA}, b: {pointB}, distance: {distance}&quot;.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="operators">Operators
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/ContactPoint.cs/#L136">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_ContactPoint_op_Equality_" data-uid="Tizen.NUI.Physics2D.Chipmunk.ContactPoint.op_Equality*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_ContactPoint_op_Equality_Tizen_NUI_Physics2D_Chipmunk_ContactPoint_Tizen_NUI_Physics2D_Chipmunk_ContactPoint_" data-uid="Tizen.NUI.Physics2D.Chipmunk.ContactPoint.op_Equality(Tizen.NUI.Physics2D.Chipmunk.ContactPoint,Tizen.NUI.Physics2D.Chipmunk.ContactPoint)">operator ==(ContactPoint, ContactPoint)</h4>
+  <div class="markdown level1 summary"><p>Returns true if both <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.ContactPoint.html">ContactPoint</a>s are the same object or the dimensions
+are within <see cref="!:float.Epsilon"></see> distance of each other.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(ContactPoint left, ContactPoint right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.ContactPoint.html">ContactPoint</a></td>
+        <td><span class="parametername">left</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.ContactPoint.html">ContactPoint</a></td>
+        <td><span class="parametername">right</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/ContactPoint.cs/#L151">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_ContactPoint_op_Inequality_" data-uid="Tizen.NUI.Physics2D.Chipmunk.ContactPoint.op_Inequality*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_ContactPoint_op_Inequality_Tizen_NUI_Physics2D_Chipmunk_ContactPoint_Tizen_NUI_Physics2D_Chipmunk_ContactPoint_" data-uid="Tizen.NUI.Physics2D.Chipmunk.ContactPoint.op_Inequality(Tizen.NUI.Physics2D.Chipmunk.ContactPoint,Tizen.NUI.Physics2D.Chipmunk.ContactPoint)">operator !=(ContactPoint, ContactPoint)</h4>
+  <div class="markdown level1 summary"><p>Returns false if both <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.ContactPoint.html">ContactPoint</a>s are the same object or the dimensions
+are within <see cref="!:float.Epsilon"></see> distance of each other.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(ContactPoint left, ContactPoint right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.ContactPoint.html">ContactPoint</a></td>
+        <td><span class="parametername">left</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.ContactPoint.html">ContactPoint</a></td>
+        <td><span class="parametername">right</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/ContactPoint.cs/#L35" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

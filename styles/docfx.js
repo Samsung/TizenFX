@@ -8,6 +8,7 @@ $(function () {
   var hide = 'hide';
   var util = new utility();
 
+  workAroundFixedHeaderForAnchors();
   highlight();
   enableSearch();
 
@@ -50,7 +51,7 @@ $(function () {
   // Styling for tables in conceptual documents using Bootstrap.
   // See http://getbootstrap.com/css/#tables
   function renderTables() {
-    $('table').parent(':not(.table-infra)').find('> table').wrap('<div class=\"table-responsive\"></div>');
+    $('table').addClass('table table-bordered table-striped table-condensed').wrap('<div class=\"table-responsive\"></div>');
   }
 
   // Styling for alerts.
@@ -64,7 +65,7 @@ $(function () {
   (function () {
     anchors.options = {
       placement: 'left',
-      visible: 'touch'
+      visible: 'hover'
     };
     anchors.add('article h2:not(.no-anchor), article h3:not(.no-anchor), article h4:not(.no-anchor)');
   })();
@@ -164,6 +165,7 @@ $(function () {
 
     // Search factory
     function localSearch() {
+      console.log("using local search");
       var lunrIndex = lunr(function () {
         this.ref('href');
         this.field('title', { boost: 50 });
@@ -202,6 +204,7 @@ $(function () {
     }
 
     function webWorkerSearch() {
+      console.log("using Web Worker");
       var indexReady = $.Deferred();
 
       worker.onmessage = function (oEvent) {
@@ -229,7 +232,7 @@ $(function () {
     // Highlight the searching keywords
     function highlightKeywords() {
       var q = url('?q');
-      if (q !== null) {
+      if (q) {
         var keywords = q.split("%20");
         keywords.forEach(function (keyword) {
           if (keyword !== "") {
@@ -253,7 +256,7 @@ $(function () {
           } else {
             flipContents("hide");
             $("body").trigger("queryReady");
-            $('#search-results>.search-list').text('Search Results for "' + query + '"');
+            $('#search-results>.search-list>span').text('"' + query + '"');
           }
         }).off("keydown");
       });
@@ -298,12 +301,17 @@ $(function () {
 
     function handleSearchResults(hits) {
       var numPerPage = 10;
-      $('#pagination').empty();
-      $('#pagination').removeData("twbs-pagination");
+      var pagination = $('#pagination');
+      pagination.empty();
+      pagination.removeData("twbs-pagination");
       if (hits.length === 0) {
         $('#search-results>.sr-items').html('<p>No results found</p>');
-      } else {
-        $('#pagination').twbsPagination({
+      } else {        
+        pagination.twbsPagination({
+          first: pagination.data('first'),
+          prev: pagination.data('prev'),
+          next: pagination.data('next'),
+          last: pagination.data('last'),
           totalPages: Math.ceil(hits.length / numPerPage),
           visiblePages: 5,
           onPageClick: function (event, page) {
@@ -318,7 +326,7 @@ $(function () {
                 var itemBrief = extractContentBrief(hit.keywords);
 
                 var itemNode = $('<div>').attr('class', 'sr-item');
-                var itemTitleNode = $('<div>').attr('class', 'item-title').append($('<a>').attr('href', itemHref).attr("target", "_blank").text(itemTitle));
+                var itemTitleNode = $('<div>').attr('class', 'item-title').append($('<a>').attr('href', itemHref).attr("target", "_blank").attr("rel", "noopener noreferrer").text(itemTitle));
                 var itemHrefNode = $('<div>').attr('class', 'item-href').text(itemRawHref);
                 var itemBriefNode = $('<div>').attr('class', 'item-brief').text(itemBrief);
                 itemNode.append(itemTitleNode).append(itemHrefNode).append(itemBriefNode);
@@ -338,7 +346,7 @@ $(function () {
 
   // Update href in navbar
   function renderNavbar() {
-    var navbar = $('#secondaryNavbar ul')[0];
+    var navbar = $('#navbar ul')[0];
     if (typeof (navbar) === 'undefined') {
       loadNavbar();
     } else {
@@ -371,7 +379,7 @@ $(function () {
           navrel = navbarPath.substr(0, index + 1);
         }
         $('#navbar>ul').addClass('navbar-nav');
-        var currentAbsPath = util.getAbsolutePath(window.location.pathname);
+        var currentAbsPath = util.getCurrentWindowAbsolutePath();
         // set active item
         $('#navbar').find('a[href]').each(function (i, e) {
           var href = $(e).attr("href");
@@ -405,7 +413,7 @@ $(function () {
   }
 
   function renderSidebar() {
-    var sidetoc = $('#secondaryNavbar .sidetoc')[0];
+    var sidetoc = $('#sidetoggle .sidetoc')[0];
     if (typeof (sidetoc) === 'undefined') {
       loadToc();
     } else {
@@ -542,14 +550,17 @@ $(function () {
         return;
       }
       tocPath = tocPath.replace(/\\/g, '/');
-      $('#secondaryNavbar').load(tocPath + " #sidetoggle > div", function () {
+      $('#sidetoc').load(tocPath + " #sidetoggle > div", function () {
         var index = tocPath.lastIndexOf('/');
         var tocrel = '';
         if (index > -1) {
           tocrel = tocPath.substr(0, index + 1);
         }
-        var currentHref = util.getAbsolutePath(window.location.pathname);
-        $('#secondaryNavbar').find('a[href]').each(function (i, e) {
+        var currentHref = util.getCurrentWindowAbsolutePath();
+        if(!currentHref.endsWith('.html')) {
+          currentHref += '.html';
+        }
+        $('#sidetoc').find('a[href]').each(function (i, e) {
           var href = $(e).attr("href");
           if (util.isRelativePath(href)) {
             href = tocrel + href;
@@ -583,25 +594,34 @@ $(function () {
       });
     })
 
-    var html = util.formList(breadcrumb, 'breadcrumb', 'ol', 'breadcrumb-item');
-    $('#td_docs-breadcrumb').html(html);
+    var html = util.formList(breadcrumb, 'breadcrumb');
+    $('#breadcrumb').html(html);
   }
 
   //Setup Affix
   function renderAffix() {
     var hierarchy = getHierarchy();
-    if (hierarchy && hierarchy.length > 0) {
-      var html = '<h5 class="title">ON THIS PAGE</h5>'
-      html += util.formList(hierarchy, ['nav', 'bs-docs-sidenav']);
-      $("#affix").empty().append(html);
+    if (!hierarchy || hierarchy.length <= 0) {
+      $("#affix").hide();
+    }
+    else {
+      var html = util.formList(hierarchy, ['nav', 'bs-docs-sidenav']);
+      $("#affix>div").empty().append(html);
       if ($('footer').is(':visible')) {
         $(".sideaffix").css("bottom", "70px");
       }
+      $('#affix a').click(function(e) {
+        var scrollspy = $('[data-spy="scroll"]').data()['bs.scrollspy'];
+        var target = e.target.hash;
+        if (scrollspy && target) {
+          scrollspy.activate(target);
+        }
+      });
     }
 
     function getHierarchy() {
       // supported headers are h1, h2, h3, and h4
-      var $headers = $($.map(['h1', 'h2', 'h3', 'h4'], function (h) { return "#_content " + h; }).join(", "));
+      var $headers = $($.map(['h1', 'h2', 'h3', 'h4'], function (h) { return ".article article " + h; }).join(", "));
 
       // a stack of hierarchy items that are currently being built
       var stack = [];
@@ -970,7 +990,7 @@ $(function () {
     }
 
     function readTabsQueryStringParam() {
-      var qs = parseQueryString();
+      var qs = parseQueryString(window.location.search);
       var t = qs.tabs;
       if (t === undefined || t === '') {
         return [];
@@ -979,7 +999,7 @@ $(function () {
     }
 
     function updateTabsQueryStringParam(state) {
-      var qs = parseQueryString();
+      var qs = parseQueryString(window.location.search);
       qs.tabs = state.selectedTabs.join();
       var url = location.protocol + "//" + location.host + location.pathname + "?" + toQueryString(qs) + location.hash;
       if (location.href === url) {
@@ -1037,14 +1057,25 @@ $(function () {
     this.getAbsolutePath = getAbsolutePath;
     this.isRelativePath = isRelativePath;
     this.isAbsolutePath = isAbsolutePath;
+    this.getCurrentWindowAbsolutePath = getCurrentWindowAbsolutePath;
     this.getDirectory = getDirectory;
     this.formList = formList;
 
     function getAbsolutePath(href) {
-      // Use anchor to normalize href
-      var anchor = $('<a href="' + href + '"></a>')[0];
-      // Ignore protocal, remove search and query
-      return anchor.host + anchor.pathname;
+      if (isAbsolutePath(href)) return href;
+      var currentAbsPath = getCurrentWindowAbsolutePath();
+      var stack = currentAbsPath.split("/");
+      stack.pop();
+      var parts = href.split("/");
+      for (var i=0; i< parts.length; i++) {
+        if (parts[i] == ".") continue;
+        if (parts[i] == ".." && stack.length > 0)
+          stack.pop();
+        else
+          stack.push(parts[i]);
+      }
+      var p = stack.join("/");
+      return p;
     }
 
     function isRelativePath(href) {
@@ -1058,6 +1089,9 @@ $(function () {
       return (/^(?:[a-z]+:)?\/\//i).test(href);
     }
 
+    function getCurrentWindowAbsolutePath() {
+      return window.location.origin + window.location.pathname;
+    }
     function getDirectory(href) {
       if (!href) return '';
       var index = href.lastIndexOf('/');
@@ -1067,34 +1101,30 @@ $(function () {
       }
     }
 
-    function formList(item, classes, listTag, itemClass) {
+    function formList(item, classes) {
       var level = 1;
       var model = {
         items: item
       };
       var cls = [].concat(classes).join(" ");
+      return getList(model, cls);
 
-      listTag = listTag || 'ul';
-      itemClass = itemClass || '';
-
-      return getList(model, cls, 0);
-
-      function getList(model, cls, depth) {
+      function getList(model, cls) {
         if (!model || !model.items) return null;
         var l = model.items.length;
         if (l === 0) return null;
-        var html = '<' + listTag + ' class="level' + level + ' ' + (cls || '') + '">';
+        var html = '<ul class="level' + level + ' ' + (cls || '') + '">';
         level++;
         for (var i = 0; i < l; i++) {
           var item = model.items[i];
           var href = item.href;
           var name = item.name;
           if (!name) continue;
-          html += href ? '<li class="' + itemClass + '"><a class="depth-' + depth + '" href="' + href + '">' + name + '</a>' : '<li>' + name;
-          html += getList(item, cls, depth + 1) || '';
+          html += href ? '<li><a href="' + href + '">' + name + '</a>' : '<li>' + name;
+          html += getList(item, cls) || '';
           html += '</li>';
         }
-        html += '</' + listTag + '>';
+        html += '</ul>';
         return html;
       }
     }
@@ -1113,12 +1143,81 @@ $(function () {
      * If the jQuery element contains tags, this function will not change the element.
      */
     $.fn.breakWord = function () {
-      if (this.html() == this.text()) {
+      if (!this.html().match(/(<\w*)((\s\/>)|(.*<\/\w*>))/g)) {
         this.html(function (index, text) {
           return breakPlainText(text);
         })
       }
       return this;
     }
+  }
+
+  // adjusted from https://stackoverflow.com/a/13067009/1523776
+  function workAroundFixedHeaderForAnchors() {
+    var HISTORY_SUPPORT = !!(history && history.pushState);
+    var ANCHOR_REGEX = /^#[^ ]+$/;
+
+    function getFixedOffset() {
+      return $('header').first().height();
+    }
+
+    /**
+     * If the provided href is an anchor which resolves to an element on the
+     * page, scroll to it.
+     * @param  {String} href
+     * @return {Boolean} - Was the href an anchor.
+     */
+    function scrollIfAnchor(href, pushToHistory) {
+      var match, rect, anchorOffset;
+
+      if (!ANCHOR_REGEX.test(href)) {
+        return false;
+      }
+
+      match = document.getElementById(href.slice(1));
+
+      if (match) {
+        rect = match.getBoundingClientRect();
+        anchorOffset = window.pageYOffset + rect.top - getFixedOffset();
+        window.scrollTo(window.pageXOffset, anchorOffset);
+
+        // Add the state to history as-per normal anchor links
+        if (HISTORY_SUPPORT && pushToHistory) {
+          history.pushState({}, document.title, location.pathname + href);
+        }
+      }
+
+      return !!match;
+    }
+
+    /**
+     * Attempt to scroll to the current location's hash.
+     */
+    function scrollToCurrent() {
+      scrollIfAnchor(window.location.hash);
+    }
+
+    /**
+     * If the click event's target was an anchor, fix the scroll position.
+     */
+    function delegateAnchors(e) {
+      var elem = e.target;
+
+      if (scrollIfAnchor(elem.getAttribute('href'), true)) {
+        e.preventDefault();
+      }
+    }
+
+    $(window).on('hashchange', scrollToCurrent);
+
+    $(window).on('load', function () {
+        // scroll to the anchor if present, offset by the header
+        scrollToCurrent();
+    });
+
+    $(document).ready(function () {
+        // Exclude tabbed content case
+        $('a:not([data-tab])').click(function (e) { delegateAnchors(e); });
+    });
   }
 });

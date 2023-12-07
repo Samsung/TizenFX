@@ -1,0 +1,2144 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Space
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Space
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API11">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space">
+
+
+  <h1 id="Tizen_NUI_Physics2D_Chipmunk_Space" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space" class="text-break">Class Space
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.Physics2D.html">Physics2D</a>.<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.html">Chipmunk</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.Physics2D.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Spaces in Chipmunk are the basic unit of simulation. You add rigid bodies, shapes, and
+constraints to the space and then step them all forward through time together.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Space : IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">Space</span></div>
+      </div>
+    </dd>
+  </dl>
+
+  <dl class="attribute-list stack">
+    <dt>Derived</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.HastySpace.html">HastySpace</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.HastySpace.html">HastySpace</a></div>
+    </dd>
+  </dl>
+
+
+
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L63">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space__ctor_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.#ctor*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space__ctor" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.#ctor">Space()</h4>
+  <div class="markdown level1 summary"><p>Create a new Space object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Space()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L74">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space__ctor_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.#ctor*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space__ctor_System_IntPtr_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.#ctor(System.IntPtr)">Space(IntPtr)</h4>
+  <div class="markdown level1 summary"><p>Create a space from a native Handle (used by derived classes).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Space(System.IntPtr handle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IntPtr</span></td>
+        <td><span class="parametername">handle</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L604">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_Bodies_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.Bodies*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_Bodies" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.Bodies">Bodies</h4>
+  <div class="markdown level1 summary"><p>Get all bodies in the space.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;Body&gt; Bodies { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IReadOnlyList&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Body.html">Body</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L239">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_CollisionBias_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.CollisionBias*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_CollisionBias" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.CollisionBias">CollisionBias</h4>
+  <div class="markdown level1 summary"><p>Determines how fast overlapping shapes are pushed apart.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double CollisionBias { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L250">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_CollisionPersistence_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.CollisionPersistence*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_CollisionPersistence" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.CollisionPersistence">CollisionPersistence</h4>
+  <div class="markdown level1 summary"><p>Number of frames that contact information should persist. Defaults to 3. There is
+probably never a reason to change this value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int CollisionPersistence { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L229">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_CollisionSlop_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.CollisionSlop*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_CollisionSlop" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.CollisionSlop">CollisionSlop</h4>
+  <div class="markdown level1 summary"><p>Amount of encouraged penetration between colliding shapes. This is used to reduce
+oscillating contacts and keep the collision cache warm. Defaults to 0.1. If you have
+poor simulation quality, increase this number as much as possible without allowing
+visible amounts of overlap.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double CollisionSlop { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L758">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_Constraints_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.Constraints*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_Constraints" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.Constraints">Constraints</h4>
+  <div class="markdown level1 summary"><p>Get all constraints in the space.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;Constraint&gt; Constraints { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IReadOnlyList&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Constraint.html">Constraint</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L281">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_CurrentTimeStep_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.CurrentTimeStep*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_CurrentTimeStep" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.CurrentTimeStep">CurrentTimeStep</h4>
+  <div class="markdown level1 summary"><p>Returns the current (or most recent) time step used with the given space.
+Useful from callbacks if your time step is not a compile-time global.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double CurrentTimeStep { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L193">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_Damping_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.Damping*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_Damping" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.Damping">Damping</h4>
+  <div class="markdown level1 summary"><p>Damping rate expressed as the fraction of velocity that bodies retain each second. A
+value of 0.9 would mean that each body's velocity will drop 10% per second. The default
+value is 1.0, meaning no damping is applied. Note: This damping value is different than
+those of <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.DampedSpring.html">DampedSpring</a> and <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.DampedRotarySpring.html">DampedRotarySpring</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double Damping { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L163">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_Data_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.Data*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_Data" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.Data">Data</h4>
+  <div class="markdown level1 summary"><p>Arbitrary user data.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object Data { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L639">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_DynamicBodies_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.DynamicBodies*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_DynamicBodies" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.DynamicBodies">DynamicBodies</h4>
+  <div class="markdown level1 summary"><p>Get dynamic bodies in the space.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;Body&gt; DynamicBodies { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IReadOnlyList&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Body.html">Body</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L180">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_Gravity_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.Gravity*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_Gravity" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.Gravity">Gravity</h4>
+  <div class="markdown level1 summary"><p>Gravity to pass to rigid bodies when integrating velocity.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vect Gravity { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L57">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_Handle_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.Handle*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_Handle" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.Handle">Handle</h4>
+  <div class="markdown level1 summary"><p>Native handle cpSpace.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public System.IntPtr Handle { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IntPtr</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L204">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_IdleSpeedThreshold_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.IdleSpeedThreshold*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_IdleSpeedThreshold" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.IdleSpeedThreshold">IdleSpeedThreshold</h4>
+  <div class="markdown level1 summary"><p>Speed threshold for a body to be considered idle. The default value of 0 means to let
+the space guess a good threshold based on gravity.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double IdleSpeedThreshold { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L287">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_IsLocked_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.IsLocked*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_IsLocked" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.IsLocked">IsLocked</h4>
+  <div class="markdown level1 summary"><p>Returns true from inside a callback when objects cannot be added/removed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsLocked { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L170">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_Iterations_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.Iterations*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_Iterations" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.Iterations">Iterations</h4>
+  <div class="markdown level1 summary"><p>Number of iterations to use in the impulse solver to solve contacts and other
+constraints.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Iterations { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L690">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_Shapes_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.Shapes*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_Shapes" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.Shapes">Shapes</h4>
+  <div class="markdown level1 summary"><p>Get all shapes in the space.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;Shape&gt; Shapes { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IReadOnlyList&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Shape.html">Shape</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L216">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_SleepTimeThreshold_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.SleepTimeThreshold*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_SleepTimeThreshold" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.SleepTimeThreshold">SleepTimeThreshold</h4>
+  <div class="markdown level1 summary"><p>Time a group of bodies must remain idle in order to fall asleep. Enabling sleeping also
+implicitly enables the the contact graph. The default value of infinity disables the
+sleeping algorithm.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double SleepTimeThreshold { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L260">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_StaticBody_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.StaticBody*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_StaticBody" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.StaticBody">StaticBody</h4>
+  <div class="markdown level1 summary"><p>The Space provided static body for a given <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Space.html">Space</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Body StaticBody { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Body.html">Body</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L346">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_AddBody_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.AddBody*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_AddBody_Tizen_NUI_Physics2D_Chipmunk_Body_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.AddBody(Tizen.NUI.Physics2D.Chipmunk.Body)">AddBody(Body)</h4>
+  <div class="markdown level1 summary"><p>Add a rigid body to the simulation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddBody(Body body)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Body.html">Body</a></td>
+        <td><span class="parametername">body</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L355">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_AddConstraint_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.AddConstraint*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_AddConstraint_Tizen_NUI_Physics2D_Chipmunk_Constraint_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.AddConstraint(Tizen.NUI.Physics2D.Chipmunk.Constraint)">AddConstraint(Constraint)</h4>
+  <div class="markdown level1 summary"><p>Add a constraint to the simulation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddConstraint(Constraint constraint)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Constraint.html">Constraint</a></td>
+        <td><span class="parametername">constraint</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L443">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_AddPostStepCallback_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.AddPostStepCallback*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_AddPostStepCallback_Action_Tizen_NUI_Physics2D_Chipmunk_Space_System_Object_System_Object__System_Object_System_Object_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.AddPostStepCallback(Action{Tizen.NUI.Physics2D.Chipmunk.Space,System.Object,System.Object},System.Object,System.Object)">AddPostStepCallback(Action&lt;Space, object, object&gt;, object, object)</h4>
+  <div class="markdown level1 summary"><p>Schedule a post-step callback to be called when <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Space.html#Tizen_NUI_Physics2D_Chipmunk_Space_Step_System_Double_">Step(double)</a> finishes. You can
+only register one callback per unique value for <code data-dev-comment-type="paramref" class="paramref">key</code>. Returns true
+only if <code data-dev-comment-type="paramref" class="paramref">key</code> has never been scheduled before. It's possible to pass
+null for <code data-dev-comment-type="paramref" class="paramref">callback</code> if you only want to mark <code data-dev-comment-type="paramref" class="paramref">key</code> as
+being used.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool AddPostStepCallback(Action&lt;Space, object, object&gt; callback, object key, object data)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Action&lt;, , &gt;</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Space.html">Space</a>, <span class="xref">object</span>, <span class="xref">object</span>&gt;</td>
+        <td><span class="parametername">callback</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">key</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">data</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L337">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_AddShape_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.AddShape*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_AddShape_Tizen_NUI_Physics2D_Chipmunk_Shape_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.AddShape(Tizen.NUI.Physics2D.Chipmunk.Shape)">AddShape(Shape)</h4>
+  <div class="markdown level1 summary"><p>Add a collision shape to the simulation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddShape(Shape shape)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Shape.html">Shape</a></td>
+        <td><span class="parametername">shape</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L588">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_BoundBoxQuery_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.BoundBoxQuery*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_BoundBoxQuery_Tizen_NUI_Physics2D_Chipmunk_BoundingBox_Tizen_NUI_Physics2D_Chipmunk_ShapeFilter_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.BoundBoxQuery(Tizen.NUI.Physics2D.Chipmunk.BoundingBox,Tizen.NUI.Physics2D.Chipmunk.ShapeFilter)">BoundBoxQuery(BoundingBox, ShapeFilter)</h4>
+  <div class="markdown level1 summary"><p>Get all shapes within the axis-aligned bounding box that are part of this shape. The
+filter is applied to the query and follows the same rules as the collision detection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;Shape&gt; BoundBoxQuery(BoundingBox bb, ShapeFilter filter)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.BoundingBox.html">BoundingBox</a></td>
+        <td><span class="parametername">bb</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.ShapeFilter.html">ShapeFilter</a></td>
+        <td><span class="parametername">filter</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IReadOnlyList&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Shape.html">Shape</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L400">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_Contains_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.Contains*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_Contains_Tizen_NUI_Physics2D_Chipmunk_Body_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.Contains(Tizen.NUI.Physics2D.Chipmunk.Body)">Contains(Body)</h4>
+  <div class="markdown level1 summary"><p>Test if a rigid body has been added to the space.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Contains(Body body)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Body.html">Body</a></td>
+        <td><span class="parametername">body</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L409">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_Contains_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.Contains*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_Contains_Tizen_NUI_Physics2D_Chipmunk_Constraint_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.Contains(Tizen.NUI.Physics2D.Chipmunk.Constraint)">Contains(Constraint)</h4>
+  <div class="markdown level1 summary"><p>Test if a constraint has been added to the space.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Contains(Constraint constraint)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Constraint.html">Constraint</a></td>
+        <td><span class="parametername">constraint</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L391">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_Contains_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.Contains*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_Contains_Tizen_NUI_Physics2D_Chipmunk_Shape_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.Contains(Tizen.NUI.Physics2D.Chipmunk.Shape)">Contains(Shape)</h4>
+  <div class="markdown level1 summary"><p>Test if a collision shape has been added to the space.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Contains(Shape shape)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Shape.html">Shape</a></td>
+        <td><span class="parametername">shape</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L847">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_DebugDraw_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.DebugDraw*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_DebugDraw_Tizen_NUI_Physics2D_Chipmunk_IDebugDraw_Tizen_NUI_Physics2D_Chipmunk_DebugDrawFlags_Tizen_NUI_Physics2D_Chipmunk_DebugDrawColors_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.DebugDraw(Tizen.NUI.Physics2D.Chipmunk.IDebugDraw,Tizen.NUI.Physics2D.Chipmunk.DebugDrawFlags,Tizen.NUI.Physics2D.Chipmunk.DebugDrawColors)">DebugDraw(IDebugDraw, DebugDrawFlags, DebugDrawColors)</h4>
+  <div class="markdown level1 summary"><p>Draw all objects in the space for debugging purposes using flags and colors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DebugDraw(IDebugDraw debugDraw, DebugDrawFlags flags, DebugDrawColors colors)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.IDebugDraw.html">IDebugDraw</a></td>
+        <td><span class="parametername">debugDraw</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.DebugDrawFlags.html">DebugDrawFlags</a></td>
+        <td><span class="parametername">flags</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.DebugDrawColors.html">DebugDrawColors</a></td>
+        <td><span class="parametername">colors</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L838">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_DebugDraw_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.DebugDraw*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_DebugDraw_Tizen_NUI_Physics2D_Chipmunk_IDebugDraw_Tizen_NUI_Physics2D_Chipmunk_DebugDrawFlags_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.DebugDraw(Tizen.NUI.Physics2D.Chipmunk.IDebugDraw,Tizen.NUI.Physics2D.Chipmunk.DebugDrawFlags)">DebugDraw(IDebugDraw, DebugDrawFlags)</h4>
+  <div class="markdown level1 summary"><p>Draw all objects in the space for debugging purposes using flags.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DebugDraw(IDebugDraw debugDraw, DebugDrawFlags flags)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.IDebugDraw.html">IDebugDraw</a></td>
+        <td><span class="parametername">debugDraw</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.DebugDrawFlags.html">DebugDrawFlags</a></td>
+        <td><span class="parametername">flags</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L829">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_DebugDraw_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.DebugDraw*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_DebugDraw_Tizen_NUI_Physics2D_Chipmunk_IDebugDraw_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.DebugDraw(Tizen.NUI.Physics2D.Chipmunk.IDebugDraw)">DebugDraw(IDebugDraw)</h4>
+  <div class="markdown level1 summary"><p>Draw all objects in the space for debugging purposes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DebugDraw(IDebugDraw debugDraw)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.IDebugDraw.html">IDebugDraw</a></td>
+        <td><span class="parametername">debugDraw</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L115">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_Dispose_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.Dispose*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_Dispose" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Disposes the Space object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L108">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_Dispose_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.Dispose*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_Dispose_System_Boolean_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.Dispose(System.Boolean)">Dispose(bool)</h4>
+  <div class="markdown level1 summary"><p>Destroy and free space.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L89">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_Free_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.Free*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_Free" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.Free">Free()</h4>
+  <div class="markdown level1 summary"><p>Destroys and frees.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Free()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L100">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_FreeSpace_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.FreeSpace*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_FreeSpace_System_IntPtr_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.FreeSpace(System.IntPtr)">FreeSpace(IntPtr)</h4>
+  <div class="markdown level1 summary"><p>Destroy and free space.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void FreeSpace(System.IntPtr handle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IntPtr</span></td>
+        <td><span class="parametername">handle</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L137">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_FromHandle_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.FromHandle*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_FromHandle_System_IntPtr_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.FromHandle(System.IntPtr)">FromHandle(IntPtr)</h4>
+  <div class="markdown level1 summary"><p>Get a Space object from native cpSpace handle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Space FromHandle(System.IntPtr space)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IntPtr</span></td>
+        <td><span class="parametername">space</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Space.html">Space</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L147">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_FromHandleSafe_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.FromHandleSafe*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_FromHandleSafe_System_IntPtr_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.FromHandleSafe(System.IntPtr)">FromHandleSafe(IntPtr)</h4>
+  <div class="markdown level1 summary"><p>Get a Space object from native cpSpace handle, but return null if the handle is 0.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Space FromHandleSafe(System.IntPtr space)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IntPtr</span></td>
+        <td><span class="parametername">space</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Space.html">Space</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L310">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_GetOrCreateCollisionHandler_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.GetOrCreateCollisionHandler*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_GetOrCreateCollisionHandler_System_Int32_System_Int32_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.GetOrCreateCollisionHandler(System.Int32,System.Int32)">GetOrCreateCollisionHandler(int, int)</h4>
+  <div class="markdown level1 summary"><p>Create or return the existing collision handler for the specified pair of collision
+types. If wildcard handlers are used with either of the collision types, it's the
+responsibility of the custom handler to invoke the wildcard handlers.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CollisionHandler GetOrCreateCollisionHandler(int typeA, int typeB)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">typeA</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">typeB</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.CollisionHandler.html">CollisionHandler</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L297">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_GetOrCreateDefaultCollisionHandler_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.GetOrCreateDefaultCollisionHandler*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_GetOrCreateDefaultCollisionHandler" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.GetOrCreateDefaultCollisionHandler">GetOrCreateDefaultCollisionHandler()</h4>
+  <div class="markdown level1 summary"><p>Create or return the existing collision handler that is called for all collisions that are
+not handled by a more specific collision handler.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CollisionHandler GetOrCreateDefaultCollisionHandler()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.CollisionHandler.html">CollisionHandler</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L327">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_GetOrCreateWildcardHandler_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.GetOrCreateWildcardHandler*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_GetOrCreateWildcardHandler_System_Int32_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.GetOrCreateWildcardHandler(System.Int32)">GetOrCreateWildcardHandler(int)</h4>
+  <div class="markdown level1 summary"><p>Create or return the existing wildcard collision handler for the specified type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CollisionHandler GetOrCreateWildcardHandler(int type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">type</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.CollisionHandler.html">CollisionHandler</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L481">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_PointQuery_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.PointQuery*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_PointQuery_Tizen_NUI_Physics2D_Chipmunk_Vect_System_Double_Tizen_NUI_Physics2D_Chipmunk_ShapeFilter_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.PointQuery(Tizen.NUI.Physics2D.Chipmunk.Vect,System.Double,Tizen.NUI.Physics2D.Chipmunk.ShapeFilter)">PointQuery(Vect, double, ShapeFilter)</h4>
+  <div class="markdown level1 summary"><p>Get the shapes within a radius of the point location that are part of this space. The
+filter is applied to the query and follows the same rules as the collision detection.
+If a maxDistance of 0.0 is used, the point must lie inside a shape. Negative
+<code data-dev-comment-type="paramref" class="paramref">maxDistance</code> is also allowed meaning that the point must be a under a
+certain depth within a shape to be considered a match.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;PointQueryInfo&gt; PointQuery(Vect point, double maxDistance, ShapeFilter filter)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td><span class="parametername">point</span></td>
+        <td><p>Where to check for shapes in the space.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td><span class="parametername">maxDistance</span></td>
+        <td><p>Match only within this distance.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.ShapeFilter.html">ShapeFilter</a></td>
+        <td><span class="parametername">filter</span></td>
+        <td><p>Only pick shapes matching the filter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IReadOnlyList&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.PointQueryInfo.html">PointQueryInfo</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L503">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_PointQueryNearest_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.PointQueryNearest*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_PointQueryNearest_Tizen_NUI_Physics2D_Chipmunk_Vect_System_Double_Tizen_NUI_Physics2D_Chipmunk_ShapeFilter_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.PointQueryNearest(Tizen.NUI.Physics2D.Chipmunk.Vect,System.Double,Tizen.NUI.Physics2D.Chipmunk.ShapeFilter)">PointQueryNearest(Vect, double, ShapeFilter)</h4>
+  <div class="markdown level1 summary"><p>Get the nearest shape within a radius of a point that is part of this space. The filter
+is applied to the query and follows the same rules as the collision detection. If a
+<code data-dev-comment-type="paramref" class="paramref">maxDistance</code> of 0.0 is used, the point must lie inside a shape.
+Negative <code data-dev-comment-type="paramref" class="paramref">maxDistance</code> is also allowed, meaning that the point must be
+under a certain depth within a shape to be considered a match.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PointQueryInfo PointQueryNearest(Vect point, double maxDistance, ShapeFilter filter)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td><span class="parametername">point</span></td>
+        <td><p>Where to check for collision in the space.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td><span class="parametername">maxDistance</span></td>
+        <td><p>Match only within this distance.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.ShapeFilter.html">ShapeFilter</a></td>
+        <td><span class="parametername">filter</span></td>
+        <td><p>Only pick shapes matching the filter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.PointQueryInfo.html">PointQueryInfo</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L787">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_ReindexShape_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.ReindexShape*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_ReindexShape_Tizen_NUI_Physics2D_Chipmunk_Shape_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.ReindexShape(Tizen.NUI.Physics2D.Chipmunk.Shape)">ReindexShape(Shape)</h4>
+  <div class="markdown level1 summary"><p>Update the collision detection data for a specific shape in the space.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ReindexShape(Shape shape)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Shape.html">Shape</a></td>
+        <td><span class="parametername">shape</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L796">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_ReindexShapesForBody_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.ReindexShapesForBody*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_ReindexShapesForBody_Tizen_NUI_Physics2D_Chipmunk_Body_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.ReindexShapesForBody(Tizen.NUI.Physics2D.Chipmunk.Body)">ReindexShapesForBody(Body)</h4>
+  <div class="markdown level1 summary"><p>Update the collision detection data for all shapes attached to a body.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ReindexShapesForBody(Body body)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Body.html">Body</a></td>
+        <td><span class="parametername">body</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L778">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_ReindexStatic_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.ReindexStatic*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_ReindexStatic" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.ReindexStatic">ReindexStatic()</h4>
+  <div class="markdown level1 summary"><p>Update the collision detection info for the static shapes in the space.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ReindexStatic()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L373">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_RemoveBody_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.RemoveBody*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_RemoveBody_Tizen_NUI_Physics2D_Chipmunk_Body_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.RemoveBody(Tizen.NUI.Physics2D.Chipmunk.Body)">RemoveBody(Body)</h4>
+  <div class="markdown level1 summary"><p>Remove a rigid body from the simulation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveBody(Body body)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Body.html">Body</a></td>
+        <td><span class="parametername">body</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L382">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_RemoveConstraint_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.RemoveConstraint*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_RemoveConstraint_Tizen_NUI_Physics2D_Chipmunk_Constraint_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.RemoveConstraint(Tizen.NUI.Physics2D.Chipmunk.Constraint)">RemoveConstraint(Constraint)</h4>
+  <div class="markdown level1 summary"><p>Remove a constraint from the simulation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveConstraint(Constraint constraint)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Constraint.html">Constraint</a></td>
+        <td><span class="parametername">constraint</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L364">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_RemoveShape_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.RemoveShape*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_RemoveShape_Tizen_NUI_Physics2D_Chipmunk_Shape_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.RemoveShape(Tizen.NUI.Physics2D.Chipmunk.Shape)">RemoveShape(Shape)</h4>
+  <div class="markdown level1 summary"><p>Remove a collision shape from the simulation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveShape(Shape shape)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Shape.html">Shape</a></td>
+        <td><span class="parametername">shape</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L537">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_SegmentQuery_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.SegmentQuery*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_SegmentQuery_Tizen_NUI_Physics2D_Chipmunk_Vect_Tizen_NUI_Physics2D_Chipmunk_Vect_System_Double_Tizen_NUI_Physics2D_Chipmunk_ShapeFilter_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.SegmentQuery(Tizen.NUI.Physics2D.Chipmunk.Vect,Tizen.NUI.Physics2D.Chipmunk.Vect,System.Double,Tizen.NUI.Physics2D.Chipmunk.ShapeFilter)">SegmentQuery(Vect, Vect, double, ShapeFilter)</h4>
+  <div class="markdown level1 summary"><p>Get the shapes within a capsule-shaped radius of a line segment that is part of this
+space. The filter is applied to the query and follows the same rules as the collision
+detection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;SegmentQueryInfo&gt; SegmentQuery(Vect start, Vect end, double radius, ShapeFilter filter)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td><span class="parametername">start</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td><span class="parametername">end</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td><span class="parametername">radius</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.ShapeFilter.html">ShapeFilter</a></td>
+        <td><span class="parametername">filter</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IReadOnlyList&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.SegmentQueryInfo.html">SegmentQueryInfo</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L554">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_SegmentQueryFirst_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.SegmentQueryFirst*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_SegmentQueryFirst_Tizen_NUI_Physics2D_Chipmunk_Vect_Tizen_NUI_Physics2D_Chipmunk_Vect_System_Double_Tizen_NUI_Physics2D_Chipmunk_ShapeFilter_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.SegmentQueryFirst(Tizen.NUI.Physics2D.Chipmunk.Vect,Tizen.NUI.Physics2D.Chipmunk.Vect,System.Double,Tizen.NUI.Physics2D.Chipmunk.ShapeFilter)">SegmentQueryFirst(Vect, Vect, double, ShapeFilter)</h4>
+  <div class="markdown level1 summary"><p>Get the first shape within a capsule-shaped radius of a line segment that is part of
+this space. The filter is applied to the query and follows the same rules as the
+collision detection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SegmentQueryInfo SegmentQueryFirst(Vect start, Vect end, double radius, ShapeFilter filter)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td><span class="parametername">start</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td><span class="parametername">end</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td><span class="parametername">radius</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.ShapeFilter.html">ShapeFilter</a></td>
+        <td><span class="parametername">filter</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.SegmentQueryInfo.html">SegmentQueryInfo</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L726">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_ShapeQuery_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.ShapeQuery*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_ShapeQuery_Tizen_NUI_Physics2D_Chipmunk_Shape_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.ShapeQuery(Tizen.NUI.Physics2D.Chipmunk.Shape)">ShapeQuery(Shape)</h4>
+  <div class="markdown level1 summary"><p>Get all shapes in the space that are overlapping the given shape.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IReadOnlyList&lt;ContactPointSet&gt; ShapeQuery(Shape shape)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Shape.html">Shape</a></td>
+        <td><span class="parametername">shape</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IReadOnlyList&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.ContactPointSet.html">ContactPointSet</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L820">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_Step_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.Step*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_Step_System_Double_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.Step(System.Double)">Step(double)</h4>
+  <div class="markdown level1 summary"><p>Update the space for the given time step. Using a fixed time step is highly recommended.
+Doing so will increase the efficiency of the contact persistence, requiring an order of
+magnitude fewer iterations to resolve the collisions in the usual case. It is not the
+same to call step 10 times with a dt of 0.1, or 100 times with a dt of 0.01 even if the
+end result is that the simulation moved forward 100 units. Performing multiple calls
+with a smaller dt creates a more stable and accurate simulation. Therefore, it sometimes
+makes sense to have a little for loop around the step call.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void Step(double dt)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td><span class="parametername">dt</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L805">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Space_UseSpatialHash_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.UseSpatialHash*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Space_UseSpatialHash_System_Double_System_Int32_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Space.UseSpatialHash(System.Double,System.Int32)">UseSpatialHash(double, int)</h4>
+  <div class="markdown level1 summary"><p>Switch the space to use a spatial hash as its spatial index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UseSpatialHash(double dim, int count)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td><span class="parametername">dim</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">count</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Space.cs/#L47" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>
