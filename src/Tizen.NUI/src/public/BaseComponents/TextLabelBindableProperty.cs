@@ -71,7 +71,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var textLabel = (TextLabel)bindable;
 
-            return Object.InternalGetPropertyString(textLabel.SwigCPtr, TextLabel.Property.TEXT);
+            // Do not try to get string if we know that previous text was empty.
+            return textLabel.textIsEmpty ? "" : Object.InternalGetPropertyString(textLabel.SwigCPtr, TextLabel.Property.TEXT);
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -898,6 +899,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (value != null)
             {
+                textIsEmpty = string.IsNullOrEmpty(value);
 
                 Object.InternalSetPropertyString(SwigCPtr, TextLabel.Property.TEXT, value);
                 RequestLayout();
