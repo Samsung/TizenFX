@@ -100,6 +100,9 @@ namespace Tizen.NUI.BaseComponents
         private TextLabelSelectorData selectorData;
         private string fontFamily = defaultFontFamily;
         private float fontSizeScale = 1.0f;
+
+        private bool textIsEmpty = true;
+
         private bool hasSystemLanguageChanged = false;
         private bool hasSystemFontSizeChanged = false;
         private bool hasSystemFontTypeChanged = false;
@@ -141,6 +144,7 @@ namespace Tizen.NUI.BaseComponents
         public TextLabel(string text) : this(Interop.TextLabel.New(text, ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            textIsEmpty = string.IsNullOrEmpty(text);
         }
 
         /// <summary>
@@ -153,6 +157,7 @@ namespace Tizen.NUI.BaseComponents
         public TextLabel(string text, bool shown) : this(Interop.TextLabel.New(text, ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            textIsEmpty = string.IsNullOrEmpty(text);
             SetVisible(shown);
         }
 
