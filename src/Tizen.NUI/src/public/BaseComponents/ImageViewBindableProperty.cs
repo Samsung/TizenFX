@@ -42,11 +42,8 @@ namespace Tizen.NUI.BaseComponents
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var imageView = (ImageView)bindable;
-            string ret = "";
 
-            imageView.GetCachedImageVisualProperty(ImageVisualProperty.URL)?.Get(out ret);
-
-            return ret;
+            return imageView?._resourceUrl ?? "";
         }));
 
         /// Intenal used, will never be opened.
@@ -77,7 +74,7 @@ namespace Tizen.NUI.BaseComponents
                     if (ret && alphaMaskURL.StartsWith("*Resource*"))
                     {
                         alphaMaskURL = alphaMaskURL.Replace("*Resource*", resource);
-                        mmap.Insert(NDalic.ImageVisualUrl, new PropertyValue(alphaMaskURL));
+                        mmap.Insert(NDalic.ImageVisualAlphaMaskUrl, new PropertyValue(alphaMaskURL));
                     }
 
                     ret = false;
@@ -93,13 +90,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 if (imageView._border == null)
                 {
-                    // Image properties are changed hardly. We should ignore lazy UpdateImage
-                    imageView.imagePropertyUpdatedFlag = false;
-                    imageView.cachedImagePropertyMap?.Dispose();
-                    imageView.cachedImagePropertyMap = null;
-                    imageView.MergeCachedImageVisualProperty(map);
-
-                    Tizen.NUI.Object.SetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.IMAGE, new Tizen.NUI.PropertyValue(map));
+                    imageView.SetImageByPropertyMap(map);
                 }
             }
         }),
