@@ -22,6 +22,7 @@ namespace ElmSharp
     /// EcoreTimelineAnimator is a helper class, which provides the functions to manage animations.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class EcoreTimelineAnimator
     {
         double _runtime;
@@ -34,6 +35,7 @@ namespace ElmSharp
         /// It occurs when the animator is complete.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Finished;
 
         /// <summary>
@@ -42,6 +44,7 @@ namespace ElmSharp
         /// <param name="runtime">The time to run in seconds.</param>
         /// <param name="timelineCallback">Functions called at each time line.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public EcoreTimelineAnimator(double runtime, Action timelineCallback)
         {
             _runtime = runtime;
@@ -54,18 +57,21 @@ namespace ElmSharp
         /// Gets whether the animation is running.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsRunning { get; private set; }
 
         /// <summary>
         /// Gets the current position of the animation.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double Position => _position;
 
         /// <summary>
         /// Starts an animator that runs for a limited time.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Start()
         {
             IsRunning = true;
@@ -76,6 +82,7 @@ namespace ElmSharp
         /// Stops an animator that is running.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Stop()
         {
             IsRunning = false;
@@ -86,6 +93,7 @@ namespace ElmSharp
         /// Suspends the specified animator.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Freeze()
         {
             Interop.Ecore.ecore_animator_freeze(_animator);
@@ -95,6 +103,7 @@ namespace ElmSharp
         /// Restores execution of the specified animator.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Thaw()
         {
             Interop.Ecore.ecore_animator_thaw(_animator);
@@ -104,6 +113,7 @@ namespace ElmSharp
         /// Callback is called when it ticks off.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected void OnTimeline()
         {
             _timelineCallback();

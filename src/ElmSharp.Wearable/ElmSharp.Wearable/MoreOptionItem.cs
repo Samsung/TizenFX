@@ -24,6 +24,7 @@ namespace ElmSharp.Wearable
     /// The MoreOptionItem is an item of the MoreOption widget.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class MoreOptionItem
     {
         const string MainTextPartName = "selector,main_text";
@@ -39,6 +40,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the more option item handle.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public IntPtr Handle
         {
             get
@@ -62,6 +64,7 @@ namespace ElmSharp.Wearable
         /// Creates and initializes a new instance of the MoreOptionItem class.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public MoreOptionItem()
         {
             _icon = null;
@@ -71,6 +74,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the main text of the more option object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string MainText
         {
             set
@@ -93,6 +97,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the subtext of the more option object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string SubText
         {
             set
@@ -115,6 +120,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the icon image.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Image Icon
         {
             set

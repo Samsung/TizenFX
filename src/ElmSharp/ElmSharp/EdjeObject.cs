@@ -24,6 +24,7 @@ namespace ElmSharp
     /// The EdjeObject is a class that the evas object exists in.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class EdjeObject
     {
         IntPtr _edjeHandle;
@@ -42,6 +43,7 @@ namespace ElmSharp
         /// <param name="part">The part's name to check for existence in object's group.</param>
         /// <returns>TRUE, if the edje part exists in the object's group, otherwise FALSE.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public EdjeTextPartObject this[string part]
         {
             get
@@ -60,6 +62,7 @@ namespace ElmSharp
         /// <param name="emission">The signal's "emission" string</param>
         /// <param name="source">The signal's "source" string</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void EmitSignal(string emission, string source)
         {
             Interop.Elementary.edje_object_signal_emit(_edjeHandle, emission, source);
@@ -72,6 +75,7 @@ namespace ElmSharp
         /// <remarks>Deleting the Color class defined in the theme file.</remarks>
         /// <param name="part">The Color class to be deleted.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void DeleteColorClass(string part)
         {
             Interop.Elementary.edje_object_color_class_del(_edjeHandle, part);
@@ -95,8 +99,9 @@ namespace ElmSharp
         /// <param name="shadowAlpha">The shadow alpha value.</param>
         /// <returns>True if succeeds, otherwise False.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool SetColorClass(string colorClass, int red, int green, int blue, int alpha, int outlineRed, int outlineGreen, int outlineBlue, int outlineAlpha,
-            int shadowRed, int shadowGreen, int shadowBlue, int shadowAlpha)
+                    int shadowRed, int shadowGreen, int shadowBlue, int shadowAlpha)
         {
             return Interop.Elementary.edje_object_color_class_set(_edjeHandle, colorClass, red, green, blue, alpha, outlineRed, outlineGreen, outlineBlue, outlineAlpha,
                 shadowRed, shadowGreen, shadowBlue, shadowAlpha);
@@ -120,8 +125,9 @@ namespace ElmSharp
         /// <param name="shadowAlpha">The shadow alpha value.</param>
         /// <returns>True if succeeds, otherwise False.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool GetColorClass(string colorClass, out int red, out int green, out int blue, out int alpha, out int outlineRed, out int outlineGreen, out int outlineBlue, out int outlineAlpha,
-            out int shadowRed, out int shadowGreen, out int shadowBlue, out int shadowAlpha)
+                    out int shadowRed, out int shadowGreen, out int shadowBlue, out int shadowAlpha)
         {
             return Interop.Elementary.edje_object_color_class_get(_edjeHandle, colorClass, out red, out green, out blue, out alpha, out outlineRed, out outlineGreen, out outlineBlue, out outlineAlpha,
                 out shadowRed, out shadowGreen, out shadowBlue, out shadowAlpha);
@@ -135,6 +141,7 @@ namespace ElmSharp
         /// <param name="fontSize">Font size.</param>
         /// <returns>True if succeeds, otherwise False.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool SetTextClass(string textClass, string font, int fontSize)
         {
             return Interop.Elementary.edje_object_text_class_set(_edjeHandle, textClass, font, fontSize);
@@ -148,6 +155,7 @@ namespace ElmSharp
         /// <param name="fontSize">Font size.</param>
         /// <returns>True if succeeds, otherwise False.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool GetTextClass(string textClass, out string font, out int fontSize)
         {
             return Interop.Elementary.edje_object_text_class_get(_edjeHandle, textClass, out font, out fontSize);
@@ -160,6 +168,7 @@ namespace ElmSharp
         /// <param name="source">The signal's "source" string.</param>
         /// <param name="action">The action to be executed when the signal is emitted.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void AddSignalAction(string emission, string source, Action<string, string> action)
         {
             if (emission != null && source != null && action != null)
@@ -185,6 +194,7 @@ namespace ElmSharp
         /// <param name="source">The signal's "source" string.</param>
         /// <param name="action">The action to be executed when the signal is emitted.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void DeleteSignalAction(string emission, string source, Action<string, string> action)
         {
             if (emission != null && source != null && action != null)
@@ -221,7 +231,8 @@ namespace ElmSharp
                 return Equals(other as SignalData);
             }
 
-            public bool Equals(SignalData other) {
+            public bool Equals(SignalData other)
+            {
                 if (other == null)
                 {
                     return false;
@@ -243,6 +254,7 @@ namespace ElmSharp
     /// The EdjeTextPartObject is a class dealing with parts of type text.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class EdjeTextPartObject
     {
         string _part;
@@ -258,12 +270,14 @@ namespace ElmSharp
         /// Gets the name of the EdjeTextPartObject.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string Name { get { return _part; } }
 
         /// <summary>
         /// Gets or sets the text for an object part.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string Text
         {
             get
@@ -280,6 +294,7 @@ namespace ElmSharp
         /// Sets or gets the style of the object part.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string TextStyle
         {
             get
@@ -303,6 +318,7 @@ namespace ElmSharp
         /// Gets the geometry of a given edje part, in a given edje object's group definition, relative to the object's area.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Rect Geometry
         {
             get
@@ -317,6 +333,7 @@ namespace ElmSharp
         /// Gets the native width and height.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Size TextBlockNativeSize
         {
             get
@@ -333,6 +350,7 @@ namespace ElmSharp
         /// Gets the formatted width and height.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Size TextBlockFormattedSize
         {
             get

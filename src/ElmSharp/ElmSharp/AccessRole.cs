@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using System;
 
 namespace ElmSharp.Accessible
 {
@@ -21,6 +22,7 @@ namespace ElmSharp.Accessible
     /// Enumeration for the AccessRole.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum AccessRole
     {
         /// <summary>

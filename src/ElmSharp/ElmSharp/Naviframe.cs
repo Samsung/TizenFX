@@ -24,12 +24,14 @@ namespace ElmSharp
     /// Inherits EventArgs.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class NaviframeEventArgs : EventArgs
     {
         /// <summary>
         /// Sets or gets the content object. The name of the content part is "elm.swallow.content".
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public EvasObject Content { get; set; }
     }
     /// <summary>
@@ -37,6 +39,7 @@ namespace ElmSharp
     /// Inherits Widget.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class Naviframe : Widget
     {
         SmartEvent _transitionFinished;
@@ -47,6 +50,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">The parent is a given container which will be attached by Naviframe as a child. It's <see cref="EvasObject"/> type.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Naviframe(EvasObject parent) : base(parent)
         {
             _transitionFinished = new SmartEvent(this, this.RealHandle, "transition,finished");
@@ -63,18 +67,21 @@ namespace ElmSharp
         /// After calling the Popped event, the Pop/Delete method will be returned.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<NaviframeEventArgs> Popped;
 
         /// <summary>
         /// AnimationFinished will be triggered when the animation is finished.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler AnimationFinished;
 
         /// <summary>
         /// Gets the list of the navi item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public IReadOnlyList<NaviItem> NavigationStack
         {
             get { return _itemStack; }
@@ -84,6 +91,7 @@ namespace ElmSharp
         /// Sets or gets the preserve content objects when items are popped.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool PreserveContentOnPop
         {
             get
@@ -100,6 +108,7 @@ namespace ElmSharp
         /// Sets or gets whether the default back button is enabled.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool DefaultBackButtonEnabled
         {
             get
@@ -119,6 +128,7 @@ namespace ElmSharp
         /// <param name="content">The main content object. The name of the content part is "elm.swallow.content".</param>
         /// <returns>The created item, or null upon failure.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public NaviItem Push(EvasObject content)
         {
             return Push(content, null);
@@ -132,6 +142,7 @@ namespace ElmSharp
         /// <param name="title">The current item title. Null would be default.</param>
         /// <returns></returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public NaviItem Push(EvasObject content, string title)
         {
             return Push(content, title, null);
@@ -145,6 +156,7 @@ namespace ElmSharp
         /// <param name="style">The current item style name. Null would be default.</param>
         /// <returns>The created item, or null upon failure.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public NaviItem Push(EvasObject content, string title, string style)
         {
             IntPtr item = Interop.Elementary.elm_naviframe_item_push(RealHandle, title, IntPtr.Zero, IntPtr.Zero, content.Handle, style);
@@ -162,6 +174,7 @@ namespace ElmSharp
         /// <param name="content">The main content object. The name of the content part is "elm.swallow.content".</param>
         /// <returns>The created item, or null upon failure.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public NaviItem InsertBefore(NaviItem before, EvasObject content)
         {
             return InsertBefore(before, content, "");
@@ -176,6 +189,7 @@ namespace ElmSharp
         /// <param name="title">The current item title. Null would be default.</param>
         /// <returns>The created item, or null upon failure.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public NaviItem InsertBefore(NaviItem before, EvasObject content, string title)
         {
             return InsertBefore(before, content, title, null);
@@ -190,6 +204,7 @@ namespace ElmSharp
         /// <param name="style">The current item style name. Null would be default.</param>
         /// <returns>The created item, or null upon failure.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public NaviItem InsertBefore(NaviItem before, EvasObject content, string title, string style)
         {
             IntPtr item = Interop.Elementary.elm_naviframe_item_insert_before(RealHandle, before, title, IntPtr.Zero, IntPtr.Zero, content, null);
@@ -208,6 +223,7 @@ namespace ElmSharp
         /// <param name="content">The main content object. The name of the content part is "elm.swallow.content".</param>
         /// <returns>The created item, or null upon failure.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public NaviItem InsertAfter(NaviItem after, EvasObject content)
         {
             return InsertAfter(after, content, "");
@@ -222,6 +238,7 @@ namespace ElmSharp
         /// <param name="title">The current item title. Null would be default.</param>
         /// <returns>The created item, or null upon failure.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public NaviItem InsertAfter(NaviItem after, EvasObject content, string title)
         {
             return InsertAfter(after, content, title, null);
@@ -236,6 +253,7 @@ namespace ElmSharp
         /// <param name="style">The current item style name. Null would be default.</param>
         /// <returns>The created item, or null upon failure.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public NaviItem InsertAfter(NaviItem after, EvasObject content, string title, string style)
         {
             IntPtr item = Interop.Elementary.elm_naviframe_item_insert_after(RealHandle, after, title, IntPtr.Zero, IntPtr.Zero, content, null);
@@ -250,6 +268,7 @@ namespace ElmSharp
         /// Pops an item that is on top of the stack.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Pop()
         {
             Interop.Elementary.elm_naviframe_item_pop(RealHandle);
@@ -261,6 +280,7 @@ namespace ElmSharp
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);

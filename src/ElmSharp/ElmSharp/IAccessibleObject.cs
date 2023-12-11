@@ -14,30 +14,36 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace ElmSharp.Accessible
 {
     /// <summary>
     /// IAccessibleObject is an interface, which defines the properties and methods of an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public interface IAccessibleObject
     {
         /// <summary>
         /// Gets or sets the reading information types of an accessible object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         ReadingInfoType ReadingInfoType { get; set; }
 
         /// <summary>
         /// Gets or sets the role of the object in an accessibility domain.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         AccessRole Role { get; set; }
 
         /// <summary>
         /// Gets or sets the highlightable of the given widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         bool CanHighlight { get; set; }
 
         /// <summary>
@@ -47,30 +53,35 @@ namespace ElmSharp.Accessible
         /// It is the application developer's responsibility to ensure that translation files are loaded and binded to the translation domain when accessibility is enabled.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         string TranslationDomain { get; set; }
 
         /// <summary>
         /// Gets or sets an accessible name of the object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         string Name { get; set; }
 
         /// <summary>
         /// Gets or sets contextual information about the object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         string Description { get; set; }
 
         /// <summary>
         /// Gets or sets the delegate for <see cref="IAccessibleObject.Name"/>.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         AccessibleInfoProvider NameProvider { get; set; }
 
         /// <summary>
         /// Gets or sets the delegate for <see cref="IAccessibleObject.Description"/>.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         AccessibleInfoProvider DescriptionProvider { get; set; }
 
         /// <summary>
@@ -80,6 +91,7 @@ namespace ElmSharp.Accessible
         /// </summary>
         /// <param name="relation">The relationship between the source object and target object of a given type.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         void AppendRelation(IAccessibleRelation relation);
 
         /// <summary>
@@ -87,18 +99,21 @@ namespace ElmSharp.Accessible
         /// </summary>
         /// <param name="relation">The relationship between the source object and target object of a given type.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         void RemoveRelation(IAccessibleRelation relation);
 
         /// <summary>
         /// Highlights the accessible widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         void Highlight();
 
         /// <summary>
         /// Clears the highlight of the accessible widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         void Unhighlight();
     }
 }

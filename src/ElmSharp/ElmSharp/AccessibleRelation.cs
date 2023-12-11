@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using System;
 
 namespace ElmSharp.Accessible
 {
@@ -21,6 +22,7 @@ namespace ElmSharp.Accessible
     /// IAccessibleRelation is an interface, which defines the relationship between two accessible objects.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")] 
     public interface IAccessibleRelation
     {
 
@@ -28,12 +30,14 @@ namespace ElmSharp.Accessible
         /// Gets or sets the target object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         int Type { get; }
     }
 
@@ -41,18 +45,21 @@ namespace ElmSharp.Accessible
     /// To define the label info for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")] 
     public class LabelledBy : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object, which is LabelledBy.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the LabelledBy type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_LABELLED_BY; }
@@ -63,18 +70,21 @@ namespace ElmSharp.Accessible
     /// To define the label info for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")] 
     public class LabelFor : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object which is LabelFor.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the LabelFor type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_LABEL_FOR; }
@@ -85,18 +95,21 @@ namespace ElmSharp.Accessible
     /// To define the control relationship for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")] 
     public class ControllerFor : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object, which is ControllerFor.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the ControllerFor type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_CONTROLLER_FOR; }
@@ -107,18 +120,21 @@ namespace ElmSharp.Accessible
     /// To define the control relationship for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")] 
     public class ControlledBy : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object, which is ControlledBy.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the ControlledBy type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_CONTROLLED_BY; }
@@ -129,18 +145,21 @@ namespace ElmSharp.Accessible
     /// To define the member relationship for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")] 
     public class MemberOf : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object, which is MemberOf.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the MemberOf type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_MEMBER_OF; }
@@ -151,18 +170,21 @@ namespace ElmSharp.Accessible
     /// To define the tooltip for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")] 
     public class TooltipFor : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object, which is TooltipFor.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the TooltipFor type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_TOOLTIP_FOR; }
@@ -173,18 +195,21 @@ namespace ElmSharp.Accessible
     /// To define the child for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")] 
     public class ChildOf : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object, which is ChildOf.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the ChildOf type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_NODE_CHILD_OF; }
@@ -195,18 +220,21 @@ namespace ElmSharp.Accessible
     /// To define the parent for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")] 
     public class ParentOf : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object, which is ParentOf.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the ParentOf type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_NODE_PARENT_OF; }
@@ -217,18 +245,21 @@ namespace ElmSharp.Accessible
     /// To define the extend for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")] 
     public class Extended : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object, which is Extended.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the extended type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_EXTENDED; }
@@ -239,18 +270,21 @@ namespace ElmSharp.Accessible
     /// To define the custom reading order.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")] 
     public class FlowsTo : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object, which is FlowsTo.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the FlowsTo type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_FLOWS_TO; }
@@ -261,18 +295,21 @@ namespace ElmSharp.Accessible
     /// To define the custom reading order.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")] 
     public class FlowsFrom : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object, which is FlowsFrom.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the FlowsFrom type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_FLOWS_FROM; }
@@ -283,18 +320,21 @@ namespace ElmSharp.Accessible
     /// To define the subwindow for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")] 
     public class SubwindowOf : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object, which is SubwindowOf.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the SubwindowOf type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_SUBWINDOW_OF; }
@@ -305,18 +345,21 @@ namespace ElmSharp.Accessible
     /// To define the embed for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")] 
     public class Embeds : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object ,which is Embeds.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the Embeds type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_EMBEDS; }
@@ -327,18 +370,21 @@ namespace ElmSharp.Accessible
     /// To define the embed for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")] 
     public class EmbeddedBy : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object, which is EmbeddedBy.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the EmbeddedBy type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_EMBEDDED_BY; }
@@ -349,18 +395,21 @@ namespace ElmSharp.Accessible
     /// To define the popup for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")] 
     public class PopupFor : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object, which is PopupFor.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the PopupFor type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_POPUP_FOR; }
@@ -371,18 +420,21 @@ namespace ElmSharp.Accessible
     /// To define the parent window for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")] 
     public class ParentWindowOf : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object, which is ParentWindowOf.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the ParentWindowOf type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_PARENT_WINDOW_OF; }
@@ -393,18 +445,21 @@ namespace ElmSharp.Accessible
     /// To define the description for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")] 
     public class DescriptionFor : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object, which is DescriptionFor.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the DescriptionFor type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_DESCRIPTION_FOR; }
@@ -415,18 +470,21 @@ namespace ElmSharp.Accessible
     /// To define the description for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")] 
     public class DescribedBy : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object, which is DescribedBy.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the DescribedBy type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_DESCRIBED_BY; }

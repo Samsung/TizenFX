@@ -23,6 +23,7 @@ namespace ElmSharp
     /// or to any container object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class Background : Layout
     {
         /// <summary>
@@ -30,6 +31,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">The EvasObject to which the new background will be attached as a child.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Background(EvasObject parent) : base(parent)
         {
             Style = "transparent";
@@ -39,6 +41,7 @@ namespace ElmSharp
         /// Sets or gets the color to the background.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override Color Color
         {
             get
@@ -55,6 +58,7 @@ namespace ElmSharp
         /// Sets or gets the image to the background.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string File
         {
             get
@@ -76,6 +80,7 @@ namespace ElmSharp
         /// The image can be display tiled, scaled, centered, or stretched. Scaled by default.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public BackgroundOptions BackgroundOption
         {
             get
@@ -97,6 +102,7 @@ namespace ElmSharp
         /// <param name="w">The new width of the image pixmap representation.</param>
         /// <param name="h">The new height of the image pixmap representation.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetFileLoadSize(int w, int h)
         {
             if (File != null)
@@ -115,6 +121,7 @@ namespace ElmSharp
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_bg_add(parent.Handle);
@@ -125,6 +132,7 @@ namespace ElmSharp
     /// Enumeration for the background types.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum BackgroundOptions
     {
         /// <summary>

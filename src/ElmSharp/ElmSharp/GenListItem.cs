@@ -23,6 +23,7 @@ namespace ElmSharp
     /// The type of the item's part types.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     [Flags]
     public enum GenListItemFieldType
     {
@@ -58,6 +59,7 @@ namespace ElmSharp
     /// It contains the Update() method to update a genlist item which is given.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class GenListItem : GenItem
     {
         internal GenListItem(object data, GenItemClass itemClass) : base(data, itemClass)
@@ -72,6 +74,7 @@ namespace ElmSharp
         /// Gets or sets whether a given genlist item is selected.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override bool IsSelected
         {
             get
@@ -88,6 +91,7 @@ namespace ElmSharp
         /// Gets or sets whether a given genlist item is expanded.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsExpanded
         {
             get
@@ -108,6 +112,7 @@ namespace ElmSharp
         /// </summary>
         /// <seealso cref="GenList.UpdateRealizedItems"/>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override void Update()
         {
             Interop.Elementary.elm_genlist_item_update(Handle);
@@ -123,6 +128,7 @@ namespace ElmSharp
         /// <param name="type">The type of the item's part type.</param>
         /// <seealso cref="GenList.UpdateRealizedItems"/>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void UpdateField(string part, GenListItemFieldType type)
         {
             Interop.Elementary.elm_genlist_item_fields_update(Handle, part, (uint)type);
@@ -132,6 +138,7 @@ namespace ElmSharp
         /// Demotes an item to the end of the list.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void DemoteItem()
         {
             Interop.Elementary.elm_genlist_item_demote(Handle);
@@ -141,6 +148,7 @@ namespace ElmSharp
         /// Gets or sets the genlist item's select mode.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override GenItemSelectionMode SelectionMode
         {
             get
@@ -158,6 +166,7 @@ namespace ElmSharp
         /// </summary>
         /// <seealso cref="Previous"/>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenListItem Next
         {
             get
@@ -175,6 +184,7 @@ namespace ElmSharp
         /// </summary>
         /// <seealso cref="Next"/>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenListItem Previous
         {
             get
@@ -191,6 +201,7 @@ namespace ElmSharp
         /// Sets or gets the content to be shown in the tooltip item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string Cursor
         {
@@ -215,6 +226,7 @@ namespace ElmSharp
         /// Sets or gets the style for this item cursor.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string CursorStyle
         {
@@ -232,6 +244,7 @@ namespace ElmSharp
         /// Sets or gets the cursor engine only usage for this item cursor.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool IsUseEngineCursor
         {
@@ -250,6 +263,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="tooltip">The text to set in the content.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override void SetTooltipText(string tooltip)
         {
             Interop.Elementary.elm_genlist_item_tooltip_text_set(Handle, tooltip);
@@ -259,6 +273,7 @@ namespace ElmSharp
         /// Unsets the tooltip from the item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override void UnsetTooltip()
         {
             Interop.Elementary.elm_genlist_item_tooltip_unset(Handle);
@@ -268,6 +283,7 @@ namespace ElmSharp
         /// Gets or sets the style of the given genlist item's tooltip.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override string TooltipStyle
         {
             get
@@ -284,6 +300,7 @@ namespace ElmSharp
         /// Gets or sets the disable size restrictions on an object's tooltip.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsTooltipWindowMode
         {
             get
@@ -300,6 +317,7 @@ namespace ElmSharp
         /// Gets the index of the item. It is only valid, once displayed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int Index
         {
             get
@@ -312,6 +330,7 @@ namespace ElmSharp
         /// Gets the depth of the expanded item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int ExpandedItemDepth
         {
             get
@@ -327,6 +346,7 @@ namespace ElmSharp
         /// This removes the items that are the children (and their descendants) of the given item.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void ClearSubitems()
         {
             Interop.Elementary.elm_genlist_item_subitems_clear(Handle);
@@ -339,6 +359,7 @@ namespace ElmSharp
         /// <param name="itemClass">The item class for the item.</param>
         /// <param name="data">The data for the item.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void UpdateItemClass(GenItemClass itemClass, object data)
         {
             Data = data;
@@ -350,6 +371,7 @@ namespace ElmSharp
         /// Sets the content to be shown in the tooltip item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override void UpdateTooltipDelegate()
         {
             Interop.Elementary.elm_genlist_item_tooltip_content_cb_set(Handle,

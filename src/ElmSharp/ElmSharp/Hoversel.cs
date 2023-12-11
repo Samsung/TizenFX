@@ -22,12 +22,14 @@ namespace ElmSharp
     /// The HoverselItemEventArgs is a HoverselItem's EventArgs.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class HoverselItemEventArgs : EventArgs
     {
         /// <summary>
         /// The hoversel's item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public HoverselItem Item { get; set; }
 
         internal static HoverselItemEventArgs CreateFromSmartEvent(IntPtr data, IntPtr obj, IntPtr info)
@@ -41,6 +43,7 @@ namespace ElmSharp
     /// The hoversel is a button that pops up a list of items.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class Hoversel : Layout
     {
         SmartEvent _clicked;
@@ -54,6 +57,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">The parent is a given container, which will be attached by Hoversel as a child. It's <see cref="EvasObject"/> type.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Hoversel(EvasObject parent) : base(parent)
         {
             _clicked = new SmartEvent(this, "clicked");
@@ -87,30 +91,35 @@ namespace ElmSharp
         /// Clicked will be triggered when the hoversel is clicked.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Clicked;
 
         /// <summary>
         /// Expanded will be triggered when the hoversel is activated by clicking the hoversel, or by a function.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Expanded;
 
         /// <summary>
         /// Dismissed will be triggered when the hoversel is dismissed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Dismissed;
 
         /// <summary>
         /// ItemSelected will be triggered when the hoversel's item is selected.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<HoverselItemEventArgs> ItemSelected;
 
         /// <summary>
         /// Gets or sets the status to control whether the hoversel should expand horizontally.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsHorizontal
         {
             get
@@ -127,6 +136,7 @@ namespace ElmSharp
         /// Gets or sets the hover parent.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public IntPtr HoverParent
         {
             get
@@ -143,6 +153,7 @@ namespace ElmSharp
         /// Gets the flag of whether the hoversel is expanded.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsExpanded
         {
             get
@@ -155,6 +166,7 @@ namespace ElmSharp
         /// Gets or sets the status of whether to update the icon and text of hoversel same to those of the selected item automatically.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool AutoUpdate
         {
             get
@@ -171,6 +183,7 @@ namespace ElmSharp
         /// This triggers the hoversel popup from the code, the same as if the user had clicked the button.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void HoverBegin()
         {
             Interop.Elementary.elm_hoversel_hover_begin(RealHandle);
@@ -180,6 +193,7 @@ namespace ElmSharp
         /// This dismisses the hoversel popup as if the user had clicked outside the hover.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void HoverEnd()
         {
             Interop.Elementary.elm_hoversel_hover_end(RealHandle);
@@ -189,6 +203,7 @@ namespace ElmSharp
         /// This will remove all the children items from the hoversel.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Clear()
         {
             Interop.Elementary.elm_hoversel_clear(RealHandle);
@@ -201,6 +216,7 @@ namespace ElmSharp
         /// <param name="label">Item's label.</param>
         /// <returns>A handle to the added item.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public HoverselItem AddItem(string label)
         {
             HoverselItem item = new HoverselItem(this);
@@ -215,6 +231,7 @@ namespace ElmSharp
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);

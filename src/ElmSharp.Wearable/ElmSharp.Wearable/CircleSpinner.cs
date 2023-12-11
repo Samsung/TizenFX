@@ -26,6 +26,7 @@ namespace ElmSharp.Wearable
     /// Inherits <see cref="Spinner"/>.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class CircleSpinner : Spinner, IRotaryActionWidget
     {
         IntPtr _circleHandle;
@@ -38,6 +39,7 @@ namespace ElmSharp.Wearable
         /// <param name="parent">The parent of the new Circle Spinner instance.</param>
         /// <param name="surface">The surface for drawing circle features for this widget.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public CircleSpinner(EvasObject parent, CircleSurface surface) : base()
         {
             Debug.Assert(parent == null || surface == null || parent.IsRealized);
@@ -61,12 +63,14 @@ namespace ElmSharp.Wearable
         /// Gets the handle for Circle widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public virtual IntPtr CircleHandle => _circleHandle;
 
         /// <summary>
         /// Gets the handle for the circle surface used in this widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public virtual CircleSurface CircleSurface => _surface;
 
         /// <summary>
@@ -79,15 +83,15 @@ namespace ElmSharp.Wearable
         {
             get
             {
-                if(_angleRatio <= 0)
+                if (_angleRatio <= 0)
                 {
-                    if(Maximum == Minimum)
+                    if (Maximum == Minimum)
                     {
                         return 0.0;
                     }
                     else
                     {
-                        return 360/(Maximum - Minimum);
+                        return 360 / (Maximum - Minimum);
                     }
                 }
 
@@ -95,7 +99,7 @@ namespace ElmSharp.Wearable
             }
             set
             {
-                if(value > 0)
+                if (value > 0)
                 {
                     if (_angleRatio == value) return;
 
@@ -122,6 +126,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the state of the widget, which might be enabled or disabled.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override bool IsEnabled
         {
             get
@@ -202,6 +207,7 @@ namespace ElmSharp.Wearable
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = base.CreateHandle(parent);

@@ -25,6 +25,7 @@ namespace ElmSharp
     /// The EvasKeyEventArgs is a EvasKey EventArgs.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class EvasKeyEventArgs : EventArgs
     {
         IntPtr _nativeEventInfo;
@@ -33,30 +34,35 @@ namespace ElmSharp
         /// BackButton name in platform.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public const string PlatformBackButtonName = "XF86Back";
 
         /// <summary>
         /// MenuButton name in platform.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public const string PlatformMenuButtonName = "XF86Menu";
 
         /// <summary>
         /// HomeButton name in platform.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public const string PlatformHomeButtonName = "XF86Home";
 
         /// <summary>
         /// Gets the name of the key.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string KeyName { get; private set; }
 
         /// <summary>
         /// Sets or gets the flags.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public EvasEventFlag Flags
         {
             get
@@ -86,6 +92,7 @@ namespace ElmSharp
         /// <param name="info">The information.</param>
         /// <returns>EvasKey eventArgs.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         static public EvasKeyEventArgs Create(IntPtr data, IntPtr obj, IntPtr info)
         {
             return new EvasKeyEventArgs(info);
@@ -94,7 +101,7 @@ namespace ElmSharp
         /// <summary>
         /// Event structure for Key Down event callbacks.
         /// </summary>
-        [NativeStruct("Evas_Event_Key_Down", Include="Elementary.h", PkgConfig="elementary")]
+        [NativeStruct("Evas_Event_Key_Down", Include = "Elementary.h", PkgConfig = "elementary")]
         [StructLayout(LayoutKind.Sequential)]
         struct EvasEventKeyDown
         {
@@ -156,6 +163,7 @@ namespace ElmSharp
     /// Flags for the events.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     [Flags]
     public enum EvasEventFlag
     {

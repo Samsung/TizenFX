@@ -22,6 +22,7 @@ namespace ElmSharp
     /// Enumeration for the datetime field types for DateTimeSelector.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum DateTimeFieldType
     {
         /// <summary>
@@ -57,6 +58,7 @@ namespace ElmSharp
     /// (Date includes Day, Month &amp; Year) along with the defined separators and time including hour, minute &amp; AM/PM fields. Separator for the AM/PM field is ignored.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class DateTimeSelector : Layout
     {
         SmartEvent _changed;
@@ -68,6 +70,7 @@ namespace ElmSharp
         /// <param name="parent">The parent is a given container, which will be attached by the DateTimeSelector
         ///  as a child. It's <see cref="EvasObject"/> type.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public DateTimeSelector(EvasObject parent) : base(parent)
         {
         }
@@ -76,6 +79,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of the DateTimeSelector class.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected DateTimeSelector() : base()
         {
         }
@@ -84,6 +88,7 @@ namespace ElmSharp
         /// ItemSelected is raised when the DateTime field value is changed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<DateChangedEventArgs> DateTimeChanged;
 
         /// <summary>
@@ -93,6 +98,7 @@ namespace ElmSharp
         /// Format is a combination of the allowed LIBC date format specifiers like: "%b %d, %Y %I : %M %p".
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string Format
         {
             get
@@ -109,6 +115,7 @@ namespace ElmSharp
         /// Gets or sets the upper boundary of the DateTime field.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public DateTime MaximumDateTime
         {
             get
@@ -128,6 +135,7 @@ namespace ElmSharp
         /// Gets or sets the lower boundary of the DateTime field.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public DateTime MinimumDateTime
         {
             get
@@ -147,6 +155,7 @@ namespace ElmSharp
         /// Gets or sets the current value of the DateTime field.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public DateTime DateTime
         {
             get
@@ -172,6 +181,7 @@ namespace ElmSharp
         /// Type is bool. If visible, return true.
         /// </returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsFieldVisible(DateTimeFieldType type)
         {
             return Interop.Elementary.elm_datetime_field_visible_get(RealHandle, (int)type);
@@ -184,6 +194,7 @@ namespace ElmSharp
         /// <param name="minimum">The minimum limit.</param>
         /// <param name="maximum">The maximum limit.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetFieldLimit(DateTimeFieldType type, int minimum, int maximum)
         {
             Interop.Elementary.elm_datetime_field_limit_set(RealHandle, (int)type, minimum, maximum);
@@ -195,6 +206,7 @@ namespace ElmSharp
         /// <param name="type">Enumeration for <see cref="DateTimeFieldType"/>.</param>
         /// <param name="visible">When set as true, the field type is visible.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetFieldVisible(DateTimeFieldType type, bool visible)
         {
             Interop.Elementary.elm_datetime_field_visible_set(RealHandle, (int)type, visible);
@@ -204,6 +216,7 @@ namespace ElmSharp
         /// The callback of the Realized event.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override void OnRealized()
         {
             base.OnRealized();
@@ -222,6 +235,7 @@ namespace ElmSharp
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
