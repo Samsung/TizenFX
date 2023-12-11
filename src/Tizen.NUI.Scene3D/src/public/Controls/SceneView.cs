@@ -743,5 +743,80 @@ namespace Tizen.NUI.Scene3D
         {
             Interop.SceneView.DeleteScene(swigCPtr);
         }
+
+        internal override void ApplyCornerRadius()
+        {
+            base.ApplyCornerRadius();
+
+            if (backgroundExtraData == null) return;
+
+            // Update corner radius properties to image by ActionUpdateProperty
+            if (backgroundExtraDataUpdatedFlag.HasFlag(BackgroundExtraDataUpdatedFlag.ContentsCornerRadius))
+            {
+                // TODO : Happy Trick! We use same index with ImageView.Property.IMAGE and SceneView's visual internally.
+                // We should change it as valid value in future.
+                // if (backgroundExtraData.CornerRadius != null)
+                // {
+                //     Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
+                // }
+                // Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
+
+                // TODO2 : Tizen.NUI.Scene3D is not friend with Tizen.NUI. We cannot use internal API here. use old-style codes.
+                var cornerRadiusValue = backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius);
+                var cornerRadiusPolicyValue = new PropertyValue((int)backgroundExtraData.CornerRadiusPolicy);
+
+                // Make current propertyMap
+                PropertyMap currentPropertyMap = new PropertyMap();
+                currentPropertyMap[Visual.Property.CornerRadius] = cornerRadiusValue;
+                currentPropertyMap[Visual.Property.CornerRadiusPolicy] = cornerRadiusPolicyValue;
+                var temp = new PropertyValue(currentPropertyMap);
+
+                // Update corner radius properties to image by ActionUpdateProperty
+                this.DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, temp);
+
+                temp.Dispose();
+                currentPropertyMap.Dispose();
+                cornerRadiusValue.Dispose();
+                cornerRadiusPolicyValue.Dispose();
+            }
+        }
+
+        internal override void ApplyBorderline()
+        {
+            base.ApplyBorderline();
+
+            if (backgroundExtraData == null) return;
+
+            if (backgroundExtraDataUpdatedFlag.HasFlag(BackgroundExtraDataUpdatedFlag.ContentsBorderline))
+            {
+                // Update borderline properties to image by ActionUpdateProperty
+                // TODO : Happy Trick! We use same index with ImageView.Property.IMAGE and SceneView's visual internally.
+                // We should change it as valid value in future.
+                // Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.BorderlineWidth, backgroundExtraData.BorderlineWidth);
+                // Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.BorderlineColor, Vector4.getCPtr(backgroundExtraData.BorderlineColor ?? Color.Black));
+                // Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.BorderlineOffset, backgroundExtraData.BorderlineOffset);
+
+                // TODO2 : Tizen.NUI.Scene3D is not friend with Tizen.NUI. We cannot use internal API here. use old-style codes.
+                var borderlineWidthValue = new PropertyValue(backgroundExtraData.BorderlineWidth);
+                var borderlineColorValue = backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor);
+                var borderlineOffsetValue = new PropertyValue(backgroundExtraData.BorderlineOffset);
+
+                // Make current propertyMap
+                PropertyMap currentPropertyMap = new PropertyMap();
+                currentPropertyMap[Visual.Property.BorderlineWidth] = borderlineWidthValue;
+                currentPropertyMap[Visual.Property.BorderlineColor] = borderlineColorValue;
+                currentPropertyMap[Visual.Property.BorderlineOffset] = borderlineOffsetValue;
+                var temp = new PropertyValue(currentPropertyMap);
+
+                // Update borderline properties to image by ActionUpdateProperty
+                this.DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, temp);
+
+                temp.Dispose();
+                currentPropertyMap.Dispose();
+                borderlineWidthValue.Dispose();
+                borderlineColorValue.Dispose();
+                borderlineOffsetValue.Dispose();
+            }
+        }
     }
 }

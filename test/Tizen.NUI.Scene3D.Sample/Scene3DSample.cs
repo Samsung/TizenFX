@@ -35,6 +35,8 @@ class Scene3DSample : NUIApplication
     Animation mModelAnimation;
     bool mModelLoadFinished;
 
+    bool mSceneViewCornerRadiusApplied = false;
+
     // Note : This motion data works well only if model is MorthStressTest!
     MotionData mStaticMotionData;
     MotionData mStaticRevertMotionData;
@@ -137,6 +139,8 @@ class Scene3DSample : NUIApplication
             PivotPoint = PivotPoint.TopLeft,
             ParentOrigin = ParentOrigin.TopLeft,
             PositionUsesPivotPoint = true,
+
+            BackgroundColor = Color.DarkOrchid,
         };
 
         mSceneView.CameraTransitionFinished += (o, e) =>
@@ -438,6 +442,22 @@ class Scene3DSample : NUIApplication
                     SetupIBLimage(IBLUrlList[currentIBLIndex].Item1, IBLUrlList[currentIBLIndex].Item2, IBLFactor);
                     break;
                 }
+                case "3":
+                {
+                    mSceneViewCornerRadiusApplied ^= true;
+                    if(mSceneViewCornerRadiusApplied)
+                    {
+                        float minSize = Math.Min(mWindowSize.Width, mWindowSize.Height) * 0.25f;
+                        mSceneView.UseFramebuffer = true;
+                        mSceneView.CornerRadius = new Vector4(minSize, minSize, minSize, minSize);
+                    }
+                    else
+                    {
+                        mSceneView.UseFramebuffer = false;
+                        mSceneView.CornerRadius = Vector4.Zero;
+                    }
+                    break;
+                }
                 case "r":
                 {
                     if (mModelRotateAnimation.State == Animation.States.Playing)
@@ -500,7 +520,7 @@ class Scene3DSample : NUIApplication
     public void Activate()
     {
         mWindow = Window.Instance;
-        mWindow.BackgroundColor = Color.DarkOrchid;
+        mWindow.BackgroundColor = Color.White;
         mWindowSize = mWindow.WindowSize;
 
         mWindow.Resized += (o, e) =>

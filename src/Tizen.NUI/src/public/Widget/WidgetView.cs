@@ -943,6 +943,42 @@ namespace Tizen.NUI
             Interop.WidgetView.DeleteWidgetView(swigCPtr);
         }
 
+        internal override void ApplyCornerRadius()
+        {
+            base.ApplyCornerRadius();
+
+            if (backgroundExtraData == null) return;
+
+            // Update corner radius properties to image by ActionUpdateProperty
+            if (backgroundExtraDataUpdatedFlag.HasFlag(BackgroundExtraDataUpdatedFlag.ContentsCornerRadius))
+            {
+                // TODO : Happy Trick! We use same index with ImageView.Property.IMAGE and WidgetView's visual internally.
+                // We should change it as valid value in future.
+                if (backgroundExtraData.CornerRadius != null)
+                {
+                    Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
+                }
+                Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
+            }
+        }
+
+        internal override void ApplyBorderline()
+        {
+            base.ApplyBorderline();
+
+            if (backgroundExtraData == null) return;
+
+            if (backgroundExtraDataUpdatedFlag.HasFlag(BackgroundExtraDataUpdatedFlag.ContentsBorderline))
+            {
+                // Update borderline properties to image by ActionUpdateProperty
+                // TODO : Happy Trick! We use same index with ImageView.Property.IMAGE and WidgetView's visual internally.
+                // We should change it as valid value in future.
+                Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.BorderlineWidth, backgroundExtraData.BorderlineWidth);
+                Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.BorderlineColor, Vector4.getCPtr(backgroundExtraData.BorderlineColor ?? Color.Black));
+                Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.BorderlineOffset, backgroundExtraData.BorderlineOffset);
+            }
+        }
+
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override bool HandleControlStateOnTouch(Touch touch)
