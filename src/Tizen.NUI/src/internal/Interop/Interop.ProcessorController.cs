@@ -25,6 +25,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_ProcessorController")]
             public static extern global::System.IntPtr New();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_ProcessorController_Without_Initialize")]
+            public static extern global::System.IntPtr NewWithoutInitialize();
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ProcessorController")]
             public static extern global::System.IntPtr DeleteProcessorController(global::System.Runtime.InteropServices.HandleRef processorController);
 

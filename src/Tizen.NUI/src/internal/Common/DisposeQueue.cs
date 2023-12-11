@@ -37,7 +37,7 @@ namespace Tizen.NUI
         private EventThreadCallback eventThreadCallback;
         private EventThreadCallback.CallbackDelegate disposeQueueProcessDisposablesDelegate;
 
-        private bool initialied = false;
+        private bool initialized = false;
         private bool processorRegistered = false;
         private bool eventThreadCallbackTriggered = false;
 
@@ -51,7 +51,7 @@ namespace Tizen.NUI
         ~DisposeQueue()
         {
             Tizen.Log.Debug("NUI", $"DisposeQueue is destroyed\n");
-            initialied = false;
+            initialized = false;
             if (processorRegistered && ProcessorController.Instance.Initialized)
             {
                 processorRegistered = false;
@@ -78,11 +78,11 @@ namespace Tizen.NUI
 
         public void Initialize()
         {
-            if (!initialied)
+            if (!initialized)
             {
                 disposeQueueProcessDisposablesDelegate = new EventThreadCallback.CallbackDelegate(ProcessDisposables);
                 eventThreadCallback = new EventThreadCallback(disposeQueueProcessDisposablesDelegate);
-                initialied = true;
+                initialized = true;
 
                 DebugFileLogging.Instance.WriteLog("DiposeTest START");
             }
@@ -95,7 +95,7 @@ namespace Tizen.NUI
                 disposables.Add(disposable);
             }
 
-            if (initialied && eventThreadCallback != null)
+            if (initialized && eventThreadCallback != null)
             {
                 if (!eventThreadCallbackTriggered)
                 {
@@ -115,7 +115,7 @@ namespace Tizen.NUI
         {
             processorRegistered = false;
 
-            if (initialied && eventThreadCallback != null)
+            if (initialized && eventThreadCallback != null)
             {
                 if (!eventThreadCallbackTriggered)
                 {
