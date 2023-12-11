@@ -26,12 +26,14 @@ namespace Tizen.NUI.Wearable
     /// The CircualrScrollbar is a wearable NUI component that can be linked to the scrollable objects
     /// indicating the current scroll position of the scrollable object.<br />
     /// </summary>
+    [Obsolete("This has been deprecated in API12")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class CircularScrollbar : ScrollbarBase
     {
         #region Fields
 
         /// <summary>Bindable property of Thickness</summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ThicknessProperty = BindableProperty.Create(nameof(Thickness), typeof(float), typeof(CircularScrollbar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -106,6 +108,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Create an empty CircularScrollbar.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         public CircularScrollbar() : base()
         {
         }
@@ -117,6 +120,7 @@ namespace Tizen.NUI.Wearable
         /// <param name="viewportLength">The length of the viewport representing the amount of visible content.</param>
         /// <param name="currentPosition">The current position of the viewport in scrollable content area. This is the viewport's top position if the scroller is vertical, otherwise, left.</param>
         /// <param name="isHorizontal">Whether the direction of scrolling is horizontal or not. It is vertical by default.</param>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CircularScrollbar(float contentLength, float viewportLength, float currentPosition, bool isHorizontal = false) : base()
         {
@@ -126,6 +130,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Create an empty CircularScrollbar with a CircularScrollbarStyle instance to set style properties.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CircularScrollbar(CircularScrollbarStyle style) : base(style)
         {
@@ -147,6 +152,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The thickness of the scrollbar and track.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float Thickness
         {
@@ -161,6 +167,7 @@ namespace Tizen.NUI.Wearable
         /// Values below 6 degrees are treated as 6 degrees.
         /// Values exceeding 180 degrees are treated as 180 degrees.
         /// </remarks>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float TrackSweepAngle
         {
@@ -171,6 +178,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The color of the track part.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color TrackColor
         {
@@ -181,6 +189,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The color of the thumb part.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color ThumbColor
         {
@@ -196,6 +205,7 @@ namespace Tizen.NUI.Wearable
         #region Methods
 
         /// <inheritdoc/>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Initialize(float contentLength, float viewportLenth, float currentPosition, bool isHorizontal = false)
         {
@@ -265,6 +275,7 @@ namespace Tizen.NUI.Wearable
         }
 
         /// <inheritdoc/>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Update(float contentLength, float viewportLength, float position, uint durationMs = 0, AlphaFunction alphaFunction = null)
         {
@@ -273,6 +284,7 @@ namespace Tizen.NUI.Wearable
         }
 
         /// <inheritdoc/>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Update(float contentLength, float position, uint durationMs = 0, AlphaFunction alphaFunction = null)
         {
@@ -309,6 +321,7 @@ namespace Tizen.NUI.Wearable
         }
 
         /// <inheritdoc/>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void ScrollTo(float position, uint durationMs = 0, AlphaFunction alphaFunction = null)
         {
@@ -345,6 +358,7 @@ namespace Tizen.NUI.Wearable
         }
 
         /// <inheritdoc/>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnRelayout(Vector2 size, RelayoutContainer container)
         {
@@ -375,6 +389,7 @@ namespace Tizen.NUI.Wearable
         }
 
         /// <inheritdoc/>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void ApplyStyle(ViewStyle viewStyle)
         {
@@ -386,6 +401,7 @@ namespace Tizen.NUI.Wearable
         }
 
         /// <inheritdoc/>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override ViewStyle CreateViewStyle()
         {
@@ -475,6 +491,7 @@ namespace Tizen.NUI.Wearable
         }
 
         /// <inheritdoc/>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override float ScrollPosition
         {
@@ -482,6 +499,7 @@ namespace Tizen.NUI.Wearable
         }
 
         /// <inheritdoc/>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override float ScrollCurrentPosition
         {

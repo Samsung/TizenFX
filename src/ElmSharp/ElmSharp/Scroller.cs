@@ -22,6 +22,7 @@ namespace ElmSharp
     /// Enumeration for the visible type of scrollbar.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum ScrollBarVisiblePolicy
     {
         /// <summary>
@@ -44,6 +45,7 @@ namespace ElmSharp
     /// Enumeration for the visible type of scrollbar.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum ScrollBlock
     {
         /// <summary>
@@ -66,6 +68,7 @@ namespace ElmSharp
     /// Type that controls how the content is scrolled.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum ScrollSingleDirection
     {
         /// <summary>
@@ -88,6 +91,7 @@ namespace ElmSharp
     /// The Scroller is a container that holds and clips a single object and allows you to scroll across it.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class Scroller : Layout
     {
         SmartEvent _scroll;
@@ -102,6 +106,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">The <see cref="EvasObject"/> to which the new Scroller will be attached as a child.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Scroller(EvasObject parent) : base(parent)
         {
         }
@@ -110,6 +115,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of the Scroller class.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Scroller() : base()
         {
         }
@@ -118,6 +124,7 @@ namespace ElmSharp
         /// Scrolled will be triggered when the content has been scrolled.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Scrolled
         {
             add
@@ -134,6 +141,7 @@ namespace ElmSharp
         /// ScrollAnimationStarted will be triggered when the content animation has been started.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler ScrollAnimationStarted
         {
             add
@@ -150,6 +158,7 @@ namespace ElmSharp
         /// ScrollAnimationStopped will be triggered when the content animation has been stopped.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler ScrollAnimationStopped
         {
             add
@@ -166,6 +175,7 @@ namespace ElmSharp
         /// DragStart will be triggered when dragging the contents around has started.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler DragStart
         {
             add
@@ -182,6 +192,7 @@ namespace ElmSharp
         /// DragStop will be triggered when dragging the contents around has stopped.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler DragStop
         {
             add
@@ -198,6 +209,7 @@ namespace ElmSharp
         /// PageScrolled will be triggered when the visible page has changed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler PageScrolled
         {
             add
@@ -214,6 +226,7 @@ namespace ElmSharp
         /// Gets the current region in the content object that is visible through the scroller.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Rect CurrentRegion
         {
             get
@@ -232,6 +245,7 @@ namespace ElmSharp
         /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public virtual ScrollBarVisiblePolicy HorizontalScrollBarVisiblePolicy
         {
             get
@@ -255,6 +269,7 @@ namespace ElmSharp
         /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public virtual ScrollBarVisiblePolicy VerticalScrollBarVisiblePolicy
         {
             get
@@ -278,6 +293,7 @@ namespace ElmSharp
         /// The default value is ScrollBlock.None, where movements are allowed in both directions.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ScrollBlock ScrollBlock
         {
             get
@@ -299,6 +315,7 @@ namespace ElmSharp
         /// The page number starts from 0. 0 is the first page.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int VerticalPageIndex
         {
             get
@@ -318,6 +335,7 @@ namespace ElmSharp
         /// The page number starts from 0. 0 is the first page.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int HorizontalPageIndex
         {
             get
@@ -332,6 +350,7 @@ namespace ElmSharp
         /// Sets or gets the maximum limit of the movable page at vertical direction.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int VerticalPageScrollLimit
         {
             get
@@ -351,6 +370,7 @@ namespace ElmSharp
         /// Sets or gets the maximum limit of the movable page at horizontal direction.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int HorizontalPageScrollLimit
         {
             get
@@ -374,6 +394,7 @@ namespace ElmSharp
         /// This API will set if it is enabled for the given axis with the boolean parameters for each axis.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool VerticalBounce
         {
             get
@@ -397,6 +418,7 @@ namespace ElmSharp
         /// This API will set if it is enabled for the given axis with the boolean parameters for each axis.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool HorizontalBounce
         {
             get
@@ -416,6 +438,7 @@ namespace ElmSharp
         /// Gets the width of the content object of the scroller.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int ChildWidth
         {
             get
@@ -430,6 +453,7 @@ namespace ElmSharp
         /// Gets the height of the content object of the scroller.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int ChildHeight
         {
             get
@@ -448,6 +472,7 @@ namespace ElmSharp
         /// Default values for x and y are 0.0.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double HorizontalGravity
         {
             get
@@ -471,6 +496,7 @@ namespace ElmSharp
         /// Default values for x and y are 0.0.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double VerticalGravity
         {
             get
@@ -491,6 +517,7 @@ namespace ElmSharp
         /// The page number starts from 0. 0 is the first page. This returns the last page number among the pages.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int LastVerticalPageNumber
         {
             get
@@ -506,6 +533,7 @@ namespace ElmSharp
         /// The page number starts from 0. 0 is the first page. This returns the last page number among the pages.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int LastHorizontalPageNumber
         {
             get
@@ -522,6 +550,7 @@ namespace ElmSharp
         /// If the content is set, it will be shown repeatedly.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool VerticalLoop
         {
             get
@@ -543,6 +572,7 @@ namespace ElmSharp
         /// If the content is set, it will be shown repeatedly.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool HorizontalLoop
         {
             get
@@ -562,6 +592,7 @@ namespace ElmSharp
         /// Gets or sets a given scroller widget's scrolling page size, relative to its viewport size.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double VerticalRelativePageSize
         {
             get
@@ -581,6 +612,7 @@ namespace ElmSharp
         /// Gets or sets a given scroller widget's scrolling page size, relative to its viewport size.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double HorizontalRelativePageSize
         {
             get
@@ -606,6 +638,7 @@ namespace ElmSharp
         /// This function will set if it that is enabled or not, for each axis.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool VerticalSnap
         {
             get
@@ -631,6 +664,7 @@ namespace ElmSharp
         /// This function will set if it that is enabled or not, for each axis.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool HorizontalSnap
         {
             get
@@ -650,6 +684,7 @@ namespace ElmSharp
         /// Gets or sets the page size to an absolute fixed value, with 0 turning it off for that axis.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int PageHeight
         {
             get
@@ -669,6 +704,7 @@ namespace ElmSharp
         /// Gets or sets the page size to an absolute fixed value, with 0 turning it off for that axis.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int PageWidth
         {
             get
@@ -690,6 +726,7 @@ namespace ElmSharp
         /// By default, event propagation is enabled.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool ContentPropagateEvents
         {
             get
@@ -706,6 +743,7 @@ namespace ElmSharp
         /// Gets or sets the step size to move scroller by key event.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int HorizontalStepSize
         {
             get
@@ -725,6 +763,7 @@ namespace ElmSharp
         /// Gets or sets the step size to move scroller by key event.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int VerticalStepSize
         {
             get
@@ -744,6 +783,7 @@ namespace ElmSharp
         /// Gets or sets a value whether mouse wheel is enabled or not over the scroller.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool WheelDisabled
         {
             get
@@ -760,6 +800,7 @@ namespace ElmSharp
         /// Gets or sets the type of single direction scroll.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ScrollSingleDirection SingleDirection
         {
             get
@@ -780,6 +821,7 @@ namespace ElmSharp
         /// <param name="horizontal">Enable limiting minimum size horizontally.</param>
         /// <param name="vertical">Enable limiting minimum size vertically.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void MinimumLimit(bool horizontal, bool vertical)
         {
             Interop.Elementary.elm_scroller_content_min_limit(RealHandle, horizontal, vertical);
@@ -791,6 +833,7 @@ namespace ElmSharp
         /// <param name="width">The horizontal page size.</param>
         /// <param name="height">The vertical page size.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetPageSize(int width, int height)
         {
             Interop.Elementary.elm_scroller_page_size_set(RealHandle, width, height);
@@ -811,6 +854,7 @@ namespace ElmSharp
         /// <param name="width">The horizontal page relative size.</param>
         /// <param name="height">The vertical page relative size.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetPageSize(double width, double height)
         {
             Interop.Elementary.elm_scroller_page_relative_set(RealHandle, width, height);
@@ -824,6 +868,7 @@ namespace ElmSharp
         /// <param name="verticalPageIndex">The vertical page number.</param>
         /// <param name="animated">True means slider with animation.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void ScrollTo(int horizontalPageIndex, int verticalPageIndex, bool animated)
         {
             if (animated)
@@ -849,6 +894,7 @@ namespace ElmSharp
         /// <param name="region">Rect struct of region.</param>
         /// <param name="animated">True means allows the scroller to "smoothly slide" to this location.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void ScrollTo(Rect region, bool animated)
         {
             if (animated)
@@ -865,6 +911,7 @@ namespace ElmSharp
         /// The callback of the Realized event.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override void OnRealized()
         {
             base.OnRealized();
@@ -882,6 +929,7 @@ namespace ElmSharp
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);

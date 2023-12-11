@@ -27,6 +27,7 @@ namespace ElmSharp
     /// It has some display styles, such as "default", "full", and "group_index".
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class GenItemClass : IDisposable
     {
         static Dictionary<IntPtr, EvasObject> s_HandleToEvasObject = new Dictionary<IntPtr, EvasObject>();
@@ -38,6 +39,7 @@ namespace ElmSharp
         /// <param name="part">The part where the data should be shown.</param>
         /// <returns>Return string that should be shown.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public delegate string GetTextDelegate(object data, string part);
 
         /// <summary>
@@ -47,6 +49,7 @@ namespace ElmSharp
         /// <param name="part">The part where the data should be shown.</param>
         /// <returns>Return content that should be shown.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public delegate EvasObject GetContentDelegate(object data, string part);
 
         /// <summary>
@@ -54,6 +57,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="data">The item data.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public delegate void DeleteDelegate(object data);
 
         /// <summary>
@@ -64,6 +68,7 @@ namespace ElmSharp
         /// <param name="old">The content that has been added in gengrid.</param>
         /// <returns>Return content that should be shown.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public delegate EvasObject GetReusableContentDelegate(object data, string part, EvasObject old);
 
         ItemClass _itemClass;
@@ -75,6 +80,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="style">The item display style.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenItemClass(string style)
         {
             _style = style;
@@ -103,6 +109,7 @@ namespace ElmSharp
         /// Gets the item style.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string ItemStyle { get { return _style; } }
 
         /// <summary>
@@ -110,6 +117,7 @@ namespace ElmSharp
         /// If get, return <see cref="GetTextDelegate"/>.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GetTextDelegate GetTextHandler { get; set; }
 
         /// <summary>
@@ -117,6 +125,7 @@ namespace ElmSharp
         /// If get, return <see cref="GetContentDelegate"/>.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GetContentDelegate GetContentHandler { get; set; }
 
         /// <summary>
@@ -124,6 +133,7 @@ namespace ElmSharp
         /// If get, return <see cref="DeleteDelegate"/>.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public DeleteDelegate DeleteHandler { get; set; }
 
         /// <summary>
@@ -131,6 +141,7 @@ namespace ElmSharp
         /// If get, return <see cref="GetReusableContentDelegate"/>.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GetReusableContentDelegate ReusableContentHandler { get; set; }
 
         internal IntPtr UnmanagedPtr
@@ -154,6 +165,7 @@ namespace ElmSharp
         /// otherwise false.
         /// </param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected virtual void Dispose(bool disposing)
         {
             if (_unmanagedPtr != IntPtr.Zero)
@@ -167,6 +179,7 @@ namespace ElmSharp
         /// Destroys the current object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Dispose()
         {
             Dispose(true);
@@ -184,6 +197,7 @@ namespace ElmSharp
         /// </summary>
         /// <returns>The new item class object.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected virtual IntPtr CreateItemClass()
         {
             return Interop.Elementary.elm_genlist_item_class_new();
@@ -194,6 +208,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="unmanagedPtr">The object to be removed.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected virtual void ReleaseItemClass(IntPtr unmanagedPtr)
         {
             Interop.Elementary.elm_genlist_item_class_free(unmanagedPtr);
@@ -219,7 +234,7 @@ namespace ElmSharp
 
         void EvasObjectDeleted(object sender, EventArgs e)
         {
-            if(sender is EvasObject evasObject)
+            if (sender is EvasObject evasObject)
                 s_HandleToEvasObject.Remove(evasObject);
         }
 
@@ -249,6 +264,7 @@ namespace ElmSharp
     /// It represents the gengrid item class definition field details.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class GenGridItemClass : GenItemClass
     {
         /// <summary>
@@ -256,6 +272,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="style">The item display style.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenGridItemClass(string style) : base(style)
         {
         }
@@ -265,6 +282,7 @@ namespace ElmSharp
         /// </summary>
         /// <returns>The new instance.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateItemClass()
         {
             return Interop.Elementary.elm_gengrid_item_class_new();
@@ -275,32 +293,39 @@ namespace ElmSharp
         /// </summary>
         /// <param name="unmanagedPtr">The object to be removed.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override void ReleaseItemClass(IntPtr unmanagedPtr)
         {
             Interop.Elementary.elm_gengrid_item_class_free(unmanagedPtr);
         }
     }
 
-    [NativeStruct("Elm_Gen_Item_Class", Include="Elementary.h", PkgConfig="elementary")]
+    [NativeStruct("Elm_Gen_Item_Class", Include = "Elementary.h", PkgConfig = "elementary")]
     [StructLayout(LayoutKind.Sequential)]
     internal class ItemClass
     {
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public delegate string GetTextCallback(IntPtr data, IntPtr obj, IntPtr part);
 
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public delegate IntPtr GetContentCallback(IntPtr data, IntPtr obj, IntPtr part);
 
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public delegate int GetStateCallback(IntPtr data, IntPtr obj, IntPtr part);
 
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public delegate void DelCallback(IntPtr data, IntPtr obj);
 
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public delegate int FilterCallback(IntPtr data, IntPtr obj, IntPtr key);
 
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public delegate IntPtr GetReusableContentCallback(IntPtr data, IntPtr obj, IntPtr part, IntPtr old);
 
         public int version;

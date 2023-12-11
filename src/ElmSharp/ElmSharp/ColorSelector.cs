@@ -22,6 +22,7 @@ namespace ElmSharp
     /// Enumeration for the modes of ColorSelector.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum ColorSelectorMode
     {
         /// <summary>
@@ -70,6 +71,7 @@ namespace ElmSharp
     /// color items on the palette, or by selecting it from the selector.
     /// </remarks>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class ColorSelector : Layout
     {
         private readonly SmartEvent<ColorChangedEventArgs> _changed;
@@ -80,6 +82,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent"></param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ColorSelector(EvasObject parent) : base(parent)
         {
             _changed = new SmartEvent<ColorChangedEventArgs>(this, "changed", (data, obj, info) =>
@@ -92,6 +95,7 @@ namespace ElmSharp
         /// ColorChanged will be triggered when the SelectedColor is changed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<ColorChangedEventArgs> ColorChanged
         {
             add { _changed.On += value; }
@@ -102,6 +106,7 @@ namespace ElmSharp
         /// Gets or sets the color of colorselector.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Color SelectedColor
         {
             get
@@ -122,6 +127,7 @@ namespace ElmSharp
         /// Gets the Alpha of a default Color class (value is -1).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override int Opacity
         {
             get
@@ -138,6 +144,7 @@ namespace ElmSharp
         /// Gets or sets the Colorselector's mode.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ColorSelectorMode Mode
         {
             get
@@ -157,6 +164,7 @@ namespace ElmSharp
         /// Gets or sets the current palette's name.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string PaletteName
         {
             get
@@ -175,6 +183,7 @@ namespace ElmSharp
         /// <param name="color">The color item to add.</param>
         /// <returns>A new color palette Item.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ColorSelectorItem AddPaletteColor(Color color)
         {
             ColorSelectorItem item = new ColorSelectorItem(this);
@@ -186,6 +195,7 @@ namespace ElmSharp
         /// Clears the palette items.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void ClearPalette()
         {
             Interop.Elementary.elm_colorselector_palette_clear(Handle);
@@ -197,6 +207,7 @@ namespace ElmSharp
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_colorselector_add(parent.Handle);

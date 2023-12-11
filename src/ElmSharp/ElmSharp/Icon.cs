@@ -22,6 +22,7 @@ namespace ElmSharp
     /// Enumeration for the icon lookup order. Should look for icons in the theme, FDO paths, or both.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum IconLookupOrder
     {
         /// <summary>
@@ -48,6 +49,7 @@ namespace ElmSharp
     /// Inherits Image.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class Icon : Image
     {
         /// <summary>
@@ -55,6 +57,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">The parent is a given container, which will be attached by Icon as a child. It's <see cref="EvasObject"/> type.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Icon(EvasObject parent) : base(parent)
         {
         }
@@ -63,6 +66,7 @@ namespace ElmSharp
         /// Sets or gets the standard icon name of a given Icon widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string StandardIconName
         {
             get
@@ -79,6 +83,7 @@ namespace ElmSharp
         /// Sets or gets the icon lookup order of a given Icon widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public IconLookupOrder IconLookupOrder
         {
             get
@@ -97,6 +102,7 @@ namespace ElmSharp
         /// <param name="file">The path to the file that is used as an icon image.</param>
         /// <param name="group">The group that the icon belongs to.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetThumb(string file, string group)
         {
             Interop.Elementary.elm_icon_thumb_set(RealHandle, file, group);
@@ -108,6 +114,7 @@ namespace ElmSharp
         /// <param name="parent">EvasObject</param>
         /// <returns>The new object, otherwise null if it cannot be created.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);

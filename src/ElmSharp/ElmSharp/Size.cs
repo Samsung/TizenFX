@@ -22,18 +22,21 @@ namespace ElmSharp
     /// The Size is a struct defining the height and width as a pair of generic type.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public struct Size : IEquatable<Size>
     {
         /// <summary>
         /// Magnitude along the horizontal axis, in platform-defined units.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int Width;
 
         /// <summary>
         /// Magnitude along the vertical axis, in platform-specific units.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int Height;
 
         /// <summary>
@@ -42,6 +45,7 @@ namespace ElmSharp
         /// <param name="width">The width to set.</param>
         /// <param name="height">The height to set.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Size(int width, int height)
         {
             Width = width;
@@ -53,6 +57,7 @@ namespace ElmSharp
         /// </summary>
         /// <returns>The string is formatted as "{{Width={0} Height={1}}}".</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override string ToString()
         {
             return string.Format("{{Width={0} Height={1}}}", Width, Height);
@@ -63,6 +68,7 @@ namespace ElmSharp
         /// </summary>
         /// <returns>The hash code.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override int GetHashCode()
         {
             unchecked
@@ -80,6 +86,7 @@ namespace ElmSharp
         /// otherwise false.
         /// </returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override bool Equals(object obj)
         {
             if (!(obj is Size))
@@ -97,6 +104,7 @@ namespace ElmSharp
         /// otherwise false.
         /// </returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool Equals(Size other)
         {
             return Width.Equals(other.Width) && Height.Equals(other.Height);
@@ -109,6 +117,7 @@ namespace ElmSharp
         /// <param name="s2">A <see cref="Size"/> on the right hand side.</param>
         /// <returns>True if both <see cref="Size"/>s have equal values.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static bool operator ==(Size s1, Size s2)
         {
             return s1.Equals(s2);
@@ -121,6 +130,7 @@ namespace ElmSharp
         /// <param name="s2">A <see cref="Size"/> on the right hand side.</param>
         /// <returns>True if both <see cref="Size"/>s do not have equal values.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static bool operator !=(Size s1, Size s2)
         {
             return !s1.Equals(s2);

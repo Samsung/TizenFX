@@ -24,6 +24,7 @@ namespace ElmSharp
     /// Enumeration for describing the InputPanel layout types.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum InputPanelLayout
     {
         /// <summary>
@@ -101,6 +102,7 @@ namespace ElmSharp
     /// Enumeration for defining the "Return" key types on the input panel (virtual keyboard).
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum InputPanelReturnKeyType
     {
         /// <summary>
@@ -153,6 +155,7 @@ namespace ElmSharp
     /// Enumeration for defining the autocapitalization types.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum AutoCapital
     {
         /// <summary>
@@ -180,6 +183,7 @@ namespace ElmSharp
     /// Enumeration for defining the entry's copy and paste policy.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum CopyAndPasteMode
     {
         /// <summary>
@@ -202,6 +206,7 @@ namespace ElmSharp
     /// Enumeration for the text format types.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum TextFormat
     {
         /// <summary>
@@ -219,6 +224,7 @@ namespace ElmSharp
     /// Enumeration that defines the types of Input Hints.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum InputHints
     {
         /// <summary>
@@ -241,6 +247,7 @@ namespace ElmSharp
     /// Enumeration for defining the input panel (virtual keyboard) language modes.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum InputPanelLanguage
     {
         /// <summary>
@@ -258,6 +265,7 @@ namespace ElmSharp
     /// The Entry is a convenience widget that shows a box in which the user can enter text.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class Entry : Layout
     {
         SmartEvent _clicked;
@@ -273,6 +281,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">The EvasObject to which the new Entry will be attached as a child.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Entry(EvasObject parent) : base(parent)
         {
             _clicked = new SmartEvent(this, this.RealHandle, "clicked");
@@ -292,30 +301,35 @@ namespace ElmSharp
         /// Activated will be triggered when the entry is activated.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Activated;
 
         /// <summary>
         /// Clicked will be triggered when the entry is clicked.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Clicked;
 
         /// <summary>
         /// ChangedByUser will be triggered when the entry is changed by user.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler ChangedByUser;
 
         /// <summary>
         /// CursorChanged will be triggered when the cursor in the entry is changed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler CursorChanged;
 
         /// <summary>
         /// Sets or gets the entry to the single line mode.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsSingleLine
         {
             get
@@ -332,6 +346,7 @@ namespace ElmSharp
         /// Sets or gets the entry to the password mode.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsPassword
         {
             get
@@ -348,6 +363,7 @@ namespace ElmSharp
         /// Sets or gets whether the entry is editable.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsEditable
         {
             get
@@ -364,6 +380,7 @@ namespace ElmSharp
         /// Sets or gets whether the entry is empty.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsEmpty
         {
             get
@@ -376,6 +393,7 @@ namespace ElmSharp
         /// Sets or gets the text currently shown in the object entry.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override string Text
         {
             get
@@ -393,6 +411,7 @@ namespace ElmSharp
         /// </summary>
         /// <remarks>If there are styles in the user style stack, the properties in the top style of the user style stack will replace the properties in current theme. The input style is specified in the format, tag='property=value' (i.e., DEFAULT='font=Sans font_size=60'hilight=' + font_weight=Bold').</remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string TextStyle
         {
             get
@@ -409,6 +428,7 @@ namespace ElmSharp
         /// Sets or gets the current position of the cursor in the entry.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int CursorPosition
         {
             get
@@ -425,6 +445,7 @@ namespace ElmSharp
         /// Sets or gets the scrollable state of the entry.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool Scrollable
         {
             get
@@ -448,6 +469,7 @@ namespace ElmSharp
         /// Sets or gets the autocapitalization type on the immodule.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public AutoCapital AutoCapital
         {
             get
@@ -464,6 +486,7 @@ namespace ElmSharp
         /// Sets or gets the entry object's 'autosave' status.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsAutoSave
         {
             get
@@ -480,6 +503,7 @@ namespace ElmSharp
         /// Sets or gets the entry text paste/drop mode.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public CopyAndPasteMode CopyAndPasteMode
         {
             get
@@ -496,6 +520,7 @@ namespace ElmSharp
         /// Gets the geometry of the cursor.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Rect CursorGeometry
         {
             get
@@ -510,6 +535,7 @@ namespace ElmSharp
         /// Gets whether a format node exists at the current cursor position.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsCursorFormat
         {
             get
@@ -522,6 +548,7 @@ namespace ElmSharp
         /// Gets if the current cursor position holds a visible format node.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsCursorVisibelFormat
         {
             get
@@ -534,6 +561,7 @@ namespace ElmSharp
         /// Sets or gets the value of the input hint.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public InputHints InputHint
         {
             get
@@ -550,6 +578,7 @@ namespace ElmSharp
         ///  Sets or gets the language mode of the input panel.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public InputPanelLanguage InputPanelLanguage
         {
             get
@@ -566,6 +595,7 @@ namespace ElmSharp
         /// Sets or gets the input panel layout variation of the entry.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int InputPanelVariation
         {
             get
@@ -582,6 +612,7 @@ namespace ElmSharp
         /// Sets or gets the line wrap type to use on multiline entries.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public WrapType LineWrapType
         {
             get
@@ -598,6 +629,7 @@ namespace ElmSharp
         /// Sets or gets whether the entry should allow to use the text prediction.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool PredictionAllowed
         {
             get
@@ -614,6 +646,7 @@ namespace ElmSharp
         /// Sets or gets whether the return key on the input panel should be disabled or not.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool InputPanelReturnKeyDisabled
         {
             get
@@ -632,6 +665,7 @@ namespace ElmSharp
         /// If true, the input panel will be shown only in case of the Mouse up event (Focus event will be ignored).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool InputPanelShowByOnDemand
         {
             get
@@ -650,6 +684,7 @@ namespace ElmSharp
         /// <param name="file">The path to the file to load and save.</param>
         /// <param name="textFormat">The file format.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetFile(string file, TextFormat textFormat)
         {
             Interop.Elementary.elm_entry_file_set(RealHandle, file, (Interop.Elementary.TextFormat)textFormat);
@@ -661,6 +696,7 @@ namespace ElmSharp
         /// <param name="markup">The string (in markup) to be converted.</param>
         /// <returns>The converted string (in UTF-8).</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static string ConvertMarkupToUtf8(string markup)
         {
             return Interop.Elementary.elm_entry_markup_to_utf8(markup);
@@ -671,6 +707,7 @@ namespace ElmSharp
         /// </summary>
         /// <returns></returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool MoveCursorNext()
         {
             return Interop.Elementary.elm_entry_cursor_next(RealHandle);
@@ -681,6 +718,7 @@ namespace ElmSharp
         /// </summary>
         /// <returns>TRUE on success, otherwise FALSE on failure.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool MoveCursorPrev()
         {
             return Interop.Elementary.elm_entry_cursor_prev(RealHandle);
@@ -691,6 +729,7 @@ namespace ElmSharp
         /// </summary>
         /// <returns>TRUE on success, otherwise FALSE on failure.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool MoveCursorUp()
         {
             return Interop.Elementary.elm_entry_cursor_up(RealHandle);
@@ -701,6 +740,7 @@ namespace ElmSharp
         /// </summary>
         /// <returns>TRUE on success, otherwise FALSE on failure.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool MoveCursorDown()
         {
             return Interop.Elementary.elm_entry_cursor_down(RealHandle);
@@ -710,6 +750,7 @@ namespace ElmSharp
         /// Moves the cursor to the beginning of the entry.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void MoveCursorBegin()
         {
             Interop.Elementary.elm_entry_cursor_begin_set(RealHandle);
@@ -719,6 +760,7 @@ namespace ElmSharp
         /// Moves the cursor to the end of the entry.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void MoveCursorEnd()
         {
             Interop.Elementary.elm_entry_cursor_end_set(RealHandle);
@@ -728,6 +770,7 @@ namespace ElmSharp
         /// Moves the cursor to the beginning of the current line.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void MoveCursorLineBegin()
         {
             Interop.Elementary.elm_entry_cursor_line_begin_set(RealHandle);
@@ -737,6 +780,7 @@ namespace ElmSharp
         /// Moves the cursor to the end of the current line.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void MoveCursorLineEnd()
         {
             Interop.Elementary.elm_entry_cursor_line_end_set(RealHandle);
@@ -747,6 +791,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="layout">The layout type.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetInputPanelLayout(InputPanelLayout layout)
         {
             Interop.Elementary.elm_entry_input_panel_layout_set(RealHandle, (Interop.Elementary.InputPanelLayout)layout);
@@ -757,6 +802,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="enabled">If true, the input panel appears when the entry is clicked or has focus, otherwise false.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetInputPanelEnabled(bool enabled)
         {
             Interop.Elementary.elm_entry_input_panel_enabled_set(RealHandle, enabled);
@@ -767,6 +813,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="keyType">The type of "return" key on the input panel.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetInputPanelReturnKeyType(InputPanelReturnKeyType keyType)
         {
             Interop.Elementary.elm_entry_input_panel_return_key_type_set(RealHandle, (Interop.Elementary.ReturnKeyType)keyType);
@@ -780,6 +827,7 @@ namespace ElmSharp
         /// This API can be used in case of manually controlling by using SetInputPanelEnabled(false).
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void HideInputPanel()
         {
             Interop.Elementary.elm_entry_input_panel_hide(RealHandle);
@@ -789,6 +837,7 @@ namespace ElmSharp
         /// Selects all the text within the entry.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SelectAll()
         {
             Interop.Elementary.elm_entry_select_all(RealHandle);
@@ -798,6 +847,7 @@ namespace ElmSharp
         /// Drops any existing text selection within the entry.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SelectNone()
         {
             Interop.Elementary.elm_entry_select_none(RealHandle);
@@ -807,6 +857,7 @@ namespace ElmSharp
         /// Forces calculation of the entry size and text layout.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void ForceCalculation()
         {
             Interop.Elementary.elm_entry_calc_force(RealHandle);
@@ -817,6 +868,7 @@ namespace ElmSharp
         /// </summary>
         /// <returns></returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string GetCursorContent()
         {
             return Interop.Elementary.elm_entry_cursor_content_get(RealHandle);
@@ -826,6 +878,7 @@ namespace ElmSharp
         /// Begins a selection within the entry, as though the user was holding down the mouse button to make a selection.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void BeginCursorSelection()
         {
             Interop.Elementary.elm_entry_cursor_selection_begin(RealHandle);
@@ -836,6 +889,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="text">The text to be displayed.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void AppendText(string text)
         {
             Interop.Elementary.elm_entry_entry_append(RealHandle, text);
@@ -849,6 +903,7 @@ namespace ElmSharp
         /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public virtual ScrollBarVisiblePolicy HorizontalScrollBarVisiblePolicy
         {
             get
@@ -872,6 +927,7 @@ namespace ElmSharp
         /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public virtual ScrollBarVisiblePolicy VerticalScrollBarVisiblePolicy
         {
             get
@@ -895,6 +951,7 @@ namespace ElmSharp
         /// This API will be set if it is enabled for the given axis with boolean parameters for each axis.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool VerticalBounce
         {
             get
@@ -918,6 +975,7 @@ namespace ElmSharp
         /// This API will be set if it is enabled for the given axis with boolean parameters for each axis.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool HorizontalBounce
         {
             get
@@ -938,6 +996,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="text">The text to be inserted.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void InsertTextToCursor(string text)
         {
             Interop.Elementary.elm_entry_entry_insert(RealHandle, text);
@@ -947,6 +1006,7 @@ namespace ElmSharp
         /// Ends a selection within the entry as though the user had just released the mouse button while making a selection.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void EndCursorSelection()
         {
             Interop.Elementary.elm_entry_cursor_selection_end(RealHandle);
@@ -956,6 +1016,7 @@ namespace ElmSharp
         /// Writes any changes made to the file that is set by a file.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SaveFile()
         {
             Interop.Elementary.elm_entry_file_save(RealHandle);
@@ -969,6 +1030,7 @@ namespace ElmSharp
         /// This API can be used in the case of manual control by using the SetInputPanelEnabled(false).
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void ShowInputPanel()
         {
             Interop.Elementary.elm_entry_input_panel_show(RealHandle);
@@ -979,6 +1041,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="func">This function is used to provide items.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void AppendItemProvider(Func<string, EvasObject> func)
         {
             if (func != null)
@@ -1002,6 +1065,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="func">This function is used to provide items.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void PrependItemProvider(Func<string, EvasObject> func)
         {
             if (!_itemsProvider.ContainsKey(func))
@@ -1022,6 +1086,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="func">This function is used to provide items.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void RemoveItemProvider(Func<string, EvasObject> func)
         {
             if (_itemsProvider.ContainsKey(func))
@@ -1039,6 +1104,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="filter">This function type is used by entry filters to modify text.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void AppendMarkUpFilter(Func<Entry, string, string> filter)
         {
             if (!_textFilters.ContainsKey(filter))
@@ -1065,6 +1131,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="filter">This function type is used by entry filters to modify text.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void PrependMarkUpFilter(Func<Entry, string, string> filter)
         {
             if (!_textFilters.ContainsKey(filter))
@@ -1091,6 +1158,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="filter">This function type is used by entry filters to modify text.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void RemoveMarkUpFilter(Func<Entry, string, string> filter)
         {
             if (_textFilters.ContainsKey(filter))
@@ -1107,6 +1175,7 @@ namespace ElmSharp
         /// This executes a "copy" action on the selected text in the entry.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void CopySelection()
         {
             Interop.Elementary.elm_entry_selection_copy(RealHandle);
@@ -1116,6 +1185,7 @@ namespace ElmSharp
         /// This executes a "cut" action on the selected text in the entry.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void CutSelection()
         {
             Interop.Elementary.elm_entry_selection_cut(RealHandle);
@@ -1125,6 +1195,7 @@ namespace ElmSharp
         /// This executes a "paste" action in the entry.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void PasteSelection()
         {
             Interop.Elementary.elm_entry_selection_paste(RealHandle);
@@ -1136,6 +1207,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="disable">If true, the selection handlers are disabled.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void DisableSelection(bool disable)
         {
             Interop.Elementary.elm_entry_selection_handler_disabled_set(RealHandle, disable);
@@ -1146,6 +1218,7 @@ namespace ElmSharp
         /// </summary>
         /// <returns>Selection's value.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string GetSelection()
         {
             return Interop.Elementary.elm_entry_selection_get(RealHandle);
@@ -1157,6 +1230,7 @@ namespace ElmSharp
         /// <param name="start">The start position.</param>
         /// <param name="end">The end position.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetSelectionRegion(int start, int end)
         {
             Interop.Elementary.elm_entry_select_region_set(RealHandle, start, end);
@@ -1167,6 +1241,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="isDisplay">true if the object should be displayed, otherwise false.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetIconVisible(bool isDisplay)
         {
             Interop.Elementary.elm_entry_icon_visible_set(RealHandle, isDisplay);
@@ -1177,6 +1252,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="enable">If enabled is true, the return key is automatically disabled when the entry has no text.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetInputPanelReturnKeyAutoEnable(bool enable)
         {
             Interop.Elementary.elm_entry_input_panel_return_key_autoenabled_set(RealHandle, enable);
@@ -1188,6 +1264,7 @@ namespace ElmSharp
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_entry_add(parent.Handle);

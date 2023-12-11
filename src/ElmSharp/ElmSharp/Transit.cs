@@ -29,6 +29,7 @@ namespace ElmSharp
     /// </summary>
     /// <remarks>Transit is not reusable. If the effect ends, the transit is destroyed automatically.</remarks>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class Transit : IDisposable
     {
         IntPtr _handle = IntPtr.Zero;
@@ -44,12 +45,14 @@ namespace ElmSharp
         /// A callback is called when the transit is deleted.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Deleted;
 
         /// <summary>
         /// Creates and initializes a new instance of the Transit class.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Transit()
         {
             _handle = Interop.Elementary.elm_transit_add();
@@ -75,6 +78,7 @@ namespace ElmSharp
         /// Gets or sets the transit animation time.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double Duration
         {
             get
@@ -92,6 +96,7 @@ namespace ElmSharp
         /// If it is not kept, the objects states will be reset when the transition ends.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool ObjectStateKeep
         {
             get
@@ -108,6 +113,7 @@ namespace ElmSharp
         /// Gets or sets the transit animation acceleration type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public TweenMode TweenMode
         {
             get
@@ -125,6 +131,7 @@ namespace ElmSharp
         /// If the repeat is a negative number, it will repeat infinite times.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int Repeat
         {
             get
@@ -141,6 +148,7 @@ namespace ElmSharp
         /// Gets or sets if auto reverse is on.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool AutoReverse
         {
             get
@@ -157,6 +165,7 @@ namespace ElmSharp
         /// Gets or sets the event enabled when transit is operating.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool EventEnabled
         {
             get
@@ -174,6 +183,7 @@ namespace ElmSharp
         /// This gets the smooth scaling for transit map rendering.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool Smooth
         {
             get
@@ -192,6 +202,7 @@ namespace ElmSharp
         /// It represents the progression position relative to the total.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double Progress
         {
             get
@@ -205,6 +216,7 @@ namespace ElmSharp
         /// </summary>
         /// <returns>A factor value from 0.0 to 1.0.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double BeginAccelerationFactor
         {
             get
@@ -224,6 +236,7 @@ namespace ElmSharp
         /// </summary>
         /// <returns>A factor value from 0.0 to 1.0.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double EndAccelerationFactor
         {
             get
@@ -244,6 +257,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="interval">The interval value in seconds.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Go(double interval = 0)
         {
             if (interval == 0)
@@ -262,6 +276,7 @@ namespace ElmSharp
         /// Pauses the transition.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Pause()
         {
             if (Interop.Elementary.elm_transit_paused_get(_handle) == false)
@@ -272,6 +287,7 @@ namespace ElmSharp
         /// Resumes the transition.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Resume()
         {
             if (Interop.Elementary.elm_transit_paused_get(_handle) == true)
@@ -283,6 +299,7 @@ namespace ElmSharp
         /// </summary>
         /// <remarks>Cannot add the duplicate transit.</remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public IList<Transit> Chains
         {
             get { return _chains; }
@@ -293,6 +310,7 @@ namespace ElmSharp
         /// </summary>
         /// <remarks>Cannot add the duplicate object.</remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public IList<EvasObject> Objects
         {
             get { return _objects; }
@@ -303,6 +321,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="effect">EffectBase object.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void AddEffect(EffectBase effect)
         {
             IntPtr _effect = effect.CreateEffect(_handle);
@@ -315,6 +334,7 @@ namespace ElmSharp
         /// Destroys the current object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Dispose()
         {
             Dispose(true);
@@ -329,6 +349,7 @@ namespace ElmSharp
         /// otherwise false.
         /// </param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected virtual void Dispose(bool disposing)
         {
             if (_isDisposed)

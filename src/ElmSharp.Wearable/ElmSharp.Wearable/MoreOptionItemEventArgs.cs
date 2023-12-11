@@ -23,12 +23,14 @@ namespace ElmSharp.Wearable
     /// Inherits EventArgs
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class MoreOptionItemEventArgs : EventArgs
     {
         /// <summary>
         /// Sets or gets the more option item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public MoreOptionItem Item { get; set; }
     }
 }

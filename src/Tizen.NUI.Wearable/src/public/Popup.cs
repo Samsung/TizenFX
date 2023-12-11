@@ -29,6 +29,7 @@ namespace Tizen.NUI.Wearable
     /// It is attached to Window directly so that it is shown on top of all UI components.
     /// Title(text) and Content(container) are initially formed and user can control them by setting properties or styles.
     /// </summary>
+    [Obsolete("This has been deprecated in API12")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Popup : Control
     {
@@ -37,6 +38,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Constructor
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Popup() : base()
         {
@@ -47,6 +49,7 @@ namespace Tizen.NUI.Wearable
         /// Constructor with style
         /// </summary>
         /// <param name="style">style</param>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Popup(PopupStyle style) : base(style)
         {
@@ -57,6 +60,7 @@ namespace Tizen.NUI.Wearable
         /// Dispose.
         /// </summary>
         /// <param name="type">Dispose type</param>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
@@ -108,6 +112,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Set postion of added button
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum ButtonPosition
         {
@@ -136,6 +141,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// ContentContainer
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View ContentContainer;
 
@@ -146,6 +152,7 @@ namespace Tizen.NUI.Wearable
         /// <param name="button">Button to be added</param>
         /// <param name="automaticPositioning">If set true, added button will be placed automatically</param>
         /// <param name="position">Specific postion set by user</param>
+        [Obsolete("This has been deprecated in API12")]
         public void AppendButton(string index, Button button, bool automaticPositioning = true, ButtonPosition position = ButtonPosition.Automatic)
         {
             if (button != null)
@@ -252,6 +259,7 @@ namespace Tizen.NUI.Wearable
         /// </summary>
         /// <param name="index">Index(key) to be found</param>
         /// <returns>Button of Popup</returns>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Button GetButton(string index)
         {
@@ -264,6 +272,7 @@ namespace Tizen.NUI.Wearable
         /// Get Title.
         /// </summary>
         /// <returns>Title(TextLabel) of Popup</returns>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TextLabel GetTitle()
         {
@@ -275,6 +284,7 @@ namespace Tizen.NUI.Wearable
         /// </summary>
         /// <param name="index">Index(key) of the content added</param>
         /// <param name="content">Content to be added in Popup's content</param>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AppendContent(string index, View content)
         {
@@ -287,6 +297,7 @@ namespace Tizen.NUI.Wearable
         /// </summary>
         /// <param name="index">Index(key) to be found</param>
         /// <returns>Content in the Popup</returns>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View GetContent(string index)
         {
@@ -298,6 +309,7 @@ namespace Tizen.NUI.Wearable
         /// </summary>
         /// <param name="targetWindow">Window where Popup is placed</param>
         /// <param name="animated">Posting animation</param>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Post(Window targetWindow, bool animated = true)
         {
@@ -331,6 +343,7 @@ namespace Tizen.NUI.Wearable
         /// Dismiss Popup.
         /// </summary>
         /// <param name="animated">True when using Dismissing event</param>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Dismiss(bool animated = true)
         {
@@ -361,6 +374,7 @@ namespace Tizen.NUI.Wearable
         /// Set timeout milli-second
         /// </summary>
         /// <param name="milliSecond">Automatically dissmissed after milli-second</param>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetTimeout(uint milliSecond)
         {
@@ -384,6 +398,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// OnUpdate
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnUpdate()
         {
@@ -392,36 +407,42 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// CustomAnimation
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public IPopupAnimation CustomAnimation;
 
         /// <summary>
         /// Event when outside of components(Button, Content, Title) is clicked.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler OutsideClicked;
 
         /// <summary>
         /// Event before popup is posted. Customized action such as animation can be added.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler BeforePosting;
 
         /// <summary>
         /// Event after popup is posted. Customized action such as animation can be added.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler AfterPosting;
 
         /// <summary>
         /// Event before popup is dismissed. Customized action such as animation can be added.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler BeforeDissmising;
 
         /// <summary>
         /// Event after popup is dismissed. Customized action such as animation can be added.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler AfterDissmising;
 
@@ -429,6 +450,7 @@ namespace Tizen.NUI.Wearable
         /// Get Popup style.
         /// </summary>
         /// <returns>The default popup style.</returns>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override ViewStyle CreateViewStyle()
         {
@@ -606,6 +628,7 @@ namespace Tizen.NUI.Wearable
     /// <summary>
     /// PopupAnimation interface
     /// </summary>
+    [Obsolete("This has been deprecated in API12")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public interface IPopupAnimation
     {
@@ -613,12 +636,14 @@ namespace Tizen.NUI.Wearable
         /// ShowAnimation
         /// </summary>
         /// <param name="popup"></param>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         void ShowAnimation(Popup popup);
         /// <summary>
         /// HideAnimation
         /// </summary>
         /// <param name="popup"></param>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         void HideAnimation(Popup popup);
     }
