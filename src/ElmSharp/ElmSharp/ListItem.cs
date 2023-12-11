@@ -24,6 +24,7 @@ namespace ElmSharp
     /// It contains the Text, LeftIcon, and RightIcon properties to show the list item which is given.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class ListItem : ItemObject
     {
         internal ListItem(string text, EvasObject leftIcon, EvasObject rightIcon) : base(IntPtr.Zero)
@@ -32,7 +33,7 @@ namespace ElmSharp
             LeftIcon = leftIcon;
             RightIcon = rightIcon;
         }
-        
+
         internal ListItem(string text, EvasObject leftIcon, EvasObject rightIcon, EvasObject parent) : base(IntPtr.Zero, parent)
         {
             Text = text;
@@ -44,18 +45,21 @@ namespace ElmSharp
         /// Gets the text for the list item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string Text { get; internal set; }
 
         /// <summary>
         /// Gets the left icon for the list item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public EvasObject LeftIcon { get; internal set; }
 
         /// <summary>
         /// Gets the right icon for the list item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public EvasObject RightIcon { get; internal set; }
     }
 }

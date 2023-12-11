@@ -25,7 +25,7 @@ namespace Tizen.NUI.Wearable
     /// Managing RecycleItem and Data for RecyclerView.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
-    /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+    [Obsolete("This has been deprecated in API12")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class RecycleAdapter
     {
@@ -37,7 +37,7 @@ namespace Tizen.NUI.Wearable
         /// </summary>
         /// <returns>Item for RecyclerView</returns>
         /// <since_tizen> 8 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual RecycleItem CreateRecycleItem()
         {
@@ -51,7 +51,7 @@ namespace Tizen.NUI.Wearable
         /// </summary>
         /// <param name="item">Reused RecycleItem which needs data binding.</param>
         /// <since_tizen> 8 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void BindData(RecycleItem item)
         {
@@ -62,7 +62,7 @@ namespace Tizen.NUI.Wearable
         /// Notify when data of adapter is changed.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Notify()
         {
@@ -73,7 +73,7 @@ namespace Tizen.NUI.Wearable
         /// Triggered when user called Notify().
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<EventArgs> OnDataChanged;
 
@@ -81,7 +81,7 @@ namespace Tizen.NUI.Wearable
         /// Triggered when user called Notify().
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public List<object> Data
         {

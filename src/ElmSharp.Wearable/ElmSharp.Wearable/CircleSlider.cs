@@ -24,6 +24,7 @@ namespace ElmSharp.Wearable
     /// Circle slider is a circular designed widget used to select a value in a range by the Rotary event.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class CircleSlider : Widget, IRotaryActionWidget
     {
         SmartEvent _changedEvent;
@@ -35,6 +36,7 @@ namespace ElmSharp.Wearable
         /// <param name="parent">The EvasObject to which the new CircleSlider will be attached as a child.</param>
         /// <param name="surface">The surface for drawing the circle features for this widget.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public CircleSlider(EvasObject parent, CircleSurface surface) : base()
         {
             Debug.Assert(parent == null || surface == null || parent.IsRealized);
@@ -58,18 +60,21 @@ namespace ElmSharp.Wearable
         /// Changed will be triggered when the circle slider value changes.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler ValueChanged;
 
         /// <summary>
         /// Gets the handle for the Circle widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public virtual IntPtr CircleHandle => RealHandle;
 
         /// <summary>
         /// Gets the handle for the circle surface used in this widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public virtual CircleSurface CircleSurface => _surface;
 
         /// <summary>
@@ -80,6 +85,7 @@ namespace ElmSharp.Wearable
         /// The value of the slider is increased/decreased by the step value.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double Step
         {
             get
@@ -108,6 +114,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the state of the widget, which might be enabled or disabled.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override bool IsEnabled
         {
             get
@@ -124,6 +131,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the color of the circle slider bar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Color BarColor
         {
             get
@@ -145,6 +153,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the color of the circle slider background.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override Color BackgroundColor
         {
             get
@@ -166,6 +175,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the line width of the circle slider bar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int BarLineWidth
         {
             get
@@ -182,6 +192,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the line width of the circle slider background.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int BackgroundLineWidth
         {
             get
@@ -198,6 +209,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the angle in degree of the circle slider bar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double BarAngle
         {
             get
@@ -214,6 +226,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the angle in degree of the circle slider background.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double BackgroundAngle
         {
             get
@@ -231,6 +244,7 @@ namespace ElmSharp.Wearable
         /// Offset value means start position of the slider bar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double BarAngleOffset
         {
             get
@@ -248,6 +262,7 @@ namespace ElmSharp.Wearable
         /// Offset value means start position of the slider background.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double BackgroundAngleOffset
         {
             get
@@ -264,6 +279,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the minimum angle of the circle slider bar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double BarAngleMinimum
         {
             get
@@ -284,6 +300,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the maximum angle of the circle slider bar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double BarAngleMaximum
         {
             get
@@ -309,6 +326,7 @@ namespace ElmSharp.Wearable
         /// Actual value can be obtained with Value. By default, minimum value is equal to 0.0.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double Minimum
         {
             get
@@ -335,6 +353,7 @@ namespace ElmSharp.Wearable
         /// Maximum must be greater than minimum, otherwise the behavior is undefined.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double Maximum
         {
             get
@@ -358,6 +377,7 @@ namespace ElmSharp.Wearable
         /// The value must be between minimum and maximum.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double Value
         {
             get
@@ -374,6 +394,7 @@ namespace ElmSharp.Wearable
         /// Gets or sets the radius value for the circle slider bar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double BarRadius
         {
             get
@@ -390,6 +411,7 @@ namespace ElmSharp.Wearable
         /// Gets or sets the radius value for the circle slider background.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double BackgroundRadius
         {
             get
@@ -406,6 +428,7 @@ namespace ElmSharp.Wearable
         /// The callback of the Realized event.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override void OnRealized()
         {
             base.OnRealized();
@@ -419,6 +442,7 @@ namespace ElmSharp.Wearable
         /// <param name="parent">Parent EvasObject</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Eext.eext_circle_object_slider_add(parent, CircleSurface.Handle);

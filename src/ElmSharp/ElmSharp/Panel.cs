@@ -22,6 +22,7 @@ namespace ElmSharp
     /// Enumeration for the PanelDirection types.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum PanelDirection
     {
         /// <summary>
@@ -46,6 +47,7 @@ namespace ElmSharp
     /// The Panel is a container that can contain subobjects.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class Panel : Layout
     {
         SmartEvent _toggled;
@@ -56,6 +58,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">The EvasObject to which the new panel will be attached as a child.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Panel(EvasObject parent) : base(parent)
         {
             _toggled = new SmartEvent(this, this.RealHandle, "toggled");
@@ -69,6 +72,7 @@ namespace ElmSharp
         /// Sets or gets the hidden status of a given Panel widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsOpen
         {
             get
@@ -85,6 +89,7 @@ namespace ElmSharp
         /// Sets or gets the direction of a given Panel widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public PanelDirection Direction
         {
             get
@@ -101,12 +106,14 @@ namespace ElmSharp
         /// Toggled will be triggered when the panel is toggled.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Toggled;
 
         /// <summary>
         /// Scrolled will be triggered when the panel has been scrolled. This event is emitted only when the panel is scrollable
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Scrolled;
 
         /// <summary>
@@ -116,6 +123,7 @@ namespace ElmSharp
         /// Bool value can be false or true.
         /// </param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetScrollable(bool enable)
         {
             Interop.Elementary.elm_panel_scrollable_set(RealHandle, enable);
@@ -128,6 +136,7 @@ namespace ElmSharp
         /// The size of the scroll area.
         /// </param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetScrollableArea(double ratio)
         {
             Interop.Elementary.elm_panel_scrollable_content_size_set(RealHandle, ratio);
@@ -137,6 +146,7 @@ namespace ElmSharp
         /// Toggles the hidden state of the panel.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Toggle()
         {
             Interop.Elementary.elm_panel_toggle(RealHandle);
@@ -148,6 +158,7 @@ namespace ElmSharp
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);

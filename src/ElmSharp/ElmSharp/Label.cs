@@ -22,6 +22,7 @@ namespace ElmSharp
     /// Inherits Layout.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class Label : Layout
     {
         SmartEvent _slideCompleted;
@@ -31,6 +32,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">The parent is a given container, which will be attached by the Label as a child. It's <see cref="EvasObject"/> type.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Label(EvasObject parent) : base(parent)
         {
             _slideCompleted = new SmartEvent(this, this.RealHandle, "slide,end");
@@ -44,12 +46,14 @@ namespace ElmSharp
         /// SlideCompleted will be triggered when the slide is completed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler SlideCompleted;
 
         /// <summary>
         /// Sets or gets the wrap width of the label.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int LineWrapWidth
         {
             get
@@ -66,6 +70,7 @@ namespace ElmSharp
         /// Sets or gets the wrapping behavior of the label.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public WrapType LineWrapType
         {
             get
@@ -87,6 +92,7 @@ namespace ElmSharp
         /// Sets or gets the slide mode of the Label widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public LabelSlideMode SlideMode
         {
             get
@@ -103,6 +109,7 @@ namespace ElmSharp
         /// Sets or gets the slide duration of the label.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double SlideDuration
         {
             get
@@ -124,6 +131,7 @@ namespace ElmSharp
         /// </remarks>
         /// <seealso cref="SlideDuration"/>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double SlideSpeed
         {
             get
@@ -140,6 +148,7 @@ namespace ElmSharp
         /// Sets or gets the ellipsis behavior of the label.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsEllipsis
         {
             get
@@ -160,6 +169,7 @@ namespace ElmSharp
         /// </remarks>
         /// 
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string TextStyle
         {
             get
@@ -183,6 +193,7 @@ namespace ElmSharp
         /// Starts the slide effect.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void PlaySlide()
         {
             Interop.Elementary.elm_label_slide_go(RealHandle);
@@ -194,8 +205,9 @@ namespace ElmSharp
         /// <param name="parent">EvasObject</param>
         /// <returns>The new object, otherwise null if it cannot be created.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
-        {            
+        {
             return Interop.Elementary.elm_label_add(parent.Handle);
         }
     }
@@ -204,6 +216,7 @@ namespace ElmSharp
     /// Enumeration for the slide modes of a label widget.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum LabelSlideMode
     {
         /// <summary>

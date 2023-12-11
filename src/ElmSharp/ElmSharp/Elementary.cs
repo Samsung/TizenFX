@@ -24,6 +24,7 @@ namespace ElmSharp
     /// Focus Autoscroll mode.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum FocusAutoScrollMode
     {
         /// <summary>
@@ -46,6 +47,7 @@ namespace ElmSharp
     /// The Elementary is a general elementary, a VERY SIMPLE toolkit.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public static class Elementary
     {
         private const string _themeFilePath = "/usr/share/elm-sharp/elm-sharp-theme.edj";
@@ -55,12 +57,14 @@ namespace ElmSharp
         /// EvasObjectRealized will be triggered when the EvasObject is realized.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static event EventHandler EvasObjectRealized;
 
         /// <summary>
         /// ItemObjectRealized will be triggered when the ItemObject is realized.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static event EventHandler ItemObjectRealized;
 
         internal static void SendEvasObjectRealized(EvasObject obj)
@@ -77,6 +81,7 @@ namespace ElmSharp
         /// Gets or sets the configured finger size.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static int FingerSize
         {
             get
@@ -93,6 +98,7 @@ namespace ElmSharp
         /// Gets or sets the enable status of the focus highlight animation.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static bool IsFocusHighlightAnimation
         {
             get
@@ -110,6 +116,7 @@ namespace ElmSharp
         /// This determines the default mirrored mode of widgets.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static bool IsMirrored
         {
             get
@@ -126,6 +133,7 @@ namespace ElmSharp
         /// Gets or sets the enable status of the focus highlight.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static bool CanFocusHighlight
         {
             get
@@ -142,6 +150,7 @@ namespace ElmSharp
         /// Gets or sets the base scale of the application.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static double AppBaseScale
         {
             get
@@ -158,6 +167,7 @@ namespace ElmSharp
         /// Gets or sets the global scaling factor.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static double Scale
         {
             get
@@ -174,6 +184,7 @@ namespace ElmSharp
         /// Gets or sets the amount of inertia, a scroller imposes during a region to bring animations.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static double BringInScrollFriction
         {
             get
@@ -190,6 +201,7 @@ namespace ElmSharp
         /// Gets or sets the focus on autoscroll mode.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static FocusAutoScrollMode FocusAutoScrollMode
         {
             get
@@ -206,6 +218,7 @@ namespace ElmSharp
         /// Initializes Elementary.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void Initialize()
         {
             if (!Window.IsPreloaded)
@@ -216,6 +229,7 @@ namespace ElmSharp
         /// Shuts down Elementary.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void Shutdown()
         {
             Interop.Elementary.elm_shutdown();
@@ -225,6 +239,7 @@ namespace ElmSharp
         /// Runs the elementary's main loop.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void Run()
         {
             Interop.Elementary.elm_run();
@@ -234,6 +249,7 @@ namespace ElmSharp
         /// Prepends a theme overlay to the list of overlays.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void ThemeOverlay()
         {
@@ -252,6 +268,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="filePath">The edje file path to be used.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void AddThemeOverlay(string filePath)
         {
             Interop.Elementary.elm_theme_overlay_add(IntPtr.Zero, filePath);
@@ -262,6 +279,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="filePath">The name of the theme overlay.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void DeleteThemeOverlay(string filePath)
         {
             Interop.Elementary.elm_theme_overlay_del(IntPtr.Zero, filePath);
@@ -271,6 +289,7 @@ namespace ElmSharp
         /// Frees a theme.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void FreeTheme()
         {
             Interop.Elementary.elm_theme_free(IntPtr.Zero);
@@ -282,6 +301,7 @@ namespace ElmSharp
         /// <param name="theme">Theme search string.</param>
         /// <remarks>This sets the search string for the theme in path-notation from the first theme to search, to last, delimited by the : character. For example, "shiny:/path/to/file.edj:default".</remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void SetTheme(string theme)
         {
             Interop.Elementary.elm_theme_set(IntPtr.Zero, theme);
@@ -291,6 +311,7 @@ namespace ElmSharp
         /// Flushes the current theme.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void FlushTheme()
         {
             Interop.Elementary.elm_theme_flush(IntPtr.Zero);
@@ -300,6 +321,7 @@ namespace ElmSharp
         /// This flushes all the themes (default and specific ones).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void FlushAllThemes()
         {
             Interop.Elementary.elm_theme_full_flush();
@@ -310,6 +332,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="item">The name of the theme extension.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void DeleteThemeExtention(string item)
         {
             Interop.Elementary.elm_theme_extension_del(IntPtr.Zero, item);
@@ -319,6 +342,7 @@ namespace ElmSharp
         /// Gets the amount of inertia that a scroller imposes during region to bring animations.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static double GetSystemScrollFriction()
         {
@@ -329,6 +353,7 @@ namespace ElmSharp
         /// Sets the amount of inertia that a scroller imposes during the region bring animations.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetSystemScrollFriction(double timeSet)
 
@@ -340,6 +365,7 @@ namespace ElmSharp
         /// Gets the elementary's profile in use.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static string GetProfile()
         {
@@ -350,6 +376,7 @@ namespace ElmSharp
         /// Sets the global scaling factor.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetScale(double scale)
         {
@@ -360,6 +387,7 @@ namespace ElmSharp
         /// Gets the global scaling factor.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static double GetScale()
         {
@@ -381,6 +409,7 @@ namespace ElmSharp
         /// Frees all data that was in cache and is not currently being used, to reduce memory usage. This frees Edje's, Evas', and Eet's cache.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void FlushAllCache()
         {
             Interop.Elementary.elm_cache_all_flush();
@@ -391,6 +420,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="language">The language to set must be the full name of the locale.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void SetLanguage(string language)
         {
             Interop.Elementary.elm_language_set(language);
@@ -403,6 +433,7 @@ namespace ElmSharp
         /// <param name="value">The policy value, which depends on the identifier.</param>
         /// <returns></returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static bool SetPolicy(uint policy, int value)
         {
             return Interop.Elementary.elm_policy_set(policy, value);
@@ -412,6 +443,7 @@ namespace ElmSharp
         /// Reloads the elementary's configuration, bounded to the current selected profile.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void ReloadConfig()
         {
@@ -422,6 +454,7 @@ namespace ElmSharp
         /// Flushes all the configuration settings, and then applies those settings to all applications using elementary on the current display.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void FlushAllConfig()
         {
             Interop.Elementary.elm_config_all_flush();

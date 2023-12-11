@@ -22,18 +22,21 @@ namespace ElmSharp
     /// The item class of FlipSelector.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class FlipSelectorItem : ItemObject
     {
         /// <summary>
         /// Sets or gets the text of the FlipSelectorItem.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string Text { get; private set; }
 
         /// <summary>
         /// Selected will be triggered when selected.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Selected;
 
         /// <summary>
@@ -41,6 +44,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="text">FlipSelectorItem's text</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public FlipSelectorItem(string text) : base(IntPtr.Zero)
         {
             Text = text;
@@ -52,6 +56,7 @@ namespace ElmSharp
         /// <param name="text">FlipSelectorItem's text</param>
         /// <param name="parent">Parent EvasObject</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public FlipSelectorItem(string text, EvasObject parent) : base(IntPtr.Zero, parent)
         {
             Text = text;

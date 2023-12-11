@@ -15,6 +15,7 @@
  */
 using System.ComponentModel;
 using Tizen.NUI.Components;
+using System;
 
 namespace Tizen.NUI.Wearable
 {
@@ -22,7 +23,7 @@ namespace Tizen.NUI.Wearable
     /// [Draft] This class provides a basic item for RecyclerView.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
-    /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+    [Obsolete("This has been deprecated in API12")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class RecycleItem : Control
     {
@@ -31,7 +32,7 @@ namespace Tizen.NUI.Wearable
         /// Can access to data of RecycleAdapter using this index.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int DataIndex { get; set; } = 0;
     }

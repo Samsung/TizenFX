@@ -22,6 +22,7 @@ namespace ElmSharp
     /// Enumeration for the wrap types.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum WrapType
     {
         /// <summary>

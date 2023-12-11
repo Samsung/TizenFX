@@ -22,6 +22,7 @@ namespace ElmSharp
     /// An instance to the ColorSelector item gets added.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class ColorSelectorItem : ItemObject
     {
         internal ColorSelectorItem() : base(IntPtr.Zero)
@@ -36,6 +37,7 @@ namespace ElmSharp
         /// Gets or sets the palette item's color.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Color Color
         {
             get

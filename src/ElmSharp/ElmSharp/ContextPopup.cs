@@ -23,6 +23,7 @@ namespace ElmSharp
     /// Enumeration for the ContextPopup direction types.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum ContextPopupDirection
     {
         /// <summary>
@@ -52,6 +53,7 @@ namespace ElmSharp
     /// The ContextPopup is a widget that when shown, pops up a list of items.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class ContextPopup : Layout
     {
         HashSet<ContextPopupItem> _children = new HashSet<ContextPopupItem>();
@@ -64,6 +66,7 @@ namespace ElmSharp
         /// <param name="parent">The parent is a given container, which will be attached by ContextPopup
         /// as a child. It's <see cref="EvasObject"/> type.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ContextPopup(EvasObject parent) : base(parent)
         {
             _dismissed = new SmartEvent(this, this.RealHandle, "dismissed");
@@ -85,6 +88,7 @@ namespace ElmSharp
         /// Outside of ContextPopup is clicked or it's parent area is changed or the language is changed, and then ContextPopup is dismissed.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Dismissed;
 
         /// <summary>
@@ -94,6 +98,7 @@ namespace ElmSharp
         /// Once the ContextPopup shows up, the direction would be determined.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ContextPopupDirection Direction
         {
             get
@@ -107,6 +112,7 @@ namespace ElmSharp
         /// True for horizontal mode, False for vertical mode (or errors).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsHorizontal
         {
             get
@@ -127,6 +133,7 @@ namespace ElmSharp
         /// Default value of AutoHide is False.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool AutoHide
         {
             get
@@ -143,6 +150,7 @@ namespace ElmSharp
         /// Clears all the items in a given ContextPopup object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Clear()
         {
             Interop.Elementary.elm_ctxpopup_clear(Handle);
@@ -156,6 +164,7 @@ namespace ElmSharp
         /// <param name="third">3th priority of the direction.</param>
         /// <param name="fourth">4th priority of the direction.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetDirectionPriorty(ContextPopupDirection first, ContextPopupDirection second, ContextPopupDirection third, ContextPopupDirection fourth)
         {
             Interop.Elementary.elm_ctxpopup_direction_priority_set(RealHandle, (int)first, (int)second, (int)third, (int)fourth);
@@ -169,6 +178,7 @@ namespace ElmSharp
         /// <param name="third">2nd priority of the direction to be returned.</param>
         /// <param name="fourth">4th priority of the direction to be returned.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void GetDirectionPriority(out ContextPopupDirection first, out ContextPopupDirection second, out ContextPopupDirection third, out ContextPopupDirection fourth)
         {
             int firstOut, secondOut, thirdOut, fourthOut;
@@ -187,6 +197,7 @@ namespace ElmSharp
         /// A ContextPopupItem added, or null on errors.
         /// </returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ContextPopupItem Append(string label)
         {
             return Append(label, null);
@@ -199,6 +210,7 @@ namespace ElmSharp
         /// <param name="icon">Icon to be set on the new item.</param>
         /// <returns>A ContextPopupItem added, or null on errors.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ContextPopupItem Append(string label, EvasObject icon)
         {
             ContextPopupItem item = new ContextPopupItem(label, icon, this);
@@ -211,6 +223,7 @@ namespace ElmSharp
         /// Dismisses a ContextPopup object. The ContextPopup will be hidden and the "clicked" signal will be emitted.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Dismiss()
         {
             Interop.Elementary.elm_ctxpopup_dismiss(RealHandle);
@@ -224,6 +237,7 @@ namespace ElmSharp
         /// Get false if you cannot put it in the direction. Get true if it's possible.
         /// </returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         /// [Obsolete("IsAvailableDirection is obsolete as of API6 and is no longer supported.")]
         public bool IsAvailableDirection(ContextPopupDirection direction)
         {
@@ -235,6 +249,7 @@ namespace ElmSharp
         /// Gets the Alpha of a default Color class.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override int Opacity
         {
             get
@@ -254,6 +269,7 @@ namespace ElmSharp
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_ctxpopup_add(parent.Handle);

@@ -25,12 +25,14 @@ namespace ElmSharp.Wearable
     /// Inherits <see cref="EventArgs"/>.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class RotarySelectorItemEventArgs : EventArgs
     {
         /// <summary>
         /// Sets or gets the rotary selector item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public RotarySelectorItem Item { get; set; }
     }
 }

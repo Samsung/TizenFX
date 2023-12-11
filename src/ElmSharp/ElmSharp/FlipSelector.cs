@@ -23,6 +23,7 @@ namespace ElmSharp
     /// The FlipSelector is a widget to show a set of text items, one at a time, with the same sheet switching style as the clock widget when one changes the current displaying sheet.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class FlipSelector : Layout
     {
         SmartEvent _selected;
@@ -34,6 +35,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">Parent EvasObject.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public FlipSelector(EvasObject parent) : base(parent)
         {
             _selected = new SmartEvent(this, Handle, "selected");
@@ -49,22 +51,26 @@ namespace ElmSharp
         /// Selected will be triggered when selected.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Selected;
         /// <summary>
         /// Overflowed will be triggered when overflowed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Overflowed;
         /// <summary>
         /// Underflowed will be triggered when underflowed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Underflowed;
 
         /// <summary>
         /// Sets or gets the interval on time updates for a user mouse button to hold on the flip selector widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double Interval
         {
             get
@@ -82,6 +88,7 @@ namespace ElmSharp
         /// Gets the currently selected item in the flip selector widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public FlipSelectorItem SelectedItem
         {
             get
@@ -95,6 +102,7 @@ namespace ElmSharp
         /// Gets the first item in the given flip selector widget's list of items.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public FlipSelectorItem FirstItem
         {
             get
@@ -108,6 +116,7 @@ namespace ElmSharp
         /// Gets the last item in the given flip selector widget's list of items.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public FlipSelectorItem LastItem
         {
             get
@@ -128,6 +137,7 @@ namespace ElmSharp
         /// The widget's list of labels to show will be appended with the given value. If the user wishes so, a callback function pointer can be passed, which will get called when the same item is selected.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public FlipSelectorItem Append(string text)
         {
             FlipSelectorItem item = new FlipSelectorItem(text, this);
@@ -144,6 +154,7 @@ namespace ElmSharp
         /// The widget's list of labels to show will be prepended with the given value. If the user wishes so, a callback function pointer can be passed, which will get called when the same item is selected.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public FlipSelectorItem Prepend(string text)
         {
             FlipSelectorItem item = new FlipSelectorItem(text, this);
@@ -156,6 +167,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="item">FlipSelector's item.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Remove(FlipSelectorItem item)
         {
             if (item != null)
@@ -169,6 +181,7 @@ namespace ElmSharp
         /// The selection will be animated. Also, if it reaches the beginning of its list of member items, it will continue with the last one backwards.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Next()
         {
             Interop.Elementary.elm_flipselector_flip_next(Handle);
@@ -178,6 +191,7 @@ namespace ElmSharp
         /// Programmatically select the previous item of the flip selector widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Prev()
         {
             Interop.Elementary.elm_flipselector_flip_prev(Handle);
@@ -189,6 +203,7 @@ namespace ElmSharp
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_flipselector_add(parent.Handle);

@@ -22,6 +22,7 @@ namespace ElmSharp
     /// The PopupItem is a class that includes the icon and text.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class PopupItem : ItemObject
     {
         internal PopupItem(string text, EvasObject icon) : base(IntPtr.Zero)
@@ -40,12 +41,14 @@ namespace ElmSharp
         /// Gets the text label of the popupitem. Return value is string.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string Text { get; internal set; }
 
         /// <summary>
         /// Gets the EvasObject icon of the popupitem.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public EvasObject Icon { get; internal set; }
     }
 }

@@ -23,6 +23,7 @@ namespace ElmSharp
     /// EcoreMainloop is a helper class, which provides the functions relative to Ecore's main loop.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public static class EcoreMainloop
     {
 
@@ -44,12 +45,14 @@ namespace ElmSharp
         /// </summary>
         /// <remarks>True if the calling function is the same thread, false otherwise.</remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static bool IsMainThread => Interop.Eina.eina_main_loop_is();
 
         /// <summary>
         /// Runs the application main loop.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void Begin()
         {
             Interop.Ecore.ecore_main_loop_begin();
@@ -59,6 +62,7 @@ namespace ElmSharp
         /// Quits the main loop, once all the events currently on the queue have been processed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void Quit()
         {
             Interop.Ecore.ecore_main_loop_quit();
@@ -69,6 +73,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="task">The action to call when idle.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void Post(Action task)
         {
             int id = RegistHandler(() => { task(); return false; });
@@ -80,6 +85,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="task">The action wanted to be called.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void PostAndWakeUp(Action task)
         {
             if (IsMainThread)
@@ -98,6 +104,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="task">The action wanted to be called.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void Send(Action task)
         {
             int id = RegistHandler(() => { task(); return false; });
@@ -111,6 +118,7 @@ namespace ElmSharp
         /// <param name="handler">The given function.</param>
         /// <returns>A timer object handler on success, or null on failure.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static IntPtr AddTimer(double interval, Func<bool> handler)
         {
             int id = RegistHandler(handler);
@@ -122,6 +130,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="id">The specified timer handler</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void RemoveTimer(IntPtr id)
         {
             int taskId = (int)Interop.Ecore.ecore_timer_del(id);
