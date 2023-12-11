@@ -24,7 +24,7 @@ namespace Tizen.NUI.Wearable
     /// [Draft] This class provides a list view styled by wearable ux.
     /// List will lay out all items with Fish-Eye layout manager.
     /// </summary>
-    /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [Obsolete("This has been deprecated in API12")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WearableList : RecyclerView
     {
@@ -34,7 +34,7 @@ namespace Tizen.NUI.Wearable
         /// Default constructor.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public WearableList() : base(new RecycleAdapter(), new FishEyeLayoutManager())
         {
@@ -58,6 +58,7 @@ namespace Tizen.NUI.Wearable
         }
 
         /// <inheritdoc/>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void SetScrollbar()
         {
@@ -68,6 +69,7 @@ namespace Tizen.NUI.Wearable
         }
 
         /// <inheritdoc/>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new RecycleAdapter Adapter
         {
@@ -96,7 +98,7 @@ namespace Tizen.NUI.Wearable
         /// <param name="dataIndex">Data index of item.</param>
         /// <param name="animated">If set true, scroll to item using animation.</param>
         /// <since_tizen> 8 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [Obsolete("This has been deprecated in API12")]
         public void SetFocus(int dataIndex, bool animated)
         {
             if (LayoutManager == null)
@@ -127,7 +129,7 @@ namespace Tizen.NUI.Wearable
         /// </summary>
         /// <param name="targetPosition">Index of item.</param>
         /// <since_tizen> 8 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [Obsolete("This has been deprecated in API12")]
         protected override void OnPreReachedTargetPosition(float targetPosition)
         {
             if (LayoutManager == null)

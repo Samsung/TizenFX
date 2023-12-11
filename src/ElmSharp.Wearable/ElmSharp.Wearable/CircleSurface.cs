@@ -8,6 +8,7 @@ namespace ElmSharp.Wearable
     /// The CircleSurface presents a surface for drawing the circular feature of circle widgets.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class CircleSurface
     {
         IntPtr _handle;
@@ -17,6 +18,7 @@ namespace ElmSharp.Wearable
         /// </summary>
         /// <param name="conformant">The Conformant widget to create a surface.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public CircleSurface(Conformant conformant)
         {
             _handle = Interop.Eext.eext_circle_surface_conformant_add(conformant);
@@ -27,6 +29,7 @@ namespace ElmSharp.Wearable
         /// </summary>
         /// <param name="layout">The Layout widget to create a surface.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public CircleSurface(Layout layout)
         {
             _handle = Interop.Eext.eext_circle_surface_layout_add(layout);
@@ -37,6 +40,7 @@ namespace ElmSharp.Wearable
         /// </summary>
         /// <param name="naviframe">The Naviframe widget to create a surface.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public CircleSurface(Naviframe naviframe)
         {
             _handle = Interop.Eext.eext_circle_surface_naviframe_add(naviframe.RealHandle);
@@ -46,6 +50,7 @@ namespace ElmSharp.Wearable
         /// Creates and initializes a new instance of the CircleSurface class with no surface.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public CircleSurface()
         {
             _handle = IntPtr.Zero;
@@ -55,12 +60,14 @@ namespace ElmSharp.Wearable
         /// Gets the handle for CircleSurface.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public IntPtr Handle => _handle;
 
         /// <summary>
         /// Deletes the given CircleSurface.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Delete()
         {
             if (Handle != IntPtr.Zero)
@@ -70,7 +77,7 @@ namespace ElmSharp.Wearable
             }
         }
 
-	internal static CircleSurface CreateCircleSurface(EvasObject obj)
+        internal static CircleSurface CreateCircleSurface(EvasObject obj)
         {
             if (obj is Conformant) return new CircleSurface(obj as Conformant);
             else if (obj is Naviframe) return new CircleSurface(obj as Naviframe);

@@ -27,6 +27,7 @@ namespace Tizen.NUI.Wearable
     /// The WatchView is a class for displaying the watch.<br />
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WatchView : View
     {
@@ -34,6 +35,7 @@ namespace Tizen.NUI.Wearable
         /// Creates a new WatchView.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public WatchView(Window window, string watchId, string contentInfo, int width, int height) : this(Interop.WatchView.New(Window.getCPtr(window), watchId, contentInfo, width, height), true)
         {
@@ -54,6 +56,7 @@ namespace Tizen.NUI.Wearable
         /// </summary>
         /// <returns>True on success, false otherwise.</returns>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool PauseWatch()
         {
@@ -67,6 +70,7 @@ namespace Tizen.NUI.Wearable
         /// </summary>
         /// <returns>True on success, false otherwise.</returns>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ResumeWatch()
         {
@@ -100,6 +104,7 @@ namespace Tizen.NUI.Wearable
         /// To make the Button instance be disposed.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {

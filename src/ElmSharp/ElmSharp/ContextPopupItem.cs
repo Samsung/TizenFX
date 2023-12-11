@@ -23,6 +23,7 @@ namespace ElmSharp
     /// An instance to the ContextPopup item is added.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class ContextPopupItem : ItemObject
     {
         internal ContextPopupItem(string text, EvasObject icon) : base(IntPtr.Zero)
@@ -41,18 +42,21 @@ namespace ElmSharp
         /// Gets the Text property of the given ContextPopupItem.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string Text { get; internal set; }
 
         /// <summary>
         /// Gets the Icon (type is <see cref="EvasObject"/>) property of the given ContextPopupItem.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public EvasObject Icon { get; internal set; }
 
         /// <summary>
         /// Selected will be triggered when the ContextPopupItem is selected.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Selected;
 
         internal void SendSelected()

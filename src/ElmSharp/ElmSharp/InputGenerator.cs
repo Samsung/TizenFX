@@ -22,6 +22,7 @@ namespace ElmSharp
     /// Enumeration of device type generated events.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum InputDeviceType
     {
         /// <summary>
@@ -47,6 +48,7 @@ namespace ElmSharp
     /// Enumeration of pointer event types.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum InputPointerType
     {
         /// <summary>
@@ -69,6 +71,7 @@ namespace ElmSharp
     /// Enumeration of touch event types.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum InputTouchType
     {
         /// <summary>
@@ -97,6 +100,7 @@ namespace ElmSharp
     /// This is not for use by third-party applications.
     /// </remarks>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class InputGenerator : IDisposable
     {
         IntPtr _handle = IntPtr.Zero;
@@ -107,6 +111,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="deviceType">The device type want to generate events</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public InputGenerator(InputDeviceType deviceType)
         {
             _handle = Interop.Eutil.efl_util_input_initialize_generator((int)deviceType);
@@ -118,6 +123,7 @@ namespace ElmSharp
         /// <param name="deviceType">The device type want to generate events</param>
         /// <param name="name">The device name (maximum 31 characters)</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public InputGenerator(InputDeviceType deviceType, string name)
         {
             _handle = Interop.Eutil.efl_util_input_initialize_generator_with_name((int)deviceType, name);
@@ -135,6 +141,7 @@ namespace ElmSharp
         /// Destroys the current object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Dispose()
         {
             Dispose(true);
@@ -149,6 +156,7 @@ namespace ElmSharp
         /// otherwise false.
         /// </param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected virtual void Dispose(bool disposing)
         {
             if (_isDisposed)
@@ -168,6 +176,7 @@ namespace ElmSharp
         /// <param name="key">The key name want to generate.</param>
         /// <param name="pressed">The value that select key press or release. (0: release, 1: press)</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void GenerateKeyEvent(string key, int pressed)
         {
             Interop.Eutil.efl_util_input_generate_key(_handle, key, pressed);
@@ -181,6 +190,7 @@ namespace ElmSharp
         /// <param name="x">x coordination to move.</param>
         /// <param name="y">y coordination to move.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void GenerateMouseEvent(int buttons, InputPointerType type, int x, int y)
         {
             Interop.Eutil.efl_util_input_generate_pointer(_handle, buttons, (int)type, x, y);
@@ -194,6 +204,7 @@ namespace ElmSharp
         /// <param name="x">The x axis of touch point.</param>
         /// <param name="y">The y axis of touch point.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void GenerateTouchEvent(int index, InputTouchType type, int x, int y)
         {
             Interop.Eutil.efl_util_input_generate_touch(_handle, index, (int)type, x, y);

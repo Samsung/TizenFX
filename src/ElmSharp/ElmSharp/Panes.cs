@@ -23,6 +23,7 @@ namespace ElmSharp
     /// When dragged, this bar resizes the contents' size.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class Panes : Layout
     {
         SmartEvent _press;
@@ -33,6 +34,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">The EvasObject to which the new Panes will be attached as a child.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Panes(EvasObject parent) : base(parent)
         {
             _press = new SmartEvent(this, this.RealHandle, "press");
@@ -46,12 +48,14 @@ namespace ElmSharp
         /// Pressed will be triggered when the panes have been pressed (button isn't released yet).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Pressed;
 
         /// <summary>
         /// Unpressed will be triggered when the panes are released after being pressed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Unpressed;
 
         /// <summary>
@@ -59,6 +63,7 @@ namespace ElmSharp
         /// True means the left and right panes resize homogeneously.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsFixed
         {
             get
@@ -84,6 +89,7 @@ namespace ElmSharp
         /// The float type value between 0.0 and 1.0 represents the size proportion of the left side.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double Proportion
         {
             get
@@ -105,6 +111,7 @@ namespace ElmSharp
         /// By default, the panes are in a vertical mode.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsHorizontal
         {
             get
@@ -123,6 +130,7 @@ namespace ElmSharp
         /// The value represents minimum size of the left side in pixels.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int LeftMinimumSize
         {
             get
@@ -142,6 +150,7 @@ namespace ElmSharp
         /// The value between 0.0 and 1.0 represents size proportion of the minimum size of the left side.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double LeftMinimumRelativeSize
         {
             get
@@ -160,6 +169,7 @@ namespace ElmSharp
         /// The value represents the minimum size of the right side in pixels.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int RightMinimumSize
         {
             get
@@ -179,6 +189,7 @@ namespace ElmSharp
         /// The value between 0.0 and 1.0 represents size proportion of the minimum size of the right side.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double RightMinimumRelativeSize
         {
             get
@@ -197,6 +208,7 @@ namespace ElmSharp
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);

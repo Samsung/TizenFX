@@ -17,12 +17,14 @@
 using System.ComponentModel;
 using Tizen.NUI.Components;
 using Tizen.NUI.Binding;
+using System;
 
 namespace Tizen.NUI.Wearable
 {
     /// <summary>
     /// CircularScrollbarStyle is a class which saves CircularScrollbar's ux data.
     /// </summary>
+    [Obsolete("This has been deprecated in API12")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class CircularScrollbarStyle : ControlStyle
     {
@@ -85,6 +87,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Creates a new instance of a CircularScrollbarStyle.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CircularScrollbarStyle() : base()
         {
@@ -94,6 +97,7 @@ namespace Tizen.NUI.Wearable
         /// Copy constructor.
         /// </summary>
         /// <param name="style">Create ScrollbarStyle by style customized by user.</param>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CircularScrollbarStyle(CircularScrollbarStyle style) : base(style)
         {
@@ -114,6 +118,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The thickness of the scrollbar and track.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? Thickness
         {
@@ -128,6 +133,7 @@ namespace Tizen.NUI.Wearable
         /// Values below 6 degrees are treated as 6 degrees.
         /// Values exceeding 180 degrees are treated as 180 degrees.
         /// </remarks>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? TrackSweepAngle
         {
@@ -138,6 +144,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The color of the track part.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color TrackColor
         {
@@ -148,6 +155,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The color of the thumb part.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color ThumbColor
         {

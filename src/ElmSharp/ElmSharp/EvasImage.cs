@@ -26,6 +26,7 @@ namespace ElmSharp
     /// This group provides the functions for image objects.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class EvasImage : EvasObject
     {
         EvasObject _source = null;
@@ -36,6 +37,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">The parent is a given container, which will be attached by EvasImage as a child. It's <see cref="EvasObject"/> type.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public EvasImage(EvasObject parent) : base(parent)
         {
         }
@@ -50,6 +52,7 @@ namespace ElmSharp
         /// Sets or gets the source file from where an image object must fetch the real image data.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string File
         {
             get
@@ -68,6 +71,7 @@ namespace ElmSharp
         /// Sets or gets the source object to be visible.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsSourceVisible
         {
             get
@@ -84,6 +88,7 @@ namespace ElmSharp
         /// Sets or gets whether an object is clipped by the source object's clipper.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsSourceClipped
         {
             get
@@ -105,6 +110,7 @@ namespace ElmSharp
         /// Very useful for frames and decorations.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ImageBorderFillMode BorderCenterFillMode
         {
             get
@@ -121,6 +127,7 @@ namespace ElmSharp
         /// Sets or gets whether the image object's fill property should track the object's size.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsFilled
         {
             get
@@ -137,6 +144,7 @@ namespace ElmSharp
         /// Sets or gets the scaling factor (multiplier) for the borders of the image object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double BorderScale
         {
             get
@@ -153,6 +161,7 @@ namespace ElmSharp
         /// Sets or gets the size of the given image object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Size Size
         {
             get
@@ -171,6 +180,7 @@ namespace ElmSharp
         /// Gets the row stride of the given image object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int Stride
         {
             get
@@ -183,6 +193,7 @@ namespace ElmSharp
         /// Sets or gets whether the alpha channel data is being used on the given image object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsOpaque
         {
             get
@@ -199,6 +210,7 @@ namespace ElmSharp
         /// Sets or gets whether to use a high-quality image scaling algorithm on the given image object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsSmoothScaled
         {
             get
@@ -216,6 +228,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="geometry">The rectangle of the given image object that the image will be drawn to.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetFill(Rect geometry)
         {
             Interop.Evas.evas_object_image_fill_set(RealHandle, geometry.X, geometry.Y, geometry.Width, geometry.Height);
@@ -227,6 +240,7 @@ namespace ElmSharp
         /// <param name="file">The image file path.</param>
         /// <param name="key">The image key in file (if its an Eet one), otherwise set null.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetFile(string file, string key)
         {
             Interop.Evas.evas_object_image_file_set(RealHandle, file, key);
@@ -237,6 +251,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="stream">memory stream</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetStream(Stream stream)
         {
             if (stream == null)
@@ -261,6 +276,7 @@ namespace ElmSharp
         /// <param name="source">The proxy (image) object.</param>
         /// <returns>true if the source object is set successfully, otherwise false on error.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool SetSource(EvasObject source)
         {
             bool result = false;
@@ -276,6 +292,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="surface">The surface.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetNativeSurface(IntPtr surface)
         {
@@ -290,6 +307,7 @@ namespace ElmSharp
         /// <param name="top">The border's top width.</param>
         /// <param name="bottom">The border's bottom width.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetBorder(int left, int right, int top, int bottom)
         {
             Interop.Evas.evas_object_image_border_set(RealHandle, left, right, top, bottom);
@@ -305,6 +323,7 @@ namespace ElmSharp
         /// <param name="file">The filename to be used to save the image (extension obligatory).</param>
         /// <param name="key">The image key in the file (if an Eet one), or null, otherwise.</param>
         /// <param name="flags">String containing the flags to be used (null for none).</param>
+        [Obsolete("This has been deprecated in API12")]
         public void Save(string file, string key, string flags)
         {
             Interop.Evas.evas_object_image_save(RealHandle, file, key, flags);
@@ -316,6 +335,7 @@ namespace ElmSharp
         /// <param name="parent">The parent is a given container, which will be attached by the image as a child. It's <see cref="EvasObject"/> type.</param>
         /// <returns>The new object, otherwise null if it cannot be created.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return _handle != IntPtr.Zero ? _handle : Interop.Evas.evas_object_image_add(Interop.Evas.evas_object_evas_get(parent.Handle));

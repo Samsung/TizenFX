@@ -23,6 +23,7 @@ namespace ElmSharp
     /// Enumeration for setting the list's resizing behavior, transverse axis scrolling, and items cropping.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum ListMode
     {
         /// <summary>
@@ -54,12 +55,14 @@ namespace ElmSharp
     /// All the events of a list contain ListItemEventArgs as a parameter.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class ListItemEventArgs : EventArgs
     {
         /// <summary>
         /// Gets or sets the list item. The return type is <see cref="ListItem"/>.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ListItem Item { get; set; }
 
         internal static ListItemEventArgs CreateFromSmartEvent(IntPtr data, IntPtr obj, IntPtr info)
@@ -77,6 +80,7 @@ namespace ElmSharp
     /// <seealso cref="GenList"/>
     /// <seealso cref="GenGrid"/>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class List : Layout
     {
         HashSet<ListItem> _children = new HashSet<ListItem>();
@@ -91,6 +95,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">The parent is a given container, which will be attached by the list as a child. It's <see cref="EvasObject"/> type.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public List(EvasObject parent) : base(parent)
         {
             _selected = new SmartEvent<ListItemEventArgs>(this, this.RealHandle, "selected", ListItemEventArgs.CreateFromSmartEvent);
@@ -109,6 +114,7 @@ namespace ElmSharp
         /// Gets or sets which mode to be used for the list.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ListMode Mode
         {
             get
@@ -125,6 +131,7 @@ namespace ElmSharp
         /// Gets the selected item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ListItem SelectedItem
         {
             get
@@ -138,30 +145,35 @@ namespace ElmSharp
         /// ItemSelected is raised when a new list item is selected.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<ListItemEventArgs> ItemSelected;
 
         /// <summary>
         /// ItemUnselected is raised when a list item is Unselected.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<ListItemEventArgs> ItemUnselected;
 
         /// <summary>
         /// ItemDoubleClicked is raised when a new list item is double-clicked.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<ListItemEventArgs> ItemDoubleClicked;
 
         /// <summary>
         /// ItemLongPressed is raised when a list item is pressed for a certain amount of time. By default, it's 1 second.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<ListItemEventArgs> ItemLongPressed;
 
         /// <summary>
         /// ItemActivated is raised when a new list item is double-clicked or pressed (enter|return|spacebar).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<ListItemEventArgs> ItemActivated;
 
         /// <summary>
@@ -170,6 +182,7 @@ namespace ElmSharp
         /// If not called, it won't display the list properly.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Update()
         {
             Interop.Elementary.elm_list_go(RealHandle);
@@ -182,6 +195,7 @@ namespace ElmSharp
         /// <returns>Return a new added list item that contains a text.</returns>
         /// <seealso cref="ListItem"/>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ListItem Append(string label)
         {
             return Append(label, null, null);
@@ -196,6 +210,7 @@ namespace ElmSharp
         /// <returns>Return a new added list item that contains a text and 2 icons.</returns>
         /// <seealso cref="ListItem"/>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ListItem Append(string label, EvasObject leftIcon, EvasObject rightIcon)
         {
             ListItem item = new ListItem(label, leftIcon, rightIcon, this);
@@ -210,6 +225,7 @@ namespace ElmSharp
         /// <param name="label">The text for the item.</param>
         /// <returns>Return a new added list item that contains a text.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ListItem Prepend(string label)
         {
             return Prepend(label, null, null);
@@ -223,6 +239,7 @@ namespace ElmSharp
         /// <param name="rigthIcon">The right icon for the item.</param>
         /// <returns>Return a new added list item that contains a text and 2 icons.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ListItem Prepend(string label, EvasObject leftIcon, EvasObject rigthIcon)
         {
             ListItem item = new ListItem(label, leftIcon, rigthIcon, this);
@@ -236,6 +253,7 @@ namespace ElmSharp
         /// To delete just one item, use <see cref="ItemObject.Delete"/>.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Clear()
         {
             Interop.Elementary.elm_list_clear(RealHandle);
@@ -252,6 +270,7 @@ namespace ElmSharp
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);

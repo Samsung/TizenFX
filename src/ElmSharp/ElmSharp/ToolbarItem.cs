@@ -22,6 +22,7 @@ namespace ElmSharp
     /// The ToolbarItem is an item of the toolbar.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class ToolbarItem : ItemObject
     {
         string _icon;
@@ -43,6 +44,7 @@ namespace ElmSharp
         /// Sets or gets the icon path of the item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string Icon
         {
             get
@@ -60,6 +62,7 @@ namespace ElmSharp
         /// Sets or gets the text string of the item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string Text
         {
             get
@@ -95,6 +98,7 @@ namespace ElmSharp
         /// </summary>
         /// <remarks>Items aren't set as a separator by default. If set as a separator, it displays a separator theme, so it won't display the icons or labels.</remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsSeparator
         {
             get
@@ -111,6 +115,7 @@ namespace ElmSharp
         /// Sets or gets whether the item is selected.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsSelected
         {
             get
@@ -127,18 +132,21 @@ namespace ElmSharp
         /// Selected will be triggered when the item is selected.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Selected;
 
         /// <summary>
         /// LongPressed will be triggered when the item is pressed for a long time.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler LongPressed;
 
         /// <summary>
         /// Clicked will be triggered when the item is clicked.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Clicked;
 
         internal void SendSelected()

@@ -24,6 +24,7 @@ namespace ElmSharp
     /// Enumeration for the Tooltip orientation.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum TooltipOrientation
     {
         /// <summary>
@@ -81,6 +82,7 @@ namespace ElmSharp
     /// Enumeration for the aspect control.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum AspectControl
     {
         /// <summary>
@@ -113,6 +115,7 @@ namespace ElmSharp
     /// How the object should be rendered to output.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum RenderOp
     {
         /// <summary>
@@ -180,6 +183,7 @@ namespace ElmSharp
     /// The EvasObject is a base class for other widget classes.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public abstract class EvasObject
     {
         private IntPtr _realHandle = IntPtr.Zero;
@@ -199,18 +203,21 @@ namespace ElmSharp
         /// Sets or gets the handle for EvasObject.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public IntPtr Handle { get; protected set; }
 
         /// <summary>
         /// Gets the parent object for EvasObject.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public EvasObject Parent { get; private set; }
 
         /// <summary>
         /// Sets or gets the real handle for EvasObject.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public IntPtr RealHandle
         {
             get
@@ -244,6 +251,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">Parent EvasObject class.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected EvasObject(EvasObject parent) : this()
         {
             Debug.Assert(parent == null || parent.IsRealized);
@@ -254,6 +262,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of the EvasObject class.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected EvasObject()
         {
             _backButtonHandler = new Interop.Eext.EextEventCallback((d, o, i) => { _backButtonPressed?.Invoke(this, EventArgs.Empty); });
@@ -279,12 +288,14 @@ namespace ElmSharp
         /// Deleted will be triggered when the widght is deleted.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Deleted;
 
         /// <summary>
         /// KeyUp will be triggered when the key is loose.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<EvasKeyEventArgs> KeyUp
         {
             add { _keyup.On += value; }
@@ -295,6 +306,7 @@ namespace ElmSharp
         /// KeyDown will be triggered when the key is pressed down.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<EvasKeyEventArgs> KeyDown
         {
             add { _keydown.On += value; }
@@ -305,6 +317,7 @@ namespace ElmSharp
         /// BackButtonPressed will be triggered when the Back button is pressed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler BackButtonPressed
         {
             add
@@ -329,6 +342,7 @@ namespace ElmSharp
         /// MoreButtonPressed will be triggered when the More button is pressed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler MoreButtonPressed
         {
             add
@@ -353,6 +367,7 @@ namespace ElmSharp
         /// Moved will be triggered when the widght is moved.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Moved
         {
             add { _moved.On += value; }
@@ -363,6 +378,7 @@ namespace ElmSharp
         /// Resized Event Handler of the current widget's size.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Resized
         {
             add { _resized.On += value; }
@@ -373,16 +389,18 @@ namespace ElmSharp
         /// Shown will be triggered when the widget is shown.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Shown
         {
             add { _shown.On += value; }
             remove { _shown.On -= value; }
         }
-        
+
         /// <summary>
         /// Hidden will be triggered when the widget is hidden.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Hidden
         {
             add { _hidden.On += value; }
@@ -393,6 +411,7 @@ namespace ElmSharp
         /// RenderPost Event Handler of the current widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler RenderPost
         {
             add
@@ -420,18 +439,21 @@ namespace ElmSharp
         /// </summary>
         /// <returns></returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public delegate EvasObject GetTooltipContentDelegate();
 
         /// <summary>
         /// Gets a widget's status of realized or not.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsRealized { get { return Handle != IntPtr.Zero; } }
 
         /// <summary>
         /// Gets EvasCanvas.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public EvasCanvas EvasCanvas
         {
             get
@@ -446,6 +468,7 @@ namespace ElmSharp
         /// Sets of gets a value that allow the automation framework to find and interact with this object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string AutomationId
         {
             get
@@ -464,6 +487,7 @@ namespace ElmSharp
         /// Gets the current class's Name.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string ClassName
         {
             get
@@ -476,6 +500,7 @@ namespace ElmSharp
         /// Sets or gets the horizontal pointer hints for an object's weight.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double WeightX
         {
             get
@@ -492,6 +517,7 @@ namespace ElmSharp
         /// Sets or gets the vertical pointer hints for an object's weight.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double WeightY
         {
             get
@@ -508,6 +534,7 @@ namespace ElmSharp
         /// Sets or gets the horizontal alignment hint of an object's alignment.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public virtual double AlignmentX
         {
             get
@@ -524,6 +551,7 @@ namespace ElmSharp
         /// Sets or gets the vertical alignment hint of an object's alignment.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public virtual double AlignmentY
         {
             get
@@ -540,6 +568,7 @@ namespace ElmSharp
         /// Sets or gets the width hints for an object's minimum size.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int MinimumWidth
         {
             get
@@ -559,6 +588,7 @@ namespace ElmSharp
         /// Sets or gets the height hints for an object's minimum size.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int MinimumHeight
         {
             get
@@ -578,6 +608,7 @@ namespace ElmSharp
         /// Gets the visible state of the given Evas object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsVisible
         {
             get
@@ -590,6 +621,7 @@ namespace ElmSharp
         /// Sets or gets the position and (rectangular) size of the given Evas object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Rect Geometry
         {
             get
@@ -609,6 +641,7 @@ namespace ElmSharp
         /// Sets or gets the general or main color of the given Evas object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public virtual Color Color
         {
             get
@@ -627,6 +660,7 @@ namespace ElmSharp
         /// Sets or gets the map enabled state.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsMapEnabled
         {
             get
@@ -643,6 +677,7 @@ namespace ElmSharp
         /// Sets or gets the current object's transformation map.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public EvasMap EvasMap
         {
             get
@@ -660,6 +695,7 @@ namespace ElmSharp
         /// Sets or gets whether an object is to repeat events.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool RepeatEvents
         {
             get
@@ -682,6 +718,7 @@ namespace ElmSharp
         /// Sets or gets whether events on a smart object's member should get propagated up to its parent.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool PropagateEvents
         {
             get
@@ -704,6 +741,7 @@ namespace ElmSharp
         /// Sets or gets whether an object is set to pass (ignore) events.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool PassEvents
         {
             get
@@ -726,6 +764,7 @@ namespace ElmSharp
         /// Sets or gets the style for this object tooltip.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string TooltipStyle
         {
             get
@@ -742,6 +781,7 @@ namespace ElmSharp
         /// Sets or gets the orientation of tooltip.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public TooltipOrientation TooltipOrientation
         {
             get
@@ -758,6 +798,7 @@ namespace ElmSharp
         /// Sets or gets size restriction state of an object's tooltip.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool TooltipWindowMode
         {
             get
@@ -774,6 +815,7 @@ namespace ElmSharp
         /// Sets the content to be shown in the tooltip object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GetTooltipContentDelegate TooltipContentDelegate
         {
             get
@@ -799,6 +841,7 @@ namespace ElmSharp
         /// This gets the movement freeze count by one.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int TooltipMoveFreezeCount
         {
             get
@@ -811,6 +854,7 @@ namespace ElmSharp
         /// Sets or gets whether an Evas object is to freeze (discard) events.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool AllEventsFrozen
         {
             get
@@ -833,6 +877,7 @@ namespace ElmSharp
         /// Sets or gets the layer of its canvas that the given object will be part of.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public virtual int Layer
         {
             get
@@ -849,6 +894,7 @@ namespace ElmSharp
         /// Sets or gets the render operation to be used for rendering the Evas object.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public RenderOp RenderOperation
         {
             get
@@ -867,6 +913,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="clip">The object to clip object by.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetClip(EvasObject clip)
         {
             Interop.Evas.evas_object_clip_set(Handle, clip);
@@ -878,6 +925,7 @@ namespace ElmSharp
         /// <param name="x">The horizontal alignment hint as double value ranging from 0.0 to 1.0. The default alignment hint value is 0.5.</param>
         /// <param name="y">The vertical alignment hint as double value ranging from 0.0 to 1.0. The default alignment hint value is 0.5.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetAlignment(double x, double y)
         {
             Interop.Evas.evas_object_size_hint_align_set(Handle, x, y);
@@ -889,6 +937,7 @@ namespace ElmSharp
         /// <param name="x">The non-negative double value to be used as horizontal weight hint.</param>
         /// <param name="y">The non-negative double value to be used as vertical weight hint.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetWeight(double x, double y)
         {
             Interop.Evas.evas_object_size_hint_weight_set(Handle, x, y);
@@ -899,6 +948,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="text">The text value to display inside the tooltip.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetTooltipText(string text)
         {
             Interop.Elementary.elm_object_tooltip_text_set(RealHandle, text);
@@ -908,6 +958,7 @@ namespace ElmSharp
         /// Unsets an object's tooltip.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void UnsetTooltip()
         {
             Interop.Elementary.elm_object_tooltip_unset(RealHandle);
@@ -918,6 +969,7 @@ namespace ElmSharp
         /// If the count is more than 0, the tooltip position will be fixed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void PushTooltipMoveFreeze()
         {
             Interop.Elementary.elm_object_tooltip_move_freeze_push(RealHandle);
@@ -927,6 +979,7 @@ namespace ElmSharp
         /// This decrements the tooltip freeze count by one.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void PopTooltipMoveFreeze()
         {
             Interop.Elementary.elm_object_tooltip_move_freeze_pop(RealHandle);
@@ -936,6 +989,7 @@ namespace ElmSharp
         /// Force hide the tooltip of the object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void HideTooltip()
         {
             Interop.Elementary.elm_object_tooltip_hide(RealHandle);
@@ -945,6 +999,7 @@ namespace ElmSharp
         /// Force show the tooltip of the object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void ShowTooltip()
         {
             Interop.Elementary.elm_object_tooltip_show(RealHandle);
@@ -954,6 +1009,7 @@ namespace ElmSharp
         /// Makes the current object visible.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Show()
         {
             Interop.Evas.evas_object_show(Handle);
@@ -963,6 +1019,7 @@ namespace ElmSharp
         /// Makes the current object invisible.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Hide()
         {
             Interop.Evas.evas_object_hide(Handle);
@@ -974,6 +1031,7 @@ namespace ElmSharp
         /// <param name="w">The new width.</param>
         /// <param name="h">The new height.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Resize(int w, int h)
         {
             Interop.Evas.evas_object_resize(Handle, w, h);
@@ -985,6 +1043,7 @@ namespace ElmSharp
         /// <param name="x">The X position to move the object.</param>
         /// <param name="y">The Y position to move the object.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Move(int x, int y)
         {
             Interop.Evas.evas_object_move(Handle, x, y);
@@ -994,6 +1053,7 @@ namespace ElmSharp
         /// Lowers the object to the bottom of its layer.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Lower()
         {
             Interop.Evas.evas_object_lower(Handle);
@@ -1004,6 +1064,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="obj">Parent object.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static implicit operator IntPtr(EvasObject obj)
         {
             if (obj == null)
@@ -1011,11 +1072,12 @@ namespace ElmSharp
             return obj.Handle;
         }
 
-	/// <summary>
+        /// <summary>
         /// Define cast to EvasObject operator from IntPtr
         /// </summary>
         /// <param name="handle">Native handle to EvasObject</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static explicit operator EvasObject(IntPtr handle) => EvasObject.s_handleTable.TryGetValue(handle, out EvasObject obj) ? obj : null;
 
         /// <summary>
@@ -1025,6 +1087,7 @@ namespace ElmSharp
         /// <param name="exclusive">Set TRUE to request that the obj is the only object receiving the keyname events, otherwise set to FALSE.</param>
         /// <returns>If the call succeeds then true, otherwise false.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool KeyGrab(string keyname, bool exclusive)
         {
             return Interop.Evas.evas_object_key_grab(Handle, keyname, 0, 0, exclusive);
@@ -1035,6 +1098,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="keyname">The key the grab is set for.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void KeyUngrab(string keyname)
         {
             Interop.Evas.evas_object_key_ungrab(Handle, keyname, 0, 0);
@@ -1044,6 +1108,7 @@ namespace ElmSharp
         /// Marks the smart object as changed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void MarkChanged()
         {
             Interop.Evas.evas_object_smart_changed(RealHandle);
@@ -1054,6 +1119,7 @@ namespace ElmSharp
         /// This will force immediate calculations needed for renderization of this object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Calculate()
         {
             Interop.Evas.evas_object_smart_calculate(RealHandle);
@@ -1066,6 +1132,7 @@ namespace ElmSharp
         /// <param name="w">The integer to be used as aspect width ratio term.</param>
         /// <param name="h">The integer to be used as aspect height ratio term.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetSizeHintAspect(AspectControl aspect, int w, int h)
         {
             Interop.Evas.evas_object_size_hint_aspect_set(Handle, (int)aspect, w, h);
@@ -1078,6 +1145,7 @@ namespace ElmSharp
         /// <param name="w">The integer to be used as aspect width ratio term.</param>
         /// <param name="h">The integer to be used as aspect height ratio term.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void GetSizeHintAspect(out AspectControl aspect, out int w, out int h)
         {
             int aspectRatio;
@@ -1090,6 +1158,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="anchor">The object below which to stack.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void StackBelow(EvasObject anchor)
         {
             Interop.Evas.evas_object_stack_below(Handle, anchor);
@@ -1100,6 +1169,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="anchor">The object above which to stack.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void StackAbove(EvasObject anchor)
         {
             Interop.Evas.evas_object_stack_above(Handle, anchor);
@@ -1109,6 +1179,7 @@ namespace ElmSharp
         /// Raises to the top of its layer.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void RaiseTop()
         {
             Interop.Evas.evas_object_raise(Handle);
@@ -1163,6 +1234,7 @@ namespace ElmSharp
         /// The callback of the Invalidate Event.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected virtual void OnInvalidate()
         {
         }
@@ -1171,6 +1243,7 @@ namespace ElmSharp
         /// The callback of the Instantiated Event.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected virtual void OnInstantiated()
         {
         }
@@ -1179,6 +1252,7 @@ namespace ElmSharp
         /// The callback of the Realized Event.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected virtual void OnRealized()
         {
         }
@@ -1187,6 +1261,7 @@ namespace ElmSharp
         /// The callback of the Unrealize Event.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected virtual void OnUnrealize()
         {
         }
@@ -1197,6 +1272,7 @@ namespace ElmSharp
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected abstract IntPtr CreateHandle(EvasObject parent);
 
         /// <summary>
@@ -1204,6 +1280,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">Parent object.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Realize(EvasObject parent)
         {
             if (!IsRealized)
@@ -1234,6 +1311,7 @@ namespace ElmSharp
         /// Removes the current object relationship with others.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Unrealize()
         {
             if (IsRealized)

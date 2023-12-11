@@ -23,6 +23,7 @@ namespace ElmSharp
     /// Enumeration for the axis along which flip effect should be applied.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum FlipAxis
     {
         /// <summary>
@@ -40,6 +41,7 @@ namespace ElmSharp
     /// Enumeration for the direction in which the wipe effect should occur.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum WipeDirection
     {
         /// <summary>
@@ -67,6 +69,7 @@ namespace ElmSharp
     /// Enumeration for whether the wipe effect should show or hide the object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum WipeType
     {
         /// <summary>
@@ -84,6 +87,7 @@ namespace ElmSharp
     /// Enumration for the type of acceleration used in transition.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum TweenMode
     {
         /// <summary>
@@ -131,12 +135,14 @@ namespace ElmSharp
     /// Blend effect class.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class BlendEffect : EffectBase
     {
         /// <summary>
         /// Creates and initializes a new instance of the BlendEffect class.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public BlendEffect()
         {
         }
@@ -151,6 +157,7 @@ namespace ElmSharp
     /// Color effect class.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class ColorEffect : EffectBase
     {
         Color _begin;
@@ -162,6 +169,7 @@ namespace ElmSharp
         /// <param name="beginColor">The begin color of the effect.</param>
         /// <param name="endColor">The end color of the effect.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ColorEffect(Color beginColor, Color endColor)
         {
             _begin = beginColor;
@@ -172,6 +180,7 @@ namespace ElmSharp
         /// The begin color of the effect.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Color BeginColor
         {
             get { return _begin; }
@@ -181,6 +190,7 @@ namespace ElmSharp
         /// The end color of the effect.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Color EndColor
         {
             get { return _end; }
@@ -196,12 +206,14 @@ namespace ElmSharp
     /// Fade effect class.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class FadeEffect : EffectBase
     {
         /// <summary>
         /// Creates and initializes a new instance of the FadeEffect class.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public FadeEffect()
         {
         }
@@ -216,6 +228,7 @@ namespace ElmSharp
     /// Flip effect class.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class FlipEffect : EffectBase
     {
         FlipAxis _axis;
@@ -229,6 +242,7 @@ namespace ElmSharp
         /// <param name="clockWise">Flipping Direction. True is clockwise.</param>
         /// <param name="resizable">Resizable effect with FlipEffect.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public FlipEffect(FlipAxis axis, bool clockWise, bool resizable = false)
         {
             _axis = axis;
@@ -240,6 +254,7 @@ namespace ElmSharp
         /// Flipping axis (X or Y).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public FlipAxis Axis
         {
             get { return _axis; }
@@ -249,6 +264,7 @@ namespace ElmSharp
         /// Flipping direction. True is clockwise.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool ClockWise
         {
             get { return _clockWise; }
@@ -258,6 +274,7 @@ namespace ElmSharp
         /// Resizable FlipEffect.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool Resizable
         {
             get { return _resizable; }
@@ -275,6 +292,7 @@ namespace ElmSharp
     /// Resizing effect class.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class ResizingEffect : EffectBase
     {
         Size _begin;
@@ -286,6 +304,7 @@ namespace ElmSharp
         /// <param name="beginSize">The begin size of the effect.</param>
         /// <param name="endSize">The end size of the effect.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ResizingEffect(Size beginSize, Size endSize)
         {
             _begin = beginSize;
@@ -296,6 +315,7 @@ namespace ElmSharp
         /// The begin size of the effect.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Size BeginSize
         {
             get { return _begin; }
@@ -305,6 +325,7 @@ namespace ElmSharp
         /// The end size of the effect.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Size EndSize
         {
             get { return _end; }
@@ -320,6 +341,7 @@ namespace ElmSharp
     /// Rotation effect class.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class RotationEffect : EffectBase
     {
         float _begin;
@@ -331,6 +353,7 @@ namespace ElmSharp
         /// <param name="beginDegree">The begin degree of the effect.</param>
         /// <param name="endDegree">The end degree of the effect.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public RotationEffect(float beginDegree, float endDegree)
         {
             _begin = beginDegree;
@@ -341,6 +364,7 @@ namespace ElmSharp
         /// The begin degree of the effect.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public float BeginDegree
         {
             get { return _begin; }
@@ -350,6 +374,7 @@ namespace ElmSharp
         /// The end degree of the effect.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public float EndDegree
         {
             get { return _end; }
@@ -365,6 +390,7 @@ namespace ElmSharp
     /// Translation effect class.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class TranslationEffect : EffectBase
     {
         Point _begin;
@@ -376,6 +402,7 @@ namespace ElmSharp
         /// <param name="beginPoint">The begin point of the effect.</param>
         /// <param name="endPoint">The end point of the effect.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public TranslationEffect(Point beginPoint, Point endPoint)
         {
             _begin = beginPoint;
@@ -386,6 +413,7 @@ namespace ElmSharp
         /// The begin point of the effect.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Point BeginPoint
         {
             get { return _begin; }
@@ -395,6 +423,7 @@ namespace ElmSharp
         /// The end point of the effect.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Point EndPoint
         {
             get { return _end; }
@@ -410,6 +439,7 @@ namespace ElmSharp
     /// Wipe effect class.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class WipeEffect : EffectBase
     {
         WipeType _type;
@@ -421,6 +451,7 @@ namespace ElmSharp
         /// <param name="type">Wipe type. Hide or show.</param>
         /// <param name="direction">Wipe direction.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public WipeEffect(WipeType type, WipeDirection direction)
         {
             _type = type;
@@ -431,6 +462,7 @@ namespace ElmSharp
         /// Wipe type. Hide or show.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public WipeType Type
         {
             get { return _type; }
@@ -440,6 +472,7 @@ namespace ElmSharp
         /// Wipe direction.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public WipeDirection Direction
         {
             get { return _direction; }
@@ -455,6 +488,7 @@ namespace ElmSharp
     /// Zoom effect class.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class ZoomEffect : EffectBase
     {
         float _begin;
@@ -466,6 +500,7 @@ namespace ElmSharp
         /// <param name="beginRate">The begin rate of the effect.</param>
         /// <param name="endRate">The end rate of the effect.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ZoomEffect(float beginRate, float endRate)
         {
             _begin = beginRate;
@@ -476,6 +511,7 @@ namespace ElmSharp
         /// The begin rate of the effect.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public float BeginRate
         {
             get { return _begin; }
@@ -485,6 +521,7 @@ namespace ElmSharp
         /// The end rate of the effect.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public float EndRate
         {
             get { return _end; }

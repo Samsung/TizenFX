@@ -24,18 +24,21 @@ namespace ElmSharp
     /// contain the DateChangedEventArgs as a parameter.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class DateChangedEventArgs : EventArgs
     {
         /// <summary>
         /// Gets the OldDate property of the given DateChangedEventArgs.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public DateTime OldDate { get; private set; }
 
         /// <summary>
         /// Gets the NewDate property of the given DateChangedEventArgs.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public DateTime NewDate { get; private set; }
 
         /// <summary>
@@ -48,6 +51,7 @@ namespace ElmSharp
         /// New date when the DateChanged event or DateTimeChanged event triggered.
         /// </param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public DateChangedEventArgs(DateTime oldDate, DateTime newDate)
         {
             this.OldDate = oldDate;

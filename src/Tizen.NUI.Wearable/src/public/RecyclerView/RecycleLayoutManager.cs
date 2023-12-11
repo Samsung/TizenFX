@@ -17,6 +17,7 @@ using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System;
 
 namespace Tizen.NUI.Wearable
 {
@@ -25,7 +26,7 @@ namespace Tizen.NUI.Wearable
     /// Lay out RecycleItem and recycle RecycleItem.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
-    /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+    [Obsolete("This has been deprecated in API12")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class RecycleLayoutManager
     {
@@ -33,7 +34,7 @@ namespace Tizen.NUI.Wearable
         /// Enumeration for the direction in which the content is laid out
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum Orientation
         {
@@ -41,14 +42,14 @@ namespace Tizen.NUI.Wearable
             /// Vertical
             /// </summary>
             /// <since_tizen> 8 </since_tizen>
-            /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+            [Obsolete("This has been deprecated in API12")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             Vertical = 0,
             /// <summary>
             /// Horizontal
             /// </summary>
             /// <since_tizen> 8 </since_tizen>
-            /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+            [Obsolete("This has been deprecated in API12")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             Horizontal = 1,
         }
@@ -57,7 +58,7 @@ namespace Tizen.NUI.Wearable
         /// Container which contains RecycleItems.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View Container { get; set; }
 
@@ -65,7 +66,7 @@ namespace Tizen.NUI.Wearable
         /// Size of RecycleItem.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Size ItemSize { get; set; } = new Size();
 
@@ -73,7 +74,7 @@ namespace Tizen.NUI.Wearable
         /// Get/Set the orientation in the layout.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Orientation LayoutOrientation { get; set; } = Orientation.Vertical;
 
@@ -81,7 +82,7 @@ namespace Tizen.NUI.Wearable
         /// How far can you reach the next item.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float StepSize { get; protected set; }
 
@@ -89,14 +90,14 @@ namespace Tizen.NUI.Wearable
         /// How far can you reach the next item.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int DataCount { get; set; }
 
         /// <summary>
         /// The last scrolled position which is calculated by ScrollableBase. The value should be updated in the Recycle() method.
         /// </summary>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected float PrevScrollPosition { get; set; }
 
@@ -105,7 +106,7 @@ namespace Tizen.NUI.Wearable
         /// </summary>
         /// <param name="scrollPosition">Scroll position which is calculated by ScrollableBase</param>
         /// <since_tizen> 8 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void Layout(float scrollPosition)
         {
@@ -116,7 +117,7 @@ namespace Tizen.NUI.Wearable
         /// This is called to find out how much container size can be.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual float CalculateLayoutOrientationSize()
         {
@@ -129,7 +130,7 @@ namespace Tizen.NUI.Wearable
         /// <param name="scrollPosition">Scroll position which is calculated by ScrollableBase</param>
         /// <returns>List of RecycleItems which should be recycled.</returns>
         /// <since_tizen> 8 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual List<RecycleItem> Recycle(float scrollPosition)
         {
@@ -141,7 +142,7 @@ namespace Tizen.NUI.Wearable
         /// </summary>
         /// <param name="scrollPosition">Scroll position which is calculated by ScrollableBase</param>
         /// <since_tizen> 8 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual float CalculateCandidateScrollPosition(float scrollPosition)
         {
@@ -156,6 +157,7 @@ namespace Tizen.NUI.Wearable
         /// <param name="direction">The direction to move the focus towards.</param>
         /// <param name="loopEnabled">Whether the focus movement should be looped within the control.</param>
         /// <returns>The next keyboard focusable view in this control or an empty handle if no view can be focused.</returns>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual View RequestNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
         {
