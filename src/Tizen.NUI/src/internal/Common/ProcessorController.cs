@@ -129,6 +129,8 @@ namespace Tizen.NUI
             internalProcessorOnceEvent[1] = null;
             ProcessorEvent = null;
             LayoutProcessorEvent = null;
+            initialied = false;
+
             GC.SuppressFinalize(this);
 
             base.Dispose(type);
