@@ -52,6 +52,11 @@ namespace Tizen.NUI
         {
             Tizen.Log.Debug("NUI", $"DisposeQueue is destroyed\n");
             initialied = false;
+            if (processorRegistered && ProcessorController.Instance.Initialized)
+            {
+                processorRegistered = false;
+                ProcessorController.Instance.ProcessorOnceEvent -= TriggerProcessDisposables;
+            }
         }
 
         public static DisposeQueue Instance
@@ -90,10 +95,19 @@ namespace Tizen.NUI
                 disposables.Add(disposable);
             }
 
-            if (initialied && eventThreadCallback != null && !eventThreadCallbackTriggered)
+            if (initialied && eventThreadCallback != null)
             {
-                eventThreadCallbackTriggered = true;
-                eventThreadCallback.Trigger();
+                if (!eventThreadCallbackTriggered)
+                {
+                    eventThreadCallbackTriggered = true;
+                    eventThreadCallback.Trigger();
+                }
+            }
+            else
+            {
+                // Flush Disposable queue synchronously if it is not initialized yet.
+                // TODO : Need to check thread here if we need.
+                ProcessDisposables();
             }
         }
 
@@ -101,10 +115,19 @@ namespace Tizen.NUI
         {
             processorRegistered = false;
 
-            if (eventThreadCallback != null && !eventThreadCallbackTriggered)
+            if (initialied && eventThreadCallback != null)
             {
-                eventThreadCallbackTriggered = true;
-                eventThreadCallback.Trigger();
+                if (!eventThreadCallbackTriggered)
+                {
+                    eventThreadCallbackTriggered = true;
+                    eventThreadCallback.Trigger();
+                }
+            }
+            else
+            {
+                // Flush Disposable queue synchronously if it is not initialized yet.
+                // TODO : Need to check thread here if we need.
+                ProcessDisposables();
             }
         }
 
