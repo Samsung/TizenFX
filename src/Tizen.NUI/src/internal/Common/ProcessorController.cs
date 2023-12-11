@@ -34,9 +34,13 @@ namespace Tizen.NUI
     internal sealed class ProcessorController : Disposable
     {
         private static ProcessorController instance = null;
-        private bool initialied = false;
+        private bool initialized = false;
 
-        private ProcessorController() : this(Interop.ProcessorController.New(), true)
+        private ProcessorController() : this(true)
+        {
+        }
+
+        private ProcessorController(bool initializeOnConstructor) : this(initializeOnConstructor ? Interop.ProcessorController.New() : Interop.ProcessorController.NewWithoutInitialize(), true)
         {
         }
 
@@ -67,7 +71,7 @@ namespace Tizen.NUI
         public event EventHandler ProcessorEvent;
         public event EventHandler LayoutProcessorEvent;
 
-        public bool Initialized => initialied;
+        public bool Initialized => initialized;
 
         public static ProcessorController Instance
         {
@@ -75,7 +79,7 @@ namespace Tizen.NUI
             {
                 if (instance == null)
                 {
-                    instance = new ProcessorController();
+                    instance = new ProcessorController(false);
                 }
                 return instance;
             }
@@ -83,9 +87,9 @@ namespace Tizen.NUI
 
         public void Initialize()
         {
-            if (initialied == false)
+            if (initialized == false)
             {
-                initialied = true;
+                initialized = true;
 
                 Interop.ProcessorController.Initialize(SwigCPtr);
 
@@ -129,7 +133,7 @@ namespace Tizen.NUI
             internalProcessorOnceEvent[1] = null;
             ProcessorEvent = null;
             LayoutProcessorEvent = null;
-            initialied = false;
+            initialized = false;
 
             GC.SuppressFinalize(this);
 
