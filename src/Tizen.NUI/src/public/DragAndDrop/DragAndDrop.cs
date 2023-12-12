@@ -194,6 +194,7 @@ namespace Tizen.NUI
                 if (type == DragType.Enter)
                 {
                     ev.DragType = type;
+                    ev.MimeType = Interop.DragAndDrop.GetMimeType(dragEvent);
                     callback(targetView, ev);
                 }
                 else if (type == DragType.Leave)
@@ -204,6 +205,7 @@ namespace Tizen.NUI
                 else if (type == DragType.Move)
                 {
                     ev.DragType = type;
+                    ev.MimeType = Interop.DragAndDrop.GetMimeType(dragEvent);
                     callback(targetView, ev);
                 }
                 else if (type == DragType.Drop)
