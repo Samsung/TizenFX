@@ -374,6 +374,11 @@ namespace Tizen.NUI.BaseComponents
                 parentChildren.Remove(this);
                 parentChildren.Add(this);
 
+                if (Accessibility.Accessibility.IsEnabled)
+                {
+                    this.GrabAccessibilityHighlight();
+                }
+
                 LayoutGroup layout = Layout as LayoutGroup;
                 layout?.ChangeLayoutSiblingOrder(parentChildren.Count - 1);
 
@@ -400,6 +405,15 @@ namespace Tizen.NUI.BaseComponents
             {
                 parentChildren.Remove(this);
                 parentChildren.Insert(0, this);
+
+                if (Accessibility.Accessibility.IsEnabled && (this == Accessibility.Accessibility.GetCurrentlyHighlightedView()))
+                {
+                    if (GetParent() is View parentView)
+                    {
+                        uint index = parentView.ChildCount;
+                        parentView.GetChildAt(index - 1).GrabAccessibilityHighlight();
+                    }
+                }
 
                 LayoutGroup layout = Layout as LayoutGroup;
                 layout?.ChangeLayoutSiblingOrder(0);
