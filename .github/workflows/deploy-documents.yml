@@ -14,10 +14,9 @@ jobs:
       options: --ulimit nofile=10240:10240
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         repository: TizenAPI/TizenFX-Docs
-        ref: devel
 
     - name: Checkout TizenFX sources
       run: |
@@ -48,7 +47,7 @@ jobs:
 
   deploy:
     needs: [build]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
     - uses: actions/download-artifact@v2
@@ -64,7 +63,7 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./_site
-        publish_branch: gh-pages
+        publish_branch: gh-pages-test
         user_name: 'TizenAPI-Bot'
         user_email: 'tizenapi@samsung.com'
         full_commit_message: 'Update documents'
