@@ -40,8 +40,12 @@ namespace Tizen.NUI
         {
         }
 
-        private ProcessorController(bool initializeOnConstructor) : this(initializeOnConstructor ? Interop.ProcessorController.New() : Interop.ProcessorController.NewWithoutInitialize(), true)
+        private ProcessorController(bool initializeOnConstructor) : this(Interop.ProcessorController.NewWithoutInitialize(), true)
         {
+            if (initializeOnConstructor)
+            {
+                Initialize();
+            }
         }
 
         internal ProcessorController(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
