@@ -94,6 +94,8 @@ namespace Tizen.NUI.BaseComponents
         private bool hasSystemFontTypeChanged = false;
 
         private Color internalTextColor;
+        private Color internalAnchorColor;
+        private Color internalAnchorClickedColor;
 
         /// <summary>
         /// Creates the TextLabel control.
@@ -1443,6 +1445,54 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The AnchorColor property.<br />
+        /// The color of the anchor.<br />
+        /// This property is used as the default color of the markup anchor tag.<br />
+        /// If there is a color attribute in the markup anchor tag, the markup attribute takes precedence.
+        /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textLabel.AnchorColor.X = 0.1f;) is possible.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color AnchorColor
+        {
+            get
+            {
+                Color color = (Color)GetValue(AnchorColorProperty);
+                return new Color(OnAnchorColorChanged, color.R, color.G, color.B, color.A);
+            }
+            set
+            {
+                SetValue(AnchorColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The AnchorClickedColor property.<br />
+        /// The color of the clicked anchor.<br />
+        /// This property is used as the default clicked color of the markup anchor tag.<br />
+        /// If there is a color attribute in the markup anchor tag, the markup attribute takes precedence.
+        /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textLabel.AnchorClickedColor.X = 0.1f;) is possible.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color AnchorClickedColor
+        {
+            get
+            {
+                Color color = (Color)GetValue(AnchorClickedColorProperty);
+                return new Color(OnAnchorClickedColorChanged, color.R, color.G, color.B, color.A);
+            }
+            set
+            {
+                SetValue(AnchorClickedColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// The FontSizeScale property for scaling the specified font size up or down. <br />
         /// The default value is 1.0. <br />
         /// The given font size scale value is used for multiplying the specified font size before querying fonts. <br />
@@ -1561,6 +1611,8 @@ namespace Tizen.NUI.BaseComponents
             }
 
             internalTextColor?.Dispose();
+            internalAnchorColor?.Dispose();
+            internalAnchorClickedColor?.Dispose();
 
             if (hasSystemLanguageChanged)
             {
@@ -1744,6 +1796,8 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int EllipsisPosition = Interop.TextLabel.EllipsisPositionGet();
             internal static readonly int Strikethrough = Interop.TextLabel.StrikethroughGet();
             internal static readonly int CharacterSpacing = Interop.TextLabel.CharacterSpacingGet();
+            internal static readonly int AnchorColor = Interop.TextLabel.AnchorColorGet();
+            internal static readonly int AnchorClickedColor = Interop.TextLabel.AnchorClickedColorGet();
         }
 
         private void OnShadowColorChanged(float x, float y, float z, float w)
@@ -1761,6 +1815,14 @@ namespace Tizen.NUI.BaseComponents
         private void OnUnderlineColorChanged(float x, float y, float z, float w)
         {
             UnderlineColor = new Vector4(x, y, z, w);
+        }
+        private void OnAnchorColorChanged(float r, float g, float b, float a)
+        {
+            AnchorColor = new Color(r, g, b, a);
+        }
+        private void OnAnchorClickedColorChanged(float r, float g, float b, float a)
+        {
+            AnchorClickedColor = new Color(r, g, b, a);
         }
     }
 }
