@@ -45,6 +45,8 @@ namespace Tizen.NUI
                 AutoScrollGap = 50.0f,
                 AutoScrollSpeed = 80,
                 FontSizeScale = Tizen.NUI.FontSizeScale.UseSystemSetting,
+                AnchorColor = Color.MediumBlue,
+                AnchorClickedColor = Color.DarkMagenta,
             });
 
             // TextField style.
