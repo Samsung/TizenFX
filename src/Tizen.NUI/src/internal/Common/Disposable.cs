@@ -56,6 +56,20 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Disposable(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
+            unsafe
+            {
+                try
+                {
+                    Interop.Counter.RegisterSizeOf(this.GetType().FullName, 0u);
+                }
+                catch(Exception e)
+                {
+                    Tizen.Log.Error("NUI", $"{e.Message}");
+                    Interop.Counter.RegisterSizeOf(this.GetType().FullName, 1);
+                }
+                Interop.Counter.Increase(this.GetType().FullName);
+                Interop.Counter.RegisterSizeOf("TotalCSharpMemory", (uint)GC.GetTotalAllocatedBytes(true));
+            }
             swigCMemOwn = cMemoryOwn;
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -171,6 +185,8 @@ namespace Tizen.NUI
             }
 
             disposed = true;
+            Interop.Counter.Decrease(this.GetType().FullName);
+            Interop.Counter.RegisterSizeOf("TotalCSharpMemory", (uint)GC.GetTotalAllocatedBytes(true));
         }
 
         /// <summary>
