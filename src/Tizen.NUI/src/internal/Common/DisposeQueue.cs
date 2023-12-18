@@ -107,7 +107,9 @@ namespace Tizen.NUI
             {
                 // Flush Disposable queue synchronously if it is not initialized yet.
                 // TODO : Need to check thread here if we need.
-                ProcessDisposables();
+
+                // 2023-12-18 Block this logic since some APP call some thread-dependency objects before application start.
+                // ProcessDisposables();
             }
         }
 
@@ -127,7 +129,9 @@ namespace Tizen.NUI
             {
                 // Flush Disposable queue synchronously if it is not initialized yet.
                 // TODO : Need to check thread here if we need.
-                ProcessDisposables();
+
+                // 2023-12-18 Block this logic since some APP call some thread-dependency objects before application start.
+                // ProcessDisposables();
             }
         }
 
