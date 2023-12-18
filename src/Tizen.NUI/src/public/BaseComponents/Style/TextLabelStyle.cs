@@ -314,6 +314,26 @@ namespace Tizen.NUI.BaseComponents
             var textLabelStyle = (TextLabelStyle)bindable;
             return textLabelStyle.fontSizeScale;
         });
+        public static readonly BindableProperty AnchorColorProperty = BindableProperty.Create(nameof(AnchorColor), typeof(Color), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            textLabelStyle.anchorColor = (Color)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            return textLabelStyle.anchorColor;
+        });
+        public static readonly BindableProperty AnchorClickedColorProperty = BindableProperty.Create(nameof(AnchorClickedColor), typeof(Color), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            textLabelStyle.anchorClickedColor = (Color)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            return textLabelStyle.anchorClickedColor;
+        });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty MatchSystemLanguageDirectionProperty = BindableProperty.Create(nameof(MatchSystemLanguageDirection), typeof(bool?), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
@@ -377,6 +397,8 @@ namespace Tizen.NUI.BaseComponents
         private PropertyMap fontStyle;
         private float? characterSpacing;
         private float? fontSizeScale;
+        private Color anchorColor;
+        private Color anchorClickedColor;
 
         static TextLabelStyle() { }
 
@@ -571,6 +593,20 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (float?)GetValue(FontSizeScaleProperty);
             set => SetValue(FontSizeScaleProperty, value);
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color AnchorColor
+        {
+            get => (Color)GetValue(AnchorColorProperty);
+            set => SetValue(AnchorColorProperty, value);
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color AnchorClickedColor
+        {
+            get => (Color)GetValue(AnchorClickedColorProperty);
+            set => SetValue(AnchorClickedColorProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
