@@ -70,10 +70,21 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Gets the status of response.
+        /// Indicates if the response is needed.
         /// </summary>
-        /// <remarks>If false, the receiver should not response for the received command.</remarks>
+        /// <remarks>If false, the receiver should not respond to the received command.</remarks>
         /// <since_tizen> 12 </since_tizen>
+        public bool IsResponseNeeded => NeedToResponse;
+
+        /// <summary>
+        /// Indicates if the response is needed.
+        /// </summary>
+        /// <remarks>
+        /// This internal API is retained for backward compatibility but is not recommended for new development.
+        /// Please use <see cref="IsResponseNeeded"/> instead.<br/>
+        /// If false, the receiver should not respond to the received command.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool NeedToResponse => _requestId != null;
 
         /// <summary>
@@ -96,7 +107,7 @@ namespace Tizen.Multimedia.Remoting
         protected virtual void OnResponseCompleted() { }
 
         /// <summary>
-        /// Responses command to the client.
+        /// Responds to the clients command.
         /// </summary>
         /// <param name="serverHandle">The server handle.</param>
         /// <param name="result">The result of each command.</param>
@@ -132,7 +143,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Responses command to the server.
+        /// Responds to the clients command.
         /// </summary>
         /// <param name="clientHandle">The client handle.</param>
         /// <param name="result">The result of each command.</param>
