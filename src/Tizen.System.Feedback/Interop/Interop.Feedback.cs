@@ -38,6 +38,12 @@ internal static partial class Interop
             Vibration = 2,
         }
 
+        internal enum FeedbackFlag
+        {
+            None = 0,
+            PriorityBasedPlay = 1,
+        }
+
         [DllImport(Libraries.Feedback, EntryPoint = "feedback_initialize")]
         internal static extern int Initialize();
 
@@ -70,5 +76,8 @@ internal static partial class Interop
 
         [DllImport(Libraries.Feedback, EntryPoint = "feedback_get_theme_ids_internal", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int GetThemeIdsInternal(FeedbackType type, out uint coundOfTheme, out IntPtr themeIds);
+
+        [DllImport(Libraries.Feedback, EntryPoint = "feedback_play_type_with_flags_internal", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int PlayTypeWithFlagsInternal(FeedbackType type, int pattern, FeedbackFlag flag);
     }
 }
