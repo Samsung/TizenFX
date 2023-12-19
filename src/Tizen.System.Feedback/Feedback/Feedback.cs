@@ -23,6 +23,26 @@ using System.Runtime.InteropServices;
 namespace Tizen.System
 {
     /// <summary>
+    /// Enumeration for feedback sound play method.\
+    /// Currently, it is used only in the FeedbackType.Sound.
+    /// </summary>
+    /// <since_tizen> 10 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum FeedbackFlag
+    {
+        /// <summary>
+        /// Feedback flag none
+        /// </summary>
+        /// <since_tizen> 10 </since_tizen>
+        None = Interop.Feedback.FeedbackFlag.None,
+        /// <summary>
+        /// Feedback flag for priority-based play
+        /// </summary>
+        /// <since_tizen> 10 </since_tizen>
+        PriorityBasedPlay = Interop.Feedback.FeedbackFlag.PriorityBasedPlay,
+    }
+
+    /// <summary>
     /// The Feedback API provides functions to control haptic and sound.
     /// The Feedback API provides the way to play and stop feedback, and get the information whether a specific pattern is supported.
     /// Below is the supported pattern string:
@@ -787,6 +807,64 @@ namespace Tizen.System
             Marshal.FreeHGlobal(getThemeIds);
 
             return themeIds;
+        }
+
+        /// <summary>
+        /// Plays a specific feedback pattern with feedback flag.
+        /// </summary>
+        /// <remarks>
+        /// To play Vibration type, app should have http://tizen.org/privilege/haptic privilege.
+        /// FeedbackFlag.PriorityBasedPlay does not support playing Vibration pattern, it supports only Sound playing.
+        /// Thus, Above description corresponds only to FeedbackFlag.None.
+        /// </remarks>
+        /// <since_tizen> 10 </since_tizen>
+        /// <param name="type">The feedback type.</param>
+        /// <param name="pattern">The feedback pattern string.</param>
+        /// <param name="flag">The feedback flag of sound play method.</param>
+        /// <feature>
+        /// http://tizen.org/feature/feedback.vibration for FeedbackType.Vibration
+        /// </feature>
+        /// <exception cref="Exception">Thrown when failed because feedback is not initialized.</exception>
+        /// <exception cref="ArgumentException">Thrown when failed because of an invalid arguament.</exception>
+        /// <exception cref="NotSupportedException">Thrown when failed because the device (haptic, sound) or a specific pattern is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when failed because the access is not granted(No privilege)</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of a system error.</exception>
+        /// <privilege>http://tizen.org/privilege/haptic</privilege>
+        /// <example>
+        /// <code>
+        /// Feedback feedback = new Feedback();
+        /// feedback.PlayTypeWithFlagsInternal(FeedbackType.Sound, "Tap", FeedbackFlag.PriorityBasedPlay);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void PlayTypeWithFlagsInternal(FeedbackType type, String pattern, FeedbackFlag flag)
+        {
+            int number;
+            Interop.Feedback.FeedbackError res;
+
+            if (!Pattern.TryGetValue(pattern, out number))
+                throw new ArgumentException($"Not supported pattern string : {pattern}", nameof(pattern));
+
+            res = (Interop.Feedback.FeedbackError)Interop.Feedback.PlayTypeWithFlagsInternal((Interop.Feedback.FeedbackType)type,
+                                                                                                number, (Interop.Feedback.FeedbackFlag)flag);
+            if (res != Interop.Feedback.FeedbackError.None)
+            {
+                Log.Warn(LogTag, string.Format("Failed to play feedback pattern with flag. err = {0}", res));
+                switch (res)
+                {
+                    case Interop.Feedback.FeedbackError.NotInitialized:
+                        throw new Exception("Not initialized");
+                    case Interop.Feedback.FeedbackError.InvalidParameter:
+                        throw new ArgumentException("Invalid Arguments");
+                    case Interop.Feedback.FeedbackError.NotSupported:
+                        throw new NotSupportedException("Not supported");
+                    case Interop.Feedback.FeedbackError.PermissionDenied:
+                        throw new UnauthorizedAccessException("Access is not granted");
+                    case Interop.Feedback.FeedbackError.OperationFailed:
+                    default:
+                        throw new InvalidOperationException("Failed to play pattern with flag");
+                }
+            }
         }
     }
 }
