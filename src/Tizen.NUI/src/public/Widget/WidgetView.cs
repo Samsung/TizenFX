@@ -891,6 +891,23 @@ namespace Tizen.NUI
             return true; // Do not pass the touch event to the below.
         }
 
+        internal override void ApplyCornerRadius()
+        {
+            base.ApplyCornerRadius();
+
+            if (backgroundExtraData == null) 
+            {
+                return;
+            }
+
+            // Update corner radius properties to widgetView by ActionUpdateProperty
+            if (backgroundExtraData.CornerRadius != null)
+            {
+                Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, WidgetView.Property.WidgetId, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
+            }
+            Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, WidgetView.Property.WidgetId, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
+        }
+
         // Callback for WidgetView WidgetAdded signal
         private void OnWidgetAdded(IntPtr data)
         {
