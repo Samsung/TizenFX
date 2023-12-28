@@ -1,0 +1,556 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ScrollbarBase
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ScrollbarBase
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.NUI.Components.ScrollbarBase">
+
+
+  <h1 id="Tizen_NUI_Components_ScrollbarBase" data-uid="Tizen.NUI.Components.ScrollbarBase" class="text-break">Class ScrollbarBase
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.Components.html">Components</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.Components.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>The ScrollbarBase is an abstract class that can be linked to the scrollable objects
+indicating the current scrolled position of the scrollable object.
+This only contains non-graphical functionalities of basic scrollbar.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class ScrollbarBase : Control, IDynamicResourceHandler, INameScope, System.IDisposable, IResourcesProvider</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.ViewWrapper.html">ViewWrapper</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.CustomView.html">CustomView</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.VisualView.html">VisualView</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Control.html">Control</a></div>
+        <div><span class="xref">ScrollbarBase</span></div>
+      </div>
+    </dd>
+  </dl>
+
+  <dl class="attribute-list stack">
+    <dt>Derived</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Scrollbar.html">Scrollbar</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Wearable.CircularScrollbar.html">CircularScrollbar</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a></div>
+    </dd>
+  </dl>
+
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/ScrollbarBase.cs/#L34">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ScrollbarBase__ctor_" data-uid="Tizen.NUI.Components.ScrollbarBase.#ctor*"></a>
+  <h4 id="Tizen_NUI_Components_ScrollbarBase__ctor" data-uid="Tizen.NUI.Components.ScrollbarBase.#ctor">ScrollbarBase()</h4>
+  <div class="markdown level1 summary"><p>Create an empty ScrollbarBase.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ScrollbarBase()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/ScrollbarBase.cs/#L41">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ScrollbarBase__ctor_" data-uid="Tizen.NUI.Components.ScrollbarBase.#ctor*"></a>
+  <h4 id="Tizen_NUI_Components_ScrollbarBase__ctor_Tizen_NUI_Components_ControlStyle_" data-uid="Tizen.NUI.Components.ScrollbarBase.#ctor(Tizen.NUI.Components.ControlStyle)">ScrollbarBase(ControlStyle)</h4>
+  <div class="markdown level1 summary"><p>Create an empty Scrollbar with a ViewStyle instance to set style properties.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ScrollbarBase(ControlStyle style)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.ControlStyle.html">ControlStyle</a></td>
+        <td><span class="parametername">style</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/ScrollbarBase.cs/#L129">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ScrollbarBase_ScrollCurrentPosition_" data-uid="Tizen.NUI.Components.ScrollbarBase.ScrollCurrentPosition*"></a>
+  <h4 id="Tizen_NUI_Components_ScrollbarBase_ScrollCurrentPosition" data-uid="Tizen.NUI.Components.ScrollbarBase.ScrollCurrentPosition">ScrollCurrentPosition</h4>
+  <div class="markdown level1 summary"><p>Current scroll position in the middle of ScrollTo or Update animation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract float ScrollCurrentPosition { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/ScrollbarBase.cs/#L123">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ScrollbarBase_ScrollPosition_" data-uid="Tizen.NUI.Components.ScrollbarBase.ScrollPosition*"></a>
+  <h4 id="Tizen_NUI_Components_ScrollbarBase_ScrollPosition" data-uid="Tizen.NUI.Components.ScrollbarBase.ScrollPosition">ScrollPosition</h4>
+  <div class="markdown level1 summary"><p>Scroll position given to ScrollTo or Update.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract float ScrollPosition { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/ScrollbarBase.cs/#L103">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ScrollbarBase_Initialize_" data-uid="Tizen.NUI.Components.ScrollbarBase.Initialize*"></a>
+  <h4 id="Tizen_NUI_Components_ScrollbarBase_Initialize_System_Single_System_Single_System_Single_System_Boolean_" data-uid="Tizen.NUI.Components.ScrollbarBase.Initialize(System.Single,System.Single,System.Single,System.Boolean)">Initialize(float, float, float, bool)</h4>
+  <div class="markdown level1 summary"><p>Initialize the scroll bar.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract void Initialize(float contentLength, float viewportLength, float currentPosition, bool isHorizontal = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">contentLength</span></td>
+        <td><p>The length of the scrollable content area.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">viewportLength</span></td>
+        <td><p>The length of the viewport representing the amount of visible content.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">currentPosition</span></td>
+        <td><p>The current position of the viewport in scrollable content area. This is the viewport's top position if the scroller is vertical, otherwise, left.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">isHorizontal</span></td>
+        <td><p>Whether the direction of scrolling is horizontal or not. It is vertical by default.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/ScrollbarBase.cs/#L93">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ScrollbarBase_ScrollTo_" data-uid="Tizen.NUI.Components.ScrollbarBase.ScrollTo*"></a>
+  <h4 id="Tizen_NUI_Components_ScrollbarBase_ScrollTo_System_Single_System_UInt32_Tizen_NUI_AlphaFunction_" data-uid="Tizen.NUI.Components.ScrollbarBase.ScrollTo(System.Single,System.UInt32,Tizen.NUI.AlphaFunction)">ScrollTo(float, uint, AlphaFunction)</h4>
+  <div class="markdown level1 summary"><p>Scroll content to a specific position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract void ScrollTo(float position, uint durationMs = null, AlphaFunction alphaFunction = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The destination to scroll.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">durationMs</span></td>
+        <td><p>The time it takes to scroll in milliseconds.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.AlphaFunction.html">AlphaFunction</a></td>
+        <td><span class="parametername">alphaFunction</span></td>
+        <td><p>The timing function used in animation. It describes the rate of change of the animation parameter over time. (e.g. EaseOut)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/ScrollbarBase.cs/#L61">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ScrollbarBase_Unparent_" data-uid="Tizen.NUI.Components.ScrollbarBase.Unparent*"></a>
+  <h4 id="Tizen_NUI_Components_ScrollbarBase_Unparent" data-uid="Tizen.NUI.Components.ScrollbarBase.Unparent">Unparent()</h4>
+  <div class="markdown level1 summary"><p>Removes a view from its parent ScrollableBase. If a view has no parent, this method does nothing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Unparent()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/ScrollbarBase.cs/#L74">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ScrollbarBase_Update_" data-uid="Tizen.NUI.Components.ScrollbarBase.Update*"></a>
+  <h4 id="Tizen_NUI_Components_ScrollbarBase_Update_System_Single_System_Single_System_Single_System_UInt32_Tizen_NUI_AlphaFunction_" data-uid="Tizen.NUI.Components.ScrollbarBase.Update(System.Single,System.Single,System.Single,System.UInt32,Tizen.NUI.AlphaFunction)">Update(float, float, float, uint, AlphaFunction)</h4>
+  <div class="markdown level1 summary"><p>Update content length and position at once.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract void Update(float contentLength, float viewportLength, float position, uint durationMs = null, AlphaFunction alphaFunction = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">contentLength</span></td>
+        <td><p>The total length of the content.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">viewportLength</span></td>
+        <td><p>The length of the viewport representing the amount of visible content.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The destination position of the View in content length. This is the View's top position if the scroller is vertical, otherwise, View's left position.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">durationMs</span></td>
+        <td><p>The time it takes to scroll in milliseconds.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.AlphaFunction.html">AlphaFunction</a></td>
+        <td><span class="parametername">alphaFunction</span></td>
+        <td><p>The timing function used in animation. It describes the rate of change of the animation parameter over time. (e.g. EaseOut)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/ScrollbarBase.cs/#L84">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ScrollbarBase_Update_" data-uid="Tizen.NUI.Components.ScrollbarBase.Update*"></a>
+  <h4 id="Tizen_NUI_Components_ScrollbarBase_Update_System_Single_System_Single_System_UInt32_Tizen_NUI_AlphaFunction_" data-uid="Tizen.NUI.Components.ScrollbarBase.Update(System.Single,System.Single,System.UInt32,Tizen.NUI.AlphaFunction)">Update(float, float, uint, AlphaFunction)</h4>
+  <div class="markdown level1 summary"><p>Update content length and position at once.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract void Update(float contentLength, float position, uint durationMs = null, AlphaFunction alphaFunction = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">contentLength</span></td>
+        <td><p>The total length of the content.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The destination position of the View in content length. This is the View's top position if the scroller is vertical, otherwise, View's left position.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">durationMs</span></td>
+        <td><p>The time it takes to scroll in milliseconds.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.AlphaFunction.html">AlphaFunction</a></td>
+        <td><span class="parametername">alphaFunction</span></td>
+        <td><p>The timing function used in animation. It describes the rate of change of the animation parameter over time. (e.g. EaseOut)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/ScrollbarBase.cs/#L26" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

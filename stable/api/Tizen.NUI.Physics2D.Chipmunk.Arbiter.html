@@ -1,0 +1,1387 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Struct Arbiter
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Struct Arbiter
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API11">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter">
+
+
+  <h1 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter" class="text-break">Struct Arbiter
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.Physics2D.html">Physics2D</a>.<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.html">Chipmunk</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.Physics2D.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>The <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Arbiter.html">Arbiter</a> object encapsulates a pair of colliding shapes and all of the data
+about their collision.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public struct Arbiter : IEquatable&lt;Arbiter&gt;</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">IEquatable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Arbiter.html">Arbiter</a>&gt;</div>
+    </dd>
+  </dl>
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L142">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_ContactPointSet_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.ContactPointSet*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_ContactPointSet" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.ContactPointSet">ContactPointSet</h4>
+  <div class="markdown level1 summary"><p>The contact point set for an arbiter. This can be a very powerful feature, but use it
+with caution!</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ContactPointSet ContactPointSet { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.ContactPointSet.html">ContactPointSet</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L202">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_Count_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.Count*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_Count" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.Count">Count</h4>
+  <div class="markdown level1 summary"><p>Get the number of contact points for this arbiter.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Count { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L160">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_Data_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.Data*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_Data" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.Data">Data</h4>
+  <div class="markdown level1 summary"><p>Arbitrary user data.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object Data { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L65">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_Friction_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.Friction*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_Friction" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.Friction">Friction</h4>
+  <div class="markdown level1 summary"><p>Friction coefficient that will be applied to the pair of colliding objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double Friction { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L44">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_Handle_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.Handle*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_Handle" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.Handle">Handle</h4>
+  <div class="markdown level1 summary"><p>Native handle of <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Arbiter.html">Arbiter</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public System.IntPtr Handle { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IntPtr</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L190">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_IsFirstContact_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.IsFirstContact*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_IsFirstContact" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.IsFirstContact">IsFirstContact</h4>
+  <div class="markdown level1 summary"><p>Returns true if this is the first step a pair of objects started colliding.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsFirstContact { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L196">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_IsRemoval_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.IsRemoval*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_IsRemoval" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.IsRemoval">IsRemoval</h4>
+  <div class="markdown level1 summary"><p>Returns true if the separate callback is due to a shape being removed from the space.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsRemoval { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L208">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_Normal_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.Normal*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_Normal" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.Normal">Normal</h4>
+  <div class="markdown level1 summary"><p>Get the normal of the collision.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vect Normal { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L55">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_Restitution_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.Restitution*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_Restitution" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.Restitution">Restitution</h4>
+  <div class="markdown level1 summary"><p>The restitution (elasticity) that will be applied to the pair of colliding objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double Restitution { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L75">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_SurfaceVelocity_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.SurfaceVelocity*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_SurfaceVelocity" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.SurfaceVelocity">SurfaceVelocity</h4>
+  <div class="markdown level1 summary"><p>The relative surface velocity of the two shapes in contact.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vect SurfaceVelocity { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L87">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_TotalImpulse_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.TotalImpulse*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_TotalImpulse" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.TotalImpulse">TotalImpulse</h4>
+  <div class="markdown level1 summary"><p>Calculate the total impulse including the friction that was applied by this arbiter.
+This function should only be called from a post-solve, post-step or cpBodyEachArbiter
+callback.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vect TotalImpulse { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L94">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_TotalKE_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.TotalKE*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_TotalKE" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.TotalKE">TotalKE</h4>
+  <div class="markdown level1 summary"><p>Calculate the amount of energy lost in a collision including static, but not dynamic friction.
+This function should only be called from a post-solve, post-step or cpBodyEachArbiter callback.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double TotalKE { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L246">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_CallWildcardBeginA_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.CallWildcardBeginA*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_CallWildcardBeginA_Tizen_NUI_Physics2D_Chipmunk_Space_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.CallWildcardBeginA(Tizen.NUI.Physics2D.Chipmunk.Space)">CallWildcardBeginA(Space)</h4>
+  <div class="markdown level1 summary"><p>If you want a custom callback to invoke the wildcard callback for the first collision
+type, you must call this function explicitly. You must decide how to handle the
+wildcard's return value since it may disagree with the other wildcard handler's return
+value or your own.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CallWildcardBeginA(Space space)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Space.html">Space</a></td>
+        <td><span class="parametername">space</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L258">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_CallWildcardBeginB_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.CallWildcardBeginB*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_CallWildcardBeginB_Tizen_NUI_Physics2D_Chipmunk_Space_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.CallWildcardBeginB(Tizen.NUI.Physics2D.Chipmunk.Space)">CallWildcardBeginB(Space)</h4>
+  <div class="markdown level1 summary"><p>If you want a custom callback to invoke the wildcard callback for the second collision
+type, you must call this function explicitly. You must decide how to handle the
+wildcard's return value since it may disagree with the other wildcard handler's return
+value or your own.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CallWildcardBeginB(Space space)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Space.html">Space</a></td>
+        <td><span class="parametername">space</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L292">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_CallWildcardPostSolveA_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.CallWildcardPostSolveA*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_CallWildcardPostSolveA_Tizen_NUI_Physics2D_Chipmunk_Space_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.CallWildcardPostSolveA(Tizen.NUI.Physics2D.Chipmunk.Space)">CallWildcardPostSolveA(Space)</h4>
+  <div class="markdown level1 summary"><p>If you want a custom callback to invoke the wildcard callback for the first collision
+type, you must call this function explicitly.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CallWildcardPostSolveA(Space space)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Space.html">Space</a></td>
+        <td><span class="parametername">space</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L302">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_CallWildcardPostSolveB_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.CallWildcardPostSolveB*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_CallWildcardPostSolveB_Tizen_NUI_Physics2D_Chipmunk_Space_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.CallWildcardPostSolveB(Tizen.NUI.Physics2D.Chipmunk.Space)">CallWildcardPostSolveB(Space)</h4>
+  <div class="markdown level1 summary"><p>If you want a custom callback to invoke the wildcard callback for the second collision
+type, you must call this function explicitly.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CallWildcardPostSolveB(Space space)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Space.html">Space</a></td>
+        <td><span class="parametername">space</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L270">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_CallWildcardPreSolveA_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.CallWildcardPreSolveA*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_CallWildcardPreSolveA_Tizen_NUI_Physics2D_Chipmunk_Space_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.CallWildcardPreSolveA(Tizen.NUI.Physics2D.Chipmunk.Space)">CallWildcardPreSolveA(Space)</h4>
+  <div class="markdown level1 summary"><p>If you want a custom callback to invoke the wildcard callback for the first collision
+type, you must call this function explicitly. You must decide how to handle the
+wildcard's return value since it may disagree with the other wildcard handler's return
+value or your own.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CallWildcardPreSolveA(Space space)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Space.html">Space</a></td>
+        <td><span class="parametername">space</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L282">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_CallWildcardPreSolveB_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.CallWildcardPreSolveB*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_CallWildcardPreSolveB_Tizen_NUI_Physics2D_Chipmunk_Space_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.CallWildcardPreSolveB(Tizen.NUI.Physics2D.Chipmunk.Space)">CallWildcardPreSolveB(Space)</h4>
+  <div class="markdown level1 summary"><p>If you want a custom callback to invoke the wildcard callback for the second collision
+type, you must call this function explicitly. You must decide how to handle the
+wildcard's return value since it may disagree with the other wildcard handler's return
+value or your own.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CallWildcardPreSolveB(Space space)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Space.html">Space</a></td>
+        <td><span class="parametername">space</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L312">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_CallWildcardSeparateA_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.CallWildcardSeparateA*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_CallWildcardSeparateA_Tizen_NUI_Physics2D_Chipmunk_Space_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.CallWildcardSeparateA(Tizen.NUI.Physics2D.Chipmunk.Space)">CallWildcardSeparateA(Space)</h4>
+  <div class="markdown level1 summary"><p>If you want a custom callback to invoke the wildcard callback for the first collision
+type, you must call this function explicitly.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CallWildcardSeparateA(Space space)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Space.html">Space</a></td>
+        <td><span class="parametername">space</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L322">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_CallWildcardSeparateB_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.CallWildcardSeparateB*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_CallWildcardSeparateB_Tizen_NUI_Physics2D_Chipmunk_Space_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.CallWildcardSeparateB(Tizen.NUI.Physics2D.Chipmunk.Space)">CallWildcardSeparateB(Space)</h4>
+  <div class="markdown level1 summary"><p>If you want a custom callback to invoke the wildcard callback for the second collision
+type, you must call this function explicitly.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CallWildcardSeparateB(Space space)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Space.html">Space</a></td>
+        <td><span class="parametername">space</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L340">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_Equals_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.Equals*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_Equals_System_Object_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.Equals(System.Object)">Equals(object)</h4>
+  <div class="markdown level1 summary"><p>Check if an arbiter is equal to the given object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool Equals(object obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L331">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_Equals_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.Equals*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_Equals_Tizen_NUI_Physics2D_Chipmunk_Arbiter_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.Equals(Tizen.NUI.Physics2D.Chipmunk.Arbiter)">Equals(Arbiter)</h4>
+  <div class="markdown level1 summary"><p>Return true if an arbiter is equal to another.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Equals(Arbiter other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Arbiter.html">Arbiter</a></td>
+        <td><span class="parametername">other</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L126">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_GetBodies_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.GetBodies*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_GetBodies_Tizen_NUI_Physics2D_Chipmunk_Body__Tizen_NUI_Physics2D_Chipmunk_Body__" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.GetBodies(Tizen.NUI.Physics2D.Chipmunk.Body@,Tizen.NUI.Physics2D.Chipmunk.Body@)">GetBodies(out Body, out Body)</h4>
+  <div class="markdown level1 summary"><p>Return the colliding bodies involved for this arbiter. The order of the
+<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Shape.html#Tizen_NUI_Physics2D_Chipmunk_Shape_CollisionType">CollisionType</a> values the bodies are associated with will match the
+order set when the collision handler was registered.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void GetBodies(out Body a, out Body b)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Body.html">Body</a></td>
+        <td><span class="parametername">a</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Body.html">Body</a></td>
+        <td><span class="parametername">b</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L234">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_GetDepth_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.GetDepth*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_GetDepth_System_Int32_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.GetDepth(System.Int32)">GetDepth(int)</h4>
+  <div class="markdown level1 summary"><p>Get the depth (amount of overlap) of the <code data-dev-comment-type="paramref" class="paramref">i</code>th contact point.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double GetDepth(int i)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">i</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L363">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_GetHashCode_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.GetHashCode*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_GetHashCode" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.GetHashCode">GetHashCode()</h4>
+  <div class="markdown level1 summary"><p>Get the hash code.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override int GetHashCode()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L215">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_GetPointA_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.GetPointA*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_GetPointA_System_Int32_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.GetPointA(System.Int32)">GetPointA(int)</h4>
+  <div class="markdown level1 summary"><p>Get the position of the <code data-dev-comment-type="paramref" class="paramref">i</code>th contact point on the surface of the first
+shape.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vect GetPointA(int i)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">i</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L225">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_GetPointB_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.GetPointB*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_GetPointB_System_Int32_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.GetPointB(System.Int32)">GetPointB(int)</h4>
+  <div class="markdown level1 summary"><p>Get the position of the <code data-dev-comment-type="paramref" class="paramref">i</code>th contact point on the surface of the
+second shape.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vect GetPointB(int i)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">i</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L109">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_GetShapes_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.GetShapes*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_GetShapes_Tizen_NUI_Physics2D_Chipmunk_Shape__Tizen_NUI_Physics2D_Chipmunk_Shape__" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.GetShapes(Tizen.NUI.Physics2D.Chipmunk.Shape@,Tizen.NUI.Physics2D.Chipmunk.Shape@)">GetShapes(out Shape, out Shape)</h4>
+  <div class="markdown level1 summary"><p>Return the colliding shapes involved for this arbiter. The order of their
+<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Shape.html#Tizen_NUI_Physics2D_Chipmunk_Shape_CollisionType">CollisionType</a> values will match the order set when the collision
+handler was registered.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void GetShapes(out Shape a, out Shape b)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Shape.html">Shape</a></td>
+        <td><span class="parametername">a</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Shape.html">Shape</a></td>
+        <td><span class="parametername">b</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L101">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_Ignore_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.Ignore*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_Ignore" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.Ignore">Ignore()</h4>
+  <div class="markdown level1 summary"><p>Mark a collision pair to be ignored until the two objects separate. Pre-solve and
+post-solve callbacks will not be called, but the separate callback will be called.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Ignore()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L354">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_ToString_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.ToString*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_ToString" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.ToString">ToString()</h4>
+  <div class="markdown level1 summary"><p>Return the arbiter's handle prefixed by 'Handle: '.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="operators">Operators
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L372">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_op_Equality_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.op_Equality*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_op_Equality_Tizen_NUI_Physics2D_Chipmunk_Arbiter_Tizen_NUI_Physics2D_Chipmunk_Arbiter_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.op_Equality(Tizen.NUI.Physics2D.Chipmunk.Arbiter,Tizen.NUI.Physics2D.Chipmunk.Arbiter)">operator ==(Arbiter, Arbiter)</h4>
+  <div class="markdown level1 summary"><p>Check if one arbiter is equal to another.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator ==(Arbiter left, Arbiter right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Arbiter.html">Arbiter</a></td>
+        <td><span class="parametername">left</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Arbiter.html">Arbiter</a></td>
+        <td><span class="parametername">right</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L381">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_op_Inequality_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.op_Inequality*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Arbiter_op_Inequality_Tizen_NUI_Physics2D_Chipmunk_Arbiter_Tizen_NUI_Physics2D_Chipmunk_Arbiter_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Arbiter.op_Inequality(Tizen.NUI.Physics2D.Chipmunk.Arbiter,Tizen.NUI.Physics2D.Chipmunk.Arbiter)">operator !=(Arbiter, Arbiter)</h4>
+  <div class="markdown level1 summary"><p>Check if one arbiter is inequal to another.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static bool operator !=(Arbiter left, Arbiter right)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Arbiter.html">Arbiter</a></td>
+        <td><span class="parametername">left</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Arbiter.html">Arbiter</a></td>
+        <td><span class="parametername">right</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">IEquatable&lt;&gt;</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Physics2D/src/public/chipmunk/Arbiter.cs/#L34" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

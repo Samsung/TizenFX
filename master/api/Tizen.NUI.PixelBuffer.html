@@ -1,0 +1,854 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class PixelBuffer
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class PixelBuffer
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.NUI.PixelBuffer">
+
+
+  <h1 id="Tizen_NUI_PixelBuffer" data-uid="Tizen.NUI.PixelBuffer" class="text-break">Class PixelBuffer
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>The PixelBuffer object holds a pixel buffer.
+The PixelBuffer keeps ownership of its initial buffer. However, the
+user is free to modify the pixel data, either directly or via image operations.</p>
+<p>In order to upload the pixel data to the texture memory, there are two
+possibilities, either convert it back to a PixelData object, which
+releases the PixelBuffer object, leaving the user with an empty handle
+(ideal for one-time indirect image manipulation) or create a new
+PixelData object from this object, leaving the buffer intact (ideal
+for continuous manipulation).</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class PixelBuffer : BaseHandle, IDynamicResourceHandler, INameScope, System.IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
+        <div><span class="xref">PixelBuffer</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Images/PixelBuffer.cs/#L48">View Source</a>
+  </span>
+  <a id="Tizen_NUI_PixelBuffer__ctor_" data-uid="Tizen.NUI.PixelBuffer.#ctor*"></a>
+  <h4 id="Tizen_NUI_PixelBuffer__ctor_System_UInt32_System_UInt32_Tizen_NUI_PixelFormat_" data-uid="Tizen.NUI.PixelBuffer.#ctor(System.UInt32,System.UInt32,Tizen.NUI.PixelFormat)">PixelBuffer(uint, uint, PixelFormat)</h4>
+  <div class="markdown level1 summary"><p>Create a PixelBuffer with its own data buffer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PixelBuffer(uint width, uint height, PixelFormat pixelFormat)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">width</span></td>
+        <td><p>The pixel buffer width.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">height</span></td>
+        <td><p>The pixel buffer height.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.PixelFormat.html">PixelFormat</a></td>
+        <td><span class="parametername">pixelFormat</span></td>
+        <td><p>The pixel format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Images/PixelBuffer.cs/#L216">View Source</a>
+  </span>
+  <a id="Tizen_NUI_PixelBuffer_ApplyGaussianBlur_" data-uid="Tizen.NUI.PixelBuffer.ApplyGaussianBlur*"></a>
+  <h4 id="Tizen_NUI_PixelBuffer_ApplyGaussianBlur_System_Single_" data-uid="Tizen.NUI.PixelBuffer.ApplyGaussianBlur(System.Single)">ApplyGaussianBlur(float)</h4>
+  <div class="markdown level1 summary"><p>Apply a Gaussian blur to this pixel data with the given radius.
+A bigger radius will yield a blurrier image. Only works for pixel data in RGBA format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ApplyGaussianBlur(float blurRadius)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">blurRadius</span></td>
+        <td><p>The radius for Gaussian blur. A value of 0 or negative value indicates no blur.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Images/PixelBuffer.cs/#L159">View Source</a>
+  </span>
+  <a id="Tizen_NUI_PixelBuffer_ApplyMask_" data-uid="Tizen.NUI.PixelBuffer.ApplyMask*"></a>
+  <h4 id="Tizen_NUI_PixelBuffer_ApplyMask_Tizen_NUI_PixelBuffer_System_Single_System_Boolean_" data-uid="Tizen.NUI.PixelBuffer.ApplyMask(Tizen.NUI.PixelBuffer,System.Single,System.Boolean)">ApplyMask(PixelBuffer, float, bool)</h4>
+  <div class="markdown level1 summary"><p>Apply the mask to this pixel data and return a new pixel data that contains
+the masked image. If this PixelBuffer does not have an alpha channel, then
+the resultant PixelBuffer will be converted to a format that supports at
+least the width of the color channels and the alpha channel from the mask.</p>
+<p>If cropToMask is set to <code>true</code>, then the contentScale is applied first to
+this buffer, and the target buffer is cropped to the size of the mask. If
+it is set to <code>false</code>, then the mask is scaled to match the size of this buffer
+before the mask is applied.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ApplyMask(PixelBuffer mask, float contentScale, bool cropToMask)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.PixelBuffer.html">PixelBuffer</a></td>
+        <td><span class="parametername">mask</span></td>
+        <td><p>The mask to apply.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">contentScale</span></td>
+        <td><p>The scaling factor to apply to the content.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">cropToMask</span></td>
+        <td><p>Whether to crop the output to the mask size (true) or scale the mask to the content size (false).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Images/PixelBuffer.cs/#L181">View Source</a>
+  </span>
+  <a id="Tizen_NUI_PixelBuffer_ApplyMask_" data-uid="Tizen.NUI.PixelBuffer.ApplyMask*"></a>
+  <h4 id="Tizen_NUI_PixelBuffer_ApplyMask_Tizen_NUI_PixelBuffer_System_Single_" data-uid="Tizen.NUI.PixelBuffer.ApplyMask(Tizen.NUI.PixelBuffer,System.Single)">ApplyMask(PixelBuffer, float)</h4>
+  <div class="markdown level1 summary"><p>Apply the mask to this pixel data and return a new pixel data containing
+the masked image. If this PixelBuffer does not have an alpha channel, then
+the resultant PixelBuffer will be converted to a format that supports at
+least the width of the color channels and the alpha channel from the mask.</p>
+<p>If cropToMask is set to <code>true</code>, then the contentScale is applied first to
+this buffer, and the target buffer is cropped to the size of the mask. If
+it is set to <code>false</code>, then the mask is scaled to match the size of this buffer
+before the mask is applied.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ApplyMask(PixelBuffer mask, float contentScale)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.PixelBuffer.html">PixelBuffer</a></td>
+        <td><span class="parametername">mask</span></td>
+        <td><p>The mask to apply.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">contentScale</span></td>
+        <td><p>The scaling factor to apply to the content.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Images/PixelBuffer.cs/#L202">View Source</a>
+  </span>
+  <a id="Tizen_NUI_PixelBuffer_ApplyMask_" data-uid="Tizen.NUI.PixelBuffer.ApplyMask*"></a>
+  <h4 id="Tizen_NUI_PixelBuffer_ApplyMask_Tizen_NUI_PixelBuffer_" data-uid="Tizen.NUI.PixelBuffer.ApplyMask(Tizen.NUI.PixelBuffer)">ApplyMask(PixelBuffer)</h4>
+  <div class="markdown level1 summary"><p>Apply the mask to this pixel data and return a new pixel data containing
+the masked image. If this PixelBuffer does not have an alpha channel, then
+the resultant PixelBuffer will be converted to a format that supports at
+least the width of the color channels and the alpha channel from the mask.</p>
+<p>If cropToMask is set to <code>true</code>, then the contentScale is applied first to
+this buffer, and the target buffer is cropped to the size of the mask. If
+it is set to <code>false</code>, then the mask is scaled to match the size of this buffer
+before the mask is applied.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ApplyMask(PixelBuffer mask)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.PixelBuffer.html">PixelBuffer</a></td>
+        <td><span class="parametername">mask</span></td>
+        <td><p>The mask to apply.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Images/PixelBuffer.cs/#L78">View Source</a>
+  </span>
+  <a id="Tizen_NUI_PixelBuffer_Convert_" data-uid="Tizen.NUI.PixelBuffer.Convert*"></a>
+  <h4 id="Tizen_NUI_PixelBuffer_Convert_Tizen_NUI_PixelBuffer_" data-uid="Tizen.NUI.PixelBuffer.Convert(Tizen.NUI.PixelBuffer)">Convert(PixelBuffer)</h4>
+  <div class="markdown level1 summary"><p>Convert to a pixel data and release the object of the pixelBuffer.
+This handle is left empty.
+Any other handles that keep a reference to this object
+will be left with no buffer. Trying to access it will return NULL.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static PixelData Convert(PixelBuffer pixelBuffer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.PixelBuffer.html">PixelBuffer</a></td>
+        <td><span class="parametername">pixelBuffer</span></td>
+        <td><p>A pixel buffer.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.PixelData.html">PixelData</a></td>
+        <td><p>A new PixelData that takes ownership of the buffer of the pixelBuffer.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Images/PixelBuffer.cs/#L93">View Source</a>
+  </span>
+  <a id="Tizen_NUI_PixelBuffer_CreatePixelData_" data-uid="Tizen.NUI.PixelBuffer.CreatePixelData*"></a>
+  <h4 id="Tizen_NUI_PixelBuffer_CreatePixelData" data-uid="Tizen.NUI.PixelBuffer.CreatePixelData">CreatePixelData()</h4>
+  <div class="markdown level1 summary"><p>Copy the data from this object into a new PixelData object, which could be
+used for uploading to a texture.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PixelData CreatePixelData()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.PixelData.html">PixelData</a></td>
+        <td><p>The pixel data.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Images/PixelBuffer.cs/#L232">View Source</a>
+  </span>
+  <a id="Tizen_NUI_PixelBuffer_Crop_" data-uid="Tizen.NUI.PixelBuffer.Crop*"></a>
+  <h4 id="Tizen_NUI_PixelBuffer_Crop_System_UInt16_System_UInt16_System_UInt16_System_UInt16_" data-uid="Tizen.NUI.PixelBuffer.Crop(System.UInt16,System.UInt16,System.UInt16,System.UInt16)">Crop(ushort, ushort, ushort, ushort)</h4>
+  <div class="markdown level1 summary"><p>Crops this buffer to the given crop rectangle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Crop(ushort x, ushort y, ushort width, ushort height)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ushort</span></td>
+        <td><span class="parametername">x</span></td>
+        <td><p>The top left corner's X.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">ushort</span></td>
+        <td><span class="parametername">y</span></td>
+        <td><p>The top left corner's Y.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">ushort</span></td>
+        <td><span class="parametername">width</span></td>
+        <td><p>The crop width.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">ushort</span></td>
+        <td><span class="parametername">height</span></td>
+        <td><p>The crop height.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Images/PixelBuffer.cs/#L283">View Source</a>
+  </span>
+  <a id="Tizen_NUI_PixelBuffer_GetBrightness_" data-uid="Tizen.NUI.PixelBuffer.GetBrightness*"></a>
+  <h4 id="Tizen_NUI_PixelBuffer_GetBrightness" data-uid="Tizen.NUI.PixelBuffer.GetBrightness">GetBrightness()</h4>
+  <div class="markdown level1 summary"><p>Gets the brightness value of the pixel buffer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint GetBrightness()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Images/PixelBuffer.cs/#L272">View Source</a>
+  </span>
+  <a id="Tizen_NUI_PixelBuffer_GetBuffer_" data-uid="Tizen.NUI.PixelBuffer.GetBuffer*"></a>
+  <h4 id="Tizen_NUI_PixelBuffer_GetBuffer" data-uid="Tizen.NUI.PixelBuffer.GetBuffer">GetBuffer()</h4>
+  <div class="markdown level1 summary"><p>Gets the pixel buffer</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public System.IntPtr GetBuffer()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IntPtr</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Images/PixelBuffer.cs/#L121">View Source</a>
+  </span>
+  <a id="Tizen_NUI_PixelBuffer_GetHeight_" data-uid="Tizen.NUI.PixelBuffer.GetHeight*"></a>
+  <h4 id="Tizen_NUI_PixelBuffer_GetHeight" data-uid="Tizen.NUI.PixelBuffer.GetHeight">GetHeight()</h4>
+  <div class="markdown level1 summary"><p>Gets the height of the buffer in pixels.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint GetHeight()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><p>The height of the buffer in pixels.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Images/PixelBuffer.cs/#L135">View Source</a>
+  </span>
+  <a id="Tizen_NUI_PixelBuffer_GetPixelFormat_" data-uid="Tizen.NUI.PixelBuffer.GetPixelFormat*"></a>
+  <h4 id="Tizen_NUI_PixelBuffer_GetPixelFormat" data-uid="Tizen.NUI.PixelBuffer.GetPixelFormat">GetPixelFormat()</h4>
+  <div class="markdown level1 summary"><p>Gets the pixel format.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PixelFormat GetPixelFormat()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.PixelFormat.html">PixelFormat</a></td>
+        <td><p>The pixel format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Images/PixelBuffer.cs/#L107">View Source</a>
+  </span>
+  <a id="Tizen_NUI_PixelBuffer_GetWidth_" data-uid="Tizen.NUI.PixelBuffer.GetWidth*"></a>
+  <h4 id="Tizen_NUI_PixelBuffer_GetWidth" data-uid="Tizen.NUI.PixelBuffer.GetWidth">GetWidth()</h4>
+  <div class="markdown level1 summary"><p>Gets the width of the buffer in pixels.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint GetWidth()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><p>The width of the buffer in pixels.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Images/PixelBuffer.cs/#L299">View Source</a>
+  </span>
+  <a id="Tizen_NUI_PixelBuffer_ReleaseSwigCPtr_" data-uid="Tizen.NUI.PixelBuffer.ReleaseSwigCPtr*"></a>
+  <h4 id="Tizen_NUI_PixelBuffer_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.PixelBuffer.ReleaseSwigCPtr(Tizen.System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(HandleRef)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void ReleaseSwigCPtr(Runtime.InteropServices.HandleRef swigCPtr)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Tizen.System.Runtime.InteropServices.HandleRef</span></td>
+        <td><span class="parametername">swigCPtr</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseHandle.html#Tizen_NUI_BaseHandle_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_">BaseHandle.ReleaseSwigCPtr(Runtime.InteropServices.HandleRef)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Images/PixelBuffer.cs/#L246">View Source</a>
+  </span>
+  <a id="Tizen_NUI_PixelBuffer_Resize_" data-uid="Tizen.NUI.PixelBuffer.Resize*"></a>
+  <h4 id="Tizen_NUI_PixelBuffer_Resize_System_UInt16_System_UInt16_" data-uid="Tizen.NUI.PixelBuffer.Resize(System.UInt16,System.UInt16)">Resize(ushort, ushort)</h4>
+  <div class="markdown level1 summary"><p>Resizes the buffer to the given dimensions.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Resize(ushort width, ushort height)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ushort</span></td>
+        <td><span class="parametername">width</span></td>
+        <td><p>The new width.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">ushort</span></td>
+        <td><span class="parametername">height</span></td>
+        <td><p>The new height.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Images/PixelBuffer.cs/#L259">View Source</a>
+  </span>
+  <a id="Tizen_NUI_PixelBuffer_Rotate_" data-uid="Tizen.NUI.PixelBuffer.Rotate*"></a>
+  <h4 id="Tizen_NUI_PixelBuffer_Rotate_Tizen_NUI_Degree_" data-uid="Tizen.NUI.PixelBuffer.Rotate(Tizen.NUI.Degree)">Rotate(Degree)</h4>
+  <div class="markdown level1 summary"><p>Rotate the buffer by the given angle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Rotate(Degree angle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Degree.html">Degree</a></td>
+        <td><span class="parametername">angle</span></td>
+        <td><p>The angle in degrees.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.BindableObjectExtensions.html#Tizen_NUI_Binding_BindableObjectExtensions_SetBinding_Tizen_NUI_Binding_BindableObject_Tizen_NUI_Binding_BindableProperty_System_String_Tizen_NUI_Binding_BindingMode_Tizen_NUI_Binding_IValueConverter_System_String_">BindableObjectExtensions.SetBinding(BindableObject, BindableProperty, string, BindingMode, IValueConverter, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.NameScopeExtensions.html#Tizen_NUI_Binding_NameScopeExtensions_FindByName__1_Tizen_NUI_Binding_Element_System_String_">NameScopeExtensions.FindByName&lt;T&gt;(Element, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Images/PixelBuffer.cs/#L36" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

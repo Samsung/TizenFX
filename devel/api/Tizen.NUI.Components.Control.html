@@ -1,0 +1,874 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Control
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Control
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.NUI.Components.Control">
+
+
+  <h1 id="Tizen_NUI_Components_Control" data-uid="Tizen.NUI.Components.Control" class="text-break">Class Control
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.Components.html">Components</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.Components.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>The control component is base class of tv nui components. It's abstract class, so can't instantiate and can only be inherited.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Control : VisualView, IDynamicResourceHandler, INameScope, System.IDisposable, IResourcesProvider</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.ViewWrapper.html">ViewWrapper</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.CustomView.html">CustomView</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.VisualView.html">VisualView</a></div>
+        <div><span class="xref">Control</span></div>
+      </div>
+    </dd>
+  </dl>
+
+  <dl class="attribute-list stack">
+    <dt>Derived</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.AlertDialog.html">AlertDialog</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.AppBar.html">AppBar</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Button.html">Button</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.DatePicker.html">DatePicker</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Dialog.html">Dialog</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.FlexibleView.html">FlexibleView</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Loading.html">Loading</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Menu.html">Menu</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Navigator.html">Navigator</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Page.html">Page</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Pagination.html">Pagination</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Picker.html">Picker</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Popup.html">Popup</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Progress.html">Progress</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.RecyclerViewItem.html">RecyclerViewItem</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.ScrollableBase.html">ScrollableBase</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.ScrollBar.html">ScrollBar</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.ScrollbarBase.html">ScrollbarBase</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Slider.html">Slider</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Tab.html">Tab</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.TabBar.html">TabBar</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.TabContent.html">TabContent</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.TabView.html">TabView</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.TimePicker.html">TimePicker</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Toast.html">Toast</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Wearable.CircularPagination.html">CircularPagination</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Wearable.CircularProgress.html">CircularProgress</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Wearable.CircularSlider.html">CircularSlider</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Wearable.Popup.html">Popup</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Wearable.RecycleItem.html">RecycleItem</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a></div>
+    </dd>
+  </dl>
+
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Control.cs/#L85">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Control__ctor_" data-uid="Tizen.NUI.Components.Control.#ctor*"></a>
+  <h4 id="Tizen_NUI_Components_Control__ctor" data-uid="Tizen.NUI.Components.Control.#ctor">Control()</h4>
+  <div class="markdown level1 summary"><p>Construct an empty Control.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Control()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Control.cs/#L107">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Control__ctor_" data-uid="Tizen.NUI.Components.Control.#ctor*"></a>
+  <h4 id="Tizen_NUI_Components_Control__ctor_System_String_" data-uid="Tizen.NUI.Components.Control.#ctor(System.String)">Control(string)</h4>
+  <div class="markdown level1 summary"><p>Construct with style name</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Control(string styleName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">styleName</span></td>
+        <td><p>The name of style in the current theme to be applied</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Control.cs/#L96">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Control__ctor_" data-uid="Tizen.NUI.Components.Control.#ctor*"></a>
+  <h4 id="Tizen_NUI_Components_Control__ctor_Tizen_NUI_Components_ControlStyle_" data-uid="Tizen.NUI.Components.Control.#ctor(Tizen.NUI.Components.ControlStyle)">Control(ControlStyle)</h4>
+  <div class="markdown level1 summary"><p>Construct with style.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Control(ControlStyle style)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.ControlStyle.html">ControlStyle</a></td>
+        <td><span class="parametername">style</span></td>
+        <td><p>Create control with style.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="fields">Fields
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Control.cs/#L59">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Control_CommandParameterProperty" data-uid="Tizen.NUI.Components.Control.CommandParameterProperty">CommandParameterProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty CommandParameterProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Control.cs/#L55">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Control_CommandProperty" data-uid="Tizen.NUI.Components.Control.CommandProperty">CommandProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty CommandProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Control.cs/#L39">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Control_FeedbackProperty" data-uid="Tizen.NUI.Components.Control.FeedbackProperty">FeedbackProperty</h4>
+  <div class="markdown level1 summary"><p>FeedbackProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty FeedbackProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Control.cs/#L178">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Control_Command_" data-uid="Tizen.NUI.Components.Control.Command*"></a>
+  <h4 id="Tizen_NUI_Components_Control_Command" data-uid="Tizen.NUI.Components.Control.Command">Command</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICommand Command { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ICommand</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Control.cs/#L186">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Control_CommandParameter_" data-uid="Tizen.NUI.Components.Control.CommandParameter*"></a>
+  <h4 id="Tizen_NUI_Components_Control_CommandParameter" data-uid="Tizen.NUI.Components.Control.CommandParameter">CommandParameter</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object CommandParameter { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Control.cs/#L118">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Control_Feedback_" data-uid="Tizen.NUI.Components.Control.Feedback*"></a>
+  <h4 id="Tizen_NUI_Components_Control_Feedback" data-uid="Tizen.NUI.Components.Control.Feedback">Feedback</h4>
+  <div class="markdown level1 summary"><p>Enable/Disable a sound feedback when tap gesture detected.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Feedback { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Control.cs/#L328">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Control_CreateViewStyle_" data-uid="Tizen.NUI.Components.Control.CreateViewStyle*"></a>
+  <h4 id="Tizen_NUI_Components_Control_CreateViewStyle" data-uid="Tizen.NUI.Components.Control.CreateViewStyle">CreateViewStyle()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override ViewStyle CreateViewStyle()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.ViewStyle.html">ViewStyle</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_CreateViewStyle">View.CreateViewStyle()</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Control.cs/#L223">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Control_Dispose_" data-uid="Tizen.NUI.Components.Control.Dispose*"></a>
+  <h4 id="Tizen_NUI_Components_Control_Dispose_Tizen_NUI_DisposeTypes_" data-uid="Tizen.NUI.Components.Control.Dispose(Tizen.NUI.DisposeTypes)">Dispose(DisposeTypes)</h4>
+  <div class="markdown level1 summary"><p>Dispose Control and all children on it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Dispose(DisposeTypes type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.DisposeTypes.html">DisposeTypes</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Dispose type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.ViewWrapper.html#Tizen_NUI_ViewWrapper_Dispose_Tizen_NUI_DisposeTypes_">ViewWrapper.Dispose(DisposeTypes)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Control.cs/#L286">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Control_OnFocusGained_" data-uid="Tizen.NUI.Components.Control.OnFocusGained*"></a>
+  <h4 id="Tizen_NUI_Components_Control_OnFocusGained" data-uid="Tizen.NUI.Components.Control.OnFocusGained">OnFocusGained()</h4>
+  <div class="markdown level1 summary"><p>Called when the control gain key input focus. Should be overridden by derived classes if they need to customize what happens when the focus is gained.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void OnFocusGained()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.CustomView.html#Tizen_NUI_BaseComponents_CustomView_OnFocusGained">CustomView.OnFocusGained()</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Control.cs/#L297">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Control_OnFocusLost_" data-uid="Tizen.NUI.Components.Control.OnFocusLost*"></a>
+  <h4 id="Tizen_NUI_Components_Control_OnFocusLost" data-uid="Tizen.NUI.Components.Control.OnFocusLost">OnFocusLost()</h4>
+  <div class="markdown level1 summary"><p>Called when the control loses key input focus. Should be overridden by derived classes if they need to customize what happens when the focus is lost.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void OnFocusLost()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.CustomView.html#Tizen_NUI_BaseComponents_CustomView_OnFocusLost">CustomView.OnFocusLost()</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Control.cs/#L242">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Control_OnInitialize_" data-uid="Tizen.NUI.Components.Control.OnInitialize*"></a>
+  <h4 id="Tizen_NUI_Components_Control_OnInitialize" data-uid="Tizen.NUI.Components.Control.OnInitialize">OnInitialize()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void OnInitialize()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.VisualView.html#Tizen_NUI_BaseComponents_VisualView_OnInitialize">VisualView.OnInitialize()</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Control.cs/#L258">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Control_OnKey_" data-uid="Tizen.NUI.Components.Control.OnKey*"></a>
+  <h4 id="Tizen_NUI_Components_Control_OnKey_Tizen_NUI_Key_" data-uid="Tizen.NUI.Components.Control.OnKey(Tizen.NUI.Key)">OnKey(Key)</h4>
+  <div class="markdown level1 summary"><p>Called after a key event is received by the view that has had its focus set.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override bool OnKey(Key key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Key.html">Key</a></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key event.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if the key event should be consumed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.CustomView.html#Tizen_NUI_BaseComponents_CustomView_OnKey_Tizen_NUI_Key_">CustomView.OnKey(Key)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Control.cs/#L274">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Control_OnRelayout_" data-uid="Tizen.NUI.Components.Control.OnRelayout*"></a>
+  <h4 id="Tizen_NUI_Components_Control_OnRelayout_Tizen_NUI_Vector2_Tizen_NUI_RelayoutContainer_" data-uid="Tizen.NUI.Components.Control.OnRelayout(Tizen.NUI.Vector2,Tizen.NUI.RelayoutContainer)">OnRelayout(Vector2, RelayoutContainer)</h4>
+  <div class="markdown level1 summary"><p>Called after the size negotiation has been finished for this control.<br>
+The control is expected to assign this given size to itself or its children.<br>
+Should be overridden by derived classes if they need to layout views differently after certain operations like add or remove views, resize, or after changing specific properties.<br>
+As this function is called from inside the size negotiation algorithm, you cannot call RequestRelayout (the call would just be ignored).<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void OnRelayout(Vector2 size, RelayoutContainer container)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector2.html">Vector2</a></td>
+        <td><span class="parametername">size</span></td>
+        <td><p>The allocated size.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.RelayoutContainer.html">RelayoutContainer</a></td>
+        <td><span class="parametername">container</span></td>
+        <td><p>The control should add views to this container that it is not able to allocate a size for.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.VisualView.html#Tizen_NUI_BaseComponents_VisualView_OnRelayout_Tizen_NUI_Vector2_Tizen_NUI_RelayoutContainer_">VisualView.OnRelayout(Vector2, RelayoutContainer)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Control.cs/#L335">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Control_OnThemeChanged_" data-uid="Tizen.NUI.Components.Control.OnThemeChanged*"></a>
+  <h4 id="Tizen_NUI_Components_Control_OnThemeChanged_System_Object_Tizen_NUI_ThemeChangedEventArgs_" data-uid="Tizen.NUI.Components.Control.OnThemeChanged(System.Object,Tizen.NUI.ThemeChangedEventArgs)">OnThemeChanged(object, ThemeChangedEventArgs)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnThemeChanged(object sender, ThemeChangedEventArgs e)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">sender</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ThemeChangedEventArgs.html">ThemeChangedEventArgs</a></td>
+        <td><span class="parametername">e</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_OnThemeChanged_System_Object_Tizen_NUI_ThemeChangedEventArgs_">View.OnThemeChanged(object, ThemeChangedEventArgs)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Control.cs/#L321">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Control_OnThemeChangedEvent_" data-uid="Tizen.NUI.Components.Control.OnThemeChangedEvent*"></a>
+  <h4 id="Tizen_NUI_Components_Control_OnThemeChangedEvent_System_Object_Tizen_NUI_Components_StyleManager_ThemeChangeEventArgs_" data-uid="Tizen.NUI.Components.Control.OnThemeChangedEvent(System.Object,Tizen.NUI.Components.StyleManager.ThemeChangeEventArgs)">OnThemeChangedEvent(object, ThemeChangeEventArgs)</h4>
+  <div class="markdown level1 summary"><p>Theme change callback when theme is changed, this callback will be trigger.
+Note that it is deprecated API.Please use OnThemeChanged instead.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">sender</span></td>
+        <td><p>The sender</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.StyleManager.html">StyleManager</a>.<a class="xref" href="Tizen.NUI.Components.StyleManager.ThemeChangeEventArgs.html">ThemeChangeEventArgs</a></td>
+        <td><span class="parametername">e</span></td>
+        <td><p>The event data</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Control.cs/#L308">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Control_OnUpdate_" data-uid="Tizen.NUI.Components.Control.OnUpdate*"></a>
+  <h4 id="Tizen_NUI_Components_Control_OnUpdate" data-uid="Tizen.NUI.Components.Control.OnUpdate">OnUpdate()</h4>
+  <div class="markdown level1 summary"><p>Update by style.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnUpdate()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Control.cs/#L354">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Control_PassFocusableViewInsideIfNeeded_" data-uid="Tizen.NUI.Components.Control.PassFocusableViewInsideIfNeeded*"></a>
+  <h4 id="Tizen_NUI_Components_Control_PassFocusableViewInsideIfNeeded" data-uid="Tizen.NUI.Components.Control.PassFocusableViewInsideIfNeeded">PassFocusableViewInsideIfNeeded()</h4>
+  <div class="markdown level1 summary"><p>when the derived class of Control is used as container and itself is not Focusable, this can be used when calling SetCurrentFocusView()
+this can return Focusable View inside of itself. this can be utilized when default algorithm is enabled and when the case of setting first key focus in container.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual View PassFocusableViewInsideIfNeeded()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><p>Focusable View inside of container</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Control.cs/#L74">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Control_Preload_" data-uid="Tizen.NUI.Components.Control.Preload*"></a>
+  <h4 id="Tizen_NUI_Components_Control_Preload" data-uid="Tizen.NUI.Components.Control.Preload">Preload()</h4>
+  <div class="markdown level1 summary"><p>This is used to improve theme performance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Preload()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Control.cs/#L32" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

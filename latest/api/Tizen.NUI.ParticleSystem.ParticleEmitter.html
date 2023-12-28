@@ -1,0 +1,926 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ParticleEmitter
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ParticleEmitter
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API11">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter">
+
+
+  <h1 id="Tizen_NUI_ParticleSystem_ParticleEmitter" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter" class="text-break">Class ParticleEmitter
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.ParticleSystem.html">ParticleSystem</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Class ParticleEmitter creates a single emitter attached to a specified
+View. ParticleEmitter is responsible for spawning and updating particles.</p>
+<p>Emitter must contain:
+ParticleSource - responsible for spawning new particles
+ParticleModifier(s) - responsible for updating particles in the system</p>
+<p>ParticleSource and ParticleModifier callback interfaces should not be accessing
+Event side (NUI) objects. Both callbacks are executed on Update thread.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class ParticleEmitter : BaseHandle, IDynamicResourceHandler, INameScope, System.IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
+        <div><span class="xref">ParticleEmitter</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/ParticleSystem/ParticleEmitter.cs/#L60">View Source</a>
+  </span>
+  <a id="Tizen_NUI_ParticleSystem_ParticleEmitter__ctor_" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.#ctor*"></a>
+  <h4 id="Tizen_NUI_ParticleSystem_ParticleEmitter__ctor_Tizen_NUI_BaseComponents_View_" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.#ctor(Tizen.NUI.BaseComponents.View)">ParticleEmitter(View)</h4>
+  <div class="markdown level1 summary"><p>Create an initialized ParticleEmitter.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ParticleEmitter(View view)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><span class="parametername">view</span></td>
+        <td><p>View to attach the particle emitter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/ParticleSystem/ParticleEmitter.cs/#L179">View Source</a>
+  </span>
+  <a id="Tizen_NUI_ParticleSystem_ParticleEmitter_ActiveParticleLimit_" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.ActiveParticleLimit*"></a>
+  <h4 id="Tizen_NUI_ParticleSystem_ParticleEmitter_ActiveParticleLimit" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.ActiveParticleLimit">ActiveParticleLimit</h4>
+  <div class="markdown level1 summary"><p>Limit of active particles in the system</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint ActiveParticleLimit { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_ParticleSystem_ParticleEmitter_ActiveParticleLimit_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Active particles in the system can be limited without changing <a class="xref" href="Tizen.NUI.ParticleSystem.ParticleEmitter.html#Tizen_NUI_ParticleSystem_ParticleEmitter_ParticleCount">ParticleCount</a>.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/ParticleSystem/ParticleEmitter.cs/#L134">View Source</a>
+  </span>
+  <a id="Tizen_NUI_ParticleSystem_ParticleEmitter_EmissionRate_" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.EmissionRate*"></a>
+  <h4 id="Tizen_NUI_ParticleSystem_ParticleEmitter_EmissionRate" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.EmissionRate">EmissionRate</h4>
+  <div class="markdown level1 summary"><p>Rate of emission per second</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint EmissionRate { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_ParticleSystem_ParticleEmitter_EmissionRate_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>EmissionRate defines number of particles emitted per second.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/ParticleSystem/ParticleEmitter.cs/#L157">View Source</a>
+  </span>
+  <a id="Tizen_NUI_ParticleSystem_ParticleEmitter_InitialParticleCount_" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.InitialParticleCount*"></a>
+  <h4 id="Tizen_NUI_ParticleSystem_ParticleEmitter_InitialParticleCount" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.InitialParticleCount">InitialParticleCount</h4>
+  <div class="markdown level1 summary"><p>Initial particle count</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint InitialParticleCount { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_ParticleSystem_ParticleEmitter_InitialParticleCount_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Initial number of particles to be emitted immediately after emitter starts. It allows
+initial burst emission. By default it's set to 0.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/ParticleSystem/ParticleEmitter.cs/#L111">View Source</a>
+  </span>
+  <a id="Tizen_NUI_ParticleSystem_ParticleEmitter_ParticleCount_" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.ParticleCount*"></a>
+  <h4 id="Tizen_NUI_ParticleSystem_ParticleEmitter_ParticleCount" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.ParticleCount">ParticleCount</h4>
+  <div class="markdown level1 summary"><p>Maximum particle count</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint ParticleCount { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/ParticleSystem/ParticleEmitter.cs/#L202">View Source</a>
+  </span>
+  <a id="Tizen_NUI_ParticleSystem_ParticleEmitter_RendererBlendingMode_" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.RendererBlendingMode*"></a>
+  <h4 id="Tizen_NUI_ParticleSystem_ParticleEmitter_RendererBlendingMode" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.RendererBlendingMode">RendererBlendingMode</h4>
+  <div class="markdown level1 summary"><p>Gets/sets blending mode for particle renderer</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ParticleBlendingMode RendererBlendingMode { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ParticleSystem.ParticleBlendingMode.html">ParticleBlendingMode</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_ParticleSystem_ParticleEmitter_RendererBlendingMode_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Currently two blending modes are supported: Additive and Screen (advanced blending mode).
+<a class="xref" href="Tizen.NUI.ParticleSystem.ParticleBlendingMode.html">ParticleBlendingMode</a></p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/ParticleSystem/ParticleEmitter.cs/#L221">View Source</a>
+  </span>
+  <a id="Tizen_NUI_ParticleSystem_ParticleEmitter_TextureResourceUrl_" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.TextureResourceUrl*"></a>
+  <h4 id="Tizen_NUI_ParticleSystem_ParticleEmitter_TextureResourceUrl" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.TextureResourceUrl">TextureResourceUrl</h4>
+  <div class="markdown level1 summary"><p>Sets texture to be used by the renderer</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string TextureResourceUrl { set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/ParticleSystem/ParticleEmitter.cs/#L312">View Source</a>
+  </span>
+  <a id="Tizen_NUI_ParticleSystem_ParticleEmitter_AddLocalStreamFloat_" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.AddLocalStreamFloat*"></a>
+  <h4 id="Tizen_NUI_ParticleSystem_ParticleEmitter_AddLocalStreamFloat_System_Single_" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.AddLocalStreamFloat(System.Single)">AddLocalStreamFloat(float)</h4>
+  <div class="markdown level1 summary"><p>Adds local (not used by shader) data stream to the particle emitter</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint AddLocalStreamFloat(float defaultValue)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">defaultValue</span></td>
+        <td><p>Default value to fill the stream with</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><p>Index of newly created data stream</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_ParticleSystem_ParticleEmitter_AddLocalStreamFloat_System_Single__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Adds new stream of float type.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/ParticleSystem/ParticleEmitter.cs/#L328">View Source</a>
+  </span>
+  <a id="Tizen_NUI_ParticleSystem_ParticleEmitter_AddLocalStreamVector2_" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.AddLocalStreamVector2*"></a>
+  <h4 id="Tizen_NUI_ParticleSystem_ParticleEmitter_AddLocalStreamVector2_Tizen_NUI_Vector2_" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.AddLocalStreamVector2(Tizen.NUI.Vector2)">AddLocalStreamVector2(Vector2)</h4>
+  <div class="markdown level1 summary"><p>Adds local (not used by shader) data stream to the particle emitter</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint AddLocalStreamVector2(Vector2 defaultValue)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector2.html">Vector2</a></td>
+        <td><span class="parametername">defaultValue</span></td>
+        <td><p>Default value to fill the stream with</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><p>Index of newly created data stream</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_ParticleSystem_ParticleEmitter_AddLocalStreamVector2_Tizen_NUI_Vector2__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Adds new stream of Vector2 type.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/ParticleSystem/ParticleEmitter.cs/#L344">View Source</a>
+  </span>
+  <a id="Tizen_NUI_ParticleSystem_ParticleEmitter_AddLocalStreamVector3_" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.AddLocalStreamVector3*"></a>
+  <h4 id="Tizen_NUI_ParticleSystem_ParticleEmitter_AddLocalStreamVector3_Tizen_NUI_Vector3_" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.AddLocalStreamVector3(Tizen.NUI.Vector3)">AddLocalStreamVector3(Vector3)</h4>
+  <div class="markdown level1 summary"><p>Adds local (not used by shader) data stream to the particle emitter</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint AddLocalStreamVector3(Vector3 defaultValue)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td><span class="parametername">defaultValue</span></td>
+        <td><p>Default value to fill the stream with</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><p>Index of newly created data stream</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_ParticleSystem_ParticleEmitter_AddLocalStreamVector3_Tizen_NUI_Vector3__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Adds new stream of Vector3 type.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/ParticleSystem/ParticleEmitter.cs/#L360">View Source</a>
+  </span>
+  <a id="Tizen_NUI_ParticleSystem_ParticleEmitter_AddLocalStreamVector4_" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.AddLocalStreamVector4*"></a>
+  <h4 id="Tizen_NUI_ParticleSystem_ParticleEmitter_AddLocalStreamVector4_Tizen_NUI_Vector4_" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.AddLocalStreamVector4(Tizen.NUI.Vector4)">AddLocalStreamVector4(Vector4)</h4>
+  <div class="markdown level1 summary"><p>Adds local (not used by shader) data stream to the particle emitter</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint AddLocalStreamVector4(Vector4 defaultValue)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector4.html">Vector4</a></td>
+        <td><span class="parametername">defaultValue</span></td>
+        <td><p>Default value to fill the stream with</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><p>Index of newly created data stream</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_ParticleSystem_ParticleEmitter_AddLocalStreamVector4_Tizen_NUI_Vector4__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Adds new stream of Vector4 type.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/ParticleSystem/ParticleEmitter.cs/#L247">View Source</a>
+  </span>
+  <a id="Tizen_NUI_ParticleSystem_ParticleEmitter_AddModifier_" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.AddModifier*"></a>
+  <h4 id="Tizen_NUI_ParticleSystem_ParticleEmitter_AddModifier__1_Tizen_NUI_ParticleSystem_ParticleModifier___0__" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.AddModifier``1(Tizen.NUI.ParticleSystem.ParticleModifier{``0})">AddModifier&lt;T&gt;(ParticleModifier&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Adds ParticleModifier to the stack</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddModifier&lt;T&gt;(ParticleModifier&lt;T&gt; modifier) where T : ParticleModifierInterface, new()</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ParticleSystem.ParticleModifier-1.html">ParticleModifier</a>&lt;T&gt;</td>
+        <td><span class="parametername">modifier</span></td>
+        <td><p>Valid modifier object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_ParticleSystem_ParticleEmitter_AddModifier__1_Tizen_NUI_ParticleSystem_ParticleModifier___0___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>ParticleEmitter implements a stack of modifiers which are responsible for
+updating particles in the system. The stack is processed such as result of
+previous modifier is an input for next modifier.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/ParticleSystem/ParticleEmitter.cs/#L70">View Source</a>
+  </span>
+  <a id="Tizen_NUI_ParticleSystem_ParticleEmitter_Dispose_" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.Dispose*"></a>
+  <h4 id="Tizen_NUI_ParticleSystem_ParticleEmitter_Dispose_Tizen_NUI_DisposeTypes_" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.Dispose(Tizen.NUI.DisposeTypes)">Dispose(DisposeTypes)</h4>
+  <div class="markdown level1 summary"><p>Dispose.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Dispose(DisposeTypes type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.DisposeTypes.html">DisposeTypes</a></td>
+        <td><span class="parametername">type</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseHandle.html#Tizen_NUI_BaseHandle_Dispose_Tizen_NUI_DisposeTypes_">BaseHandle.Dispose(DisposeTypes)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/ParticleSystem/ParticleEmitter.cs/#L275">View Source</a>
+  </span>
+  <a id="Tizen_NUI_ParticleSystem_ParticleEmitter_GetModifierAt_" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.GetModifierAt*"></a>
+  <h4 id="Tizen_NUI_ParticleSystem_ParticleEmitter_GetModifierAt_System_UInt32_" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.GetModifierAt(System.UInt32)">GetModifierAt(uint)</h4>
+  <div class="markdown level1 summary"><p>Returns modifier at specified index</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ParticleModifier&lt;ParticleModifierInterface&gt; GetModifierAt(uint index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>Index within modifier stack</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ParticleSystem.ParticleModifier-1.html">ParticleModifier</a>&lt;<a class="xref" href="Tizen.NUI.ParticleSystem.ParticleModifierInterface.html">ParticleModifierInterface</a>&gt;</td>
+        <td><p>Valid ParticleModifier object or null</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/ParticleSystem/ParticleEmitter.cs/#L261">View Source</a>
+  </span>
+  <a id="Tizen_NUI_ParticleSystem_ParticleEmitter_GetSource_" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.GetSource*"></a>
+  <h4 id="Tizen_NUI_ParticleSystem_ParticleEmitter_GetSource__1" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.GetSource``1">GetSource&lt;T&gt;()</h4>
+  <div class="markdown level1 summary"><p>Returns associated ParticleSource object</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ParticleSource&lt;T&gt; GetSource&lt;T&gt;() where T : ParticleSourceInterface, new()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ParticleSystem.ParticleSource-1.html">ParticleSource</a>&lt;T&gt;</td>
+        <td><p>Valid ParticleSource object or null</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/ParticleSystem/ParticleEmitter.cs/#L97">View Source</a>
+  </span>
+  <a id="Tizen_NUI_ParticleSystem_ParticleEmitter_SetSource_" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.SetSource*"></a>
+  <h4 id="Tizen_NUI_ParticleSystem_ParticleEmitter_SetSource__1_Tizen_NUI_ParticleSystem_ParticleSource___0__" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.SetSource``1(Tizen.NUI.ParticleSystem.ParticleSource{``0})">SetSource&lt;T&gt;(ParticleSource&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Raises the window to the top of the window stack.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetSource&lt;T&gt;(ParticleSource&lt;T&gt; source) where T : ParticleSourceInterface, new()</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ParticleSystem.ParticleSource-1.html">ParticleSource</a>&lt;T&gt;</td>
+        <td><span class="parametername">source</span></td>
+        <td><p>Source object to copy.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/ParticleSystem/ParticleEmitter.cs/#L287">View Source</a>
+  </span>
+  <a id="Tizen_NUI_ParticleSystem_ParticleEmitter_Start_" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.Start*"></a>
+  <h4 id="Tizen_NUI_ParticleSystem_ParticleEmitter_Start" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.Start">Start()</h4>
+  <div class="markdown level1 summary"><p>Starts emission of particles.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Start()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/ParticleSystem/ParticleEmitter.cs/#L297">View Source</a>
+  </span>
+  <a id="Tizen_NUI_ParticleSystem_ParticleEmitter_Stop_" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.Stop*"></a>
+  <h4 id="Tizen_NUI_ParticleSystem_ParticleEmitter_Stop" data-uid="Tizen.NUI.ParticleSystem.ParticleEmitter.Stop">Stop()</h4>
+  <div class="markdown level1 summary"><p>Stops emission of particles.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Stop()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.BindableObjectExtensions.html#Tizen_NUI_Binding_BindableObjectExtensions_SetBinding_Tizen_NUI_Binding_BindableObject_Tizen_NUI_Binding_BindableProperty_System_String_Tizen_NUI_Binding_BindingMode_Tizen_NUI_Binding_IValueConverter_System_String_">BindableObjectExtensions.SetBinding(BindableObject, BindableProperty, string, BindingMode, IValueConverter, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.NameScopeExtensions.html#Tizen_NUI_Binding_NameScopeExtensions_FindByName__1_Tizen_NUI_Binding_Element_System_String_">NameScopeExtensions.FindByName&lt;T&gt;(Element, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/ParticleSystem/ParticleEmitter.cs/#L49" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

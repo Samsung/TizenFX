@@ -1,0 +1,2078 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class AccessibilityManager
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class AccessibilityManager
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.NUI.Accessibility.AccessibilityManager">
+
+
+  <h1 id="Tizen_NUI_Accessibility_AccessibilityManager" data-uid="Tizen.NUI.Accessibility.AccessibilityManager" class="text-break">Class AccessibilityManager
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.Accessibility.html">Accessibility</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>AccessibilityManager manages registration of views in an accessibility focus chain and changing the focused view within that chain.
+This class provides the functionality of registering the focus order and description of views and maintaining the focus chain.
+It provides functionality of setting the focus and moving the focus forward and backward.
+It also draws a highlight for the focused view and emits a signal when the focus is changed.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class AccessibilityManager : BaseHandle, IDynamicResourceHandler, INameScope, System.IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
+        <div><span class="xref">AccessibilityManager</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManager.cs/#L320">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Accessibility_AccessibilityManager__ctor_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.#ctor*"></a>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager__ctor" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.#ctor">AccessibilityManager()</h4>
+  <div class="markdown level1 summary"><p>Creates an AccessibilityManager handle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AccessibilityManager()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManager.cs/#L332">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Accessibility_AccessibilityManager_Instance_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.Instance*"></a>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_Instance" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.Instance">Instance</h4>
+  <div class="markdown level1 summary"><p>Gets the singleton of AccessibilityManager object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static AccessibilityManager Instance { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Accessibility.AccessibilityManager.html">AccessibilityManager</a></td>
+        <td><p>A handle to the AccessibilityManager</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManager.cs/#L537">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Accessibility_AccessibilityManager_ClearFocus_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.ClearFocus*"></a>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_ClearFocus" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.ClearFocus">ClearFocus()</h4>
+  <div class="markdown level1 summary"><p>Clears the focus from the current focused view if any, so that no view is focused in the focus chain.
+It will emit focus changed signal without current focused view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ClearFocus()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManager.cs/#L417">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Accessibility_AccessibilityManager_GenerateNewFocusOrder_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.GenerateNewFocusOrder*"></a>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_GenerateNewFocusOrder" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.GenerateNewFocusOrder">GenerateNewFocusOrder()</h4>
+  <div class="markdown level1 summary"><p>Generates a new focus order number which can be used to assign to views
+which need to be appended to the end of the current focus order chain.
+The new number will be an increment over the very last focus order number in the focus chain.
+If the focus chain is empty then the function returns 1,
+else the number returned will be FOLast + 1 where FOLast is the focus order of the very last control in the focus chain.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint GenerateNewFocusOrder()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><p>The focus order of the view</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManager.cs/#L364">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Accessibility_AccessibilityManager_GetAccessibilityAttribute_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.GetAccessibilityAttribute*"></a>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_GetAccessibilityAttribute_Tizen_NUI_BaseComponents_View_Tizen_NUI_Accessibility_AccessibilityManager_AccessibilityAttribute_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.GetAccessibilityAttribute(Tizen.NUI.BaseComponents.View,Tizen.NUI.Accessibility.AccessibilityManager.AccessibilityAttribute)">GetAccessibilityAttribute(View, AccessibilityAttribute)</h4>
+  <div class="markdown level1 summary"><p>Gets the text of the specified view's accessibility attribute.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetAccessibilityAttribute(View view, AccessibilityManager.AccessibilityAttribute type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><span class="parametername">view</span></td>
+        <td><p>The view to be queried</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Accessibility.AccessibilityManager.html">AccessibilityManager</a>.<a class="xref" href="Tizen.NUI.Accessibility.AccessibilityManager.AccessibilityAttribute.html">AccessibilityAttribute</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The attribute type to be queried</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>The text of the view's accessibility information</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManager.cs/#L478">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Accessibility_AccessibilityManager_GetCurrentFocusGroup_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.GetCurrentFocusGroup*"></a>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_GetCurrentFocusGroup" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.GetCurrentFocusGroup">GetCurrentFocusGroup()</h4>
+  <div class="markdown level1 summary"><p>Gets the focus group of current focused view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public View GetCurrentFocusGroup()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><p>A handle to the immediate parent of the current focused view which is also a focus group, or an empty handle if no view is focused</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManager.cs/#L492">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Accessibility_AccessibilityManager_GetCurrentFocusOrder_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.GetCurrentFocusOrder*"></a>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_GetCurrentFocusOrder" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.GetCurrentFocusOrder">GetCurrentFocusOrder()</h4>
+  <div class="markdown level1 summary"><p>Gets the focus order of currently focused view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint GetCurrentFocusOrder()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><p>The focus order of the currently focused view or 0 if no view is in focus</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManager.cs/#L464">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Accessibility_AccessibilityManager_GetCurrentFocusView_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.GetCurrentFocusView*"></a>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_GetCurrentFocusView" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.GetCurrentFocusView">GetCurrentFocusView()</h4>
+  <div class="markdown level1 summary"><p>Gets the current focused view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public View GetCurrentFocusView()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><p>A handle to the current focused view or an empty handle if no view is focused</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManager.cs/#L679">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Accessibility_AccessibilityManager_GetFocusGroup_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.GetFocusGroup*"></a>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_GetFocusGroup_Tizen_NUI_BaseComponents_View_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.GetFocusGroup(Tizen.NUI.BaseComponents.View)">GetFocusGroup(View)</h4>
+  <div class="markdown level1 summary"><p>Returns the closest ancestor of the given view that is a focus group.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public View GetFocusGroup(View view)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><span class="parametername">view</span></td>
+        <td><p>The view to be checked for its focus group</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><p>The focus group the given view belongs to or an empty handle if the given view doesn't belong to any focus group</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManager.cs/#L664">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Accessibility_AccessibilityManager_GetFocusIndicatorView_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.GetFocusIndicatorView*"></a>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_GetFocusIndicatorView" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.GetFocusIndicatorView">GetFocusIndicatorView()</h4>
+  <div class="markdown level1 summary"><p>Gets the focus indicator view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public View GetFocusIndicatorView()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><p>A handle to the focus indicator view</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManager.cs/#L399">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Accessibility_AccessibilityManager_GetFocusOrder_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.GetFocusOrder*"></a>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_GetFocusOrder_Tizen_NUI_BaseComponents_View_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.GetFocusOrder(Tizen.NUI.BaseComponents.View)">GetFocusOrder(View)</h4>
+  <div class="markdown level1 summary"><p>Gets the focus order of the view.
+When the focus order is 0, it means the focus order of the view is undefined.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint GetFocusOrder(View view)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><span class="parametername">view</span></td>
+        <td><p>the view to be set with</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><p>The focus order of the view</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManager.cs/#L606">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Accessibility_AccessibilityManager_GetGroupMode_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.GetGroupMode*"></a>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_GetGroupMode" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.GetGroupMode">GetGroupMode()</h4>
+  <div class="markdown level1 summary"><p>Gets whether the group mode is enabled or not.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool GetGroupMode()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>Whether the group mode is enabled or not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManager.cs/#L693">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Accessibility_AccessibilityManager_GetReadPosition_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.GetReadPosition*"></a>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_GetReadPosition" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.GetReadPosition">GetReadPosition()</h4>
+  <div class="markdown level1 summary"><p>Returns the current position of the read action.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector2 GetReadPosition()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector2.html">Vector2</a></td>
+        <td><p>The current event position</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManager.cs/#L433">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Accessibility_AccessibilityManager_GetViewByFocusOrder_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.GetViewByFocusOrder*"></a>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_GetViewByFocusOrder_System_UInt32_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.GetViewByFocusOrder(System.UInt32)">GetViewByFocusOrder(uint)</h4>
+  <div class="markdown level1 summary"><p>Gets the view that has the specified focus order.
+It will return an empty handle if no view in the window has the specified focus order.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public View GetViewByFocusOrder(uint order)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">order</span></td>
+        <td><p>The focus order of the view</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><p>The view that has the specified focus order or an empty handle if no view in the stage has the specified focus order</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManager.cs/#L635">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Accessibility_AccessibilityManager_GetWrapMode_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.GetWrapMode*"></a>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_GetWrapMode" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.GetWrapMode">GetWrapMode()</h4>
+  <div class="markdown level1 summary"><p>Gets whether the wrap mode is enabled or not.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool GetWrapMode()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>Whether the wrap mode is enabled or not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManager.cs/#L577">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Accessibility_AccessibilityManager_IsFocusGroup_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.IsFocusGroup*"></a>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_IsFocusGroup_Tizen_NUI_BaseComponents_View_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.IsFocusGroup(Tizen.NUI.BaseComponents.View)">IsFocusGroup(View)</h4>
+  <div class="markdown level1 summary"><p>Checks whether the view is set as a focus group or not.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsFocusGroup(View view)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><span class="parametername">view</span></td>
+        <td><p>the view to be checked</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>Whether the view is set as a focus group</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManager.cs/#L523">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Accessibility_AccessibilityManager_MoveFocusBackward_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.MoveFocusBackward*"></a>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_MoveFocusBackward" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.MoveFocusBackward">MoveFocusBackward()</h4>
+  <div class="markdown level1 summary"><p>Moves the focus to the previous focusable view in the focus chain (according to the focus traversal order).
+When the focus movement is wrapped around, the focus will be moved to the last focusable view
+when it reaches the beginning of the focus chain.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool MoveFocusBackward()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if the moving was successful</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManager.cs/#L507">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Accessibility_AccessibilityManager_MoveFocusForward_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.MoveFocusForward*"></a>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_MoveFocusForward" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.MoveFocusForward">MoveFocusForward()</h4>
+  <div class="markdown level1 summary"><p>Moves the focus to the next focusable view in the focus chain (according to the focus traversal order).
+When the focus movement is wrapped around, the focus will be moved to the first focusable view when it reaches the end of the focus chain.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool MoveFocusForward()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if the moving was successful</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManager.cs/#L41">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Accessibility_AccessibilityManager_ReleaseSwigCPtr_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.ReleaseSwigCPtr*"></a>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.ReleaseSwigCPtr(Tizen.System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(HandleRef)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void ReleaseSwigCPtr(Runtime.InteropServices.HandleRef swigCPtr)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Tizen.System.Runtime.InteropServices.HandleRef</span></td>
+        <td><span class="parametername">swigCPtr</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseHandle.html#Tizen_NUI_BaseHandle_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_">BaseHandle.ReleaseSwigCPtr(Runtime.InteropServices.HandleRef)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManager.cs/#L549">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Accessibility_AccessibilityManager_Reset_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.Reset*"></a>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_Reset" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.Reset">Reset()</h4>
+  <div class="markdown level1 summary"><p>Clears every registered focusable view from focus-manager.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Reset()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManager.cs/#L349">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Accessibility_AccessibilityManager_SetAccessibilityAttribute_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.SetAccessibilityAttribute*"></a>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_SetAccessibilityAttribute_Tizen_NUI_BaseComponents_View_Tizen_NUI_Accessibility_AccessibilityManager_AccessibilityAttribute_System_String_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.SetAccessibilityAttribute(Tizen.NUI.BaseComponents.View,Tizen.NUI.Accessibility.AccessibilityManager.AccessibilityAttribute,System.String)">SetAccessibilityAttribute(View, AccessibilityAttribute, string)</h4>
+  <div class="markdown level1 summary"><p>Sets the information of the specified view's accessibility attribute.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetAccessibilityAttribute(View view, AccessibilityManager.AccessibilityAttribute type, string text)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><span class="parametername">view</span></td>
+        <td><p>The view to be set with</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Accessibility.AccessibilityManager.html">AccessibilityManager</a>.<a class="xref" href="Tizen.NUI.Accessibility.AccessibilityManager.AccessibilityAttribute.html">AccessibilityAttribute</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The attribute type the text to be set with</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">text</span></td>
+        <td><p>The text for the view's accessibility information</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManager.cs/#L450">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Accessibility_AccessibilityManager_SetCurrentFocusView_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.SetCurrentFocusView*"></a>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_SetCurrentFocusView_Tizen_NUI_BaseComponents_View_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.SetCurrentFocusView(Tizen.NUI.BaseComponents.View)">SetCurrentFocusView(View)</h4>
+  <div class="markdown level1 summary"><p>Moves the focus to the specified view.
+Only one view can be focused at the same time. The view must have a defined focus order
+and must be focusable, visible and in the window.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool SetCurrentFocusView(View view)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><span class="parametername">view</span></td>
+        <td><p>the view to be set with</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>Whether the focus is successful or not</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManager.cs/#L563">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Accessibility_AccessibilityManager_SetFocusGroup_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.SetFocusGroup*"></a>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_SetFocusGroup_Tizen_NUI_BaseComponents_View_System_Boolean_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.SetFocusGroup(Tizen.NUI.BaseComponents.View,System.Boolean)">SetFocusGroup(View, bool)</h4>
+  <div class="markdown level1 summary"><p>Sets whether an view is a focus group that can limit the scope of focus movement to its child views in the focus chain.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetFocusGroup(View view, bool isFocusGroup)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><span class="parametername">view</span></td>
+        <td><p>the view to be set as a focus group</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">isFocusGroup</span></td>
+        <td><p>Whether to set the view to be a focus group or not</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManager.cs/#L651">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Accessibility_AccessibilityManager_SetFocusIndicatorView_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.SetFocusIndicatorView*"></a>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_SetFocusIndicatorView_Tizen_NUI_BaseComponents_View_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.SetFocusIndicatorView(Tizen.NUI.BaseComponents.View)">SetFocusIndicatorView(View)</h4>
+  <div class="markdown level1 summary"><p>Sets the focus indicator view.
+This will replace the default focus indicator view in AccessibilityManager and
+will be added to the focused view as a highlight.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetFocusIndicatorView(View indicator)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><span class="parametername">indicator</span></td>
+        <td><p>The indicator view to be added</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManager.cs/#L384">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Accessibility_AccessibilityManager_SetFocusOrder_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.SetFocusOrder*"></a>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_SetFocusOrder_Tizen_NUI_BaseComponents_View_System_UInt32_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.SetFocusOrder(Tizen.NUI.BaseComponents.View,System.UInt32)">SetFocusOrder(View, uint)</h4>
+  <div class="markdown level1 summary"><p>Sets the focus order of the view.
+The focus order of each view in the focus chain is unique.
+If there is another view assigned with the same focus order already, the new view will be inserted to the focus chain with that focus order,
+and the focus order of the original view and all the views followed in the focus chain will be increased accordingly.
+If the focus order assigned to the view is 0, it means that view's focus order is undefined
+(e.g. the view has a  description but with no focus order being set yet) and therefore that view is not focusable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetFocusOrder(View view, uint order)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><span class="parametername">view</span></td>
+        <td><p>the view to be set with</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">order</span></td>
+        <td><p>the focus order to be set with</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManager.cs/#L593">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Accessibility_AccessibilityManager_SetGroupMode_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.SetGroupMode*"></a>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_SetGroupMode_System_Boolean_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.SetGroupMode(System.Boolean)">SetGroupMode(bool)</h4>
+  <div class="markdown level1 summary"><p>Sets whether the group mode is enabled or not.
+When the group mode is enabled, the focus movement will be limited to the child views  of the current focus group including the current focus group itself.
+The current focus group is the closest ancestor of the current focused view that is set as a focus group.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetGroupMode(bool enabled)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">enabled</span></td>
+        <td><p>Whether the group mode is enabled or not</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManager.cs/#L622">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Accessibility_AccessibilityManager_SetWrapMode_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.SetWrapMode*"></a>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_SetWrapMode_System_Boolean_" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.SetWrapMode(System.Boolean)">SetWrapMode(bool)</h4>
+  <div class="markdown level1 summary"><p>Sets whether focus will be moved to the beginning of the focus chain when it reaches the end or vice versa.
+When both the wrap mode and the group mode are enabled, focus will be wrapped within the current focus group.
+Focus will not be wrapped in default.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetWrapMode(bool wrapped)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">wrapped</span></td>
+        <td><p>Whether the focus movement is wrapped around or not</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="events">Events
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManagerEvent.cs/#L271">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_ActionActivate" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.ActionActivate">ActionActivate</h4>
+  <div class="markdown level1 summary"><p>This is emitted when accessibility action is received to activate the current focused view (by one finger double tap).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ReturnTypeEventHandler&lt;object, EventArgs, bool&gt; ActionActivate</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ReturnTypeEventHandler-3.html">ReturnTypeEventHandler</a>&lt;<span class="xref">object</span>, <span class="xref">EventArgs</span>, <span class="xref">bool</span>&gt;</td>
+        <td><p>The signal to connect to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManagerEvent.cs/#L531">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_ActionBack" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.ActionBack">ActionBack</h4>
+  <div class="markdown level1 summary"><p>This is emitted when accessibility action is received to navigate back (by two fingers circle draw).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ReturnTypeEventHandler&lt;object, EventArgs, bool&gt; ActionBack</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ReturnTypeEventHandler-3.html">ReturnTypeEventHandler</a>&lt;<span class="xref">object</span>, <span class="xref">EventArgs</span>, <span class="xref">bool</span>&gt;</td>
+        <td><p>The signal to connect to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManagerEvent.cs/#L499">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_ActionClearFocus" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.ActionClearFocus">ActionClearFocus</h4>
+  <div class="markdown level1 summary"><p>This is emitted when accessibility action is received to clear the focus from the current focused view
+if any, so that no view is focused in the focus chain.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ReturnTypeEventHandler&lt;object, EventArgs, bool&gt; ActionClearFocus</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ReturnTypeEventHandler-3.html">ReturnTypeEventHandler</a>&lt;<span class="xref">object</span>, <span class="xref">EventArgs</span>, <span class="xref">bool</span>&gt;</td>
+        <td><p>The signal to connect to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManagerEvent.cs/#L466">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_ActionDown" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.ActionDown">ActionDown</h4>
+  <div class="markdown level1 summary"><p>This is emitted when accessibility action is received to change the value when the current focused view is a slider
+(by double finger down and move down and left).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ReturnTypeEventHandler&lt;object, EventArgs, bool&gt; ActionDown</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ReturnTypeEventHandler-3.html">ReturnTypeEventHandler</a>&lt;<span class="xref">object</span>, <span class="xref">EventArgs</span>, <span class="xref">bool</span>&gt;</td>
+        <td><p>The signal to connect to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManagerEvent.cs/#L756">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_ActionMoveToFirst" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.ActionMoveToFirst">ActionMoveToFirst</h4>
+  <div class="markdown level1 summary"><p>This is emitted when accessibility action is received to move the focus to the first item on the screen
+(by one finger swipe up and down).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ReturnTypeEventHandler&lt;object, EventArgs, bool&gt; ActionMoveToFirst</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ReturnTypeEventHandler-3.html">ReturnTypeEventHandler</a>&lt;<span class="xref">object</span>, <span class="xref">EventArgs</span>, <span class="xref">bool</span>&gt;</td>
+        <td><p>The signal to connect to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManagerEvent.cs/#L789">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_ActionMoveToLast" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.ActionMoveToLast">ActionMoveToLast</h4>
+  <div class="markdown level1 summary"><p>This is emitted when accessibility action is received to move the focus to the last item on the screen
+(by one finger swipe down and up).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ReturnTypeEventHandler&lt;object, EventArgs, bool&gt; ActionMoveToLast</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ReturnTypeEventHandler-3.html">ReturnTypeEventHandler</a>&lt;<span class="xref">object</span>, <span class="xref">EventArgs</span>, <span class="xref">bool</span>&gt;</td>
+        <td><p>The signal to connect to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManagerEvent.cs/#L207">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_ActionNext" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.ActionNext">ActionNext</h4>
+  <div class="markdown level1 summary"><p>This is emitted when accessibility action is received to move focus to the next focusable view (by one finger flick down).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ReturnTypeEventHandler&lt;object, EventArgs, bool&gt; ActionNext</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ReturnTypeEventHandler-3.html">ReturnTypeEventHandler</a>&lt;<span class="xref">object</span>, <span class="xref">EventArgs</span>, <span class="xref">bool</span>&gt;</td>
+        <td><p>The signal to connect to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManagerEvent.cs/#L335">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_ActionOver" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.ActionOver">ActionOver</h4>
+  <div class="markdown level1 summary"><p>This is emitted when accessibility action is received to focus and read the view  (by one finger move).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ReturnTypeEventHandler&lt;object, EventArgs, bool&gt; ActionOver</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ReturnTypeEventHandler-3.html">ReturnTypeEventHandler</a>&lt;<span class="xref">object</span>, <span class="xref">EventArgs</span>, <span class="xref">bool</span>&gt;</td>
+        <td><p>The signal to connect to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManagerEvent.cs/#L723">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_ActionPageDown" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.ActionPageDown">ActionPageDown</h4>
+  <div class="markdown level1 summary"><p>This is emitted when accessibility action is received to scroll down to the next page (by one finger swipe right and left).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ReturnTypeEventHandler&lt;object, EventArgs, bool&gt; ActionPageDown</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ReturnTypeEventHandler-3.html">ReturnTypeEventHandler</a>&lt;<span class="xref">object</span>, <span class="xref">EventArgs</span>, <span class="xref">bool</span>&gt;</td>
+        <td><p>The signal to connect to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManagerEvent.cs/#L627">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_ActionPageLeft" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.ActionPageLeft">ActionPageLeft</h4>
+  <div class="markdown level1 summary"><p>This is emitted when accessibility action is received to scroll left to the previous page (by two finger swipe left).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ReturnTypeEventHandler&lt;object, EventArgs, bool&gt; ActionPageLeft</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ReturnTypeEventHandler-3.html">ReturnTypeEventHandler</a>&lt;<span class="xref">object</span>, <span class="xref">EventArgs</span>, <span class="xref">bool</span>&gt;</td>
+        <td><p>The signal to connect to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManagerEvent.cs/#L659">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_ActionPageRight" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.ActionPageRight">ActionPageRight</h4>
+  <div class="markdown level1 summary"><p>This is emitted when accessibility action is received to scroll right to the next page (by two finger swipe right).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ReturnTypeEventHandler&lt;object, EventArgs, bool&gt; ActionPageRight</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ReturnTypeEventHandler-3.html">ReturnTypeEventHandler</a>&lt;<span class="xref">object</span>, <span class="xref">EventArgs</span>, <span class="xref">bool</span>&gt;</td>
+        <td><p>The signal to connect to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManagerEvent.cs/#L691">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_ActionPageUp" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.ActionPageUp">ActionPageUp</h4>
+  <div class="markdown level1 summary"><p>This is emitted when accessibility action is received to scroll up to the previous page (by one finger swipe left and right).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ReturnTypeEventHandler&lt;object, EventArgs, bool&gt; ActionPageUp</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ReturnTypeEventHandler-3.html">ReturnTypeEventHandler</a>&lt;<span class="xref">object</span>, <span class="xref">EventArgs</span>, <span class="xref">bool</span>&gt;</td>
+        <td><p>The signal to connect to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManagerEvent.cs/#L239">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_ActionPrevious" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.ActionPrevious">ActionPrevious</h4>
+  <div class="markdown level1 summary"><p>This is emitted when accessibility action is received to move focus to the previous focusable view (by one finger flick up).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ReturnTypeEventHandler&lt;object, EventArgs, bool&gt; ActionPrevious</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ReturnTypeEventHandler-3.html">ReturnTypeEventHandler</a>&lt;<span class="xref">object</span>, <span class="xref">EventArgs</span>, <span class="xref">bool</span>&gt;</td>
+        <td><p>The signal to connect to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManagerEvent.cs/#L303">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_ActionRead" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.ActionRead">ActionRead</h4>
+  <div class="markdown level1 summary"><p>This is emitted when accessibility action is received to focus and read the view (by one finger tap).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ReturnTypeEventHandler&lt;object, EventArgs, bool&gt; ActionRead</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ReturnTypeEventHandler-3.html">ReturnTypeEventHandler</a>&lt;<span class="xref">object</span>, <span class="xref">EventArgs</span>, <span class="xref">bool</span>&gt;</td>
+        <td><p>The signal to connect to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManagerEvent.cs/#L855">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_ActionReadFromNext" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.ActionReadFromNext">ActionReadFromNext</h4>
+  <div class="markdown level1 summary"><p>This is emitted when accessibility action is received to move the focus to and read from the next item continuously
+(by three fingers double tap).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ReturnTypeEventHandler&lt;object, EventArgs, bool&gt; ActionReadFromNext</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ReturnTypeEventHandler-3.html">ReturnTypeEventHandler</a>&lt;<span class="xref">object</span>, <span class="xref">EventArgs</span>, <span class="xref">bool</span>&gt;</td>
+        <td><p>The signal to connect to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManagerEvent.cs/#L822">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_ActionReadFromTop" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.ActionReadFromTop">ActionReadFromTop</h4>
+  <div class="markdown level1 summary"><p>This is emitted when accessibility action is received to focus and read from the first item on the top continuously
+(by three fingers single tap).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ReturnTypeEventHandler&lt;object, EventArgs, bool&gt; ActionReadFromTop</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ReturnTypeEventHandler-3.html">ReturnTypeEventHandler</a>&lt;<span class="xref">object</span>, <span class="xref">EventArgs</span>, <span class="xref">bool</span>&gt;</td>
+        <td><p>The signal to connect to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManagerEvent.cs/#L368">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_ActionReadNext" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.ActionReadNext">ActionReadNext</h4>
+  <div class="markdown level1 summary"><p>This is emitted when accessibility action is received to move focus to the next focusable view (by one finger flick right).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ReturnTypeEventHandler&lt;object, EventArgs, bool&gt; ActionReadNext</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ReturnTypeEventHandler-3.html">ReturnTypeEventHandler</a>&lt;<span class="xref">object</span>, <span class="xref">EventArgs</span>, <span class="xref">bool</span>&gt;</td>
+        <td><p>The signal to connect to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManagerEvent.cs/#L919">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_ActionReadPauseResume" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.ActionReadPauseResume">ActionReadPauseResume</h4>
+  <div class="markdown level1 summary"><p>This is emitted when accessibility action is received to pause/resume the current speech (by two fingers single tap).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ReturnTypeEventHandler&lt;object, EventArgs, bool&gt; ActionReadPauseResume</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ReturnTypeEventHandler-3.html">ReturnTypeEventHandler</a>&lt;<span class="xref">object</span>, <span class="xref">EventArgs</span>, <span class="xref">bool</span>&gt;</td>
+        <td><p>The signal to connect to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManagerEvent.cs/#L400">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_ActionReadPrevious" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.ActionReadPrevious">ActionReadPrevious</h4>
+  <div class="markdown level1 summary"><p>This is emitted when accessibility action is received to move focus to the previous focusable view (by one finger flick left).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ReturnTypeEventHandler&lt;object, EventArgs, bool&gt; ActionReadPrevious</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ReturnTypeEventHandler-3.html">ReturnTypeEventHandler</a>&lt;<span class="xref">object</span>, <span class="xref">EventArgs</span>, <span class="xref">bool</span>&gt;</td>
+        <td><p>The signal to connect to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManagerEvent.cs/#L595">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_ActionScrollDown" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.ActionScrollDown">ActionScrollDown</h4>
+  <div class="markdown level1 summary"><p>This is emitted when accessibility action is received to scroll down the list (by two finger swipe down).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ReturnTypeEventHandler&lt;object, EventArgs, bool&gt; ActionScrollDown</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ReturnTypeEventHandler-3.html">ReturnTypeEventHandler</a>&lt;<span class="xref">object</span>, <span class="xref">EventArgs</span>, <span class="xref">bool</span>&gt;</td>
+        <td><p>The signal to connect to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManagerEvent.cs/#L563">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_ActionScrollUp" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.ActionScrollUp">ActionScrollUp</h4>
+  <div class="markdown level1 summary"><p>This is emitted when accessibility action is received to scroll up the list (by two finger swipe up).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ReturnTypeEventHandler&lt;object, EventArgs, bool&gt; ActionScrollUp</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ReturnTypeEventHandler-3.html">ReturnTypeEventHandler</a>&lt;<span class="xref">object</span>, <span class="xref">EventArgs</span>, <span class="xref">bool</span>&gt;</td>
+        <td><p>The signal to connect to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManagerEvent.cs/#L951">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_ActionStartStop" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.ActionStartStop">ActionStartStop</h4>
+  <div class="markdown level1 summary"><p>This is emitted when accessibility action is received to start/stop the current action (by two fingers double tap).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ReturnTypeEventHandler&lt;object, EventArgs, bool&gt; ActionStartStop</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ReturnTypeEventHandler-3.html">ReturnTypeEventHandler</a>&lt;<span class="xref">object</span>, <span class="xref">EventArgs</span>, <span class="xref">bool</span>&gt;</td>
+        <td><p>The signal to connect to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManagerEvent.cs/#L433">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_ActionUp" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.ActionUp">ActionUp</h4>
+  <div class="markdown level1 summary"><p>This is emitted when accessibility action is received to change the value when the current focused view is a slider
+(by double finger down and move up and right).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ReturnTypeEventHandler&lt;object, EventArgs, bool&gt; ActionUp</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ReturnTypeEventHandler-3.html">ReturnTypeEventHandler</a>&lt;<span class="xref">object</span>, <span class="xref">EventArgs</span>, <span class="xref">bool</span>&gt;</td>
+        <td><p>The signal to connect to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManagerEvent.cs/#L887">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_ActionZoom" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.ActionZoom">ActionZoom</h4>
+  <div class="markdown level1 summary"><p>This is emitted when accessibility action is received to zoom (by one finger triple tap)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ReturnTypeEventHandler&lt;object, EventArgs, bool&gt; ActionZoom</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ReturnTypeEventHandler-3.html">ReturnTypeEventHandler</a>&lt;<span class="xref">object</span>, <span class="xref">EventArgs</span>, <span class="xref">bool</span>&gt;</td>
+        <td><p>The signal to connect to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManagerEvent.cs/#L1036">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_FocusChanged" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.FocusChanged">FocusChanged</h4>
+  <div class="markdown level1 summary"><p>This signal is emitted when the current focused view is changed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;AccessibilityManager.FocusChangedEventArgs&gt; FocusChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Accessibility.AccessibilityManager.FocusChangedEventArgs.html">FocusChangedEventArgs</a>&gt;</td>
+        <td><p>The signal to connect to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManagerEvent.cs/#L1068">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_FocusedViewActivated" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.FocusedViewActivated">FocusedViewActivated</h4>
+  <div class="markdown level1 summary"><p>This signal is emitted when the current focused view is activated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;AccessibilityManager.FocusedViewActivatedEventArgs&gt; FocusedViewActivated</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Accessibility.AccessibilityManager.FocusedViewActivatedEventArgs.html">FocusedViewActivatedEventArgs</a>&gt;</td>
+        <td><p>The signal to connect to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManagerEvent.cs/#L1103">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_FocusOvershot" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.FocusOvershot">FocusOvershot</h4>
+  <div class="markdown level1 summary"><p>This signal is emitted when there is no way to move focus further.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;AccessibilityManager.FocusOvershotEventArgs&gt; FocusOvershot</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Accessibility.AccessibilityManager.FocusOvershotEventArgs.html">FocusOvershotEventArgs</a>&gt;</td>
+        <td><p>The signal to connect to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManagerEvent.cs/#L174">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Accessibility_AccessibilityManager_StatusChanged" data-uid="Tizen.NUI.Accessibility.AccessibilityManager.StatusChanged">StatusChanged</h4>
+  <div class="markdown level1 summary"><p>This is emitted when accessibility(screen-reader) feature turned on or off.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event ReturnTypeEventHandler&lt;object, EventArgs, bool&gt; StatusChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ReturnTypeEventHandler-3.html">ReturnTypeEventHandler</a>&lt;<span class="xref">object</span>, <span class="xref">EventArgs</span>, <span class="xref">bool</span>&gt;</td>
+        <td><p>The signal to connect to</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.BindableObjectExtensions.html#Tizen_NUI_Binding_BindableObjectExtensions_SetBinding_Tizen_NUI_Binding_BindableObject_Tizen_NUI_Binding_BindableProperty_System_String_Tizen_NUI_Binding_BindingMode_Tizen_NUI_Binding_IValueConverter_System_String_">BindableObjectExtensions.SetBinding(BindableObject, BindableProperty, string, BindingMode, IValueConverter, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.NameScopeExtensions.html#Tizen_NUI_Binding_NameScopeExtensions_FindByName__1_Tizen_NUI_Binding_Element_System_String_">NameScopeExtensions.FindByName&lt;T&gt;(Element, string)</a>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/AccessibilityManagerEventArgs.cs/#L24" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

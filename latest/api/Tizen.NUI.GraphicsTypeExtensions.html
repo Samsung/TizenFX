@@ -1,0 +1,2060 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class GraphicsTypeExtensions
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class GraphicsTypeExtensions
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API11">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.NUI.GraphicsTypeExtensions">
+
+
+  <h1 id="Tizen_NUI_GraphicsTypeExtensions" data-uid="Tizen.NUI.GraphicsTypeExtensions" class="text-break">Class GraphicsTypeExtensions
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>The GraphicTypeExtensions class is graphics type converter for pixel based object.
+Density independent pixel(dp) unit is our basic target type and you can get converted value by PxToDp(),
+and you can get original pixel by PxToDp().
+One dp is a virtual pixel unit that's roughly equal to one pixel on a medium-density(160dpi) screen.
+See <a class="xref" href="Tizen.NUI.GraphicsTypeManager.html">GraphicsTypeManager</a> and <a class="xref" href="Tizen.NUI.GraphicsTypeConverter.html">GraphicsTypeConverter</a> also.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class GraphicsTypeExtensions</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">GraphicsTypeExtensions</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L513">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_DpToPt_" data-uid="Tizen.NUI.GraphicsTypeExtensions.DpToPt*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_DpToPt_System_Single_" data-uid="Tizen.NUI.GraphicsTypeExtensions.DpToPt(System.Single)">DpToPt(float)</h4>
+  <div class="markdown level1 summary"><p>Converter float font dp size to point size.
+16.0f.DpToPt() = 7.2f.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float DpToPt(this float dp)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">dp</span></td>
+        <td><p>The float dp unit value to be converted point unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>The float point unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L87">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_DpToPx_" data-uid="Tizen.NUI.GraphicsTypeExtensions.DpToPx*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_DpToPx_System_Int32_" data-uid="Tizen.NUI.GraphicsTypeExtensions.DpToPx(System.Int32)">DpToPx(int)</h4>
+  <div class="markdown level1 summary"><p>Converter int dp to pixel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int DpToPx(this int dp)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">dp</span></td>
+        <td><p>The int dp unit value to be converted pixel unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><p>The int pixel unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L39">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_DpToPx_" data-uid="Tizen.NUI.GraphicsTypeExtensions.DpToPx*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_DpToPx_System_Single_" data-uid="Tizen.NUI.GraphicsTypeExtensions.DpToPx(System.Single)">DpToPx(float)</h4>
+  <div class="markdown level1 summary"><p>Converter float dp to pixel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float DpToPx(this float dp)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">dp</span></td>
+        <td><p>The float dp unit value to be converted pixel unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>The float pixel unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L456">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_DpToPx_" data-uid="Tizen.NUI.GraphicsTypeExtensions.DpToPx*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_DpToPx_Tizen_NUI_Extents_" data-uid="Tizen.NUI.GraphicsTypeExtensions.DpToPx(Tizen.NUI.Extents)">DpToPx(Extents)</h4>
+  <div class="markdown level1 summary"><p>Converter Extents dp to pixel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Extents DpToPx(this Extents dp)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Extents.html">Extents</a></td>
+        <td><span class="parametername">dp</span></td>
+        <td><p>The Extents dp unit value to be converted pixel unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Extents.html">Extents</a></td>
+        <td><p>The Extents pixel unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L276">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_DpToPx_" data-uid="Tizen.NUI.GraphicsTypeExtensions.DpToPx*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_DpToPx_Tizen_NUI_Position_" data-uid="Tizen.NUI.GraphicsTypeExtensions.DpToPx(Tizen.NUI.Position)">DpToPx(Position)</h4>
+  <div class="markdown level1 summary"><p>Converter Position dp to pixel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position DpToPx(this Position dp)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td><span class="parametername">dp</span></td>
+        <td><p>The Position dp unit value to be converted pixel unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td><p>The Position pixel unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L332">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_DpToPx_" data-uid="Tizen.NUI.GraphicsTypeExtensions.DpToPx*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_DpToPx_Tizen_NUI_Position2D_" data-uid="Tizen.NUI.GraphicsTypeExtensions.DpToPx(Tizen.NUI.Position2D)">DpToPx(Position2D)</h4>
+  <div class="markdown level1 summary"><p>Converter Position2D dp to pixel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position2D DpToPx(this Position2D dp)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position2D.html">Position2D</a></td>
+        <td><span class="parametername">dp</span></td>
+        <td><p>The Position2D dp unit value to be converted pixel unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position2D.html">Position2D</a></td>
+        <td><p>The Position2D pixel unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L392">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_DpToPx_" data-uid="Tizen.NUI.GraphicsTypeExtensions.DpToPx*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_DpToPx_Tizen_NUI_Rectangle_" data-uid="Tizen.NUI.GraphicsTypeExtensions.DpToPx(Tizen.NUI.Rectangle)">DpToPx(Rectangle)</h4>
+  <div class="markdown level1 summary"><p>Converter Rectangle dp to pixel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Rectangle DpToPx(this Rectangle dp)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">dp</span></td>
+        <td><p>The Rectangle dp unit value to be converted pixel unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Rectangle.html">Rectangle</a></td>
+        <td><p>The Rectangle pixel unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L164">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_DpToPx_" data-uid="Tizen.NUI.GraphicsTypeExtensions.DpToPx*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_DpToPx_Tizen_NUI_Size_" data-uid="Tizen.NUI.GraphicsTypeExtensions.DpToPx(Tizen.NUI.Size)">DpToPx(Size)</h4>
+  <div class="markdown level1 summary"><p>Converter Size dp to pixel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Size DpToPx(this Size dp)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size.html">Size</a></td>
+        <td><span class="parametername">dp</span></td>
+        <td><p>The Size dp unit value to be converted pixel unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size.html">Size</a></td>
+        <td><p>The Size pixel unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L220">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_DpToPx_" data-uid="Tizen.NUI.GraphicsTypeExtensions.DpToPx*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_DpToPx_Tizen_NUI_Size2D_" data-uid="Tizen.NUI.GraphicsTypeExtensions.DpToPx(Tizen.NUI.Size2D)">DpToPx(Size2D)</h4>
+  <div class="markdown level1 summary"><p>Converter Size2D dp to pixel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Size2D DpToPx(this Size2D dp)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td><span class="parametername">dp</span></td>
+        <td><p>The Size2D dp unit value to be converted pixel unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td><p>The Size2D pixel unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L526">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_PtToDp_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PtToDp*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_PtToDp_System_Single_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PtToDp(System.Single)">PtToDp(float)</h4>
+  <div class="markdown level1 summary"><p>Converter float font point size to dp size.
+7.2f.PtToDp() = 16.0f.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float PtToDp(this float pt)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">pt</span></td>
+        <td><p>The float point unit value to be converted dp unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>The float dp unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L500">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_PtToPx_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PtToPx*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_PtToPx_System_Single_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PtToPx(System.Single)">PtToPx(float)</h4>
+  <div class="markdown level1 summary"><p>Converter float font point size to pixel size.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float PtToPx(this float pt)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">pt</span></td>
+        <td><p>The float point unit value to be converted pixel unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>The float pixel unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L550">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_PtToSp_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PtToSp*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_PtToSp_System_Single_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PtToSp(System.Single)">PtToSp(float)</h4>
+  <div class="markdown level1 summary"><p>Converter float font point size to sp size.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float PtToSp(this float pt)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">pt</span></td>
+        <td><p>The float point unit value to be converted sp unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>The float dp unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L111">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_PxToDp_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToDp*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_PxToDp_System_Int32_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToDp(System.Int32)">PxToDp(int)</h4>
+  <div class="markdown level1 summary"><p>Converter int pixel to dp.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int PxToDp(this int pixel)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">pixel</span></td>
+        <td><p>The int pixel unit value to be converted dp unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><p>The int dp unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L63">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_PxToDp_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToDp*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_PxToDp_System_Single_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToDp(System.Single)">PxToDp(float)</h4>
+  <div class="markdown level1 summary"><p>Converter float pixel to dp.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float PxToDp(this float pixel)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">pixel</span></td>
+        <td><p>The float pixel unit value to be converted dp unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>The float dp unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L424">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_PxToDp_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToDp*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_PxToDp_Tizen_NUI_Extents_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToDp(Tizen.NUI.Extents)">PxToDp(Extents)</h4>
+  <div class="markdown level1 summary"><p>Converter Extents pixel to dp.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Extents PxToDp(this Extents pixel)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Extents.html">Extents</a></td>
+        <td><span class="parametername">pixel</span></td>
+        <td><p>The Extents pixel unit value to be converted dp unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Extents.html">Extents</a></td>
+        <td><p>The Extents dp unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L248">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_PxToDp_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToDp*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_PxToDp_Tizen_NUI_Position_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToDp(Tizen.NUI.Position)">PxToDp(Position)</h4>
+  <div class="markdown level1 summary"><p>Converter Position pixel to dp.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position PxToDp(this Position pixel)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td><span class="parametername">pixel</span></td>
+        <td><p>The Position pixel unit value to be converted dp unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td><p>The Position dp unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L304">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_PxToDp_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToDp*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_PxToDp_Tizen_NUI_Position2D_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToDp(Tizen.NUI.Position2D)">PxToDp(Position2D)</h4>
+  <div class="markdown level1 summary"><p>Converter Position2D pixel to dp.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position2D PxToDp(this Position2D pixel)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position2D.html">Position2D</a></td>
+        <td><span class="parametername">pixel</span></td>
+        <td><p>The Position2D pixel unit value to be converted dp unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position2D.html">Position2D</a></td>
+        <td><p>The Position2D dp unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L360">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_PxToDp_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToDp*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_PxToDp_Tizen_NUI_Rectangle_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToDp(Tizen.NUI.Rectangle)">PxToDp(Rectangle)</h4>
+  <div class="markdown level1 summary"><p>Converter Rectangle pixel to dp.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Rectangle PxToDp(this Rectangle pixel)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">pixel</span></td>
+        <td><p>The Rectangle pixel unit value to be converted dp unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Rectangle.html">Rectangle</a></td>
+        <td><p>The Rectangle dp unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L136">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_PxToDp_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToDp*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_PxToDp_Tizen_NUI_Size_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToDp(Tizen.NUI.Size)">PxToDp(Size)</h4>
+  <div class="markdown level1 summary"><p>Converter Size pixel to dp.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Size PxToDp(this Size pixel)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size.html">Size</a></td>
+        <td><span class="parametername">pixel</span></td>
+        <td><p>The Size pixel unit value to be converted dp unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size.html">Size</a></td>
+        <td><p>The Size dp unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L192">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_PxToDp_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToDp*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_PxToDp_Tizen_NUI_Size2D_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToDp(Tizen.NUI.Size2D)">PxToDp(Size2D)</h4>
+  <div class="markdown level1 summary"><p>Converter Size2D pixel to dp.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Size2D PxToDp(this Size2D pixel)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td><span class="parametername">pixel</span></td>
+        <td><p>The Size2D pixel unit value to be converted dp unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td><p>The Size2D dp unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L488">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_PxToPt_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToPt*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_PxToPt_System_Single_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToPt(System.Single)">PxToPt(float)</h4>
+  <div class="markdown level1 summary"><p>Converter float font pixel size to point size.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float PxToPt(this float pixel)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">pixel</span></td>
+        <td><p>The float pixel unit value to be converted point unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>The float point unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L123">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_PxToSp_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToSp*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_PxToSp_System_Int32_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToSp(System.Int32)">PxToSp(int)</h4>
+  <div class="markdown level1 summary"><p>Converter int pixel to sp.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int PxToSp(this int pixel)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">pixel</span></td>
+        <td><p>The int pixel unit value to be converted sp unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><p>The int sp unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L75">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_PxToSp_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToSp*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_PxToSp_System_Single_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToSp(System.Single)">PxToSp(float)</h4>
+  <div class="markdown level1 summary"><p>Converter float pixel to sp.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float PxToSp(this float pixel)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">pixel</span></td>
+        <td><p>The float pixel unit value to be converted sp unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>The float sp unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L440">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_PxToSp_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToSp*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_PxToSp_Tizen_NUI_Extents_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToSp(Tizen.NUI.Extents)">PxToSp(Extents)</h4>
+  <div class="markdown level1 summary"><p>Converter Extents pixel to sp.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Extents PxToSp(this Extents pixel)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Extents.html">Extents</a></td>
+        <td><span class="parametername">pixel</span></td>
+        <td><p>The Extents pixel unit value to be converted sp unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Extents.html">Extents</a></td>
+        <td><p>The Extents sp unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L262">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_PxToSp_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToSp*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_PxToSp_Tizen_NUI_Position_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToSp(Tizen.NUI.Position)">PxToSp(Position)</h4>
+  <div class="markdown level1 summary"><p>Converter Position pixel to sp.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position PxToSp(this Position pixel)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td><span class="parametername">pixel</span></td>
+        <td><p>The Position pixel unit value to be converted sp unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td><p>The Position sp unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L318">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_PxToSp_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToSp*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_PxToSp_Tizen_NUI_Position2D_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToSp(Tizen.NUI.Position2D)">PxToSp(Position2D)</h4>
+  <div class="markdown level1 summary"><p>Converter Position2D pixel to sp.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position2D PxToSp(this Position2D pixel)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position2D.html">Position2D</a></td>
+        <td><span class="parametername">pixel</span></td>
+        <td><p>The Position2D pixel unit value to be converted sp unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position2D.html">Position2D</a></td>
+        <td><p>The Position2D sp unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L376">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_PxToSp_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToSp*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_PxToSp_Tizen_NUI_Rectangle_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToSp(Tizen.NUI.Rectangle)">PxToSp(Rectangle)</h4>
+  <div class="markdown level1 summary"><p>Converter Rectangle pixel to sp.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Rectangle PxToSp(this Rectangle pixel)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">pixel</span></td>
+        <td><p>The Rectangle pixel unit value to be converted sp unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Rectangle.html">Rectangle</a></td>
+        <td><p>The Rectangle sp unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L150">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_PxToSp_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToSp*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_PxToSp_Tizen_NUI_Size_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToSp(Tizen.NUI.Size)">PxToSp(Size)</h4>
+  <div class="markdown level1 summary"><p>Converter Size pixel to sp.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Size PxToSp(this Size pixel)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size.html">Size</a></td>
+        <td><span class="parametername">pixel</span></td>
+        <td><p>The Size pixel unit value to be converted sp unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size.html">Size</a></td>
+        <td><p>The Size sp unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L206">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_PxToSp_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToSp*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_PxToSp_Tizen_NUI_Size2D_" data-uid="Tizen.NUI.GraphicsTypeExtensions.PxToSp(Tizen.NUI.Size2D)">PxToSp(Size2D)</h4>
+  <div class="markdown level1 summary"><p>Converter Size2D pixel to sp.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Size2D PxToSp(this Size2D pixel)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td><span class="parametername">pixel</span></td>
+        <td><p>The Size2D pixel unit value to be converted sp unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td><p>The Size2D sp unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L538">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_SpToPt_" data-uid="Tizen.NUI.GraphicsTypeExtensions.SpToPt*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_SpToPt_System_Single_" data-uid="Tizen.NUI.GraphicsTypeExtensions.SpToPt(System.Single)">SpToPt(float)</h4>
+  <div class="markdown level1 summary"><p>Converter float font sp size to point size.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float SpToPt(this float sp)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">sp</span></td>
+        <td><p>The float sp unit value to be converted point unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>The float point unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L99">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_SpToPx_" data-uid="Tizen.NUI.GraphicsTypeExtensions.SpToPx*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_SpToPx_System_Int32_" data-uid="Tizen.NUI.GraphicsTypeExtensions.SpToPx(System.Int32)">SpToPx(int)</h4>
+  <div class="markdown level1 summary"><p>Converter int dp to pixel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static int SpToPx(this int sp)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">sp</span></td>
+        <td><p>The int sp unit value to be converted pixel unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><p>The int pixel unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L51">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_SpToPx_" data-uid="Tizen.NUI.GraphicsTypeExtensions.SpToPx*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_SpToPx_System_Single_" data-uid="Tizen.NUI.GraphicsTypeExtensions.SpToPx(System.Single)">SpToPx(float)</h4>
+  <div class="markdown level1 summary"><p>Converter float sp to pixel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float SpToPx(this float sp)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">sp</span></td>
+        <td><p>The float sp unit value to be converted pixel unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>The float pixel unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L472">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_SpToPx_" data-uid="Tizen.NUI.GraphicsTypeExtensions.SpToPx*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_SpToPx_Tizen_NUI_Extents_" data-uid="Tizen.NUI.GraphicsTypeExtensions.SpToPx(Tizen.NUI.Extents)">SpToPx(Extents)</h4>
+  <div class="markdown level1 summary"><p>Converter Extents sp to pixel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Extents SpToPx(this Extents sp)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Extents.html">Extents</a></td>
+        <td><span class="parametername">sp</span></td>
+        <td><p>The Extents sp unit value to be converted pixel unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Extents.html">Extents</a></td>
+        <td><p>The Extents pixel unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L290">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_SpToPx_" data-uid="Tizen.NUI.GraphicsTypeExtensions.SpToPx*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_SpToPx_Tizen_NUI_Position_" data-uid="Tizen.NUI.GraphicsTypeExtensions.SpToPx(Tizen.NUI.Position)">SpToPx(Position)</h4>
+  <div class="markdown level1 summary"><p>Converter Position sp to pixel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position SpToPx(this Position sp)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td><span class="parametername">sp</span></td>
+        <td><p>The Position sp unit value to be converted pixel unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td><p>The Position pixel unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L346">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_SpToPx_" data-uid="Tizen.NUI.GraphicsTypeExtensions.SpToPx*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_SpToPx_Tizen_NUI_Position2D_" data-uid="Tizen.NUI.GraphicsTypeExtensions.SpToPx(Tizen.NUI.Position2D)">SpToPx(Position2D)</h4>
+  <div class="markdown level1 summary"><p>Converter Position2D sp to pixel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Position2D SpToPx(this Position2D sp)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position2D.html">Position2D</a></td>
+        <td><span class="parametername">sp</span></td>
+        <td><p>The Position2D sp unit value to be converted pixel unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position2D.html">Position2D</a></td>
+        <td><p>The Position2D pixel unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L408">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_SpToPx_" data-uid="Tizen.NUI.GraphicsTypeExtensions.SpToPx*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_SpToPx_Tizen_NUI_Rectangle_" data-uid="Tizen.NUI.GraphicsTypeExtensions.SpToPx(Tizen.NUI.Rectangle)">SpToPx(Rectangle)</h4>
+  <div class="markdown level1 summary"><p>Converter Rectangle sp to pixel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Rectangle SpToPx(this Rectangle sp)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">sp</span></td>
+        <td><p>The Rectangle sp unit value to be converted pixel unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Rectangle.html">Rectangle</a></td>
+        <td><p>The Rectangle pixel unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L178">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_SpToPx_" data-uid="Tizen.NUI.GraphicsTypeExtensions.SpToPx*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_SpToPx_Tizen_NUI_Size_" data-uid="Tizen.NUI.GraphicsTypeExtensions.SpToPx(Tizen.NUI.Size)">SpToPx(Size)</h4>
+  <div class="markdown level1 summary"><p>Converter Size sp to pixel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Size SpToPx(this Size sp)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size.html">Size</a></td>
+        <td><span class="parametername">sp</span></td>
+        <td><p>The Size sp unit value to be converted pixel unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size.html">Size</a></td>
+        <td><p>The Size pixel unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L234">View Source</a>
+  </span>
+  <a id="Tizen_NUI_GraphicsTypeExtensions_SpToPx_" data-uid="Tizen.NUI.GraphicsTypeExtensions.SpToPx*"></a>
+  <h4 id="Tizen_NUI_GraphicsTypeExtensions_SpToPx_Tizen_NUI_Size2D_" data-uid="Tizen.NUI.GraphicsTypeExtensions.SpToPx(Tizen.NUI.Size2D)">SpToPx(Size2D)</h4>
+  <div class="markdown level1 summary"><p>Converter Size2D sp to pixel.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Size2D SpToPx(this Size2D sp)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td><span class="parametername">sp</span></td>
+        <td><p>The Size2D sp unit value to be converted pixel unit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td><p>The Size2D pixel unit value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Utility/GraphicsTypeExtensions.cs/#L30" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

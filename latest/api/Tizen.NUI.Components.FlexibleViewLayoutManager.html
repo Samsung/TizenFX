@@ -1,0 +1,1507 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class FlexibleViewLayoutManager
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class FlexibleViewLayoutManager
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API11">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager">
+
+
+  <h1 id="Tizen_NUI_Components_FlexibleViewLayoutManager" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager" class="text-break">Class FlexibleViewLayoutManager
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.Components.html">Components</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.Components.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>A FlexibleViewLayoutManager is responsible for measuring and positioning item views within a FlexibleView
+as well as determining the policy for when to recycle item views that are no longer visible to the user.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class FlexibleViewLayoutManager : Disposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Disposable.html">Disposable</a></div>
+        <div><span class="xref">FlexibleViewLayoutManager</span></div>
+      </div>
+    </dd>
+  </dl>
+
+  <dl class="attribute-list stack">
+    <dt>Derived</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.LinearLayoutManager.html">LinearLayoutManager</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.LinearLayoutManager.html">LinearLayoutManager</a></div>
+    </dd>
+  </dl>
+
+
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L301">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_ChildCount_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.ChildCount*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_ChildCount" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.ChildCount">ChildCount</h4>
+  <div class="markdown level1 summary"><p>Return the current number of child views attached to the parent FlexibleView.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ChildCount { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L87">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_FocusPosition_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.FocusPosition*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_FocusPosition" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.FocusPosition">FocusPosition</h4>
+  <div class="markdown level1 summary"><p>Gets the current focus position in adapter.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int FocusPosition { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L513">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_Height_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.Height*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_Height" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.Height">Height</h4>
+  <div class="markdown level1 summary"><p>Return the height of the parent FlexibleView.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Height { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L100">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_ItemCount_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.ItemCount*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_ItemCount" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.ItemCount">ItemCount</h4>
+  <div class="markdown level1 summary"><p>Gets the datas count in data sets.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ItemCount { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L565">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_PaddingBottom_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.PaddingBottom*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_PaddingBottom" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.PaddingBottom">PaddingBottom</h4>
+  <div class="markdown level1 summary"><p>Return the bottom padding of the parent FlexibleView.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int PaddingBottom { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L526">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_PaddingLeft_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.PaddingLeft*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_PaddingLeft" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.PaddingLeft">PaddingLeft</h4>
+  <div class="markdown level1 summary"><p>Return the left padding of the parent FlexibleView.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int PaddingLeft { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L552">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_PaddingRight_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.PaddingRight*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_PaddingRight" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.PaddingRight">PaddingRight</h4>
+  <div class="markdown level1 summary"><p>Return the right padding of the parent FlexibleView.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int PaddingRight { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L539">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_PaddingTop_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.PaddingTop*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_PaddingTop" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.PaddingTop">PaddingTop</h4>
+  <div class="markdown level1 summary"><p>Return the top padding of the parent FlexibleView.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int PaddingTop { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L500">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_Width_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.Width*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_Width" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.Width">Width</h4>
+  <div class="markdown level1 summary"><p>Return the width of the parent FlexibleView.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Width { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L593">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_AddView_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.AddView*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_AddView_Tizen_NUI_Components_FlexibleViewViewHolder_System_Int32_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.AddView(Tizen.NUI.Components.FlexibleViewViewHolder,System.Int32)">AddView(FlexibleViewViewHolder, int)</h4>
+  <div class="markdown level1 summary"><p>Add a view to the currently attached FlexibleView if needed.<br>
+FlexibleViewLayoutManagers should use this method to add views obtained from a FlexibleViewRecycler using getViewForPosition(int).<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddView(FlexibleViewViewHolder holder, int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.FlexibleViewViewHolder.html">FlexibleViewViewHolder</a></td>
+        <td><span class="parametername">holder</span></td>
+        <td><p>view to add</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>index to add child at</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L580">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_AddView_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.AddView*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_AddView_Tizen_NUI_Components_FlexibleViewViewHolder_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.AddView(Tizen.NUI.Components.FlexibleViewViewHolder)">AddView(FlexibleViewViewHolder)</h4>
+  <div class="markdown level1 summary"><p>Add a view to the currently attached FlexibleView if needed.<br>
+FlexibleViewLayoutManagers should use this method to add views obtained from a FlexibleViewRecycler using getViewForPosition(int).<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddView(FlexibleViewViewHolder holder)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.FlexibleViewViewHolder.html">FlexibleViewViewHolder</a></td>
+        <td><span class="parametername">holder</span></td>
+        <td><p>view to add</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L114">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_CanScrollHorizontally_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.CanScrollHorizontally*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_CanScrollHorizontally" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.CanScrollHorizontally">CanScrollHorizontally()</h4>
+  <div class="markdown level1 summary"><p>Query if horizontal scrolling is currently supported. The default implementation returns false.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool CanScrollHorizontally()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L124">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_CanScrollVertically_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.CanScrollVertically*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_CanScrollVertically" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.CanScrollVertically">CanScrollVertically()</h4>
+  <div class="markdown level1 summary"><p>Query if vertical scrolling is currently supported. The default implementation returns false.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool CanScrollVertically()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L291">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_ChangeFocus_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.ChangeFocus*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_ChangeFocus_System_Int32_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.ChangeFocus(System.Int32)">ChangeFocus(int)</h4>
+  <div class="markdown level1 summary"><p>Change the FlexibleViewViewHolder with focusPosition to focus.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ChangeFocus(int focusPosition)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">focusPosition</span></td>
+        <td><p>the newly focus position</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L160">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_ComputeScrollExtent_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.ComputeScrollExtent*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_ComputeScrollExtent" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.ComputeScrollExtent">ComputeScrollExtent()</h4>
+  <div class="markdown level1 summary"><p>Compute the extent of the scrollbar's thumb within the range.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual float ComputeScrollExtent()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L170">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_ComputeScrollOffset_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.ComputeScrollOffset*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_ComputeScrollOffset" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.ComputeScrollOffset">ComputeScrollOffset()</h4>
+  <div class="markdown level1 summary"><p>Compute the offset of the scrollbar's thumb within the range.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual float ComputeScrollOffset()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L180">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_ComputeScrollRange_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.ComputeScrollRange*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_ComputeScrollRange" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.ComputeScrollRange">ComputeScrollRange()</h4>
+  <div class="markdown level1 summary"><p>Compute the range that the scrollbar represents.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual float ComputeScrollRange()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L713">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_Dispose_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.Dispose*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_Dispose_Tizen_NUI_DisposeTypes_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.Dispose(Tizen.NUI.DisposeTypes)">Dispose(DisposeTypes)</h4>
+  <div class="markdown level1 summary"><p>Dispose FlexibleView and all children on it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Dispose(DisposeTypes type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.DisposeTypes.html">DisposeTypes</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Dispose type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Disposable.html#Tizen_NUI_Disposable_Dispose_Tizen_NUI_DisposeTypes_">Disposable.Dispose(DisposeTypes)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L693">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_FindFirstVisibleItemView_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.FindFirstVisibleItemView*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_FindFirstVisibleItemView" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.FindFirstVisibleItemView">FindFirstVisibleItemView()</h4>
+  <div class="markdown level1 summary"><p>Retrieves the first visible item view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual FlexibleViewViewHolder FindFirstVisibleItemView()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.FlexibleViewViewHolder.html">FlexibleViewViewHolder</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L326">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_FindItemViewByPosition_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.FindItemViewByPosition*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_FindItemViewByPosition_System_Int32_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.FindItemViewByPosition(System.Int32)">FindItemViewByPosition(int)</h4>
+  <div class="markdown level1 summary"><p>Finds the view which represents the given adapter position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FlexibleViewViewHolder FindItemViewByPosition(int position)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>adapter position</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.FlexibleViewViewHolder.html">FlexibleViewViewHolder</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L703">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_FindLastVisibleItemView_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.FindLastVisibleItemView*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_FindLastVisibleItemView" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.FindLastVisibleItemView">FindLastVisibleItemView()</h4>
+  <div class="markdown level1 summary"><p>Retrieves the last visible item view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual FlexibleViewViewHolder FindLastVisibleItemView()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.FlexibleViewViewHolder.html">FlexibleViewViewHolder</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L315">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_GetChildAt_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.GetChildAt*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_GetChildAt_System_Int32_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.GetChildAt(System.Int32)">GetChildAt(int)</h4>
+  <div class="markdown level1 summary"><p>Return the child view at the given index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FlexibleViewViewHolder GetChildAt(int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>child index</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.FlexibleViewViewHolder.html">FlexibleViewViewHolder</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L686">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_GetNextPosition_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.GetNextPosition*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_GetNextPosition_System_Int32_Tizen_NUI_Components_FlexibleViewLayoutManager_Direction_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.GetNextPosition(System.Int32,Tizen.NUI.Components.FlexibleViewLayoutManager.Direction)">GetNextPosition(int, Direction)</h4>
+  <div class="markdown level1 summary"><p>Retrieves a position that neighbor to current position by direction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract int GetNextPosition(int position, FlexibleViewLayoutManager.Direction direction)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The anchor adapter position</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.FlexibleViewLayoutManager.html">FlexibleViewLayoutManager</a>.<a class="xref" href="Tizen.NUI.Components.FlexibleViewLayoutManager.Direction.html">Direction</a></td>
+        <td><span class="parametername">direction</span></td>
+        <td><p>The direction.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L275">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_LayoutChild_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.LayoutChild*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_LayoutChild_Tizen_NUI_Components_FlexibleViewViewHolder_System_Single_System_Single_System_Single_System_Single_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.LayoutChild(Tizen.NUI.Components.FlexibleViewViewHolder,System.Single,System.Single,System.Single,System.Single)">LayoutChild(FlexibleViewViewHolder, float, float, float, float)</h4>
+  <div class="markdown level1 summary"><p>Lay out the given child view within the FlexibleView using coordinates that include view margins.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void LayoutChild(FlexibleViewViewHolder child, float left, float top, float width, float height)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.FlexibleViewViewHolder.html">FlexibleViewViewHolder</a></td>
+        <td><span class="parametername">child</span></td>
+        <td><p>Child to lay out</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">left</span></td>
+        <td><p>Left edge, with item view left margin included</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">top</span></td>
+        <td><p>Top edge, with item view top margin included</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">width</span></td>
+        <td><p>Width, with item view left and right margin included</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">height</span></td>
+        <td><p>Height, with item view top and bottom margin included</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L338">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_OffsetChildrenHorizontal_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.OffsetChildrenHorizontal*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_OffsetChildrenHorizontal_System_Single_System_Boolean_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.OffsetChildrenHorizontal(System.Single,System.Boolean)">OffsetChildrenHorizontal(float, bool)</h4>
+  <div class="markdown level1 summary"><p>Offset all child views attached to the parent FlexibleView by dx pixels along the horizontal axis.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void OffsetChildrenHorizontal(float dx, bool immediate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">dx</span></td>
+        <td><p>Pixels to offset by</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">immediate</span></td>
+        <td><p>specify if the offset need animation</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L420">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_OffsetChildrenVertical_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.OffsetChildrenVertical*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_OffsetChildrenVertical_System_Single_System_Boolean_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.OffsetChildrenVertical(System.Single,System.Boolean)">OffsetChildrenVertical(float, bool)</h4>
+  <div class="markdown level1 summary"><p>Offset all child views attached to the parent FlexibleView by dy pixels along the vertical axis.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void OffsetChildrenVertical(float dy, bool immediate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">dy</span></td>
+        <td><p>Pixels to offset by</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">immediate</span></td>
+        <td><p>specify if the offset need animation</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L71">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_OnLayoutChildren_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.OnLayoutChildren*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_OnLayoutChildren_Tizen_NUI_Components_FlexibleViewRecycler_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.OnLayoutChildren(Tizen.NUI.Components.FlexibleViewRecycler)">OnLayoutChildren(FlexibleViewRecycler)</h4>
+  <div class="markdown level1 summary"><p>Layout all relevant child views from the given adapter.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract void OnLayoutChildren(FlexibleViewRecycler recycler)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.FlexibleViewRecycler.html">FlexibleViewRecycler</a></td>
+        <td><span class="parametername">recycler</span></td>
+        <td><p>Recycler to use for fetching potentially cached views for a position</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L78">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_OnLayoutCompleted_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.OnLayoutCompleted*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_OnLayoutCompleted" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.OnLayoutCompleted">OnLayoutCompleted()</h4>
+  <div class="markdown level1 summary"><p>Called after a full layout calculation is finished.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnLayoutCompleted()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L643">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_RecycleChildren_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.RecycleChildren*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_RecycleChildren_Tizen_NUI_Components_FlexibleViewRecycler_System_Int32_System_Int32_System_Boolean_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.RecycleChildren(Tizen.NUI.Components.FlexibleViewRecycler,System.Int32,System.Int32,System.Boolean)">RecycleChildren(FlexibleViewRecycler, int, int, bool)</h4>
+  <div class="markdown level1 summary"><p>Recycles children between given indices..</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RecycleChildren(FlexibleViewRecycler recycler, int startIndex, int endIndex, bool immediate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.FlexibleViewRecycler.html">FlexibleViewRecycler</a></td>
+        <td><span class="parametername">recycler</span></td>
+        <td><p>Recycler to recycle views into</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">startIndex</span></td>
+        <td><p>inclusive</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">endIndex</span></td>
+        <td><p>exclusive</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">immediate</span></td>
+        <td><p>recycle immediately or add to pending list and recycle later.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L257">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_RelayoutRequest_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.RelayoutRequest*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_RelayoutRequest" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.RelayoutRequest">RelayoutRequest()</h4>
+  <div class="markdown level1 summary"><p>Calls {@code FlexibleView#RelayoutRequest} on the underlying FlexibleView.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RelayoutRequest()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L626">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_RemoveAndRecycleViewAt_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.RemoveAndRecycleViewAt*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_RemoveAndRecycleViewAt_System_Int32_Tizen_NUI_Components_FlexibleViewRecycler_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.RemoveAndRecycleViewAt(System.Int32,Tizen.NUI.Components.FlexibleViewRecycler)">RemoveAndRecycleViewAt(int, FlexibleViewRecycler)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveAndRecycleViewAt(int index, FlexibleViewRecycler recycler)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.FlexibleViewRecycler.html">FlexibleViewRecycler</a></td>
+        <td><span class="parametername">recycler</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L606">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_ScrapAttachedViews_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.ScrapAttachedViews*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_ScrapAttachedViews_Tizen_NUI_Components_FlexibleViewRecycler_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.ScrapAttachedViews(Tizen.NUI.Components.FlexibleViewRecycler)">ScrapAttachedViews(FlexibleViewRecycler)</h4>
+  <div class="markdown level1 summary"><p>Temporarily detach and scrap all currently attached child views.
+Views will be scrapped into the given FlexibleViewRecycler.
+The FlexibleViewRecycler may prefer to reuse scrap views before other views that were previously recycled.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ScrapAttachedViews(FlexibleViewRecycler recycler)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.FlexibleViewRecycler.html">FlexibleViewRecycler</a></td>
+        <td><span class="parametername">recycler</span></td>
+        <td><p>Recycler to scrap views into</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L137">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_ScrollHorizontallyBy_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.ScrollHorizontallyBy*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_ScrollHorizontallyBy_System_Single_Tizen_NUI_Components_FlexibleViewRecycler_System_Boolean_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.ScrollHorizontallyBy(System.Single,Tizen.NUI.Components.FlexibleViewRecycler,System.Boolean)">ScrollHorizontallyBy(float, FlexibleViewRecycler, bool)</h4>
+  <div class="markdown level1 summary"><p>Scroll horizontally by dy pixels in screen coordinates.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual float ScrollHorizontallyBy(float dy, FlexibleViewRecycler recycler, bool immediate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">dy</span></td>
+        <td><p>distance to scroll in pixels. Y increases as scroll position approaches the top.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.FlexibleViewRecycler.html">FlexibleViewRecycler</a></td>
+        <td><span class="parametername">recycler</span></td>
+        <td><p>Recycler to use for fetching potentially cached views for a position</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">immediate</span></td>
+        <td><p>Specify if the scroll need animation</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L191">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_ScrollToPosition_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.ScrollToPosition*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_ScrollToPosition_System_Int32_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.ScrollToPosition(System.Int32)">ScrollToPosition(int)</h4>
+  <div class="markdown level1 summary"><p>Scroll the FlexibleView to make the position visible.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void ScrollToPosition(int position)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>Scroll to this adapter position</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L203">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_ScrollToPositionWithOffset_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.ScrollToPositionWithOffset*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_ScrollToPositionWithOffset_System_Int32_System_Int32_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.ScrollToPositionWithOffset(System.Int32,System.Int32)">ScrollToPositionWithOffset(int, int)</h4>
+  <div class="markdown level1 summary"><p>Scroll to the specified adapter position with the given offset from resolved layout start.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void ScrollToPositionWithOffset(int position, int offset)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>Scroll to this adapter position</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">offset</span></td>
+        <td><p>The distance (in pixels) between the start edge of the item view and start edge of the FlexibleView.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L150">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_FlexibleViewLayoutManager_ScrollVerticallyBy_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.ScrollVerticallyBy*"></a>
+  <h4 id="Tizen_NUI_Components_FlexibleViewLayoutManager_ScrollVerticallyBy_System_Single_Tizen_NUI_Components_FlexibleViewRecycler_System_Boolean_" data-uid="Tizen.NUI.Components.FlexibleViewLayoutManager.ScrollVerticallyBy(System.Single,Tizen.NUI.Components.FlexibleViewRecycler,System.Boolean)">ScrollVerticallyBy(float, FlexibleViewRecycler, bool)</h4>
+  <div class="markdown level1 summary"><p>Scroll vertically by dy pixels in screen coordinates.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual float ScrollVerticallyBy(float dy, FlexibleViewRecycler recycler, bool immediate)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">dy</span></td>
+        <td><p>distance to scroll in pixels. Y increases as scroll position approaches the top.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.FlexibleViewRecycler.html">FlexibleViewRecycler</a></td>
+        <td><span class="parametername">recycler</span></td>
+        <td><p>Recycler to use for fetching potentially cached views for a position</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">immediate</span></td>
+        <td><p>Specify if the scroll need animation</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/FlexibleView/FlexibleViewLayoutManager.cs/#L30" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>
