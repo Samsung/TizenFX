@@ -60,6 +60,9 @@ jobs:
     - name: Extract Artifacts
       run: |
         tar xfz site.tar.gz
+        cd ./_site
+        git lfs insall
+        git lfs track index-prebuilt.json
 
     - name: Deploy GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
