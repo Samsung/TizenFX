@@ -342,6 +342,55 @@ the rendering results of all ModelPrimitives using this Material will be changed
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Scene3D/src/public/ModelComponents/Material.cs/#L591">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Scene3D_Material_DepthIndex_" data-uid="Tizen.NUI.Scene3D.Material.DepthIndex*"></a>
+  <h4 id="Tizen_NUI_Scene3D_Material_DepthIndex" data-uid="Tizen.NUI.Scene3D.Material.DepthIndex">DepthIndex</h4>
+  <div class="markdown level1 summary"><p>Property to define rendering order.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int DepthIndex { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Scene3D_Material_DepthIndex_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Depth index is used to defind rendering order. Basically,
+a Renderer that has smaller depth index is rendered earlier.
+In the ordinary DALI UI components has 0 as depth index by default.
+(For the case of Toolkit::Control, its renderer has depth index
+value between [-20, 20] as fallowing the renderer's purpose)</p>
+<p>In the Scene3D cases, the rendering order of each Renderer may need
+to be manually defined to match scene developer's intent.
+Scene3D::DepthIndex::Ranges could be used to adjust rendering order
+between 3D Scene content.
+Or it also could be used to manage UI component in 3D Scene independently.</p>
+<p>Changing the depth index only affects the rendering order, and does not
+mean that objects drawn later will be drawn on top. To compute final
+rendering order, whether the object is opaque or non-opaque takes precedence
+over the depth index. Changing the rendering order among translucent objects
+has a significant impact on the rendering results.</p>
+<p>The predefined depth index range is definded in <a class="xref" href="Tizen.NUI.Scene3D.MaterialDepthIndexRange.html">MaterialDepthIndexRange</a>.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Scene3D/src/public/ModelComponents/Material.cs/#L429">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_Material_DoubleSided_" data-uid="Tizen.NUI.Scene3D.Material.DoubleSided*"></a>
@@ -924,7 +973,7 @@ the rendering results of all ModelPrimitives using this Material will be changed
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Scene3D/src/public/ModelComponents/Material.cs/#L617">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Scene3D/src/public/ModelComponents/Material.cs/#L657">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_Material_GetSampler_" data-uid="Tizen.NUI.Scene3D.Material.GetSampler*"></a>
   <h4 id="Tizen_NUI_Scene3D_Material_GetSampler_Tizen_NUI_Scene3D_MaterialTextureType_" data-uid="Tizen.NUI.Scene3D.Material.GetSampler(Tizen.NUI.Scene3D.MaterialTextureType)">GetSampler(MaterialTextureType)</h4>
@@ -980,7 +1029,7 @@ the rendering results of all ModelPrimitives using this Material will be changed
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Scene3D/src/public/ModelComponents/Material.cs/#L589">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Scene3D/src/public/ModelComponents/Material.cs/#L629">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_Material_GetTexture_" data-uid="Tizen.NUI.Scene3D.Material.GetTexture*"></a>
   <h4 id="Tizen_NUI_Scene3D_Material_GetTexture_Tizen_NUI_Scene3D_MaterialTextureType_" data-uid="Tizen.NUI.Scene3D.Material.GetTexture(Tizen.NUI.Scene3D.MaterialTextureType)">GetTexture(MaterialTextureType)</h4>
@@ -1036,7 +1085,7 @@ the rendering results of all ModelPrimitives using this Material will be changed
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Scene3D/src/public/ModelComponents/Material.cs/#L669">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Scene3D/src/public/ModelComponents/Material.cs/#L709">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_Material_ReleaseSwigCPtr_" data-uid="Tizen.NUI.Scene3D.Material.ReleaseSwigCPtr*"></a>
   <h4 id="Tizen_NUI_Scene3D_Material_ReleaseSwigCPtr_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.Scene3D.Material.ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(HandleRef)</h4>
@@ -1075,7 +1124,7 @@ the rendering results of all ModelPrimitives using this Material will be changed
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Scene3D/src/public/ModelComponents/Material.cs/#L604">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Scene3D/src/public/ModelComponents/Material.cs/#L644">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_Material_SetSampler_" data-uid="Tizen.NUI.Scene3D.Material.SetSampler*"></a>
   <h4 id="Tizen_NUI_Scene3D_Material_SetSampler_Tizen_NUI_Scene3D_MaterialTextureType_Tizen_NUI_Sampler_" data-uid="Tizen.NUI.Scene3D.Material.SetSampler(Tizen.NUI.Scene3D.MaterialTextureType,Tizen.NUI.Sampler)">SetSampler(MaterialTextureType, Sampler)</h4>
@@ -1121,7 +1170,7 @@ the rendering results of all ModelPrimitives using this Material will be changed
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Scene3D/src/public/ModelComponents/Material.cs/#L576">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Scene3D/src/public/ModelComponents/Material.cs/#L616">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_Material_SetTexture_" data-uid="Tizen.NUI.Scene3D.Material.SetTexture*"></a>
   <h4 id="Tizen_NUI_Scene3D_Material_SetTexture_Tizen_NUI_Scene3D_MaterialTextureType_Tizen_NUI_Texture_" data-uid="Tizen.NUI.Scene3D.Material.SetTexture(Tizen.NUI.Scene3D.MaterialTextureType,Tizen.NUI.Texture)">SetTexture(MaterialTextureType, Texture)</h4>
