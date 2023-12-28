@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Class ItemsLayouter
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class ItemsLayouter
-   ">
-    <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API10">
-    
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API11">
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -20,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -60,19 +60,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -80,32 +80,31 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="Tizen.NUI.Components.ItemsLayouter">
-  
-  
+
+
   <h1 id="Tizen_NUI_Components_ItemsLayouter" data-uid="Tizen.NUI.Components.ItemsLayouter" class="text-break">Class ItemsLayouter
-  </h1>
+</h1>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
-  
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.NUI.Components.html">Tizen.NUI.Components</a></dd></dl>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.Components.html">Components</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.Components.dll</dd></dl>
-  <dl class="attribute-list"><dt>API Level:</dt><dd><span>9</span></dd></dl>
-  
+
   <div class="markdown level0 summary"><p>Default layout manager for RecyclerView.
 Layouting RecyclerViewItem on the scroll ContentContainer
 which need to be visible on the view by scroll position.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public abstract class ItemsLayouter : ICollectionChangedNotifier, IDisposable</code></pre>
   </div>
 
-  
+
   <dl class="attribute-list stack">
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">System.Object</span></div>
+        <div class="pdl"><span class="xref">object</span></div>
         <div><span class="xref">ItemsLayouter</span></div>
       </div>
     </dd>
@@ -120,19 +119,537 @@ which need to be visible on the view by scroll position.</p>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Components.LinearLayouter.html">LinearLayouter</a></div>
     </dd>
   </dl>
-  
-  
+
+
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.ICollectionChangedNotifier.html">ICollectionChangedNotifier</a></div>
+      <div class="pdl"><span class="xref">IDisposable</span></div>
     </dd>
   </dl>
-  
-  <h3 id="methods">Methods
-  </h3>
+
+  <h3 id="properties">Properties
+</h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L163">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L118">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_CandidateMargin_" data-uid="Tizen.NUI.Components.ItemsLayouter.CandidateMargin*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_CandidateMargin" data-uid="Tizen.NUI.Components.ItemsLayouter.CandidateMargin">CandidateMargin</h4>
+  <div class="markdown level1 summary"><p>Candidate item's Margin for scroll size measure.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Extents CandidateMargin { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Extents.html">Extents</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L64">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_Container_" data-uid="Tizen.NUI.Components.ItemsLayouter.Container*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_Container" data-uid="Tizen.NUI.Components.ItemsLayouter.Container">Container</h4>
+  <div class="markdown level1 summary"><p>Container which contains ViewItems.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected View Container { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L82">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_FirstVisible_" data-uid="Tizen.NUI.Components.ItemsLayouter.FirstVisible*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_FirstVisible" data-uid="Tizen.NUI.Components.ItemsLayouter.FirstVisible">FirstVisible</h4>
+  <div class="markdown level1 summary"><p>First index of visible items.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int FirstVisible { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L100">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_GroupItems_" data-uid="Tizen.NUI.Components.ItemsLayouter.GroupItems*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_GroupItems" data-uid="Tizen.NUI.Components.ItemsLayouter.GroupItems">GroupItems</h4>
+  <div class="markdown level1 summary"><p>Visible ViewItem.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual List&lt;ItemsLayouter.GroupInfo&gt; GroupItems { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Components.ItemsLayouter.GroupInfo.html">GroupInfo</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L130">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_IsHorizontal_" data-uid="Tizen.NUI.Components.ItemsLayouter.IsHorizontal*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_IsHorizontal" data-uid="Tizen.NUI.Components.ItemsLayouter.IsHorizontal">IsHorizontal</h4>
+  <div class="markdown level1 summary"><p>boolean flag of scrollable horizontal direction.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool IsHorizontal { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L106">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_IsInitialized_" data-uid="Tizen.NUI.Components.ItemsLayouter.IsInitialized*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_IsInitialized" data-uid="Tizen.NUI.Components.ItemsLayouter.IsInitialized">IsInitialized</h4>
+  <div class="markdown level1 summary"><p>Flag of layouter initialization.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool IsInitialized { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L70">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_ItemsView_" data-uid="Tizen.NUI.Components.ItemsLayouter.ItemsView*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_ItemsView" data-uid="Tizen.NUI.Components.ItemsLayouter.ItemsView">ItemsView</h4>
+  <div class="markdown level1 summary"><p>Parent ItemsView.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected RecyclerView ItemsView { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.RecyclerView.html">RecyclerView</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L88">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_LastVisible_" data-uid="Tizen.NUI.Components.ItemsLayouter.LastVisible*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_LastVisible" data-uid="Tizen.NUI.Components.ItemsLayouter.LastVisible">LastVisible</h4>
+  <div class="markdown level1 summary"><p>Last index of visible items.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int LastVisible { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L37">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_Padding_" data-uid="Tizen.NUI.Components.ItemsLayouter.Padding*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_Padding" data-uid="Tizen.NUI.Components.ItemsLayouter.Padding">Padding</h4>
+  <div class="markdown level1 summary"><p>Padding for ContentContainer of RecyclerView.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Extents Padding { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Extents.html">Extents</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L76">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_PrevScrollPosition_" data-uid="Tizen.NUI.Components.ItemsLayouter.PrevScrollPosition*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_PrevScrollPosition" data-uid="Tizen.NUI.Components.ItemsLayouter.PrevScrollPosition">PrevScrollPosition</h4>
+  <div class="markdown level1 summary"><p>The last scrolled position which is calculated by ScrollableBase. The value should be updated in the Recycle() method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float PrevScrollPosition { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L124">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_ScrollContentSize_" data-uid="Tizen.NUI.Components.ItemsLayouter.ScrollContentSize*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_ScrollContentSize" data-uid="Tizen.NUI.Components.ItemsLayouter.ScrollContentSize">ScrollContentSize</h4>
+  <div class="markdown level1 summary"><p>Content size of scrollable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float ScrollContentSize { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L58">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_Source_" data-uid="Tizen.NUI.Components.ItemsLayouter.Source*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_Source" data-uid="Tizen.NUI.Components.ItemsLayouter.Source">Source</h4>
+  <div class="markdown level1 summary"><p>Internal item source that organized.
+Check IItemSource and IGrouppedItemSoure also.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected IItemSource Source { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.IItemSource.html">IItemSource</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L112">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_StepCandidate_" data-uid="Tizen.NUI.Components.ItemsLayouter.StepCandidate*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_StepCandidate" data-uid="Tizen.NUI.Components.ItemsLayouter.StepCandidate">StepCandidate</h4>
+  <div class="markdown level1 summary"><p>Candidate item step size for scroll size measure.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected float StepCandidate { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L94">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_VisibleItems_" data-uid="Tizen.NUI.Components.ItemsLayouter.VisibleItems*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_VisibleItems" data-uid="Tizen.NUI.Components.ItemsLayouter.VisibleItems">VisibleItems</h4>
+  <div class="markdown level1 summary"><p>Visible ViewItem.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected List&lt;RecyclerViewItem&gt; VisibleItems { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Components.RecyclerViewItem.html">RecyclerViewItem</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L199">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_CalculateCandidateScrollPosition_" data-uid="Tizen.NUI.Components.ItemsLayouter.CalculateCandidateScrollPosition*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_CalculateCandidateScrollPosition_System_Single_" data-uid="Tizen.NUI.Components.ItemsLayouter.CalculateCandidateScrollPosition(System.Single)">CalculateCandidateScrollPosition(float)</h4>
+  <div class="markdown level1 summary"><p>Adjust scrolling position by own scrolling rules.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual float CalculateCandidateScrollPosition(float scrollPosition)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">scrollPosition</span></td>
+        <td><p>Scroll position which is calculated by ScrollableBase</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L189">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_CalculateLayoutOrientationSize_" data-uid="Tizen.NUI.Components.ItemsLayouter.CalculateLayoutOrientationSize*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_CalculateLayoutOrientationSize" data-uid="Tizen.NUI.Components.ItemsLayouter.CalculateLayoutOrientationSize">CalculateLayoutOrientationSize()</h4>
+  <div class="markdown level1 summary"><p>This is called to find out how much container size can be.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual float CalculateLayoutOrientationSize()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L163">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_ItemsLayouter_Clear_" data-uid="Tizen.NUI.Components.ItemsLayouter.Clear*"></a>
   <h4 id="Tizen_NUI_Components_ItemsLayouter_Clear" data-uid="Tizen.NUI.Components.ItemsLayouter.Clear">Clear()</h4>
@@ -143,13 +660,12 @@ which need to be visible on the view by scroll position.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public virtual void Clear()</code></pre>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L330">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L330">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_ItemsLayouter_Dispose_" data-uid="Tizen.NUI.Components.ItemsLayouter.Dispose*"></a>
   <h4 id="Tizen_NUI_Components_ItemsLayouter_Dispose" data-uid="Tizen.NUI.Components.ItemsLayouter.Dispose">Dispose()</h4>
@@ -160,13 +676,239 @@ which need to be visible on the view by scroll position.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L138">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L380">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_Dispose_" data-uid="Tizen.NUI.Components.ItemsLayouter.Dispose*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_Dispose_System_Boolean_" data-uid="Tizen.NUI.Components.ItemsLayouter.Dispose(System.Boolean)">Dispose(bool)</h4>
+  <div class="markdown level1 summary"><p>Dispose ItemsLayouter and all children on it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>true when it disposed by Dispose().</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L370">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_FindVisibleItems_" data-uid="Tizen.NUI.Components.ItemsLayouter.FindVisibleItems*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_FindVisibleItems_System_ValueTuple_System_Single_System_Single__" data-uid="Tizen.NUI.Components.ItemsLayouter.FindVisibleItems(System.ValueTuple{System.Single,System.Single})">FindVisibleItems((float X, float Y))</h4>
+  <div class="markdown level1 summary"><p>Find consecutive visible items index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual (int start, int end) FindVisibleItems((float X, float Y) visibleArea)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>(<span class="xref">float</span> <span class="xref">Width</span>, <span class="xref">float</span> <span class="xref">Height</span>)</td>
+        <td><span class="parametername">visibleArea</span></td>
+        <td><p>float turple of visible area start position to end position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>(<span class="xref">int</span>, <span class="xref">int</span>)</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L399">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_GetItemPosition_" data-uid="Tizen.NUI.Components.ItemsLayouter.GetItemPosition*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_GetItemPosition_System_Int32_" data-uid="Tizen.NUI.Components.ItemsLayouter.GetItemPosition(System.Int32)">GetItemPosition(int)</h4>
+  <div class="markdown level1 summary"><p>Get item position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual (float X, float Y) GetItemPosition(int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>(<span class="xref">float</span> <span class="xref">Width</span>, <span class="xref">float</span> <span class="xref">Height</span>)</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L408">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_GetItemSize_" data-uid="Tizen.NUI.Components.ItemsLayouter.GetItemSize*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_GetItemSize_System_Int32_" data-uid="Tizen.NUI.Components.ItemsLayouter.GetItemSize(System.Int32)">GetItemSize(int)</h4>
+  <div class="markdown level1 summary"><p>Get item size.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual (float Width, float Height) GetItemSize(int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>(<span class="xref">float</span> <span class="xref">Width</span>, <span class="xref">float</span> <span class="xref">Height</span>)</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L417">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_GetVisibleItem_" data-uid="Tizen.NUI.Components.ItemsLayouter.GetVisibleItem*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_GetVisibleItem_System_Int32_" data-uid="Tizen.NUI.Components.ItemsLayouter.GetVisibleItem(System.Int32)">GetVisibleItem(int)</h4>
+  <div class="markdown level1 summary"><p>Get visible item object on index if it is realized.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual RecyclerViewItem GetVisibleItem(int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.RecyclerViewItem.html">RecyclerViewItem</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L138">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_ItemsLayouter_Initialize_" data-uid="Tizen.NUI.Components.ItemsLayouter.Initialize*"></a>
   <h4 id="Tizen_NUI_Components_ItemsLayouter_Initialize_Tizen_NUI_Components_RecyclerView_" data-uid="Tizen.NUI.Components.ItemsLayouter.Initialize(Tizen.NUI.Components.RecyclerView)">Initialize(RecyclerView)</h4>
@@ -195,16 +937,457 @@ which need to be visible on the view by scroll position.</p>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L154">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L341">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_MeasureChild_" data-uid="Tizen.NUI.Components.ItemsLayouter.MeasureChild*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_MeasureChild_Tizen_NUI_Components_RecyclerView_Tizen_NUI_Components_RecyclerViewItem_" data-uid="Tizen.NUI.Components.ItemsLayouter.MeasureChild(Tizen.NUI.Components.RecyclerView,Tizen.NUI.Components.RecyclerViewItem)">MeasureChild(RecyclerView, RecyclerViewItem)</h4>
+  <div class="markdown level1 summary"><p>Measure the size of child ViewItem manually.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void MeasureChild(RecyclerView parent, RecyclerViewItem child)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.RecyclerView.html">RecyclerView</a></td>
+        <td><span class="parametername">parent</span></td>
+        <td><p>Parent ItemsView.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.RecyclerViewItem.html">RecyclerViewItem</a></td>
+        <td><span class="parametername">child</span></td>
+        <td><p>Child ViewItem to Measure()</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L217">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_NotifyDataSetChanged_" data-uid="Tizen.NUI.Components.ItemsLayouter.NotifyDataSetChanged*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_NotifyDataSetChanged" data-uid="Tizen.NUI.Components.ItemsLayouter.NotifyDataSetChanged">NotifyDataSetChanged()</h4>
+  <div class="markdown level1 summary"><p>Notify the dataset is Changed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void NotifyDataSetChanged()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L231">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_NotifyItemChanged_" data-uid="Tizen.NUI.Components.ItemsLayouter.NotifyItemChanged*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_NotifyItemChanged_Tizen_NUI_Components_IItemSource_System_Int32_" data-uid="Tizen.NUI.Components.ItemsLayouter.NotifyItemChanged(Tizen.NUI.Components.IItemSource,System.Int32)">NotifyItemChanged(IItemSource, int)</h4>
+  <div class="markdown level1 summary"><p>Notify the observable item in startIndex is changed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void NotifyItemChanged(IItemSource source, int startIndex)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.IItemSource.html">IItemSource</a></td>
+        <td><span class="parametername">source</span></td>
+        <td><p>Dataset source.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">startIndex</span></td>
+        <td><p>Changed item index.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L241">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_NotifyItemInserted_" data-uid="Tizen.NUI.Components.ItemsLayouter.NotifyItemInserted*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_NotifyItemInserted_Tizen_NUI_Components_IItemSource_System_Int32_" data-uid="Tizen.NUI.Components.ItemsLayouter.NotifyItemInserted(Tizen.NUI.Components.IItemSource,System.Int32)">NotifyItemInserted(IItemSource, int)</h4>
+  <div class="markdown level1 summary"><p>Notify the observable item is inserted in dataset.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void NotifyItemInserted(IItemSource source, int startIndex)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.IItemSource.html">IItemSource</a></td>
+        <td><span class="parametername">source</span></td>
+        <td><p>Dataset source.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">startIndex</span></td>
+        <td><p>Inserted item index.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L252">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_NotifyItemMoved_" data-uid="Tizen.NUI.Components.ItemsLayouter.NotifyItemMoved*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_NotifyItemMoved_Tizen_NUI_Components_IItemSource_System_Int32_System_Int32_" data-uid="Tizen.NUI.Components.ItemsLayouter.NotifyItemMoved(Tizen.NUI.Components.IItemSource,System.Int32,System.Int32)">NotifyItemMoved(IItemSource, int, int)</h4>
+  <div class="markdown level1 summary"><p>Notify the observable item is moved from fromPosition to ToPosition.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void NotifyItemMoved(IItemSource source, int fromPosition, int toPosition)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.IItemSource.html">IItemSource</a></td>
+        <td><span class="parametername">source</span></td>
+        <td><p>Dataset source.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">fromPosition</span></td>
+        <td><p>Previous item position.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">toPosition</span></td>
+        <td><p>Moved item position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L275">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_NotifyItemRangeChanged_" data-uid="Tizen.NUI.Components.ItemsLayouter.NotifyItemRangeChanged*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_NotifyItemRangeChanged_Tizen_NUI_Components_IItemSource_System_Int32_System_Int32_" data-uid="Tizen.NUI.Components.ItemsLayouter.NotifyItemRangeChanged(Tizen.NUI.Components.IItemSource,System.Int32,System.Int32)">NotifyItemRangeChanged(IItemSource, int, int)</h4>
+  <div class="markdown level1 summary"><p>Notify the range of observable items from start to end are changed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void NotifyItemRangeChanged(IItemSource source, int startRange, int endRange)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.IItemSource.html">IItemSource</a></td>
+        <td><span class="parametername">source</span></td>
+        <td><p>Dataset source.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">startRange</span></td>
+        <td><p>Start index of changed items range.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">endRange</span></td>
+        <td><p>End index of changed items range.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L286">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_NotifyItemRangeInserted_" data-uid="Tizen.NUI.Components.ItemsLayouter.NotifyItemRangeInserted*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_NotifyItemRangeInserted_Tizen_NUI_Components_IItemSource_System_Int32_System_Int32_" data-uid="Tizen.NUI.Components.ItemsLayouter.NotifyItemRangeInserted(Tizen.NUI.Components.IItemSource,System.Int32,System.Int32)">NotifyItemRangeInserted(IItemSource, int, int)</h4>
+  <div class="markdown level1 summary"><p>Notify the count range of observable items are inserted in startIndex.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void NotifyItemRangeInserted(IItemSource source, int startIndex, int count)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.IItemSource.html">IItemSource</a></td>
+        <td><span class="parametername">source</span></td>
+        <td><p>Dataset source.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">startIndex</span></td>
+        <td><p>Start index of inserted items range.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">count</span></td>
+        <td><p>The number of inserted items.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L264">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_NotifyItemRangeMoved_" data-uid="Tizen.NUI.Components.ItemsLayouter.NotifyItemRangeMoved*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_NotifyItemRangeMoved_Tizen_NUI_Components_IItemSource_System_Int32_System_Int32_System_Int32_" data-uid="Tizen.NUI.Components.ItemsLayouter.NotifyItemRangeMoved(Tizen.NUI.Components.IItemSource,System.Int32,System.Int32,System.Int32)">NotifyItemRangeMoved(IItemSource, int, int, int)</h4>
+  <div class="markdown level1 summary"><p>Notify the range of the observable items are moved from fromPosition to ToPosition.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void NotifyItemRangeMoved(IItemSource source, int fromPosition, int toPosition, int count)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.IItemSource.html">IItemSource</a></td>
+        <td><span class="parametername">source</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">fromPosition</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">toPosition</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">count</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L297">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_NotifyItemRangeRemoved_" data-uid="Tizen.NUI.Components.ItemsLayouter.NotifyItemRangeRemoved*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_NotifyItemRangeRemoved_Tizen_NUI_Components_IItemSource_System_Int32_System_Int32_" data-uid="Tizen.NUI.Components.ItemsLayouter.NotifyItemRangeRemoved(Tizen.NUI.Components.IItemSource,System.Int32,System.Int32)">NotifyItemRangeRemoved(IItemSource, int, int)</h4>
+  <div class="markdown level1 summary"><p>Notify the count range of observable items from the startIndex are removed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void NotifyItemRangeRemoved(IItemSource source, int startIndex, int count)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.IItemSource.html">IItemSource</a></td>
+        <td><span class="parametername">source</span></td>
+        <td><p>Dataset source.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">startIndex</span></td>
+        <td><p>Start index of removed items range.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">count</span></td>
+        <td><p>The number of removed items</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L307">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_NotifyItemRemoved_" data-uid="Tizen.NUI.Components.ItemsLayouter.NotifyItemRemoved*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_NotifyItemRemoved_Tizen_NUI_Components_IItemSource_System_Int32_" data-uid="Tizen.NUI.Components.ItemsLayouter.NotifyItemRemoved(Tizen.NUI.Components.IItemSource,System.Int32)">NotifyItemRemoved(IItemSource, int)</h4>
+  <div class="markdown level1 summary"><p>Notify the observable item in startIndex is removed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void NotifyItemRemoved(IItemSource source, int startIndex)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.IItemSource.html">IItemSource</a></td>
+        <td><span class="parametername">source</span></td>
+        <td><p>Dataset source.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">startIndex</span></td>
+        <td><p>Index of removed item.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L209">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_NotifyItemSizeChanged_" data-uid="Tizen.NUI.Components.ItemsLayouter.NotifyItemSizeChanged*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_NotifyItemSizeChanged_Tizen_NUI_Components_RecyclerViewItem_" data-uid="Tizen.NUI.Components.ItemsLayouter.NotifyItemSizeChanged(Tizen.NUI.Components.RecyclerViewItem)">NotifyItemSizeChanged(RecyclerViewItem)</h4>
+  <div class="markdown level1 summary"><p>Notify the relayout of ViewItem.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void NotifyItemSizeChanged(RecyclerViewItem item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.RecyclerViewItem.html">RecyclerViewItem</a></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>updated ViewItem.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L154">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_ItemsLayouter_RequestLayout_" data-uid="Tizen.NUI.Components.ItemsLayouter.RequestLayout*"></a>
-  <h4 id="Tizen_NUI_Components_ItemsLayouter_RequestLayout_System_Single_System_Boolean_" data-uid="Tizen.NUI.Components.ItemsLayouter.RequestLayout(System.Single,System.Boolean)">RequestLayout(Single, Boolean)</h4>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_RequestLayout_System_Single_System_Boolean_" data-uid="Tizen.NUI.Components.ItemsLayouter.RequestLayout(System.Single,System.Boolean)">RequestLayout(float, bool)</h4>
   <div class="markdown level1 summary"><p>This is called to find out where items are lain out according to current scroll position.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -223,37 +1406,124 @@ which need to be visible on the view by scroll position.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Single</span></td>
+        <td><span class="xref">float</span></td>
         <td><span class="parametername">scrollPosition</span></td>
         <td><p>Scroll position which is calculated by ScrollableBase</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">bool</span></td>
         <td><span class="parametername">force</span></td>
         <td><p>boolean force flag to layouting forcely.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L320">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ItemsLayouter_RequestNextFocusableView_" data-uid="Tizen.NUI.Components.ItemsLayouter.RequestNextFocusableView*"></a>
+  <h4 id="Tizen_NUI_Components_ItemsLayouter_RequestNextFocusableView_Tizen_NUI_BaseComponents_View_Tizen_NUI_BaseComponents_View_FocusDirection_System_Boolean_" data-uid="Tizen.NUI.Components.ItemsLayouter.RequestNextFocusableView(Tizen.NUI.BaseComponents.View,Tizen.NUI.BaseComponents.View.FocusDirection,System.Boolean)">RequestNextFocusableView(View, FocusDirection, bool)</h4>
+  <div class="markdown level1 summary"><p>Gets the next keyboard focusable view in this control towards the given direction.<br>
+A control needs to override this function in order to support two dimensional keyboard navigation.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual View RequestNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><span class="parametername">currentFocusedView</span></td>
+        <td><p>The current focused view.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>.<a class="xref" href="Tizen.NUI.BaseComponents.View.FocusDirection.html">FocusDirection</a></td>
+        <td><span class="parametername">direction</span></td>
+        <td><p>The direction to move the focus towards.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">loopEnabled</span></td>
+        <td><p>Whether the focus movement should be looped within the control.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><p>The next keyboard focusable view in this control or an empty handle if no view can be focused.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">System.IDisposable</span>
+      <a class="xref" href="Tizen.NUI.Components.ICollectionChangedNotifier.html">ICollectionChangedNotifier</a>
+  </div>
+  <div>
+      <span class="xref">IDisposable</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L29" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/RecyclerView/Layouter/ItemsLayouter.cs/#L29" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -264,7 +1534,7 @@ which need to be visible on the view by scroll position.</p>
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -272,13 +1542,13 @@ which need to be visible on the view by scroll position.</p>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

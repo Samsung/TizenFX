@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Namespace Tizen.NUI.Scene3D
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Namespace Tizen.NUI.Scene3D
-   ">
-    <meta name="generator" content="docfx 2.56.1.0">
+ ">
+    <meta name="generator" content="docfx ">
     <meta name="version" content="API10">
-    
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -20,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -60,19 +60,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -80,17 +80,17 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="Tizen.NUI.Scene3D">
-  
+
   <h1 id="Tizen_NUI_Scene3D" data-uid="Tizen.NUI.Scene3D" class="text-break">Namespace Tizen.NUI.Scene3D
-  </h1>
+</h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
-  </h3>
+</h3>
       <h4><a class="xref" href="Tizen.NUI.Scene3D.Camera.html">Camera</a></h4>
       <section><p>Camera class controls a camera in 3D space.</p>
-<p>Camera can be added on the SceneView and displays SceneView&apos;s virtual 3D world to the screen.
+<p>Camera can be added on the SceneView and displays SceneView's virtual 3D world to the screen.
 Camera can be translated and rotated in the space.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.Scene3D.Model.html">Model</a></h4>
@@ -105,40 +105,40 @@ SceneView uses left-handed coordinate system same as NUI. X as right, Y as down,
 <p>SceneView has internal root container to control inner rendering process like depth test.
 When a View is added to the SceneView with <a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_Add_Tizen_NUI_BaseComponents_View_">Add(View)</a> method, it is actually added on the root container.
 Therefore, the added Views exist in the sub tree of SceneView, but are not direct children.
-The sub tree of Views will be rendered with the SceneView&apos;s own Camera.</p>
+The sub tree of Views will be rendered with the SceneView's own Camera.</p>
 <p>SceneView has one built-in camera by default.
 The default Camera is not removed by using <a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_RemoveCamera_Tizen_NUI_Scene3D_Camera_">RemoveCamera(Camera)</a> method.
-<a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_GetCamera_System_UInt32_">GetCamera(UInt32)</a> method with index &quot;0&quot; returns the default camera,
+<a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_GetCamera_System_UInt32_">GetCamera(uint)</a> method with index &quot;0&quot; returns the default camera,
 and the minimum value returned by <a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_GetCameraCount">GetCameraCount()</a> method is 1.</p>
 <p>SceneView also provides multiple Camera and one of them can be used to render multiple objects.
-<a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_AddCamera_Tizen_NUI_Scene3D_Camera_">AddCamera(Camera)</a>, <a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_RemoveCamera_Tizen_NUI_Scene3D_Camera_">RemoveCamera(Camera)</a>, <a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_GetCamera_System_UInt32_">GetCamera(UInt32)</a>,
-and <a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_SelectCamera_System_UInt32_">SelectCamera(UInt32)</a> are methods to manage Cameras of the SceneView.
+<a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_AddCamera_Tizen_NUI_Scene3D_Camera_">AddCamera(Camera)</a>, <a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_RemoveCamera_Tizen_NUI_Scene3D_Camera_">RemoveCamera(Camera)</a>, <a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_GetCamera_System_UInt32_">GetCamera(uint)</a>,
+and <a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_SelectCamera_System_UInt32_">SelectCamera(uint)</a> are methods to manage Cameras of the SceneView.
 User can place multiple cameras in a scene to display the entire scene or to display individual objects.
-User can use the <a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_SelectCamera_System_UInt32_">SelectCamera(UInt32)</a> method to select the currently required camera.</p>
-<p>When the SceneView&apos;s size changes, some camera properties that depend on its size may also change.
+User can use the <a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_SelectCamera_System_UInt32_">SelectCamera(uint)</a> method to select the currently required camera.</p>
+<p>When the SceneView's size changes, some camera properties that depend on its size may also change.
 The changing properties are as follows: AspectRatio, LeftPlaneDistance, RightPlaneDistance, TopPlaneDistance, and BottomPlaneDistance.
-The Camera&apos;s FieldOfView is vertical fov. The horizontal fov is updated internally according to the SceneView size.</p>
-<p>The <a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_SetImageBasedLightSource_System_String_System_String_System_Single_">SetImageBasedLightSource(String, String, Single)</a> method sets the same IBL to all Model objects added to the SceneView.
+The Camera's FieldOfView is vertical fov. The horizontal fov is updated internally according to the SceneView size.</p>
+<p>The <a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_SetImageBasedLightSource_System_String_System_String_System_Single_">SetImageBasedLightSource(string, string, float)</a> method sets the same IBL to all Model objects added to the SceneView.
 For the IBL, two cube map textures(diffuse and specular) are required.
 SceneView supports 4 types layout for Cube Map: Vertical/Horizontal Cross layouts, and Vertical/Horizontal Array layouts.
 And also, ktx format with cube map is supported.
 If a model already has an IBL, it is batch overridden with the IBL of the SceneView.
 If the SceneView has IBL, the IBL of newly added models is also overridden.</p>
-<p>The IBL textures start to be loaded asynchronously when <a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_SetImageBasedLightSource_System_String_System_String_System_Single_">SetImageBasedLightSource(String, String, Single)</a> method is called.
+<p>The IBL textures start to be loaded asynchronously when <a class="xref" href="Tizen.NUI.Scene3D.SceneView.html#Tizen_NUI_Scene3D_SceneView_SetImageBasedLightSource_System_String_System_String_System_Single_">SetImageBasedLightSource(string, string, float)</a> method is called.
 ResourcesLoaded signal notifies that the loading of the IBL resources have been completed.</p>
 <p>If FBO is used, the rendering result of SceneView is drawn on the FBO and it is mapped on the plane of the SceneView.
 It could decreases performance slightly, but it is useful to show SceneView according to the rendering order with other Views.</p>
 <p>And since SceneView is a View, it can be placed together with other 2D UI components in the NUI window.</p>
 </section>
     <h3 id="enums">Enums
-  </h3>
+</h3>
       <h4><a class="xref" href="Tizen.NUI.Scene3D.Camera.ProjectionModeType.html">Camera.ProjectionModeType</a></h4>
       <section><p>Enumeration for the projectionMode.
 ProjectionMode defines how the camera shows 3D objects or scene on a 2D plane with projection.</p>
 </section>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
@@ -152,7 +152,7 @@ ProjectionMode defines how the camera shows 3D objects or scene on a 2D plane wi
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -160,13 +160,13 @@ ProjectionMode defines how the camera shows 3D objects or scene on a 2D plane wi
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

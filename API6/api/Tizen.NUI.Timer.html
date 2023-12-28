@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Class Timer
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Timer
-   ">
-    <meta name="generator" content="docfx 2.56.1.0">
+ ">
+    <meta name="generator" content="docfx ">
     <meta name="version" content="API6">
-    
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -20,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -60,19 +60,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -80,37 +80,36 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="Tizen.NUI.Timer">
-  
-  
+
+
   <h1 id="Tizen_NUI_Timer" data-uid="Tizen.NUI.Timer" class="text-break">Class Timer
-  </h1>
+</h1>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
-  
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.NUI.html">Tizen.NUI</a></dd></dl>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
-  <dl class="attribute-list"><dt>API Level:</dt><dd><span>3</span></dd></dl>
-  
+
   <div class="markdown level0 summary"><p>Mechanism to issue simple periodic or one-shot events.<br>
 Timer is provided for application developers to be able to issue
 simple periodic or one-shot events. Please note that the timer
 callback functions should return as soon as possible because they
 block the next SignalTick. Please note that timer signals are not
-in sync with DALi&apos;s render timer.<br>
+in sync with DALi's render timer.<br>
 This class is a handle class so it can be stack allocated and used
 as a member.<br></p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  
+
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Timer : BaseHandle, INotifyPropertyChanged, IDynamicResourceHandler, IElement, INameScope, IElementController, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class Timer : BaseHandle, INotifyPropertyChanged, IDisposable</code></pre>
   </div>
 
-  
+
   <dl class="attribute-list stack">
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">System.Object</span></div>
+        <div class="pdl"><span class="xref">object</span></div>
         <div class="pdl"><span class="xref">Tizen.NUI.Binding.BindableObject</span></div>
         <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
@@ -119,23 +118,23 @@ as a member.<br></p>
     </dd>
   </dl>
 
-  
-  
+
+
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
+      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
       <div class="pdl"><span class="xref">System.IDisposable</span></div>
     </dd>
   </dl>
-  
+
   <h3 id="constructors">Constructors
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.NUI/src/public/Timer.cs/#L51">View Source</a>
   </span>
   <a id="Tizen_NUI_Timer__ctor_" data-uid="Tizen.NUI.Timer.#ctor*"></a>
-  <h4 id="Tizen_NUI_Timer__ctor_System_UInt32_" data-uid="Tizen.NUI.Timer.#ctor(System.UInt32)">Timer(UInt32)</h4>
+  <h4 id="Tizen_NUI_Timer__ctor_System_UInt32_" data-uid="Tizen.NUI.Timer.#ctor(System.UInt32)">Timer(uint)</h4>
   <div class="markdown level1 summary"><p>Creates a tick timer that emits periodic signal.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -154,20 +153,19 @@ as a member.<br></p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><span class="xref">uint</span></td>
         <td><span class="parametername">milliSec</span></td>
         <td><p>Interval in milliseconds.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="properties">Properties
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.NUI/src/public/Timer.cs/#L152">View Source</a>
   </span>
@@ -190,7 +188,7 @@ as a member.<br></p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><span class="xref">uint</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -199,13 +197,12 @@ as a member.<br></p>
   <div class="markdown level1 remarks"><p>For setter, this sets a new interval on the timer and starts the timer. <br>
 Cancels the previous timer.</p>
 </div>
-  
-  <h6><strong>API Level</strong>: <span>4</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="methods">Methods
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.NUI/src/public/Timer.cs/#L330">View Source</a>
   </span>
@@ -237,25 +234,24 @@ Cancels the previous timer.</p>
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="Tizen.NUI.BaseHandle.html#Tizen_NUI_BaseHandle_Dispose_Tizen_NUI_DisposeTypes_">BaseHandle.Dispose(DisposeTypes)</a></div>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.NUI/src/public/Timer.cs/#L87">View Source</a>
   </span>
   <a id="Tizen_NUI_Timer_Finalize_" data-uid="Tizen.NUI.Timer.Finalize*"></a>
-  <h4 id="Tizen_NUI_Timer_Finalize" data-uid="Tizen.NUI.Timer.Finalize">Finalize()</h4>
+  <h4 id="Tizen_NUI_Timer_Finalize" data-uid="Tizen.NUI.Timer.Finalize">~Timer()</h4>
   <div class="markdown level1 summary"><p>Destructor.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void Finalize()</code></pre>
+    <pre><code class="lang-csharp hljs">protected ~Timer()</code></pre>
   </div>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -280,15 +276,14 @@ Cancels the previous timer.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">bool</span></td>
         <td><p>Whether the timer is started or not.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -304,9 +299,8 @@ In case a timer is already running, its time is reset and the timer is restarted
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Start()</code></pre>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -321,13 +315,12 @@ In case a timer is already running, its time is reset and the timer is restarted
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Stop()</code></pre>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="events">Events
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.NUI/src/public/Timer.cs/#L100">View Source</a>
   </span>
@@ -350,26 +343,25 @@ provided by the user. The ticked signal is emitted after specified time interval
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.NUI.EventHandlerWithReturnType-3.html">EventHandlerWithReturnType</a>&lt;<span class="xref">System.Object</span>, <a class="xref" href="Tizen.NUI.Timer.TickEventArgs.html">Timer.TickEventArgs</a>, <span class="xref">System.Boolean</span>&gt;</td>
+        <td><a class="xref" href="Tizen.NUI.EventHandlerWithReturnType-3.html">EventHandlerWithReturnType</a>&lt;<span class="xref">object</span>, <a class="xref" href="Tizen.NUI.Timer.html">Timer</a>.<a class="xref" href="Tizen.NUI.Timer.TickEventArgs.html">TickEventArgs</a>, <span class="xref">bool</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">System.ComponentModel.INotifyPropertyChanged</a>
+      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
   </div>
   <div>
       <span class="xref">System.IDisposable</span>
   </div>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
@@ -386,7 +378,7 @@ provided by the user. The ticked signal is emitted after specified time interval
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -394,13 +386,13 @@ provided by the user. The ticked signal is emitted after specified time interval
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

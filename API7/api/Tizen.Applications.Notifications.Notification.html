@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Class Notification
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Notification
-   ">
-    <meta name="generator" content="docfx 2.56.1.0">
+ ">
+    <meta name="generator" content="docfx ">
     <meta name="version" content="API7">
-    
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -20,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -60,19 +60,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -80,51 +80,50 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="Tizen.Applications.Notifications.Notification">
-  
-  
+
+
   <h1 id="Tizen_Applications_Notifications_Notification" data-uid="Tizen.Applications.Notifications.Notification" class="text-break">Class Notification
-  </h1>
+</h1>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
-  
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.Applications.Notifications.html">Tizen.Applications.Notifications</a></dd></dl>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Applications.html">Applications</a>.<a class="xref" href="Tizen.Applications.Notifications.html">Notifications</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Applications.Notification.dll</dd></dl>
-  <dl class="attribute-list"><dt>API Level:</dt><dd><span>3</span></dd></dl>
-  
+
   <div class="markdown level0 summary"><p>This class contains common properties and methods of notifications.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public sealed class Notification : IDisposable</code></pre>
   </div>
 
-  
+
   <dl class="attribute-list stack">
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">System.Object</span></div>
+        <div class="pdl"><span class="xref">object</span></div>
         <div><span class="xref">Notification</span></div>
       </div>
     </dd>
   </dl>
 
-  
-  
+
+
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
       <div class="pdl"><span class="xref">System.IDisposable</span></div>
     </dd>
   </dl>
-  
+
   <h5 id="Tizen_Applications_Notifications_Notification_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>A notification is a message that is displayed on the notification area.
 It is created to notify information to the user through the application.
 This class helps you to provide method and property for creating notification object.</p>
 </div>
   <h3 id="constructors">Constructors
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L46">View Source</a>
   </span>
@@ -137,13 +136,17 @@ This class helps you to provide method and property for creating notification ob
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Notification()</code></pre>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+  <h5 id="Tizen_Applications_Notifications_Notification__ctor_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A notification is a message that is displayed on the notification area.
+It is created to notify information to the user through the application.
+This class helps you to provide method and property for creating notification object.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="properties">Properties
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L196">View Source</a>
   </span>
@@ -166,7 +169,7 @@ This class helps you to provide method and property for creating notification ob
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.Applications.Notifications.Notification.AccessorySet.html">Notification.AccessorySet</a></td>
+        <td><a class="xref" href="Tizen.Applications.Notifications.Notification.html">Notification</a>.<a class="xref" href="Tizen.Applications.Notifications.Notification.AccessorySet.html">AccessorySet</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -198,9 +201,8 @@ notification.Accessory = accessory;
 
 NotificationManager.Post(notification);</code></pre>
 
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -237,9 +239,8 @@ NotificationManager.Post(notification);</code></pre>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Applications.AppControl.html">AppControl</a></div>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -264,14 +265,18 @@ NotificationManager.Post(notification);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+  <h5 id="Tizen_Applications_Notifications_Notification_Content_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A notification is a message that is displayed on the notification area.
+It is created to notify information to the user through the application.
+This class helps you to provide method and property for creating notification object.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -296,7 +301,7 @@ NotificationManager.Post(notification);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -321,9 +326,8 @@ If you set count to negative number, this property throws exception.</p>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -349,14 +353,18 @@ You should set an absolute path for an image file.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+  <h5 id="Tizen_Applications_Notifications_Notification_Icon_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A notification is a message that is displayed on the notification area.
+It is created to notify information to the user through the application.
+This class helps you to provide method and property for creating notification object.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -382,14 +390,18 @@ Default to true.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">bool</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+  <h5 id="Tizen_Applications_Notifications_Notification_IsTimeStampVisible_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A notification is a message that is displayed on the notification area.
+It is created to notify information to the user through the application.
+This class helps you to provide method and property for creating notification object.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -415,14 +427,18 @@ If you set false and add style, you can see only style notification.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">bool</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>4</span></h6>
-  
+  <h5 id="Tizen_Applications_Notifications_Notification_IsVisible_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A notification is a message that is displayed on the notification area.
+It is created to notify information to the user through the application.
+This class helps you to provide method and property for creating notification object.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -447,18 +463,22 @@ If you set false and add style, you can see only style notification.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.Applications.Notifications.Notification.ProgressType.html">Notification.ProgressType</a></td>
+        <td><a class="xref" href="Tizen.Applications.Notifications.Notification.html">Notification</a>.<a class="xref" href="Tizen.Applications.Notifications.Notification.ProgressType.html">ProgressType</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
+  <h5 id="Tizen_Applications_Notifications_Notification_Progress_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A notification is a message that is displayed on the notification area.
+It is created to notify information to the user through the application.
+This class helps you to provide method and property for creating notification object.</p>
+</div>
   <h5 id="Tizen_Applications_Notifications_Notification_Progress_seealso">See Also</h5>
   <div class="seealso">
-      <div><a class="xref" href="Tizen.Applications.Notifications.Notification.ProgressType.html">Notification.ProgressType</a></div>
+      <div><a class="xref" href="Tizen.Applications.Notifications.Notification.html">Notification</a>.<a class="xref" href="Tizen.Applications.Notifications.Notification.ProgressType.html">ProgressType</a></div>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -488,13 +508,17 @@ If you set false and add style, you can see only style notification.</p>
       </tr>
     </tbody>
   </table>
+  <h5 id="Tizen_Applications_Notifications_Notification_Property_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A notification is a message that is displayed on the notification area.
+It is created to notify information to the user through the application.
+This class helps you to provide method and property for creating notification object.</p>
+</div>
   <h5 id="Tizen_Applications_Notifications_Notification_Property_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Applications.Notifications.NotificationProperty.html">NotificationProperty</a></div>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -521,14 +545,18 @@ You should set an absolute path for an image file.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+  <h5 id="Tizen_Applications_Notifications_Notification_SubIcon_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A notification is a message that is displayed on the notification area.
+It is created to notify information to the user through the application.
+This class helps you to provide method and property for creating notification object.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -553,14 +581,18 @@ You should set an absolute path for an image file.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+  <h5 id="Tizen_Applications_Notifications_Notification_Tag_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A notification is a message that is displayed on the notification area.
+It is created to notify information to the user through the application.
+This class helps you to provide method and property for creating notification object.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -591,13 +623,12 @@ You should set an absolute path for an image file.</p>
     </tbody>
   </table>
   <h5 id="Tizen_Applications_Notifications_Notification_TimeStamp_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>If you don&apos;t set TimeStamp, it will set the value when the notification is posted.
+  <div class="markdown level1 remarks"><p>If you don't set TimeStamp, it will set the value when the notification is posted.
 TimeStamp requires NotificationManager.Post() to be called.
 If you set IsVisibleTimeStamp property to false, TimeStamp is not visible in notification.</p>
 </div>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -622,23 +653,27 @@ If you set IsVisibleTimeStamp property to false, TimeStamp is not visible in not
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+  <h5 id="Tizen_Applications_Notifications_Notification_Title_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A notification is a message that is displayed on the notification area.
+It is created to notify information to the user through the application.
+This class helps you to provide method and property for creating notification object.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="methods">Methods
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L263">View Source</a>
   </span>
   <a id="Tizen_Applications_Notifications_Notification_AddStyle_" data-uid="Tizen.Applications.Notifications.Notification.AddStyle*"></a>
-  <h4 id="Tizen_Applications_Notifications_Notification_AddStyle_Tizen_Applications_Notifications_Notification_StyleBase_" data-uid="Tizen.Applications.Notifications.Notification.AddStyle(Tizen.Applications.Notifications.Notification.StyleBase)">AddStyle(Notification.StyleBase)</h4>
+  <h4 id="Tizen_Applications_Notifications_Notification_AddStyle_Tizen_Applications_Notifications_Notification_StyleBase_" data-uid="Tizen.Applications.Notifications.Notification.AddStyle(Tizen.Applications.Notifications.Notification.StyleBase)">AddStyle(StyleBase)</h4>
   <div class="markdown level1 summary"><p>Method for adding various styles to be applied to notification.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -657,7 +692,7 @@ If you set IsVisibleTimeStamp property to false, TimeStamp is not visible in not
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.Applications.Notifications.Notification.StyleBase.html">Notification.StyleBase</a></td>
+        <td><a class="xref" href="Tizen.Applications.Notifications.Notification.html">Notification</a>.<a class="xref" href="Tizen.Applications.Notifications.Notification.StyleBase.html">StyleBase</a></td>
         <td><span class="parametername">style</span></td>
         <td><p>The style to be applied to notification.</p>
 </td>
@@ -703,9 +738,8 @@ NotificationManager.Post(notification);</code></pre>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -720,16 +754,20 @@ NotificationManager.Post(notification);</code></pre>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+  <h5 id="Tizen_Applications_Notifications_Notification_Dispose_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A notification is a message that is displayed on the notification area.
+It is created to notify information to the user through the application.
+This class helps you to provide method and property for creating notification object.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L407">View Source</a>
   </span>
   <a id="Tizen_Applications_Notifications_Notification_GetExtraData_" data-uid="Tizen.Applications.Notifications.Notification.GetExtraData*"></a>
-  <h4 id="Tizen_Applications_Notifications_Notification_GetExtraData_System_String_" data-uid="Tizen.Applications.Notifications.Notification.GetExtraData(System.String)">GetExtraData(String)</h4>
+  <h4 id="Tizen_Applications_Notifications_Notification_GetExtraData_System_String_" data-uid="Tizen.Applications.Notifications.Notification.GetExtraData(System.String)">GetExtraData(string)</h4>
   <div class="markdown level1 summary"><p>Method to get extra data you already set.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -748,7 +786,7 @@ NotificationManager.Post(notification);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">key</span></td>
         <td><p>The key of the extra data to get.</p>
 </td>
@@ -771,6 +809,11 @@ NotificationManager.Post(notification);</code></pre>
       </tr>
     </tbody>
   </table>
+  <h5 id="Tizen_Applications_Notifications_Notification_GetExtraData_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A notification is a message that is displayed on the notification area.
+It is created to notify information to the user through the application.
+This class helps you to provide method and property for creating notification object.</p>
+</div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -787,9 +830,8 @@ NotificationManager.Post(notification);</code></pre>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>4</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -802,8 +844,7 @@ NotificationManager.Post(notification);</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public T GetStyle&lt;T&gt;()
-    where T : Notification.StyleBase, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public T GetStyle&lt;T&gt;() where T : Notification.StyleBase, new()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -837,6 +878,11 @@ NotificationManager.Post(notification);</code></pre>
       </tr>
     </tbody>
   </table>
+  <h5 id="Tizen_Applications_Notifications_Notification_GetStyle__1_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A notification is a message that is displayed on the notification area.
+It is created to notify information to the user through the application.
+This class helps you to provide method and property for creating notification object.</p>
+</div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -853,16 +899,15 @@ NotificationManager.Post(notification);</code></pre>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L383">View Source</a>
   </span>
   <a id="Tizen_Applications_Notifications_Notification_RemoveExtraData_" data-uid="Tizen.Applications.Notifications.Notification.RemoveExtraData*"></a>
-  <h4 id="Tizen_Applications_Notifications_Notification_RemoveExtraData_System_String_" data-uid="Tizen.Applications.Notifications.Notification.RemoveExtraData(System.String)">RemoveExtraData(String)</h4>
+  <h4 id="Tizen_Applications_Notifications_Notification_RemoveExtraData_System_String_" data-uid="Tizen.Applications.Notifications.Notification.RemoveExtraData(System.String)">RemoveExtraData(string)</h4>
   <div class="markdown level1 summary"><p>Method to remove extra you already added.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -881,7 +926,7 @@ NotificationManager.Post(notification);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">key</span></td>
         <td><p>The key of the extra data to add.</p>
 </td>
@@ -907,9 +952,8 @@ NotificationManager.Post(notification);</code></pre>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>4</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -922,8 +966,7 @@ NotificationManager.Post(notification);</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void RemoveStyle&lt;T&gt;()
-    where T : Notification.StyleBase, new()</code></pre>
+    <pre><code class="lang-csharp hljs">public void RemoveStyle&lt;T&gt;() where T : Notification.StyleBase, new()</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -941,6 +984,11 @@ NotificationManager.Post(notification);</code></pre>
       </tr>
     </tbody>
   </table>
+  <h5 id="Tizen_Applications_Notifications_Notification_RemoveStyle__1_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>A notification is a message that is displayed on the notification area.
+It is created to notify information to the user through the application.
+This class helps you to provide method and property for creating notification object.</p>
+</div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -957,16 +1005,15 @@ NotificationManager.Post(notification);</code></pre>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/Notification.cs/#L355">View Source</a>
   </span>
   <a id="Tizen_Applications_Notifications_Notification_SetExtraData_" data-uid="Tizen.Applications.Notifications.Notification.SetExtraData*"></a>
-  <h4 id="Tizen_Applications_Notifications_Notification_SetExtraData_System_String_Tizen_Applications_Bundle_" data-uid="Tizen.Applications.Notifications.Notification.SetExtraData(System.String,Tizen.Applications.Bundle)">SetExtraData(String, Bundle)</h4>
+  <h4 id="Tizen_Applications_Notifications_Notification_SetExtraData_System_String_Tizen_Applications_Bundle_" data-uid="Tizen.Applications.Notifications.Notification.SetExtraData(System.String,Tizen.Applications.Bundle)">SetExtraData(string, Bundle)</h4>
   <div class="markdown level1 summary"><p>Method to set extra data to add extra data.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -985,7 +1032,7 @@ NotificationManager.Post(notification);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">key</span></td>
         <td><p>The key of the extra data you want to add.</p>
 </td>
@@ -1030,9 +1077,8 @@ notification.SetExtraData(&quot;firstKey&quot;, bundle);</code></pre>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>4</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="implements">Implements</h3>
@@ -1041,7 +1087,7 @@ notification.SetExtraData(&quot;firstKey&quot;, bundle);</code></pre>
   </div>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
@@ -1058,7 +1104,7 @@ notification.SetExtraData(&quot;firstKey&quot;, bundle);</code></pre>
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -1066,13 +1112,13 @@ notification.SetExtraData(&quot;firstKey&quot;, bundle);</code></pre>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

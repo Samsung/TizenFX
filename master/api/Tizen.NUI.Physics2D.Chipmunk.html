@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Namespace Tizen.NUI.Physics2D.Chipmunk
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Namespace Tizen.NUI.Physics2D.Chipmunk
-   ">
-    <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API11">
-    
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -20,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -60,19 +60,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -80,14 +80,14 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="Tizen.NUI.Physics2D.Chipmunk">
-  
+
   <h1 id="Tizen_NUI_Physics2D_Chipmunk" data-uid="Tizen.NUI.Physics2D.Chipmunk" class="text-break">Namespace Tizen.NUI.Physics2D.Chipmunk
-  </h1>
+</h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
-  </h3>
+</h3>
       <h4><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Body.html">Body</a></h4>
       <section><p>Mass and moment are ignored when <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.BodyType.html">BodyType</a> is <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.BodyType.html#Tizen_NUI_Physics2D_Chipmunk_BodyType_Kinematic">Kinematic</a>
 or <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.BodyType.html#Tizen_NUI_Physics2D_Chipmunk_BodyType_Static">Static</a>. Guessing the mass for a body is usually fine, but guessing
@@ -95,7 +95,7 @@ a moment of inertia can lead to a very poor simulation. It’s recommended to us
 moment-calculating functions to estimate the moment for you.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Box.html">Box</a></h4>
-      <section><p>A retangular shape shape </p>
+      <section><p>A retangular shape shape</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Circle.html">Circle</a></h4>
       <section><p>A circle shape defined by a radius
@@ -180,7 +180,7 @@ though it can be beveled to give it thickness.</p>
       <section><p>Segment queries return where a shape was hit and its surface normal at the point of contact.
 Use <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.SegmentQueryInfo.html#Tizen_NUI_Physics2D_Chipmunk_SegmentQueryInfo_Shape">Shape</a> == null to test if a shape was hit. Segment queries
 are like ray casting, but because not all spatial indexes allow processing infinitely long
-ray queries, it&apos;s limited to segments. In practice, this is still very fast and you don’t
+ray queries, it's limited to segments. In practice, this is still very fast and you don’t
 need to worry too much about the performance as long as you aren’t using extremely long
 segments for your queries.</p>
 </section>
@@ -206,13 +206,13 @@ ownership of the space (which may instead be owned by the
 rendering library)</p>
 </section>
     <h3 id="structs">Structs
-  </h3>
+</h3>
       <h4><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Arbiter.html">Arbiter</a></h4>
       <section><p>The <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Arbiter.html">Arbiter</a> object encapsulates a pair of colliding shapes and all of the data
 about their collision.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.BoundingBox.html">BoundingBox</a></h4>
-      <section><p>Chipmunk&apos;s axis-aligned 2D bounding box type.</p>
+      <section><p>Chipmunk's axis-aligned 2D bounding box type.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.DebugColor.html">DebugColor</a></h4>
       <section><p>RGBA channels as floats used to represent the color for debug drawing.</p>
@@ -223,19 +223,19 @@ about their collision.</p>
       <h4><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Transform.html">Transform</a></h4>
       <section><p>Type used for 2x3 affine transforms. See wikipedia for details:
 <a href="http://en.wikipedia.org/wiki/Affine_transformation">http://en.wikipedia.org/wiki/Affine_transformation</a>. The properties map to the matrix in this
-way: [[a  c   tx], [b  d   ty]]. We can&apos;t use System.Numerics.Matrix32 since it does&apos;t use
+way: [[a  c   tx], [b  d   ty]]. We can't use System.Numerics.Matrix32 since it does't use
 doubles.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a></h4>
       <section><p>2D Vector struct</p>
 </section>
     <h3 id="interfaces">Interfaces
-  </h3>
+</h3>
       <h4><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.IDebugDraw.html">IDebugDraw</a></h4>
       <section><p>Interface to draw debug primitives (circle, point, segment).</p>
 </section>
     <h3 id="enums">Enums
-  </h3>
+</h3>
       <h4><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.BodyType.html">BodyType</a></h4>
       <section><p>Chipmunk supports three different types of bodies with unique behavioral and performance
 characteristics.</p>
@@ -245,7 +245,7 @@ characteristics.</p>
 </section>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
@@ -259,7 +259,7 @@ characteristics.</p>
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -267,13 +267,13 @@ characteristics.</p>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

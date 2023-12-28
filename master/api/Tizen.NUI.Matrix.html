@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Class Matrix
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Matrix
-   ">
-    <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API11">
-    
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -20,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -60,19 +60,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -80,15 +80,15 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="Tizen.NUI.Matrix">
-  
-  
+
+
   <h1 id="Tizen_NUI_Matrix" data-uid="Tizen.NUI.Matrix" class="text-break">Class Matrix
-  </h1>
+</h1>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
-  
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.NUI.html">Tizen.NUI</a></dd></dl>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
-  
+
   <div class="markdown level0 summary"><p>The Matrix class represents transformations and projections. <br>
 The matrix is stored as a flat array and is Column Major, i.e. the storage order is as follows (numbers represent indices of array): <br></p>
 <pre><code>0   4   8   12
@@ -100,28 +100,28 @@ elements 4, 5, 6, 7, the z-axis corresponds to elements 12, 13, 14 and 15, and t
 elements 12, 13 and 14.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class Matrix : Disposable</code></pre>
   </div>
 
-  
+
   <dl class="attribute-list stack">
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
+        <div class="pdl"><span class="xref">object</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Disposable.html">Disposable</a></div>
         <div><span class="xref">Matrix</span></div>
       </div>
     </dd>
   </dl>
 
-  
-  
-  
+
+
+
   <h3 id="constructors">Constructors
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Common/Matrix.cs/#L55">View Source</a>
   </span>
@@ -134,15 +134,15 @@ elements 12, 13 and 14.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Matrix()</code></pre>
   </div>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Common/Matrix.cs/#L66">View Source</a>
   </span>
   <a id="Tizen_NUI_Matrix__ctor_" data-uid="Tizen.NUI.Matrix.#ctor*"></a>
-  <h4 id="Tizen_NUI_Matrix__ctor_System_Boolean_" data-uid="Tizen.NUI.Matrix.#ctor(System.Boolean)">Matrix(Boolean)</h4>
+  <h4 id="Tizen_NUI_Matrix__ctor_System_Boolean_" data-uid="Tizen.NUI.Matrix.#ctor(System.Boolean)">Matrix(bool)</h4>
   <div class="markdown level1 summary"><p>The constructor whether initialize matrix or not.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -161,22 +161,22 @@ elements 12, 13 and 14.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="xref">bool</span></td>
         <td><span class="parametername">initialize</span></td>
         <td><p>True if we want to initialize values as zero. False if we just allocate and do not initalize value.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Common/Matrix.cs/#L80">View Source</a>
   </span>
   <a id="Tizen_NUI_Matrix__ctor_" data-uid="Tizen.NUI.Matrix.#ctor*"></a>
-  <h4 id="Tizen_NUI_Matrix__ctor_System_Single___" data-uid="Tizen.NUI.Matrix.#ctor(System.Single[])">Matrix(Single[])</h4>
+  <h4 id="Tizen_NUI_Matrix__ctor_System_Single___" data-uid="Tizen.NUI.Matrix.#ctor(System.Single[])">Matrix(float[])</h4>
   <div class="markdown level1 summary"><p>The constructor with continuous float array.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -195,15 +195,15 @@ elements 12, 13 and 14.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Single</span>[]</td>
+        <td><span class="xref">float</span>[]</td>
         <td><span class="parametername">array</span></td>
         <td><p>Array of float value.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -236,8 +236,8 @@ elements 12, 13 and 14.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -270,12 +270,12 @@ elements 12, 13 and 14.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="properties">Properties
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Common/Matrix.cs/#L130">View Source</a>
   </span>
@@ -303,16 +303,16 @@ elements 12, 13 and 14.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Common/Matrix.cs/#L147">View Source</a>
   </span>
   <a id="Tizen_NUI_Matrix_Item_" data-uid="Tizen.NUI.Matrix.Item*"></a>
-  <h4 id="Tizen_NUI_Matrix_Item_System_UInt32_" data-uid="Tizen.NUI.Matrix.Item(System.UInt32)">Item[UInt32]</h4>
-  <div class="markdown level1 summary"><p>Get/set the value of matrix by it&apos;s index.</p>
+  <h4 id="Tizen_NUI_Matrix_Item_System_UInt32_" data-uid="Tizen.NUI.Matrix.Item(System.UInt32)">this[uint]</h4>
+  <div class="markdown level1 summary"><p>Get/set the value of matrix by it's index.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -330,7 +330,7 @@ elements 12, 13 and 14.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><span class="xref">uint</span></td>
         <td><span class="parametername">index</span></td>
         <td><p>The index to get/set value.</p>
 </td>
@@ -347,17 +347,17 @@ elements 12, 13 and 14.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Single</span></td>
+        <td><span class="xref">float</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="methods">Methods
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Common/Matrix.cs/#L526">View Source</a>
   </span>
@@ -398,14 +398,14 @@ elements 12, 13 and 14.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="xref">bool</span></td>
         <td><p>Returns true if the two matrixes are equal, otherwise false.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -430,14 +430,14 @@ elements 12, 13 and 14.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="xref">int</span></td>
         <td><p>The Hash Code.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -482,8 +482,8 @@ elements 12, 13 and 14.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -515,8 +515,8 @@ This assumes the matrix is a transform matrix.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -548,8 +548,8 @@ This assumes the matrix is a transform matrix.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -580,8 +580,8 @@ This assumes the matrix is a transform matrix.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -612,8 +612,8 @@ This assumes the matrix is a transform matrix.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -644,8 +644,8 @@ This assumes the matrix is a transform matrix.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -670,14 +670,14 @@ This assumes the matrix is a transform matrix.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="xref">bool</span></td>
         <td><p>True if successful.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -712,8 +712,102 @@ can be inverted using this function. It is faster and more accurate then using I
       </tr>
     </tbody>
   </table>
-  
-  
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Common/Matrix.cs/#L432">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Matrix_Multiply_" data-uid="Tizen.NUI.Matrix.Multiply*"></a>
+  <h4 id="Tizen_NUI_Matrix_Multiply_Tizen_NUI_Matrix_Tizen_NUI_Matrix_Tizen_NUI_Matrix_" data-uid="Tizen.NUI.Matrix.Multiply(Tizen.NUI.Matrix,Tizen.NUI.Matrix,Tizen.NUI.Matrix)">Multiply(Matrix, Matrix, Matrix)</h4>
+  <div class="markdown level1 summary"><p>Function to multiply two matrices and store the result onto third.<br>
+Use this method in time critical path as it does not require temporaries.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Multiply(Matrix result, Matrix lhs, Matrix rhs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Matrix.html">Matrix</a></td>
+        <td><span class="parametername">result</span></td>
+        <td><p>Result of the multiplication.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Matrix.html">Matrix</a></td>
+        <td><span class="parametername">lhs</span></td>
+        <td><p>The left-hand-side Matrix. this can be same matrix as result.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Matrix.html">Matrix</a></td>
+        <td><span class="parametername">rhs</span></td>
+        <td><p>The right-hand-side Matrix. this cannot be same matrix as result.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Common/Matrix.cs/#L453">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Matrix_Multiply_" data-uid="Tizen.NUI.Matrix.Multiply*"></a>
+  <h4 id="Tizen_NUI_Matrix_Multiply_Tizen_NUI_Matrix_Tizen_NUI_Matrix_Tizen_NUI_Rotation_" data-uid="Tizen.NUI.Matrix.Multiply(Tizen.NUI.Matrix,Tizen.NUI.Matrix,Tizen.NUI.Rotation)">Multiply(Matrix, Matrix, Rotation)</h4>
+  <div class="markdown level1 summary"><p>Function to multiply a matrix and rotataion and store the result onto third.<br>
+Use this method in time critical path as it does not require temporaries.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Multiply(Matrix result, Matrix lhs, Rotation rhs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Matrix.html">Matrix</a></td>
+        <td><span class="parametername">result</span></td>
+        <td><p>Result of the multiplication.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Matrix.html">Matrix</a></td>
+        <td><span class="parametername">lhs</span></td>
+        <td><p>The left-hand-side Matrix. this can be same matrix as result.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Rotation.html">Rotation</a></td>
+        <td><span class="parametername">rhs</span></td>
+        <td><p>The right-hand-side Rotation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -762,102 +856,8 @@ can be inverted using this function. It is faster and more accurate then using I
       </tr>
     </tbody>
   </table>
-  
-  
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Common/Matrix.cs/#L432">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Matrix_Multiply_" data-uid="Tizen.NUI.Matrix.Multiply*"></a>
-  <h4 id="Tizen_NUI_Matrix_Multiply_Tizen_NUI_Matrix_Tizen_NUI_Matrix_Tizen_NUI_Matrix_" data-uid="Tizen.NUI.Matrix.Multiply(Tizen.NUI.Matrix,Tizen.NUI.Matrix,Tizen.NUI.Matrix)">Multiply(Matrix, Matrix, Matrix)</h4>
-  <div class="markdown level1 summary"><p>Function to multiply two matrices and store the result onto third.<br>
-Use this method in time critical path as it does not require temporaries.<br></p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void Multiply(Matrix result, Matrix lhs, Matrix rhs)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Matrix.html">Matrix</a></td>
-        <td><span class="parametername">result</span></td>
-        <td><p>Result of the multiplication.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Matrix.html">Matrix</a></td>
-        <td><span class="parametername">lhs</span></td>
-        <td><p>The left-hand-side Matrix. this can be same matrix as result.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Matrix.html">Matrix</a></td>
-        <td><span class="parametername">rhs</span></td>
-        <td><p>The right-hand-side Matrix. this cannot be same matrix as result.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Common/Matrix.cs/#L453">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Matrix_Multiply_" data-uid="Tizen.NUI.Matrix.Multiply*"></a>
-  <h4 id="Tizen_NUI_Matrix_Multiply_Tizen_NUI_Matrix_Tizen_NUI_Matrix_Tizen_NUI_Rotation_" data-uid="Tizen.NUI.Matrix.Multiply(Tizen.NUI.Matrix,Tizen.NUI.Matrix,Tizen.NUI.Rotation)">Multiply(Matrix, Matrix, Rotation)</h4>
-  <div class="markdown level1 summary"><p>Function to multiply a matrix and rotataion and store the result onto third.<br>
-Use this method in time critical path as it does not require temporaries.<br></p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void Multiply(Matrix result, Matrix lhs, Rotation rhs)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Matrix.html">Matrix</a></td>
-        <td><span class="parametername">result</span></td>
-        <td><p>Result of the multiplication.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Matrix.html">Matrix</a></td>
-        <td><span class="parametername">lhs</span></td>
-        <td><p>The left-hand-side Matrix. this can be same matrix as result.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Rotation.html">Rotation</a></td>
-        <td><span class="parametername">rhs</span></td>
-        <td><p>The right-hand-side Rotation.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -906,8 +906,8 @@ Use this method in time critical path as it does not require temporaries.<br></p
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -940,8 +940,8 @@ Use this method in time critical path as it does not require temporaries.<br></p
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -984,14 +984,14 @@ Use this method in time critical path as it does not require temporaries.<br></p
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="xref">bool</span></td>
         <td><p>Returns true if the two matrixes are not equal, otherwise false.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -1009,15 +1009,15 @@ This assumes the matrix is a transform matrix.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void OrthoNormalize()</code></pre>
   </div>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Common/Matrix.cs/#L45">View Source</a>
   </span>
   <a id="Tizen_NUI_Matrix_ReleaseSwigCPtr_" data-uid="Tizen.NUI.Matrix.ReleaseSwigCPtr*"></a>
-  <h4 id="Tizen_NUI_Matrix_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.Matrix.ReleaseSwigCPtr(Tizen.System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(Runtime.InteropServices.HandleRef)</h4>
+  <h4 id="Tizen_NUI_Matrix_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.Matrix.ReleaseSwigCPtr(Tizen.System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(HandleRef)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1043,8 +1043,8 @@ This assumes the matrix is a transform matrix.</p>
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="Tizen.NUI.Disposable.html#Tizen_NUI_Disposable_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_">Disposable.ReleaseSwigCPtr(Runtime.InteropServices.HandleRef)</a></div>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -1059,8 +1059,8 @@ This assumes the matrix is a transform matrix.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void SetIdentity()</code></pre>
   </div>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -1093,8 +1093,8 @@ This assumes the matrix is a transform matrix.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -1140,8 +1140,8 @@ Performs scale, rotation, then translation</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -1193,8 +1193,8 @@ Performs scale, rotation, then translation</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -1240,8 +1240,8 @@ Performs scale, rotation, then translation</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -1275,8 +1275,8 @@ This assumes the matrix is a transform matrix.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -1310,16 +1310,16 @@ This assumes the matrix is a transform matrix.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Common/Matrix.cs/#L646">View Source</a>
   </span>
   <a id="Tizen_NUI_Matrix_SetValueAtIndex_" data-uid="Tizen.NUI.Matrix.SetValueAtIndex*"></a>
-  <h4 id="Tizen_NUI_Matrix_SetValueAtIndex_System_UInt32_System_Single_" data-uid="Tizen.NUI.Matrix.SetValueAtIndex(System.UInt32,System.Single)">SetValueAtIndex(UInt32, Single)</h4>
-  <div class="markdown level1 summary"><p>Set the value at matrix by it&apos;s index.</p>
+  <h4 id="Tizen_NUI_Matrix_SetValueAtIndex_System_UInt32_System_Single_" data-uid="Tizen.NUI.Matrix.SetValueAtIndex(System.UInt32,System.Single)">SetValueAtIndex(uint, float)</h4>
+  <div class="markdown level1 summary"><p>Set the value at matrix by it's index.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1337,29 +1337,29 @@ This assumes the matrix is a transform matrix.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><span class="xref">uint</span></td>
         <td><span class="parametername">index</span></td>
         <td><p>The index to set value.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Single</span></td>
+        <td><span class="xref">float</span></td>
         <td><span class="parametername">value</span></td>
         <td><p>The value to set.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Common/Matrix.cs/#L660">View Source</a>
   </span>
   <a id="Tizen_NUI_Matrix_SetValueAtIndex_" data-uid="Tizen.NUI.Matrix.SetValueAtIndex*"></a>
-  <h4 id="Tizen_NUI_Matrix_SetValueAtIndex_System_UInt32_System_UInt32_System_Single_" data-uid="Tizen.NUI.Matrix.SetValueAtIndex(System.UInt32,System.UInt32,System.Single)">SetValueAtIndex(UInt32, UInt32, Single)</h4>
-  <div class="markdown level1 summary"><p>Set the value at matrix by it&apos;s row index and column index.</p>
+  <h4 id="Tizen_NUI_Matrix_SetValueAtIndex_System_UInt32_System_UInt32_System_Single_" data-uid="Tizen.NUI.Matrix.SetValueAtIndex(System.UInt32,System.UInt32,System.Single)">SetValueAtIndex(uint, uint, float)</h4>
+  <div class="markdown level1 summary"><p>Set the value at matrix by it's row index and column index.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1377,27 +1377,27 @@ This assumes the matrix is a transform matrix.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><span class="xref">uint</span></td>
         <td><span class="parametername">indexRow</span></td>
         <td><p>The row index to set value.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><span class="xref">uint</span></td>
         <td><span class="parametername">indexColumn</span></td>
         <td><p>The column index to set value.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Single</span></td>
+        <td><span class="xref">float</span></td>
         <td><span class="parametername">value</span></td>
         <td><p>The value to set.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -1431,8 +1431,8 @@ This assumes the matrix is a transform matrix.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -1466,8 +1466,8 @@ This assumes the matrix is a transform matrix.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -1501,8 +1501,8 @@ This assumes the matrix is a transform matrix.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -1517,66 +1517,16 @@ This assumes the matrix is a transform matrix.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Transpose()</code></pre>
   </div>
-  
-  
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Common/Matrix.cs/#L617">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Matrix_ValueOfIndex_" data-uid="Tizen.NUI.Matrix.ValueOfIndex*"></a>
-  <h4 id="Tizen_NUI_Matrix_ValueOfIndex_System_UInt32_" data-uid="Tizen.NUI.Matrix.ValueOfIndex(System.UInt32)">ValueOfIndex(UInt32)</h4>
-  <div class="markdown level1 summary"><p>Get the value of matrix by it&apos;s index.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float ValueOfIndex(uint index)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
-        <td><span class="parametername">index</span></td>
-        <td><p>The index to get value.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Single</span></td>
-        <td><p>A value of index</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Common/Matrix.cs/#L632">View Source</a>
   </span>
   <a id="Tizen_NUI_Matrix_ValueOfIndex_" data-uid="Tizen.NUI.Matrix.ValueOfIndex*"></a>
-  <h4 id="Tizen_NUI_Matrix_ValueOfIndex_System_UInt32_System_UInt32_" data-uid="Tizen.NUI.Matrix.ValueOfIndex(System.UInt32,System.UInt32)">ValueOfIndex(UInt32, UInt32)</h4>
-  <div class="markdown level1 summary"><p>Get the value of matrix by it&apos;s row index and column index.</p>
+  <h4 id="Tizen_NUI_Matrix_ValueOfIndex_System_UInt32_System_UInt32_" data-uid="Tizen.NUI.Matrix.ValueOfIndex(System.UInt32,System.UInt32)">ValueOfIndex(uint, uint)</h4>
+  <div class="markdown level1 summary"><p>Get the value of matrix by it's row index and column index.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1594,13 +1544,13 @@ This assumes the matrix is a transform matrix.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><span class="xref">uint</span></td>
         <td><span class="parametername">indexRow</span></td>
         <td><p>The row index to get value.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><span class="xref">uint</span></td>
         <td><span class="parametername">indexColumn</span></td>
         <td><p>The column index to get value.</p>
 </td>
@@ -1617,23 +1567,73 @@ This assumes the matrix is a transform matrix.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Single</span></td>
+        <td><span class="xref">float</span></td>
         <td><p>A value of index</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Common/Matrix.cs/#L617">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Matrix_ValueOfIndex_" data-uid="Tizen.NUI.Matrix.ValueOfIndex*"></a>
+  <h4 id="Tizen_NUI_Matrix_ValueOfIndex_System_UInt32_" data-uid="Tizen.NUI.Matrix.ValueOfIndex(System.UInt32)">ValueOfIndex(uint)</h4>
+  <div class="markdown level1 summary"><p>Get the value of matrix by it's index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float ValueOfIndex(uint index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The index to get value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>A value of index</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="operators">Operators
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Common/Matrix.cs/#L204">View Source</a>
   </span>
   <a id="Tizen_NUI_Matrix_op_Multiply_" data-uid="Tizen.NUI.Matrix.op_Multiply*"></a>
-  <h4 id="Tizen_NUI_Matrix_op_Multiply_Tizen_NUI_Matrix_Tizen_NUI_Matrix_" data-uid="Tizen.NUI.Matrix.op_Multiply(Tizen.NUI.Matrix,Tizen.NUI.Matrix)">Multiply(Matrix, Matrix)</h4>
+  <h4 id="Tizen_NUI_Matrix_op_Multiply_Tizen_NUI_Matrix_Tizen_NUI_Matrix_" data-uid="Tizen.NUI.Matrix.op_Multiply(Tizen.NUI.Matrix,Tizen.NUI.Matrix)">operator *(Matrix, Matrix)</h4>
   <div class="markdown level1 summary"><p>Multiply Matrix and Matrix.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1681,15 +1681,15 @@ This assumes the matrix is a transform matrix.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Common/Matrix.cs/#L170">View Source</a>
   </span>
   <a id="Tizen_NUI_Matrix_op_Multiply_" data-uid="Tizen.NUI.Matrix.op_Multiply*"></a>
-  <h4 id="Tizen_NUI_Matrix_op_Multiply_Tizen_NUI_Matrix_Tizen_NUI_Vector4_" data-uid="Tizen.NUI.Matrix.op_Multiply(Tizen.NUI.Matrix,Tizen.NUI.Vector4)">Multiply(Matrix, Vector4)</h4>
+  <h4 id="Tizen_NUI_Matrix_op_Multiply_Tizen_NUI_Matrix_Tizen_NUI_Vector4_" data-uid="Tizen.NUI.Matrix.op_Multiply(Tizen.NUI.Matrix,Tizen.NUI.Vector4)">operator *(Matrix, Vector4)</h4>
   <div class="markdown level1 summary"><p>Multiply Matrix and Vector4.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1737,15 +1737,15 @@ This assumes the matrix is a transform matrix.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Common/Matrix.cs/#L186">View Source</a>
   </span>
   <a id="Tizen_NUI_Matrix_op_Multiply_" data-uid="Tizen.NUI.Matrix.op_Multiply*"></a>
-  <h4 id="Tizen_NUI_Matrix_op_Multiply_Tizen_NUI_Rotation_Tizen_NUI_Matrix_" data-uid="Tizen.NUI.Matrix.op_Multiply(Tizen.NUI.Rotation,Tizen.NUI.Matrix)">Multiply(Rotation, Matrix)</h4>
+  <h4 id="Tizen_NUI_Matrix_op_Multiply_Tizen_NUI_Rotation_Tizen_NUI_Matrix_" data-uid="Tizen.NUI.Matrix.op_Multiply(Tizen.NUI.Rotation,Tizen.NUI.Matrix)">operator *(Rotation, Matrix)</h4>
   <div class="markdown level1 summary"><p>Multiply Rotation matrix and Matrix.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1793,35 +1793,35 @@ This assumes the matrix is a transform matrix.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
   </div>
   <div>
       <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
   </div>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
   </div>
   <div>
       <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
   </div>
   <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
@@ -1838,7 +1838,7 @@ This assumes the matrix is a transform matrix.</p>
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -1846,13 +1846,13 @@ This assumes the matrix is a transform matrix.</p>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

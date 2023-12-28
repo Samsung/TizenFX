@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Interface IGroupableItemSource
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Interface IGroupableItemSource
-   ">
-    <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API11">
-    
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -20,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -60,19 +60,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -80,32 +80,32 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="Tizen.NUI.Components.IGroupableItemSource">
-  
-  
+
+
   <h1 id="Tizen_NUI_Components_IGroupableItemSource" data-uid="Tizen.NUI.Components.IGroupableItemSource" class="text-break">Interface IGroupableItemSource
-  </h1>
+</h1>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
-  
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.NUI.Components.html">Tizen.NUI.Components</a></dd></dl>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.Components.html">Components</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.Components.dll</dd></dl>
-  
+
   <div class="markdown level0 summary"><p>Base interface for encapsulated data source with group structure in CollectionView.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public interface IGroupableItemSource : IItemSource, IDisposable</code></pre>
   </div>
 
-  
-  
+
+
   <h3 id="methods">Methods
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/RecyclerView/ItemSource/IItemSource.cs/#L101">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_IGroupableItemSource_GetGroupParent_" data-uid="Tizen.NUI.Components.IGroupableItemSource.GetGroupParent*"></a>
-  <h4 id="Tizen_NUI_Components_IGroupableItemSource_GetGroupParent_System_Int32_" data-uid="Tizen.NUI.Components.IGroupableItemSource.GetGroupParent(System.Int32)">GetGroupParent(Int32)</h4>
+  <h4 id="Tizen_NUI_Components_IGroupableItemSource_GetGroupParent_System_Int32_" data-uid="Tizen.NUI.Components.IGroupableItemSource.GetGroupParent(System.Int32)">GetGroupParent(int)</h4>
   <div class="markdown level1 summary"><p>Boolean checker for position is group footer or not</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -124,7 +124,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">position</span></td>
         <td><p>The position for checking group footer.</p>
 </td>
@@ -141,20 +141,20 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></td>
+        <td><span class="xref">object</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/RecyclerView/ItemSource/IItemSource.cs/#L94">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_IGroupableItemSource_IsGroupFooter_" data-uid="Tizen.NUI.Components.IGroupableItemSource.IsGroupFooter*"></a>
-  <h4 id="Tizen_NUI_Components_IGroupableItemSource_IsGroupFooter_System_Int32_" data-uid="Tizen.NUI.Components.IGroupableItemSource.IsGroupFooter(System.Int32)">IsGroupFooter(Int32)</h4>
+  <h4 id="Tizen_NUI_Components_IGroupableItemSource_IsGroupFooter_System_Int32_" data-uid="Tizen.NUI.Components.IGroupableItemSource.IsGroupFooter(System.Int32)">IsGroupFooter(int)</h4>
   <div class="markdown level1 summary"><p>Boolean checker for position is group footer or not</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -173,7 +173,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">position</span></td>
         <td><p>The position for checking group footer.</p>
 </td>
@@ -190,20 +190,20 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="xref">bool</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/RecyclerView/ItemSource/IItemSource.cs/#L87">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_IGroupableItemSource_IsGroupHeader_" data-uid="Tizen.NUI.Components.IGroupableItemSource.IsGroupHeader*"></a>
-  <h4 id="Tizen_NUI_Components_IGroupableItemSource_IsGroupHeader_System_Int32_" data-uid="Tizen.NUI.Components.IGroupableItemSource.IsGroupHeader(System.Int32)">IsGroupHeader(Int32)</h4>
+  <h4 id="Tizen_NUI_Components_IGroupableItemSource_IsGroupHeader_System_Int32_" data-uid="Tizen.NUI.Components.IGroupableItemSource.IsGroupHeader(System.Int32)">IsGroupHeader(int)</h4>
   <div class="markdown level1 summary"><p>Boolean checker for position is group header or not</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -222,7 +222,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">position</span></td>
         <td><p>The position for checking group header.</p>
 </td>
@@ -239,40 +239,18 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="xref">bool</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
@@ -289,7 +267,7 @@
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -297,13 +275,13 @@
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Class StyleManager
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class StyleManager
-   ">
-    <meta name="generator" content="docfx 2.56.1.0">
+ ">
+    <meta name="generator" content="docfx ">
     <meta name="version" content="API9">
-    
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -20,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -60,19 +60,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -80,17 +80,15 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="Tizen.NUI.StyleManager">
-  
-  
+
+
   <h1 id="Tizen_NUI_StyleManager" data-uid="Tizen.NUI.StyleManager" class="text-break">Class StyleManager
-  </h1>
-  <div class="markdown obsolete" data-id="Tizen_NUI_StyleManager">Deprecated in API9, will be removed in API11. Use ThemeManager instead.</div>
+</h1>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
-  
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.NUI.html">Tizen.NUI</a></dd></dl>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
-  <dl class="attribute-list"><dt>API Level:</dt><dd><span>3</span></dd></dl>
-  
+
   <div class="markdown level0 summary"><p>The StyleManager informs applications of the system theme change, and supports application theme change at runtime.<br>
 Applies various styles to controls using the properties system.<br>
 On theme change, it automatically updates all controls, then raises a event to inform the application.<br>
@@ -98,18 +96,18 @@ If the application wants to customize the theme, RequestThemeChange needs to be 
 It provides the path to the application resource root folder, from there the filename can be specified along with any subfolders, for example, Images, Models, etc.<br></p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, will be removed in API11. Use ThemeManager instead.&quot;)]
-public class StyleManager : BaseHandle, INotifyPropertyChanged, IDynamicResourceHandler, IElement, INameScope, IElementController, IDisposable</code></pre>
+public class StyleManager : BaseHandle, INotifyPropertyChanged, IDisposable</code></pre>
   </div>
 
-  
+
   <dl class="attribute-list stack">
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">System.Object</span></div>
+        <div class="pdl"><span class="xref">object</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
         <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
@@ -118,8 +116,8 @@ public class StyleManager : BaseHandle, INotifyPropertyChanged, IDynamicResource
     </dd>
   </dl>
 
-  
-  
+
+
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
@@ -127,15 +125,14 @@ public class StyleManager : BaseHandle, INotifyPropertyChanged, IDynamicResource
       <div class="pdl"><span class="xref">System.IDisposable</span></div>
     </dd>
   </dl>
-  
+
   <h3 id="constructors">Constructors
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/StyleManager.cs/#L45">View Source</a>
   </span>
   <a id="Tizen_NUI_StyleManager__ctor_" data-uid="Tizen.NUI.StyleManager.#ctor*"></a>
   <h4 id="Tizen_NUI_StyleManager__ctor" data-uid="Tizen.NUI.StyleManager.#ctor">StyleManager()</h4>
-  <div class="markdown obsolete" data-id="Tizen_NUI_StyleManager__ctor">Deprecated in API9, will be removed in API11. Use ThemeManager instead.</div>
   <div class="markdown level1 summary"><p>Creates a StyleManager handle.<br>
 This can be initialized with StyleManager::Get().<br></p>
 </div>
@@ -145,19 +142,17 @@ This can be initialized with StyleManager::Get().<br></p>
     <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, will be removed in API11. Use ThemeManager instead.&quot;)]
 public StyleManager()</code></pre>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="properties">Properties
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/StyleManager.cs/#L87">View Source</a>
   </span>
   <a id="Tizen_NUI_StyleManager_Instance_" data-uid="Tizen.NUI.StyleManager.Instance*"></a>
   <h4 id="Tizen_NUI_StyleManager_Instance" data-uid="Tizen.NUI.StyleManager.Instance">Instance</h4>
-  <div class="markdown obsolete" data-id="Tizen_NUI_StyleManager_Instance">Deprecated in API9, will be removed in API11. Use ThemeManager instead.</div>
   <div class="markdown level1 summary"><p>Gets the singleton of the StyleManager object.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -181,19 +176,17 @@ public static StyleManager Instance { get; }</code></pre>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>5</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="methods">Methods
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/StyleManager.cs/#L142">View Source</a>
   </span>
   <a id="Tizen_NUI_StyleManager_AddConstant_" data-uid="Tizen.NUI.StyleManager.AddConstant*"></a>
-  <h4 id="Tizen_NUI_StyleManager_AddConstant_System_String_Tizen_NUI_PropertyValue_" data-uid="Tizen.NUI.StyleManager.AddConstant(System.String,Tizen.NUI.PropertyValue)">AddConstant(String, PropertyValue)</h4>
-  <div class="markdown obsolete" data-id="Tizen_NUI_StyleManager_AddConstant_System_String_Tizen_NUI_PropertyValue_">Deprecated in API9, will be removed in API11. Use ThemeManager instead.</div>
+  <h4 id="Tizen_NUI_StyleManager_AddConstant_System_String_Tizen_NUI_PropertyValue_" data-uid="Tizen.NUI.StyleManager.AddConstant(System.String,Tizen.NUI.PropertyValue)">AddConstant(string, PropertyValue)</h4>
   <div class="markdown level1 summary"><p>Sets a constant for use when building styles.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -213,7 +206,7 @@ public void AddConstant(string key, PropertyValue value)</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">key</span></td>
         <td><p>The key of the constant.</p>
 </td>
@@ -226,9 +219,8 @@ public void AddConstant(string key, PropertyValue value)</code></pre>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -236,7 +228,6 @@ public void AddConstant(string key, PropertyValue value)</code></pre>
   </span>
   <a id="Tizen_NUI_StyleManager_ApplyDefaultTheme_" data-uid="Tizen.NUI.StyleManager.ApplyDefaultTheme*"></a>
   <h4 id="Tizen_NUI_StyleManager_ApplyDefaultTheme" data-uid="Tizen.NUI.StyleManager.ApplyDefaultTheme">ApplyDefaultTheme()</h4>
-  <div class="markdown obsolete" data-id="Tizen_NUI_StyleManager_ApplyDefaultTheme">Deprecated in API9, will be removed in API11. Use ThemeManager instead.</div>
   <div class="markdown level1 summary"><p>Applies the default Toolkit theme.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -245,17 +236,15 @@ public void AddConstant(string key, PropertyValue value)</code></pre>
     <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, will be removed in API11. Use ThemeManager instead.&quot;)]
 public void ApplyDefaultTheme()</code></pre>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/StyleManager.cs/#L171">View Source</a>
   </span>
   <a id="Tizen_NUI_StyleManager_ApplyStyle_" data-uid="Tizen.NUI.StyleManager.ApplyStyle*"></a>
-  <h4 id="Tizen_NUI_StyleManager_ApplyStyle_Tizen_NUI_BaseComponents_View_System_String_System_String_" data-uid="Tizen.NUI.StyleManager.ApplyStyle(Tizen.NUI.BaseComponents.View,System.String,System.String)">ApplyStyle(View, String, String)</h4>
-  <div class="markdown obsolete" data-id="Tizen_NUI_StyleManager_ApplyStyle_Tizen_NUI_BaseComponents_View_System_String_System_String_">Deprecated in API9, will be removed in API11. Use ThemeManager instead.</div>
+  <h4 id="Tizen_NUI_StyleManager_ApplyStyle_Tizen_NUI_BaseComponents_View_System_String_System_String_" data-uid="Tizen.NUI.StyleManager.ApplyStyle(Tizen.NUI.BaseComponents.View,System.String,System.String)">ApplyStyle(View, string, string)</h4>
   <div class="markdown level1 summary"><p>Applies the specified style to the control.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -281,33 +270,31 @@ public void ApplyStyle(View control, string jsonFileName, string styleName)</cod
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">jsonFileName</span></td>
         <td><p>The name of the JSON style file to apply.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">styleName</span></td>
         <td><p>The name of the style within the JSON file to apply.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/StyleManager.cs/#L118">View Source</a>
   </span>
   <a id="Tizen_NUI_StyleManager_ApplyTheme_" data-uid="Tizen.NUI.StyleManager.ApplyTheme*"></a>
-  <h4 id="Tizen_NUI_StyleManager_ApplyTheme_System_String_" data-uid="Tizen.NUI.StyleManager.ApplyTheme(System.String)">ApplyTheme(String)</h4>
-  <div class="markdown obsolete" data-id="Tizen_NUI_StyleManager_ApplyTheme_System_String_">Deprecated in API9, will be removed in API11. Use ThemeManager instead.</div>
+  <h4 id="Tizen_NUI_StyleManager_ApplyTheme_System_String_" data-uid="Tizen.NUI.StyleManager.ApplyTheme(System.String)">ApplyTheme(string)</h4>
   <div class="markdown level1 summary"><p>Applies a new theme to the application.<br>
 This will be merged on the top of the default Toolkit theme.<br>
-If the application theme file doesn&apos;t style all controls that the
+If the application theme file doesn't style all controls that the
 application uses, then the default Toolkit theme will be used
 instead for those controls.<br></p>
 </div>
@@ -328,16 +315,15 @@ public void ApplyTheme(string themeFile)</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">themeFile</span></td>
         <td><p>A relative path is specified for style theme.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -345,7 +331,6 @@ public void ApplyTheme(string themeFile)</code></pre>
   </span>
   <a id="Tizen_NUI_StyleManager_Get_" data-uid="Tizen.NUI.StyleManager.Get*"></a>
   <h4 id="Tizen_NUI_StyleManager_Get" data-uid="Tizen.NUI.StyleManager.Get">Get()</h4>
-  <div class="markdown obsolete" data-id="Tizen_NUI_StyleManager_Get">Deprecated in API9, will be removed in API11. Use ThemeManager instead.</div>
   <div class="markdown level1 summary"><p>Gets the singleton of StyleManager object.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -370,17 +355,15 @@ public static StyleManager Get()</code></pre>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/StyleManager.cs/#L156">View Source</a>
   </span>
   <a id="Tizen_NUI_StyleManager_GetConstant_" data-uid="Tizen.NUI.StyleManager.GetConstant*"></a>
-  <h4 id="Tizen_NUI_StyleManager_GetConstant_System_String_Tizen_NUI_PropertyValue_" data-uid="Tizen.NUI.StyleManager.GetConstant(System.String,Tizen.NUI.PropertyValue)">GetConstant(String, PropertyValue)</h4>
-  <div class="markdown obsolete" data-id="Tizen_NUI_StyleManager_GetConstant_System_String_Tizen_NUI_PropertyValue_">Deprecated in API9, will be removed in API11. Use ThemeManager instead.</div>
+  <h4 id="Tizen_NUI_StyleManager_GetConstant_System_String_Tizen_NUI_PropertyValue_" data-uid="Tizen.NUI.StyleManager.GetConstant(System.String,Tizen.NUI.PropertyValue)">GetConstant(string, PropertyValue)</h4>
   <div class="markdown level1 summary"><p>Returns the style constant set for a specific key.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -400,7 +383,7 @@ public bool GetConstant(string key, PropertyValue valueOut)</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">key</span></td>
         <td><p>The key of the constant.</p>
 </td>
@@ -423,23 +406,21 @@ public bool GetConstant(string key, PropertyValue valueOut)</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">bool</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="events">Events
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/StyleManager.cs/#L61">View Source</a>
   </span>
   <h4 id="Tizen_NUI_StyleManager_StyleChanged" data-uid="Tizen.NUI.StyleManager.StyleChanged">StyleChanged</h4>
-  <div class="markdown obsolete" data-id="Tizen_NUI_StyleManager_StyleChanged">Deprecated in API9, will be removed in API11. Use ThemeManager instead.</div>
   <div class="markdown level1 summary"><p>An event for the StyleChanged signal which can be used to subscribe or unsubscribe the
 event handler provided by the user.<br>
 The StyleChanged signal is emitted after the style (for example, theme or font change) has changed
@@ -461,14 +442,13 @@ public event EventHandler&lt;StyleManager.StyleChangedEventArgs&gt; StyleChanged
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.StyleManager.StyleChangedEventArgs.html">StyleManager.StyleChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.NUI.StyleManager.html">StyleManager</a>.<a class="xref" href="Tizen.NUI.StyleManager.StyleChangedEventArgs.html">StyleChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="implements">Implements</h3>
@@ -480,7 +460,7 @@ public event EventHandler&lt;StyleManager.StyleChangedEventArgs&gt; StyleChanged
   </div>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
@@ -497,7 +477,7 @@ public event EventHandler&lt;StyleManager.StyleChangedEventArgs&gt; StyleChanged
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -505,13 +485,13 @@ public event EventHandler&lt;StyleManager.StyleChangedEventArgs&gt; StyleChanged
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

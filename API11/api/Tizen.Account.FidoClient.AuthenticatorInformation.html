@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Class AuthenticatorInformation
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class AuthenticatorInformation
-   ">
-    <meta name="generator" content="docfx 2.56.1.0">
+ ">
+    <meta name="generator" content="docfx ">
     <meta name="version" content="API11">
-    
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -20,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -60,19 +60,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -80,38 +80,37 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation">
-  
-  
+
+
   <h1 id="Tizen_Account_FidoClient_AuthenticatorInformation" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation" class="text-break">Class AuthenticatorInformation
-  </h1>
+</h1>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
-  
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.Account.FidoClient.html">Tizen.Account.FidoClient</a></dd></dl>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<span class="xref">Account</span>.<a class="xref" href="Tizen.Account.FidoClient.html">FidoClient</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Account.FidoClient.dll</dd></dl>
-  <dl class="attribute-list"><dt>API Level:</dt><dd><span>3</span></dd></dl>
-  
+
   <div class="markdown level0 summary"><p>Contains information about the authenticators registered on the device.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  
+
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class AuthenticatorInformation : object</code></pre>
+    <pre><code class="lang-csharp hljs">public class AuthenticatorInformation</code></pre>
   </div>
 
-  
+
   <dl class="attribute-list stack">
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
+        <div class="pdl"><span class="xref">object</span></div>
         <div><span class="xref">AuthenticatorInformation</span></div>
       </div>
     </dd>
   </dl>
 
-  
-  
-  
+
+
+
   <h5 id="Tizen_Account_FidoClient_AuthenticatorInformation_examples"><strong>Examples</strong></h5>
   <pre><code>    IEnumerable&lt;AuthenticatorInformation> authInfos = await UafAuthenticatorFinder.DiscoverAuthenticatorsAsync();
     foreach (AuthenticatorInformation authInfo in authInfos)
@@ -121,9 +120,9 @@
     }</code></pre>
 
   <h3 id="properties">Properties
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L54">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L54">View Source</a>
   </span>
   <a id="Tizen_Account_FidoClient_AuthenticatorInformation_Aaid_" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.Aaid*"></a>
   <h4 id="Tizen_Account_FidoClient_AuthenticatorInformation_Aaid" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.Aaid">Aaid</h4>
@@ -144,18 +143,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L68">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L68">View Source</a>
   </span>
   <a id="Tizen_Account_FidoClient_AuthenticatorInformation_AssertionScheme_" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.AssertionScheme*"></a>
   <h4 id="Tizen_Account_FidoClient_AuthenticatorInformation_AssertionScheme" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.AssertionScheme">AssertionScheme</h4>
@@ -176,18 +174,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L103">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L103">View Source</a>
   </span>
   <a id="Tizen_Account_FidoClient_AuthenticatorInformation_AttachmentHint_" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.AttachmentHint*"></a>
   <h4 id="Tizen_Account_FidoClient_AuthenticatorInformation_AttachmentHint" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.AttachmentHint">AttachmentHint</h4>
@@ -213,13 +210,12 @@
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L117">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L117">View Source</a>
   </span>
   <a id="Tizen_Account_FidoClient_AuthenticatorInformation_AttestationTypes_" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.AttestationTypes*"></a>
   <h4 id="Tizen_Account_FidoClient_AuthenticatorInformation_AttestationTypes" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.AttestationTypes">AttestationTypes</h4>
@@ -240,18 +236,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Account.FidoClient.AuthenticatorAttestationType.html">AuthenticatorAttestationType</a>&gt;</td>
+        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Account.FidoClient.AuthenticatorAttestationType.html">AuthenticatorAttestationType</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L75">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L75">View Source</a>
   </span>
   <a id="Tizen_Account_FidoClient_AuthenticatorInformation_AuthenticationAlgorithm_" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.AuthenticationAlgorithm*"></a>
   <h4 id="Tizen_Account_FidoClient_AuthenticatorInformation_AuthenticationAlgorithm" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.AuthenticationAlgorithm">AuthenticationAlgorithm</h4>
@@ -277,13 +272,12 @@
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L61">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L61">View Source</a>
   </span>
   <a id="Tizen_Account_FidoClient_AuthenticatorInformation_Description_" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.Description*"></a>
   <h4 id="Tizen_Account_FidoClient_AuthenticatorInformation_Description" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.Description">Description</h4>
@@ -304,18 +298,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L138">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L138">View Source</a>
   </span>
   <a id="Tizen_Account_FidoClient_AuthenticatorInformation_Icon_" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.Icon*"></a>
   <h4 id="Tizen_Account_FidoClient_AuthenticatorInformation_Icon" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.Icon">Icon</h4>
@@ -336,18 +329,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L110">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L110">View Source</a>
   </span>
   <a id="Tizen_Account_FidoClient_AuthenticatorInformation_IsSecondFactorOnly_" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.IsSecondFactorOnly*"></a>
   <h4 id="Tizen_Account_FidoClient_AuthenticatorInformation_IsSecondFactorOnly" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.IsSecondFactorOnly">IsSecondFactorOnly</h4>
@@ -368,18 +360,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="xref">bool</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L89">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L89">View Source</a>
   </span>
   <a id="Tizen_Account_FidoClient_AuthenticatorInformation_KeyProtection_" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.KeyProtection*"></a>
   <h4 id="Tizen_Account_FidoClient_AuthenticatorInformation_KeyProtection" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.KeyProtection">KeyProtection</h4>
@@ -405,13 +396,12 @@
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L96">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L96">View Source</a>
   </span>
   <a id="Tizen_Account_FidoClient_AuthenticatorInformation_MatcherProtection_" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.MatcherProtection*"></a>
   <h4 id="Tizen_Account_FidoClient_AuthenticatorInformation_MatcherProtection" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.MatcherProtection">MatcherProtection</h4>
@@ -437,13 +427,12 @@
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L131">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L131">View Source</a>
   </span>
   <a id="Tizen_Account_FidoClient_AuthenticatorInformation_TcDisplayContentType_" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.TcDisplayContentType*"></a>
   <h4 id="Tizen_Account_FidoClient_AuthenticatorInformation_TcDisplayContentType" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.TcDisplayContentType">TcDisplayContentType</h4>
@@ -464,18 +453,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L124">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L124">View Source</a>
   </span>
   <a id="Tizen_Account_FidoClient_AuthenticatorInformation_TcDisplayType_" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.TcDisplayType*"></a>
   <h4 id="Tizen_Account_FidoClient_AuthenticatorInformation_TcDisplayType" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.TcDisplayType">TcDisplayType</h4>
@@ -501,13 +489,12 @@
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L47">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L47">View Source</a>
   </span>
   <a id="Tizen_Account_FidoClient_AuthenticatorInformation_Title_" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.Title*"></a>
   <h4 id="Tizen_Account_FidoClient_AuthenticatorInformation_Title" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.Title">Title</h4>
@@ -528,18 +515,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L82">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L82">View Source</a>
   </span>
   <a id="Tizen_Account_FidoClient_AuthenticatorInformation_UserVerification_" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.UserVerification*"></a>
   <h4 id="Tizen_Account_FidoClient_AuthenticatorInformation_UserVerification" data-uid="Tizen.Account.FidoClient.AuthenticatorInformation.UserVerification">UserVerification</h4>
@@ -565,42 +551,41 @@
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
   </div>
   <div>
       <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
   </div>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
   </div>
   <div>
       <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
   </div>
   <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L36" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Account.FidoClient/Tizen.Account.FidoClient/AuthenticatorInformation.cs/#L36" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -611,7 +596,7 @@
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -619,13 +604,13 @@
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

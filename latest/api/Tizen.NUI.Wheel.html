@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Class Wheel
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Wheel
-   ">
-    <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API10">
-    
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API11">
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -20,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -60,19 +60,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -80,55 +80,55 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="Tizen.NUI.Wheel">
-  
-  
+
+
   <h1 id="Tizen_NUI_Wheel" data-uid="Tizen.NUI.Wheel" class="text-break">Class Wheel
-  </h1>
+</h1>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
-  
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.NUI.html">Tizen.NUI</a></dd></dl>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
-  <dl class="attribute-list"><dt>API Level:</dt><dd><span>3</span></dd></dl>
-  
+
   <div class="markdown level0 summary"><p>The wheel event structure is used to store a wheel rolling, it facilitates processing of the wheel rolling and passing to other libraries like Toolkit.<br>
 There is a key modifier which relates to keys like Alt, Shift, and Ctrl functions are supplied to check if they have been pressed when the wheel is being rolled.<br>
 We support a mouse device and there may be another custom device that support the wheel event. The device type is specified as \e type.<br>
 The mouse wheel event can be sent to the specific actor but the custom wheel event will be sent to the window.<br></p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  
+
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Wheel : BaseHandle, INotifyPropertyChanged, IDynamicResourceHandler, IElement, INameScope, IElementController, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class Wheel : BaseHandle, IDynamicResourceHandler, INameScope, System.IDisposable</code></pre>
   </div>
 
-  
+
   <dl class="attribute-list stack">
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">System.Object</span></div>
+        <div class="pdl"><span class="xref">object</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
         <div><span class="xref">Wheel</span></div>
       </div>
     </dd>
   </dl>
 
-  
-  
+
+
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
       <div class="pdl"><span class="xref">System.IDisposable</span></div>
     </dd>
   </dl>
-  
+
   <h3 id="constructors">Constructors
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Events/Wheel.cs/#L36">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Events/Wheel.cs/#L36">View Source</a>
   </span>
   <a id="Tizen_NUI_Wheel__ctor_" data-uid="Tizen.NUI.Wheel.#ctor*"></a>
   <h4 id="Tizen_NUI_Wheel__ctor" data-uid="Tizen.NUI.Wheel.#ctor">Wheel()</h4>
@@ -139,16 +139,15 @@ The mouse wheel event can be sent to the specific actor but the custom wheel eve
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Wheel()</code></pre>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Events/Wheel.cs/#L51">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Events/Wheel.cs/#L51">View Source</a>
   </span>
   <a id="Tizen_NUI_Wheel__ctor_" data-uid="Tizen.NUI.Wheel.#ctor*"></a>
-  <h4 id="Tizen_NUI_Wheel__ctor_Tizen_NUI_Wheel_WheelType_System_Int32_System_UInt32_Tizen_NUI_Vector2_System_Int32_System_UInt32_" data-uid="Tizen.NUI.Wheel.#ctor(Tizen.NUI.Wheel.WheelType,System.Int32,System.UInt32,Tizen.NUI.Vector2,System.Int32,System.UInt32)">Wheel(Wheel.WheelType, Int32, UInt32, Vector2, Int32, UInt32)</h4>
+  <h4 id="Tizen_NUI_Wheel__ctor_Tizen_NUI_Wheel_WheelType_System_Int32_System_UInt32_Tizen_NUI_Vector2_System_Int32_System_UInt32_" data-uid="Tizen.NUI.Wheel.#ctor(Tizen.NUI.Wheel.WheelType,System.Int32,System.UInt32,Tizen.NUI.Vector2,System.Int32,System.UInt32)">Wheel(WheelType, int, uint, Vector2, int, uint)</h4>
   <div class="markdown level1 summary"><p>The constructor.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -167,19 +166,19 @@ The mouse wheel event can be sent to the specific actor but the custom wheel eve
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.NUI.Wheel.WheelType.html">Wheel.WheelType</a></td>
+        <td><a class="xref" href="Tizen.NUI.Wheel.html">Wheel</a>.<a class="xref" href="Tizen.NUI.Wheel.WheelType.html">WheelType</a></td>
         <td><span class="parametername">type</span></td>
         <td><p>The type of the wheel event.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">direction</span></td>
         <td><p>The direction of wheel rolling (0 = default vertical wheel, 1 = horizontal wheel).</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="xref">uint</span></td>
         <td><span class="parametername">modifiers</span></td>
         <td><p>Modifier keys pressed during the event (such as Shift, Alt, and Ctrl).</p>
 </td>
@@ -191,28 +190,27 @@ The mouse wheel event can be sent to the specific actor but the custom wheel eve
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">z</span></td>
         <td><p>The offset of rolling (positive value means roll down or clockwise, and negative value means roll up or counter-clockwise).</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="xref">uint</span></td>
         <td><span class="parametername">timeStamp</span></td>
         <td><p>The time the wheel is being rolled.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="properties">Properties
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Events/Wheel.cs/#L95">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Events/Wheel.cs/#L99">View Source</a>
   </span>
   <a id="Tizen_NUI_Wheel_Direction_" data-uid="Tizen.NUI.Wheel.Direction*"></a>
   <h4 id="Tizen_NUI_Wheel_Direction" data-uid="Tizen.NUI.Wheel.Direction">Direction</h4>
@@ -233,18 +231,17 @@ The mouse wheel event can be sent to the specific actor but the custom wheel eve
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Events/Wheel.cs/#L107">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Events/Wheel.cs/#L111">View Source</a>
   </span>
   <a id="Tizen_NUI_Wheel_Modifiers_" data-uid="Tizen.NUI.Wheel.Modifiers*"></a>
   <h4 id="Tizen_NUI_Wheel_Modifiers" data-uid="Tizen.NUI.Wheel.Modifiers">Modifiers</h4>
@@ -265,18 +262,17 @@ The mouse wheel event can be sent to the specific actor but the custom wheel eve
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="xref">uint</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Events/Wheel.cs/#L119">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Events/Wheel.cs/#L123">View Source</a>
   </span>
   <a id="Tizen_NUI_Wheel_Point_" data-uid="Tizen.NUI.Wheel.Point*"></a>
   <h4 id="Tizen_NUI_Wheel_Point" data-uid="Tizen.NUI.Wheel.Point">Point</h4>
@@ -302,13 +298,12 @@ The mouse wheel event can be sent to the specific actor but the custom wheel eve
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Events/Wheel.cs/#L143">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Events/Wheel.cs/#L147">View Source</a>
   </span>
   <a id="Tizen_NUI_Wheel_TimeStamp_" data-uid="Tizen.NUI.Wheel.TimeStamp*"></a>
   <h4 id="Tizen_NUI_Wheel_TimeStamp" data-uid="Tizen.NUI.Wheel.TimeStamp">TimeStamp</h4>
@@ -329,18 +324,17 @@ The mouse wheel event can be sent to the specific actor but the custom wheel eve
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.UInt32</span></td>
+        <td><span class="xref">uint</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Events/Wheel.cs/#L83">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Events/Wheel.cs/#L87">View Source</a>
   </span>
   <a id="Tizen_NUI_Wheel_Type_" data-uid="Tizen.NUI.Wheel.Type*"></a>
   <h4 id="Tizen_NUI_Wheel_Type" data-uid="Tizen.NUI.Wheel.Type">Type</h4>
@@ -361,18 +355,17 @@ The mouse wheel event can be sent to the specific actor but the custom wheel eve
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.NUI.Wheel.WheelType.html">Wheel.WheelType</a></td>
+        <td><a class="xref" href="Tizen.NUI.Wheel.html">Wheel</a>.<a class="xref" href="Tizen.NUI.Wheel.WheelType.html">WheelType</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Events/Wheel.cs/#L131">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Events/Wheel.cs/#L135">View Source</a>
   </span>
   <a id="Tizen_NUI_Wheel_Z_" data-uid="Tizen.NUI.Wheel.Z*"></a>
   <h4 id="Tizen_NUI_Wheel_Z" data-uid="Tizen.NUI.Wheel.Z">Z</h4>
@@ -393,20 +386,19 @@ The mouse wheel event can be sent to the specific actor but the custom wheel eve
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="methods">Methods
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Events/Wheel.cs/#L242">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Events/Wheel.cs/#L246">View Source</a>
   </span>
   <a id="Tizen_NUI_Wheel_IsAltModifier_" data-uid="Tizen.NUI.Wheel.IsAltModifier*"></a>
   <h4 id="Tizen_NUI_Wheel_IsAltModifier" data-uid="Tizen.NUI.Wheel.IsAltModifier">IsAltModifier()</h4>
@@ -427,19 +419,18 @@ The mouse wheel event can be sent to the specific actor but the custom wheel eve
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">bool</span></td>
         <td><p>True if Alt modifier.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Events/Wheel.cs/#L230">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Events/Wheel.cs/#L234">View Source</a>
   </span>
   <a id="Tizen_NUI_Wheel_IsCtrlModifier_" data-uid="Tizen.NUI.Wheel.IsCtrlModifier*"></a>
   <h4 id="Tizen_NUI_Wheel_IsCtrlModifier" data-uid="Tizen.NUI.Wheel.IsCtrlModifier">IsCtrlModifier()</h4>
@@ -460,19 +451,18 @@ The mouse wheel event can be sent to the specific actor but the custom wheel eve
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">bool</span></td>
         <td><p>True if Ctrl modifier.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Events/Wheel.cs/#L218">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Events/Wheel.cs/#L222">View Source</a>
   </span>
   <a id="Tizen_NUI_Wheel_IsShiftModifier_" data-uid="Tizen.NUI.Wheel.IsShiftModifier*"></a>
   <h4 id="Tizen_NUI_Wheel_IsShiftModifier" data-uid="Tizen.NUI.Wheel.IsShiftModifier">IsShiftModifier()</h4>
@@ -493,33 +483,97 @@ The mouse wheel event can be sent to the specific actor but the custom wheel eve
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">bool</span></td>
         <td><p>True if Shift modifier.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Events/Wheel.cs/#L261">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Wheel_ReleaseSwigCPtr_" data-uid="Tizen.NUI.Wheel.ReleaseSwigCPtr*"></a>
+  <h4 id="Tizen_NUI_Wheel_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.Wheel.ReleaseSwigCPtr(Tizen.System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(HandleRef)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void ReleaseSwigCPtr(Runtime.InteropServices.HandleRef swigCPtr)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Tizen.System.Runtime.InteropServices.HandleRef</span></td>
+        <td><span class="parametername">swigCPtr</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseHandle.html#Tizen_NUI_BaseHandle_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_">BaseHandle.ReleaseSwigCPtr(Runtime.InteropServices.HandleRef)</a></div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
   </div>
   <div>
       <span class="xref">System.IDisposable</span>
   </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.BindableObjectExtensions.html#Tizen_NUI_Binding_BindableObjectExtensions_SetBinding_Tizen_NUI_Binding_BindableObject_Tizen_NUI_Binding_BindableProperty_System_String_Tizen_NUI_Binding_BindingMode_Tizen_NUI_Binding_IValueConverter_System_String_">BindableObjectExtensions.SetBinding(BindableObject, BindableProperty, string, BindingMode, IValueConverter, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.NameScopeExtensions.html#Tizen_NUI_Binding_NameScopeExtensions_FindByName__1_Tizen_NUI_Binding_Element_System_String_">NameScopeExtensions.FindByName&lt;T&gt;(Element, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Events/Wheel.cs/#L29" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Events/Wheel.cs/#L29" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -530,7 +584,7 @@ The mouse wheel event can be sent to the specific actor but the custom wheel eve
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -538,13 +592,13 @@ The mouse wheel event can be sent to the specific actor but the custom wheel eve
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

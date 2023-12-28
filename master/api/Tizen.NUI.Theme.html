@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Class Theme
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Theme
-   ">
-    <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API11">
-    
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -20,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -60,19 +60,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -80,16 +80,15 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="Tizen.NUI.Theme">
-  
-  
+
+
   <h1 id="Tizen_NUI_Theme" data-uid="Tizen.NUI.Theme" class="text-break">Class Theme
-  </h1>
+</h1>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
-  
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.NUI.html">Tizen.NUI</a></dd></dl>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
-  <dl class="attribute-list"><dt>API Level:</dt><dd><span>9</span></dd></dl>
-  
+
   <div class="markdown level0 summary"><p>
 Basically, the Theme is a dictionary of <a class="xref" href="Tizen.NUI.BaseComponents.ViewStyle.html">ViewStyle</a>s that can decorate NUI <a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>s.
 Each ViewStyle item is identified by a string key that can be matched the <a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_StyleName">StyleName</a>.
@@ -102,25 +101,25 @@ This enables sharing styles with other applications.
 </p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class Theme : BindableObject, IDynamicResourceHandler, IResourcesProvider</code></pre>
   </div>
 
-  
+
   <dl class="attribute-list stack">
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
+        <div class="pdl"><span class="xref">object</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
         <div><span class="xref">Theme</span></div>
       </div>
     </dd>
   </dl>
 
-  
-  
+
+
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
@@ -128,9 +127,9 @@ This enables sharing styles with other applications.
       <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a></div>
     </dd>
   </dl>
-  
+
   <h3 id="constructors">Constructors
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Theme/Theme.cs/#L52">View Source</a>
   </span>
@@ -143,16 +142,15 @@ This enables sharing styles with other applications.
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Theme()</code></pre>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Theme/Theme.cs/#L65">View Source</a>
   </span>
   <a id="Tizen_NUI_Theme__ctor_" data-uid="Tizen.NUI.Theme.#ctor*"></a>
-  <h4 id="Tizen_NUI_Theme__ctor_System_String_" data-uid="Tizen.NUI.Theme.#ctor(System.String)">Theme(String)</h4>
+  <h4 id="Tizen_NUI_Theme__ctor_System_String_" data-uid="Tizen.NUI.Theme.#ctor(System.String)">Theme(string)</h4>
   <div class="markdown level1 summary"><p>Create a new theme from the xaml file.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -171,7 +169,7 @@ This enables sharing styles with other applications.
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">xamlFile</span></td>
         <td><p>An absolute path to the xaml file.</p>
 </td>
@@ -194,13 +192,12 @@ This enables sharing styles with other applications.
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="properties">Properties
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Theme/Theme.cs/#L119">View Source</a>
   </span>
@@ -223,13 +220,13 @@ This enables sharing styles with other applications.
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -254,14 +251,13 @@ This enables sharing styles with other applications.
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -269,8 +265,7 @@ This enables sharing styles with other applications.
   </span>
   <a id="Tizen_NUI_Theme_IsResourcesCreated_" data-uid="Tizen.NUI.Theme.IsResourcesCreated*"></a>
   <h4 id="Tizen_NUI_Theme_IsResourcesCreated" data-uid="Tizen.NUI.Theme.IsResourcesCreated">IsResourcesCreated</h4>
-  <div class="markdown level1 summary"><p>Check if resources created.</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -286,20 +281,20 @@ This enables sharing styles with other applications.
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="xref">bool</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Theme/Theme.cs/#L198">View Source</a>
   </span>
   <a id="Tizen_NUI_Theme_Item_" data-uid="Tizen.NUI.Theme.Item*"></a>
-  <h4 id="Tizen_NUI_Theme_Item_System_String_" data-uid="Tizen.NUI.Theme.Item(System.String)">Item[String]</h4>
+  <h4 id="Tizen_NUI_Theme_Item_System_String_" data-uid="Tizen.NUI.Theme.Item(System.String)">this[string]</h4>
   <div class="markdown level1 summary"><p>For Xaml use only.
 Note that it is not a normal indexer.
 Setter will merge the new value with existing item.</p>
@@ -320,7 +315,7 @@ Setter will merge the new value with existing item.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">styleName</span></td>
         <td></td>
       </tr>
@@ -341,8 +336,8 @@ Setter will merge the new value with existing item.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -367,13 +362,13 @@ Setter will merge the new value with existing item.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -398,13 +393,13 @@ Setter will merge the new value with existing item.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -429,14 +424,13 @@ Setter will merge the new value with existing item.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -444,8 +438,7 @@ Setter will merge the new value with existing item.</p>
   </span>
   <a id="Tizen_NUI_Theme_XamlResources_" data-uid="Tizen.NUI.Theme.XamlResources*"></a>
   <h4 id="Tizen_NUI_Theme_XamlResources" data-uid="Tizen.NUI.Theme.XamlResources">XamlResources</h4>
-  <div class="markdown level1 summary"><p>Saved xaml resources.</p>
-</div>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -466,17 +459,17 @@ Setter will merge the new value with existing item.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="methods">Methods
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Theme/Theme.cs/#L295">View Source</a>
   </span>
   <a id="Tizen_NUI_Theme_AddStyle_" data-uid="Tizen.NUI.Theme.AddStyle*"></a>
-  <h4 id="Tizen_NUI_Theme_AddStyle_System_String_Tizen_NUI_BaseComponents_ViewStyle_" data-uid="Tizen.NUI.Theme.AddStyle(System.String,Tizen.NUI.BaseComponents.ViewStyle)">AddStyle(String, ViewStyle)</h4>
+  <h4 id="Tizen_NUI_Theme_AddStyle_System_String_Tizen_NUI_BaseComponents_ViewStyle_" data-uid="Tizen.NUI.Theme.AddStyle(System.String,Tizen.NUI.BaseComponents.ViewStyle)">AddStyle(string, ViewStyle)</h4>
   <div class="markdown level1 summary"><p>Adds the specified style name and value to the theme.
 This replace existing value if the theme already has a style with given name.</p>
 </div>
@@ -496,7 +489,7 @@ This replace existing value if the theme already has a style with given name.</p
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">styleName</span></td>
         <td><p>The style name to add.</p>
 </td>
@@ -509,9 +502,8 @@ This replace existing value if the theme already has a style with given name.</p
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -526,8 +518,8 @@ This replace existing value if the theme already has a style with given name.</p
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Clear()</code></pre>
   </div>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -551,14 +543,13 @@ This replace existing value if the theme already has a style with given name.</p
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></td>
+        <td><span class="xref">object</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -583,20 +574,20 @@ This replace existing value if the theme already has a style with given name.</p
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerator</span>&lt;<span class="xref">KeyValuePair</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="Tizen.NUI.BaseComponents.ViewStyle.html">ViewStyle</a>&gt;&gt;</td>
+        <td><span class="xref">IEnumerator&lt;&gt;</span>&lt;<span class="xref">KeyValuePair&lt;, &gt;</span>&lt;<span class="xref">string</span>, <a class="xref" href="Tizen.NUI.BaseComponents.ViewStyle.html">ViewStyle</a>&gt;&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Theme/Theme.cs/#L258">View Source</a>
   </span>
   <a id="Tizen_NUI_Theme_GetStyle_" data-uid="Tizen.NUI.Theme.GetStyle*"></a>
-  <h4 id="Tizen_NUI_Theme_GetStyle_System_String_" data-uid="Tizen.NUI.Theme.GetStyle(System.String)">GetStyle(String)</h4>
+  <h4 id="Tizen_NUI_Theme_GetStyle_System_String_" data-uid="Tizen.NUI.Theme.GetStyle(System.String)">GetStyle(string)</h4>
   <div class="markdown level1 summary"><p>Gets a style of given style name.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -615,7 +606,7 @@ This replace existing value if the theme already has a style with given name.</p
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">styleName</span></td>
         <td><p>The string key to find a ViewStyle.</p>
 </td>
@@ -638,9 +629,8 @@ This replace existing value if the theme already has a style with given name.</p
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -689,16 +679,15 @@ This replace existing value if the theme already has a style with given name.</p
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Theme/Theme.cs/#L241">View Source</a>
   </span>
   <a id="Tizen_NUI_Theme_HasStyle_" data-uid="Tizen.NUI.Theme.HasStyle*"></a>
-  <h4 id="Tizen_NUI_Theme_HasStyle_System_String_" data-uid="Tizen.NUI.Theme.HasStyle(System.String)">HasStyle(String)</h4>
+  <h4 id="Tizen_NUI_Theme_HasStyle_System_String_" data-uid="Tizen.NUI.Theme.HasStyle(System.String)">HasStyle(string)</h4>
   <div class="markdown level1 summary"><p>Determines whether the theme contains the specified style name.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -717,7 +706,7 @@ This replace existing value if the theme already has a style with given name.</p
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">styleName</span></td>
         <td></td>
       </tr>
@@ -733,20 +722,20 @@ This replace existing value if the theme already has a style with given name.</p
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="xref">bool</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Theme/Theme.cs/#L329">View Source</a>
   </span>
   <a id="Tizen_NUI_Theme_Merge_" data-uid="Tizen.NUI.Theme.Merge*"></a>
-  <h4 id="Tizen_NUI_Theme_Merge_System_String_" data-uid="Tizen.NUI.Theme.Merge(System.String)">Merge(String)</h4>
+  <h4 id="Tizen_NUI_Theme_Merge_System_String_" data-uid="Tizen.NUI.Theme.Merge(System.String)">Merge(string)</h4>
   <div class="markdown level1 summary"><p>Merge other theme into this.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -765,7 +754,7 @@ This replace existing value if the theme already has a style with given name.</p
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">xamlFile</span></td>
         <td><p>An absolute path to the xaml file of the theme.</p>
 </td>
@@ -788,8 +777,8 @@ This replace existing value if the theme already has a style with given name.</p
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -822,16 +811,15 @@ This replace existing value if the theme already has a style with given name.</p
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Theme/Theme.cs/#L248">View Source</a>
   </span>
   <a id="Tizen_NUI_Theme_RemoveStyle_" data-uid="Tizen.NUI.Theme.RemoveStyle*"></a>
-  <h4 id="Tizen_NUI_Theme_RemoveStyle_System_String_" data-uid="Tizen.NUI.Theme.RemoveStyle(System.String)">RemoveStyle(String)</h4>
+  <h4 id="Tizen_NUI_Theme_RemoveStyle_System_String_" data-uid="Tizen.NUI.Theme.RemoveStyle(System.String)">RemoveStyle(string)</h4>
   <div class="markdown level1 summary"><p>Removes the style with the specified style name.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -850,7 +838,7 @@ This replace existing value if the theme already has a style with given name.</p
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">styleName</span></td>
         <td></td>
       </tr>
@@ -866,13 +854,13 @@ This replace existing value if the theme already has a style with given name.</p
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="xref">bool</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="implements">Implements</h3>
@@ -884,32 +872,32 @@ This replace existing value if the theme already has a style with given name.</p
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+      <a class="xref" href="Tizen.NUI.Binding.BindableObjectExtensions.html#Tizen_NUI_Binding_BindableObjectExtensions_SetBinding_Tizen_NUI_Binding_BindableObject_Tizen_NUI_Binding_BindableProperty_System_String_Tizen_NUI_Binding_BindingMode_Tizen_NUI_Binding_IValueConverter_System_String_">BindableObjectExtensions.SetBinding(BindableObject, BindableProperty, string, BindingMode, IValueConverter, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
   </div>
   <div>
       <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
   </div>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
   </div>
   <div>
       <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
   </div>
   <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Binding.BindableObjectExtensions.html#Tizen_NUI_Binding_BindableObjectExtensions_SetBinding_Tizen_NUI_Binding_BindableObject_Tizen_NUI_Binding_BindableProperty_System_String_Tizen_NUI_Binding_BindingMode_Tizen_NUI_Binding_IValueConverter_System_String_">BindableObjectExtensions.SetBinding(BindableObject, BindableProperty, String, BindingMode, IValueConverter, String)</a>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
@@ -926,7 +914,7 @@ This replace existing value if the theme already has a style with given name.</p
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -934,13 +922,13 @@ This replace existing value if the theme already has a style with given name.</p
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

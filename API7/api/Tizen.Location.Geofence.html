@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Namespace Tizen.Location.Geofence
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Namespace Tizen.Location.Geofence
-   ">
-    <meta name="generator" content="docfx 2.56.1.0">
+ ">
+    <meta name="generator" content="docfx ">
     <meta name="version" content="API7">
-    
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -20,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -60,19 +60,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -80,9 +80,9 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="Tizen.Location.Geofence">
-  
+
   <h1 id="Tizen_Location_Geofence" data-uid="Tizen.Location.Geofence" class="text-break">Namespace Tizen.Location.Geofence
-  </h1>
+</h1>
   <div class="markdown level0 summary"><p>The Tizen.Location.Geofence namespace provides classes for virtual perimeter.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
@@ -104,7 +104,7 @@ Also, notifications on events like changing in service status are provided.</p>
 <ul>
 <li>The geofence type.</li>
 <li>The status.</li>
-<li>&#39;Service state change&#39; callback</li>
+<li>'Service state change' callback</li>
 </ul>
 <h2 id="related-features">Related Features</h2>
 <p>To guarantee that the geofence application runs on a device with the geofence profile feature,
@@ -116,31 +116,31 @@ declare the following feature requirements in the config file:</p>
 </ul>
 </div>
     <h3 id="classes">Classes
-  </h3>
+</h3>
       <h4><a class="xref" href="Tizen.Location.Geofence.Fence.html">Fence</a></h4>
       <section><p>Geofence defines a virtual perimeter for a real-world geographic area.
 If you create a geofence, you can trigger some activities when a device enters (or exits) the geofences defined by you.
-You can create a geofence with the information of the Geopoint, Wi-Fi, or BT.
+You can create a geofence with the information of the Geopoint, Wi-Fi, or BT.</p>
 <ul><li>Geopoint: Geofence is specified by the coordinates (Latitude and Longitude) and radius.</li><li>WIFI: Geofence is specified by the BSSID of the Wi-Fi access point.</li><li>BT: Geofence is specified by the Bluetooth address.</li></ul>
 The Basic service set identifier (BSSID) is the MAC address of the wireless access point (WAP) generated by combining the 24-bit Organization Unique Identifier (the manufacturer&apos;s identity)
-and the manufacturer&apos;s assigned 24-bit identifier for the radio chipset in the WAP.</p>
+and the manufacturer&apos;s assigned 24-bit identifier for the radio chipset in the WAP.
 </section>
       <h4><a class="xref" href="Tizen.Location.Geofence.FenceData.html">FenceData</a></h4>
       <section><p>Represents the geofence list item data.</p>
 </section>
       <h4><a class="xref" href="Tizen.Location.Geofence.FenceStatus.html">FenceStatus</a></h4>
-      <section><p>The geofence status describes the current state and duration of a geofence.
-<ul><li>State: The state is specified by the current state of the fence.</li><li>Duration: Geofence is specified by the duration of the current state.</li></ul></p>
+      <section><p>The geofence status describes the current state and duration of a geofence.</p>
+<ul><li>State: The state is specified by the current state of the fence.</li><li>Duration: Geofence is specified by the duration of the current state.</li></ul>
 </section>
       <h4><a class="xref" href="Tizen.Location.Geofence.GeofenceManager.html">GeofenceManager</a></h4>
       <section><p>The Geofence Manager API provides service related to geofence (geo-fence).
 Geofence is a virtual perimeter for a real-world geographic area.
 This API provides functions to set geofence with a geopoint, MAC address of Wi-Fi, and Bluetooth address.
 Also, notifications on events like changing in service status are provided.
-There are two kinds of places and fences:
+There are two kinds of places and fences:</p>
 <ul><li>Public places and fences are created by the MyPlace application that can be used by all applications.</li><li>Private places and fences are created by the specified application that can be used by the same application.</li></ul>
 Notifications can be received about the following events:
-<ul><li>Zone in when a device enters a specific area.</li><li>Zone out when a device exits a specific area.</li><li>Results and errors for each event requested to the geofence module.</li></ul></p>
+<ul><li>Zone in when a device enters a specific area.</li><li>Zone out when a device exits a specific area.</li><li>Results and errors for each event requested to the geofence module.</li></ul>
 </section>
       <h4><a class="xref" href="Tizen.Location.Geofence.GeofenceResponseEventArgs.html">GeofenceResponseEventArgs</a></h4>
       <section><p>Event arguments are passed when an event occurs in geofence and the place, such as add, update, etc..</p>
@@ -159,7 +159,7 @@ Notifications can be received about the following events:
 A user can manage all the geofence or place related data and events.</p>
 </section>
     <h3 id="enums">Enums
-  </h3>
+</h3>
       <h4><a class="xref" href="Tizen.Location.Geofence.FenceType.html">FenceType</a></h4>
       <section><p>Enumeration for the geofence types.</p>
 </section>
@@ -180,7 +180,7 @@ A user can manage all the geofence or place related data and events.</p>
 </section>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
@@ -194,7 +194,7 @@ A user can manage all the geofence or place related data and events.</p>
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -202,13 +202,13 @@ A user can manage all the geofence or place related data and events.</p>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

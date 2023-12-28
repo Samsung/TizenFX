@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Class WidgetView
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class WidgetView
-   ">
-    <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API10">
-    
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API11">
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -20,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -60,19 +60,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -80,33 +80,32 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="Tizen.NUI.WidgetView">
-  
-  
+
+
   <h1 id="Tizen_NUI_WidgetView" data-uid="Tizen.NUI.WidgetView" class="text-break">Class WidgetView
-  </h1>
+</h1>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
-  
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.NUI.html">Tizen.NUI</a></dd></dl>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
-  <dl class="attribute-list"><dt>API Level:</dt><dd><span>3</span></dd></dl>
-  
+
   <div class="markdown level0 summary"><p>The WidgetView is a class for displaying the widget image and controlling the widget.<br>
 Input events that the WidgetView gets are delivered to the widget.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  
+
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class WidgetView : View, INotifyPropertyChanged, IDynamicResourceHandler, IElement, INameScope, IElementController, IDisposable, IResourcesProvider</code></pre>
+    <pre><code class="lang-csharp hljs">public class WidgetView : View, IDynamicResourceHandler, INameScope, System.IDisposable, IResourcesProvider</code></pre>
   </div>
 
-  
+
   <dl class="attribute-list stack">
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">System.Object</span></div>
+        <div class="pdl"><span class="xref">object</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
@@ -116,23 +115,25 @@ Input events that the WidgetView gets are delivered to the widget.</p>
     </dd>
   </dl>
 
-  
-  
+
+
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
       <div class="pdl"><span class="xref">System.IDisposable</span></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a></div>
     </dd>
   </dl>
-  
+
   <h3 id="constructors">Constructors
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L173">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L192">View Source</a>
   </span>
   <a id="Tizen_NUI_WidgetView__ctor_" data-uid="Tizen.NUI.WidgetView.#ctor*"></a>
-  <h4 id="Tizen_NUI_WidgetView__ctor_System_String_System_String_System_Int32_System_Int32_System_Single_" data-uid="Tizen.NUI.WidgetView.#ctor(System.String,System.String,System.Int32,System.Int32,System.Single)">WidgetView(String, String, Int32, Int32, Single)</h4>
+  <h4 id="Tizen_NUI_WidgetView__ctor_System_String_System_String_System_Int32_System_Int32_System_Single_" data-uid="Tizen.NUI.WidgetView.#ctor(System.String,System.String,System.Int32,System.Int32,System.Single)">WidgetView(string, string, int, int, float)</h4>
   <div class="markdown level1 summary"><p>Creates a new WidgetView.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -151,41 +152,252 @@ Input events that the WidgetView gets are delivered to the widget.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">widgetId</span></td>
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">contentInfo</span></td>
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">width</span></td>
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">height</span></td>
         <td></td>
       </tr>
       <tr>
-        <td><span class="xref">System.Single</span></td>
+        <td><span class="xref">float</span></td>
         <td><span class="parametername">updatePeriod</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="fields">Fields
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L127">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_WidgetView_EffectProperty" data-uid="Tizen.NUI.WidgetView.EffectProperty">EffectProperty</h4>
+  <div class="markdown level1 summary"><p>EffectProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty EffectProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L145">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_WidgetView_KeepWidgetSizeProperty" data-uid="Tizen.NUI.WidgetView.KeepWidgetSizeProperty">KeepWidgetSizeProperty</h4>
+  <div class="markdown level1 summary"><p>UpdateWidgetSizeProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty KeepWidgetSizeProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L55">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_WidgetView_LoadingTextProperty" data-uid="Tizen.NUI.WidgetView.LoadingTextProperty">LoadingTextProperty</h4>
+  <div class="markdown level1 summary"><p>LoadingTextProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty LoadingTextProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L91">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_WidgetView_PermanentDeleteProperty" data-uid="Tizen.NUI.WidgetView.PermanentDeleteProperty">PermanentDeleteProperty</h4>
+  <div class="markdown level1 summary"><p>PermanentDeleteProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty PermanentDeleteProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L37">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_WidgetView_PreviewProperty" data-uid="Tizen.NUI.WidgetView.PreviewProperty">PreviewProperty</h4>
+  <div class="markdown level1 summary"><p>PreviewProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty PreviewProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L109">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_WidgetView_RetryTextProperty" data-uid="Tizen.NUI.WidgetView.RetryTextProperty">RetryTextProperty</h4>
+  <div class="markdown level1 summary"><p>RetryTextProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty RetryTextProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L73">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_WidgetView_WidgetStateFaultedProperty" data-uid="Tizen.NUI.WidgetView.WidgetStateFaultedProperty">WidgetStateFaultedProperty</h4>
+  <div class="markdown level1 summary"><p>WidgetStateFaultedProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty WidgetStateFaultedProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="properties">Properties
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L434">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L458">View Source</a>
   </span>
   <a id="Tizen_NUI_WidgetView_ContentInfo_" data-uid="Tizen.NUI.WidgetView.ContentInfo*"></a>
   <h4 id="Tizen_NUI_WidgetView_ContentInfo" data-uid="Tizen.NUI.WidgetView.ContentInfo">ContentInfo</h4>
@@ -206,18 +418,17 @@ Input events that the WidgetView gets are delivered to the widget.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L657">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L681">View Source</a>
   </span>
   <a id="Tizen_NUI_WidgetView_Effect_" data-uid="Tizen.NUI.WidgetView.Effect*"></a>
   <h4 id="Tizen_NUI_WidgetView_Effect" data-uid="Tizen.NUI.WidgetView.Effect">Effect</h4>
@@ -243,13 +454,12 @@ Input events that the WidgetView gets are delivered to the widget.</p>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>4</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L418">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L442">View Source</a>
   </span>
   <a id="Tizen_NUI_WidgetView_InstanceID_" data-uid="Tizen.NUI.WidgetView.InstanceID*"></a>
   <h4 id="Tizen_NUI_WidgetView_InstanceID" data-uid="Tizen.NUI.WidgetView.InstanceID">InstanceID</h4>
@@ -270,18 +480,49 @@ Input events that the WidgetView gets are delivered to the widget.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L517">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L717">View Source</a>
+  </span>
+  <a id="Tizen_NUI_WidgetView_KeepWidgetSize_" data-uid="Tizen.NUI.WidgetView.KeepWidgetSize*"></a>
+  <h4 id="Tizen_NUI_WidgetView_KeepWidgetSize" data-uid="Tizen.NUI.WidgetView.KeepWidgetSize">KeepWidgetSize</h4>
+  <div class="markdown level1 summary"><p>Gets or sets KeepWidgetSize</p>
+<p>if this value is true, WidgetView keep widget instance's size and don't resize even if WidgetView is resized.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool KeepWidgetSize { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L541">View Source</a>
   </span>
   <a id="Tizen_NUI_WidgetView_LoadingText_" data-uid="Tizen.NUI.WidgetView.LoadingText*"></a>
   <h4 id="Tizen_NUI_WidgetView_LoadingText" data-uid="Tizen.NUI.WidgetView.LoadingText">LoadingText</h4>
@@ -302,18 +543,17 @@ Input events that the WidgetView gets are delivered to the widget.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">bool</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L587">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L611">View Source</a>
   </span>
   <a id="Tizen_NUI_WidgetView_PermanentDelete_" data-uid="Tizen.NUI.WidgetView.PermanentDelete*"></a>
   <h4 id="Tizen_NUI_WidgetView_PermanentDelete" data-uid="Tizen.NUI.WidgetView.PermanentDelete">PermanentDelete</h4>
@@ -334,18 +574,17 @@ Input events that the WidgetView gets are delivered to the widget.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">bool</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L482">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L506">View Source</a>
   </span>
   <a id="Tizen_NUI_WidgetView_Preview_" data-uid="Tizen.NUI.WidgetView.Preview*"></a>
   <h4 id="Tizen_NUI_WidgetView_Preview" data-uid="Tizen.NUI.WidgetView.Preview">Preview</h4>
@@ -366,18 +605,17 @@ Input events that the WidgetView gets are delivered to the widget.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">bool</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L622">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L646">View Source</a>
   </span>
   <a id="Tizen_NUI_WidgetView_RetryText_" data-uid="Tizen.NUI.WidgetView.RetryText*"></a>
   <h4 id="Tizen_NUI_WidgetView_RetryText" data-uid="Tizen.NUI.WidgetView.RetryText">RetryText</h4>
@@ -403,13 +641,12 @@ Input events that the WidgetView gets are delivered to the widget.</p>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>4</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L450">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L474">View Source</a>
   </span>
   <a id="Tizen_NUI_WidgetView_Title_" data-uid="Tizen.NUI.WidgetView.Title*"></a>
   <h4 id="Tizen_NUI_WidgetView_Title" data-uid="Tizen.NUI.WidgetView.Title">Title</h4>
@@ -430,18 +667,17 @@ Input events that the WidgetView gets are delivered to the widget.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L466">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L490">View Source</a>
   </span>
   <a id="Tizen_NUI_WidgetView_UpdatePeriod_" data-uid="Tizen.NUI.WidgetView.UpdatePeriod*"></a>
   <h4 id="Tizen_NUI_WidgetView_UpdatePeriod" data-uid="Tizen.NUI.WidgetView.UpdatePeriod">UpdatePeriod</h4>
@@ -462,18 +698,17 @@ Input events that the WidgetView gets are delivered to the widget.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Single</span></td>
+        <td><span class="xref">float</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L402">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L426">View Source</a>
   </span>
   <a id="Tizen_NUI_WidgetView_WidgetID_" data-uid="Tizen.NUI.WidgetView.WidgetID*"></a>
   <h4 id="Tizen_NUI_WidgetView_WidgetID" data-uid="Tizen.NUI.WidgetView.WidgetID">WidgetID</h4>
@@ -494,18 +729,17 @@ Input events that the WidgetView gets are delivered to the widget.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L552">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L576">View Source</a>
   </span>
   <a id="Tizen_NUI_WidgetView_WidgetStateFaulted_" data-uid="Tizen.NUI.WidgetView.WidgetStateFaulted*"></a>
   <h4 id="Tizen_NUI_WidgetView_WidgetStateFaulted" data-uid="Tizen.NUI.WidgetView.WidgetStateFaulted">WidgetStateFaulted</h4>
@@ -526,20 +760,19 @@ Input events that the WidgetView gets are delivered to the widget.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">bool</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="methods">Methods
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L731">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L791">View Source</a>
   </span>
   <a id="Tizen_NUI_WidgetView_ActivateFaultedWidget_" data-uid="Tizen.NUI.WidgetView.ActivateFaultedWidget*"></a>
   <h4 id="Tizen_NUI_WidgetView_ActivateFaultedWidget" data-uid="Tizen.NUI.WidgetView.ActivateFaultedWidget">ActivateFaultedWidget()</h4>
@@ -551,13 +784,12 @@ A widget in faulted state must be activated before adding the widget.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void ActivateFaultedWidget()</code></pre>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L719">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L779">View Source</a>
   </span>
   <a id="Tizen_NUI_WidgetView_CancelTouchEvent_" data-uid="Tizen.NUI.WidgetView.CancelTouchEvent*"></a>
   <h4 id="Tizen_NUI_WidgetView_CancelTouchEvent" data-uid="Tizen.NUI.WidgetView.CancelTouchEvent">CancelTouchEvent()</h4>
@@ -580,19 +812,86 @@ If a widget gets ON_HOLD event, it will not do anything even if you feed touch u
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">bool</span></td>
         <td><p>True on success, false otherwise.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L820">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L182">View Source</a>
+  </span>
+  <a id="Tizen_NUI_WidgetView_CreateWidgetView_" data-uid="Tizen.NUI.WidgetView.CreateWidgetView*"></a>
+  <h4 id="Tizen_NUI_WidgetView_CreateWidgetView_System_String_System_String_System_Int32_System_Int32_System_Single_" data-uid="Tizen.NUI.WidgetView.CreateWidgetView(System.String,System.String,System.Int32,System.Int32,System.Single)">CreateWidgetView(string, string, int, int, float)</h4>
+  <div class="markdown level1 summary"><p>Used in xaml as factory method to create WidgetView.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static WidgetView CreateWidgetView(string widgetId, string contentInfo, int width, int height, float updatePeriod)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">widgetId</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">contentInfo</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">width</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">height</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">updatePeriod</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.WidgetView.html">WidgetView</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L880">View Source</a>
   </span>
   <a id="Tizen_NUI_WidgetView_Dispose_" data-uid="Tizen.NUI.WidgetView.Dispose*"></a>
   <h4 id="Tizen_NUI_WidgetView_Dispose_Tizen_NUI_DisposeTypes_" data-uid="Tizen.NUI.WidgetView.Dispose(Tizen.NUI.DisposeTypes)">Dispose(DisposeTypes)</h4>
@@ -622,13 +921,61 @@ If a widget gets ON_HOLD event, it will not do anything even if you feed touch u
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_Dispose_Tizen_NUI_DisposeTypes_">View.Dispose(DisposeTypes)</a></div>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L693">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L947">View Source</a>
+  </span>
+  <a id="Tizen_NUI_WidgetView_HandleControlStateOnTouch_" data-uid="Tizen.NUI.WidgetView.HandleControlStateOnTouch*"></a>
+  <h4 id="Tizen_NUI_WidgetView_HandleControlStateOnTouch_Tizen_NUI_Touch_" data-uid="Tizen.NUI.WidgetView.HandleControlStateOnTouch(Tizen.NUI.Touch)">HandleControlStateOnTouch(Touch)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override bool HandleControlStateOnTouch(Touch touch)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Touch.html">Touch</a></td>
+        <td><span class="parametername">touch</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_HandleControlStateOnTouch_Tizen_NUI_Touch_">View.HandleControlStateOnTouch(Touch)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L753">View Source</a>
   </span>
   <a id="Tizen_NUI_WidgetView_PauseWidget_" data-uid="Tizen.NUI.WidgetView.PauseWidget*"></a>
   <h4 id="Tizen_NUI_WidgetView_PauseWidget" data-uid="Tizen.NUI.WidgetView.PauseWidget">PauseWidget()</h4>
@@ -649,19 +996,52 @@ If a widget gets ON_HOLD event, it will not do anything even if you feed touch u
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">bool</span></td>
         <td><p>True on success, false otherwise.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L705">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L940">View Source</a>
+  </span>
+  <a id="Tizen_NUI_WidgetView_ReleaseSwigCPtr_" data-uid="Tizen.NUI.WidgetView.ReleaseSwigCPtr*"></a>
+  <h4 id="Tizen_NUI_WidgetView_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.WidgetView.ReleaseSwigCPtr(Tizen.System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(HandleRef)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void ReleaseSwigCPtr(Runtime.InteropServices.HandleRef swigCPtr)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Tizen.System.Runtime.InteropServices.HandleRef</span></td>
+        <td><span class="parametername">swigCPtr</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_">View.ReleaseSwigCPtr(Runtime.InteropServices.HandleRef)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L765">View Source</a>
   </span>
   <a id="Tizen_NUI_WidgetView_ResumeWidget_" data-uid="Tizen.NUI.WidgetView.ResumeWidget*"></a>
   <h4 id="Tizen_NUI_WidgetView_ResumeWidget" data-uid="Tizen.NUI.WidgetView.ResumeWidget">ResumeWidget()</h4>
@@ -682,19 +1062,18 @@ If a widget gets ON_HOLD event, it will not do anything even if you feed touch u
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">bool</span></td>
         <td><p>True on success, false otherwise.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L742">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L802">View Source</a>
   </span>
   <a id="Tizen_NUI_WidgetView_TerminateWidget_" data-uid="Tizen.NUI.WidgetView.TerminateWidget*"></a>
   <h4 id="Tizen_NUI_WidgetView_TerminateWidget" data-uid="Tizen.NUI.WidgetView.TerminateWidget">TerminateWidget()</h4>
@@ -715,21 +1094,20 @@ If a widget gets ON_HOLD event, it will not do anything even if you feed touch u
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">bool</span></td>
         <td><p>True on success, false otherwise</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>4</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="events">Events
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L205">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L229">View Source</a>
   </span>
   <h4 id="Tizen_NUI_WidgetView_WidgetAdded" data-uid="Tizen.NUI.WidgetView.WidgetAdded">WidgetAdded</h4>
   <div class="markdown level1 summary"><p>An event for the WidgetAdded signal which can be used to subscribe or unsubscribe the event handler.<br>
@@ -750,18 +1128,17 @@ This signal is emitted when widget is added.<br></p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.WidgetView.WidgetViewEventArgs.html">WidgetView.WidgetViewEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.WidgetView.WidgetViewEventArgs.html">WidgetViewEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L238">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L262">View Source</a>
   </span>
   <h4 id="Tizen_NUI_WidgetView_WidgetContentUpdated" data-uid="Tizen.NUI.WidgetView.WidgetContentUpdated">WidgetContentUpdated</h4>
   <div class="markdown level1 summary"><p>An event for the WidgetContentUpdated signal which can be used to subscribe or unsubscribe the event handler.<br>
@@ -782,18 +1159,17 @@ This signal is emitted when the widget content is updated.<br></p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.WidgetView.WidgetViewEventArgs.html">WidgetView.WidgetViewEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.WidgetView.WidgetViewEventArgs.html">WidgetViewEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L304">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L328">View Source</a>
   </span>
   <h4 id="Tizen_NUI_WidgetView_WidgetCreationAborted" data-uid="Tizen.NUI.WidgetView.WidgetCreationAborted">WidgetCreationAborted</h4>
   <div class="markdown level1 summary"><p>An event for the WidgetCreationAborted signal which can be used to subscribe or unsubscribe the event handler.<br>
@@ -814,18 +1190,17 @@ This signal is emitted when the widget creation is aborted.<br></p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.WidgetView.WidgetViewEventArgs.html">WidgetView.WidgetViewEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.WidgetView.WidgetViewEventArgs.html">WidgetViewEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L271">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L295">View Source</a>
   </span>
   <h4 id="Tizen_NUI_WidgetView_WidgetDeleted" data-uid="Tizen.NUI.WidgetView.WidgetDeleted">WidgetDeleted</h4>
   <div class="markdown level1 summary"><p>An event for the WidgetDeleted signal which can be used to subscribe or unsubscribe the event handler.<br>
@@ -846,18 +1221,17 @@ This signal is emitted when the widget is deleted.<br></p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.WidgetView.WidgetViewEventArgs.html">WidgetView.WidgetViewEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.WidgetView.WidgetViewEventArgs.html">WidgetViewEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L370">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L394">View Source</a>
   </span>
   <h4 id="Tizen_NUI_WidgetView_WidgetFaulted" data-uid="Tizen.NUI.WidgetView.WidgetFaulted">WidgetFaulted</h4>
   <div class="markdown level1 summary"><p>An event for the WidgetFaulted signal which can be used to subscribe or unsubscribe the event handler.<br>
@@ -878,18 +1252,17 @@ This signal is emitted when the widget process is not running.<br></p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.WidgetView.WidgetViewEventArgs.html">WidgetView.WidgetViewEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.WidgetView.WidgetViewEventArgs.html">WidgetViewEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L337">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L361">View Source</a>
   </span>
   <h4 id="Tizen_NUI_WidgetView_WidgetUpdatePeriodChanged" data-uid="Tizen.NUI.WidgetView.WidgetUpdatePeriodChanged">WidgetUpdatePeriodChanged</h4>
   <div class="markdown level1 summary"><p>An event for the WidgetUpdatePeriodChanged signal which can be used to subscribe or unsubscribe the event handler.<br>
@@ -910,32 +1283,65 @@ This signal is emitted when the widget update period is changed.<br></p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.WidgetView.WidgetViewEventArgs.html">WidgetView.WidgetViewEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.WidgetView.WidgetViewEventArgs.html">WidgetViewEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
   </div>
   <div>
       <span class="xref">System.IDisposable</span>
   </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.BindableObjectExtensions.html#Tizen_NUI_Binding_BindableObjectExtensions_SetBinding_Tizen_NUI_Binding_BindableObject_Tizen_NUI_Binding_BindableProperty_System_String_Tizen_NUI_Binding_BindingMode_Tizen_NUI_Binding_IValueConverter_System_String_">BindableObjectExtensions.SetBinding(BindableObject, BindableProperty, string, BindingMode, IValueConverter, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.NameScopeExtensions.html#Tizen_NUI_Binding_NameScopeExtensions_FindByName__1_Tizen_NUI_Binding_Element_System_String_">NameScopeExtensions.FindByName&lt;T&gt;(Element, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L31" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Widget/WidgetView.cs/#L31" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -946,7 +1352,7 @@ This signal is emitted when the widget update period is changed.<br></p>
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -954,13 +1360,13 @@ This signal is emitted when the widget update period is changed.<br></p>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

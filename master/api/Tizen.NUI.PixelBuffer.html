@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Class PixelBuffer
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class PixelBuffer
-   ">
-    <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API11">
-    
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -20,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -60,19 +60,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -80,16 +80,15 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="Tizen.NUI.PixelBuffer">
-  
-  
+
+
   <h1 id="Tizen_NUI_PixelBuffer" data-uid="Tizen.NUI.PixelBuffer" class="text-break">Class PixelBuffer
-  </h1>
+</h1>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
-  
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.NUI.html">Tizen.NUI</a></dd></dl>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
-  <dl class="attribute-list"><dt>API Level:</dt><dd><span>5</span></dd></dl>
-  
+
   <div class="markdown level0 summary"><p>The PixelBuffer object holds a pixel buffer.
 The PixelBuffer keeps ownership of its initial buffer. However, the
 user is free to modify the pixel data, either directly or via image operations.</p>
@@ -101,17 +100,17 @@ PixelData object from this object, leaving the buffer intact (ideal
 for continuous manipulation).</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  
+
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class PixelBuffer : BaseHandle, IDynamicResourceHandler, IElement, INameScope, IElementController, System.IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class PixelBuffer : BaseHandle, IDynamicResourceHandler, INameScope, System.IDisposable</code></pre>
   </div>
 
-  
+
   <dl class="attribute-list stack">
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
+        <div class="pdl"><span class="xref">object</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
@@ -120,24 +119,24 @@ for continuous manipulation).</p>
     </dd>
   </dl>
 
-  
-  
+
+
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
     </dd>
   </dl>
-  
+
   <h3 id="constructors">Constructors
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Images/PixelBuffer.cs/#L48">View Source</a>
   </span>
   <a id="Tizen_NUI_PixelBuffer__ctor_" data-uid="Tizen.NUI.PixelBuffer.#ctor*"></a>
-  <h4 id="Tizen_NUI_PixelBuffer__ctor_System_UInt32_System_UInt32_Tizen_NUI_PixelFormat_" data-uid="Tizen.NUI.PixelBuffer.#ctor(System.UInt32,System.UInt32,Tizen.NUI.PixelFormat)">PixelBuffer(UInt32, UInt32, PixelFormat)</h4>
+  <h4 id="Tizen_NUI_PixelBuffer__ctor_System_UInt32_System_UInt32_Tizen_NUI_PixelFormat_" data-uid="Tizen.NUI.PixelBuffer.#ctor(System.UInt32,System.UInt32,Tizen.NUI.PixelFormat)">PixelBuffer(uint, uint, PixelFormat)</h4>
   <div class="markdown level1 summary"><p>Create a PixelBuffer with its own data buffer.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -156,13 +155,13 @@ for continuous manipulation).</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><span class="xref">uint</span></td>
         <td><span class="parametername">width</span></td>
         <td><p>The pixel buffer width.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><span class="xref">uint</span></td>
         <td><span class="parametername">height</span></td>
         <td><p>The pixel buffer height.</p>
 </td>
@@ -175,18 +174,17 @@ for continuous manipulation).</p>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>5</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="methods">Methods
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Images/PixelBuffer.cs/#L216">View Source</a>
   </span>
   <a id="Tizen_NUI_PixelBuffer_ApplyGaussianBlur_" data-uid="Tizen.NUI.PixelBuffer.ApplyGaussianBlur*"></a>
-  <h4 id="Tizen_NUI_PixelBuffer_ApplyGaussianBlur_System_Single_" data-uid="Tizen.NUI.PixelBuffer.ApplyGaussianBlur(System.Single)">ApplyGaussianBlur(Single)</h4>
+  <h4 id="Tizen_NUI_PixelBuffer_ApplyGaussianBlur_System_Single_" data-uid="Tizen.NUI.PixelBuffer.ApplyGaussianBlur(System.Single)">ApplyGaussianBlur(float)</h4>
   <div class="markdown level1 summary"><p>Apply a Gaussian blur to this pixel data with the given radius.
 A bigger radius will yield a blurrier image. Only works for pixel data in RGBA format.</p>
 </div>
@@ -206,16 +204,115 @@ A bigger radius will yield a blurrier image. Only works for pixel data in RGBA f
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Single</span></td>
+        <td><span class="xref">float</span></td>
         <td><span class="parametername">blurRadius</span></td>
         <td><p>The radius for Gaussian blur. A value of 0 or negative value indicates no blur.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>5</span></h6>
-  
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Images/PixelBuffer.cs/#L159">View Source</a>
+  </span>
+  <a id="Tizen_NUI_PixelBuffer_ApplyMask_" data-uid="Tizen.NUI.PixelBuffer.ApplyMask*"></a>
+  <h4 id="Tizen_NUI_PixelBuffer_ApplyMask_Tizen_NUI_PixelBuffer_System_Single_System_Boolean_" data-uid="Tizen.NUI.PixelBuffer.ApplyMask(Tizen.NUI.PixelBuffer,System.Single,System.Boolean)">ApplyMask(PixelBuffer, float, bool)</h4>
+  <div class="markdown level1 summary"><p>Apply the mask to this pixel data and return a new pixel data that contains
+the masked image. If this PixelBuffer does not have an alpha channel, then
+the resultant PixelBuffer will be converted to a format that supports at
+least the width of the color channels and the alpha channel from the mask.</p>
+<p>If cropToMask is set to <code>true</code>, then the contentScale is applied first to
+this buffer, and the target buffer is cropped to the size of the mask. If
+it is set to <code>false</code>, then the mask is scaled to match the size of this buffer
+before the mask is applied.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ApplyMask(PixelBuffer mask, float contentScale, bool cropToMask)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.PixelBuffer.html">PixelBuffer</a></td>
+        <td><span class="parametername">mask</span></td>
+        <td><p>The mask to apply.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">contentScale</span></td>
+        <td><p>The scaling factor to apply to the content.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">cropToMask</span></td>
+        <td><p>Whether to crop the output to the mask size (true) or scale the mask to the content size (false).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Images/PixelBuffer.cs/#L181">View Source</a>
+  </span>
+  <a id="Tizen_NUI_PixelBuffer_ApplyMask_" data-uid="Tizen.NUI.PixelBuffer.ApplyMask*"></a>
+  <h4 id="Tizen_NUI_PixelBuffer_ApplyMask_Tizen_NUI_PixelBuffer_System_Single_" data-uid="Tizen.NUI.PixelBuffer.ApplyMask(Tizen.NUI.PixelBuffer,System.Single)">ApplyMask(PixelBuffer, float)</h4>
+  <div class="markdown level1 summary"><p>Apply the mask to this pixel data and return a new pixel data containing
+the masked image. If this PixelBuffer does not have an alpha channel, then
+the resultant PixelBuffer will be converted to a format that supports at
+least the width of the color channels and the alpha channel from the mask.</p>
+<p>If cropToMask is set to <code>true</code>, then the contentScale is applied first to
+this buffer, and the target buffer is cropped to the size of the mask. If
+it is set to <code>false</code>, then the mask is scaled to match the size of this buffer
+before the mask is applied.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ApplyMask(PixelBuffer mask, float contentScale)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.PixelBuffer.html">PixelBuffer</a></td>
+        <td><span class="parametername">mask</span></td>
+        <td><p>The mask to apply.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">contentScale</span></td>
+        <td><p>The scaling factor to apply to the content.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -255,111 +352,8 @@ before the mask is applied.</p>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>5</span></h6>
-  
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Images/PixelBuffer.cs/#L181">View Source</a>
-  </span>
-  <a id="Tizen_NUI_PixelBuffer_ApplyMask_" data-uid="Tizen.NUI.PixelBuffer.ApplyMask*"></a>
-  <h4 id="Tizen_NUI_PixelBuffer_ApplyMask_Tizen_NUI_PixelBuffer_System_Single_" data-uid="Tizen.NUI.PixelBuffer.ApplyMask(Tizen.NUI.PixelBuffer,System.Single)">ApplyMask(PixelBuffer, Single)</h4>
-  <div class="markdown level1 summary"><p>Apply the mask to this pixel data and return a new pixel data containing
-the masked image. If this PixelBuffer does not have an alpha channel, then
-the resultant PixelBuffer will be converted to a format that supports at
-least the width of the color channels and the alpha channel from the mask.</p>
-<p>If cropToMask is set to <code>true</code>, then the contentScale is applied first to
-this buffer, and the target buffer is cropped to the size of the mask. If
-it is set to <code>false</code>, then the mask is scaled to match the size of this buffer
-before the mask is applied.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void ApplyMask(PixelBuffer mask, float contentScale)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.PixelBuffer.html">PixelBuffer</a></td>
-        <td><span class="parametername">mask</span></td>
-        <td><p>The mask to apply.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Single</span></td>
-        <td><span class="parametername">contentScale</span></td>
-        <td><p>The scaling factor to apply to the content.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <h6><strong>API Level</strong>: <span>5</span></h6>
-  
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Images/PixelBuffer.cs/#L159">View Source</a>
-  </span>
-  <a id="Tizen_NUI_PixelBuffer_ApplyMask_" data-uid="Tizen.NUI.PixelBuffer.ApplyMask*"></a>
-  <h4 id="Tizen_NUI_PixelBuffer_ApplyMask_Tizen_NUI_PixelBuffer_System_Single_System_Boolean_" data-uid="Tizen.NUI.PixelBuffer.ApplyMask(Tizen.NUI.PixelBuffer,System.Single,System.Boolean)">ApplyMask(PixelBuffer, Single, Boolean)</h4>
-  <div class="markdown level1 summary"><p>Apply the mask to this pixel data and return a new pixel data that contains
-the masked image. If this PixelBuffer does not have an alpha channel, then
-the resultant PixelBuffer will be converted to a format that supports at
-least the width of the color channels and the alpha channel from the mask.</p>
-<p>If cropToMask is set to <code>true</code>, then the contentScale is applied first to
-this buffer, and the target buffer is cropped to the size of the mask. If
-it is set to <code>false</code>, then the mask is scaled to match the size of this buffer
-before the mask is applied.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void ApplyMask(PixelBuffer mask, float contentScale, bool cropToMask)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.PixelBuffer.html">PixelBuffer</a></td>
-        <td><span class="parametername">mask</span></td>
-        <td><p>The mask to apply.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Single</span></td>
-        <td><span class="parametername">contentScale</span></td>
-        <td><p>The scaling factor to apply to the content.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td><span class="parametername">cropToMask</span></td>
-        <td><p>Whether to crop the output to the mask size (true) or scale the mask to the content size (false).</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <h6><strong>API Level</strong>: <span>5</span></h6>
-  
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -411,9 +405,8 @@ will be left with no buffer. Trying to access it will return NULL.</p>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>5</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -445,16 +438,15 @@ used for uploading to a texture.</p>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>5</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Images/PixelBuffer.cs/#L232">View Source</a>
   </span>
   <a id="Tizen_NUI_PixelBuffer_Crop_" data-uid="Tizen.NUI.PixelBuffer.Crop*"></a>
-  <h4 id="Tizen_NUI_PixelBuffer_Crop_System_UInt16_System_UInt16_System_UInt16_System_UInt16_" data-uid="Tizen.NUI.PixelBuffer.Crop(System.UInt16,System.UInt16,System.UInt16,System.UInt16)">Crop(UInt16, UInt16, UInt16, UInt16)</h4>
+  <h4 id="Tizen_NUI_PixelBuffer_Crop_System_UInt16_System_UInt16_System_UInt16_System_UInt16_" data-uid="Tizen.NUI.PixelBuffer.Crop(System.UInt16,System.UInt16,System.UInt16,System.UInt16)">Crop(ushort, ushort, ushort, ushort)</h4>
   <div class="markdown level1 summary"><p>Crops this buffer to the given crop rectangle.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -473,34 +465,33 @@ used for uploading to a texture.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">UInt16</a></td>
+        <td><span class="xref">ushort</span></td>
         <td><span class="parametername">x</span></td>
-        <td><p>The top left corner&apos;s X.</p>
+        <td><p>The top left corner's X.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">UInt16</a></td>
+        <td><span class="xref">ushort</span></td>
         <td><span class="parametername">y</span></td>
-        <td><p>The top left corner&apos;s Y.</p>
+        <td><p>The top left corner's Y.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">UInt16</a></td>
+        <td><span class="xref">ushort</span></td>
         <td><span class="parametername">width</span></td>
         <td><p>The crop width.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">UInt16</a></td>
+        <td><span class="xref">ushort</span></td>
         <td><span class="parametername">height</span></td>
         <td><p>The crop height.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>5</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -525,13 +516,13 @@ used for uploading to a texture.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><span class="xref">uint</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -556,14 +547,13 @@ used for uploading to a texture.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">System.IntPtr</a></td>
+        <td><span class="xref">System.IntPtr</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>8</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -588,15 +578,14 @@ used for uploading to a texture.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><span class="xref">uint</span></td>
         <td><p>The height of the buffer in pixels.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>5</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -627,9 +616,8 @@ used for uploading to a texture.</p>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>5</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -654,22 +642,21 @@ used for uploading to a texture.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
+        <td><span class="xref">uint</span></td>
         <td><p>The width of the buffer in pixels.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>5</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Images/PixelBuffer.cs/#L299">View Source</a>
   </span>
   <a id="Tizen_NUI_PixelBuffer_ReleaseSwigCPtr_" data-uid="Tizen.NUI.PixelBuffer.ReleaseSwigCPtr*"></a>
-  <h4 id="Tizen_NUI_PixelBuffer_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.PixelBuffer.ReleaseSwigCPtr(Tizen.System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(Runtime.InteropServices.HandleRef)</h4>
+  <h4 id="Tizen_NUI_PixelBuffer_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.PixelBuffer.ReleaseSwigCPtr(Tizen.System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(HandleRef)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -695,15 +682,15 @@ used for uploading to a texture.</p>
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="Tizen.NUI.BaseHandle.html#Tizen_NUI_BaseHandle_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_">BaseHandle.ReleaseSwigCPtr(Runtime.InteropServices.HandleRef)</a></div>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Images/PixelBuffer.cs/#L246">View Source</a>
   </span>
   <a id="Tizen_NUI_PixelBuffer_Resize_" data-uid="Tizen.NUI.PixelBuffer.Resize*"></a>
-  <h4 id="Tizen_NUI_PixelBuffer_Resize_System_UInt16_System_UInt16_" data-uid="Tizen.NUI.PixelBuffer.Resize(System.UInt16,System.UInt16)">Resize(UInt16, UInt16)</h4>
+  <h4 id="Tizen_NUI_PixelBuffer_Resize_System_UInt16_System_UInt16_" data-uid="Tizen.NUI.PixelBuffer.Resize(System.UInt16,System.UInt16)">Resize(ushort, ushort)</h4>
   <div class="markdown level1 summary"><p>Resizes the buffer to the given dimensions.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -722,22 +709,21 @@ used for uploading to a texture.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">UInt16</a></td>
+        <td><span class="xref">ushort</span></td>
         <td><span class="parametername">width</span></td>
         <td><p>The new width.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">UInt16</a></td>
+        <td><span class="xref">ushort</span></td>
         <td><span class="parametername">height</span></td>
         <td><p>The new height.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>5</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -780,14 +766,13 @@ used for uploading to a texture.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="xref">bool</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>8</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="implements">Implements</h3>
@@ -798,39 +783,39 @@ used for uploading to a texture.</p>
       <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
   </div>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+      <span class="xref">System.IDisposable</span>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+      <a class="xref" href="Tizen.NUI.Binding.BindableObjectExtensions.html#Tizen_NUI_Binding_BindableObjectExtensions_SetBinding_Tizen_NUI_Binding_BindableObject_Tizen_NUI_Binding_BindableProperty_System_String_Tizen_NUI_Binding_BindingMode_Tizen_NUI_Binding_IValueConverter_System_String_">BindableObjectExtensions.SetBinding(BindableObject, BindableProperty, string, BindingMode, IValueConverter, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.NameScopeExtensions.html#Tizen_NUI_Binding_NameScopeExtensions_FindByName__1_Tizen_NUI_Binding_Element_System_String_">NameScopeExtensions.FindByName&lt;T&gt;(Element, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
   </div>
   <div>
       <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
   </div>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
   </div>
   <div>
       <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
   </div>
   <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Binding.BindableObjectExtensions.html#Tizen_NUI_Binding_BindableObjectExtensions_SetBinding_Tizen_NUI_Binding_BindableObject_Tizen_NUI_Binding_BindableProperty_System_String_Tizen_NUI_Binding_BindingMode_Tizen_NUI_Binding_IValueConverter_System_String_">BindableObjectExtensions.SetBinding(BindableObject, BindableProperty, String, BindingMode, IValueConverter, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Binding.NameScopeExtensions.html#Tizen_NUI_Binding_NameScopeExtensions_FindByName__1_Tizen_NUI_Binding_Element_System_String_">NameScopeExtensions.FindByName&lt;T&gt;(Element, String)</a>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
@@ -847,7 +832,7 @@ used for uploading to a texture.</p>
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -855,13 +840,13 @@ used for uploading to a texture.</p>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

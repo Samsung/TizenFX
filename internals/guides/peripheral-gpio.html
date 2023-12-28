@@ -7,9 +7,9 @@
     <title>GPIO </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="GPIO ">
-    <meta name="generator" content="docfx 2.56.1.0">
+    <meta name="generator" content="docfx ">
     <meta name="version" content="internals">
-    
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -18,13 +18,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="../toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -34,7 +34,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -42,13 +42,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -58,19 +58,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -95,7 +95,8 @@
 <li><p>To open a GPIO handle, create <code>GpioPin</code> object:</p>
 <pre><code class="lang-csharp">int pin = 26; /* Raspberry Pi 3 and Raspberry Pi 4 : GPIO26 */
 GpioPin gpio = new GpioPin(pin, GpioPinDriveMode.Input);
-</code></pre><p>The <code>pin</code> parameter required for this function must be set according to the following tables.</p>
+</code></pre>
+<p>The <code>pin</code> parameter required for this function must be set according to the following tables.</p>
 <p><strong>Table: Raspberry Pi 3 and Raspberry Pi 4</strong></p>
 <table>
 <thead>
@@ -108,68 +109,70 @@ GpioPin gpio = new GpioPin(pin, GpioPinDriveMode.Input);
 </thead>
 <tbody>
 <tr>
-<td>  GPIO4</td>
+<td>GPIO4</td>
 <td>4</td>
 <td>GPIO5</td>
 <td>5</td>
 </tr>
 <tr>
-<td>  GPIO6</td>
+<td>GPIO6</td>
 <td>6</td>
 <td>GPIO12</td>
 <td>12</td>
 </tr>
 <tr>
-<td>  GPIO13</td>
+<td>GPIO13</td>
 <td>13</td>
 <td>GPIO16</td>
 <td>16</td>
 </tr>
 <tr>
-<td>  GPIO17</td>
+<td>GPIO17</td>
 <td>17</td>
 <td>GPIO18</td>
 <td>18</td>
 </tr>
 <tr>
-<td>  GPIO19</td>
+<td>GPIO19</td>
 <td>19</td>
 <td>GPIO20</td>
 <td>20</td>
 </tr>
 <tr>
-<td>  GPIO21</td>
+<td>GPIO21</td>
 <td>21</td>
 <td>GPIO22</td>
 <td>22</td>
 </tr>
 <tr>
-<td>  GPIO23</td>
+<td>GPIO23</td>
 <td>23</td>
 <td>GPIO24</td>
 <td>24</td>
 </tr>
 <tr>
-<td>  GPIO25</td>
+<td>GPIO25</td>
 <td>25</td>
 <td>GPIO26</td>
 <td>26</td>
 </tr>
 <tr>
-<td>  GPIO27</td>
+<td>GPIO27</td>
 <td>27</td>
 <td>-</td>
 <td>-</td>
 </tr>
 </tbody>
 </table>
-<blockquote><p><strong>Note</strong></p>
-<p> For more information on the pin names and locations, see <a href="peripheral.html#protocol">Supported Protocols</a>.</p>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>For more information on the pin names and locations, see <a href="peripheral.html#protocol">Supported Protocols</a>.</p>
 </blockquote>
 </li>
 <li><p>To close a GPIO handle that is no longer used, use the <code>gpio.Close()</code> method:</p>
 <pre><code class="lang-csharp">gpio.Close();
-</code></pre></li>
+</code></pre>
+</li>
 </ol>
 <h2 id="setting-the-data-direction">Setting the Data Direction</h2>
 <p>Gpio object constructor expect the data transfer direction parameter. It can be set to:</p>
@@ -178,7 +181,8 @@ GpioPin gpio = new GpioPin(pin, GpioPinDriveMode.Input);
 <li><code>GpioPinDriveMode.OutputInitiallyLow</code>: Output mode to send data to a binary output peripheral. This value initializes the output peripheral state as low.</li>
 <li><code>GpioPinDriveMode.OutputInitiallyHigh</code>: Output mode to send data to a binary output peripheral. This value initializes the output peripheral state as high.</li>
 </ul>
-<blockquote><p><strong>Note</strong></p>
+<blockquote>
+<p><strong>Note</strong></p>
 <p>To set the data direction to <code>GpioPinDriveMode.OutputInitiallyHigh</code> or <code>GpioPinDriveMode.OutputInitiallyLow</code>, the edge mode must be set to <code>GpioChangePolarity.None</code>.</p>
 </blockquote>
 <h2 id="setting-the-edge-mode">Setting the Edge Mode</h2>
@@ -190,7 +194,9 @@ GpioPin gpio = new GpioPin(pin, GpioPinDriveMode.Input);
 <li><code>GpioChangePolarity.Both</code>: Interrupted at both rising and falling edges.</li>
 </ul>
 <pre><code class="lang-csharp">GpioPin.Polarity(GpioChangePolarity);
-</code></pre><blockquote><p><strong>Note</strong></p>
+</code></pre>
+<blockquote>
+<p><strong>Note</strong></p>
 <p>To set the edge mode to <code>GpioChangePolarity.Rising</code>, <code>GpioChangePolarity.Falling</code>, or <code>GpioChangePolarity.Both</code>, the data direction must be set to the <code>GpioPinDriveMode.Input</code>.</p>
 </blockquote>
 <h2 id="setting-the-interrupted-callback">Setting the Interrupted Callback</h2>
@@ -200,10 +206,12 @@ GpioPin gpio = new GpioPin(pin, GpioPinDriveMode.Input);
 <li><p>Subscribe to the interrupted event handler.</p>
 <pre><code class="lang-csharp">GpioPin gpio;
 gpio.ValueChanged += myEventHandler;
-</code></pre></li>
+</code></pre>
+</li>
 <li><p>When no longer needed, unsubscribe the interrupt event handler:</p>
 <pre><code class="lang-csharp">gpio.ValueChanged -= myEventHandler;
-</code></pre></li>
+</code></pre>
+</li>
 </ol>
 <h2 id="reading-and-writing-binary-data">Reading and Writing Binary Data</h2>
 <p>To read and write binary data:</p>
@@ -211,18 +219,21 @@ gpio.ValueChanged += myEventHandler;
 <li><p>To read binary data from a peripheral, use the <code>GpioPin.Read()</code> method:</p>
 <pre><code class="lang-csharp">GpioPinValue value;
 value = gpio.Read();
-</code></pre></li>
+</code></pre>
+</li>
 <li><p>To write binary data to a peripheral, use the <code>GpioPin.Write()</code> method:</p>
 <pre><code class="lang-csharp">GpioPinValue value = GpioPinValue.Low;
 gpio.Write(value);
-</code></pre></li>
+</code></pre>
+</li>
 </ul>
-<blockquote><p><strong>Note</strong></p>
+<blockquote>
+<p><strong>Note</strong></p>
 <p>To write binary data, the data direction must be set to <code>GpioPinDriveMode.OutputInitiallyHigh</code> or <code>GpioPinDriveMode.OutputInitiallyLow</code>.</p>
 </blockquote>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
@@ -236,7 +247,7 @@ gpio.Write(value);
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -244,13 +255,13 @@ gpio.Write(value);
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Class ImageTransformCollection
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class ImageTransformCollection
-   ">
-    <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API10">
-    
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API11">
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -20,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -60,19 +60,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -80,51 +80,47 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="Tizen.Multimedia.Util.ImageTransformCollection">
-  
-  
+
+
   <h1 id="Tizen_Multimedia_Util_ImageTransformCollection" data-uid="Tizen.Multimedia.Util.ImageTransformCollection" class="text-break">Class ImageTransformCollection
-  </h1>
+</h1>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
-  
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.Multimedia.Util.html">Tizen.Multimedia.Util</a></dd></dl>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a>.<a class="xref" href="Tizen.Multimedia.Util.html">Util</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.Util.dll</dd></dl>
-  <dl class="attribute-list"><dt>API Level:</dt><dd><span>4</span></dd></dl>
-  
+
   <div class="markdown level0 summary"><p>Represents a collection of <a class="xref" href="Tizen.Multimedia.Util.ImageTransform.html">ImageTransform</a> objects that can be individually accessed by index.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  
+
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ImageTransformCollection : IList&lt;ImageTransform&gt;, ICollection&lt;ImageTransform&gt;, IEnumerable&lt;ImageTransform&gt;, IEnumerable</code></pre>
+    <pre><code class="lang-csharp hljs">public class ImageTransformCollection : IEnumerable&lt;ImageTransform&gt;, IList&lt;ImageTransform&gt;</code></pre>
   </div>
 
-  
+
   <dl class="attribute-list stack">
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">System.Object</span></div>
+        <div class="pdl"><span class="xref">object</span></div>
         <div><span class="xref">ImageTransformCollection</span></div>
       </div>
     </dd>
   </dl>
 
-  
-  
+
+
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="Tizen.Multimedia.Util.ImageTransform.html">ImageTransform</a>&gt;</div>
-      <div class="pdl"><span class="xref">System.Collections.Generic.ICollection</span>&lt;<a class="xref" href="Tizen.Multimedia.Util.ImageTransform.html">ImageTransform</a>&gt;</div>
-      <div class="pdl"><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<a class="xref" href="Tizen.Multimedia.Util.ImageTransform.html">ImageTransform</a>&gt;</div>
-      <div class="pdl"><span class="xref">System.Collections.IEnumerable</span></div>
+      <div class="pdl"><span class="xref">IList&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Util.ImageTransform.html">ImageTransform</a>&gt;</div>
     </dd>
   </dl>
-  
+
   <h3 id="constructors">Constructors
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Util/ImageUtil/ImageTransformCollection.cs/#L35">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia.Util/ImageUtil/ImageTransformCollection.cs/#L35">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Util_ImageTransformCollection__ctor_" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.#ctor*"></a>
   <h4 id="Tizen_Multimedia_Util_ImageTransformCollection__ctor" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.#ctor">ImageTransformCollection()</h4>
@@ -135,15 +131,14 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public ImageTransformCollection()</code></pre>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>4</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="properties">Properties
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Util/ImageUtil/ImageTransformCollection.cs/#L60">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia.Util/ImageUtil/ImageTransformCollection.cs/#L60">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Util_ImageTransformCollection_Count_" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.Count*"></a>
   <h4 id="Tizen_Multimedia_Util_ImageTransformCollection_Count" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.Count">Count</h4>
@@ -164,21 +159,20 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>4</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Util/ImageUtil/ImageTransformCollection.cs/#L50">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia.Util/ImageUtil/ImageTransformCollection.cs/#L50">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Util_ImageTransformCollection_Item_" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.Item*"></a>
-  <h4 id="Tizen_Multimedia_Util_ImageTransformCollection_Item_System_Int32_" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.Item(System.Int32)">Item[Int32]</h4>
+  <h4 id="Tizen_Multimedia_Util_ImageTransformCollection_Item_System_Int32_" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.Item(System.Int32)">this[int]</h4>
   <div class="markdown level1 summary"><p>Gets or sets the <a class="xref" href="Tizen.Multimedia.Util.ImageTransform.html">ImageTransform</a> at the specified index.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -197,7 +191,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">index</span></td>
         <td><p>The zero-based index of the <a class="xref" href="Tizen.Multimedia.Util.ImageTransform.html">ImageTransform</a> to get or set.</p>
 </td>
@@ -220,33 +214,14 @@
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p>index is less than 0.<br>
--or-<br>
-index is equal to or greater than <a class="xref" href="Tizen.Multimedia.Util.ImageTransformCollection.html#Tizen_Multimedia_Util_ImageTransformCollection_Count">Count</a>.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <h6><strong>API Level</strong>: <span>4</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="methods">Methods
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Util/ImageUtil/ImageTransformCollection.cs/#L72">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia.Util/ImageUtil/ImageTransformCollection.cs/#L72">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Util_ImageTransformCollection_Add_" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.Add*"></a>
   <h4 id="Tizen_Multimedia_Util_ImageTransformCollection_Add_Tizen_Multimedia_Util_ImageTransform_" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.Add(Tizen.Multimedia.Util.ImageTransform)">Add(ImageTransform)</h4>
@@ -278,13 +253,12 @@ index is equal to or greater than <a class="xref" href="Tizen.Multimedia.Util.Im
   <h5 id="Tizen_Multimedia_Util_ImageTransformCollection_Add_Tizen_Multimedia_Util_ImageTransform__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p><a class="xref" href="Tizen.Multimedia.Util.ImageTransformCollection.html">ImageTransformCollection</a> accepts null as a valid value for reference types and allows duplicate elements.</p>
 </div>
-  
-  <h6><strong>API Level</strong>: <span>4</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Util/ImageUtil/ImageTransformCollection.cs/#L85">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia.Util/ImageUtil/ImageTransformCollection.cs/#L85">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Util_ImageTransformCollection_Clear_" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.Clear*"></a>
   <h4 id="Tizen_Multimedia_Util_ImageTransformCollection_Clear" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.Clear">Clear()</h4>
@@ -295,13 +269,12 @@ index is equal to or greater than <a class="xref" href="Tizen.Multimedia.Util.Im
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Clear()</code></pre>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>4</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Util/ImageUtil/ImageTransformCollection.cs/#L93">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia.Util/ImageUtil/ImageTransformCollection.cs/#L93">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Util_ImageTransformCollection_Contains_" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.Contains*"></a>
   <h4 id="Tizen_Multimedia_Util_ImageTransformCollection_Contains_Tizen_Multimedia_Util_ImageTransform_" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.Contains(Tizen.Multimedia.Util.ImageTransform)">Contains(ImageTransform)</h4>
@@ -340,22 +313,21 @@ index is equal to or greater than <a class="xref" href="Tizen.Multimedia.Util.Im
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">bool</span></td>
         <td><p>true if the <a class="xref" href="Tizen.Multimedia.Util.ImageTransform.html">ImageTransform</a> is found in the collection; otherwise, false.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>4</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Util/ImageUtil/ImageTransformCollection.cs/#L106">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia.Util/ImageUtil/ImageTransformCollection.cs/#L106">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Util_ImageTransformCollection_CopyTo_" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.CopyTo*"></a>
-  <h4 id="Tizen_Multimedia_Util_ImageTransformCollection_CopyTo_Tizen_Multimedia_Util_ImageTransform___System_Int32_" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.CopyTo(Tizen.Multimedia.Util.ImageTransform[],System.Int32)">CopyTo(ImageTransform[], Int32)</h4>
+  <h4 id="Tizen_Multimedia_Util_ImageTransformCollection_CopyTo_Tizen_Multimedia_Util_ImageTransform___System_Int32_" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.CopyTo(Tizen.Multimedia.Util.ImageTransform[],System.Int32)">CopyTo(ImageTransform[], int)</h4>
   <div class="markdown level1 summary"><p>Copies the items of the collection to an array, starting at the specified array index.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -380,46 +352,19 @@ index is equal to or greater than <a class="xref" href="Tizen.Multimedia.Util.Im
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">arrayIndex</span></td>
         <td><p>The zero-based index in array at which copying begins.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">array</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">arrayIndex</code> is less than 0.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>The number of elements in the source collection is greater than the available space from arrayIndex to the end of the destination array.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <h6><strong>API Level</strong>: <span>4</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Util/ImageUtil/ImageTransformCollection.cs/#L162">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia.Util/ImageUtil/ImageTransformCollection.cs/#L162">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Util_ImageTransformCollection_GetEnumerator_" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.GetEnumerator*"></a>
   <h4 id="Tizen_Multimedia_Util_ImageTransformCollection_GetEnumerator" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.GetEnumerator">GetEnumerator()</h4>
@@ -440,19 +385,18 @@ index is equal to or greater than <a class="xref" href="Tizen.Multimedia.Util.Im
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IEnumerator</span>&lt;<a class="xref" href="Tizen.Multimedia.Util.ImageTransform.html">ImageTransform</a>&gt;</td>
+        <td><span class="xref">IEnumerator&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Util.ImageTransform.html">ImageTransform</a>&gt;</td>
         <td><p>An enumerator that can be used to iterate through the collection.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>4</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Util/ImageUtil/ImageTransformCollection.cs/#L114">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia.Util/ImageUtil/ImageTransformCollection.cs/#L114">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Util_ImageTransformCollection_IndexOf_" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.IndexOf*"></a>
   <h4 id="Tizen_Multimedia_Util_ImageTransformCollection_IndexOf_Tizen_Multimedia_Util_ImageTransform_" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.IndexOf(Tizen.Multimedia.Util.ImageTransform)">IndexOf(ImageTransform)</h4>
@@ -491,22 +435,21 @@ index is equal to or greater than <a class="xref" href="Tizen.Multimedia.Util.Im
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td><p>The index of value if found in the <a class="xref" href="Tizen.Multimedia.Util.ImageTransformCollection.html">ImageTransformCollection</a>; otherwise, -1.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>4</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Util/ImageUtil/ImageTransformCollection.cs/#L128">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia.Util/ImageUtil/ImageTransformCollection.cs/#L128">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Util_ImageTransformCollection_Insert_" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.Insert*"></a>
-  <h4 id="Tizen_Multimedia_Util_ImageTransformCollection_Insert_System_Int32_Tizen_Multimedia_Util_ImageTransform_" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.Insert(System.Int32,Tizen.Multimedia.Util.ImageTransform)">Insert(Int32, ImageTransform)</h4>
+  <h4 id="Tizen_Multimedia_Util_ImageTransformCollection_Insert_System_Int32_Tizen_Multimedia_Util_ImageTransform_" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.Insert(System.Int32,Tizen.Multimedia.Util.ImageTransform)">Insert(int, ImageTransform)</h4>
   <div class="markdown level1 summary"><p>Inserts a <a class="xref" href="Tizen.Multimedia.Util.ImageTransform.html">ImageTransform</a> into the collection at the specified index.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -525,7 +468,7 @@ index is equal to or greater than <a class="xref" href="Tizen.Multimedia.Util.Im
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">index</span></td>
         <td><p>The zero-based index at which <code data-dev-comment-type="paramref" class="paramref">item</code> should be inserted.</p>
 </td>
@@ -538,36 +481,12 @@ index is equal to or greater than <a class="xref" href="Tizen.Multimedia.Util.Im
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">item</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p>index is less than 0.<br>
--or-<br>
-index is greater than <a class="xref" href="Tizen.Multimedia.Util.ImageTransformCollection.html#Tizen_Multimedia_Util_ImageTransformCollection_Count">Count</a>.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <h6><strong>API Level</strong>: <span>4</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Util/ImageUtil/ImageTransformCollection.cs/#L143">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia.Util/ImageUtil/ImageTransformCollection.cs/#L143">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Util_ImageTransformCollection_Remove_" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.Remove*"></a>
   <h4 id="Tizen_Multimedia_Util_ImageTransformCollection_Remove_Tizen_Multimedia_Util_ImageTransform_" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.Remove(Tizen.Multimedia.Util.ImageTransform)">Remove(ImageTransform)</h4>
@@ -606,22 +525,21 @@ index is greater than <a class="xref" href="Tizen.Multimedia.Util.ImageTransform
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">bool</span></td>
         <td><p>true if <code data-dev-comment-type="paramref" class="paramref">item</code> was removed from the collection; otherwise, false.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>4</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Util/ImageUtil/ImageTransformCollection.cs/#L155">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia.Util/ImageUtil/ImageTransformCollection.cs/#L155">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Util_ImageTransformCollection_RemoveAt_" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.RemoveAt*"></a>
-  <h4 id="Tizen_Multimedia_Util_ImageTransformCollection_RemoveAt_System_Int32_" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.RemoveAt(System.Int32)">RemoveAt(Int32)</h4>
+  <h4 id="Tizen_Multimedia_Util_ImageTransformCollection_RemoveAt_System_Int32_" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.RemoveAt(System.Int32)">RemoveAt(int)</h4>
   <div class="markdown level1 summary"><p>Removes the <a class="xref" href="Tizen.Multimedia.Util.ImageTransform.html">ImageTransform</a> at the specified index.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -640,120 +558,52 @@ index is greater than <a class="xref" href="Tizen.Multimedia.Util.ImageTransform
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">index</span></td>
         <td><p>The zero-based index to remove.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p>index is less than 0.<br>
--or-<br>
-index is equal to or greater than <a class="xref" href="Tizen.Multimedia.Util.ImageTransformCollection.html#Tizen_Multimedia_Util_ImageTransformCollection_Count">Count</a>.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <h6><strong>API Level</strong>: <span>4</span></h6>
-  
-  <div style="margin-bottom: 15px"></div>
 
-  <h3 id="eii">Explicit Interface Implementations
-  </h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Util/ImageUtil/ImageTransformCollection.cs/#L62">View Source</a>
-  </span>
-  <a id="Tizen_Multimedia_Util_ImageTransformCollection_System_Collections_Generic_ICollection_Tizen_Multimedia_Util_ImageTransform__IsReadOnly_" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.System#Collections#Generic#ICollection{Tizen#Multimedia#Util#ImageTransform}#IsReadOnly*"></a>
-  <h4 id="Tizen_Multimedia_Util_ImageTransformCollection_System_Collections_Generic_ICollection_Tizen_Multimedia_Util_ImageTransform__IsReadOnly" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.System#Collections#Generic#ICollection{Tizen#Multimedia#Util#ImageTransform}#IsReadOnly">ICollection&lt;ImageTransform&gt;.IsReadOnly</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">bool ICollection&lt;ImageTransform&gt;.IsReadOnly { get; }</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Util/ImageUtil/ImageTransformCollection.cs/#L164">View Source</a>
-  </span>
-  <a id="Tizen_Multimedia_Util_ImageTransformCollection_System_Collections_IEnumerable_GetEnumerator_" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.System#Collections#IEnumerable#GetEnumerator*"></a>
-  <h4 id="Tizen_Multimedia_Util_ImageTransformCollection_System_Collections_IEnumerable_GetEnumerator" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.System#Collections#IEnumerable#GetEnumerator">IEnumerable.GetEnumerator()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IEnumerator IEnumerable.GetEnumerator()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Collections.IEnumerator</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">System.Collections.Generic.IList&lt;T&gt;</a>
+      <span class="xref">IList&lt;&gt;</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
   </div>
   <div>
-      <span class="xref">System.Collections.Generic.ICollection&lt;T&gt;</span>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
   </div>
   <div>
-      <span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
   </div>
   <div>
-      <span class="xref">System.Collections.IEnumerable</span>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.Multimedia.Util/ImageUtil/ImageTransformCollection.cs/#L27" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia.Util/ImageUtil/ImageTransformCollection.cs/#L27" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -764,7 +614,7 @@ index is equal to or greater than <a class="xref" href="Tizen.Multimedia.Util.Im
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -772,13 +622,13 @@ index is equal to or greater than <a class="xref" href="Tizen.Multimedia.Util.Im
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

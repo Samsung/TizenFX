@@ -7,9 +7,9 @@
     <title>SPI </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="SPI ">
-    <meta name="generator" content="docfx 2.56.1.0">
+    <meta name="generator" content="docfx ">
     <meta name="version" content="internals">
-    
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -18,13 +18,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="../toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -34,7 +34,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -42,13 +42,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -58,19 +58,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -142,7 +142,7 @@
 <p>The bit per word refers to the number of bits to be transmitted at a time when data is exchanged with a connected slave. Normally, it is set to 8 bits per word.</p>
 </li>
 <li><p>Frequency</p>
-<p>The frequency refers to the clock signal in Hz. Since the frequencies are different for each slave device, the applicable value must be checked from the peripheral&#39;s specification.</p>
+<p>The frequency refers to the clock signal in Hz. Since the frequencies are different for each slave device, the applicable value must be checked from the peripheral's specification.</p>
 </li>
 </ul>
 <h2 id="opening-and-closing-a-handle">Opening and Closing a Handle</h2>
@@ -152,7 +152,8 @@
 <pre><code class="lang-csharp">int bus = 2;
 int chip_select = 0;
 SpiDevice spi = new SpiDevice(bus, chip_select);
-</code></pre><p>The <code>bus</code> and <code>chip_select</code> parameters required for this function must be set according to the following tables.</p>
+</code></pre>
+<p>The <code>bus</code> and <code>chip_select</code> parameters required for this function must be set according to the following tables.</p>
 <p><strong>Table: Raspberry Pi 3 and Raspberry Pi 4</strong></p>
 <table>
 <thead>
@@ -184,13 +185,15 @@ SpiDevice spi = new SpiDevice(bus, chip_select);
 </tr>
 </tbody>
 </table>
-<blockquote><p><strong>Note</strong></p>
+<blockquote>
+<p><strong>Note</strong></p>
 <p>For more information on the pin names and locations, see <a href="peripheral.html#protocol">Supported Protocols</a>.</p>
 </blockquote>
 </li>
 <li><p>To close a SPI handle that is no longer used, use the <code>SpiDevice.Close()</code> method:</p>
 <pre><code class="lang-csharp">spi.Close();
-</code></pre></li>
+</code></pre>
+</li>
 </ol>
 <h2 id="setting-the-spi-mode">Setting the SPI Mode</h2>
 <p>To set the SPI mode, use the <code>SpiDevice.Mode</code> property with 1 of the following <code>SpiMode</code> types:</p>
@@ -201,45 +204,53 @@ SpiDevice spi = new SpiDevice(bus, chip_select);
 <li><code>SpiMode.Mode3</code>: CLK is active low and sampled at the falling edge.</li>
 </ul>
 <pre><code class="lang-csharp">spi.Mode = SpiMode.Mode0;
-</code></pre><h2 id="setting-the-bit-order">Setting the Bit Order</h2>
+</code></pre>
+<h2 id="setting-the-bit-order">Setting the Bit Order</h2>
 <p>To set the bit order, use the <code>SpiDevice.BitOrder</code> property with 1 of the following <code>BitOrder</code> types:</p>
 <ul>
 <li><code>BitOrder.MSB</code>: Use the most significant bit first.</li>
 <li><code>BitOrder.LSB</code>: Use the least significant bit first.</li>
 </ul>
 <pre><code class="lang-csharp">spi.BitOrder = BitOrder.MSB;
-</code></pre><blockquote><p><strong>Note</strong></p>
+</code></pre>
+<blockquote>
+<p><strong>Note</strong></p>
 <p>The Raspberry Pi 3 and Raspberry Pi 4 boards do not support the LSB bit order.</p>
 </blockquote>
 <h2 id="setting-the-bits-per-word">Setting the Bits per Word</h2>
 <p>To set the bits per word, use the <code>SpiDevice.BitsPerWord</code> property:</p>
 <pre><code class="lang-csharp">byte bits_per_word = 8;
 spi.BitsPerWord = bits_per_word;
-</code></pre><h2 id="setting-the-frequency">Setting the Frequency</h2>
+</code></pre>
+<h2 id="setting-the-frequency">Setting the Frequency</h2>
 <p>To set the frequency, use the <code>SpiDevice.ClockFrequency</code> property.</p>
 <p>The frequency unit is Hz.</p>
 <pre><code class="lang-csharp">uint frequency = 1024;
 spi.ClockFrequency  = frequency;
-</code></pre><h2 id="reading-writing-and-transferring-data">Reading, Writing, and Transferring Data</h2>
+</code></pre>
+<h2 id="reading-writing-and-transferring-data">Reading, Writing, and Transferring Data</h2>
 <p>To read, write, and transfer data:</p>
 <ul>
 <li><p>To read data from a slave device, use the <code>SpiDevice.Read()</code> method:</p>
 <pre><code class="lang-csharp">byte[] data = new byte[1];
 spi.Read(data);
-</code></pre></li>
+</code></pre>
+</li>
 <li><p>To write data to a slave device, use the <code>SpiDevice.Write()</code> method:</p>
 <pre><code class="lang-csharp">byte[] data = {0x80};
 spi.Write(data);
-</code></pre></li>
+</code></pre>
+</li>
 <li><p>To exchange bytes data with a slave device, use the <code>SpiDevice.TransferSequential()</code> method:</p>
 <pre><code class="lang-csharp">byte[] tx_data = {0x80, 0x01};
 byte[] rx_data = new byte[2];
 spi.TransferSequential(tx_data, rx_data);
-</code></pre></li>
+</code></pre>
+</li>
 </ul>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
@@ -253,7 +264,7 @@ spi.TransferSequential(tx_data, rx_data);
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -261,13 +272,13 @@ spi.TransferSequential(tx_data, rx_data);
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

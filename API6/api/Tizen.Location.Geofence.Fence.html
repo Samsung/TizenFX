@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Class Fence
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Fence
-   ">
-    <meta name="generator" content="docfx 2.56.1.0">
+ ">
+    <meta name="generator" content="docfx ">
     <meta name="version" content="API6">
-    
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -20,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -60,19 +60,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -80,51 +80,50 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="Tizen.Location.Geofence.Fence">
-  
-  
+
+
   <h1 id="Tizen_Location_Geofence_Fence" data-uid="Tizen.Location.Geofence.Fence" class="text-break">Class Fence
-  </h1>
+</h1>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
-  
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.Location.Geofence.html">Tizen.Location.Geofence</a></dd></dl>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Location.html">Location</a>.<a class="xref" href="Tizen.Location.Geofence.html">Geofence</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Location.Geofence.dll</dd></dl>
-  <dl class="attribute-list"><dt>API Level:</dt><dd><span>3</span></dd></dl>
-  
+
   <div class="markdown level0 summary"><p>Geofence defines a virtual perimeter for a real-world geographic area.
 If you create a geofence, you can trigger some activities when a device enters (or exits) the geofences defined by you.
-You can create a geofence with the information of the Geopoint, Wi-Fi, or BT.
+You can create a geofence with the information of the Geopoint, Wi-Fi, or BT.</p>
 <ul><li>Geopoint: Geofence is specified by the coordinates (Latitude and Longitude) and radius.</li><li>WIFI: Geofence is specified by the BSSID of the Wi-Fi access point.</li><li>BT: Geofence is specified by the Bluetooth address.</li></ul>
 The Basic service set identifier (BSSID) is the MAC address of the wireless access point (WAP) generated by combining the 24-bit Organization Unique Identifier (the manufacturer&apos;s identity)
-and the manufacturer&apos;s assigned 24-bit identifier for the radio chipset in the WAP.</p>
+and the manufacturer&apos;s assigned 24-bit identifier for the radio chipset in the WAP.
 </div>
   <div class="markdown level0 conceptual"></div>
-  
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class Fence : IDisposable</code></pre>
   </div>
 
-  
+
   <dl class="attribute-list stack">
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">System.Object</span></div>
+        <div class="pdl"><span class="xref">object</span></div>
         <div><span class="xref">Fence</span></div>
       </div>
     </dd>
   </dl>
 
-  
-  
+
+
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
       <div class="pdl"><span class="xref">System.IDisposable</span></div>
     </dd>
   </dl>
-  
+
   <h3 id="properties">Properties
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Location.Geofence/Tizen.Location.Geofence/Fence.cs/#L158">View Source</a>
   </span>
@@ -147,14 +146,13 @@ and the manufacturer&apos;s assigned 24-bit identifier for the radio chipset in 
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -179,14 +177,13 @@ and the manufacturer&apos;s assigned 24-bit identifier for the radio chipset in 
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -211,14 +208,13 @@ and the manufacturer&apos;s assigned 24-bit identifier for the radio chipset in 
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><span class="xref">double</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -243,14 +239,13 @@ and the manufacturer&apos;s assigned 24-bit identifier for the radio chipset in 
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><span class="xref">double</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -275,14 +270,13 @@ and the manufacturer&apos;s assigned 24-bit identifier for the radio chipset in 
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -307,14 +301,13 @@ and the manufacturer&apos;s assigned 24-bit identifier for the radio chipset in 
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -339,14 +332,13 @@ and the manufacturer&apos;s assigned 24-bit identifier for the radio chipset in 
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -376,18 +368,17 @@ and the manufacturer&apos;s assigned 24-bit identifier for the radio chipset in 
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="methods">Methods
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Location.Geofence/Tizen.Location.Geofence/Fence.cs/#L270">View Source</a>
   </span>
   <a id="Tizen_Location_Geofence_Fence_CreateBTFence_" data-uid="Tizen.Location.Geofence.Fence.CreateBTFence*"></a>
-  <h4 id="Tizen_Location_Geofence_Fence_CreateBTFence_System_Int32_System_String_System_String_" data-uid="Tizen.Location.Geofence.Fence.CreateBTFence(System.Int32,System.String,System.String)">CreateBTFence(Int32, String, String)</h4>
+  <h4 id="Tizen_Location_Geofence_Fence_CreateBTFence_System_Int32_System_String_System_String_" data-uid="Tizen.Location.Geofence.Fence.CreateBTFence(System.Int32,System.String,System.String)">CreateBTFence(int, string, string)</h4>
   <div class="markdown level1 summary"><p>Creates a Bluetooth type of the new geofence.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -406,19 +397,19 @@ and the manufacturer&apos;s assigned 24-bit identifier for the radio chipset in 
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">placeId</span></td>
         <td><p>The current place ID.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">bssid</span></td>
         <td><p>Specifies the value of BSSID of BT MAC address.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">ssid</span></td>
         <td><p>Specifies the value of SSID of BT Device.</p>
 </td>
@@ -467,16 +458,15 @@ and the manufacturer&apos;s assigned 24-bit identifier for the radio chipset in 
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Location.Geofence/Tizen.Location.Geofence/Fence.cs/#L224">View Source</a>
   </span>
   <a id="Tizen_Location_Geofence_Fence_CreateGPSFence_" data-uid="Tizen.Location.Geofence.Fence.CreateGPSFence*"></a>
-  <h4 id="Tizen_Location_Geofence_Fence_CreateGPSFence_System_Int32_System_Double_System_Double_System_Int32_System_String_" data-uid="Tizen.Location.Geofence.Fence.CreateGPSFence(System.Int32,System.Double,System.Double,System.Int32,System.String)">CreateGPSFence(Int32, Double, Double, Int32, String)</h4>
+  <h4 id="Tizen_Location_Geofence_Fence_CreateGPSFence_System_Int32_System_Double_System_Double_System_Int32_System_String_" data-uid="Tizen.Location.Geofence.Fence.CreateGPSFence(System.Int32,System.Double,System.Double,System.Int32,System.String)">CreateGPSFence(int, double, double, int, string)</h4>
   <div class="markdown level1 summary"><p>Creates a geopoint type of the new geofence.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -495,31 +485,31 @@ and the manufacturer&apos;s assigned 24-bit identifier for the radio chipset in 
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">placeId</span></td>
         <td><p>The current place ID.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><span class="xref">double</span></td>
         <td><span class="parametername">latitude</span></td>
         <td><p>Specifies the value of latitude of the geofence [-90.0 ~ 90.0] (degrees).</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Double</span></td>
+        <td><span class="xref">double</span></td>
         <td><span class="parametername">longitude</span></td>
         <td><p>Specifies the value of longitude of the geofence [-180.0 ~ 180.0] (degrees).</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">radius</span></td>
         <td><p>Specifies the value of radius of the geofence [100 ~ 500] (meter).</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">address</span></td>
         <td><p>Specifies the value of the address.</p>
 </td>
@@ -568,16 +558,15 @@ and the manufacturer&apos;s assigned 24-bit identifier for the radio chipset in 
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>4</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Location.Geofence/Tizen.Location.Geofence/Fence.cs/#L247">View Source</a>
   </span>
   <a id="Tizen_Location_Geofence_Fence_CreateWifiFence_" data-uid="Tizen.Location.Geofence.Fence.CreateWifiFence*"></a>
-  <h4 id="Tizen_Location_Geofence_Fence_CreateWifiFence_System_Int32_System_String_System_String_" data-uid="Tizen.Location.Geofence.Fence.CreateWifiFence(System.Int32,System.String,System.String)">CreateWifiFence(Int32, String, String)</h4>
+  <h4 id="Tizen_Location_Geofence_Fence_CreateWifiFence_System_Int32_System_String_System_String_" data-uid="Tizen.Location.Geofence.Fence.CreateWifiFence(System.Int32,System.String,System.String)">CreateWifiFence(int, string, string)</h4>
   <div class="markdown level1 summary"><p>Creates a Wi-Fi type of the new geofence.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -596,19 +585,19 @@ and the manufacturer&apos;s assigned 24-bit identifier for the radio chipset in 
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">placeId</span></td>
         <td><p>The current place ID.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">bssid</span></td>
         <td><p>Specifies the value of BSSID of the Wi-Fi MAC address.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">ssid</span></td>
         <td><p>Specifies the value of SSID of the Wi-Fi device.</p>
 </td>
@@ -657,9 +646,8 @@ and the manufacturer&apos;s assigned 24-bit identifier for the radio chipset in 
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -674,16 +662,15 @@ and the manufacturer&apos;s assigned 24-bit identifier for the radio chipset in 
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Location.Geofence/Tizen.Location.Geofence/Fence.cs/#L296">View Source</a>
   </span>
   <a id="Tizen_Location_Geofence_Fence_Dispose_" data-uid="Tizen.Location.Geofence.Fence.Dispose*"></a>
-  <h4 id="Tizen_Location_Geofence_Fence_Dispose_System_Boolean_" data-uid="Tizen.Location.Geofence.Fence.Dispose(System.Boolean)">Dispose(Boolean)</h4>
+  <h4 id="Tizen_Location_Geofence_Fence_Dispose_System_Boolean_" data-uid="Tizen.Location.Geofence.Fence.Dispose(System.Boolean)">Dispose(bool)</h4>
   <div class="markdown level1 summary"><p>Dispose.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -702,32 +689,30 @@ and the manufacturer&apos;s assigned 24-bit identifier for the radio chipset in 
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">bool</span></td>
         <td><span class="parametername">disposing</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Location.Geofence/Tizen.Location.Geofence/Fence.cs/#L53">View Source</a>
   </span>
   <a id="Tizen_Location_Geofence_Fence_Finalize_" data-uid="Tizen.Location.Geofence.Fence.Finalize*"></a>
-  <h4 id="Tizen_Location_Geofence_Fence_Finalize" data-uid="Tizen.Location.Geofence.Fence.Finalize">Finalize()</h4>
+  <h4 id="Tizen_Location_Geofence_Fence_Finalize" data-uid="Tizen.Location.Geofence.Fence.Finalize">~Fence()</h4>
   <div class="markdown level1 summary"><p>The destructor of the Fence class.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void Finalize()</code></pre>
+    <pre><code class="lang-csharp hljs">protected ~Fence()</code></pre>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="implements">Implements</h3>
@@ -736,7 +721,7 @@ and the manufacturer&apos;s assigned 24-bit identifier for the radio chipset in 
   </div>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
@@ -753,7 +738,7 @@ and the manufacturer&apos;s assigned 24-bit identifier for the radio chipset in 
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -761,13 +746,13 @@ and the manufacturer&apos;s assigned 24-bit identifier for the radio chipset in 
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

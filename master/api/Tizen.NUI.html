@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Namespace Tizen.NUI
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Namespace Tizen.NUI
-   ">
-    <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API11">
-    
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -20,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -60,19 +60,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -80,14 +80,14 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="Tizen.NUI">
-  
+
   <h1 id="Tizen_NUI" data-uid="Tizen.NUI" class="text-break">Namespace Tizen.NUI
-  </h1>
+</h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
-  </h3>
+</h3>
       <h4><a class="xref" href="Tizen.NUI.AbsoluteLayout.html">AbsoluteLayout</a></h4>
       <section><p>[Draft] This class implements a absolute layout, allowing explicit positioning of children.
 Positions are from the top left of the layout and can be set using the View.Position and alike.</p>
@@ -170,9 +170,9 @@ Applications should follow the example below to create capture :</p>
   if(e.Success) { //capture success, do something. }
   else { //capture failure, do something. }
 }</code></pre>
-<p>suppose that we want to capture View &apos;A&apos;. And, the View &apos;A&apos; is overlapped by another View &apos;B&apos; that is not a child of &apos;A&apos;.
-in this case, if source is root of scene, the captured image includes a part of View &apos;B&apos; on the &apos;A&apos;.
-however, if source is just View &apos;A&apos;, the result includes only &apos;A&apos;.</p>
+<p>suppose that we want to capture View 'A'. And, the View 'A' is overlapped by another View 'B' that is not a child of 'A'.
+in this case, if source is root of scene, the captured image includes a part of View 'B' on the 'A'.
+however, if source is just View 'A', the result includes only 'A'.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.CaptureFinishedEventArgs.html">CaptureFinishedEventArgs</a></h4>
       <section><p>CaptureFinishedEventArgs</p>
@@ -211,11 +211,11 @@ Cube Transition instance.</p>
 Used for registering controls and any scriptable properties they have (see ScriptableProperty).</p>
 <p>Internal Design from C# to C++</p>
 <ul>
-<li>Each custom C# view should have it&apos;s static constructor called before any JSON file is loaded.
+<li>Each custom C# view should have it's static constructor called before any JSON file is loaded.
 Static constructors for a class will only run once ( they are run per control type, not per instance).
 Example of running a static constructor:
 System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor (typeof(Spin).TypeHandle);
-Inside the static constructor the control should register it&apos;s type with the ViewRegistry
+Inside the static constructor the control should register it's type with the ViewRegistry
 For example:</li>
 </ul>
 <p>static Spin()
@@ -252,8 +252,8 @@ This reduces ambiguity when using methods which accept angles in degrees or radi
       <h4><a class="xref" href="Tizen.NUI.EncodedImageBuffer.html">EncodedImageBuffer</a></h4>
       <section><p>Class for Encoded Image Buffer.
 Buffer comes from System.IO.Stream.
-This data will decode internally when you use GeneratedUrl as View&apos;s ResourceUrl.
-Note: This class doesn&apos;t allow to fix/change anything.
+This data will decode internally when you use GeneratedUrl as View's ResourceUrl.
+Note: This class doesn't allow to fix/change anything.
 Only constructor allow to setup data.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.EnvironmentVariable.html">EnvironmentVariable</a></h4>
@@ -332,7 +332,7 @@ This is the base class for different gesture detectors available and provides fu
       <section><p>The GLWindow class is to draw with native GLES.<br>
 This class is the special window. It is for native GLES application.<br>
 So, some special functions and type are supported.<br>
-In addition, basic window&apos;s functions are supported, too.<br></p>
+In addition, basic window's functions are supported, too.<br></p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.GLWindow.FocusChangedEventArgs.html">GLWindow.FocusChangedEventArgs</a></h4>
       <section><p>The focus changed event argument.</p>
@@ -365,7 +365,7 @@ This resized event arguments.</p>
       <section><p>The GraphicTypeExtensions class is graphics type converter for pixel based object.
 Density independent pixel(dp) unit is our basic target type and you can get converted value by PxToDp(),
 and you can get original pixel by PxToDp().
-One dp is a virtual pixel unit that&apos;s roughly equal to one pixel on a medium-density(160dpi) screen.
+One dp is a virtual pixel unit that's roughly equal to one pixel on a medium-density(160dpi) screen.
 See <a class="xref" href="Tizen.NUI.GraphicsTypeManager.html">GraphicsTypeManager</a> and <a class="xref" href="Tizen.NUI.GraphicsTypeConverter.html">GraphicsTypeConverter</a> also.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.GraphicsTypeManager.html">GraphicsTypeManager</a></h4>
@@ -580,7 +580,7 @@ Vibrant, Vibrant Dark, Vibrant Light, Muted, Muted Dark, Muted Light</p>
 <p>These can be retrieved from the appropriate getter method.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.Palette.Swatch.html">Palette.Swatch</a></h4>
-      <section><p>Represents a color swatch generated from an image&apos;s palette. The RGB color can be retrieved calling getRgb()</p>
+      <section><p>Represents a color swatch generated from an image's palette. The RGB color can be retrieved calling getRgb()</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.PanGesture.html">PanGesture</a></h4>
       <section><p>A PanGesture is emitted when the user moves one or more fingers in a particular direction.<br>
@@ -747,7 +747,7 @@ and will finally become scaled by scale factor and vanishes.</p>
       <section><p>This should be internal, do not use.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.ScrollView.SnapEvent.html">ScrollView.SnapEvent</a></h4>
-      <section><p>Snaps signal event&apos;s data.</p>
+      <section><p>Snaps signal event's data.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.ScrollView.SnapStartedEventArgs.html">ScrollView.SnapStartedEventArgs</a></h4>
       <section><p>Event arguments that passed via the SnapStarted signal.</p>
@@ -858,7 +858,7 @@ Timer is provided for application developers to be able to issue
 simple periodic or one-shot events. Please note that the timer
 callback functions should return as soon as possible because they
 block the next SignalTick. Please note that timer signals are not
-in sync with DALi&apos;s render timer.<br>
+in sync with DALi's render timer.<br>
 This class is a handle class so it can be stack allocated and used
 as a member.<br></p>
 </section>
@@ -1126,7 +1126,7 @@ It is triggered by calling RequestResizeToServer().</p>
 which is then used for type resolution by a XAML object writer or XAML schema context.</p>
 </section>
     <h3 id="structs">Structs
-  </h3>
+</h3>
       <h4><a class="xref" href="Tizen.NUI.AnchorPoint.html">AnchorPoint</a></h4>
       <section><p>[Obsolete(&quot;Do not use this, that will be deprecated.&quot;)]</p>
 </section>
@@ -1167,7 +1167,7 @@ which is then used for type resolution by a XAML object writer or XAML schema co
       <section><p>[Draft] Class that encodes a measurement and a measure state, which is set if the measured size is too small.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.MeasureSpecification.html">MeasureSpecification</a></h4>
-      <section><p>[Draft] A MeasureSpecification is used during the Measure pass by a LayoutGroup to inform it&apos;s children how to be measured.
+      <section><p>[Draft] A MeasureSpecification is used during the Measure pass by a LayoutGroup to inform it's children how to be measured.
 For instance, it may measure a child with an exact width and an unspecified height in order to determine height for width.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.MeshVisualProperty.html">MeshVisualProperty</a></h4>
@@ -1210,7 +1210,7 @@ For instance, it may measure a child with an exact width and an unspecified heig
       <section><p>This specifies shader properties.</p>
 </section>
     <h3 id="interfaces">Interfaces
-  </h3>
+</h3>
       <h4><a class="xref" href="Tizen.NUI.FocusManager.ICustomFocusAlgorithm.html">FocusManager.ICustomFocusAlgorithm</a></h4>
       <section><p>ICustomFocusAlgorithm is used to provide the custom keyboard focus algorithm for retrieving the next focusable view.<br>
 The application can implement the interface and override the keyboard focus behavior.<br>
@@ -1235,7 +1235,7 @@ This interface calls GetNextFocusableView() with deviceName. <br></p>
 Interface that defines a layout Parent. Enables a layout child to access methods on its parent, e.g. Remove (during unparenting)</p>
 </section>
     <h3 id="enums">Enums
-  </h3>
+</h3>
       <h4><a class="xref" href="Tizen.NUI.AlphaFunction.BuiltinFunctions.html">AlphaFunction.BuiltinFunctions</a></h4>
       <section><p>This specifies the various types of BuiltinFunctions.</p>
 </section>
@@ -1243,7 +1243,7 @@ Interface that defines a layout Parent. Enables a layout child to access methods
       <section><p>This specifies which mode is set for AlphaFunction.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.Animatable.Capability.html">Animatable.Capability</a></h4>
-      <section><p>Enumeration for Handle&apos;s capabilities that can be queried.</p>
+      <section><p>Enumeration for Handle's capabilities that can be queried.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.AnimatableProperties.html">AnimatableProperties</a></h4>
       <section><p>The properties that can be animated.</p>
@@ -1289,7 +1289,7 @@ Interface that defines a layout Parent. Enables a layout child to access methods
 The @p horizontalAlignment and @p verticalAlignment can be used to align the text within the text area.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.ClippingModeType.html">ClippingModeType</a></h4>
-      <section><p>Enumeration for the ClippingMode describing how this actor&apos;s children will be clipped against it.</p>
+      <section><p>Enumeration for the ClippingMode describing how this actor's children will be clipped against it.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.ColorBlendingMode.html">ColorBlendingMode</a></h4>
       <section><p>Defines how a color is blended.</p>
@@ -1337,7 +1337,7 @@ The @p horizontalAlignment and @p verticalAlignment can be used to align the tex
       <section><p>Drag event type.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.DrawModeType.html">DrawModeType</a></h4>
-      <section><p>Enumeration for the instance of how the actor and it&apos;s children will be drawn.</p>
+      <section><p>Enumeration for the instance of how the actor and it's children will be drawn.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.EllipsisPosition.html">EllipsisPosition</a></h4>
       <section><p>An enum of ellipsis position.</p>
@@ -1377,13 +1377,13 @@ This determines the direction that flex items are laid out in the flex container
       <section><p>Enumeration for the size type of font. <br></p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.FontSlantType.html">FontSlantType</a></h4>
-      <section><p>Enumeration type for the font&apos;s slant.</p>
+      <section><p>Enumeration type for the font's slant.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.FontWeightType.html">FontWeightType</a></h4>
-      <section><p>Enumeration type for the font&apos;s weight.</p>
+      <section><p>Enumeration type for the font's weight.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.FontWidthType.html">FontWidthType</a></h4>
-      <section><p>Enumeration type for the font&apos;s width.</p>
+      <section><p>Enumeration type for the font's width.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.FrameBuffer.Attachment.Mask.html">FrameBuffer.Attachment.Mask</a></h4>
       <section></section>
@@ -1537,7 +1537,7 @@ Decides when the image texture should be loaded.</p>
       <h4><a class="xref" href="Tizen.NUI.NativeImageSource.ColorDepth.html">NativeImageSource.ColorDepth</a></h4>
       <section></section>
       <h4><a class="xref" href="Tizen.NUI.NotificationLevel.html">NotificationLevel</a></h4>
-      <section><p>An enum of notification window&apos;s priority level.</p>
+      <section><p>An enum of notification window's priority level.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.NUIApplication.ThemeOptions.html">NUIApplication.ThemeOptions</a></h4>
       <section><p>Enumeration for theme options of the NUIApplication.</p>
@@ -1734,16 +1734,16 @@ but all other filter modes do if the desired dimensions are not more than the ra
       <section><p>This enum is the policy when resizing the border window.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.Window.EffectState.html">Window.EffectState</a></h4>
-      <section><p>Enumeration for transition effect&apos;s state.</p>
+      <section><p>Enumeration for transition effect's state.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.Window.EffectStates.html">Window.EffectStates</a></h4>
-      <section><p>Enumeration for transition effect&apos;s state.</p>
+      <section><p>Enumeration for transition effect's state.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.Window.EffectType.html">Window.EffectType</a></h4>
-      <section><p>Enumeration for transition effect&apos;s type.</p>
+      <section><p>Enumeration for transition effect's type.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.Window.EffectTypes.html">Window.EffectTypes</a></h4>
-      <section><p>Enumeration for transition effect&apos;s type.</p>
+      <section><p>Enumeration for transition effect's type.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.Window.InsetsPartState.html">Window.InsetsPartState</a></h4>
       <section><p>The state of insets part.</p>
@@ -1771,7 +1771,7 @@ but all other filter modes do if the desired dimensions are not more than the ra
 WrapModeU and WrapModeV separately decide how the texture should be sampled when the u and v coordinate exceeds the range of 0.0 to 1.0.</p>
 </section>
     <h3 id="delegates">Delegates
-  </h3>
+</h3>
       <h4><a class="xref" href="Tizen.NUI.ApplicationTransitionManager.AnimationEventHandler.html">ApplicationTransitionManager.AnimationEventHandler</a></h4>
       <section><p>AnimationEventHandler for FrameBroker animation</p>
 </section>
@@ -1841,7 +1841,7 @@ this should be removed with EventHandler from .NET</p>
 </section>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
@@ -1855,7 +1855,7 @@ this should be removed with EventHandler from .NET</p>
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -1863,13 +1863,13 @@ this should be removed with EventHandler from .NET</p>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

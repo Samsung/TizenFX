@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Class Body
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Body
-   ">
-    <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API11">
-    
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -20,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -60,19 +60,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -80,42 +80,42 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body">
-  
-  
+
+
   <h1 id="Tizen_NUI_Physics2D_Chipmunk_Body" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body" class="text-break">Class Body
-  </h1>
+</h1>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
-  
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.html">Tizen.NUI.Physics2D.Chipmunk</a></dd></dl>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.Physics2D.html">Physics2D</a>.<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.html">Chipmunk</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.Physics2D.dll</dd></dl>
-  
+
   <div class="markdown level0 summary"><p>Mass and moment are ignored when <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.BodyType.html">BodyType</a> is <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.BodyType.html#Tizen_NUI_Physics2D_Chipmunk_BodyType_Kinematic">Kinematic</a>
 or <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.BodyType.html#Tizen_NUI_Physics2D_Chipmunk_BodyType_Static">Static</a>. Guessing the mass for a body is usually fine, but guessing
 a moment of inertia can lead to a very poor simulation. It’s recommended to use Chipmunk’s
 moment-calculating functions to estimate the moment for you.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class Body : IDisposable</code></pre>
   </div>
 
-  
+
   <dl class="attribute-list stack">
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
+        <div class="pdl"><span class="xref">object</span></div>
         <div><span class="xref">Body</span></div>
       </div>
     </dd>
   </dl>
 
-  
-  
-  
+
+
+
   <h3 id="constructors">Constructors
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L64">View Source</a>
   </span>
@@ -128,53 +128,15 @@ moment-calculating functions to estimate the moment for you.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Body()</code></pre>
   </div>
-  
-  
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L89">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Physics2D_Chipmunk_Body__ctor_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.#ctor*"></a>
-  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body__ctor_System_Double_System_Double_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.#ctor(System.Double,System.Double)">Body(Double, Double)</h4>
-  <div class="markdown level1 summary"><p>Creates a body with the given mass and moment.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Body(double mass, double moment)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
-        <td><span class="parametername">mass</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
-        <td><span class="parametername">moment</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L97">View Source</a>
   </span>
   <a id="Tizen_NUI_Physics2D_Chipmunk_Body__ctor_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.#ctor*"></a>
-  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body__ctor_System_Double_System_Double_Tizen_NUI_Physics2D_Chipmunk_BodyType_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.#ctor(System.Double,System.Double,Tizen.NUI.Physics2D.Chipmunk.BodyType)">Body(Double, Double, BodyType)</h4>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body__ctor_System_Double_System_Double_Tizen_NUI_Physics2D_Chipmunk_BodyType_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.#ctor(System.Double,System.Double,Tizen.NUI.Physics2D.Chipmunk.BodyType)">Body(double, double, BodyType)</h4>
   <div class="markdown level1 summary"><p>Creates a body with the given mass and moment, of the give <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.BodyType.html">BodyType</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -193,12 +155,12 @@ moment-calculating functions to estimate the moment for you.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><span class="xref">double</span></td>
         <td><span class="parametername">mass</span></td>
         <td></td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><span class="xref">double</span></td>
         <td><span class="parametername">moment</span></td>
         <td></td>
       </tr>
@@ -209,8 +171,46 @@ moment-calculating functions to estimate the moment for you.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L89">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Physics2D_Chipmunk_Body__ctor_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.#ctor*"></a>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body__ctor_System_Double_System_Double_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.#ctor(System.Double,System.Double)">Body(double, double)</h4>
+  <div class="markdown level1 summary"><p>Creates a body with the given mass and moment.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Body(double mass, double moment)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td><span class="parametername">mass</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td><span class="parametername">moment</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -242,12 +242,12 @@ moment-calculating functions to estimate the moment for you.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="properties">Properties
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L725">View Source</a>
   </span>
@@ -270,13 +270,13 @@ moment-calculating functions to estimate the moment for you.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IReadOnlyList</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Body.html">Body</a>&gt;</td>
+        <td><span class="xref">IReadOnlyList&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Body.html">Body</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -304,13 +304,13 @@ rotates around its center of gravity, not its position.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><span class="xref">double</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -335,13 +335,13 @@ rotates around its center of gravity, not its position.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><span class="xref">double</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -366,13 +366,13 @@ rotates around its center of gravity, not its position.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IReadOnlyList</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Arbiter.html">Arbiter</a>&gt;</td>
+        <td><span class="xref">IReadOnlyList&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Arbiter.html">Arbiter</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -403,8 +403,8 @@ rotates around its center of gravity, not its position.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -429,13 +429,13 @@ rotates around its center of gravity, not its position.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IReadOnlyList</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Constraint.html">Constraint</a>&gt;</td>
+        <td><span class="xref">IReadOnlyList&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Constraint.html">Constraint</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -460,13 +460,13 @@ rotates around its center of gravity, not its position.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></td>
+        <td><span class="xref">object</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -497,8 +497,8 @@ step.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -523,13 +523,13 @@ step.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">System.IntPtr</a></td>
+        <td><span class="xref">System.IntPtr</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -554,13 +554,13 @@ step.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="xref">bool</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -585,13 +585,13 @@ step.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><span class="xref">double</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -617,13 +617,13 @@ relative masses should be consistent.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><span class="xref">double</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -632,7 +632,7 @@ relative masses should be consistent.</p>
   <a id="Tizen_NUI_Physics2D_Chipmunk_Body_Moment_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Moment*"></a>
   <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_Moment" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Moment">Moment</h4>
   <div class="markdown level1 summary"><p>Moment of inertia of the body. The mass tells you how hard it is to push an object,
-the MoI tells you how hard it is to spin the object. Don&apos;t try to guess the MoI, use the
+the MoI tells you how hard it is to spin the object. Don't try to guess the MoI, use the
 MomentFor*() functions to estimate it, or the physics may behave strangely.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -650,13 +650,13 @@ MomentFor*() functions to estimate it, or the physics may behave strangely.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><span class="xref">double</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -688,8 +688,8 @@ for the attached shapes if you plan to make any queries against the space.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -697,7 +697,7 @@ for the attached shapes if you plan to make any queries against the space.</p>
   </span>
   <a id="Tizen_NUI_Physics2D_Chipmunk_Body_PositionUpdateFunction_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.PositionUpdateFunction*"></a>
   <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_PositionUpdateFunction" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.PositionUpdateFunction">PositionUpdateFunction</h4>
-  <div class="markdown level1 summary"><p>Set the callback used to update a body&apos;s position.
+  <div class="markdown level1 summary"><p>Set the callback used to update a body's position.
 Parameters: body, deltaTime</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -715,13 +715,13 @@ Parameters: body, deltaTime</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Action</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Body.html">Body</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a>&gt;</td>
+        <td><span class="xref">Action&lt;, &gt;</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Body.html">Body</a>, <span class="xref">double</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -751,8 +751,8 @@ Parameters: body, deltaTime</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -777,13 +777,13 @@ Parameters: body, deltaTime</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IReadOnlyList</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Shape.html">Shape</a>&gt;</td>
+        <td><span class="xref">IReadOnlyList&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Shape.html">Shape</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -813,8 +813,8 @@ Parameters: body, deltaTime</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -839,13 +839,13 @@ Parameters: body, deltaTime</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><span class="xref">double</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -875,8 +875,8 @@ Parameters: body, deltaTime</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -906,8 +906,8 @@ Parameters: body, deltaTime</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -915,7 +915,7 @@ Parameters: body, deltaTime</p>
   </span>
   <a id="Tizen_NUI_Physics2D_Chipmunk_Body_VelocityUpdateFunction_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.VelocityUpdateFunction*"></a>
   <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_VelocityUpdateFunction" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.VelocityUpdateFunction">VelocityUpdateFunction</h4>
-  <div class="markdown level1 summary"><p>Set the callback used to update a body&apos;s velocity.
+  <div class="markdown level1 summary"><p>Set the callback used to update a body's velocity.
 Parameters: body, gravity, damping and deltaTime</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -933,17 +933,17 @@ Parameters: body, gravity, damping and deltaTime</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Action</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Body.html">Body</a>, <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a>&gt;</td>
+        <td><span class="xref">Action&lt;, , , &gt;</span>&lt;<a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Body.html">Body</a>, <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Vect.html">Vect</a>, <span class="xref">double</span>, <span class="xref">double</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="methods">Methods
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L456">View Source</a>
   </span>
@@ -957,8 +957,8 @@ If it was sleeping, wake it and any other bodies it was touching.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Activate()</code></pre>
   </div>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -990,15 +990,15 @@ If it was sleeping, wake it and any other bodies it was touching.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L491">View Source</a>
   </span>
   <a id="Tizen_NUI_Physics2D_Chipmunk_Body_ApplyAngularImpulse_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.ApplyAngularImpulse*"></a>
-  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_ApplyAngularImpulse_System_Double_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.ApplyAngularImpulse(System.Double)">ApplyAngularImpulse(Double)</h4>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_ApplyAngularImpulse_System_Double_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.ApplyAngularImpulse(System.Double)">ApplyAngularImpulse(double)</h4>
   <div class="markdown level1 summary"><p>Apply angular impulse.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1017,14 +1017,14 @@ If it was sleeping, wake it and any other bodies it was touching.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><span class="xref">double</span></td>
         <td><span class="parametername">impulse</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -1061,8 +1061,8 @@ If it was sleeping, wake it and any other bodies it was touching.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -1105,8 +1105,8 @@ Doubling the mass of the object will halve the effect.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -1143,8 +1143,8 @@ Doubling the mass of the object will halve the effect.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -1181,15 +1181,15 @@ Doubling the mass of the object will halve the effect.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L481">View Source</a>
   </span>
   <a id="Tizen_NUI_Physics2D_Chipmunk_Body_ApplyTorque_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.ApplyTorque*"></a>
-  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_ApplyTorque_System_Double_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.ApplyTorque(System.Double)">ApplyTorque(Double)</h4>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_ApplyTorque_System_Double_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.ApplyTorque(System.Double)">ApplyTorque(double)</h4>
   <div class="markdown level1 summary"><p>Apply torque.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1208,14 +1208,14 @@ Doubling the mass of the object will halve the effect.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><span class="xref">double</span></td>
         <td><span class="parametername">torque</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -1257,13 +1257,13 @@ Doubling the mass of the object will halve the effect.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="xref">bool</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -1278,15 +1278,15 @@ Doubling the mass of the object will halve the effect.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
   </div>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L175">View Source</a>
   </span>
   <a id="Tizen_NUI_Physics2D_Chipmunk_Body_Dispose_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Dispose*"></a>
-  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_Dispose_System_Boolean_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Dispose(System.Boolean)">Dispose(Boolean)</h4>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_Dispose_System_Boolean_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.Dispose(System.Boolean)">Dispose(bool)</h4>
   <div class="markdown level1 summary"><p>Dispose the body.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1305,14 +1305,14 @@ Doubling the mass of the object will halve the effect.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="xref">bool</span></td>
         <td><span class="parametername">dispose</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -1327,15 +1327,15 @@ Doubling the mass of the object will halve the effect.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Free()</code></pre>
   </div>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L121">View Source</a>
   </span>
   <a id="Tizen_NUI_Physics2D_Chipmunk_Body_FromHandle_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.FromHandle*"></a>
-  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_FromHandle_System_IntPtr_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.FromHandle(System.IntPtr)">FromHandle(System.IntPtr)</h4>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_FromHandle_System_IntPtr_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.FromHandle(System.IntPtr)">FromHandle(IntPtr)</h4>
   <div class="markdown level1 summary"><p>Get a <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Body.html">Body</a> object from a native cpBody handle.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1354,7 +1354,7 @@ Doubling the mass of the object will halve the effect.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">System.IntPtr</a></td>
+        <td><span class="xref">System.IntPtr</span></td>
         <td><span class="parametername">body</span></td>
         <td></td>
       </tr>
@@ -1375,15 +1375,15 @@ Doubling the mass of the object will halve the effect.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L131">View Source</a>
   </span>
   <a id="Tizen_NUI_Physics2D_Chipmunk_Body_FromHandleSafe_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.FromHandleSafe*"></a>
-  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_FromHandleSafe_System_IntPtr_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.FromHandleSafe(System.IntPtr)">FromHandleSafe(System.IntPtr)</h4>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_FromHandleSafe_System_IntPtr_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.FromHandleSafe(System.IntPtr)">FromHandleSafe(IntPtr)</h4>
   <div class="markdown level1 summary"><p>Get the managed <a class="xref" href="Tizen.NUI.Physics2D.Chipmunk.Body.html">Body</a> object from the native handle.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1402,7 +1402,7 @@ Doubling the mass of the object will halve the effect.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">System.IntPtr</a></td>
+        <td><span class="xref">System.IntPtr</span></td>
         <td><span class="parametername">nativeBodyHandle</span></td>
         <td></td>
       </tr>
@@ -1423,15 +1423,15 @@ Doubling the mass of the object will halve the effect.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L232">View Source</a>
   </span>
   <a id="Tizen_NUI_Physics2D_Chipmunk_Body_GetTransform_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.GetTransform*"></a>
-  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_GetTransform_Tizen_NUI_Physics2D_Chipmunk_Vect__System_Double__" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.GetTransform(Tizen.NUI.Physics2D.Chipmunk.Vect@,System.Double@)">GetTransform(out Vect, out Double)</h4>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_GetTransform_Tizen_NUI_Physics2D_Chipmunk_Vect__System_Double__" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.GetTransform(Tizen.NUI.Physics2D.Chipmunk.Vect@,System.Double@)">GetTransform(out Vect, out double)</h4>
   <div class="markdown level1 summary"><p>Get body position and rotation angle (in radians)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1455,14 +1455,14 @@ Doubling the mass of the object will halve the effect.</p>
         <td></td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><span class="xref">double</span></td>
         <td><span class="parametername">angle</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -1509,8 +1509,8 @@ Doubling the mass of the object will halve the effect.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -1557,8 +1557,8 @@ Doubling the mass of the object will halve the effect.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -1605,15 +1605,15 @@ Doubling the mass of the object will halve the effect.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L716">View Source</a>
   </span>
   <a id="Tizen_NUI_Physics2D_Chipmunk_Body_MomentForBox_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.MomentForBox*"></a>
-  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_MomentForBox_System_Double_System_Double_System_Double_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.MomentForBox(System.Double,System.Double,System.Double)">MomentForBox(Double, Double, Double)</h4>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_MomentForBox_System_Double_System_Double_System_Double_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.MomentForBox(System.Double,System.Double,System.Double)">MomentForBox(double, double, double)</h4>
   <div class="markdown level1 summary"><p>Calculate the moment of inertia for a solid box centered on the body.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1632,17 +1632,17 @@ Doubling the mass of the object will halve the effect.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><span class="xref">double</span></td>
         <td><span class="parametername">mass</span></td>
         <td></td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><span class="xref">double</span></td>
         <td><span class="parametername">width</span></td>
         <td></td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><span class="xref">double</span></td>
         <td><span class="parametername">height</span></td>
         <td></td>
       </tr>
@@ -1658,20 +1658,20 @@ Doubling the mass of the object will halve the effect.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><span class="xref">double</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L221">View Source</a>
   </span>
   <a id="Tizen_NUI_Physics2D_Chipmunk_Body_SetTransform_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.SetTransform*"></a>
-  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_SetTransform_Tizen_NUI_Physics2D_Chipmunk_Vect_System_Double_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.SetTransform(Tizen.NUI.Physics2D.Chipmunk.Vect,System.Double)">SetTransform(Vect, Double)</h4>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_SetTransform_Tizen_NUI_Physics2D_Chipmunk_Vect_System_Double_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.SetTransform(Tizen.NUI.Physics2D.Chipmunk.Vect,System.Double)">SetTransform(Vect, double)</h4>
   <div class="markdown level1 summary"><p>Set body position and rotation angle (in radians)</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1695,14 +1695,14 @@ Doubling the mass of the object will halve the effect.</p>
         <td></td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><span class="xref">double</span></td>
         <td><span class="parametername">angle</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -1717,8 +1717,8 @@ Doubling the mass of the object will halve the effect.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Sleep()</code></pre>
   </div>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -1755,15 +1755,15 @@ You can use this to initialize levels and start stacks of objects in a pre-sleep
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L653">View Source</a>
   </span>
   <a id="Tizen_NUI_Physics2D_Chipmunk_Body_UpdatePosition_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.UpdatePosition*"></a>
-  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_UpdatePosition_System_Double_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.UpdatePosition(System.Double)">UpdatePosition(Double)</h4>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_UpdatePosition_System_Double_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.UpdatePosition(System.Double)">UpdatePosition(double)</h4>
   <div class="markdown level1 summary"><p>Default position integration function.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1782,21 +1782,21 @@ You can use this to initialize levels and start stacks of objects in a pre-sleep
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><span class="xref">double</span></td>
         <td><span class="parametername">dt</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Physics2D/src/public/chipmunk/Body.cs/#L643">View Source</a>
   </span>
   <a id="Tizen_NUI_Physics2D_Chipmunk_Body_UpdateVelocity_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.UpdateVelocity*"></a>
-  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_UpdateVelocity_Tizen_NUI_Physics2D_Chipmunk_Vect_System_Double_System_Double_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.UpdateVelocity(Tizen.NUI.Physics2D.Chipmunk.Vect,System.Double,System.Double)">UpdateVelocity(Vect, Double, Double)</h4>
+  <h4 id="Tizen_NUI_Physics2D_Chipmunk_Body_UpdateVelocity_Tizen_NUI_Physics2D_Chipmunk_Vect_System_Double_System_Double_" data-uid="Tizen.NUI.Physics2D.Chipmunk.Body.UpdateVelocity(Tizen.NUI.Physics2D.Chipmunk.Vect,System.Double,System.Double)">UpdateVelocity(Vect, double, double)</h4>
   <div class="markdown level1 summary"><p>Default velocity integration function..</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1820,19 +1820,19 @@ You can use this to initialize levels and start stacks of objects in a pre-sleep
         <td></td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><span class="xref">double</span></td>
         <td><span class="parametername">damping</span></td>
         <td></td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><span class="xref">double</span></td>
         <td><span class="parametername">dt</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -1879,35 +1879,35 @@ You can use this to initialize levels and start stacks of objects in a pre-sleep
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
   </div>
   <div>
       <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
   </div>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
   </div>
   <div>
       <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
   </div>
   <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
@@ -1924,7 +1924,7 @@ You can use this to initialize levels and start stacks of objects in a pre-sleep
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -1932,13 +1932,13 @@ You can use this to initialize levels and start stacks of objects in a pre-sleep
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

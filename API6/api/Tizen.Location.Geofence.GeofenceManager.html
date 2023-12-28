@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Class GeofenceManager
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class GeofenceManager
-   ">
-    <meta name="generator" content="docfx 2.56.1.0">
+ ">
+    <meta name="generator" content="docfx ">
     <meta name="version" content="API6">
-    
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -20,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -60,19 +60,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -80,53 +80,52 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="Tizen.Location.Geofence.GeofenceManager">
-  
-  
+
+
   <h1 id="Tizen_Location_Geofence_GeofenceManager" data-uid="Tizen.Location.Geofence.GeofenceManager" class="text-break">Class GeofenceManager
-  </h1>
+</h1>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
-  
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.Location.Geofence.html">Tizen.Location.Geofence</a></dd></dl>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Location.html">Location</a>.<a class="xref" href="Tizen.Location.Geofence.html">Geofence</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Location.Geofence.dll</dd></dl>
-  <dl class="attribute-list"><dt>API Level:</dt><dd><span>3</span></dd></dl>
-  
+
   <div class="markdown level0 summary"><p>The Geofence Manager API provides service related to geofence (geo-fence).
 Geofence is a virtual perimeter for a real-world geographic area.
 This API provides functions to set geofence with a geopoint, MAC address of Wi-Fi, and Bluetooth address.
 Also, notifications on events like changing in service status are provided.
-There are two kinds of places and fences:
+There are two kinds of places and fences:</p>
 <ul><li>Public places and fences are created by the MyPlace application that can be used by all applications.</li><li>Private places and fences are created by the specified application that can be used by the same application.</li></ul>
 Notifications can be received about the following events:
-<ul><li>Zone in when a device enters a specific area.</li><li>Zone out when a device exits a specific area.</li><li>Results and errors for each event requested to the geofence module.</li></ul></p>
+<ul><li>Zone in when a device enters a specific area.</li><li>Zone out when a device exits a specific area.</li><li>Results and errors for each event requested to the geofence module.</li></ul>
 </div>
   <div class="markdown level0 conceptual"></div>
-  
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class GeofenceManager : IDisposable</code></pre>
   </div>
 
-  
+
   <dl class="attribute-list stack">
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">System.Object</span></div>
+        <div class="pdl"><span class="xref">object</span></div>
         <div><span class="xref">GeofenceManager</span></div>
       </div>
     </dd>
   </dl>
 
-  
-  
+
+
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
       <div class="pdl"><span class="xref">System.IDisposable</span></div>
     </dd>
   </dl>
-  
+
   <h3 id="constructors">Constructors
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Location.Geofence/Tizen.Location.Geofence/GeofenceManager.cs/#L56">View Source</a>
   </span>
@@ -149,7 +148,7 @@ Notifications can be received about the following events:
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></td>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
         <td><p>In case of out of memory condition.</p>
 </td>
       </tr>
@@ -165,13 +164,12 @@ Notifications can be received about the following events:
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="properties">Properties
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Location.Geofence/Tizen.Location.Geofence/GeofenceManager.cs/#L81">View Source</a>
   </span>
@@ -194,18 +192,17 @@ Notifications can be received about the following events:
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">bool</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="methods">Methods
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Location.Geofence/Tizen.Location.Geofence/GeofenceManager.cs/#L282">View Source</a>
   </span>
@@ -218,16 +215,15 @@ Notifications can be received about the following events:
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Location.Geofence/Tizen.Location.Geofence/GeofenceManager.cs/#L292">View Source</a>
   </span>
   <a id="Tizen_Location_Geofence_GeofenceManager_Dispose_" data-uid="Tizen.Location.Geofence.GeofenceManager.Dispose*"></a>
-  <h4 id="Tizen_Location_Geofence_GeofenceManager_Dispose_System_Boolean_" data-uid="Tizen.Location.Geofence.GeofenceManager.Dispose(System.Boolean)">Dispose(Boolean)</h4>
+  <h4 id="Tizen_Location_Geofence_GeofenceManager_Dispose_System_Boolean_" data-uid="Tizen.Location.Geofence.GeofenceManager.Dispose(System.Boolean)">Dispose(bool)</h4>
   <div class="markdown level1 summary"><p>Dispose.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -246,39 +242,37 @@ Notifications can be received about the following events:
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">bool</span></td>
         <td><span class="parametername">disposing</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Location.Geofence/Tizen.Location.Geofence/GeofenceManager.cs/#L72">View Source</a>
   </span>
   <a id="Tizen_Location_Geofence_GeofenceManager_Finalize_" data-uid="Tizen.Location.Geofence.GeofenceManager.Finalize*"></a>
-  <h4 id="Tizen_Location_Geofence_GeofenceManager_Finalize" data-uid="Tizen.Location.Geofence.GeofenceManager.Finalize">Finalize()</h4>
+  <h4 id="Tizen_Location_Geofence_GeofenceManager_Finalize" data-uid="Tizen.Location.Geofence.GeofenceManager.Finalize">~GeofenceManager()</h4>
   <div class="markdown level1 summary"><p>The destructor of the GeofenceManager class.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void Finalize()</code></pre>
+    <pre><code class="lang-csharp hljs">protected ~GeofenceManager()</code></pre>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Location.Geofence/Tizen.Location.Geofence/GeofenceManager.cs/#L109">View Source</a>
   </span>
   <a id="Tizen_Location_Geofence_GeofenceManager_Start_" data-uid="Tizen.Location.Geofence.GeofenceManager.Start*"></a>
-  <h4 id="Tizen_Location_Geofence_GeofenceManager_Start_System_Int32_" data-uid="Tizen.Location.Geofence.GeofenceManager.Start(System.Int32)">Start(Int32)</h4>
+  <h4 id="Tizen_Location_Geofence_GeofenceManager_Start_System_Int32_" data-uid="Tizen.Location.Geofence.GeofenceManager.Start(System.Int32)">Start(int)</h4>
   <div class="markdown level1 summary"><p>Starts the geofencing service.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -297,7 +291,7 @@ Notifications can be received about the following events:
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">geofenceId</span></td>
         <td><p>The specified geofence ID.</p>
 </td>
@@ -327,7 +321,7 @@ Notifications can be received about the following events:
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
         <td><p>In case privileges are not defined.</p>
 </td>
       </tr>
@@ -338,18 +332,15 @@ Notifications can be received about the following events:
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/location</span></span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Location.Geofence/Tizen.Location.Geofence/GeofenceManager.cs/#L132">View Source</a>
   </span>
   <a id="Tizen_Location_Geofence_GeofenceManager_Stop_" data-uid="Tizen.Location.Geofence.GeofenceManager.Stop*"></a>
-  <h4 id="Tizen_Location_Geofence_GeofenceManager_Stop_System_Int32_" data-uid="Tizen.Location.Geofence.GeofenceManager.Stop(System.Int32)">Stop(Int32)</h4>
+  <h4 id="Tizen_Location_Geofence_GeofenceManager_Stop_System_Int32_" data-uid="Tizen.Location.Geofence.GeofenceManager.Stop(System.Int32)">Stop(int)</h4>
   <div class="markdown level1 summary"><p>Stops the geofenceing service.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -368,7 +359,7 @@ Notifications can be received about the following events:
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">geofenceId</span></td>
         <td><p>The specified geofence ID.</p>
 </td>
@@ -399,7 +390,7 @@ You can stop and start the Geofence manager as needed.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
         <td><p>In case privileges are not defined.</p>
 </td>
       </tr>
@@ -410,15 +401,12 @@ You can stop and start the Geofence manager as needed.</p>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/location</span></span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="events">Events
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Location.Geofence/Tizen.Location.Geofence/GeofenceManager.cs/#L250">View Source</a>
   </span>
@@ -441,7 +429,7 @@ The events of public geofence is also received if there are public geofences.</p
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="Tizen.Location.Geofence.GeofenceResponseEventArgs.html">GeofenceResponseEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Location.Geofence.GeofenceResponseEventArgs.html">GeofenceResponseEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -466,9 +454,8 @@ The value of place_id or geofence_id is -1 when the place ID or geofence ID is n
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -492,7 +479,7 @@ The value of place_id or geofence_id is -1 when the place ID or geofence ID is n
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="Tizen.Location.Geofence.ProximityStateEventArgs.html">ProximityStateEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Location.Geofence.ProximityStateEventArgs.html">ProximityStateEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -516,9 +503,8 @@ The value of place_id or geofence_id is -1 when the place ID or geofence ID is n
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -542,7 +528,7 @@ The value of place_id or geofence_id is -1 when the place ID or geofence ID is n
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="Tizen.Location.Geofence.GeofenceStateEventArgs.html">GeofenceStateEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Location.Geofence.GeofenceStateEventArgs.html">GeofenceStateEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -566,9 +552,8 @@ The value of place_id or geofence_id is -1 when the place ID or geofence ID is n
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="implements">Implements</h3>
@@ -577,7 +562,7 @@ The value of place_id or geofence_id is -1 when the place ID or geofence ID is n
   </div>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
@@ -594,7 +579,7 @@ The value of place_id or geofence_id is -1 when the place ID or geofence ID is n
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -602,13 +587,13 @@ The value of place_id or geofence_id is -1 when the place ID or geofence ID is n
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

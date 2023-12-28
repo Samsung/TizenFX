@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Class Navigator
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Navigator
-   ">
-    <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API10">
-    
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API11">
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -20,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -60,19 +60,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -80,32 +80,31 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="Tizen.NUI.Components.Navigator">
-  
-  
+
+
   <h1 id="Tizen_NUI_Components_Navigator" data-uid="Tizen.NUI.Components.Navigator" class="text-break">Class Navigator
-  </h1>
+</h1>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
-  
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.NUI.Components.html">Tizen.NUI.Components</a></dd></dl>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.Components.html">Components</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.Components.dll</dd></dl>
-  <dl class="attribute-list"><dt>API Level:</dt><dd><span>9</span></dd></dl>
-  
+
   <div class="markdown level0 summary"><p>The Navigator is a class which navigates pages with stack methods such as Push and Pop.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  
+
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Navigator : Control, INotifyPropertyChanged, IDynamicResourceHandler, IElement, INameScope, IElementController, IDisposable, IResourcesProvider</code></pre>
+    <pre><code class="lang-csharp hljs">public class Navigator : Control, IDynamicResourceHandler, INameScope, System.IDisposable, IResourcesProvider</code></pre>
   </div>
 
-  
+
   <dl class="attribute-list stack">
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">System.Object</span></div>
+        <div class="pdl"><span class="xref">object</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
@@ -113,22 +112,24 @@
         <div class="pdl"><a class="xref" href="Tizen.NUI.ViewWrapper.html">ViewWrapper</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.CustomView.html">CustomView</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.VisualView.html">VisualView</a></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Components.Control</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Control.html">Control</a></div>
         <div><span class="xref">Navigator</span></div>
       </div>
     </dd>
   </dl>
 
-  
-  
+
+
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
       <div class="pdl"><span class="xref">System.IDisposable</span></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a></div>
     </dd>
   </dl>
-  
+
   <h5 id="Tizen_NUI_Components_Navigator_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>With Transition class, Navigator supports smooth transition of View pair between two Pages
 by using <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PushWithTransition_Tizen_NUI_Components_Page_">PushWithTransition(Page)</a> and <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PopWithTransition">PopWithTransition()</a> methods.
@@ -160,9 +161,9 @@ ContentPage newPage = new ContentPage()
 Navigator.PushWithTransition(newPage);</code></pre>
 
   <h3 id="constructors">Constructors
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L185">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L185">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Navigator__ctor_" data-uid="Tizen.NUI.Components.Navigator.#ctor*"></a>
   <h4 id="Tizen_NUI_Components_Navigator__ctor" data-uid="Tizen.NUI.Components.Navigator.#ctor">Navigator()</h4>
@@ -173,15 +174,225 @@ Navigator.PushWithTransition(newPage);</code></pre>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Navigator()</code></pre>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+  <h5 id="Tizen_NUI_Components_Navigator__ctor_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>With Transition class, Navigator supports smooth transition of View pair between two Pages
+by using <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PushWithTransition_Tizen_NUI_Components_Page_">PushWithTransition(Page)</a> and <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PopWithTransition">PopWithTransition()</a> methods.
+If current top Page and next top Page have <a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>s those have same TransitionTag,
+Navigator creates smooth transition motion for them.
+Navigator.Transition property can be used to set properties of the Transition such as TimePeriod and AlphaFunction.
+When all transitions are finished, Navigator calls a callback methods those connected on the &quot;TransitionFinished&quot; event.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L194">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Navigator__ctor_" data-uid="Tizen.NUI.Components.Navigator.#ctor*"></a>
+  <h4 id="Tizen_NUI_Components_Navigator__ctor_System_String_" data-uid="Tizen.NUI.Components.Navigator.#ctor(System.String)">Navigator(string)</h4>
+  <div class="markdown level1 summary"><p>Creates a new instance of Navigator with style.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Navigator(string style)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">style</span></td>
+        <td><p>Creates Navigator by special style defined in UX.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Components_Navigator__ctor_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>With Transition class, Navigator supports smooth transition of View pair between two Pages
+by using <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PushWithTransition_Tizen_NUI_Components_Page_">PushWithTransition(Page)</a> and <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PopWithTransition">PopWithTransition()</a> methods.
+If current top Page and next top Page have <a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>s those have same TransitionTag,
+Navigator creates smooth transition motion for them.
+Navigator.Transition property can be used to set properties of the Transition such as TimePeriod and AlphaFunction.
+When all transitions are finished, Navigator calls a callback methods those connected on the &quot;TransitionFinished&quot; event.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L204">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Navigator__ctor_" data-uid="Tizen.NUI.Components.Navigator.#ctor*"></a>
+  <h4 id="Tizen_NUI_Components_Navigator__ctor_Tizen_NUI_Components_ControlStyle_" data-uid="Tizen.NUI.Components.Navigator.#ctor(Tizen.NUI.Components.ControlStyle)">Navigator(ControlStyle)</h4>
+  <div class="markdown level1 summary"><p>Creates a new instance of a Navigator with style.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Navigator(ControlStyle style)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.ControlStyle.html">ControlStyle</a></td>
+        <td><span class="parametername">style</span></td>
+        <td><p>A style applied to the newly created Navigator.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Components_Navigator__ctor_Tizen_NUI_Components_ControlStyle__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>With Transition class, Navigator supports smooth transition of View pair between two Pages
+by using <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PushWithTransition_Tizen_NUI_Components_Page_">PushWithTransition(Page)</a> and <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PopWithTransition">PopWithTransition()</a> methods.
+If current top Page and next top Page have <a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>s those have same TransitionTag,
+Navigator creates smooth transition motion for them.
+Navigator.Transition property can be used to set properties of the Transition such as TimePeriod and AlphaFunction.
+When all transitions are finished, Navigator calls a callback methods those connected on the &quot;TransitionFinished&quot; event.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="fields">Fields
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L99">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Navigator_EnableBackNavigationProperty" data-uid="Tizen.NUI.Components.Navigator.EnableBackNavigationProperty">EnableBackNavigationProperty</h4>
+  <div class="markdown level1 summary"><p>EnableBackNavigationProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty EnableBackNavigationProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Components_Navigator_EnableBackNavigationProperty_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>With Transition class, Navigator supports smooth transition of View pair between two Pages
+by using <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PushWithTransition_Tizen_NUI_Components_Page_">PushWithTransition(Page)</a> and <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PopWithTransition">PopWithTransition()</a> methods.
+If current top Page and next top Page have <a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>s those have same TransitionTag,
+Navigator creates smooth transition motion for them.
+Navigator.Transition property can be used to set properties of the Transition such as TimePeriod and AlphaFunction.
+When all transitions are finished, Navigator calls a callback methods those connected on the &quot;TransitionFinished&quot; event.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L81">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Navigator_TransitionProperty" data-uid="Tizen.NUI.Components.Navigator.TransitionProperty">TransitionProperty</h4>
+  <div class="markdown level1 summary"><p>TransitionProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty TransitionProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Components_Navigator_TransitionProperty_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>With Transition class, Navigator supports smooth transition of View pair between two Pages
+by using <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PushWithTransition_Tizen_NUI_Components_Page_">PushWithTransition(Page)</a> and <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PopWithTransition">PopWithTransition()</a> methods.
+If current top Page and next top Page have <a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>s those have same TransitionTag,
+Navigator creates smooth transition motion for them.
+Navigator.Transition property can be used to set properties of the Transition such as TimePeriod and AlphaFunction.
+When all transitions are finished, Navigator calls a callback methods those connected on the &quot;TransitionFinished&quot; event.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="properties">Properties
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L238">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L772">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Navigator_EnableBackNavigation_" data-uid="Tizen.NUI.Components.Navigator.EnableBackNavigation*"></a>
+  <h4 id="Tizen_NUI_Components_Navigator_EnableBackNavigation" data-uid="Tizen.NUI.Components.Navigator.EnableBackNavigation">EnableBackNavigation</h4>
+  <div class="markdown level1 summary"><p>Gets or sets if Navigator proceeds back navigation when back button or back key is pressed and released.
+Back navigation pops the peek page if Navigator has more than one page.
+If Navigator has only one page, then the current program is exited.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool EnableBackNavigation { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Components_Navigator_EnableBackNavigation_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>With Transition class, Navigator supports smooth transition of View pair between two Pages
+by using <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PushWithTransition_Tizen_NUI_Components_Page_">PushWithTransition(Page)</a> and <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PopWithTransition">PopWithTransition()</a> methods.
+If current top Page and next top Page have <a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>s those have same TransitionTag,
+Navigator creates smooth transition motion for them.
+Navigator.Transition property can be used to set properties of the Transition such as TimePeriod and AlphaFunction.
+When all transitions are finished, Navigator calls a callback methods those connected on the &quot;TransitionFinished&quot; event.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L238">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Navigator_PageCount_" data-uid="Tizen.NUI.Components.Navigator.PageCount*"></a>
   <h4 id="Tizen_NUI_Components_Navigator_PageCount" data-uid="Tizen.NUI.Components.Navigator.PageCount">PageCount</h4>
@@ -202,18 +413,25 @@ Navigator.PushWithTransition(newPage);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+  <h5 id="Tizen_NUI_Components_Navigator_PageCount_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>With Transition class, Navigator supports smooth transition of View pair between two Pages
+by using <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PushWithTransition_Tizen_NUI_Components_Page_">PushWithTransition(Page)</a> and <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PopWithTransition">PopWithTransition()</a> methods.
+If current top Page and next top Page have <a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>s those have same TransitionTag,
+Navigator creates smooth transition motion for them.
+Navigator.Transition property can be used to set properties of the Transition such as TimePeriod and AlphaFunction.
+When all transitions are finished, Navigator calls a callback methods those connected on the &quot;TransitionFinished&quot; event.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L244">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L244">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Navigator_Transition_" data-uid="Tizen.NUI.Components.Navigator.Transition*"></a>
   <h4 id="Tizen_NUI_Components_Navigator_Transition" data-uid="Tizen.NUI.Components.Navigator.Transition">Transition</h4>
@@ -239,15 +457,66 @@ Navigator.PushWithTransition(newPage);</code></pre>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+  <h5 id="Tizen_NUI_Components_Navigator_Transition_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>With Transition class, Navigator supports smooth transition of View pair between two Pages
+by using <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PushWithTransition_Tizen_NUI_Components_Page_">PushWithTransition(Page)</a> and <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PopWithTransition">PopWithTransition()</a> methods.
+If current top Page and next top Page have <a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>s those have same TransitionTag,
+Navigator creates smooth transition motion for them.
+Navigator.Transition property can be used to set properties of the Transition such as TimePeriod and AlphaFunction.
+When all transitions are finished, Navigator calls a callback methods those connected on the &quot;TransitionFinished&quot; event.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="methods">Methods
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L839">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L802">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Navigator_Dispose_" data-uid="Tizen.NUI.Components.Navigator.Dispose*"></a>
+  <h4 id="Tizen_NUI_Components_Navigator_Dispose_Tizen_NUI_DisposeTypes_" data-uid="Tizen.NUI.Components.Navigator.Dispose(Tizen.NUI.DisposeTypes)">Dispose(DisposeTypes)</h4>
+  <div class="markdown level1 summary"><p>Disposes Navigator and all children on it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Dispose(DisposeTypes type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.DisposeTypes.html">DisposeTypes</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>Dispose type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_Dispose_Tizen_NUI_DisposeTypes_">Control.Dispose(DisposeTypes)</a></div>
+  <h5 id="Tizen_NUI_Components_Navigator_Dispose_Tizen_NUI_DisposeTypes__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>With Transition class, Navigator supports smooth transition of View pair between two Pages
+by using <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PushWithTransition_Tizen_NUI_Components_Page_">PushWithTransition(Page)</a> and <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PopWithTransition">PopWithTransition()</a> methods.
+If current top Page and next top Page have <a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>s those have same TransitionTag,
+Navigator creates smooth transition motion for them.
+Navigator.Transition property can be used to set properties of the Transition such as TimePeriod and AlphaFunction.
+When all transitions are finished, Navigator calls a callback methods those connected on the &quot;TransitionFinished&quot; event.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L839">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Navigator_GetDefaultNavigator_" data-uid="Tizen.NUI.Components.Navigator.GetDefaultNavigator*"></a>
   <h4 id="Tizen_NUI_Components_Navigator_GetDefaultNavigator_Tizen_NUI_Window_" data-uid="Tizen.NUI.Components.Navigator.GetDefaultNavigator(Tizen.NUI.Window)">GetDefaultNavigator(Window)</h4>
@@ -291,35 +560,26 @@ Navigator.PushWithTransition(newPage);</code></pre>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when the argument window is null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+  <h5 id="Tizen_NUI_Components_Navigator_GetDefaultNavigator_Tizen_NUI_Window__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>With Transition class, Navigator supports smooth transition of View pair between two Pages
+by using <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PushWithTransition_Tizen_NUI_Components_Page_">PushWithTransition(Page)</a> and <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PopWithTransition">PopWithTransition()</a> methods.
+If current top Page and next top Page have <a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>s those have same TransitionTag,
+Navigator creates smooth transition motion for them.
+Navigator.Transition property can be used to set properties of the Transition such as TimePeriod and AlphaFunction.
+When all transitions are finished, Navigator calls a callback methods those connected on the &quot;TransitionFinished&quot; event.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L572">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L572">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Navigator_GetPage_" data-uid="Tizen.NUI.Components.Navigator.GetPage*"></a>
-  <h4 id="Tizen_NUI_Components_Navigator_GetPage_System_Int32_" data-uid="Tizen.NUI.Components.Navigator.GetPage(System.Int32)">GetPage(Int32)</h4>
+  <h4 id="Tizen_NUI_Components_Navigator_GetPage_System_Int32_" data-uid="Tizen.NUI.Components.Navigator.GetPage(System.Int32)">GetPage(int)</h4>
   <div class="markdown level1 summary"><p>Returns the page of the given index in Navigator.
 The indices of pages in Navigator are basically the order of pushing or inserting to Navigator.
-So a page&apos;s index in Navigator can be changed whenever push/insert or pop/remove occurs.</p>
+So a page's index in Navigator can be changed whenever push/insert or pop/remove occurs.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -337,7 +597,7 @@ So a page&apos;s index in Navigator can be changed whenever push/insert or pop/r
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">index</span></td>
         <td><p>The index of a page in Navigator.</p>
 </td>
@@ -360,34 +620,26 @@ So a page&apos;s index in Navigator can be changed whenever push/insert or pop/r
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p>Thrown when the argument index is less than 0, or greater than the number of pages.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
+  <h5 id="Tizen_NUI_Components_Navigator_GetPage_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>With Transition class, Navigator supports smooth transition of View pair between two Pages
+by using <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PushWithTransition_Tizen_NUI_Components_Page_">PushWithTransition(Page)</a> and <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PopWithTransition">PopWithTransition()</a> methods.
+If current top Page and next top Page have <a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>s those have same TransitionTag,
+Navigator creates smooth transition motion for them.
+Navigator.Transition property can be used to set properties of the Transition such as TimePeriod and AlphaFunction.
+When all transitions are finished, Navigator calls a callback methods those connected on the &quot;TransitionFinished&quot; event.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L591">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L591">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Navigator_IndexOf_" data-uid="Tizen.NUI.Components.Navigator.IndexOf*"></a>
   <h4 id="Tizen_NUI_Components_Navigator_IndexOf_Tizen_NUI_Components_Page_" data-uid="Tizen.NUI.Components.Navigator.IndexOf(Tizen.NUI.Components.Page)">IndexOf(Page)</h4>
   <div class="markdown level1 summary"><p>Returns the current index of the given page in Navigator.
 The indices of pages in Navigator are basically the order of pushing or inserting to Navigator.
-So a page&apos;s index in Navigator can be changed whenever push/insert or pop/remove occurs.</p>
+So a page's index in Navigator can be changed whenever push/insert or pop/remove occurs.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -422,41 +674,32 @@ So a page&apos;s index in Navigator can be changed whenever push/insert or pop/r
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td><p>The index of the given page in Navigator. If the given page is not in the Navigator, then -1 is returned.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when the argument page is null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+  <h5 id="Tizen_NUI_Components_Navigator_IndexOf_Tizen_NUI_Components_Page__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>With Transition class, Navigator supports smooth transition of View pair between two Pages
+by using <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PushWithTransition_Tizen_NUI_Components_Page_">PushWithTransition(Page)</a> and <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PopWithTransition">PopWithTransition()</a> methods.
+If current top Page and next top Page have <a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>s those have same TransitionTag,
+Navigator creates smooth transition motion for them.
+Navigator.Transition property can be used to set properties of the Transition such as TimePeriod and AlphaFunction.
+When all transitions are finished, Navigator calls a callback methods those connected on the &quot;TransitionFinished&quot; event.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L621">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L621">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Navigator_Insert_" data-uid="Tizen.NUI.Components.Navigator.Insert*"></a>
-  <h4 id="Tizen_NUI_Components_Navigator_Insert_System_Int32_Tizen_NUI_Components_Page_" data-uid="Tizen.NUI.Components.Navigator.Insert(System.Int32,Tizen.NUI.Components.Page)">Insert(Int32, Page)</h4>
+  <h4 id="Tizen_NUI_Components_Navigator_Insert_System_Int32_Tizen_NUI_Components_Page_" data-uid="Tizen.NUI.Components.Navigator.Insert(System.Int32,Tizen.NUI.Components.Page)">Insert(int, Page)</h4>
   <div class="markdown level1 summary"><p>Inserts a page at the specified index of Navigator.
 The indices of pages in Navigator are basically the order of pushing or inserting to Navigator.
-So a page&apos;s index in Navigator can be changed whenever push/insert or pop/remove occurs.
+So a page's index in Navigator can be changed whenever push/insert or pop/remove occurs.
 To find the current index of a page in Navigator, please use IndexOf(page).
 If the page is already in Navigator, then it is not inserted.</p>
 </div>
@@ -476,7 +719,7 @@ If the page is already in Navigator, then it is not inserted.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">index</span></td>
         <td><p>The index of a page in Navigator where the page will be inserted.</p>
 </td>
@@ -489,34 +732,20 @@ If the page is already in Navigator, then it is not inserted.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p>Thrown when the argument index is less than 0, or greater than the number of pages.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when the argument page is null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+  <h5 id="Tizen_NUI_Components_Navigator_Insert_System_Int32_Tizen_NUI_Components_Page__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>With Transition class, Navigator supports smooth transition of View pair between two Pages
+by using <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PushWithTransition_Tizen_NUI_Components_Page_">PushWithTransition(Page)</a> and <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PopWithTransition">PopWithTransition()</a> methods.
+If current top Page and next top Page have <a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>s those have same TransitionTag,
+Navigator creates smooth transition motion for them.
+Navigator.Transition property can be used to set properties of the Transition such as TimePeriod and AlphaFunction.
+When all transitions are finished, Navigator calls a callback methods those connected on the &quot;TransitionFinished&quot; event.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L677">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L677">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Navigator_InsertBefore_" data-uid="Tizen.NUI.Components.Navigator.InsertBefore*"></a>
   <h4 id="Tizen_NUI_Components_Navigator_InsertBefore_Tizen_NUI_Components_Page_Tizen_NUI_Components_Page_" data-uid="Tizen.NUI.Components.Navigator.InsertBefore(Tizen.NUI.Components.Page,Tizen.NUI.Components.Page)">InsertBefore(Page, Page)</h4>
@@ -552,39 +781,89 @@ If the page is already in Navigator, then it is not inserted.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
+  <h5 id="Tizen_NUI_Components_Navigator_InsertBefore_Tizen_NUI_Components_Page_Tizen_NUI_Components_Page__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>With Transition class, Navigator supports smooth transition of View pair between two Pages
+by using <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PushWithTransition_Tizen_NUI_Components_Page_">PushWithTransition(Page)</a> and <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PopWithTransition">PopWithTransition()</a> methods.
+If current top Page and next top Page have <a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>s those have same TransitionTag,
+Navigator creates smooth transition motion for them.
+Navigator.Transition property can be used to set properties of the Transition such as TimePeriod and AlphaFunction.
+When all transitions are finished, Navigator calls a callback methods those connected on the &quot;TransitionFinished&quot; event.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L904">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Navigator_OnBackNavigation_" data-uid="Tizen.NUI.Components.Navigator.OnBackNavigation*"></a>
+  <h4 id="Tizen_NUI_Components_Navigator_OnBackNavigation_Tizen_NUI_Components_BackNavigationEventArgs_" data-uid="Tizen.NUI.Components.Navigator.OnBackNavigation(Tizen.NUI.Components.BackNavigationEventArgs)">OnBackNavigation(BackNavigationEventArgs)</h4>
+  <div class="markdown level1 summary"><p>Called when the back navigation is started.
+Back navigation pops the peek page if Navigator has more than one page.
+If Navigator has only one page, then the current program is exited.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnBackNavigation(BackNavigationEventArgs eventArgs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Condition</th>
+        <th>Name</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when the argument before is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when the argument page is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Thrown when the argument before does not exist in Navigator.</p>
+        <td><a class="xref" href="Tizen.NUI.Components.BackNavigationEventArgs.html">BackNavigationEventArgs</a></td>
+        <td><span class="parametername">eventArgs</span></td>
+        <td><p>The back navigation information.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+  <h5 id="Tizen_NUI_Components_Navigator_OnBackNavigation_Tizen_NUI_Components_BackNavigationEventArgs__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>With Transition class, Navigator supports smooth transition of View pair between two Pages
+by using <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PushWithTransition_Tizen_NUI_Components_Page_">PushWithTransition(Page)</a> and <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PopWithTransition">PopWithTransition()</a> methods.
+If current top Page and next top Page have <a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>s those have same TransitionTag,
+Navigator creates smooth transition motion for them.
+Navigator.Transition property can be used to set properties of the Transition such as TimePeriod and AlphaFunction.
+When all transitions are finished, Navigator calls a callback methods those connected on the &quot;TransitionFinished&quot; event.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L760">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L211">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Navigator_OnInitialize_" data-uid="Tizen.NUI.Components.Navigator.OnInitialize*"></a>
+  <h4 id="Tizen_NUI_Components_Navigator_OnInitialize" data-uid="Tizen.NUI.Components.Navigator.OnInitialize">OnInitialize()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void OnInitialize()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_OnInitialize">Control.OnInitialize()</a></div>
+  <h5 id="Tizen_NUI_Components_Navigator_OnInitialize_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>With Transition class, Navigator supports smooth transition of View pair between two Pages
+by using <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PushWithTransition_Tizen_NUI_Components_Page_">PushWithTransition(Page)</a> and <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PopWithTransition">PopWithTransition()</a> methods.
+If current top Page and next top Page have <a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>s those have same TransitionTag,
+Navigator creates smooth transition motion for them.
+Navigator.Transition property can be used to set properties of the Transition such as TimePeriod and AlphaFunction.
+When all transitions are finished, Navigator calls a callback methods those connected on the &quot;TransitionFinished&quot; event.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L760">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Navigator_Peek_" data-uid="Tizen.NUI.Components.Navigator.Peek*"></a>
   <h4 id="Tizen_NUI_Components_Navigator_Peek" data-uid="Tizen.NUI.Components.Navigator.Peek">Peek()</h4>
@@ -611,13 +890,20 @@ If the page is already in Navigator, then it is not inserted.</p>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+  <h5 id="Tizen_NUI_Components_Navigator_Peek_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>With Transition class, Navigator supports smooth transition of View pair between two Pages
+by using <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PushWithTransition_Tizen_NUI_Components_Page_">PushWithTransition(Page)</a> and <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PopWithTransition">PopWithTransition()</a> methods.
+If current top Page and next top Page have <a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>s those have same TransitionTag,
+Navigator creates smooth transition motion for them.
+Navigator.Transition property can be used to set properties of the Transition such as TimePeriod and AlphaFunction.
+When all transitions are finished, Navigator calls a callback methods those connected on the &quot;TransitionFinished&quot; event.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L481">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L481">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Navigator_Pop_" data-uid="Tizen.NUI.Components.Navigator.Pop*"></a>
   <h4 id="Tizen_NUI_Components_Navigator_Pop" data-uid="Tizen.NUI.Components.Navigator.Pop">Pop()</h4>
@@ -644,29 +930,20 @@ If the page is already in Navigator, then it is not inserted.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when there is no page in Navigator.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+  <h5 id="Tizen_NUI_Components_Navigator_Pop_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>With Transition class, Navigator supports smooth transition of View pair between two Pages
+by using <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PushWithTransition_Tizen_NUI_Components_Page_">PushWithTransition(Page)</a> and <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PopWithTransition">PopWithTransition()</a> methods.
+If current top Page and next top Page have <a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>s those have same TransitionTag,
+Navigator creates smooth transition motion for them.
+Navigator.Transition property can be used to set properties of the Transition such as TimePeriod and AlphaFunction.
+When all transitions are finished, Navigator calls a callback methods those connected on the &quot;TransitionFinished&quot; event.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L335">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L335">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Navigator_PopWithTransition_" data-uid="Tizen.NUI.Components.Navigator.PopWithTransition*"></a>
   <h4 id="Tizen_NUI_Components_Navigator_PopWithTransition" data-uid="Tizen.NUI.Components.Navigator.PopWithTransition">PopWithTransition()</h4>
@@ -693,29 +970,20 @@ If the page is already in Navigator, then it is not inserted.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when there is no page in Navigator.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+  <h5 id="Tizen_NUI_Components_Navigator_PopWithTransition_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>With Transition class, Navigator supports smooth transition of View pair between two Pages
+by using <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PushWithTransition_Tizen_NUI_Components_Page_">PushWithTransition(Page)</a> and <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PopWithTransition">PopWithTransition()</a> methods.
+If current top Page and next top Page have <a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>s those have same TransitionTag,
+Navigator creates smooth transition motion for them.
+Navigator.Transition property can be used to set properties of the Transition such as TimePeriod and AlphaFunction.
+When all transitions are finished, Navigator calls a callback methods those connected on the &quot;TransitionFinished&quot; event.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L396">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L396">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Navigator_Push_" data-uid="Tizen.NUI.Components.Navigator.Push*"></a>
   <h4 id="Tizen_NUI_Components_Navigator_Push_Tizen_NUI_Components_Page_" data-uid="Tizen.NUI.Components.Navigator.Push(Tizen.NUI.Components.Page)">Push(Page)</h4>
@@ -745,29 +1013,20 @@ If the page is already in Navigator, then it is not pushed.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when the argument page is null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+  <h5 id="Tizen_NUI_Components_Navigator_Push_Tizen_NUI_Components_Page__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>With Transition class, Navigator supports smooth transition of View pair between two Pages
+by using <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PushWithTransition_Tizen_NUI_Components_Page_">PushWithTransition(Page)</a> and <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PopWithTransition">PopWithTransition()</a> methods.
+If current top Page and next top Page have <a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>s those have same TransitionTag,
+Navigator creates smooth transition motion for them.
+Navigator.Transition property can be used to set properties of the Transition such as TimePeriod and AlphaFunction.
+When all transitions are finished, Navigator calls a callback methods those connected on the &quot;TransitionFinished&quot; event.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L275">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L275">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Navigator_PushWithTransition_" data-uid="Tizen.NUI.Components.Navigator.PushWithTransition*"></a>
   <h4 id="Tizen_NUI_Components_Navigator_PushWithTransition_Tizen_NUI_Components_Page_" data-uid="Tizen.NUI.Components.Navigator.PushWithTransition(Tizen.NUI.Components.Page)">PushWithTransition(Page)</h4>
@@ -797,29 +1056,20 @@ If the page is already in Navigator, then it is not pushed.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when the argument page is null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+  <h5 id="Tizen_NUI_Components_Navigator_PushWithTransition_Tizen_NUI_Components_Page__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>With Transition class, Navigator supports smooth transition of View pair between two Pages
+by using <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PushWithTransition_Tizen_NUI_Components_Page_">PushWithTransition(Page)</a> and <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PopWithTransition">PopWithTransition()</a> methods.
+If current top Page and next top Page have <a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>s those have same TransitionTag,
+Navigator creates smooth transition motion for them.
+Navigator.Transition property can be used to set properties of the Transition such as TimePeriod and AlphaFunction.
+When all transitions are finished, Navigator calls a callback methods those connected on the &quot;TransitionFinished&quot; event.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L707">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L707">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Navigator_Remove_" data-uid="Tizen.NUI.Components.Navigator.Remove*"></a>
   <h4 id="Tizen_NUI_Components_Navigator_Remove_Tizen_NUI_Components_Page_" data-uid="Tizen.NUI.Components.Navigator.Remove(Tizen.NUI.Components.Page)">Remove(Page)</h4>
@@ -848,35 +1098,26 @@ If the page is already in Navigator, then it is not pushed.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when the argument page is null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+  <h5 id="Tizen_NUI_Components_Navigator_Remove_Tizen_NUI_Components_Page__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>With Transition class, Navigator supports smooth transition of View pair between two Pages
+by using <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PushWithTransition_Tizen_NUI_Components_Page_">PushWithTransition(Page)</a> and <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PopWithTransition">PopWithTransition()</a> methods.
+If current top Page and next top Page have <a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>s those have same TransitionTag,
+Navigator creates smooth transition motion for them.
+Navigator.Transition property can be used to set properties of the Transition such as TimePeriod and AlphaFunction.
+When all transitions are finished, Navigator calls a callback methods those connected on the &quot;TransitionFinished&quot; event.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L745">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L745">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Navigator_RemoveAt_" data-uid="Tizen.NUI.Components.Navigator.RemoveAt*"></a>
-  <h4 id="Tizen_NUI_Components_Navigator_RemoveAt_System_Int32_" data-uid="Tizen.NUI.Components.Navigator.RemoveAt(System.Int32)">RemoveAt(Int32)</h4>
+  <h4 id="Tizen_NUI_Components_Navigator_RemoveAt_System_Int32_" data-uid="Tizen.NUI.Components.Navigator.RemoveAt(System.Int32)">RemoveAt(int)</h4>
   <div class="markdown level1 summary"><p>Removes a page at the specified index of Navigator.
 The indices of pages in Navigator are basically the order of pushing or inserting to Navigator.
-So a page&apos;s index in Navigator can be changed whenever push/insert or pop/remove occurs.
+So a page's index in Navigator can be changed whenever push/insert or pop/remove occurs.
 To find the current index of a page in Navigator, please use IndexOf(page).</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -895,38 +1136,77 @@ To find the current index of a page in Navigator, please use IndexOf(page).</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">index</span></td>
         <td><p>The index of a page in Navigator where the page will be removed.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
+  <h5 id="Tizen_NUI_Components_Navigator_RemoveAt_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>With Transition class, Navigator supports smooth transition of View pair between two Pages
+by using <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PushWithTransition_Tizen_NUI_Components_Page_">PushWithTransition(Page)</a> and <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PopWithTransition">PopWithTransition()</a> methods.
+If current top Page and next top Page have <a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>s those have same TransitionTag,
+Navigator creates smooth transition motion for them.
+Navigator.Transition property can be used to set properties of the Transition such as TimePeriod and AlphaFunction.
+When all transitions are finished, Navigator calls a callback methods those connected on the &quot;TransitionFinished&quot; event.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L868">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Navigator_SetDefaultNavigator_" data-uid="Tizen.NUI.Components.Navigator.SetDefaultNavigator*"></a>
+  <h4 id="Tizen_NUI_Components_Navigator_SetDefaultNavigator_Tizen_NUI_Window_Tizen_NUI_Components_Navigator_" data-uid="Tizen.NUI.Components.Navigator.SetDefaultNavigator(Tizen.NUI.Window,Tizen.NUI.Components.Navigator)">SetDefaultNavigator(Window, Navigator)</h4>
+  <div class="markdown level1 summary"><p>Sets the default navigator of the given window.
+SetDefaultNavigator does not remove the previous default navigator from the window.
+Therefore, if a user does not want to show the previous default navigator, then it should be removed from the window manually.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SetDefaultNavigator(Window window, Navigator newNavigator)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Condition</th>
+        <th>Name</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p>Thrown when the index is less than 0, or greater than or equal to the number of pages.</p>
-</td>
+        <td><a class="xref" href="Tizen.NUI.Window.html">Window</a></td>
+        <td><span class="parametername">window</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.Navigator.html">Navigator</a></td>
+        <td><span class="parametername">newNavigator</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+  <h5 id="Tizen_NUI_Components_Navigator_SetDefaultNavigator_Tizen_NUI_Window_Tizen_NUI_Components_Navigator__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>With Transition class, Navigator supports smooth transition of View pair between two Pages
+by using <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PushWithTransition_Tizen_NUI_Components_Page_">PushWithTransition(Page)</a> and <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PopWithTransition">PopWithTransition()</a> methods.
+If current top Page and next top Page have <a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>s those have same TransitionTag,
+Navigator creates smooth transition motion for them.
+Navigator.Transition property can be used to set properties of the Transition such as TimePeriod and AlphaFunction.
+When all transitions are finished, Navigator calls a callback methods those connected on the &quot;TransitionFinished&quot; event.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="events">Events
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L232">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L232">View Source</a>
   </span>
   <h4 id="Tizen_NUI_Components_Navigator_Popped" data-uid="Tizen.NUI.Components.Navigator.Popped">Popped</h4>
   <div class="markdown level1 summary"><p>An event fired when Pop of a page has been finished.</p>
@@ -946,7 +1226,7 @@ To find the current index of a page in Navigator, please use IndexOf(page).</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.Components.PoppedEventArgs.html">PoppedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Components.PoppedEventArgs.html">PoppedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -954,13 +1234,12 @@ To find the current index of a page in Navigator, please use IndexOf(page).</p>
   <h5 id="Tizen_NUI_Components_Navigator_Popped_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>When you free resources in the Popped event handler, please make sure if the popped page is the page you find.</p>
 </div>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L223">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L223">View Source</a>
   </span>
   <h4 id="Tizen_NUI_Components_Navigator_TransitionFinished" data-uid="Tizen.NUI.Components.Navigator.TransitionFinished">TransitionFinished</h4>
   <div class="markdown level1 summary"><p>An event fired when Transition has been finished.</p>
@@ -980,32 +1259,67 @@ To find the current index of a page in Navigator, please use IndexOf(page).</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventargs">EventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<span class="xref">EventArgs</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+  <h5 id="Tizen_NUI_Components_Navigator_TransitionFinished_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>With Transition class, Navigator supports smooth transition of View pair between two Pages
+by using <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PushWithTransition_Tizen_NUI_Components_Page_">PushWithTransition(Page)</a> and <a class="xref" href="Tizen.NUI.Components.Navigator.html#Tizen_NUI_Components_Navigator_PopWithTransition">PopWithTransition()</a> methods.
+If current top Page and next top Page have <a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>s those have same TransitionTag,
+Navigator creates smooth transition motion for them.
+Navigator.Transition property can be used to set properties of the Transition such as TimePeriod and AlphaFunction.
+When all transitions are finished, Navigator calls a callback methods those connected on the &quot;TransitionFinished&quot; event.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
   </div>
   <div>
       <span class="xref">System.IDisposable</span>
   </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L75" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Navigation/Navigator.cs/#L75" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -1016,7 +1330,7 @@ To find the current index of a page in Navigator, please use IndexOf(page).</p>
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -1024,13 +1338,13 @@ To find the current index of a page in Navigator, please use IndexOf(page).</p>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

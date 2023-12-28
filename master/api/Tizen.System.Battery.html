@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Class Battery
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Battery
-   ">
-    <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API11">
-    
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -20,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -60,19 +60,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -80,38 +80,37 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="Tizen.System.Battery">
-  
-  
+
+
   <h1 id="Tizen_System_Battery" data-uid="Tizen.System.Battery" class="text-break">Class Battery
-  </h1>
+</h1>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
-  
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.System.html">Tizen.System</a></dd></dl>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.System.html">System</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.System.dll</dd></dl>
-  <dl class="attribute-list"><dt>API Level:</dt><dd><span>3</span></dd></dl>
-  
+
   <div class="markdown level0 summary"><p>The Battery class provides the properties and events for the device battery.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  
+
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class Battery : object</code></pre>
+    <pre><code class="lang-csharp hljs">public static class Battery</code></pre>
   </div>
 
-  
+
   <dl class="attribute-list stack">
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
+        <div class="pdl"><span class="xref">object</span></div>
         <div><span class="xref">Battery</span></div>
       </div>
     </dd>
   </dl>
 
-  
-  
-  
+
+
+
   <h5 id="Tizen_System_Battery_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>The Battery API provides the way to get the current battery capacity value (Percent),
 the battery state, and the charging state. It also provides the events for an application
@@ -119,7 +118,7 @@ to receive the battery status change events from the device.
 To receive the battery event, the application should register with the respective EventHandler.</p>
 </div>
   <h3 id="properties">Properties
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.System/Device/Battery.cs/#L118">View Source</a>
   </span>
@@ -142,14 +141,19 @@ To receive the battery event, the application should register with the respectiv
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="xref">bool</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+  <h5 id="Tizen_System_Battery_IsCharging_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The Battery API provides the way to get the current battery capacity value (Percent),
+the battery state, and the charging state. It also provides the events for an application
+to receive the battery status change events from the device.
+To receive the battery event, the application should register with the respective EventHandler.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -179,9 +183,14 @@ To receive the battery event, the application should register with the respectiv
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+  <h5 id="Tizen_System_Battery_Level_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The Battery API provides the way to get the current battery capacity value (Percent),
+the battery state, and the charging state. It also provides the events for an application
+to receive the battery status change events from the device.
+To receive the battery event, the application should register with the respective EventHandler.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -206,20 +215,25 @@ To receive the battery event, the application should register with the respectiv
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="xref">int</span></td>
         <td><p>It returns an integer value from 0 to 100 that indicates the remaining
 battery charge as a percentage of the maximum level.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+  <h5 id="Tizen_System_Battery_Percent_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The Battery API provides the way to get the current battery capacity value (Percent),
+the battery state, and the charging state. It also provides the events for an application
+to receive the battery status change events from the device.
+To receive the battery event, the application should register with the respective EventHandler.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="events">Events
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.System/Device/Battery.cs/#L243">View Source</a>
   </span>
@@ -242,11 +256,17 @@ This event is triggered when the charger is connected/disconnected.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.System.BatteryChargingStateChangedEventArgs.html">BatteryChargingStateChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.System.BatteryChargingStateChangedEventArgs.html">BatteryChargingStateChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
+  <h5 id="Tizen_System_Battery_ChargingStateChanged_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The Battery API provides the way to get the current battery capacity value (Percent),
+the battery state, and the charging state. It also provides the events for an application
+to receive the battery status change events from the device.
+To receive the battery event, the application should register with the respective EventHandler.</p>
+</div>
   <h5 id="Tizen_System_Battery_ChargingStateChanged_examples">Examples</h5>
   <pre><code>public static async Task BatteryEventHandler()
 {
@@ -259,9 +279,8 @@ This event is triggered when the charger is connected/disconnected.</p>
     await Task.Delay(20000);
 }</code></pre>
 
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -285,11 +304,17 @@ This event is triggered when the charger is connected/disconnected.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.System.BatteryLevelChangedEventArgs.html">BatteryLevelChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.System.BatteryLevelChangedEventArgs.html">BatteryLevelChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
+  <h5 id="Tizen_System_Battery_LevelChanged_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The Battery API provides the way to get the current battery capacity value (Percent),
+the battery state, and the charging state. It also provides the events for an application
+to receive the battery status change events from the device.
+To receive the battery event, the application should register with the respective EventHandler.</p>
+</div>
   <h5 id="Tizen_System_Battery_LevelChanged_examples">Examples</h5>
   <pre><code>public static async Task BatteryEventHandler()
 {
@@ -302,9 +327,8 @@ This event is triggered when the charger is connected/disconnected.</p>
     await Task.Delay(20000);
 }</code></pre>
 
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -328,11 +352,17 @@ This event is triggered when the charger is connected/disconnected.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.System.BatteryPercentChangedEventArgs.html">BatteryPercentChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.System.BatteryPercentChangedEventArgs.html">BatteryPercentChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
+  <h5 id="Tizen_System_Battery_PercentChanged_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The Battery API provides the way to get the current battery capacity value (Percent),
+the battery state, and the charging state. It also provides the events for an application
+to receive the battery status change events from the device.
+To receive the battery event, the application should register with the respective EventHandler.</p>
+</div>
   <h5 id="Tizen_System_Battery_PercentChanged_examples">Examples</h5>
   <pre><code>public static async Task BatteryEventHandler()
 {
@@ -345,14 +375,13 @@ This event is triggered when the charger is connected/disconnected.</p>
     await Task.Delay(20000);
 }</code></pre>
 
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
@@ -369,7 +398,7 @@ This event is triggered when the charger is connected/disconnected.</p>
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -377,13 +406,13 @@ This event is triggered when the charger is connected/disconnected.</p>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

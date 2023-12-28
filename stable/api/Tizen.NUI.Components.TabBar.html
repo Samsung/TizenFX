@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Class TabBar
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class TabBar
-   ">
-    <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API10">
-    
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API11">
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -20,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -60,19 +60,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -80,32 +80,31 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="Tizen.NUI.Components.TabBar">
-  
-  
+
+
   <h1 id="Tizen_NUI_Components_TabBar" data-uid="Tizen.NUI.Components.TabBar" class="text-break">Class TabBar
-  </h1>
+</h1>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
-  
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.NUI.Components.html">Tizen.NUI.Components</a></dd></dl>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.Components.html">Components</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.Components.dll</dd></dl>
-  <dl class="attribute-list"><dt>API Level:</dt><dd><span>9</span></dd></dl>
-  
+
   <div class="markdown level0 summary"><p>TabBar is a class which contains a set of TabButtons and has one of them selected.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  
+
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class TabBar : Control, INotifyPropertyChanged, IDynamicResourceHandler, IElement, INameScope, IElementController, IDisposable, IResourcesProvider</code></pre>
+    <pre><code class="lang-csharp hljs">public class TabBar : Control, IDynamicResourceHandler, INameScope, System.IDisposable, IResourcesProvider</code></pre>
   </div>
 
-  
+
   <dl class="attribute-list stack">
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">System.Object</span></div>
+        <div class="pdl"><span class="xref">object</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
@@ -113,26 +112,28 @@
         <div class="pdl"><a class="xref" href="Tizen.NUI.ViewWrapper.html">ViewWrapper</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.CustomView.html">CustomView</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.VisualView.html">VisualView</a></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Components.Control</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Control.html">Control</a></div>
         <div><span class="xref">TabBar</span></div>
       </div>
     </dd>
   </dl>
 
-  
-  
+
+
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
       <div class="pdl"><span class="xref">System.IDisposable</span></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a></div>
     </dd>
   </dl>
-  
+
   <h3 id="constructors">Constructors
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI.Components/Controls/TabBar.cs/#L75">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/TabBar.cs/#L75">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_TabBar__ctor_" data-uid="Tizen.NUI.Components.TabBar.#ctor*"></a>
   <h4 id="Tizen_NUI_Components_TabBar__ctor" data-uid="Tizen.NUI.Components.TabBar.#ctor">TabBar()</h4>
@@ -143,15 +144,115 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public TabBar()</code></pre>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/TabBar.cs/#L84">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_TabBar__ctor_" data-uid="Tizen.NUI.Components.TabBar.#ctor*"></a>
+  <h4 id="Tizen_NUI_Components_TabBar__ctor_System_String_" data-uid="Tizen.NUI.Components.TabBar.#ctor(System.String)">TabBar(string)</h4>
+  <div class="markdown level1 summary"><p>Creates a new instance of TabBar with style.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TabBar(string style)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">style</span></td>
+        <td><p>Creates TabBar by special style defined in UX.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/TabBar.cs/#L94">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_TabBar__ctor_" data-uid="Tizen.NUI.Components.TabBar.#ctor*"></a>
+  <h4 id="Tizen_NUI_Components_TabBar__ctor_Tizen_NUI_Components_ControlStyle_" data-uid="Tizen.NUI.Components.TabBar.#ctor(Tizen.NUI.Components.ControlStyle)">TabBar(ControlStyle)</h4>
+  <div class="markdown level1 summary"><p>Creates a new instance of a TabBar with style.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TabBar(ControlStyle style)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.ControlStyle.html">ControlStyle</a></td>
+        <td><span class="parametername">style</span></td>
+        <td><p>A style applied to the newly created TabBar.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="properties">Properties
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI.Components/Controls/TabBar.cs/#L119">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/TabBar.cs/#L112">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_TabBar_SelectedIndex_" data-uid="Tizen.NUI.Components.TabBar.SelectedIndex*"></a>
+  <h4 id="Tizen_NUI_Components_TabBar_SelectedIndex" data-uid="Tizen.NUI.Components.TabBar.SelectedIndex">SelectedIndex</h4>
+  <div class="markdown level1 summary"><p>The index of the selected tab button.
+The indices of tab buttons in TabBar are basically the order of adding to TabBar by <a class="xref" href="Tizen.NUI.Components.TabView.html#Tizen_NUI_Components_TabView_AddTab_Tizen_NUI_Components_TabButton_Tizen_NUI_BaseComponents_View_">AddTab(TabButton, View)</a>.
+So a tab button's index in TabBar can be changed whenever <a class="xref" href="Tizen.NUI.Components.TabView.html#Tizen_NUI_Components_TabView_AddTab_Tizen_NUI_Components_TabButton_Tizen_NUI_BaseComponents_View_">AddTab(TabButton, View)</a> or <a class="xref" href="Tizen.NUI.Components.TabView.html#Tizen_NUI_Components_TabView_RemoveTab_System_Int32_">RemoveTab(int)</a> is called.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected int SelectedIndex { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/TabBar.cs/#L119">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_TabBar_TabButtonCount_" data-uid="Tizen.NUI.Components.TabBar.TabButtonCount*"></a>
   <h4 id="Tizen_NUI_Components_TabBar_TabButtonCount" data-uid="Tizen.NUI.Components.TabBar.TabButtonCount">TabButtonCount</h4>
@@ -172,26 +273,93 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="methods">Methods
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI.Components/Controls/TabBar.cs/#L229">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/TabBar.cs/#L135">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_TabBar_AddTabButton_" data-uid="Tizen.NUI.Components.TabBar.AddTabButton*"></a>
+  <h4 id="Tizen_NUI_Components_TabBar_AddTabButton_Tizen_NUI_Components_TabButton_" data-uid="Tizen.NUI.Components.TabBar.AddTabButton(Tizen.NUI.Components.TabButton)">AddTabButton(TabButton)</h4>
+  <div class="markdown level1 summary"><p>Adds a tab button to TabBar.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void AddTabButton(TabButton tabButton)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.TabButton.html">TabButton</a></td>
+        <td><span class="parametername">tabButton</span></td>
+        <td><p>A tab button to be added to TabBar.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/TabBar.cs/#L240">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_TabBar_Dispose_" data-uid="Tizen.NUI.Components.TabBar.Dispose*"></a>
+  <h4 id="Tizen_NUI_Components_TabBar_Dispose_Tizen_NUI_DisposeTypes_" data-uid="Tizen.NUI.Components.TabBar.Dispose(Tizen.NUI.DisposeTypes)">Dispose(DisposeTypes)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Dispose(DisposeTypes type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.DisposeTypes.html">DisposeTypes</a></td>
+        <td><span class="parametername">type</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_Dispose_Tizen_NUI_DisposeTypes_">Control.Dispose(DisposeTypes)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/TabBar.cs/#L229">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_TabBar_GetTabButton_" data-uid="Tizen.NUI.Components.TabBar.GetTabButton*"></a>
-  <h4 id="Tizen_NUI_Components_TabBar_GetTabButton_System_Int32_" data-uid="Tizen.NUI.Components.TabBar.GetTabButton(System.Int32)">GetTabButton(Int32)</h4>
+  <h4 id="Tizen_NUI_Components_TabBar_GetTabButton_System_Int32_" data-uid="Tizen.NUI.Components.TabBar.GetTabButton(System.Int32)">GetTabButton(int)</h4>
   <div class="markdown level1 summary"><p>Gets the tab button at the specified index of TabBar.
 The indices of tab buttons in TabBar are basically the order of adding to TabBar by <a class="xref" href="Tizen.NUI.Components.TabView.html#Tizen_NUI_Components_TabView_AddTab_Tizen_NUI_Components_TabButton_Tizen_NUI_BaseComponents_View_">AddTab(TabButton, View)</a>.
-So a tab button&apos;s index in TabBar can be changed whenever <a class="xref" href="Tizen.NUI.Components.TabView.html#Tizen_NUI_Components_TabView_AddTab_Tizen_NUI_Components_TabButton_Tizen_NUI_BaseComponents_View_">AddTab(TabButton, View)</a> or <a class="xref" href="Tizen.NUI.Components.TabView.html#Tizen_NUI_Components_TabView_RemoveTab_System_Int32_">RemoveTab(Int32)</a> is called.</p>
+So a tab button's index in TabBar can be changed whenever <a class="xref" href="Tizen.NUI.Components.TabView.html#Tizen_NUI_Components_TabView_AddTab_Tizen_NUI_Components_TabButton_Tizen_NUI_BaseComponents_View_">AddTab(TabButton, View)</a> or <a class="xref" href="Tizen.NUI.Components.TabView.html#Tizen_NUI_Components_TabView_RemoveTab_System_Int32_">RemoveTab(int)</a> is called.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -209,7 +377,7 @@ So a tab button&apos;s index in TabBar can be changed whenever <a class="xref" h
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">index</span></td>
         <td><p>The index of tab button in TabBar where the specified tab button exists.</p>
 </td>
@@ -231,43 +399,138 @@ So a tab button&apos;s index in TabBar can be changed whenever <a class="xref" h
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/TabBar.cs/#L122">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_TabBar_OnInitialize_" data-uid="Tizen.NUI.Components.TabBar.OnInitialize*"></a>
+  <h4 id="Tizen_NUI_Components_TabBar_OnInitialize" data-uid="Tizen.NUI.Components.TabBar.OnInitialize">OnInitialize()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void OnInitialize()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_OnInitialize">Control.OnInitialize()</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/TabBar.cs/#L184">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_TabBar_RemoveTabButton_" data-uid="Tizen.NUI.Components.TabBar.RemoveTabButton*"></a>
+  <h4 id="Tizen_NUI_Components_TabBar_RemoveTabButton_Tizen_NUI_Components_TabButton_" data-uid="Tizen.NUI.Components.TabBar.RemoveTabButton(Tizen.NUI.Components.TabButton)">RemoveTabButton(TabButton)</h4>
+  <div class="markdown level1 summary"><p>Removes a tab button from TabBar.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void RemoveTabButton(TabButton tabButton)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Condition</th>
+        <th>Name</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p>Thrown when the index is less than 0, or greater than or equal to the number of tab buttons.</p>
+        <td><a class="xref" href="Tizen.NUI.Components.TabButton.html">TabButton</a></td>
+        <td><span class="parametername">tabButton</span></td>
+        <td><p>A tab button to be removed from TabBar.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="events">Events
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/TabBar.cs/#L105">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_TabBar_TabButtonSelected" data-uid="Tizen.NUI.Components.TabBar.TabButtonSelected">TabButtonSelected</h4>
+  <div class="markdown level1 summary"><p>An event for the tab button selected signal which can be used to
+subscribe or unsubscribe the event handler provided by a user.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;TabButtonSelectedEventArgs&gt; TabButtonSelected</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Components.TabButtonSelectedEventArgs.html">TabButtonSelectedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
   </div>
   <div>
       <span class="xref">System.IDisposable</span>
   </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI.Components/Controls/TabBar.cs/#L54" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/TabBar.cs/#L54" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -278,7 +541,7 @@ So a tab button&apos;s index in TabBar can be changed whenever <a class="xref" h
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -286,13 +549,13 @@ So a tab button&apos;s index in TabBar can be changed whenever <a class="xref" h
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

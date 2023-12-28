@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Namespace Tizen.Content.MediaContent
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Namespace Tizen.Content.MediaContent
-   ">
-    <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API11">
-    
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -20,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -60,19 +60,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -80,23 +80,24 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="Tizen.Content.MediaContent">
-  
+
   <h1 id="Tizen_Content_MediaContent" data-uid="Tizen.Content.MediaContent" class="text-break">Namespace Tizen.Content.MediaContent
-  </h1>
+</h1>
   <div class="markdown level0 summary"><p>The Tizen.Content.MediaContent namespace provides types used in the entire content service.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  <div class="markdown level0 remarks"><p>The information about media items (i.e. image, audio, and video) are managed in the content database
+  <div class="markdown level0 remarks">
+<p>The information about media items (i.e. image, audio, and video) are managed in the content database
 and operations that involve database require an active connection with the media content service.
 During media scanning, the media content service extracts the media information automatically. The media information
 includes basic file information like path, size, modified time, etc. and some metadata like ID3 tag, EXIF,
 thumbnail, etc. (thumbnail extracted only in the internal and the SD card storage.</p>
 <p>The media content service does not manage hidden files.</p>
-<p>In addition, if &quot;<a href="http://tizen.org/feature/content.scanning.others">http://tizen.org/feature/content.scanning.others</a>&quot; feature is not supported,
+<p>In addition, if &quot;http://tizen.org/feature/content.scanning.others&quot; feature is not supported,
 other-type files which are not included in the media content types such as image, video, sound or music, are ignored.</p>
 </div>
     <h3 id="classes">Classes
-  </h3>
+</h3>
       <h4><a class="xref" href="Tizen.Content.MediaContent.Album.html">Album</a></h4>
       <section><p>Represents a logical collection grouping of related media information.</p>
 </section>
@@ -218,18 +219,18 @@ a simplified and faster way of accessing media items.</p>
       <section><p>Represents a video media information.</p>
 </section>
     <h3 id="structs">Structs
-  </h3>
+</h3>
       <h4><a class="xref" href="Tizen.Content.MediaContent.Rectangle.html">Rectangle</a></h4>
       <section><p>Represents the location of the object bounded by the rectangle defined by
 coordinates of top left corner, width, and height.</p>
 </section>
     <h3 id="interfaces">Interfaces
-  </h3>
+</h3>
       <h4><a class="xref" href="Tizen.Content.MediaContent.IMediaDataReader.html">IMediaDataReader</a></h4>
       <section><p>Provides a means of reading results obtained by executing a query.</p>
 </section>
     <h3 id="enums">Enums
-  </h3>
+</h3>
       <h4><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseError.html">MediaDatabaseError</a></h4>
       <section><p>Specifies the database errors.</p>
 </section>
@@ -250,7 +251,7 @@ coordinates of top left corner, width, and height.</p>
 </section>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
@@ -264,7 +265,7 @@ coordinates of top left corner, width, and height.</p>
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -272,13 +273,13 @@ coordinates of top left corner, width, and height.</p>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Class EncodedImageBuffer
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class EncodedImageBuffer
-   ">
-    <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API11">
-    
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -20,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -60,19 +60,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -80,33 +80,33 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="Tizen.NUI.EncodedImageBuffer">
-  
-  
+
+
   <h1 id="Tizen_NUI_EncodedImageBuffer" data-uid="Tizen.NUI.EncodedImageBuffer" class="text-break">Class EncodedImageBuffer
-  </h1>
+</h1>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
-  
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.NUI.html">Tizen.NUI</a></dd></dl>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
-  
+
   <div class="markdown level0 summary"><p>Class for Encoded Image Buffer.
 Buffer comes from System.IO.Stream.
-This data will decode internally when you use GeneratedUrl as View&apos;s ResourceUrl.
-Note: This class doesn&apos;t allow to fix/change anything.
+This data will decode internally when you use GeneratedUrl as View's ResourceUrl.
+Note: This class doesn't allow to fix/change anything.
 Only constructor allow to setup data.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  
+
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class EncodedImageBuffer : BaseHandle, IDynamicResourceHandler, IElement, INameScope, IElementController, System.IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class EncodedImageBuffer : BaseHandle, IDynamicResourceHandler, INameScope, System.IDisposable</code></pre>
   </div>
 
-  
+
   <dl class="attribute-list stack">
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
+        <div class="pdl"><span class="xref">object</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
@@ -115,27 +115,70 @@ Only constructor allow to setup data.</p>
     </dd>
   </dl>
 
-  
-  
+
+
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
     </dd>
   </dl>
-  
+
   <h5 id="Tizen_NUI_EncodedImageBuffer_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</p>
 </div>
   <h3 id="constructors">Constructors
-  </h3>
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Images/EncodedImageBuffer.cs/#L92">View Source</a>
+  </span>
+  <a id="Tizen_NUI_EncodedImageBuffer__ctor_" data-uid="Tizen.NUI.EncodedImageBuffer.#ctor*"></a>
+  <h4 id="Tizen_NUI_EncodedImageBuffer__ctor_Tizen_System_IO_Stream_Tizen_NUI_EncodedImageBuffer_ImageTypes_" data-uid="Tizen.NUI.EncodedImageBuffer.#ctor(Tizen.System.IO.Stream,Tizen.NUI.EncodedImageBuffer.ImageTypes)">EncodedImageBuffer(Stream, ImageTypes)</h4>
+  <div class="markdown level1 summary"><p>Constructor with image type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EncodedImageBuffer(IO.Stream stream, EncodedImageBuffer.ImageTypes imageType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Tizen.System.IO.Stream</span></td>
+        <td><span class="parametername">stream</span></td>
+        <td><p>The Stream of the image file.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.EncodedImageBuffer.html">EncodedImageBuffer</a>.<a class="xref" href="Tizen.NUI.EncodedImageBuffer.ImageTypes.html">ImageTypes</a></td>
+        <td><span class="parametername">imageType</span></td>
+        <td><p>The type of the image stream.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_EncodedImageBuffer__ctor_Tizen_System_IO_Stream_Tizen_NUI_EncodedImageBuffer_ImageTypes__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Images/EncodedImageBuffer.cs/#L78">View Source</a>
   </span>
   <a id="Tizen_NUI_EncodedImageBuffer__ctor_" data-uid="Tizen.NUI.EncodedImageBuffer.#ctor*"></a>
-  <h4 id="Tizen_NUI_EncodedImageBuffer__ctor_Tizen_System_IO_Stream_" data-uid="Tizen.NUI.EncodedImageBuffer.#ctor(Tizen.System.IO.Stream)">EncodedImageBuffer(IO.Stream)</h4>
+  <h4 id="Tizen_NUI_EncodedImageBuffer__ctor_Tizen_System_IO_Stream_" data-uid="Tizen.NUI.EncodedImageBuffer.#ctor(Tizen.System.IO.Stream)">EncodedImageBuffer(Stream)</h4>
   <div class="markdown level1 summary"><p>Constructor.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -164,55 +207,12 @@ Only constructor allow to setup data.</p>
   <h5 id="Tizen_NUI_EncodedImageBuffer__ctor_Tizen_System_IO_Stream__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</p>
 </div>
-  
-  
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Images/EncodedImageBuffer.cs/#L92">View Source</a>
-  </span>
-  <a id="Tizen_NUI_EncodedImageBuffer__ctor_" data-uid="Tizen.NUI.EncodedImageBuffer.#ctor*"></a>
-  <h4 id="Tizen_NUI_EncodedImageBuffer__ctor_Tizen_System_IO_Stream_Tizen_NUI_EncodedImageBuffer_ImageTypes_" data-uid="Tizen.NUI.EncodedImageBuffer.#ctor(Tizen.System.IO.Stream,Tizen.NUI.EncodedImageBuffer.ImageTypes)">EncodedImageBuffer(IO.Stream, EncodedImageBuffer.ImageTypes)</h4>
-  <div class="markdown level1 summary"><p>Constructor with image type.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public EncodedImageBuffer(IO.Stream stream, EncodedImageBuffer.ImageTypes imageType)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Tizen.System.IO.Stream</span></td>
-        <td><span class="parametername">stream</span></td>
-        <td><p>The Stream of the image file.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.EncodedImageBuffer.ImageTypes.html">EncodedImageBuffer.ImageTypes</a></td>
-        <td><span class="parametername">imageType</span></td>
-        <td><p>The type of the image stream.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_NUI_EncodedImageBuffer__ctor_Tizen_System_IO_Stream_Tizen_NUI_EncodedImageBuffer_ImageTypes__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</p>
-</div>
-  
-  
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="properties">Properties
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Images/EncodedImageBuffer.cs/#L117">View Source</a>
   </span>
@@ -235,7 +235,7 @@ Only constructor allow to setup data.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.NUI.EncodedImageBuffer.ImageTypes.html">EncodedImageBuffer.ImageTypes</a></td>
+        <td><a class="xref" href="Tizen.NUI.EncodedImageBuffer.html">EncodedImageBuffer</a>.<a class="xref" href="Tizen.NUI.EncodedImageBuffer.ImageTypes.html">ImageTypes</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -243,12 +243,12 @@ Only constructor allow to setup data.</p>
   <h5 id="Tizen_NUI_EncodedImageBuffer_ImageType_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</p>
 </div>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="methods">Methods
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Images/EncodedImageBuffer.cs/#L166">View Source</a>
   </span>
@@ -280,8 +280,11 @@ Only constructor allow to setup data.</p>
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="Tizen.NUI.BaseHandle.html#Tizen_NUI_BaseHandle_Dispose_Tizen_NUI_DisposeTypes_">BaseHandle.Dispose(DisposeTypes)</a></div>
-  
-  
+  <h5 id="Tizen_NUI_EncodedImageBuffer_Dispose_Tizen_NUI_DisposeTypes__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -291,7 +294,7 @@ Only constructor allow to setup data.</p>
   <h4 id="Tizen_NUI_EncodedImageBuffer_GenerateUrl" data-uid="Tizen.NUI.EncodedImageBuffer.GenerateUrl">GenerateUrl()</h4>
   <div class="markdown level1 summary"><p>Generate URI from current buffer.
 We can now use this url for ImageView.ResourceUrl
-Note : the url lifecycle is same as ImageUrl and it&apos;s internal usage.
+Note : the url lifecycle is same as ImageUrl and it's internal usage.
 Store only ImageUrl.ToString() result and re-use that url is Undefined Behavior.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -317,8 +320,8 @@ Store only ImageUrl.ToString() result and re-use that url is Undefined Behavior.
   <h5 id="Tizen_NUI_EncodedImageBuffer_GenerateUrl_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This API should not be called at worker thread.</p>
 </div>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -349,8 +352,11 @@ Store only ImageUrl.ToString() result and re-use that url is Undefined Behavior.
       </tr>
     </tbody>
   </table>
-  
-  
+  <h5 id="Tizen_NUI_EncodedImageBuffer_ReleaseSwigCPtr_HandleRef__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="implements">Implements</h3>
@@ -361,39 +367,39 @@ Store only ImageUrl.ToString() result and re-use that url is Undefined Behavior.
       <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
   </div>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+      <span class="xref">System.IDisposable</span>
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+      <a class="xref" href="Tizen.NUI.Binding.BindableObjectExtensions.html#Tizen_NUI_Binding_BindableObjectExtensions_SetBinding_Tizen_NUI_Binding_BindableObject_Tizen_NUI_Binding_BindableProperty_System_String_Tizen_NUI_Binding_BindingMode_Tizen_NUI_Binding_IValueConverter_System_String_">BindableObjectExtensions.SetBinding(BindableObject, BindableProperty, string, BindingMode, IValueConverter, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.NameScopeExtensions.html#Tizen_NUI_Binding_NameScopeExtensions_FindByName__1_Tizen_NUI_Binding_Element_System_String_">NameScopeExtensions.FindByName&lt;T&gt;(Element, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
   </div>
   <div>
       <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
   </div>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
   </div>
   <div>
       <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
   </div>
   <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Binding.BindableObjectExtensions.html#Tizen_NUI_Binding_BindableObjectExtensions_SetBinding_Tizen_NUI_Binding_BindableObject_Tizen_NUI_Binding_BindableProperty_System_String_Tizen_NUI_Binding_BindingMode_Tizen_NUI_Binding_IValueConverter_System_String_">BindableObjectExtensions.SetBinding(BindableObject, BindableProperty, String, BindingMode, IValueConverter, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Binding.NameScopeExtensions.html#Tizen_NUI_Binding_NameScopeExtensions_FindByName__1_Tizen_NUI_Binding_Element_System_String_">NameScopeExtensions.FindByName&lt;T&gt;(Element, String)</a>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
@@ -410,7 +416,7 @@ Store only ImageUrl.ToString() result and re-use that url is Undefined Behavior.
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -418,13 +424,13 @@ Store only ImageUrl.ToString() result and re-use that url is Undefined Behavior.
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

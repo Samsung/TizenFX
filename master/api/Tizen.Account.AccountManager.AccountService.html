@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Class AccountService
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class AccountService
-   ">
-    <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API11">
-    
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -20,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -60,19 +60,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -80,46 +80,45 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="Tizen.Account.AccountManager.AccountService">
-  
-  
+
+
   <h1 id="Tizen_Account_AccountManager_AccountService" data-uid="Tizen.Account.AccountManager.AccountService" class="text-break">Class AccountService
-  </h1>
+</h1>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
-  
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.Account.AccountManager.html">Tizen.Account.AccountManager</a></dd></dl>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<span class="xref">Account</span>.<a class="xref" href="Tizen.Account.AccountManager.html">AccountManager</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Account.AccountManager.dll</dd></dl>
-  <dl class="attribute-list"><dt>API Level:</dt><dd><span>3</span></dd></dl>
-  
+
   <div class="markdown level0 summary"><p>The AccountManager APIs are separated into two major sections:</p>
 <ol>
 <li>Registering an account provider while an application is installed. This information will be used for the Add account screen.</li>
 <li>Adding an account information when an application signs in successfully to share the account information to the Tizen system. This information will be shown in the Tizen settings account menu.</li>
 </ol>
-<p>The APIs of both of the sections consist of the following functionality:
-<ul><li>Create an account or account provider.</li><li>Update an account or account provider (Only available for the creator).</li><li>Delete an account or account provider (Only available for the creator).</li><li>Read an account or account provider with some filter.</li></ul></p>
+<p>The APIs of both of the sections consist of the following functionality:</p>
+<ul><li>Create an account or account provider.</li><li>Update an account or account provider (Only available for the creator).</li><li>Delete an account or account provider (Only available for the creator).</li><li>Read an account or account provider with some filter.</li></ul>
 </div>
   <div class="markdown level0 conceptual"></div>
-  
+
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class AccountService : object</code></pre>
+    <pre><code class="lang-csharp hljs">public static class AccountService</code></pre>
   </div>
 
-  
+
   <dl class="attribute-list stack">
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
+        <div class="pdl"><span class="xref">object</span></div>
         <div><span class="xref">AccountService</span></div>
       </div>
     </dd>
   </dl>
 
-  
-  
-  
+
+
+
   <h3 id="fields">Fields
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Account.AccountManager/Tizen.Account.AccountManager/AccountService.cs/#L49">View Source</a>
   </span>
@@ -141,14 +140,13 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -172,14 +170,13 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -203,14 +200,13 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -234,14 +230,13 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -265,14 +260,13 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -296,14 +290,13 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -327,14 +320,13 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -358,14 +350,13 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -389,18 +380,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="methods">Methods
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Account.AccountManager/Tizen.Account.AccountManager/AccountService.cs/#L291">View Source</a>
   </span>
@@ -441,63 +431,21 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="xref">int</span></td>
         <td><p>The account ID of the account instance.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/account.read</span><span>http://tizen.org/privilege/account.write</span></span></h6>
-  <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/account</span></span></h6>
-  
-  <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Account.AccountManager/Tizen.Account.AccountManager/AccountService.cs/#L403">View Source</a>
-  </span>
-  <a id="Tizen_Account_AccountManager_AccountService_DeleteAccount_" data-uid="Tizen.Account.AccountManager.AccountService.DeleteAccount*"></a>
-  <h4 id="Tizen_Account_AccountManager_AccountService_DeleteAccount_System_String_" data-uid="Tizen.Account.AccountManager.AccountService.DeleteAccount(System.String)">DeleteAccount(String)</h4>
-  <div class="markdown level1 summary"><p>Deletes the account from the account database by package name.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void DeleteAccount(string packageName)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td><span class="parametername">packageName</span></td>
-        <td><p>The package name of the account to delete.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/account.read</span><span>http://tizen.org/privilege/account.write</span></span></h6>
-  <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/account</span></span></h6>
-  
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Account.AccountManager/Tizen.Account.AccountManager/AccountService.cs/#L380">View Source</a>
   </span>
   <a id="Tizen_Account_AccountManager_AccountService_DeleteAccount_" data-uid="Tizen.Account.AccountManager.AccountService.DeleteAccount*"></a>
-  <h4 id="Tizen_Account_AccountManager_AccountService_DeleteAccount_System_String_System_String_" data-uid="Tizen.Account.AccountManager.AccountService.DeleteAccount(System.String,System.String)">DeleteAccount(String, String)</h4>
+  <h4 id="Tizen_Account_AccountManager_AccountService_DeleteAccount_System_String_System_String_" data-uid="Tizen.Account.AccountManager.AccountService.DeleteAccount(System.String,System.String)">DeleteAccount(string, string)</h4>
   <div class="markdown level1 summary"><p>Deletes the account from the account database by user name.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -516,25 +464,55 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">userName</span></td>
         <td><p>The user name of the account to delete.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">packageName</span></td>
         <td><p>The package name of the account to delete.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/account.read</span><span>http://tizen.org/privilege/account.write</span></span></h6>
-  <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/account</span></span></h6>
-  
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Account.AccountManager/Tizen.Account.AccountManager/AccountService.cs/#L403">View Source</a>
+  </span>
+  <a id="Tizen_Account_AccountManager_AccountService_DeleteAccount_" data-uid="Tizen.Account.AccountManager.AccountService.DeleteAccount*"></a>
+  <h4 id="Tizen_Account_AccountManager_AccountService_DeleteAccount_System_String_" data-uid="Tizen.Account.AccountManager.AccountService.DeleteAccount(System.String)">DeleteAccount(string)</h4>
+  <div class="markdown level1 summary"><p>Deletes the account from the account database by package name.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void DeleteAccount(string packageName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">packageName</span></td>
+        <td><p>The package name of the account to delete.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -567,19 +545,15 @@
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/account.read</span><span>http://tizen.org/privilege/account.write</span></span></h6>
-  <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/account</span></span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Account.AccountManager/Tizen.Account.AccountManager/AccountService.cs/#L144">View Source</a>
   </span>
   <a id="Tizen_Account_AccountManager_AccountService_GetAccountById_" data-uid="Tizen.Account.AccountManager.AccountService.GetAccountById*"></a>
-  <h4 id="Tizen_Account_AccountManager_AccountService_GetAccountById_System_Int32_" data-uid="Tizen.Account.AccountManager.AccountService.GetAccountById(System.Int32)">GetAccountById(Int32)</h4>
+  <h4 id="Tizen_Account_AccountManager_AccountService_GetAccountById_System_Int32_" data-uid="Tizen.Account.AccountManager.AccountService.GetAccountById(System.Int32)">GetAccountById(int)</h4>
   <div class="markdown level1 summary"><p>Retrieves the account with the account ID.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -598,7 +572,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">accountId</span></td>
         <td><p>The account ID to be searched.</p>
 </td>
@@ -621,19 +595,15 @@
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/account.read</span></span></h6>
-  <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/account</span></span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Account.AccountManager/Tizen.Account.AccountManager/AccountService.cs/#L220">View Source</a>
   </span>
   <a id="Tizen_Account_AccountManager_AccountService_GetAccountProviderByAppId_" data-uid="Tizen.Account.AccountManager.AccountService.GetAccountProviderByAppId*"></a>
-  <h4 id="Tizen_Account_AccountManager_AccountService_GetAccountProviderByAppId_System_String_" data-uid="Tizen.Account.AccountManager.AccountService.GetAccountProviderByAppId(System.String)">GetAccountProviderByAppId(String)</h4>
+  <h4 id="Tizen_Account_AccountManager_AccountService_GetAccountProviderByAppId_System_String_" data-uid="Tizen.Account.AccountManager.AccountService.GetAccountProviderByAppId(System.String)">GetAccountProviderByAppId(string)</h4>
   <div class="markdown level1 summary"><p>Retrieves the account provider information with the application ID.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -652,7 +622,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">appId</span></td>
         <td><p>The application ID.</p>
 </td>
@@ -675,12 +645,8 @@
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/account.read</span></span></h6>
-  <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/account</span></span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -705,25 +671,21 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Account.AccountManager.AccountProvider.html">AccountProvider</a>&gt;</td>
+        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Account.AccountManager.AccountProvider.html">AccountProvider</a>&gt;</td>
         <td><p>List of AccountProviders.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/account.read</span></span></h6>
-  <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/account</span></span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Account.AccountManager/Tizen.Account.AccountManager/AccountService.cs/#L248">View Source</a>
   </span>
   <a id="Tizen_Account_AccountManager_AccountService_GetAccountProvidersByFeature_" data-uid="Tizen.Account.AccountManager.AccountService.GetAccountProvidersByFeature*"></a>
-  <h4 id="Tizen_Account_AccountManager_AccountService_GetAccountProvidersByFeature_System_String_" data-uid="Tizen.Account.AccountManager.AccountService.GetAccountProvidersByFeature(System.String)">GetAccountProvidersByFeature(String)</h4>
+  <h4 id="Tizen_Account_AccountManager_AccountService_GetAccountProvidersByFeature_System_String_" data-uid="Tizen.Account.AccountManager.AccountService.GetAccountProvidersByFeature(System.String)">GetAccountProvidersByFeature(string)</h4>
   <div class="markdown level1 summary"><p>Retrieves all the account providers information with feature.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -742,7 +704,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">feature</span></td>
         <td><p>The capability value to search for account providers.</p>
 </td>
@@ -759,18 +721,14 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Account.AccountManager.AccountProvider.html">AccountProvider</a>&gt;</td>
+        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Account.AccountManager.AccountProvider.html">AccountProvider</a>&gt;</td>
         <td><p>Retrieves the AccountProviders information with the capability name.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/account.read</span></span></h6>
-  <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/account</span></span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -795,25 +753,21 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Account.AccountManager.Account.html">Account</a>&gt;</td>
+        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Account.AccountManager.Account.html">Account</a>&gt;</td>
         <td><p>List of accounts.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/account.read</span></span></h6>
-  <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/account</span></span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Account.AccountManager/Tizen.Account.AccountManager/AccountService.cs/#L509">View Source</a>
   </span>
   <a id="Tizen_Account_AccountManager_AccountService_GetAccountsByCapabilityType_" data-uid="Tizen.Account.AccountManager.AccountService.GetAccountsByCapabilityType*"></a>
-  <h4 id="Tizen_Account_AccountManager_AccountService_GetAccountsByCapabilityType_System_String_" data-uid="Tizen.Account.AccountManager.AccountService.GetAccountsByCapabilityType(System.String)">GetAccountsByCapabilityType(String)</h4>
+  <h4 id="Tizen_Account_AccountManager_AccountService_GetAccountsByCapabilityType_System_String_" data-uid="Tizen.Account.AccountManager.AccountService.GetAccountsByCapabilityType(System.String)">GetAccountsByCapabilityType(string)</h4>
   <div class="markdown level1 summary"><p>Retrieves all accounts with the given capability type.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -832,7 +786,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">type</span></td>
         <td><p>Capability type.</p>
 </td>
@@ -849,25 +803,21 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Account.AccountManager.Account.html">Account</a>&gt;</td>
+        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Account.AccountManager.Account.html">Account</a>&gt;</td>
         <td><p>Accounts list matched with the capability type.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/account.read</span></span></h6>
-  <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/account</span></span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Account.AccountManager/Tizen.Account.AccountManager/AccountService.cs/#L468">View Source</a>
   </span>
   <a id="Tizen_Account_AccountManager_AccountService_GetAccountsByPackageName_" data-uid="Tizen.Account.AccountManager.AccountService.GetAccountsByPackageName*"></a>
-  <h4 id="Tizen_Account_AccountManager_AccountService_GetAccountsByPackageName_System_String_" data-uid="Tizen.Account.AccountManager.AccountService.GetAccountsByPackageName(System.String)">GetAccountsByPackageName(String)</h4>
+  <h4 id="Tizen_Account_AccountManager_AccountService_GetAccountsByPackageName_System_String_" data-uid="Tizen.Account.AccountManager.AccountService.GetAccountsByPackageName(System.String)">GetAccountsByPackageName(string)</h4>
   <div class="markdown level1 summary"><p>Retrieves all the accounts with the given package name.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -886,7 +836,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">packageName</span></td>
         <td><p>The package name to search.</p>
 </td>
@@ -903,25 +853,21 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Account.AccountManager.Account.html">Account</a>&gt;</td>
+        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Account.AccountManager.Account.html">Account</a>&gt;</td>
         <td><p>Accounts list matched with the package name.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/account.read</span></span></h6>
-  <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/account</span></span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Account.AccountManager/Tizen.Account.AccountManager/AccountService.cs/#L427">View Source</a>
   </span>
   <a id="Tizen_Account_AccountManager_AccountService_GetAccountsByUserName_" data-uid="Tizen.Account.AccountManager.AccountService.GetAccountsByUserName*"></a>
-  <h4 id="Tizen_Account_AccountManager_AccountService_GetAccountsByUserName_System_String_" data-uid="Tizen.Account.AccountManager.AccountService.GetAccountsByUserName(System.String)">GetAccountsByUserName(String)</h4>
+  <h4 id="Tizen_Account_AccountManager_AccountService_GetAccountsByUserName_System_String_" data-uid="Tizen.Account.AccountManager.AccountService.GetAccountsByUserName(System.String)">GetAccountsByUserName(string)</h4>
   <div class="markdown level1 summary"><p>Retrieves all the accounts with the given user name.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -940,7 +886,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">userName</span></td>
         <td><p>The user name to search.</p>
 </td>
@@ -957,18 +903,14 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Account.AccountManager.Account.html">Account</a>&gt;</td>
+        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Account.AccountManager.Account.html">Account</a>&gt;</td>
         <td><p>Accounts list matched with the user name.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/account.read</span></span></h6>
-  <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/account</span></span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -993,25 +935,21 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="xref">int</span></td>
         <td><p>The number of accounts in the database.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/account.read</span></span></h6>
-  <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/account</span></span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Account.AccountManager/Tizen.Account.AccountManager/AccountService.cs/#L550">View Source</a>
   </span>
   <a id="Tizen_Account_AccountManager_AccountService_GetCapabilitiesById_" data-uid="Tizen.Account.AccountManager.AccountService.GetCapabilitiesById*"></a>
-  <h4 id="Tizen_Account_AccountManager_AccountService_GetCapabilitiesById_System_Int32_" data-uid="Tizen.Account.AccountManager.AccountService.GetCapabilitiesById(System.Int32)">GetCapabilitiesById(Int32)</h4>
+  <h4 id="Tizen_Account_AccountManager_AccountService_GetCapabilitiesById_System_Int32_" data-uid="Tizen.Account.AccountManager.AccountService.GetCapabilitiesById(System.Int32)">GetCapabilitiesById(int)</h4>
   <div class="markdown level1 summary"><p>Retrieves all the capabilities with the given account.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1030,7 +968,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">accountId</span></td>
         <td><p>Account instance.</p>
 </td>
@@ -1047,18 +985,14 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Dictionary</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="Tizen.Account.AccountManager.CapabilityState.html">CapabilityState</a>&gt;</td>
+        <td><span class="xref">Dictionary&lt;, &gt;</span>&lt;<span class="xref">string</span>, <a class="xref" href="Tizen.Account.AccountManager.CapabilityState.html">CapabilityState</a>&gt;</td>
         <td><p>Capabilities list as dictionary of the capability type and state.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/account.read</span></span></h6>
-  <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/account</span></span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -1091,12 +1025,8 @@
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/account.read</span><span>http://tizen.org/privilege/account.write</span></span></h6>
-  <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/account</span></span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -1135,16 +1065,12 @@
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/account.read</span><span>http://tizen.org/privilege/account.write</span></span></h6>
-  <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/account</span></span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="events">Events
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Account.AccountManager/Tizen.Account.AccountManager/AccountService.cs/#L643">View Source</a>
   </span>
@@ -1166,7 +1092,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Account.AccountManager.AccountSubscriberEventArgs.html">AccountSubscriberEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Account.AccountManager.AccountSubscriberEventArgs.html">AccountSubscriberEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1174,17 +1100,13 @@
   <h5 id="Tizen_Account_AccountManager_AccountService_AccountUpdated_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>ContentUpdate event is triggered if the MediaInformation updated/deleted or new information is inserted.</p>
 </div>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/account.read</span></span></h6>
-  <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/account</span></span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
@@ -1201,7 +1123,7 @@
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -1209,13 +1131,13 @@
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Class ImageView
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class ImageView
-   ">
-    <meta name="generator" content="docfx 2.56.1.0">
+ ">
+    <meta name="generator" content="docfx ">
     <meta name="version" content="API10">
-    
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -20,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -60,19 +60,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -80,31 +80,30 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="Tizen.NUI.BaseComponents.ImageView">
-  
-  
+
+
   <h1 id="Tizen_NUI_BaseComponents_ImageView" data-uid="Tizen.NUI.BaseComponents.ImageView" class="text-break">Class ImageView
-  </h1>
+</h1>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
-  
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.NUI.BaseComponents.html">Tizen.NUI.BaseComponents</a></dd></dl>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.BaseComponents.html">BaseComponents</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
-  <dl class="attribute-list"><dt>API Level:</dt><dd><span>3</span></dd></dl>
-  
+
   <div class="markdown level0 summary"><p>ImageView is a class for displaying an image resource.<br>
 An instance of ImageView can be created using a URL or an image instance.<br></p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  
+
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ImageView : View, INotifyPropertyChanged, IDynamicResourceHandler, IElement, INameScope, IElementController, IDisposable, IResourcesProvider</code></pre>
+    <pre><code class="lang-csharp hljs">public class ImageView : View, INotifyPropertyChanged, IDisposable</code></pre>
   </div>
 
-  
+
   <dl class="attribute-list stack">
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">System.Object</span></div>
+        <div class="pdl"><span class="xref">object</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
         <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
@@ -120,12 +119,14 @@ An instance of ImageView can be created using a URL or an image instance.<br></p
     <dt>Derived</dt>
     <dd>
       <div class="pdl"><span class="xref">Tizen.NUI.BaseComponents.AnimatedImageView</span></div>
+      <div class="pdl"><span class="xref">Tizen.NUI.BaseComponents.AnimatedImageView</span></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.LottieAnimationView.html">LottieAnimationView</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.LottieAnimationView.html">LottieAnimationView</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.LottieAnimationView.html">LottieAnimationView</a></div>
     </dd>
   </dl>
-  
-  
+
+
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
@@ -133,9 +134,9 @@ An instance of ImageView can be created using a URL or an image instance.<br></p
       <div class="pdl"><span class="xref">System.IDisposable</span></div>
     </dd>
   </dl>
-  
+
   <h3 id="constructors">Constructors
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L75">View Source</a>
   </span>
@@ -148,16 +149,15 @@ An instance of ImageView can be created using a URL or an image instance.<br></p
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public ImageView()</code></pre>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L104">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_ImageView__ctor_" data-uid="Tizen.NUI.BaseComponents.ImageView.#ctor*"></a>
-  <h4 id="Tizen_NUI_BaseComponents_ImageView__ctor_System_String_" data-uid="Tizen.NUI.BaseComponents.ImageView.#ctor(System.String)">ImageView(String)</h4>
+  <h4 id="Tizen_NUI_BaseComponents_ImageView__ctor_System_String_" data-uid="Tizen.NUI.BaseComponents.ImageView.#ctor(System.String)">ImageView(string)</h4>
   <div class="markdown level1 summary"><p>Creates an initialized ImageView from a URL to an image resource.<br>
 If the string is empty, ImageView will not display anything.<br></p>
 </div>
@@ -177,20 +177,19 @@ If the string is empty, ImageView will not display anything.<br></p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">url</span></td>
         <td><p>The URL of the image resource to display.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="properties">Properties
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L1125">View Source</a>
   </span>
@@ -213,7 +212,7 @@ If the string is empty, ImageView will not display anything.<br></p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">bool</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -224,11 +223,10 @@ If this is set to be true, then the width or height value, which is not set by u
 to preserve the aspect ratio of the image resource.
 AdjustViewSize works only if ImageView is added to a View having Layout.
 e.g. If the image resource size is (100, 100), then the ImageView requests size (100, 100) to its parent layout by default.
- If the ImageView&apos;s HeightSpecification is 50 and AdjustViewSize is true, then the ImageView requests size (50, 50) instead of (100, 50).</p>
+If the ImageView's HeightSpecification is 50 and AdjustViewSize is true, then the ImageView requests size (50, 50) instead of (100, 50).</p>
 </div>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -264,9 +262,8 @@ Optional.</p>
   <h5 id="Tizen_NUI_BaseComponents_ImageView_Border_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The property cascade chaining set is possible. For example, this (imageView.Border.X = 1;) is possible.</p>
 </div>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -294,14 +291,13 @@ Optional.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">bool</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -326,14 +322,13 @@ Optional.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">bool</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>6</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -377,9 +372,8 @@ map.Insert(ImageVisualProperty.AlphaMaskURL, new PropertyValue(url));
 map.Insert(ImageVisualProperty.FittingMode, new PropertyValue((int)FittingModeType.ScaleToFill);
 imageview.Image = map;</code></pre>
 
-  
-  <h6><strong>API Level</strong>: <span>4</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -404,14 +398,13 @@ imageview.Image = map;</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.NUI.BaseComponents.ImageView.LoadingStatusType.html">ImageView.LoadingStatusType</a></td>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.ImageView.html">ImageView</a>.<a class="xref" href="Tizen.NUI.BaseComponents.ImageView.LoadingStatusType.html">LoadingStatusType</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>5</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -436,14 +429,13 @@ imageview.Image = map;</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">bool</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>5</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -477,9 +469,8 @@ Pixel area is a relative value with the whole image area as [0.0, 0.0, 1.0, 1.0]
   <h5 id="Tizen_NUI_BaseComponents_ImageView_PixelArea_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The property cascade chaining set is possible. For example, this (imageView.PixelArea.X = 0.1f;) is possible.</p>
 </div>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -505,14 +496,13 @@ Image must be initialized.<br></p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">bool</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -539,14 +529,13 @@ When it is set as null, it gives empty string (&quot;&quot;) to be read.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -554,7 +543,6 @@ When it is set as null, it gives empty string (&quot;&quot;) to be read.</p>
   </span>
   <a id="Tizen_NUI_BaseComponents_ImageView_SynchronosLoading_" data-uid="Tizen.NUI.BaseComponents.ImageView.SynchronosLoading*"></a>
   <h4 id="Tizen_NUI_BaseComponents_ImageView_SynchronosLoading" data-uid="Tizen.NUI.BaseComponents.ImageView.SynchronosLoading">SynchronosLoading</h4>
-  <div class="markdown obsolete" data-id="Tizen_NUI_BaseComponents_ImageView_SynchronosLoading">This has been deprecated since API9 and will be removed in API11. Use SynchronousLoading instead.</div>
   <div class="markdown level1 summary"><p>Gets or sets whether to synchronous loading the resourceurl of image.<br></p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -573,14 +561,13 @@ public bool SynchronosLoading { get; set; }</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">bool</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -605,23 +592,22 @@ public bool SynchronosLoading { get; set; }</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">bool</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <h5 id="Tizen_NUI_BaseComponents_ImageView_SynchronousLoading_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Changing this property make this ImageView load image synchronously at the next loading
-by following operation: <a class="xref" href="Tizen.NUI.BaseComponents.ImageView.html#Tizen_NUI_BaseComponents_ImageView_Reload">Reload()</a>, <a class="xref" href="Tizen.NUI.BaseComponents.ImageView.html#Tizen_NUI_BaseComponents_ImageView_SetImage_System_String_">SetImage(String)</a>,
+by following operation: <a class="xref" href="Tizen.NUI.BaseComponents.ImageView.html#Tizen_NUI_BaseComponents_ImageView_Reload">Reload()</a>, <a class="xref" href="Tizen.NUI.BaseComponents.ImageView.html#Tizen_NUI_BaseComponents_ImageView_SetImage_System_String_">SetImage(string)</a>,
 and by some properties those cause reloading: <a class="xref" href="Tizen.NUI.BaseComponents.ImageView.html#Tizen_NUI_BaseComponents_ImageView_ResourceUrl">ResourceUrl</a>, <a class="xref" href="Tizen.NUI.BaseComponents.ImageView.html#Tizen_NUI_BaseComponents_ImageView_PreMultipliedAlpha">PreMultipliedAlpha</a> and etc.</p>
 </div>
-  
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="methods">Methods
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L1220">View Source</a>
   </span>
@@ -654,9 +640,8 @@ and by some properties those cause reloading: <a class="xref" href="Tizen.NUI.Ba
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_Dispose_Tizen_NUI_DisposeTypes_">View.Dispose(DisposeTypes)</a></div>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -683,14 +668,13 @@ True if the resources are loaded and ready, false otherwise.<br></p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">bool</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -705,9 +689,8 @@ True if the resources are loaded and ready, false otherwise.<br></p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Pause()</code></pre>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>5</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -722,9 +705,8 @@ True if the resources are loaded and ready, false otherwise.<br></p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Play()</code></pre>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>5</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -739,16 +721,15 @@ True if the resources are loaded and ready, false otherwise.<br></p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Reload()</code></pre>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>5</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L610">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_ImageView_SetImage_" data-uid="Tizen.NUI.BaseComponents.ImageView.SetImage*"></a>
-  <h4 id="Tizen_NUI_BaseComponents_ImageView_SetImage_System_String_" data-uid="Tizen.NUI.BaseComponents.ImageView.SetImage(System.String)">SetImage(String)</h4>
+  <h4 id="Tizen_NUI_BaseComponents_ImageView_SetImage_System_String_" data-uid="Tizen.NUI.BaseComponents.ImageView.SetImage(System.String)">SetImage(string)</h4>
   <div class="markdown level1 summary"><p>Sets this ImageView from the given URL.<br>
 If the URL is empty, ImageView will not display anything.<br></p>
 </div>
@@ -768,7 +749,7 @@ If the URL is empty, ImageView will not display anything.<br></p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">url</span></td>
         <td><p>The URL to the image resource to display.</p>
 </td>
@@ -786,14 +767,13 @@ If the URL is empty, ImageView will not display anything.<br></p>
     <tbody>
       <tr>
         <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when url is null. </p>
+        <td><p>Thrown when url is null.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -808,13 +788,12 @@ If the URL is empty, ImageView will not display anything.<br></p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Stop()</code></pre>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>5</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="events">Events
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L163">View Source</a>
   </span>
@@ -838,14 +817,13 @@ Most resources are only loaded when the control is placed on the stage.<br></p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.BaseComponents.ImageView.ResourceReadyEventArgs.html">ImageView.ResourceReadyEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.NUI.BaseComponents.ImageView.html">ImageView</a>.<a class="xref" href="Tizen.NUI.BaseComponents.ImageView.ResourceReadyEventArgs.html">ResourceReadyEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="implements">Implements</h3>
@@ -857,7 +835,7 @@ Most resources are only loaded when the control is placed on the stage.<br></p>
   </div>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
@@ -874,7 +852,7 @@ Most resources are only loaded when the control is placed on the stage.<br></p>
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -882,13 +860,13 @@ Most resources are only loaded when the control is placed on the stage.<br></p>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

@@ -7,9 +7,9 @@
     <title>I2C </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="I2C ">
-    <meta name="generator" content="docfx 2.56.1.0">
+    <meta name="generator" content="docfx ">
     <meta name="version" content="internals">
-    
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -18,13 +18,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="../toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -34,7 +34,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -42,13 +42,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -58,19 +58,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -78,7 +78,7 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="">
-<h1 id="isup2supc">I<sup>2</sup>C</h1>
+<h1 id="i2c">I<sup>2</sup>C</h1>
 
 <p><a href="https://en.wikipedia.org/wiki/I%C2%B2C">I<sup>2</sup>C</a> (Inter-Integrated Circuit) is a programmable interface that allows you to communicate with I<sup>2</sup>C peripherals.</p>
 <p>I<sup>2</sup>C is a synchronous serial interface that uses a clock signal to synchronize data transfers between master and slave device:</p>
@@ -98,7 +98,8 @@
 <pre><code class="lang-csharp">int bus = 1;
 int address = ...;   /* See the specification */
 I2cDevice i2c = new I2cDevice(bus, address);
-</code></pre><p>The <code>bus</code> parameter required for this function must be set according to the following table.</p>
+</code></pre>
+<p>The <code>bus</code> parameter required for this function must be set according to the following table.</p>
 <p><strong>Table: Raspberry Pi 3 and Raspberry Pi 4</strong></p>
 <table>
 <thead>
@@ -116,14 +117,16 @@ I2cDevice i2c = new I2cDevice(bus, address);
 </tr>
 </tbody>
 </table>
-<blockquote><p><strong>Note</strong></p>
+<blockquote>
+<p><strong>Note</strong></p>
 <p>For more information on the pin names and locations, see <a href="peripheral.html#protocol">Supported Protocols</a>.</p>
 </blockquote>
 <p>The <code>address</code> parameter must be set based on the peripheral specification.</p>
 </li>
 <li><p>To close an I<sup>2</sup>C handle that is no longer used, use the <code>I2cDevice.Close()</code> method:</p>
 <pre><code class="lang-csharp">i2c.Close();
-</code></pre></li>
+</code></pre>
+</li>
 </ol>
 <h2 id="reading-and-writing-data">Reading and Writing Data</h2>
 <p>To read and write data:</p>
@@ -131,11 +134,13 @@ I2cDevice i2c = new I2cDevice(bus, address);
 <li><p>To write bytes to a slave device, use the <code>I2cDevice.Write()</code> method:</p>
 <pre><code class="lang-csharp">byte[] data = {0x06, 0x01};
 i2c.Write(data);
-</code></pre></li>
+</code></pre>
+</li>
 <li><p>To read bytes from a slave device, use the <code>I2cDevice.Read()</code> method:</p>
 <pre><code class="lang-csharp">byte[] data = new byte[2];
 i2c.Read(data);
-</code></pre></li>
+</code></pre>
+</li>
 </ul>
 <h2 id="reading-and-writing-register-data">Reading and Writing Register Data</h2>
 <p>To read and write register data:</p>
@@ -144,26 +149,30 @@ i2c.Read(data);
 <pre><code class="lang-csharp">byte data = 0x06;
 byte register_address = ...;  /* See the specification */
 i2c.WriteRegisterByte(register_address, data);
-</code></pre></li>
+</code></pre>
+</li>
 <li><p>To read single byte data from a slave device register, use the <code>I2cDevice.ReadRegisterByte()</code> method:</p>
 <pre><code class="lang-csharp">byte data;
 byte register_address = ...;  /* See the specification */
 data = i2c.ReadRegisterByte(register_address);
-</code></pre></li>
+</code></pre>
+</li>
 <li><p>To write word data to a slave device register, use the <code>I2cDevice.WriteRegisterWord()</code> method:</p>
 <pre><code class="lang-csharp">ushort data = 0xffff;
 byte register_address = ...;  /* See the specification */
 i2c.WriteRegisterWord(register_address, data);
-</code></pre></li>
+</code></pre>
+</li>
 <li><p>To read word data from a slave device register, use the <code>I2cDevice.ReadRegisterByte()</code> method:</p>
 <pre><code class="lang-csharp">ushort data;
 byte register_address = ...;  /* See the specification */
 data = i2c.ReadRegisterByte(register_address);
-</code></pre></li>
+</code></pre>
+</li>
 </ul>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
@@ -177,7 +186,7 @@ data = i2c.ReadRegisterByte(register_address);
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -185,13 +194,13 @@ data = i2c.ReadRegisterByte(register_address);
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

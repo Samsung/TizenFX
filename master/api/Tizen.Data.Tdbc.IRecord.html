@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Interface IRecord
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Interface IRecord
-   ">
-    <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API11">
-    
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -20,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -60,19 +60,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -80,33 +80,32 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="Tizen.Data.Tdbc.IRecord">
-  
-  
+
+
   <h1 id="Tizen_Data_Tdbc_IRecord" data-uid="Tizen.Data.Tdbc.IRecord" class="text-break">Interface IRecord
-  </h1>
+</h1>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
-  
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.Data.Tdbc.html">Tizen.Data.Tdbc</a></dd></dl>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<span class="xref">Data</span>.<a class="xref" href="Tizen.Data.Tdbc.html">Tdbc</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Data.Tdbc.dll</dd></dl>
-  <dl class="attribute-list"><dt>API Level:</dt><dd><span>11</span></dd></dl>
-  
+
   <div class="markdown level0 summary"><p>Record class. This class provides the result of query.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public interface IRecord : IEnumerator&lt;IRecord&gt;</code></pre>
   </div>
 
-  
-  
+
+
   <h3 id="methods">Methods
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Data.Tdbc/Tizen.Data.Tdbc/IRecord.cs/#L62">View Source</a>
   </span>
   <a id="Tizen_Data_Tdbc_IRecord_GetBool_" data-uid="Tizen.Data.Tdbc.IRecord.GetBool*"></a>
-  <h4 id="Tizen_Data_Tdbc_IRecord_GetBool_System_Int32_" data-uid="Tizen.Data.Tdbc.IRecord.GetBool(System.Int32)">GetBool(Int32)</h4>
+  <h4 id="Tizen_Data_Tdbc_IRecord_GetBool_System_Int32_" data-uid="Tizen.Data.Tdbc.IRecord.GetBool(System.Int32)">GetBool(int)</h4>
   <div class="markdown level1 summary"><p>Get bool type value from the record with given index.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -125,7 +124,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">columnIndex</span></td>
         <td><p>The index of value.</p>
 </td>
@@ -142,21 +141,20 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="xref">bool</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>11</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Data.Tdbc/Tizen.Data.Tdbc/IRecord.cs/#L80">View Source</a>
   </span>
   <a id="Tizen_Data_Tdbc_IRecord_GetChar_" data-uid="Tizen.Data.Tdbc.IRecord.GetChar*"></a>
-  <h4 id="Tizen_Data_Tdbc_IRecord_GetChar_System_Int32_" data-uid="Tizen.Data.Tdbc.IRecord.GetChar(System.Int32)">GetChar(Int32)</h4>
+  <h4 id="Tizen_Data_Tdbc_IRecord_GetChar_System_Int32_" data-uid="Tizen.Data.Tdbc.IRecord.GetChar(System.Int32)">GetChar(int)</h4>
   <div class="markdown level1 summary"><p>Get char type value from the record with given index.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -175,7 +173,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">columnIndex</span></td>
         <td><p>The index of value.</p>
 </td>
@@ -192,21 +190,20 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">Char</a></td>
+        <td><span class="xref">char</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>11</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Data.Tdbc/Tizen.Data.Tdbc/IRecord.cs/#L89">View Source</a>
   </span>
   <a id="Tizen_Data_Tdbc_IRecord_GetChars_" data-uid="Tizen.Data.Tdbc.IRecord.GetChars*"></a>
-  <h4 id="Tizen_Data_Tdbc_IRecord_GetChars_System_Int32_" data-uid="Tizen.Data.Tdbc.IRecord.GetChars(System.Int32)">GetChars(Int32)</h4>
+  <h4 id="Tizen_Data_Tdbc_IRecord_GetChars_System_Int32_" data-uid="Tizen.Data.Tdbc.IRecord.GetChars(System.Int32)">GetChars(int)</h4>
   <div class="markdown level1 summary"><p>Get chars type value from the record with given index.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -225,7 +222,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">columnIndex</span></td>
         <td><p>The index of value.</p>
 </td>
@@ -242,21 +239,20 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.char">Char</a>[]</td>
+        <td><span class="xref">char</span>[]</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>11</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Data.Tdbc/Tizen.Data.Tdbc/IRecord.cs/#L71">View Source</a>
   </span>
   <a id="Tizen_Data_Tdbc_IRecord_GetData_" data-uid="Tizen.Data.Tdbc.IRecord.GetData*"></a>
-  <h4 id="Tizen_Data_Tdbc_IRecord_GetData_System_Int32_" data-uid="Tizen.Data.Tdbc.IRecord.GetData(System.Int32)">GetData(Int32)</h4>
+  <h4 id="Tizen_Data_Tdbc_IRecord_GetData_System_Int32_" data-uid="Tizen.Data.Tdbc.IRecord.GetData(System.Int32)">GetData(int)</h4>
   <div class="markdown level1 summary"><p>Get blob type value from the record with given index.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -275,7 +271,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">columnIndex</span></td>
         <td><p>The index of value.</p>
 </td>
@@ -292,21 +288,20 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">Byte</a>[]</td>
+        <td><span class="xref">byte</span>[]</td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>11</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Data.Tdbc/Tizen.Data.Tdbc/IRecord.cs/#L98">View Source</a>
   </span>
   <a id="Tizen_Data_Tdbc_IRecord_GetDate_" data-uid="Tizen.Data.Tdbc.IRecord.GetDate*"></a>
-  <h4 id="Tizen_Data_Tdbc_IRecord_GetDate_System_Int32_" data-uid="Tizen.Data.Tdbc.IRecord.GetDate(System.Int32)">GetDate(Int32)</h4>
+  <h4 id="Tizen_Data_Tdbc_IRecord_GetDate_System_Int32_" data-uid="Tizen.Data.Tdbc.IRecord.GetDate(System.Int32)">GetDate(int)</h4>
   <div class="markdown level1 summary"><p>Get date type value from the record with given index.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -325,7 +320,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">columnIndex</span></td>
         <td><p>The index of value.</p>
 </td>
@@ -347,16 +342,15 @@
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>11</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Data.Tdbc/Tizen.Data.Tdbc/IRecord.cs/#L107">View Source</a>
   </span>
   <a id="Tizen_Data_Tdbc_IRecord_GetDateTime_" data-uid="Tizen.Data.Tdbc.IRecord.GetDateTime*"></a>
-  <h4 id="Tizen_Data_Tdbc_IRecord_GetDateTime_System_Int32_" data-uid="Tizen.Data.Tdbc.IRecord.GetDateTime(System.Int32)">GetDateTime(Int32)</h4>
+  <h4 id="Tizen_Data_Tdbc_IRecord_GetDateTime_System_Int32_" data-uid="Tizen.Data.Tdbc.IRecord.GetDateTime(System.Int32)">GetDateTime(int)</h4>
   <div class="markdown level1 summary"><p>Get datetime type value from the record with given index.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -375,7 +369,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">columnIndex</span></td>
         <td><p>The index of value.</p>
 </td>
@@ -397,16 +391,15 @@
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>11</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Data.Tdbc/Tizen.Data.Tdbc/IRecord.cs/#L116">View Source</a>
   </span>
   <a id="Tizen_Data_Tdbc_IRecord_GetDecimal_" data-uid="Tizen.Data.Tdbc.IRecord.GetDecimal*"></a>
-  <h4 id="Tizen_Data_Tdbc_IRecord_GetDecimal_System_Int32_" data-uid="Tizen.Data.Tdbc.IRecord.GetDecimal(System.Int32)">GetDecimal(Int32)</h4>
+  <h4 id="Tizen_Data_Tdbc_IRecord_GetDecimal_System_Int32_" data-uid="Tizen.Data.Tdbc.IRecord.GetDecimal(System.Int32)">GetDecimal(int)</h4>
   <div class="markdown level1 summary"><p>Get decimal type value from the record with given index.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -425,7 +418,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">columnIndex</span></td>
         <td><p>The index of value.</p>
 </td>
@@ -447,16 +440,15 @@
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>11</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Data.Tdbc/Tizen.Data.Tdbc/IRecord.cs/#L53">View Source</a>
   </span>
   <a id="Tizen_Data_Tdbc_IRecord_GetDouble_" data-uid="Tizen.Data.Tdbc.IRecord.GetDouble*"></a>
-  <h4 id="Tizen_Data_Tdbc_IRecord_GetDouble_System_Int32_" data-uid="Tizen.Data.Tdbc.IRecord.GetDouble(System.Int32)">GetDouble(Int32)</h4>
+  <h4 id="Tizen_Data_Tdbc_IRecord_GetDouble_System_Int32_" data-uid="Tizen.Data.Tdbc.IRecord.GetDouble(System.Int32)">GetDouble(int)</h4>
   <div class="markdown level1 summary"><p>Get double type value from the record with given index.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -475,7 +467,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">columnIndex</span></td>
         <td><p>The index of value.</p>
 </td>
@@ -492,21 +484,20 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><span class="xref">double</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>11</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Data.Tdbc/Tizen.Data.Tdbc/IRecord.cs/#L125">View Source</a>
   </span>
   <a id="Tizen_Data_Tdbc_IRecord_GetFloat_" data-uid="Tizen.Data.Tdbc.IRecord.GetFloat*"></a>
-  <h4 id="Tizen_Data_Tdbc_IRecord_GetFloat_System_Int32_" data-uid="Tizen.Data.Tdbc.IRecord.GetFloat(System.Int32)">GetFloat(Int32)</h4>
+  <h4 id="Tizen_Data_Tdbc_IRecord_GetFloat_System_Int32_" data-uid="Tizen.Data.Tdbc.IRecord.GetFloat(System.Int32)">GetFloat(int)</h4>
   <div class="markdown level1 summary"><p>Get float type value from the record with given index.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -525,7 +516,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">columnIndex</span></td>
         <td><p>The index of value.</p>
 </td>
@@ -542,21 +533,20 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Single</span></td>
+        <td><span class="xref">float</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>11</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Data.Tdbc/Tizen.Data.Tdbc/IRecord.cs/#L35">View Source</a>
   </span>
   <a id="Tizen_Data_Tdbc_IRecord_GetInt_" data-uid="Tizen.Data.Tdbc.IRecord.GetInt*"></a>
-  <h4 id="Tizen_Data_Tdbc_IRecord_GetInt_System_Int32_" data-uid="Tizen.Data.Tdbc.IRecord.GetInt(System.Int32)">GetInt(Int32)</h4>
+  <h4 id="Tizen_Data_Tdbc_IRecord_GetInt_System_Int32_" data-uid="Tizen.Data.Tdbc.IRecord.GetInt(System.Int32)">GetInt(int)</h4>
   <div class="markdown level1 summary"><p>Get integer type value from the record with given index.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -575,7 +565,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">columnIndex</span></td>
         <td><p>The index of value.</p>
 </td>
@@ -592,21 +582,20 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>11</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Data.Tdbc/Tizen.Data.Tdbc/IRecord.cs/#L134">View Source</a>
   </span>
   <a id="Tizen_Data_Tdbc_IRecord_GetInt16_" data-uid="Tizen.Data.Tdbc.IRecord.GetInt16*"></a>
-  <h4 id="Tizen_Data_Tdbc_IRecord_GetInt16_System_Int32_" data-uid="Tizen.Data.Tdbc.IRecord.GetInt16(System.Int32)">GetInt16(Int32)</h4>
+  <h4 id="Tizen_Data_Tdbc_IRecord_GetInt16_System_Int32_" data-uid="Tizen.Data.Tdbc.IRecord.GetInt16(System.Int32)">GetInt16(int)</h4>
   <div class="markdown level1 summary"><p>Get 16-bit signed integer type value from the record with given index.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -625,7 +614,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">columnIndex</span></td>
         <td><p>The index of value.</p>
 </td>
@@ -642,21 +631,20 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int16">Int16</a></td>
+        <td><span class="xref">short</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>11</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Data.Tdbc/Tizen.Data.Tdbc/IRecord.cs/#L143">View Source</a>
   </span>
   <a id="Tizen_Data_Tdbc_IRecord_GetInt64_" data-uid="Tizen.Data.Tdbc.IRecord.GetInt64*"></a>
-  <h4 id="Tizen_Data_Tdbc_IRecord_GetInt64_System_Int32_" data-uid="Tizen.Data.Tdbc.IRecord.GetInt64(System.Int32)">GetInt64(Int32)</h4>
+  <h4 id="Tizen_Data_Tdbc_IRecord_GetInt64_System_Int32_" data-uid="Tizen.Data.Tdbc.IRecord.GetInt64(System.Int32)">GetInt64(int)</h4>
   <div class="markdown level1 summary"><p>Get 64-bit signed integer type value from the record with given index.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -675,7 +663,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">columnIndex</span></td>
         <td><p>The index of value.</p>
 </td>
@@ -692,21 +680,20 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">Int64</a></td>
+        <td><span class="xref">long</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>11</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Data.Tdbc/Tizen.Data.Tdbc/IRecord.cs/#L161">View Source</a>
   </span>
   <a id="Tizen_Data_Tdbc_IRecord_GetName_" data-uid="Tizen.Data.Tdbc.IRecord.GetName*"></a>
-  <h4 id="Tizen_Data_Tdbc_IRecord_GetName_System_Int32_" data-uid="Tizen.Data.Tdbc.IRecord.GetName(System.Int32)">GetName(Int32)</h4>
+  <h4 id="Tizen_Data_Tdbc_IRecord_GetName_System_Int32_" data-uid="Tizen.Data.Tdbc.IRecord.GetName(System.Int32)">GetName(int)</h4>
   <div class="markdown level1 summary"><p>Get the name from the record with given index.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -725,7 +712,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">columnIndex</span></td>
         <td><p>The index of value.</p>
 </td>
@@ -742,21 +729,20 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>11</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Data.Tdbc/Tizen.Data.Tdbc/IRecord.cs/#L44">View Source</a>
   </span>
   <a id="Tizen_Data_Tdbc_IRecord_GetString_" data-uid="Tizen.Data.Tdbc.IRecord.GetString*"></a>
-  <h4 id="Tizen_Data_Tdbc_IRecord_GetString_System_Int32_" data-uid="Tizen.Data.Tdbc.IRecord.GetString(System.Int32)">GetString(Int32)</h4>
+  <h4 id="Tizen_Data_Tdbc_IRecord_GetString_System_Int32_" data-uid="Tizen.Data.Tdbc.IRecord.GetString(System.Int32)">GetString(int)</h4>
   <div class="markdown level1 summary"><p>Get string type value from the record with given index.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -775,7 +761,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">columnIndex</span></td>
         <td><p>The index of value.</p>
 </td>
@@ -792,21 +778,20 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>11</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Data.Tdbc/Tizen.Data.Tdbc/IRecord.cs/#L152">View Source</a>
   </span>
   <a id="Tizen_Data_Tdbc_IRecord_GetTime_" data-uid="Tizen.Data.Tdbc.IRecord.GetTime*"></a>
-  <h4 id="Tizen_Data_Tdbc_IRecord_GetTime_System_Int32_" data-uid="Tizen.Data.Tdbc.IRecord.GetTime(System.Int32)">GetTime(Int32)</h4>
+  <h4 id="Tizen_Data_Tdbc_IRecord_GetTime_System_Int32_" data-uid="Tizen.Data.Tdbc.IRecord.GetTime(System.Int32)">GetTime(int)</h4>
   <div class="markdown level1 summary"><p>Get time type value from the record with given index.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -825,7 +810,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">columnIndex</span></td>
         <td><p>The index of value.</p>
 </td>
@@ -847,36 +832,13 @@
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>11</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
@@ -893,7 +855,7 @@
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -901,13 +863,13 @@
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

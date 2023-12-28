@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Class FlexLayout
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class FlexLayout
-   ">
-    <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API11">
-    
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -20,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -60,19 +60,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -80,32 +80,32 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="Tizen.NUI.FlexLayout">
-  
-  
+
+
   <h1 id="Tizen_NUI_FlexLayout" data-uid="Tizen.NUI.FlexLayout" class="text-break">Class FlexLayout
-  </h1>
+</h1>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
-  
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.NUI.html">Tizen.NUI</a></dd></dl>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
-  
+
   <div class="markdown level0 summary"><p>This class implements a flex layout.
 The flex layout implementation is based on open source Facebook Yoga layout engine.
 For more information about the flex layout API and how to use it please refer to <a href="https://yogalayout.com/docs/">https://yogalayout.com/docs/</a>
 We implement the subset of the API in the class below.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class FlexLayout : LayoutGroup, ILayoutParent</code></pre>
   </div>
 
-  
+
   <dl class="attribute-list stack">
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
+        <div class="pdl"><span class="xref">object</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.LayoutItem.html">LayoutItem</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.LayoutGroup.html">LayoutGroup</a></div>
         <div><span class="xref">FlexLayout</span></div>
@@ -113,17 +113,17 @@ We implement the subset of the API in the class below.</p>
     </dd>
   </dl>
 
-  
-  
+
+
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
       <div class="pdl"><a class="xref" href="Tizen.NUI.ILayoutParent.html">ILayoutParent</a></div>
     </dd>
   </dl>
-  
+
   <h3 id="constructors">Constructors
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Layouting/FlexLayout.cs/#L391">View Source</a>
   </span>
@@ -136,13 +136,12 @@ We implement the subset of the API in the class below.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public FlexLayout()</code></pre>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>6</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="fields">Fields
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Layouting/FlexLayout.cs/#L44">View Source</a>
   </span>
@@ -169,8 +168,8 @@ We implement the subset of the API in the class below.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -199,8 +198,8 @@ We implement the subset of the API in the class below.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -229,8 +228,8 @@ We implement the subset of the API in the class below.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -259,8 +258,8 @@ We implement the subset of the API in the class below.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -289,8 +288,8 @@ We implement the subset of the API in the class below.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -319,12 +318,12 @@ We implement the subset of the API in the class below.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="properties">Properties
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Layouting/FlexLayout.cs/#L480">View Source</a>
   </span>
@@ -349,14 +348,13 @@ This only has effect when items are wrapped to multiple lines using flex wrap.</
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.NUI.FlexLayout.AlignmentType.html">FlexLayout.AlignmentType</a></td>
+        <td><a class="xref" href="Tizen.NUI.FlexLayout.html">FlexLayout</a>.<a class="xref" href="Tizen.NUI.FlexLayout.AlignmentType.html">AlignmentType</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>6</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -382,14 +380,13 @@ The direction of the main-axis which determines the direction that flex items ar
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.NUI.FlexLayout.FlexDirection.html">FlexLayout.FlexDirection</a></td>
+        <td><a class="xref" href="Tizen.NUI.FlexLayout.html">FlexLayout</a>.<a class="xref" href="Tizen.NUI.FlexLayout.FlexDirection.html">FlexDirection</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>6</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -416,14 +413,13 @@ Align items is very similar to <a class="xref" href="Tizen.NUI.FlexLayout.html#T
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.NUI.FlexLayout.AlignmentType.html">FlexLayout.AlignmentType</a></td>
+        <td><a class="xref" href="Tizen.NUI.FlexLayout.html">FlexLayout</a>.<a class="xref" href="Tizen.NUI.FlexLayout.AlignmentType.html">AlignmentType</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>6</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -451,14 +447,13 @@ or vertically within a container with <a class="xref" href="Tizen.NUI.FlexLayout
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.NUI.FlexLayout.FlexJustification.html">FlexLayout.FlexJustification</a></td>
+        <td><a class="xref" href="Tizen.NUI.FlexLayout.html">FlexLayout</a>.<a class="xref" href="Tizen.NUI.FlexLayout.FlexJustification.html">FlexJustification</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>6</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -487,18 +482,17 @@ When wrapping lines <a class="xref" href="Tizen.NUI.FlexLayout.html#Tizen_NUI_Fl
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.NUI.FlexLayout.FlexWrapType.html">FlexLayout.FlexWrapType</a></td>
+        <td><a class="xref" href="Tizen.NUI.FlexLayout.html">FlexLayout</a>.<a class="xref" href="Tizen.NUI.FlexLayout.FlexWrapType.html">FlexWrapType</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>6</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="methods">Methods
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Layouting/FlexLayout.cs/#L285">View Source</a>
   </span>
@@ -510,18 +504,17 @@ When wrapping lines <a class="xref" href="Tizen.NUI.FlexLayout.html#Tizen_NUI_Fl
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>6</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Layouting/FlexLayout.cs/#L301">View Source</a>
   </span>
   <a id="Tizen_NUI_FlexLayout_Dispose_" data-uid="Tizen.NUI.FlexLayout.Dispose*"></a>
-  <h4 id="Tizen_NUI_FlexLayout_Dispose_System_Boolean_" data-uid="Tizen.NUI.FlexLayout.Dispose(System.Boolean)">Dispose(Boolean)</h4>
+  <h4 id="Tizen_NUI_FlexLayout_Dispose_System_Boolean_" data-uid="Tizen.NUI.FlexLayout.Dispose(System.Boolean)">Dispose(bool)</h4>
   <div class="markdown level1 summary"><p>Hidden API (Inhouse API).
-Dispose. </p>
+Dispose.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -539,7 +532,7 @@ Dispose. </p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="xref">bool</span></td>
         <td><span class="parametername">disposing</span></td>
         <td><p>true in order to free managed objects</p>
 </td>
@@ -547,13 +540,13 @@ Dispose. </p>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Tizen.NUI.LayoutItem.html#Tizen_NUI_LayoutItem_Dispose_System_Boolean_">LayoutItem.Dispose(Boolean)</a></div>
+  <div><a class="xref" href="Tizen.NUI.LayoutItem.html#Tizen_NUI_LayoutItem_Dispose_System_Boolean_">LayoutItem.Dispose(bool)</a></div>
   <h5 id="Tizen_NUI_FlexLayout_Dispose_System_Boolean__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Following the guide of <a href="https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose">https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose</a>.
 This will replace &quot;protected virtual void Dispose(DisposeTypes type)&quot; which is exactly same in functionality.</p>
 </div>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -584,26 +577,25 @@ This will replace &quot;protected virtual void Dispose(DisposeTypes type)&quot; 
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>6</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Layouting/FlexLayout.cs/#L280">View Source</a>
   </span>
   <a id="Tizen_NUI_FlexLayout_Finalize_" data-uid="Tizen.NUI.FlexLayout.Finalize*"></a>
-  <h4 id="Tizen_NUI_FlexLayout_Finalize" data-uid="Tizen.NUI.FlexLayout.Finalize">Finalize()</h4>
+  <h4 id="Tizen_NUI_FlexLayout_Finalize" data-uid="Tizen.NUI.FlexLayout.Finalize">~FlexLayout()</h4>
   <div class="markdown level1 summary"><p>Hidden API (Inhouse API).
 Destructor.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void Finalize()</code></pre>
+    <pre><code class="lang-csharp hljs">protected ~FlexLayout()</code></pre>
   </div>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -646,7 +638,7 @@ Destructor.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.NUI.FlexLayout.AlignmentType.html">FlexLayout.AlignmentType</a></td>
+        <td><a class="xref" href="Tizen.NUI.FlexLayout.html">FlexLayout</a>.<a class="xref" href="Tizen.NUI.FlexLayout.AlignmentType.html">AlignmentType</a></td>
         <td><p>The value of alignment self.</p>
 </td>
       </tr>
@@ -654,11 +646,10 @@ Destructor.</p>
   </table>
   <h5 id="Tizen_NUI_FlexLayout_GetFlexAlignmentSelf_Tizen_NUI_BaseComponents_View__seealso">See Also</h5>
   <div class="seealso">
-      <div><a class="xref" href="Tizen.NUI.FlexLayout.html#Tizen_NUI_FlexLayout_SetFlexAlignmentSelf_Tizen_NUI_BaseComponents_View_Tizen_NUI_FlexLayout_AlignmentType_">SetFlexAlignmentSelf(View, FlexLayout.AlignmentType)</a></div>
+      <div><a class="xref" href="Tizen.NUI.FlexLayout.html#Tizen_NUI_FlexLayout_SetFlexAlignmentSelf_Tizen_NUI_BaseComponents_View_Tizen_NUI_FlexLayout_AlignmentType_">SetFlexAlignmentSelf(View, AlignmentType)</a></div>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>8</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -701,7 +692,7 @@ Destructor.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Single</span></td>
+        <td><span class="xref">float</span></td>
         <td><p>The value of aspect ratio</p>
 </td>
       </tr>
@@ -709,11 +700,10 @@ Destructor.</p>
   </table>
   <h5 id="Tizen_NUI_FlexLayout_GetFlexAspectRatio_Tizen_NUI_BaseComponents_View__seealso">See Also</h5>
   <div class="seealso">
-      <div><a class="xref" href="Tizen.NUI.FlexLayout.html#Tizen_NUI_FlexLayout_SetFlexAspectRatio_Tizen_NUI_BaseComponents_View_System_Single_">SetFlexAspectRatio(View, Single)</a></div>
+      <div><a class="xref" href="Tizen.NUI.FlexLayout.html#Tizen_NUI_FlexLayout_SetFlexAspectRatio_Tizen_NUI_BaseComponents_View_System_Single_">SetFlexAspectRatio(View, float)</a></div>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>8</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -756,7 +746,7 @@ Destructor.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Single</span></td>
+        <td><span class="xref">float</span></td>
         <td><p>The value of basis</p>
 </td>
       </tr>
@@ -764,11 +754,10 @@ Destructor.</p>
   </table>
   <h5 id="Tizen_NUI_FlexLayout_GetFlexBasis_Tizen_NUI_BaseComponents_View__seealso">See Also</h5>
   <div class="seealso">
-      <div><a class="xref" href="Tizen.NUI.FlexLayout.html#Tizen_NUI_FlexLayout_SetFlexBasis_Tizen_NUI_BaseComponents_View_System_Single_">SetFlexBasis(View, Single)</a></div>
+      <div><a class="xref" href="Tizen.NUI.FlexLayout.html#Tizen_NUI_FlexLayout_SetFlexBasis_Tizen_NUI_BaseComponents_View_System_Single_">SetFlexBasis(View, float)</a></div>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>8</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -811,7 +800,7 @@ Destructor.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Single</span></td>
+        <td><span class="xref">float</span></td>
         <td><p>The value of grow</p>
 </td>
       </tr>
@@ -819,11 +808,10 @@ Destructor.</p>
   </table>
   <h5 id="Tizen_NUI_FlexLayout_GetFlexGrow_Tizen_NUI_BaseComponents_View__seealso">See Also</h5>
   <div class="seealso">
-      <div><a class="xref" href="Tizen.NUI.FlexLayout.html#Tizen_NUI_FlexLayout_SetFlexGrow_Tizen_NUI_BaseComponents_View_System_Single_">SetFlexGrow(View, Single)</a></div>
+      <div><a class="xref" href="Tizen.NUI.FlexLayout.html#Tizen_NUI_FlexLayout_SetFlexGrow_Tizen_NUI_BaseComponents_View_System_Single_">SetFlexGrow(View, float)</a></div>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>8</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -866,7 +854,7 @@ Destructor.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.NUI.FlexLayout.PositionType.html">FlexLayout.PositionType</a></td>
+        <td><a class="xref" href="Tizen.NUI.FlexLayout.html">FlexLayout</a>.<a class="xref" href="Tizen.NUI.FlexLayout.PositionType.html">PositionType</a></td>
         <td><p>The value of position type</p>
 </td>
       </tr>
@@ -874,11 +862,10 @@ Destructor.</p>
   </table>
   <h5 id="Tizen_NUI_FlexLayout_GetFlexPositionType_Tizen_NUI_BaseComponents_View__seealso">See Also</h5>
   <div class="seealso">
-      <div><a class="xref" href="Tizen.NUI.FlexLayout.html#Tizen_NUI_FlexLayout_SetFlexPositionType_Tizen_NUI_BaseComponents_View_Tizen_NUI_FlexLayout_PositionType_">SetFlexPositionType(View, FlexLayout.PositionType)</a></div>
+      <div><a class="xref" href="Tizen.NUI.FlexLayout.html#Tizen_NUI_FlexLayout_SetFlexPositionType_Tizen_NUI_BaseComponents_View_Tizen_NUI_FlexLayout_PositionType_">SetFlexPositionType(View, PositionType)</a></div>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>8</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -921,7 +908,7 @@ Destructor.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Single</span></td>
+        <td><span class="xref">float</span></td>
         <td><p>The value of shrink</p>
 </td>
       </tr>
@@ -929,11 +916,10 @@ Destructor.</p>
   </table>
   <h5 id="Tizen_NUI_FlexLayout_GetFlexShrink_Tizen_NUI_BaseComponents_View__seealso">See Also</h5>
   <div class="seealso">
-      <div><a class="xref" href="Tizen.NUI.FlexLayout.html#Tizen_NUI_FlexLayout_SetFlexShrink_Tizen_NUI_BaseComponents_View_System_Single_">SetFlexShrink(View, Single)</a></div>
+      <div><a class="xref" href="Tizen.NUI.FlexLayout.html#Tizen_NUI_FlexLayout_SetFlexShrink_Tizen_NUI_BaseComponents_View_System_Single_">SetFlexShrink(View, float)</a></div>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>8</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -942,7 +928,7 @@ Destructor.</p>
   <a id="Tizen_NUI_FlexLayout_OnChildAdd_" data-uid="Tizen.NUI.FlexLayout.OnChildAdd*"></a>
   <h4 id="Tizen_NUI_FlexLayout_OnChildAdd_Tizen_NUI_LayoutItem_" data-uid="Tizen.NUI.FlexLayout.OnChildAdd(Tizen.NUI.LayoutItem)">OnChildAdd(LayoutItem)</h4>
   <div class="markdown level1 summary"><p>Callback when child is added to container.<br>
-Derived classes can use this to set their own child properties on the child layout&apos;s owner.<br></p>
+Derived classes can use this to set their own child properties on the child layout's owner.<br></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -969,9 +955,8 @@ Derived classes can use this to set their own child properties on the child layo
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="Tizen.NUI.LayoutGroup.html#Tizen_NUI_LayoutGroup_OnChildAdd_Tizen_NUI_LayoutItem_">LayoutGroup.OnChildAdd(LayoutItem)</a></div>
-  
-  <h6><strong>API Level</strong>: <span>6</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -1006,16 +991,15 @@ Derived classes can use this to set their own child properties on the child layo
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="Tizen.NUI.LayoutGroup.html#Tizen_NUI_LayoutGroup_OnChildRemove_Tizen_NUI_LayoutItem_">LayoutGroup.OnChildRemove(LayoutItem)</a></div>
-  
-  <h6><strong>API Level</strong>: <span>6</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Layouting/FlexLayout.cs/#L797">View Source</a>
   </span>
   <a id="Tizen_NUI_FlexLayout_OnLayout_" data-uid="Tizen.NUI.FlexLayout.OnLayout*"></a>
-  <h4 id="Tizen_NUI_FlexLayout_OnLayout_System_Boolean_Tizen_NUI_LayoutLength_Tizen_NUI_LayoutLength_Tizen_NUI_LayoutLength_Tizen_NUI_LayoutLength_" data-uid="Tizen.NUI.FlexLayout.OnLayout(System.Boolean,Tizen.NUI.LayoutLength,Tizen.NUI.LayoutLength,Tizen.NUI.LayoutLength,Tizen.NUI.LayoutLength)">OnLayout(Boolean, LayoutLength, LayoutLength, LayoutLength, LayoutLength)</h4>
+  <h4 id="Tizen_NUI_FlexLayout_OnLayout_System_Boolean_Tizen_NUI_LayoutLength_Tizen_NUI_LayoutLength_Tizen_NUI_LayoutLength_Tizen_NUI_LayoutLength_" data-uid="Tizen.NUI.FlexLayout.OnLayout(System.Boolean,Tizen.NUI.LayoutLength,Tizen.NUI.LayoutLength,Tizen.NUI.LayoutLength,Tizen.NUI.LayoutLength)">OnLayout(bool, LayoutLength, LayoutLength, LayoutLength, LayoutLength)</h4>
   <div class="markdown level1 summary"><p>Assign a size and position to each of its children.<br></p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1034,7 +1018,7 @@ Derived classes can use this to set their own child properties on the child layo
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="xref">bool</span></td>
         <td><span class="parametername">changed</span></td>
         <td><p>This is a new size or position for this layout.</p>
 </td>
@@ -1066,10 +1050,9 @@ Derived classes can use this to set their own child properties on the child layo
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Tizen.NUI.LayoutGroup.html#Tizen_NUI_LayoutGroup_OnLayout_System_Boolean_Tizen_NUI_LayoutLength_Tizen_NUI_LayoutLength_Tizen_NUI_LayoutLength_Tizen_NUI_LayoutLength_">LayoutGroup.OnLayout(Boolean, LayoutLength, LayoutLength, LayoutLength, LayoutLength)</a></div>
-  
-  <h6><strong>API Level</strong>: <span>6</span></h6>
-  
+  <div><a class="xref" href="Tizen.NUI.LayoutGroup.html#Tizen_NUI_LayoutGroup_OnLayout_System_Boolean_Tizen_NUI_LayoutLength_Tizen_NUI_LayoutLength_Tizen_NUI_LayoutLength_Tizen_NUI_LayoutLength_">LayoutGroup.OnLayout(bool, LayoutLength, LayoutLength, LayoutLength, LayoutLength)</a></div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -1110,16 +1093,15 @@ Derived classes can use this to set their own child properties on the child layo
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="Tizen.NUI.LayoutGroup.html#Tizen_NUI_LayoutGroup_OnMeasure_Tizen_NUI_MeasureSpecification_Tizen_NUI_MeasureSpecification_">LayoutGroup.OnMeasure(MeasureSpecification, MeasureSpecification)</a></div>
-  
-  <h6><strong>API Level</strong>: <span>6</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Layouting/FlexLayout.cs/#L381">View Source</a>
   </span>
   <a id="Tizen_NUI_FlexLayout_ReleaseSwigCPtr_" data-uid="Tizen.NUI.FlexLayout.ReleaseSwigCPtr*"></a>
-  <h4 id="Tizen_NUI_FlexLayout_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.FlexLayout.ReleaseSwigCPtr(Tizen.System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(Runtime.InteropServices.HandleRef)</h4>
+  <h4 id="Tizen_NUI_FlexLayout_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.FlexLayout.ReleaseSwigCPtr(Tizen.System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(HandleRef)</h4>
   <div class="markdown level1 summary"><p>Hidden API (Inhouse API).
 Release swigCPtr.</p>
 </div>
@@ -1145,15 +1127,15 @@ Release swigCPtr.</p>
       </tr>
     </tbody>
   </table>
-  
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Layouting/FlexLayout.cs/#L186">View Source</a>
   </span>
   <a id="Tizen_NUI_FlexLayout_SetFlexAlignmentSelf_" data-uid="Tizen.NUI.FlexLayout.SetFlexAlignmentSelf*"></a>
-  <h4 id="Tizen_NUI_FlexLayout_SetFlexAlignmentSelf_Tizen_NUI_BaseComponents_View_Tizen_NUI_FlexLayout_AlignmentType_" data-uid="Tizen.NUI.FlexLayout.SetFlexAlignmentSelf(Tizen.NUI.BaseComponents.View,Tizen.NUI.FlexLayout.AlignmentType)">SetFlexAlignmentSelf(View, FlexLayout.AlignmentType)</h4>
+  <h4 id="Tizen_NUI_FlexLayout_SetFlexAlignmentSelf_Tizen_NUI_BaseComponents_View_Tizen_NUI_FlexLayout_AlignmentType_" data-uid="Tizen.NUI.FlexLayout.SetFlexAlignmentSelf(Tizen.NUI.BaseComponents.View,Tizen.NUI.FlexLayout.AlignmentType)">SetFlexAlignmentSelf(View, AlignmentType)</h4>
   <div class="markdown level1 summary"><p>Sets the alignment self of the child view.<br>
 Alignment self has the same options and effect as <a class="xref" href="Tizen.NUI.FlexLayout.html#Tizen_NUI_FlexLayout_ItemsAlignment">ItemsAlignment</a> but instead of affecting the children within a container,
 you can apply this property to a single child to change its alignment within its parent.<br>
@@ -1181,23 +1163,22 @@ Alignment self overrides any option set by the parent with <a class="xref" href=
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="Tizen.NUI.FlexLayout.AlignmentType.html">FlexLayout.AlignmentType</a></td>
+        <td><a class="xref" href="Tizen.NUI.FlexLayout.html">FlexLayout</a>.<a class="xref" href="Tizen.NUI.FlexLayout.AlignmentType.html">AlignmentType</a></td>
         <td><span class="parametername">value</span></td>
         <td><p>The value of alignment self.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>8</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Layouting/FlexLayout.cs/#L214">View Source</a>
   </span>
   <a id="Tizen_NUI_FlexLayout_SetFlexAspectRatio_" data-uid="Tizen.NUI.FlexLayout.SetFlexAspectRatio*"></a>
-  <h4 id="Tizen_NUI_FlexLayout_SetFlexAspectRatio_Tizen_NUI_BaseComponents_View_System_Single_" data-uid="Tizen.NUI.FlexLayout.SetFlexAspectRatio(Tizen.NUI.BaseComponents.View,System.Single)">SetFlexAspectRatio(View, Single)</h4>
+  <h4 id="Tizen_NUI_FlexLayout_SetFlexAspectRatio_Tizen_NUI_BaseComponents_View_System_Single_" data-uid="Tizen.NUI.FlexLayout.SetFlexAspectRatio(Tizen.NUI.BaseComponents.View,System.Single)">SetFlexAspectRatio(View, float)</h4>
   <div class="markdown level1 summary"><p>Sets the aspect ratio of the child view.
 Aspect ratio Defines as the ratio between the width and the height of a node
 e.g. if a node has an aspect ratio of 2 then its width is twice the size of its height.<br>
@@ -1225,23 +1206,22 @@ Aspect ratio accepts any floating point value &gt; 0. this has higher priority t
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Single</span></td>
+        <td><span class="xref">float</span></td>
         <td><span class="parametername">value</span></td>
         <td><p>The value of aspect ratio</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>8</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Layouting/FlexLayout.cs/#L228">View Source</a>
   </span>
   <a id="Tizen_NUI_FlexLayout_SetFlexBasis_" data-uid="Tizen.NUI.FlexLayout.SetFlexBasis*"></a>
-  <h4 id="Tizen_NUI_FlexLayout_SetFlexBasis_Tizen_NUI_BaseComponents_View_System_Single_" data-uid="Tizen.NUI.FlexLayout.SetFlexBasis(Tizen.NUI.BaseComponents.View,System.Single)">SetFlexBasis(View, Single)</h4>
+  <h4 id="Tizen_NUI_FlexLayout_SetFlexBasis_Tizen_NUI_BaseComponents_View_System_Single_" data-uid="Tizen.NUI.FlexLayout.SetFlexBasis(Tizen.NUI.BaseComponents.View,System.Single)">SetFlexBasis(View, float)</h4>
   <div class="markdown level1 summary"><p>Sets the flex basis of the child view.
 Flex basis is an axis-independent way of providing the default size of an item along the main axis.<br>
 Setting the flex basis of a child is similar to setting the width of that child if its parent is a container with <a class="xref" href="Tizen.NUI.FlexLayout.FlexDirection.html#Tizen_NUI_FlexLayout_FlexDirection_Row">Row</a>
@@ -1270,28 +1250,27 @@ The flex basis of an item is the default size of that item, the size of the item
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Single</span></td>
+        <td><span class="xref">float</span></td>
         <td><span class="parametername">value</span></td>
         <td><p>The value of basis</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>8</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Layouting/FlexLayout.cs/#L256">View Source</a>
   </span>
   <a id="Tizen_NUI_FlexLayout_SetFlexGrow_" data-uid="Tizen.NUI.FlexLayout.SetFlexGrow*"></a>
-  <h4 id="Tizen_NUI_FlexLayout_SetFlexGrow_Tizen_NUI_BaseComponents_View_System_Single_" data-uid="Tizen.NUI.FlexLayout.SetFlexGrow(Tizen.NUI.BaseComponents.View,System.Single)">SetFlexGrow(View, Single)</h4>
+  <h4 id="Tizen_NUI_FlexLayout_SetFlexGrow_Tizen_NUI_BaseComponents_View_System_Single_" data-uid="Tizen.NUI.FlexLayout.SetFlexGrow(Tizen.NUI.BaseComponents.View,System.Single)">SetFlexGrow(View, float)</h4>
   <div class="markdown level1 summary"><p>Sets the grow of the child view.
 Flex grow describes how any space within a container should be distributed among its children along the main axis.
 After laying out its children, a container will distribute any remaining space according to the flex grow values specified by its children.<br>
 Flex grow accepts any floating point value &gt;= 0, with 0 being the default value.<br>
-A container will distribute any remaining space among its children weighted by the child&apos;s flex grow value.</p>
+A container will distribute any remaining space among its children weighted by the child's flex grow value.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1315,28 +1294,27 @@ A container will distribute any remaining space among its children weighted by t
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Single</span></td>
+        <td><span class="xref">float</span></td>
         <td><span class="parametername">value</span></td>
         <td><p>The value of flex</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>8</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Layouting/FlexLayout.cs/#L201">View Source</a>
   </span>
   <a id="Tizen_NUI_FlexLayout_SetFlexPositionType_" data-uid="Tizen.NUI.FlexLayout.SetFlexPositionType*"></a>
-  <h4 id="Tizen_NUI_FlexLayout_SetFlexPositionType_Tizen_NUI_BaseComponents_View_Tizen_NUI_FlexLayout_PositionType_" data-uid="Tizen.NUI.FlexLayout.SetFlexPositionType(Tizen.NUI.BaseComponents.View,Tizen.NUI.FlexLayout.PositionType)">SetFlexPositionType(View, FlexLayout.PositionType)</h4>
+  <h4 id="Tizen_NUI_FlexLayout_SetFlexPositionType_Tizen_NUI_BaseComponents_View_Tizen_NUI_FlexLayout_PositionType_" data-uid="Tizen.NUI.FlexLayout.SetFlexPositionType(Tizen.NUI.BaseComponents.View,Tizen.NUI.FlexLayout.PositionType)">SetFlexPositionType(View, PositionType)</h4>
   <div class="markdown level1 summary"><p>Sets the position type of the child view.<br>
 The position type of an element defines how it is positioned within its parent.
 By default a child is positioned relatively. This means a child is positioned according to the normal flow of the layout,
 and then offset relative to that position based on the values of <a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_Margin">Margin</a>.<br>
-When positioned absolutely an element doesn&apos;t take part in the normal layout flow.
+When positioned absolutely an element doesn't take part in the normal layout flow.
 It is instead laid out independent of its siblings. The position is determined based on the <a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_Margin">Margin</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1361,28 +1339,27 @@ It is instead laid out independent of its siblings. The position is determined b
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="Tizen.NUI.FlexLayout.PositionType.html">FlexLayout.PositionType</a></td>
+        <td><a class="xref" href="Tizen.NUI.FlexLayout.html">FlexLayout</a>.<a class="xref" href="Tizen.NUI.FlexLayout.PositionType.html">PositionType</a></td>
         <td><span class="parametername">value</span></td>
         <td><p>The value of position type.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>8</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Layouting/FlexLayout.cs/#L242">View Source</a>
   </span>
   <a id="Tizen_NUI_FlexLayout_SetFlexShrink_" data-uid="Tizen.NUI.FlexLayout.SetFlexShrink*"></a>
-  <h4 id="Tizen_NUI_FlexLayout_SetFlexShrink_Tizen_NUI_BaseComponents_View_System_Single_" data-uid="Tizen.NUI.FlexLayout.SetFlexShrink(Tizen.NUI.BaseComponents.View,System.Single)">SetFlexShrink(View, Single)</h4>
+  <h4 id="Tizen_NUI_FlexLayout_SetFlexShrink_Tizen_NUI_BaseComponents_View_System_Single_" data-uid="Tizen.NUI.FlexLayout.SetFlexShrink(Tizen.NUI.BaseComponents.View,System.Single)">SetFlexShrink(View, float)</h4>
   <div class="markdown level1 summary"><p>Sets the flex shrink of the child view.
 Flex shrink describes how to shrink children along the main axis in the case that the total size of the children overflow the size of the container on the main axis.<br>
 Flex shrink is very similar to flex grow and can be thought of in the same way if any overflowing size is considered to be negative remaining space.
 These two properties also work well together by allowing children to grow and shrink as needed.<br>
-Flex shrink accepts any floating point value &gt;= 0, with 1 being the default value. A container will shrink its children weighted by the child&apos;s flex shrink value.</p>
+Flex shrink accepts any floating point value &gt;= 0, with 1 being the default value. A container will shrink its children weighted by the child's flex shrink value.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1406,16 +1383,15 @@ Flex shrink accepts any floating point value &gt;= 0, with 1 being the default v
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Single</span></td>
+        <td><span class="xref">float</span></td>
         <td><span class="parametername">value</span></td>
         <td><p>The value of shrink</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>8</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="implements">Implements</h3>
@@ -1424,29 +1400,29 @@ Flex shrink accepts any floating point value &gt;= 0, with 1 being the default v
   </div>
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
   </div>
   <div>
       <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
   </div>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
   </div>
   <div>
       <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
   </div>
   <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
@@ -1463,7 +1439,7 @@ Flex shrink accepts any floating point value &gt;= 0, with 1 being the default v
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -1471,13 +1447,13 @@ Flex shrink accepts any floating point value &gt;= 0, with 1 being the default v
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

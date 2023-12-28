@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Class Renderer
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Renderer
-   ">
-    <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API10">
-    
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API11">
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -20,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -60,19 +60,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -80,32 +80,31 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="Tizen.NUI.Renderer">
-  
-  
+
+
   <h1 id="Tizen_NUI_Renderer" data-uid="Tizen.NUI.Renderer" class="text-break">Class Renderer
-  </h1>
+</h1>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
-  
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.NUI.html">Tizen.NUI</a></dd></dl>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
-  <dl class="attribute-list"><dt>API Level:</dt><dd><span>3</span></dd></dl>
-  
+
   <div class="markdown level0 summary"><p>Renderer is a handle to an object used to show content by combining a Geometry, a TextureSet and a shader.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  
+
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Renderer : Animatable, INotifyPropertyChanged, IDynamicResourceHandler, IElement, INameScope, IElementController, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class Renderer : Animatable, IDynamicResourceHandler, INameScope, System.IDisposable</code></pre>
   </div>
 
-  
+
   <dl class="attribute-list stack">
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">System.Object</span></div>
+        <div class="pdl"><span class="xref">object</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
         <div><span class="xref">Renderer</span></div>
@@ -113,20 +112,21 @@
     </dd>
   </dl>
 
-  
-  
+
+
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
       <div class="pdl"><span class="xref">System.IDisposable</span></div>
     </dd>
   </dl>
-  
+
   <h3 id="constructors">Constructors
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L37">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L37">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer__ctor_" data-uid="Tizen.NUI.Renderer.#ctor*"></a>
   <h4 id="Tizen_NUI_Renderer__ctor_Tizen_NUI_Geometry_Tizen_NUI_Shader_" data-uid="Tizen.NUI.Renderer.#ctor(Tizen.NUI.Geometry,Tizen.NUI.Shader)">Renderer(Geometry, Shader)</h4>
@@ -159,15 +159,14 @@
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="properties">Properties
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L247">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L319">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer_BlendColor_" data-uid="Tizen.NUI.Renderer.BlendColor*"></a>
   <h4 id="Tizen_NUI_Renderer_BlendColor" data-uid="Tizen.NUI.Renderer.BlendColor">BlendColor</h4>
@@ -193,13 +192,12 @@
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L137">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L164">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer_BlendEquationAlpha_" data-uid="Tizen.NUI.Renderer.BlendEquationAlpha*"></a>
   <h4 id="Tizen_NUI_Renderer_BlendEquationAlpha" data-uid="Tizen.NUI.Renderer.BlendEquationAlpha">BlendEquationAlpha</h4>
@@ -220,18 +218,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L115">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L133">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer_BlendEquationRgb_" data-uid="Tizen.NUI.Renderer.BlendEquationRgb*"></a>
   <h4 id="Tizen_NUI_Renderer_BlendEquationRgb" data-uid="Tizen.NUI.Renderer.BlendEquationRgb">BlendEquationRgb</h4>
@@ -252,18 +249,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L225">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L288">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer_BlendFactorDestAlpha_" data-uid="Tizen.NUI.Renderer.BlendFactorDestAlpha*"></a>
   <h4 id="Tizen_NUI_Renderer_BlendFactorDestAlpha" data-uid="Tizen.NUI.Renderer.BlendFactorDestAlpha">BlendFactorDestAlpha</h4>
@@ -284,18 +280,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L181">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L226">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer_BlendFactorDestRgb_" data-uid="Tizen.NUI.Renderer.BlendFactorDestRgb*"></a>
   <h4 id="Tizen_NUI_Renderer_BlendFactorDestRgb" data-uid="Tizen.NUI.Renderer.BlendFactorDestRgb">BlendFactorDestRgb</h4>
@@ -316,18 +311,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L203">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L257">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer_BlendFactorSrcAlpha_" data-uid="Tizen.NUI.Renderer.BlendFactorSrcAlpha*"></a>
   <h4 id="Tizen_NUI_Renderer_BlendFactorSrcAlpha" data-uid="Tizen.NUI.Renderer.BlendFactorSrcAlpha">BlendFactorSrcAlpha</h4>
@@ -348,18 +342,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L159">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L195">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer_BlendFactorSrcRgb_" data-uid="Tizen.NUI.Renderer.BlendFactorSrcRgb*"></a>
   <h4 id="Tizen_NUI_Renderer_BlendFactorSrcRgb" data-uid="Tizen.NUI.Renderer.BlendFactorSrcRgb">BlendFactorSrcRgb</h4>
@@ -380,18 +373,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L93">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L102">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer_BlendMode_" data-uid="Tizen.NUI.Renderer.BlendMode*"></a>
   <h4 id="Tizen_NUI_Renderer_BlendMode" data-uid="Tizen.NUI.Renderer.BlendMode">BlendMode</h4>
@@ -412,18 +404,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L269">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L341">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer_BlendPreMultipliedAlpha_" data-uid="Tizen.NUI.Renderer.BlendPreMultipliedAlpha*"></a>
   <h4 id="Tizen_NUI_Renderer_BlendPreMultipliedAlpha" data-uid="Tizen.NUI.Renderer.BlendPreMultipliedAlpha">BlendPreMultipliedAlpha</h4>
@@ -444,18 +435,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">bool</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L357">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L438">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer_DepthFunction_" data-uid="Tizen.NUI.Renderer.DepthFunction*"></a>
   <h4 id="Tizen_NUI_Renderer_DepthFunction" data-uid="Tizen.NUI.Renderer.DepthFunction">DepthFunction</h4>
@@ -476,18 +466,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L49">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L49">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer_DepthIndex_" data-uid="Tizen.NUI.Renderer.DepthIndex*"></a>
   <h4 id="Tizen_NUI_Renderer_DepthIndex" data-uid="Tizen.NUI.Renderer.DepthIndex">DepthIndex</h4>
@@ -508,18 +497,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L379">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L469">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer_DepthTestMode_" data-uid="Tizen.NUI.Renderer.DepthTestMode*"></a>
   <h4 id="Tizen_NUI_Renderer_DepthTestMode" data-uid="Tizen.NUI.Renderer.DepthTestMode">DepthTestMode</h4>
@@ -540,18 +528,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L335">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L407">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer_DepthWriteMode_" data-uid="Tizen.NUI.Renderer.DepthWriteMode*"></a>
   <h4 id="Tizen_NUI_Renderer_DepthWriteMode" data-uid="Tizen.NUI.Renderer.DepthWriteMode">DepthWriteMode</h4>
@@ -572,18 +559,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L71">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L71">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer_FaceCullingMode_" data-uid="Tizen.NUI.Renderer.FaceCullingMode*"></a>
   <h4 id="Tizen_NUI_Renderer_FaceCullingMode" data-uid="Tizen.NUI.Renderer.FaceCullingMode">FaceCullingMode</h4>
@@ -604,18 +590,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L313">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L385">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer_IndexRangeCount_" data-uid="Tizen.NUI.Renderer.IndexRangeCount*"></a>
   <h4 id="Tizen_NUI_Renderer_IndexRangeCount" data-uid="Tizen.NUI.Renderer.IndexRangeCount">IndexRangeCount</h4>
@@ -636,18 +621,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L291">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L363">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer_IndexRangeFirst_" data-uid="Tizen.NUI.Renderer.IndexRangeFirst*"></a>
   <h4 id="Tizen_NUI_Renderer_IndexRangeFirst" data-uid="Tizen.NUI.Renderer.IndexRangeFirst">IndexRangeFirst</h4>
@@ -668,18 +652,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L401">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L500">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer_RenderMode_" data-uid="Tizen.NUI.Renderer.RenderMode*"></a>
   <h4 id="Tizen_NUI_Renderer_RenderMode" data-uid="Tizen.NUI.Renderer.RenderMode">RenderMode</h4>
@@ -700,18 +683,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L423">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L531">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer_StencilFunction_" data-uid="Tizen.NUI.Renderer.StencilFunction*"></a>
   <h4 id="Tizen_NUI_Renderer_StencilFunction" data-uid="Tizen.NUI.Renderer.StencilFunction">StencilFunction</h4>
@@ -732,18 +714,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L445">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L562">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer_StencilFunctionMask_" data-uid="Tizen.NUI.Renderer.StencilFunctionMask*"></a>
   <h4 id="Tizen_NUI_Renderer_StencilFunctionMask" data-uid="Tizen.NUI.Renderer.StencilFunctionMask">StencilFunctionMask</h4>
@@ -764,18 +745,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L467">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L584">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer_StencilFunctionReference_" data-uid="Tizen.NUI.Renderer.StencilFunctionReference*"></a>
   <h4 id="Tizen_NUI_Renderer_StencilFunctionReference" data-uid="Tizen.NUI.Renderer.StencilFunctionReference">StencilFunctionReference</h4>
@@ -796,18 +776,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L489">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L606">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer_StencilMask_" data-uid="Tizen.NUI.Renderer.StencilMask*"></a>
   <h4 id="Tizen_NUI_Renderer_StencilMask" data-uid="Tizen.NUI.Renderer.StencilMask">StencilMask</h4>
@@ -828,18 +807,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L511">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L628">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer_StencilOperationOnFail_" data-uid="Tizen.NUI.Renderer.StencilOperationOnFail*"></a>
   <h4 id="Tizen_NUI_Renderer_StencilOperationOnFail" data-uid="Tizen.NUI.Renderer.StencilOperationOnFail">StencilOperationOnFail</h4>
@@ -860,18 +838,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L533">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L659">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer_StencilOperationOnZFail_" data-uid="Tizen.NUI.Renderer.StencilOperationOnZFail*"></a>
   <h4 id="Tizen_NUI_Renderer_StencilOperationOnZFail" data-uid="Tizen.NUI.Renderer.StencilOperationOnZFail">StencilOperationOnZFail</h4>
@@ -892,18 +869,17 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L555">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L691">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer_StencilOperationOnZPass_" data-uid="Tizen.NUI.Renderer.StencilOperationOnZPass*"></a>
   <h4 id="Tizen_NUI_Renderer_StencilOperationOnZPass" data-uid="Tizen.NUI.Renderer.StencilOperationOnZPass">StencilOperationOnZPass</h4>
@@ -924,20 +900,19 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="methods">Methods
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L589">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L734">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer_GetGeometry_" data-uid="Tizen.NUI.Renderer.GetGeometry*"></a>
   <h4 id="Tizen_NUI_Renderer_GetGeometry" data-uid="Tizen.NUI.Renderer.GetGeometry">GetGeometry()</h4>
@@ -964,13 +939,12 @@
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L657">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L802">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer_GetShader_" data-uid="Tizen.NUI.Renderer.GetShader*"></a>
   <h4 id="Tizen_NUI_Renderer_GetShader" data-uid="Tizen.NUI.Renderer.GetShader">GetShader()</h4>
@@ -997,13 +971,12 @@
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L622">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L767">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer_GetTextures_" data-uid="Tizen.NUI.Renderer.GetTextures*"></a>
   <h4 id="Tizen_NUI_Renderer_GetTextures" data-uid="Tizen.NUI.Renderer.GetTextures">GetTextures()</h4>
@@ -1030,13 +1003,46 @@
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L578">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L812">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Renderer_ReleaseSwigCPtr_" data-uid="Tizen.NUI.Renderer.ReleaseSwigCPtr*"></a>
+  <h4 id="Tizen_NUI_Renderer_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.Renderer.ReleaseSwigCPtr(Tizen.System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(HandleRef)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void ReleaseSwigCPtr(Runtime.InteropServices.HandleRef swigCPtr)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Tizen.System.Runtime.InteropServices.HandleRef</span></td>
+        <td><span class="parametername">swigCPtr</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Animatable.html#Tizen_NUI_Animatable_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_">Animatable.ReleaseSwigCPtr(Runtime.InteropServices.HandleRef)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L723">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer_SetGeometry_" data-uid="Tizen.NUI.Renderer.SetGeometry*"></a>
   <h4 id="Tizen_NUI_Renderer_SetGeometry_Tizen_NUI_Geometry_" data-uid="Tizen.NUI.Renderer.SetGeometry(Tizen.NUI.Geometry)">SetGeometry(Geometry)</h4>
@@ -1065,16 +1071,15 @@
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L600">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L745">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer_SetIndexRange_" data-uid="Tizen.NUI.Renderer.SetIndexRange*"></a>
-  <h4 id="Tizen_NUI_Renderer_SetIndexRange_System_Int32_System_Int32_" data-uid="Tizen.NUI.Renderer.SetIndexRange(System.Int32,System.Int32)">SetIndexRange(Int32, Int32)</h4>
+  <h4 id="Tizen_NUI_Renderer_SetIndexRange_System_Int32_System_Int32_" data-uid="Tizen.NUI.Renderer.SetIndexRange(System.Int32,System.Int32)">SetIndexRange(int, int)</h4>
   <div class="markdown level1 summary"><p>Sets effective range of indices to draw from bound index buffer.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1093,26 +1098,25 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">firstElement</span></td>
         <td><p>The First element to draw.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
+        <td><span class="xref">int</span></td>
         <td><span class="parametername">elementsCount</span></td>
         <td><p>The number of elements to draw.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L646">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L791">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer_SetShader_" data-uid="Tizen.NUI.Renderer.SetShader*"></a>
   <h4 id="Tizen_NUI_Renderer_SetShader_Tizen_NUI_Shader_" data-uid="Tizen.NUI.Renderer.SetShader(Tizen.NUI.Shader)">SetShader(Shader)</h4>
@@ -1141,13 +1145,12 @@
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L611">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L756">View Source</a>
   </span>
   <a id="Tizen_NUI_Renderer_SetTextures_" data-uid="Tizen.NUI.Renderer.SetTextures*"></a>
   <h4 id="Tizen_NUI_Renderer_SetTextures_Tizen_NUI_TextureSet_" data-uid="Tizen.NUI.Renderer.SetTextures(Tizen.NUI.TextureSet)">SetTextures(TextureSet)</h4>
@@ -1176,27 +1179,57 @@
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
   </div>
   <div>
       <span class="xref">System.IDisposable</span>
   </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.BindableObjectExtensions.html#Tizen_NUI_Binding_BindableObjectExtensions_SetBinding_Tizen_NUI_Binding_BindableObject_Tizen_NUI_Binding_BindableProperty_System_String_Tizen_NUI_Binding_BindingMode_Tizen_NUI_Binding_IValueConverter_System_String_">BindableObjectExtensions.SetBinding(BindableObject, BindableProperty, string, BindingMode, IValueConverter, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.NameScopeExtensions.html#Tizen_NUI_Binding_NameScopeExtensions_FindByName__1_Tizen_NUI_Binding_Element_System_String_">NameScopeExtensions.FindByName&lt;T&gt;(Element, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L28" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Rendering/Renderer.cs/#L28" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -1207,7 +1240,7 @@
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -1215,13 +1248,13 @@
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

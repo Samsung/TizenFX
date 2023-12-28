@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Class Layer
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Layer
-   ">
-    <meta name="generator" content="docfx 2.56.1.0">
+ ">
+    <meta name="generator" content="docfx ">
     <meta name="version" content="API11">
-    
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -20,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -60,19 +60,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -80,39 +80,37 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="Tizen.MachineLearning.Train.Layer">
-  
-  
+
+
   <h1 id="Tizen_MachineLearning_Train_Layer" data-uid="Tizen.MachineLearning.Train.Layer" class="text-break">Class Layer
-  </h1>
+</h1>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
-  
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.MachineLearning.Train.html">Tizen.MachineLearning.Train</a></dd></dl>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<span class="xref">MachineLearning</span>.<a class="xref" href="Tizen.MachineLearning.Train.html">Train</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.MachineLearning.Train.dll</dd></dl>
-  <dl class="attribute-list"><dt>API Level:</dt><dd><span>10</span></dd></dl>
-  <dl class="attribute-list"><dt>Feature:</dt><dd><span class="tz_multiple_items"><span>http://tizen.org/feature/machine_learning.training</span></span></dd></dl>
-  
+
   <div class="markdown level0 summary"><p>Creates a neural network layer.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public class Layer : IDisposable</code></pre>
   </div>
 
-  
+
   <dl class="attribute-list stack">
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
+        <div class="pdl"><span class="xref">object</span></div>
         <div><span class="xref">Layer</span></div>
       </div>
     </dd>
   </dl>
 
-  
-  
-  
+
+
+
   <h5 id="Tizen_MachineLearning_Train_Layer_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>Use this class to create neural network layer.
 layer must be released using Dispose(), if not added to a model.
@@ -120,9 +118,9 @@ If added to a model by AddLayer method of Model, layer is available until the mo
 Dispose() must never be used.</p>
 </div>
   <h3 id="constructors">Constructors
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.MachineLearning.Train/Tizen.MachineLearning.Train/Layer.cs/#L49">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.MachineLearning.Train/Tizen.MachineLearning.Train/Layer.cs/#L49">View Source</a>
   </span>
   <a id="Tizen_MachineLearning_Train_Layer__ctor_" data-uid="Tizen.MachineLearning.Train.Layer.#ctor*"></a>
   <h4 id="Tizen_MachineLearning_Train_Layer__ctor_Tizen_MachineLearning_Train_NNTrainerLayerType_" data-uid="Tizen.MachineLearning.Train.Layer.#ctor(Tizen.MachineLearning.Train.NNTrainerLayerType)">Layer(NNTrainerLayerType)</h4>
@@ -151,15 +149,20 @@ Dispose() must never be used.</p>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>10</span></h6>
-  
+  <h5 id="Tizen_MachineLearning_Train_Layer__ctor_Tizen_MachineLearning_Train_NNTrainerLayerType__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Use this class to create neural network layer.
+layer must be released using Dispose(), if not added to a model.
+If added to a model by AddLayer method of Model, layer is available until the model is released. so
+Dispose() must never be used.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="methods">Methods
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.MachineLearning.Train/Tizen.MachineLearning.Train/Layer.cs/#L78">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.MachineLearning.Train/Tizen.MachineLearning.Train/Layer.cs/#L78">View Source</a>
   </span>
   <a id="Tizen_MachineLearning_Train_Layer_Dispose_" data-uid="Tizen.MachineLearning.Train.Layer.Dispose*"></a>
   <h4 id="Tizen_MachineLearning_Train_Layer_Dispose" data-uid="Tizen.MachineLearning.Train.Layer.Dispose">Dispose()</h4>
@@ -170,16 +173,21 @@ Dispose() must never be used.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>10</span></h6>
-  
+  <h5 id="Tizen_MachineLearning_Train_Layer_Dispose_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Use this class to create neural network layer.
+layer must be released using Dispose(), if not added to a model.
+If added to a model by AddLayer method of Model, layer is available until the model is released. so
+Dispose() must never be used.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.MachineLearning.Train/Tizen.MachineLearning.Train/Layer.cs/#L89">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.MachineLearning.Train/Tizen.MachineLearning.Train/Layer.cs/#L89">View Source</a>
   </span>
   <a id="Tizen_MachineLearning_Train_Layer_Dispose_" data-uid="Tizen.MachineLearning.Train.Layer.Dispose*"></a>
-  <h4 id="Tizen_MachineLearning_Train_Layer_Dispose_System_Boolean_" data-uid="Tizen.MachineLearning.Train.Layer.Dispose(System.Boolean)">Dispose(Boolean)</h4>
+  <h4 id="Tizen_MachineLearning_Train_Layer_Dispose_System_Boolean_" data-uid="Tizen.MachineLearning.Train.Layer.Dispose(System.Boolean)">Dispose(bool)</h4>
   <div class="markdown level1 summary"><p>Releases any unmanaged resources used by this object including opened handle.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -198,43 +206,47 @@ Dispose() must never be used.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="xref">bool</span></td>
         <td><span class="parametername">disposing</span></td>
         <td><p>If true, disposes any disposable objects. If false, does not dispose disposable objects.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>10</span></h6>
-  
+  <h5 id="Tizen_MachineLearning_Train_Layer_Dispose_System_Boolean__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Use this class to create neural network layer.
+layer must be released using Dispose(), if not added to a model.
+If added to a model by AddLayer method of Model, layer is available until the model is released. so
+Dispose() must never be used.</p>
+</div>
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.MachineLearning.Train/Tizen.MachineLearning.Train/Layer.cs/#L69">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.MachineLearning.Train/Tizen.MachineLearning.Train/Layer.cs/#L69">View Source</a>
   </span>
   <a id="Tizen_MachineLearning_Train_Layer_Finalize_" data-uid="Tizen.MachineLearning.Train.Layer.Finalize*"></a>
-  <h4 id="Tizen_MachineLearning_Train_Layer_Finalize" data-uid="Tizen.MachineLearning.Train.Layer.Finalize">Finalize()</h4>
+  <h4 id="Tizen_MachineLearning_Train_Layer_Finalize" data-uid="Tizen.MachineLearning.Train.Layer.Finalize">~Layer()</h4>
   <div class="markdown level1 summary"><p>Frees the neural network layer.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void Finalize()</code></pre>
+    <pre><code class="lang-csharp hljs">protected ~Layer()</code></pre>
   </div>
   <h5 id="Tizen_MachineLearning_Train_Layer_Finalize_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Use this method to destroy neural network layer. Fails if layer is owned by a model.</p>
 </div>
-  
-  <h6><strong>API Level</strong>: <span>10</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.MachineLearning.Train/Tizen.MachineLearning.Train/Layer.cs/#L126">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.MachineLearning.Train/Tizen.MachineLearning.Train/Layer.cs/#L126">View Source</a>
   </span>
   <a id="Tizen_MachineLearning_Train_Layer_SetProperty_" data-uid="Tizen.MachineLearning.Train.Layer.SetProperty*"></a>
-  <h4 id="Tizen_MachineLearning_Train_Layer_SetProperty_System_String___" data-uid="Tizen.MachineLearning.Train.Layer.SetProperty(System.String[])">SetProperty(String[])</h4>
+  <h4 id="Tizen_MachineLearning_Train_Layer_SetProperty_System_String___" data-uid="Tizen.MachineLearning.Train.Layer.SetProperty(System.String[])">SetProperty(params string[])</h4>
   <div class="markdown level1 summary"><p>Sets the neural network layer Property.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -253,7 +265,7 @@ Dispose() must never be used.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>[]</td>
+        <td><span class="xref">string</span>[]</td>
         <td><span class="parametername">property</span></td>
         <td><p>property for layer.</p>
 </td>
@@ -262,44 +274,43 @@ Dispose() must never be used.</p>
   </table>
   <h5 id="Tizen_MachineLearning_Train_Layer_SetProperty_System_String____remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Use this method to set neural network layer Property.
-The input format of property must be &apos;key = value&apos; format.</p>
+The input format of property must be 'key = value' format.</p>
 </div>
-  
-  <h6><strong>API Level</strong>: <span>10</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
   </div>
   <div>
       <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
   </div>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
   </div>
   <div>
       <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
   </div>
   <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.MachineLearning.Train/Tizen.MachineLearning.Train/Layer.cs/#L36" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.MachineLearning.Train/Tizen.MachineLearning.Train/Layer.cs/#L36" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -310,7 +321,7 @@ The input format of property must be &apos;key = value&apos; format.</p>
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -318,13 +329,13 @@ The input format of property must be &apos;key = value&apos; format.</p>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>

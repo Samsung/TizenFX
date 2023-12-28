@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Class Preference
-   </title>
+ </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Preference
-   ">
-    <meta name="generator" content="docfx 2.56.1.0">
+ ">
+    <meta name="generator" content="docfx ">
     <meta name="version" content="API6">
-    
+  
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../../styles/docfx.css">
@@ -20,13 +20,13 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <meta property="docfx:navrel" content="../../toc.html">
     <meta property="docfx:tocrel" content="toc.html">
-    
-    <meta property="docfx:rel" content="../../">
-    
+  
+  <meta property="docfx:rel" content="../../">
+  
   </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
       <header>
-        
+
         <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
           <div class="container">
             <div class="navbar-header">
@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              
+
               <a class="navbar-brand" href="../../index.html">
                 <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
               </a>
@@ -44,13 +44,13 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
           </div>
         </nav>
-        
+
         <div class="subnav navbar navbar-default">
           <div class="container hide-when-search" id="breadcrumb">
             <ul class="breadcrumb">
@@ -60,19 +60,19 @@
         </div>
       </header>
       <div class="container body-content">
-        
+
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-        
+
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -80,41 +80,40 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="Tizen.Applications.Preference">
-  
-  
+
+
   <h1 id="Tizen_Applications_Preference" data-uid="Tizen.Applications.Preference" class="text-break">Class Preference
-  </h1>
+</h1>
   <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
-  
-  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.Applications.html">Tizen.Applications</a></dd></dl>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Applications.html">Applications</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Applications.Preference.dll</dd></dl>
-  <dl class="attribute-list"><dt>API Level:</dt><dd><span>3</span></dd></dl>
-  
+
   <div class="markdown level0 summary"><p>The preference class provides APIs to store and retrieve an application specific data/preference. A preference is saved in the form of a key-value pair.
 Keys are always text strings and the value can be any one of the four types: integer, double, string, and boolean.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static class Preference</code></pre>
   </div>
 
-  
+
   <dl class="attribute-list stack">
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">System.Object</span></div>
+        <div class="pdl"><span class="xref">object</span></div>
         <div><span class="xref">Preference</span></div>
       </div>
     </dd>
   </dl>
 
-  
-  
-  
+
+
+
   <h3 id="properties">Properties
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L68">View Source</a>
   </span>
@@ -137,7 +136,7 @@ Keys are always text strings and the value can be any one of the four types: int
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IEnumerable</span>&lt;<span class="xref">System.String</span>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
         <td><p>The list of keys.</p>
 </td>
       </tr>
@@ -153,18 +152,17 @@ Keys are always text strings and the value can be any one of the four types: int
         Console.WriteLine(&quot;key {0}&quot;, key);
     }</code></pre>
 
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="methods">Methods
-  </h3>
+</h3>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L151">View Source</a>
   </span>
   <a id="Tizen_Applications_Preference_Contains_" data-uid="Tizen.Applications.Preference.Contains*"></a>
-  <h4 id="Tizen_Applications_Preference_Contains_System_String_" data-uid="Tizen.Applications.Preference.Contains(System.String)">Contains(String)</h4>
+  <h4 id="Tizen_Applications_Preference_Contains_System_String_" data-uid="Tizen.Applications.Preference.Contains(System.String)">Contains(string)</h4>
   <div class="markdown level1 summary"><p>Checks whether the given key exists in the preference.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -183,7 +181,7 @@ Keys are always text strings and the value can be any one of the four types: int
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">key</span></td>
         <td><p>The name of the key to check.</p>
 </td>
@@ -200,7 +198,7 @@ Keys are always text strings and the value can be any one of the four types: int
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="xref">bool</span></td>
         <td><p>True if the key exists in the preference, otherwise false.</p>
 </td>
       </tr>
@@ -230,22 +228,21 @@ Keys are always text strings and the value can be any one of the four types: int
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
+        <td><span class="xref">System.IO.IOException</span></td>
         <td><p>Thrown when the method failed due to an internal I/O error.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L251">View Source</a>
   </span>
   <a id="Tizen_Applications_Preference_Get_" data-uid="Tizen.Applications.Preference.Get*"></a>
-  <h4 id="Tizen_Applications_Preference_Get__1_System_String_" data-uid="Tizen.Applications.Preference.Get``1(System.String)">Get&lt;T&gt;(String)</h4>
+  <h4 id="Tizen_Applications_Preference_Get__1_System_String_" data-uid="Tizen.Applications.Preference.Get``1(System.String)">Get&lt;T&gt;(string)</h4>
   <div class="markdown level1 summary"><p>Gets the value of a preference item with the specified key.
 Note that this is a generic method.</p>
 </div>
@@ -265,7 +262,7 @@ Note that this is a generic method.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">key</span></td>
         <td><p>The key of the preference.</p>
 </td>
@@ -332,22 +329,21 @@ Note that this is a generic method.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
+        <td><span class="xref">System.IO.IOException</span></td>
         <td><p>Thrown when the method failed due to an internal I/O error.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L115">View Source</a>
   </span>
   <a id="Tizen_Applications_Preference_GetEventContext_" data-uid="Tizen.Applications.Preference.GetEventContext*"></a>
-  <h4 id="Tizen_Applications_Preference_GetEventContext_System_String_" data-uid="Tizen.Applications.Preference.GetEventContext(System.String)">GetEventContext(String)</h4>
+  <h4 id="Tizen_Applications_Preference_GetEventContext_System_String_" data-uid="Tizen.Applications.Preference.GetEventContext(System.String)">GetEventContext(string)</h4>
   <div class="markdown level1 summary"><p>Gets the event context for the given key.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -366,7 +362,7 @@ Note that this is a generic method.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">key</span></td>
         <td><p>The preference key.</p>
 </td>
@@ -383,7 +379,7 @@ Note that this is a generic method.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.weakreference-1">WeakReference</a>&lt;<a class="xref" href="Tizen.Applications.Preference.EventContext.html">Preference.EventContext</a>&gt;</td>
+        <td><span class="xref">System.WeakReference&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Applications.Preference.html">Preference</a>.<a class="xref" href="Tizen.Applications.Preference.EventContext.html">EventContext</a>&gt;</td>
         <td><p>The event context of respective key.</p>
 </td>
       </tr>
@@ -433,18 +429,17 @@ Note that this is a generic method.</p>
   </table>
   <h5 id="Tizen_Applications_Preference_GetEventContext_System_String__seealso">See Also</h5>
   <div class="seealso">
-      <div><a class="xref" href="Tizen.Applications.Preference.EventContext.html">Preference.EventContext</a></div>
+      <div><a class="xref" href="Tizen.Applications.Preference.html">Preference</a>.<a class="xref" href="Tizen.Applications.Preference.EventContext.html">EventContext</a></div>
   </div>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L310">View Source</a>
   </span>
   <a id="Tizen_Applications_Preference_Remove_" data-uid="Tizen.Applications.Preference.Remove*"></a>
-  <h4 id="Tizen_Applications_Preference_Remove_System_String_" data-uid="Tizen.Applications.Preference.Remove(System.String)">Remove(String)</h4>
+  <h4 id="Tizen_Applications_Preference_Remove_System_String_" data-uid="Tizen.Applications.Preference.Remove(System.String)">Remove(string)</h4>
   <div class="markdown level1 summary"><p>Removes any preference value with the given key.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -463,7 +458,7 @@ Note that this is a generic method.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">key</span></td>
         <td><p>The key to remove.</p>
 </td>
@@ -492,15 +487,14 @@ Note that this is a generic method.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
+        <td><span class="xref">System.IO.IOException</span></td>
         <td><p>Thrown when the method failed due to an internal I/O error.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
@@ -532,22 +526,21 @@ Note that this is a generic method.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
+        <td><span class="xref">System.IO.IOException</span></td>
         <td><p>Thrown when the method failed due to an internal I/O error.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Preference/Tizen.Applications/Preference.cs/#L184">View Source</a>
   </span>
   <a id="Tizen_Applications_Preference_Set_" data-uid="Tizen.Applications.Preference.Set*"></a>
-  <h4 id="Tizen_Applications_Preference_Set_System_String_System_Object_" data-uid="Tizen.Applications.Preference.Set(System.String,System.Object)">Set(String, Object)</h4>
+  <h4 id="Tizen_Applications_Preference_Set_System_String_System_Object_" data-uid="Tizen.Applications.Preference.Set(System.String,System.Object)">Set(string, object)</h4>
   <div class="markdown level1 summary"><p>Sets a key-value pair representing the preference.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -566,13 +559,13 @@ Note that this is a generic method.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">key</span></td>
         <td><p>The name of the key to create/modify.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Object</span></td>
+        <td><span class="xref">object</span></td>
         <td><span class="parametername">value</span></td>
         <td><p>The value corresponding to the key.</p>
 </td>
@@ -604,20 +597,19 @@ Data types for supported values are: integer, double, string, and bool.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.ioexception">IOException</a></td>
+        <td><span class="xref">System.IO.IOException</span></td>
         <td><p>Thrown when the method failed due to an internal I/O error.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
+
+
   <div style="margin-bottom: 15px"></div>
 
 </article>
           </div>
-          
+
           <div class="hidden-sm col-md-2" role="complementary">
             <div class="sideaffix">
               <div class="contribution">
@@ -634,7 +626,7 @@ Data types for supported values are: integer, double, string, and bool.</p>
           </div>
         </div>
       </div>
-      
+
       <footer>
         <div class="grad-bottom"></div>
         <div class="footer">
@@ -642,13 +634,13 @@ Data types for supported values are: integer, double, string, and bool.</p>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
-            
+      <span>Copyright &copy; 2016-2023 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
           </div>
         </div>
       </footer>
     </div>
-    
+
     <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>
