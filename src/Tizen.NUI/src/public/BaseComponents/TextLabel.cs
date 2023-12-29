@@ -33,7 +33,7 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class TextLabel : View
     {
-        private class TextLayout : LayoutItem
+        internal class TextLabelLayout : LayoutItem
         {
             protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
             {
@@ -1659,7 +1659,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal override LayoutItem CreateDefaultLayout()
         {
-            return new TextLayout();
+            return new TextLabelLayout();
         }
 
         /// <summary>
