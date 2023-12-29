@@ -2832,7 +2832,7 @@ namespace Tizen.NUI.BaseComponents
             GrabHandleColor = new Color(r, g, b, a);
         }
 
-        private class TextFieldLayout : LayoutItem
+        internal class TextFieldLayout : LayoutItem
         {
             protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
             {
