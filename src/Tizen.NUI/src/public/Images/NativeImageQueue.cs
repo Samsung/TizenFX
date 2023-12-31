@@ -87,7 +87,22 @@ namespace Tizen.NUI
         /// <param name="colorFormat">A color format of queue.</param>
         /// <returns>A NativeImageQueue.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public NativeImageQueue(uint width, uint height, ColorFormat colorFormat) : this(Interop.NativeImageQueue.NewHandle(width, height, (int)colorFormat), true)
+        public NativeImageQueue(uint width, uint height, ColorFormat colorFormat) : this(0, width, height, colorFormat)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Creates an initialized NativeImageQueue with queue count and size and color format.
+        /// </summary>
+        /// <remarks>Since queueCount can increase the memory usage, we recommened queueCount value is less or equal than 3.</remarks>
+        /// <param name="queueCount">The number of queue count. Use system default value if it is 0.</param>
+        /// <param name="width">A Width of queue.</param>
+        /// <param name="height">A Height of queue.</param>
+        /// <param name="colorFormat">A color format of queue.</param>
+        /// <returns>A NativeImageQueue.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public NativeImageQueue(uint queueCount, uint width, uint height, ColorFormat colorFormat) : this(Interop.NativeImageQueue.NewHandle(queueCount, width, height, (int)colorFormat), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -95,6 +110,18 @@ namespace Tizen.NUI
         internal NativeImageQueue(IntPtr cPtr, bool cMemoryOwn) : base(Interop.NativeImageQueue.Get(cPtr), cMemoryOwn)
         {
             handle = cPtr;
+        }
+
+        /// <summary>
+        /// The number of queue.
+        /// </summary>
+        /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint GetQueueCount()
+        {
+            uint ret = Interop.NativeImageQueue.GetQueueCount(this.SwigCPtr.Handle);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return ret;
         }
 
         /// <summary>
