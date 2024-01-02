@@ -19,6 +19,7 @@ namespace Tizen.NUI.Scene3D
     {
         internal static partial class Libraries
         {
+            public const string Lib = "libdali2-csharp-binder.so";
             public const string Scene3D = "libdali2-csharp-binder-scene3d.so";
         }
     }
