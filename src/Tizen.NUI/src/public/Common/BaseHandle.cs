@@ -59,8 +59,9 @@ namespace Tizen.NUI
         /// Create an instance of BaseHandle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public BaseHandle() : this(Interop.BaseHandle.NewBaseHandle())
+        public BaseHandle() : this(Interop.BaseHandle.NewBaseHandle(), true, false)
         {
+            // Note : Empty BaseHandle instance don't need to be register in Registry.
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -69,8 +70,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="handle">The BaseHandle instance.</param>
         /// <since_tizen> 3 </since_tizen>
-        public BaseHandle(BaseHandle handle) : this(Interop.BaseHandle.NewBaseHandle(BaseHandle.getCPtr(handle)))
+        public BaseHandle(BaseHandle handle) : this(Interop.BaseHandle.NewBaseHandle(BaseHandle.getCPtr(handle)), true, false)
         {
+            // Note : Copyed BaseHandle instance don't need to be register in Registry.
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -89,7 +91,10 @@ namespace Tizen.NUI
             if (registerMe)
             {
                 // Register this instance of BaseHandle in the registry.
-                Registry.Register(this);
+                if (!Registry.Register(this))
+                {
+                    registerMe = false;
+                }
             }
 
             disposeDebuggingCtor();
@@ -111,7 +116,10 @@ namespace Tizen.NUI
             if (registerMe)
             {
                 // Register this instance of BaseHandle in the registry.
-                Registry.Register(this);
+                if (!Registry.Register(this))
+                {
+                    registerMe = false;
+                }
             }
 
             disposeDebuggingCtor();
@@ -131,7 +139,10 @@ namespace Tizen.NUI
             if (registerMe)
             {
                 // Register this instance of BaseHandle in the registry.
-                Registry.Register(this);
+                if (!Registry.Register(this))
+                {
+                    registerMe = false;
+                }
             }
 
             disposeDebuggingCtor();

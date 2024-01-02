@@ -61,6 +61,10 @@ namespace Tizen.NUI.BaseComponents
             currentStates.redrawInScalingDown = true;
             currentStates.desiredWidth = 0;
             currentStates.desiredHeight = 0;
+            currentStates.synchronousLoading = true;
+
+            // Notify to base ImageView cache that default synchronousLoading for lottie file is true.
+            base.SynchronousLoading = currentStates.synchronousLoading;
 
             // Set changed flag as true when initalized state.
             // After some properties change, LottieAnimationView.UpdateImage will apply these inital values.
@@ -103,6 +107,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(bool disposing)
         {
+            // Note : We can clean dictionaries even this API called from GC Thread.
             CleanCallbackDictionaries();
             base.Dispose(disposing);
         }
@@ -149,6 +154,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 // Reset cached infomations.
                 currentStates.contentInfo = null;
+                currentStates.markerInfo = null;
                 currentStates.mark1 = null;
                 currentStates.mark2 = null;
                 currentStates.framePlayRangeMin = -1;
@@ -168,13 +174,15 @@ namespace Tizen.NUI.BaseComponents
                 using PropertyValue stopAction = new PropertyValue((int)currentStates.stopEndAction);
                 using PropertyValue loopMode = new PropertyValue((int)currentStates.loopMode);
                 using PropertyValue redrawInScalingDown = new PropertyValue(currentStates.redrawInScalingDown);
+                using PropertyValue synchronousLoading = new PropertyValue(currentStates.synchronousLoading);
 
                 map.Add(Visual.Property.Type, type)
                     .Add(ImageVisualProperty.URL, url)
                     .Add(ImageVisualProperty.LoopCount, loopCnt)
                     .Add(ImageVisualProperty.StopBehavior, stopAction)
                     .Add(ImageVisualProperty.LoopingMode, loopMode)
-                    .Add(ImageVisualProperty.RedrawInScalingDown, redrawInScalingDown);
+                    .Add(ImageVisualProperty.RedrawInScalingDown, redrawInScalingDown)
+                    .Add(ImageVisualProperty.SynchronousLoading, synchronousLoading);
 
                 if (currentStates.desiredWidth > 0)
                 {
@@ -242,6 +250,24 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Gets or sets the SynchronousLoading for LottieAnimationView<br />
+        /// We should set it before setup ResourceUrl, URL property.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new bool SynchronousLoading
+        {
+            get
+            {
+                return currentStates.synchronousLoading;
+            }
+            set
+            {
+                currentStates.synchronousLoading = value;
+                base.SynchronousLoading = currentStates.synchronousLoading;
+            }
+        }
+
+        /// <summary>
         /// Gets the playing state
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
@@ -262,7 +288,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Get the number of total frames
+        /// Get the number of total frames.
+        /// If resouce is still not be loaded, or invalid resource, the value is 0.
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
         public int TotalFrame
@@ -270,12 +297,17 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 int ret = currentStates.totalFrame;
-                if (ret == -1)
+                if (ret <= 0)
                 {
                     Interop.View.InternalRetrievingVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.TotalFrameNumber, out ret);
 
                     currentStates.totalFrame = ret;
                     NUILog.Debug($"TotalFrameNumber get! ret={ret}");
+
+                    if (ret <= 0)
+                    {
+                        Tizen.Log.Error("NUI", $"Fail to get TotalFrame. Maybe file is not loaded yet, or invalid url used. url : {currentStates.url}\n");
+                    }
                 }
                 return ret;
             }
@@ -521,6 +553,10 @@ namespace Tizen.NUI.BaseComponents
                 currentStates.framePlayRangeMin = minFrame;
                 currentStates.framePlayRangeMax = maxFrame;
 
+                // Remove marker information.
+                currentStates.mark1 = null;
+                currentStates.mark2 = null;
+
                 Interop.View.InternalUpdateVisualPropertyIntPair(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.PlayRange, currentStates.framePlayRangeMin, currentStates.framePlayRangeMax);
 
                 NUILog.Debug($"  [{GetId()}] currentStates.min:({currentStates.framePlayRangeMin}, max:{currentStates.framePlayRangeMax})>");
@@ -580,38 +616,41 @@ namespace Tizen.NUI.BaseComponents
             PropertyMap imageMap = base.Image;
             if (imageMap != null)
             {
-                PropertyValue val = imageMap.Find(ImageVisualProperty.ContentInfo);
-                PropertyMap contentMap = new PropertyMap();
-                if (val?.Get(ref contentMap) == true)
+                if (TotalFrame > 0) // Check whether image file loaded successfuly.
                 {
-                    currentStates.contentInfo = new List<Tuple<string, int, int>>();
-                    for (uint i = 0; i < contentMap.Count(); i++)
+                    PropertyValue val = imageMap.Find(ImageVisualProperty.ContentInfo);
+                    PropertyMap contentMap = new PropertyMap();
+                    if (val?.Get(ref contentMap) == true)
                     {
-                        using PropertyKey propertyKey = contentMap.GetKeyAt(i);
-                        string key = propertyKey.StringKey;
-
-                        using PropertyValue arrVal = contentMap.GetValue(i);
-                        using PropertyArray arr = new PropertyArray();
-                        if (arrVal.Get(arr))
+                        currentStates.contentInfo = new List<Tuple<string, int, int>>();
+                        for (uint i = 0; i < contentMap.Count(); i++)
                         {
-                            int startFrame = -1;
-                            using PropertyValue start = arr.GetElementAt(0);
-                            start?.Get(out startFrame);
+                            using PropertyKey propertyKey = contentMap.GetKeyAt(i);
+                            string key = propertyKey.StringKey;
 
-                            int endFrame = -1;
-                            using PropertyValue end = arr.GetElementAt(1);
-                            end?.Get(out endFrame);
+                            using PropertyValue arrVal = contentMap.GetValue(i);
+                            using PropertyArray arr = new PropertyArray();
+                            if (arrVal.Get(arr))
+                            {
+                                int startFrame = -1;
+                                using PropertyValue start = arr.GetElementAt(0);
+                                start?.Get(out startFrame);
 
-                            NUILog.Debug($"[{i}] layer name={key}, startFrame={startFrame}, endFrame={endFrame}");
+                                int endFrame = -1;
+                                using PropertyValue end = arr.GetElementAt(1);
+                                end?.Get(out endFrame);
 
-                            Tuple<string, int, int> item = new Tuple<string, int, int>(key, startFrame, endFrame);
+                                NUILog.Debug($"[{i}] layer name={key}, startFrame={startFrame}, endFrame={endFrame}");
 
-                            currentStates.contentInfo?.Add(item);
+                                Tuple<string, int, int> item = new Tuple<string, int, int>(key, startFrame, endFrame);
+
+                                currentStates.contentInfo?.Add(item);
+                            }
                         }
                     }
+                    contentMap.Dispose();
+                    val?.Dispose();
                 }
-                contentMap.Dispose();
-                val?.Dispose();
             }
             NUILog.Debug($">");
 
@@ -619,9 +658,68 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Get the list of markers' information such as the start frame and the end frame in the Lottie file.
+        /// </summary>
+        /// <returns>List of Tuple (string of marker name, integer of start frame, integer of end frame)</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public List<Tuple<string, int, int>> GetMarkerInfo()
+        {
+            if (currentStates.markerInfo != null)
+            {
+                return currentStates.markerInfo;
+            }
+
+            NUILog.Debug($"<");
+
+            PropertyMap imageMap = base.Image;
+            if (imageMap != null)
+            {
+                if (TotalFrame > 0) // Check whether image file loaded successfuly.
+                {
+                    PropertyValue val = imageMap.Find(ImageVisualProperty.MarkerInfo);
+                    PropertyMap markerMap = new PropertyMap();
+                    if (val?.Get(ref markerMap) == true)
+                    {
+                        currentStates.markerInfo = new List<Tuple<string, int, int>>();
+                        for (uint i = 0; i < markerMap.Count(); i++)
+                        {
+                            using PropertyKey propertyKey = markerMap.GetKeyAt(i);
+                            string key = propertyKey.StringKey;
+
+                            using PropertyValue arrVal = markerMap.GetValue(i);
+                            using PropertyArray arr = new PropertyArray();
+                            if (arrVal.Get(arr))
+                            {
+                                int startFrame = -1;
+                                using PropertyValue start = arr.GetElementAt(0);
+                                start?.Get(out startFrame);
+
+                                int endFrame = -1;
+                                using PropertyValue end = arr.GetElementAt(1);
+                                end?.Get(out endFrame);
+
+                                NUILog.Debug($"[{i}] marker name={key}, startFrame={startFrame}, endFrame={endFrame}");
+
+                                Tuple<string, int, int> item = new Tuple<string, int, int>(key, startFrame, endFrame);
+
+                                currentStates.markerInfo?.Add(item);
+                            }
+                        }
+                    }
+                    markerMap.Dispose();
+                    val?.Dispose();
+                }
+            }
+            NUILog.Debug($">");
+
+            return currentStates.markerInfo;
+        }
+
+        /// <summary>
         /// A marker has its start frame and end frame.
         /// Animation will play between the start frame and the end frame of the marker if one marker is specified.
-        /// Or animation will play between the start frame of the first marker and the end frame of the second marker if two markers are specified.   *
+        /// Or animation will play between the start frame of the first marker and the end frame of the second marker if two markers are specified.
         /// </summary>
         /// <param name="marker1">First marker</param>
         /// <param name="marker2">Second marker</param>
@@ -629,13 +727,18 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetMinMaxFrameByMarker(string marker1, string marker2 = null)
         {
-            if (currentStates.mark1 != marker1 || currentStates.mark2 != marker2)
+            string marker1OrEmpty = marker1 ?? ""; // mark1 should not be null
+            if (currentStates.mark1 != marker1OrEmpty || currentStates.mark2 != marker2)
             {
-                NUILog.Debug($"< [{GetId()}] SetMinMaxFrameByMarker({marker1}, {marker2})");
+                NUILog.Debug($"< [{GetId()}] SetMinMaxFrameByMarker({marker1OrEmpty}, {marker2})");
 
                 currentStates.changed = true;
-                currentStates.mark1 = marker1;
+                currentStates.mark1 = marker1OrEmpty;
                 currentStates.mark2 = marker2;
+
+                // Remove frame information.
+                currentStates.framePlayRangeMin = -1;
+                currentStates.framePlayRangeMax = -1;
 
                 if (string.IsNullOrEmpty(currentStates.mark2))
                 {
@@ -747,6 +850,7 @@ namespace Tizen.NUI.BaseComponents
                 UpdateImage(ImageVisualProperty.StopBehavior, new PropertyValue((int)currentStates.stopEndAction), false);
                 UpdateImage(ImageVisualProperty.LoopingMode, new PropertyValue((int)currentStates.loopMode), false);
                 UpdateImage(ImageVisualProperty.RedrawInScalingDown, new PropertyValue(currentStates.redrawInScalingDown), false);
+                UpdateImage(ImageVisualProperty.SynchronousLoading, new PropertyValue(currentStates.synchronousLoading), false);
 
                 // Do not cache PlayRange and TotalFrameNumber into cachedImagePropertyMap.
                 // (To keep legacy implements behaviour)
@@ -1143,9 +1247,11 @@ namespace Tizen.NUI.BaseComponents
             internal float scale;
             internal PlayStateType playState;
             internal List<Tuple<string, int, int>> contentInfo;
+            internal List<Tuple<string, int, int>> markerInfo;
             internal string mark1, mark2;
             internal bool redrawInScalingDown;
             internal int desiredWidth, desiredHeight;
+            internal bool synchronousLoading;
             internal bool changed;
         };
         private states currentStates;

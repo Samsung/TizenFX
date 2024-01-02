@@ -6,7 +6,7 @@ namespace Tizen.Applications.AttachPanel
     /// A class for the event arguments of the result event.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
-    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
+    [Obsolete("Deprecated since API Level 12. Will be removed in API Level 14.")]
     public class ResultEventArgs : EventArgs
     {
         private readonly ContentCategory _category;
@@ -24,7 +24,7 @@ namespace Tizen.Applications.AttachPanel
         /// Results are from the content category.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
+        [Obsolete("Deprecated since API Level 12. Will be removed in API Level 14.")]
         public ContentCategory Category
         {
             get
@@ -38,7 +38,7 @@ namespace Tizen.Applications.AttachPanel
         /// The caller application has to use the ExtraData property to get received data.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
+        [Obsolete("Deprecated since API Level 12. Will be removed in API Level 14.")]
         public AppControl Result
         {
             get
@@ -51,7 +51,7 @@ namespace Tizen.Applications.AttachPanel
         /// Property for the result of the AppControl.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
+        [Obsolete("Deprecated since API Level 12. Will be removed in API Level 14.")]
         public AppControlReplyResult ResultCode
         {
             get

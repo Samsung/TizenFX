@@ -295,9 +295,10 @@ namespace Tizen.NUI.Binding
             namescope.UnregisterName(name);
         }
 
-        internal event EventHandler<ElementEventArgs> ChildAdded;
+        // 2023-11-08 : Just ignore Tizen.NUI don't using logics.
+        // internal event EventHandler<ElementEventArgs> ChildAdded;
 
-        internal event EventHandler<ElementEventArgs> ChildRemoved;
+        // internal event EventHandler<ElementEventArgs> ChildRemoved;
 
         internal event EventHandler<ElementEventArgs> DescendantAdded;
 
@@ -372,11 +373,12 @@ namespace Tizen.NUI.Binding
 
             child.ApplyBindings(skipBindingContext: false, fromBindingContextChanged: true);
 
-            ChildAdded?.Invoke(this, new ElementEventArgs(child));
+            // 2023-11-08 : Just ignore Tizen.NUI don't using logics.
+            // ChildAdded?.Invoke(this, new ElementEventArgs(child));
 
-            OnDescendantAdded(child);
-            foreach (Element element in child.Descendants())
-                OnDescendantAdded(element);
+            // OnDescendantAdded(child);
+            // foreach (Element element in child.Descendants())
+            //     OnDescendantAdded(element);
         }
 
         /// <summary>
@@ -395,11 +397,12 @@ namespace Tizen.NUI.Binding
 
             child.Parent = null;
 
-            ChildRemoved?.Invoke(child, new ElementEventArgs(child));
+            // 2023-11-08 : Just ignore Tizen.NUI don't using logics.
+            // ChildRemoved?.Invoke(child, new ElementEventArgs(child));
 
-            OnDescendantRemoved(child);
-            foreach (Element element in child.Descendants())
-                OnDescendantRemoved(element);
+            // OnDescendantRemoved(child);
+            // foreach (Element element in child.Descendants())
+            //     OnDescendantRemoved(element);
         }
 
         /// <summary>

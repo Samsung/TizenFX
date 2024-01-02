@@ -46,11 +46,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal LinearConstrainer(LinearConstrainer handle) : this(Interop.LinearConstrainer.NewLinearConstrainer(LinearConstrainer.getCPtr(handle)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         internal LinearConstrainer Assign(LinearConstrainer rhs)
         {
             LinearConstrainer ret = new LinearConstrainer(Interop.LinearConstrainer.Assign(SwigCPtr, LinearConstrainer.getCPtr(rhs)), false);

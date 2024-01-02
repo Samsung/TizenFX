@@ -6,7 +6,7 @@ namespace Tizen.Applications.AttachPanel
     /// Enumeration for the attach panel event.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
-    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
+    [Obsolete("Deprecated since API Level 12. Will be removed in API Level 14.")]
     public enum EventType
     {
         /// <summary>

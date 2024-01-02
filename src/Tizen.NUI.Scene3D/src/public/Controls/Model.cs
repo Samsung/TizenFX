@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
 using Tizen.NUI;
@@ -76,7 +77,13 @@ namespace Tizen.NUI.Scene3D
     /// <since_tizen> 10 </since_tizen>
     public partial class Model : View
     {
-        internal Model(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        private bool isBuilt = false;
+        private Position modelPivotPoint = new Position();
+        internal Model(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal Model(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, true, cRegister)
         {
         }
 
@@ -96,6 +103,7 @@ namespace Tizen.NUI.Scene3D
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             this.PositionUsesPivotPoint = true;
+            ResourcesLoaded += OnResourcesLoaded;
         }
 
         /// <summary>
@@ -114,7 +122,7 @@ namespace Tizen.NUI.Scene3D
         /// </summary>
         /// <param name="model">Source object to copy.</param>
         /// <since_tizen> 10 </since_tizen>
-        public Model(Model model) : this(Interop.Model.NewModel(Model.getCPtr(model)), true)
+        public Model(Model model) : this(Interop.Model.NewModel(Model.getCPtr(model)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             this.PositionUsesPivotPoint = model.PositionUsesPivotPoint;
@@ -131,6 +139,22 @@ namespace Tizen.NUI.Scene3D
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             ret.PositionUsesPivotPoint = model.PositionUsesPivotPoint;
             return ret;
+        }
+
+        /// <summary>
+        /// Get The original pivot point of the model
+        /// </summary>
+        /// <remarks>
+        /// This returns (0, 0, 0) before resources are loaded.
+        /// </remarks>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Position ModelPivotPoint
+        {
+            get
+            {
+                return modelPivotPoint;
+            }
         }
 
         /// <summary>
@@ -203,12 +227,17 @@ namespace Tizen.NUI.Scene3D
             {
                 // Store the value of PositionUsesAnchorPoint from dali object (Since View object automatically change PositionUsesPivotPoint value as false, we need to keep value.)
                 HandleRef handle = new HandleRef(this, cPtr);
-                bool originalPositionUsesAnchorPoint = Object.InternalGetPropertyBool(handle, View.Property.PositionUsesAnchorPoint);
+
+                // Use original value as 'true' if we got invalid ModelNode.
+                bool originalPositionUsesAnchorPoint = (cPtr == global::System.IntPtr.Zero || !Tizen.NUI.Interop.BaseHandle.HasBody(handle)) || Object.InternalGetPropertyBool(handle, View.Property.PositionUsesAnchorPoint);
                 handle = new HandleRef(null, IntPtr.Zero);
 
                 // Register new animatable into Registry.
                 ret = new ModelNode(cPtr, true);
-                ret.PositionUsesPivotPoint = originalPositionUsesAnchorPoint;
+                if (ret != null)
+                {
+                    ret.PositionUsesPivotPoint = originalPositionUsesAnchorPoint;
+                }
             }
             else
             {
@@ -579,12 +608,17 @@ namespace Tizen.NUI.Scene3D
             {
                 // Store the value of PositionUsesAnchorPoint from dali object (Since View object automatically change PositionUsesPivotPoint value as false, we need to keep value.)
                 HandleRef handle = new HandleRef(this, cPtr);
-                bool originalPositionUsesAnchorPoint = Object.InternalGetPropertyBool(handle, View.Property.PositionUsesAnchorPoint);
+
+                // Use original value as 'true' if we got invalid ModelNode.
+                bool originalPositionUsesAnchorPoint = (cPtr == global::System.IntPtr.Zero || !Tizen.NUI.Interop.BaseHandle.HasBody(handle)) || Object.InternalGetPropertyBool(handle, View.Property.PositionUsesAnchorPoint);
                 handle = new HandleRef(null, IntPtr.Zero);
 
                 // Register new animatable into Registry.
                 ret = new ModelNode(cPtr, true);
-                ret.PositionUsesPivotPoint = originalPositionUsesAnchorPoint;
+                if (ret != null)
+                {
+                    ret.PositionUsesPivotPoint = originalPositionUsesAnchorPoint;
+                }
             }
             else
             {
@@ -618,6 +652,32 @@ namespace Tizen.NUI.Scene3D
             return scaleFactor;
         }
 
+        private void OnResourcesLoaded(object sender, EventArgs e)
+        {
+            if (!isBuilt && this.ModelRoot != null)
+            {
+                this.ModelRoot.Build();
+                isBuilt = true;
+                this.modelPivotPoint.X = this.PivotPoint.X;
+                this.modelPivotPoint.Y = this.PivotPoint.Y;
+                this.modelPivotPoint.Z = this.PivotPoint.Z;
+            }
+        }
+
+        /// <summary>
+        /// To make transitionSet instance be disposed.
+        /// </summary>
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            ResourcesLoaded -= OnResourcesLoaded;
+            base.Dispose(type);
+        }
+
         /// <summary>
         /// Release swigCPtr.
         /// </summary>
@@ -626,6 +686,77 @@ namespace Tizen.NUI.Scene3D
         protected override void ReleaseSwigCPtr(global::System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.Model.DeleteModel(swigCPtr);
+        }
+        
+        
+        private EventHandler<MeshHitEventArgs> meshHitEventHandler;
+        private MeshHitCallbackType meshHitCallback;
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void MeshHitCallbackType(IntPtr motionData);
+
+        /// <summary>
+        /// MeshHitEventArgs
+        /// Contains arguments when MeshHitSignal called
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class MeshHitEventArgs : EventArgs
+        {
+            private ModelNode modelNode;
+            
+            /// <summary>
+            /// ModelNode that's been hit
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public ModelNode ModelNode
+            {
+                get
+                {
+                    return modelNode;
+                }
+                set
+                {
+                    modelNode = value;
+                }
+            }
+        }
+        
+        /// <summary>
+        /// EventHandler event.
+        /// It will be invoked when collider mesh is hit.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<MeshHitEventArgs> ColliderMeshHitted
+        {
+            add
+            {
+                if (meshHitEventHandler == null)
+                {
+                    meshHitCallback = MeshHitCollision;
+                    Interop.Model.MeshHitSignalConnect(SwigCPtr, meshHitCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                }
+                meshHitEventHandler += value;
+            }
+            remove
+            {
+                meshHitEventHandler -= value;
+                if (meshHitEventHandler == null && meshHitCallback != null)
+                {
+                    Interop.Model.MeshHitSignalDisconnect(SwigCPtr, meshHitCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    meshHitCallback = null;
+                }
+            }
+        }
+
+        private void MeshHitCollision(IntPtr modelNode)
+        {
+            if (meshHitEventHandler != null)
+            {
+                var args = new MeshHitEventArgs();
+                args.ModelNode = new ModelNode(modelNode, false);
+                meshHitEventHandler(this, args);
+            }
         }
     }
 }

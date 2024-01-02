@@ -43,7 +43,11 @@ namespace Tizen.NUI.Scene3D
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Material : BaseHandle
     {
-        internal Material(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Material(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal Material(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
         }
 
@@ -61,7 +65,7 @@ namespace Tizen.NUI.Scene3D
         /// </summary>
         /// <param name="material">Source object to copy.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Material(Material material) : this(Interop.Material.NewMaterial(Material.getCPtr(material)), true)
+        public Material(Material material) : this(Interop.Material.NewMaterial(Material.getCPtr(material)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -559,9 +563,49 @@ namespace Tizen.NUI.Scene3D
             }
         }
 
-
-
-
+        /// <summary>
+        /// Property to define rendering order.
+        /// </summary>
+        /// <remarks>
+        /// Depth index is used to defind rendering order. Basically,
+        /// a Renderer that has smaller depth index is rendered earlier.
+        /// In the ordinary DALI UI components has 0 as depth index by default.
+        /// (For the case of Toolkit::Control, its renderer has depth index
+        /// value between [-20, 20] as fallowing the renderer's purpose)
+        ///
+        /// In the Scene3D cases, the rendering order of each Renderer may need
+        /// to be manually defined to match scene developer's intent.
+        /// Scene3D::DepthIndex::Ranges could be used to adjust rendering order
+        /// between 3D Scene content.
+        /// Or it also could be used to manage UI component in 3D Scene independently.
+        ///
+        /// Changing the depth index only affects the rendering order, and does not
+        /// mean that objects drawn later will be drawn on top. To compute final
+        /// rendering order, whether the object is opaque or non-opaque takes precedence
+        /// over the depth index. Changing the rendering order among translucent objects
+        /// has a significant impact on the rendering results.
+        ///
+        /// The predefined depth index range is definded in <see cref="MaterialDepthIndexRange"/>.
+        /// </remarks>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int DepthIndex
+        {
+            set
+            {
+                var temp = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Interop.Material.PropertyDepthIndexIndexGet(), temp);
+                temp.Dispose();
+            }
+            get
+            {
+                int temp = 0;
+                Tizen.NUI.PropertyValue pValue = GetProperty(Interop.Material.PropertyDepthIndexIndexGet());
+                pValue.Get(out temp);
+                pValue.Dispose();
+                return temp;
+            }
+        }
 
         /// <summary>
         /// Sets the texture of the ModelNode object for the specified texture type.

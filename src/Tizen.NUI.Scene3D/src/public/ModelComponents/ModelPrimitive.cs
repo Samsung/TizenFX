@@ -42,7 +42,11 @@ namespace Tizen.NUI.Scene3D
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ModelPrimitive : BaseHandle
     {
-        internal ModelPrimitive(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal ModelPrimitive(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal ModelPrimitive(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
         }
 
@@ -60,7 +64,7 @@ namespace Tizen.NUI.Scene3D
         /// </summary>
         /// <param name="modelPrimitive">Source object to copy.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ModelPrimitive(ModelPrimitive modelPrimitive) : this(Interop.ModelPrimitive.NewModelPrimitive(ModelPrimitive.getCPtr(modelPrimitive)), true)
+        public ModelPrimitive(ModelPrimitive modelPrimitive) : this(Interop.ModelPrimitive.NewModelPrimitive(ModelPrimitive.getCPtr(modelPrimitive)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -138,8 +142,21 @@ namespace Tizen.NUI.Scene3D
         private Geometry GetGeometry()
         {
             IntPtr cPtr = Interop.ModelPrimitive.GetGeometry(SwigCPtr);
+            Geometry ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Geometry;
+            if (ret == null)
+            {
+                HandleRef handle = new HandleRef(this, cPtr);
+                handle = new HandleRef(null, IntPtr.Zero);
+
+                ret = new Geometry(cPtr, true);
+            }
+            else
+            {
+                HandleRef handle = new HandleRef(this, cPtr);
+                Tizen.NUI.Interop.BaseHandle.DeleteBaseHandle(handle);
+                handle = new HandleRef(null, IntPtr.Zero);
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            Geometry ret = (cPtr == IntPtr.Zero) ? null : Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Geometry;
             return ret;
         }
 
@@ -163,9 +180,22 @@ namespace Tizen.NUI.Scene3D
         [EditorBrowsable(EditorBrowsableState.Never)]
         private Material GetMaterial()
         {
-            IntPtr cPtr = Interop.ModelPrimitive.GetMaterial(SwigCPtr);
+            global::System.IntPtr cPtr = Interop.ModelPrimitive.GetMaterial(SwigCPtr);
+            Material ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Material;
+            if (ret == null)
+            {
+                HandleRef handle = new HandleRef(this, cPtr);
+                handle = new HandleRef(null, IntPtr.Zero);
+
+                ret = new Material(cPtr, true);
+            }
+            else
+            {
+                HandleRef handle = new HandleRef(this, cPtr);
+                Tizen.NUI.Interop.BaseHandle.DeleteBaseHandle(handle);
+                handle = new HandleRef(null, IntPtr.Zero);
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            Material ret = (cPtr == IntPtr.Zero) ? null : Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Material;
             return ret;
         }
 

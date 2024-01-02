@@ -1146,6 +1146,7 @@ namespace Tizen.NUI.BaseComponents
             // If the view had focus, it clears focus.
             if (child == FocusManager.Instance.GetCurrentFocusView())
             {
+                Tizen.Log.Debug("NUI", $"ClearFocus due to View id:({child.ID}) removed from scene\n");
                 FocusManager.Instance.ClearFocus();
             }
             // Do actual child removal
@@ -1346,6 +1347,12 @@ namespace Tizen.NUI.BaseComponents
 
             disposeDebugging(type);
 
+            if (SwigCMemOwn && !IsNativeHandleInvalid())
+            {
+                Interop.ControlDevel.DaliAccessibilityDetachAccessibleObject(SwigCPtr);
+                NDalicPINVOKE.ThrowExceptionIfExists();
+            }
+
             //_mergedStyle = null;
 
             internalMaximumSize?.Dispose();
@@ -1387,7 +1394,6 @@ namespace Tizen.NUI.BaseComponents
             tapGestureDetector = null;
             rotationGestureDetector?.Dispose();
             rotationGestureDetector = null;
-
 
             internalCurrentParentOrigin?.Dispose();
             internalCurrentParentOrigin = null;
@@ -1463,6 +1469,8 @@ namespace Tizen.NUI.BaseComponents
             NUILog.Debug($"=============================");
 
             base.Dispose(type);
+
+            aliveCount--;
         }
 
         /// This will not be public opened.

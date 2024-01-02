@@ -77,5 +77,12 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
+        public virtual ImageUrl GenerateUrl()
+        {
+            ImageUrl ret = new ImageUrl(Interop.NativeImageInterface.GenerateUrl(SwigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
     }
 }

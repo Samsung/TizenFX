@@ -373,12 +373,14 @@ namespace Tizen.Multimedia
                 type == DisplayType.Overlay ? PlayerDisplayType.Overlay : PlayerDisplayType.Evas, evasObject);
         }
 
-        PlayerErrorCode IDisplayable<PlayerErrorCode>.ApplyEcoreWindow(IntPtr windowHandle)
+        PlayerErrorCode IDisplayable<PlayerErrorCode>.ApplyEcoreWindow(IntPtr windowHandle, Rectangle rect, Rotation rotation)
         {
             Debug.Assert(IsDisposed == false);
 
             return NativeDisplay.SetEcoreDisplay(Handle,
-                _uiSync ? PlayerDisplayType.OverlayUISync : PlayerDisplayType.Overlay, windowHandle);
+                _uiSync ? PlayerDisplayType.OverlayUISync : PlayerDisplayType.Overlay, windowHandle, rect.X, rect.Y,
+                rotation == Rotation.Rotate0 || rotation == Rotation.Rotate180 ? rect.Height : rect.Width,
+                rotation == Rotation.Rotate0 || rotation == Rotation.Rotate180 ? rect.Width : rect.Height);
         }
         #endregion
 

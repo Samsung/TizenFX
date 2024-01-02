@@ -18,6 +18,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace Tizen.NUI
 {
@@ -27,10 +28,21 @@ namespace Tizen.NUI
         private static readonly DisposeQueue disposableQueue = new DisposeQueue();
         private List<IDisposable> disposables = new List<IDisposable>();
         private System.Object listLock = new object();
+
+        // Dispose incrementally at least max(100, incrementallyDisposedQueue * 20%) for each 1 event callback
+        private const long minimumIncrementalCount = 100;
+        private const long minimumIncrementalRate = 20;
+        private List<IDisposable> incrementallyDisposedQueue = new List<IDisposable>();
+
         private EventThreadCallback eventThreadCallback;
         private EventThreadCallback.CallbackDelegate disposeQueueProcessDisposablesDelegate;
 
-        private bool isCalled = false;
+        private bool initialized = false;
+        private bool processorRegistered = false;
+        private bool eventThreadCallbackTriggered = false;
+
+        private bool incrementalDisposeSupported = false;
+        private bool fullCollectRequested = false;
 
         private DisposeQueue()
         {
@@ -39,6 +51,12 @@ namespace Tizen.NUI
         ~DisposeQueue()
         {
             Tizen.Log.Debug("NUI", $"DisposeQueue is destroyed\n");
+            initialized = false;
+            if (processorRegistered && ProcessorController.Instance.Initialized)
+            {
+                processorRegistered = false;
+                ProcessorController.Instance.ProcessorOnceEvent -= TriggerProcessDisposables;
+            }
         }
 
         public static DisposeQueue Instance
@@ -46,13 +64,25 @@ namespace Tizen.NUI
             get { return disposableQueue; }
         }
 
+        public bool IncrementalDisposeSupported
+        {
+            get => incrementalDisposeSupported;
+            set => incrementalDisposeSupported = value;
+        }
+
+        public bool FullyDisposeNextCollect
+        {
+            get => fullCollectRequested;
+            set => fullCollectRequested = value;
+        }
+
         public void Initialize()
         {
-            if (isCalled == false)
+            if (!initialized)
             {
                 disposeQueueProcessDisposablesDelegate = new EventThreadCallback.CallbackDelegate(ProcessDisposables);
                 eventThreadCallback = new EventThreadCallback(disposeQueueProcessDisposablesDelegate);
-                isCalled = true;
+                initialized = true;
 
                 DebugFileLogging.Instance.WriteLog("DiposeTest START");
             }
@@ -65,23 +95,109 @@ namespace Tizen.NUI
                 disposables.Add(disposable);
             }
 
-            if (eventThreadCallback != null)
+            if (initialized && eventThreadCallback != null)
             {
-                eventThreadCallback.Trigger();
+                if (!eventThreadCallbackTriggered)
+                {
+                    eventThreadCallbackTriggered = true;
+                    eventThreadCallback.Trigger();
+                }
+            }
+            else
+            {
+                // Flush Disposable queue synchronously if it is not initialized yet.
+                // TODO : Need to check thread here if we need.
+
+                // 2023-12-18 Block this logic since some APP call some thread-dependency objects before application start.
+                // ProcessDisposables();
+            }
+        }
+
+        public void TriggerProcessDisposables(object o, EventArgs e)
+        {
+            processorRegistered = false;
+
+            if (initialized && eventThreadCallback != null)
+            {
+                if (!eventThreadCallbackTriggered)
+                {
+                    eventThreadCallbackTriggered = true;
+                    eventThreadCallback.Trigger();
+                }
+            }
+            else
+            {
+                // Flush Disposable queue synchronously if it is not initialized yet.
+                // TODO : Need to check thread here if we need.
+
+                // 2023-12-18 Block this logic since some APP call some thread-dependency objects before application start.
+                // ProcessDisposables();
             }
         }
 
         public void ProcessDisposables()
         {
+            eventThreadCallbackTriggered = false;
+
             lock (listLock)
             {
-                foreach (IDisposable disposable in disposables)
+                if (disposables.Count > 0)
                 {
-                    disposable.Dispose();
-                    DebugFileLogging.Instance.WriteLog($"disposable.Dispose(); type={disposable.GetType().FullName}, hash={disposable.GetHashCode()}");
+                    DebugFileLogging.Instance.WriteLog($"Newly add {disposables.Count} count of disposables. Total disposables count is {incrementallyDisposedQueue.Count + disposables.Count}.\n");
+                    // Move item from end, due to the performance issue.
+                    while (disposables.Count > 0)
+                    {
+                        var disposable = disposables.Last();
+                        disposables.RemoveAt(disposables.Count - 1);
+                        incrementallyDisposedQueue.Add(disposable);
+                    }
+                    disposables.Clear();
                 }
-                disposables.Clear();
             }
+
+            if (incrementallyDisposedQueue.Count > 0)
+            {
+                if (!incrementalDisposeSupported ||
+                    (!fullCollectRequested && !ProcessorController.Instance.Initialized))
+                {
+                    // Full Dispose if IncrementalDisposeSupported is false, or ProcessorController is not initialized yet.
+                    fullCollectRequested = true;
+                }
+                ProcessDisposablesIncrementally();
+            }
+        }
+
+        private void ProcessDisposablesIncrementally()
+        {
+            var disposeCount = fullCollectRequested ? incrementallyDisposedQueue.Count
+                                                    : Math.Min(incrementallyDisposedQueue.Count, Math.Max(minimumIncrementalCount, incrementallyDisposedQueue.Count * minimumIncrementalRate / 100));
+
+            DebugFileLogging.Instance.WriteLog((fullCollectRequested ? "Fully" : "Incrementally") + $" dispose {disposeCount} disposables. Will remained disposables count is {incrementallyDisposedQueue.Count - disposeCount}.\n");
+
+            fullCollectRequested = false;
+
+            // Dispose item from end, due to the performance issue.
+            while (disposeCount > 0 && incrementallyDisposedQueue.Count > 0)
+            {
+                --disposeCount;
+                var disposable = incrementallyDisposedQueue.Last();
+                incrementallyDisposedQueue.RemoveAt(incrementallyDisposedQueue.Count - 1);
+
+                DebugFileLogging.Instance.WriteLog($"disposable.Dispose(); type={disposable.GetType().FullName}, hash={disposable.GetHashCode()}");
+                disposable.Dispose();
+            }
+
+            if (incrementallyDisposedQueue.Count > 0)
+            {
+                if (ProcessorController.Instance.Initialized && !processorRegistered)
+                {
+                    processorRegistered = true;
+                    ProcessorController.Instance.ProcessorOnceEvent += TriggerProcessDisposables;
+                    ProcessorController.Instance.Awake();
+                }
+            }
+
+            DebugFileLogging.Instance.WriteLog($"Incrementally dispose finished.\n");
         }
     }
 }

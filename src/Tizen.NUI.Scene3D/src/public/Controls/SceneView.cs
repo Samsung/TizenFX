@@ -72,7 +72,11 @@ namespace Tizen.NUI.Scene3D
         private Animation cameraTransition;
         private string skyboxUrl;
 
-        internal SceneView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal SceneView(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal SceneView(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, true, cRegister)
         {
         }
 
@@ -90,7 +94,7 @@ namespace Tizen.NUI.Scene3D
         /// </summary>
         /// <param name="sceneView">The source object.</param>
         /// <since_tizen> 10 </since_tizen>
-        public SceneView(SceneView sceneView) : this(Interop.SceneView.NewScene(SceneView.getCPtr(sceneView)), true)
+        public SceneView(SceneView sceneView) : this(Interop.SceneView.NewScene(SceneView.getCPtr(sceneView)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -466,6 +470,66 @@ namespace Tizen.NUI.Scene3D
         public void SetImageBasedLightSource(string diffuseUrl, string specularUrl, float scaleFactor = 1.0f)
         {
             Interop.SceneView.SetImageBasedLightSource(SwigCPtr, diffuseUrl, specularUrl, scaleFactor);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Sets SceneView's resolution manually.
+        /// </summary>
+        /// <param name="width">The input width.</param>
+        /// <param name="height">The input height.</param>
+        /// <remarks>
+        /// This manual resolution is only available when the SceneView uses FBO for rendering by using FBO (UseFrameBuffer is true).
+        /// If the aspect ratio of input width/height is different with SceneView's aspect ratio, the rendered result is stretched to fill SceneView's area.
+        /// </remarks>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetResolution(uint width, uint height)
+        {
+            Interop.SceneView.SetResolution(SwigCPtr, width, height);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Retrieves width of resolution of the SceneView.
+        /// </summary>
+        /// <remarks>
+        ///  If the SceneView not uses FBO, this method returns SceneView's width.
+        /// </remarks>
+        /// <returns> Camera currently used in SceneView as a selected Camera.</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint GetResolutionWidth()
+        {
+            uint result = Interop.SceneView.GetResolutionWidth(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
+
+        /// <summary>
+        /// Retrieves height of resolution of the SceneView.
+        /// </summary>
+        /// <remarks>
+        ///  If the SceneView not uses FBO, this method returns SceneView's height.
+        /// </remarks>
+        /// <returns> Camera currently used in SceneView as a selected Camera.</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint GetResolutionHeight()
+        {
+            uint result = Interop.SceneView.GetResolutionHeight(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
+
+        /// <summary>
+        /// Resets SceneView's resolution to the current size of SceneView.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ResetResolution()
+        {
+            Interop.SceneView.ResetResolution(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

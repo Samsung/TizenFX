@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
 using Tizen.NUI;
@@ -47,7 +48,11 @@ namespace Tizen.NUI.Scene3D
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ModelNode : View
     {
-        internal ModelNode(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal ModelNode(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal ModelNode(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, true, cRegister)
         {
         }
 
@@ -66,7 +71,7 @@ namespace Tizen.NUI.Scene3D
         /// </summary>
         /// <param name="modelNode">Source object to copy.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ModelNode(ModelNode modelNode) : this(Interop.ModelNode.NewModelNode(ModelNode.getCPtr(modelNode)), true)
+        public ModelNode(ModelNode modelNode) : this(Interop.ModelNode.NewModelNode(ModelNode.getCPtr(modelNode)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -161,7 +166,7 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
-        /// Removes Returns a child ModelNode object with a name that matches nodeName.
+        /// Returns a child ModelNode object with a name that matches nodeName.
         /// </summary>
         /// <param name="nodeName">The name of the child ModelNode object you want to find.</param>
         /// <returns>Child ModelNode that has nodeName as name.</returns>
@@ -175,12 +180,17 @@ namespace Tizen.NUI.Scene3D
             {
                 // Store the value of PositionUsesAnchorPoint from dali object (Since View object automatically change PositionUsesPivotPoint value as false, we need to keep value.)
                 HandleRef handle = new HandleRef(this, cPtr);
-                bool originalPositionUsesAnchorPoint = Object.InternalGetPropertyBool(handle, View.Property.PositionUsesAnchorPoint);
+
+                // Use original value as 'true' if we got invalid ModelNode.
+                bool originalPositionUsesAnchorPoint = (cPtr == global::System.IntPtr.Zero || !Tizen.NUI.Interop.BaseHandle.HasBody(handle)) || Object.InternalGetPropertyBool(handle, View.Property.PositionUsesAnchorPoint);
                 handle = new HandleRef(null, IntPtr.Zero);
 
                 // Register new animatable into Registry.
                 ret = new ModelNode(cPtr, true);
-                ret.PositionUsesPivotPoint = originalPositionUsesAnchorPoint;
+                if (ret != null)
+                {
+                    ret.PositionUsesPivotPoint = originalPositionUsesAnchorPoint;
+                }
             }
             else
             {
@@ -192,6 +202,40 @@ namespace Tizen.NUI.Scene3D
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+        
+        /// <summary>
+        /// Sets collider mesh on current node
+        /// </summary>
+        /// <param name="vertexList">List of vertices</param>
+        /// <param name="normalList">List of vertex normals</param>
+        /// <param name="indexList">List of mesh indices</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetColliderMesh(List<Vector3> vertexList, List<Vector3> normalList, List<int> indexList)
+        {
+            var vertices = new Interop.ModelNode.Vec3[vertexList.Count];
+            var idx = 0;
+            foreach (var vertex in vertexList)
+            {
+                vertices[idx].x = vertex.X;
+                vertices[idx].y = vertex.Y;
+                vertices[idx].z = vertex.Z;
+                ++idx;
+            }
+            
+            var normals = new Interop.ModelNode.Vec3[normalList.Count];
+            idx = 0;
+            foreach (var normal in normalList)
+            {
+                normals[idx].x = normal.X;
+                normals[idx].y = normal.Y;
+                normals[idx].z = normal.Z;
+                ++idx;
+            }
+            
+            Interop.ModelNode.SetColliderMesh(SwigCPtr,vertices, normals, vertexList.Count, indexList.ToArray(), indexList.Count);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
         /// <summary>
         /// Gets the number of ModelPrimitive objects in the ModelNode object.
@@ -202,6 +246,81 @@ namespace Tizen.NUI.Scene3D
         private uint GetModelPrimitiveCount()
         {
             uint ret = Interop.ModelNode.GetModelPrimitiveCount(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Build C# ModelNode Tree
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal void Build()
+        {
+            List<ModelNode> childModelNodes = new List<ModelNode>();
+            uint childModelNodeCount = GetChildModelNodeCount();
+            for (uint i = 0; i < childModelNodeCount; ++i)
+            {
+                ModelNode modelNode = GetChildModelNodeAt(i);
+                if (modelNode != null)
+                {
+                    childModelNodes.Add(modelNode);
+                    modelNode.Build();
+                }
+            }
+
+            foreach (ModelNode node in childModelNodes)
+            {
+                this.Add(node);
+            }
+        }
+
+        /// <summary>
+        /// Gets the number of child objects in the ModelNode object.
+        /// </summary>
+        /// <returns>The number of childchild objects in the ModelNode object.</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private uint GetChildModelNodeCount()
+        {
+            uint ret = Interop.ModelNode.GetChildModelNodeCount(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Returns a child ModelNode object at the index.
+        /// </summary>
+        /// <param name="index">The index of child ModelNode object you want to find.</param>
+        /// <returns>Child ModelNode</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private ModelNode GetChildModelNodeAt(uint index)
+        {
+            global::System.IntPtr cPtr = Interop.ModelNode.GetChildModelNodeAt(SwigCPtr, index);
+            ModelNode ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as ModelNode;
+            if (ret == null)
+            {
+                // Store the value of PositionUsesAnchorPoint from dali object (Since View object automatically change PositionUsesPivotPoint value as false, we need to keep value.)
+                HandleRef handle = new HandleRef(this, cPtr);
+
+                // Use original value as 'true' if we got invalid ModelNode.
+                bool originalPositionUsesAnchorPoint = (cPtr == global::System.IntPtr.Zero || !Tizen.NUI.Interop.BaseHandle.HasBody(handle)) || Object.InternalGetPropertyBool(handle, View.Property.PositionUsesAnchorPoint);
+                handle = new HandleRef(null, IntPtr.Zero);
+
+                // Register new animatable into Registry.
+                ret = new ModelNode(cPtr, true);
+                if (ret != null)
+                {
+                    ret.PositionUsesPivotPoint = originalPositionUsesAnchorPoint;
+                }
+            }
+            else
+            {
+                // We found matched NUI animatable. Reduce cPtr reference count.
+                HandleRef handle = new HandleRef(this, cPtr);
+                Tizen.NUI.Interop.BaseHandle.DeleteBaseHandle(handle);
+                handle = new HandleRef(null, IntPtr.Zero);
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

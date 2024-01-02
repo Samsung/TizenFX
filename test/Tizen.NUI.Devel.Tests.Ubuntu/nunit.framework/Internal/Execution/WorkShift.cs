@@ -201,6 +201,7 @@ namespace NUnit.Framework.Internal.Execution
         /// <param name="force">true if the WorkShift should be aborted, false if it should allow its currently running tests to complete</param>
         public void Cancel(bool force)
         {
+            NUnit.Framework.TUnit.TLogger.Write($"Cancel shift {force}\n");
             if (force)
                 this.IsActive = false;
 

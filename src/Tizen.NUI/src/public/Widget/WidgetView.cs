@@ -138,6 +138,25 @@ namespace Tizen.NUI
             return instance.InternalEffect;
         });
 
+        /// <summary>
+        /// UpdateWidgetSizeProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty KeepWidgetSizeProperty = BindableProperty.Create(nameof(KeepWidgetSize), typeof(bool), typeof(Tizen.NUI.WidgetView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.WidgetView)bindable;
+            if (newValue != null)
+            {
+                instance.InternalKeepWidgetSize = (bool)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.WidgetView)bindable;
+            return instance.InternalKeepWidgetSize;
+        });
+
+
         private EventHandler<WidgetViewEventArgs> widgetAddedEventHandler;
         private WidgetAddedEventCallbackType widgetAddedEventCallback;
         private EventHandler<WidgetViewEventArgs> widgetContentUpdatedEventHandler;
@@ -176,10 +195,15 @@ namespace Tizen.NUI
 
         }
 
-        internal WidgetView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal WidgetView(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
         {
         }
-        internal WidgetView(WidgetView handle) : this(Interop.WidgetView.NewWidgetView(WidgetView.getCPtr(handle)), true)
+
+        internal WidgetView(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, true, cRegister)
+        {
+        }
+
+        internal WidgetView(WidgetView handle) : this(Interop.WidgetView.NewWidgetView(WidgetView.getCPtr(handle)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -686,6 +710,42 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets or sets KeepWidgetSize
+        ///
+        /// if this value is true, WidgetView keep widget instance's size and don't resize even if WidgetView is resized.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool KeepWidgetSize
+        {
+            get
+            {
+                return (bool)GetValue(KeepWidgetSizeProperty);
+            }
+            set
+            {
+                SetValue(KeepWidgetSizeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private bool InternalKeepWidgetSize
+        {
+            get
+            {
+                bool retValue = false;
+                PropertyValue keepWidgetSize = GetProperty(WidgetView.Property.KeepWidgetSize);
+                keepWidgetSize?.Get(out retValue);
+                keepWidgetSize?.Dispose();
+                return retValue;
+            }
+            set
+            {
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(WidgetView.Property.KeepWidgetSize, setValue);
+                setValue.Dispose();
+            }
+        }
+
+        /// <summary>
         /// Pauses a given widget.
         /// </summary>
         /// <returns>True on success, false otherwise.</returns>
@@ -1022,6 +1082,7 @@ namespace Tizen.NUI
             internal static readonly int RetryText = Interop.WidgetView.RetryTextGet();
             internal static readonly int EFFECT = Interop.WidgetView.EffectGet();
 
+            internal static readonly int KeepWidgetSize = Interop.WidgetView.KeepWidgetSizeGet();
 
             [Obsolete("Do not use this, that is deprecated in API9 and will be removed in API11. Use WidgetId instead.")]
             internal static readonly int WIDGET_ID = Interop.WidgetView.WidgetIdGet();

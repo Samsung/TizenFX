@@ -47,6 +47,68 @@ internal static partial class Interop
             DisplayNormal = 1,
             DisplayDim = 2,
         }
+
+        internal enum PowerTransitionReason
+        {
+            Unknown = 0, // Unknown reason.
+            ReasonPowerKey = 1, // Power key pressed.
+            ReasonVolumeUpKey = 2, // Volume up key pressed.
+            ReasonVolumeDownKey = 3, // Volume down key pressed.
+            ReasonBatteryNormalLevel = 4, // Battery capacity reaches normal level.
+            ReasonBatteryWarningLevel = 5, // Battery capacity reaches warning level.
+            ReasonBatteryCriticalLevel = 6, // Battery capacity reaches critical level.
+            ReasonBatteryPoweroffLevel = 7, // Battery capacity reaches poweroff level.
+            ReasonDisplayOff = 8, // Display off.
+            ReasonTouchKey = 9, // Touch key pressed.
+            ReasonTouchScreen = 10, // Touch screen pressed.
+            ReasonUsb = 11, // USB attached or detached.
+            ReasonCharger = 12, // Charger attached or detached.
+            ReasonHdmi = 13, // HDMI cable attached or detached.
+            ReasonDisplayPort = 14, // Display port cable attached or detached.
+            ReasonEmbeddedDisplayPort = 15, // Embedded display port cable attached or detached.
+            ReasonWifi = 16, // WIFI event.
+            ReasonBluetooth = 17, // Bluetooth event.
+            ReasonNfc = 18, // NFC event.
+            ReasonTelephony = 19, // Telephony event.
+            ReasonZigbee = 20, // Zigbee event.
+            ReasonEthernet = 21, // Ethernet event.
+            ReasonAudio = 22, // Audio event.
+            ReasonAlarm = 23, // Alarm event.
+            ReasonSensor = 24, // Sensor event.
+            ReasonRtc = 25, // RTC event.
+            ReasonHeadset = 26, // Headset attached or detached or button pressed.
+            ReasonExternalMemory = 27, // External memory inserted or deleted.
+
+            ReasonCustom = 1000, // Define custom reason from here.
+        }
+
+        internal enum PowerState : uint
+        {
+            Start = 1 << 4, // Initial state of power module. It is especially meaningful in that
+                            // this can be used to identify the first transition and implement booting UX.
+            Normal = 1 << 5, // System keeps running.
+            Sleep = 1 << 6, // System may be suspended at any time.
+            Poweroff = 1 << 7, // Prepare for poweroff and perform `systemctl poweroff`.
+            Reboot = 1 << 8, // Prepare for reboot and perform `systemctl reboot`.
+            Exit = 1 << 9, // Prepare for exit and perform `systemctl exit`.
+        }
+
+        internal enum PowerTransientState : uint
+        {
+            ResumingEarly = 1 << 4, // The first step of transitioning from sleep to normal.
+            Resuming = 1 << 5, // The second step of transitioning from sleep to normal.
+            ResumingLate = 1 << 6, // The last step of transitioning from sleep to normal.
+            SuspendingEarly = 1 << 7, // The first step of transitioning from normal to sleep.
+            Suspending = 1 << 8, // The second step of transitioning from normal to sleep.
+            SuspendingLate = 1 << 9, // The last step of transitioning from normal to sleep.
+        }
+
+        internal enum PowerLockState
+        {
+            Unlock = 0, // Power lock is unlocked.
+            Lock = 1, // Power lock is locked.
+        }
+
    
         // Battery
         [DllImport(Libraries.Device, EntryPoint = "device_battery_get_percent", CallingConvention = CallingConvention.Cdecl)]
@@ -95,6 +157,16 @@ internal static partial class Interop
         internal static extern int DeviceLedStopCustom();
 
         // Power
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        public delegate void PowerStateWaitCallback(uint prev_state, uint next_state,
+                                                        UInt64 wait_callback_id, uint transition_reason, IntPtr user_data);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        public delegate void PowerTransientStateWaitCallback(uint transient_state, UInt64 wait_callback_id,
+                                                                uint transition_reason, IntPtr user_data);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        public delegate void PowerChangeStateCallback(uint state, int retval, IntPtr user_data);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        public delegate void PowerLockStateChangeCallback(uint lock_type, uint lock_state, IntPtr user_data);
         [DllImport(Libraries.Device, EntryPoint = "device_power_request_lock", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int DevicePowerRequestLock(PowerLock type, int timeout_ms);
         [DllImport(Libraries.Device, EntryPoint = "device_power_release_lock", CallingConvention = CallingConvention.Cdecl)]
@@ -103,6 +175,30 @@ internal static partial class Interop
         internal static extern int DevicePowerPowerOff();
         [DllImport(Libraries.Device, EntryPoint = "device_power_reboot", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int DevicePowerReboot(string reason);
+        [DllImport(Libraries.Device, EntryPoint = "device_power_confirm_wait_callback", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int DevicePowerConfirmWaitCallback(UInt64 wait_callback_id);
+        [DllImport(Libraries.Device, EntryPoint = "device_power_cancel_wait_callback", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int DevicePowerCancelWaitCallback(UInt64 wait_callback_id);
+        [DllImport(Libraries.Device, EntryPoint = "device_power_add_state_wait_callback", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int DevicePowerAddStateWaitCallback(PowerState state_bits, PowerStateWaitCallback cb, IntPtr user_data);
+        [DllImport(Libraries.Device, EntryPoint = "device_power_remove_state_wait_callback", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int DevicePowerRemoveStateWaitCallback(PowerState state_bits);
+        [DllImport(Libraries.Device, EntryPoint = "device_power_add_transient_state_wait_callback", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int DevicePowerAddTransientStateWaitCallback(PowerTransientState transient_bits, PowerTransientStateWaitCallback cb, IntPtr user_data);
+        [DllImport(Libraries.Device, EntryPoint = "device_power_remove_transient_state_wait_callback", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int DevicePowerRemoveTransientStateWaitCallback(PowerTransientState transient_bits);
+        [DllImport(Libraries.Device, EntryPoint = "device_power_change_state", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int DevicePowerChangeState(PowerState state, int timeout_sec, PowerChangeStateCallback cb, IntPtr user_data);
+        [DllImport(Libraries.Device, EntryPoint = "device_power_check_reboot_allowed", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int DevicePowerCheckRebootAllowed();
+        [DllImport(Libraries.Device, EntryPoint = "device_power_get_wakeup_reason", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int DevicePowerGetWakeupReason(out PowerTransitionReason reason);
+        [DllImport(Libraries.Device, EntryPoint = "device_power_get_lock_state", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int DevicePowerGetLockState(PowerLock type, out PowerLockState lock_state);
+        [DllImport(Libraries.Device, EntryPoint = "device_power_add_lock_state_change_callback", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int DevicePowerAddLockStateChangeCallback(PowerLock type, PowerLockStateChangeCallback cb, IntPtr user_data);
+        [DllImport(Libraries.Device, EntryPoint = "device_power_remove_lock_state_change_callback", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int DevicePowerRemoveLockStateChangeCallback(PowerLock type, PowerLockStateChangeCallback cb);
 
         //IR
         [DllImport(Libraries.Device, EntryPoint = "device_ir_is_available", CallingConvention = CallingConvention.Cdecl)]

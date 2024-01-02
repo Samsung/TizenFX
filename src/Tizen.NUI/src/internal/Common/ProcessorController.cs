@@ -34,20 +34,18 @@ namespace Tizen.NUI
     internal sealed class ProcessorController : Disposable
     {
         private static ProcessorController instance = null;
+        private bool initialized = false;
 
-        private ProcessorController() : this(Interop.ProcessorController.New(), true)
+        private ProcessorController() : this(true)
+        {
+        }
+
+        private ProcessorController(bool initializeOnConstructor) : this(initializeOnConstructor ? Interop.ProcessorController.New() : Interop.ProcessorController.NewWithoutInitialize(), true)
         {
         }
 
         internal ProcessorController(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            onceEventIndex = 0u;
-            internalProcessorOnceEvent = new EventHandler[2];
-            internalProcessorOnceEvent[0] = null;
-            internalProcessorOnceEvent[1] = null;
-
-            processorCallback = new ProcessorEventHandler(Process);
-            Interop.ProcessorController.SetCallback(SwigCPtr, processorCallback);
         }
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -73,15 +71,36 @@ namespace Tizen.NUI
         public event EventHandler ProcessorEvent;
         public event EventHandler LayoutProcessorEvent;
 
+        public bool Initialized => initialized;
+
         public static ProcessorController Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new ProcessorController();
+                    instance = new ProcessorController(false);
                 }
                 return instance;
+            }
+        }
+
+        public void Initialize()
+        {
+            if (initialized == false)
+            {
+                initialized = true;
+
+                Interop.ProcessorController.Initialize(SwigCPtr);
+
+                onceEventIndex = 0u;
+                internalProcessorOnceEvent = new EventHandler[2];
+                internalProcessorOnceEvent[0] = null;
+                internalProcessorOnceEvent[1] = null;
+
+                processorCallback = new ProcessorEventHandler(Process);
+                Interop.ProcessorController.SetCallback(SwigCPtr, processorCallback);
+                NDalicPINVOKE.ThrowExceptionIfExists();
             }
         }
 
@@ -114,6 +133,8 @@ namespace Tizen.NUI
             internalProcessorOnceEvent[1] = null;
             ProcessorEvent = null;
             LayoutProcessorEvent = null;
+            initialized = false;
+
             GC.SuppressFinalize(this);
 
             base.Dispose(type);
@@ -130,6 +151,7 @@ namespace Tizen.NUI
         public void Awake()
         {
             Interop.ProcessorController.Awake(SwigCPtr);
+            NDalicPINVOKE.ThrowExceptionIfExists();
         }
     } // class ProcessorController
 } // namespace Tizen.NUI

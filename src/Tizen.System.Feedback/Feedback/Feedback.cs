@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 
 namespace Tizen.System
@@ -595,35 +596,35 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Gets the index of theme selected.
+        /// Gets the id of theme selected.
         /// </summary>
         /// <remarks>
         /// Now this internal API works for FeedbackType.Sound only, FeedbackType.Vibration is not supported.
-        /// Index of theme range will be 1 ~ N according to conf file.
+        /// The theme id is positive value as defined in the conf file.
         /// </remarks>
         /// <since_tizen> 10 </since_tizen>
         /// <param name="type">The feedback type.</param>
-        /// <returns>The index of theme selected as default theme according to feedback type.</returns>
+        /// <returns>The id of theme selected as default theme according to feedback type.</returns>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid arguament.</exception>
         /// <exception cref="NotSupportedException">Thrown when failed becuase the device (haptic, sound) is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of a system error.</exception>
         /// <example>
         /// <code>
         /// Feedback feedback = new Feedback();
-        /// uint indexOfTheme = feedback. GetThemeIndexInternal(FeedbackType.Sound);
+        /// uint idOfTheme = feedback.GetThemeIdInternal(FeedbackType.Sound);
         /// </code>
         /// </example>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint GetThemeIndexInternal(FeedbackType type)
+        public uint GetThemeIdInternal(FeedbackType type)
         {
             uint countOfTheme = 0;
             Interop.Feedback.FeedbackError res;
 
-            res = (Interop.Feedback.FeedbackError)Interop.Feedback.GetThemeIndexInternal((Interop.Feedback.FeedbackType)type, out countOfTheme);
+            res = (Interop.Feedback.FeedbackError)Interop.Feedback.GetThemeIdInternal((Interop.Feedback.FeedbackType)type, out countOfTheme);
 
             if (res != Interop.Feedback.FeedbackError.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to get index of theme internal. err = {0}", res));
+                Log.Warn(LogTag, string.Format("Failed to get id of theme internal. err = {0}", res));
                 switch (res)
                 {
                     case Interop.Feedback.FeedbackError.InvalidParameter:
@@ -632,23 +633,23 @@ namespace Tizen.System
                         throw new NotSupportedException("Device is not supported");
                     case Interop.Feedback.FeedbackError.OperationFailed:
                     default:
-                        throw new InvalidOperationException("Failed to get index of theme internal");
+                        throw new InvalidOperationException("Failed to get id of theme internal");
                 }
             }
             return countOfTheme;
         }
 
         /// <summary>
-        /// Sets the index of theme according to feedback type.
+        /// Sets the id of theme according to feedback type.
         /// </summary>
         /// <remarks>
         /// Now this internal API works for FeedbackType.Sound only, FeedbackType.Vibration is not supported.
-        /// To set the index of theme for Sound type, the application should have http://tizen.org/privilege/systemsettings.admin privilege.
-        /// Index of theme range is 1 ~ N according to conf file. If you put the wrong index, operation cannot be guaranteed.
+        /// To set the id of theme for Sound type, the application should have http://tizen.org/privilege/systemsettings.admin privilege.
+        /// The theme id is positive value as defined in the conf file.
         /// </remarks>
         /// <since_tizen> 10 </since_tizen>
         /// <param name="type">The feedback type.</param>
-        /// <param name="indexOfTheme">The index of theme will be set.</param>
+        /// <param name="idOfTheme">The id of theme will be set.</param>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid arguament.</exception>
         /// <exception cref="NotSupportedException">Thrown when failed becuase the device (haptic, sound) is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when failed because the access is not granted(No privilege)</exception>
@@ -656,20 +657,20 @@ namespace Tizen.System
         /// <example>
         /// <code>
         /// Feedback feedback = new Feedback();
-        /// uint indexOfTheme = 1;
-        /// feedback.SetThemeIndexInternal(FeedbackType.Sound, indexOfTheme);
+        /// uint idOfTheme = 1;
+        /// feedback.SetThemeIdInternal(FeedbackType.Sound, idOfTheme);
         /// </code>
         /// </example>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetThemeIndexInternal(FeedbackType type, uint indexOfTheme)
+        public void SetThemeIdInternal(FeedbackType type, uint idOfTheme)
         {
             Interop.Feedback.FeedbackError res;
 
-            res = (Interop.Feedback.FeedbackError)Interop.Feedback.SetThemeIndexInternal((Interop.Feedback.FeedbackType)type, indexOfTheme);
+            res = (Interop.Feedback.FeedbackError)Interop.Feedback.SetThemeIdInternal((Interop.Feedback.FeedbackType)type, idOfTheme);
 
             if (res != Interop.Feedback.FeedbackError.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to set index of theme internal. err = {0}", res));
+                Log.Warn(LogTag, string.Format("Failed to set id of theme internal. err = {0}", res));
                 switch (res)
                 {
                     case Interop.Feedback.FeedbackError.InvalidParameter:
@@ -680,7 +681,7 @@ namespace Tizen.System
                         throw new UnauthorizedAccessException("Access is not granted");
                     case Interop.Feedback.FeedbackError.OperationFailed:
                     default:
-                        throw new InvalidOperationException("Failed to set index of theme internal");
+                        throw new InvalidOperationException("Failed to set id of theme internal");
                 }
             }
         }
@@ -730,6 +731,62 @@ namespace Tizen.System
                         throw new InvalidOperationException("Failed to stop pattern by feedback type");
                 }
             }
+        }
+
+        /// <summary>
+        /// Gets the id array of theme supported.
+        /// </summary>
+        /// <remarks>
+        /// Now this internal API works for FeedbackType.Sound only, FeedbackType.Vibration is not supported.
+        /// The theme id is positive value as defined in the conf file.
+        /// </remarks>
+        /// <since_tizen> 10 </since_tizen>
+        /// <param name="type">The feedback type.</param>
+        /// <returns>The array of theme id supported according to feedback type.</returns>
+        /// <exception cref="ArgumentException">Thrown when failed because of an invalid arguament.</exception>
+        /// <exception cref="NotSupportedException">Thrown when failed becuase the device (haptic, sound) is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of a system error.</exception>
+        /// <example>
+        /// <code>
+        /// Feedback feedback = new Feedback();
+        /// uint[] getThemeIds = feedback.GetThemeIdsInternal(FeedbackType.Sound);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint[] GetThemeIdsInternal(FeedbackType type)
+        {
+            uint countOfTheme = 0;
+            IntPtr getThemeIds;
+            Interop.Feedback.FeedbackError res;
+
+            res = (Interop.Feedback.FeedbackError)Interop.Feedback.GetThemeIdsInternal((Interop.Feedback.FeedbackType)type, out countOfTheme, out getThemeIds);
+            if (res != Interop.Feedback.FeedbackError.None)
+            {
+                Log.Warn(LogTag, string.Format("Failed to get ids of theme internal. err = {0}", res));
+                switch (res)
+                {
+                    case Interop.Feedback.FeedbackError.InvalidParameter:
+                        throw new ArgumentException("Invalid Arguments");
+                    case Interop.Feedback.FeedbackError.NotSupported:
+                        throw new NotSupportedException("Device is not supported");
+                    case Interop.Feedback.FeedbackError.OperationFailed:
+                    default:
+                        throw new InvalidOperationException("Failed to get ids of theme internal");
+                }
+            }
+
+            uint[] themeIds = new uint[countOfTheme];
+            unsafe {
+                uint index = 0;
+                uint* themeIdsPointer = (uint*)getThemeIds;
+
+                for (index = 0; index < countOfTheme; index++) {
+                    themeIds[index] = themeIdsPointer[index];
+                }
+            }
+            Marshal.FreeHGlobal(getThemeIds);
+
+            return themeIds;
         }
     }
 }

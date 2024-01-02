@@ -102,6 +102,8 @@ namespace Tizen.NUI.BaseComponents
         private bool dispatchParentTouchEvents = true;
         private bool dispatchHoverEvents = true;
         private bool dispatchParentHoverEvents = true;
+        private bool dispatchWheelEvents = true;
+        private bool dispatchParentWheelEvents = true;
         private bool dispatchGestureEvents = true;
         private bool dispatchParentGestureEvents = true;
 
@@ -110,12 +112,12 @@ namespace Tizen.NUI.BaseComponents
         /// Event when a child is removed.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public new event EventHandler<ChildRemovedEventArgs> ChildRemoved;
+        public event EventHandler<ChildRemovedEventArgs> ChildRemoved;
         /// <summary>
         /// Event when a child is added.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public new event EventHandler<ChildAddedEventArgs> ChildAdded;
+        public event EventHandler<ChildAddedEventArgs> ChildAdded;
 
         /// <summary>
         /// An event for the KeyInputFocusGained signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
@@ -961,15 +963,30 @@ namespace Tizen.NUI.BaseComponents
                 return true;
             }
 
+            if (DispatchWheelEvents == false)
+            {
+                NUILog.Debug("If DispatchWheelEvents is false, it can not dispatch.");
+                return true;
+            }
+
             WheelEventArgs e = new WheelEventArgs();
 
             e.Wheel = Tizen.NUI.Wheel.GetWheelFromPtr(wheelEvent);
 
+            bool consumed = false;
+
             if (wheelEventHandler != null)
             {
-                return wheelEventHandler(this, e);
+                consumed = wheelEventHandler(this, e);
             }
-            return false;
+
+            if (DispatchParentWheelEvents == false && consumed == false)
+            {
+                NUILog.Debug("If DispatchParentWheelEvents is false, it can not dispatch to parent.");
+                return true;
+            }
+
+            return consumed;
         }
 
         // Callback for View OnWindow signal
@@ -1548,6 +1565,80 @@ namespace Tizen.NUI.BaseComponents
         }
 
         private bool OnDispatchParentHoverEvent(object source, View.HoverEventArgs e)
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// Gets or sets the status of whether wheel events can be dispatched.
+        /// If a View's DispatchWheelEvents is set to false, then it's can not will receive wheel event and parents will not receive a wheel event signal either.
+        /// This works without adding a WheelEvent callback in the View.
+        /// <note>
+        /// If the <see cref="Tizen.NUI.BaseComponents.View.Sensitive"/> is a property that determines whether or not to be hittable, then this property prevents the propagation of the hit hover event.
+        /// </note>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DispatchWheelEvents
+        {
+            get
+            {
+                return dispatchWheelEvents;
+            }
+            set
+            {
+                if (dispatchWheelEvents != value)
+                {
+                    dispatchWheelEvents = value;
+                    if (dispatchWheelEvents == false)
+                    {
+                        WheelEvent += OnDispatchWheelEvent;
+                    }
+                    else
+                    {
+                        WheelEvent -= OnDispatchWheelEvent;
+                    }
+                }
+            }
+        }
+
+        private bool OnDispatchWheelEvent(object source, View.WheelEventArgs e)
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// Gets or sets the status of whether wheel events can be dispatched to the parent.
+        /// If a View's DispatchParentWheelEvents is set to false, then parents will not receive a wheel event signal either.
+        /// This works without adding a WheelEvent callback in the View.
+        /// <note>
+        /// If the <see cref="Tizen.NUI.BaseComponents.View.Sensitive"/> is a property that determines whether or not to be hittable, then this property prevents the propagation of the hit hover event.
+        /// </note>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DispatchParentWheelEvents
+        {
+            get
+            {
+                return dispatchParentWheelEvents;
+            }
+            set
+            {
+                if (dispatchParentWheelEvents != value)
+                {
+                    dispatchParentWheelEvents = value;
+                    if (dispatchParentWheelEvents == false)
+                    {
+                        WheelEvent += OnDispatchParentWheelEvent;
+                    }
+                    else
+                    {
+                        WheelEvent -= OnDispatchParentWheelEvent;
+                    }
+                }
+            }
+        }
+
+        private bool OnDispatchParentWheelEvent(object source, View.WheelEventArgs e)
         {
             return true;
         }

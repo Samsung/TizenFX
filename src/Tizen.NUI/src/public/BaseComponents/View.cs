@@ -85,6 +85,8 @@ namespace Tizen.NUI.BaseComponents
         private Vector4 internalCurrentWorldColor = null;
         private Vector2 internalCurrentScreenPosition = null;
 
+        private static int aliveCount = 0;
+
         static View()
         {
             RegisterPropertyGroup(PositionProperty, positionPropertyGroup);
@@ -186,23 +188,16 @@ namespace Tizen.NUI.BaseComponents
             SetVisible(shown);
         }
 
-        internal View(View uiControl, bool shown = true) : this(Interop.View.NewView(View.getCPtr(uiControl)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            if (!shown)
-            {
-                SetVisible(false);
-            }
-
-            backgroundExtraData = uiControl.backgroundExtraData == null ? null : new BackgroundExtraData(uiControl.backgroundExtraData);
-        }
-
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : this(cPtr, cMemoryOwn, shown)
         {
             InitializeStyle(viewStyle);
         }
 
-        internal View(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(cPtr, cMemoryOwn)
+        internal View(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : this(cPtr, cMemoryOwn, shown, cMemoryOwn)
+        {
+        }
+
+        internal View(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
             if (HasBody())
             {
@@ -215,6 +210,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
+
+            aliveCount++;
         }
 
         internal View(ViewImpl implementation, bool shown = true) : this(Interop.View.NewViewInternal(ViewImpl.getCPtr(implementation)), true)
@@ -3502,6 +3499,12 @@ namespace Tizen.NUI.BaseComponents
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector3 CurrentScale => GetCurrentScale();
+
+        /// <summary>
+        /// Gets the number of currently alived View object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int AliveCount => aliveCount;
 
     }
 }
