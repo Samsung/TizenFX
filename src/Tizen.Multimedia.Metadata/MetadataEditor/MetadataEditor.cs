@@ -454,8 +454,8 @@ namespace Tizen.Multimedia
         /// Internal error.<br/>
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
-        [Obsolete("Deprecated in API12; Will be removed in API14")]
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API12; Will be removed in API14")]
         public void Commit()
         {
             if (_isFileReadOnly)
