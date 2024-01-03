@@ -581,7 +581,10 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
                 imageView.UpdateImage(Visual.Property.Opacity, new PropertyValue(((Color)newValue).A), false);
-                imageView.UpdateImage(Visual.Property.MixColor, new PropertyValue((Color)newValue));
+                imageView.UpdateImage(Visual.Property.MixColor, new PropertyValue((Color)newValue), false);
+
+                // Update property
+                Interop.View.InternalUpdateVisualPropertyVector4(imageView.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.MixColor, Vector4.getCPtr((Color)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
