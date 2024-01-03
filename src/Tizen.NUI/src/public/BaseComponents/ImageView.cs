@@ -1634,7 +1634,7 @@ namespace Tizen.NUI.BaseComponents
                         }
                     }
                 }
-                imagePropertyUpdatedFlag = true;
+                imagePropertyUpdatedFlag |= requiredVisualCreation;
                 cachedImagePropertyMap[key] = value;
 
                 // Lazy update only if visual creation required, and _resourceUrl is not empty, and ProcessAttachedFlag is false.
