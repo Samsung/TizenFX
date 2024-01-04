@@ -33,6 +33,7 @@ namespace Tizen.Multimedia
     /// you should add privilege http://tizen.org/privilege/externalstorage.
     /// </privilege>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated in API12; Will be removed in API14")]
     public class MetadataEditor : IDisposable
     {
         private bool _disposed = false;
@@ -62,6 +63,7 @@ namespace Tizen.Multimedia
         /// <exception cref="FileFormatException">The file is not supported.</exception>
         /// <exception cref="FileNotFoundException">The file does not exist.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller does not have required privilege to access the file.</exception>
+        [Obsolete("Deprecated in API12; Will be removed in API14")]
         public MetadataEditor(string path)
         {
             if (path == null)
@@ -128,6 +130,7 @@ namespace Tizen.Multimedia
         /// Internal error.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
+        [Obsolete("Deprecated in API12; Will be removed in API14")]
         public string Artist
         {
             get
@@ -153,6 +156,7 @@ namespace Tizen.Multimedia
         /// Internal error.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
+        [Obsolete("Deprecated in API12; Will be removed in API14")]
         public string Title
         {
             get
@@ -178,6 +182,7 @@ namespace Tizen.Multimedia
         /// Internal error.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
+        [Obsolete("Deprecated in API12; Will be removed in API14")]
         public string Album
         {
             get
@@ -203,6 +208,7 @@ namespace Tizen.Multimedia
         /// Internal error.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
+        [Obsolete("Deprecated in API12; Will be removed in API14")]
         public string Genre
         {
             get
@@ -228,6 +234,7 @@ namespace Tizen.Multimedia
         /// Internal error.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
+        [Obsolete("Deprecated in API12; Will be removed in API14")]
         public string Author
         {
             get
@@ -253,6 +260,7 @@ namespace Tizen.Multimedia
         /// Internal error.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
+        [Obsolete("Deprecated in API12; Will be removed in API14")]
         public string Copyright
         {
             get
@@ -282,6 +290,7 @@ namespace Tizen.Multimedia
         /// Internal error.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
+        [Obsolete("Deprecated in API12; Will be removed in API14")]
         public string Date
         {
             get
@@ -307,6 +316,7 @@ namespace Tizen.Multimedia
         /// Internal error.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
+        [Obsolete("Deprecated in API12; Will be removed in API14")]
         public string Description
         {
             get
@@ -332,6 +342,7 @@ namespace Tizen.Multimedia
         /// Internal error.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
+        [Obsolete("Deprecated in API12; Will be removed in API14")]
         public string Comment
         {
             get
@@ -357,6 +368,7 @@ namespace Tizen.Multimedia
         /// Internal error.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
+        [Obsolete("Deprecated in API12; Will be removed in API14")]
         public string TrackNumber
         {
             get
@@ -375,6 +387,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
+        [Obsolete("Deprecated in API12; Will be removed in API14")]
         public int PictureCount
         {
             get => int.TryParse(GetParam(MetadataEditorAttr.PictureCount), out var value) ? value : 0;
@@ -392,6 +405,7 @@ namespace Tizen.Multimedia
         /// Internal error.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
+        [Obsolete("Deprecated in API12; Will be removed in API14")]
         public string Conductor
         {
             get
@@ -417,6 +431,7 @@ namespace Tizen.Multimedia
         /// Internal error.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
+        [Obsolete("Deprecated in API12; Will be removed in API14")]
         public string UnsyncLyrics
         {
             get
@@ -440,6 +455,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API12; Will be removed in API14")]
         public void Commit()
         {
             if (_isFileReadOnly)
@@ -463,6 +479,7 @@ namespace Tizen.Multimedia
         ///     <paramref name="index"/> is greater than or equal to <see cref="PictureCount"/>.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
+        [Obsolete("Deprecated in API12; Will be removed in API14")]
         public Artwork GetPicture(int index)
         {
             if (index < 0)
@@ -526,6 +543,7 @@ namespace Tizen.Multimedia
         /// <exception cref="UnauthorizedAccessException">The caller does not have required privilege to access the file.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
         /// <exception cref="FileFormatException">The specified file is not supported.</exception>
+        [Obsolete("Deprecated in API12; Will be removed in API14")]
         public void AddPicture(string path)
         {
             if (path == null)
@@ -563,6 +581,7 @@ namespace Tizen.Multimedia
         ///     <paramref name="index"/> is greater than or equal to <see cref="PictureCount"/>.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
+        [Obsolete("Deprecated in API12; Will be removed in API14")]
         public void RemovePicture(int index)
         {
             if (index < 0)
@@ -617,6 +636,7 @@ namespace Tizen.Multimedia
         /// Releases all resources used by the <see cref="MetadataEditor"/> object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API12; Will be removed in API14")]
         public void Dispose()
         {
             Dispose(true);
