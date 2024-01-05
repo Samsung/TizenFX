@@ -474,30 +474,6 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
-        /// Add Lights to this SceneView.
-        /// </summary>
-        /// <param name="light">The light what we want to add</param>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void AddLight(Light light)
-        {
-            Interop.SceneView.AddLight(SwigCPtr, Light.getCPtr(light));
-            NDalicPINVOKE.ThrowExceptionIfExists();
-        }
-
-        /// <summary>
-        /// Remove Lights from this SceneView.
-        /// </summary>
-        /// <param name="light">The light what we want to remove</param>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void RemoveLight(Light light)
-        {
-            Interop.SceneView.RemoveLight(SwigCPtr, Light.getCPtr(light));
-            NDalicPINVOKE.ThrowExceptionIfExists();
-        }
-
-        /// <summary>
         /// Sets SceneView's resolution manually.
         /// </summary>
         /// <param name="width">The input width.</param>
