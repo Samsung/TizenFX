@@ -202,7 +202,15 @@ namespace Tizen.NUI.Components
         }
         private StringSelector InternalSwitchBackgroundImageURLSelector
         {
-            get => Icon?.ResourceUrlSelector == null ? null : new StringSelector(Icon.ResourceUrlSelector);
+            get
+            {
+                Selector<string> resourceUrlSelector = Icon?.ResourceUrlSelector;
+                if(resourceUrlSelector != null)
+                {
+                    return new StringSelector(resourceUrlSelector);
+                }
+                return null;
+            }
             set
             {
                 Debug.Assert(Icon != null);
@@ -257,7 +265,15 @@ namespace Tizen.NUI.Components
         }
         private StringSelector InternalSwitchHandlerImageURLSelector
         {
-            get => new StringSelector(thumb.ResourceUrlSelector);
+            get
+            {
+                Selector<string> resourceUrlSelector = thumb?.ResourceUrlSelector;
+                if (resourceUrlSelector != null)
+                {
+                    return new StringSelector(resourceUrlSelector);
+                }
+                return null;
+            }
             set
             {
                 Debug.Assert(thumb != null);
