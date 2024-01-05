@@ -72,14 +72,6 @@ namespace Tizen.NUI.Scene3D
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_GetImageBasedLightScaleFactor")]
             public static extern float GetImageBasedLightScaleFactor(global::System.Runtime.InteropServices.HandleRef sceneView);
 
-            // TODO : Implement AddLight API at native SceneView in future. Currently, let we just call Actor.Add
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Lib, EntryPoint = "CSharp_Dali_Actor_Add")]
-            public static extern void AddLight(global::System.Runtime.InteropServices.HandleRef sceneView, global::System.Runtime.InteropServices.HandleRef light);
-
-            // TODO : Implement RemoveLight API at native SceneView in future. Currently, let we just call Actor.Remove
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Lib, EntryPoint = "CSharp_Dali_Actor_Remove")]
-            public static extern void RemoveLight(global::System.Runtime.InteropServices.HandleRef sceneView, global::System.Runtime.InteropServices.HandleRef light);
-
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_UseFramebuffer")]
             public static extern void UseFramebuffer(global::System.Runtime.InteropServices.HandleRef sceneView, bool useFramebuffer);
 
