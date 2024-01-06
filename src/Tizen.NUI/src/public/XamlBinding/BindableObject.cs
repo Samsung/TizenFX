@@ -310,7 +310,10 @@ namespace Tizen.NUI.Binding
                 }
 
                 object oldvalue = null;
-                BindablePropertyContext context = GetOrCreateContext(property);
+                // Let we don't call default value creater if it never be created.
+                // It will reduce many cases when PropertyChanging / PropertyChanged don't use oldValue.
+                // 2024-01-06 Implement by eunkiki.hong@samsung.com.
+                BindablePropertyContext context = GetOrCreateContext(property, ignoreDefaultValueCreator : true);
                 if (null != context)
                 {
                     context.Attributes |= BindableContextAttributes.IsManuallySet;
@@ -706,7 +709,8 @@ namespace Tizen.NUI.Binding
             if (property.CoerceValue != null)
                 value = property.CoerceValue(this, value);
 
-            BindablePropertyContext context = GetOrCreateContext(property);
+            // TODO : Could we ignore default value creator in future?
+            BindablePropertyContext context = GetOrCreateContext(property, ignoreDefaultValueCreator : false);
             if (manuallySet)
             {
                 context.Attributes |= BindableContextAttributes.IsManuallySet;
@@ -867,11 +871,14 @@ namespace Tizen.NUI.Binding
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        BindablePropertyContext CreateAndAddContext(BindableProperty property)
-        {
-            var context = new BindablePropertyContext { Property = property, Value = property.DefaultValueCreator != null ? property.DefaultValueCreator(this) : property.DefaultValue };
+        BindablePropertyContext CreateAndAddContext(BindableProperty property) => CreateAndAddContext(property, false);
 
-            if (property.DefaultValueCreator == null)
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        BindablePropertyContext CreateAndAddContext(BindableProperty property, bool ignoreDefaultValueCreator)
+        {
+            var context = new BindablePropertyContext { Property = property, Value = (ignoreDefaultValueCreator || property.DefaultValueCreator == null) ? property.DefaultValue : property.DefaultValueCreator(this) };
+
+            if (ignoreDefaultValueCreator || property.DefaultValueCreator == null)
                 context.Attributes = BindableContextAttributes.IsDefaultValue;
             else
                 context.Attributes = BindableContextAttributes.IsDefaultValueCreated;
@@ -884,18 +891,22 @@ namespace Tizen.NUI.Binding
         BindablePropertyContext GetContext(BindableProperty property) => properties.TryGetValue(property, out var result) ? result : null;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        BindablePropertyContext GetOrCreateContext(BindableProperty property)
+        BindablePropertyContext GetOrCreateContext(BindableProperty property) => GetOrCreateContext(property, false);
+
+        // ignoreDefaultValueCreator become true only if we use SetValue. added by eunkiki.hong
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        BindablePropertyContext GetOrCreateContext(BindableProperty property, bool ignoreDefaultValueCreator)
         {
             BindablePropertyContext context = GetContext(property);
             if (context == null)
             {
-                context = CreateAndAddContext(property);
+                context = CreateAndAddContext(property, ignoreDefaultValueCreator);
             }
-            else if (property.ValueGetter != null)
+            else if (!ignoreDefaultValueCreator && property.ValueGetter != null)
             {
                 context.Value = property.ValueGetter(this); //Update Value from dali
             }//added by xiaohui.fang
-            else if (property.DefaultValueCreator != null) //This will be removed in the future.
+            else if (!ignoreDefaultValueCreator && property.DefaultValueCreator != null) //This will be removed in the future.
             {
                 context.Value = property.DefaultValueCreator(this); //Update Value from dali
             }//added by xb.teng

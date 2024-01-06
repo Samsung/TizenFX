@@ -209,15 +209,6 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                if (oldValue != null)
-                {
-                    bool oldBool = (bool)oldValue;
-                    bool newBool = (bool)newValue;
-                    if (oldBool == newBool)
-                    {
-                        return;
-                    }
-                }
                 imageView.UpdateImage(NpatchImageVisualProperty.BorderOnly, new PropertyValue((bool)newValue));
             }
         },
@@ -238,15 +229,6 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                if (oldValue != null)
-                {
-                    bool oldBool = (bool)oldValue;
-                    bool newBool = (bool)newValue;
-                    if (oldBool == newBool)
-                    {
-                        return;
-                    }
-                }
                 // Note : We need to create new visual if previous visual was async, and now we set value as sync.
                 imageView.UpdateImage(ImageVisualProperty.SynchronousLoading, new PropertyValue((bool)newValue), (bool)newValue);
             }
@@ -268,15 +250,6 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                if (oldValue != null)
-                {
-                    bool oldBool = (bool)oldValue;
-                    bool newBool = (bool)newValue;
-                    if (oldBool == newBool)
-                    {
-                        return;
-                    }
-                }
                 // Note : We need to create new visual if previous visual was async, and now we set value as sync.
                 imageView.UpdateImage(ImageVisualProperty.SynchronousLoading, new PropertyValue((bool)newValue), (bool)newValue);
             }
@@ -298,15 +271,6 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                if (oldValue != null)
-                {
-                    bool oldBool = (bool)oldValue;
-                    bool newBool = (bool)newValue;
-                    if (oldBool == newBool)
-                    {
-                        return;
-                    }
-                }
                 imageView.UpdateImage(ImageVisualProperty.OrientationCorrection, new PropertyValue((bool)newValue));
             }
         },
