@@ -160,6 +160,7 @@ namespace Tizen.NUI.BaseComponents
                 currentStates.framePlayRangeMin = -1;
                 currentStates.framePlayRangeMax = -1;
                 currentStates.totalFrame = -1;
+                currentStates.enableFrameCache = false;
 
                 string ret = (value == null ? "" : value);
                 currentStates.url = ret;
@@ -532,6 +533,42 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Debug($"RedrawInScalingDown get! {currentStates.redrawInScalingDown}");
                 return currentStates.redrawInScalingDown;
+            }
+        }
+
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableFrameCache
+        {
+            get
+            {
+                return (bool)GetValue(EnableFrameCacheProperty);
+            }
+            set
+            {
+                SetValue(EnableFrameCacheProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool InternalEnableFrameCache
+        {
+            set
+            {
+                if (currentStates.enableFrameCache != value)
+                {
+                    currentStates.changed = true;
+                    currentStates.enableFrameCache = value;
+
+                    NUILog.Debug($"<[{GetId()}]SET currentStates.EnableFrameCache={currentStates.enableFrameCache}>");
+
+                    Interop.View.InternalUpdateVisualPropertyBool(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.EnableFrameCache, currentStates.enableFrameCache);
+                }
+            }
+            get
+            {
+                NUILog.Debug($"EnableFrameCache get! {currentStates.enableFrameCache}");
+                return currentStates.enableFrameCache;
             }
         }
         #endregion Property
@@ -1252,6 +1289,7 @@ namespace Tizen.NUI.BaseComponents
             internal bool redrawInScalingDown;
             internal int desiredWidth, desiredHeight;
             internal bool synchronousLoading;
+            internal bool enableFrameCache;
             internal bool changed;
         };
         private states currentStates;
