@@ -39,18 +39,18 @@ namespace Tizen.Content.MediaContent
                 Artist = InteropHelper.GetString(audioHandle, Interop.AudioInfo.GetArtist);
                 AlbumArtist = InteropHelper.GetString(audioHandle, Interop.AudioInfo.GetAlbumArtist);
                 Genre = InteropHelper.GetString(audioHandle, Interop.AudioInfo.GetGenre);
-                Composer = InteropHelper.GetString(audioHandle, Interop.AudioInfo.GetComposer);
+                Composer = InteropHelper.GetString(audioHandle, Interop.AudioInfo.GetComposer);  // Deprecated since API12
                 Year = InteropHelper.GetString(audioHandle, Interop.AudioInfo.GetYear);
-                DateRecorded = InteropHelper.GetString(audioHandle, Interop.AudioInfo.GetRecordedDate);
-                Copyright = InteropHelper.GetString(audioHandle, Interop.AudioInfo.GetCopyright);
+                DateRecorded = InteropHelper.GetString(audioHandle, Interop.AudioInfo.GetRecordedDate); // Deprecated since API12
+                Copyright = InteropHelper.GetString(audioHandle, Interop.AudioInfo.GetCopyright); // Deprecated since API12
                 TrackNumber = InteropHelper.GetString(audioHandle, Interop.AudioInfo.GetTrackNum);
 
-                BitRate = InteropHelper.GetValue<int>(audioHandle, Interop.AudioInfo.GetBitRate);
-                BitPerSample = InteropHelper.GetValue<int>(audioHandle, Interop.AudioInfo.GetBitPerSample);
-                SampleRate = InteropHelper.GetValue<int>(audioHandle, Interop.AudioInfo.GetSampleRate);
-                Channels = InteropHelper.GetValue<int>(audioHandle, Interop.AudioInfo.GetChannel);
+                BitRate = InteropHelper.GetValue<int>(audioHandle, Interop.AudioInfo.GetBitRate); // Deprecated since API12
+                BitPerSample = InteropHelper.GetValue<int>(audioHandle, Interop.AudioInfo.GetBitPerSample); // Deprecated since API12
+                SampleRate = InteropHelper.GetValue<int>(audioHandle, Interop.AudioInfo.GetSampleRate); // Deprecated since API12
+                Channels = InteropHelper.GetValue<int>(audioHandle, Interop.AudioInfo.GetChannel); // Deprecated since API12
 
-                Duration = InteropHelper.GetValue<int>(audioHandle, Interop.AudioInfo.GetDuration);
+                Duration = InteropHelper.GetValue<int>(audioHandle, Interop.AudioInfo.GetDuration); // Deprecated since API12
             }
             finally
             {
@@ -91,6 +91,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The composer from the metadata.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public string Composer { get; }
 
         /// <summary>
@@ -105,6 +106,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The recorded date from the metadata.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public string DateRecorded { get; }
 
         /// <summary>
@@ -112,6 +114,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The copyright from the metadata.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public string Copyright { get; }
 
         /// <summary>
@@ -126,6 +129,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The bit rate in bit per second.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public int BitRate { get; }
 
         /// <summary>
@@ -133,6 +137,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The bit per sample.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public int BitPerSample { get; }
 
         /// <summary>
@@ -140,6 +145,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The sample rate in hertz.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public int SampleRate { get; }
 
         /// <summary>
@@ -147,6 +153,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The number of channels.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public int Channels { get; }
 
         /// <summary>
@@ -154,6 +161,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The track duration in milliseconds.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public int Duration { get; }
     }
 }
