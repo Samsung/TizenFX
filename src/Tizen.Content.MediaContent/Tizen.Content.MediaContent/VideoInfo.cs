@@ -35,18 +35,18 @@ namespace Tizen.Content.MediaContent
 
                 Debug.Assert(videoHandle != IntPtr.Zero);
 
-                Album = InteropHelper.GetString(videoHandle, Interop.VideoInfo.GetAlbum);
-                Artist = InteropHelper.GetString(videoHandle, Interop.VideoInfo.GetArtist);
-                AlbumArtist = InteropHelper.GetString(videoHandle, Interop.VideoInfo.GetAlbumArtist);
-                Genre = InteropHelper.GetString(videoHandle, Interop.VideoInfo.GetGenre);
-                Composer = InteropHelper.GetString(videoHandle, Interop.VideoInfo.GetComposer);
-                Year = InteropHelper.GetString(videoHandle, Interop.VideoInfo.GetYear);
-                DateRecorded = InteropHelper.GetString(videoHandle, Interop.VideoInfo.GetRecordedDate);
-                Copyright = InteropHelper.GetString(videoHandle, Interop.VideoInfo.GetCopyright);
-                TrackNumber = InteropHelper.GetString(videoHandle, Interop.VideoInfo.GetTrackNum);
+                Album = InteropHelper.GetString(videoHandle, Interop.VideoInfo.GetAlbum); // Deprecated since API12
+                Artist = InteropHelper.GetString(videoHandle, Interop.VideoInfo.GetArtist); // Deprecated since API12
+                AlbumArtist = InteropHelper.GetString(videoHandle, Interop.VideoInfo.GetAlbumArtist); // Deprecated since API12
+                Genre = InteropHelper.GetString(videoHandle, Interop.VideoInfo.GetGenre); // Deprecated since API12
+                Composer = InteropHelper.GetString(videoHandle, Interop.VideoInfo.GetComposer); // Deprecated since API12
+                Year = InteropHelper.GetString(videoHandle, Interop.VideoInfo.GetYear); // Deprecated since API12
+                DateRecorded = InteropHelper.GetString(videoHandle, Interop.VideoInfo.GetRecordedDate); // Deprecated since API12
+                Copyright = InteropHelper.GetString(videoHandle, Interop.VideoInfo.GetCopyright); // Deprecated since API12
+                TrackNumber = InteropHelper.GetString(videoHandle, Interop.VideoInfo.GetTrackNum); // Deprecated since API12
 
-                BitRate = InteropHelper.GetValue<int>(videoHandle, Interop.VideoInfo.GetBitRate);
-                Duration = InteropHelper.GetValue<int>(videoHandle, Interop.VideoInfo.GetDuration);
+                BitRate = InteropHelper.GetValue<int>(videoHandle, Interop.VideoInfo.GetBitRate); // Deprecated since API12
+                Duration = InteropHelper.GetValue<int>(videoHandle, Interop.VideoInfo.GetDuration); // Deprecated since API12
                 Width = InteropHelper.GetValue<int>(videoHandle, Interop.VideoInfo.GetWidth);
                 Height = InteropHelper.GetValue<int>(videoHandle, Interop.VideoInfo.GetHeight);
             }
@@ -61,6 +61,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The album name from the metadata.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public string Album { get; }
 
         /// <summary>
@@ -68,6 +69,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The artist name from the metadata.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public string Artist { get; }
 
         /// <summary>
@@ -75,6 +77,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The album artist name from the metadata.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public string AlbumArtist { get; }
 
         /// <summary>
@@ -82,6 +85,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The genre name from the metadata.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public string Genre { get; }
 
         /// <summary>
@@ -89,6 +93,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The composer name from the metadata.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public string Composer { get; }
 
         /// <summary>
@@ -96,6 +101,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The year from the metadata.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public string Year { get; }
 
         /// <summary>
@@ -103,6 +109,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The recorded date information from the metadata if exists; otherwise, the modified date of the file.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public string DateRecorded { get; }
 
         /// <summary>
@@ -110,6 +117,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The copyright notice from the metadata.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public string Copyright { get; }
 
         /// <summary>
@@ -117,6 +125,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The track number from the metadata.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public string TrackNumber { get; }
 
         /// <summary>
@@ -124,6 +133,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The bit rate of the video.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public int BitRate { get; }
 
         /// <summary>
@@ -131,6 +141,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The track duration of the video in milliseconds.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public int Duration { get; }
 
         /// <summary>

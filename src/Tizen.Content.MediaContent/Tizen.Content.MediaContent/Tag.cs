@@ -24,6 +24,7 @@ namespace Tizen.Content.MediaContent
     /// a simplified and faster way of accessing media items.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API12; Will be removed in API14.")]
     public class Tag
     {
         internal Tag(IntPtr handle)
@@ -37,6 +38,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The unique ID of the tag.</value>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public int Id { get; }
 
         /// <summary>
@@ -44,6 +46,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The name of the tag.</value>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public string Name { get; }
 
         internal static Tag FromHandle(IntPtr handle) => new Tag(handle);
@@ -53,6 +56,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <returns>A string representation of the current tag.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public override string ToString() => $"Id={Id}, Name={Name}";
 
     }
