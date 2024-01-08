@@ -41,19 +41,19 @@ namespace Tizen.Content.MediaContent
 
             DateAdded = InteropHelper.GetDateTime(handle, Interop.MediaInfo.GetAddedTime);
             DateModified = InteropHelper.GetDateTime(handle, Interop.MediaInfo.GetModifiedTime);
-            Timeline = InteropHelper.GetDateTime(handle, Interop.MediaInfo.GetTimeline);
+            Timeline = InteropHelper.GetDateTime(handle, Interop.MediaInfo.GetTimeline);  // Deprecated since API12
 
             ThumbnailPath = InteropHelper.GetString(handle, Interop.MediaInfo.GetThumbnailPath, true);
-            Description = InteropHelper.GetString(handle, Interop.MediaInfo.GetDescription);
+            Description = InteropHelper.GetString(handle, Interop.MediaInfo.GetDescription);  // Deprecated since API12
 
-            Longitude = InteropHelper.GetValue<double>(handle, Interop.MediaInfo.GetLongitude);
-            Latitude = InteropHelper.GetValue<double>(handle, Interop.MediaInfo.GetLatitude);
-            Altitude = InteropHelper.GetValue<double>(handle, Interop.MediaInfo.GetAltitude);
+            Longitude = InteropHelper.GetValue<double>(handle, Interop.MediaInfo.GetLongitude);  // Deprecated since API12
+            Latitude = InteropHelper.GetValue<double>(handle, Interop.MediaInfo.GetLatitude);  // Deprecated since API12
+            Altitude = InteropHelper.GetValue<double>(handle, Interop.MediaInfo.GetAltitude);  // Deprecated since API12
 
-            Rating = InteropHelper.GetValue<int>(handle, Interop.MediaInfo.GetRating);
-            IsFavorite = InteropHelper.GetValue<bool>(handle, Interop.MediaInfo.GetFavorite);
+            Rating = InteropHelper.GetValue<int>(handle, Interop.MediaInfo.GetRating);  // Deprecated since API12
+            IsFavorite = InteropHelper.GetValue<bool>(handle, Interop.MediaInfo.GetFavorite);  // Deprecated since API12
             Title = InteropHelper.GetString(handle, Interop.MediaInfo.GetTitle);
-            IsDrm = InteropHelper.GetValue<bool>(handle, Interop.MediaInfo.IsDrm);
+            IsDrm = InteropHelper.GetValue<bool>(handle, Interop.MediaInfo.IsDrm);  // Deprecated since API12
         }
 
         /// <summary>
@@ -120,6 +120,7 @@ namespace Tizen.Content.MediaContent
         /// otherwise the modified date.
         /// </value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public DateTimeOffset Timeline { get; }
 
         /// <summary>
@@ -134,6 +135,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The description from the metadata.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public string Description { get; }
 
         /// <summary>
@@ -141,6 +143,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The longitude.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public double Longitude { get; }
 
         /// <summary>
@@ -148,6 +151,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The latitude.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public double Latitude { get; }
 
         /// <summary>
@@ -155,6 +159,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The altitude.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public double Altitude { get; }
 
         /// <summary>
@@ -162,6 +167,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The rating from the metadata.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public int Rating { get; }
 
         /// <summary>
@@ -169,6 +175,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>true if media is set as favorite, otherwise false.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public bool IsFavorite { get; }
 
         /// <summary>
@@ -183,6 +190,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>A bool value indicating whether the media is DRM-protected.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public bool IsDrm { get; }
 
         /// <summary>
