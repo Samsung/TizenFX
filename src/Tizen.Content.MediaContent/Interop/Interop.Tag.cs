@@ -26,47 +26,47 @@ internal static partial class Interop
         internal static extern MediaContentError Create(out IntPtr handle);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_tag_insert_to_db")]
-        internal static extern MediaContentError Insert(string name, out IntPtr handle);
+        internal static extern MediaContentError Insert(string name, out IntPtr handle); // Deprecated since API12
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_tag_delete_from_db")]
-        internal static extern MediaContentError Delete(int tagId);
+        internal static extern MediaContentError Delete(int tagId); // Deprecated since API12
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_tag_update_to_db_v2")]
-        internal static extern MediaContentError Update(int tagId, IntPtr tag);
+        internal static extern MediaContentError Update(int tagId, IntPtr tag); // Deprecated since API12
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_tag_get_tag_from_db")]
-        internal static extern MediaContentError GetTagFromDb(int tagId, out IntPtr tag);
+        internal static extern MediaContentError GetTagFromDb(int tagId, out IntPtr tag); // Deprecated since API12
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_tag_get_tag_count_from_db")]
-        internal static extern MediaContentError GetTagCount(FilterHandle filter, out int count);
+        internal static extern MediaContentError GetTagCount(FilterHandle filter, out int count); // Deprecated since API12
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_tag_get_media_count_from_db")]
-        internal static extern MediaContentError GetMediaCount(int tagId, FilterHandle filter, out int count);
+        internal static extern MediaContentError GetMediaCount(int tagId, FilterHandle filter, out int count); // Deprecated since API12
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_tag_destroy")]
-        internal static extern MediaContentError Destroy(IntPtr tag);
+        internal static extern MediaContentError Destroy(IntPtr tag); // Deprecated since API12
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_tag_get_tag_id")]
-        internal static extern MediaContentError GetId(IntPtr tag, out int value);
+        internal static extern MediaContentError GetId(IntPtr tag, out int value); // Deprecated since API12
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_tag_get_name")]
-        internal static extern MediaContentError GetName(IntPtr tag, out IntPtr value);
+        internal static extern MediaContentError GetName(IntPtr tag, out IntPtr value); // Deprecated since API12
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_tag_set_name")]
-        internal static extern MediaContentError SetName(IntPtr tag, string value);
+        internal static extern MediaContentError SetName(IntPtr tag, string value); // Deprecated since API12
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_tag_add_media")]
-        internal static extern MediaContentError AddMedia(IntPtr tag, string mediaId);
+        internal static extern MediaContentError AddMedia(IntPtr tag, string mediaId); // Deprecated since API12
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_tag_remove_media")]
-        internal static extern MediaContentError RemoveMedia(IntPtr tag, string mediaId);
+        internal static extern MediaContentError RemoveMedia(IntPtr tag, string mediaId); // Deprecated since API12
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_tag_foreach_tag_from_db")]
         internal static extern MediaContentError ForeachTagFromDb(FilterHandle filter,
-            Common.ItemCallback callback, IntPtr userData = default(IntPtr));
+            Common.ItemCallback callback, IntPtr userData = default(IntPtr)); // Deprecated since API12
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_tag_foreach_media_from_db")]
         internal static extern MediaContentError ForeachMediaFromDb(int tagId, FilterHandle filter,
-            Common.ItemCallback callback, IntPtr userData = default(IntPtr));
+            Common.ItemCallback callback, IntPtr userData = default(IntPtr)); // Deprecated since API12
     }
 }
