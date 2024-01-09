@@ -24,8 +24,6 @@ namespace Tizen.NUI
     {
         internal static partial class FadeTransitionItem
         {
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_FadeTransition")]
-            public static extern IntPtr NewEmpty();
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FadeTransition_New")]
             public static extern IntPtr New(HandleRef view, float opacity, HandleRef timePeriod);

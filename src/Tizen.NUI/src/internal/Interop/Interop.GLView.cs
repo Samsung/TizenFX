@@ -29,18 +29,6 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_New2_SWIG")]
             public static extern global::System.IntPtr New(int backendMode, int nuiColorFormat);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_GlView_SWIG_0")]
-            public static extern global::System.IntPtr NewGlView();
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_GlView_SWIG_1")]
-            public static extern global::System.IntPtr NewGlView(HandleRef nuiGlView);
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_GlView")]
-            public static extern void DeleteGlView(HandleRef nuiGlView);
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_Assign")]
-            public static extern global::System.IntPtr GlViewAssign(HandleRef nuiGlView1, HandleRef nuiGlView2);
-
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_RegisterGlCallbacks")]
             public static extern void GlViewRegisterGlCallbacks(HandleRef nuiGlView, HandleRef nuiInitCB, HandleRef nuiRenderFrameCB, HandleRef nuiTerminateCB);
 
@@ -56,9 +44,6 @@ namespace Tizen.NUI
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_GetRenderingMode")]
             public static extern global::System.IntPtr GlViewGetRenderingMode(HandleRef nuiGlView);
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_GetBackendMode")]
-            public static extern global::System.IntPtr GlViewGetBackendMode(HandleRef nuiGlView);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_RenderOnce")]
             public static extern void GlViewRenderOnce(HandleRef nuiGlView);

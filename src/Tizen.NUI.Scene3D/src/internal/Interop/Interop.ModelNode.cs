@@ -39,9 +39,6 @@ namespace Tizen.NUI.Scene3D
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_Node_New_SWIG_0")]
             public static extern global::System.IntPtr ModelNodeNew();
 
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_new_Model_Node_SWIG_0")]
-            public static extern global::System.IntPtr NewModelNode();
-
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_new_Model_Node_SWIG_1")]
             public static extern global::System.IntPtr NewModelNode(global::System.Runtime.InteropServices.HandleRef modelNode);
 
@@ -50,9 +47,6 @@ namespace Tizen.NUI.Scene3D
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_Node_Assign")]
             public static extern global::System.IntPtr ModelNodeAssign(global::System.Runtime.InteropServices.HandleRef modelNode, global::System.Runtime.InteropServices.HandleRef sourceModelNode);
-
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_Node_DownCast")]
-            public static extern global::System.IntPtr ModelNodeDownCast(global::System.Runtime.InteropServices.HandleRef modelNode);
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_Node_GetModelPrimitiveCount")]
             public static extern uint GetModelPrimitiveCount(global::System.Runtime.InteropServices.HandleRef model);
@@ -68,9 +62,6 @@ namespace Tizen.NUI.Scene3D
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_Node_GetModelPrimitive")]
             public static extern global::System.IntPtr GetModelPrimitive(global::System.Runtime.InteropServices.HandleRef model, uint index);
-
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_Node_FindChildModelNodeByName")]
-            public static extern global::System.IntPtr FindChildModelNodeByName(global::System.Runtime.InteropServices.HandleRef model, string nodeName);
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_Node_GetChildModelNodeCount")]
             public static extern uint GetChildModelNodeCount(global::System.Runtime.InteropServices.HandleRef model);

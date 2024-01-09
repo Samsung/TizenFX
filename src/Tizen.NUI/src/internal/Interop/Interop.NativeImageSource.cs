@@ -22,8 +22,6 @@ namespace Tizen.NUI
     {
         internal static partial class NativeImageSource
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageSource_Upcast")]
-            public static extern IntPtr Upcast(IntPtr jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageSource_New")]
             public static extern IntPtr New(IntPtr handle);

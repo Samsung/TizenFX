@@ -21,8 +21,6 @@ namespace Tizen.NUI
     {
         internal static partial class TtsPlayer
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TtsPlayer_SWIGUpcast")]
-            public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TtsPlayer__SWIG_0")]
             public static extern global::System.IntPtr NewTtsPlayer();
@@ -32,9 +30,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TtsPlayer_Get__SWIG_1")]
             public static extern global::System.IntPtr Get();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_TtsPlayer")]
-            public static extern void DeleteTtsPlayer(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TtsPlayer__SWIG_1")]
             public static extern global::System.IntPtr NewTtsPlayer(global::System.Runtime.InteropServices.HandleRef jarg1);

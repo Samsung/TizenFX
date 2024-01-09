@@ -21,8 +21,6 @@ namespace Tizen.NUI
     {
         internal static partial class ViewWrapperImpl
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewWrapperImpl_SWIGUpcast")]
-            public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewWrapperImpl_CONTROL_BEHAVIOUR_FLAG_COUNT_get")]
             public static extern int ControlBehaviourFlagCountGet();
@@ -32,9 +30,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewWrapperImpl_New")]
             public static extern global::System.IntPtr New(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ViewWrapperImpl")]
-            public static extern void DeleteViewWrapperImpl(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewWrapperImpl_director_connect")]
             public static extern void DirectorConnect(global::System.Runtime.InteropServices.HandleRef jarg1,
@@ -105,9 +100,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewWrapperImpl_ApplyThemeStyle")]
             public static extern void ApplyThemeStyle(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetControlWrapperImpl__SWIG_0")]
-            public static extern global::System.IntPtr GetControlWrapperImpl(global::System.Runtime.InteropServices.HandleRef jarg1);
         }
     }
 }

@@ -21,14 +21,6 @@ namespace Tizen.NUI
     {
         internal static partial class Wheel
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Wheel__SWIG_0")]
-            public static extern global::System.IntPtr NewWheel();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Wheel__SWIG_1")]
-            public static extern global::System.IntPtr NewWheel(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Wheel_Assign")]
-            public static extern global::System.IntPtr Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Wheel_New")]
             public static extern global::System.IntPtr New(int jarg1, int jarg2, uint jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, int jarg5, uint jarg6);
@@ -87,9 +79,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_StageWheelSignal")]
             public static extern void DeleteStageWheelSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Wheel_SWIGUpcast")]
-            public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
         }
     }
 }

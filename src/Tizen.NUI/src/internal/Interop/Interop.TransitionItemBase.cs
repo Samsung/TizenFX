@@ -24,8 +24,6 @@ namespace Tizen.NUI
     {
         internal static partial class TransitionItemBase
         {
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TransitionBase")]
-            public static extern IntPtr NewEmpty();
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionBase_New")]
             public static extern IntPtr New();

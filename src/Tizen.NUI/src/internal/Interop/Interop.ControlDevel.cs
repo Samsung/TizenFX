@@ -150,10 +150,6 @@ namespace Tizen.NUI
             public static extern IntPtr DaliAccessibilityNewRange(int arg1_start, int arg2_end, string arg3_content);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_delete_Range")]
-            public static extern void DaliAccessibilityDeleteRange(IntPtr arg1);
-
-            [EditorBrowsable(EditorBrowsableState.Never)]
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_Bridge_RegisterDefaultLabel")]
             public static extern void DaliAccessibilityBridgeRegisterDefaultLabel(HandleRef arg1);
 

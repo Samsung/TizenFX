@@ -21,8 +21,6 @@ namespace Tizen.NUI
     {
         internal static partial class Constraint
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Constraint")]
-            public static extern global::System.IntPtr NewConstraint(global::System.Runtime.InteropServices.HandleRef jarg1);
             
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Constraint")]
             public static extern global::System.IntPtr DeleteConstraint(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -50,16 +48,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_GetTargetProperty")]
             public static extern int GetTargetProperty(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            // Constant values
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_REMOVE_ACTION_BAKE_get")]
-            public static extern int ConstraintRemoveActionBakeGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_REMOVE_ACTION_DISCARD_get")]
-            public static extern int ConstraintRemoveActionDiscardGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_DEFAULT_REMOVE_ACTION_get")]
-            public static extern int ConstraintDefaultRemoveActionGet();
 
             // Special Constraint
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_EqualConstraintWithParentFloat_New")]

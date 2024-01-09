@@ -24,12 +24,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_New")]
             public static extern global::System.IntPtr New();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_SetContext")]
-            public static extern global::System.IntPtr SetContext(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_SetMeasureFunction")]
-            public static extern global::System.IntPtr SetMeasureFunction(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_AddChildWithMargin")]
             public static extern global::System.IntPtr AddChildWithMargin(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, Tizen.NUI.FlexLayout.ChildMeasureCallback jarg4, int jarg5);
 
@@ -47,9 +41,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_GetNodeFrame")]
             public static extern global::System.IntPtr GetNodeFrame(global::System.Runtime.InteropServices.HandleRef jarg1, int index);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_MarkDirty")]
-            public static extern global::System.IntPtr MarkDirty(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_SetMargin")]
             public static extern global::System.IntPtr SetMargin(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
@@ -93,50 +84,20 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_SetFlexAlignmentSelf")]
             public static extern void SetFlexAlignmentSelf(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_GetFlexAlignmentSelf")]
-            public static extern int GetFlexAlignmentSelf(global::System.Runtime.InteropServices.HandleRef jarg1);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_SetFlexPositionType")]
             public static extern void SetFlexPositionType(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_GetFlexPositionType")]
-            public static extern int GetFlexPositionType(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_SetFlexAspectRatio")]
             public static extern void SetFlexAspectRatio(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_GetFlexAspectRatio")]
-            public static extern float GetFlexAspectRatio(global::System.Runtime.InteropServices.HandleRef jarg1);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_SetFlexBasis")]
             public static extern void SetFlexBasis(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_GetFlexBasis")]
-            public static extern float GetFlexBasis(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_SetFlexShrink")]
             public static extern void SetFlexShrink(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_GetFlexShrink")]
-            public static extern float GetFlexShrink(global::System.Runtime.InteropServices.HandleRef jarg1);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_SetFlexGrow")]
             public static extern void SetFlexGrow(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_GetFlexGrow")]
-            public static extern float GetFlexGrow(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_SetMaximumWidth")]
-            public static extern void SetFlexMaximumWidth(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_SetMaximumHeight")]
-            public static extern void SetFlexMaximumHeight(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_SetMinimumWidth")]
-            public static extern void SetFlexMinimumWidth(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_SetMinimumHeight")]
-            public static extern void SetFlexMinimumHeight(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
         }
     }
 }

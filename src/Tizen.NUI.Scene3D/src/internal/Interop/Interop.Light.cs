@@ -24,17 +24,8 @@ namespace Tizen.NUI.Scene3D
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Light_New_SWIG_0")]
             public static extern global::System.IntPtr New();
 
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_new_Light_SWIG_0")]
-            public static extern global::System.IntPtr NewLight();
-
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_new_Light_SWIG_1")]
             public static extern global::System.IntPtr NewLight(global::System.Runtime.InteropServices.HandleRef light);
-
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_delete_Light")]
-            public static extern void DeleteLight(global::System.Runtime.InteropServices.HandleRef light);
-
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Light_DownCast")]
-            public static extern global::System.IntPtr LightDownCast(global::System.Runtime.InteropServices.HandleRef light);
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Light_Enable")]
             public static extern void Enable(global::System.Runtime.InteropServices.HandleRef light, bool enable);

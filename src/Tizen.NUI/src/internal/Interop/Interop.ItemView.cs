@@ -54,29 +54,11 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ItemView_Property_SCROLL_CONTENT_SIZE_get")]
             public static extern int ScrollContentSizeGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_ItemView_Property")]
-            public static extern global::System.IntPtr NewItemViewProperty();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ItemView_Property")]
-            public static extern void DeleteItemViewProperty(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_ItemView__SWIG_0")]
-            public static extern global::System.IntPtr NewItemView();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_ItemView__SWIG_1")]
-            public static extern global::System.IntPtr NewItemView(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ItemView_Assign")]
-            public static extern global::System.IntPtr Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ItemView")]
             public static extern void DeleteItemView(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ItemView_New")]
             public static extern global::System.IntPtr New(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ItemView_DownCast")]
-            public static extern global::System.IntPtr DownCast(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ItemView_GetLayoutCount")]
             public static extern uint GetLayoutCount(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -102,24 +84,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ItemView_DeactivateCurrentLayout")]
             public static extern void DeactivateCurrentLayout(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ItemView_SetMinimumSwipeSpeed")]
-            public static extern void SetMinimumSwipeSpeed(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ItemView_GetMinimumSwipeSpeed")]
-            public static extern float GetMinimumSwipeSpeed(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ItemView_SetMinimumSwipeDistance")]
-            public static extern void SetMinimumSwipeDistance(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ItemView_GetMinimumSwipeDistance")]
-            public static extern float GetMinimumSwipeDistance(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ItemView_SetWheelScrollDistanceStep")]
-            public static extern void SetWheelScrollDistanceStep(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ItemView_GetWheelScrollDistanceStep")]
-            public static extern float GetWheelScrollDistanceStep(global::System.Runtime.InteropServices.HandleRef jarg1);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ItemView_SetAnchoring")]
             public static extern void SetAnchoring(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
 
@@ -135,12 +99,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ItemView_ScrollToItem")]
             public static extern void ScrollToItem(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, float jarg3);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ItemView_SetRefreshInterval")]
-            public static extern void SetRefreshInterval(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ItemView_GetRefreshInterval")]
-            public static extern float GetRefreshInterval(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ItemView_Refresh")]
             public static extern void Refresh(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -189,9 +147,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ItemView_Property_LAYOUT_get")]
             public static extern int LayoutGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ItemView_SWIGUpcast")]
-            public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
         }
     }
 }

@@ -24,9 +24,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGesture_SWIGUpcast")]
             public static extern global::System.IntPtr PanGestureUpcast(global::System.IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_SWIGUpcast")]
-            public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_Property_SCREEN_POSITION_get")]
             public static extern int ScreenPositionGet();
 
@@ -47,12 +44,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_Property_PANNING_get")]
             public static extern int PanningGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_PanGestureDetector_Property")]
-            public static extern global::System.IntPtr NewPanGestureDetectorProperty();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_PanGestureDetector_Property")]
-            public static extern void DeletePanGestureDetectorProperty(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_DIRECTION_LEFT_get")]
             public static extern global::System.IntPtr DirectionLeftGet();
@@ -75,14 +66,8 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_DEFAULT_THRESHOLD_get")]
             public static extern global::System.IntPtr DefaultThresholdGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_PanGestureDetector__SWIG_0")]
-            public static extern global::System.IntPtr NewPanGestureDetector();
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_New")]
             public static extern global::System.IntPtr New();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_DownCast")]
-            public static extern global::System.IntPtr DownCast(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_PanGestureDetector")]
             public static extern void DeletePanGestureDetector(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -144,17 +129,8 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_SetPanGestureProperties")]
             public static extern void SetPanGestureProperties(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_PanGesture__SWIG_0")]
-            public static extern global::System.IntPtr NewPanGesture();
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGesture_New")]
             public static extern global::System.IntPtr PanGestureNew(int jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_PanGesture__SWIG_2")]
-            public static extern global::System.IntPtr NewPanGesture(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGesture_Assign")]
-            public static extern global::System.IntPtr PanGestureAssign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_PanGesture")]
             public static extern void DeletePanGesture(global::System.Runtime.InteropServices.HandleRef jarg1);
