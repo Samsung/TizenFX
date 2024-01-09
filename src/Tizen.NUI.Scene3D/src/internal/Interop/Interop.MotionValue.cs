@@ -30,9 +30,6 @@ namespace Tizen.NUI.Scene3D
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_MotionValue_New_SWIG_2")]
             public static extern global::System.IntPtr MotionValueNewKeyFrames(global::System.Runtime.InteropServices.HandleRef keyFrames);
 
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_new_MotionValue_SWIG_0")]
-            public static extern global::System.IntPtr NewMotionValue();
-
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_new_MotionValue_SWIG_1")]
             public static extern global::System.IntPtr NewMotionValue(global::System.Runtime.InteropServices.HandleRef motionValue);
 
@@ -41,9 +38,6 @@ namespace Tizen.NUI.Scene3D
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_MotionValue_Assign")]
             public static extern global::System.IntPtr MotionValueAssign(global::System.Runtime.InteropServices.HandleRef motionValue, global::System.Runtime.InteropServices.HandleRef sourceMotionValue);
-
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_MotionValue_DownCast")]
-            public static extern global::System.IntPtr MotionValueDownCast(global::System.Runtime.InteropServices.HandleRef motionValue);
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_MotionValue_GetValueType")]
             public static extern int GetValueType(global::System.Runtime.InteropServices.HandleRef motionValue);

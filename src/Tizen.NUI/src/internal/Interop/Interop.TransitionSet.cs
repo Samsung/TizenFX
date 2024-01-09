@@ -23,8 +23,6 @@ namespace Tizen.NUI
     {
         internal static partial class TransitionSet
         {
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TransitionSet")]
-            public static extern IntPtr NewEmpty();
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionSet_New")]
             public static extern IntPtr New();

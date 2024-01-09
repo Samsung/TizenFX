@@ -88,9 +88,6 @@ namespace Tizen.NUI
             [DllImport(Libraries.FrameBroker, EntryPoint = "frame_broker_send_launch_request")]
             internal static extern ErrorCode SendLaunchRequest(SafeFrameBrokerHandle handle, SafeAppControlHandle safeAppControlHandle, AppControlResultCallback resultCallback, AppControlReplyCallback replyCallback, IntPtr userData);
 
-            [DllImport(Libraries.FrameBroker, EntryPoint = "frame_broker_send_launch_request_to_provider")]
-            internal static extern ErrorCode SendLaunchRequestToProvider(SafeFrameBrokerHandle handle, SafeAppControlHandle safeAppControlHandle, AppControlResultCallback resultCallback, AppControlReplyCallback replyCallback, IntPtr userData);
-
 
             internal enum FrameType
             {

@@ -20,14 +20,6 @@ namespace Tizen.NUI
     {
         internal static partial class LottieAnimationView
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_AnimatedVectorImageVisual_Actions_PLAY_get")]
-            public static extern int AnimatedVectorImageVisualActionPlayGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_AnimatedVectorImageVisual_Actions_PAUSE_get")]
-            public static extern int AnimatedVectorImageVisualActionPauseGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_AnimatedVectorImageVisual_Actions_STOP_get")]
-            public static extern int AnimatedVectorImageVisualActionStopGet();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_AnimatedVectorImageVisual_Actions_JUMP_TO_get")]
             public static extern int AnimatedVectorImageVisualActionJumpToGet();

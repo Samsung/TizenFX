@@ -21,8 +21,6 @@ namespace Tizen.NUI
     {
         internal static partial class Alignment
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Alignment_SWIGUpcast")]
-            public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Alignment_Padding__SWIG_0")]
             public static extern global::System.IntPtr NewAlignmentPadding();
@@ -57,9 +55,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Alignment_Padding")]
             public static extern void DeleteAlignmentPadding(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Alignment__SWIG_0")]
-            public static extern global::System.IntPtr NewAlignment();
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Alignment_New__SWIG_0")]
             public static extern global::System.IntPtr New(int jarg1, int jarg2);
 
@@ -74,9 +69,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Alignment")]
             public static extern void DeleteAlignment(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Alignment_DownCast")]
-            public static extern global::System.IntPtr DownCast(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Alignment_SetAlignmentType")]
             public static extern void SetAlignmentType(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);

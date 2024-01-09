@@ -158,9 +158,6 @@ namespace Tizen.NUI
                 Tizen.NUI.ViewImpl.SwigDelegateViewImpl_36 delegate36, Tizen.NUI.ViewImpl.SwigDelegateViewImpl_37 delegate37,
                 Tizen.NUI.ViewImpl.SwigDelegateViewImpl_38 delegate38, Tizen.NUI.ViewImpl.SwigDelegateViewImpl_39 delegate39,
                 Tizen.NUI.ViewImpl.SwigDelegateViewImpl_40 delegate40);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_SWIGUpcast")]
-            public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
         }
     }
 }

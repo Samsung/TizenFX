@@ -40,9 +40,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowMouseInOutEventSignal_Emit")]
             public static extern void Emit(global::System.Runtime.InteropServices.HandleRef signalType, global::System.Runtime.InteropServices.HandleRef window, global::System.Runtime.InteropServices.HandleRef mouseEvent);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WindowMouseInOutEventSignal")]
-            public static extern global::System.IntPtr NewWindowMouseInOutEventSignal();
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WindowMouseInOutEventSignal")]
             public static extern void DeleteWindowMouseInOutEventSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
         }
