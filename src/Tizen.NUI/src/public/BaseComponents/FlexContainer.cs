@@ -47,7 +47,9 @@ namespace Tizen.NUI.BaseComponents
             int temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.ContentDirection).Get(out temp);
             return (ContentDirectionType)temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
+
         /// <summary> Property of FlexDirection </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty FlexDirectionProperty = BindableProperty.Create(nameof(FlexDirection), typeof(FlexDirectionType), typeof(FlexContainer), FlexDirectionType.Column, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
@@ -64,7 +66,9 @@ namespace Tizen.NUI.BaseComponents
             int temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.FlexDirection).Get(out temp);
             return (FlexDirectionType)temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
+
         /// <summary> Property of FlexWrap </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty FlexWrapProperty = BindableProperty.Create(nameof(FlexWrap), typeof(WrapType), typeof(FlexContainer), WrapType.NoWrap, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
@@ -81,7 +85,9 @@ namespace Tizen.NUI.BaseComponents
             int temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.FlexWrap).Get(out temp);
             return (WrapType)temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
+
         /// <summary> Property of JustifyContent </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty JustifyContentProperty = BindableProperty.Create(nameof(JustifyContent), typeof(Justification), typeof(FlexContainer), Justification.JustifyFlexStart, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
@@ -98,7 +104,9 @@ namespace Tizen.NUI.BaseComponents
             int temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.JustifyContent).Get(out temp);
             return (Justification)temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
+
         /// <summary> Property of AlignItems </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty AlignItemsProperty = BindableProperty.Create(nameof(AlignItems), typeof(Alignment), typeof(FlexContainer), Alignment.AlignAuto, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
@@ -115,7 +123,9 @@ namespace Tizen.NUI.BaseComponents
             int temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.AlignItems).Get(out temp);
             return (Alignment)temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
+
         /// <summary> Property of AlignContent </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty AlignContentProperty = BindableProperty.Create(nameof(AlignContent), typeof(Alignment), typeof(FlexContainer), Alignment.AlignAuto, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
@@ -132,7 +142,8 @@ namespace Tizen.NUI.BaseComponents
             int temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.AlignContent).Get(out temp);
             return (Alignment)temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
 
         /// <summary>

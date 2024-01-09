@@ -38,7 +38,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.LottieAnimationView)bindable;
             return instance.InternalURL;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// CurrentFrameProperty
@@ -56,7 +57,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.LottieAnimationView)bindable;
             return instance.InternalCurrentFrame;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// LoopingModeProperty
@@ -74,7 +76,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.LottieAnimationView)bindable;
             return instance.InternalLoopingMode;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// LoopCountProperty
@@ -92,7 +95,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.LottieAnimationView)bindable;
             return instance.InternalLoopCount;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// StopBehaviorProperty
@@ -110,7 +114,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.LottieAnimationView)bindable;
             return instance.InternalStopBehavior;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// RedrawInScalingDownProperty
@@ -128,7 +133,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.LottieAnimationView)bindable;
             return instance.InternalRedrawInScalingDown;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// EnableFrameCacheProperty
@@ -146,6 +152,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.LottieAnimationView)bindable;
             return instance.InternalEnableFrameCache;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
     }
 }

@@ -41,7 +41,7 @@ namespace Tizen.NUI
         /// FlexAlignmentSelfProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FlexAlignmentSelfProperty = BindableProperty.CreateAttached("FlexAlignmentSelf", typeof(AlignmentType), typeof(FlexLayout), AlignmentType.Auto, validateValue: ValidateEnum((int)AlignmentType.Auto, (int)AlignmentType.Stretch), propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty FlexAlignmentSelfProperty = BindableProperty.CreateAttached("FlexAlignmentSelf", typeof(AlignmentType), typeof(FlexLayout), AlignmentType.Auto, validateValue: ValidateEnum((int)AlignmentType.Auto, (int)AlignmentType.Stretch), propertyChanged: OnChildPropertyChanged, valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// FlexPositionTypeProperty
@@ -62,32 +62,33 @@ namespace Tizen.NUI
                 return PositionType.Absolute;
 
             return PositionType.Relative;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
 
         /// <summary>
         /// AspectRatioProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FlexAspectRatioProperty = BindableProperty.CreateAttached("FlexAspectRatio", typeof(float), typeof(FlexLayout), FlexUndefined, validateValue: (bindable, value) => (float)value > 0, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty FlexAspectRatioProperty = BindableProperty.CreateAttached("FlexAspectRatio", typeof(float), typeof(FlexLayout), FlexUndefined, validateValue: (bindable, value) => (float)value > 0, propertyChanged: OnChildPropertyChanged, valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// FlexBasisProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FlexBasisProperty = BindableProperty.CreateAttached("FlexBasis", typeof(float), typeof(FlexLayout), FlexUndefined, validateValue: (bindable, value) => (float)value >= 0, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty FlexBasisProperty = BindableProperty.CreateAttached("FlexBasis", typeof(float), typeof(FlexLayout), FlexUndefined, validateValue: (bindable, value) => (float)value >= 0, propertyChanged: OnChildPropertyChanged, valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// FlexShrinkProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FlexShrinkProperty = BindableProperty.CreateAttached("FlexShrink", typeof(float), typeof(FlexLayout), 1.0f, validateValue: (bindable, value) => (float)value >= 0, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty FlexShrinkProperty = BindableProperty.CreateAttached("FlexShrink", typeof(float), typeof(FlexLayout), 1.0f, validateValue: (bindable, value) => (float)value >= 0, propertyChanged: OnChildPropertyChanged, valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// FlexGrowProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FlexGrowProperty = BindableProperty.CreateAttached("FlexGrow", typeof(float), typeof(FlexLayout), FlexUndefined, validateValue: (bindable, value) => (float)value >= 0, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty FlexGrowProperty = BindableProperty.CreateAttached("FlexGrow", typeof(float), typeof(FlexLayout), FlexUndefined, validateValue: (bindable, value) => (float)value >= 0, propertyChanged: OnChildPropertyChanged, valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private bool swigCMemOwn;

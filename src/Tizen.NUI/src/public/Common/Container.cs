@@ -34,7 +34,7 @@ namespace Tizen.NUI
     {
         /// <summary> XamlStyleProperty </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty XamlStyleProperty = BindableProperty.Create(nameof(XamlStyle), typeof(XamlStyle), typeof(Container), default(XamlStyle), propertyChanged: (bindable, oldvalue, newvalue) => ((View)bindable).MergedStyle.Style = (XamlStyle)newvalue);
+        public static readonly BindableProperty XamlStyleProperty = BindableProperty.Create(nameof(XamlStyle), typeof(XamlStyle), typeof(Container), default(XamlStyle), propertyChanged: (bindable, oldvalue, newvalue) => ((View)bindable).MergedStyle.Style = (XamlStyle)newvalue, valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         internal BaseHandle InternalParent;
         private List<View> childViews = new List<View>();

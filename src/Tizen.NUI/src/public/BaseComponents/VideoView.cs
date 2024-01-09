@@ -43,7 +43,9 @@ namespace Tizen.NUI.BaseComponents
             PropertyMap temp = new PropertyMap();
             Tizen.NUI.Object.GetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.VIDEO).Get(temp);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty LoopingProperty = BindableProperty.Create(nameof(Looping), typeof(bool), typeof(VideoView), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
@@ -60,7 +62,9 @@ namespace Tizen.NUI.BaseComponents
             bool temp = false;
             Tizen.NUI.Object.GetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.LOOPING).Get(out temp);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty MutedProperty = BindableProperty.Create(nameof(Muted), typeof(bool), typeof(VideoView), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
@@ -77,7 +81,9 @@ namespace Tizen.NUI.BaseComponents
             bool temp = false;
             Tizen.NUI.Object.GetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.MUTED).Get(out temp);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty VolumeProperty = BindableProperty.Create(nameof(Volume), typeof(PropertyMap), typeof(VideoView), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
@@ -94,7 +100,9 @@ namespace Tizen.NUI.BaseComponents
             PropertyMap temp = new PropertyMap();
             Tizen.NUI.Object.GetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.VOLUME).Get(temp);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty UnderlayProperty = BindableProperty.Create(nameof(Underlay), typeof(bool), typeof(VideoView), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
@@ -111,7 +119,9 @@ namespace Tizen.NUI.BaseComponents
             bool temp = false;
             Tizen.NUI.Object.GetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.UNDERLAY).Get(out temp);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ResourceUrlProperty = BindableProperty.Create(nameof(ResourceUrl), typeof(string), typeof(VideoView), string.Empty, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
@@ -128,7 +138,8 @@ namespace Tizen.NUI.BaseComponents
             string temp;
             Tizen.NUI.Object.GetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.VIDEO).Get(out temp);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         private FinishedCallbackDelegate videoViewFinishedCallbackDelegate;
         private EventHandler<FinishedEventArgs> videoViewFinishedEventHandler;

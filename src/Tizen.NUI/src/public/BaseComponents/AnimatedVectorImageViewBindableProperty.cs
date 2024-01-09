@@ -35,7 +35,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             return instance.InternalResourceURL;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// ResourceUrlProperty
@@ -50,7 +51,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             return instance.InternalResourceUrl;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// RepeatCountProperty
@@ -68,7 +70,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             return instance.InternalRepeatCount;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// CurrentFrameProperty
@@ -86,7 +89,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             return instance.InternalCurrentFrame;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// RepeatModeProperty
@@ -104,6 +108,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             return instance.InternalRepeatMode;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
     }
 }

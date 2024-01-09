@@ -36,7 +36,8 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// ViewBoxProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ViewBoxProperty = BindableProperty.Create(nameof(ViewBox), typeof(Tizen.NUI.Size2D), typeof(Tizen.NUI.BaseComponents.VectorGraphics.CanvasView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ViewBoxProperty = BindableProperty.Create(nameof(ViewBox), typeof(Tizen.NUI.Size2D), typeof(Tizen.NUI.BaseComponents.VectorGraphics.CanvasView), null,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.VectorGraphics.CanvasView)bindable;
             if (newValue != null)
@@ -48,7 +49,8 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         {
             var instance = (Tizen.NUI.BaseComponents.VectorGraphics.CanvasView)bindable;
             return instance.InternalViewBox;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// Creates an initialized CanvasView.

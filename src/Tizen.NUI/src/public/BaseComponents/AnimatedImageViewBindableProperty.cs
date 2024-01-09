@@ -38,7 +38,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
             return instance.InternalBatchSize;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// CacheSizeProperty
@@ -56,7 +57,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
             return instance.InternalCacheSize;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// FrameDelayProperty
@@ -74,7 +76,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
             return instance.InternalFrameDelay;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// LoopCountProperty
@@ -92,7 +95,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
             return instance.InternalLoopCount;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// StopBehaviorProperty
@@ -110,7 +114,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
             return instance.InternalStopBehavior;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// CurrentFrameProperty
@@ -128,6 +133,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
             return instance.InternalCurrentFrame;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
     }
 }

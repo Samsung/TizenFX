@@ -30,49 +30,49 @@ namespace Tizen.NUI
         /// ColumnProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ColumnProperty = BindableProperty.CreateAttached("Column", typeof(int), typeof(GridLayout), AutoColumn, validateValue: (bindable, value) => (int)value >= 0 || (int)value == AutoColumn, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty ColumnProperty = BindableProperty.CreateAttached("Column", typeof(int), typeof(GridLayout), AutoColumn, validateValue: (bindable, value) => (int)value >= 0 || (int)value == AutoColumn, propertyChanged: OnChildPropertyChanged, valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// ColumnSpanProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ColumnSpanProperty = BindableProperty.CreateAttached("ColumnSpan", typeof(int), typeof(GridLayout), 1, validateValue: (bindable, value) => (int)value >= 1, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty ColumnSpanProperty = BindableProperty.CreateAttached("ColumnSpan", typeof(int), typeof(GridLayout), 1, validateValue: (bindable, value) => (int)value >= 1, propertyChanged: OnChildPropertyChanged, valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// RowProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RowProperty = BindableProperty.CreateAttached("Row", typeof(int), typeof(GridLayout), AutoRow, validateValue: (bindable, value) => (int)value >= 0 || (int)value == AutoRow, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty RowProperty = BindableProperty.CreateAttached("Row", typeof(int), typeof(GridLayout), AutoRow, validateValue: (bindable, value) => (int)value >= 0 || (int)value == AutoRow, propertyChanged: OnChildPropertyChanged, valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// RowSpanProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RowSpanProperty = BindableProperty.CreateAttached("RowSpan", typeof(int), typeof(GridLayout), 1, validateValue: (bindable, value) => (int)value >= 1, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty RowSpanProperty = BindableProperty.CreateAttached("RowSpan", typeof(int), typeof(GridLayout), 1, validateValue: (bindable, value) => (int)value >= 1, propertyChanged: OnChildPropertyChanged, valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// HorizontalStretchProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty HorizontalStretchProperty = BindableProperty.CreateAttached("HorizontalStretch", typeof(StretchFlags), typeof(GridLayout), default(StretchFlags), validateValue: ValidateEnum((int)StretchFlags.None, (int)StretchFlags.ExpandAndFill), propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty HorizontalStretchProperty = BindableProperty.CreateAttached("HorizontalStretch", typeof(StretchFlags), typeof(GridLayout), default(StretchFlags), validateValue: ValidateEnum((int)StretchFlags.None, (int)StretchFlags.ExpandAndFill), propertyChanged: OnChildPropertyChanged, valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// VerticalStretchProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty VerticalStretchProperty = BindableProperty.CreateAttached("VerticalStretch", typeof(StretchFlags), typeof(GridLayout), default(StretchFlags), validateValue: ValidateEnum((int)StretchFlags.None, (int)StretchFlags.ExpandAndFill), propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty VerticalStretchProperty = BindableProperty.CreateAttached("VerticalStretch", typeof(StretchFlags), typeof(GridLayout), default(StretchFlags), validateValue: ValidateEnum((int)StretchFlags.None, (int)StretchFlags.ExpandAndFill), propertyChanged: OnChildPropertyChanged, valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// HorizontalAlignmentProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty HorizontalAlignmentProperty = BindableProperty.CreateAttached("HorizontalAlignment", typeof(Alignment), typeof(GridLayout), Alignment.Start, validateValue: ValidateEnum((int)Alignment.Start, (int)Alignment.End), propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty HorizontalAlignmentProperty = BindableProperty.CreateAttached("HorizontalAlignment", typeof(Alignment), typeof(GridLayout), Alignment.Start, validateValue: ValidateEnum((int)Alignment.Start, (int)Alignment.End), propertyChanged: OnChildPropertyChanged, valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// VerticalAlignmentProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty VerticalAlignmentProperty = BindableProperty.CreateAttached("VerticalAlignment", typeof(Alignment), typeof(GridLayout), Alignment.Start, validateValue: ValidateEnum((int)Alignment.Start, (int)Alignment.End), propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty VerticalAlignmentProperty = BindableProperty.CreateAttached("VerticalAlignment", typeof(Alignment), typeof(GridLayout), Alignment.Start, validateValue: ValidateEnum((int)Alignment.Start, (int)Alignment.End), propertyChanged: OnChildPropertyChanged, valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
 
         [EditorBrowsable(EditorBrowsableState.Never)]

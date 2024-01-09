@@ -17,7 +17,7 @@ namespace Tizen.NUI.Binding
 		int cleanupThreshold = CleanupTrigger;
 
         readonly BindableProperty basedOnResourceProperty = BindableProperty.CreateAttached("BasedOnResource", typeof(XamlStyle), typeof(XamlStyle), default(XamlStyle),
-            propertyChanged: OnBasedOnResourceChanged);
+            propertyChanged: OnBasedOnResourceChanged, valuePolicy : ValuePolicy.Default);
 
         readonly List<WeakReference<BindableObject>> targets = new List<WeakReference<BindableObject>>(4);
 

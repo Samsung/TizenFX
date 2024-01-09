@@ -30,73 +30,73 @@ namespace Tizen.NUI
         /// LeftTargetProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LeftTargetProperty = BindableProperty.CreateAttached("LeftTarget", typeof(View), typeof(RelativeLayout), null, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty LeftTargetProperty = BindableProperty.CreateAttached("LeftTarget", typeof(View), typeof(RelativeLayout), null, propertyChanged: OnChildPropertyChanged, valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// RightTargetProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RightTargetProperty = BindableProperty.CreateAttached("RightTarget", typeof(View), typeof(RelativeLayout), null, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty RightTargetProperty = BindableProperty.CreateAttached("RightTarget", typeof(View), typeof(RelativeLayout), null, propertyChanged: OnChildPropertyChanged, valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// TopTargetProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TopTargetProperty = BindableProperty.CreateAttached("TopTarget", typeof(View), typeof(RelativeLayout), null, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty TopTargetProperty = BindableProperty.CreateAttached("TopTarget", typeof(View), typeof(RelativeLayout), null, propertyChanged: OnChildPropertyChanged, valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// BottomTargetProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BottomTargetProperty = BindableProperty.CreateAttached("BottomTarget", typeof(View), typeof(RelativeLayout), null, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty BottomTargetProperty = BindableProperty.CreateAttached("BottomTarget", typeof(View), typeof(RelativeLayout), null, propertyChanged: OnChildPropertyChanged, valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// LeftRelativeOffsetProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LeftRelativeOffsetProperty = BindableProperty.CreateAttached("LeftRelativeOffset", typeof(float), typeof(RelativeLayout), 0.0f, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty LeftRelativeOffsetProperty = BindableProperty.CreateAttached("LeftRelativeOffset", typeof(float), typeof(RelativeLayout), 0.0f, propertyChanged: OnChildPropertyChanged, valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// RightRelativeOffsetProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RightRelativeOffsetProperty = BindableProperty.CreateAttached("RightRelativeOffset", typeof(float), typeof(RelativeLayout), 1.0f, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty RightRelativeOffsetProperty = BindableProperty.CreateAttached("RightRelativeOffset", typeof(float), typeof(RelativeLayout), 1.0f, propertyChanged: OnChildPropertyChanged, valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// TopRelativeOffsetProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TopRelativeOffsetProperty = BindableProperty.CreateAttached("TopRelativeOffset", typeof(float), typeof(RelativeLayout), 0.0f, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty TopRelativeOffsetProperty = BindableProperty.CreateAttached("TopRelativeOffset", typeof(float), typeof(RelativeLayout), 0.0f, propertyChanged: OnChildPropertyChanged, valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// BottomRelativeOffsetProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BottomRelativeOffsetProperty = BindableProperty.CreateAttached("BottomRelativeOffset", typeof(float), typeof(RelativeLayout), 1.0f, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty BottomRelativeOffsetProperty = BindableProperty.CreateAttached("BottomRelativeOffset", typeof(float), typeof(RelativeLayout), 1.0f, propertyChanged: OnChildPropertyChanged, valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// HorizontalAlignmentProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty HorizontalAlignmentProperty = BindableProperty.CreateAttached("HorizontalAlignment", typeof(Alignment), typeof(RelativeLayout), default(Alignment), propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty HorizontalAlignmentProperty = BindableProperty.CreateAttached("HorizontalAlignment", typeof(Alignment), typeof(RelativeLayout), default(Alignment), propertyChanged: OnChildPropertyChanged, valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// VerticalAlignmentProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty VerticalAlignmentProperty = BindableProperty.CreateAttached("VerticalAlignment", typeof(Alignment), typeof(RelativeLayout), default(Alignment), propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty VerticalAlignmentProperty = BindableProperty.CreateAttached("VerticalAlignment", typeof(Alignment), typeof(RelativeLayout), default(Alignment), propertyChanged: OnChildPropertyChanged, valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// FillHorizontalProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FillHorizontalProperty = BindableProperty.CreateAttached("FillHorizontal", typeof(bool), typeof(RelativeLayout), false, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty FillHorizontalProperty = BindableProperty.CreateAttached("FillHorizontal", typeof(bool), typeof(RelativeLayout), false, propertyChanged: OnChildPropertyChanged, valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// FillVerticalProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FillVerticalProperty = BindableProperty.CreateAttached("FillVertical", typeof(bool), typeof(RelativeLayout), false, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty FillVerticalProperty = BindableProperty.CreateAttached("FillVertical", typeof(bool), typeof(RelativeLayout), false, propertyChanged: OnChildPropertyChanged, valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// Constructor

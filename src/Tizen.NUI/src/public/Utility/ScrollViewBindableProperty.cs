@@ -27,7 +27,8 @@ namespace Tizen.NUI
     public partial class ScrollView
     {
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty WrapEnabledProperty = BindableProperty.Create(nameof(WrapEnabled), typeof(bool), typeof(ScrollView), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty WrapEnabledProperty = BindableProperty.Create(nameof(WrapEnabled), typeof(bool), typeof(ScrollView), false,
+        propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -41,9 +42,12 @@ namespace Tizen.NUI
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.WrapEnabled).Get(out temp);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
+
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PanningEnabledProperty = BindableProperty.Create(nameof(PanningEnabled), typeof(bool), typeof(ScrollView), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PanningEnabledProperty = BindableProperty.Create(nameof(PanningEnabled), typeof(bool), typeof(ScrollView), false,
+        propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -57,9 +61,12 @@ namespace Tizen.NUI
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.PanningEnabled).Get(out temp);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
+
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AxisAutoLockEnabledProperty = BindableProperty.Create(nameof(AxisAutoLockEnabled), typeof(bool), typeof(ScrollView), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AxisAutoLockEnabledProperty = BindableProperty.Create(nameof(AxisAutoLockEnabled), typeof(bool), typeof(ScrollView), false,
+        propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -73,9 +80,12 @@ namespace Tizen.NUI
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.AxisAutoLockEnabled).Get(out temp);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
+
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty WheelScrollDistanceStepProperty = BindableProperty.Create(nameof(WheelScrollDistanceStep), typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty WheelScrollDistanceStepProperty = BindableProperty.Create(nameof(WheelScrollDistanceStep), typeof(Vector2), typeof(ScrollView), Vector2.Zero,
+        propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -89,9 +99,12 @@ namespace Tizen.NUI
             Vector2 temp = new Vector2(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.WheelScrollDistanceStep).Get(temp);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
+
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollPositionProperty = BindableProperty.Create(nameof(ScrollPosition), typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollPositionProperty = BindableProperty.Create(nameof(ScrollPosition), typeof(Vector2), typeof(ScrollView), Vector2.Zero,
+        propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -105,9 +118,12 @@ namespace Tizen.NUI
             Vector2 temp = new Vector2(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPosition).Get(temp);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
+
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollPrePositionProperty = BindableProperty.Create(nameof(ScrollPrePosition), typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollPrePositionProperty = BindableProperty.Create(nameof(ScrollPrePosition), typeof(Vector2), typeof(ScrollView), Vector2.Zero,
+        propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -121,9 +137,12 @@ namespace Tizen.NUI
             Vector2 temp = new Vector2(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPrePosition).Get(temp);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
+
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollPrePositionMaxProperty = BindableProperty.Create(nameof(ScrollPrePositionMax), typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollPrePositionMaxProperty = BindableProperty.Create(nameof(ScrollPrePositionMax), typeof(Vector2), typeof(ScrollView), Vector2.Zero,
+        propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -137,9 +156,12 @@ namespace Tizen.NUI
             Vector2 temp = new Vector2(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPrePositionMax).Get(temp);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
+
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty OvershootXProperty = BindableProperty.Create(nameof(OvershootX), typeof(float), typeof(ScrollView), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty OvershootXProperty = BindableProperty.Create(nameof(OvershootX), typeof(float), typeof(ScrollView), default(float),
+        propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -153,9 +175,12 @@ namespace Tizen.NUI
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.OvershootX).Get(out temp);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
+
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty OvershootYProperty = BindableProperty.Create(nameof(OvershootY), typeof(float), typeof(ScrollView), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty OvershootYProperty = BindableProperty.Create(nameof(OvershootY), typeof(float), typeof(ScrollView), default(float),
+        propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -169,9 +194,12 @@ namespace Tizen.NUI
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.OvershootY).Get(out temp);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
+
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollFinalProperty = BindableProperty.Create(nameof(ScrollFinal), typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollFinalProperty = BindableProperty.Create(nameof(ScrollFinal), typeof(Vector2), typeof(ScrollView), Vector2.Zero,
+        propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -185,9 +213,12 @@ namespace Tizen.NUI
             Vector2 temp = new Vector2(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollFinal).Get(temp);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
+
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty WrapProperty = BindableProperty.Create(nameof(Wrap), typeof(bool), typeof(ScrollView), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty WrapProperty = BindableProperty.Create(nameof(Wrap), typeof(bool), typeof(ScrollView), false,
+        propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -201,9 +232,12 @@ namespace Tizen.NUI
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.WRAP).Get(out temp);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
+
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PanningProperty = BindableProperty.Create(nameof(Panning), typeof(bool), typeof(ScrollView), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PanningProperty = BindableProperty.Create(nameof(Panning), typeof(bool), typeof(ScrollView), false,
+        propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -217,9 +251,12 @@ namespace Tizen.NUI
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.PANNING).Get(out temp);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
+
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollingProperty = BindableProperty.Create(nameof(Scrolling), typeof(bool), typeof(ScrollView), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollingProperty = BindableProperty.Create(nameof(Scrolling), typeof(bool), typeof(ScrollView), false,
+        propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -233,9 +270,12 @@ namespace Tizen.NUI
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.SCROLLING).Get(out temp);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
+
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollDomainSizeProperty = BindableProperty.Create(nameof(ScrollDomainSize), typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollDomainSizeProperty = BindableProperty.Create(nameof(ScrollDomainSize), typeof(Vector2), typeof(ScrollView), Vector2.Zero,
+        propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -249,9 +289,12 @@ namespace Tizen.NUI
             Vector2 temp = new Vector2(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollDomainSize).Get(temp);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
+
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollDomainOffsetProperty = BindableProperty.Create(nameof(ScrollDomainOffset), typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollDomainOffsetProperty = BindableProperty.Create(nameof(ScrollDomainOffset), typeof(Vector2), typeof(ScrollView), Vector2.Zero,
+        propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -265,9 +308,12 @@ namespace Tizen.NUI
             Vector2 temp = new Vector2(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollDomainOffset).Get(temp);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
+
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollPositionDeltaProperty = BindableProperty.Create(nameof(ScrollPositionDelta), typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollPositionDeltaProperty = BindableProperty.Create(nameof(ScrollPositionDelta), typeof(Vector2), typeof(ScrollView), Vector2.Zero,
+        propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -281,9 +327,12 @@ namespace Tizen.NUI
             Vector2 temp = new Vector2(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPositionDelta).Get(temp);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
+
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty StartPagePositionProperty = BindableProperty.Create(nameof(StartPagePosition), typeof(Vector3), typeof(ScrollView), Vector3.Zero, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty StartPagePositionProperty = BindableProperty.Create(nameof(StartPagePosition), typeof(Vector3), typeof(ScrollView), Vector3.Zero,
+        propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -297,9 +346,12 @@ namespace Tizen.NUI
             Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.StartPagePosition).Get(temp);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
+
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollModeProperty = BindableProperty.Create(nameof(ScrollMode), typeof(PropertyMap), typeof(ScrollView), new PropertyMap(), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollModeProperty = BindableProperty.Create(nameof(ScrollMode), typeof(PropertyMap), typeof(ScrollView), new PropertyMap(),
+        propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var scrollView = (ScrollView)bindable;
             if (newValue != null)
@@ -314,6 +366,7 @@ namespace Tizen.NUI
             PropertyMap map = new PropertyMap();
             value.Get(map);
             return map;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
     }
 }

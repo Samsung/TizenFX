@@ -1378,7 +1378,8 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int LoadProgressPercentage = Interop.WebView.LoadProgressPercentageGet();
         }
 
-        private static readonly BindableProperty UrlProperty = BindableProperty.Create(nameof(Url), typeof(string), typeof(WebView), string.Empty, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        private static readonly BindableProperty UrlProperty = BindableProperty.Create(nameof(Url), typeof(string), typeof(WebView), string.Empty,
+        propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var webview = (WebView)bindable;
             if (newValue != null)
@@ -1392,9 +1393,11 @@ namespace Tizen.NUI.BaseComponents
             string temp;
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.Url).Get(out temp);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
-        private static readonly BindableProperty UserAgentProperty = BindableProperty.Create(nameof(UserAgent), typeof(string), typeof(WebView), string.Empty, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        private static readonly BindableProperty UserAgentProperty = BindableProperty.Create(nameof(UserAgent), typeof(string), typeof(WebView), string.Empty,
+        propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var webview = (WebView)bindable;
             if (newValue != null)
@@ -1408,9 +1411,11 @@ namespace Tizen.NUI.BaseComponents
             string temp;
             Tizen.NUI.Object.GetProperty((HandleRef)webview.SwigCPtr, WebView.Property.UserAgent).Get(out temp);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
-        private static readonly BindableProperty ScrollPositionProperty = BindableProperty.Create(nameof(ScrollPosition), typeof(Vector2), typeof(WebView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        private static readonly BindableProperty ScrollPositionProperty = BindableProperty.Create(nameof(ScrollPosition), typeof(Vector2), typeof(WebView), null,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var webview = (WebView)bindable;
             if (newValue != null)
@@ -1424,33 +1429,41 @@ namespace Tizen.NUI.BaseComponents
             Vector2 temp = new Vector2(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.ScrollPosition).Get(temp);
             return temp;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
-        private static readonly BindableProperty ScrollSizeProperty = BindableProperty.Create(nameof(ScrollSize), typeof(Vector2), typeof(WebView), null, defaultValueCreator: (bindable) =>
+        private static readonly BindableProperty ScrollSizeProperty = BindableProperty.Create(nameof(ScrollSize), typeof(Vector2), typeof(WebView), null,
+        defaultValueCreator: (bindable) =>
         {
             var webview = (WebView)bindable;
             Vector2 temp = new Vector2(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.ScrollSize).Get(temp);
             return temp;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
-        private static readonly BindableProperty ContentSizeProperty = BindableProperty.Create(nameof(ContentSize), typeof(Vector2), typeof(WebView), null, defaultValueCreator: (bindable) =>
+        private static readonly BindableProperty ContentSizeProperty = BindableProperty.Create(nameof(ContentSize), typeof(Vector2), typeof(WebView), null,
+        defaultValueCreator: (bindable) =>
         {
             var webview = (WebView)bindable;
             Vector2 temp = new Vector2(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.ContentSize).Get(temp);
             return temp;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
-        private static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(WebView), string.Empty, defaultValueCreator: (bindable) =>
+        private static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(WebView), string.Empty,
+        defaultValueCreator: (bindable) =>
         {
             var webview = (WebView)bindable;
             string title;
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.Title).Get(out title);
             return title;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
-        private static readonly BindableProperty VideoHoleEnabledProperty = BindableProperty.Create(nameof(VideoHoleEnabled), typeof(bool), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
+        private static readonly BindableProperty VideoHoleEnabledProperty = BindableProperty.Create(nameof(VideoHoleEnabled), typeof(bool), typeof(WebView), true,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var webview = (WebView)bindable;
             if (newValue != null)
@@ -1464,9 +1477,11 @@ namespace Tizen.NUI.BaseComponents
             bool temp;
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.VideoHoleEnabled).Get(out temp);
             return temp;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
-        private static readonly BindableProperty MouseEventsEnabledProperty = BindableProperty.Create(nameof(MouseEventsEnabled), typeof(bool), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
+        private static readonly BindableProperty MouseEventsEnabledProperty = BindableProperty.Create(nameof(MouseEventsEnabled), typeof(bool), typeof(WebView), true,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var webview = (WebView)bindable;
             if (newValue != null)
@@ -1480,9 +1495,11 @@ namespace Tizen.NUI.BaseComponents
             bool temp;
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.MouseEventsEnabled).Get(out temp);
             return temp;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
-        private static readonly BindableProperty KeyEventsEnabledProperty = BindableProperty.Create(nameof(KeyEventsEnabled), typeof(bool), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
+        private static readonly BindableProperty KeyEventsEnabledProperty = BindableProperty.Create(nameof(KeyEventsEnabled), typeof(bool), typeof(WebView), true,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var webview = (WebView)bindable;
             if (newValue != null)
@@ -1496,9 +1513,11 @@ namespace Tizen.NUI.BaseComponents
             bool temp;
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.KeyEventsEnabled).Get(out temp);
             return temp;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
-        private static readonly BindableProperty ContentBackgroundColorProperty = BindableProperty.Create(nameof(ContentBackgroundColor), typeof(Color), typeof(WebView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        private static readonly BindableProperty ContentBackgroundColorProperty = BindableProperty.Create(nameof(ContentBackgroundColor), typeof(Color), typeof(WebView), null,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var webview = (WebView)bindable;
             if (newValue != null)
@@ -1511,9 +1530,11 @@ namespace Tizen.NUI.BaseComponents
         {
             var webview = (WebView)bindable;
             return webview.contentBackgroundColor;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
-        private static readonly BindableProperty TilesClearedWhenHiddenProperty = BindableProperty.Create(nameof(TilesClearedWhenHidden), typeof(bool), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
+        private static readonly BindableProperty TilesClearedWhenHiddenProperty = BindableProperty.Create(nameof(TilesClearedWhenHidden), typeof(bool), typeof(WebView), true,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var webview = (WebView)bindable;
             if (newValue != null)
@@ -1526,9 +1547,11 @@ namespace Tizen.NUI.BaseComponents
         {
             var webview = (WebView)bindable;
             return webview.tilesClearedWhenHidden;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
-        private static readonly BindableProperty TileCoverAreaMultiplierProperty = BindableProperty.Create(nameof(TileCoverAreaMultiplier), typeof(float), typeof(WebView), 0.0f, propertyChanged: (bindable, oldValue, newValue) =>
+        private static readonly BindableProperty TileCoverAreaMultiplierProperty = BindableProperty.Create(nameof(TileCoverAreaMultiplier), typeof(float), typeof(WebView), 0.0f,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var webview = (WebView)bindable;
             if (newValue != null)
@@ -1541,9 +1564,11 @@ namespace Tizen.NUI.BaseComponents
         {
             var webview = (WebView)bindable;
             return webview.tileCoverAreaMultiplier;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
-        private static readonly BindableProperty CursorEnabledByClientProperty = BindableProperty.Create(nameof(CursorEnabledByClient), typeof(bool), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
+        private static readonly BindableProperty CursorEnabledByClientProperty = BindableProperty.Create(nameof(CursorEnabledByClient), typeof(bool), typeof(WebView), true,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var webview = (WebView)bindable;
             if (newValue != null)
@@ -1556,17 +1581,21 @@ namespace Tizen.NUI.BaseComponents
         {
             var webview = (WebView)bindable;
             return webview.cursorEnabledByClient;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
-        private static readonly BindableProperty SelectedTextProperty = BindableProperty.Create(nameof(SelectedText), typeof(string), typeof(WebView), string.Empty, defaultValueCreator: (bindable) =>
+        private static readonly BindableProperty SelectedTextProperty = BindableProperty.Create(nameof(SelectedText), typeof(string), typeof(WebView), string.Empty,
+        defaultValueCreator: (bindable) =>
         {
             var webview = (WebView)bindable;
             string text;
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.SelectedText).Get(out text);
             return text;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
-        private static readonly BindableProperty PageZoomFactorProperty = BindableProperty.Create(nameof(PageZoomFactor), typeof(float), typeof(WebView), 0.0f, propertyChanged: (bindable, oldValue, newValue) =>
+        private static readonly BindableProperty PageZoomFactorProperty = BindableProperty.Create(nameof(PageZoomFactor), typeof(float), typeof(WebView), 0.0f,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var webview = (WebView)bindable;
             if (newValue != null)
@@ -1580,9 +1609,11 @@ namespace Tizen.NUI.BaseComponents
             float temp;
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.PageZoomFactor).Get(out temp);
             return temp;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
-        private static readonly BindableProperty TextZoomFactorProperty = BindableProperty.Create(nameof(TextZoomFactor), typeof(float), typeof(WebView), 0.0f, propertyChanged: (bindable, oldValue, newValue) =>
+        private static readonly BindableProperty TextZoomFactorProperty = BindableProperty.Create(nameof(TextZoomFactor), typeof(float), typeof(WebView), 0.0f,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var webview = (WebView)bindable;
             if (newValue != null)
@@ -1596,15 +1627,18 @@ namespace Tizen.NUI.BaseComponents
             float temp;
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.TextZoomFactor).Get(out temp);
             return temp;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
-        private static readonly BindableProperty LoadProgressPercentageProperty = BindableProperty.Create(nameof(LoadProgressPercentage), typeof(float), typeof(WebView), 0.0f, defaultValueCreator: (bindable) =>
+        private static readonly BindableProperty LoadProgressPercentageProperty = BindableProperty.Create(nameof(LoadProgressPercentage), typeof(float), typeof(WebView), 0.0f,
+        defaultValueCreator: (bindable) =>
         {
             var webview = (WebView)bindable;
             float percentage;
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.LoadProgressPercentage).Get(out percentage);
             return percentage;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         // For rooting handlers
         internal Dictionary<string, JavaScriptMessageHandler> handlerRootMap = new Dictionary<string, JavaScriptMessageHandler>();

@@ -40,7 +40,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var customView = (CustomView)bindable;
             return customView.IsKeyboardNavigationSupported();
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -56,7 +57,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var customView = (CustomView)bindable;
             return customView.IsKeyboardFocusGroup();
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// Create an instance of customView.

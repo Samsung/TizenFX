@@ -47,7 +47,9 @@ namespace Tizen.NUI.BaseComponents
             int temp = 0;
             Tizen.NUI.Object.GetProperty((HandleRef)tableView.SwigCPtr, TableView.Property.ROWS).Get(out temp);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ColumnsProperty = BindableProperty.Create(nameof(Columns), typeof(int), typeof(TableView), default(int), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
@@ -64,7 +66,9 @@ namespace Tizen.NUI.BaseComponents
             int temp = 0;
             Tizen.NUI.Object.GetProperty((HandleRef)tableView.SwigCPtr, TableView.Property.COLUMNS).Get(out temp);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty CellPaddingProperty = BindableProperty.Create(nameof(CellPadding), typeof(Vector2), typeof(TableView), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
@@ -81,7 +85,9 @@ namespace Tizen.NUI.BaseComponents
             Vector2 temp = new Vector2(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty((HandleRef)tableView.SwigCPtr, TableView.Property.CellPadding).Get(temp);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty LayoutRowsProperty = BindableProperty.Create(nameof(LayoutRows), typeof(PropertyMap), typeof(TableView), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
@@ -98,7 +104,9 @@ namespace Tizen.NUI.BaseComponents
             PropertyMap temp = new PropertyMap();
             Tizen.NUI.Object.GetProperty((HandleRef)tableView.SwigCPtr, TableView.Property.LayoutRows).Get(temp);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty LayoutColumnsProperty = BindableProperty.Create(nameof(LayoutColumns), typeof(PropertyMap), typeof(TableView), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
@@ -115,8 +123,8 @@ namespace Tizen.NUI.BaseComponents
             PropertyMap temp = new PropertyMap();
             Tizen.NUI.Object.GetProperty((HandleRef)tableView.SwigCPtr, TableView.Property.LayoutColumns).Get(temp);
             return temp;
-        }));
-
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// Creates the default TableView view.

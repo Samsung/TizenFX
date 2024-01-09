@@ -44,7 +44,8 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
 
             return imageView?._resourceUrl ?? "";
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// Intenal used, will never be opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -117,7 +118,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 return null;
             }
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// Intenal used, will never be opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -154,7 +156,8 @@ namespace Tizen.NUI.BaseComponents
                 temp = Object.InternalGetPropertyBool(imageView.SwigCPtr, ImageView.Property.PreMultipliedAlpha);
             }
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// Intenal used, will never be opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -177,7 +180,8 @@ namespace Tizen.NUI.BaseComponents
             }
             Object.InternalRetrievingPropertyVector4(imageView.SwigCPtr, ImageView.Property.PixelArea, imageView.internalPixelArea.SwigCPtr);
             return imageView.internalPixelArea;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// Intenal used, will never be opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -200,7 +204,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var imageView = (ImageView)bindable;
             return imageView._border;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// Intenal used, will never be opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -209,15 +214,6 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                if (oldValue != null)
-                {
-                    bool oldBool = (bool)oldValue;
-                    bool newBool = (bool)newValue;
-                    if (oldBool == newBool)
-                    {
-                        return;
-                    }
-                }
                 imageView.UpdateImage(NpatchImageVisualProperty.BorderOnly, new PropertyValue((bool)newValue));
             }
         },
@@ -229,7 +225,8 @@ namespace Tizen.NUI.BaseComponents
             imageView.GetCachedImageVisualProperty(NpatchImageVisualProperty.BorderOnly)?.Get(out ret);
 
             return ret;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// Intenal used, will never be opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -238,15 +235,6 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                if (oldValue != null)
-                {
-                    bool oldBool = (bool)oldValue;
-                    bool newBool = (bool)newValue;
-                    if (oldBool == newBool)
-                    {
-                        return;
-                    }
-                }
                 // Note : We need to create new visual if previous visual was async, and now we set value as sync.
                 imageView.UpdateImage(ImageVisualProperty.SynchronousLoading, new PropertyValue((bool)newValue), (bool)newValue);
             }
@@ -259,7 +247,8 @@ namespace Tizen.NUI.BaseComponents
             imageView.GetCachedImageVisualProperty(ImageVisualProperty.SynchronousLoading)?.Get(out ret);
 
             return ret;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// This will be public opened in tizen_7.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -268,15 +257,6 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                if (oldValue != null)
-                {
-                    bool oldBool = (bool)oldValue;
-                    bool newBool = (bool)newValue;
-                    if (oldBool == newBool)
-                    {
-                        return;
-                    }
-                }
                 // Note : We need to create new visual if previous visual was async, and now we set value as sync.
                 imageView.UpdateImage(ImageVisualProperty.SynchronousLoading, new PropertyValue((bool)newValue), (bool)newValue);
             }
@@ -289,7 +269,8 @@ namespace Tizen.NUI.BaseComponents
             imageView.GetCachedImageVisualProperty(ImageVisualProperty.SynchronousLoading)?.Get(out ret);
 
             return ret;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// Intenal used, will never be opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -298,15 +279,6 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                if (oldValue != null)
-                {
-                    bool oldBool = (bool)oldValue;
-                    bool newBool = (bool)newValue;
-                    if (oldBool == newBool)
-                    {
-                        return;
-                    }
-                }
                 imageView.UpdateImage(ImageVisualProperty.OrientationCorrection, new PropertyValue((bool)newValue));
             }
         },
@@ -319,7 +291,8 @@ namespace Tizen.NUI.BaseComponents
             imageView.GetCachedImageVisualProperty(ImageVisualProperty.OrientationCorrection)?.Get(out ret);
 
             return ret;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// MaskingModeProperty
@@ -337,7 +310,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             return instance.InternalMaskingMode;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// FastTrackUploadingProperty
@@ -355,7 +329,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             return instance.InternalFastTrackUploading;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// ImageMapProperty
@@ -373,7 +348,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             return instance.InternalImageMap;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// AlphaMaskURLProperty
@@ -391,7 +367,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             return instance.InternalAlphaMaskURL;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// CropToMaskProperty
@@ -409,7 +386,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             return instance.InternalCropToMask;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// FittingModeProperty
@@ -427,7 +405,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             return instance.InternalFittingMode;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// DesiredWidthProperty
@@ -445,7 +424,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             return instance.InternalDesiredWidth;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// DesiredHeightProperty
@@ -463,7 +443,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             return instance.InternalDesiredHeight;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// ReleasePolicyProperty
@@ -481,7 +462,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             return instance.InternalReleasePolicy;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// WrapModeUProperty
@@ -499,7 +481,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             return instance.InternalWrapModeU;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// WrapModeVProperty
@@ -517,7 +500,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             return instance.InternalWrapModeV;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// AdjustViewSizeProperty
@@ -535,7 +519,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             return instance.adjustViewSize;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// PlaceHolderUrlProperty
@@ -553,7 +538,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var imageView = (Tizen.NUI.BaseComponents.ImageView)bindable;
             return Object.InternalGetPropertyString(imageView.SwigCPtr, ImageView.Property.PlaceHolderUrl);
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// Intenal used, will never be opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -569,7 +555,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var imageView = (ImageView)bindable;
             return Object.InternalGetPropertyBool(imageView.SwigCPtr, ImageView.Property.TransitionEffect);
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// ImageColorProperty
@@ -595,6 +582,7 @@ namespace Tizen.NUI.BaseComponents
             imageView.GetCachedImageVisualProperty(Visual.Property.MixColor)?.Get(ret);
 
             return ret;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
     }
 }

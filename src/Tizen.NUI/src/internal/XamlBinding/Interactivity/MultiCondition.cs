@@ -24,7 +24,7 @@ namespace Tizen.NUI.Binding
 
         public MultiCondition()
         {
-            _aggregatedStateProperty = BindableProperty.CreateAttached("AggregatedState", typeof(bool), typeof(MultiCondition), false, propertyChanged: OnAggregatedStatePropertyChanged);
+            _aggregatedStateProperty = BindableProperty.CreateAttached("AggregatedState", typeof(bool), typeof(MultiCondition), false, propertyChanged: OnAggregatedStatePropertyChanged, valuePolicy : ValuePolicy.Default);
             Conditions = new TriggerBase.SealedList<Condition>();
         }
 

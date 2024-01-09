@@ -62,7 +62,8 @@ namespace Tizen.NUI.BaseComponents
             if (!string.IsNullOrEmpty(view.styleName)) return view.styleName;
 
             return Object.InternalGetPropertyString(view.SwigCPtr, View.Property.StyleName);
-        }));
+        }),
+        valuePolicy : ValuePolicy.GetNativeValueOnlyCreation);
 
         /// <summary>
         /// KeyInputFocusProperty
@@ -80,7 +81,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.KeyInputFocus);
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// BackgroundColorProperty
@@ -119,7 +121,8 @@ namespace Tizen.NUI.BaseComponents
                     Interop.View.InternalRetrievingVisualPropertyVector4(view.SwigCPtr, Property.BACKGROUND, ColorVisualProperty.MixColor, Color.getCPtr(view.internalBackgroundColor));
                 }
                 return view.internalBackgroundColor;
-            }
+            },
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue
         );
 
         /// <summary>
@@ -153,7 +156,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 Object.InternalRetrievingPropertyVector4(view.SwigCPtr, View.Property.COLOR, view.internalColor.SwigCPtr);
                 return view.internalColor;
-            }
+            },
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue
         );
 
         /// <summary>
@@ -171,7 +175,8 @@ namespace Tizen.NUI.BaseComponents
                 var view = (View)bindable;
 
                 return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.ColorRed);
-            }
+            },
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue
         );
 
         /// <summary>
@@ -189,7 +194,8 @@ namespace Tizen.NUI.BaseComponents
                 var view = (View)bindable;
 
                 return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.ColorGreen);
-            }
+            },
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue
         );
 
         /// <summary>
@@ -207,7 +213,8 @@ namespace Tizen.NUI.BaseComponents
                 var view = (View)bindable;
 
                 return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.ColorBlue);
-            }
+            },
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue
         );
 
         /// <summary> BackgroundImageProperty </summary>
@@ -215,12 +222,6 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty BackgroundImageProperty = BindableProperty.Create(nameof(BackgroundImage), typeof(string), typeof(View), default(string),
             propertyChanged: (bindable, oldValue, newValue) =>
             {
-                if (String.Equals(oldValue, newValue))
-                {
-                    NUILog.Debug($"oldValue={oldValue} newValue={newValue} are same. just return here");
-                    return;
-                }
-
                 var view = (View)bindable;
 
                 if (view.themeData?.selectorData != null)
@@ -247,7 +248,8 @@ namespace Tizen.NUI.BaseComponents
                 Interop.View.InternalRetrievingVisualPropertyString(view.SwigCPtr, Property.BACKGROUND, ImageVisualProperty.URL, out backgroundImage);
 
                 return backgroundImage;
-            }
+            },
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue
         );
 
 
@@ -274,7 +276,8 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
 
             return view.backgroundExtraData?.BackgroundImageBorder;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// BackgroundProperty
@@ -316,7 +319,8 @@ namespace Tizen.NUI.BaseComponents
                 propertyValue.Dispose();
                 propertyValue = null;
                 return tmp;
-            }
+            },
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue
         );
 
         /// <summary>
@@ -343,7 +347,8 @@ namespace Tizen.NUI.BaseComponents
                 case 2: return States.Disabled;
                 default: return States.Normal;
             }
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// SubStateProperty
@@ -365,7 +370,8 @@ namespace Tizen.NUI.BaseComponents
             string temp;
             temp = Object.InternalGetPropertyString(view.SwigCPtr, View.Property.SubState);
             return temp.GetValueByDescription<States>();
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// TooltipProperty
@@ -385,7 +391,8 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.TOOLTIP).Get(temp);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// FlexProperty
@@ -403,7 +410,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return Object.InternalGetPropertyFloat(view.SwigCPtr, FlexContainer.ChildProperty.FLEX);
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// AlignSelfProperty
@@ -421,7 +429,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return Object.InternalGetPropertyInt(view.SwigCPtr, FlexContainer.ChildProperty.AlignSelf);
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// FlexMarginProperty
@@ -441,7 +450,8 @@ namespace Tizen.NUI.BaseComponents
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
             Object.InternalRetrievingPropertyVector4(view.SwigCPtr, FlexContainer.ChildProperty.FlexMargin, temp.SwigCPtr);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// CellIndexProperty
@@ -465,7 +475,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 Object.InternalRetrievingPropertyVector2(view.SwigCPtr, TableView.ChildProperty.CellIndex, view.internalCellIndex.SwigCPtr);
                 return view.internalCellIndex;
-            }
+            },
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue
         );
 
         /// <summary>
@@ -484,7 +495,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return Object.InternalGetPropertyFloat(view.SwigCPtr, TableView.ChildProperty.RowSpan);
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// ColumnSpanProperty
@@ -502,7 +514,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return Object.InternalGetPropertyFloat(view.SwigCPtr, TableView.ChildProperty.ColumnSpan);
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// CellHorizontalAlignmentProperty
@@ -525,7 +538,8 @@ namespace Tizen.NUI.BaseComponents
             string temp;
             temp = Object.InternalGetPropertyString(view.SwigCPtr, TableView.ChildProperty.CellHorizontalAlignment);
             return temp.GetValueByDescription<HorizontalAlignmentType>();
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// CellVerticalAlignmentProperty
@@ -548,7 +562,8 @@ namespace Tizen.NUI.BaseComponents
             string temp;
             temp = Object.InternalGetPropertyString(view.SwigCPtr, TableView.ChildProperty.CellVerticalAlignment);
             return temp.GetValueByDescription<VerticalAlignmentType>();
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// "DO not use this, that will be deprecated. Use 'View Weight' instead of BindableProperty"
@@ -568,7 +583,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return view.Weight;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// LeftFocusableViewProperty
@@ -585,7 +601,8 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (view.LeftFocusableViewId >= 0) { return view.ConvertIdToView((uint)view.LeftFocusableViewId); }
             return null;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// RightFocusableViewProperty
@@ -602,7 +619,8 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (view.RightFocusableViewId >= 0) { return view.ConvertIdToView((uint)view.RightFocusableViewId); }
             return null;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// UpFocusableViewProperty
@@ -619,7 +637,8 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (view.UpFocusableViewId >= 0) { return view.ConvertIdToView((uint)view.UpFocusableViewId); }
             return null;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// DownFocusableViewProperty
@@ -636,7 +655,8 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (view.DownFocusableViewId >= 0) { return view.ConvertIdToView((uint)view.DownFocusableViewId); }
             return null;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// ClockwiseFocusableViewProperty
@@ -653,7 +673,8 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (view.ClockwiseFocusableViewId >= 0) { return view.ConvertIdToView((uint)view.ClockwiseFocusableViewId); }
             return null;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// CounterClockwiseFocusableViewProperty
@@ -670,7 +691,8 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (view.CounterClockwiseFocusableViewId >= 0) { return view.ConvertIdToView((uint)view.CounterClockwiseFocusableViewId); }
             return null;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// FocusableProperty
@@ -685,7 +707,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return view.IsKeyboardFocusable();
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// FocusableChildrenProperty
@@ -700,7 +723,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return view.AreChildrenKeyBoardFocusable();
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// FocusableInTouchProperty
@@ -715,7 +739,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return view.IsFocusableInTouch();
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// Size2DProperty
@@ -766,7 +791,8 @@ namespace Tizen.NUI.BaseComponents
                 Object.InternalRetrievingPropertyVector2ActualVector3(view.SwigCPtr, View.Property.SIZE, view.internalSize2D.SwigCPtr);
 
                 return view.internalSize2D;
-            }
+            },
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue
         );
 
         /// <summary>
@@ -793,7 +819,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.OPACITY);
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// Position2DProperty
@@ -817,7 +844,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 Object.InternalRetrievingPropertyVector2ActualVector3(view.SwigCPtr, View.Property.POSITION, view.internalPosition2D.SwigCPtr);
                 return view.internalPosition2D;
-            }
+            },
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue
         );
 
         /// <summary>
@@ -836,7 +864,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.PositionUsesAnchorPoint);
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// SiblingOrderProperty
@@ -885,7 +914,8 @@ namespace Tizen.NUI.BaseComponents
             }
 
             return 0;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// ParentOriginProperty
@@ -905,7 +935,8 @@ namespace Tizen.NUI.BaseComponents
             Position temp = new Position(0.0f, 0.0f, 0.0f);
             Object.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.ParentOrigin, temp.SwigCPtr);
             return temp;
-        })
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue
         );
 
         /// <summary>
@@ -930,7 +961,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 Object.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.AnchorPoint, view.internalPivotPoint.SwigCPtr);
                 return view.internalPivotPoint;
-            }
+            },
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue
         );
 
         /// <summary>
@@ -964,7 +996,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.SizeWidth);
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// SizeHeightProperty
@@ -997,7 +1030,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.SizeHeight);
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// PositionProperty
@@ -1021,7 +1055,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 Object.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.POSITION, view.internalPosition.SwigCPtr);
                 return view.internalPosition;
-            }
+            },
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue
         );
 
         /// <summary>
@@ -1040,7 +1075,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.PositionX);
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// PositionYProperty
@@ -1058,7 +1094,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.PositionY);
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// PositionZProperty
@@ -1076,7 +1113,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.PositionZ);
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// OrientationProperty
@@ -1096,7 +1134,8 @@ namespace Tizen.NUI.BaseComponents
             Rotation temp = new Rotation();
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.ORIENTATION).Get(temp);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// ScaleProperty
@@ -1120,7 +1159,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 Object.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.SCALE, view.internalScale.SwigCPtr);
                 return view.internalScale;
-            }
+            },
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue
         );
 
         /// <summary>
@@ -1139,7 +1179,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.ScaleX);
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// ScaleYProperty
@@ -1157,7 +1198,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.ScaleY);
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// ScaleZProperty
@@ -1175,7 +1217,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.ScaleZ);
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// NameProperty
@@ -1195,7 +1238,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 var view = (View)bindable;
                 return view.internalName;
-            }
+            },
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue
         );
 
         /// <summary>
@@ -1214,7 +1258,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.SENSITIVE);
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// IsEnabledProperty
@@ -1233,7 +1278,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.UserInteractionEnabled);
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// DispatchKeyEventsProperty
@@ -1251,7 +1297,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.DispatchKeyEvents);
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// LeaveRequiredProperty
@@ -1269,7 +1316,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.LeaveRequired);
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// InheritOrientationProperty
@@ -1287,7 +1335,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.InheritOrientation);
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// InheritScaleProperty
@@ -1305,7 +1354,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.InheritScale);
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// DrawModeProperty
@@ -1323,7 +1373,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return (DrawModeType)Object.InternalGetPropertyInt(view.SwigCPtr, View.Property.DrawMode);
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// SizeModeFactorProperty
@@ -1347,7 +1398,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 Object.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.SizeModeFactor, view.internalSizeModeFactor.SwigCPtr);
                 return view.internalSizeModeFactor;
-            }
+            },
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue
         );
 
         /// <summary>
@@ -1407,7 +1459,8 @@ namespace Tizen.NUI.BaseComponents
 
             temp = Object.InternalGetPropertyString(view.SwigCPtr, View.Property.WidthResizePolicy);
             return temp.GetValueByDescription<ResizePolicyType>();
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// HeightResizePolicyProperty
@@ -1467,7 +1520,8 @@ namespace Tizen.NUI.BaseComponents
 
             temp = Object.InternalGetPropertyString(view.SwigCPtr, View.Property.HeightResizePolicy);
             return temp.GetValueByDescription<ResizePolicyType>();
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// SizeScalePolicyProperty
@@ -1489,7 +1543,8 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
 
             return (SizeScalePolicyType)Object.InternalGetPropertyInt(view.SwigCPtr, View.Property.SizeScalePolicy);
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// WidthForHeightProperty
@@ -1508,7 +1563,8 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
 
             return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.WidthForHeight);
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// HeightForWidthProperty
@@ -1528,7 +1584,8 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
 
             return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.HeightForWidth);
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// PaddingProperty
@@ -1586,7 +1643,8 @@ namespace Tizen.NUI.BaseComponents
                 }
 
                 return view.internalPadding;
-            }
+            },
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue
         );
 
         /// <summary>
@@ -1646,7 +1704,8 @@ namespace Tizen.NUI.BaseComponents
                 Object.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.SIZE, view.internalSize.SwigCPtr);
 
                 return view.internalSize;
-            }
+            },
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue
         );
 
         /// <summary>
@@ -1673,7 +1732,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 Object.InternalRetrievingPropertyVector2(view.SwigCPtr, View.Property.MinimumSize, view.internalMinimumSize.SwigCPtr);
                 return view.internalMinimumSize;
-            }
+            },
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue
         );
 
         /// <summary>
@@ -1700,7 +1760,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 Object.InternalRetrievingPropertyVector2(view.SwigCPtr, View.Property.MaximumSize, view.internalMaximumSize.SwigCPtr);
                 return view.internalMaximumSize;
-            }
+            },
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue
         );
 
         /// <summary>
@@ -1720,7 +1781,8 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
 
             return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.InheritPosition);
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// ClippingModeProperty
@@ -1740,7 +1802,8 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
 
             return (ClippingModeType)Object.InternalGetPropertyInt(view.SwigCPtr, View.Property.ClippingMode);
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// InheritLayoutDirectionProperty
@@ -1760,7 +1823,8 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
 
             return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.InheritLayoutDirection);
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// LayoutDirectionProperty
@@ -1780,7 +1844,8 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
 
             return (ViewLayoutDirectionType)Object.InternalGetPropertyInt(view.SwigCPtr, View.Property.LayoutDirection);
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// MarginProperty
@@ -1839,7 +1904,8 @@ namespace Tizen.NUI.BaseComponents
                 }
 
                 return view.internalMargin;
-            }
+            },
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue
         );
 
         /// <summary>
@@ -1862,7 +1928,8 @@ namespace Tizen.NUI.BaseComponents
 
             Object.InternalRetrievingPropertyVector4(view.SwigCPtr, Interop.ActorProperty.UpdateAreaHintGet(), temp.SwigCPtr);
             return temp;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// ImageShadow Property
@@ -1896,7 +1963,8 @@ namespace Tizen.NUI.BaseComponents
 
             var shadow = new ImageShadow(map);
             return shadow.IsEmpty() ? null : shadow;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// Shadow Property
@@ -1930,7 +1998,8 @@ namespace Tizen.NUI.BaseComponents
 
             var shadow = new Shadow(map);
             return shadow.IsEmpty() ? null : shadow;
-        }));
+        }),
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// CornerRadius Property
@@ -1946,7 +2015,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return view.backgroundExtraData == null ? 0.0f : view.backgroundExtraData.CornerRadius;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// CornerRadiusPolicy Property
@@ -1966,7 +2036,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return view.backgroundExtraData == null ? VisualTransformPolicyType.Absolute : view.backgroundExtraData.CornerRadiusPolicy;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// BorderlineWidth Property
@@ -1982,7 +2053,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return view.backgroundExtraData == null ? 0.0f : view.backgroundExtraData.BorderlineWidth;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// BorderlineColor Property
@@ -2009,7 +2081,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 var view = (View)bindable;
                 return view.backgroundExtraData == null ? Color.Black : view.backgroundExtraData.BorderlineColor;
-            }
+            },
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue
         );
 
         /// <summary>
@@ -2039,7 +2112,8 @@ namespace Tizen.NUI.BaseComponents
                 var view = (View)bindable;
                 var selector = view.themeData?.selectorData?.BorderlineColor?.Get();
                 return (null != selector) ? selector : new Selector<Color>();
-            }
+            },
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue
         );
 
         /// <summary>
@@ -2056,7 +2130,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             return view.backgroundExtraData == null ? 0.0f : view.backgroundExtraData.BorderlineOffset;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// EnableControlState property
@@ -2083,7 +2158,8 @@ namespace Tizen.NUI.BaseComponents
         defaultValueCreator: (bindable) =>
         {
             return ((View)bindable).enableControlState;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// ThemeChangeSensitive property
@@ -2113,7 +2189,8 @@ namespace Tizen.NUI.BaseComponents
         defaultValueCreator: (bindable) =>
         {
             return ((View)bindable).themeData?.ThemeChangeSensitive ?? ThemeManager.ApplicationThemeChangeSensitive;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// AccessibilityNameProperty
@@ -2133,7 +2210,8 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
 
             return Object.InternalGetPropertyString(view.SwigCPtr, View.Property.AccessibilityName);
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// AccessibilityDescriptionProperty
@@ -2153,7 +2231,8 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
 
             return Object.InternalGetPropertyString(view.SwigCPtr, View.Property.AccessibilityDescription);
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// AccessibilityTranslationDomainProperty
@@ -2173,7 +2252,8 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
 
             return Object.InternalGetPropertyString(view.SwigCPtr, View.Property.AccessibilityTranslationDomain);
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// AccessibilityRoleProperty
@@ -2193,7 +2273,8 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
 
             return (Role)Object.InternalGetPropertyInt(view.SwigCPtr, View.Property.AccessibilityRole);
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// AccessibilityHighlightableProperty
@@ -2213,7 +2294,8 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
 
             return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.AccessibilityHighlightable);
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// AccessibilityHiddenProperty
@@ -2233,7 +2315,8 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
 
             return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.AccessibilityHidden);
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// ExcludeLayoutingProperty
@@ -2251,7 +2334,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalExcludeLayouting;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// TooltipTextProperty
@@ -2269,7 +2353,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalTooltipText;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// PositionUsesAnchorPointProperty
@@ -2287,7 +2372,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalPositionUsesAnchorPoint;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// AnchorPointProperty
@@ -2305,7 +2391,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalAnchorPoint;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// WidthSpecificationProperty
@@ -2323,7 +2410,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalWidthSpecification;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// HeightSpecificationProperty
@@ -2341,7 +2429,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalHeightSpecification;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// LayoutTransitionProperty
@@ -2359,7 +2448,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalLayoutTransition;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// PaddingEXProperty
@@ -2377,7 +2467,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalPaddingEX;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// LayoutProperty
@@ -2395,7 +2486,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalLayout;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// BackgroundImageSynchronosLoadingProperty
@@ -2413,7 +2505,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalBackgroundImageSynchronosLoading;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// BackgroundImageSynchronousLoadingProperty
@@ -2431,7 +2524,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalBackgroundImageSynchronousLoading;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// EnableControlStatePropagationProperty
@@ -2449,7 +2543,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalEnableControlStatePropagation;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// PropagatableControlStatesProperty
@@ -2467,7 +2562,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalPropagatableControlStates;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// GrabTouchAfterLeaveProperty
@@ -2485,7 +2581,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalGrabTouchAfterLeave;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// AllowOnlyOwnTouchProperty
@@ -2503,7 +2600,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalAllowOnlyOwnTouch;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
 
         /// <summary>
@@ -2522,7 +2620,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalBlendEquation;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// TransitionOptionsProperty
@@ -2540,7 +2639,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalTransitionOptions;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// AutomationIdProperty
@@ -2560,7 +2660,8 @@ namespace Tizen.NUI.BaseComponents
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
 
             return Object.InternalGetPropertyString(instance.SwigCPtr, View.Property.AutomationId);
-        });
+        },
+        valuePolicy : ValuePolicy.GetNativeValueOnlyCreation);
 
         /// <summary>
         /// TouchAreaOffsetProperty
@@ -2578,7 +2679,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalTouchAreaOffset;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// DispatchTouchMotionProperty
@@ -2596,7 +2698,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalDispatchTouchMotion;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// DispatchHoverMotionProperty
@@ -2614,7 +2717,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalDispatchHoverMotion;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// Gets View's Size2D set by user.

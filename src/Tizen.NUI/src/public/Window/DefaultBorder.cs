@@ -86,7 +86,8 @@ namespace Tizen.NUI
         #region Methods
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BorderLineThicknessProperty = BindableProperty.Create(nameof(BorderLineThickness), typeof(uint), typeof(DefaultBorder), default(uint), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BorderLineThicknessProperty = BindableProperty.Create(nameof(BorderLineThickness), typeof(uint), typeof(DefaultBorder), default(uint),
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (DefaultBorder)bindable;
             if (newValue != null)
@@ -99,10 +100,12 @@ namespace Tizen.NUI
         {
             var instance = (DefaultBorder)bindable;
             return instance.borderLineThickness;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MinSizeProperty = BindableProperty.Create(nameof(MinSize), typeof(Size2D), typeof(DefaultBorder), default(Size2D), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MinSizeProperty = BindableProperty.Create(nameof(MinSize), typeof(Size2D), typeof(DefaultBorder), default(Size2D),
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (DefaultBorder)bindable;
             if (newValue != null)
@@ -115,10 +118,12 @@ namespace Tizen.NUI
         {
             var instance = (DefaultBorder)bindable;
             return instance.minSize;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MaxSizeProperty = BindableProperty.Create(nameof(MaxSize), typeof(Size2D), typeof(DefaultBorder), default(Size2D), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MaxSizeProperty = BindableProperty.Create(nameof(MaxSize), typeof(Size2D), typeof(DefaultBorder), default(Size2D),
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (DefaultBorder)bindable;
             if (newValue != null)
@@ -131,10 +136,12 @@ namespace Tizen.NUI
         {
             var instance = (DefaultBorder)bindable;
             return instance.maxSize;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ResizePolicyProperty = BindableProperty.Create(nameof(ResizePolicy), typeof(Window.BorderResizePolicyType), typeof(DefaultBorder), default(Window.BorderResizePolicyType), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ResizePolicyProperty = BindableProperty.Create(nameof(ResizePolicy), typeof(Window.BorderResizePolicyType), typeof(DefaultBorder), default(Window.BorderResizePolicyType),
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (DefaultBorder)bindable;
             if (newValue != null)
@@ -147,7 +154,8 @@ namespace Tizen.NUI
         {
             var instance = (DefaultBorder)bindable;
             return instance.resizePolicy;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
 
         /// <summary>

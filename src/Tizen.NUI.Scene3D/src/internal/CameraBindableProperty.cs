@@ -37,7 +37,8 @@ namespace Tizen.NUI.Scene3D
         {
             var instance = (Tizen.NUI.Scene3D.Camera)bindable;
             return instance.InternalProjectionMode;
-        });
+        },
+        valuePolicy : ValuePolicy.GetNativeValueOnlyCreation);
 
         /// <summary>
         /// ProjectionDirectionProperty
@@ -59,7 +60,8 @@ namespace Tizen.NUI.Scene3D
         {
             var instance = (Tizen.NUI.Scene3D.Camera)bindable;
             return instance.InternalProjectionDirection;
-        });
+        },
+        valuePolicy : ValuePolicy.GetNativeValueOnlyCreation);
 
         /// <summary>
         /// FieldOfViewProperty
@@ -76,7 +78,8 @@ namespace Tizen.NUI.Scene3D
         {
             var instance = (Tizen.NUI.Scene3D.Camera)bindable;
             return instance.InternalFieldOfView;
-        });
+        },
+        valuePolicy : ValuePolicy.GetNativeValueOnlyCreation);
 
         /// <summary>
         /// OrthographicSizeProperty
@@ -93,7 +96,8 @@ namespace Tizen.NUI.Scene3D
         {
             var instance = (Tizen.NUI.Scene3D.Camera)bindable;
             return instance.InternalOrthographicSize;
-        });
+        },
+        valuePolicy : ValuePolicy.GetNativeValueOnlyCreation);
 
         /// <summary>
         /// AspectRatioProperty
@@ -110,7 +114,8 @@ namespace Tizen.NUI.Scene3D
         {
             var instance = (Tizen.NUI.Scene3D.Camera)bindable;
             return instance.InternalAspectRatio;
-        });
+        },
+        valuePolicy : ValuePolicy.GetNativeValueOnlyCreation);
 
         /// <summary>
         /// NearPlaneDistanceProperty
@@ -127,7 +132,8 @@ namespace Tizen.NUI.Scene3D
         {
             var instance = (Tizen.NUI.Scene3D.Camera)bindable;
             return instance.InternalNearPlaneDistance;
-        });
+        },
+        valuePolicy : ValuePolicy.GetNativeValueOnlyCreation);
 
         /// <summary>
         /// FarPlaneDistanceProperty
@@ -144,7 +150,8 @@ namespace Tizen.NUI.Scene3D
         {
             var instance = (Tizen.NUI.Scene3D.Camera)bindable;
             return instance.InternalFarPlaneDistance;
-        });
+        },
+        valuePolicy : ValuePolicy.GetNativeValueOnlyCreation);
 
         /// <summary>
         /// LeftPlaneDistanceProperty
@@ -161,7 +168,8 @@ namespace Tizen.NUI.Scene3D
         {
             var instance = (Tizen.NUI.Scene3D.Camera)bindable;
             return instance.InternalLeftPlaneDistance;
-        });
+        },
+        valuePolicy : ValuePolicy.GetNativeValueOnlyCreation);
 
         /// <summary>
         /// RightPlaneDistanceProperty
@@ -178,7 +186,8 @@ namespace Tizen.NUI.Scene3D
         {
             var instance = (Tizen.NUI.Scene3D.Camera)bindable;
             return instance.InternalRightPlaneDistance;
-        });
+        },
+        valuePolicy : ValuePolicy.GetNativeValueOnlyCreation);
 
         /// <summary>
         /// TopPlaneDistanceProperty
@@ -195,7 +204,8 @@ namespace Tizen.NUI.Scene3D
         {
             var instance = (Tizen.NUI.Scene3D.Camera)bindable;
             return instance.InternalTopPlaneDistance;
-        });
+        },
+        valuePolicy : ValuePolicy.GetNativeValueOnlyCreation);
 
         /// <summary>
         /// BottomPlaneDistanceProperty
@@ -212,7 +222,8 @@ namespace Tizen.NUI.Scene3D
         {
             var instance = (Tizen.NUI.Scene3D.Camera)bindable;
             return instance.InternalBottomPlaneDistance;
-        });
+        },
+        valuePolicy : ValuePolicy.GetNativeValueOnlyCreation);
 
         /// <summary>
         /// InvertYAxisProperty
@@ -229,6 +240,7 @@ namespace Tizen.NUI.Scene3D
         {
             var instance = (Tizen.NUI.Scene3D.Camera)bindable;
             return instance.InternalInvertYAxis;
-        });
+        },
+        valuePolicy : ValuePolicy.GetNativeValueOnlyCreation);
     }
 }

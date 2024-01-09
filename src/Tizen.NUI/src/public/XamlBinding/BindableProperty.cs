@@ -164,7 +164,8 @@ namespace Tizen.NUI.Binding
 
         BindableProperty(string propertyName, Type returnType, Type declaringType, object defaultValue, BindingMode defaultBindingMode = BindingMode.OneWay,
                                  ValidateValueDelegate validateValue = null, BindingPropertyChangedDelegate propertyChanged = null, BindingPropertyChangingDelegate propertyChanging = null,
-                                 CoerceValueDelegate coerceValue = null, BindablePropertyBindingChanging bindingChanging = null, bool isReadOnly = false, CreateDefaultValueDelegate defaultValueCreator = null)
+                                 CoerceValueDelegate coerceValue = null, BindablePropertyBindingChanging bindingChanging = null, bool isReadOnly = false, CreateDefaultValueDelegate defaultValueCreator = null,
+                                 ValuePolicy valuePolicy = ValuePolicy.Default)
         {
             if (propertyName == null)
                 throw new ArgumentNullException(nameof(propertyName));
@@ -197,6 +198,7 @@ namespace Tizen.NUI.Binding
             IsReadOnly = isReadOnly;
             DefaultValueCreator = defaultValueCreator;
             ValueGetter = defaultValueCreator;
+            SetGetValuePolicy = valuePolicy;
 
             Dictionary<string, BindableProperty> nameToBindableProperty;
             bindablePropertyOfType.TryGetValue(declaringType, out nameToBindableProperty);
@@ -305,6 +307,13 @@ namespace Tizen.NUI.Binding
         /// </summary>
         public Type ReturnType { get; }
 
+        /// <summary>
+        /// Gets a value indicating if the BindableProperty is not used old value when property changed signal invoked.
+        /// It is advanced property when we want to optimize performance.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ValuePolicy SetGetValuePolicy { get; private set; }
+
         internal BindablePropertyBindingChanging BindingChanging { get; private set; }
 
         internal CoerceValueDelegate CoerceValue { get; private set; }
@@ -334,13 +343,14 @@ namespace Tizen.NUI.Binding
         /// <param name="propertyChanging">A delegate to be run when the value will change. This parameter is optional. Default is null.</param>
         /// <param name="coerceValue">A delegate used to coerce the range of a value. This parameter is optional. Default is null.</param>
         /// <param name="defaultValueCreator">A Func used to initialize default value for reference types.</param>
+        /// <param name="valuePolicy">A policy of this bindiable property when we call set/get values</param>
         /// <returns>A newly created BindableProperty.</returns>
         public static BindableProperty Create(string propertyName, Type returnType, Type declaringType, object defaultValue = null, BindingMode defaultBindingMode = BindingMode.OneWay,
                                               ValidateValueDelegate validateValue = null, BindingPropertyChangedDelegate propertyChanged = null, BindingPropertyChangingDelegate propertyChanging = null,
-                                              CoerceValueDelegate coerceValue = null, CreateDefaultValueDelegate defaultValueCreator = null)
+                                              CoerceValueDelegate coerceValue = null, CreateDefaultValueDelegate defaultValueCreator = null, ValuePolicy valuePolicy = ValuePolicy.Default)
         {
             return new BindableProperty(propertyName, returnType, declaringType, defaultValue, defaultBindingMode, validateValue, propertyChanged, propertyChanging, coerceValue,
-                defaultValueCreator: defaultValueCreator);
+                defaultValueCreator: defaultValueCreator, valuePolicy : valuePolicy);
         }
 
         /// <summary>
@@ -356,12 +366,13 @@ namespace Tizen.NUI.Binding
         /// <param name="propertyChanging">A delegate to be run when the value will change. This parameter is optional. Default is null.</param>
         /// <param name="coerceValue">A delegate used to coerce the range of a value. This parameter is optional. Default is null.</param>
         /// <param name="defaultValueCreator">A Func used to initialize default value for reference types.</param>
+        /// <param name="valuePolicy">A policy of this bindiable property when we call set/get values</param>
         /// <returns>A newly created BindableProperty.</returns>
         public static BindableProperty CreateAttached(string propertyName, Type returnType, Type declaringType, object defaultValue, BindingMode defaultBindingMode = BindingMode.OneWay,
                                                       ValidateValueDelegate validateValue = null, BindingPropertyChangedDelegate propertyChanged = null, BindingPropertyChangingDelegate propertyChanging = null,
-                                                      CoerceValueDelegate coerceValue = null, CreateDefaultValueDelegate defaultValueCreator = null)
+                                                      CoerceValueDelegate coerceValue = null, CreateDefaultValueDelegate defaultValueCreator = null, ValuePolicy valuePolicy = ValuePolicy.Default)
         {
-            return CreateAttached(propertyName, returnType, declaringType, defaultValue, defaultBindingMode, validateValue, propertyChanged, propertyChanging, coerceValue, null, false, defaultValueCreator);
+            return CreateAttached(propertyName, returnType, declaringType, defaultValue, defaultBindingMode, validateValue, propertyChanged, propertyChanging, coerceValue, null, false, defaultValueCreator, valuePolicy);
         }
 
         /// <summary>
@@ -377,14 +388,15 @@ namespace Tizen.NUI.Binding
         /// <param name="propertyChanging">A delegate to be run when the value will change. This parameter is optional. Default is null.</param>
         /// <param name="coerceValue">A delegate used to coerce the range of a value. This parameter is optional. Default is null.</param>
         /// <param name="defaultValueCreator">A Func used to initialize default value for reference types.</param>
+        /// <param name="valuePolicy">A policy of this bindiable property when we call set/get values</param>
         /// <returns>A newly created attached read-only BindablePropertyKey.</returns>
         public static BindablePropertyKey CreateAttachedReadOnly(string propertyName, Type returnType, Type declaringType, object defaultValue, BindingMode defaultBindingMode = BindingMode.OneWayToSource,
                                                                  ValidateValueDelegate validateValue = null, BindingPropertyChangedDelegate propertyChanged = null, BindingPropertyChangingDelegate propertyChanging = null,
-                                                                 CoerceValueDelegate coerceValue = null, CreateDefaultValueDelegate defaultValueCreator = null)
+                                                                 CoerceValueDelegate coerceValue = null, CreateDefaultValueDelegate defaultValueCreator = null, ValuePolicy valuePolicy = ValuePolicy.Default)
         {
             return
                 new BindablePropertyKey(CreateAttached(propertyName, returnType, declaringType, defaultValue, defaultBindingMode, validateValue, propertyChanged, propertyChanging, coerceValue, null, true,
-                    defaultValueCreator));
+                    defaultValueCreator, valuePolicy));
         }
 
         /// <summary>
@@ -400,29 +412,30 @@ namespace Tizen.NUI.Binding
         /// <param name="propertyChanging">A delegate to be run when the value will change. This parameter is optional. Default is null.</param>
         /// <param name="coerceValue">A delegate used to coerce the range of a value. This parameter is optional. Default is null.</param>
         /// <param name="defaultValueCreator">A Func used to initialize default value for reference types.</param>
+        /// <param name="valuePolicy">A policy of this bindiable property when we call set/get values</param>
         /// <returns>A newly created BindablePropertyKey.</returns>
         public static BindablePropertyKey CreateReadOnly(string propertyName, Type returnType, Type declaringType, object defaultValue, BindingMode defaultBindingMode = BindingMode.OneWayToSource,
                                                          ValidateValueDelegate validateValue = null, BindingPropertyChangedDelegate propertyChanged = null, BindingPropertyChangingDelegate propertyChanging = null,
-                                                         CoerceValueDelegate coerceValue = null, CreateDefaultValueDelegate defaultValueCreator = null)
+                                                         CoerceValueDelegate coerceValue = null, CreateDefaultValueDelegate defaultValueCreator = null, ValuePolicy valuePolicy = ValuePolicy.Default)
         {
             return
                 new BindablePropertyKey(new BindableProperty(propertyName, returnType, declaringType, defaultValue, defaultBindingMode, validateValue, propertyChanged, propertyChanging, coerceValue,
-                    isReadOnly: true, defaultValueCreator: defaultValueCreator));
+                    isReadOnly: true, defaultValueCreator: defaultValueCreator, valuePolicy : valuePolicy));
         }
         internal static BindableProperty Create(string propertyName, Type returnType, Type declaringType, object defaultValue, BindingMode defaultBindingMode, ValidateValueDelegate validateValue,
                                                 BindingPropertyChangedDelegate propertyChanged, BindingPropertyChangingDelegate propertyChanging, CoerceValueDelegate coerceValue, BindablePropertyBindingChanging bindingChanging,
-                                                CreateDefaultValueDelegate defaultValueCreator = null)
+                                                CreateDefaultValueDelegate defaultValueCreator = null, ValuePolicy valuePolicy = ValuePolicy.Default)
         {
             return new BindableProperty(propertyName, returnType, declaringType, defaultValue, defaultBindingMode, validateValue, propertyChanged, propertyChanging, coerceValue, bindingChanging,
-                defaultValueCreator: defaultValueCreator);
+                defaultValueCreator: defaultValueCreator, valuePolicy : valuePolicy);
         }
 
         internal static BindableProperty CreateAttached(string propertyName, Type returnType, Type declaringType, object defaultValue, BindingMode defaultBindingMode, ValidateValueDelegate validateValue,
                                                         BindingPropertyChangedDelegate propertyChanged, BindingPropertyChangingDelegate propertyChanging, CoerceValueDelegate coerceValue, BindablePropertyBindingChanging bindingChanging,
-                                                        bool isReadOnly, CreateDefaultValueDelegate defaultValueCreator = null)
+                                                        bool isReadOnly, CreateDefaultValueDelegate defaultValueCreator = null, ValuePolicy valuePolicy = ValuePolicy.Default)
         {
             return new BindableProperty(propertyName, returnType, declaringType, defaultValue, defaultBindingMode, validateValue, propertyChanged, propertyChanging, coerceValue, bindingChanging, isReadOnly,
-                defaultValueCreator);
+                defaultValueCreator, valuePolicy);
         }
 
         internal object GetDefaultValue(BindableObject bindable)
@@ -431,6 +444,26 @@ namespace Tizen.NUI.Binding
                 return DefaultValueCreator(bindable);
 
             return DefaultValue;
+        }
+
+        internal bool IgnoreValueGetter(bool isSetValueCase, bool isCreateCase)
+        {
+            switch (SetGetValuePolicy)
+            {
+                case ValuePolicy.IgnoreOldValueWhenSetValue:
+                {
+                    return isSetValueCase;
+                }
+                case ValuePolicy.GetNativeValueOnlyCreation:
+                {
+                    // Ignore value getter if it is SetValue, or is not creation time.
+                    return isSetValueCase || !isCreateCase;
+                }
+                default:
+                {
+                    return false;
+                }
+            }
         }
 
         internal bool TryConvert(ref object value)

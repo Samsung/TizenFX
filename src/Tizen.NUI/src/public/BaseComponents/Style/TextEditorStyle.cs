@@ -31,232 +31,273 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty FontFamilyProperty = BindableProperty.Create(nameof(FontFamily), typeof(string), typeof(TextEditorStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).fontFamily = (string)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).fontFamily);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).fontFamily,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of PointSize. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty PointSizeProperty = BindableProperty.Create(nameof(PointSize), typeof(float?), typeof(TextEditorStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).pointSize = (float?)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).pointSize);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).pointSize,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of PixelSize. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty PixelSizeProperty = BindableProperty.Create(nameof(PixelSize), typeof(float?), typeof(TextEditorStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).pixelSize = (float?)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).pixelSize);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).pixelSize,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of TextColor. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Vector4), typeof(TextEditorStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).textColor = (Vector4)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).textColor);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).textColor,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of PlaceholderTextColor. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty PlaceholderTextColorProperty = BindableProperty.Create(nameof(PlaceholderTextColor), typeof(Color), typeof(TextEditorStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).placeholderTextColor = (Color)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).placeholderTextColor);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).placeholderTextColor,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of PrimaryCursorColor. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty PrimaryCursorColorProperty = BindableProperty.Create(nameof(PrimaryCursorColor), typeof(Vector4), typeof(TextEditorStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).primaryCursorColor = (Vector4)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).primaryCursorColor);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).primaryCursorColor,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of HorizontalAlignment. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty HorizontalAlignmentProperty = BindableProperty.Create(nameof(HorizontalAlignment), typeof(HorizontalAlignment?), typeof(TextEditorStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).horizontalAlignment = (HorizontalAlignment?)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).horizontalAlignment);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).horizontalAlignment,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of VerticalAlignment. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty VerticalAlignmentProperty = BindableProperty.Create(nameof(VerticalAlignment), typeof(VerticalAlignment?), typeof(TextEditorStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).verticalAlignment = (VerticalAlignment?)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).verticalAlignment);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).verticalAlignment,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of SecondaryCursorColor. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty SecondaryCursorColorProperty = BindableProperty.Create(nameof(SecondaryCursorColor), typeof(Vector4), typeof(TextEditorStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).secondaryCursorColor = (Vector4)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).secondaryCursorColor);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).secondaryCursorColor,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of EnableCursorBlink. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty EnableCursorBlinkProperty = BindableProperty.Create(nameof(EnableCursorBlink), typeof(bool?), typeof(TextEditorStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).enableCursorBlink = (bool?)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).enableCursorBlink);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).enableCursorBlink,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of CursorBlinkInterval. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty CursorBlinkIntervalProperty = BindableProperty.Create(nameof(CursorBlinkInterval), typeof(float?), typeof(TextEditorStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).cursorBlinkInterval = (float?)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).cursorBlinkInterval);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).cursorBlinkInterval,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of CursorBlinkDuration. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty CursorBlinkDurationProperty = BindableProperty.Create(nameof(CursorBlinkDuration), typeof(float?), typeof(TextEditorStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).cursorBlinkDuration = (float?)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).cursorBlinkDuration);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).cursorBlinkDuration,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of CursorWidth. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty CursorWidthProperty = BindableProperty.Create(nameof(CursorWidth), typeof(int?), typeof(TextEditorStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).cursorWidth = (int?)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).cursorWidth);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).cursorWidth,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of GrabHandleColor. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty GrabHandleColorProperty = BindableProperty.Create(nameof(GrabHandleColor), typeof(Color), typeof(TextEditorStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).grabHandleColor = (Color)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).grabHandleColor);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).grabHandleColor,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of GrabHandleImage. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty GrabHandleImageProperty = BindableProperty.Create(nameof(GrabHandleImage), typeof(string), typeof(TextEditorStyle), String.Empty,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).grabHandleImage = (string)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).grabHandleImage);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).grabHandleImage,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of GrabHandlePressedImage. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly BindableProperty GrabHandlePressedImageProperty = BindableProperty.Create(nameof(GrabHandlePressedImage), typeof(string), typeof(TextEditorStyle), String.Empty, propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).grabHandlePressedImage = (string)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).grabHandlePressedImage);
+        internal static readonly BindableProperty GrabHandlePressedImageProperty = BindableProperty.Create(nameof(GrabHandlePressedImage), typeof(string), typeof(TextEditorStyle), String.Empty,
+            propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).grabHandlePressedImage = (string)newValue,
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).grabHandlePressedImage,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of SelectionHandleImageLeft. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty SelectionHandleImageLeftProperty = BindableProperty.Create(nameof(SelectionHandleImageLeft), typeof(PropertyMap), typeof(TextEditorStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).selectionHandleImageLeft = (PropertyMap)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).selectionHandleImageLeft);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).selectionHandleImageLeft,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of SelectionHandleImageRight. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty SelectionHandleImageRightProperty = BindableProperty.Create(nameof(SelectionHandleImageRight), typeof(PropertyMap), typeof(TextEditorStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).selectionHandleImageRight = (PropertyMap)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).selectionHandleImageRight);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).selectionHandleImageRight,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of ScrollThreshold. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty ScrollThresholdProperty = BindableProperty.Create(nameof(ScrollThreshold), typeof(float?), typeof(TextEditorStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).scrollThreshold = (float?)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).scrollThreshold);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).scrollThreshold,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of ScrollSpeed. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty ScrollSpeedProperty = BindableProperty.Create(nameof(ScrollSpeed), typeof(float?), typeof(TextEditorStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).scrollSpeed = (float?)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).scrollSpeed);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).scrollSpeed,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of SelectionHighlightColor. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty SelectionHighlightColorProperty = BindableProperty.Create(nameof(SelectionHighlightColor), typeof(Vector4), typeof(TextEditorStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).selectionHighlightColor = (Vector4)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).selectionHighlightColor);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).selectionHighlightColor,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of DecorationBoundingBox. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty DecorationBoundingBoxProperty = BindableProperty.Create(nameof(DecorationBoundingBox), typeof(Rectangle), typeof(TextEditorStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).decorationBoundingBox = (Rectangle)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).decorationBoundingBox);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).decorationBoundingBox,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of InputColor. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty InputColorProperty = BindableProperty.Create(nameof(InputColor), typeof(Vector4), typeof(TextEditorStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).inputColor = (Vector4)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).inputColor);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).inputColor,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
 
         /// <summary> The bindable property of InputFontFamily. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly BindableProperty InputFontFamilyProperty = BindableProperty.Create(nameof(InputFontFamily), typeof(string), typeof(TextEditorStyle), String.Empty, propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).inputFontFamily = (string)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).inputFontFamily);
+        internal static readonly BindableProperty InputFontFamilyProperty = BindableProperty.Create(nameof(InputFontFamily), typeof(string), typeof(TextEditorStyle), String.Empty,
+            propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).inputFontFamily = (string)newValue,
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).inputFontFamily,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of InputPointSize. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty InputPointSizeProperty = BindableProperty.Create(nameof(InputPointSize), typeof(float?), typeof(TextEditorStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).inputPointSize = (float?)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).inputPointSize);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).inputPointSize,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of InputUnderline. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty InputUnderlineProperty = BindableProperty.Create(nameof(InputUnderline), typeof(string), typeof(TextEditorStyle), String.Empty,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).inputUnderline = (string)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).inputUnderline);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).inputUnderline,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of InputShadow. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty InputShadowProperty = BindableProperty.Create(nameof(InputShadow), typeof(string), typeof(TextEditorStyle), String.Empty,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).inputShadow = (string)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).inputShadow);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).inputShadow,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of Emboss. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty EmbossProperty = BindableProperty.Create(nameof(Emboss), typeof(string), typeof(TextEditorStyle), String.Empty,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).emboss = (string)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).emboss);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).emboss,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of InputEmboss. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty InputEmbossProperty = BindableProperty.Create(nameof(InputEmboss), typeof(string), typeof(TextEditorStyle), String.Empty,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).inputEmboss = (string)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).inputEmboss);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).inputEmboss,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of InputOutline. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty InputOutlineProperty = BindableProperty.Create(nameof(InputOutline), typeof(string), typeof(TextEditorStyle), String.Empty,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).inputOutline = (string)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).inputOutline);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).inputOutline,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of SmoothScroll. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty SmoothScrollProperty = BindableProperty.Create(nameof(SmoothScroll), typeof(bool?), typeof(TextEditorStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).smoothScroll = (bool?)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).smoothScroll);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).smoothScroll,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of SmoothScrollDuration. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty SmoothScrollDurationProperty = BindableProperty.Create(nameof(SmoothScrollDuration), typeof(float?), typeof(TextEditorStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).smoothScrollDuration = (float?)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).smoothScrollDuration);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).smoothScrollDuration,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of EnableScrollBar. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty EnableScrollBarProperty = BindableProperty.Create(nameof(EnableScrollBar), typeof(bool?), typeof(TextEditorStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).enableScrollBar = (bool?)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).enableScrollBar);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).enableScrollBar,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of ScrollBarShowDuration. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty ScrollBarShowDurationProperty = BindableProperty.Create(nameof(ScrollBarShowDuration), typeof(float?), typeof(TextEditorStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).scrollBarShowDuration = (float?)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).scrollBarShowDuration);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).scrollBarShowDuration,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of ScrollBarFadeDuration. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty ScrollBarFadeDurationProperty = BindableProperty.Create(nameof(ScrollBarFadeDuration), typeof(float?), typeof(TextEditorStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).scrollBarFadeDuration = (float?)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).scrollBarFadeDuration);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).scrollBarFadeDuration,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of EnableSelection. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty EnableSelectionProperty = BindableProperty.Create(nameof(EnableSelection), typeof(bool?), typeof(TextEditorStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).enableSelection = (bool?)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).enableSelection);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).enableSelection,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of MatchSystemLanguageDirection. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty MatchSystemLanguageDirectionProperty = BindableProperty.Create(nameof(MatchSystemLanguageDirection), typeof(bool?), typeof(TextEditorStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).matchSystemLanguageDirection = (bool?)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).matchSystemLanguageDirection);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).matchSystemLanguageDirection,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of FontStyleProperty. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty FontStyleProperty = BindableProperty.Create(nameof(FontStyle), typeof(PropertyMap), typeof(TextEditorStyle), null,
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).fontStyle = (PropertyMap)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).fontStyle);
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).fontStyle,
+            valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty EllipsisProperty = BindableProperty.Create(nameof(Ellipsis), typeof(bool?), typeof(TextEditorStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty EllipsisProperty = BindableProperty.Create(nameof(Ellipsis), typeof(bool?), typeof(TextEditorStyle), null,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditorStyle = (TextEditorStyle)bindable;
             textEditorStyle.ellipsis = (bool?)newValue;
@@ -265,11 +306,13 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditorStyle = (TextEditorStyle)bindable;
             return textEditorStyle.ellipsis;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of LineSpacingProperty. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LineSpacingProperty = BindableProperty.Create(nameof(LineSpacing), typeof(float?), typeof(TextEditorStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LineSpacingProperty = BindableProperty.Create(nameof(LineSpacing), typeof(float?), typeof(TextEditorStyle), null,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditorStyle = (TextEditorStyle)bindable;
             textEditorStyle.lineSpacing = (float?)newValue;
@@ -278,11 +321,13 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditorStyle = (TextEditorStyle)bindable;
             return textEditorStyle.lineSpacing;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of MinLineSizeProperty. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MinLineSizeProperty = BindableProperty.Create(nameof(MinLineSize), typeof(float?), typeof(TextEditorStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MinLineSizeProperty = BindableProperty.Create(nameof(MinLineSize), typeof(float?), typeof(TextEditorStyle), null,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditorStyle = (TextEditorStyle)bindable;
             textEditorStyle.minLineSize = (float?)newValue;
@@ -291,11 +336,13 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditorStyle = (TextEditorStyle)bindable;
             return textEditorStyle.minLineSize;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary> The bindable property of RelativeLineHeightProperty. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RelativeLineHeightProperty = BindableProperty.Create(nameof(RelativeLineHeight), typeof(float?), typeof(TextEditorStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty RelativeLineHeightProperty = BindableProperty.Create(nameof(RelativeLineHeight), typeof(float?), typeof(TextEditorStyle), null,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditorStyle = (TextEditorStyle)bindable;
             textEditorStyle.relativeLineHeight = (float?)newValue;
@@ -304,10 +351,12 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditorStyle = (TextEditorStyle)bindable;
             return textEditorStyle.relativeLineHeight;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FontSizeScaleProperty = BindableProperty.Create(nameof(FontSizeScale), typeof(float?), typeof(TextEditorStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FontSizeScaleProperty = BindableProperty.Create(nameof(FontSizeScale), typeof(float?), typeof(TextEditorStyle), null,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditorStyle = (TextEditorStyle)bindable;
             textEditorStyle.fontSizeScale = (float?)newValue;
@@ -316,10 +365,12 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditorStyle = (TextEditorStyle)bindable;
             return textEditorStyle.fontSizeScale;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SelectionPopupStyleProperty = BindableProperty.Create(nameof(SelectionPopupStyle), typeof(PropertyMap), typeof(TextEditorStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SelectionPopupStyleProperty = BindableProperty.Create(nameof(SelectionPopupStyle), typeof(PropertyMap), typeof(TextEditorStyle), null,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditorStyle = (TextEditorStyle)bindable;
             textEditorStyle.selectionPopupStyle = (PropertyMap)newValue;
@@ -328,7 +379,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditorStyle = (TextEditorStyle)bindable;
             return textEditorStyle.selectionPopupStyle;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         private HorizontalAlignment? horizontalAlignment;
         private VerticalAlignment? verticalAlignment;

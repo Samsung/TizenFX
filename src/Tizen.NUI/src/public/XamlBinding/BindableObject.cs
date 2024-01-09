@@ -310,7 +310,7 @@ namespace Tizen.NUI.Binding
                 }
 
                 object oldvalue = null;
-                BindablePropertyContext context = GetOrCreateContext(property);
+                BindablePropertyContext context = GetOrCreateContext(property, true, true);
                 if (null != context)
                 {
                     context.Attributes |= BindableContextAttributes.IsManuallySet;
@@ -505,9 +505,9 @@ namespace Tizen.NUI.Binding
             }
 
             if (!ReferenceEquals(property0, null))
-                values[0] = property0.DefaultValueCreator == null ? property0.DefaultValue : CreateAndAddContext(property0).Value;
+                values[0] = property0.DefaultValueCreator == null ? property0.DefaultValue : CreateAndAddContext(property0, false).Value;
             if (!ReferenceEquals(property1, null))
-                values[1] = property1.DefaultValueCreator == null ? property1.DefaultValue : CreateAndAddContext(property1).Value;
+                values[1] = property1.DefaultValueCreator == null ? property1.DefaultValue : CreateAndAddContext(property1, false).Value;
 
             return values;
         }
@@ -546,11 +546,11 @@ namespace Tizen.NUI.Binding
             }
 
             if (!ReferenceEquals(property0, null))
-                values[0] = property0.DefaultValueCreator == null ? property0.DefaultValue : CreateAndAddContext(property0).Value;
+                values[0] = property0.DefaultValueCreator == null ? property0.DefaultValue : CreateAndAddContext(property0, false).Value;
             if (!ReferenceEquals(property1, null))
-                values[1] = property1.DefaultValueCreator == null ? property1.DefaultValue : CreateAndAddContext(property1).Value;
+                values[1] = property1.DefaultValueCreator == null ? property1.DefaultValue : CreateAndAddContext(property1, false).Value;
             if (!ReferenceEquals(property2, null))
-                values[2] = property2.DefaultValueCreator == null ? property2.DefaultValue : CreateAndAddContext(property2).Value;
+                values[2] = property2.DefaultValueCreator == null ? property2.DefaultValue : CreateAndAddContext(property2, false).Value;
 
             return values;
         }
@@ -574,7 +574,7 @@ namespace Tizen.NUI.Binding
             {
                 if (!ReferenceEquals(values[i], null))
                     continue;
-                values[i] = properties[i].DefaultValueCreator == null ? properties[i].DefaultValue : CreateAndAddContext(properties[i]).Value;
+                values[i] = properties[i].DefaultValueCreator == null ? properties[i].DefaultValue : CreateAndAddContext(properties[i], false).Value;
             }
             return values;
         }
@@ -706,6 +706,7 @@ namespace Tizen.NUI.Binding
             if (property.CoerceValue != null)
                 value = property.CoerceValue(this, value);
 
+            // TODO : Could we make it apply policy?
             BindablePropertyContext context = GetOrCreateContext(property);
             if (manuallySet)
             {
@@ -867,11 +868,13 @@ namespace Tizen.NUI.Binding
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        BindablePropertyContext CreateAndAddContext(BindableProperty property)
+        BindablePropertyContext CreateAndAddContext(BindableProperty property, bool valuePolicyApplied = false, bool isSetValueCase = false)
         {
-            var context = new BindablePropertyContext { Property = property, Value = property.DefaultValueCreator != null ? property.DefaultValueCreator(this) : property.DefaultValue };
+            bool useDefaultValue = (valuePolicyApplied && property.IgnoreValueGetter(isSetValueCase, true)) || property.DefaultValueCreator == null;
 
-            if (property.DefaultValueCreator == null)
+            var context = new BindablePropertyContext { Property = property, Value = useDefaultValue ? property.DefaultValue : property.DefaultValueCreator(this) };
+
+            if (useDefaultValue)
                 context.Attributes = BindableContextAttributes.IsDefaultValue;
             else
                 context.Attributes = BindableContextAttributes.IsDefaultValueCreated;
@@ -884,21 +887,24 @@ namespace Tizen.NUI.Binding
         BindablePropertyContext GetContext(BindableProperty property) => properties.TryGetValue(property, out var result) ? result : null;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        BindablePropertyContext GetOrCreateContext(BindableProperty property)
+        BindablePropertyContext GetOrCreateContext(BindableProperty property, bool valuePolicyApplied = false, bool isSetValueCase = false)
         {
             BindablePropertyContext context = GetContext(property);
             if (context == null)
             {
-                context = CreateAndAddContext(property);
+                context = CreateAndAddContext(property, valuePolicyApplied, isSetValueCase);
             }
-            else if (property.ValueGetter != null)
+            else if (!valuePolicyApplied || !property.IgnoreValueGetter(isSetValueCase, false))
             {
-                context.Value = property.ValueGetter(this); //Update Value from dali
-            }//added by xiaohui.fang
-            else if (property.DefaultValueCreator != null) //This will be removed in the future.
-            {
-                context.Value = property.DefaultValueCreator(this); //Update Value from dali
-            }//added by xb.teng
+                if (property.ValueGetter != null)
+                {
+                    context.Value = property.ValueGetter(this); //Update Value from dali
+                }//added by xiaohui.fang
+                else if (property.DefaultValueCreator != null) //This will be removed in the future.
+                {
+                    context.Value = property.DefaultValueCreator(this); //Update Value from dali
+                }//added by xb.teng
+            }//added by eunkiki.hong
 
             return context;
         }
@@ -985,6 +991,7 @@ namespace Tizen.NUI.Binding
                     {
                         if (relativeProperty != property)
                         {
+                            // TODO : Could we make it apply policy?
                             var relativeContext = GetOrCreateContext(relativeProperty);
                             var relativeBinding = relativeContext.Binding;
 

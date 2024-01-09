@@ -34,7 +34,8 @@ namespace Tizen.NUI
         /// ValueProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ValueProperty = BindableProperty.Create(nameof(Value), typeof(int), typeof(Tizen.NUI.Spin), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ValueProperty = BindableProperty.Create(nameof(Value), typeof(int), typeof(Tizen.NUI.Spin), 0,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.Spin)bindable;
             if (newValue != null)
@@ -46,13 +47,15 @@ namespace Tizen.NUI
         {
             var instance = (Tizen.NUI.Spin)bindable;
             return instance.InternalValue;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// MinValueProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MinValueProperty = BindableProperty.Create(nameof(MinValue), typeof(int), typeof(Tizen.NUI.Spin), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MinValueProperty = BindableProperty.Create(nameof(MinValue), typeof(int), typeof(Tizen.NUI.Spin), 0,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.Spin)bindable;
             if (newValue != null)
@@ -64,13 +67,15 @@ namespace Tizen.NUI
         {
             var instance = (Tizen.NUI.Spin)bindable;
             return instance.InternalMinValue;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// MaxValueProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MaxValueProperty = BindableProperty.Create(nameof(MaxValue), typeof(int), typeof(Tizen.NUI.Spin), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MaxValueProperty = BindableProperty.Create(nameof(MaxValue), typeof(int), typeof(Tizen.NUI.Spin), 0,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.Spin)bindable;
             if (newValue != null)
@@ -82,13 +87,15 @@ namespace Tizen.NUI
         {
             var instance = (Tizen.NUI.Spin)bindable;
             return instance.InternalMaxValue;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// StepProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty StepProperty = BindableProperty.Create(nameof(Step), typeof(int), typeof(Tizen.NUI.Spin), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty StepProperty = BindableProperty.Create(nameof(Step), typeof(int), typeof(Tizen.NUI.Spin), 0,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.Spin)bindable;
             if (newValue != null)
@@ -100,13 +107,15 @@ namespace Tizen.NUI
         {
             var instance = (Tizen.NUI.Spin)bindable;
             return instance.InternalStep;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// WrappingEnabledProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty WrappingEnabledProperty = BindableProperty.Create(nameof(WrappingEnabled), typeof(bool), typeof(Tizen.NUI.Spin), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty WrappingEnabledProperty = BindableProperty.Create(nameof(WrappingEnabled), typeof(bool), typeof(Tizen.NUI.Spin), false,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.Spin)bindable;
             if (newValue != null)
@@ -118,13 +127,15 @@ namespace Tizen.NUI
         {
             var instance = (Tizen.NUI.Spin)bindable;
             return instance.InternalWrappingEnabled;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// TextPointSizeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TextPointSizeProperty = BindableProperty.Create(nameof(TextPointSize), typeof(int), typeof(Tizen.NUI.Spin), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TextPointSizeProperty = BindableProperty.Create(nameof(TextPointSize), typeof(int), typeof(Tizen.NUI.Spin), 0,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.Spin)bindable;
             if (newValue != null)
@@ -136,13 +147,15 @@ namespace Tizen.NUI
         {
             var instance = (Tizen.NUI.Spin)bindable;
             return instance.InternalTextPointSize;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// TextColorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Tizen.NUI.Color), typeof(Tizen.NUI.Spin), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Tizen.NUI.Color), typeof(Tizen.NUI.Spin), null,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.Spin)bindable;
             if (newValue != null)
@@ -154,13 +167,15 @@ namespace Tizen.NUI
         {
             var instance = (Tizen.NUI.Spin)bindable;
             return instance.InternalTextColor;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// MaxTextLengthProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MaxTextLengthProperty = BindableProperty.Create(nameof(MaxTextLength), typeof(int), typeof(Tizen.NUI.Spin), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MaxTextLengthProperty = BindableProperty.Create(nameof(MaxTextLength), typeof(int), typeof(Tizen.NUI.Spin), 0,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.Spin)bindable;
             if (newValue != null)
@@ -172,13 +187,15 @@ namespace Tizen.NUI
         {
             var instance = (Tizen.NUI.Spin)bindable;
             return instance.InternalMaxTextLength;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// SpinTextProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SpinTextProperty = BindableProperty.Create(nameof(SpinText), typeof(Tizen.NUI.BaseComponents.TextField), typeof(Tizen.NUI.Spin), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SpinTextProperty = BindableProperty.Create(nameof(SpinText), typeof(Tizen.NUI.BaseComponents.TextField), typeof(Tizen.NUI.Spin), null,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.Spin)bindable;
             if (newValue != null)
@@ -190,13 +207,15 @@ namespace Tizen.NUI
         {
             var instance = (Tizen.NUI.Spin)bindable;
             return instance.InternalSpinText;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// IndicatorImageProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndicatorImageProperty = BindableProperty.Create(nameof(IndicatorImage), typeof(string), typeof(Tizen.NUI.Spin), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndicatorImageProperty = BindableProperty.Create(nameof(IndicatorImage), typeof(string), typeof(Tizen.NUI.Spin), string.Empty,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.Spin)bindable;
             if (newValue != null)
@@ -208,7 +227,8 @@ namespace Tizen.NUI
         {
             var instance = (Tizen.NUI.Spin)bindable;
             return instance.InternalIndicatorImage;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         private VisualBase arrowVisual;
         private TextField textField;

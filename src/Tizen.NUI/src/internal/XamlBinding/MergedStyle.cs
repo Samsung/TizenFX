@@ -66,7 +66,7 @@ namespace Tizen.NUI.Binding
                     foreach (var styleClass in styleClass)
                     {
                         var classStyleProperty = BindableProperty.Create("ClassStyle", typeof(IList<XamlStyle>), typeof(View), default(IList<XamlStyle>),
-                            propertyChanged: (bindable, oldvalue, newvalue) => ((View)bindable).MergedStyle.OnClassStyleChanged());
+                            propertyChanged: (bindable, oldvalue, newvalue) => ((View)bindable).MergedStyle.OnClassStyleChanged(), valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
                         classStyleProperties.Add(classStyleProperty);
                         Target.OnSetDynamicResource(classStyleProperty, Tizen.NUI.Binding.XamlStyle.StyleClassPrefix + styleClass);
                     }
@@ -139,7 +139,7 @@ namespace Tizen.NUI.Binding
                 if (type != null)
                 {
                     BindableProperty implicitStyleProperty = BindableProperty.Create(nameof(ImplicitStyle), typeof(XamlStyle), typeof(View), default(XamlStyle),
-                            propertyChanged: (bindable, oldvalue, newvalue) => OnImplicitStyleChanged());
+                            propertyChanged: (bindable, oldvalue, newvalue) => OnImplicitStyleChanged(), valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
                     implicitStyles.Add(implicitStyleProperty);
                     Target.SetDynamicResource(implicitStyleProperty, type.FullName);
                     type = type.GetTypeInfo().BaseType;

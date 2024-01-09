@@ -34,7 +34,8 @@ namespace Tizen.NUI
         /// PreviewProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PreviewProperty = BindableProperty.Create(nameof(Preview), typeof(bool), typeof(Tizen.NUI.WidgetView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PreviewProperty = BindableProperty.Create(nameof(Preview), typeof(bool), typeof(Tizen.NUI.WidgetView), false,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.WidgetView)bindable;
             if (newValue != null)
@@ -46,13 +47,15 @@ namespace Tizen.NUI
         {
             var instance = (Tizen.NUI.WidgetView)bindable;
             return instance.InternalPreview;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// LoadingTextProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LoadingTextProperty = BindableProperty.Create(nameof(LoadingText), typeof(bool), typeof(Tizen.NUI.WidgetView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LoadingTextProperty = BindableProperty.Create(nameof(LoadingText), typeof(bool), typeof(Tizen.NUI.WidgetView), false,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.WidgetView)bindable;
             if (newValue != null)
@@ -64,13 +67,15 @@ namespace Tizen.NUI
         {
             var instance = (Tizen.NUI.WidgetView)bindable;
             return instance.InternalLoadingText;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// WidgetStateFaultedProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty WidgetStateFaultedProperty = BindableProperty.Create(nameof(WidgetStateFaulted), typeof(bool), typeof(Tizen.NUI.WidgetView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty WidgetStateFaultedProperty = BindableProperty.Create(nameof(WidgetStateFaulted), typeof(bool), typeof(Tizen.NUI.WidgetView), false,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.WidgetView)bindable;
             if (newValue != null)
@@ -82,13 +87,15 @@ namespace Tizen.NUI
         {
             var instance = (Tizen.NUI.WidgetView)bindable;
             return instance.InternalWidgetStateFaulted;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// PermanentDeleteProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PermanentDeleteProperty = BindableProperty.Create(nameof(PermanentDelete), typeof(bool), typeof(Tizen.NUI.WidgetView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PermanentDeleteProperty = BindableProperty.Create(nameof(PermanentDelete), typeof(bool), typeof(Tizen.NUI.WidgetView), false,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.WidgetView)bindable;
             if (newValue != null)
@@ -100,13 +107,15 @@ namespace Tizen.NUI
         {
             var instance = (Tizen.NUI.WidgetView)bindable;
             return instance.InternalPermanentDelete;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// RetryTextProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RetryTextProperty = BindableProperty.Create(nameof(RetryText), typeof(Tizen.NUI.PropertyMap), typeof(Tizen.NUI.WidgetView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty RetryTextProperty = BindableProperty.Create(nameof(RetryText), typeof(Tizen.NUI.PropertyMap), typeof(Tizen.NUI.WidgetView), null,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.WidgetView)bindable;
             if (newValue != null)
@@ -118,13 +127,15 @@ namespace Tizen.NUI
         {
             var instance = (Tizen.NUI.WidgetView)bindable;
             return instance.InternalRetryText;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// EffectProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty EffectProperty = BindableProperty.Create(nameof(Effect), typeof(Tizen.NUI.PropertyMap), typeof(Tizen.NUI.WidgetView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty EffectProperty = BindableProperty.Create(nameof(Effect), typeof(Tizen.NUI.PropertyMap), typeof(Tizen.NUI.WidgetView), null,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.WidgetView)bindable;
             if (newValue != null)
@@ -136,13 +147,15 @@ namespace Tizen.NUI
         {
             var instance = (Tizen.NUI.WidgetView)bindable;
             return instance.InternalEffect;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
         /// <summary>
         /// UpdateWidgetSizeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty KeepWidgetSizeProperty = BindableProperty.Create(nameof(KeepWidgetSize), typeof(bool), typeof(Tizen.NUI.WidgetView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty KeepWidgetSizeProperty = BindableProperty.Create(nameof(KeepWidgetSize), typeof(bool), typeof(Tizen.NUI.WidgetView), false,
+        propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.WidgetView)bindable;
             if (newValue != null)
@@ -154,7 +167,8 @@ namespace Tizen.NUI
         {
             var instance = (Tizen.NUI.WidgetView)bindable;
             return instance.InternalKeepWidgetSize;
-        });
+        },
+        valuePolicy : ValuePolicy.IgnoreOldValueWhenSetValue);
 
 
         private EventHandler<WidgetViewEventArgs> widgetAddedEventHandler;
