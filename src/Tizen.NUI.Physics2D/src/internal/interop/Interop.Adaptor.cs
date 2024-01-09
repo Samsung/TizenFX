@@ -27,17 +27,11 @@ namespace Tizen.NUI.Physics2D
             [DllImport(Libraries.Physics2D, EntryPoint = "CSharp_Dali_PhysicsAdaptor_New")]
             internal static extern global::System.IntPtr PhysicsAdaptorNew(HandleRef matrix, HandleRef size);
 
-            [DllImport(Libraries.Physics2D, EntryPoint = "CSharp_Dali_new_PhysicsAdaptor__SWIG_0")]
-            internal static extern global::System.IntPtr NewPhysicsAdaptor();
-
             [DllImport(Libraries.Physics2D, EntryPoint = "CSharp_Dali_new_PhysicsAdaptor__SWIG_1")]
             internal static extern global::System.IntPtr NewPhysicsAdaptor(HandleRef rhs);
 
             [DllImport(Libraries.Physics2D, EntryPoint = "CSharp_Dali_delete_PhysicsAdaptor")]
             internal static extern void DeletePhysicsAdaptor(HandleRef handle);
-
-            [DllImport(Libraries.Physics2D, EntryPoint = "CSharp_Dali_PhysicsAdaptor_DownCast")]
-            internal static extern global::System.IntPtr DownCast(HandleRef handle);
 
             [DllImport(Libraries.Physics2D, EntryPoint = "CSharp_Dali_PhysicsAdaptor_Assign")]
             internal static extern global::System.IntPtr Assign(HandleRef destination, HandleRef source);

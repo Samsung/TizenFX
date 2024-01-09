@@ -21,17 +21,12 @@ namespace Tizen.NUI
     {
         internal static partial class AutofillContainer
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AutofillContainer_SWIGUpcast")]
-            public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_AutofillContainer_New")]
             public static extern global::System.IntPtr New(string jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_AutofillContainer__SWIG_1")]
             public static extern global::System.IntPtr NewAutofillContainer(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_AutofillContainer__SWIG_0")]
-            public static extern global::System.IntPtr NewAutofillContainer();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AutofillContainer_Assign")]
             public static extern global::System.IntPtr Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);

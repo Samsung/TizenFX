@@ -22,15 +22,9 @@ namespace Tizen.NUI
     {
         internal static partial class PixelBuffer
         {
-            //for PixelBuffer and ImageLoading
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PixelBuffer_SWIGUpcast")]
-            public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PixelBuffer_New")]
             public static extern global::System.IntPtr New(uint jarg1, uint jarg2, int jarg3);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_PixelBuffer__SWIG_0")]
-            public static extern global::System.IntPtr NewPixelBuffer();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_PixelBuffer")]
             public static extern void DeletePixelBuffer(global::System.Runtime.InteropServices.HandleRef jarg1);

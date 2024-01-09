@@ -27,9 +27,6 @@ namespace Tizen.NUI.Scene3D
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_MotionData_New_SWIG_1")]
             public static extern global::System.IntPtr MotionDataNew(float duration);
 
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_new_MotionData_SWIG_0")]
-            public static extern global::System.IntPtr NewMotionData();
-
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_new_MotionData_SWIG_1")]
             public static extern global::System.IntPtr NewMotionData(global::System.Runtime.InteropServices.HandleRef motionData);
 
@@ -38,9 +35,6 @@ namespace Tizen.NUI.Scene3D
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_MotionData_Assign")]
             public static extern global::System.IntPtr MotionDataAssign(global::System.Runtime.InteropServices.HandleRef motionData, global::System.Runtime.InteropServices.HandleRef sourceMotionData);
-
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_MotionData_DownCast")]
-            public static extern global::System.IntPtr MotionDataDownCast(global::System.Runtime.InteropServices.HandleRef motionData);
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_MotionData_GetMotionCount")]
             public static extern uint GetMotionCount(global::System.Runtime.InteropServices.HandleRef motionData);

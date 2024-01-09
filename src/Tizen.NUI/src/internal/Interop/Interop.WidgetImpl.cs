@@ -21,59 +21,9 @@ namespace Tizen.NUI
     {
         internal static partial class WidgetImpl
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetImpl_SWIGUpcast")]
-            public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetImpl_New")]
             public static extern global::System.IntPtr New();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetImpl_OnCreate")]
-            public static extern void OnCreate(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetImpl_OnCreateSwigExplicitWidgetImpl")]
-            public static extern void OnCreateSwigExplicitWidgetImpl(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetImpl_OnTerminate")]
-            public static extern void OnTerminate(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, int jarg3);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetImpl_OnTerminateSwigExplicitWidgetImpl")]
-            public static extern void OnTerminateSwigExplicitWidgetImpl(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, int jarg3);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetImpl_OnPause")]
-            public static extern void OnPause(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetImpl_OnPauseSwigExplicitWidgetImpl")]
-            public static extern void OnPauseSwigExplicitWidgetImpl(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetImpl_OnResume")]
-            public static extern void OnResume(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetImpl_OnResumeSwigExplicitWidgetImpl")]
-            public static extern void OnResumeSwigExplicitWidgetImpl(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetImpl_OnResize")]
-            public static extern void OnResize(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetImpl_OnResizeSwigExplicitWidgetImpl")]
-            public static extern void OnResizeSwigExplicitWidgetImpl(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetImpl_OnUpdate")]
-            public static extern void OnUpdate(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, int jarg3);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetImpl_OnUpdateSwigExplicitWidgetImpl")]
-            public static extern void OnUpdateSwigExplicitWidgetImpl(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, int jarg3);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetImpl_SignalConnected")]
-            public static extern void SignalConnected(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetImpl_SignalConnectedSwigExplicitWidgetImpl")]
-            public static extern void SignalConnectedSwigExplicitWidgetImpl(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetImpl_SignalDisconnected")]
-            public static extern void SignalDisconnected(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetImpl_SignalDisconnectedSwigExplicitWidgetImpl")]
-            public static extern void SignalDisconnectedSwigExplicitWidgetImpl(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetImpl_SetContentInfo")]
             public static extern void SetContentInfo(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);

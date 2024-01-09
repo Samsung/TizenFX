@@ -40,9 +40,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowPointerConstraintsEventSignal_Emit")]
             public static extern void Emit(global::System.Runtime.InteropServices.HandleRef signalType, global::System.Runtime.InteropServices.HandleRef window, global::System.Runtime.InteropServices.HandleRef mouseEvent);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WindowPointerConstraintsEventSignal")]
-            public static extern global::System.IntPtr NewWindowPointerConstraintsSignal();
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WindowPointerConstraintsEventSignal")]
             public static extern void DeleteWindowPointerConstraintsSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
         }

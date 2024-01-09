@@ -21,8 +21,6 @@ namespace Tizen.NUI
     {
         internal static partial class CubeTransitionEffect
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CubeTransitionEffect_SWIGUpcast")]
-            public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_CubeTransitionEffect")]
             public static extern global::System.IntPtr NewCubeTransitionEffect();
@@ -83,9 +81,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CubeTransitionEffectSignal_Disconnect")]
             public static extern void CubeTransitionEffectSignalDisconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CubeTransitionEffectSignal_Emit")]
-            public static extern void CubeTransitionEffectSignalEmit(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_CubeTransitionEffectSignal")]
             public static extern global::System.IntPtr NewCubeTransitionEffectSignal();
 
@@ -98,9 +93,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CubeTransitionWaveEffect_New")]
             public static extern global::System.IntPtr New(uint numRows, uint numColumns);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CubeTransitionWaveEffect_SWIGUpcast")]
-            public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_CubeTransitionWaveEffect")]
             public static extern void DeleteCubeTransitionWaveEffect(global::System.Runtime.InteropServices.HandleRef jarg1);
         }
@@ -110,9 +102,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CubeTransitionCrossEffect_New")]
             public static extern global::System.IntPtr New(uint numRows, uint numColumns);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CubeTransitionCrossEffect_SWIGUpcast")]
-            public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_CubeTransitionCrossEffect")]
             public static extern void DeleteCubeTransitionCrossEffect(global::System.Runtime.InteropServices.HandleRef jarg1);
         }
@@ -120,9 +109,6 @@ namespace Tizen.NUI
         {
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CubeTransitionFoldEffect_New")]
             public static extern global::System.IntPtr New(uint numRows, uint numColumns);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CubeTransitionFoldEffect_SWIGUpcast")]
-            public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_CubeTransitionFoldEffect")]
             public static extern void DeleteCubeTransitionFoldEffect(global::System.Runtime.InteropServices.HandleRef jarg1);

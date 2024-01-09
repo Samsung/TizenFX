@@ -24,9 +24,6 @@ namespace Tizen.NUI.Scene3D
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Material_New_SWIG_0")]
             public static extern global::System.IntPtr MaterialNew();
 
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_new_Material_SWIG_0")]
-            public static extern global::System.IntPtr NewMaterial();
-
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_new_Material_SWIG_1")]
             public static extern global::System.IntPtr NewMaterial(global::System.Runtime.InteropServices.HandleRef material);
 
@@ -35,9 +32,6 @@ namespace Tizen.NUI.Scene3D
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Material_Assign")]
             public static extern global::System.IntPtr MaterialAssign(global::System.Runtime.InteropServices.HandleRef material, global::System.Runtime.InteropServices.HandleRef sourceMaterial);
-
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Material_DownCast")]
-            public static extern global::System.IntPtr MaterialDownCast(global::System.Runtime.InteropServices.HandleRef material);
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Material_property_NAME_get")]
             public static extern int PropertyNameIndexGet();

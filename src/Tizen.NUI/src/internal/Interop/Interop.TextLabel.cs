@@ -78,38 +78,14 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_Property_OUTLINE_get")]
             public static extern int OutlineGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TextLabel_Property")]
-            public static extern global::System.IntPtr NewTextLabelProperty();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_TextLabel_Property")]
-            public static extern void DeleteTextLabelProperty(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_New__SWIG_0")]
-            public static extern global::System.IntPtr New();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_New__SWIG_1")]
-            public static extern global::System.IntPtr New(string text);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_New_With_Style")]
             public static extern global::System.IntPtr New(bool hasStyle);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_New_With_String_Style")]
             public static extern global::System.IntPtr New(string text, bool hasStyle);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TextLabel__SWIG_0")]
-            public static extern global::System.IntPtr NewTextLabel();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TextLabel__SWIG_1")]
-            public static extern global::System.IntPtr NewTextLabel(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_Assign")]
-            public static extern global::System.IntPtr Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_TextLabel")]
             public static extern void DeleteTextLabel(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_DownCast")]
-            public static extern global::System.IntPtr DownCast(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextLabel_Property_PIXEL_SIZE_get")]
             public static extern int PixelSizeGet();
@@ -140,9 +116,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextLabel_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get")]
             public static extern int MatchSystemLanguageDirectionGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_SWIGUpcast")]
-            public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextLabel_Property_TEXT_FIT_get")]
             public static extern int TextFitGet();

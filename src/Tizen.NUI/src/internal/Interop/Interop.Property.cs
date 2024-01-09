@@ -106,9 +106,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_Array_ValueOfIndex__SWIG_0")]
             public static extern global::System.IntPtr ArrayValueOfIndex(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_Array_Assign")]
-            public static extern global::System.IntPtr ArrayAssign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_Key_type_set")]
             public static extern void KeyTypeSet(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 

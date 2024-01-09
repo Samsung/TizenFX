@@ -77,14 +77,8 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchApplication_New__SWIG_2")]
             public static extern global::System.IntPtr WatchApplicationNew(int jarg1, string jarg2, string jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WatchApplication__SWIG_0")]
-            public static extern global::System.IntPtr NewWatchApplication();
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WatchApplication__SWIG_1")]
             public static extern global::System.IntPtr NewWatchApplication(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchApplication_Assign")]
-            public static extern global::System.IntPtr WatchApplicationAssign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WatchApplication")]
             public static extern void DeleteWatchApplication(global::System.Runtime.InteropServices.HandleRef jarg1);

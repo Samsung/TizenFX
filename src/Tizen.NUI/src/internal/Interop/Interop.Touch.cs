@@ -24,14 +24,8 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Touch__SWIG_0")]
             public static extern global::System.IntPtr NewTouch();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Touch__SWIG_1")]
-            public static extern global::System.IntPtr NewTouch(global::System.Runtime.InteropServices.HandleRef jarg1);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetMouseButton")]
             public static extern int GetMouseButton(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_Assign")]
-            public static extern global::System.IntPtr Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetTime")]
             public static extern uint GetTime(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -71,9 +65,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetDeviceSubclass")]
             public static extern int GetDeviceSubClass(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_SWIGUpcast")]
-            public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Touch")]
             public static extern void DeleteTouch(global::System.Runtime.InteropServices.HandleRef jarg1);
