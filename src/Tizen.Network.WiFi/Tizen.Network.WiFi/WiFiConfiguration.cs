@@ -19,6 +19,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using Tizen.Network.Connection;
+using System.ComponentModel;
 
 namespace Tizen.Network.WiFi
 {
@@ -153,6 +154,30 @@ namespace Tizen.Network.WiFi
             get
             {
                 return _eapConfig;
+            }
+        }
+
+        /// <summary>
+        /// The Frequency of the access point (AP).
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        /// <value>Frequency assigned to AP in the Wi-Fi configuration.</value>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int Frequency
+        {
+
+            get
+            {
+                Log.Debug(Globals.LogTag, "Frequency");
+                int freq;
+                int ret = Interop.WiFi.Config.GetSavedConfigFrequency(_configHandle, out freq);
+                if (ret != (int)WiFiError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get Freq, Error - " + (WiFiError)ret);
+                    return 0;
+                }
+                Log.Debug(Globals.LogTag, "Frequency is " + freq);
+                return freq;
             }
         }
 
