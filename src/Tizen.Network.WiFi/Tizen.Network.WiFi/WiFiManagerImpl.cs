@@ -57,6 +57,7 @@ namespace Tizen.Network.WiFi
 
         private int _requestId = 0;
         private string _macAddress;
+        private IntPtr _specificScanHandle;
 
         //private string PrivilegeNetworkSet = "http://tizen.org/privilege/network.set";
         private string PrivilegeNetworkGet = "http://tizen.org/privilege/network.get";
@@ -589,6 +590,77 @@ namespace Tizen.Network.WiFi
                 catch (Exception e)
                 {
                     Log.Error(Globals.LogTag, "Exception on BssidScan\n" + e);
+                    task.SetException(e);
+                }
+            }, null);
+
+            return task.Task;
+        }
+
+        internal void CreateSpecificScanHandle()
+        {
+            Log.Debug(Globals.LogTag, "CreateSpecificScanHandle");
+            int ret = Interop.WiFi.SpecificScanCreate(GetSafeHandle(), out _specificScanHandle);
+            CheckReturnValue(ret, "CreateSpecificScanHandle", PrivilegeNetworkProfile);
+        }
+
+        internal void DestroySpecificScanHandle()
+        {
+            Log.Debug(Globals.LogTag, "DestroySpecificScanHandle");
+            int ret = Interop.WiFi.SpecificScanDestroy(GetSafeHandle(), _specificScanHandle);
+            CheckReturnValue(ret, "DestroySpecificScanHandle", PrivilegeNetworkProfile);
+            _specificScanHandle = IntPtr.Zero;
+        }
+
+        internal void SetSpecificScanFreq(int freq)
+        {
+            Log.Debug(Globals.LogTag, "SetSpecificScanFreq");
+            int ret = Interop.WiFi.SpecificScanSetFrequency(_specificScanHandle, freq);
+            CheckReturnValue(ret, "SetSpecificScanFreq", PrivilegeNetworkProfile);
+        }
+
+        internal Task StartMultiScan()
+        {
+            Log.Debug(Globals.LogTag, "StartMultiScan");
+            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
+            IntPtr id;
+            lock (_callback_map)
+            {
+                id = (IntPtr)_requestId++;
+                _callback_map[id] = (error, key) =>
+                {
+                    Log.Info(Globals.LogTag, "Multi Scan done");
+                    if (error != (int)WiFiError.None)
+                    {
+                        Log.Error(Globals.LogTag, "Error occurs during multi scanning, " + (WiFiError)error);
+                        task.SetException(new InvalidOperationException("Error occurs during multi scanning, " + (WiFiError)error));
+                    }
+                    else
+                    {
+                        task.SetResult(true);
+                    }
+                    lock (_callback_map)
+                    {
+                        _callback_map.Remove(key);
+                    }
+                };
+            }
+
+            context.Post((x) =>
+            {
+                Log.Info(Globals.LogTag, "Interop.WiFi.SpecificApStartMultiScan");
+                try
+                {
+                    int ret = (int)WiFiError.None;
+                    lock (_callback_map)
+                    {
+                        ret = Interop.WiFi.SpecificApStartMultiScan(GetSafeHandle(), _specificScanHandle, _callback_map[id], id);
+                    }
+                    CheckReturnValue(ret, "MultiScan", "");
+                }
+                catch (Exception e)
+                {
+                    Log.Error(Globals.LogTag, "Exception on Multi Scan\n" + e);
                     task.SetException(e);
                 }
             }, null);
