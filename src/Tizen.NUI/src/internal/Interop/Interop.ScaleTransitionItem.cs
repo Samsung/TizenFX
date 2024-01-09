@@ -24,8 +24,6 @@ namespace Tizen.NUI
     {
         internal static partial class ScaleTransitionItem
         {
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_ScaleTransition")]
-            public static extern IntPtr NewEmpty();
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScaleTransition_New_1")]
             public static extern IntPtr New(HandleRef view, float scale, HandleRef timePeriod);

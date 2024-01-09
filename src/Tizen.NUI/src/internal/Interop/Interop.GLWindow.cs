@@ -29,18 +29,6 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_New__SWIG_1")]
             public static extern global::System.IntPtr GlWindowNew(HandleRef jarg1, string jarg2, string jarg3, bool jarg4);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_GlWindow__SWIG_0")]
-            public static extern global::System.IntPtr NewGlWindow();
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_GlWindow")]
-            public static extern void DeleteGlWindow(HandleRef jarg1);
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_GlWindow__SWIG_1")]
-            public static extern global::System.IntPtr NewGlWindow(HandleRef jarg1);
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_Assign")]
-            public static extern global::System.IntPtr GlWindowAssign(HandleRef jarg1, HandleRef jarg2);
-
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_SetGraphicsConfig")]
             public static extern global::System.IntPtr GlWindowSetGraphicsConfig(HandleRef jarg1, bool jarg2, bool jarg3, int jarg4, int jarg5);
 
@@ -118,9 +106,6 @@ namespace Tizen.NUI
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_SetRenderingMode")]
             public static extern void GlWindowSetRenderingMode(HandleRef jarg1, int jarg2);
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_SWIGUpcast")]
-            public static extern global::System.IntPtr GlWindowUpcast(global::System.IntPtr jarg1);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_TouchedSignal_Connect")]
             public static extern void GlWindowTouchSignalConnect(HandleRef glWindow, HandleRef handler);

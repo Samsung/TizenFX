@@ -21,9 +21,6 @@ namespace Tizen.NUI
     {
         internal static partial class InputMethodContext
         {
-            //////////////////////InputMethodContext
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_SWIGUpcast")]
-            public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_InputMethodContext_EventData__SWIG_0")]
             public static extern global::System.IntPtr NewInputMethodContextEventData();
@@ -95,9 +92,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_Finalize")]
             public static extern void Finalize(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_InputMethodContext__SWIG_0")]
-            public static extern global::System.IntPtr NewInputMethodContext();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_InputMethodContext")]
             public static extern void DeleteInputMethodContext(global::System.Runtime.InteropServices.HandleRef jarg1);

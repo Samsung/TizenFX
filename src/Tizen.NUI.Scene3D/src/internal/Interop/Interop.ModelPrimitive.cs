@@ -24,9 +24,6 @@ namespace Tizen.NUI.Scene3D
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_Primitive_New_SWIG_0")]
             public static extern global::System.IntPtr ModelPrimitiveNew();
 
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_new_Model_Primitive_SWIG_0")]
-            public static extern global::System.IntPtr NewModelPrimitive();
-
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_new_Model_Primitive_SWIG_1")]
             public static extern global::System.IntPtr NewModelPrimitive(global::System.Runtime.InteropServices.HandleRef modelPrimitive);
 
@@ -35,9 +32,6 @@ namespace Tizen.NUI.Scene3D
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_Primitive_Assign")]
             public static extern global::System.IntPtr ModelPrimitiveAssign(global::System.Runtime.InteropServices.HandleRef modelPrimitive, global::System.Runtime.InteropServices.HandleRef sourceModelPrimitive);
-
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_Primitive_DownCast")]
-            public static extern global::System.IntPtr ModelPrimitiveDownCast(global::System.Runtime.InteropServices.HandleRef modelPrimitive);
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_Primitive_SetGeometry")]
             public static extern void SetGeometry(global::System.Runtime.InteropServices.HandleRef model, global::System.Runtime.InteropServices.HandleRef geometry);

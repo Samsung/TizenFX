@@ -29,9 +29,6 @@ namespace Tizen.NUI.Scene3D
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_New_SWIG_1")]
             public static extern global::System.IntPtr ModelNew();
 
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_new_Model_SWIG_0")]
-            public static extern global::System.IntPtr NewModel();
-
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_new_Model_SWIG_1")]
             public static extern global::System.IntPtr NewModel(global::System.Runtime.InteropServices.HandleRef model);
 
@@ -41,9 +38,6 @@ namespace Tizen.NUI.Scene3D
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_Assign")]
             public static extern global::System.IntPtr ModelAssign(global::System.Runtime.InteropServices.HandleRef model, global::System.Runtime.InteropServices.HandleRef sourceModel);
 
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_DownCast")]
-            public static extern global::System.IntPtr ModelDownCast(global::System.Runtime.InteropServices.HandleRef model);
-
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_GetModelRoot")]
             public static extern global::System.IntPtr GetModelRoot(global::System.Runtime.InteropServices.HandleRef model);
 
@@ -52,13 +46,6 @@ namespace Tizen.NUI.Scene3D
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_RemoveModelNode")]
             public static extern void RemoveModelNode(global::System.Runtime.InteropServices.HandleRef model, global::System.Runtime.InteropServices.HandleRef modelNode);
-
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_SetChildrenSensitive")]
-            public static extern void SetChildrenSensitive(global::System.Runtime.InteropServices.HandleRef model, bool enable);
-
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_GetChildrenSensitive")]
-            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool GetChildrenSensitive(global::System.Runtime.InteropServices.HandleRef model);
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_SetImageBasedLightSource")]
             public static extern global::System.IntPtr SetImageBasedLightSource(global::System.Runtime.InteropServices.HandleRef model, string diffuse, string specular, float scaleFactor);

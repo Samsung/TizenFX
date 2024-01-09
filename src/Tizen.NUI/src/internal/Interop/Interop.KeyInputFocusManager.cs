@@ -24,8 +24,6 @@ namespace Tizen.NUI
     {
         internal static partial class KeyInputFocusManager
         {
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusManager_SWIGUpcast")]
-            public static extern IntPtr Upcast(IntPtr jarg1);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_KeyInputFocusManager")]
             public static extern IntPtr NewKeyInputFocusManager();

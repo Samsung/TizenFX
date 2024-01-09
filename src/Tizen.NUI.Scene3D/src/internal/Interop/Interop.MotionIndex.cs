@@ -22,9 +22,6 @@ namespace Tizen.NUI.Scene3D
         internal static partial class MotionIndex
         {
             #region MotionIndex
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_new_MotionIndex_SWIG_0")]
-            public static extern global::System.IntPtr NewMotionIndex();
-
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_new_MotionIndex_SWIG_1")]
             public static extern global::System.IntPtr NewMotionIndex(global::System.Runtime.InteropServices.HandleRef motionIndex);
 
@@ -33,9 +30,6 @@ namespace Tizen.NUI.Scene3D
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_MotionIndex_Assign")]
             public static extern global::System.IntPtr MotionIndexAssign(global::System.Runtime.InteropServices.HandleRef motionIndex, global::System.Runtime.InteropServices.HandleRef sourceMotionIndex);
-
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_MotionIndex_DownCast")]
-            public static extern global::System.IntPtr MotionIndexDownCast(global::System.Runtime.InteropServices.HandleRef motionIndex);
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_MotionIndex_SetModelNodeId")]
             public static extern void SetModelNodeId(global::System.Runtime.InteropServices.HandleRef motionIndex, global::System.Runtime.InteropServices.HandleRef modelNodeId);
@@ -54,9 +48,6 @@ namespace Tizen.NUI.Scene3D
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_BlendShapeIndex_New_SWIG_2")]
             public static extern global::System.IntPtr BlendShapeIndexNew(global::System.Runtime.InteropServices.HandleRef modelNodePropertKey, global::System.Runtime.InteropServices.HandleRef blendShapePropertyKey);
 
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_new_BlendShapeIndex_SWIG_0")]
-            public static extern global::System.IntPtr NewBlendShapeIndex();
-
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_new_BlendShapeIndex_SWIG_1")]
             public static extern global::System.IntPtr NewBlendShapeIndex(global::System.Runtime.InteropServices.HandleRef blendShapeIndex);
 
@@ -65,9 +56,6 @@ namespace Tizen.NUI.Scene3D
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_BlendShapeIndex_Assign")]
             public static extern global::System.IntPtr BlendShapeIndexAssign(global::System.Runtime.InteropServices.HandleRef blendShapeIndex, global::System.Runtime.InteropServices.HandleRef sourceBlendShapeIndex);
-
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_BlendShapeIndex_DownCast")]
-            public static extern global::System.IntPtr BlendShapeIndexDownCast(global::System.Runtime.InteropServices.HandleRef blendShapeIndex);
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_BlendShapeIndex_SetBlendShapeId")]
             public static extern void SetBlendShapeId(global::System.Runtime.InteropServices.HandleRef blendShapeIndex, global::System.Runtime.InteropServices.HandleRef modelNodeId);
@@ -83,9 +71,6 @@ namespace Tizen.NUI.Scene3D
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_MotionPropertyIndex_New_SWIG_1")]
             public static extern global::System.IntPtr MotionPropertyIndexNew(global::System.Runtime.InteropServices.HandleRef modelNodePropertKey, global::System.Runtime.InteropServices.HandleRef propertyKey);
 
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_new_MotionPropertyIndex_SWIG_0")]
-            public static extern global::System.IntPtr NewMotionPropertyIndex();
-
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_new_MotionPropertyIndex_SWIG_1")]
             public static extern global::System.IntPtr NewMotionPropertyIndex(global::System.Runtime.InteropServices.HandleRef motionPropertyIndex);
 
@@ -94,9 +79,6 @@ namespace Tizen.NUI.Scene3D
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_MotionPropertyIndex_Assign")]
             public static extern global::System.IntPtr MotionPropertyIndexAssign(global::System.Runtime.InteropServices.HandleRef motionPropertyIndex, global::System.Runtime.InteropServices.HandleRef sourceMotionPropertyIndex);
-
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_MotionPropertyIndex_DownCast")]
-            public static extern global::System.IntPtr MotionPropertyIndexDownCast(global::System.Runtime.InteropServices.HandleRef motionPropertyIndex);
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_MotionPropertyIndex_SetPropertyId")]
             public static extern void SetPropertyId(global::System.Runtime.InteropServices.HandleRef motionPropertyIndex, global::System.Runtime.InteropServices.HandleRef propertyKey);
@@ -112,9 +94,6 @@ namespace Tizen.NUI.Scene3D
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_MotionTransformIndex_New_SWIG_1")]
             public static extern global::System.IntPtr MotionTransformIndexNew(global::System.Runtime.InteropServices.HandleRef modelNodePropertKey, int transformType);
 
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_new_MotionTransformIndex_SWIG_0")]
-            public static extern global::System.IntPtr NewMotionTransformIndex();
-
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_new_MotionTransformIndex_SWIG_1")]
             public static extern global::System.IntPtr NewMotionTransformIndex(global::System.Runtime.InteropServices.HandleRef motionTransformIndex);
 
@@ -123,9 +102,6 @@ namespace Tizen.NUI.Scene3D
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_MotionTransformIndex_Assign")]
             public static extern global::System.IntPtr MotionTransformIndexAssign(global::System.Runtime.InteropServices.HandleRef motionTransformIndex, global::System.Runtime.InteropServices.HandleRef sourceMotionTransformIndex);
-
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_MotionTransformIndex_DownCast")]
-            public static extern global::System.IntPtr MotionTransformIndexDownCast(global::System.Runtime.InteropServices.HandleRef motionTransformIndex);
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_MotionTransformIndex_SetTransformType")]
             public static extern void SetTransformType(global::System.Runtime.InteropServices.HandleRef motionTransformIndex, int transformType);

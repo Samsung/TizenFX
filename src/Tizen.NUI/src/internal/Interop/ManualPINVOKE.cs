@@ -31,21 +31,6 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_HIDDENINPUT_PROPERTY_SHOW_LAST_CHARACTER_DURATION_get")]
         public static extern int HiddeninputPropertyShowLastCharacterDurationGet();
 
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LINE_MUST_BREAK_get")]
-        public static extern int LineMustBreakGet();
-
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LINE_ALLOW_BREAK_get")]
-        public static extern int LineAllowBreakGet();
-
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LINE_NO_BREAK_get")]
-        public static extern int LineNoBreakGet();
-
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WORD_BREAK_get")]
-        public static extern int WordBreakGet();
-
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WORD_NO_BREAK_get")]
-        public static extern int WordNoBreakGet();
-
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextSelectionPopup_Property_POPUP_MAX_SIZE_get")]
         public static extern int TextSelectionPopupPropertyPopupMaxSizeGet();
 
