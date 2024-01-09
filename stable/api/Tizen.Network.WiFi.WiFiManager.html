@@ -408,6 +408,22 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Network.WiFi/Tizen.Network.WiFi/WiFiManager.cs/#L459">View Source</a>
+  </span>
+  <a id="Tizen_Network_WiFi_WiFiManager_CreateSpecificHandle_" data-uid="Tizen.Network.WiFi.WiFiManager.CreateSpecificHandle*"></a>
+  <h4 id="Tizen_Network_WiFi_WiFiManager_CreateSpecificHandle" data-uid="Tizen.Network.WiFi.WiFiManager.CreateSpecificHandle">CreateSpecificHandle()</h4>
+  <div class="markdown level1 summary"><p>Create Specific scan handle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void CreateSpecificHandle()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Network.WiFi/Tizen.Network.WiFi/WiFiManager.cs/#L391">View Source</a>
   </span>
   <a id="Tizen_Network_WiFi_WiFiManager_DeactivateAsync_" data-uid="Tizen.Network.WiFi.WiFiManager.DeactivateAsync*"></a>
@@ -451,6 +467,22 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
       </tr>
     </tbody>
   </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Network.WiFi/Tizen.Network.WiFi/WiFiManager.cs/#L475">View Source</a>
+  </span>
+  <a id="Tizen_Network_WiFi_WiFiManager_DestroySpecificHandle_" data-uid="Tizen.Network.WiFi.WiFiManager.DestroySpecificHandle*"></a>
+  <h4 id="Tizen_Network_WiFi_WiFiManager_DestroySpecificHandle" data-uid="Tizen.Network.WiFi.WiFiManager.DestroySpecificHandle">DestroySpecificHandle()</h4>
+  <div class="markdown level1 summary"><p>Destroys Specific scan handle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void DestroySpecificHandle()</code></pre>
+  </div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -759,6 +791,59 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
       </tr>
     </tbody>
   </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Network.WiFi/Tizen.Network.WiFi/WiFiManager.cs/#L497">View Source</a>
+  </span>
+  <a id="Tizen_Network_WiFi_WiFiManager_StartMultiScan_" data-uid="Tizen.Network.WiFi.WiFiManager.StartMultiScan*"></a>
+  <h4 id="Tizen_Network_WiFi_WiFiManager_StartMultiScan_System_Int32_" data-uid="Tizen.Network.WiFi.WiFiManager.StartMultiScan(System.Int32)">StartMultiScan(int)</h4>
+  <div class="markdown level1 summary"><p>Starts Multi Scan.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task StartMultiScan(int frequency)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">frequency</span></td>
+        <td><p>Frequency for which MultiScan is to be run.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td><p>A task indicating whether the StartMultiScan  method is done or not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_WiFi_WiFiManager_StartMultiScan_System_Int32__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method must be called from MainThread.</p>
+</div>
 
 
   <div style="margin-bottom: 15px"></div>
