@@ -445,5 +445,60 @@ namespace Tizen.Network.WiFi
         {
             return WiFiManagerImpl.Instance.BssidScanAsync();
         }
+
+        /// <summary>
+        /// Create Specific scan handle.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <privilege>http://tizen.org/privilege/network.profile</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Wi-Fi is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when system is out of memory.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static public void CreateSpecificHandle()
+        {
+            WiFiManagerImpl.Instance.CreateSpecificScanHandle();
+        }
+
+        /// <summary>
+        /// Destroys Specific scan handle.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <privilege>http://tizen.org/privilege/network.profile</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Wi-Fi is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when system is out of memory.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static public void DestroySpecificHandle()
+        {
+            WiFiManagerImpl.Instance.DestroySpecificScanHandle();
+        }
+
+        /// <summary>
+        /// Starts Multi Scan.
+        /// </summary>
+        /// <remarks>
+        /// This method must be called from MainThread.
+        /// </remarks>
+        /// <since_tizen> 9 </since_tizen>
+        /// <param name="frequency">Frequency for which MultiScan is to be run.</param>
+        /// <returns>A task indicating whether the StartMultiScan  method is done or not.</returns>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <privilege>http://tizen.org/privilege/network.set</privilege>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Wi-Fi is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when system is out of memory.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static public Task StartMultiScan(int frequency)
+        {
+            WiFiManagerImpl.Instance.SetSpecificScanFreq(frequency);
+            return WiFiManagerImpl.Instance.StartMultiScan();
+        }
     }
 }
