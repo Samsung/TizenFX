@@ -63,6 +63,9 @@ namespace Tizen.NUI.Scene3D
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_Node_GetModelPrimitive")]
             public static extern global::System.IntPtr GetModelPrimitive(global::System.Runtime.InteropServices.HandleRef model, uint index);
 
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_Node_FindChildModelNodeByName")]
+            public static extern global::System.IntPtr FindChildModelNodeByName(global::System.Runtime.InteropServices.HandleRef model, string nodeName);
+
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_Node_GetChildModelNodeCount")]
             public static extern uint GetChildModelNodeCount(global::System.Runtime.InteropServices.HandleRef model);
 

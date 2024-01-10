@@ -36,6 +36,9 @@ namespace Tizen.NUI.Physics2D
             [DllImport(Libraries.Physics2D, EntryPoint = "CSharp_Dali_PhysicsActor_Assign")]
             internal static extern global::System.IntPtr Assign(HandleRef destination, HandleRef source);
 
+            [DllImport(Libraries.Physics2D, EntryPoint = "CSharp_Dali_PhysicsActor_GetId")]
+            internal static extern uint GetId(HandleRef handle);
+
             [DllImport(Libraries.Physics2D, EntryPoint = "CSharp_Dali_PhysicsActor_GetBody")]
             internal static extern global::System.IntPtr GetBody(HandleRef handle);
 
