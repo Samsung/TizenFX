@@ -77,7 +77,7 @@ jobs:
         PACKAGES_SOURCE: https://nuget.pkg.github.com/Samsung/index.json
         APIKEY: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        dotnet nuget push Artifacts/*.nupkg -k $APIKEY -s $PACKAGES_SOURCE -t 3000
+        dotnet nuget push Artifacts/*.nupkg -k $APIKEY -s $PACKAGES_SOURCE -t 3000 --skip-duplicate
 
     - name: Deploy NuGet packages to MyGet
       if: github.event.inputs.deploy_to_myget == 'true'
@@ -85,7 +85,7 @@ jobs:
         NUGET_SOURCE: https://tizen.myget.org/F/dotnet/api/v2/package
         APIKEY: ${{ secrets.MYGET_APIKEY }}
       run: |
-        dotnet nuget push Artifacts/*.nupkg -k $APIKEY -s $NUGET_SOURCE -t 3000
+        dotnet nuget push Artifacts/*.nupkg -k $APIKEY -s $NUGET_SOURCE -t 3000 --skip-duplicate
 
     - name: Setup SSH private keys
       uses: webfactory/ssh-agent@v0.7.0
