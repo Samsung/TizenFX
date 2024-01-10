@@ -36,6 +36,12 @@ namespace Tizen.NUI
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_SlideTransition_Assign")]
             public static extern IntPtr Assign(HandleRef destination, HandleRef source);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_SlideTransition_SetDirection")]
+            public static extern void SetDirection(HandleRef slideTransition, HandleRef direction);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_SlideTransition_GetDirection")]
+            public static extern IntPtr GetDirection(HandleRef slideTransition);
         }
     }
 }
