@@ -70,7 +70,6 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <returns>true if camera device manager is supported.</returns>
         /// <since_tizen> 11 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool IsCameraDeviceManagerSupported
         {
             get

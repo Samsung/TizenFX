@@ -82,7 +82,6 @@ namespace Tizen.Multimedia
         /// <since_tizen> 11 </since_tizen>
         /// <feature> http://tizen.org/feature/camera </feature>
         /// <seealso cref="CameraDeviceManager.IsCameraDeviceManagerSupported"/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Camera() : this(CameraDevice.Default)
         {
         }
