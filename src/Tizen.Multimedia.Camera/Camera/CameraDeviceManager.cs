@@ -66,6 +66,29 @@ namespace Tizen.Multimedia
                             .Any();
 
         /// <summary>
+        /// Gets the camera device manager state.
+        /// </summary>
+        /// <returns>true if camera device manager is supported.</returns>
+        /// <since_tizen> 11 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool IsCameraDeviceManagerSupported
+        {
+            get
+            {
+                try
+                {
+                    using (var cameraDeviceManager = new CameraDeviceManager()) {}
+                }
+                catch (NotSupportedException)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+        }
+
+        /// <summary>
         /// Retrieves all the supported camera devices and returns its information.
         /// </summary>
         /// <returns>
