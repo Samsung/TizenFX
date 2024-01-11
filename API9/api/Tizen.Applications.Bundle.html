@@ -117,7 +117,7 @@ A bundle instance is not guaranteed to be thread safe if the instance is modifie
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
     </dd>
   </dl>
 
@@ -148,7 +148,7 @@ A bundle instance is not guaranteed to be thread safe if the instance is modifie
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><span class="xref">System.InvalidOperationException</span></td>
         <td><p>Thrown when out of memory.</p>
 </td>
       </tr>
@@ -232,7 +232,7 @@ A bundle instance is not guaranteed to be thread safe if the instance is modifie
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -356,13 +356,13 @@ foreach(string key in bundle.Keys)
 </td>
       </tr>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">offset</span></td>
         <td><p>The zero-based byte offset in value from which to add to the bundle.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">int</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
         <td><span class="parametername">count</span></td>
         <td><p>The maximum number of bytes to add to the bundle starting with offset.</p>
 </td>
@@ -384,12 +384,12 @@ bundle.AddItem(&quot;byte_array&quot;, byteArray, 2, 3);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
         <td><p>Thrown when the offset or count is out of range.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><span class="xref">System.ArgumentException</span></td>
         <td><p>Thrown when the key already exists or when there is an invalid parameter.</p>
 </td>
       </tr>
@@ -399,7 +399,7 @@ bundle.AddItem(&quot;byte_array&quot;, byteArray, 2, 3);</code></pre>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><span class="xref">System.InvalidOperationException</span></td>
         <td><p>Thrown when out of memory or when the bundle instance has been disposed.</p>
 </td>
       </tr>
@@ -460,7 +460,7 @@ bundle.AddItem(&quot;byte_array&quot;, byteArray);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><span class="xref">System.ArgumentException</span></td>
         <td><p>Thrown when the key already exists or when there is an invalid parameter.</p>
 </td>
       </tr>
@@ -470,7 +470,7 @@ bundle.AddItem(&quot;byte_array&quot;, byteArray);</code></pre>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><span class="xref">System.InvalidOperationException</span></td>
         <td><p>Thrown when out of memory or when the bundle instance has been disposed.</p>
 </td>
       </tr>
@@ -531,12 +531,12 @@ bundle.AddItem(&quot;string_array&quot;, stringArray);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><span class="xref">System.ArgumentException</span></td>
         <td><p>Thrown when the key already exists or when there is an invalid parameter.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><span class="xref">System.InvalidOperationException</span></td>
         <td><p>Thrown when out of memory or when the bundle instance has been disposed.</p>
 </td>
       </tr>
@@ -596,12 +596,12 @@ bundle.AddItem(&quot;string&quot;, &quot;a_string&quot;);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><span class="xref">System.ArgumentException</span></td>
         <td><p>Thrown when the key already exists or when there is an invalid parameter.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><span class="xref">System.InvalidOperationException</span></td>
         <td><p>Thrown when out of memory or when the bundle instance has been disposed.</p>
 </td>
       </tr>
@@ -651,7 +651,7 @@ bundle.AddItem(&quot;string&quot;, &quot;a_string&quot;);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">bool</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><p>true if the bundle contains the key, false otherwise.</p>
 </td>
       </tr>
@@ -731,7 +731,7 @@ Bundle data = bundle.Decode(bundleRaw);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><span class="xref">System.ArgumentException</span></td>
         <td><p>Thrown when there is an invalid parameter.</p>
 </td>
       </tr>
@@ -780,7 +780,7 @@ Bundle data = bundle.Decode(bundleRaw);</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">bool</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><span class="parametername">disposing</span></td>
         <td><p>If true, disposes any disposable objects. If false, does not dispose disposable objects.</p>
 </td>
@@ -833,7 +833,7 @@ string bundleRaw = bundle.Encode();</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><span class="xref">System.InvalidOperationException</span></td>
         <td><p>Thrown when out of memory or when the bundle instance has been disposed.</p>
 </td>
       </tr>
@@ -928,12 +928,12 @@ if (bundle.Contains(&quot;string&quot;))
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><span class="xref">System.ArgumentException</span></td>
         <td><p>Thrown when the key does not exist or when there is an invalid parameter.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><span class="xref">System.InvalidOperationException</span></td>
         <td><p>Thrown when the bundle instance has been disposed.</p>
 </td>
       </tr>
@@ -1035,7 +1035,7 @@ else if (bundle.Is&lt;string[]>(&quot;string_array&quot;))
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><span class="xref">System.ArgumentException</span></td>
         <td><p>Thrown when the key does not exist or when there is an invalid parameter.</p>
 </td>
       </tr>
@@ -1045,7 +1045,7 @@ else if (bundle.Is&lt;string[]>(&quot;string_array&quot;))
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><span class="xref">System.InvalidOperationException</span></td>
         <td><p>Thrown when the bundle instance has been disposed.</p>
 </td>
       </tr>
@@ -1095,7 +1095,7 @@ else if (bundle.Is&lt;string[]>(&quot;string_array&quot;))
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">bool</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><p>true if the item is of the specified type, false otherwise.</p>
 </td>
       </tr>
@@ -1141,12 +1141,12 @@ if (bundle.Is&lt;string[]>(&quot;string_array&quot;))
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><span class="xref">System.ArgumentException</span></td>
         <td><p>Thrown when the key does not exist or when there is an invalid parameter.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><span class="xref">System.InvalidOperationException</span></td>
         <td><p>Thrown when the bundle instance has been disposed.</p>
 </td>
       </tr>
@@ -1196,7 +1196,7 @@ if (bundle.Is&lt;string[]>(&quot;string_array&quot;))
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">bool</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><p>true if the item is successfully found and removed, false otherwise (even if the item is not found).</p>
 </td>
       </tr>
@@ -1223,12 +1223,12 @@ if (bundle.Contains(&quot;string&quot;))
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><span class="xref">System.ArgumentException</span></td>
         <td><p>Thrown when there is an invalid parameter.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><span class="xref">System.InvalidOperationException</span></td>
         <td><p>Thrown when the bundle instance has been disposed.</p>
 </td>
       </tr>
@@ -1284,7 +1284,7 @@ if (bundle.Contains(&quot;string&quot;))
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">bool</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><p>true if an item with the key exists and if the value is the same type as the output value parameter, false otherwise.</p>
 </td>
       </tr>
@@ -1310,7 +1310,7 @@ if (bundle.TryGetItem(&quot;byte_array&quot;, out aByteArray))
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><span class="xref">System.InvalidOperationException</span></td>
         <td><p>Thrown when the bundle instance has been disposed.</p>
 </td>
       </tr>
@@ -1366,7 +1366,7 @@ if (bundle.TryGetItem(&quot;byte_array&quot;, out aByteArray))
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">bool</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><p>true if an item with the key exists and if the value is the same type as the output value parameter, false otherwise.</p>
 </td>
       </tr>
@@ -1395,7 +1395,7 @@ if (bundle.TryGetItem(&quot;string&quot;, out aStringEnumerable))
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><span class="xref">System.InvalidOperationException</span></td>
         <td><p>Thrown when the bundle instance has been disposed.</p>
 </td>
       </tr>
@@ -1451,7 +1451,7 @@ if (bundle.TryGetItem(&quot;string&quot;, out aStringEnumerable))
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">bool</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
         <td><p>true if an item with the key exists and if the value is the same type as the output value parameter, false otherwise.</p>
 </td>
       </tr>
@@ -1476,7 +1476,7 @@ if (bundle.TryGetItem(&quot;string&quot;, out aString))
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><span class="xref">System.InvalidOperationException</span></td>
         <td><p>Thrown when the bundle instance has been disposed.</p>
 </td>
       </tr>
@@ -1488,7 +1488,7 @@ if (bundle.TryGetItem(&quot;string&quot;, out aString))
 
   <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+      <span class="xref">System.IDisposable</span>
   </div>
 </article>
           </div>
