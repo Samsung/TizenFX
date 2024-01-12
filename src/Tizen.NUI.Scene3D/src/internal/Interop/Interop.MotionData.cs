@@ -64,16 +64,16 @@ namespace Tizen.NUI.Scene3D
             public static extern float GetDuration(global::System.Runtime.InteropServices.HandleRef motionData);
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_MotionData_LoadBvh")]
-            public static extern float LoadMotionCaptureAnimation(global::System.Runtime.InteropServices.HandleRef motionData, string motionCaptureFilename, global::System.Runtime.InteropServices.HandleRef scale, bool synchronousLoad);
+            public static extern void LoadMotionCaptureAnimation(global::System.Runtime.InteropServices.HandleRef motionData, string motionCaptureFilename, bool useRootTranslationOnly, global::System.Runtime.InteropServices.HandleRef scale, bool synchronousLoad);
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_MotionData_LoadBvhFromBuffer")]
-            public static extern float LoadMotionCaptureAnimationFromBuffer(global::System.Runtime.InteropServices.HandleRef motionData, string motionCaptureBuffer, int motionCaptureBufferLength, global::System.Runtime.InteropServices.HandleRef scale, bool synchronousLoad);
+            public static extern void LoadMotionCaptureAnimationFromBuffer(global::System.Runtime.InteropServices.HandleRef motionData, string motionCaptureBuffer, int motionCaptureBufferLength, bool useRootTranslationOnly, global::System.Runtime.InteropServices.HandleRef scale, bool synchronousLoad);
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_MotionData_LoadFacialAnimation")]
-            public static extern float LoadBlendShapeAnimation(global::System.Runtime.InteropServices.HandleRef motionData, string blendShapeFilename, bool synchronousLoad);
+            public static extern void LoadBlendShapeAnimation(global::System.Runtime.InteropServices.HandleRef motionData, string blendShapeFilename, bool synchronousLoad);
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_MotionData_LoadFacialAnimationFromBuffer")]
-            public static extern float LoadBlendShapeAnimationFromBuffer(global::System.Runtime.InteropServices.HandleRef motionData, string blendShapeBuffer, int blendShapeBufferLength, bool synchronousLoad);
+            public static extern void LoadBlendShapeAnimationFromBuffer(global::System.Runtime.InteropServices.HandleRef motionData, string blendShapeBuffer, int blendShapeBufferLength, bool synchronousLoad);
 
             // Signals
 

@@ -129,5 +129,23 @@ namespace Tizen.NUI.BaseComponents
             var instance = (Tizen.NUI.BaseComponents.LottieAnimationView)bindable;
             return instance.InternalRedrawInScalingDown;
         });
+
+        /// <summary>
+        /// EnableFrameCacheProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty EnableFrameCacheProperty = BindableProperty.Create(nameof(EnableFrameCache), typeof(bool), typeof(Tizen.NUI.BaseComponents.LottieAnimationView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.LottieAnimationView)bindable;
+            if (newValue != null)
+            {
+                instance.InternalEnableFrameCache = (bool)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.LottieAnimationView)bindable;
+            return instance.InternalEnableFrameCache;
+        });
     }
 }

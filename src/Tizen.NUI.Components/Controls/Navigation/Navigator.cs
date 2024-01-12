@@ -998,7 +998,16 @@ namespace Tizen.NUI.Components
 
             if (!pushTransition || newTopPage is DialogPage == false)
             {
-                View transitionView = (currentTopPage is ContentPage) ? (currentTopPage as ContentPage).Content : (currentTopPage as DialogPage).Content;
+                View transitionView = currentTopPage;
+                if (currentTopPage is ContentPage)
+                {
+                    transitionView = (currentTopPage as ContentPage).Content;
+                }
+                else if (currentTopPage is DialogPage)
+                {
+                    transitionView = (currentTopPage as DialogPage).Content;
+                }
+
                 if (currentTopPage.DisappearingTransition != null && transitionView != null)
                 {
                     TransitionItemBase disappearingTransition = currentTopPage.DisappearingTransition.CreateTransition(transitionView, false);
@@ -1012,7 +1021,16 @@ namespace Tizen.NUI.Components
             }
             if (pushTransition || currentTopPage is DialogPage == false)
             {
-                View transitionView = (newTopPage is ContentPage) ? (newTopPage as ContentPage).Content : (newTopPage as DialogPage).Content;
+                View transitionView = newTopPage;
+                if (newTopPage is ContentPage)
+                {
+                    transitionView = (newTopPage as ContentPage).Content;
+                }
+                else if (newTopPage is DialogPage)
+                {
+                    transitionView = (newTopPage as DialogPage).Content;
+                }
+
                 if (newTopPage.AppearingTransition != null && transitionView != null)
                 {
                     TransitionItemBase appearingTransition = newTopPage.AppearingTransition.CreateTransition(transitionView, true);

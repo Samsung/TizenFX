@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
 using Tizen.NUI;
@@ -77,6 +78,7 @@ namespace Tizen.NUI.Scene3D
     public partial class Model : View
     {
         private bool isBuilt = false;
+        private Position modelPivotPoint = new Position();
         internal Model(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
         {
         }
@@ -137,6 +139,22 @@ namespace Tizen.NUI.Scene3D
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             ret.PositionUsesPivotPoint = model.PositionUsesPivotPoint;
             return ret;
+        }
+
+        /// <summary>
+        /// Get The original pivot point of the model
+        /// </summary>
+        /// <remarks>
+        /// This returns (0, 0, 0) before resources are loaded.
+        /// </remarks>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Position ModelPivotPoint
+        {
+            get
+            {
+                return modelPivotPoint;
+            }
         }
 
         /// <summary>
@@ -640,6 +658,9 @@ namespace Tizen.NUI.Scene3D
             {
                 this.ModelRoot.Build();
                 isBuilt = true;
+                this.modelPivotPoint.X = this.PivotPoint.X;
+                this.modelPivotPoint.Y = this.PivotPoint.Y;
+                this.modelPivotPoint.Z = this.PivotPoint.Z;
             }
         }
 
@@ -665,6 +686,77 @@ namespace Tizen.NUI.Scene3D
         protected override void ReleaseSwigCPtr(global::System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.Model.DeleteModel(swigCPtr);
+        }
+        
+        
+        private EventHandler<MeshHitEventArgs> meshHitEventHandler;
+        private MeshHitCallbackType meshHitCallback;
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void MeshHitCallbackType(IntPtr motionData);
+
+        /// <summary>
+        /// MeshHitEventArgs
+        /// Contains arguments when MeshHitSignal called
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class MeshHitEventArgs : EventArgs
+        {
+            private ModelNode modelNode;
+            
+            /// <summary>
+            /// ModelNode that's been hit
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public ModelNode ModelNode
+            {
+                get
+                {
+                    return modelNode;
+                }
+                set
+                {
+                    modelNode = value;
+                }
+            }
+        }
+        
+        /// <summary>
+        /// EventHandler event.
+        /// It will be invoked when collider mesh is hit.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<MeshHitEventArgs> ColliderMeshHitted
+        {
+            add
+            {
+                if (meshHitEventHandler == null)
+                {
+                    meshHitCallback = MeshHitCollision;
+                    Interop.Model.MeshHitSignalConnect(SwigCPtr, meshHitCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                }
+                meshHitEventHandler += value;
+            }
+            remove
+            {
+                meshHitEventHandler -= value;
+                if (meshHitEventHandler == null && meshHitCallback != null)
+                {
+                    Interop.Model.MeshHitSignalDisconnect(SwigCPtr, meshHitCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    meshHitCallback = null;
+                }
+            }
+        }
+
+        private void MeshHitCollision(IntPtr modelNode)
+        {
+            if (meshHitEventHandler != null)
+            {
+                var args = new MeshHitEventArgs();
+                args.ModelNode = new ModelNode(modelNode, false);
+                meshHitEventHandler(this, args);
+            }
         }
     }
 }

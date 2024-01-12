@@ -50,7 +50,7 @@ namespace Tizen.MachineLearning.Inference
 
             /* Set count */
             int count = 0;
-            ret = Interop.Util.GetTensorsCount(_handle, out count);
+            ret = Interop.Util.GetTensorsCount(_tensorsInfo.GetTensorsInfoHandle(), out count);
             NNStreamer.CheckException(ret, "unable to get the count of TensorsData");
 
             _dataList = new ArrayList(count);

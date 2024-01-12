@@ -23,6 +23,10 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Provides the ability to recognize face based on previously registered face data.
     /// </summary>
+    /// <feature>http://tizen.org/feature/vision.inference</feature>
+    /// <feature>http://tizen.org/feature/vision.inference.face_recognition</feature>
+    /// <feature>http://tizen.org/feature/vision.training</feature>
+    /// <feature>http://tizen.org/feature/vision.training.face_recognition</feature>
     /// <since_tizen> 10 </since_tizen>
     public class DeepLearningFaceRecognizer : IDisposable
     {
@@ -34,11 +38,13 @@ namespace Tizen.Multimedia.Vision
         /// This class is different from <see cref="FaceRecognizer"/> in aspect of using internal machine learning algorithm.
         /// </remarks>
         /// <exception cref="NotSupportedException">The required features are not supported.</exception>
-        /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
         /// <since_tizen> 10 </since_tizen>
         public DeepLearningFaceRecognizer()
         {
-            ValidationUtil.ValidateFeatureSupported(VisionFeatures.FaceRecognition);
+            ValidationUtil.ValidateFeatureSupported(VisionFeatures.Inference);
+            ValidationUtil.ValidateFeatureSupported(VisionFeatures.Training);
+            ValidationUtil.ValidateFeatureSupported(VisionFeatures.InferenceFaceRecognition);
+            ValidationUtil.ValidateFeatureSupported(VisionFeatures.TrainingFaceRecognition);
 
             InteropFace.Create(out _handle).Validate("Failed to create face recognizer");
 
