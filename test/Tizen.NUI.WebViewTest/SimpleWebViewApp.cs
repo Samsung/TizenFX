@@ -120,11 +120,11 @@ namespace Tizen.NUI.WebViewTest
 
         private const int ADDRESSBAR_HEIGHT = 100;
 
-        private const int SCREEN_WIDTH = 1920;
-        private const int SCREEN_HEIGHT = 1080;
+        private const int SCREEN_WIDTH = 480;
+        private const int SCREEN_HEIGHT = 800;
 
-        private const int MIN_WEBVIEW_WIDTH = 1000;
-        private const int MIN_WEBVIEW_HEIGHT = 600;
+        private const int MIN_WEBVIEW_WIDTH = 100;
+        private const int MIN_WEBVIEW_HEIGHT = 200;
 
         private const int WEBVIEW_WIDTH = SCREEN_WIDTH;
         private const int WEBVIEW_HEIGHT = SCREEN_HEIGHT - ADDRESSBAR_HEIGHT;
@@ -150,7 +150,7 @@ namespace Tizen.NUI.WebViewTest
         {
             base.OnCreate();
 
-            GetDefaultWindow().BackgroundColor = new Color((float)189 / 255, (float)179 / 255, (float)204 / 255, 1.0f);
+            GetDefaultWindow().BackgroundColor = new Color((float)0.7, (float)0.3, (float)0.3, 1.0f);
 
             backButton = new Button()
             {
@@ -236,6 +236,8 @@ namespace Tizen.NUI.WebViewTest
             simpleWebView.CertificateConfirmed += OnCertificateConfirmed;
             simpleWebView.ResponsePolicyDecided += OnResponsePolicyDecided;
             simpleWebView.NavigationPolicyDecided += OnNavigationPolicyDecided;
+            simpleWebView.Position2D = new Position2D(100,100);
+            simpleWebView.CornerRadius = 40;
             GetDefaultWindow().Add(simpleWebView);
 
             GetDefaultWindow().KeyEvent += Instance_KeyEvent;
@@ -411,11 +413,6 @@ namespace Tizen.NUI.WebViewTest
                     interceptor.WriteResponseChunk((byte[])null);
                     Log.Info("WebView", $"------------http request intercepted write chunk end-------");
                 }
-            }
-
-            if (interceptor.InterceptedWebView == simpleWebView)
-            {
-                Log.Info("WebView", $"------------http request intercepted web view is simpleWebVew-------");
             }
 
             Log.Info("WebView", $"------------http request intercepted end-------");
