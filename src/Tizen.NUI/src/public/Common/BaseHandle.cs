@@ -723,6 +723,5 @@ namespace Tizen.NUI
                 }
             }
         }
-
     }
 }

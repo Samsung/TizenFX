@@ -306,5 +306,13 @@ namespace Tizen.NUI
         {
             Interop.Extents.DeleteExtents(swigCPtr);
         }
+
+        private void InvokeChangedCallbackIfExist(ushort start, ushort end, ushort top, ushort bottom)
+        {
+            if (IsPropertyValueChangedCallbackAlive(callback))
+            {
+                callback.Invoke(start, end, top, bottom);
+            }
+        }
     }
 }

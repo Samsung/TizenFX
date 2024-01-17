@@ -54,21 +54,6 @@ namespace Tizen.NUI.BaseComponents
         // List of constraints
         private Constraint widthConstraint = null;
         private Constraint heightConstraint = null;
-
-        private Size2D internalMaximumSize = null;
-        private Size2D internalMinimumSize = null;
-        private Extents internalMargin = null;
-        private Extents internalPadding = null;
-        private Vector3 internalSizeModeFactor = null;
-        private Vector2 internalCellIndex = null;
-        private Color internalBackgroundColor = null;
-        private Color internalColor = null;
-        private Position internalPivotPoint = null;
-        private Position internalPosition = null;
-        private Position2D internalPosition2D = null;
-        private Vector3 internalScale = null;
-        private Size internalSize = null;
-        private Size2D internalSize2D = null;
         private int layoutCount = 0;
         private ControlState propagatableControlStates = ControlState.All;
 
@@ -83,17 +68,6 @@ namespace Tizen.NUI.BaseComponents
         private bool dispatchGestureEvents = true;
         private bool dispatchParentGestureEvents = true;
         private string internalName = string.Empty;
-        private Position internalCurrentParentOrigin = null;
-        private Position internalCurrentAnchorPoint = null;
-        private Vector3 internalTargetSize = null;
-        private Size2D internalCurrentSize = null;
-        private Position internalCurrentPosition = null;
-        private Vector3 internalCurrentWorldPosition = null;
-        private Vector3 internalCurrentScale = null;
-        private Vector3 internalCurrentWorldScale = null;
-        private Vector4 internalCurrentColor = null;
-        private Vector4 internalCurrentWorldColor = null;
-        private Vector2 internalCurrentScreenPosition = null;
 
         static View()
         {

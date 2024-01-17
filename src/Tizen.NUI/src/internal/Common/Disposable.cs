@@ -208,5 +208,7 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal bool Disposed => disposed;
+
+        internal bool IsPropertyValueChangedCallbackAlive(Delegate callback) => (callback != null && callback.Target is BaseHandle targetHandle && !targetHandle.Disposed);
     }
 }

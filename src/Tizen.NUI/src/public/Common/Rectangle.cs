@@ -534,5 +534,13 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
+        private void InvokeChangedCallbackIfExist(int x, int y, int w, int h)
+        {
+            if (IsPropertyValueChangedCallbackAlive(callback))
+            {
+                callback.Invoke(x, y, w, h);
+            }
+        }
     }
 }

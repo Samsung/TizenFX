@@ -114,7 +114,7 @@ namespace Tizen.NUI
                 Interop.Vector3.WidthSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(value, Height, Depth);
+                InvokeChangedCallbackIfExist(value, Height, Depth);
             }
             get
             {
@@ -147,7 +147,7 @@ namespace Tizen.NUI
                 Interop.Vector3.HeightSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(Width, value, Depth);
+                InvokeChangedCallbackIfExist(Width, value, Depth);
             }
             get
             {
@@ -180,7 +180,7 @@ namespace Tizen.NUI
                 Interop.Vector3.DepthSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(Width, Height, value);
+                InvokeChangedCallbackIfExist(Width, Height, value);
             }
             get
             {
@@ -477,5 +477,13 @@ namespace Tizen.NUI
         }
 
         private SizeChangedCallback callback = null;
+
+        private void InvokeChangedCallbackIfExist(float w, float h, float d)
+        {
+            if (IsPropertyValueChangedCallbackAlive(callback))
+            {
+                callback.Invoke(w, h, d);
+            }
+        }
     }
 }

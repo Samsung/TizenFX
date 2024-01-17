@@ -191,7 +191,7 @@ namespace Tizen.NUI
                 Interop.Vector4.XSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(X, Y, Z, W);
+                InvokeChangedCallbackIfExist(X, Y, Z, W);
             }
             get
             {
@@ -224,7 +224,7 @@ namespace Tizen.NUI
                 Interop.Vector4.RSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(X, Y, Z, W);
+                InvokeChangedCallbackIfExist(X, Y, Z, W);
             }
             get
             {
@@ -257,7 +257,7 @@ namespace Tizen.NUI
                 Interop.Vector4.SSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(X, Y, Z, W);
+                InvokeChangedCallbackIfExist(X, Y, Z, W);
             }
             get
             {
@@ -290,7 +290,7 @@ namespace Tizen.NUI
                 Interop.Vector4.YSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(X, Y, Z, W);
+                InvokeChangedCallbackIfExist(X, Y, Z, W);
             }
             get
             {
@@ -323,7 +323,7 @@ namespace Tizen.NUI
                 Interop.Vector4.GSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(X, Y, Z, W);
+                InvokeChangedCallbackIfExist(X, Y, Z, W);
             }
             get
             {
@@ -356,7 +356,7 @@ namespace Tizen.NUI
                 Interop.Vector4.TSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(X, Y, Z, W);
+                InvokeChangedCallbackIfExist(X, Y, Z, W);
             }
             get
             {
@@ -389,7 +389,7 @@ namespace Tizen.NUI
                 Interop.Vector4.ZSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(X, Y, Z, W);
+                InvokeChangedCallbackIfExist(X, Y, Z, W);
             }
             get
             {
@@ -422,7 +422,7 @@ namespace Tizen.NUI
                 Interop.Vector4.BSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(X, Y, Z, W);
+                InvokeChangedCallbackIfExist(X, Y, Z, W);
             }
             get
             {
@@ -455,7 +455,7 @@ namespace Tizen.NUI
                 Interop.Vector4.PSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(X, Y, Z, W);
+                InvokeChangedCallbackIfExist(X, Y, Z, W);
             }
             get
             {
@@ -488,7 +488,7 @@ namespace Tizen.NUI
                 Interop.Vector4.WSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(X, Y, Z, W);
+                InvokeChangedCallbackIfExist(X, Y, Z, W);
             }
             get
             {
@@ -521,7 +521,7 @@ namespace Tizen.NUI
                 Interop.Vector4.ASet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(X, Y, Z, W);
+                InvokeChangedCallbackIfExist(X, Y, Z, W);
             }
             get
             {
@@ -554,7 +554,7 @@ namespace Tizen.NUI
                 Interop.Vector4.QSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(X, Y, Z, W);
+                InvokeChangedCallbackIfExist(X, Y, Z, W);
             }
             get
             {
@@ -913,6 +913,13 @@ namespace Tizen.NUI
             return ret;
         }
 
+        private void InvokeChangedCallbackIfExist(float x, float y, float z, float w)
+        {
+            if (IsPropertyValueChangedCallbackAlive(callback))
+            {
+                callback.Invoke(x, y, z, w);
+            }
+        }
     }
 
 }

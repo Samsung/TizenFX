@@ -106,7 +106,7 @@ namespace Tizen.NUI
                 Interop.Vector2.XSet(SwigCPtr, (float)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(value, Y);
+                InvokeChangedCallbackIfExist(value, Y);
             }
             get
             {
@@ -139,7 +139,7 @@ namespace Tizen.NUI
                 Interop.Vector2.YSet(SwigCPtr, (float)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(X, value);
+                InvokeChangedCallbackIfExist(X, value);
             }
             get
             {
@@ -445,6 +445,14 @@ namespace Tizen.NUI
             int ret = (int)Interop.Vector2.ValueOfIndex(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        private void InvokeChangedCallbackIfExist(int x, int y)
+        {
+            if (IsPropertyValueChangedCallbackAlive(callback))
+            {
+                callback.Invoke(x, y);
+            }
         }
     }
 }

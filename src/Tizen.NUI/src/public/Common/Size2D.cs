@@ -127,7 +127,7 @@ namespace Tizen.NUI
                 Interop.Vector2.WidthSet(SwigCPtr, (float)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(value, Height);
+                InvokeChangedCallbackIfExist(value, Height);
             }
             get
             {
@@ -160,7 +160,7 @@ namespace Tizen.NUI
                 Interop.Vector2.HeightSet(SwigCPtr, (float)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(Width, value);
+                InvokeChangedCallbackIfExist(Width, value);
             }
             get
             {
@@ -456,6 +456,14 @@ namespace Tizen.NUI
             int ret = (int)Interop.Vector2.ValueOfIndex(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        private void InvokeChangedCallbackIfExist(int w, int h)
+        {
+            if (IsPropertyValueChangedCallbackAlive(callback))
+            {
+                callback.Invoke(w, h);
+            }
         }
 
         private static int ClampToInt(double v) =>

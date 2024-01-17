@@ -472,10 +472,7 @@ namespace Tizen.NUI.BaseComponents
         internal Position GetCurrentParentOrigin()
         {
 
-            if(internalCurrentParentOrigin == null)
-            {
-                internalCurrentParentOrigin = new Position(0, 0, 0);
-            }
+            var internalCurrentParentOrigin = new Position();
 
             Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, View.Property.ParentOrigin, internalCurrentParentOrigin.SwigCPtr);
 
@@ -495,11 +492,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal Position GetCurrentAnchorPoint()
         {
-
-            if(internalCurrentAnchorPoint == null)
-            {
-                internalCurrentAnchorPoint = new Position(0, 0, 0);
-            }
+            var internalCurrentAnchorPoint = new Position();
 
             Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, View.Property.AnchorPoint, internalCurrentAnchorPoint.SwigCPtr);
 
@@ -540,11 +533,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal Vector3 GetTargetSize()
         {
-
-            if(internalTargetSize == null)
-            {
-                internalTargetSize = new Vector3(0, 0, 0);
-            }
+            var internalTargetSize = new Vector3();
             
             Interop.ActorInternal.RetrieveTargetSize(SwigCPtr, internalTargetSize.SwigCPtr);
             
@@ -557,11 +546,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal Size2D GetCurrentSize()
         {
-
-            if(internalCurrentSize == null)
-            {
-                internalCurrentSize = new Size2D(0, 0);
-            }
+            var internalCurrentSize = new Size2D();
             
             Interop.ActorInternal.RetrieveCurrentPropertyVector2ActualVector3(SwigCPtr, Property.SIZE, internalCurrentSize.SwigCPtr);
 
@@ -622,11 +607,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal Position GetCurrentPosition()
         {
-
-            if(internalCurrentPosition == null)
-            {
-                internalCurrentPosition = new Position(0, 0, 0);
-            }
+            var internalCurrentPosition = new Position();
             
             Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, Property.POSITION, internalCurrentPosition.SwigCPtr);
 
@@ -638,11 +619,7 @@ namespace Tizen.NUI.BaseComponents
         }
         internal Vector3 GetCurrentWorldPosition()
         {
-
-            if(internalCurrentWorldPosition == null)
-            {
-                internalCurrentWorldPosition = new Vector3(0, 0, 0);
-            }
+            var internalCurrentWorldPosition = new Vector3();
             
             Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, View.Property.WorldPosition, internalCurrentWorldPosition.SwigCPtr);
 
@@ -655,11 +632,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal Vector2 GetCurrentScreenPosition()
         {
-
-            if(internalCurrentScreenPosition == null)
-            {
-                internalCurrentScreenPosition = new Vector2(0, 0);
-            }
+            var internalCurrentScreenPosition = new Vector2();
 
             Object.InternalRetrievingPropertyVector2(SwigCPtr, View.Property.ScreenPosition, internalCurrentScreenPosition.SwigCPtr);
 
@@ -767,11 +740,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal Vector3 GetCurrentScale()
         {
-
-            if(internalCurrentScale == null)
-            {
-                internalCurrentScale = new Vector3(0, 0, 0);
-            }
+            var internalCurrentScale = new Vector3();
             
             Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, View.Property.SCALE, internalCurrentScale.SwigCPtr);
 
@@ -784,11 +753,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal Vector3 GetCurrentWorldScale()
         {
-
-            if(internalCurrentWorldScale == null)
-            {
-                internalCurrentWorldScale = new Vector3(0, 0, 0);
-            }
+            var internalCurrentWorldScale = new Vector3();
             
             Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, View.Property.WorldScale, internalCurrentWorldScale.SwigCPtr);
 
@@ -861,11 +826,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal Vector4 GetCurrentColor()
         {
-
-            if(internalCurrentColor == null)
-            {
-                internalCurrentColor = new Vector4(0, 0, 0, 0);
-            }
+            var internalCurrentColor = new Vector4();
             
             Interop.ActorInternal.RetrieveCurrentPropertyVector4(SwigCPtr, Interop.ActorProperty.ColorGet(), internalCurrentColor.SwigCPtr);
 
@@ -886,10 +847,7 @@ namespace Tizen.NUI.BaseComponents
         internal Vector4 GetCurrentWorldColor()
         {
 
-            if(internalCurrentWorldColor == null)
-            {
-                internalCurrentWorldColor = new Vector4(0, 0, 0, 0);
-            }
+            var internalCurrentWorldColor = new Vector4();
             
             Interop.ActorInternal.RetrieveCurrentPropertyVector4(SwigCPtr, Property.WorldColor, internalCurrentWorldColor.SwigCPtr);
 
@@ -978,12 +936,9 @@ namespace Tizen.NUI.BaseComponents
         internal Vector3 GetSizeModeFactor()
         {
 
-                if (internalSizeModeFactor == null)
-                {
-                    internalSizeModeFactor = new Vector3(OnSizeModeFactorChanged, 0, 0, 0);
-                }
-                Object.InternalRetrievingPropertyVector3(SwigCPtr, View.Property.SizeModeFactor, internalSizeModeFactor.SwigCPtr);
-                return internalSizeModeFactor;
+            var internalSizeModeFactor = new Vector3(OnSizeModeFactorChanged, 0, 0, 0);
+            Object.InternalRetrievingPropertyVector3(SwigCPtr, View.Property.SizeModeFactor, internalSizeModeFactor.SwigCPtr);
+            return internalSizeModeFactor;
         }
 
         internal void SetMinimumSize(Vector2 size)
@@ -995,11 +950,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal Vector2 GetMinimumSize()
         {
-
-            if (internalMinimumSize == null)
-            {
-                internalMinimumSize = new Size2D(OnMinimumSizeChanged, 0, 0);
-            }
+            var internalMinimumSize = new Size2D(OnMinimumSizeChanged, 0, 0);
             Object.InternalRetrievingPropertyVector2(SwigCPtr, View.Property.MinimumSize, internalMinimumSize.SwigCPtr);
             return internalMinimumSize;
         }
@@ -1013,11 +964,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal Vector2 GetMaximumSize()
         {
-
-            if (internalMaximumSize == null)
-            {
-                internalMaximumSize = new Size2D(OnMaximumSizeChanged, 0, 0);
-            }
+            var internalMaximumSize = new Size2D(OnMaximumSizeChanged, 0, 0);
             Object.InternalRetrievingPropertyVector2(SwigCPtr, View.Property.MaximumSize, internalMaximumSize.SwigCPtr);
             return internalMaximumSize;
         }
@@ -1231,37 +1178,6 @@ namespace Tizen.NUI.BaseComponents
 
             disposeDebugging(type);
 
-            //_mergedStyle = null;
-
-            internalMaximumSize?.Dispose();
-            internalMaximumSize = null;
-            internalMinimumSize?.Dispose();
-            internalMinimumSize = null;
-            internalMargin?.Dispose();
-            internalMargin = null;
-            internalPadding?.Dispose();
-            internalPadding = null;
-            internalSizeModeFactor?.Dispose();
-            internalSizeModeFactor = null;
-            internalCellIndex?.Dispose();
-            internalCellIndex = null;
-            internalBackgroundColor?.Dispose();
-            internalBackgroundColor = null;
-            internalColor?.Dispose();
-            internalColor = null;
-            internalPivotPoint?.Dispose();
-            internalPivotPoint = null;
-            internalPosition?.Dispose();
-            internalPosition = null;
-            internalPosition2D?.Dispose();
-            internalPosition2D = null;
-            internalScale?.Dispose();
-            internalScale = null;
-            internalSize?.Dispose();
-            internalSize = null;
-            internalSize2D?.Dispose();
-            internalSize2D = null;
-
             panGestureDetector?.Dispose();
             panGestureDetector = null;
             longGestureDetector?.Dispose();
@@ -1272,31 +1188,6 @@ namespace Tizen.NUI.BaseComponents
             tapGestureDetector = null;
             rotationGestureDetector?.Dispose();
             rotationGestureDetector = null;
-
-            internalCurrentParentOrigin?.Dispose();
-            internalCurrentParentOrigin = null;
-            internalCurrentAnchorPoint?.Dispose();
-            internalCurrentAnchorPoint = null;
-            internalTargetSize?.Dispose();
-            internalTargetSize = null;
-            internalCurrentSize?.Dispose();
-            internalCurrentSize = null;
-            internalCurrentPosition?.Dispose();
-            internalCurrentPosition = null;
-            internalCurrentWorldPosition?.Dispose();
-            internalCurrentWorldPosition = null;
-            internalCurrentScale?.Dispose();
-            internalCurrentScale = null;
-            internalCurrentWorldScale?.Dispose();
-            internalCurrentWorldScale = null;
-            internalCurrentColor?.Dispose();
-            internalCurrentColor = null;
-            internalCurrentWorldColor?.Dispose();
-            internalCurrentWorldColor = null;
-            internalSizeModeFactor?.Dispose();
-            internalSizeModeFactor = null;
-            internalCurrentScreenPosition?.Dispose();
-            internalCurrentScreenPosition = null;
 
             if (type == DisposeTypes.Explicit)
             {
