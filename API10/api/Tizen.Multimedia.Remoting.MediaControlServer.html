@@ -174,7 +174,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<span class="xref">string</span>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</td>
         <td><p>the activated client ids.</p>
 </td>
       </tr>
@@ -302,7 +302,7 @@ public static Task&lt;Bundle&gt; RequestAsync(Command command, string clientId)<
 </td>
       </tr>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">clientId</span></td>
         <td><p>The client Id to send command.</p>
 </td>
@@ -319,7 +319,7 @@ public static Task&lt;Bundle&gt; RequestAsync(Command command, string clientId)<
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<span class="xref">Bundle</span>&gt;</td>
+        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">Bundle</span>&gt;</td>
         <td><p><see cref="!:Bundle"></see> represents the extra data from client and it can be null.</p>
 </td>
       </tr>
@@ -385,7 +385,7 @@ An internal error occurs.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">clientId</span></td>
         <td><p>The client Id to send command.</p>
 </td>
@@ -402,7 +402,7 @@ An internal error occurs.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;(<span class="xref">Bundle</span> <span class="xref">bundle</span>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a> <span class="xref">result</span>)&gt;</td>
+        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;(<span class="xref">Bundle</span> <span class="xref">bundle</span>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a> <span class="xref">result</span>)&gt;</td>
         <td><p>The type of return value is Tuple.<br>
 First item of Tuple represents the <see cref="!:Bundle"></see> and it represents the extra data from client. It can be null.<br>
 Second item of Tuple represents the result of each request(command).</p>
@@ -432,7 +432,7 @@ An internal error occurs.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notimplementedexception">NotImplementedException</a></td>
+        <td><span class="xref">System.NotImplementedException</span></td>
         <td><p>The command which is not supported is used.</p>
 </td>
       </tr>
@@ -771,7 +771,7 @@ Especially, 0 means that media is suitable for all ages.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
         <td><p>The specified <code data-dev-comment-type="paramref" class="paramref">ageRating</code> is not valid.</p>
 </td>
       </tr>
@@ -873,7 +873,7 @@ An internal error occurs.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.MediaControlDisplayMode.html">MediaControlDisplayMode</a>, <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlCapabilitySupport.html">MediaControlCapabilitySupport</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IDictionary&lt;TKey, TValue&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.MediaControlDisplayMode.html">MediaControlDisplayMode</a>, <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlCapabilitySupport.html">MediaControlCapabilitySupport</a>&gt;</td>
         <td><span class="parametername">capabilities</span></td>
         <td><p>The supported list of <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlDisplayMode.html">MediaControlDisplayMode</a>.</p>
 </td>
@@ -901,7 +901,7 @@ An internal error occurs.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
         <td><p><code data-dev-comment-type="paramref" class="paramref">capabilities</code> is invalid.</p>
 </td>
       </tr>
@@ -973,7 +973,7 @@ An internal error occurs.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
         <td><p><code data-dev-comment-type="paramref" class="paramref">mode</code> or <code data-dev-comment-type="paramref" class="paramref">support</code> is invalid.</p>
 </td>
       </tr>
@@ -1068,7 +1068,7 @@ An internal error occurs.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;<a class="xref" href="Tizen.Multimedia.Rotation.html">Rotation</a>, <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlCapabilitySupport.html">MediaControlCapabilitySupport</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IDictionary&lt;TKey, TValue&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Rotation.html">Rotation</a>, <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlCapabilitySupport.html">MediaControlCapabilitySupport</a>&gt;</td>
         <td><span class="parametername">capabilities</span></td>
         <td><p>The supported list of <a class="xref" href="Tizen.Multimedia.Rotation.html">Rotation</a>.</p>
 </td>
@@ -1096,7 +1096,7 @@ An internal error occurs.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
         <td><p><code data-dev-comment-type="paramref" class="paramref">capabilities</code> is invalid.</p>
 </td>
       </tr>
@@ -1168,7 +1168,7 @@ An internal error occurs.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
         <td><p><code data-dev-comment-type="paramref" class="paramref">rotation</code> or <code data-dev-comment-type="paramref" class="paramref">support</code> is invalid.</p>
 </td>
       </tr>
@@ -1206,7 +1206,7 @@ An internal error occurs.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">path</span></td>
         <td><p>The path of icon.</p>
 </td>
@@ -1269,7 +1269,7 @@ public static void SetIndexOfCurrentPlayingMedia(string index)</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">index</span></td>
         <td><p>The index of current playing media.</p>
 </td>
@@ -1331,13 +1331,13 @@ An internal error occurs.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">playlistName</span></td>
         <td><p>The playlist name of current playing media.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">string</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
         <td><span class="parametername">index</span></td>
         <td><p>The index of current playing media.</p>
 </td>
@@ -1542,7 +1542,7 @@ An internal error occurs.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
         <td><p><code data-dev-comment-type="paramref" class="paramref">support</code> is invalid.</p>
 </td>
       </tr>
@@ -1604,7 +1604,7 @@ An internal error occurs.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
         <td><p><code data-dev-comment-type="paramref" class="paramref">capabilities</code> is invalid.</p>
 </td>
       </tr>
@@ -1672,7 +1672,7 @@ An internal error occurs.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
         <td><p><code data-dev-comment-type="paramref" class="paramref">action</code> or <code data-dev-comment-type="paramref" class="paramref">support</code> is invalid.</p>
 </td>
       </tr>
@@ -1734,7 +1734,7 @@ An internal error occurs.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
         <td><p><code data-dev-comment-type="paramref" class="paramref">type</code> is invalid.</p>
 </td>
       </tr>
@@ -1778,7 +1778,7 @@ An internal error occurs.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
+        <td><span class="xref">long</span></td>
         <td><span class="parametername">position</span></td>
         <td><p>The playback position in milliseconds.</p>
 </td>
@@ -1795,12 +1795,12 @@ An internal error occurs.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
         <td><p><code data-dev-comment-type="paramref" class="paramref">state</code> is not valid.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
         <td><p><code data-dev-comment-type="paramref" class="paramref">position</code> is less than zero.</p>
 </td>
       </tr>
@@ -1869,7 +1869,7 @@ An internal error occurs.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
         <td><p><code data-dev-comment-type="paramref" class="paramref">mode</code> is invalid.</p>
 </td>
       </tr>
@@ -1931,7 +1931,7 @@ An internal error occurs.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
         <td><p><code data-dev-comment-type="paramref" class="paramref">support</code> is invalid.</p>
 </td>
       </tr>
@@ -1993,7 +1993,7 @@ An internal error occurs.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
         <td><p><code data-dev-comment-type="paramref" class="paramref">support</code> is invalid.</p>
 </td>
       </tr>
@@ -2169,7 +2169,7 @@ An internal error occurs.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
         <td><p><code data-dev-comment-type="paramref" class="paramref">support</code> is invalid.</p>
 </td>
       </tr>
