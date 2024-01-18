@@ -102,7 +102,7 @@
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
         <div><span class="xref">Cipher</span></div>
       </div>
     </dd>
@@ -205,20 +205,20 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">keyAlias</span></td>
         <td><p>Alias of the key to be used for decryption.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">password</span></td>
         <td><p>The password used in decrypting a key value. If password of policy is
 provided in SaveKey(), the same password should be provided.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">byte</span>[]</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</td>
         <td><span class="parametername">cipherText</span></td>
         <td><p>Data to be decrypted (some algorithms may require additional information
 embedded in encrypted data.AES GCM is an example).</p>
@@ -236,7 +236,7 @@ embedded in encrypted data.AES GCM is an example).</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">byte</span>[]</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</td>
         <td><p>Decrypted data.</p>
 </td>
       </tr>
@@ -256,18 +256,18 @@ specified in Parameters.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
         <td><p>The keyAlias or cipherText is null.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><span class="xref">System.ArgumentException</span></td>
         <td><p>The mandatory algorithm parameter is missing or invalid.
 The optional algorithm parameter is invalid.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><span class="xref">System.InvalidOperationException</span></td>
         <td><p>The key-protecting password isn't matched.
 The key does not exist with the keyAlias.</p>
 </td>
@@ -301,20 +301,20 @@ The key does not exist with the keyAlias.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">keyAlias</span></td>
         <td><p>Alias of the key to be used for encryption.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">password</span></td>
         <td><p>The password used in decrypting a key value. If password of policy is
 provided in SaveKey(), the same password should be provided.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">byte</span>[]</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</td>
         <td><span class="parametername">plainText</span></td>
         <td><p>Data to be encrypted. In case of the AES algorithm, there are no restrictions on
 the size of data. For RSA, the size must be smaller or equal to (key_size_in
@@ -334,7 +334,7 @@ bytes - 42). Example: For 1024 RSA key, the maximum data size is
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">byte</span>[]</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</td>
         <td><p>Encrypted data.</p>
 </td>
       </tr>
@@ -354,18 +354,18 @@ specified in Parameters.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
         <td><p>The keyAlias or plainText is null.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><span class="xref">System.ArgumentException</span></td>
         <td><p>The mandatory algorithm parameter is missing or invalid.
 The optional algorithm parameter is invalid.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><span class="xref">System.InvalidOperationException</span></td>
         <td><p>The key-protecting password isn't matched.
 The key does not exist with the keyAlias.</p>
 </td>

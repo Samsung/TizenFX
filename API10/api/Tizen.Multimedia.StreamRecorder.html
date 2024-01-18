@@ -114,7 +114,7 @@ public class StreamRecorder : IDisposable</code></pre>
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
     </dd>
   </dl>
 
@@ -143,7 +143,7 @@ public StreamRecorder()</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
         <td><p>The feature is not supported.</p>
 </td>
       </tr>
@@ -241,7 +241,7 @@ public void Cancel()</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><span class="xref">System.InvalidOperationException</span></td>
         <td><p>The recorder is not in the valid state.</p>
 </td>
       </tr>
@@ -294,7 +294,7 @@ http://tizen.org/privilege/externalstorage is needed if the save path are releva
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><span class="xref">System.InvalidOperationException</span></td>
         <td><p>The recorder is not in the valid state.</p>
 </td>
       </tr>
@@ -363,7 +363,7 @@ public void Dispose()</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="xref">bool</span></td>
         <td><span class="parametername">disposing</span></td>
         <td><p>true to release both managed and unmanaged resources; false to release only unmanaged resources.</p>
 </td>
@@ -556,7 +556,7 @@ It has no effect if the recorder is already in the <a class="xref" href="Tizen.M
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><span class="xref">System.InvalidOperationException</span></td>
         <td><p>The recorder is not in the valid state.</p>
 </td>
       </tr>
@@ -621,18 +621,18 @@ public void Prepare(StreamRecorderOptions options)</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><span class="xref">System.InvalidOperationException</span></td>
         <td><p>The recorder is not in the valid state.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><span class="xref">System.ArgumentException</span></td>
         <td><p>Both <a class="xref" href="Tizen.Multimedia.StreamRecorderOptions.html#Tizen_Multimedia_StreamRecorderOptions_Audio">Audio</a> and
 <a class="xref" href="Tizen.Multimedia.StreamRecorderOptions.html#Tizen_Multimedia_StreamRecorderOptions_Video">Video</a> are null.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
         <td><p><code data-dev-comment-type="paramref" class="paramref">options</code> contains a value which is not supported.</p>
 </td>
       </tr>
@@ -699,7 +699,7 @@ public void PushBuffer(MediaPacket packet)</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><span class="xref">System.InvalidOperationException</span></td>
         <td><p>The recorder is not in the valid state.<br>
 -or-<br>
 <code data-dev-comment-type="paramref" class="paramref">packet</code> is an audio packet but audio recording is not enabled(See <a class="xref" href="Tizen.Multimedia.StreamRecorderOptions.html#Tizen_Multimedia_StreamRecorderOptions_Audio">Audio</a>).<br>
@@ -758,7 +758,7 @@ It has no effect if the recorder is already in the <a class="xref" href="Tizen.M
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><span class="xref">System.InvalidOperationException</span></td>
         <td><p>The recorder is not in the valid state.</p>
 </td>
       </tr>
@@ -814,7 +814,7 @@ It has no effect if the recorder is already in the <a class="xref" href="Tizen.M
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><span class="xref">System.InvalidOperationException</span></td>
         <td><p>The recorder is not in the valid state.</p>
 </td>
       </tr>
@@ -857,7 +857,7 @@ public event EventHandler&lt;StreamRecorderBufferConsumedEventArgs&gt; BufferCon
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Multimedia.StreamRecorderBufferConsumedEventArgs.html">StreamRecorderBufferConsumedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.StreamRecorderBufferConsumedEventArgs.html">StreamRecorderBufferConsumedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -892,7 +892,7 @@ public event EventHandler&lt;StreamRecorderErrorOccurredEventArgs&gt; ErrorOccur
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Multimedia.StreamRecorderErrorOccurredEventArgs.html">StreamRecorderErrorOccurredEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.StreamRecorderErrorOccurredEventArgs.html">StreamRecorderErrorOccurredEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -927,7 +927,7 @@ public event EventHandler&lt;RecordingLimitReachedEventArgs&gt; RecordingLimitRe
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Multimedia.RecordingLimitReachedEventArgs.html">RecordingLimitReachedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.RecordingLimitReachedEventArgs.html">RecordingLimitReachedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -962,7 +962,7 @@ public event EventHandler&lt;RecordingStatusChangedEventArgs&gt; RecordingStatus
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Multimedia.RecordingStatusChangedEventArgs.html">RecordingStatusChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.RecordingStatusChangedEventArgs.html">RecordingStatusChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -997,7 +997,7 @@ public event EventHandler&lt;StreamRecorderStateChangedEventArgs&gt; StateChange
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Multimedia.StreamRecorderStateChangedEventArgs.html">StreamRecorderStateChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.StreamRecorderStateChangedEventArgs.html">StreamRecorderStateChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1012,7 +1012,7 @@ public event EventHandler&lt;StreamRecorderStateChangedEventArgs&gt; StateChange
 
   <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+      <span class="xref">System.IDisposable</span>
   </div>
   <h3 id="seealso">See Also</h3>
   <div class="seealso">
