@@ -2099,8 +2099,6 @@ namespace Tizen.NUI.BaseComponents
 
             view.themeData.ThemeChangeSensitive = (bool)newValue;
 
-            if (!view.themeData.ThemeApplied) return;
-
             if (view.themeData.ThemeChangeSensitive && !view.themeData.ListeningThemeChangeEvent)
             {
                 view.themeData.ListeningThemeChangeEvent = true;
