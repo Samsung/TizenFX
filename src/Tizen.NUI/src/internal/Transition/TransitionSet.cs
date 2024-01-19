@@ -118,22 +118,17 @@ namespace Tizen.NUI
 
         public TransitionItemBase GetTransitionAt(uint index)
         {
-            //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = Interop.TransitionSet.GetTransitionAt(SwigCPtr, index);
-            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            TransitionItemBase ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as TransitionItemBase;
-            if (cPtr != null && ret == null)
+            TransitionItemBase ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as TransitionItemBase;
+            if (ret != null)
             {
-                ret = new TransitionItemBase(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending)
-                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                Interop.BaseHandle.DeleteBaseHandle(new HandleRef(this, cPtr));
             }
-            Interop.BaseHandle.DeleteBaseHandle(CPtr);
-            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            else
+            {
+                ret = new TransitionItemBase(cPtr, true);
+            }
+            NDalicPINVOKE.ThrowExceptionIfExists();
             return ret;
         }
 
