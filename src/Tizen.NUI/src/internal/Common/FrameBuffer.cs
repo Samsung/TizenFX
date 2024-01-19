@@ -66,10 +66,17 @@ namespace Tizen.NUI
 
         public Texture GetColorTexture()
         {
-            //to fix memory leak issue, match the handle count with native side.
             global::System.IntPtr cPtr = Interop.FrameBuffer.GetColorTexture(SwigCPtr);
-            Texture ret = this.GetInstanceSafely<Texture>(cPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Texture ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Texture;
+            if (ret != null)
+            {
+                Interop.BaseHandle.DeleteBaseHandle(new global::System.Runtime.InteropServices.HandleRef(this, cPtr));
+            }
+            else
+            {
+                ret = new Texture(cPtr, true);
+            }
+            NDalicPINVOKE.ThrowExceptionIfExists();
             return ret;
         }
 
