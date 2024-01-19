@@ -25,6 +25,11 @@ namespace Tizen.NUI
     /// <summary>
     /// BaseHandle is a handle to an internal Dali resource.
     /// </summary>
+    /// <remarks>
+    /// Internal Dali resources with BaseHandle has reference count internally.<br/>
+    /// And Dali resources will release the object only if reference count become zero.<br/>
+    /// It mean, even we call <see cref="Dispose()"/>, the reousrce will not be released if some native has reference count.
+    /// </remarks>
     /// <since_tizen> 3 </since_tizen>
     public class BaseHandle : Element, global::System.IDisposable
     {
@@ -335,6 +340,10 @@ namespace Tizen.NUI
         /// <summary>
         /// Dispose.
         /// </summary>
+        /// <remarks>
+        /// This method release only C# side objects. If someone hold BaseHandle at Native side<br/>
+        /// the object will not be removed until native side reset the handle.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
