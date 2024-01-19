@@ -29,9 +29,6 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 9 </since_tizen>
     public partial class WebView : View
     {
-        private static readonly WebContext context = new WebContext(Interop.WebView.GetWebContext(), false);
-        private static readonly WebCookieManager cookieManager = new WebCookieManager(Interop.WebView.GetWebCookieManager(), false);
-
         private Color contentBackgroundColor;
         private bool tilesClearedWhenHidden;
         private float tileCoverAreaMultiplier;
@@ -989,13 +986,25 @@ namespace Tizen.NUI.BaseComponents
         /// Context.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebContext Context => context;
+        public WebContext Context
+        {
+            get
+            {
+                return new WebContext(Interop.WebView.GetWebContext(), false);
+            }
+        }
 
         /// <summary>
         /// CookieManager.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebCookieManager CookieManager => cookieManager;
+        public WebCookieManager CookieManager
+        {
+            get
+            {
+                return new WebCookieManager(Interop.WebView.GetWebCookieManager(), false);
+            }
+        }
 
         /// <summary>
         /// BackForwardList.
