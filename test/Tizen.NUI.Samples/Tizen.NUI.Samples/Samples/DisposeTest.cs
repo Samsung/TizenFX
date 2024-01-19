@@ -92,7 +92,7 @@ namespace Tizen.NUI.Samples
 
         // Copy from dali-toolkit/internal/visuals/primitive/primitive-visual.cpp
         // NOTE. I add one more slices for texture coordinate
-        private global::System.IntPtr SphereVertexDataPtr()
+        private TexturedQuadVertex[] SphereVertexData()
         {
             TexturedQuadVertex[] vertices = new TexturedQuadVertex[SPHERE_VERTEX_NUMBER];
 
@@ -140,15 +140,7 @@ namespace Tizen.NUI.Samples
             }
             // Build done.
 
-            int length = Marshal.SizeOf(vertices[0]);
-            global::System.IntPtr pA = Marshal.AllocHGlobal(length * SPHERE_VERTEX_NUMBER);
-
-            for (int i = 0; i < SPHERE_VERTEX_NUMBER; i++)
-            {
-                Marshal.StructureToPtr(vertices[i], pA + i * length, true);
-            }
-
-            return pA;
+            return vertices;
         }
 
         private ushort[] SphereIndexData()
@@ -204,7 +196,6 @@ namespace Tizen.NUI.Samples
         const int SPHERE_VERTEX_NUMBER = (SPHERE_SLICES + 1) * (SPHERE_STACKS - 1) + 2;
         const int SPHERE_INDEX_NUMBER = 6 * SPHERE_SLICES * (SPHERE_STACKS - 1);
 
-
         private const int AutoDisposedObjectCount = 10;
         private const int ManualDisposedObjectCount = 10;
         private Window win;
@@ -213,7 +204,10 @@ namespace Tizen.NUI.Samples
         private bool toggle = false;
         private string resource;
         private List<Custom3DView> views;
+        private List<Renderer> renderers;
         private Animation rotateAnimation;
+
+        private Dictionary<string, Texture> textureDictionary = new Dictionary<string, Texture>();
 
         public void Activate()
         {
@@ -230,6 +224,7 @@ namespace Tizen.NUI.Samples
             win.Add(root);
 
             views = new List<Custom3DView>();
+            renderers = new List<Renderer>();
             rotateAnimation = new Animation(1500); //1.5s
 
             AddManyViews();
@@ -238,7 +233,6 @@ namespace Tizen.NUI.Samples
             timer = new Timer(3000); //3s
             timer.Tick += OnTimerTick;
             timer.Start();
-
         }
 
         private bool OnTimerTick(object source, Timer.TickEventArgs e)
@@ -258,13 +252,31 @@ namespace Tizen.NUI.Samples
 
         private Geometry GenerateGeometry()
         {
-            PropertyMap vertexFormat = new PropertyMap();
+            using PropertyMap vertexFormat = new PropertyMap();
             vertexFormat.Add("aPosition", new PropertyValue((int)PropertyType.Vector3));
             vertexFormat.Add("aNormal", new PropertyValue((int)PropertyType.Vector3));
             vertexFormat.Add("aTexCoord", new PropertyValue((int)PropertyType.Vector2));
-            PropertyBuffer vertexBuffer = new PropertyBuffer(vertexFormat);
+            using PropertyBuffer vertexBuffer = new PropertyBuffer(vertexFormat);
 
-            vertexBuffer.SetData(SphereVertexDataPtr(), SPHERE_VERTEX_NUMBER);
+            TexturedQuadVertex[] vertices = SphereVertexData();
+
+            int length = Marshal.SizeOf(vertices[0]);
+            global::System.IntPtr pA = Marshal.AllocHGlobal(checked(length * SPHERE_VERTEX_NUMBER));
+
+            try
+            {
+                for (int i = 0; i < SPHERE_VERTEX_NUMBER; i++)
+                {
+                    Marshal.StructureToPtr(vertices[i], pA + i * length, true);
+                }
+
+                vertexBuffer.SetData(pA, SPHERE_VERTEX_NUMBER);
+            }
+            finally
+            {
+                // We can free raw data after SetData call finished.
+                Marshal.FreeHGlobal(pA);
+            }
 
             ushort[] indexBuffer = SphereIndexData();
 
@@ -272,7 +284,49 @@ namespace Tizen.NUI.Samples
             geometry.AddVertexBuffer(vertexBuffer);
             geometry.SetIndexBuffer(indexBuffer, SPHERE_INDEX_NUMBER);
             geometry.SetType(Geometry.Type.TRIANGLES);
+
             return geometry;
+        }
+
+        private Shader GenerateShader()
+        {
+            Shader shader = new Shader(VERTEX_SHADER, FRAGMENT_SHADER);
+            return shader;
+        }
+
+        private Renderer GenerateRenderer(string textureUrl)
+        {
+            Texture texture;
+            if (!textureDictionary.TryGetValue(textureUrl, out texture))
+            {
+                // Let we load image only 1 times per each objects
+                using PixelData pixelData = PixelBuffer.Convert(ImageLoader.LoadImageFromFile(
+                    textureUrl,
+                    new Size2D(),
+                    FittingModeType.ScaleToFill
+                ));
+
+                texture = new Texture(
+                    TextureType.TEXTURE_2D,
+                    pixelData.GetPixelFormat(),
+                    pixelData.GetWidth(),
+                    pixelData.GetHeight()
+                );
+                texture.Upload(pixelData);
+                if (!textureDictionary.TryAdd(textureUrl, texture))
+                {
+                    Tizen.Log.Error("NUI", "Something wrong when we try to add Texture into dictionary\n");
+                }
+            }
+            TextureSet textureSet = new TextureSet();
+            textureSet.SetTexture(0u, texture);
+
+            Renderer renderer = new Renderer(GenerateGeometry(), GenerateShader());
+            renderer.SetTextures(textureSet);
+
+            renderers.Add(renderer);
+
+            return renderer;
         }
 
         private void AddManyViews()
@@ -292,24 +346,7 @@ namespace Tizen.NUI.Samples
                     ),
                 };
                 root.Add(view);
-
-                PixelData pixelData = PixelBuffer.Convert(ImageLoader.LoadImageFromFile(
-                    resource + "/images/PopupTest/circle.jpg",
-                    new Size2D(),
-                    FittingModeType.ScaleToFill
-                ));
-                Texture texture = new Texture(
-                    TextureType.TEXTURE_2D,
-                    pixelData.GetPixelFormat(),
-                    pixelData.GetWidth(),
-                    pixelData.GetHeight()
-                );
-                texture.Upload(pixelData);
-                TextureSet textureSet = new TextureSet();
-                textureSet.SetTexture(0u, texture);
-                Renderer renderer = new Renderer(GenerateGeometry(), new Shader(VERTEX_SHADER, FRAGMENT_SHADER));
-                renderer.SetTextures(textureSet);
-                view.AddRenderer(renderer);
+                view.AddRenderer(GenerateRenderer(resource + "/images/PopupTest/circle.jpg"));
 
                 rotateAnimation.AnimateBy(view, "Orientation", new Rotation(new Radian(new Degree(360.0f)), Vector3.YAxis));
             }
@@ -329,23 +366,7 @@ namespace Tizen.NUI.Samples
                 root.Add(view);
                 views.Add(view);
 
-                PixelData pixelData = PixelBuffer.Convert(ImageLoader.LoadImageFromFile(
-                    resource + "/images/PaletteTest/red2.jpg",
-                    new Size2D(),
-                    FittingModeType.ScaleToFill
-                ));
-                Texture texture = new Texture(
-                    TextureType.TEXTURE_2D,
-                    pixelData.GetPixelFormat(),
-                    pixelData.GetWidth(),
-                    pixelData.GetHeight()
-                );
-                texture.Upload(pixelData);
-                TextureSet textureSet = new TextureSet();
-                textureSet.SetTexture(0u, texture);
-                Renderer renderer = new Renderer(GenerateGeometry(), new Shader(VERTEX_SHADER, FRAGMENT_SHADER));
-                renderer.SetTextures(textureSet);
-                view.AddRenderer(renderer);
+                view.AddRenderer(GenerateRenderer(resource + "/images/PaletteTest/red2.jpg"));
 
                 rotateAnimation.AnimateBy(view, "Orientation", new Rotation(new Radian(new Degree(-360.0f)), Vector3.YAxis));
             }
@@ -359,13 +380,21 @@ namespace Tizen.NUI.Samples
             {
                 root.Remove(root.GetChildAt((uint)i));
             }
-            foreach(var view in views)
+            foreach (var view in views)
             {
-                var renderer = view.GetRendererAt(0);
-                renderer.Dispose();
-                view.Dispose();
+                view?.Dispose();
             }
+            foreach (var renderer in renderers)
+            {
+                renderer?.GetGeometry()?.Dispose();
+                renderer?.GetShader()?.Dispose();
+                renderer?.GetTextures()?.Dispose();
+                renderer?.Dispose();
+            }
+
             views.Clear();
+            renderers.Clear();
+
             rotateAnimation.Clear();
         }
 
@@ -383,6 +412,11 @@ namespace Tizen.NUI.Samples
             rotateAnimation?.Dispose();
             root.Unparent();
             root.Dispose();
+
+            textureDictionary.Clear();
+
+            // Revert default layer behavior as LayerUI
+            win.GetDefaultLayer().Behavior = Layer.LayerBehavior.LayerUI;
         }
     }
 }

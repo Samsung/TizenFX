@@ -326,17 +326,24 @@ namespace Tizen.NUI.Components
             vertex3.position = new Vec2(0.5f, -0.5f);
             vertex4.position = new Vec2(0.5f, 0.5f);
 
-
             TexturedQuadVertex[] texturedQuadVertexData = new TexturedQuadVertex[4] { vertex1, vertex2, vertex3, vertex4 };
 
-            int lenght = Marshal.SizeOf(vertex1);
-            IntPtr pA = Marshal.AllocHGlobal(lenght * 4);
+            int length = Marshal.SizeOf(vertex1);
+            IntPtr pA = Marshal.AllocHGlobal(checked(length * 4));
 
-            for (int i = 0; i < 4; i++)
+            try
             {
-                Marshal.StructureToPtr(texturedQuadVertexData[i], pA + i * lenght, true);
+                for (int i = 0; i < 4; i++)
+                {
+                    Marshal.StructureToPtr(texturedQuadVertexData[i], pA + i * length, true);
+                }
+                vertexData.SetData(pA, 4);
             }
-            vertexData.SetData(pA, 4);
+            finally
+            {
+                // Free AllocHGlobal memory after call PropertyBuffer.SetData()
+                Marshal.FreeHGlobal(pA);
+            }
 
             Geometry geometry = new Geometry();
             geometry.AddVertexBuffer(vertexData);
