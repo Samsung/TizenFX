@@ -1048,13 +1048,25 @@ namespace Tizen.NUI.BaseComponents
         /// Context.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebContext Context => context;
+        public WebContext Context
+        {
+            get
+            {
+                return new WebContext(Interop.WebView.GetWebContext(), false);
+            }
+        }
 
         /// <summary>
         /// CookieManager.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebCookieManager CookieManager => cookieManager;
+        public WebCookieManager CookieManager
+        {
+            get
+            {
+                return new WebCookieManager(Interop.WebView.GetWebCookieManager(), false);
+            }
+        }
 
         /// <summary>
         /// BackForwardList.
