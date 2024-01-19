@@ -613,22 +613,17 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public Renderer GetRendererAt(uint index)
         {
-            //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = Interop.Actor.GetRendererAt(SwigCPtr, index);
-            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            Renderer ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as Renderer;
-            if (cPtr != null && ret == null)
+            Renderer ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Renderer;
+            if (ret != null)
             {
-                ret = new Renderer(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending)
-                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                Interop.BaseHandle.DeleteBaseHandle(new HandleRef(this, cPtr));
             }
-            Interop.BaseHandle.DeleteBaseHandle(CPtr);
-            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            else
+            {
+                ret = new Renderer(cPtr, true);
+            }
+            NDalicPINVOKE.ThrowExceptionIfExists();
             return ret;
         }
 

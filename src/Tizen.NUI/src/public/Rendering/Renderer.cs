@@ -621,20 +621,17 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public TextureSet GetTextures()
         {
-            //to fix memory leak issue, match the handle count with native side.
-            System.IntPtr cPtr = Interop.Renderer.GetTextures(SwigCPtr);
-            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            TextureSet ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as TextureSet;
-            if (cPtr != null && ret == null)
+            global::System.IntPtr cPtr = Interop.Renderer.GetTextures(SwigCPtr);
+            TextureSet ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as TextureSet;
+            if (ret != null)
             {
-                ret = new TextureSet(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                Interop.BaseHandle.DeleteBaseHandle(new global::System.Runtime.InteropServices.HandleRef(this, cPtr));
             }
-            Interop.BaseHandle.DeleteBaseHandle(CPtr);
-            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            else
+            {
+                ret = new TextureSet(cPtr, true);
+            }
+            NDalicPINVOKE.ThrowExceptionIfExists();
             return ret;
         }
 
