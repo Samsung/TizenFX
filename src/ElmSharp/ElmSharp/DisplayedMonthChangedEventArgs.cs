@@ -24,18 +24,21 @@ namespace ElmSharp
     /// DisplayedMonthChangedEventArgs as a parameter.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class DisplayedMonthChangedEventArgs : EventArgs
     {
         /// <summary>
         /// Gets the OldMonth property of the given DisplayedMonthChangedEventArgs.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int OldMonth { get; private set; }
 
         /// <summary>
         /// Gets the NewMonth property of the given DisplayedMonthChangedEventArgs.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int NewMonth { get; private set; }
 
         /// <summary>
@@ -48,6 +51,7 @@ namespace ElmSharp
         /// New month of the date when the DisplayedMonthChangedEvent triggered.
         /// </param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public DisplayedMonthChangedEventArgs(int oldMonth, int newMonth)
         {
             this.OldMonth = oldMonth;

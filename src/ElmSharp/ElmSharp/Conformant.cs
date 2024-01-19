@@ -24,6 +24,7 @@ namespace ElmSharp
     /// virtual keypad &amp; softkey windows when running the illume2 module of E17.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class Conformant : Widget
     {
         /// <summary>
@@ -32,6 +33,7 @@ namespace ElmSharp
         /// <param name="parent">The parent is a given container, which will be attached by Conformant
         /// as a child. It's <see cref="EvasObject"/> type.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Conformant(Window parent) : base(parent)
         {
             Interop.Evas.evas_object_size_hint_weight_set(Handle, 1.0, 1.0);
@@ -45,6 +47,7 @@ namespace ElmSharp
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_conformant_add(parent.Handle);

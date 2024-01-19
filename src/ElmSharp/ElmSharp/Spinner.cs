@@ -23,6 +23,7 @@ namespace ElmSharp
     /// Inherits <see cref="Layout"/>.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class Spinner : Layout
     {
         double _minimum = 0.0;
@@ -36,6 +37,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">The parent of new Spinner instance</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Spinner(EvasObject parent) : base(parent)
         {
             if (Elementary.GetProfile() == "tv")
@@ -48,6 +50,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of the Layout class.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected Spinner() : base()
         {
         }
@@ -56,18 +59,21 @@ namespace ElmSharp
         /// ValueChanged will be triggered whenever the spinner value is changed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler ValueChanged;
 
         /// <summary>
         /// DelayedValueChanged will be triggered after a short time when the value is changed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler DelayedValueChanged;
 
         /// <summary>
         /// Sets or gets the label format of the spinner.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string LabelFormat
         {
             get
@@ -84,6 +90,7 @@ namespace ElmSharp
         /// Sets or gets the minimum value for the spinner.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double Minimum
         {
             get
@@ -101,6 +108,7 @@ namespace ElmSharp
         /// Sets or gets the maximum value for the spinner.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double Maximum
         {
             get
@@ -118,6 +126,7 @@ namespace ElmSharp
         /// Sets or gets the step that is used to increment or decrement the spinner value.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double Step
         {
             get
@@ -134,6 +143,7 @@ namespace ElmSharp
         /// Sets or gets the value displayed by the spinner.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double Value
         {
             get
@@ -150,6 +160,7 @@ namespace ElmSharp
         /// Sets or gets the interval on time updates for a user mouse button to hold on the spinner widgets' arrows.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double Interval
         {
             get
@@ -166,6 +177,7 @@ namespace ElmSharp
         /// Sets or gets the base for rounding.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double RoundBase
         {
             get
@@ -182,6 +194,7 @@ namespace ElmSharp
         /// Sets or gets the round value for rounding.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int RoundValue
         {
             get
@@ -203,6 +216,7 @@ namespace ElmSharp
         /// By default, it's disabled.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsWrapEnabled
         {
             get
@@ -220,6 +234,7 @@ namespace ElmSharp
         /// </summary>
         /// <remarks>By default, it is enabled.</remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsEditable
         {
             get
@@ -238,6 +253,7 @@ namespace ElmSharp
         /// <param name="value">The numerical value to be replaced</param>
         /// <param name="label">The label to be used</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void AddSpecialValue(double value, string label)
         {
             Interop.Elementary.elm_spinner_special_value_add(RealHandle, value, label);
@@ -248,6 +264,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="value">The replaced numerical value.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void RemoveSpecialValue(double value)
         {
             Interop.Elementary.elm_spinner_special_value_del(RealHandle, value);
@@ -259,6 +276,7 @@ namespace ElmSharp
         /// <param name="value">The replaced numerical value.</param>
         /// <returns>The value of the spinner, which replaced the numerical value with a special string.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string GetSpecialValue(double value)
         {
             return Interop.Elementary.elm_spinner_special_value_get(RealHandle, value);
@@ -268,6 +286,7 @@ namespace ElmSharp
         /// The callback of the Realized event.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override void OnRealized()
         {
             base.OnRealized();
@@ -284,6 +303,7 @@ namespace ElmSharp
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);

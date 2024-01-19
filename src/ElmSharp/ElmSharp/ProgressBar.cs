@@ -22,6 +22,7 @@ namespace ElmSharp
     /// The ProgressBar is a widget for visually representing the progress status of a given job or task.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class ProgressBar : Layout
     {
         SmartEvent _changed;
@@ -31,6 +32,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">The EvasObject to which the new ProgressBar will be attached as a child.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ProgressBar(EvasObject parent) : base(parent)
         {
             _changed = new SmartEvent(this, this.RealHandle, "changed");
@@ -44,6 +46,7 @@ namespace ElmSharp
         /// ValueChanged will be triggered when the value of the ProgressBar changes.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler ValueChanged;
 
         /// <summary>
@@ -58,6 +61,7 @@ namespace ElmSharp
         /// it animates its bar with the contents filling in constantly and back to non-filled, in a loop.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsPulseMode
         {
             get
@@ -79,6 +83,7 @@ namespace ElmSharp
         /// it is interpreted as the closest of the boundary values in the range.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double Value
         {
             get
@@ -95,6 +100,7 @@ namespace ElmSharp
         /// Sets or gets the span value of the ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int SpanSize
         {
             get
@@ -111,6 +117,7 @@ namespace ElmSharp
         /// Sets or gets the value whether a given ProgressBar widget is horizontal.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsHorizontal
         {
             get
@@ -127,6 +134,7 @@ namespace ElmSharp
         /// Sets or gets the value whether a given progress bar widget's displaying values are inverted.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsInverted
         {
             get
@@ -149,6 +157,7 @@ namespace ElmSharp
         /// Note that the units label is optional. Use a format string such as "%1.2f meters" for example.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string UnitFormat
         {
             get
@@ -165,6 +174,7 @@ namespace ElmSharp
         /// Starts a given progress bar "pulsing" animation, if its under that mode.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void PlayPulse()
         {
             Interop.Elementary.elm_progressbar_pulse(RealHandle, true);
@@ -184,6 +194,7 @@ namespace ElmSharp
         /// Stops a given progress bar "pulsing" animation, if its under that mode.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void StopPulse()
         {
             Interop.Elementary.elm_progressbar_pulse(RealHandle, false);
@@ -195,6 +206,7 @@ namespace ElmSharp
         /// <param name="part">Part of the Progressbar.</param>
         /// <returns>Value range is from 0.0 to 1.0.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double GetPartValue(string part)
         {
             return Interop.Elementary.elm_progressbar_part_value_get(RealHandle, part);
@@ -204,6 +216,7 @@ namespace ElmSharp
         /// Sets or gets the general or main color of the given Progressbar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override Color Color
         {
             get
@@ -222,6 +235,7 @@ namespace ElmSharp
         /// <param name="part">Part of the Progressbar.</param>
         /// <param name="value">Value range is from 0.0 to 1.0.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetPartValue(string part, double value)
         {
             Interop.Elementary.elm_progressbar_part_value_set(RealHandle, part, value);
@@ -233,6 +247,7 @@ namespace ElmSharp
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);

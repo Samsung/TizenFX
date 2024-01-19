@@ -22,6 +22,7 @@ namespace ElmSharp
     /// Inherits ItemObject.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class IndexItem : ItemObject
     {
         /// <summary>
@@ -29,6 +30,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="text">The text is set to the Text. It's the 'string' type.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public IndexItem(string text) : base(IntPtr.Zero)
         {
             Text = text;
@@ -40,6 +42,7 @@ namespace ElmSharp
         /// <param name="text">The text is set to the Text. It's the 'string' type.</param>
         /// <param name="parent">Parent EvasObject</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public IndexItem(string text, EvasObject parent) : base(IntPtr.Zero, parent)
         {
             Text = text;
@@ -49,12 +52,14 @@ namespace ElmSharp
         /// Selected will be triggered when the index item is selected.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Selected;
 
         /// <summary>
         /// Gets the text.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string Text { get; private set; }
 
         /// <summary>
@@ -62,6 +67,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="selected">The selected state.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Select(bool selected)
         {
             Interop.Elementary.elm_index_item_selected_set(Handle, selected);

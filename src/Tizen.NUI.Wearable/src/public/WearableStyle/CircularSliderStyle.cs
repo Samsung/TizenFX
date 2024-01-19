@@ -18,12 +18,14 @@ using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Components;
+using System;
 
 namespace Tizen.NUI.Wearable
 {
     /// <summary>
     /// CircularSliderStyle is a class which saves CircularSlider's ux data.
     /// </summary>
+    [Obsolete("This has been deprecated in API12")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class CircularSliderStyle : ControlStyle
     {
@@ -141,6 +143,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Creates a new instance of a CircularSliderStyle.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CircularSliderStyle() : base()
         {
@@ -151,6 +154,7 @@ namespace Tizen.NUI.Wearable
         /// Creates a new instance of a CircularSliderStyle with style.
         /// </summary>
         /// <param name="style">Create CircularSliderStyle by style customized by user.</param>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CircularSliderStyle(CircularSliderStyle style) : base(style)
         {
@@ -159,6 +163,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The thickness of the track and progress.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? Thickness
         {
@@ -175,6 +180,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The property to get/set the maximum value of the CircularSlider.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float MaxValue
         {
@@ -191,6 +197,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The property to get/set the minim value of the CircularSlider.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float MinValue
         {
@@ -207,6 +214,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The property to get/set the current value of the CircularSlider.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float CurrentValue
         {
@@ -223,6 +231,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The property to get/set Track object color of the CircularSlider.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color TrackColor
         {
@@ -239,6 +248,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The property to get/set Progress object color of the CircularSlider.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color ProgressColor
         {
@@ -255,6 +265,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Gets or sets the size of the thumb of Slider.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Size ThumbSize
         {
@@ -271,6 +282,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The property to get/set Thumb object color of the CircularSlider.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color ThumbColor
         {
@@ -288,6 +300,7 @@ namespace Tizen.NUI.Wearable
         /// Flag to be enabled or disabled in CircularSlider.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public new bool? IsEnabled
         {
             get

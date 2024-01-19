@@ -23,6 +23,7 @@ namespace ElmSharp
     /// Enumeration for the selection mode of the toolbar.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum ToolbarSelectionMode
     {
         /// <summary>
@@ -50,6 +51,7 @@ namespace ElmSharp
     /// Enumeration for setting the toolbar items display behavior, it can be scrollable, can show a menu with exceeding items, or simply hide them.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum ToolbarShrinkMode
     {
         /// <summary>
@@ -82,6 +84,7 @@ namespace ElmSharp
     /// Enumeration for the icon lookup order of the toolbar.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum ToolbarIconLookupOrder
     {
         /// <summary>
@@ -112,12 +115,14 @@ namespace ElmSharp
     /// Inherits EventArgs.
     /// </remarks>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class ToolbarItemEventArgs : EventArgs
     {
         /// <summary>
         /// Gets the ToolbarItem.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ToolbarItem Item { get; private set; }
 
         internal static ToolbarItemEventArgs CreateFromSmartEvent(IntPtr data, IntPtr obj, IntPtr info)
@@ -131,6 +136,7 @@ namespace ElmSharp
     /// The Toolbar is a widget that displays a list of items inside a box.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class Toolbar : Widget
     {
         SmartEvent<ToolbarItemEventArgs> _clicked;
@@ -144,6 +150,7 @@ namespace ElmSharp
         /// A EvasObject to which the new Table instance will be attached.
         /// </param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Toolbar(EvasObject parent) : base(parent)
         {
             _selected = new SmartEvent<ToolbarItemEventArgs>(this, this.RealHandle, "selected", ToolbarItemEventArgs.CreateFromSmartEvent);
@@ -171,6 +178,7 @@ namespace ElmSharp
         /// Selected will be triggered when toolbar has been selected.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<ToolbarItemEventArgs> Selected;
 
         /// <summary>
@@ -178,6 +186,7 @@ namespace ElmSharp
         /// </summary>
         /// <remarks>True for homogeneous, False for no homogeneous.</remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool Homogeneous
         {
             get
@@ -194,6 +203,7 @@ namespace ElmSharp
         /// Sets or gets the slection mode of a given Toolbar widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ToolbarSelectionMode SelectionMode
         {
             get
@@ -210,6 +220,7 @@ namespace ElmSharp
         /// Sets or gets the shrink mode of a given Toolbar widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ToolbarShrinkMode ShrinkMode
         {
             get
@@ -226,6 +237,7 @@ namespace ElmSharp
         /// Sets or gets the toolbar's current orientation.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsHorizontal
         {
@@ -245,6 +257,7 @@ namespace ElmSharp
         /// Icons added before calling this function will not be affected.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ToolbarIconLookupOrder IconLookupOrder
         {
             get
@@ -262,6 +275,7 @@ namespace ElmSharp
         /// Default value is 32 pixels, to be used by toolbar items.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int IconSize
         {
             get
@@ -278,6 +292,7 @@ namespace ElmSharp
         /// Gets the number of items in a Toolbar widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int ItemsCount
         {
             get
@@ -291,6 +306,7 @@ namespace ElmSharp
         /// </summary>
         /// <remarks>The toolbar items alignment, a float between 0.0 and 1.0.</remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double ItemAlignment
         {
             get
@@ -311,6 +327,7 @@ namespace ElmSharp
         /// By default it's false.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool TransverseExpansion
         {
             get
@@ -331,6 +348,7 @@ namespace ElmSharp
         /// <seealso cref="Append(string, string)"/>
         /// <seealso cref="Prepend(string)"/>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ToolbarItem Append(string label)
         {
             return Append(label, null);
@@ -346,6 +364,7 @@ namespace ElmSharp
         /// <seealso cref="Prepend(string)"/>
         /// <seealso cref="Prepend(string, string)"/>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ToolbarItem Append(string label, string icon)
         {
             ToolbarItem item = new ToolbarItem(label, icon, this);
@@ -362,6 +381,7 @@ namespace ElmSharp
         /// <seealso cref="Append(string, string)"/>
         /// <seealso cref="Prepend(string, string)"/>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ToolbarItem Prepend(string label)
         {
             return Prepend(label, null);
@@ -377,6 +397,7 @@ namespace ElmSharp
         /// <seealso cref="Append(string, string)"/>
         /// <seealso cref="Prepend(string)"/>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ToolbarItem Prepend(string label, string icon)
         {
             ToolbarItem item = new ToolbarItem(label, icon, this);
@@ -392,6 +413,7 @@ namespace ElmSharp
         /// <returns>The new <see cref="ToolbarItem"/> which is inserted into the toolbar.</returns>
         /// <seealso cref="InsertBefore(ToolbarItem, string, string)"/>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ToolbarItem InsertBefore(ToolbarItem before, string label)
         {
             return InsertBefore(before, label, string.Empty);
@@ -406,6 +428,7 @@ namespace ElmSharp
         /// <returns>The new <see cref="ToolbarItem"/> which is inserted into the toolbar.</returns>
         /// <seealso cref="InsertBefore(ToolbarItem, string)"/>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ToolbarItem InsertBefore(ToolbarItem before, string label, string icon)
         {
             ToolbarItem item = new ToolbarItem(label, icon, this);
@@ -421,6 +444,7 @@ namespace ElmSharp
         /// <param name="icon">A string with the icon name or the absolute path of an image file.</param>
         /// <returns>The new <see cref="ToolbarItem"/> which is inserted into the toolbar.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ToolbarItem InsertAfter(ToolbarItem after, string label, string icon)
         {
             ToolbarItem item = new ToolbarItem(label, icon, this);
@@ -434,6 +458,7 @@ namespace ElmSharp
         /// <param name="label">The label of the item.</param>
         /// <returns>The <see cref="ToolbarItem"/> into the toolbar.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ToolbarItem FindItemByLabel(string label)
         {
             IntPtr handle = Interop.Elementary.elm_toolbar_item_find_by_label(RealHandle, label);
@@ -444,6 +469,7 @@ namespace ElmSharp
         /// Gets the selected ToolbarItemItem of the toolbar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ToolbarItem SelectedItem
         {
             get
@@ -457,6 +483,7 @@ namespace ElmSharp
         /// Gets the first ToolbarItemItem of the toolbar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ToolbarItem FirstItem
         {
             get
@@ -470,6 +497,7 @@ namespace ElmSharp
         /// Gets the last ToolbarItemItem of the toolbar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ToolbarItem LastItem
         {
             get
@@ -485,6 +513,7 @@ namespace ElmSharp
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);

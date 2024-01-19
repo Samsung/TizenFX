@@ -23,6 +23,7 @@ namespace ElmSharp
     /// The Color is a struct to record the check's state.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public struct Color
     {
         readonly int _a;
@@ -45,6 +46,7 @@ namespace ElmSharp
         /// In the default Color instance, the mode type is default with RGBA all set as -1.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static Color Default
         {
             get { return new Color(-1, -1, -1, -1, Mode.Default); }
@@ -55,6 +57,7 @@ namespace ElmSharp
         /// The return type is bool.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsDefault
         {
             get { return _mode == Mode.Default; }
@@ -65,6 +68,7 @@ namespace ElmSharp
         /// A means the Alpha in color.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int A
         {
             get { return _a; }
@@ -75,6 +79,7 @@ namespace ElmSharp
         /// R means the Red in color.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int R
         {
             get { return _r; }
@@ -85,6 +90,7 @@ namespace ElmSharp
         /// G means the Green in color.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int G
         {
             get { return _g; }
@@ -95,6 +101,7 @@ namespace ElmSharp
         /// B means the Blue in color.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int B
         {
             get { return _b; }
@@ -108,6 +115,7 @@ namespace ElmSharp
         /// <param name="g">Green of RGB.</param>
         /// <param name="b">Blue of RGB.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Color(int r, int g, int b) : this(r, g, b, 255)
         {
         }
@@ -121,6 +129,7 @@ namespace ElmSharp
         /// <param name="b">Blue of RGBA.</param>
         /// <param name="a">Alpha of RGBA.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Color(int r, int g, int b, int a) : this(r, g, b, a, Mode.Rgb)
         {
         }
@@ -146,6 +155,7 @@ namespace ElmSharp
         /// </summary>
         /// <returns>A 32-bit signed integer hash code.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override int GetHashCode()
         {
             int hashcode = _r.GetHashCode();
@@ -164,6 +174,7 @@ namespace ElmSharp
         /// otherwise, false.
         /// </returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override bool Equals(object obj)
         {
             if (obj is Color)
@@ -182,6 +193,7 @@ namespace ElmSharp
         /// Return type is bool. If they are same, return true.
         /// </returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static bool operator ==(Color a, Color b)
         {
             return EqualsInner(a, b);
@@ -196,6 +208,7 @@ namespace ElmSharp
         /// Return type is bool. If they are different, return true.
         /// </returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static bool operator !=(Color a, Color b)
         {
             return !(a == b);
@@ -213,6 +226,7 @@ namespace ElmSharp
         /// </summary>
         /// <returns>The fully qualified type name.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override string ToString()
         {
             return string.Format(CultureInfo.InvariantCulture, "[Color: R={0}, G={1}, B={2}, A={3}]", R, G, B, A);
@@ -224,6 +238,7 @@ namespace ElmSharp
         /// <param name="hex">Hexadecimal string.</param>
         /// <returns>New instance of the Color struct.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static Color FromHex(string hex)
         {
             string ret = hex.Replace("#", "");
@@ -248,6 +263,7 @@ namespace ElmSharp
         /// <param name="argb">Unsigned integer indicates RGBA.</param>
         /// <returns>New instance of the Color struct.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static Color FromUint(uint argb)
         {
             return FromRgba((byte)((argb & 0x00ff0000) >> 0x10), (byte)((argb & 0x0000ff00) >> 0x8), (byte)(argb & 0x000000ff), (byte)((argb & 0xff000000) >> 0x18));
@@ -262,6 +278,7 @@ namespace ElmSharp
         /// <param name="a">Alpha of RGBA.</param>
         /// <returns>New instance of the Color struct.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static Color FromRgba(int r, int g, int b, int a)
         {
             return new Color(r, g, b, a);
@@ -275,6 +292,7 @@ namespace ElmSharp
         /// <param name="b">Blue of RGB.</param>
         /// <returns>New instance of the Color struct.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static Color FromRgb(int r, int g, int b)
         {
             return FromRgba(r, g, b, 255);
@@ -290,96 +308,115 @@ namespace ElmSharp
         /// The Tansparent is a predefined Color instance. It's RGBA value is (0, 0, 0, 0).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static readonly Color Transparent = FromRgba(0, 0, 0, 0);
         /// <summary>
         /// The Aqua is a predefined Color instance. It's RGB value is (0, 255, 255).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static readonly Color Aqua = FromRgb(0, 255, 255);
         /// <summary>
         /// The Black is a predefined Color instance. It's RGB value is (0, 0, 0).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static readonly Color Black = FromRgb(0, 0, 0);
         /// <summary>
         /// The Blue is a predefined Color instance. It's RGB value is (0, 0, 255).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static readonly Color Blue = FromRgb(0, 0, 255);
         /// <summary>
         /// The Fuchsia is a predefined Color instance. It's RGB value is (255, 0, 255).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static readonly Color Fuchsia = FromRgb(255, 0, 255);
         /// <summary>
         /// The Gray is a predefined Color instance. It's RGB value is (128, 128, 128).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static readonly Color Gray = FromRgb(128, 128, 128);
         /// <summary>
         /// The Green is a predefined Color instance. It's RGB value is (0, 128, 0).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static readonly Color Green = FromRgb(0, 128, 0);
         /// <summary>
         /// The Lime is a predefined Color instance. It's RGB value is (0, 255, 0).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static readonly Color Lime = FromRgb(0, 255, 0);
         /// <summary>
         /// The Maroon is a predefined Color instance. It's RGB value is (128, 0, 0).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static readonly Color Maroon = FromRgb(128, 0, 0);
         /// <summary>
         /// The Navy is a predefined Color instance. It's RGB value is (0, 0, 128).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static readonly Color Navy = FromRgb(0, 0, 128);
         /// <summary>
         /// The Olive is a predefined Color instance. It's RGB value is (128, 128, 0).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static readonly Color Olive = FromRgb(128, 128, 0);
         /// <summary>
         /// The Orange is a predefined Color instance. It's RGB value is (255, 165, 0).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static readonly Color Orange = FromRgb(255, 165, 0);
         /// <summary>
         /// The Purple is a predefined Color instance. It's RGB value is (128, 0, 128).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static readonly Color Purple = FromRgb(128, 0, 128);
         /// <summary>
         /// The Pink is a predefined Color instance. It's RGB value is (255, 102, 255).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static readonly Color Pink = FromRgb(255, 102, 255);
         /// <summary>
         /// The Red is a predefined Color instance. It's RGB value is (255, 0, 0).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static readonly Color Red = FromRgb(255, 0, 0);
         /// <summary>
         /// The Silver is a predefined Color instance. It's RGB value is (192, 192, 192).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static readonly Color Silver = FromRgb(192, 192, 192);
         /// <summary>
         /// The Teal is a predefined Color instance. It's RGB value is (0, 128, 128).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static readonly Color Teal = FromRgb(0, 128, 128);
         /// <summary>
         /// The White is a predefined Color instance. It's RGB value is (255, 255, 255).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static readonly Color White = FromRgb(255, 255, 255);
         /// <summary>
         /// The Yellow is a predefined Color instance. It's RGB value is (255, 255, 0).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static readonly Color Yellow = FromRgb(255, 255, 0);
         #endregion
     }

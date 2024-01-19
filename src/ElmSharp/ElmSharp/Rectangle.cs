@@ -22,6 +22,7 @@ namespace ElmSharp
     /// The Rectangle is a class that is used to draw a solid colored rectangle.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class Rectangle : EvasObject
     {
         /// <summary>
@@ -29,6 +30,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">The <see cref="EvasObject"/> to which the new slider will be attached as a child.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Rectangle(EvasObject parent) : base(parent)
         {
             Interop.Evas.evas_object_size_hint_weight_set(Handle, 1.0, 1.0);
@@ -40,6 +42,7 @@ namespace ElmSharp
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr evas = Interop.Evas.evas_object_evas_get(parent.Handle);

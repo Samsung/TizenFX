@@ -22,6 +22,7 @@ namespace ElmSharp
     /// The Button is a widget that works as a clickable input element to trigger events.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class Button : Layout
     {
         private SmartEvent _clicked;
@@ -36,6 +37,7 @@ namespace ElmSharp
         /// The EvasObject to which the new Button will be attached as a child.
         /// </param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Button(EvasObject parent) : base(parent)
         {
             _clicked = new SmartEvent(this, this.RealHandle, "clicked");
@@ -68,24 +70,28 @@ namespace ElmSharp
         /// Clicked will be triggered when the button is clicked.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Clicked;
 
         /// <summary>
         /// Repeated will be triggered when the button is pressed without releasing it.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Repeated;
 
         /// <summary>
         /// Pressed will be triggered when the button is pressed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Pressed;
 
         /// <summary>
         /// Released will be triggered when the button is released after being pressed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Released;
 
         /// <summary>
@@ -99,6 +105,7 @@ namespace ElmSharp
         /// and the time between each new emission is given by AutoRepeatGapTimeout.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool AutoRepeat
         {
             get
@@ -115,6 +122,7 @@ namespace ElmSharp
         /// Sets or gets the initial timeout before the Repeat event is generated.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double AutoRepeatInitialTime
         {
             get
@@ -131,6 +139,7 @@ namespace ElmSharp
         /// Sets or gets the interval between each generated Repeat event.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double AutoRepeatGapTimeout
         {
             get
@@ -158,6 +167,7 @@ namespace ElmSharp
         /// Sets or gets the BackgroundColor of a given button in the normal and pressed status.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override Color BackgroundColor
         {
             set
@@ -184,6 +194,7 @@ namespace ElmSharp
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_button_add(parent.Handle);

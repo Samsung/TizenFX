@@ -26,6 +26,7 @@ namespace ElmSharp
     /// its widgets in a nice layout.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public abstract class Container : Widget
     {
         HashSet<EvasObject> _children = new HashSet<EvasObject>();
@@ -36,6 +37,7 @@ namespace ElmSharp
         /// <param name="parent">The parent is a given object, which will be attached by the Container
         /// as a child. It's <see cref="EvasObject"/> type.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected Container(EvasObject parent) : base(parent)
         {
         }
@@ -44,6 +46,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of the Container class.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected Container()
         {
         }
@@ -52,6 +55,7 @@ namespace ElmSharp
         /// Sets the background color of a given Container.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override Color BackgroundColor
         {
             set
@@ -72,6 +76,7 @@ namespace ElmSharp
         /// Gets the collection of a child EvasObject of the Container.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected IEnumerable<EvasObject> Children => _children;
 
         /// <summary>
@@ -79,6 +84,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="obj">The EvasObject object to be added.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected void AddChild(EvasObject obj)
         {
             _children.Add(obj);
@@ -90,6 +96,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="obj">The EvasObject object to be removed.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected void RemoveChild(EvasObject obj)
         {
             _children.Remove(obj);
@@ -99,6 +106,7 @@ namespace ElmSharp
         /// Clears all the children of the Container.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected void ClearChildren()
         {
             _children.Clear();

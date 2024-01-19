@@ -30,6 +30,7 @@ namespace ElmSharp
     /// </summary>
     /// <typeparam name="TEventArgs">The parameter for the event.</typeparam>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class SmartEvent<TEventArgs> : IInvalidatable where TEventArgs : EventArgs
     {
         /// <summary>
@@ -40,6 +41,7 @@ namespace ElmSharp
         /// <param name="info">The item sender object.</param>
         /// <returns>Return smart event item args.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public delegate TEventArgs SmartEventInfoParser(IntPtr data, IntPtr obj, IntPtr info);
 
         private EvasObject _sender;
@@ -55,6 +57,7 @@ namespace ElmSharp
         /// <param name="eventName">The event name.</param>
         /// <param name="parser">The event parameter.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public SmartEvent(EvasObject sender, string eventName, SmartEventInfoParser parser) : this(sender, sender.Handle, eventName, parser)
         {
         }
@@ -67,6 +70,7 @@ namespace ElmSharp
         /// <param name="eventName">The event name.</param>
         /// <param name="parser">The event parser.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsableAttribute(EditorBrowsableState.Never)]
         public SmartEvent(EvasObject sender, IntPtr handle, string eventName, SmartEventInfoParser parser)
         {
@@ -83,6 +87,7 @@ namespace ElmSharp
         /// <param name="sender">The source of the event.</param>
         /// <param name="eventName">The event name.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public SmartEvent(EvasObject sender, string eventName) : this(sender, eventName, null)
         {
         }
@@ -105,6 +110,7 @@ namespace ElmSharp
         /// Adds or removes a delegate for the event.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<TEventArgs> On
         {
             add
@@ -143,6 +149,7 @@ namespace ElmSharp
         /// Destroys the current object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Dispose()
         {
             Dispose(true);
@@ -153,6 +160,7 @@ namespace ElmSharp
         /// Makes the current instance invalidate.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void MakeInvalidate()
         {
             _sender = null;
@@ -167,6 +175,7 @@ namespace ElmSharp
         /// otherwise false.
         /// </param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
@@ -191,6 +200,7 @@ namespace ElmSharp
     /// They are defined by an event string, which identifies them uniquely.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class SmartEvent : IInvalidatable
     {
         private SmartEvent<EventArgs> _smartEvent;
@@ -203,6 +213,7 @@ namespace ElmSharp
         /// <param name="sender">The source of the event.</param>
         /// <param name="eventName">The event name.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public SmartEvent(EvasObject sender, string eventName) : this(sender, sender.RealHandle, eventName)
         {
         }
@@ -214,6 +225,7 @@ namespace ElmSharp
         /// <param name="handle">The event handler.</param>
         /// <param name="eventName">The event name.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsableAttribute(EditorBrowsableState.Never)]
         public SmartEvent(EvasObject sender, IntPtr handle, string eventName)
         {
@@ -232,6 +244,7 @@ namespace ElmSharp
         /// Adds or removes a delegate for the event.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler On
         {
             add
@@ -262,6 +275,7 @@ namespace ElmSharp
         /// Destroys the current object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Dispose()
         {
             Dispose(true);
@@ -272,6 +286,7 @@ namespace ElmSharp
         /// Makes the current instance invalidate.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void MakeInvalidate()
         {
             _smartEvent.MakeInvalidate();
@@ -285,6 +300,7 @@ namespace ElmSharp
         /// otherwise false.
         /// </param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)

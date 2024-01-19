@@ -22,6 +22,7 @@ namespace ElmSharp
     /// The ItemObjectExtension is used to manage the item object extension.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public static class ItemObjectExtension
     {
         /// <summary>
@@ -29,6 +30,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="obj">The item object, which has grabbed the highlight.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void GrabHighlight(this ItemObject obj)
         {
             Interop.Elementary.elm_atspi_component_highlight_grab(obj.Handle);
@@ -39,6 +41,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="obj">The item object, which has cleared the highlight.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void ClearHighlight(this ItemObject obj)
         {
             Interop.Elementary.elm_atspi_component_highlight_clear(obj.Handle);

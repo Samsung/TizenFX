@@ -25,33 +25,39 @@ namespace ElmSharp.Wearable
     /// Inherits Layout
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class MoreOption : Layout
     {
         /// <summary>
         /// Sets or gets the list of the more option item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public IList<MoreOptionItem> Items { get; private set; }
 
         /// <summary>
         /// Selected will be triggered when the user selects an item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<MoreOptionItemEventArgs> Selected;
         /// <summary>
         /// Clicked will be triggered when the user selects the already selected item again or selects a selector.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<MoreOptionItemEventArgs> Clicked;
         /// <summary>
         /// Opened will be triggered when the more option view is shown.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Opened;
         /// <summary>
         /// Closed will be triggered when the more option view is hidden.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Closed;
 
         SmartEvent<PointerEventArgs> _selectedEvent;
@@ -64,6 +70,7 @@ namespace ElmSharp.Wearable
         /// </summary>
         /// <param name="parent">The parent is a given container, which will be attached by the MoreOption as a child. It's <see cref="EvasObject"/> type.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public MoreOption(EvasObject parent) : base(parent)
         {
             Items = new MoreOptionList(this);
@@ -96,6 +103,7 @@ namespace ElmSharp.Wearable
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Eext.eext_more_option_add(parent);
@@ -105,6 +113,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the direction of more option.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public MoreOptionDirection Direction
         {
             get
@@ -123,6 +132,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the visibility of the more option view.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsOpened
         {
             get
@@ -141,6 +151,7 @@ namespace ElmSharp.Wearable
     /// Enumeration for the more option direction types.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum MoreOptionDirection
     {
         /// <summary>
