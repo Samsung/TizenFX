@@ -184,16 +184,26 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textures != null)
                 {
-                    IntPtr unmanagedPointer = Marshal.AllocHGlobal(sizeof(IntPtr) * textures.Count);
-                    IntPtr[] texturesArray = new IntPtr[textures.Count];
-                    for (int i = 0; i < textures.Count; i++)
+                    int count = textures.Count;
+                    int intptrBytes = checked(Marshal.SizeOf(typeof(IntPtr)) * count);
+                    if (intptrBytes > 0)
                     {
-                        texturesArray[i] = HandleRef.ToIntPtr(Texture.getCPtr(textures[i]));
+                        IntPtr[] texturesArray = new IntPtr[count];
+                        for (int i = 0; i < count; i++)
+                        {
+                            texturesArray[i] = HandleRef.ToIntPtr(Texture.getCPtr(textures[i]));
+                        }
+                        IntPtr unmanagedPointer = Marshal.AllocHGlobal(intptrBytes);
+                        try
+                        {
+                            Marshal.Copy(texturesArray, 0, unmanagedPointer, texturesArray.Length);
+                            Interop.GLView.GlViewBindTextureResources(SwigCPtr, unmanagedPointer, texturesArray.Length);
+                        }
+                        finally
+                        {
+                            Marshal.FreeHGlobal(unmanagedPointer);
+                        }
                     }
-                    System.Runtime.InteropServices.Marshal.Copy(texturesArray, 0, unmanagedPointer, textures.Count);
-
-                    Interop.GLView.GlViewBindTextureResources(SwigCPtr, unmanagedPointer, textures.Count);
-                    Marshal.FreeHGlobal(unmanagedPointer);
                 }
             }
         }
