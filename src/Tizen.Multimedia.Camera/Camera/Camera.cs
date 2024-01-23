@@ -79,7 +79,7 @@ namespace Tizen.Multimedia
         /// In case of any invalid operations.
         /// </exception>
         /// <exception cref="NotSupportedException">The camera feature is not supported.</exception>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 12 </since_tizen>
         /// <feature> http://tizen.org/feature/camera </feature>
         /// <seealso cref="CameraDeviceManager.IsCameraDeviceManagerSupported"/>
         public Camera() : this(CameraDevice.Default)
