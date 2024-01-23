@@ -72,6 +72,7 @@ namespace Tizen.Applications
         /// <summary>
         /// InstallProgressChanged event. This event occurs when a package is getting installed and the progress of the request to the package manager is changed.
         /// </summary>
+        /// <exception cref="IOException">Thrown when subscribing to package manager event failed.</exception>
         /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<PackageManagerEventArgs> InstallProgressChanged
         {
@@ -98,6 +99,7 @@ namespace Tizen.Applications
         /// <summary>
         /// UninstallProgressChanged event. This event occurs when a package is getting uninstalled and the progress of the request to the package manager is changed.
         /// </summary>
+        /// <exception cref="IOException">Thrown when subscribing to package manager event failed.</exception>
         /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<PackageManagerEventArgs> UninstallProgressChanged
         {
@@ -124,6 +126,7 @@ namespace Tizen.Applications
         /// <summary>
         /// UpdateProgressChanged event. This event occurs when a package is getting updated and the progress of the request to the package manager is changed.
         /// </summary>
+        /// <exception cref="IOException">Thrown when subscribing to package manager event failed.</exception>
         /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<PackageManagerEventArgs> UpdateProgressChanged
         {
@@ -150,6 +153,7 @@ namespace Tizen.Applications
         /// <summary>
         /// MoveProgressChanged event. This event occurs when a package is getting moved and the progress of the request to the package manager is changed.
         /// </summary>
+        /// <exception cref="IOException">Thrown when subscribing to package manager event failed.</exception>
         /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<PackageManagerEventArgs> MoveProgressChanged
         {
@@ -176,6 +180,7 @@ namespace Tizen.Applications
         /// <summary>
         /// ClearDataProgressChanged event. This event occurs when data directories are cleared in the given package.
         /// </summary>
+        /// <exception cref="IOException">Thrown when subscribing to package manager event failed.</exception>
         /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<PackageManagerEventArgs> ClearDataProgressChanged
         {
@@ -1403,6 +1408,7 @@ namespace Tizen.Applications
             if (err != Interop.PackageManager.ErrorCode.None)
             {
                 Log.Warn(LogTag, string.Format("Failed to register callback for package manager event. err = {0}", err));
+                throw PackageManagerErrorFactory.GetException(err, "Failed to register package manager event.");
             }
         }
 
