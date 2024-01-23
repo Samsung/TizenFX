@@ -63,12 +63,21 @@ namespace Tizen.NUI
             int structSize = Marshal.SizeOf<VertexType>();
             global::System.IntPtr buffer = Marshal.AllocHGlobal(checked(structSize * vertices.Length));
 
-            for (int i = 0; i < vertices.Length; i++)
+            try
             {
-                Marshal.StructureToPtr(vertices[i], buffer + i * structSize, true);
+                for (int i = 0; i < vertices.Length; i++)
+                {
+                    Marshal.StructureToPtr(vertices[i], buffer + i * structSize, true);
+                }
+
+                Interop.VertexBuffer.SetData(SwigCPtr, buffer, (uint)vertices.Length);
+            }
+            finally
+            {
+                // Free AllocHGlobal memory after call Interop.VertexBuffer.SetData()
+                Marshal.FreeHGlobal(buffer);
             }
 
-            Interop.VertexBuffer.SetData(SwigCPtr, buffer, (uint)vertices.Length);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
