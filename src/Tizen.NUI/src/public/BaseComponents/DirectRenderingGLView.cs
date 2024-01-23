@@ -195,10 +195,15 @@ namespace Tizen.NUI.BaseComponents
                             texturesArray[i] = HandleRef.ToIntPtr(Texture.getCPtr(textures[i]));
                         }
                         IntPtr unmanagedPointer = Marshal.AllocHGlobal(intptrBytes);
-                        Marshal.Copy(texturesArray, 0, unmanagedPointer, texturesArray.Length);
-
-                        Interop.GLView.GlViewBindTextureResources(SwigCPtr, unmanagedPointer, texturesArray.Length);
-                        Marshal.FreeHGlobal(unmanagedPointer);
+                        try
+                        {
+                            Marshal.Copy(texturesArray, 0, unmanagedPointer, texturesArray.Length);
+                            Interop.GLView.GlViewBindTextureResources(SwigCPtr, unmanagedPointer, texturesArray.Length);
+                        }
+                        finally
+                        {
+                            Marshal.FreeHGlobal(unmanagedPointer);
+                        }
                     }
                 }
             }
