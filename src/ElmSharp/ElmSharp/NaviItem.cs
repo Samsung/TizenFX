@@ -23,6 +23,7 @@ namespace ElmSharp
     /// Inherits ItemObject
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class NaviItem : ItemObject
     {
         EvasObject _content;
@@ -57,12 +58,14 @@ namespace ElmSharp
         /// Popped will be triggered when NaviItem is removed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Popped;
 
         /// <summary>
         /// Gets the content object. The name of the content part is "elm.swallow.content".
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public EvasObject Content
         {
             get { return _content; }
@@ -72,6 +75,7 @@ namespace ElmSharp
         /// Sets or gets a value whether the title area is enabled or not.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool TitleBarVisible
         {
             get
@@ -88,6 +92,7 @@ namespace ElmSharp
         ///  Sets or gets the title bar background color.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Color TitleBarBackgroundColor
         {
             get
@@ -112,6 +117,7 @@ namespace ElmSharp
         /// Sets or gets an item style.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override string Style
         {
             get
@@ -129,6 +135,7 @@ namespace ElmSharp
         /// The method should be overridden in the children class.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override void OnInvalidate()
         {
             if (!_isPopped)

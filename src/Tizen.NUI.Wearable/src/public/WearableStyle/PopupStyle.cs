@@ -17,12 +17,14 @@
 using System.ComponentModel;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Components;
+using System;
 
 namespace Tizen.NUI.Wearable
 {
     /// <summary>
     /// PopupStyle used to config the Popup represent.
     /// </summary>
+    [Obsolete("This has been deprecated in API12")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class PopupStyle : ControlStyle
     {
@@ -44,6 +46,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Creates a new instance of a PopupStyle.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PopupStyle() : base()
         {
@@ -53,6 +56,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Creates a new instance of a PopupStyle using style.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PopupStyle(PopupStyle style) : base(style)
         {
@@ -61,6 +65,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// WrapContent
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? WrapContent
         {

@@ -24,7 +24,7 @@ namespace Tizen.NUI.Wearable
     /// <summary>
     /// [Draft] This class provides a View that can recycle items to improve performance.
     /// </summary>
-    /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [Obsolete("This has been deprecated in API12")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class RecyclerView : ScrollableBase
     {
@@ -36,6 +36,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Default constructor.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         public RecyclerView() : base()
         {
             Initialize(new RecycleAdapter(), new RecycleLayoutManager());
@@ -47,7 +48,7 @@ namespace Tizen.NUI.Wearable
         /// <param name="adapter">Recycle adapter of RecyclerView.</param>
         /// <param name="layoutManager">Recycle layoutManager of RecyclerView.</param>
         /// <since_tizen> 8 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public RecyclerView(RecycleAdapter adapter, RecycleLayoutManager layoutManager)
         {
@@ -79,7 +80,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Gets / Sets total number of items.
         /// </summary>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int TotalItemCount
         {
@@ -135,7 +136,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Scrolling direction mode for RecyclerView. <see cref="ScrollableBase.ScrollingDirection"/>.
         /// </summary>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new Direction ScrollingDirection
         {
@@ -162,7 +163,7 @@ namespace Tizen.NUI.Wearable
         /// Recycler adpater.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public RecycleAdapter Adapter
         {
@@ -189,7 +190,7 @@ namespace Tizen.NUI.Wearable
         /// Recycler layoutManager.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public RecycleLayoutManager LayoutManager
         {
@@ -250,7 +251,7 @@ namespace Tizen.NUI.Wearable
         /// <param name="position">Scroll position which is calculated by ScrollableBase</param>
         /// <returns>Adjusted scroll destination</returns>
         /// <since_tizen> 8 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override float AdjustTargetPositionOfScrollAnimation(float position)
         {
@@ -264,6 +265,7 @@ namespace Tizen.NUI.Wearable
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API12")]
         public override View GetNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
         {
             View nextFocusedView = null;

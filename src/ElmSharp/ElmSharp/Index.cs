@@ -24,6 +24,7 @@ namespace ElmSharp
     /// Inherits Layout.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class Index : Layout
     {
         HashSet<IndexItem> _children = new HashSet<IndexItem>();
@@ -34,6 +35,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">The parent is a given container, which will be attached by Index as a child. It's <see cref="EvasObject"/> type.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Index(EvasObject parent) : base(parent)
         {
             _delayedChanged = new SmartEvent(this, this.RealHandle, "delay,changed");
@@ -44,12 +46,14 @@ namespace ElmSharp
         /// Changed will be triggered when the selected index item is changed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Changed;
 
         /// <summary>
         /// Sets or gets whether the auto hiding feature is enabled or not for a given index widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool AutoHide
         {
             get
@@ -66,6 +70,7 @@ namespace ElmSharp
         /// Sets or gets a value whether the horizontal mode is enabled or not.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsHorizontal
         {
             get
@@ -82,6 +87,7 @@ namespace ElmSharp
         /// Sets or gets a value of the indicator's disabled status.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IndicatorVisible
         {
             get
@@ -98,6 +104,7 @@ namespace ElmSharp
         /// Sets or gets whether the omit feature is enabled or not for a given index widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool OmitEnabled
         {
             get
@@ -115,6 +122,7 @@ namespace ElmSharp
         /// The delay time is 0.2 seconds by default.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double Delay
         {
             get
@@ -131,6 +139,7 @@ namespace ElmSharp
         /// Gets or sets the items level for a given index widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int Level
         {
             get
@@ -148,6 +157,7 @@ namespace ElmSharp
         /// Priority group will be shown as many items as it can, and other group will be shown for one character only.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int Priority
         {
             get
@@ -164,6 +174,7 @@ namespace ElmSharp
         /// Gets the last selected item for a given index widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public IndexItem SelectedItem
         {
             get
@@ -179,6 +190,7 @@ namespace ElmSharp
         /// <param name="label">The label for which the item should be indexed.</param>
         /// <returns>An object to the IndexItem if added, or null on errors.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public IndexItem Append(string label)
         {
             IndexItem item = new IndexItem(label, this);
@@ -192,6 +204,7 @@ namespace ElmSharp
         /// <param name="label">The label for which the item should be indexed.</param>
         /// <returns>A handle to the item if added, or null on errors.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public IndexItem Prepend(string label)
         {
             IndexItem item = new IndexItem(label, this);
@@ -206,6 +219,7 @@ namespace ElmSharp
         /// <param name="before">The index item to insert after.</param>
         /// <returns>An object to the IndexItem if added, or null on errors.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public IndexItem InsertBefore(string label, IndexItem before)
         {
             IndexItem item = new IndexItem(label, this);
@@ -220,6 +234,7 @@ namespace ElmSharp
         /// <param name="after">The index item to insert after.</param>
         /// <returns>An object to the IndexItem if added, or null on errors.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public IndexItem InsertAfter(string label, IndexItem after)
         {
             IndexItem item = new IndexItem(label, this);
@@ -232,6 +247,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="level">The index level (one of 0 or 1) where the changes were made.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Update(int level)
         {
             Interop.Elementary.elm_index_level_go(RealHandle, level);
@@ -241,6 +257,7 @@ namespace ElmSharp
         /// Removes all the items from a given index widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Clear()
         {
             Interop.Elementary.elm_index_item_clear(RealHandle);
@@ -252,6 +269,7 @@ namespace ElmSharp
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);

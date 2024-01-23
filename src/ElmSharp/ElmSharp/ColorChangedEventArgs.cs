@@ -24,18 +24,21 @@ namespace ElmSharp
     /// Refer to <see cref="ColorSelector"/>type.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class ColorChangedEventArgs : EventArgs
     {
         /// <summary>
         /// Gets an old color in the color changed event.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Color OldColor { get; private set; }
 
         /// <summary>
         /// Gets a new color in the color changed event.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Color NewColor { get; private set; }
 
         /// <summary>
@@ -44,6 +47,7 @@ namespace ElmSharp
         /// <param name="oldColor">Old color.</param>
         /// <param name="newColor">New color.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ColorChangedEventArgs(Color oldColor, Color newColor)
         {
             this.OldColor = oldColor;

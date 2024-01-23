@@ -24,18 +24,21 @@ namespace ElmSharp
     /// Include the old state and the new state.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class CheckStateChangedEventArgs : EventArgs
     {
         /// <summary>
         /// Gets the OldState property. The return type is bool.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool OldState { get; private set; }
 
         /// <summary>
         /// Gets the NewState property. The return type is bool.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool NewState { get; private set; }
 
         /// <summary>
@@ -44,6 +47,7 @@ namespace ElmSharp
         /// <param name="oldState">Old state of check to use this CheckStateChangedEventArgs.</param>
         /// <param name="newState">New state of check to use this CheckStateChangedEventArgs.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public CheckStateChangedEventArgs(bool oldState, bool newState)
         {
             this.OldState = oldState;

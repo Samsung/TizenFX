@@ -22,6 +22,7 @@ namespace ElmSharp
     /// The Box is a container that is used to arrange UI components in a linear order.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class Box : Container
     {
         private Interop.Elementary.BoxLayoutCallback _layoutCallback;
@@ -31,6 +32,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">The EvasObject to which the new Box will be attached as a child.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Box(EvasObject parent) : base(parent)
         {
         }
@@ -39,6 +41,7 @@ namespace ElmSharp
         /// Sets or gets the IsHorizontal value, which describe the pack direction. Vertical is default.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsHorizontal
         {
             get
@@ -55,6 +58,7 @@ namespace ElmSharp
         /// Sets or gets whether the box has to arrange its children homogeneously.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsHomogeneous
         {
             get
@@ -78,6 +82,7 @@ namespace ElmSharp
         /// </remarks>
         /// <param name="content">The oject to be packed.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void PackEnd(EvasObject content)
         {
             Interop.Elementary.elm_box_pack_end(RealHandle, content);
@@ -95,6 +100,7 @@ namespace ElmSharp
         /// </remarks>
         /// <param name="content">The object to be packed.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void PackStart(EvasObject content)
         {
             Interop.Elementary.elm_box_pack_start(RealHandle, content);
@@ -112,6 +118,7 @@ namespace ElmSharp
         /// <param name="content">The object will be added in the box.</param>
         /// <param name="after">The object has been added in the box.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void PackAfter(EvasObject content, EvasObject after)
         {
             Interop.Elementary.elm_box_pack_after(RealHandle, content, after);
@@ -129,6 +136,7 @@ namespace ElmSharp
         /// <param name="content">The object will be added in the box.</param>
         /// <param name="before">The object has been added in the box.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void PackBefore(EvasObject content, EvasObject before)
         {
             Interop.Elementary.elm_box_pack_before(RealHandle, content, before);
@@ -140,6 +148,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="content">The object to unpack.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void UnPack(EvasObject content)
         {
             Interop.Elementary.elm_box_unpack(RealHandle, content);
@@ -150,6 +159,7 @@ namespace ElmSharp
         /// Removes all the objects from the Box container.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void UnPackAll()
         {
             Interop.Elementary.elm_box_unpack_all(RealHandle);
@@ -162,6 +172,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="action">The callback function used for layout.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetLayoutCallback(Action action)
         {
             _layoutCallback = (obj, priv, data) =>
@@ -177,6 +188,7 @@ namespace ElmSharp
         /// <param name="part">The name of part class, it could be 'bg', 'elm.swllow.content'.</param>
         /// <param name="color">The color value.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override void SetPartColor(string part, Color color)
         {
             Interop.Elementary.elm_object_color_class_color_set(Handle, part, color.R * color.A / 255,
@@ -191,6 +203,7 @@ namespace ElmSharp
         /// <param name="part">The name of part class, it could be 'bg', 'elm.swllow.content'.</param>
         /// <returns></returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override Color GetPartColor(string part)
         {
             int r, g, b, a;
@@ -204,6 +217,7 @@ namespace ElmSharp
         /// While this is great as it would save lots of recalculation, whenever you need to get the position of a just added item, you must force recalculate before doing so.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Recalculate()
         {
             Interop.Elementary.elm_box_recalculate(RealHandle);
@@ -214,6 +228,7 @@ namespace ElmSharp
         /// Remove all the elements contained by the box, deleting the respective objects.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Clear()
         {
             Interop.Elementary.elm_box_clear(RealHandle);
@@ -226,6 +241,7 @@ namespace ElmSharp
         /// <param name="horizontal">Horizontal alignment.</param>
         /// <param name="vertical">Vertical alignment.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetBoxAlignment(double horizontal, double vertical)
         {
             Interop.Elementary.elm_box_align_set(RealHandle, horizontal, vertical);
@@ -237,6 +253,7 @@ namespace ElmSharp
         /// <param name="horizontal">Horizontal padding.</param>
         /// <param name="vertical">Vertical padding.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetPadding(int horizontal, int vertical)
         {
             Interop.Elementary.elm_box_padding_set(RealHandle, horizontal, vertical);
@@ -248,6 +265,7 @@ namespace ElmSharp
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);

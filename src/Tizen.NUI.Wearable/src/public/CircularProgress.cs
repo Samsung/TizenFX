@@ -26,6 +26,7 @@ namespace Tizen.NUI.Wearable
     /// The CircularProgress class of Wearable is used to show the ongoing status with a circular bar.
     /// CircularProgress can be counted in its percentage.
     /// </summary>
+    [Obsolete("This has been deprecated in API12")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class CircularProgress : Control
     {
@@ -169,6 +170,7 @@ namespace Tizen.NUI.Wearable
         /// But, it also can be displayed on the button or the list for small size.
         /// User can set its size.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CircularProgress() : base()
         {
@@ -179,6 +181,7 @@ namespace Tizen.NUI.Wearable
         /// The constructor of the CircularProgress class with specific style.
         /// </summary>
         /// <param name="style">style name</param>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CircularProgress(string style) : base(style)
         {
@@ -189,6 +192,7 @@ namespace Tizen.NUI.Wearable
         /// The constructor of the CircularProgress class with specific style.
         /// </summary>
         /// <param name="progressStyle">The style object to initialize the CircularProgress.</param>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CircularProgress(CircularProgressStyle progressStyle) : base(progressStyle)
         {
@@ -203,6 +207,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The thickness of the track and progress.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float Thickness
         {
@@ -220,6 +225,7 @@ namespace Tizen.NUI.Wearable
         /// The property to get/set the maximum value of the CircularProgress.
         /// The default value is 100.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float MaxValue
         {
@@ -237,6 +243,7 @@ namespace Tizen.NUI.Wearable
         /// The property to get/set the minimum value of the CircularProgress.
         /// The default value is 0.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float MinValue
         {
@@ -254,6 +261,7 @@ namespace Tizen.NUI.Wearable
         /// The property to get/set the current value of the CircularProgress.
         /// The default value is 0.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float CurrentValue
         {
@@ -278,6 +286,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The property to get/set Track object color of the CircularProgress.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color TrackColor
         {
@@ -294,6 +303,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The property to get/set Progress object color of the CircularProgress.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color ProgressColor
         {
@@ -310,6 +320,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Flag to be enabled or disabled in CircularProgress.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new bool IsEnabled
         {
@@ -357,6 +368,7 @@ namespace Tizen.NUI.Wearable
         /// Dispose Progress and all children on it.
         /// </summary>
         /// <param name="type">Dispose type.</param>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
@@ -377,6 +389,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Update progress value
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void UpdateValue()
         {
@@ -399,6 +412,7 @@ namespace Tizen.NUI.Wearable
         /// Get Progress style.
         /// </summary>
         /// <returns>The default progress style.</returns>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override ViewStyle CreateViewStyle()
         {
@@ -406,6 +420,7 @@ namespace Tizen.NUI.Wearable
         }
 
         /// <inheritdoc/>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnControlStateChanged(ControlStateChangedEventArgs controlStateChangedInfo)
         {

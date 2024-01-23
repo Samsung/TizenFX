@@ -22,24 +22,28 @@ namespace ElmSharp
     /// The Point3D is a struct that defines a 3D point.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public struct Point3D : IEquatable<Point3D>
     {
         /// <summary>
         /// The X-coordinate of a 3D point.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int X;
 
         /// <summary>
         /// The Y-coordinate of a 3D point.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int Y;
 
         /// <summary>
         /// The Z-coordinate of a 3D point.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int Z;
 
         /// <summary>
@@ -47,6 +51,7 @@ namespace ElmSharp
         /// </summary>
         /// <returns>The string is formatted as "{{X={0} Y={1} Z={2}}}".</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override string ToString()
         {
             return string.Format("{{X={0} Y={1} Z={2}}}", X, Y, Z);
@@ -54,6 +59,7 @@ namespace ElmSharp
 
         ///
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override int GetHashCode()
         {
             unchecked
@@ -74,6 +80,7 @@ namespace ElmSharp
         /// otherwise false.
         /// </returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override bool Equals(object obj)
         {
             if (!(obj is Point3D))
@@ -91,6 +98,7 @@ namespace ElmSharp
         /// otherwise, false.
         /// </returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool Equals(Point3D other)
         {
             return X.Equals(other.X) && Y.Equals(other.Y) && Z.Equals(other.Z);
@@ -103,6 +111,7 @@ namespace ElmSharp
         /// <param name="p2">A <see cref="Point3D"/> on the right hand side.</param>
         /// <returns>True if both <see cref="Point3D"/>s have equal values.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static bool operator ==(Point3D p1, Point3D p2)
         {
             return p1.Equals(p2);
@@ -115,6 +124,7 @@ namespace ElmSharp
         /// <param name="p2">A <see cref="Point3D"/> on the right hand side.</param>
         /// <returns>True if both <see cref="Point3D"/>s do not have equal values.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static bool operator !=(Point3D p1, Point3D p2)
         {
             return !p1.Equals(p2);

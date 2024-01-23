@@ -22,6 +22,7 @@ namespace ElmSharp.Accessible
     /// Enumeration for ReadingInfoType.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     [Flags]
     public enum ReadingInfoType
     {

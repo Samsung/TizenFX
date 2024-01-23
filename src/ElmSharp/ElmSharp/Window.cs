@@ -24,6 +24,7 @@ namespace ElmSharp
     /// Enumeration for the display rotation of window.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     [Flags]
     public enum DisplayRotation
     {
@@ -52,6 +53,7 @@ namespace ElmSharp
     /// Enumeration for the indicator opacity.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum StatusBarMode
     {
         /// <summary>
@@ -77,6 +79,7 @@ namespace ElmSharp
     /// Enumeration for the keygrab modes of the window.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum KeyGrabMode
     {
@@ -105,6 +108,7 @@ namespace ElmSharp
     /// Enumeration for the indicator mode.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum IndicatorMode
     {
         /// <summary>
@@ -127,6 +131,7 @@ namespace ElmSharp
     /// Enumeration for the keyboard mode.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum KeyboardMode
     {
         /// <summary>
@@ -214,6 +219,7 @@ namespace ElmSharp
     /// Enumeration for the window type.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum WindowType
     {
         /// <summary>
@@ -313,6 +319,7 @@ namespace ElmSharp
     /// Enumeration of notification window's priority level.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum NotificationLevel
     {
         /// <summary>
@@ -345,6 +352,7 @@ namespace ElmSharp
     /// Enumeration of screen mode.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum ScreenMode
     {
         /// <summary>
@@ -362,6 +370,7 @@ namespace ElmSharp
     /// The Window is a container that contains the graphical user interface of a program.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class Window : Widget
     {
         SmartEvent _deleteRequest;
@@ -373,6 +382,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="name">Window name.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Window(string name) : this(null, name)
         {
         }
@@ -392,6 +402,7 @@ namespace ElmSharp
         /// and set callback when window rotation is changed.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Window(Window parent, string name) : this(parent, name, WindowType.Basic)
         {
         }
@@ -414,6 +425,7 @@ namespace ElmSharp
         /// and set callback when window rotation is changed.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Window(Window parent, string name, WindowType type)
         {
             Name = name;
@@ -431,6 +443,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of the Window class.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected Window()
         {
         }
@@ -439,30 +452,35 @@ namespace ElmSharp
         /// CloseRequested will be triggered when window is closed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler CloseRequested;
 
         /// <summary>
         /// RotationChanged will be triggered when window is rotated.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler RotationChanged;
 
         /// <summary>
         /// Sets or gets the window name.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets the window type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public WindowType Type { get; } = WindowType.Basic;
 
         /// <summary>
         /// Gets the window size with Size value(w,h)
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Size ScreenSize
         {
             get
@@ -477,6 +495,7 @@ namespace ElmSharp
         /// Gets the screen dpi for the screen that the window is on.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Point ScreenDpi
         {
             get
@@ -491,6 +510,7 @@ namespace ElmSharp
         /// Gets the rotation of the window. The rotation of the window in degrees (0-360).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int Rotation
         {
             get
@@ -503,6 +523,7 @@ namespace ElmSharp
         /// Gets whether the window manager supports window rotation or not.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsRotationSupported
         {
             get
@@ -522,6 +543,7 @@ namespace ElmSharp
         /// Sets or gets the available rotation degree.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public DisplayRotation AvailableRotations
         {
             get
@@ -548,6 +570,7 @@ namespace ElmSharp
         /// If auto deletion is disabled, the window is not destroyed and the program has to handle it.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool AutoDeletion
         {
             get
@@ -568,6 +591,7 @@ namespace ElmSharp
         /// If alpha is true, the alpha channel of the canvas will be enabled possibly making parts of the window completely or partially transparent.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool Alpha
         {
             get
@@ -587,6 +611,7 @@ namespace ElmSharp
         /// The Role will be invalid if a new role is set or if the window is destroyed.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string Role
         {
             get
@@ -603,6 +628,7 @@ namespace ElmSharp
         /// Sets or gets the mode of the status bar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public StatusBarMode StatusBarMode
         {
             get
@@ -619,6 +645,7 @@ namespace ElmSharp
         /// Sets or gets the iconified state of the window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Iconified
         {
@@ -637,6 +664,7 @@ namespace ElmSharp
         /// </summary>
         /// <value>The indicator mode.</value>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public IndicatorMode IndicatorMode
         {
             get
@@ -653,6 +681,7 @@ namespace ElmSharp
         /// Gets or sets the aspect ratio of the window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double Aspect
         {
             get
@@ -669,6 +698,7 @@ namespace ElmSharp
         /// Window's autohide state.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool AutoHide
         {
             get
@@ -686,6 +716,7 @@ namespace ElmSharp
         /// This function requests the Window Manager to not draw any decoration around the window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool Borderless
         {
             get
@@ -702,6 +733,7 @@ namespace ElmSharp
         /// Gets or sets the demand attention state of the window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool DemandAttention
         {
             get
@@ -718,6 +750,7 @@ namespace ElmSharp
         /// Gets or sets the floating mode of the window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool FloatingMode
         {
             get
@@ -735,6 +768,7 @@ namespace ElmSharp
         /// This function will enable or disable the animation of focus highlight only for the given window, regardless of the global setting for it.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool FocusHighlightAnimation
         {
             get
@@ -752,6 +786,7 @@ namespace ElmSharp
         /// This function will enable or disable the focus highlight only for the given window, regardless of the global setting for it.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool FocusHighlightEnabled
         {
             get
@@ -769,6 +804,7 @@ namespace ElmSharp
         /// Sets the style to use for theming the highlight of focused objects on the given window. If style is NULL, the default will be used.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string FocusHighlightStyle
         {
             get
@@ -785,6 +821,7 @@ namespace ElmSharp
         /// Gets the keyboard mode of the window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public KeyboardMode KeyboardMode
         {
             get
@@ -806,6 +843,7 @@ namespace ElmSharp
         /// and anything else means that the window will be placed in the default layer.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override int Layer
         {
             get
@@ -822,6 +860,7 @@ namespace ElmSharp
         /// Gets or sets the modal state of the window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool Modal
         {
             get
@@ -840,6 +879,7 @@ namespace ElmSharp
         /// The noblank property may have no effect if the window is iconified/minimized or hidden.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool NoBlank
         {
             get
@@ -856,6 +896,7 @@ namespace ElmSharp
         /// Gets the profile of the window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string Profile
         {
             get
@@ -873,6 +914,7 @@ namespace ElmSharp
         /// When this function returns true, object will never resize larger than the screen.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool ScreenConstrain
         {
             get
@@ -889,6 +931,7 @@ namespace ElmSharp
         /// Gets or sets the base size of the window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Size BaseSize
         {
             get
@@ -907,6 +950,7 @@ namespace ElmSharp
         /// Gets or sets the step size of the window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Size StepSize
         {
             get
@@ -925,6 +969,7 @@ namespace ElmSharp
         /// Gets the screen position X of a window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int ScreenPositionX
         {
             get
@@ -939,6 +984,7 @@ namespace ElmSharp
         /// Gets the screen position Y of a window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int ScreenPositionY
         {
             get
@@ -953,6 +999,7 @@ namespace ElmSharp
         /// Gets or sets the title of the window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string Title
         {
             get
@@ -969,6 +1016,7 @@ namespace ElmSharp
         /// Gets or sets the urgent state of the window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool Urgent
         {
             get
@@ -985,6 +1033,7 @@ namespace ElmSharp
         /// Gets or sets the withdrawn state of the window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool Withdrawn
         {
             get
@@ -1007,6 +1056,7 @@ namespace ElmSharp
         /// This can be used for a notification type window only.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public NotificationLevel NotificationLevel
         {
             get
@@ -1036,6 +1086,7 @@ namespace ElmSharp
         /// This needs the privilege. If the application which is not get the privilege use this API, the window manager generates the permission deny error.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ScreenMode ScreenMode
         {
             get
@@ -1065,6 +1116,7 @@ namespace ElmSharp
         /// This needs the privilege. If the application which is not get the privilege use this API, the window manager generates the permission deny error.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int Brightness
         {
             get
@@ -1089,6 +1141,7 @@ namespace ElmSharp
         /// <param name="systemWide">A boolean that if true, specifies to create a system-wide service all users can connect to, otherwise the service is private to the user ID that created the service.</param>
         /// <returns>If true creates successful, otherwise false.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool CreateServiceSocket(string name, int number, bool systemWide)
         {
             return Interop.Elementary.elm_win_socket_listen(RealHandle, name, number, systemWide);
@@ -1100,6 +1153,7 @@ namespace ElmSharp
         /// <param name="degree">The rotation of the window, in degrees (0-360), counter-clockwise.</param>
         /// <param name="resize">Resizes the window's contents so that they fit inside the current window geometry.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetRotation(int degree, bool resize)
         {
             if (resize)
@@ -1116,6 +1170,7 @@ namespace ElmSharp
         /// This will have no effect when used by a non-alpha window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetOpaqueState()
         {
             Interop.Eutil.efl_util_set_window_opaque_state(RealHandle, 1);
@@ -1125,6 +1180,7 @@ namespace ElmSharp
         /// Unsets the alpha window's visual state to opaque state.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void UnsetOpaqueState()
         {
             Interop.Eutil.efl_util_set_window_opaque_state(RealHandle, 0);
@@ -1139,6 +1195,7 @@ namespace ElmSharp
         /// Be careful that this may have side-effects like making the window non-accessible in some cases unless the window is specially handled. Use this with care.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void FocusSkip(bool skip)
         {
             Interop.Elementary.elm_win_prop_focus_skip_set(Handle, skip);
@@ -1149,6 +1206,7 @@ namespace ElmSharp
         /// Places the window pointed by object at the top of the stack, so that it's not covered by any other window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void PullUp()
         {
             Interop.Elementary.elm_win_raise(Handle);
@@ -1159,6 +1217,7 @@ namespace ElmSharp
         /// Places the window pointed by object at the bottom of the stack, so that no other window is covered by it.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void BringDown()
         {
             Interop.Elementary.elm_win_lower(Handle);
@@ -1173,6 +1232,7 @@ namespace ElmSharp
         /// in any way that the window is going to be the active one after it.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Active()
         {
             Interop.Elementary.elm_win_activate(Handle);
@@ -1185,6 +1245,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="obj">Resize object.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void DeleteResizeObject(EvasObject obj)
         {
             Interop.Elementary.elm_win_resize_object_del(Handle, obj);
@@ -1203,6 +1264,7 @@ namespace ElmSharp
         /// Resize object.
         /// </param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void AddResizeObject(EvasObject obj)
         {
             Interop.Elementary.elm_win_resize_object_add(Handle, obj);
@@ -1215,6 +1277,7 @@ namespace ElmSharp
         /// <param name="keyname">The keyname to grab.</param>
         /// <param name="mode">According to the grabmode, it can grab key differently.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void WinKeyGrab(string keyname, KeyGrabMode mode)
         {
@@ -1227,6 +1290,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="keyname">The keyname to grab.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void WinKeyUngrab(string keyname)
         {
@@ -1238,6 +1302,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="keyname">The keyname string to set keygrab.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void KeyGrabEx(string keyname)
         {
             Interop.Elementary.eext_win_keygrab_set(RealHandle, keyname);
@@ -1248,6 +1313,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="keyname">The keyname string to unset keygrab.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void KeyUngrabEx(string keyname)
         {
             Interop.Elementary.eext_win_keygrab_unset(RealHandle, keyname);
@@ -1263,6 +1329,7 @@ namespace ElmSharp
         /// <param name="value">The value string</param>
         /// <returns>The ID of the created auxiliary hint, otherwise -1 on failure</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int AddAuxiliaryHint(string hint, string value)
         {
@@ -1278,6 +1345,7 @@ namespace ElmSharp
         /// <param name="id">The ID of the auxiliary hint</param>
         /// <returns>If true deletes successful, otherwise false.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool DeleteAuxiliaryHint(int id)
         {
@@ -1294,6 +1362,7 @@ namespace ElmSharp
         /// <param name="value">The value string to be set</param>
         /// <returns>If true changes successful, otherwise false.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool SetAuxiliaryHintValue(int id, string value)
         {
@@ -1309,6 +1378,7 @@ namespace ElmSharp
         /// <param name="id">The auxiliary hint ID</param>
         /// <returns>The string value of the auxiliary hint ID</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string GetAuxiliaryHintValue(int id)
         {
@@ -1324,6 +1394,7 @@ namespace ElmSharp
         /// <param name="hint">The auxiliary hint string</param>
         /// <returns>The ID of the auxiliary hint, otherwise -1 on failure</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int GetAuxiliaryHintId(string hint)
         {
@@ -1336,6 +1407,7 @@ namespace ElmSharp
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             Interop.Elementary.elm_config_accel_preference_set("3d");

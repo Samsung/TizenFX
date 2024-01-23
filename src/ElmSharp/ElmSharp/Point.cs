@@ -22,18 +22,21 @@ namespace ElmSharp
     /// The Point is a struct that defines the 2D point as a pair of generic type.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public struct Point : IEquatable<Point>
     {
         /// <summary>
         /// Location along the horizontal axis.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int X;
 
         /// <summary>
         /// Location along the vertical axis.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int Y;
 
         /// <summary>
@@ -41,6 +44,7 @@ namespace ElmSharp
         /// </summary>
         /// <returns>The string is formatted as "{{X={0} Y={1}}}".</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override string ToString()
         {
             return string.Format("{{X={0} Y={1}}}", X, Y);
@@ -51,6 +55,7 @@ namespace ElmSharp
         /// </summary>
         /// <returns>The hash code.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override int GetHashCode()
         {
             unchecked
@@ -68,6 +73,7 @@ namespace ElmSharp
         /// otherwise false.
         /// </returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override bool Equals(object obj)
         {
             if (!(obj is Point))
@@ -85,6 +91,7 @@ namespace ElmSharp
         /// otherwise false.
         /// </returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool Equals(Point other)
         {
             return X.Equals(other.X) && Y.Equals(other.Y);
@@ -97,6 +104,7 @@ namespace ElmSharp
         /// <param name="p2">A <see cref="Point"/> on the right hand side.</param>
         /// <returns>True if both <see cref="Point"/>s have equal values.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static bool operator ==(Point p1, Point p2)
         {
             return p1.Equals(p2);
@@ -109,6 +117,7 @@ namespace ElmSharp
         /// <param name="p2">A <see cref="Point"/> on the right hand side.</param>
         /// <returns>True if both <see cref="Point"/>s do not have equal values.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static bool operator !=(Point p1, Point p2)
         {
             return !p1.Equals(p2);

@@ -25,12 +25,14 @@ namespace ElmSharp
     /// All events of the GenGrid contain GenGridItemEventArgs as a parameter.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class GenGridItemEventArgs : EventArgs
     {
         /// <summary>
         /// Gets or sets the gengrid item. The return type is <see cref="GenGridItem"/>.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenGridItem Item { get; set; }
 
         internal static GenGridItemEventArgs CreateFromSmartEvent(IntPtr data, IntPtr obj, IntPtr info)
@@ -47,6 +49,7 @@ namespace ElmSharp
     /// The gengrid items are represented through the <see cref="GenItemClass"/> definition field details.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class GenGrid : Layout
     {
         HashSet<GenGridItem> _children = new HashSet<GenGridItem>();
@@ -69,6 +72,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">The parent is a given container which will be attached by GenGrid as a child. It's the <see cref="EvasObject"/> type.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenGrid(EvasObject parent) : base(parent)
         {
             InitializeSmartEvent();
@@ -78,72 +82,84 @@ namespace ElmSharp
         /// ItemSelected is raised when a new GenGrid item is selected.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<GenGridItemEventArgs> ItemSelected;
 
         /// <summary>
         /// ItemUnselected is raised when the gengrid item is unselected.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<GenGridItemEventArgs> ItemUnselected;
 
         /// <summary>
         /// ItemPressed is raised when a new gengrid item is pressed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<GenGridItemEventArgs> ItemPressed;
 
         /// <summary>
         /// ItemReleased is raised when a new gengrid item is released.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<GenGridItemEventArgs> ItemReleased;
 
         /// <summary>
         /// ItemActivated is raised when a new gengrid item is double-clicked or pressed (enter|return|spacebar).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<GenGridItemEventArgs> ItemActivated;
 
         /// <summary>
         /// ItemDoubleClicked is raised when a new gengrid item is double-clicked.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<GenGridItemEventArgs> ItemDoubleClicked;
 
         /// <summary>
         /// ItemRealized is raised when a gengrid item is implemented through <see cref="GenItemClass"/>.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<GenGridItemEventArgs> ItemRealized;
 
         /// <summary>
         /// ItemUnrealized is raised when the gengrid item is deleted.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<GenGridItemEventArgs> ItemUnrealized;
 
         /// <summary>
         /// ItemLongPressed is raised when a gengrid item is pressed for a certain amount of time. By default it's 1 second.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<GenGridItemEventArgs> ItemLongPressed;
 
         /// <summary>
         /// ItemFocussed is raised when a gengrid item has received focus.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<GenGridItemEventArgs> ItemFocused;
 
         /// <summary>
         /// ItemUnfocussed is raised when a gengrid item has lost focus.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<GenGridItemEventArgs> ItemUnfocused;
 
         /// <summary>
         ///  Changed is raised when an item is added, removed, resized or moved and when the gengrid is resized or gets "horizontal" property changes.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Changed;
 
         /// <summary>
@@ -152,6 +168,7 @@ namespace ElmSharp
         /// By default, value is 0.0, meaning that the gengrid has its items grid placed exactly in the left along X-axis.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double ItemAlignmentX
         {
             get
@@ -173,6 +190,7 @@ namespace ElmSharp
         /// By default, value is 0.0, meaning that the gengrid has its items grid placed exactly in the top along Y-axis.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double ItemAlignmentY
         {
             get
@@ -193,6 +211,7 @@ namespace ElmSharp
         /// It is filled if true, otherwise not filled if false.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool FillItems
         {
             get
@@ -215,6 +234,7 @@ namespace ElmSharp
         /// By default, multi-selection is disabled.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool MultipleSelection
         {
             get
@@ -236,6 +256,7 @@ namespace ElmSharp
         /// Use this property to force a custom width for your items, making them as big as you wish.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int ItemWidth
         {
             get
@@ -260,6 +281,7 @@ namespace ElmSharp
         /// Use this property to force a custom height for your items, making them as big as you wish.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int ItemHeight
         {
             get
@@ -279,6 +301,7 @@ namespace ElmSharp
         /// Gets or sets the gengrid select mode by <see cref="GenItemSelectionMode"/>.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenItemSelectionMode SelectionMode
         {
             get
@@ -299,6 +322,7 @@ namespace ElmSharp
         /// If false, items are placed in rows from left to right, and when the space for a row is filled, another one is started below, thus expanding the grid vertically.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsHorizontal
         {
             get
@@ -315,6 +339,7 @@ namespace ElmSharp
         /// Gets or sets whether the gengrid items should be highlighted when an item is selected.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsHighlight
         {
             get
@@ -335,6 +360,7 @@ namespace ElmSharp
         /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ScrollBarVisiblePolicy HorizontalScrollBarVisiblePolicy
         {
             get
@@ -358,6 +384,7 @@ namespace ElmSharp
         /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ScrollBarVisiblePolicy VerticalScrollBarVisiblePolicy
         {
             get
@@ -377,6 +404,7 @@ namespace ElmSharp
         /// Gets the first item in a given GenGrid widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenGridItem FirstItem
         {
             get
@@ -390,6 +418,7 @@ namespace ElmSharp
         /// Gets the last item in a given GenGrid widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenGridItem LastItem
         {
             get
@@ -403,6 +432,7 @@ namespace ElmSharp
         /// Gets the items count in a given GenGrid widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public uint ItemCount
         {
             get
@@ -415,6 +445,7 @@ namespace ElmSharp
         /// Gets the selected item in a given GenGrid widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenGridItem SelectedItem
         {
             get
@@ -428,6 +459,7 @@ namespace ElmSharp
         /// Gets or sets whether a given GenGrid widget is able to or not able to have items reordered.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool ReorderMode
         {
             get
@@ -449,6 +481,7 @@ namespace ElmSharp
         /// <seealso cref="GenItemClass"/>
         /// <seealso cref="GenGridItem"/>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenGridItem Append(GenItemClass itemClass, object data)
         {
             GenGridItem item = new GenGridItem(data, itemClass, this);
@@ -466,6 +499,7 @@ namespace ElmSharp
         /// <seealso cref="GenItemClass"/>
         /// <seealso cref="GenGridItem"/>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenGridItem Prepend(GenItemClass itemClass, object data)
         {
             GenGridItem item = new GenGridItem(data, itemClass, this);
@@ -484,6 +518,7 @@ namespace ElmSharp
         /// <seealso cref="GenItemClass"/>
         /// <seealso cref="GenGridItem"/>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenGridItem InsertBefore(GenItemClass itemClass, object data, GenGridItem before)
         {
             GenGridItem item = new GenGridItem(data, itemClass, this);
@@ -502,6 +537,7 @@ namespace ElmSharp
         /// <seealso cref="GenItemClass"/>
         /// <seealso cref="GenGridItem"/>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenGridItem InsertAfter(GenItemClass itemClass, object data, GenGridItem after)
         {
             GenGridItem item = new GenGridItem(data, itemClass, this);
@@ -518,6 +554,7 @@ namespace ElmSharp
         /// <param name="comparison">User defined comparison function that defines the sort order based on the gengrid item and its data.</param>
         /// <returns>Return a gengrid item that contains the data and itemClass.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenGridItem InsertSorted(GenItemClass itemClass, object data, Comparison<object> comparison)
         {
             GenGridItem item = new GenGridItem(data, itemClass, this);
@@ -546,6 +583,7 @@ namespace ElmSharp
         /// </remarks>
         /// <seealso cref="ScrollToPosition"/>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void ScrollTo(GenGridItem item, ScrollToPosition position, bool animated)
         {
             if (animated)
@@ -567,6 +605,7 @@ namespace ElmSharp
         /// <see cref="GenItem.Update()"/> to update just one item.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void UpdateRealizedItems()
         {
             Interop.Elementary.elm_gengrid_realized_items_update(RealHandle);
@@ -580,6 +619,7 @@ namespace ElmSharp
         /// <see cref="ItemObject.Delete()"/> to delete just one item.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Clear()
         {
             Interop.Elementary.elm_gengrid_clear(RealHandle);
@@ -598,6 +638,7 @@ namespace ElmSharp
         /// </param>
         /// <returns></returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenGridItem GetItemByPosition(int x, int y, out int portionX, out int portionY)
         {
             IntPtr handle = Interop.Elementary.elm_gengrid_at_xy_item_get(RealHandle, x, y, out portionX, out portionY);
@@ -610,6 +651,7 @@ namespace ElmSharp
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
