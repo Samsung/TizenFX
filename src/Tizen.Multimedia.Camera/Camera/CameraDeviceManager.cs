@@ -66,7 +66,7 @@ namespace Tizen.Multimedia
                             .Any();
 
         /// <summary>
-        /// Gets the camera device manager state.
+        /// Gets the state of Camera Device Manager support.
         /// </summary>
         /// <returns>true if camera device manager is supported.</returns>
         /// <since_tizen> 11 </since_tizen>

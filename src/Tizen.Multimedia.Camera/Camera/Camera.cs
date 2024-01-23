@@ -70,7 +70,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <remarks>
         /// If <see cref="CameraDeviceManager"/> is supported, <see cref="CameraDevice"/> will be selected automatically by internal policy.<br/>
-        /// (User can check whether <see cref="CameraDeviceManager"/> is supported or not by using <see cref="CameraDeviceManager.IsCameraDeviceManagerSupported"/>.)<br/>
+        /// (User can check whether CameraDeviceManager is supported or not by using <see cref="CameraDeviceManager.IsCameraDeviceManagerSupported"/>.)<br/>
         /// But, if not, this constructor will try to create Camera instance with <see cref="CameraDevice.CameraDevice0"/> by default.
         /// </remarks>
         /// <exception cref="InvalidOperationException">
