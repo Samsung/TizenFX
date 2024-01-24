@@ -1192,7 +1192,6 @@ namespace Tizen.NUI.Components
             if (source == null) throw new ArgumentNullException(nameof(source));
             if (collectionView == null) return;
 
-            // Will be null if not a group.
             float currentSize = StepCandidate;
             int diff = toPosition - fromPosition;
 
@@ -1217,6 +1216,7 @@ namespace Tizen.NUI.Components
             int startIndex = ( diff > 0 ? fromPosition: toPosition);
             int endIndex = (diff > 0 ? toPosition: fromPosition);
 
+            // all items are within the visual area
             if ((endIndex >= FirstVisible) && (startIndex <= LastVisible))
             {
                 foreach (RecyclerViewItem item in VisibleItems)
@@ -1234,7 +1234,7 @@ namespace Tizen.NUI.Components
                 }
             }
 
-            if (fromPosition > FirstVisible)
+            if (fromPosition < FirstVisible)
             {
                 if (toPosition > LastVisible)
                 {
@@ -1243,7 +1243,7 @@ namespace Tizen.NUI.Components
                 }
                 else if (toPosition > FirstVisible && toPosition <= LastVisible)
                 {
-                    LastVisible--;
+                    FirstVisible--;
                 }
             }
             else if (fromPosition >= FirstVisible && fromPosition <= LastVisible)
