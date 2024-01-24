@@ -108,7 +108,7 @@ namespace Tizen.NUI
 
         internal string ResourceClassName { get; set; }
 
-        internal Assembly Assembly { get; set; }
+        internal NUIGadgetAssembly Assembly { get; private set; }
 
         internal static NUIGadgetInfo CreateNUIGadgetInfo(string packageId)
         {
@@ -199,6 +199,7 @@ namespace Tizen.NUI
                 Log.Warn("Failed to destroy package info. error = " + errorCode);
             }
 
+            info.Assembly = new NUIGadgetAssembly(info.ResourcePath + info.ExecutableFile);
             return info;
         }
     }
