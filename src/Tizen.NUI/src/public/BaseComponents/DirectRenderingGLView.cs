@@ -193,11 +193,18 @@ namespace Tizen.NUI.BaseComponents
                         {
                             texturesArray[i] = HandleRef.ToIntPtr(Texture.getCPtr(textures[i]));
                         }
-                        IntPtr unmanagedPointer = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(IntPtr)) * count);
-                        Marshal.Copy(texturesArray, 0, unmanagedPointer, count);
+                        try
+                        {
+                            IntPtr unmanagedPointer = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(IntPtr)) * count);
+                            Marshal.Copy(texturesArray, 0, unmanagedPointer, count);
 
-                        Interop.GLView.GlViewBindTextureResources(SwigCPtr, unmanagedPointer, count);
-                        Marshal.FreeHGlobal(unmanagedPointer);
+                            Interop.GLView.GlViewBindTextureResources(SwigCPtr, unmanagedPointer, count);
+                            Marshal.FreeHGlobal(unmanagedPointer);
+                        }
+                        catch (Exception e)
+                        {
+                            Tizen.Log.Fatal("NUI", $"[Error] Got exception during BindTextureResources, Message: {e.Message} Stack Trace: {e.StackTrace}");
+                        }
                     }
                 }
             }
