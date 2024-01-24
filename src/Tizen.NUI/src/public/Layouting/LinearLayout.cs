@@ -623,7 +623,7 @@ namespace Tizen.NUI
                 // Child layout1 is MatchParent and its margin is 20. (This margin is not ad
                 // Child layout2 is MatchParent and its margin is 0.
                 // Then, child layout1's size is 30 and child layout2's size is 50.
-                if ((childDesiredHeight == LayoutParamPolicies.WrapContent) || ((childDesiredHeight > 0) && (!useRemainingHeight)))
+                if ((childDesiredHeight == LayoutParamPolicies.WrapContent) || ((childDesiredHeight >= 0) && (!useRemainingHeight)))
                 {
                     MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
 
