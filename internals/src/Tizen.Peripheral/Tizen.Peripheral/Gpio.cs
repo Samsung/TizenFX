@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2020 Samsung Electronics Co., Ltd All Rights Reserved
+* Copyright (c) 2020 - 2021 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
 * you may not use this file except in compliance with the License.
@@ -87,7 +87,7 @@ namespace Tizen.Peripheral.Gpio
     /// The class allows applications to use the platform Digital Pins as Input/Output.
     /// </summary>
     /// <privilege>http://tizen.org/privilege/peripheralio</privilege>
-    public class Gpio : IDisposable
+    public class GpioPin : IDisposable
     {
 
         private GpioChangePolarity _polarityType;
@@ -96,7 +96,7 @@ namespace Tizen.Peripheral.Gpio
         /// <summary>
         /// Native handle to Gpio.
         /// </summary>
-        private IntPtr _handle;
+        private IntPtr _handle = IntPtr.Zero;
         private bool _disposed = false;
 
         /// <summary>
@@ -109,42 +109,42 @@ namespace Tizen.Peripheral.Gpio
         /// </summary>
         /// <param name="pinNumber">The GPIO pin number.</param>
         /// <param name="mode">GPIO direction.</param>
-        public Gpio(int pinNumber, GpioPinDriveMode mode)
+        public GpioPin(int pinNumber, GpioPinDriveMode mode)
         {
-            var ret = NativeGpio.Open(pinNumber, out IntPtr handle);
-            if (ret != ErrorCode.None)
-                throw ExceptionFactory.CreateException(ret);
-
-            _handle = handle;
-            PinNumber = pinNumber;
+            var ret = NativeGpio.Open(pinNumber, out _handle);
             try
             {
+                if (ret != ErrorCode.None)
+                    throw ExceptionFactory.CreateException(ret);
+
+                PinNumber = pinNumber;
                 switch (mode)
                 {
                     case GpioPinDriveMode.Input:
-                        ret = NativeGpio.SetEdgeMode(handle, NativeGpio.EdgeType.Both);
+                        ret = NativeGpio.SetEdgeMode(_handle, NativeGpio.EdgeType.Both);
                         if (ret != ErrorCode.None)
                             throw ExceptionFactory.CreateException(ret);
 
-                        ret = NativeGpio.SetDirection(handle, NativeGpio.Direction.In);
+                        ret = NativeGpio.SetDirection(_handle, NativeGpio.Direction.In);
                         if (ret != ErrorCode.None)
                             throw ExceptionFactory.CreateException(ret);
                         SetIntteruptedCallback();
                         break;
                     case GpioPinDriveMode.OutputInitiallyLow:
-                        ret = NativeGpio.SetDirection(handle, NativeGpio.Direction.OutLow);
+                        ret = NativeGpio.SetDirection(_handle, NativeGpio.Direction.OutLow);
                         if (ret != ErrorCode.None)
                             throw ExceptionFactory.CreateException(ret);
                         break;
                     case GpioPinDriveMode.OutputInitiallyHigh:
-                        ret = NativeGpio.SetDirection(handle, NativeGpio.Direction.OutHigh);
+                        ret = NativeGpio.SetDirection(_handle, NativeGpio.Direction.OutHigh);
                         if (ret != ErrorCode.None)
                             throw ExceptionFactory.CreateException(ret);
                         break;
                 }
-            } catch(Exception e) {
+            }
+            finally
+            {
                 Dispose();
-                throw;
             }
         }
 
@@ -152,7 +152,7 @@ namespace Tizen.Peripheral.Gpio
         /// <summary>
         /// Closes the GPIO pin.
         /// </summary>
-        ~Gpio()
+        ~GpioPin()
         {
             Dispose(false);
         }
@@ -162,14 +162,23 @@ namespace Tizen.Peripheral.Gpio
             _interruptedEventCallback = OnInterrupted;
             var ret = NativeGpio.SetInterruptedCb(_handle, _interruptedEventCallback, IntPtr.Zero);
             if (ret != ErrorCode.None)
-            {
                 throw ExceptionFactory.CreateException(ret);
-            }
         }
 
         private void OnInterrupted(IntPtr handle, ErrorCode error, IntPtr data)
         {
-            ValueChanged?.Invoke(this, new PinUpdatedEventArgs(PinNumber, Read()));
+            NativeGpio.PeripherialGpio pio = (NativeGpio.PeripherialGpio)
+                                            System.Runtime.InteropServices.Marshal.PtrToStructure(handle,
+                                                typeof(NativeGpio.PeripherialGpio));
+            // check magic values to verify capi structures integrity
+            if (pio.vermagic != 13712 || pio.cbInfo.vermagic != 14469)
+            {
+                Log.Error("Peripheral",
+                        "Unable to parse gpio structure in callback - vermagic is wrong");
+                return;
+            }
+            ValueChanged?.Invoke(this, new PinUpdatedEventArgs(PinNumber, pio.cbInfo.gpioPinValue == 1 ?
+                                                                GpioPinValue.High : GpioPinValue.Low));
         }
 
         /// <summary>
@@ -195,9 +204,9 @@ namespace Tizen.Peripheral.Gpio
             {
                 return;
             }
-
             NativeGpio.UnsetInterruptedCb(_handle);
             NativeGpio.Close(_handle);
+            _handle = IntPtr.Zero;
             _disposed = true;
         }
 
@@ -241,7 +250,6 @@ namespace Tizen.Peripheral.Gpio
                 var ret = NativeGpio.SetEdgeMode(_handle, (NativeGpio.EdgeType)value);
                 if (ret != ErrorCode.None)
                     throw ExceptionFactory.CreateException(ret);
-
                 _polarityType = value;
             }
         }

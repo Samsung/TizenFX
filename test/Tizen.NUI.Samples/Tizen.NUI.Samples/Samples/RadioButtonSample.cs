@@ -49,7 +49,8 @@ namespace Tizen.NUI.Samples
                 {
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
                     CellPadding = new Size(40, 40),
-                    LinearAlignment = LinearLayout.Alignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
                 }
             };
             window.Add(root);
@@ -87,8 +88,14 @@ namespace Tizen.NUI.Samples
 
             for (int i = 0; i < num; i++)
             {
+                int index = i + 1;
+
                 // create utility radio button.
                 utilityRadioButton[i] = new RadioButton();
+                utilityRadioButton[i].SelectedChanged += (object sender, SelectedChangedEventArgs args) =>
+                {
+                    global::System.Console.WriteLine($"Left {index}th Utility RadioButton's IsSelected is changed to {args.IsSelected}.");
+                };
                 var utilityStyle = utilityRadioButton[i].Style;
                 utilityStyle.Icon.Opacity = new Selector<float?>
                 {
@@ -112,6 +119,10 @@ namespace Tizen.NUI.Samples
 
                 // create family radio button.
                 familyRadioButton[i] = new RadioButton();
+                familyRadioButton[i].SelectedChanged += (object sender, SelectedChangedEventArgs args) =>
+                {
+                    global::System.Console.WriteLine($"Left {index}th Family RadioButton's IsSelected is changed to {args.IsSelected}.");
+                };
                 var familyStyle = familyRadioButton[i].Style;
                 familyStyle.Icon.Opacity = new Selector<float?>
                 {
@@ -136,6 +147,10 @@ namespace Tizen.NUI.Samples
 
                 // create food radio button.
                 foodRadioButton[i] = new RadioButton();
+                foodRadioButton[i].SelectedChanged += (object sender, SelectedChangedEventArgs args) =>
+                {
+                    global::System.Console.WriteLine($"Left {index}th Food RadioButton's IsSelected is changed to {args.IsSelected}.");
+                };
                 var foodStyle = foodRadioButton[i].Style;
                 foodStyle.Icon.Opacity = new Selector<float?>
                 {
@@ -160,6 +175,10 @@ namespace Tizen.NUI.Samples
 
                 // create kitchen radio button.
                 kitchenRadioButton[i] = new RadioButton();
+                kitchenRadioButton[i].SelectedChanged += (object sender, SelectedChangedEventArgs args) =>
+                {
+                    global::System.Console.WriteLine($"Left {index}th Kitchen RadioButton's IsSelected is changed to {args.IsSelected}.");
+                };
                 var kitchenStyle = kitchenRadioButton[i].Style;
                 kitchenStyle.Icon.Opacity = new Selector<float?>
                 {
@@ -307,19 +326,37 @@ namespace Tizen.NUI.Samples
             };
             for (int i = 0; i < num; i++)
             {
+                int index = i + 1;
+
                 utilityRadioButton2[i] = new RadioButton(utilityStyle2);
+                utilityRadioButton2[i].SelectedChanged += (object sender, SelectedChangedEventArgs args) =>
+                {
+                    global::System.Console.WriteLine($"Right {index}th Utility RadioButton's IsSelected is changed to {args.IsSelected}.");
+                };
                 utilityRadioButton2[i].Size = new Size(48, 48);
                 group2[0].Add(utilityRadioButton2[i]);
 
                 familyRadioButton2[i] = new RadioButton(familyStyle2);
+                familyRadioButton2[i].SelectedChanged += (object sender, SelectedChangedEventArgs args) =>
+                {
+                    global::System.Console.WriteLine($"Right {index}th Family RadioButton's IsSelected is changed to {args.IsSelected}.");
+                };
                 familyRadioButton2[i].Size = new Size(48, 48);
                 group2[1].Add(familyRadioButton2[i]);
 
                 foodRadioButton2[i] = new RadioButton(foodStyle2);
+                foodRadioButton2[i].SelectedChanged += (object sender, SelectedChangedEventArgs args) =>
+                {
+                    global::System.Console.WriteLine($"Right {index}th Food RadioButton's IsSelected is changed to {args.IsSelected}.");
+                };
                 foodRadioButton2[i].Size = new Size(48, 48);
                 group2[2].Add(foodRadioButton2[i]);
 
                 kitchenRadioButton2[i] = new RadioButton(kitchenStyle2);
+                kitchenRadioButton2[i].SelectedChanged += (object sender, SelectedChangedEventArgs args) =>
+                {
+                    global::System.Console.WriteLine($"Right {index}th Kitchen RadioButton's IsSelected is changed to {args.IsSelected}.");
+                };
                 kitchenRadioButton2[i].Size = new Size(48, 48);
                 group2[3].Add(kitchenRadioButton2[i]);
 

@@ -1,3 +1,19 @@
+/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,7 +46,7 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetTargetIdiom(TargetIdiom value) => Idiom = value;
 
-        [Obsolete("TargetPlatform is obsolete as of version 2.3.4. Please use RuntimePlatform instead.")]
+        [Obsolete("TargetPlatform is obsolete as of version 2.3.4. Use RuntimePlatform instead.")]
 #pragma warning disable 0618
         public static TargetPlatform OS
         {
@@ -94,7 +110,7 @@ namespace Tizen.NUI.Binding
         //     return GetNamedSize(size, targetElementType, false);
         // }
 
-        [Obsolete("OnPlatform<> (generic) is obsolete as of version 2.3.4. Please use switch(RuntimePlatform) instead.")]
+        [Obsolete("OnPlatform<> (generic) is obsolete as of version 2.3.4. Use switch(RuntimePlatform) instead.")]
         public static T OnPlatform<T>(T iOS, T Android, T WinPhone)
         {
             switch (OS)
@@ -111,10 +127,10 @@ namespace Tizen.NUI.Binding
             return iOS;
         }
 
-        public static void OpenUri(Uri uri)
-        {
-            // PlatformServices?.OpenUriAction(uri);
-        }
+        // public static void OpenUri(Uri uri)
+        // {
+        //     PlatformServices?.OpenUriAction(uri);
+        // }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Assembly[] GetAssemblies()
@@ -127,32 +143,5 @@ namespace Tizen.NUI.Binding
         // {
         //     return PlatformServices.GetNamedSize(size, targetElementType, useOldSizes);
         // }
-
-        public static class Styles
-        {
-            public static readonly string TitleStyleKey = "TitleStyle";
-
-            public static readonly string SubtitleStyleKey = "SubtitleStyle";
-
-            public static readonly string BodyStyleKey = "BodyStyle";
-
-            public static readonly string ListItemTextStyleKey = "ListItemTextStyle";
-
-            public static readonly string ListItemDetailTextStyleKey = "ListItemDetailTextStyle";
-
-            public static readonly string CaptionStyleKey = "CaptionStyle";
-
-            public static readonly Style TitleStyle = new Style(typeof(Tizen.NUI.BaseComponents.TextLabel)) { BaseResourceKey = TitleStyleKey };
-
-            public static readonly Style SubtitleStyle = new Style(typeof(Tizen.NUI.BaseComponents.TextLabel)) { BaseResourceKey = SubtitleStyleKey };
-
-            public static readonly Style BodyStyle = new Style(typeof(Tizen.NUI.BaseComponents.TextLabel)) { BaseResourceKey = BodyStyleKey };
-
-            public static readonly Style ListItemTextStyle = new Style(typeof(Tizen.NUI.BaseComponents.TextLabel)) { BaseResourceKey = ListItemTextStyleKey };
-
-            public static readonly Style ListItemDetailTextStyle = new Style(typeof(Tizen.NUI.BaseComponents.TextLabel)) { BaseResourceKey = ListItemDetailTextStyleKey };
-
-            public static readonly Style CaptionStyle = new Style(typeof(Tizen.NUI.BaseComponents.TextLabel)) { BaseResourceKey = CaptionStyleKey };
-        }
     }
 }

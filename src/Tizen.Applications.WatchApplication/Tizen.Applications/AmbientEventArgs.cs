@@ -23,6 +23,7 @@ namespace Tizen.Applications
     /// Arguments for the event that are raised when the device enters or exits the ambient mode.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API10. Will be removed in API12.")]
     public class AmbientEventArgs : EventArgs
     {
         /// <summary>

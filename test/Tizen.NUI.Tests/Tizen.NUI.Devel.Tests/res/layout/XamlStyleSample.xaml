@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<View x:Class="Tizen.NUI.Devel.Tests.XamlStyleSample"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:l="clr-namespace:Tizen.NUI.Devel.Tests;assembly=Tizen.NUI.Devel.Tests"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+  <View>
+      <View.BindingContext>
+          <l:NameViewModel x:Name="nameViewModel"/>
+      </View.BindingContext>
+      <TextLabel Text="UserName" Size2D="300,50" Position2D="500,200" BackgroundColor="White"/>
+      <TextLabel Text="{Binding UserName}" Size2D="300,50" Position2D="500,270" BackgroundColor="Blue"/>
+      <TextLabel Text="CompanyName" Size2D="300,50" Position2D="500,340" BackgroundColor="Yellow"/>
+      <TextLabel Text="{Binding CompanyName}" Size2D="300,50" Position2D="500,410" BackgroundColor="Green"/>
+      <l:UIElement x:Name="button" Size2D="200,100" Position2D="500,480" Command="{Binding UpdateName}"/>
+  </View>
+</View>

@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,9 @@
  *
  */
 
+using System;
+using System.Diagnostics;
+
 namespace Tizen.NUI.BaseComponents
 {
     /// <summary>
@@ -22,31 +25,23 @@ namespace Tizen.NUI.BaseComponents
     /// </summary>
     internal class TextLabelSelectorData
     {
-        public TriggerableSelector<string> TranslatableText { get; } = new TriggerableSelector<string>(TextLabel.TranslatableTextProperty);
-        public TriggerableSelector<string> Text { get; } = new TriggerableSelector<string>(TextLabel.TextProperty);
-        public TriggerableSelector<string> FontFamily { get; } = new TriggerableSelector<string>(TextLabel.FontFamilyProperty);
-        public TriggerableSelector<Color> TextColor { get; } = new TriggerableSelector<Color>(TextLabel.TextColorProperty, GetTextColor);
-        public TriggerableSelector<float?> PointSize { get; } = new TriggerableSelector<float?>(TextLabel.PointSizeProperty);
-        public TriggerableSelector<TextShadow> TextShadow { get; } = new TriggerableSelector<TextShadow>(TextLabel.TextShadowProperty);
+        public TriggerableSelector<string> TranslatableText { get; set; }
+        public TriggerableSelector<string> Text { get; set; }
+        public TriggerableSelector<string> FontFamily { get; set; }
+        public TriggerableSelector<Color> TextColor { get; set; }
+        public TriggerableSelector<float?> PointSize { get; set; }
+        public TriggerableSelector<float?> PixelSize { get; set; }
+        public TriggerableSelector<TextShadow> TextShadow { get; set; }
 
         public virtual void Reset(View view)
         {
-            TranslatableText.Reset(view);
-            Text.Reset(view);
-            FontFamily.Reset(view);
-            TextColor.Reset(view);
-            PointSize.Reset(view);
-            TextShadow.Reset(view);
-        }
-
-        private static Color GetTextColor(View view)
-        {
-            Color color = new Color();
-            if (view.GetProperty(TextLabel.Property.TEXT_COLOR).Get(color))
-            {
-                return color;
-            }
-            return null;
+            TranslatableText?.Reset(view);
+            Text?.Reset(view);
+            FontFamily?.Reset(view);
+            TextColor?.Reset(view);
+            PointSize?.Reset(view);
+            PixelSize?.Reset(view);
+            TextShadow?.Reset(view);
         }
     }
 }

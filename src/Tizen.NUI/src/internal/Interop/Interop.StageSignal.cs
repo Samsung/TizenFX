@@ -1,6 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 namespace Tizen.NUI
 {
@@ -9,25 +22,25 @@ namespace Tizen.NUI
         internal static partial class StageSignal
         {
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_KeyEventSignal")]
-            public static extern global::System.IntPtr Stage_KeyEventSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr KeyEventSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_EventProcessingFinishedSignal")]
-            public static extern global::System.IntPtr Stage_EventProcessingFinishedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr EventProcessingFinishedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_TouchSignal")]
-            public static extern global::System.IntPtr Stage_TouchSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr TouchSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_WheelEventSignal")]
-            public static extern global::System.IntPtr Stage_WheelEventSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr WheelEventSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_ContextLostSignal")]
-            public static extern global::System.IntPtr Stage_ContextLostSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr ContextLostSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_ContextRegainedSignal")]
-            public static extern global::System.IntPtr Stage_ContextRegainedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr ContextRegainedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_SceneCreatedSignal")]
-            public static extern global::System.IntPtr Stage_SceneCreatedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr SceneCreatedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
         }
     }
 }

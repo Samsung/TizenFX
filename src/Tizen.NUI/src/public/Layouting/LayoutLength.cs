@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,17 +16,15 @@
  */
 
 using System;
-using System.ComponentModel;
-using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
     /// <summary>
     /// [Draft] A type that represents a layout length. Currently, this implies pixels, but could be extended to handle device dependant sizes, etc.
     /// </summary>
-    public struct LayoutLength
+    public struct LayoutLength : IEquatable<LayoutLength>
     {
-        private float _value;
+        private float value;
 
         /// <summary>
         /// [Draft] Constructor from an int
@@ -35,7 +33,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public LayoutLength(int value)
         {
-            _value = value;
+            this.value = value;
         }
 
         /// <summary>
@@ -45,7 +43,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public LayoutLength(float value)
         {
-            _value = value;
+            this.value = value;
         }
 
         /// <summary>
@@ -55,7 +53,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public LayoutLength(LayoutLength layoutLength)
         {
-            _value = layoutLength._value;
+            value = layoutLength.value;
         }
 
         /// <summary>
@@ -65,7 +63,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public float AsRoundedValue()
         {
-            return (float)Math.Round((decimal)_value, MidpointRounding.AwayFromZero);
+            return (float)Math.Round((decimal)value, MidpointRounding.AwayFromZero);
         }
 
         /// <summary>
@@ -75,7 +73,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public float AsDecimal()
         {
-            return _value;
+            return value;
         }
 
         /// <summary>
@@ -125,7 +123,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public bool Equals(LayoutLength layoutLength)
         {
-            return (Math.Abs(_value - layoutLength._value ) <= float.Epsilon);
+            return (Math.Abs(value - layoutLength.value) <= float.Epsilon);
         }
 
         /// <summary>
@@ -135,7 +133,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public override int GetHashCode()
         {
-            return (int)Math.Ceiling(_value);
+            return (int)Math.Ceiling(value);
         }
 
         /// <summary>
@@ -147,7 +145,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public static LayoutLength operator +(LayoutLength arg1, LayoutLength arg2)
         {
-            return new LayoutLength( arg1._value + arg2._value );
+            return new LayoutLength(arg1.value + arg2.value);
         }
 
         /// <summary>
@@ -159,7 +157,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public static LayoutLength operator +(LayoutLength arg1, int arg2)
         {
-            return new LayoutLength(arg1._value + (float)arg2);
+            return new LayoutLength(arg1.value + (float)arg2);
         }
 
         /// <summary>
@@ -171,7 +169,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public static LayoutLength operator -(LayoutLength arg1, LayoutLength arg2)
         {
-            return new LayoutLength(arg1._value - arg2._value);
+            return new LayoutLength(arg1.value - arg2.value);
         }
 
         /// <summary>
@@ -183,7 +181,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public static LayoutLength operator -(LayoutLength arg1, int arg2)
         {
-            return new LayoutLength(arg1._value - (float)arg2);
+            return new LayoutLength(arg1.value - (float)arg2);
         }
 
         /// <summary>
@@ -195,7 +193,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public static LayoutLength operator *(LayoutLength arg1, LayoutLength arg2)
         {
-            return new LayoutLength(arg1._value * arg2._value);
+            return new LayoutLength(arg1.value * arg2.value);
         }
 
         /// <summary>
@@ -207,7 +205,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public static LayoutLength operator *(LayoutLength arg1, int arg2)
         {
-            return new LayoutLength(arg1._value * arg2);
+            return new LayoutLength(arg1.value * arg2);
         }
 
         /// <summary>
@@ -219,7 +217,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public static LayoutLength operator /(LayoutLength arg1, LayoutLength arg2)
         {
-            return new LayoutLength(arg1._value /  arg2._value);
+            return new LayoutLength(arg1.value / arg2.value);
         }
 
         /// <summary>
@@ -231,7 +229,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public static LayoutLength operator /(LayoutLength arg1, int arg2)
         {
-            return new LayoutLength(arg1._value / (float)arg2);
+            return new LayoutLength(arg1.value / (float)arg2);
         }
     }
 }

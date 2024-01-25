@@ -25,6 +25,7 @@ namespace Tizen.Security
     /// The PrivacyPrivilegeManager provides the properties or methods to check and request a permission for privacy privilege.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.")]
     public static class PrivacyPrivilegeManager
     {
         private const string LogTag = "Tizen.Privilege";
@@ -112,6 +113,7 @@ namespace Tizen.Security
         /// </code>
         /// </example>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.")]
         public static CheckResult CheckPermission(string privilege)
         {
             Interop.PrivacyPrivilegeManager.CheckResult result;
@@ -158,6 +160,7 @@ namespace Tizen.Security
         /// </code>
         /// </example>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.")]
         public static IEnumerable<CheckResult> CheckPermissions(IEnumerable<string> privileges)
         {
             string[] privilegesArray = CheckPrivilegesArgument(privileges, "CheckPermissions");
@@ -205,6 +208,7 @@ namespace Tizen.Security
         /// </code>
         /// </example>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.")]
         public static void RequestPermission(string privilege)
         {
             if (!s_PrivilegesInProgress.Add(privilege))
@@ -257,6 +261,7 @@ namespace Tizen.Security
         /// </code>
         /// </example>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.")]
         public static Task<RequestMultipleResponseEventArgs> RequestPermissions(IEnumerable<string> privileges)
         {
             string[] privilegesArray = CheckPrivilegesArgument(privileges, "RequestPermissions");
@@ -355,6 +360,7 @@ namespace Tizen.Security
         /// </code>
         /// </example>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.")]
         public static WeakReference<ResponseContext> GetResponseContext(string privilege)
         {
             if (!(s_responseWeakMap.TryGetValue(privilege, out WeakReference<ResponseContext> weakRef) && weakRef.TryGetTarget(out ResponseContext context)))
@@ -402,6 +408,7 @@ namespace Tizen.Security
         /// This class enables having event handlers for an individual privilege.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.")]
         public class ResponseContext
         {
             private string _privilege;
@@ -415,6 +422,7 @@ namespace Tizen.Security
             /// </summary>
             /// <exception cref="System.InvalidOperationException">Thrown when the bundle instance has been disposed.</exception>
             /// <since_tizen> 4 </since_tizen>
+            [Obsolete("Deprecated in API11, will be removed in API13. This API will be removed without any alternatives.")]
             public event EventHandler<RequestResponseEventArgs> ResponseFetched
             {
                 add

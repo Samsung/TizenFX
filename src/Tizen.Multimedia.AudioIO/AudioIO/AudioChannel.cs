@@ -69,6 +69,54 @@ namespace Tizen.Multimedia
         /// 8 audio channels
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        MultiChannel8
+        MultiChannel8,
+
+        /// <summary>
+        /// 9 audio channels
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        MultiChannel9,
+
+        /// <summary>
+        /// 10 audio channels
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        MultiChannel10,
+
+        /// <summary>
+        /// 11 audio channels
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        MultiChannel11,
+
+        /// <summary>
+        /// 12 audio channels
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        MultiChannel12,
+
+        /// <summary>
+        /// 13 audio channels
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        MultiChannel13,
+
+        /// <summary>
+        /// 14 audio channels
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        MultiChannel14,
+
+        /// <summary>
+        /// 15 audio channels
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        MultiChannel15,
+
+        /// <summary>
+        /// 16 audio channels
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        MultiChannel16
     }
 }

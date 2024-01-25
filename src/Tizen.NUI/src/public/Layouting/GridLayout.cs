@@ -1,4 +1,4 @@
-﻿/* Copyright (c) 2019 Samsung Electronics Co., Ltd.
+﻿/* Copyright (c) 2020 Samsung Electronics Co., Ltd.
 .*
 .* Licensed under the Apache License, Version 2.0 (the "License");
 .* you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ namespace Tizen.NUI
         /// ColumnProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ColumnProperty = BindableProperty.CreateAttached("Column", typeof(int), typeof(GridLayout), CellUndefined, validateValue: (bindable, value) => (int)value >= 0, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty ColumnProperty = BindableProperty.CreateAttached("Column", typeof(int), typeof(GridLayout), AutoColumn, validateValue: (bindable, value) => (int)value >= 0 || (int)value == AutoColumn, propertyChanged: OnChildPropertyChanged);
 
         /// <summary>
         /// ColumnSpanProperty
@@ -42,7 +42,7 @@ namespace Tizen.NUI
         /// RowProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RowProperty = BindableProperty.CreateAttached("Row", typeof(int), typeof(GridLayout), CellUndefined, validateValue: (bindable, value) => (int)value >= 0, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty RowProperty = BindableProperty.CreateAttached("Row", typeof(int), typeof(GridLayout), AutoRow, validateValue: (bindable, value) => (int)value >= 0 || (int)value == AutoRow, propertyChanged: OnChildPropertyChanged);
 
         /// <summary>
         /// RowSpanProperty
@@ -54,27 +54,32 @@ namespace Tizen.NUI
         /// HorizontalStretchProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty HorizontalStretchProperty = BindableProperty.CreateAttached("HorizontalStretch", typeof(StretchFlags), typeof(GridLayout), default(StretchFlags), propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty HorizontalStretchProperty = BindableProperty.CreateAttached("HorizontalStretch", typeof(StretchFlags), typeof(GridLayout), default(StretchFlags), validateValue: ValidateEnum((int)StretchFlags.None, (int)StretchFlags.ExpandAndFill), propertyChanged: OnChildPropertyChanged);
 
         /// <summary>
         /// VerticalStretchProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty VerticalStretchProperty = BindableProperty.CreateAttached("VerticalStretch", typeof(StretchFlags), typeof(GridLayout), default(StretchFlags), propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty VerticalStretchProperty = BindableProperty.CreateAttached("VerticalStretch", typeof(StretchFlags), typeof(GridLayout), default(StretchFlags), validateValue: ValidateEnum((int)StretchFlags.None, (int)StretchFlags.ExpandAndFill), propertyChanged: OnChildPropertyChanged);
 
         /// <summary>
         /// HorizontalAlignmentProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty HorizontalAlignmentProperty = BindableProperty.CreateAttached("HorizontalAlignment", typeof(Alignment), typeof(GridLayout), Alignment.Start, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty HorizontalAlignmentProperty = BindableProperty.CreateAttached("HorizontalAlignment", typeof(Alignment), typeof(GridLayout), Alignment.Start, validateValue: ValidateEnum((int)Alignment.Start, (int)Alignment.End), propertyChanged: OnChildPropertyChanged);
 
         /// <summary>
         /// VerticalAlignmentProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty VerticalAlignmentProperty = BindableProperty.CreateAttached("VerticalAlignment", typeof(Alignment), typeof(GridLayout), Alignment.Start, propertyChanged: OnChildPropertyChanged);
+        public static readonly BindableProperty VerticalAlignmentProperty = BindableProperty.CreateAttached("VerticalAlignment", typeof(Alignment), typeof(GridLayout), Alignment.Start, validateValue: ValidateEnum((int)Alignment.Start, (int)Alignment.End), propertyChanged: OnChildPropertyChanged);
 
-        private const int CellUndefined = int.MinValue;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public const int AutoColumn = int.MinValue;
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public const int AutoRow = int.MinValue;
+
         private Orientation gridOrientation = Orientation.Horizontal;
         private int columns = 1;
         private int rows = 1;
@@ -98,98 +103,156 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get the column index.
+        /// Gets the column index.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <returns>The column index of <paramref name="view"/>.</returns>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <since_tizen> 8 </since_tizen>
         public static int GetColumn(View view) => GetAttachedValue<int>(view, ColumnProperty);
 
         /// <summary>
-        /// Get the column span.
+        /// Gets the column span.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <returns>The column span of <paramref name="view"/>.</returns>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <since_tizen> 8 </since_tizen>
         public static int GetColumnSpan(View view) => GetAttachedValue<int>(view, ColumnSpanProperty);
 
         /// <summary>
-        /// Get the row index.
+        /// Gets the row index.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <returns>The row index of <paramref name="view"/>.</returns>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <since_tizen> 8 </since_tizen>
         public static int GetRow(View view) => GetAttachedValue<int>(view, RowProperty);
 
         /// <summary>
-        /// Get the row span.
+        /// Gets the row span.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <returns>The row span of <paramref name="view"/>.</returns>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <since_tizen> 8 </since_tizen>
         public static int GetRowSpan(View view) => GetAttachedValue<int>(view, RowSpanProperty);
 
         /// <summary>
-        /// Get the value how child is resized within its horizontal space.
+        /// Gets the value how child is resized within its horizontal space.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <returns>The horizontal stretch flag of <paramref name="view"/>.</returns>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <since_tizen> 8 </since_tizen>
         public static StretchFlags GetHorizontalStretch(View view) => GetAttachedValue<StretchFlags>(view, HorizontalStretchProperty);
 
         /// <summary>
-        /// Get the value how child is resized within its vertical space.
+        /// Gets the value how child is resized within its vertical space.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <returns>The vertical stretch flag of <paramref name="view"/>.</returns>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <since_tizen> 8 </since_tizen>
         public static StretchFlags GetVerticalStretch(View view) => GetAttachedValue<StretchFlags>(view, VerticalStretchProperty);
 
         /// <summary>
-        /// Get the horizontal alignment of this child.
+        /// Gets the horizontal alignment of this child.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <returns>The horizontal alignment of <paramref name="view"/>.</returns>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <since_tizen> 8 </since_tizen>
         public static Alignment GetHorizontalAlignment(View view) => GetAttachedValue<Alignment>(view, HorizontalAlignmentProperty);
 
         /// <summary>
-        /// Get the vertical alignment of this child.
+        /// Gets the vertical alignment of this child.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <returns>The vertical alignment of <paramref name="view"/>.</returns>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
         /// <since_tizen> 8 </since_tizen>
         public static Alignment GetVerticalAlignment(View view) => GetAttachedValue<Alignment>(view, VerticalAlignmentProperty);
 
         /// <summary>
-        /// Set the column index.
+        /// Sets the column index the child occupies. A default column is <see cref="AutoColumn"/>.<br/>
+        /// If column is a <see cref="AutoColumn"/>, child will be automatically laid out depending on <see cref="GridOrientation"/>.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <param name="value">The column index of <paramref name="view"/>.</param>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
+        /// <exception cref="ArgumentException">The <paramref name="value"/> cannot be a negative value other than <see cref="AutoColumn"/>.</exception>
         /// <since_tizen> 8 </since_tizen>
         public static void SetColumn(View view, int value) => SetAttachedValue(view, ColumnProperty, value);
 
         /// <summary>
-        /// Set the column span.
+        /// Sets the column span the child occupies. the default value is 1.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <param name="value">The column span of <paramref name="view"/>.</param>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
+        /// <exception cref="ArgumentException">The <paramref name="value"/> cannot be less than 1.</exception>
         /// <since_tizen> 8 </since_tizen>
         public static void SetColumnSpan(View view, int value) => SetAttachedValue(view, ColumnSpanProperty, value);
 
         /// <summary>
-        /// Set the row index.
+        /// Sets the row index the child occupies. A default row index is <see cref="AutoRow"/>.<br/>
+        /// If row is a <see cref="AutoRow"/>, child will be automatically laid out depending on <see cref="GridOrientation"/>.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <param name="value">The row index of <paramref name="view"/>.</param>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
+        /// <exception cref="ArgumentException">The <paramref name="value"/> cannot be a negative value other than <see cref="AutoRow"/>.</exception>
         /// <since_tizen> 8 </since_tizen>
         public static void SetRow(View view, int value) => SetAttachedValue(view, RowProperty, value);
 
         /// <summary>
-        /// Set the row span.
+        /// Sets the row span the child occupies. the default value is 1.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <param name="value">The row span of <paramref name="view"/>.</param>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
+        /// <exception cref="ArgumentException">The <paramref name="value"/> cannot be less than 1.</exception>
         /// <since_tizen> 8 </since_tizen>
         public static void SetRowSpan(View view, int value) => SetAttachedValue(view, RowSpanProperty, value);
 
         /// <summary>
-        /// Set the value how child is resized within its horizontal space. <see cref="StretchFlags.Fill"/> by default.
+        /// Sets the value how child is resized within its horizontal space. <see cref="StretchFlags.None"/> by default.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <param name="value">The horizontal stretch flag of <paramref name="view"/>.</param>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
+        /// <exception cref="ArgumentException">The <paramref name="value"/> should be <see cref="StretchFlags"/>.</exception>
         /// <since_tizen> 8 </since_tizen>
         public static void SetHorizontalStretch(View view, StretchFlags value) => SetAttachedValue(view, HorizontalStretchProperty, value);
 
         /// <summary>
-        /// Set the value how child is resized within its vertical space. <see cref="StretchFlags.Fill"/> by default.
+        /// Set the value how child is resized within its vertical space. <see cref="StretchFlags.None"/> by default.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <param name="value">The vertical stretch flag of <paramref name="view"/>.</param>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
+        /// <exception cref="ArgumentException">The <paramref name="value"/> should be <see cref="StretchFlags"/>.</exception>
         /// <since_tizen> 8 </since_tizen>
         public static void SetVerticalStretch(View view, StretchFlags value) => SetAttachedValue(view, VerticalStretchProperty, value);
 
         /// <summary>
-        /// Set the horizontal alignment of this child inside the cells.
+        /// Set the horizontal alignment of this child inside the cells. <see cref="Alignment.Start"/> by default.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <param name="value">The horizontal alignment flag of <paramref name="view"/>.</param>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
+        /// <exception cref="ArgumentException">The <paramref name="value"/> should be <see cref="Alignment"/>.</exception>
         /// <since_tizen> 8 </since_tizen>
         public static void SetHorizontalAlignment(View view, Alignment value) => SetAttachedValue(view, HorizontalAlignmentProperty, value);
 
         /// <summary>
         /// Set the vertical alignment of this child inside the cells.
         /// </summary>
+        /// <param name="view">The child view.</param>
+        /// <param name="value">The vertical alignment flag of <paramref name="view"/>.</param>
+        /// <exception cref="ArgumentNullException">The <paramref name="view"/> cannot be null.</exception>
+        /// <exception cref="ArgumentException">The <paramref name="value"/> should be <see cref="Alignment"/>.</exception>
         /// <since_tizen> 8 </since_tizen>
         public static void SetVerticalAlignment(View view, Alignment value) => SetAttachedValue(view, VerticalAlignmentProperty, value);
 
@@ -228,6 +291,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Get/Set the orientation in the layout
         /// </summary>
+        /// <exception cref="InvalidEnumArgumentException">Thrown when using invalid arguments that are enumerators.</exception>
         /// <since_tizen> 8 </since_tizen>
         public Orientation GridOrientation
         {
@@ -235,6 +299,9 @@ namespace Tizen.NUI
             set
             {
                 if (gridOrientation == value) return;
+                if (value != Orientation.Horizontal && value != Orientation.Vertical)
+                    throw new InvalidEnumArgumentException(nameof(GridOrientation));
+
                 gridOrientation = value;
                 RequestLayout();
             }
@@ -291,7 +358,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
-            int widthSize;
+            int widthSize = 0;
             int heightSize;
             var widthMode = widthMeasureSpec.Mode;
             var heightMode = heightMeasureSpec.Mode;
@@ -299,9 +366,16 @@ namespace Tizen.NUI
             InitChildren(widthMeasureSpec, heightMeasureSpec);
 
             if (widthMode == MeasureSpecification.ModeType.Exactly)
+            {
                 widthSize = (int)widthMeasureSpec.Size.AsRoundedValue();
+            }
             else
-                widthSize = (int)(hLocations[maxColumnConut] - hLocations[0] - columnSpacing);
+            {
+                if (hLocations?.Length > maxColumnConut)
+                {
+                    widthSize = (int)(hLocations[maxColumnConut] - hLocations[0] - columnSpacing);
+                }
+            }
 
             if (heightMode == MeasureSpecification.ModeType.Exactly)
                 heightSize = (int)heightMeasureSpec.Size.AsRoundedValue();
@@ -330,7 +404,7 @@ namespace Tizen.NUI
         {
             InitChildrenWithExpand(MeasuredWidth.Size - Padding.Start - Padding.End, MeasuredHeight.Size - Padding.Top - Padding.Bottom);
 
-            for (int i = 0; i < gridChildren.Length; i++)
+            for (int i = 0; i < gridChildren.Count; i++)
             {
                 GridChild child = gridChildren[i];
                 View view = child.LayoutItem?.Owner;
@@ -348,17 +422,71 @@ namespace Tizen.NUI
                 float t = vLocations[row] + Padding.Top + view.Margin.Top;
                 float width = hLocations[columnEnd] - hLocations[column] - ColumnSpacing - view.Margin.Start - view.Margin.End;
                 float height = vLocations[rowEnd] - vLocations[row] - RowSpacing - view.Margin.Top - view.Margin.Bottom;
+                bool needMeasuredWidth = false;
+                bool needMeasuredHeight = false;
 
-                if (!child.Column.Stretch.HasFlag(StretchFlags.Fill))
+                if (child.Column.Stretch.HasFlag(StretchFlags.Fill))
+                {
+                    needMeasuredWidth = true;
+                }
+                else
                 {
                     l += (width - child.LayoutItem.MeasuredWidth.Size.AsDecimal()) * halign.ToFloat();
                     width = child.LayoutItem.MeasuredWidth.Size.AsDecimal();
                 }
 
-                if (!child.Row.Stretch.HasFlag(StretchFlags.Fill))
+                if (child.Row.Stretch.HasFlag(StretchFlags.Fill))
+                {
+                    needMeasuredHeight = true;
+                }
+                else
                 {
                     t += (height - child.LayoutItem.MeasuredHeight.Size.AsDecimal()) * valign.ToFloat();
                     height = child.LayoutItem.MeasuredHeight.Size.AsDecimal();
+                }
+
+                if (needMeasuredWidth || needMeasuredHeight)
+                {
+                    // To calculate the grand children's Measure() with the mode type Exactly,
+                    // children's Measure() is called with MatchParent if the children have WrapContent.
+                    //
+                    // i.e.
+                    // If children have Wrapcontent and the grand children have MatchParent,
+                    // then grand children's MeasuredWidth/Height do not fill the children
+                    // because the grand children's Measure() is called with the mode type AtMost.
+                    int widthSpecification = child.LayoutItem.Owner.WidthSpecification;
+                    int heightSpecification = child.LayoutItem.Owner.HeightSpecification;
+                    Size2D origSize = new Size2D(child.LayoutItem.Owner.Size2D.Width, child.LayoutItem.Owner.Size2D.Height);
+
+                    if (needMeasuredWidth)
+                    {
+                        child.LayoutItem.Owner.WidthSpecification = LayoutParamPolicies.MatchParent;
+                    }
+                    if (needMeasuredHeight)
+                    {
+                        child.LayoutItem.Owner.HeightSpecification = LayoutParamPolicies.MatchParent;
+                    }
+
+                    MeasureSpecification widthSpec = new MeasureSpecification(new LayoutLength(width), MeasureSpecification.ModeType.Exactly);
+                    MeasureSpecification heightSpec = new MeasureSpecification(new LayoutLength(height), MeasureSpecification.ModeType.Exactly);
+                    MeasureChild(child.LayoutItem, widthSpec, heightSpec);
+
+                    if (needMeasuredWidth)
+                    {
+                        child.LayoutItem.Owner.WidthSpecification = widthSpecification;
+                    }
+                    if (needMeasuredHeight)
+                    {
+                        child.LayoutItem.Owner.HeightSpecification = heightSpecification;
+                    }
+
+                    // If the both Width/HeightSpecification are set with values bigger than 0,
+                    // then the child's Size2D is changed with the values of Width/HeightSpecification.
+                    // The Size2D changes, caused by setting Width/HeightSpecification, should be reverted.
+                    if (needMeasuredWidth && needMeasuredHeight && (widthSpecification > 0) && (heightSpecification > 0))
+                    {
+                        child.LayoutItem.Owner.SetSize(origSize.Width, origSize.Height);
+                    }
                 }
 
                 child.LayoutItem.Layout(new LayoutLength(l), new LayoutLength(t), new LayoutLength(l + width), new LayoutLength(t + height));
@@ -373,7 +501,7 @@ namespace Tizen.NUI
         public enum StretchFlags
         {
             /// <summary>
-            /// Respect mesured size of the child.
+            /// Respect measured size of the child.
             /// </summary>
             /// <since_tizen> 8 </since_tizen>
             None = 0,

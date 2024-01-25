@@ -1,0 +1,40 @@
+/*
+ * Copyright (c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+using System;
+using System.ComponentModel;
+
+namespace Tizen.NUI
+{
+    /// <summary>
+    /// Event arguments that passed via the WebView.FormRepostPolicyDecided.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class WebViewFormRepostPolicyDecidedEventArgs : EventArgs
+    {
+        internal WebViewFormRepostPolicyDecidedEventArgs(WebFormRepostPolicyDecisionMaker maker)
+        {
+            FormRepostPolicyDecisionMaker = maker;
+        }
+
+        /// <summary>
+        /// The form repost policy decision maker.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public WebFormRepostPolicyDecisionMaker FormRepostPolicyDecisionMaker { get; }
+    }
+}

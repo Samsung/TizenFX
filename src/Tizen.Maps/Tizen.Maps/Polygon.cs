@@ -26,6 +26,7 @@ namespace Tizen.Maps
     /// The polygon map object.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class Polygon : MapObject, IDisposable
     {
         internal Interop.PolygonHandle handle;
@@ -38,6 +39,7 @@ namespace Tizen.Maps
         /// <param name="coordinates">List of geographical coordinates.</param>
         /// <param name="color">Background color.</param>
         /// <exception cref="ArgumentException">Thrown when input values are invalid.</exception>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public Polygon(IEnumerable<Geocoordinates> coordinates, Color color) : base()
         {
             var err = Interop.ErrorCode.InvalidParameter;
@@ -62,12 +64,14 @@ namespace Tizen.Maps
         /// Adds or removes the clicked event handlers.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public event EventHandler Clicked;
 
         /// <summary>
         /// Gets or sets visibility for the polygon.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public override bool IsVisible
         {
             get { return handle.IsVisible; }
@@ -78,6 +82,7 @@ namespace Tizen.Maps
         /// Gets or sets a list of geographical coordinates for polygon vertices.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public IEnumerable<Geocoordinates> Coordinates
         {
             get
@@ -105,6 +110,7 @@ namespace Tizen.Maps
         /// Gets or sets a background color to fill the polygon.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public Color FillColor
         {
             get
@@ -140,6 +146,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <param name="disposing">If true, managed and unmanaged resources can be disposed, otherwise only unmanaged resources can be disposed.</param>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposedValue)
@@ -157,6 +164,7 @@ namespace Tizen.Maps
         /// Releases all the resources used by this object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public void Dispose()
         {
             Dispose(true);

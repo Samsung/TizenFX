@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright (c) 2020 Samsung Electronics Co., Ltd All Rights Reserved
+* Copyright (c) 2020 - 2021 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
 * you may not use this file except in compliance with the License.
@@ -17,18 +17,18 @@
 using System;
 using NativeI2c = Interop.Peripheral.I2c;
 
-namespace Tizen.Peripheral
+namespace Tizen.Peripheral.I2c
 {
     /// <summary>
     /// The class allows applications to communicate via i2c platform's bus.
     /// </summary>
     /// <privilege>http://tizen.org/privilege/peripheralio</privilege>
-    public class I2c : IDisposable
+    public class I2cDevice : IDisposable
     {
         /// <summary>
         /// Native handle to I2c.
         /// </summary>
-        private IntPtr _handle;
+        private IntPtr _handle = IntPtr.Zero;
         private bool _disposed = false;
 
         /// <summary>
@@ -36,19 +36,17 @@ namespace Tizen.Peripheral
         /// </summary>
         /// <param name="bus">The I2C bus number that the slave device is connected.</param>
         /// <param name="address">The address of the slave device.</param>
-        public I2c(int bus, int address)
+        public I2cDevice(int bus, int address)
         {
-            var ret = NativeI2c.Open(bus, address, out IntPtr handle);
+            var ret = NativeI2c.Open(bus, address, out _handle);
             if (ret != Internals.Errors.ErrorCode.None)
                 throw ExceptionFactory.CreateException(ret);
-
-            _handle = handle;
         }
 
         /// <summary>
         /// Closes the connection to the I2C slave device.
         /// </summary>
-        ~I2c()
+        ~I2cDevice()
         {
             Dispose(false);
         }
@@ -78,6 +76,7 @@ namespace Tizen.Peripheral
             }
 
             NativeI2c.Close(_handle);
+            _handle = IntPtr.Zero;
             _disposed = true;
         }
 
@@ -87,6 +86,8 @@ namespace Tizen.Peripheral
         /// <param name="dataOut">The output byte array.</param>
         public void Read(byte[] dataOut)
         {
+            if (dataOut == null)
+                throw new ArgumentNullException(nameof(dataOut));
             var length = Convert.ToUInt32(dataOut.Length);
             var ret = NativeI2c.Read(_handle, dataOut, length);
             if (ret != Internals.Errors.ErrorCode.None)
@@ -99,6 +100,8 @@ namespace Tizen.Peripheral
         /// <param name="data"></param>
         public void Write(byte[] data)
         {
+            if (data == null)
+                throw new ArgumentNullException(nameof(data));
             var length = Convert.ToUInt32(data.Length);
             var ret = NativeI2c.Write(_handle, data, length);
             if (ret != Internals.Errors.ErrorCode.None)

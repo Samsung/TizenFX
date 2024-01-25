@@ -314,6 +314,7 @@ namespace Tizen.Network.Connection
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <feature>http://tizen.org/feature/network.route</feature>
         /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when a permission is denied.</exception>
         /// <exception cref="System.ArgumentException">Thrown when a value is an invalid parameter.</exception>
@@ -339,6 +340,7 @@ namespace Tizen.Network.Connection
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <feature>http://tizen.org/feature/network.tethering.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
+        /// <feature>http://tizen.org/feature/network.route</feature>
         /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when a permission is denied.</exception>
         /// <exception cref="System.ArgumentException">Thrown when a value is an invalid parameter.</exception>

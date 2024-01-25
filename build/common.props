@@ -6,6 +6,8 @@
     <GenerateDependencyFile>False</GenerateDependencyFile>
     <Deterministic>True</Deterministic>
     <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
+    <ProduceReferenceAssemblyInOutDir>True</ProduceReferenceAssemblyInOutDir>
+    <NoWarn>$(NoWarn);CS0618;CS0809</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup>

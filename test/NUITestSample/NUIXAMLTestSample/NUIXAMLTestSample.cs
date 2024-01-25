@@ -11,6 +11,7 @@ namespace NUIXAMLTestSample
         [STAThread]
         static void Main(string[] args)
         {
+            //new TextLayoutSample().Run(args);
             //new TempTest().Run(args);
             new LayoutSample().Run(args);
 

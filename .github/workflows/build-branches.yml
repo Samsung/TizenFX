@@ -4,6 +4,7 @@ on:
   push:
     branches:
     - master
+    - DevelNUI
     - API*
 
     paths:
@@ -11,23 +12,24 @@ on:
     - 'internals/**'
     - 'src/**'
     - 'tools/**'
+    - '.github/workflows/**'
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 3.1.x
+        dotnet-version: 3.1.402
 
     - name: Build
       run: ./build.sh full
 
     - name: Checkout APITool
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         repository: TizenAPI/APITool
         path: .apitool
@@ -38,13 +40,21 @@ jobs:
             -- print --format=json --include-hidden \
             -o Artifacts/api.json Artifacts/bin/public/
 
-    - name: Upload API Spec to S3
-      uses: TizenAPI/tizenfx-build-actions/s3-upload@master
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    - name: Checkout APISpec
+      uses: actions/checkout@v3
       with:
-        file: Artifacts/api.json
-        region: ap-northeast-2
-        bucket: tizenfx-api-specs
-        key: ${{ github.sha }}.json
+        repository: TizenAPI/tizenfx-api-specs
+        token: ${{ secrets.TIZENAPI_GITHUB_TOKEN }}
+        path: .apispec
+    
+    - name: Push to APISpec
+      working-directory: .apispec
+      run: |
+        git config --global user.name "TizenAPI-Bot"
+        git config --global user.email "tizenapi@samsung.net"
+        git checkout --orphan prep
+        gzip -c ../Artifacts/api.json > ${{ github.sha }}.json.gz
+        find . -name "*.json.gz" -type f -mtime +30 -delete
+        git add .
+        git commit -m "Update API spec"
+        git push -f origin HEAD:main

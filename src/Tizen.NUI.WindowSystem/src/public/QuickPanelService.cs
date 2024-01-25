@@ -154,7 +154,7 @@ namespace Tizen.NUI.WindowSystem.Shell
                     {
                         _tzsh.ErrorCodeThrow(res);
                     }
-                    catch (ArgumentException e)
+                    catch (ArgumentException)
                     {
                         throw new MemberAccessException("QuickPanelService is a corrupted");
                     }

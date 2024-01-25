@@ -15,7 +15,6 @@
  *
  */
 using System.ComponentModel;
-using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Components
 {
@@ -25,16 +24,14 @@ namespace Tizen.NUI.Components
     /// This only contains non-graphical functionalities of basic scrollbar.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public abstract class ScrollbarBase : VisualView
+    public abstract class ScrollbarBase : Control
     {
-        private bool mScrollEnabled = true;
-
         #region Constructors
 
         /// <summary>
         /// Create an empty ScrollbarBase.
         /// </summary>
-        public ScrollbarBase() : base(CustomViewBehaviour.ViewBehaviourDefault)
+        protected ScrollbarBase()
         {
         }
 
@@ -42,7 +39,7 @@ namespace Tizen.NUI.Components
         /// Create an empty Scrollbar with a ViewStyle instance to set style properties.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ScrollbarBase(ViewStyle style) : base(CustomViewBehaviour.ViewBehaviourDefault, style)
+        protected ScrollbarBase(ControlStyle style) : base(style)
         {
         }
 
@@ -57,6 +54,25 @@ namespace Tizen.NUI.Components
 
 
         #region Methods
+
+        /// <summary>
+        /// Removes a view from its parent ScrollableBase. If a view has no parent, this method does nothing.
+        /// </summary>
+        public new void Unparent()
+        {
+            (GetParent() as ScrollableBase)?.BaseRemove(this);
+        }
+
+        /// <summary>
+        /// Update content length and position at once.
+        /// </summary>
+        /// <param name="contentLength">The total length of the content.</param>
+        /// <param name="viewportLength">The length of the viewport representing the amount of visible content.</param>
+        /// <param name="position">The destination position of the View in content length. This is the View's top position if the scroller is vertical, otherwise, View's left position.</param>
+        /// <param name="durationMs">The time it takes to scroll in milliseconds.</param>
+        /// <param name="alphaFunction">The timing function used in animation. It describes the rate of change of the animation parameter over time. (e.g. EaseOut)</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public abstract void Update(float contentLength, float viewportLength, float position, uint durationMs = 0, AlphaFunction alphaFunction = null);
 
         /// <summary>
         /// Update content length and position at once.
@@ -88,22 +104,43 @@ namespace Tizen.NUI.Components
         public abstract void Initialize(float contentLength, float viewportLength, float currentPosition, bool isHorizontal = false);
 
         /// <summary>
-        /// Enable or disable scrolling.
+        /// Fade out scroll bar with delay. fade in effect will be erased after delay timeout.
+        /// See <see cref="FadeOutThreshold"/>, <see cref="FadeDuration"/>.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public abstract bool ScrollEnabled { get; set; }
+        internal virtual void FadeOut() {}
+
+        /// <summary>
+        /// Fade in scroll bar. fade out effect will be erased.
+        /// See <see cref="FadeDuration"/>.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal virtual void FadeIn() {}
 
         /// <summary>
         /// Scroll position given to ScrollTo or Update.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public abstract Position ScrollPosition { get; }
+        public abstract float ScrollPosition { get; }
 
         /// <summary>
         /// Current scroll position in the middle of ScrollTo or Update animation.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public abstract Position ScrollCurrentPosition { get; }
+        public abstract float ScrollCurrentPosition { get; }
+
+        /// <summary>
+        /// The milisecond threshold for fading out scroll bar.
+        /// scroll bar will be faded out when scroll stay in certain position longer than this threshold.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal virtual uint FadeOutThreshold { get; set; }
+
+        /// <summary>
+        /// The milisecond duration for fading scroll bar animation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal virtual int FadeDuration { get; set; }
 
         #endregion Methods
     }

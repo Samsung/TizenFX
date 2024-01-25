@@ -26,6 +26,7 @@ namespace Tizen.Maps
     /// Map View class to show a map on the screen.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API10. Might be removed in API12.")]
     public class MapView : Layout, IDisposable
     {
         internal Interop.ViewHandle handle;
@@ -57,6 +58,7 @@ namespace Tizen.Maps
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
         /// <exception cref="System.ArgumentException">Thrown when parameters are invalid.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when a native operation failed to allocate memory, and connect to the service.</exception>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public MapView(EvasObject parent, MapService service) : base(parent)
         {
             handle = new Interop.ViewHandle(service.handle, this);
@@ -85,6 +87,7 @@ namespace Tizen.Maps
         /// <value>Event handlers to get a scrolled gesture event.</value>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public event EventHandler<MapGestureEventArgs> Scrolled
         {
             add
@@ -112,6 +115,7 @@ namespace Tizen.Maps
         /// <value>Event handlers to get a zoomed gesture event.</value>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public event EventHandler<MapGestureEventArgs> TwoFingerZoomed
         {
             add
@@ -139,6 +143,7 @@ namespace Tizen.Maps
         /// <value>Event handlers to get a clicked gesture event.</value>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public event EventHandler<MapGestureEventArgs> Clicked
         {
             add
@@ -166,6 +171,7 @@ namespace Tizen.Maps
         /// <value>Event handlers to get a double-clicked gesture event.</value>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public event EventHandler<MapGestureEventArgs> DoubleClicked
         {
             add
@@ -193,6 +199,7 @@ namespace Tizen.Maps
         /// <value>Event handlers to get a clicked gesture event.</value>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public event EventHandler<MapGestureEventArgs> TwoFingerClicked
         {
             add
@@ -220,6 +227,7 @@ namespace Tizen.Maps
         /// <value>Event handlers to get a rotated gesture event.</value>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public event EventHandler<MapGestureEventArgs> TwoFingerRotated
         {
             add
@@ -248,6 +256,7 @@ namespace Tizen.Maps
         /// <value>Event handlers to get a long-pressed gesture event.</value>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public event EventHandler<MapGestureEventArgs> LongPressed
         {
             add
@@ -275,6 +284,7 @@ namespace Tizen.Maps
         /// <value>Event handlers to get a view ready event.</value>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public event EventHandler ViewReady
         {
             add
@@ -301,6 +311,7 @@ namespace Tizen.Maps
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public int ZoomLevel
         {
             get
@@ -324,6 +335,7 @@ namespace Tizen.Maps
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public int MinimumZoomLevel
         {
             get
@@ -347,6 +359,7 @@ namespace Tizen.Maps
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public int MaximumZoomLevel
         {
             get
@@ -370,6 +383,7 @@ namespace Tizen.Maps
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public double Orientation
         {
             get
@@ -392,6 +406,7 @@ namespace Tizen.Maps
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public MapTypes MapType
         {
             get
@@ -414,6 +429,7 @@ namespace Tizen.Maps
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public bool BuildingsEnabled
         {
             get
@@ -436,6 +452,7 @@ namespace Tizen.Maps
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public bool TrafficEnabled
         {
             get
@@ -458,6 +475,7 @@ namespace Tizen.Maps
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public bool PublicTransitEnabled
         {
             get
@@ -480,6 +498,7 @@ namespace Tizen.Maps
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public bool ScaleBarEnabled
         {
             get
@@ -509,6 +528,7 @@ namespace Tizen.Maps
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
         /// <exception cref="System.ArgumentException">Thrown when the value is invalid.</exception>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public string Language
         {
             get
@@ -532,6 +552,7 @@ namespace Tizen.Maps
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
         /// <exception cref="System.ArgumentException">Thrown when the value is invalid.</exception>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public Geocoordinates Center
         {
             get
@@ -549,6 +570,7 @@ namespace Tizen.Maps
         /// Gets a list of the map object added to map view.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public new IEnumerable<MapObject> Children
         {
             get
@@ -568,6 +590,7 @@ namespace Tizen.Maps
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
         /// <exception cref="System.ArgumentException">Thrown when the value is invalid.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when a native operation failed to allocate memory and connect to the service.</exception>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public Point GeolocationToScreen(Geocoordinates coordinates)
         {
             return handle.GeolocationToScreen(coordinates.handle);
@@ -584,6 +607,7 @@ namespace Tizen.Maps
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
         /// <exception cref="System.ArgumentException">Thrown when the value is invalid.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when a native operation failed to allocate memory and connect to the service.</exception>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public Geocoordinates ScreenToGeolocation(Point screenCoordinates)
         {
             return new Geocoordinates(handle.ScreenToGeolocation(screenCoordinates));
@@ -599,6 +623,7 @@ namespace Tizen.Maps
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
         /// <exception cref="System.ArgumentException">Thrown when the value is invalid.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when a native operation failed to allocate memory and connect to the service.</exception>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public void Add(MapObject child)
         {
             Log.Info(string.Format("Add a object"));
@@ -624,6 +649,7 @@ namespace Tizen.Maps
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
         /// <exception cref="System.ArgumentException">Thrown when the value is invalid.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when native operation failed to allocate memory and connect to the service.</exception>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public void Remove(MapObject child)
         {
             Log.Info(string.Format("Remove a object"));
@@ -645,6 +671,7 @@ namespace Tizen.Maps
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when a native operation failed to allocate memory and connect to the service.</exception>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public void RemoveAll()
         {
             Log.Info(string.Format("Remove all of objects"));
@@ -668,6 +695,7 @@ namespace Tizen.Maps
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
         /// <exception cref="System.ArgumentException">Thrown when the value is invalid.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when a native operation failed to allocate memory and connect to the service.</exception>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public void CaptureSnapshot(SnapshotType type, int quality, string path)
         {
             var err = Interop.ViewSnapshot.ViewCaptureSnapshot(handle, (Interop.ViewSnapshotFormatType)type, quality, path);
@@ -767,6 +795,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <param name="disposing">If true, managed and unmanaged resources can be disposed, otherwise only unmanaged resources can be disposed.</param>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposedValue)
@@ -785,6 +814,7 @@ namespace Tizen.Maps
         /// Releases all the resources used by this object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public void Dispose()
         {
             Dispose(true);

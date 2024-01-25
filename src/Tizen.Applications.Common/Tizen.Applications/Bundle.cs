@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using Tizen.Internals.Errors;
+using System.ComponentModel;
 
 namespace Tizen.Applications
 {
@@ -64,15 +65,32 @@ namespace Tizen.Applications
         {
             if (handle == null)
             {
-                throw new ArgumentNullException("handle");
+                throw new ArgumentNullException(nameof(handle));
             }
 
             if (handle.IsInvalid)
             {
-                throw new ArgumentNullException("handle", "handle is invalid");
+                throw new ArgumentNullException(nameof(handle), "handle is invalid");
             }
 
-            _handle = Interop.Bundle.DangerousClone(handle.DangerousGetHandle());
+            bool mustRelease = false;
+            try
+            {
+                handle.DangerousAddRef(ref mustRelease);
+                _handle = Interop.Bundle.DangerousClone(handle.DangerousGetHandle());
+            }
+            catch (ObjectDisposedException e)
+            {
+                throw new ArgumentNullException(nameof(handle), e.Message);
+            }
+            finally
+            {
+                if (mustRelease)
+                {
+                    handle.DangerousRelease();
+                }
+            }
+
             _keys = new HashSet<string>();
             Interop.Bundle.Iterator iterator = (string key, int type, IntPtr keyval, IntPtr userData) =>
             {
@@ -80,6 +98,7 @@ namespace Tizen.Applications
             };
 
             Interop.Bundle.Foreach(_handle, iterator, IntPtr.Zero);
+            GC.KeepAlive(iterator);
             if ((BundleErrorFactory.BundleError)ErrorFacts.GetLastResult() == BundleErrorFactory.BundleError.InvalidParameter)
             {
                 throw new ArgumentException("Invalid parameter - cannot create bundle instance");
@@ -208,7 +227,7 @@ namespace Tizen.Applications
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
             AddItem(key, value, 0, value.Length);
         }
@@ -238,19 +257,19 @@ namespace Tizen.Applications
             {
                 if (value == null)
                 {
-                    throw new ArgumentNullException("value");
+                    throw new ArgumentNullException(nameof(value));
                 }
                 if (offset < 0)
                 {
-                    throw new ArgumentOutOfRangeException("offset", offset, "Cannot be less than 0");
+                    throw new ArgumentOutOfRangeException(nameof(offset), offset, "Cannot be less than 0");
                 }
                 if (offset > value.Length - 1)
                 {
-                    throw new ArgumentOutOfRangeException("offset", offset, "Greater than last index of array");
+                    throw new ArgumentOutOfRangeException(nameof(offset), offset, "Greater than last index of array");
                 }
                 if (count < 1)
                 {
-                    throw new ArgumentOutOfRangeException("count", count, "Must be at least 1");
+                    throw new ArgumentOutOfRangeException(nameof(count), count, "Must be at least 1");
                 }
                 if (offset + count > value.Length)
                 {
@@ -263,7 +282,7 @@ namespace Tizen.Applications
             }
             else
             {
-                throw new ArgumentException("Key already exists", "key");
+                throw new ArgumentException("Key already exists", nameof(key));
             }
         }
 
@@ -291,7 +310,7 @@ namespace Tizen.Applications
             }
             else
             {
-                throw new ArgumentException("Key already exists", "key");
+                throw new ArgumentException("Key already exists", nameof(key));
             }
         }
 
@@ -315,13 +334,13 @@ namespace Tizen.Applications
             if (!_keys.Contains(key))
             {
                 string[] valueArray = value.Select(v => v == null ? string.Empty : v).ToArray();
-                int ret = Interop.Bundle.AddStringArray(_handle, key, valueArray, valueArray.Count());
+                int ret = Interop.Bundle.AddStringArray(_handle, key, valueArray, valueArray.Length);
                 BundleErrorFactory.CheckAndThrowException(ret, _handle);
                 _keys.Add(key);
             }
             else
             {
-                throw new ArgumentException("Key already exists", "key");
+                throw new ArgumentException("Key already exists", nameof(key));
             }
         }
 
@@ -386,12 +405,12 @@ namespace Tizen.Applications
                         return byteArray;
 
                     default:
-                        throw new ArgumentException("Key does not exist in the bundle", "key");
+                        throw new ArgumentException("Key does not exist in the bundle", nameof(key));
                 }
             }
             else
             {
-                throw new ArgumentException("Key does not exist in the bundle (may be null or empty string)", "key");
+                throw new ArgumentException("Key does not exist in the bundle (may be null or empty string)", nameof(key));
             }
         }
 
@@ -590,12 +609,12 @@ namespace Tizen.Applications
                         return typeof(byte[]) == typeof(T);
 
                     default:
-                        throw new ArgumentException("Key does not exist in the bundle", "key");
+                        throw new ArgumentException("Key does not exist in the bundle", nameof(key));
                 }
             }
             else
             {
-                throw new ArgumentException("Key does not exist in the bundle (may be null or empty string)", "key");
+                throw new ArgumentException("Key does not exist in the bundle (may be null or empty string)", nameof(key));
             }
         }
 
@@ -657,6 +676,11 @@ namespace Tizen.Applications
         {
             SafeBundleHandle handle;
 
+            if (bundleRaw == null)
+            {
+                throw new ArgumentException("Invalid bundle raw");
+            }
+
             handle = Interop.Bundle.BundleDecode(bundleRaw, bundleRaw.Length);
             if (ErrorFacts.GetLastResult() == (int)BundleErrorFactory.BundleError.InvalidParameter)
             {
@@ -709,6 +733,24 @@ namespace Tizen.Applications
 
                 _disposed = true;
             }
+        }
+
+        /// <summary>
+        /// Imports a bundle object from the argument vector.
+        /// </summary>
+        /// <param name="argv">The argument vector</param>
+        /// <exception cref="System.ArgumentNullException">Thrown when because the argument is null or invalid.</exception>
+        /// <returns>The bundle object.</returns>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Bundle ImportFromArgv(string[] argv)
+        {
+            if (argv == null)
+            {
+                throw new ArgumentNullException(nameof(argv));
+            }
+
+            return new Bundle(Interop.Bundle.ImportFromArgv(argv.Length, argv));
         }
 
         /// <summary>

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,9 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 8 </since_tizen>
     public class SliderStyle : ControlStyle
     {
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <summary>
+        /// IndicatorTypeProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IndicatorTypeProperty = BindableProperty.Create(nameof(IndicatorType), typeof(IndicatorType?), typeof(SliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -42,7 +44,10 @@ namespace Tizen.NUI.Components
             var instance = (SliderStyle)bindable;
             return instance.privateIndicatorType;
         });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// SpaceBetweenTrackAndIndicatorProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SpaceBetweenTrackAndIndicatorProperty = BindableProperty.Create(nameof(SpaceBetweenTrackAndIndicator), typeof(uint?), typeof(SliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -57,7 +62,10 @@ namespace Tizen.NUI.Components
             var instance = (SliderStyle)bindable;
             return instance.privateSpaceBetweenTrackAndIndicator;
         });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// TrackThicknessProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TrackThicknessProperty = BindableProperty.Create(nameof(TrackThickness), typeof(uint?), typeof(SliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -72,16 +80,14 @@ namespace Tizen.NUI.Components
             var instance = (SliderStyle)bindable;
             return instance.privateTrackThickness;
         });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// TrackPaddingProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TrackPaddingProperty = BindableProperty.Create(nameof(TrackPadding), typeof(Extents), typeof(SliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var instance = (SliderStyle)bindable;
-            if (newValue != null)
-            {
-                if (null == instance.trackPadding) instance.trackPadding = new Extents(instance.OnTrackPaddingChanged, 0, 0, 0, 0);
-                instance.trackPadding.CopyFrom(null == newValue ? new Extents() : (Extents)newValue);
-            }
+            ((SliderStyle)bindable).trackPadding = newValue == null ? null : new Extents((Extents)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -89,7 +95,7 @@ namespace Tizen.NUI.Components
             return instance.trackPadding;
         });
 
-        private IndicatorType? privateIndicatorType;
+        private IndicatorType? privateIndicatorType = Slider.IndicatorType.None;
         private uint? privateTrackThickness;
         private uint? privateSpaceBetweenTrackAndIndicator;
         private Extents trackPadding;
@@ -102,8 +108,6 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public SliderStyle() : base()
         {
-            IndicatorType = Slider.IndicatorType.None;
-            InitSubStyle();
         }
 
         /// <summary>
@@ -113,59 +117,75 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public SliderStyle(SliderStyle style) : base(style)
         {
-            if(style == null)
-            {
-                return;
-            }
-
-            InitSubStyle();
-
-            this.CopyFrom(style);
-
-            IndicatorType = style.IndicatorType;
         }
 
         /// <summary>
         /// Get or set background track.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public ImageViewStyle Track { get; set; }
+        public ImageViewStyle Track { get; set; } = new ImageViewStyle();
 
         /// <summary>
         /// Get or set slided track.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public ImageViewStyle Progress { get; set; }
+        public ImageViewStyle Progress { get; set; } = new ImageViewStyle();
 
         /// <summary>
         /// Get or set thumb.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public ImageViewStyle Thumb { get; set; }
+        public ImageViewStyle Thumb { get; set; } = new ImageViewStyle();
+
+        /// <summary>
+        /// Get or set background warning track.
+        /// </summary>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageViewStyle WarningTrack { get; set; } = new ImageViewStyle();
+
+        /// <summary>
+        /// Get or set slided warning track.
+        /// </summary>
+        /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageViewStyle WarningProgress { get; set; } = new ImageViewStyle();
 
         /// <summary>
         /// Get or set low indicator image.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public ImageViewStyle LowIndicatorImage { get; set; }
+        public ImageViewStyle LowIndicatorImage { get; set; } = new ImageViewStyle();
 
         /// <summary>
         /// Get or set high indicator image.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public ImageViewStyle HighIndicatorImage { get; set; }
+        public ImageViewStyle HighIndicatorImage { get; set; } = new ImageViewStyle();
 
         /// <summary>
         /// Get or set low indicator text.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public TextLabelStyle LowIndicator { get; set; }
+        public TextLabelStyle LowIndicator { get; set; } = new TextLabelStyle();
 
         /// <summary>
         /// Get or set high indicator text.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public TextLabelStyle HighIndicator { get; set; }
+        public TextLabelStyle HighIndicator { get; set; } = new TextLabelStyle();
+
+        /// <summary>
+        /// Get or set the value indicator text.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public TextLabelStyle ValueIndicatorText { get; set; } = new TextLabelStyle();
+
+        /// <summary>
+        /// Get or set the value indicator image.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public ImageViewStyle ValueIndicatorImage { get; set; } = new ImageViewStyle();
 
         /// <summary>
         /// Get or set Indicator type
@@ -203,108 +223,45 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Extents TrackPadding
         {
-            get
-            {
-                Extents tmp = (Extents)GetValue(TrackPaddingProperty);
-                return (null != tmp) ? tmp : trackPadding = new Extents(OnTrackPaddingChanged, 0, 0, 0, 0);
-            }
+            get => ((Extents)GetValue(TrackPaddingProperty)) ?? (trackPadding = new Extents(0, 0, 0, 0));
             set => SetValue(TrackPaddingProperty, value);
         }
 
-        /// <summary>
-        /// Style's clone function.
-        /// </summary>
-        /// <param name="bindableObject">The style that need to copy.</param>
+        /// <inheritdoc/>
         /// <since_tizen> 8 </since_tizen>
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);
 
-            SliderStyle sliderStyle = bindableObject as SliderStyle;
-
-            if (null != sliderStyle)
+            if (bindableObject is SliderStyle sliderStyle)
             {
-                if (sliderStyle.Track != null)
-                {
-                    Track?.CopyFrom(sliderStyle.Track);
-                }
-
-                if (sliderStyle.Progress != null)
-                {
-                    Progress?.CopyFrom(sliderStyle.Progress);
-                }
-
-                if (sliderStyle.Thumb != null)
-                {
-                    Thumb?.CopyFrom(sliderStyle.Thumb);
-                }
-
-                if (sliderStyle.LowIndicatorImage != null)
-                {
-                    LowIndicatorImage?.CopyFrom(sliderStyle.LowIndicatorImage);
-                }
-
-                if (sliderStyle.HighIndicatorImage != null)
-                {
-                    HighIndicatorImage?.CopyFrom(sliderStyle.HighIndicatorImage);
-                }
-
-                if (sliderStyle.LowIndicator != null)
-                {
-                    LowIndicator?.CopyFrom(sliderStyle.LowIndicator);
-                }
-
-                if (sliderStyle.HighIndicator != null)
-                {
-                    HighIndicator?.CopyFrom(sliderStyle.HighIndicator);
-                }
-
-                if (sliderStyle.TrackThickness != null)
-                {
-                    TrackThickness = sliderStyle.TrackThickness;
-                }
-
-                if (sliderStyle.TrackPadding != null)
-                {
-                    TrackPadding = sliderStyle.TrackPadding;
-                }
+                Track.CopyFrom(sliderStyle.Track);
+                Progress.CopyFrom(sliderStyle.Progress);
+                Thumb.CopyFrom(sliderStyle.Thumb);
+                WarningTrack.CopyFrom(sliderStyle.WarningTrack);
+                WarningProgress.CopyFrom(sliderStyle.WarningProgress);
+                LowIndicatorImage.CopyFrom(sliderStyle.LowIndicatorImage);
+                HighIndicatorImage.CopyFrom(sliderStyle.HighIndicatorImage);
+                LowIndicator.CopyFrom(sliderStyle.LowIndicator);
+                HighIndicator.CopyFrom(sliderStyle.HighIndicator);
+                ValueIndicatorText.CopyFrom(sliderStyle.ValueIndicatorText);
+                ValueIndicatorImage.CopyFrom(sliderStyle.ValueIndicatorImage);
             }
         }
 
         /// <summary>
         /// Dispose SliderStyle and all children on it.
         /// </summary>
-        /// <param name="type">Dispose type.</param>
+        /// <param name="disposing">true in order to free managed objects</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(DisposeTypes type)
+        protected override void Dispose(bool disposing)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
+            if (disposing)
             {
                 trackPadding?.Dispose();
             }
 
-            base.Dispose(type);
-        }
-
-        private void InitSubStyle()
-        {
-            Track = new ImageViewStyle();
-            Progress = new ImageViewStyle();
-            Thumb = new ImageViewStyle();
-            LowIndicatorImage = new ImageViewStyle();
-            HighIndicatorImage = new ImageViewStyle();
-            LowIndicator = new TextLabelStyle();
-            HighIndicator = new TextLabelStyle();
-        }
-
-        private void OnTrackPaddingChanged(ushort start, ushort end, ushort top, ushort bottom)
-        {
-            TrackPadding = new Extents(start, end, top, bottom);
+            base.Dispose(disposing);
         }
     }
 }

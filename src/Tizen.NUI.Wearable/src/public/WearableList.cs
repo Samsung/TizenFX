@@ -24,7 +24,7 @@ namespace Tizen.NUI.Wearable
     /// [Draft] This class provides a list view styled by wearable ux.
     /// List will lay out all items with Fish-Eye layout manager.
     /// </summary>
-    /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [Obsolete("This has been deprecated in API12")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WearableList : RecyclerView
     {
@@ -33,9 +33,8 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Default constructor.
         /// </summary>
-        /// <param name="adapter">Recycle adapter of List.</param>
         /// <since_tizen> 8 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public WearableList() : base(new RecycleAdapter(), new FishEyeLayoutManager())
         {
@@ -58,6 +57,9 @@ namespace Tizen.NUI.Wearable
             DecelerationRate = 0.991f;
         }
 
+        /// <inheritdoc/>
+        [Obsolete("This has been deprecated in API12")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void SetScrollbar()
         {
             if(LayoutManager != null)
@@ -66,6 +68,9 @@ namespace Tizen.NUI.Wearable
             }
         }
 
+        /// <inheritdoc/>
+        [Obsolete("This has been deprecated in API12")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public new RecycleAdapter Adapter
         {
             get
@@ -93,9 +98,14 @@ namespace Tizen.NUI.Wearable
         /// <param name="dataIndex">Data index of item.</param>
         /// <param name="animated">If set true, scroll to item using animation.</param>
         /// <since_tizen> 8 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [Obsolete("This has been deprecated in API12")]
         public void SetFocus(int dataIndex, bool animated)
         {
+            if (LayoutManager == null)
+            {
+                return;
+            }
+
             foreach (RecycleItem item in Children)
             {
                 if (item.DataIndex == dataIndex)
@@ -119,14 +129,22 @@ namespace Tizen.NUI.Wearable
         /// </summary>
         /// <param name="targetPosition">Index of item.</param>
         /// <since_tizen> 8 </since_tizen>
-        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [Obsolete("This has been deprecated in API12")]
         protected override void OnPreReachedTargetPosition(float targetPosition)
         {
+            if (LayoutManager == null)
+            {
+                return;
+            }
             int targetDataIndex = (int)Math.Round(Math.Abs(targetPosition) / LayoutManager.StepSize);
 
             for (int i = 0; i < Children.Count; i++)
             {
                 RecycleItem item = Children[i] as RecycleItem;
+                if (item == null)
+                {
+                    continue;
+                }
 
                 if (targetDataIndex == item.DataIndex)
                 {

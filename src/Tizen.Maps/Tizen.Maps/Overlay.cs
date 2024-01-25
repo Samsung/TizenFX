@@ -23,6 +23,7 @@ namespace Tizen.Maps
     /// Overlay map object.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class Overlay : MapObject, IDisposable
     {
         internal Interop.OverlayHandle handle;
@@ -34,6 +35,7 @@ namespace Tizen.Maps
         /// <param name="coordinates"></param>
         /// <param name="objectToContain"></param>
         /// <exception cref="ArgumentException">Thrown when the input coordinates or objectToContain are invalid.</exception>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public Overlay(Geocoordinates coordinates, EvasObject objectToContain)
             : this(coordinates, objectToContain, Interop.ViewOverlayType.Normal)
         {
@@ -61,6 +63,7 @@ namespace Tizen.Maps
         /// Gets or sets the visibility of an overlay map object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public override bool IsVisible
         {
             get { return handle.IsVisible; }
@@ -71,6 +74,7 @@ namespace Tizen.Maps
         /// Gets or sets geographical coordinates for an overlay map object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public Geocoordinates Coordinates
         {
             get
@@ -89,6 +93,7 @@ namespace Tizen.Maps
         /// Gets or sets minimum zoom level for an overlay map object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public int MinimumZoomLevel
         {
             get
@@ -105,6 +110,7 @@ namespace Tizen.Maps
         /// Gets or sets maximum zoom lever for an overlay map object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public int MaximumZoomLevel
         {
             get
@@ -141,6 +147,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <param name="disposing">If true, managed and unmanaged resources can be disposed, otherwise only unmanaged resources can be disposed.</param>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposedValue)
@@ -154,6 +161,7 @@ namespace Tizen.Maps
         /// Releases all the resources used by this object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public void Dispose()
         {
             Dispose(true);
@@ -166,6 +174,7 @@ namespace Tizen.Maps
     /// The bubble overlay map object.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class BubbleOverlay : Overlay
     {
         /// <summary>
@@ -176,6 +185,7 @@ namespace Tizen.Maps
         /// <param name="objectToContain">The EvasObject to be shown.</param>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when the input coordinates or objectToContain are invalid.</exception>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public BubbleOverlay(Geocoordinates coordinates, EvasObject objectToContain)
             : base(coordinates, objectToContain, Interop.ViewOverlayType.Bubble)
         {
@@ -186,6 +196,7 @@ namespace Tizen.Maps
     /// The box overlay map object.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class BoxOverlay : Overlay
     {
         /// <summary>
@@ -196,6 +207,7 @@ namespace Tizen.Maps
         /// <param name="objectToContain">The EvasObject to be shown.</param>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when the input coordinates or objectToContain are invalid</exception>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public BoxOverlay(Geocoordinates coordinates, EvasObject objectToContain)
             : base(coordinates, objectToContain, Interop.ViewOverlayType.Box)
         {

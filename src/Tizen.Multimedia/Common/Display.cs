@@ -39,7 +39,7 @@ namespace Tizen.Multimedia
     internal interface IDisplayable<TError>
     {
         TError ApplyEvasDisplay(DisplayType type, EvasObject evasObject);
-        TError ApplyEcoreWindow(IntPtr windowHandle);
+        TError ApplyEcoreWindow(IntPtr windowHandle, Rectangle rect, Rotation rotation);
     }
 
     internal interface IDisplaySetter
@@ -72,15 +72,19 @@ namespace Tizen.Multimedia
     internal class EcoreDisplaySetter : IDisplaySetter
     {
         private readonly IntPtr _windowHandle;
+        private readonly Rectangle _rect;
+        private readonly Rotation _rotation;
 
-        internal EcoreDisplaySetter(IntPtr windowHandle)
+        internal EcoreDisplaySetter(IntPtr windowHandle, Rectangle rect, Rotation rotation)
         {
             _windowHandle = windowHandle;
+            _rect = rect;
+            _rotation = rotation;
         }
 
         public TError SetDisplay<TError>(IDisplayable<TError> target)
         {
-            return target.ApplyEcoreWindow(_windowHandle);
+            return target.ApplyEcoreWindow(_windowHandle, _rect, _rotation);
         }
     }
 
@@ -100,6 +104,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="mediaView">A <see cref="MediaView"/> to display.</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public Display(MediaView mediaView)
         {
             if (mediaView == null)
@@ -117,6 +122,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="window">A <see cref="Window"/> to display.</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public Display(Window window)
         {
             if (window == null)
@@ -137,13 +143,35 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Display(NUI.Window window)
+            : this (window, false)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Display"/> class with a <see cref="NUI.Window"/> class.
+        /// </summary>
+        /// <param name="window">A <see cref="NUI.Window"/> to display.</param>
+        /// <param name="uiSync">A value indicates whether video and UI is in sync or not.</param>
+        /// <remarks>
+        /// The <see cref="NUI.Window.BackgroundColor"/> must be <see cref="NUI.Color.Transparent"/>
+        /// for the <see cref="Display"/> to be rendered correctly.<br/>
+        /// UI sync is only for <see cref="T:Tizen.Multimedia.Player"/> and
+        /// <see cref="T:Tizen.Multimedia.Player.DisplaySettings"/> will not work in UI sync mode.
+        /// </remarks>
+        /// <since_tizen> 9 </since_tizen>
+        public Display(NUI.Window window, bool uiSync)
         {
             if (window == null)
             {
                 throw new ArgumentNullException(nameof(window));
             }
 
-            _setter = new EcoreDisplaySetter(window.GetNativeWindowHandler());
+            var windowSize = new Rectangle(window.WindowPositionSize.X, window.WindowPositionSize.Y,
+                window.WindowPositionSize.Width, window.WindowPositionSize.Height);
+
+            _setter = new EcoreDisplaySetter(window.GetNativeWindowHandler(), windowSize, window.GetCurrentOrientation().ToMmRotation());
+
+            UiSync = uiSync;
         }
 
         private EvasObject EvasObject { get; }
@@ -153,6 +181,8 @@ namespace Tizen.Multimedia
         private object _owner;
 
         internal bool HasMediaView { get; } = false;
+
+        internal bool UiSync { get; } = false;
 
         internal object Owner => _owner;
 
@@ -169,6 +199,28 @@ namespace Tizen.Multimedia
         internal TError ApplyTo<TError>(IDisplayable<TError> target)
         {
             return _setter.SetDisplay(target);
+        }
+    }
+
+    internal static class WindowOrientationExtension
+    {
+        internal static Tizen.Multimedia.Rotation ToMmRotation(this NUI.Window.WindowOrientation rotation)
+        {
+            switch (rotation)
+            {
+                case NUI.Window.WindowOrientation.Portrait:
+                    return Tizen.Multimedia.Rotation.Rotate0;
+                case NUI.Window.WindowOrientation.Landscape:
+                    return Tizen.Multimedia.Rotation.Rotate90;
+                case NUI.Window.WindowOrientation.PortraitInverse:
+                    return Tizen.Multimedia.Rotation.Rotate180;
+                case NUI.Window.WindowOrientation.LandscapeInverse:
+                    return Tizen.Multimedia.Rotation.Rotate270;
+                default:
+                    break;
+            }
+
+            return Tizen.Multimedia.Rotation.Rotate90;
         }
     }
 }

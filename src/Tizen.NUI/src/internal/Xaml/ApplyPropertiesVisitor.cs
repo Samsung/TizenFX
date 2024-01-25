@@ -1,3 +1,20 @@
+/*
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,7 +23,6 @@ using System.Reflection;
 using System.Xml;
 using Tizen.NUI.Binding.Internals;
 using Tizen.NUI.Binding;
-using Tizen.NUI.StyleSheets;
 
 using static System.String;
 
@@ -14,6 +30,9 @@ namespace Tizen.NUI.Xaml
 {
     internal class ApplyPropertiesVisitor : IXamlNodeVisitor
     {
+        Dictionary<INode, object> Values => Context.Values;
+        HydrationContext Context { get; }
+
         public static readonly IList<XmlName> Skips = new List<XmlName> {
             XmlName.xKey,
             XmlName.xTypeArguments,
@@ -29,24 +48,23 @@ namespace Tizen.NUI.Xaml
             StopOnResourceDictionary = stopOnResourceDictionary;
         }
 
-        Dictionary<INode, object> Values => Context.Values;
-        HydrationContext Context { get; }
-
         public TreeVisitingMode VisitingMode => TreeVisitingMode.BottomUp;
         public bool StopOnDataTemplate => true;
         public bool StopOnResourceDictionary { get; }
         public bool VisitNodeOnDataTemplate => true;
         public bool SkipChildren(INode node, INode parentNode) => false;
-        public bool IsResourceDictionary(ElementNode node) => typeof(ResourceDictionary).IsAssignableFrom(Context.Types[node]);
+        public bool IsResourceDictionary(ElementNode node) => Context.Types.TryGetValue(node, out var type) && typeof(ResourceDictionary).IsAssignableFrom(type);
 
         public void Visit(ValueNode node, INode parentNode)
         {
             var parentElement = parentNode as IElementNode;
-            var value = Values [node];
-            var source = Values [parentNode];
+            var value = Values[node];
+            if (!Values.TryGetValue(parentNode, out var source) && Context.ExceptionHandler != null)
+                return;
             XmlName propertyName;
 
-            if (TryGetPropertyName(node, parentNode, out propertyName)) {
+            if (TryGetPropertyName(node, parentNode, out propertyName))
+            {
                 if (TrySetRuntimeName(propertyName, source, value, node))
                     return;
                 if (Skips.Contains(propertyName))
@@ -56,10 +74,13 @@ namespace Tizen.NUI.Xaml
                 if (propertyName.Equals(XamlParser.McUri, "Ignorable"))
                     return;
                 SetPropertyValue(source, propertyName, value, Context.RootElement, node, Context, node);
-            } else if (IsCollectionItem(node, parentNode) && parentNode is IElementNode) {
+            }
+            else if (IsCollectionItem(node, parentNode) && parentNode is IElementNode)
+            {
                 // Collection element, implicit content, or implicit collection element.
                 var contentProperty = GetContentPropertyName(Context.Types[parentElement].GetTypeInfo());
-                if (contentProperty != null) {
+                if (contentProperty != null)
+                {
                     var name = new XmlName(((ElementNode)parentNode).NamespaceURI, contentProperty);
                     if (Skips.Contains(name))
                         return;
@@ -77,9 +98,11 @@ namespace Tizen.NUI.Xaml
         public void Visit(ElementNode node, INode parentNode)
         {
             XmlName propertyName;
-            if (TryGetPropertyName(node, parentNode, out propertyName) && propertyName == XmlName._CreateContent) {
+            if (TryGetPropertyName(node, parentNode, out propertyName) && propertyName == XmlName._CreateContent)
+            {
                 var s0 = Values[parentNode];
-                if (s0 is ElementTemplate) {
+                if (s0 is ElementTemplate)
+                {
                     SetTemplate(s0 as ElementTemplate, node);
                     return;
                 }
@@ -90,15 +113,18 @@ namespace Tizen.NUI.Xaml
 
             //Simplify ListNodes with single elements
             var pList = parentNode as ListNode;
-            if (pList != null && pList.CollectionItems.Count == 1) {
+            if (pList != null && pList.CollectionItems.Count == 1)
+            {
                 propertyName = pList.XmlName;
                 parentNode = parentNode.Parent;
                 parentElement = parentNode as IElementNode;
             }
 
-            var value = Values[node];
+            if (!Values.TryGetValue(node, out var value) && Context.ExceptionHandler != null)
+                return;
 
-            if (propertyName != XmlName.Empty || TryGetPropertyName(node, parentNode, out propertyName)) {
+            if (propertyName != XmlName.Empty || TryGetPropertyName(node, parentNode, out propertyName))
+            {
                 if (Skips.Contains(propertyName))
                     return;
                 if (parentElement == null)
@@ -106,12 +132,15 @@ namespace Tizen.NUI.Xaml
                 if (parentElement.SkipProperties.Contains(propertyName))
                     return;
 
-                var source = Values[parentNode];
+                if (!Values.TryGetValue(parentNode, out var source) && Context.ExceptionHandler != null)
+                    return;
                 ProvideValue(ref value, node, source, propertyName);
                 SetPropertyValue(source, propertyName, value, Context.RootElement, node, Context, node);
             }
-            else if (IsCollectionItem(node, parentNode) && parentNode is IElementNode) {
-                var source = Values[parentNode];
+            else if (IsCollectionItem(node, parentNode) && parentNode is IElementNode)
+            {
+                if (!Values.TryGetValue(parentNode, out var source) && Context.ExceptionHandler != null)
+                    return;
                 ProvideValue(ref value, node, source, XmlName.Empty);
                 string contentProperty;
                 Exception xpe = null;
@@ -121,22 +150,36 @@ namespace Tizen.NUI.Xaml
                 if (xpe == null && TryAddToResourceDictionary(source as ResourceDictionary, value, xKey, node, out xpe))
                     return;
 
+                // Dictionary with string key
+                if (xpe == null && xKey != null)
+                {
+                    var indexer = GetIndexer(source, typeof(string), value.GetType());
+                    if (indexer != null)
+                    {
+                        indexer.SetValue(source, value, new[] { xKey });
+                        return;
+                    }
+                }
+
                 // Collection element, implicit content, or implicit collection element.
-                if (xpe == null && typeof(IEnumerable).IsAssignableFrom(Context.Types[parentElement]) && Context.Types[parentElement].GetRuntimeMethods().Any(mi => mi.Name == "Add" && mi.GetParameters().Length == 1)) {
+                if (xpe == null && typeof(IEnumerable).IsAssignableFrom(Context.Types[parentElement]) && Context.Types[parentElement].GetRuntimeMethods().Any(mi => mi.Name == "Add" && mi.GetParameters().Length == 1))
+                {
                     var addMethod =
                         Context.Types[parentElement].GetRuntimeMethods().First(mi => mi.Name == "Add" && mi.GetParameters().Length == 1);
 
                     addMethod?.Invoke(source, new[] { value });
                     return;
                 }
-                if (xpe == null && Context.Types[parentElement].GetRuntimeMethods().Any(mi => mi.Name == "Add" && mi.GetParameters().Length == 1))
+                if (xpe == null && Context.Types[parentElement].GetRuntimeMethods().Any
+                    (mi => mi.Name == "Add" && mi.GetParameters().Length == 1 && mi.GetParameters()[0].ParameterType.IsAssignableFrom(value.GetType())))
                 {
                     //if there are similar parameters in the function, this will exist issue.
                     var addMethod = Context.Types[parentElement].GetRuntimeMethods().First(mi => mi.Name == "Add" && mi.GetParameters().Length == 1);
                     if (addMethod != null) addMethod.Invoke(source, new[] { value });
                     return;
                 }
-                if (xpe == null && (contentProperty = GetContentPropertyName(Context.Types[parentElement].GetTypeInfo())) != null) {
+                if (xpe == null && (contentProperty = GetContentPropertyName(Context.Types[parentElement].GetTypeInfo())) != null)
+                {
                     var name = new XmlName(node.NamespaceURI, contentProperty);
                     if (Skips.Contains(name))
                         return;
@@ -146,14 +189,17 @@ namespace Tizen.NUI.Xaml
                     SetPropertyValue(source, name, value, Context.RootElement, node, Context, node);
                     return;
                 }
-                
+
                 xpe = xpe ?? new XamlParseException($"Can not set the content of {((IElementNode)parentNode).XmlType.Name} as it doesn't have a ContentPropertyAttribute", node);
                 if (Context.ExceptionHandler != null)
                     Context.ExceptionHandler(xpe);
-                throw xpe;
+                else
+                    throw xpe;
             }
-            else if (IsCollectionItem(node, parentNode) && parentNode is ListNode) {
-                var source = Values[parentNode.Parent];
+            else if (IsCollectionItem(node, parentNode) && parentNode is ListNode)
+            {
+                if (!Values.TryGetValue(parentNode.Parent, out var source) && Context.ExceptionHandler != null)
+                    return;
                 ProvideValue(ref value, node, source, XmlName.Empty);
                 var parentList = (ListNode)parentNode;
                 if (Skips.Contains(parentList.XmlName))
@@ -170,8 +216,9 @@ namespace Tizen.NUI.Xaml
                     return;
 
                 MethodInfo addMethod;
-                if (xpe == null && (addMethod = collection.GetType().GetRuntimeMethods().First(mi => mi.Name == "Add" && mi.GetParameters().Length == 1)) != null) {
-                    addMethod.Invoke(collection, new[] { Values[node] });
+                if (xpe == null && (addMethod = collection.GetType().GetRuntimeMethods().First(mi => mi.Name == "Add" && mi.GetParameters().Length == 1)) != null)
+                {
+                    addMethod.Invoke(collection, new[] { value });
                     return;
                 }
                 xpe = xpe ?? new XamlParseException($"Value of {parentList.XmlName.LocalName} does not have a Add() method", node);
@@ -181,8 +228,6 @@ namespace Tizen.NUI.Xaml
                     throw xpe;
             }
         }
-
-        
 
         public void Visit(RootNode node, INode parentNode)
         {
@@ -197,13 +242,21 @@ namespace Tizen.NUI.Xaml
             name = default(XmlName);
             var parentElement = parentNode as IElementNode;
             if (parentElement == null)
+            {
                 return false;
-            foreach (var kvp in parentElement.Properties) {
+            }
+
+            foreach (var kvp in parentElement.Properties)
+            {
                 if (kvp.Value != node)
+                {
                     continue;
+                }
+
                 name = kvp.Key;
                 return true;
             }
+
             return false;
         }
 
@@ -211,18 +264,26 @@ namespace Tizen.NUI.Xaml
         {
             var parentList = parentNode as IListNode;
             if (parentList == null)
+            {
                 return false;
+            }
+
             return parentList.CollectionItems.Contains(node);
         }
 
         internal static string GetContentPropertyName(System.Reflection.TypeInfo typeInfo)
         {
-            while (typeInfo != null) {
+            while (typeInfo != null)
+            {
                 var propName = GetContentPropertyName(typeInfo.CustomAttributes);
                 if (propName != null)
+                {
                     return propName;
+                }
+
                 typeInfo = typeInfo?.BaseType?.GetTypeInfo();
             }
+
             return null;
         }
 
@@ -232,30 +293,56 @@ namespace Tizen.NUI.Xaml
             var valueProvider = value as IValueProvider;
 
             if (markupExtension == null && valueProvider == null)
+            {
                 return;
+            }
 
             XamlServiceProvider serviceProvider = null;
             if (value.GetType().GetTypeInfo().GetCustomAttribute<AcceptEmptyServiceProviderAttribute>() == null)
                 serviceProvider = new XamlServiceProvider(node, Context);
 
-            if (serviceProvider != null && serviceProvider.IProvideValueTarget is XamlValueTargetProvider && propertyName != XmlName.Empty) {
+            if (serviceProvider != null && serviceProvider.IProvideValueTarget is XamlValueTargetProvider && propertyName != XmlName.Empty)
+            {
                 (serviceProvider.IProvideValueTarget as XamlValueTargetProvider).TargetProperty = GetTargetProperty(source, propertyName, Context, node);
             }
-
-            if (markupExtension != null)
-                value = markupExtension.ProvideValue(serviceProvider);
-            else if (valueProvider != null)
-                value = valueProvider.ProvideValue(serviceProvider);
+            try
+            {
+                if (markupExtension != null)
+                {
+                    value = markupExtension.ProvideValue(serviceProvider);
+                }
+                else if (valueProvider != null)
+                {
+                    value = valueProvider.ProvideValue(serviceProvider);
+                }
+            }
+            catch (Exception e)
+            {
+                if (Context.ExceptionHandler != null)
+                {
+                    Context.ExceptionHandler(e);
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
 
         static string GetContentPropertyName(IEnumerable<CustomAttributeData> attributes)
         {
-            var contentAttribute =
-                attributes.FirstOrDefault(cad => ContentPropertyAttribute.ContentPropertyTypes.Contains(cad.AttributeType.FullName));
+            var contentAttribute = attributes.FirstOrDefault(cad => ContentPropertyAttribute.ContentPropertyTypes.Contains(cad.AttributeType.FullName));
+
             if (contentAttribute == null || contentAttribute.ConstructorArguments.Count != 1)
+            {
                 return null;
-            if (contentAttribute.ConstructorArguments [0].ArgumentType == typeof(string))
-                return (string)contentAttribute.ConstructorArguments [0].Value;
+            }
+
+            if (contentAttribute.ConstructorArguments[0].ArgumentType == typeof(string))
+            {
+                return (string)contentAttribute.ConstructorArguments[0].Value;
+            }
+
             return null;
         }
 
@@ -263,17 +350,24 @@ namespace Tizen.NUI.Xaml
             HydrationContext context, IXmlLineInfo lineInfo)
         {
             var dotIdx = localname.IndexOf('.');
-            if (dotIdx > 0) {
+
+            if (dotIdx > 0)
+            {
                 var typename = localname.Substring(0, dotIdx);
                 localname = localname.Substring(dotIdx + 1);
+
                 XamlParseException xpe;
                 elementType = XamlParser.GetElementType(new XmlType(namespaceURI, typename, null), lineInfo,
                     context.RootElement.GetType().GetTypeInfo().Assembly, out xpe);
 
                 if (xpe != null)
+                {
                     throw xpe;
+                }
+
                 return true;
             }
+
             return false;
         }
 
@@ -283,7 +377,7 @@ namespace Tizen.NUI.Xaml
 #if NETSTANDARD1_0
             var bindableFieldInfo = elementType.GetFields().FirstOrDefault(fi => fi.Name == localName + "Property");
 #else
-            var bindableFieldInfo = elementType.GetFields(BindingFlags.Static | BindingFlags.NonPublic|BindingFlags.FlattenHierarchy).FirstOrDefault(fi => fi.Name == localName + "Property");
+            var bindableFieldInfo = elementType.GetFields(BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy).FirstOrDefault(fi => fi.Name == localName + "Property");
 
             if (null == bindableFieldInfo)
             {
@@ -291,16 +385,22 @@ namespace Tizen.NUI.Xaml
             }
 #endif
             Exception exception = null;
-            if (exception == null && bindableFieldInfo == null) {
+            if (exception == null && bindableFieldInfo == null)
+            {
                 exception =
-                    new XamlParseException(
-                        Format("BindableProperty {0} not found on {1}", localName + "Property", elementType.Name), lineInfo);
+                    new XamlParseException(Format("BindableProperty {0} not found on {1}", localName + "Property", elementType.Name), lineInfo);
             }
 
             if (exception == null)
+            {
                 return bindableFieldInfo.GetValue(null) as BindableProperty;
+            }
+
             if (throwOnError)
+            {
                 throw exception;
+            }
+
             return null;
         }
 
@@ -313,8 +413,10 @@ namespace Tizen.NUI.Xaml
             var property = GetBindableProperty(bpOwnerType, localName, lineInfo, false);
 
             if (property != null)
+            {
                 return property;
-            
+            }
+
             var elementType = xamlelement.GetType();
             var propertyInfo = elementType.GetRuntimeProperties().FirstOrDefault(p => p.Name == localName);
             return propertyInfo;
@@ -335,34 +437,50 @@ namespace Tizen.NUI.Xaml
 
             //If the target is an event, connect
             if (xpe == null && TryConnectEvent(xamlelement, localName, attached, value, rootElement, lineInfo, out xpe))
+            {
                 return;
+            }
 
             //If Value is DynamicResource and it's a BP, SetDynamicResource
             if (xpe == null && TrySetDynamicResource(xamlelement, property, value, lineInfo, out xpe))
+            {
                 return;
+            }
 
             //If value is BindingBase, SetBinding
-            if (xpe == null && TrySetBinding(xamlelement, property, localName, value, lineInfo, out xpe))
+            if (xpe == null && TrySetBinding(xamlelement, property, value, lineInfo, out xpe))
+            {
                 return;
+            }
 
             //Call TrySetProperty first and then TrySetValue to keep the code logic consistent whether it is through xaml or code.
             //If we can assign that value to a normal property, let's do it
-            if (xpe == null && TrySetProperty(xamlelement, localName, value, lineInfo, serviceProvider, context, out xpe))
+            if (xpe == null && TrySetProperty(xamlelement, property, localName, value, serviceProvider, context, out xpe))
+            {
                 return;
+            }
 
             //If it's a BindableProberty, SetValue
             if (xpe == null && TrySetValue(xamlelement, property, attached, value, lineInfo, serviceProvider, out xpe))
+            {
                 return;
+            }
 
             //If it's an already initialized property, add to it
             if (xpe == null && TryAddToProperty(xamlelement, propertyName, value, xKey, lineInfo, serviceProvider, context, out xpe))
+            {
                 return;
+            }
 
             xpe = xpe ?? new XamlParseException($"Cannot assign property \"{localName}\": Property does not exist, or is not assignable, or mismatching type between value and property", lineInfo);
             if (context.ExceptionHandler != null)
+            {
                 context.ExceptionHandler(xpe);
+            }
             else
+            {
                 throw xpe;
+            }
         }
 
         public static object GetPropertyValue(object xamlElement, XmlName propertyName, HydrationContext context, IXmlLineInfo lineInfo, out object targetProperty)
@@ -378,18 +496,26 @@ namespace Tizen.NUI.Xaml
             var property = GetBindableProperty(bpOwnerType, localName, lineInfo, false);
 
             //If it's a BindableProberty, GetValue
-            if (xpe == null && TryGetValue(xamlElement, property, attached, out value, lineInfo, out xpe, out targetProperty))
+            if (xpe == null && TryGetValue(xamlElement, property, out value, out xpe, out targetProperty))
+            {
                 return value;
+            }
 
             //If it's a normal property, get it
-            if (xpe == null && TryGetProperty(xamlElement, localName, out value, lineInfo, context, out xpe, out targetProperty))
+            if (xpe == null && TryGetProperty(xamlElement, localName, out value, context, out xpe, out targetProperty))
+            {
                 return value;
+            }
 
             xpe = xpe ?? new XamlParseException($"Property {localName} is not found or does not have an accessible getter", lineInfo);
             if (context.ExceptionHandler != null)
+            {
                 context.ExceptionHandler(xpe);
+            }
             else
+            {
                 throw xpe;
+            }
 
             return null;
         }
@@ -399,25 +525,33 @@ namespace Tizen.NUI.Xaml
             exception = null;
 
             if (attached)
+            {
                 return false;
+            }
 
             var elementType = element.GetType();
             var eventInfo = elementType.GetRuntimeEvent(localName);
             var stringValue = value as string;
 
             if (eventInfo == null || IsNullOrEmpty(stringValue))
+            {
                 return false;
+            }
 
             var methodInfo = rootElement.GetType().GetRuntimeMethods().FirstOrDefault(mi => mi.Name == (string)value);
-            if (methodInfo == null) {
+            if (methodInfo == null)
+            {
                 exception = new XamlParseException($"No method {value} found on type {rootElement.GetType()}", lineInfo);
                 return false;
             }
 
-            try {
+            try
+            {
                 eventInfo.AddEventHandler(element, methodInfo.CreateDelegate(eventInfo.EventHandlerType, rootElement));
                 return true;
-            } catch (ArgumentException ae) {
+            }
+            catch (ArgumentException ae)
+            {
                 exception = new XamlParseException($"Method {stringValue} does not have the correct signature", lineInfo, ae);
             }
             return false;
@@ -432,9 +566,12 @@ namespace Tizen.NUI.Xaml
             var bindable = element as BindableObject;
 
             if (dynamicResource == null || property == null)
+            {
                 return false;
+            }
 
-            if (bindable == null) {
+            if (bindable == null)
+            {
                 exception = new XamlParseException($"{elementType.Name} is not a BindableObject", lineInfo);
                 return false;
             }
@@ -443,24 +580,29 @@ namespace Tizen.NUI.Xaml
             return true;
         }
 
-        static bool TrySetBinding(object element, BindableProperty property, string localName, object value, IXmlLineInfo lineInfo, out Exception exception)
+        static bool TrySetBinding(object element, BindableProperty property, object value, IXmlLineInfo lineInfo, out Exception exception)
         {
             exception = null;
 
             var elementType = element.GetType();
-            var binding = value.ConvertTo(typeof(BindingBase),pinfoRetriever:null,serviceProvider:null) as BindingBase;
+            var binding = value.ConvertTo(typeof(BindingBase), pinfoRetriever: null, serviceProvider: null) as BindingBase;
             var bindable = element as BindableObject;
 
             if (binding == null)
+            {
                 return false;
+            }
 
-            if (bindable != null && property != null) {
+            if (bindable != null && property != null)
+            {
                 bindable.SetBinding(property, binding);
                 return true;
             }
 
             if (property != null)
+            {
                 exception = new XamlParseException($"{elementType.Name} is not a BindableObject or does not support native bindings", lineInfo);
+            }
 
             return false;
         }
@@ -476,11 +618,15 @@ namespace Tizen.NUI.Xaml
                 return false;
 
             if (serviceProvider != null && serviceProvider.IProvideValueTarget != null)
+            {
                 ((XamlValueTargetProvider)serviceProvider.IProvideValueTarget).TargetProperty = property;
+            }
 
             Func<MemberInfo> minforetriever;
             if (attached)
-                minforetriever = () => property.DeclaringType.GetRuntimeMethod("Get" + property.PropertyName, new [] { typeof(BindableObject) });
+            {
+                minforetriever = () => property.DeclaringType.GetRuntimeMethod("Get" + property.PropertyName, new[] { typeof(BindableObject) });
+            }
             else
             {
                 minforetriever = () => property.DeclaringType.GetRuntimeProperties().LastOrDefault(p => p.Name == property.PropertyName);
@@ -488,12 +634,14 @@ namespace Tizen.NUI.Xaml
             //minforetriever = () => property.DeclaringType.GetRuntimeProperty(property.PropertyName);
             var convertedValue = value.ConvertTo(property.ReturnType, minforetriever, serviceProvider);
 
-            if (bindable != null) {
+            if (bindable != null)
+            {
                 //SetValue doesn't throw on mismatching type, so check before to get a chance to try the property setting or the collection adding
                 var nullable = property.ReturnTypeInfo.IsGenericType &&
                                property.ReturnTypeInfo.GetGenericTypeDefinition() == typeof(Nullable<>);
                 if ((convertedValue == null && (!property.ReturnTypeInfo.IsValueType || nullable)) ||
-                    (property.ReturnType.IsInstanceOfType(convertedValue))) {
+                    (property.ReturnType.IsInstanceOfType(convertedValue)))
+                {
                     bindable.SetValue(property, convertedValue);
                     return true;
                 }
@@ -506,7 +654,7 @@ namespace Tizen.NUI.Xaml
             return false;
         }
 
-        static bool TryGetValue(object element, BindableProperty property, bool attached, out object value, IXmlLineInfo lineInfo, out Exception exception, out object targetProperty)
+        static bool TryGetValue(object element, BindableProperty property, out object value, out Exception exception, out object targetProperty)
         {
             exception = null;
             value = null;
@@ -515,16 +663,21 @@ namespace Tizen.NUI.Xaml
             var bindable = element as BindableObject;
 
             if (property == null)
+            {
                 return false;
+            }
 
             if (bindable == null)
+            {
                 return false;
+            }
 
             value = bindable.GetValue(property);
+
             return true;
         }
 
-        static bool TrySetProperty(object element, string localName, object value, IXmlLineInfo lineInfo, XamlServiceProvider serviceProvider, HydrationContext context, out Exception exception)
+        static bool TrySetProperty(object element, BindableProperty property, string localName, object value, XamlServiceProvider serviceProvider, HydrationContext context, out Exception exception)
         {
             exception = null;
 
@@ -535,6 +688,9 @@ namespace Tizen.NUI.Xaml
                 return false;
 
             if (!IsVisibleFrom(setter, context.RootElement))
+                return false;
+
+            if (property != null && propertyInfo.PropertyType != property.ReturnType)
                 return false;
 
             if (serviceProvider != null && serviceProvider.IProvideValueTarget != null)
@@ -575,60 +731,75 @@ namespace Tizen.NUI.Xaml
 
         static private object GetConvertedValue(Type valueType, object value, Func<MemberInfo> minfoRetriever, XamlServiceProvider serviceProvider)
         {
-            try
-            {
-                object convertedValue = value.ConvertTo(valueType, minfoRetriever, serviceProvider);
+            object convertedValue = value.ConvertTo(valueType, minfoRetriever, serviceProvider);
 
-                if (convertedValue != null && !valueType.IsInstanceOfType(convertedValue))
-                {
-                    return null;
-                }
-
-                return convertedValue;
-            }
-            catch
+            if (convertedValue != null && !valueType.IsInstanceOfType(convertedValue))
             {
-                return null;
+                convertedValue = null;
             }
+
+            return convertedValue;
         }
 
-        static bool TryGetProperty(object element, string localName, out object value, IXmlLineInfo lineInfo, HydrationContext context, out Exception exception, out object targetProperty)
+        static bool TryGetProperty(object element, string localName, out object value, HydrationContext context, out Exception exception, out object targetProperty)
         {
             exception = null;
             value = null;
             var elementType = element.GetType();
             PropertyInfo propertyInfo = null;
-            try {
+            try
+            {
                 propertyInfo = elementType.GetRuntimeProperty(localName);
-            } catch (AmbiguousMatchException) {
+            }
+            catch (AmbiguousMatchException)
+            {
                 // Get most derived instance of property
-                foreach (var property in elementType.GetRuntimeProperties().Where(prop => prop.Name == localName)) {
+                foreach (var property in elementType.GetRuntimeProperties().Where(prop => prop.Name == localName))
+                {
                     if (propertyInfo == null || propertyInfo.DeclaringType.IsAssignableFrom(property.DeclaringType))
                         propertyInfo = property;
                 }
             }
+
             MethodInfo getter;
             targetProperty = propertyInfo;
             if (propertyInfo == null || !propertyInfo.CanRead || (getter = propertyInfo.GetMethod) == null)
+            {
                 return false;
+            }
 
             if (!IsVisibleFrom(getter, context.RootElement))
+            {
                 return false;
+            }
 
-            value = getter.Invoke(element, new object[] { });
+            value = getter.Invoke(element, System.Array.Empty<object>());
+
             return true;
         }
 
         static bool IsVisibleFrom(MethodInfo method, object rootElement)
         {
             if (method.IsPublic)
+            {
                 return true;
+            }
+
             if (method.IsPrivate && method.DeclaringType == rootElement.GetType())
+            {
                 return true;
+            }
+
             if ((method.IsAssembly || method.IsFamilyOrAssembly) && method.DeclaringType.AssemblyQualifiedName == rootElement.GetType().AssemblyQualifiedName)
+            {
                 return true;
+            }
+
             if (method.IsFamily && method.DeclaringType.IsAssignableFrom(rootElement.GetType()))
+            {
                 return true;
+            }
+
             return false;
         }
 
@@ -640,22 +811,31 @@ namespace Tizen.NUI.Xaml
             var collection = GetPropertyValue(element, propertyName, context, lineInfo, out targetProperty) as IEnumerable;
 
             if (collection == null)
+            {
                 return false;
+            }
 
             if (exception == null && TryAddToResourceDictionary(collection as ResourceDictionary, value, xKey, lineInfo, out exception))
+            {
                 return true;
+            }
 
             if (exception != null)
+            {
                 return false;
+            }
 
             var addMethod = collection.GetType().GetRuntimeMethods().First(mi => mi.Name == "Add" && mi.GetParameters().Length == 1);
             if (addMethod == null)
+            {
                 return false;
+            }
 
             if (serviceProvider != null && serviceProvider.IProvideValueTarget != null)
                 ((XamlValueTargetProvider)serviceProvider.IProvideValueTarget).TargetProperty = targetProperty;
 
-            addMethod.Invoke(collection, new [] { value.ConvertTo(addMethod.GetParameters() [0].ParameterType, (Func<TypeConverter>)null, serviceProvider) });
+            addMethod.Invoke(collection, new[] { value.ConvertTo(addMethod.GetParameters()[0].ParameterType, (Func<TypeConverter>)null, serviceProvider) });
+
             return true;
         }
 
@@ -664,27 +844,36 @@ namespace Tizen.NUI.Xaml
             exception = null;
 
             if (resourceDictionary == null)
+            {
                 return false;
+            }
 
             if (xKey != null)
+            {
                 resourceDictionary.Add(xKey, value);
-            else if (value is Tizen.NUI.Binding.Style)
-                resourceDictionary.Add((Tizen.NUI.Binding.Style)value);
+            }
+            else if (value is XamlStyle)
+            {
+                resourceDictionary.Add((XamlStyle)value);
+            }
             else if (value is ResourceDictionary)
+            {
                 resourceDictionary.Add((ResourceDictionary)value);
-            else if (value is StyleSheets.StyleSheet)
-                resourceDictionary.Add((StyleSheets.StyleSheet)value);
-            else {
+            }
+            else
+            {
                 exception = new XamlParseException("resources in ResourceDictionary require a x:Key attribute", lineInfo);
                 return false;
             }
+
             return true;
         }
 
         void SetTemplate(ElementTemplate dt, INode node)
         {
 #pragma warning disable 0612
-            ((IDataTemplate)dt).LoadTemplate = () => {
+            ((IDataTemplate)dt).LoadTemplate = () =>
+            {
 #pragma warning restore 0612
                 var cnode = node.Clone();
                 var context = new HydrationContext { ParentContext = Context, RootElement = Context.RootElement };
@@ -695,55 +884,68 @@ namespace Tizen.NUI.Xaml
                 cnode.Accept(new RegisterXNamesVisitor(context), null);
                 cnode.Accept(new FillResourceDictionariesVisitor(context), null);
                 cnode.Accept(new ApplyPropertiesVisitor(context, true), null);
-                return context.Values [cnode];
+                return context.Values[cnode];
             };
         }
 
         static bool TryAddValue(BindableObject bindable, BindableProperty property, object value, XamlServiceProvider serviceProvider)
         {
-            if(property?.ReturnTypeInfo?.GenericTypeArguments == null){
+            if (property?.ReturnTypeInfo?.GenericTypeArguments == null)
+            {
                 return false;
             }
 
-            if(property.ReturnType == null){
+            if (property.ReturnType == null)
+            {
                 return false;
             }
 
             if (property.ReturnTypeInfo.GenericTypeArguments.Length != 1 ||
                 !property.ReturnTypeInfo.GenericTypeArguments[0].IsInstanceOfType(value))
+            {
                 return false;
+            }
 
             // This might be a collection we can add to; see if we can find an Add method
             var addMethod = GetAllRuntimeMethods(property.ReturnType)
                 .FirstOrDefault(mi => mi.Name == "Add" && mi.GetParameters().Length == 1);
+
             if (addMethod == null)
+            {
                 return false;
+            }
 
             // If there's an add method, get the collection
             var collection = bindable.GetValue(property);
-            
+
             // And add the new value to it
             addMethod.Invoke(collection, new[] { value.ConvertTo(addMethod.GetParameters()[0].ParameterType, (Func<TypeConverter>)null, serviceProvider) });
+
             return true;
         }
 
         static IEnumerable<MethodInfo> GetAllRuntimeMethods(Type type)
         {
-            return type.GetRuntimeMethods()
-                .Concat(type.GetTypeInfo().ImplementedInterfaces.SelectMany(t => t.GetRuntimeMethods()));
+            return type.GetRuntimeMethods().Concat(type.GetTypeInfo().ImplementedInterfaces.SelectMany(t => t.GetRuntimeMethods()));
         }
 
         bool TrySetRuntimeName(XmlName propertyName, object source, object value, ValueNode node)
         {
             if (propertyName != XmlName.xName)
+            {
                 return false;
+            }
 
             var runTimeName = source.GetType().GetTypeInfo().GetCustomAttribute<RuntimeNamePropertyAttribute>();
             if (runTimeName == null)
+            {
                 return false;
+            }
 
             SetPropertyValue(source, new XmlName("", runTimeName.Name), value, Context.RootElement, node, Context, node);
             return true;
         }
+
+        private PropertyInfo GetIndexer(object source, Type keyType, Type valueType) => source.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).FirstOrDefault(p => p.Name == "Item" && p.PropertyType.IsAssignableFrom(valueType) && p.GetIndexParameters().Length != 0 && p.GetIndexParameters()[0].ParameterType == keyType);
     }
 }

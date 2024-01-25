@@ -18,12 +18,14 @@ using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Components;
+using System;
 
 namespace Tizen.NUI.Wearable
 {
     /// <summary>
     /// CircularProgressStyle is a class which saves CircularProgress's ux data.
     /// </summary>
+    [Obsolete("This has been deprecated in API12")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class CircularProgressStyle : ControlStyle
     {
@@ -75,7 +77,7 @@ namespace Tizen.NUI.Wearable
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TrackColorProperty = BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(CircularProgressStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((CircularProgressStyle)bindable).trackColor = (Color)newValue;
+            ((CircularProgressStyle)bindable).trackColor = newValue == null ? null : new Color((Color)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -86,7 +88,7 @@ namespace Tizen.NUI.Wearable
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ProgressColorProperty = BindableProperty.Create(nameof(ProgressColor), typeof(Color), typeof(CircularProgressStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((CircularProgressStyle)bindable).progressColor = (Color)newValue;
+            ((CircularProgressStyle)bindable).progressColor = newValue == null ? null : new Color((Color)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -95,7 +97,7 @@ namespace Tizen.NUI.Wearable
 
         /// <summary>Bindable property of IsEnabled</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool?), typeof(CircularProgressStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public new static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool?), typeof(CircularProgressStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             ((CircularProgressStyle)bindable).isEnabled = (bool?)newValue;
         },
@@ -117,6 +119,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Creates a new instance of a CircularProgressStyle.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CircularProgressStyle() : base()
         {
@@ -127,16 +130,16 @@ namespace Tizen.NUI.Wearable
         /// Creates a new instance of a CircularProgressStyle with style.
         /// </summary>
         /// <param name="style">Create CircularProgressStyle by style customized by user.</param>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CircularProgressStyle(CircularProgressStyle style) : base(style)
         {
-            if (null == style) return;
-            this.CopyFrom(style);
         }
 
         /// <summary>
         /// The thickness of the track and progress.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? Thickness
         {
@@ -153,6 +156,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The property to get/set the maximum value of the CircularProgress.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float MaxValue
         {
@@ -169,6 +173,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The property to get/set the minim value of the CircularProgress.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float MinValue
         {
@@ -185,6 +190,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The property to get/set the current value of the CircularProgress.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float CurrentValue
         {
@@ -201,6 +207,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The property to get/set Track object color of the CircularProgress.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color TrackColor
         {
@@ -217,6 +224,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The property to get/set Progress object color of the CircularProgress.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color ProgressColor
         {
@@ -234,7 +242,8 @@ namespace Tizen.NUI.Wearable
         /// Flag to be enabled or disabled in CircularProgress.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public bool? IsEnabled
+        [Obsolete("This has been deprecated in API12")]
+        public new bool? IsEnabled
         {
             get
             {
@@ -247,47 +256,20 @@ namespace Tizen.NUI.Wearable
         }
 
         /// <summary>
-        /// Style's clone function.
-        /// </summary>
-        /// <param name="bindableObject">The style that need to copy.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void CopyFrom(BindableObject bindableObject)
-        {
-            base.CopyFrom(bindableObject);
-
-            CircularProgressStyle progressStyle = bindableObject as CircularProgressStyle;
-
-            if (null != progressStyle)
-            {
-                isEnabled = progressStyle.isEnabled;
-                thickness = progressStyle.Thickness;
-                maxValue = progressStyle.maxValue;
-                minValue = progressStyle.minValue;
-                currentValue = progressStyle.currentValue;
-                trackColor = progressStyle.trackColor;
-                progressColor = progressStyle.progressColor;
-            }
-        }
-
-        /// <summary>
         /// Dispose CircularProgressStyle and all children on it.
         /// </summary>
-        /// <param name="type">Dispose type.</param>
+        /// <param name="disposing">true in order to free managed objects</param>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(DisposeTypes type)
+        protected override void Dispose(bool disposing)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
+            if (disposing)
             {
                 trackColor?.Dispose();
                 progressColor?.Dispose();
             }
 
-            base.Dispose(type);
+            base.Dispose(disposing);
         }
 
         private void Initialize()

@@ -25,6 +25,7 @@ namespace ElmSharp
     /// It contains the Update() method to update a gengrid item which is given.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class GenGridItem : GenItem
     {
         internal GenGridItem(object data, GenItemClass itemClass) : base(data, itemClass)
@@ -44,6 +45,7 @@ namespace ElmSharp
         /// If false, it is unselected.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override bool IsSelected
         {
             get
@@ -60,6 +62,7 @@ namespace ElmSharp
         /// Sets or gets the cursor to be shown when the mouse is over the gengrid item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string Cursor
         {
@@ -84,6 +87,7 @@ namespace ElmSharp
         /// Sets or gets the style for this item cursor.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string CursorStyle
         {
@@ -101,6 +105,7 @@ namespace ElmSharp
         /// Sets or gets the cursor engine only usage for this item cursor.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool IsUseEngineCursor
         {
@@ -118,6 +123,7 @@ namespace ElmSharp
         /// Sets or gets, or sets the style of the given gengrid item's tooltip.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override string TooltipStyle
         {
             get
@@ -134,6 +140,7 @@ namespace ElmSharp
         /// Gets the gengrid item's select mode.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override GenItemSelectionMode SelectionMode
         {
             get
@@ -150,6 +157,7 @@ namespace ElmSharp
         /// Gets or sets the gengrid item's row position, relative to the whole gengrid's grid area.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int Row
         {
             get
@@ -164,6 +172,7 @@ namespace ElmSharp
         /// Gets or sets the gengrid item's column position, relative to the whole gengrid's grid area.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int Column
         {
             get
@@ -179,6 +188,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="tooltip">The text to set.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override void SetTooltipText(string tooltip)
         {
             Interop.Elementary.elm_gengrid_item_tooltip_text_set(Handle, tooltip);
@@ -188,6 +198,7 @@ namespace ElmSharp
         /// Unsets the tooltip from item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override void UnsetTooltip()
         {
             Interop.Elementary.elm_gengrid_item_tooltip_unset(Handle);
@@ -202,6 +213,7 @@ namespace ElmSharp
         /// <see cref="GenGrid.UpdateRealizedItems"/> to update the contents of all the realized items.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override void Update()
         {
             Interop.Elementary.elm_gengrid_item_update(Handle);
@@ -211,6 +223,7 @@ namespace ElmSharp
         /// Sets the content to be shown in the tooltip item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override void UpdateTooltipDelegate()
         {
             Interop.Elementary.elm_gengrid_item_tooltip_content_cb_set(Handle,

@@ -119,7 +119,7 @@ namespace Tizen.Multimedia.Util
                 throw new ArgumentException("path is empty.", nameof(inputFilePath));
             }
 
-            if (CheckHeader(inputFilePath) == false)
+            if (CheckHeaders(inputFilePath) == false)
             {
                 throw new FileFormatException("The file has an invalid header.");
             }
@@ -160,7 +160,7 @@ namespace Tizen.Multimedia.Util
                 throw new ArgumentException("buffer is empty.", nameof(inputBuffer));
             }
 
-            if (CheckHeader(inputBuffer) == false)
+            if (CheckHeaders(inputBuffer) == false)
             {
                 throw new FileFormatException("buffer has an invalid header.");
             }
@@ -171,36 +171,62 @@ namespace Tizen.Multimedia.Util
             return DecodeAsync();
         }
 
-        private bool CheckHeader(byte[] input)
+        private bool CheckHeaders(byte[] inputBuffer)
         {
-            if (input.Length < Header.Length)
+            foreach (var header in Headers)
+            {
+                var inputBufferHeader = new byte[header.Id.Length];
+                Buffer.BlockCopy(inputBuffer, header.Offset, inputBufferHeader, 0, header.Id.Length);
+
+                if (CheckHeader(inputBufferHeader, header.Id))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private bool CheckHeaders(string inputFile)
+        {
+            using (var fs = File.OpenRead(inputFile))
+            {
+                foreach (var header in Headers)
+                {
+                    fs.Position = header.Offset;
+
+                    byte[] fileHeader = new byte[header.Id.Length];
+                    if (fs.Read(fileHeader, 0, fileHeader.Length) < header.Id.Length)
+                    {
+                        continue;
+                    }
+
+                    if (CheckHeader(fileHeader, header.Id))
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        }
+
+        private bool CheckHeader(byte[] input, byte[] header)
+        {
+            if (input.Length < header.Length)
             {
                 return false;
             }
 
-            for (int i = 0; i < Header.Length; ++i)
+            for (int i = 0; i < header.Length; ++i)
             {
-                if (input[i] != Header[i])
+                if (input[i] != header[i])
                 {
                     return false;
                 }
             }
 
             return true;
-        }
-
-        private bool CheckHeader(string inputFile)
-        {
-            using (var fs = File.OpenRead(inputFile))
-            {
-                byte[] fileHeader = new byte[Header.Length];
-
-                if (fs.Read(fileHeader, 0, fileHeader.Length) < Header.Length)
-                {
-                    return false;
-                }
-                return CheckHeader(fileHeader);
-            }
         }
 
         private IEnumerable<BitmapFrame> RunDecoding()
@@ -221,7 +247,7 @@ namespace Tizen.Multimedia.Util
             {
                 if (outBuffer != IntPtr.Zero)
                 {
-                    LibcSupport.Free(outBuffer);
+                    Marshal.FreeHGlobal(outBuffer);
                 }
 
                 if (imageHandle != IntPtr.Zero)
@@ -244,11 +270,12 @@ namespace Tizen.Multimedia.Util
         {
             if (_colorSpace.HasValue)
             {
-                NativeDecoder.SetColorspace(Handle, _colorSpace.Value.ToImageColorSpace()).ThrowIfFailed("Failed to set color space");
+                NativeDecoder.SetColorspace(Handle, _colorSpace.Value.ToImageColorSpace()).
+                    ThrowIfFailed("Failed to set color space");
             }
         }
 
-        internal abstract byte[] Header { get; }
+        internal abstract (byte[] Id, int Offset)[] Headers { get; }
 
         #region IDisposable Support
         private bool _disposed = false;
@@ -256,7 +283,9 @@ namespace Tizen.Multimedia.Util
         /// <summary>
         /// Releases the unmanaged resources used by the ImageDecoder.
         /// </summary>
-        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        /// <param name="disposing">
+        /// true to release both managed and unmanaged resources; false to release only unmanaged resources.
+        /// </param>
         /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
@@ -292,13 +321,15 @@ namespace Tizen.Multimedia.Util
         /// <summary>
         /// Initializes a new instance of the <see cref="BmpDecoder"/> class.
         /// </summary>
-        /// <remarks><see cref="ImageDecoder.InputFormat"/> will be the <see cref="ImageFormat.Bmp"/>.</remarks>
+        /// <remarks>
+        /// <see cref="ImageDecoder.InputFormat"/> will be the <see cref="ImageFormat.Bmp"/>.
+        /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         public BmpDecoder() : base(ImageFormat.Bmp)
         {
         }
 
-        internal override byte[] Header => _header;
+        internal override (byte[], int)[] Headers => new (byte[], int)[] { (_header, 0) };
     }
 
     /// <summary>
@@ -312,13 +343,15 @@ namespace Tizen.Multimedia.Util
         /// <summary>
         /// Initializes a new instance of the <see cref="PngDecoder"/> class.
         /// </summary>
-        /// <remarks><see cref="ImageDecoder.InputFormat"/> will be the <see cref="ImageFormat.Png"/>.</remarks>
+        /// <remarks>
+        /// <see cref="ImageDecoder.InputFormat"/> will be the <see cref="ImageFormat.Png"/>.
+        /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         public PngDecoder() : base(ImageFormat.Png)
         {
         }
 
-        internal override byte[] Header => _header;
+        internal override (byte[], int)[] Headers => new (byte[], int)[] { (_header, 0) };
     }
 
     /// <summary>
@@ -340,7 +373,9 @@ namespace Tizen.Multimedia.Util
         /// <summary>
         /// Initializes a new instance of the <see cref="JpegDecoder"/> class.
         /// </summary>
-        /// <remarks><see cref="ImageDecoder.InputFormat"/> will be the <see cref="ImageFormat.Jpeg"/>.</remarks>
+        /// <remarks>
+        /// <see cref="ImageDecoder.InputFormat"/> will be the <see cref="ImageFormat.Jpeg"/>.
+        /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         public JpegDecoder() : base(ImageFormat.Jpeg)
         {
@@ -369,10 +404,11 @@ namespace Tizen.Multimedia.Util
         {
             base.Initialize(handle);
 
-            NativeDecoder.SetJpegDownscale(handle, Downscale).ThrowIfFailed("Failed to set downscale for decoding");
+            NativeDecoder.SetJpegDownscale(handle, Downscale).
+                ThrowIfFailed("Failed to set downscale for decoding");
         }
 
-        internal override byte[] Header => _header;
+        internal override (byte[], int)[] Headers => new (byte[], int)[] { (_header, 0) };
     }
 
     /// <summary>
@@ -386,13 +422,15 @@ namespace Tizen.Multimedia.Util
         /// <summary>
         /// Initializes a new instance of the <see cref="GifDecoder"/> class.
         /// </summary>
-        /// <remarks><see cref="ImageDecoder.InputFormat"/> will be the <see cref="ImageFormat.Gif"/>.</remarks>
+        /// <remarks>
+        /// <see cref="ImageDecoder.InputFormat"/> will be the <see cref="ImageFormat.Gif"/>.
+        /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         public GifDecoder() : base(ImageFormat.Gif)
         {
         }
 
-        internal override byte[] Header => _header;
+        internal override (byte[], int)[] Headers => new (byte[], int)[] { (_header, 0) };
     }
 
     /// <summary>
@@ -406,12 +444,60 @@ namespace Tizen.Multimedia.Util
         /// <summary>
         /// Initializes a new instance of the <see cref="WebPDecoder"/> class.
         /// </summary>
-        /// <remarks><see cref="ImageDecoder.InputFormat"/> will be the <see cref="ImageFormat.WebP"/>.</remarks>
+        /// <remarks>
+        /// <see cref="ImageDecoder.InputFormat"/> will be the <see cref="ImageFormat.WebP"/>.
+        /// </remarks>
         /// <since_tizen> 8 </since_tizen>
         public WebPDecoder() : base(ImageFormat.WebP)
         {
         }
 
-        internal override byte[] Header => _header;
+        internal override (byte[], int)[] Headers => new (byte[], int)[] { (_header, 8) };
+    }
+
+    /// <summary>
+    /// Provides the ability to decode the HEIF (High Efficiency Image File Format) encoded images.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
+    public class HeifDecoder : ImageDecoder
+    {
+        private static readonly byte[] _header = { (byte)'f', (byte)'t', (byte)'y', (byte)'p'};
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HeifDecoder"/> class.
+        /// </summary>
+        /// <remarks>
+        /// <see cref="ImageDecoder.InputFormat"/> will be the <see cref="ImageFormat.Heif"/>.
+        /// </remarks>
+        /// <since_tizen> 9 </since_tizen>
+        public HeifDecoder() : base(ImageFormat.Heif)
+        {
+        }
+
+        internal override (byte[], int)[] Headers => new (byte[], int)[] { (_header, 4) };
+    }
+
+    /// <summary>
+    /// Provides the ability to decode the JPEG (Joint Photographic Experts Group) XL encoded images.
+    /// </summary>
+    /// <since_tizen> 10 </since_tizen>
+    public class JpegXlDecoder : ImageDecoder
+    {
+        private static readonly byte[] _headerJpegXl = { (byte)'J', (byte)'X', (byte)'L' };
+        private static readonly byte[] _headerJpegXlCodeStream = { 0xFF, 0x0A };
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="JpegXlDecoder"/> class.
+        /// </summary>
+        /// <remarks>
+        /// <see cref="ImageDecoder.InputFormat"/> will be the <see cref="ImageFormat.JpegXl"/>.
+        /// </remarks>
+        /// <since_tizen> 10 </since_tizen>
+        public JpegXlDecoder() : base(ImageFormat.JpegXl)
+        {
+        }
+
+        internal override (byte[], int)[] Headers =>
+            new (byte[], int)[] { (_headerJpegXl, 4), (_headerJpegXlCodeStream, 0) };
     }
 }

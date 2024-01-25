@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.TapGestureTest2Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="TapGestureTest2Page"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <View x:Name="ContentView"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+          Padding="20,20,20,20">
+
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" LinearAlignment="Center" CellPadding="30,30"/>
+            </View.Layout>
+
+            <TextLabel x:Name="text1"
+                        PointSize="8"
+                        WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                        MultiLine="True" />
+            <View x:Name="imgView" BackgroundColor="#ffffff">
+
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Vertical" LinearAlignment="CenterHorizontal"/>
+                </View.Layout>
+
+                <ImageView x:Name="imageView" ResourceUrl="*Resource*/images/picture.png" />
+            </View>
+        </View>
+    </ContentPage.Content>
+</ContentPage>

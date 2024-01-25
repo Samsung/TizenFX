@@ -6,9 +6,9 @@ namespace Tizen.NUI.Samples
 {
     public class ProgressSample : IExample
     {
-        private TextLabel[] board = new TextLabel[3];
+        private TextLabel[] board = new TextLabel[4];
         private Button[] button = new Button[2];
-        private Progress[] progressBar = new Progress[3];
+        private Progress[] progressBar = new Progress[4];
         private View[] layout = new View[4];
 
         public void Activate()
@@ -23,7 +23,8 @@ namespace Tizen.NUI.Samples
             layout[0].Layout = new LinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Vertical,
-                LinearAlignment = LinearLayout.Alignment.Center
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
             };
             window.Add(layout[0]);
 
@@ -35,7 +36,8 @@ namespace Tizen.NUI.Samples
             layout[1].Layout = new LinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Horizontal,
-                LinearAlignment = LinearLayout.Alignment.Center
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
             };
             layout[0].Add(layout[1]);
 
@@ -47,7 +49,7 @@ namespace Tizen.NUI.Samples
             layout[2].Layout = new LinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Vertical,
-                LinearAlignment = LinearLayout.Alignment.CenterHorizontal,
+                HorizontalAlignment = HorizontalAlignment.Center,
                 CellPadding = new Size2D(50, 100)
             };
             layout[1].Add(layout[2]);
@@ -60,13 +62,14 @@ namespace Tizen.NUI.Samples
             layout[3].Layout = new LinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Vertical,
-                LinearAlignment = LinearLayout.Alignment.CenterHorizontal,
+                HorizontalAlignment = HorizontalAlignment.Center,
                 CellPadding = new Size2D(50, 100)
             };
             layout[1].Add(layout[3]);
 
             CreatePropElements();
             CreateAttrElements();
+            CreateIndeterminateProgress();
             layout[1].Add(layout[2]);
             layout[1].Add(layout[3]);
 
@@ -186,6 +189,28 @@ namespace Tizen.NUI.Samples
             progressBar[2].MinValue = 0;
             progressBar[2].CurrentValue = 30;
             layout[3].Add(progressBar[2]);
+        }
+
+        private void CreateIndeterminateProgress()
+        {
+            board[3] = new TextLabel();
+            board[3].WidthSpecification = 380;
+            board[3].HeightSpecification = 70;
+            board[3].PointSize = 20;
+            board[3].HorizontalAlignment = HorizontalAlignment.Center;
+            board[3].VerticalAlignment = VerticalAlignment.Center;
+            board[3].BackgroundColor = Color.Magenta;
+            board[3].Text = "Indeterminate Progress";
+            layout[3].Add(board[3]);
+            board[3].Focusable = true;
+            board[3].FocusGained += Board_FocusGained; // Not sure to connect this event
+            board[3].FocusLost += Board_FocusLost;
+
+            progressBar[3] = new Progress();
+            progressBar[3].WidthSpecification = 240;
+            progressBar[3].HeightSpecification = 4;
+            progressBar[3].ProgressState = Progress.ProgressStatusType.Indeterminate;
+            layout[3].Add(progressBar[3]);
         }
 
         private void Board_FocusLost(object sender, global::System.EventArgs e)

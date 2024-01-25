@@ -149,5 +149,32 @@ internal static partial class Interop
             [DllImport(Libraries.MediaVisionFace, EntryPoint = "mv_face_tracking_model_load")]
             internal static extern MediaVisionError Load(string fileName, out IntPtr handle);
         }
+
+        /// <summary>
+        /// Interop for FaceRecognition APIs.
+        /// </summary>
+        internal static partial class FaceRecognition
+        {
+            [DllImport(Libraries.MediaVisionFaceRecognition, EntryPoint = "mv_face_recognition_create")]
+            internal static extern MediaVisionError Create(out IntPtr handle);
+
+            [DllImport(Libraries.MediaVisionFaceRecognition, EntryPoint = "mv_face_recognition_destroy")]
+            internal static extern MediaVisionError Destroy(IntPtr handle);
+
+            [DllImport(Libraries.MediaVisionFaceRecognition, EntryPoint = "mv_face_recognition_prepare")]
+            internal static extern MediaVisionError Prepare(IntPtr handle);
+
+            [DllImport(Libraries.MediaVisionFaceRecognition, EntryPoint = "mv_face_recognition_register")]
+            internal static extern MediaVisionError Register(IntPtr handle, IntPtr source, string label);
+
+            [DllImport(Libraries.MediaVisionFaceRecognition, EntryPoint = "mv_face_recognition_unregister")]
+            internal static extern MediaVisionError Unregister(IntPtr handle, string label);
+
+            [DllImport(Libraries.MediaVisionFaceRecognition, EntryPoint = "mv_face_recognition_inference")]
+            internal static extern MediaVisionError Inference(IntPtr handle, IntPtr source);
+
+            [DllImport(Libraries.MediaVisionFaceRecognition, EntryPoint = "mv_face_recognition_get_label")]
+            internal static extern MediaVisionError GetLabel(IntPtr handle, out IntPtr label);
+        }
     }
 }

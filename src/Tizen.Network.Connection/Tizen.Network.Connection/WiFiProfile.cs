@@ -55,7 +55,7 @@ namespace Tizen.Network.Connection
                     Log.Error(Globals.LogTag, "It failed to create profile handle, " + (ConnectionError)ret);
                 }
                 string result = Marshal.PtrToStringAnsi(value);
-                Interop.Libc.Free(value);
+                Interop.Glib.Free(value);
                 return result;
             }
         }
@@ -76,7 +76,7 @@ namespace Tizen.Network.Connection
                     Log.Error(Globals.LogTag, "It failed to get bssid, " + (ConnectionError)ret);
                 }
                 string result = Marshal.PtrToStringAnsi(value);
-                Interop.Libc.Free(value);
+                Interop.Glib.Free(value);
                 return result;
             }
         }

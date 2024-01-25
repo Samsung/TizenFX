@@ -130,7 +130,7 @@ namespace Tizen.NUI.Samples
 
             win.AddFrameRenderedCallback(callback, 0);
 
-            await Task.Delay(500);
+            await Task.Delay(500).ConfigureAwait(false);
 
             Assert.IsTrue(isCalled, "isCalled should be true");
         }
@@ -145,7 +145,7 @@ namespace Tizen.NUI.Samples
 
             win.AddFramePresentedCallback(callback, 0);
 
-            await Task.Delay(500);
+            await Task.Delay(500).ConfigureAwait(false);
 
             Assert.IsTrue(isCalled, "isCalled should be true");
         }
@@ -201,7 +201,7 @@ namespace Tizen.NUI.Samples
             var testId = 9;
             win.AddFrameRenderedCallback(callback, testId);
 
-            await Task.Delay(500);
+            await Task.Delay(500).ConfigureAwait(false);
 
             Assert.AreEqual(testId, checkId, "should be same");
         }
@@ -218,7 +218,7 @@ namespace Tizen.NUI.Samples
             var testId = 7;
             win.AddFramePresentedCallback(callback, testId);
 
-            await Task.Delay(500);
+            await Task.Delay(500).ConfigureAwait(false);
 
             Assert.AreEqual(testId, checkId, "should be same");
         }

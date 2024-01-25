@@ -38,6 +38,9 @@ internal static partial class Interop
         [DllImport(Libraries.AppcoreAgent, EntryPoint = "service_app_exit")]
         internal static extern void Exit();
 
+        [DllImport(Libraries.AppcoreAgent, EntryPoint = "service_app_exit_without_restart")]
+        internal static extern void ExitWithoutRestarting();
+
         [DllImport(Libraries.AppcoreAgent, EntryPoint = "service_app_add_event_handler")]
         internal static extern ErrorCode AddEventHandler(out IntPtr handle, DefaultCoreBackend.AppEventType eventType, AppEventCallback callback, IntPtr data);
 

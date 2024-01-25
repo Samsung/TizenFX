@@ -15,8 +15,13 @@
  */
 
 using System;
+using System.Collections.Concurrent;
+using System.ComponentModel;
 using System.Globalization;
+using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Timers;
 using Tizen.Applications.CoreBackend;
 
@@ -29,9 +34,8 @@ namespace Tizen.Applications
     public class CoreApplication : Application
     {
         private readonly ICoreBackend _backend;
+        private readonly ICoreTask _task;
         private bool _disposedValue = false;
-
-        private static Timer sTimer;
 
         /// <summary>
         /// Initializes the CoreApplication class.
@@ -41,6 +45,20 @@ namespace Tizen.Applications
         public CoreApplication(ICoreBackend backend)
         {
             _backend = backend;
+            _task = null;
+        }
+
+        /// <summary>
+        /// Initializes the CoreApplication class.
+        /// </summary>
+        /// <param name="backend">The backend instance implementing ICoreBackend interface.</param>
+        /// <param name="task">The backend instance implmenting ICoreTask interface.</param>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public CoreApplication(ICoreBackend backend, ICoreTask task)
+        {
+            _backend = backend;
+            _task = task;
         }
 
         /// <summary>
@@ -92,6 +110,12 @@ namespace Tizen.Applications
         public event EventHandler<DeviceOrientationEventArgs> DeviceOrientationChanged;
 
         /// <summary>
+        /// Occurs when the time zone is changed.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        public event EventHandler<TimeZoneChangedEventArgs> TimeZoneChanged;
+
+        /// <summary>
         /// The backend instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -114,15 +138,25 @@ namespace Tizen.Applications
             _backend.AddEventHandler<LocaleChangedEventArgs>(EventType.LocaleChanged, OnLocaleChanged);
             _backend.AddEventHandler<RegionFormatChangedEventArgs>(EventType.RegionFormatChanged, OnRegionFormatChanged);
             _backend.AddEventHandler<DeviceOrientationEventArgs>(EventType.DeviceOrientationChanged, OnDeviceOrientationChanged);
+            _backend.AddEventHandler<TimeZoneChangedEventArgs>(EventType.TimeZoneChanged, OnTimeZoneChanged);
 
-            string[] argsClone = new string[args.Length + 1];
-            if (args.Length > 1)
+            string[] argsClone = new string[args == null ? 1 : args.Length + 1];
+            if (args != null && args.Length > 1)
             {
                 args.CopyTo(argsClone, 1);
             }
             argsClone[0] = string.Empty;
 
-            _backend.Run(argsClone);
+            if (_task != null)
+            {
+                ICoreTaskBackend backend = (ICoreTaskBackend)_backend;
+                backend.SetCoreTask(_task);
+                backend.Run(argsClone);
+            }
+            else
+            {
+                _backend.Run(argsClone);
+            }
         }
 
         /// <summary>
@@ -141,6 +175,22 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnCreate()
         {
+            if (_task != null)
+            {
+                TizenUISynchronizationContext.Initialize();
+            }
+
+            if (!GlobalizationMode.Invariant)
+            {
+                string locale = ULocale.GetDefaultLocale();
+                ChangeCurrentUICultureInfo(locale);
+                ChangeCurrentCultureInfo(locale);
+            }
+            else
+            {
+                Log.Warn(LogTag, "Run in invariant mode");
+            }
+
             Created?.Invoke(this, EventArgs.Empty);
         }
 
@@ -162,6 +212,12 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnAppControlReceived(AppControlReceivedEventArgs e)
         {
+            if (e == null)
+            {
+                Log.Error(LogTag, "e is null");
+                return;
+            }
+
             AppControlReceived?.Invoke(this, e);
         }
 
@@ -173,20 +229,17 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnLowMemory(LowMemoryEventArgs e)
         {
+            if (e == null)
+            {
+                Log.Error(LogTag, "e is null");
+                return;
+            }
+
             LowMemory?.Invoke(this, e);
-            double interval = new Random().Next(10 * 1000);
-            if (interval <= 0)
-                interval = 10 * 1000;
-
-            sTimer = new Timer(interval);
-            sTimer.Elapsed += OnTimedEvent;
-            sTimer.AutoReset = false;
-            sTimer.Enabled = true;
-        }
-
-        private static void OnTimedEvent(Object source, ElapsedEventArgs e)
-        {
-            System.GC.Collect();
+            if (e.LowMemoryStatus == LowMemoryStatus.SoftWarning || e.LowMemoryStatus == LowMemoryStatus.HardWarning)
+            {
+                System.GC.Collect();
+            }
         }
 
         /// <summary>
@@ -197,6 +250,12 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnLowBattery(LowBatteryEventArgs e)
         {
+            if (e == null)
+            {
+                Log.Error(LogTag, "e is null");
+                return;
+            }
+
             LowBattery?.Invoke(this, e);
         }
 
@@ -208,7 +267,17 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnLocaleChanged(LocaleChangedEventArgs e)
         {
-            ChangeCurrentUICultureInfo(e.Locale);
+            if (e == null)
+            {
+                Log.Error(LogTag, "e is null");
+                return;
+            }
+
+            if (!GlobalizationMode.Invariant)
+            {
+                ChangeCurrentUICultureInfo(e.Locale);
+            }
+
             LocaleChanged?.Invoke(this, e);
         }
 
@@ -220,7 +289,17 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
         {
-            ChangeCurrentCultureInfo(e.Region);
+            if (e == null)
+            {
+                Log.Error(LogTag, "e is null");
+                return;
+            }
+
+            if (!GlobalizationMode.Invariant)
+            {
+                ChangeCurrentCultureInfo(e.Region);
+            }
+
             RegionFormatChanged?.Invoke(this, e);
         }
 
@@ -233,6 +312,63 @@ namespace Tizen.Applications
         protected virtual void OnDeviceOrientationChanged(DeviceOrientationEventArgs e)
         {
             DeviceOrientationChanged?.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// Override this method if you want to handle behavior when the time zone is changed.
+        /// If base.OnTimeZoneChanged() is not called, the event "TimeZoneChanged" will not be emitted.
+        /// </summary>
+        /// <param name="e">The time zone changed event argument</param>
+        /// <since_tizen> 11 </since_tizen>
+        protected virtual void OnTimeZoneChanged(TimeZoneChangedEventArgs e)
+        {
+            TimeZoneChanged?.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// Dispatches an asynchronous message to a main loop of the CoreApplication.
+        /// </summary>
+        /// <remarks>
+        /// If an application uses UI thread App Model, the asynchronous message will be delivered to the UI thread.
+        /// If not, the asynchronous message will be delivered to the main thread.
+        /// </remarks>
+        /// <param name="runner">The runner callaback.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the runner is null.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void Post(Action runner)
+        {
+            if (runner == null)
+            {
+                throw new ArgumentNullException(nameof(runner));
+            }
+
+            GSourceManager.Post(runner, true);
+        }
+
+        /// <summary>
+        /// Dispatches an asynchronous message to a main loop of the CoreApplication.
+        /// </summary>
+        /// <remarks>
+        /// If an application uses UI thread App Model, the asynchronous message will be delivered to the UI thread.
+        /// If not, the asynchronous message will be delivered to the main thread.
+        /// </remarks>
+        /// <typeparam name="T">The type of the result.</typeparam>
+        /// <param name="runner">The runner callback.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the runner is null.</exception>
+        /// <returns>A task with the result.</returns>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static async Task<T> Post<T>(Func<T> runner)
+        {
+            if (runner == null)
+            {
+                throw new ArgumentNullException(nameof(runner));
+            }
+
+            var task = new TaskCompletionSource<T>();
+            GSourceManager.Post(() => { task.SetResult(runner()); }, true);
+            return await task.Task.ConfigureAwait(false);
         }
 
         /// <summary>
@@ -257,9 +393,27 @@ namespace Tizen.Applications
         private CultureInfo ConvertCultureInfo(string locale)
         {
             ULocale pLocale = new ULocale(locale);
+            string cultureName = CultureInfoHelper.GetCultureName(pLocale.Locale.Replace("_", "-"));
+
+            if (!string.IsNullOrEmpty(cultureName))
+            {
+                try
+                {
+                    return new CultureInfo(cultureName);
+                }
+                catch (CultureNotFoundException)
+                {
+                    Log.Error(LogTag, "CultureNotFoundException occurs. CultureName: " + cultureName);
+                }
+            }
+
             try
             {
-                return new CultureInfo(pLocale.Locale.Replace("_", "-"));
+                return new CultureInfo(pLocale.LCID);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return GetFallbackCultureInfo(pLocale);
             }
             catch (CultureNotFoundException)
             {
@@ -269,50 +423,92 @@ namespace Tizen.Applications
 
         private void ChangeCurrentCultureInfo(string locale)
         {
-            CultureInfo.CurrentCulture = ConvertCultureInfo(locale);
+            CultureInfo cultureInfo = ConvertCultureInfo(locale);
+            if (cultureInfo != null)
+            {
+                CultureInfo.CurrentCulture = cultureInfo;
+            }
+            else
+            {
+                Log.Error(LogTag, "CultureInfo is null. locale: " + locale);
+            }
         }
 
         private void ChangeCurrentUICultureInfo(string locale)
         {
-            CultureInfo.CurrentUICulture = ConvertCultureInfo(locale);
+            CultureInfo cultureInfo = ConvertCultureInfo(locale);
+            if (cultureInfo != null)
+            {
+                CultureInfo.CurrentUICulture = cultureInfo;
+            }
+            else
+            {
+                Log.Error(LogTag, "CultureInfo is null. locale: " + locale);
+            }
+        }
+
+        private bool ExistCultureInfo(string locale)
+        {
+            foreach (var cultureInfo in CultureInfo.GetCultures(CultureTypes.AllCultures))
+            {
+                if (cultureInfo.Name == locale)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private CultureInfo GetCultureInfo(string locale)
         {
-            CultureInfo cultureInfo = null;
+            if (!ExistCultureInfo(locale))
+            {
+                return null;
+            }
 
             try
             {
-                cultureInfo = new CultureInfo(locale);
+                return new CultureInfo(locale);
             }
             catch (CultureNotFoundException)
             {
                 return null;
             }
-
-            return cultureInfo;
         }
 
         private CultureInfo GetFallbackCultureInfo(ULocale uLocale)
         {
-            string locale = string.Empty;
             CultureInfo fallbackCultureInfo = null;
+            string locale = string.Empty;
 
-            if (uLocale.Script != null && uLocale.Country != null)
+            if (uLocale.Locale != null)
+            {
+                locale = uLocale.Locale.Replace("_", "-");
+                fallbackCultureInfo = GetCultureInfo(locale);
+            }
+
+            if (fallbackCultureInfo == null && uLocale.Language != null && uLocale.Script != null && uLocale.Country != null)
             {
                 locale = uLocale.Language + "-" + uLocale.Script + "-" + uLocale.Country;
                 fallbackCultureInfo = GetCultureInfo(locale);
             }
 
-            if (fallbackCultureInfo == null && uLocale.Script != null)
+            if (fallbackCultureInfo == null && uLocale.Language != null && uLocale.Script != null)
             {
                 locale = uLocale.Language + "-" + uLocale.Script;
                 fallbackCultureInfo = GetCultureInfo(locale);
             }
 
-            if (fallbackCultureInfo == null && uLocale.Country != null)
+            if (fallbackCultureInfo == null && uLocale.Language != null && uLocale.Country != null)
             {
                 locale = uLocale.Language + "-" + uLocale.Country;
+                fallbackCultureInfo = GetCultureInfo(locale);
+            }
+
+            if (fallbackCultureInfo == null && uLocale.Language != null)
+            {
+                locale = uLocale.Language;
                 fallbackCultureInfo = GetCultureInfo(locale);
             }
 
@@ -320,15 +516,34 @@ namespace Tizen.Applications
             {
                 try
                 {
-                    fallbackCultureInfo = new CultureInfo(uLocale.Language);
-                }
-                catch (CultureNotFoundException)
-                {
                     fallbackCultureInfo = new CultureInfo("en");
+                }
+                catch (CultureNotFoundException e)
+                {
+                    Log.Error(LogTag, "Failed to create CultureInfo. err = " + e.Message);
                 }
             }
 
             return fallbackCultureInfo;
+        }
+    }
+
+    internal static class GlobalizationMode
+    {
+        private static int _invariant = -1;
+
+        internal static bool Invariant
+        {
+            get
+            {
+                if (_invariant == -1)
+                {
+                    string value = Environment.GetEnvironmentVariable("DOTNET_SYSTEM_GLOBALIZATION_INVARIANT");
+                    _invariant = value != null ? (value.Equals("1") ? 1 : 0) : 0;
+                }
+
+                return _invariant != 0;
+            }
         }
     }
 
@@ -347,6 +562,7 @@ namespace Tizen.Applications
             Script = GetScript(Locale);
             Country = GetCountry(Locale);
             Variant = GetVariant(Locale);
+            LCID = GetLCID(Locale);
         }
 
         internal string Locale { get; private set; }
@@ -354,6 +570,7 @@ namespace Tizen.Applications
         internal string Script { get; private set; }
         internal string Country { get; private set; }
         internal string Variant { get; private set; }
+        internal int LCID { get; private set; }
 
         private string Canonicalize(string localeName)
         {
@@ -396,7 +613,7 @@ namespace Tizen.Applications
             int err = 0;
 
             // Get the country name from ICU
-            StringBuilder sb = new StringBuilder(ULOC_SCRIPT_CAPACITY);
+            StringBuilder sb = new StringBuilder(ULOC_COUNTRY_CAPACITY);
             if (Interop.BaseUtilsi18n.GetCountry(locale, sb, sb.Capacity, out err) <= 0)
             {
                 return null;
@@ -415,6 +632,24 @@ namespace Tizen.Applications
             }
 
             return sb.ToString();
+        }
+
+        private int GetLCID(string locale)
+        {
+            // Get the LCID from ICU
+            uint lcid = Interop.BaseUtilsi18n.GetLCID(locale);
+            return (int)lcid;
+        }
+
+        internal static string GetDefaultLocale()
+        {
+            IntPtr stringPtr = Interop.Libc.GetEnvironmentVariable("LANG");
+            if (stringPtr == IntPtr.Zero)
+            {
+                return string.Empty;
+            }
+
+            return Marshal.PtrToStringAnsi(stringPtr);
         }
     }
 }

@@ -58,11 +58,15 @@ namespace Tizen.NUI.Samples
             if (sender is Capture)
             {
                 log.Debug(tag, $"sender is Capture \n");
-                var url = capture.GenerateUrl();
-                capturedImage = new ImageView(url);
+                PixelBuffer pixelBuffer = capture.GetCapturedBuffer();
+                PixelData pixelData = PixelBuffer.Convert(pixelBuffer);
+                //var imageUrl = pixelData.GenerateUrl();//capture.GetNativeImageSource().Url;
+                //capturedImage = new ImageView(imageUrl.ToString());
+                var url = pixelData.GenerateUrl();
+                capturedImage = new ImageView(url.ToString());
                 log.Debug(tag, $"url={url} \n");
 
-                capturedImage.Size = new Size(300, 300);
+                capturedImage.Size = new Size(510, 510);
                 capturedImage.Position = new Position(10, 10);
                 root.Add(capturedImage);
                 done = false;
@@ -77,7 +81,7 @@ namespace Tizen.NUI.Samples
                 {
                     done = true;
                     capture = new Capture();
-                    capture.Start(root, new Size(345, 543), @"/opt/usr/nui_captured.jpg");
+                    capture.Start(root, new Size(510, 510), @"/opt/usr/nui_captured.jpg");
                     capture.Finished += onCaptureFinished;
                     log.Debug(tag, $"capture done \n");
                 }

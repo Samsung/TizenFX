@@ -1,4 +1,4 @@
-/* Copyright (c) 2019 Samsung Electronics Co., Ltd.
+/* Copyright (c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
  * limitations under the License.
  *
  */
-using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
@@ -46,34 +45,34 @@ namespace Tizen.NUI
             MeasuredSize.StateType childWidthState = MeasuredSize.StateType.MeasuredSizeOK;
             MeasuredSize.StateType childHeightState = MeasuredSize.StateType.MeasuredSizeOK;
 
-            for (int i = 0; i < LayoutChildren.Count; i++)
+            foreach (var childLayout in LayoutChildren)
             {
-                LayoutItem childLayout = LayoutChildren[i];
-                if (childLayout != null)
+                if (!childLayout.SetPositionByLayout)
                 {
-                    // Get size of child with no padding, no margin. we won't support margin, padding for AbsolutLayout.
-                    MeasureChildWithoutPadding(childLayout, widthMeasureSpec, heightMeasureSpec);
+                    continue;
+                }
 
-                    // Determine the width and height needed by the children using their given position and size.
-                    // Children could overlap so find the right most child.
-                    Position2D childPosition = childLayout.Owner.Position2D;
-                    float childRight = childLayout.MeasuredWidth.Size.AsDecimal() + childPosition.X;
-                    float childBottom = childLayout.MeasuredHeight.Size.AsDecimal() + childPosition.Y;
+                // Get size of child with no padding, no margin. we won't support margin, padding for AbsolutLayout.
+                MeasureChildWithoutPadding(childLayout, widthMeasureSpec, heightMeasureSpec);
 
-                    if (maxWidth < childRight)
-                        maxWidth = childRight;
+                // Determine the width and height needed by the children using their given position and size.
+                // Children could overlap so find the right most child.
+                float childRight = childLayout.MeasuredWidth.Size.AsDecimal() + childLayout.Owner.PositionX;
+                float childBottom = childLayout.MeasuredHeight.Size.AsDecimal() + childLayout.Owner.PositionY;
 
-                    if (maxHeight < childBottom)
-                        maxHeight = childBottom;
+                if (maxWidth < childRight)
+                    maxWidth = childRight;
 
-                    if (childLayout.MeasuredWidth.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
-                    {
-                        childWidthState = MeasuredSize.StateType.MeasuredSizeTooSmall;
-                    }
-                    if (childLayout.MeasuredHeight.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
-                    {
-                        childHeightState = MeasuredSize.StateType.MeasuredSizeTooSmall;
-                    }
+                if (maxHeight < childBottom)
+                    maxHeight = childBottom;
+
+                if (childLayout.MeasuredWidth.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
+                {
+                    childWidthState = MeasuredSize.StateType.MeasuredSizeTooSmall;
+                }
+                if (childLayout.MeasuredHeight.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
+                {
+                    childHeightState = MeasuredSize.StateType.MeasuredSizeTooSmall;
                 }
             }
 
@@ -94,40 +93,21 @@ namespace Tizen.NUI
         {
             // Absolute layout positions it's children at their Actor positions.
             // Children could overlap or spill outside the parent, as is the nature of absolute positions.
-            for (int i = 0; i < LayoutChildren.Count; i++)
+            foreach (var childLayout in LayoutChildren)
             {
-                LayoutItem childLayout = LayoutChildren[i];
-                if ( childLayout != null )
+                if (!childLayout.SetPositionByLayout)
                 {
-                    LayoutLength childWidth = childLayout.MeasuredWidth.Size;
-                    LayoutLength childHeight = childLayout.MeasuredHeight.Size;
-
-                    Position2D childPosition = childLayout.Owner.Position2D;
-
-                    LayoutLength childLeft = new LayoutLength(childPosition.X);
-                    LayoutLength childTop = new LayoutLength(childPosition.Y);
-
-                    childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
+                    continue;
                 }
+
+                LayoutLength childWidth = childLayout.MeasuredWidth.Size;
+                LayoutLength childHeight = childLayout.MeasuredHeight.Size;
+
+                LayoutLength childLeft = new LayoutLength(childLayout.Owner.PositionX);
+                LayoutLength childTop = new LayoutLength(childLayout.Owner.PositionY);
+
+                childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight, true);
             }
         }
-
-        private void MeasureChildWithoutPadding(LayoutItem child, MeasureSpecification parentWidthMeasureSpec, MeasureSpecification parentHeightMeasureSpec)
-        {
-            View childOwner = child.Owner;
-
-            MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
-                        new MeasureSpecification(new LayoutLength(parentWidthMeasureSpec.Size), parentWidthMeasureSpec.Mode),
-                        new LayoutLength(0),
-                        new LayoutLength(childOwner.WidthSpecification));
-
-            MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
-                        new MeasureSpecification(new LayoutLength(parentHeightMeasureSpec.Size), parentHeightMeasureSpec.Mode),
-                        new LayoutLength(0),
-                        new LayoutLength(childOwner.HeightSpecification));
-
-            child.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
-        }
     }
-
 } // namespace

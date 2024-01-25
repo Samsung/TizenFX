@@ -1,4 +1,20 @@
-﻿using System;
+﻿/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -7,17 +23,17 @@ namespace Tizen.NUI.Binding
     [EditorBrowsable(EditorBrowsableState.Never)]
     internal abstract class DeviceInfo : INotifyPropertyChanged, IDisposable
     {
-        DeviceOrientation _currentOrientation;
-        bool _disposed;
+        DeviceOrientation currentOrientation;
+        bool disposed;
 
         public DeviceOrientation CurrentOrientation
         {
-            get { return _currentOrientation; }
+            get { return currentOrientation; }
             set
             {
-                if (Equals(_currentOrientation, value))
+                if (Equals(currentOrientation, value))
                     return;
-                _currentOrientation = value;
+                currentOrientation = value;
                 OnPropertyChanged();
             }
         }
@@ -40,9 +56,9 @@ namespace Tizen.NUI.Binding
 
         protected virtual void Dispose(bool disposing)
         {
-            if (_disposed)
+            if (disposed)
                 return;
-            _disposed = true;
+            disposed = true;
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

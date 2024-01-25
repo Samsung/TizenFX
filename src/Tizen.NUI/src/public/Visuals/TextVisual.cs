@@ -24,19 +24,19 @@ namespace Tizen.NUI
     public class TextVisual : VisualMap
     {
         static private float defaultPointSize = 18;
-        private string _text = null;
-        private string _fontFamily = null;
-        private PropertyMap _fontStyle = null;
-        private float _pointSize = defaultPointSize;
-        private bool? _multiLine = null;
-        private string _horizontalAlignment = null;
-        private string _verticalAlignment = null;
-        private Color _textColor = null;
-        private bool? _enableMarkup = null;
-        private PropertyMap _shadow = null;
-        private PropertyMap _underline = null;
-        private PropertyMap _outline = null;
-        private PropertyMap _background = null;
+        private string text = null;
+        private string fontFamily = null;
+        private PropertyMap fontStyle = null;
+        private float pointSize = defaultPointSize;
+        private bool? multiLine = null;
+        private string horizontalAlignment = null;
+        private string verticalAlignment = null;
+        private Color textColor = null;
+        private bool? enableMarkup = null;
+        private PropertyMap shadow = null;
+        private PropertyMap underline = null;
+        private PropertyMap outline = null;
+        private PropertyMap background = null;
 
         /// <summary>
         /// Constructor.
@@ -55,11 +55,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _text;
+                return text;
             }
             set
             {
-                _text = value;
+                text = value;
                 UpdateVisual();
             }
         }
@@ -73,11 +73,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _fontFamily;
+                return fontFamily;
             }
             set
             {
-                _fontFamily = value;
+                fontFamily = value;
                 UpdateVisual();
             }
         }
@@ -91,11 +91,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _fontStyle;
+                return fontStyle;
             }
             set
             {
-                _fontStyle = value;
+                fontStyle = value;
                 UpdateVisual();
             }
         }
@@ -109,11 +109,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _pointSize;
+                return pointSize;
             }
             set
             {
-                _pointSize = value;
+                pointSize = value;
                 UpdateVisual();
             }
         }
@@ -128,11 +128,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _multiLine ?? (false);
+                return multiLine ?? (false);
             }
             set
             {
-                _multiLine = value;
+                multiLine = value;
                 UpdateVisual();
             }
         }
@@ -147,7 +147,7 @@ namespace Tizen.NUI
         {
             get
             {
-                switch (_horizontalAlignment)
+                switch (horizontalAlignment)
                 {
                     case "BEGIN":
                         return HorizontalAlignment.Begin;
@@ -165,22 +165,22 @@ namespace Tizen.NUI
                 {
                     case HorizontalAlignment.Begin:
                         {
-                            _horizontalAlignment = "BEGIN";
+                            horizontalAlignment = "BEGIN";
                             break;
                         }
                     case HorizontalAlignment.Center:
                         {
-                            _horizontalAlignment = "CENTER";
+                            horizontalAlignment = "CENTER";
                             break;
                         }
                     case HorizontalAlignment.End:
                         {
-                            _horizontalAlignment = "END";
+                            horizontalAlignment = "END";
                             break;
                         }
                     default:
                         {
-                            _horizontalAlignment = "BEGIN";
+                            horizontalAlignment = "BEGIN";
                             break;
                         }
                 }
@@ -198,7 +198,7 @@ namespace Tizen.NUI
         {
             get
             {
-                switch (_verticalAlignment)
+                switch (verticalAlignment)
                 {
                     case "TOP":
                         return VerticalAlignment.Top;
@@ -216,22 +216,22 @@ namespace Tizen.NUI
                 {
                     case VerticalAlignment.Top:
                         {
-                            _verticalAlignment = "TOP";
+                            verticalAlignment = "TOP";
                             break;
                         }
                     case VerticalAlignment.Center:
                         {
-                            _verticalAlignment = "CENTER";
+                            verticalAlignment = "CENTER";
                             break;
                         }
                     case VerticalAlignment.Bottom:
                         {
-                            _verticalAlignment = "BOTTOM";
+                            verticalAlignment = "BOTTOM";
                             break;
                         }
                     default:
                         {
-                            _verticalAlignment = "TOP";
+                            verticalAlignment = "TOP";
                             break;
                         }
                 }
@@ -248,11 +248,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _textColor;
+                return textColor;
             }
             set
             {
-                _textColor = value;
+                textColor = value;
                 UpdateVisual();
             }
         }
@@ -266,11 +266,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _enableMarkup ?? (false);
+                return enableMarkup ?? (false);
             }
             set
             {
-                _enableMarkup = value;
+                enableMarkup = value;
                 UpdateVisual();
             }
         }
@@ -283,11 +283,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _shadow;
+                return shadow;
             }
             set
             {
-                _shadow = value;
+                shadow = value;
                 UpdateVisual();
             }
         }
@@ -300,11 +300,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _underline;
+                return underline;
             }
             set
             {
-                _underline = value;
+                underline = value;
                 UpdateVisual();
             }
         }
@@ -317,11 +317,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _outline;
+                return outline;
             }
             set
             {
-                _outline = value;
+                outline = value;
                 UpdateVisual();
             }
         }
@@ -334,11 +334,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _background;
+                return background;
             }
             set
             {
-                _background = value;
+                background = value;
                 UpdateVisual();
             }
         }
@@ -351,22 +351,86 @@ namespace Tizen.NUI
         {
             _outputVisualMap = new PropertyMap();
 
-            if (_text != null)
+            if (text != null)
             {
-                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Text));
-                _outputVisualMap.Add(TextVisualProperty.Text, new PropertyValue(_text));
-                _outputVisualMap.Add(TextVisualProperty.PointSize, new PropertyValue((float)_pointSize));
-                if (_fontFamily != null) { _outputVisualMap.Add(TextVisualProperty.FontFamily, new PropertyValue(_fontFamily)); }
-                if (_fontStyle != null) { _outputVisualMap.Add(TextVisualProperty.FontStyle, new PropertyValue(_fontStyle)); }
-                if (_multiLine != null) { _outputVisualMap.Add(TextVisualProperty.MultiLine, new PropertyValue((bool)_multiLine)); }
-                if (_horizontalAlignment != null) { _outputVisualMap.Add(TextVisualProperty.HorizontalAlignment, new PropertyValue(_horizontalAlignment)); }
-                if (_verticalAlignment != null) { _outputVisualMap.Add(TextVisualProperty.VerticalAlignment, new PropertyValue(_verticalAlignment)); }
-                if (_textColor != null) { _outputVisualMap.Add(TextVisualProperty.TextColor, new PropertyValue(_textColor)); }
-                if (_enableMarkup != null) { _outputVisualMap.Add(TextVisualProperty.EnableMarkup, new PropertyValue((bool)_enableMarkup)); }
-                if (_shadow != null) { _outputVisualMap.Add(TextVisualProperty.Shadow, new PropertyValue(_shadow)); }
-                if (_underline != null) { _outputVisualMap.Add(TextVisualProperty.Underline, new PropertyValue(_underline)); }
-                if (_outline != null) { _outputVisualMap.Add(TextVisualProperty.Outline, new PropertyValue(_outline)); }
-                if (_background != null) { _outputVisualMap.Add(TextVisualProperty.Background, new PropertyValue(_background)); }
+                PropertyValue temp = new PropertyValue((int)Visual.Type.Text);
+                _outputVisualMap.Add(Visual.Property.Type, temp);
+                temp.Dispose();
+
+                temp = new PropertyValue(text);
+                _outputVisualMap.Add(TextVisualProperty.Text, temp);
+                temp.Dispose();
+
+                temp = new PropertyValue((float)pointSize);
+                _outputVisualMap.Add(TextVisualProperty.PointSize, temp);
+                temp.Dispose();
+
+                if (fontFamily != null)
+                {
+                    temp = new PropertyValue(fontFamily);
+                    _outputVisualMap.Add(TextVisualProperty.FontFamily, temp);
+                    temp.Dispose();
+                }
+                if (fontStyle != null)
+                {
+                    temp = new PropertyValue(fontStyle);
+                    _outputVisualMap.Add(TextVisualProperty.FontStyle, temp);
+                    temp.Dispose();
+                }
+                if (multiLine != null)
+                {
+                    temp = new PropertyValue((bool)multiLine);
+                    _outputVisualMap.Add(TextVisualProperty.MultiLine, temp);
+                    temp.Dispose();
+                }
+                if (horizontalAlignment != null)
+                {
+                    temp = new PropertyValue(horizontalAlignment);
+                    _outputVisualMap.Add(TextVisualProperty.HorizontalAlignment, temp);
+                    temp.Dispose();
+                }
+                if (verticalAlignment != null)
+                {
+                    temp = new PropertyValue(verticalAlignment);
+                    _outputVisualMap.Add(TextVisualProperty.VerticalAlignment, temp);
+                    temp.Dispose();
+                }
+                if (textColor != null)
+                {
+                    temp = new PropertyValue(textColor);
+                    _outputVisualMap.Add(TextVisualProperty.TextColor, temp);
+                    temp.Dispose();
+                }
+                if (enableMarkup != null)
+                {
+                    temp = new PropertyValue((bool)enableMarkup);
+                    _outputVisualMap.Add(TextVisualProperty.EnableMarkup, temp);
+                    temp.Dispose();
+                }
+                if (shadow != null)
+                {
+                    temp = new PropertyValue(shadow);
+                    _outputVisualMap.Add(TextVisualProperty.Shadow, temp);
+                    temp.Dispose();
+                }
+                if (underline != null)
+                {
+                    temp = new PropertyValue(underline);
+                    _outputVisualMap.Add(TextVisualProperty.Underline, temp);
+                    temp.Dispose();
+                }
+                if (outline != null)
+                {
+                    temp = new PropertyValue(outline);
+                    _outputVisualMap.Add(TextVisualProperty.Outline, temp);
+                    temp.Dispose();
+                }
+                if (background != null)
+                {
+                    temp = new PropertyValue(background);
+                    _outputVisualMap.Add(TextVisualProperty.Background, temp);
+                    temp.Dispose();
+                }
                 base.ComposingPropertyMap();
             }
         }

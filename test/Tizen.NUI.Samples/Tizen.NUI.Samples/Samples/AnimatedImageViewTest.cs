@@ -65,11 +65,7 @@ namespace Tizen.NUI.Samples
                     },
                     BackgroundImageBorder = new Selector<Rectangle> { All = new Rectangle(5, 5, 5, 5) },
 
-                    ImageShadow = new ImageShadow
-                    {
-                        Url = CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_shadow.png",
-                        Border = new Rectangle(5, 5, 5, 5)
-                    },
+                    ImageShadow = new ImageShadow(CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_shadow.png", new Rectangle(5, 5, 5, 5)),
 
                     Overlay = new ImageViewStyle
                     {
@@ -140,7 +136,7 @@ namespace Tizen.NUI.Samples
             root.BackgroundColor = Color.Green;
             root.Size2D = new Size2D(NUIApplication.GetDefaultWindow().Size.Width, NUIApplication.GetDefaultWindow().Size.Height);
             var layer = new LinearLayout();
-            layer.LinearAlignment = LinearLayout.Alignment.CenterHorizontal;
+            layer.HorizontalAlignment = HorizontalAlignment.Center;
             layer.LinearOrientation = LinearLayout.Orientation.Vertical;
             root.Layout = layer;
             NUIApplication.GetDefaultWindow().GetDefaultLayer().Add(root);
@@ -167,12 +163,11 @@ namespace Tizen.NUI.Samples
             box2 = new Box(new Size2D(root.Size2D.Width, GetRatio(40, root.Size2D.Height)), "Image array Test", "");
             root.Add(box2);
 
-            var list = new List<string>();
             for (int i = 1; i <= 8; i++)
             {
-                list.Add(resPath + "images/AGIF/dog-anim-00" + i + ".png");
+                box2.image.URLs.Add(resPath + "images/AGIF/dog-anim-00" + i + ".png");
             }
-            box2.image.URLs = list;
+            box2.image.SetValues();
             box2.image.Play();
 
             box2.but1.Clicked += But1_Clicked1;

@@ -41,12 +41,6 @@ internal static partial class Interop
         [DllImport(Libraries.MediaContent, EntryPoint = "media_folder_get_name")]
         internal static extern MediaContentError GetName(IntPtr folder, out IntPtr folder_name);
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_folder_get_storage_type")]
-        internal static extern MediaContentError GetStorageType(IntPtr folder, out StorageType storage_type);
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_folder_get_storage_id")]
-        internal static extern MediaContentError GetStorageId(IntPtr folder, out IntPtr storage_id);
-
         [DllImport(Libraries.MediaContent, EntryPoint = "media_folder_get_folder_from_db")]
         internal static extern MediaContentError GetFolderFromDb(string id, out IntPtr folder);
 

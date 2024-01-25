@@ -26,7 +26,6 @@ namespace Tizen.Content.MediaContent
     /// <since_tizen> 4 </since_tizen>
     public class MediaInfo
     {
-#pragma warning disable CS0618 // Type or member is obsolete
         internal MediaInfo(Interop.MediaInfoHandle handle)
         {
             Id = InteropHelper.GetString(handle, Interop.MediaInfo.GetMediaId);
@@ -42,24 +41,20 @@ namespace Tizen.Content.MediaContent
 
             DateAdded = InteropHelper.GetDateTime(handle, Interop.MediaInfo.GetAddedTime);
             DateModified = InteropHelper.GetDateTime(handle, Interop.MediaInfo.GetModifiedTime);
-            Timeline = InteropHelper.GetDateTime(handle, Interop.MediaInfo.GetTimeline);
+            Timeline = InteropHelper.GetDateTime(handle, Interop.MediaInfo.GetTimeline);  // Deprecated since API12
 
             ThumbnailPath = InteropHelper.GetString(handle, Interop.MediaInfo.GetThumbnailPath, true);
-            Description = InteropHelper.GetString(handle, Interop.MediaInfo.GetDescription);
+            Description = InteropHelper.GetString(handle, Interop.MediaInfo.GetDescription);  // Deprecated since API12
 
-            Longitude = InteropHelper.GetValue<double>(handle, Interop.MediaInfo.GetLongitude);
-            Latitude = InteropHelper.GetValue<double>(handle, Interop.MediaInfo.GetLatitude);
-            Altitude = InteropHelper.GetValue<double>(handle, Interop.MediaInfo.GetAltitude);
+            Longitude = InteropHelper.GetValue<double>(handle, Interop.MediaInfo.GetLongitude);  // Deprecated since API12
+            Latitude = InteropHelper.GetValue<double>(handle, Interop.MediaInfo.GetLatitude);  // Deprecated since API12
+            Altitude = InteropHelper.GetValue<double>(handle, Interop.MediaInfo.GetAltitude);  // Deprecated since API12
 
-            Rating = InteropHelper.GetValue<int>(handle, Interop.MediaInfo.GetRating);
-            IsFavorite = InteropHelper.GetValue<bool>(handle, Interop.MediaInfo.GetFavorite);
+            Rating = InteropHelper.GetValue<int>(handle, Interop.MediaInfo.GetRating);  // Deprecated since API12
+            IsFavorite = InteropHelper.GetValue<bool>(handle, Interop.MediaInfo.GetFavorite);  // Deprecated since API12
             Title = InteropHelper.GetString(handle, Interop.MediaInfo.GetTitle);
-            StorageId = InteropHelper.GetString(handle, Interop.MediaInfo.GetStorageId);
-            IsDrm = InteropHelper.GetValue<bool>(handle, Interop.MediaInfo.IsDrm);
-
-            StorageType = InteropHelper.GetValue<StorageType>(handle, Interop.MediaInfo.GetStorageType);
+            IsDrm = InteropHelper.GetValue<bool>(handle, Interop.MediaInfo.IsDrm);  // Deprecated since API12
         }
-#pragma warning restore CS0618 // Type or member is obsolete
 
         /// <summary>
         /// Gets the ID of media.
@@ -125,6 +120,7 @@ namespace Tizen.Content.MediaContent
         /// otherwise the modified date.
         /// </value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public DateTimeOffset Timeline { get; }
 
         /// <summary>
@@ -139,6 +135,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The description from the metadata.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public string Description { get; }
 
         /// <summary>
@@ -146,6 +143,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The longitude.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public double Longitude { get; }
 
         /// <summary>
@@ -153,6 +151,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The latitude.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public double Latitude { get; }
 
         /// <summary>
@@ -160,6 +159,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The altitude.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public double Altitude { get; }
 
         /// <summary>
@@ -167,6 +167,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The rating from the metadata.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public int Rating { get; }
 
         /// <summary>
@@ -174,6 +175,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>true if media is set as favorite, otherwise false.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public bool IsFavorite { get; }
 
         /// <summary>
@@ -184,27 +186,12 @@ namespace Tizen.Content.MediaContent
         public string Title { get; }
 
         /// <summary>
-        /// Gets the storage ID of the storage that the media is stored on.
-        /// </summary>
-        /// <value>The storage ID of the storage that the media is stored on.</value>
-        /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated in level 6")]
-        public string StorageId { get; }
-
-        /// <summary>
         /// Gets the value indicating whether the media is DRM-protected.
         /// </summary>
         /// <value>A bool value indicating whether the media is DRM-protected.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public bool IsDrm { get; }
-
-        /// <summary>
-        /// Gets the storage type of the storage that the media is stored on.
-        /// </summary>
-        /// <value>The storage type of the storage that the media is stored on.</value>
-        /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated in level 6")]
-        public StorageType StorageType { get; }
 
         /// <summary>
         /// Returns a string representation of the media information.
@@ -233,6 +220,9 @@ namespace Tizen.Content.MediaContent
 
                 case MediaType.Video:
                     return new VideoInfo(handle);
+
+                case MediaType.Book:
+                    return new BookInfo(handle);
             }
 
             return new MediaInfo(handle);

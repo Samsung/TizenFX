@@ -58,11 +58,11 @@ namespace Tizen.NUI.Samples
             {
                 if (e.Key.KeyPressedName == "1")
                 {
-                    view1.Size2D.Width += 10;
+                    view1.SizeWidth += 10;
                 }
                 else if (e.Key.KeyPressedName == "2")
                 {
-                    view1.Size2D.Height += 10;
+                    view1.SizeHeight += 10;
                 }
                 else if (e.Key.KeyPressedName == "3")
                 {
@@ -74,24 +74,28 @@ namespace Tizen.NUI.Samples
                 }
                 else if (e.Key.KeyPressedName == "5")
                 {
-                    view1.MinimumSize.Width = 500;
+                    view1.MinimumSize = new Size2D(500, view1.MinimumSize.Height);
                 }
                 else if (e.Key.KeyPressedName == "6")
                 {
-                    view1.MinimumSize.Width = 100;
+                    view1.MinimumSize = new Size2D(100, view1.MinimumSize.Height);
                 }
                 else if (e.Key.KeyPressedName == "7")
                 {
-                    view1.MaximumSize.Width = 700;
+                    view1.MaximumSize = new Size2D(700, view1.MaximumSize.Height);
                 }
                 else if (e.Key.KeyPressedName == "8")
                 {
-                    view1.MaximumSize.Width = 70;
+                    view1.MaximumSize = new Size2D(70, view1.MaximumSize.Height);
+                }
+                else if (e.Key.KeyPressedName == "9")
+                {
+                    view1.Size += new Size(10, 10);
                 }
                 else if (e.Key.KeyPressedName == "0")
                 {
-                    view1.Size2D.Width -= 10;
-                    view1.Size2D.Height -= 10;
+                    view1.SizeWidth -= 10;
+                    view1.SizeHeight -= 10;
                 }
             }
         }
@@ -103,6 +107,7 @@ namespace Tizen.NUI.Samples
                 string log = "";
                 log += $"view1 Size2D=({view1.Size2D.Width}, {view1.Size2D.Height}) \n";
                 log += $"SizeWidth={view1.SizeWidth}, SizeHeight={view1.SizeHeight} \n";
+                log += $"Size={view1.Size.Width}, SizeHeight={view1.Size.Height} \n";
                 log += $"WidthResizePolicy={view1.WidthResizePolicy}, HeightResizePolicy={view1.HeightResizePolicy} \n";
                 log += $"WidthSpecification={view1.WidthSpecification}, HeightSpecification={view1.HeightSpecification} \n";
                 log += $"MinimumSize=({view1.MinimumSize.Width}, {view1.MinimumSize.Height}) \n";

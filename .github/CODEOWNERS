@@ -1,0 +1,23 @@
+# TizenFX Code Owners.
+# Add members who own directories and files for automatic Pull Request Reviewers.
+
+# NUI Code Owners List
+/src/Tizen.NUI/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
+/src/Tizen.NUI.Components/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
+/src/Tizen.NUI/src/public/BaseComponents/Text*.cs @wonrst @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
+/src/Tizen.NUI/src/public/Xaml/ @AdunFang @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
+/src/Tizen.NUI/src/public/XamlBinding/ @AdunFang @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
+/src/Tizen.NUI/src/internal/Xaml/ @AdunFang @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
+/src/Tizen.NUI/src/internal/XamlBinding/ @AdunFang @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
+/src/Tizen.NUI/src/internal/EXaml/ @AdunFang @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
+/test/NUITestSample/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
+/test/NUITizenGallery/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
+/test/Tizen.NUI.ComponentApplication/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
+/test/Tizen.NUI.Samples/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
+/test/Tizen.NUI.SeamlessSamples/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
+/test/Tizen.NUI.StyleGuide/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
+/test/Tizen.NUI.Tests/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
+/test/Tizen.NUI.WebViewTest/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
+/test/Tizen.NUI.WindowSystem.Samples/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst @rabbitfor @hinohie
+
+# Please Add more Code Owners below.

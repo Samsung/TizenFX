@@ -20,136 +20,155 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Events
 {
-  /// <summary>
-  /// This is a class for detects various gestures.
-  /// </summary>
-  [EditorBrowsable(EditorBrowsableState.Never)]
-  public class GestureDetectorManager : Disposable
-  {
     /// <summary>
-    ///  This class is used to create a subset of the gestures you only want.
-    ///  You can inherit this class and implement the callback for gestures what you want to use.
+    /// This is a class for detects various gestures.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class GestureListener
+    public class GestureDetectorManager : Disposable
     {
-      /// <summary>
-      ///  TapGestureDetector event callback.
-      /// </summary>
-      [EditorBrowsable(EditorBrowsableState.Never)]
-      public virtual void OnTap(object sender, TapGestureDetector.DetectedEventArgs e)
-      {
-      }
+        /// <summary>
+        ///  This class is used to create a subset of the gestures you only want.
+        ///  You can inherit this class and implement the callback for gestures what you want to use.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class GestureListener
+        {
+            /// <summary>
+            ///  TapGestureDetector event callback.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public virtual void OnTap(object sender, TapGestureDetector.DetectedEventArgs e, object userData)
+            {
+            }
 
-      /// <summary>
-      ///  LongPressGestureDetector event callback.
-      /// </summary>
-      [EditorBrowsable(EditorBrowsableState.Never)]
-      public virtual void OnLongPress(object sender, LongPressGestureDetector.DetectedEventArgs e)
-      {
-      }
+            /// <summary>
+            ///  LongPressGestureDetector event callback.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public virtual void OnLongPress(object sender, LongPressGestureDetector.DetectedEventArgs e, object userData)
+            {
+            }
 
-      /// <summary>
-      ///  PanGestureDetector event callback.
-      /// </summary>
-      [EditorBrowsable(EditorBrowsableState.Never)]
-      public virtual void OnPan(object sender, PanGestureDetector.DetectedEventArgs e)
-      {
-      }
+            /// <summary>
+            ///  PanGestureDetector event callback.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public virtual void OnPan(object sender, PanGestureDetector.DetectedEventArgs e, object userData)
+            {
+            }
 
-      /// <summary>
-      ///  PinchGestureDetector event callback.
-      /// </summary>
-      [EditorBrowsable(EditorBrowsableState.Never)]
-      public virtual void OnPinch(object sender, PinchGestureDetector.DetectedEventArgs e)
-      {
-      }
+            /// <summary>
+            ///  PinchGestureDetector event callback.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public virtual void OnPinch(object sender, PinchGestureDetector.DetectedEventArgs e, object userData)
+            {
+            }
+        }
+
+        private GestureListener mListener;
+        private TapGestureDetector mTapGestureDetector;
+        private LongPressGestureDetector mLongGestureDetector;
+        private PinchGestureDetector mPinchGestureDetector;
+        private PanGestureDetector mPanGestureDetector;
+        private object mUserData;
+
+        /// <summary>
+        ///  Creates a GestureDetectorManager with the user listener.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public GestureDetectorManager(View view, GestureListener listener)
+        {
+            if (view == null)
+            {
+                throw new global::System.ArgumentNullException(nameof(view));
+            }
+            if (listener == null)
+            {
+                throw new global::System.ArgumentNullException(nameof(listener));
+            }
+
+            mListener = listener;
+            view.GrabTouchAfterLeave = true;
+            init(view);
+        }
+
+        private void init(View view)
+        {
+            mTapGestureDetector = new TapGestureDetector();
+            mLongGestureDetector = new LongPressGestureDetector();
+            mPanGestureDetector = new PanGestureDetector();
+            mPinchGestureDetector = new PinchGestureDetector();
+
+            mTapGestureDetector.Attach(view);
+            mLongGestureDetector.Attach(view);
+            mPanGestureDetector.Attach(view);
+            mPinchGestureDetector.Attach(view);
+        }
+
+        private void InternalOnTap(object sender, TapGestureDetector.DetectedEventArgs e)
+        {
+            mListener.OnTap(sender, e, mUserData);
+            mTapGestureDetector.Detected -= InternalOnTap;
+        }
+
+        private void InternalOnLongPress(object sender, LongPressGestureDetector.DetectedEventArgs e)
+        {
+            mListener.OnLongPress(sender, e, mUserData);
+            mLongGestureDetector.Detected -= InternalOnLongPress;
+        }
+
+        private void InternalOnPan(object sender, PanGestureDetector.DetectedEventArgs e)
+        {
+            mListener.OnPan(sender, e, mUserData);
+            mPanGestureDetector.Detected -= InternalOnPan;
+        }
+
+        private void InternalOnPinch(object sender, PinchGestureDetector.DetectedEventArgs e)
+        {
+            mListener.OnPinch(sender, e, mUserData);
+            mPinchGestureDetector.Detected -= InternalOnPinch;
+        }
+
+        /// <summary>
+        /// Gestures also work only when there is a touch event.
+        /// </summary>
+        /// <param name="sender">The actor who delivered the touch event.</param>
+        /// <param name="e">The TouchEventArgs</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void FeedTouchEvent(object sender, View.TouchEventArgs e)
+        {
+            FeedTouchEvent(sender, e, null);
+        }
+
+        /// <summary>
+        /// Gestures also work only when there is a touch event.
+        /// </summary>
+        /// <param name="sender">The actor who delivered the touch event.</param>
+        /// <param name="e">The TouchEventArgs</param>
+        /// <param name="userData">The user data object</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void FeedTouchEvent(object sender, View.TouchEventArgs e, object userData)
+        {
+            // Unused parameter
+            _ = sender;
+
+            mUserData = userData;
+            mTapGestureDetector.Detected -= InternalOnTap;
+            mLongGestureDetector.Detected -= InternalOnLongPress;
+            mPanGestureDetector.Detected -= InternalOnPan;
+            mPinchGestureDetector.Detected -= InternalOnPinch;
+
+            if (e != null &&
+                (e.Touch.GetState(0) != PointStateType.Finished ||
+                 e.Touch.GetState(0) != PointStateType.Up ||
+                 e.Touch.GetState(0) != PointStateType.Interrupted))
+            {
+                mTapGestureDetector.Detected += InternalOnTap;
+                mLongGestureDetector.Detected += InternalOnLongPress;
+                mPanGestureDetector.Detected += InternalOnPan;
+                mPinchGestureDetector.Detected += InternalOnPinch;
+            }
+        }
     }
-
-    private GestureListener mListener;
-    private TapGestureDetector mTapGestureDetector;
-    private LongPressGestureDetector mLongGestureDetector;
-    private PinchGestureDetector mPinchGestureDetector;
-    private PanGestureDetector mPanGestureDetector;
-
-    /// <summary>
-    ///  Creates a GestureDetectorManager with the user listener.
-    /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public GestureDetectorManager(View view, GestureListener listener)
-    {
-      if(view == null)
-      {
-        throw new global::System.ArgumentNullException(nameof(view));
-      }
-      if(listener == null)
-      {
-        throw new global::System.ArgumentNullException(nameof(listener));
-      }
-
-      mListener = listener;
-      view.GrabTouchAfterLeave = true;
-      init(view);
-    }
-
-    private void init(View view)
-    {
-      mTapGestureDetector = new TapGestureDetector();
-      mLongGestureDetector = new LongPressGestureDetector();
-      mPanGestureDetector = new PanGestureDetector();
-      mPinchGestureDetector = new PinchGestureDetector();
-
-      mTapGestureDetector.Attach(view);
-      mLongGestureDetector.Attach(view);
-      mPanGestureDetector.Attach(view);
-      mPinchGestureDetector.Attach(view);
-    }
-
-    private void InternalOnTap(object sender, TapGestureDetector.DetectedEventArgs e)
-    {
-      mListener.OnTap(sender, e);
-      mTapGestureDetector.Detected -= InternalOnTap;
-    }
-
-    private void InternalOnLongPress(object sender, LongPressGestureDetector.DetectedEventArgs e)
-    {
-      mListener.OnLongPress(sender, e);
-      mLongGestureDetector.Detected -= InternalOnLongPress;
-    }
-
-    private void InternalOnPan(object sender, PanGestureDetector.DetectedEventArgs e)
-    {
-      mListener.OnPan(sender, e);
-      mPanGestureDetector.Detected -= InternalOnPan;
-    }
-
-    private void InternalOnPinch(object sender, PinchGestureDetector.DetectedEventArgs e)
-    {
-      mListener.OnPinch(sender, e);
-      mPinchGestureDetector.Detected -= InternalOnPinch;
-    }
-
-    /// <summary>
-    /// Gestures also work only when there is a touch event.
-    /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public void FeedTouchEvent(object sender, View.TouchEventArgs e)
-    {
-      mTapGestureDetector.Detected -= InternalOnTap;
-      mLongGestureDetector.Detected -= InternalOnLongPress;
-      mPanGestureDetector.Detected -= InternalOnPan;
-      mPinchGestureDetector.Detected -= InternalOnPinch;
-
-      if(e != null &&
-          (e.Touch.GetState(0) != PointStateType.Finished ||
-           e.Touch.GetState(0) != PointStateType.Up       ||
-           e.Touch.GetState(0) != PointStateType.Interrupted))
-      {
-        mTapGestureDetector.Detected += InternalOnTap;
-        mLongGestureDetector.Detected += InternalOnLongPress;
-        mPanGestureDetector.Detected += InternalOnPan;
-        mPinchGestureDetector.Detected += InternalOnPinch;
-      }
-    }
-  }
 }

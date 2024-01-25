@@ -21,6 +21,7 @@ using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Reflection;
+using System.ComponentModel;
 
 namespace Tizen.Network.Bluetooth
 {
@@ -60,6 +61,16 @@ namespace Tizen.Network.Bluetooth
 
         internal BluetoothDevice()
         {
+        }
+
+        /// <summary>
+        /// The constructor
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public BluetoothDevice(BluetoothLeDevice leDevice)
+        {
+            RemoteDeviceAddress = leDevice?.RemoteAddress;
         }
 
         /// <summary>
@@ -625,7 +636,7 @@ namespace Tizen.Network.Bluetooth
                 {
                     if (!profile.Equals(null))
                     {
-                        profileList.Add((BluetoothProfileType)profile);
+                        profileList.Add(BluetoothUtils.ConvertBtProfileToProfileType(profile));
                     }
                     return true;
                 };
@@ -659,7 +670,7 @@ namespace Tizen.Network.Bluetooth
             if (BluetoothAdapter.IsBluetoothEnabled)
             {
                 bool isConnected;
-                int ret = Interop.Bluetooth.IsProfileConnected(RemoteDeviceAddress, (int)profileType, out isConnected);
+                int ret = Interop.Bluetooth.IsProfileConnected(RemoteDeviceAddress, BluetoothUtils.ConvertProfileTypeToBtProfile(profileType), out isConnected);
                 if (ret != (int)BluetoothError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get profile connected state, Error - " + (BluetoothError)ret);

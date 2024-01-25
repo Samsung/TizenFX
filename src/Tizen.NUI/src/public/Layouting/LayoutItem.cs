@@ -15,11 +15,11 @@
  *
  */
 
-
 using System;
-using System.Diagnostics;
-using Tizen.NUI.BaseComponents;
 using System.ComponentModel;
+using System.Diagnostics;
+
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
@@ -27,43 +27,44 @@ namespace Tizen.NUI
     [FlagsAttribute]
     enum LayoutFlags : short
     {
-      None = 0,
-      ForceLayout = 1,
-      LayoutRequired = 2,
-      MeasuredDimensionSet = 4
+        None = 0,
+        ForceLayout = 1,
+        LayoutRequired = 2,
+        MeasuredDimensionSet = 4
     };
 
     /// <summary>
     /// [Draft] Base class for layouts. It is used to layout a View
     /// It can be laid out by a LayoutGroup.
     /// </summary>
-    public class LayoutItem
+    public class LayoutItem : IDisposable
     {
-        static bool LayoutDebugFrameData = false; // Debug flag
-        private MeasureSpecification OldWidthMeasureSpec; // Store measure specification to compare against later
-        private MeasureSpecification OldHeightMeasureSpec;// Store measure specification to compare against later
+        private bool disposed = false;
+        private MeasureSpecification oldWidthMeasureSpec; // Store measure specification to compare against later
+        private MeasureSpecification oldHeightMeasureSpec; // Store measure specification to compare against later
 
-        private LayoutFlags Flags = LayoutFlags.None;
+        private LayoutFlags flags = LayoutFlags.None;
 
-        private ILayoutParent Parent;
+        private ILayoutParent parent;
 
-        LayoutData _layoutPositionData;
+        LayoutData layoutPositionData;
 
-        private Extents _padding;
-        private Extents _margin;
+        private Extents padding;
+        private Extents margin;
 
         private bool parentReplacement = false;
+        private bool setPositionByLayout = true;
 
         /// <summary>
         /// [Draft] Condition event that is causing this Layout to transition.
         /// </summary>
-        internal TransitionCondition ConditionForAnimation{get; set;}
+        internal TransitionCondition ConditionForAnimation { get; set; }
 
         /// <summary>
         /// [Draft] The View that this Layout has been assigned to.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public View Owner{get; set;}  // Should not keep a View alive.
+        public View Owner { get; set; }  // Should not keep a View alive.
 
         /// <summary>
         /// [Draft] Use transition for layouting child
@@ -71,13 +72,27 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-         public bool LayoutWithTransition{get; set;}
+        public bool LayoutWithTransition { get; set; }
 
         /// <summary>
         /// [Draft] Set position by layouting result
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool SetPositionByLayout{get;set;} = true;
+        public bool SetPositionByLayout
+        {
+            get
+            {
+                return setPositionByLayout;
+            }
+            set
+            {
+                setPositionByLayout = value;
+                if (Owner != null && Owner.ExcludeLayouting == value)
+                {
+                    Owner.ExcludeLayouting = !value;
+                }
+            }
+        }
 
         /// <summary>
         /// [Draft] Margin for this LayoutItem
@@ -87,11 +102,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _margin;
+                return margin;
             }
             set
             {
-                _margin = value;
+                margin = value;
                 RequestLayout();
             }
         }
@@ -104,11 +119,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _padding;
+                return padding;
             }
             set
             {
-                _padding = value;
+                padding = value;
                 RequestLayout();
             }
         }
@@ -126,9 +141,9 @@ namespace Tizen.NUI
         /// [Draft] Set parent to this layout.
         /// </summary>
         /// <param name="parent">Parent to set on this Layout.</param>
-        internal void SetParent( ILayoutParent parent)
+        internal void SetParent(ILayoutParent parent)
         {
-            Parent = parent as LayoutGroup;
+            this.parent = parent as LayoutGroup;
         }
 
         /// <summary>
@@ -140,10 +155,10 @@ namespace Tizen.NUI
             OnUnparent();
 
             // Remove myself from parent
-            Parent?.Remove( this );
+            parent?.Remove(this);
 
             // Remove parent reference
-            Parent = null;
+            parent = null;
 
             // Lastly, clear layout from owning View.
             Owner?.ResetLayout();
@@ -152,9 +167,9 @@ namespace Tizen.NUI
         private void Initialize()
         {
             LayoutWithTransition = false;
-            _layoutPositionData = new LayoutData(this,TransitionCondition.Unspecified,0,0,0,0);
-            _padding = new Extents(0,0,0,0);
-            _margin = new Extents(0,0,0,0);
+            layoutPositionData = new LayoutData(this, TransitionCondition.Unspecified, 0, 0, 0, 0);
+            padding = new Extents(0, 0, 0, 0);
+            margin = new Extents(0, 0, 0, 0);
         }
 
         /// <summary>
@@ -168,7 +183,7 @@ namespace Tizen.NUI
             OnAttachedToOwner();
             // Add layout to parent layout if a layout container
             View parent = Owner.GetParent() as View;
-            (parent?.Layout as LayoutGroup)?.Add( this );
+            (parent?.Layout as LayoutGroup)?.Add(this);
 
             // If Add or ChangeOnAdd then do not update condition
             if (ConditionForAnimation.Equals(TransitionCondition.Unspecified))
@@ -188,29 +203,38 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public void Measure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
-            // Check if relayouting is required.
-            bool specChanged = (widthMeasureSpec.Size != OldWidthMeasureSpec.Size) ||
-                               (heightMeasureSpec.Size != OldHeightMeasureSpec.Size) ||
-                               (widthMeasureSpec.Mode != OldWidthMeasureSpec.Mode) ||
-                               (heightMeasureSpec.Mode != OldHeightMeasureSpec.Mode);
-
-            bool isSpecExactly = (widthMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly) &&
-                                 (heightMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly);
-
-            bool matchesSpecSize = (MeasuredWidth.Size == widthMeasureSpec.Size) &&
-                                   (MeasuredHeight.Size == heightMeasureSpec.Size);
-
-            bool needsLayout = specChanged && ( !isSpecExactly || !matchesSpecSize);
-            needsLayout = needsLayout || ((Flags & LayoutFlags.ForceLayout) == LayoutFlags.ForceLayout);
+            bool needsLayout = NeedsLayout(widthMeasureSpec.Size.AsDecimal(), heightMeasureSpec.Size.AsDecimal(), widthMeasureSpec.Mode, heightMeasureSpec.Mode);
 
             if (needsLayout)
             {
                 OnMeasure(widthMeasureSpec, heightMeasureSpec);
-                Flags = Flags | LayoutFlags.LayoutRequired;
-                Flags &= ~LayoutFlags.ForceLayout;
+                OnMeasureIndependentChildren(widthMeasureSpec, heightMeasureSpec);
+                flags = flags | LayoutFlags.LayoutRequired;
+                flags &= ~LayoutFlags.ForceLayout;
+                oldWidthMeasureSpec = widthMeasureSpec;
+                oldHeightMeasureSpec = heightMeasureSpec;
             }
-            OldWidthMeasureSpec = widthMeasureSpec;
-            OldHeightMeasureSpec = heightMeasureSpec;
+        }
+
+        internal bool NeedsLayout(float widthSize, float heightSize, MeasureSpecification.ModeType widthMode, MeasureSpecification.ModeType heightMode)
+        {
+            if (LayoutRequested)
+            {
+                return true;
+            }
+
+            // Check if relayouting is required.
+            bool specChanged = (widthSize != oldWidthMeasureSpec.Size.AsDecimal()) || (widthMode != oldWidthMeasureSpec.Mode) ||
+                               (heightSize != oldHeightMeasureSpec.Size.AsDecimal()) || (heightMode != oldHeightMeasureSpec.Mode);
+
+            bool isSpecExactly = (widthMode == MeasureSpecification.ModeType.Exactly) &&
+                                 (heightMode == MeasureSpecification.ModeType.Exactly);
+
+            bool matchesSpecSize = (MeasuredWidth.Size.AsDecimal() == widthSize) && (MeasuredHeight.Size.AsDecimal() == heightSize);
+
+            bool needsLayout = specChanged && (!isSpecExactly || !matchesSpecSize);
+
+            return needsLayout;
         }
 
         /// <summary>
@@ -226,17 +250,35 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public void Layout(LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
+            Layout(left, top, right, bottom, Owner?.ExcludeLayouting ?? false);
+        }
+
+        /// <summary>
+        /// Assign a size and position to a layout and all of its descendants. <br />
+        /// This is the second phase of the layout mechanism.  (The first is measuring). In this phase, each parent
+        /// calls layout on all of its children to position them.  This is typically done using the child<br />
+        /// measurements that were stored in the measure pass.<br />
+        /// </summary>
+        /// <param name="left">Left position, relative to parent.</param>
+        /// <param name="top">Top position, relative to parent.</param>
+        /// <param name="right">Right position, relative to parent.</param>
+        /// <param name="bottom">Bottom position, relative to parent.</param>
+        /// <param name="independent">true, if this layout is not affected by parent layout.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Layout(LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom, bool independent)
+        {
             bool changed = SetFrame(left.AsRoundedValue(),
-                                    top.AsRoundedValue(),
-                                    right.AsRoundedValue(),
-                                    bottom.AsRoundedValue());
+                    top.AsRoundedValue(),
+                    right.AsRoundedValue(),
+                    bottom.AsRoundedValue(), independent);
 
             // Check if Measure needed before Layouting
-            if (changed || ((Flags & LayoutFlags.LayoutRequired) == LayoutFlags.LayoutRequired))
+            if (changed || ((flags & LayoutFlags.LayoutRequired) == LayoutFlags.LayoutRequired))
             {
                 OnLayout(changed, left, top, right, bottom);
+                OnLayoutIndependentChildren(changed, left, top, right, bottom);
                 // Clear flag
-                Flags &= ~LayoutFlags.LayoutRequired;
+                flags &= ~LayoutFlags.LayoutRequired;
             }
         }
 
@@ -258,31 +300,31 @@ namespace Tizen.NUI
             switch (specMode)
             {
                 case MeasureSpecification.ModeType.Unspecified:
-                {
-                    result = size;
-                    break;
-                }
-                case MeasureSpecification.ModeType.AtMost:
-                {
-                    // Ensure the default size does not exceed the spec size unless the default size is 0.
-                    // Another container could provide a default size of 0.
-
-                    // Do not set size to 0, use specSize in this case as could be a legacy container
-                    if( ( size.AsDecimal() < specSize.AsDecimal()) && ( size.AsDecimal() >  0) )
                     {
                         result = size;
+                        break;
                     }
-                    else
+                case MeasureSpecification.ModeType.AtMost:
+                    {
+                        // Ensure the default size does not exceed the spec size unless the default size is 0.
+                        // Another container could provide a default size of 0.
+
+                        // Do not set size to 0, use specSize in this case as could be a legacy container
+                        if ((size.AsDecimal() < specSize.AsDecimal()) && (size.AsDecimal() > 0))
+                        {
+                            result = size;
+                        }
+                        else
+                        {
+                            result = specSize;
+                        }
+                        break;
+                    }
+                case MeasureSpecification.ModeType.Exactly:
                     {
                         result = specSize;
+                        break;
                     }
-                    break;
-                }
-                case MeasureSpecification.ModeType.Exactly:
-                {
-                    result = specSize;
-                    break;
-                }
             }
 
             return result;
@@ -295,7 +337,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public ILayoutParent GetParent()
         {
-            return Parent;
+            return parent;
         }
 
         /// <summary>
@@ -305,16 +347,24 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public void RequestLayout()
         {
-            Flags = Flags | LayoutFlags.ForceLayout;
-            if (Parent != null)
+            flags = flags | LayoutFlags.ForceLayout;
+            if (parent == null)
             {
-                 LayoutGroup layoutGroup =  Parent as LayoutGroup;
-                 if(! layoutGroup.LayoutRequested)
-                 {
-                    layoutGroup.RequestLayout();
-                 }
+                // If RequestLayout() is called while main loop is in idle state,
+                // then Awake() is required to awake main loop again and
+                // Layout can be re-calculated correctly.
+                // For performance, Awake() is called only by the root layout.
+                ProcessorController.Instance.Awake();
             }
-			
+            else
+            {
+                LayoutGroup layoutGroup = parent as LayoutGroup;
+                if (layoutGroup != null && !layoutGroup.LayoutRequested)
+                {
+                    layoutGroup.RequestLayout();
+                }
+            }
+
         }
 
         /// <summary>
@@ -325,7 +375,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return ( Flags & LayoutFlags.ForceLayout) == LayoutFlags.ForceLayout;
+                return (flags & LayoutFlags.ForceLayout) == LayoutFlags.ForceLayout;
             }
         }
 
@@ -349,14 +399,14 @@ namespace Tizen.NUI
         /// This method should be used only during measurement and layout calculations.<br />
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public MeasuredSize MeasuredWidth{ get; set; } = new MeasuredSize( new LayoutLength(-3), MeasuredSize.StateType.MeasuredSizeOK);
+        public MeasuredSize MeasuredWidth { get; set; } = new MeasuredSize(new LayoutLength(-3), MeasuredSize.StateType.MeasuredSizeOK);
 
         /// <summary>
         /// Get the measured height (without any measurement flags).<br />
         /// This method should be used only during measurement and layout calculations.<br />
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public MeasuredSize MeasuredHeight{ get; set; } = new MeasuredSize( new LayoutLength(-3), MeasuredSize.StateType.MeasuredSizeOK);
+        public MeasuredSize MeasuredHeight { get; set; } = new MeasuredSize(new LayoutLength(-3), MeasuredSize.StateType.MeasuredSizeOK);
 
         /// <summary>
         /// Returns the suggested minimum width that the layout should use.<br />
@@ -367,16 +417,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float maximumWidth = Owner.MaximumSize.Width;
-                float minimumWidth = Owner.MinimumSize.Width;
-
-                float baseHeight = Owner.MaximumSize.Height > 0 ? Math.Min(Owner.MaximumSize.Height,Owner.NaturalSize.Height) : Owner.NaturalSize.Height;
-                float baseWidth = Owner.GetWidthForHeight(baseHeight);
-
-                float result = minimumWidth > 0 ? Math.Max(baseWidth, minimumWidth) : baseWidth;
-                result = maximumWidth > 0 ? Math.Min(result, maximumWidth) : result;
-
-                return new LayoutLength(result);
+                return Owner.SuggestedMinimumWidth;
             }
         }
 
@@ -389,16 +430,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float maximumHeight = Owner.MaximumSize.Height;
-                float minimumHeight = Owner.MinimumSize.Height;
-
-                float baseWidth = Owner.MaximumSize.Width > 0 ? Math.Min(Owner.MaximumSize.Width,Owner.NaturalSize.Width) : Owner.NaturalSize.Width;
-                float baseHeight = Owner.GetHeightForWidth(baseWidth);
-
-                float result = minimumHeight > 0 ? Math.Max(baseHeight, minimumHeight) : baseHeight;
-                result = maximumHeight > 0 ? Math.Min(result, maximumHeight) : result;
-
-                return new LayoutLength(result);
+                return Owner.SuggestedMinimumHeight;
             }
         }
 
@@ -410,7 +442,7 @@ namespace Tizen.NUI
         /// 2. If the owner's View.WidthSpecification is set to View.LayoutParamPolicies.WrapContent, then the view's width is set based on the suggested minimum width. (@see GetSuggestedMinimumWidth()).<br />
         /// 3. If the owner's View.WidthSpecification is set to View.LayoutParamPolicies.MatchParent, then the parent width takes precedence over the minimum width.<br />
         /// </summary>
-        internal LayoutLength MinimumWidth {get; set;}
+        internal LayoutLength MinimumWidth { get; set; }
 
         /// <summary>
         /// Sets the minimum height of the layout.<br />
@@ -420,7 +452,7 @@ namespace Tizen.NUI
         /// 2. If the owner's View.HeightSpecification is set to View.LayoutParamPolicies.WrapContent, then the view's height is set based on the suggested minimum height. (@see GetSuggestedMinimumHeight()).<br />
         /// 3. If the owner's View.HeightSpecification is set to View.LayoutParamPolicies.MatchParent, then the parent height takes precedence over the minimum height.<br />
         /// </summary>
-        internal LayoutLength MinimumHeight {get; set;}
+        internal LayoutLength MinimumHeight { get; set; }
 
         ///<summary>
         /// Utility to reconcile a desired size and state, with constraints imposed by a MeasureSpecification.
@@ -430,34 +462,34 @@ namespace Tizen.NUI
         /// <param name="childMeasuredState"> Size information bit mask for the layout's children.</param>
         /// <returns> A measured size, which may indicate that it is too small. </returns>
         /// <since_tizen> 6 </since_tizen>
-        protected MeasuredSize ResolveSizeAndState( LayoutLength size, MeasureSpecification measureSpecification, MeasuredSize.StateType childMeasuredState )
+        protected MeasuredSize ResolveSizeAndState(LayoutLength size, MeasureSpecification measureSpecification, MeasuredSize.StateType childMeasuredState)
         {
             var specMode = measureSpecification.Mode;
             LayoutLength specSize = measureSpecification.Size;
-            MeasuredSize result = new MeasuredSize( size, childMeasuredState );
+            MeasuredSize result = new MeasuredSize(size, childMeasuredState);
 
-            switch( specMode )
+            switch (specMode)
             {
                 case MeasureSpecification.ModeType.AtMost:
-                {
-                    if (specSize.AsRoundedValue() < size.AsRoundedValue())
                     {
-                        result = new MeasuredSize( specSize, MeasuredSize.StateType.MeasuredSizeTooSmall);
+                        if (specSize.AsRoundedValue() < size.AsRoundedValue())
+                        {
+                            result = new MeasuredSize(specSize, MeasuredSize.StateType.MeasuredSizeTooSmall);
+                        }
+                        break;
                     }
-                    break;
-                }
 
                 case MeasureSpecification.ModeType.Exactly:
-                {
-                    result.Size = specSize;
-                    break;
-                }
+                    {
+                        result.Size = specSize;
+                        break;
+                    }
 
                 case MeasureSpecification.ModeType.Unspecified:
                 default:
-                {
-                    break;
-                }
+                    {
+                        break;
+                    }
             }
             return result;
         }
@@ -468,11 +500,11 @@ namespace Tizen.NUI
         /// <param name="measuredWidth">The measured width of this layout.</param>
         /// <param name="measuredHeight">The measured height of this layout.</param>
         /// <since_tizen> 6 </since_tizen>
-        protected void SetMeasuredDimensions( MeasuredSize measuredWidth, MeasuredSize measuredHeight )
+        protected void SetMeasuredDimensions(MeasuredSize measuredWidth, MeasuredSize measuredHeight)
         {
             MeasuredWidth = measuredWidth;
             MeasuredHeight = measuredHeight;
-            Flags = Flags | LayoutFlags.MeasuredDimensionSet;
+            flags = flags | LayoutFlags.MeasuredDimensionSet;
         }
 
         /// <summary>
@@ -490,9 +522,11 @@ namespace Tizen.NUI
         protected virtual void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
             // GetDefaultSize will limit the MeasureSpec to the suggested minimumWidth and minimumHeight
-            SetMeasuredDimensions( GetDefaultSize( SuggestedMinimumWidth, widthMeasureSpec ),
-                                   GetDefaultSize( SuggestedMinimumHeight, heightMeasureSpec ) );
+            SetMeasuredDimensions(GetDefaultSize(SuggestedMinimumWidth, widthMeasureSpec),
+                                   GetDefaultSize(SuggestedMinimumHeight, heightMeasureSpec));
         }
+
+        internal virtual void OnMeasureIndependentChildren(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec) { }
 
         /// <summary>
         /// Called from Layout() when this layout should assign a size and position to each of its children. <br />
@@ -504,44 +538,34 @@ namespace Tizen.NUI
         /// <param name="right">Right position, relative to parent.</param>
         /// <param name="bottom">Bottom position, relative to parent.</param>
         /// <since_tizen> 6 </since_tizen>
-        protected virtual void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
-        {
-        }
+        protected virtual void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom) { }
+
+        internal virtual void OnLayoutIndependentChildren(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom) { }
 
         /// <summary>
         /// Virtual method to allow derived classes to remove any children before it is removed from
         /// its parent.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        protected virtual void OnUnparent()
-        {
-        }
+        protected virtual void OnUnparent() { }
 
         /// <summary>
         /// Virtual method called when this Layout is attached to it's owner.
         /// Allows derived layouts to take ownership of child Views and connect to any Owner signals required.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        protected virtual void OnAttachedToOwner()
-        {
-        }
+        protected virtual void OnAttachedToOwner() { }
 
-        private bool SetFrame(float left, float top, float right, float bottom)
+        private bool SetFrame(float left, float top, float right, float bottom, bool independent)
         {
             bool changed = false;
 
-            if ( _layoutPositionData.Left != left ||
-                 _layoutPositionData.Right != right ||
-                 _layoutPositionData.Top != top ||
-                 _layoutPositionData.Bottom != bottom  )
+            if (layoutPositionData.Left != left ||
+                 layoutPositionData.Right != right ||
+                 layoutPositionData.Top != top ||
+                 layoutPositionData.Bottom != bottom)
             {
                 changed = true;
-
-                float oldWidth = _layoutPositionData.Right - _layoutPositionData.Left;
-                float oldHeight = _layoutPositionData.Bottom - _layoutPositionData.Top;
-                float newWidth = right - left;
-                float newHeight = bottom - top;
-                bool sizeChanged = ( newWidth != oldWidth ) || ( newHeight != oldHeight );
 
                 // Set condition to layout changed as currently unspecified. Add, Remove would have specified a condition.
                 if (ConditionForAnimation.Equals(TransitionCondition.Unspecified))
@@ -550,33 +574,94 @@ namespace Tizen.NUI
                 }
 
                 // Store new layout position data
-                _layoutPositionData = new LayoutData(this, ConditionForAnimation, left, top, right, bottom);
+                layoutPositionData = new LayoutData(this, ConditionForAnimation, left, top, right, bottom);
 
-                Debug.WriteLineIf( LayoutDebugFrameData, "LayoutItem FramePositionData View:" + _layoutPositionData.Item.Owner.Name +
-                                                         " left:" + _layoutPositionData.Left +
-                                                         " top:" + _layoutPositionData.Top +
-                                                         " right:" + _layoutPositionData.Right +
-                                                         " bottom:" + _layoutPositionData.Bottom );
+                NUILog.Debug("LayoutItem FramePositionData View:" + layoutPositionData.Item.Owner.Name +
+                                                         " left:" + layoutPositionData.Left +
+                                                         " top:" + layoutPositionData.Top +
+                                                         " right:" + layoutPositionData.Right +
+                                                         " bottom:" + layoutPositionData.Bottom);
 
-                if (Owner.Parent != null && Owner.Parent.Layout != null && Owner.Parent.Layout.LayoutWithTransition)
+                View ownerView = Owner.GetParent() as View;
+
+                if (ownerView?.Layout?.LayoutWithTransition ?? false)
                 {
-                    NUIApplication.GetDefaultWindow().LayoutController.AddTransitionDataEntry(_layoutPositionData);
+                    var win = Window.Get(Owner);
+                    if (win == null)
+                    {
+                        NUIApplication.GetDefaultWindow().LayoutController.AddTransitionDataEntry(layoutPositionData);
+                    }
+                    else
+                    {
+                        win.LayoutController.AddTransitionDataEntry(layoutPositionData);
+                    }
                 }
                 else
                 {
-                    Owner.SetSize(right - left, bottom - top, Owner.Position.Z);
-                    if(SetPositionByLayout)
+                    if (independent)
                     {
-                        Owner.SetPosition(left, top, Owner.Position.Z);
+                        // If height or width specification is not explicitly defined,
+                        // the size of the owner view must be reset even the ExcludeLayouting is true.
+                        if (Owner.HeightSpecification < 0 || Owner.WidthSpecification < 0)
+                        {
+                            Owner.SetSize(right - left, bottom - top);
+                        }
+                    }
+                    else
+                    {
+                        Owner.SetSize(right - left, bottom - top);
+                        Owner.SetPosition(left, top);
                     }
                 }
-
 
                 // Reset condition for animation ready for next transition when required.
                 ConditionForAnimation = TransitionCondition.Unspecified;
             }
 
             return changed;
+        }
+
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                margin?.Dispose();
+                padding?.Dispose();
+            }
+            disposed = true;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Dispose()
+        {
+            Dispose(true);
+            global::System.GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Sets the sibling order of the layout item so the layout can be defined within the same parent.
+        /// </summary>
+        /// <param name="order">the sibling order of the layout item</param>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ChangeLayoutSiblingOrder(int order)
+        {
+            if (Owner != null)
+            {
+                var ownerParent = Owner.GetParent() as View;
+                if (ownerParent != null)
+                {
+                    var parent = ownerParent.Layout as LayoutGroup;
+                    parent?.ChangeLayoutChildOrder(this, order);
+                }
+            }
         }
     }
 }

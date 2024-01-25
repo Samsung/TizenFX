@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<View xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:local="using:Tizen.NUI.Devel.Tests"
+	x:Class="Tizen.NUI.Devel.Tests.TestXmlnsUsing">
+
+    <local:CustomXamlView x:Name="view0"/>
+</View>

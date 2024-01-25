@@ -199,15 +199,62 @@ namespace Tizen.NUI
             if (((_startPosition != null && _endPosition != null) || (_center != null && _radius != null)) && _stopColor != null)
             {
                 _outputVisualMap = new PropertyMap();
-                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Gradient));
-                _outputVisualMap.Add(GradientVisualProperty.StopColor, new PropertyValue(_stopColor));
-                if (_startPosition != null) { _outputVisualMap.Add(GradientVisualProperty.StartPosition, new PropertyValue(_startPosition)); }
-                if (_endPosition != null) { _outputVisualMap.Add(GradientVisualProperty.EndPosition, new PropertyValue(_endPosition)); }
-                if (_center != null) { _outputVisualMap.Add(GradientVisualProperty.Center, new PropertyValue(_center)); }
-                if (_radius != null) { _outputVisualMap.Add(GradientVisualProperty.Radius, new PropertyValue((float)_radius)); }
-                if (_stopOffset != null) { _outputVisualMap.Add(GradientVisualProperty.StopOffset, new PropertyValue(_stopOffset)); }
-                if (_units != null) { _outputVisualMap.Add(GradientVisualProperty.Units, new PropertyValue((int)_units)); }
-                if (_spreadMethod != null) { _outputVisualMap.Add(GradientVisualProperty.SpreadMethod, new PropertyValue((int)_spreadMethod)); }
+                PropertyValue temp = new PropertyValue((int)Visual.Type.Gradient);
+                _outputVisualMap.Add(Visual.Property.Type, temp);
+                temp.Dispose();
+
+                temp = new PropertyValue(_stopColor);
+                _outputVisualMap.Add(GradientVisualProperty.StopColor, temp);
+                temp.Dispose();
+
+                if (_startPosition != null)
+                {
+                    temp = new PropertyValue(_startPosition);
+                    _outputVisualMap.Add(GradientVisualProperty.StartPosition, temp);
+                    temp.Dispose();
+                }
+
+                if (_endPosition != null)
+                {
+                    temp = new PropertyValue(_endPosition);
+                    _outputVisualMap.Add(GradientVisualProperty.EndPosition, temp);
+                    temp.Dispose();
+                }
+
+                if (_center != null)
+                {
+                    temp = new PropertyValue(_center);
+                    _outputVisualMap.Add(GradientVisualProperty.Center, temp);
+                    temp.Dispose();
+                }
+
+                if (_radius != null)
+                {
+                    temp = new PropertyValue((float)_radius);
+                    _outputVisualMap.Add(GradientVisualProperty.Radius, temp);
+                    temp.Dispose();
+                }
+
+                if (_stopOffset != null)
+                {
+                    temp = new PropertyValue(_stopOffset);
+                    _outputVisualMap.Add(GradientVisualProperty.StopOffset, temp);
+                    temp.Dispose();
+                }
+
+                if (_units != null)
+                {
+                    temp = new PropertyValue((int)_units);
+                    _outputVisualMap.Add(GradientVisualProperty.Units, temp);
+                    temp.Dispose();
+                }
+
+                if (_spreadMethod != null)
+                {
+                    temp = new PropertyValue((int)_spreadMethod);
+                    _outputVisualMap.Add(GradientVisualProperty.SpreadMethod, temp);
+                    temp.Dispose();
+                }
                 base.ComposingPropertyMap();
             }
         }

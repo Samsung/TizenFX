@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020-2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,43 +23,50 @@ using System.Linq;
 namespace Tizen.NUI.BaseComponents
 {
     /// <summary>
-    /// Class for describing the states of the view.
+    /// Class for describing the states of control.
+    /// If a non-control view class would want to get the control state, please refer <see cref="View.EnableControlState"/>.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
+    [Binding.TypeConverter(typeof(ControlStateTypeConverter))]
     public class ControlState : IEquatable<ControlState>
     {
         private static readonly Dictionary<string, ControlState> stateDictionary = new Dictionary<string, ControlState>();
         //Default States
         /// <summary>
-        /// All State.
+        /// The All state is used in a selector class. It represents all states, so if this state is defined in a selector, the other states are ignored.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static readonly ControlState All = Create("All");
         /// <summary>
         /// Normal State.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static readonly ControlState Normal = Create("Normal");
         /// <summary>
         /// Focused State.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static readonly ControlState Focused = Create("Focused");
         /// <summary>
         /// Pressed State.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static readonly ControlState Pressed = Create("Pressed");
         /// <summary>
         /// Disabled State.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static readonly ControlState Disabled = Create("Disabled");
         /// <summary>
         /// Selected State.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static readonly ControlState Selected = Create("Selected");
+        /// <summary>
+        /// SelectedPressed State.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly ControlState SelectedPressed = Selected + Pressed;
         /// <summary>
         /// DisabledSelected State.
         /// </summary>
@@ -76,9 +83,9 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly ControlState SelectedFocused = Selected + Focused;
         /// <summary>
-        /// Other State.
+        /// This is used in a selector class. It represents all other states except for states that are already defined in a selector.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static readonly ControlState Other = Create("Other");
 
         private List<ControlState> stateList = new List<ControlState>();
@@ -90,12 +97,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsCombined => stateList.Count > 1;
 
-        /// <summary>
-        /// Default Contructor. Please use <see cref="Create(string)"/> or <see cref="Create(ControlState[])"/> instead.
-        /// </summary>
-        // Do not open this constructor. This is only for xaml support.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ControlState() { }
+        private ControlState() { }
 
         private ControlState(string name) : this() => this.name = name;
 
@@ -104,13 +106,17 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="name">The state name.</param>
         /// <returns>The <see cref="ControlState"/> instance which has single state.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <exception cref="ArgumentNullException">Thrown when the given name is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the given name is invalid.</exception>
+        /// <since_tizen> 9 </since_tizen>
         public static ControlState Create(string name)
         {
             if (name == null)
                 throw new ArgumentNullException(nameof(name));
             if (string.IsNullOrWhiteSpace(name))
                 throw new ArgumentException("name cannot be empty string", nameof(name));
+
+            name = name.Trim();
 
             if (stateDictionary.TryGetValue(name, out ControlState state))
                 return state;
@@ -162,7 +168,8 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="state">The state to search for</param>
         /// <returns>true if the state contain a specified state, otherwise, false.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <exception cref="ArgumentNullException">Thrown when the given state is null.</exception>
+        /// <since_tizen> 9 </since_tizen>
         public bool Contains(ControlState state)
         {
             if (state == null)
@@ -200,8 +207,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         ///  <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object obj) => this.Equals(obj as ControlState);
+        /// <since_tizen> 9 </since_tizen>
+        public override bool Equals(object other) => this.Equals(other as ControlState);
 
         ///  <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -225,8 +232,24 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="lhs">A <see cref="ControlState"/> on the left hand side.</param>
         /// <param name="rhs">A <see cref="ControlState"/> on the right hand side.</param>
         /// <returns>true if the ControlStates are equal; otherwise, false.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static bool operator ==(ControlState lhs, ControlState rhs) => lhs.Equals(rhs);
+        /// <since_tizen> 9 </since_tizen>
+        public static bool operator ==(ControlState lhs, ControlState rhs)
+        {
+            // Check for null on left side.
+            if (lhs is null)
+            {
+                if (rhs is null)
+                {
+                    // null == null = true.
+                    return true;
+                }
+
+                // Only the left side is null.
+                return false;
+            }
+            // Equals handles case of null on right side.
+            return lhs.Equals(rhs);
+        }
 
         /// <summary>
         /// Compares whether the two ControlStates are different or not.
@@ -234,8 +257,8 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="lhs">A <see cref="ControlState"/> on the left hand side.</param>
         /// <param name="rhs">A <see cref="ControlState"/> on the right hand side.</param>
         /// <returns>true if the ControlStates are not equal; otherwise, false.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static bool operator !=(ControlState lhs, ControlState rhs) => !lhs.Equals(rhs);
+        /// <since_tizen> 9 </since_tizen>
+        public static bool operator !=(ControlState lhs, ControlState rhs) => !(lhs == rhs);
 
         /// <summary>
         /// The addition operator.
@@ -243,7 +266,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="lhs">A <see cref="ControlState"/> on the left hand side.</param>
         /// <param name="rhs">A <see cref="ControlState"/> on the right hand side.</param>
         /// <returns>The <see cref="ControlState"/> containing the result of the addition.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static ControlState operator +(ControlState lhs, ControlState rhs) => Create(lhs, rhs);
 
         /// <summary>
@@ -252,22 +275,33 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="lhs">A <see cref="ControlState"/> on the left hand side.</param>
         /// <param name="rhs">A <see cref="ControlState"/> on the right hand side.</param>
         /// <returns>The <see cref="ControlState"/> containing the result of the substraction.</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when lhs or rhs is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static ControlState operator -(ControlState lhs, ControlState rhs)
         {
+            if (null == lhs)
+            {
+                throw new ArgumentNullException(nameof(lhs));
+            }
+            else if (null == rhs)
+            {
+                throw new ArgumentNullException(nameof(rhs));
+            }
+
             if (!lhs.IsCombined)
             {
                 return ReferenceEquals(lhs, rhs) ? Normal : lhs;
             }
-            
-            var rest = lhs.stateList.Except(rhs.stateList);
 
-            if (rest.Count() == 0)
+            var rest = lhs.stateList.Except(rhs.stateList);
+            var count = rest.Count();
+
+            if (count == 0)
             {
                 return Normal;
             }
 
-            if (rest.Count() == 1)
+            if (count == 1)
             {
                 return rest.First();
             }
@@ -276,76 +310,26 @@ namespace Tizen.NUI.BaseComponents
             newState.stateList.AddRange(rest);
             return newState;
         }
-    }
 
-    /// <summary>
-    /// The Key/Value pair structure. this is mutable to support for xaml.
-    /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public struct StateValuePair<T> : IEquatable<StateValuePair<T>>
-    {
-        /// <summary>
-        /// The constructor with the specified state and value.
-        /// </summary>
-        /// <param name="state">The state</param>
-        /// <param name="value">The value associated with state.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public StateValuePair(ControlState state, T value)
+        class ControlStateTypeConverter : Binding.TypeConverter
         {
-            State = state;
-            Value = value;
+            public override object ConvertFromInvariantString(string value)
+            {
+                if (value != null)
+                {
+                    value = value.Trim();
+
+                    ControlState convertedState = new ControlState();
+                    string[] parts = value.Split(',');
+                    foreach (string part in parts)
+                    {
+                        convertedState += Create(part);
+                    }
+                    return convertedState;
+                }
+
+                throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(ControlState)}");
+            }
         }
-
-        /// <summary>
-        /// The state
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ControlState State { get; set; }
-        /// <summary>
-        /// The value associated with state.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public T Value { get; set; }
-
-        ///  <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool Equals(StateValuePair<T> other) => (Value.Equals(other.Value)) && (State == other.State);
-
-        ///  <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object obj)
-        {
-            if (!(obj is StateValuePair<T>))
-                return false;
-
-            return Equals((StateValuePair<T>)obj);
-        }
-
-        ///  <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override int GetHashCode() => (State.GetHashCode() * 397) ^ Value.GetHashCode();
-
-
-        /// <summary>
-        /// Compares whether the two StateValuePair are different or not.
-        /// </summary>
-        /// <param name="lhs">A <see cref="StateValuePair{T}"/> on the left hand side.</param>
-        /// <param name="rhs">A <see cref="StateValuePair{T}"/> on the right hand side.</param>
-        /// <returns>true if the StateValuePair are equal; otherwise, false.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static bool operator ==(StateValuePair<T> lhs, StateValuePair<T> rhs) => lhs.Equals(rhs);
-
-        /// <summary>
-        /// Compares whether the two StateValuePair are same or not.
-        /// </summary>
-        /// <param name="lhs">A <see cref="StateValuePair{T}"/> on the left hand side.</param>
-        /// <param name="rhs">A <see cref="StateValuePair{T}"/> on the right hand side.</param>
-        /// <returns>true if the StateValuePair are not equal; otherwise, false.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static bool operator !=(StateValuePair<T> lhs, StateValuePair<T> rhs) => !(lhs == rhs);
-
-        ///  <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override string ToString() => $"[{State}, {Value}]";
     }
 }

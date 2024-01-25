@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tizen.NUI.UIComponents;
 using Tizen.NUI.BaseComponents;
 using System.Runtime.InteropServices;
 
@@ -108,9 +107,7 @@ namespace Tizen.NUI.Samples
                     float rad = percent * 2.0f * (float)Math.PI;
 
                     // Vertex position
-                    Vector2 tmpvec = new Vector2(0, 0);
-                    tmpvec.X = (float)(center.X + radius * Math.Cos(rad));
-                    tmpvec.Y = (float)(center.Y + radius * Math.Sin(rad));
+                    Vector2 tmpvec = new Vector2((float)(center.X + radius * Math.Cos(rad)), (float)(center.Y + radius * Math.Sin(rad)));
 
                     circleBuffer[idx++] = tmpvec;
                 }
@@ -142,35 +139,37 @@ namespace Tizen.NUI.Samples
                 Vector2 outer = new Vector2(0.5f, 0.0f);
                 quadBuffer[idx++] = new Vector2(outer.X, outer.Y);
                 float incrementPerBuffer = 1.0f / (float)(vertsPerSide);
+                float x = outer.X;
+                float y = outer.Y;
 
-                for (int i = 0; i < vertsPerSide && outer.Y < 0.5f; ++i)
+                for (int i = 0; i < vertsPerSide && y < 0.5f; ++i)
                 {
-                    outer.Y += incrementPerBuffer;
-                    quadBuffer[idx++] = new Vector2(outer.X, outer.Y);
+                    y += incrementPerBuffer;
+                    quadBuffer[idx++] = new Vector2(x, y);
                 }
 
-                for (int i = 0; i < vertsPerSide && outer.X > -0.5f; ++i)
+                for (int i = 0; i < vertsPerSide && x > -0.5f; ++i)
                 {
-                    outer.X -= incrementPerBuffer;
-                    quadBuffer[idx++] = new Vector2(outer.X, outer.Y);
+                    x -= incrementPerBuffer;
+                    quadBuffer[idx++] = new Vector2(x, y);
                 }
 
-                for (int i = 0; i < vertsPerSide && outer.Y > -0.5f; ++i)
+                for (int i = 0; i < vertsPerSide && y > -0.5f; ++i)
                 {
-                    outer.Y -= incrementPerBuffer;
-                    quadBuffer[idx++] = new Vector2(outer.X, outer.Y);
+                    y -= incrementPerBuffer;
+                    quadBuffer[idx++] = new Vector2(x, y);
                 }
 
-                for (int i = 0; i < vertsPerSide && outer.X < 0.5f; ++i)
+                for (int i = 0; i < vertsPerSide && x < 0.5f; ++i)
                 {
-                    outer.X += incrementPerBuffer;
-                    quadBuffer[idx++] = new Vector2(outer.X, outer.Y);
+                    x += incrementPerBuffer;
+                    quadBuffer[idx++] = new Vector2(x, y);
                 }
 
-                for (int i = 0; i < vertsPerSide && outer.Y < 0.0f; ++i)
+                for (int i = 0; i < vertsPerSide && y < 0.0f; ++i)
                 {
-                    outer.Y += incrementPerBuffer;
-                    quadBuffer[idx++] = new Vector2(outer.X, outer.Y);
+                    y += incrementPerBuffer;
+                    quadBuffer[idx++] = new Vector2(x, y);
                 }
 
                 for(int i = 0; i < idx; i++)

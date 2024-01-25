@@ -1,6 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
 namespace Tizen.NUI
 {
@@ -9,40 +22,40 @@ namespace Tizen.NUI
         internal static partial class TextureSet
         {
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextureSet_New")]
-            public static extern global::System.IntPtr TextureSet_New();
+            public static extern global::System.IntPtr New();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TextureSet__SWIG_0")]
-            public static extern global::System.IntPtr new_TextureSet__SWIG_0();
+            public static extern global::System.IntPtr NewTextureSet();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_TextureSet")]
-            public static extern void delete_TextureSet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern void DeleteTextureSet(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TextureSet__SWIG_1")]
-            public static extern global::System.IntPtr new_TextureSet__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr NewTextureSet(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextureSet_DownCast")]
-            public static extern global::System.IntPtr TextureSet_DownCast(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr DownCast(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextureSet_Assign")]
-            public static extern global::System.IntPtr TextureSet_Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static extern global::System.IntPtr Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextureSet_SetTexture")]
-            public static extern void TextureSet_SetTexture(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            public static extern void SetTexture(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextureSet_GetTexture")]
-            public static extern global::System.IntPtr TextureSet_GetTexture(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            public static extern global::System.IntPtr GetTexture(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextureSet_SetSampler")]
-            public static extern void TextureSet_SetSampler(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            public static extern void SetSampler(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextureSet_GetSampler")]
-            public static extern global::System.IntPtr TextureSet_GetSampler(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            public static extern global::System.IntPtr GetSampler(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextureSet_GetTextureCount")]
-            public static extern uint TextureSet_GetTextureCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern uint GetTextureCount(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextureSet_SWIGUpcast")]
-            public static extern global::System.IntPtr TextureSet_SWIGUpcast(global::System.IntPtr jarg1);
+            public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
         }
     }
 }

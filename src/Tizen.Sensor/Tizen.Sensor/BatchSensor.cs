@@ -19,11 +19,24 @@ using System.Collections.Generic;
 
 namespace Tizen.Sensor
 {
+    /// <summary>
+    /// Abstract sensor for series of sensor data
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
     public abstract class BatchSensor<TData> : Sensor where TData : Tizen.Sensor.BatchData
     {
+        /// <summary>
+        /// Create BatchSensor
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public BatchSensor(uint index = 0) : base(index) {
             UpdateBatchData((IntPtr)null, 0);
         }
+
+        /// <summary>
+        /// Get general batch data
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public IReadOnlyList<TData> Data { get; protected set; }
 
         /// <summary>

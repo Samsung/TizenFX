@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
+using Tizen.NUI.Components;
 
 namespace Tizen.NUI.Samples
 {
+    using tlog = Tizen.Log;
+
     public class Example
     {
         public Example(string name, string title)
@@ -44,6 +46,8 @@ namespace Tizen.NUI.Samples
 
     public class DaliTableView
     {
+        static readonly string tag = "NUITEST";
+
         static private uint mCurPage = 0;
 
         static public string DEMO_IMAGE_DIR = CommonResource.GetDaliResourcePath() + "DaliDemo/";
@@ -139,11 +143,6 @@ namespace Tizen.NUI.Samples
             //// The logo should appear on top of everything.
             mRootActor.Add(logo);
 
-            // Show version in a popup when log is tapped
-            //mLogoTapDetector = new TapGestureDetector();
-            //mLogoTapDetector.Attach(logo);
-            //mLogoTapDetector.Detected += OnLogoTapped;
-
             // Scrollview occupying the majority of the screen
             mScrollView = new ScrollView();
             mScrollView.PositionUsesPivotPoint = true;
@@ -195,6 +194,8 @@ namespace Tizen.NUI.Samples
             mAnimationTimer.Tick += PauseBackgroundAnimation;
             mAnimationTimer.Start();
             mBackgroundAnimsPlaying = true;
+
+            tlog.Debug(tag, $"Initialize() end!");
         }
 
         private bool PauseBackgroundAnimation(object source, Timer.TickEventArgs e)
@@ -251,64 +252,12 @@ namespace Tizen.NUI.Samples
             mCurPage = mScrollView.GetCurrentPage();
         }
 
-        private void OnLogoTapped(object source, TapGestureDetector.DetectedEventArgs e)
-        {
-            // Only show if currently fully hidden. If transitioning-out, the transition will not be interrupted.
-            if (!mVersionPopup || (mVersionPopup.DisplayState == Popup.DisplayStateType.Hidden))
-            {
-                if (!mVersionPopup)
-                {
-                    string stream = "";
-                    stream += "DALi Core: " + CORE_MAJOR_VERSION + "." + CORE_MINOR_VERSION + "." + CORE_MICRO_VERSION + "\n";
-                    stream += "DALi Adaptor: " + ADAPTOR_MAJOR_VERSION + "." + ADAPTOR_MINOR_VERSION + "." + ADAPTOR_MICRO_VERSION + "\n";
-                    stream += "DALi Toolkit: " + TOOLKIT_MAJOR_VERSION + "." + TOOLKIT_MINOR_VERSION + "." + TOOLKIT_MICRO_VERSION + "\n";
-
-                    mVersionPopup = new Popup();
-
-                    TextLabel titleActor = new TextLabel("Version information");
-                    titleActor.Name = "titleActor";
-                    titleActor.HorizontalAlignment = HorizontalAlignment.Center;
-
-                    TextLabel contentActor = new TextLabel(stream);
-                    contentActor.Name = "contentActor";
-                    contentActor.MultiLine = true;
-                    contentActor.HorizontalAlignment = HorizontalAlignment.Center;
-                    contentActor.SetPadding(new PaddingType(0, 0, 20, 0));
-
-                    mVersionPopup.SetTitle(titleActor);
-                    mVersionPopup.SetContent(contentActor);
-
-                    mVersionPopup.WidthResizePolicy = ResizePolicyType.SizeRelativeToParent;
-                    mVersionPopup.SetSizeModeFactor(new Vector3(0.75f, 1.0f, 1.0f));
-                    mVersionPopup.HeightResizePolicy = ResizePolicyType.FitToChildren;
-
-                    mVersionPopup.TouchedOutside += HideVersionPopup;
-                    mVersionPopup.PositionUsesPivotPoint = true;
-                    mVersionPopup.PivotPoint = PivotPoint.Center;
-                    mVersionPopup.ParentOrigin = ParentOrigin.Center;
-
-                    NUIApplication.GetDefaultWindow().Add(mVersionPopup);
-                }
-
-                mVersionPopup.SetDisplayState(Popup.DisplayStateType.Shown);
-            }
-        }
-
-        private void HideVersionPopup(object sender, Popup.TouchedOutsideEventArgs e)
-        {
-            // Only hide if currently fully shown. If transitioning-in, the transition will not be interrupted.
-            if (null != mVersionPopup && (mVersionPopup.DisplayState == Popup.DisplayStateType.Shown))
-            {
-                mVersionPopup.SetDisplayState(Popup.DisplayStateType.Hidden);
-            }
-        }
-
         // Creates the background image
         private View CreateBackground(string stylename)
         {
             View background = new View();
             NUIApplication.GetDefaultWindow().Add(background);
-            background.SetStyleName(stylename);
+            background.StyleName = stylename;
             background.Name = "BACKGROUND";
             background.PositionUsesPivotPoint = true;
             background.PivotPoint = PivotPoint.Center;
@@ -322,7 +271,7 @@ namespace Tizen.NUI.Samples
         {
             ImageView focusableTile = new ImageView();
 
-            focusableTile.SetStyleName("DemoTile");
+            focusableTile.StyleName = "DemoTile";
             focusableTile.ResourceUrl = CommonResource.GetDaliResourcePath() + "DaliDemo/demo-tile-texture.9.png";
             focusableTile.PositionUsesPivotPoint = true;
             focusableTile.ParentOrigin = ParentOrigin.Center;
@@ -339,7 +288,6 @@ namespace Tizen.NUI.Samples
 
             // Create an ImageView for the 9-patch border around the tile.
             ImageView borderImage = new ImageView();
-            borderImage.SetStyleName("DemoTileBorder");
             borderImage.ResourceUrl = CommonResource.GetDaliResourcePath() + "DaliDemo/item-background.9.png";
             borderImage.PositionUsesPivotPoint = true;
             borderImage.PivotPoint = PivotPoint.Center;
@@ -352,19 +300,21 @@ namespace Tizen.NUI.Samples
             label.PositionUsesPivotPoint = true;
             label.PivotPoint = PivotPoint.Center;
             label.ParentOrigin = ParentOrigin.Center;
-            label.SetStyleName("LauncherLabel");
+            label.StyleName = "LauncherLabel";
             label.MultiLine = true;
             label.Text = title;
             label.HorizontalAlignment = HorizontalAlignment.Center;
             label.VerticalAlignment = VerticalAlignment.Center;
+            label.WidthResizePolicy = ResizePolicyType.FillToParent;
             label.HeightResizePolicy = ResizePolicyType.FillToParent;
-            //var fit = new PropertyMap();
-            //fit.Add("enable", new PropertyValue(true)).Add("minSize", new PropertyValue(3.0f)).Add("maxSize", new PropertyValue(50.0f));
-            //label.TextFit = fit;
-            label.PointSize = 11.0f * (float)(NUIApplication.GetDefaultWindow().Size.Height) / 1080.0f;
+
+            var fit = new PropertyMap();
+            fit.Add("enable", new PropertyValue(true)).Add("minSize", new PropertyValue(5.0f)).Add("maxSize", new PropertyValue(50.0f));
+            label.TextFit = fit;
 
             // Pad around the label as its size is the same as the 9-patch border. It will overlap it without padding.
             label.SetPadding(new PaddingType((int)TILE_LABEL_PADDING, (int)TILE_LABEL_PADDING, (int)TILE_LABEL_PADDING, (int)TILE_LABEL_PADDING));
+
             focusableTile.Add(label);
 
             // Connect to the touch events
@@ -739,7 +689,7 @@ namespace Tizen.NUI.Samples
 
             mScrollViewEffect = new ScrollViewPagePathEffect(path,
                                                              new Vector3(-1.0f, 0.0f, 0.0f),
-                                                             ScrollView.Property.SCROLL_FINAL_X,
+                                                             ScrollView.Property.ScrollFinalX,
                                                              new Vector3(stageSize.X * TABLE_RELATIVE_SIZE.X, stageSize.Y * TABLE_RELATIVE_SIZE.Y, 0.0f), mTotalPages);
         }
 
@@ -786,13 +736,10 @@ namespace Tizen.NUI.Samples
         private RulerPtr mScrollRulerY;             //  ScrollView Y (vertical) ruler
         private View mPressedActor;             //  The currently pressed actor.
         private Timer mAnimationTimer;           //  Timer used to turn off animation after a specific time period
-        private TapGestureDetector mLogoTapDetector;          //  To detect taps on the logo
-        private Popup mVersionPopup;             //  Displays DALi library version information
 
         // This struct encapsulates all data relevant to each of the elements used within the custom keyboard focus effect.
         private struct FocusEffect
         {
-            public ImageView actor;                   //  The parent keyboard focus highlight actor
             public Animation animation;               //  The animation for the parent keyboard focus highlight actor
         };
         FocusEffect[] mFocusEffect = new FocusEffect[FOCUS_ANIMATION_ACTOR_NUMBER];    //  The elements used to create the custom focus effect

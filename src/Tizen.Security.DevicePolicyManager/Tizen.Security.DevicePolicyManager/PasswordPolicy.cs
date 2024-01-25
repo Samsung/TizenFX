@@ -23,6 +23,7 @@ namespace Tizen.Security.DevicePolicyManager
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     /// <remarks>The PasswordPolicy is created by <seealso cref="DevicePolicyManager.GetPolicy{T}"/>. and the DevicePolicyManager instance must exists when using the PasswordPolicy.</remarks>
+    [Obsolete("Deprecated since API level 11.")]
     public class PasswordPolicy : DevicePolicy
     {
         internal PasswordPolicy(DevicePolicyManager dpm) : base(dpm)
@@ -36,6 +37,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/dpm.password</privilege>
         /// <privlevel>partner</privlevel>
+        [Obsolete("Deprecated since API level 11.")]
         public int DaysToExpiration
         {
             get
@@ -58,6 +60,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/dpm.password</privilege>
         /// <privlevel>partner</privlevel>
+        [Obsolete("Deprecated since API level 11.")]
         public int MinimumPreviousHistory
         {
             get
@@ -80,6 +83,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/dpm.password</privilege>
         /// <privlevel>partner</privlevel>
+        [Obsolete("Deprecated since API level 11.")]
         public int MaxInactivityTimeDeviceLock
         {
             get
@@ -103,6 +107,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/dpm.password</privilege>
         /// <privlevel>partner</privlevel>
+        [Obsolete("Deprecated since API level 11.")]
         public int MaximumFailedAttemptsForWipe
         {
             get
@@ -126,6 +131,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/dpm.password</privilege>
         /// <privlevel>partner</privlevel>
+        [Obsolete("Deprecated since API level 11.")]
         public int MinimumRequiredComplexChars
         {
             get
@@ -148,6 +154,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/dpm.password</privilege>
         /// <privlevel>partner</privlevel>
+        [Obsolete("Deprecated since API level 11.")]
         public int MinimumLength
         {
             get
@@ -172,6 +179,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/dpm.password</privilege>
         /// <privlevel>partner</privlevel>
+        [Obsolete("Deprecated since API level 11.")]
         public PasswordQuality Quality
         {
             get

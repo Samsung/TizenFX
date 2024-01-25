@@ -54,20 +54,6 @@ namespace Tizen.Multimedia
         External = 0x0020,
 
         /// <summary>
-        /// Deactivated devices.
-        /// </summary>
-        [Obsolete("Deprecated since API level 5.")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        Deactivated = 0x1000,
-
-        /// <summary>
-        /// Activated devices.
-        /// </summary>
-        [Obsolete("Deprecated since API level 5.")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        Activated = 0x2000,
-
-        /// <summary>
         /// All devices.
         /// </summary>
         All = 0xFFFF

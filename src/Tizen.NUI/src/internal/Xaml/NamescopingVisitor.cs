@@ -1,3 +1,20 @@
+/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 using System.Collections.Generic;
 using Tizen.NUI.Binding.Internals;
 
@@ -33,7 +50,7 @@ namespace Tizen.NUI.Xaml
 
         public void Visit(ElementNode node, INode parentNode)
         {
-            var ns = parentNode == null || IsDataTemplate(node, parentNode) || IsStyle(node, parentNode) || IsVisualStateGroupList(node)
+            var ns = parentNode == null || IsDataTemplate(node, parentNode) || IsStyle(parentNode) || IsVisualStateGroupList(node)
                 ? new NameScope()
                 : scopes[parentNode];
             node.Namescope = ns;
@@ -62,7 +79,7 @@ namespace Tizen.NUI.Xaml
             return false;
         }
 
-        static bool IsStyle(INode node, INode parentNode)
+        static bool IsStyle(INode parentNode)
         {
             var pnode = parentNode as ElementNode;
             return pnode != null && pnode.XmlType.Name == "Style";
@@ -70,7 +87,7 @@ namespace Tizen.NUI.Xaml
 
         static bool IsVisualStateGroupList(ElementNode node)
         {
-            return node != null  && node.XmlType.Name == "VisualStateGroup" && node.Parent is IListNode;
+            return node != null && node.XmlType.Name == "VisualStateGroup" && node.Parent is IListNode;
         }
     }
 }

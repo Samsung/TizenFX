@@ -26,6 +26,43 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 8 </since_tizen>
     public class PaginationStyle : ControlStyle
     {
+        /// <summary>The IndicatorSize bindable property.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IndicatorSizeProperty = BindableProperty.Create(nameof(IndicatorSize), typeof(Size), typeof(PaginationStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((PaginationStyle)bindable).indicatorSize = newValue == null ? null : new Size((Size)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((PaginationStyle)bindable).indicatorSize;
+        });
+
+        /// <summary>The IndicatorImageUrlSelector bindable property.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IndicatorImageUrlSelectorProperty = BindableProperty.Create("IndicatorImageUrl", typeof(Selector<string>), typeof(PaginationStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((PaginationStyle)bindable).indicatorImageUrl = (Selector<string>)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((PaginationStyle)bindable).indicatorImageUrl;
+        });
+
+        /// <summary>The IndicatorSpacing bindable property.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IndicatorSpacingProperty = BindableProperty.Create(nameof(IndicatorSpacing), typeof(int?), typeof(PaginationStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((PaginationStyle)bindable).indicatorSpacing = (int?)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((PaginationStyle)bindable).indicatorSpacing;
+        });
+
+        private Size indicatorSize;
+        private Selector<string> indicatorImageUrl;
+        private int? indicatorSpacing;
+
         static PaginationStyle() { }
 
         /// <summary>
@@ -41,51 +78,43 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public PaginationStyle(PaginationStyle style) : base(style)
         {
-            if (null == style) return;            
-
-            this.CopyFrom(style);
         }
 
         /// <summary>
         /// Gets or sets the size of the indicator.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public Size IndicatorSize { get; set; }
+        public Size IndicatorSize
+        {
+            get => (Size)GetValue(IndicatorSizeProperty);
+            set => SetValue(IndicatorSizeProperty, value);
+        }
 
         /// <summary>
         /// Gets or sets the resource of indicator.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public Selector<string> IndicatorImageUrl { get; set; } = new Selector<string>();
+        public Selector<string> IndicatorImageUrl
+        {
+            get => (Selector<string>)GetValue(IndicatorImageUrlSelectorProperty);
+            set => SetValue(IndicatorImageUrlSelectorProperty, value);
+        }
 
         /// <summary>
         /// Gets or sets the space of the indicator.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public int IndicatorSpacing { get; set; }
+        public int IndicatorSpacing
+        {
+            get => ((int?)GetValue(IndicatorSpacingProperty)) ?? 0;
+            set => SetValue(IndicatorSpacingProperty, value);
+        }
 
-        /// <summary>
-        /// Retrieves a copy of PaginationStyle.
-        /// </summary>
-        /// <param name="bindableObject">The style that need to copy.</param>
+        /// <inheritdoc/>
         /// <since_tizen> 8 </since_tizen>
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);
-
-            PaginationStyle paginationStyle = bindableObject as PaginationStyle;
-            if (null != paginationStyle)
-            {
-                if (null != paginationStyle.IndicatorSize)
-                {
-                    IndicatorSize = new Size(paginationStyle.IndicatorSize.Width, paginationStyle.IndicatorSize.Height);
-                }
-                if (null != paginationStyle.IndicatorImageUrl)
-                {
-                    IndicatorImageUrl?.Clone(paginationStyle.IndicatorImageUrl);
-                }
-                IndicatorSpacing = paginationStyle.IndicatorSpacing;
-            }
         }
     }
 }

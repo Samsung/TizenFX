@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ namespace Tizen.NUI.Components
     {
         private const int DEFAULT_SPAN_COUNT = -1;
 
-        private int mSpanCount = DEFAULT_SPAN_COUNT;
+        private int spanCount = DEFAULT_SPAN_COUNT;
 
         /// <summary>
         /// Creates a GridLayoutManager with orientation. 
@@ -40,13 +40,13 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public GridLayoutManager(int spanCount, int orientation) : base(orientation)
         {
-            mSpanCount = spanCount;
+            this.spanCount = spanCount;
         }
 
         internal override void EnsureAnchorReady(FlexibleViewRecycler recycler, AnchorInfo anchorInfo, int itemDirection)
         {
             bool layingOutInPrimaryDirection = (itemDirection == LayoutState.ITEM_DIRECTION_TAIL);
-            int span = anchorInfo.Position % mSpanCount;
+            int span = anchorInfo.Position % spanCount;
             if (layingOutInPrimaryDirection)
             {
                 // choose span 0
@@ -64,7 +64,7 @@ namespace Tizen.NUI.Components
                 int bestSpan = span;
                 while (pos < indexLimit)
                 {
-                    int next = (pos + 1) % mSpanCount;
+                    int next = (pos + 1) % spanCount;
                     if (next > bestSpan)
                     {
                         pos += 1;
@@ -93,25 +93,25 @@ namespace Tizen.NUI.Components
                 switch (direction)
                 {
                     case FlexibleViewLayoutManager.Direction.Left:
-                        if (position >= mSpanCount)
+                        if (position >= spanCount)
                         {
-                            return position - mSpanCount;
+                            return position - spanCount;
                         }
                         break;
                     case FlexibleViewLayoutManager.Direction.Right:
-                        if (position < ItemCount - mSpanCount)
+                        if (position < ItemCount - spanCount)
                         {
-                            return position + mSpanCount;
+                            return position + spanCount;
                         }
                         break;
                     case FlexibleViewLayoutManager.Direction.Up:
-                        if (position % mSpanCount > 0)
+                        if (position % spanCount > 0)
                         {
                             return position - 1;
                         }
                         break;
                     case FlexibleViewLayoutManager.Direction.Down:
-                        if (position < ItemCount - 1 && (position % mSpanCount < mSpanCount - 1))
+                        if (position < ItemCount - 1 && (position % spanCount < spanCount - 1))
                         {
                             return position + 1;
                         }
@@ -123,27 +123,27 @@ namespace Tizen.NUI.Components
                 switch (direction)
                 {
                     case FlexibleViewLayoutManager.Direction.Left:
-                        if (position % mSpanCount > 0)
+                        if (position % spanCount > 0)
                         {
                             return position - 1;
                         }
                         break;
                     case FlexibleViewLayoutManager.Direction.Right:
-                        if (position < ItemCount - 1 && (position % mSpanCount < mSpanCount - 1))
+                        if (position < ItemCount - 1 && (position % spanCount < spanCount - 1))
                         {
                             return position + 1;
                         }
                         break;
                     case FlexibleViewLayoutManager.Direction.Up:
-                        if (position >= mSpanCount)
+                        if (position >= spanCount)
                         {
-                            return position - mSpanCount;
+                            return position - spanCount;
                         }
                         break;
                     case FlexibleViewLayoutManager.Direction.Down:
-                        if (position < ItemCount - mSpanCount)
+                        if (position < ItemCount - spanCount)
                         {
-                            return position + mSpanCount;
+                            return position + spanCount;
                         }
                         break;
                 }
@@ -158,7 +158,7 @@ namespace Tizen.NUI.Components
             bool layingOutInPrimaryDirection =
                 layoutState.ItemDirection == LayoutState.ITEM_DIRECTION_TAIL;
 
-            int count = mSpanCount;
+            int count = spanCount;
             for (int i = 0; i < count; i++)
             {
                 FlexibleViewViewHolder holder = layoutState.Next(recycler);
@@ -173,7 +173,7 @@ namespace Tizen.NUI.Components
                 else
                     AddView(holder, 0);
 
-                result.Consumed = mOrientationHelper.GetViewHolderMeasurement(holder);
+                result.Consumed = orientationHelper.GetViewHolderMeasurement(holder);
 
                 float left, top, width, height;
                 if (Orientation == VERTICAL)
@@ -210,7 +210,5 @@ namespace Tizen.NUI.Components
                 }
             }
         }
-
-
     }
 }

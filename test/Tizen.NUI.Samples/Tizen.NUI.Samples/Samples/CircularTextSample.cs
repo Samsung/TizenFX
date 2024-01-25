@@ -135,7 +135,6 @@ namespace Tizen.NUI.Samples
                 default:
                 return 4;
             }
-            return 0;
         }
 
         TextureSet CreateTextureSet( RendererParameters textParameters, List<string> embeddedItems )
@@ -157,7 +156,7 @@ namespace Tizen.NUI.Samples
                 int x = (int)itemLayout.Position.X;
                 int y = (int)itemLayout.Position.Y;
 
-                PixelBuffer itemPixelBuffer = ImageLoading.LoadImageFromFile(embeddedItems[index++]);
+                PixelBuffer itemPixelBuffer = ImageLoader.LoadImageFromFile(embeddedItems[index++]);
 
                 if( itemPixelBuffer == null ) continue;
 

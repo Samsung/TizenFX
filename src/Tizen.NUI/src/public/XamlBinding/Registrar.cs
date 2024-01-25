@@ -1,9 +1,24 @@
+/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Reflection;
-using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Binding.Internals
 {
@@ -87,7 +102,7 @@ namespace Tizen.NUI.Binding.Internals
         /// <summary>
         /// For internal use. Return the handler of the object.
         /// </summary>
-        /// <typeparam name="TOut">Thetype</typeparam>
+        /// <typeparam name="TOut">The type</typeparam>
         /// <param name="obj">The object instance.</param>
         /// <returns>The handle of the obj.</returns>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -104,7 +119,7 @@ namespace Tizen.NUI.Binding.Internals
         }
 
         /// <summary>
-        /// For inetrnal use. Return the handler of the object.
+        /// For internal use. Return the handler of the object.
         /// </summary>
         /// <typeparam name="TOut">The type</typeparam>
         /// <param name="obj">The object instance</param>
@@ -160,7 +175,7 @@ namespace Tizen.NUI.Binding.Internals
                 }
             }
 
-            Register(viewType, type); // Register this so we don't have to look for the RenderWith Attibute again in the future
+            Register(viewType, type); // Register this so we don't have to look for the RenderWith Attribute again in the future
 
             return type;
         }
@@ -212,18 +227,12 @@ namespace Tizen.NUI.Binding.Internals
     {
         static Registrar()
         {
-            Registered = new Registrar<IRegisterable>();
         }
 
         internal static Dictionary<string, Type> Effects { get; } = new Dictionary<string, Type>();
-        internal static Dictionary<string, StyleSheets.StylePropertyAttribute> StyleProperties { get; } = new Dictionary<string, StyleSheets.StylePropertyAttribute>();
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static IEnumerable<Assembly> ExtraAssemblies { get; set; }
-
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Registrar<IRegisterable> Registered { get; internal set; }
     }
 }

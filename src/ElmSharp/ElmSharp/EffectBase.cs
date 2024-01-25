@@ -22,12 +22,14 @@ namespace ElmSharp
     /// The EffectBase class for TransitEffect.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public abstract class EffectBase
     {
         /// <summary>
         /// EffectEnded event will be triggered when the effect has ended.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler EffectEnded;
 
         internal abstract IntPtr CreateEffect(IntPtr transit);

@@ -24,6 +24,7 @@ namespace Tizen.Applications
     /// Represents a widget application.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API10. Will be removed in API12.")]
     public class WidgetApplication : CoreApplication
     {
         /// <summary>
@@ -31,6 +32,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="typeInfo">Map structure for the derived class type and widget ID.</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public WidgetApplication(IDictionary<Type, string> typeInfo) : base(new WidgetCoreBackend())
         {
             WidgetCoreBackend core = Backend as WidgetCoreBackend;
@@ -44,6 +46,7 @@ namespace Tizen.Applications
         /// <remarks>Widget ID will be replaced as the application ID.</remarks>
         /// <param name="type">Derived class type.</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public WidgetApplication(Type type) : base(new WidgetCoreBackend())
         {
             WidgetCoreBackend core = Backend as WidgetCoreBackend;
@@ -56,6 +59,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="type">Class type for the widget.</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public IEnumerable<WidgetBase> GetInstances(Type type)
         {
             WidgetCoreBackend core = Backend as WidgetCoreBackend;
@@ -79,6 +83,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="args">Arguments from the commandline.</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public override void Run(string[] args)
         {
             base.Run(args);

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019-2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,23 +38,32 @@ namespace Tizen.NUI.BaseComponents
     }
 
     /// <summary>
-    /// [Draft] Available policies for layout parameters
+    /// Layout policies to decide the size of View when the View is laid out in its parent View.
+    /// LayoutParamPolicies.MatchParent and LayoutParamPolicies.WrapContent can be assigned to <see cref="View.WidthSpecification"/> and <see cref="View.HeightSpecification"/>.
     /// </summary>
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <example>
+    /// <code>
+    /// // matchParentView matches its size to its parent size.
+    /// matchParentView.WidthSpecification = LayoutParamPolicies.MatchParent;
+    /// matchParentView.HeightSpecification = LayoutParamPolicies.MatchParent;
+    ///
+    /// // wrapContentView wraps its children with their desired size.
+    /// wrapContentView.WidthSpecification = LayoutParamPolicies.WrapContent;
+    /// wrapContentView.HeightSpecification = LayoutParamPolicies.WrapContent;
+    /// </code>
+    /// </example>
+    /// <since_tizen> 9 </since_tizen>
     public static class LayoutParamPolicies
     {
         /// <summary>
-        /// Constant which indicates child size should match parent size
+        /// Constant which indicates child size should match parent size.
         /// </summary>
-       /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-       [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public const int MatchParent = -1;
         /// <summary>
-        /// Constant which indicates parent should take the smallest size possible to wrap it's children with their desired size
+        /// Constant which indicates parent should take the smallest size possible to wrap its children with their desired size.
         /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public const int WrapContent = -2;
     }
 
@@ -76,6 +85,7 @@ namespace Tizen.NUI.BaseComponents
         /// Enumeration for describing the states of the view.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names")]
         public enum States
         {
             /// <summary>
@@ -130,8 +140,34 @@ namespace Tizen.NUI.BaseComponents
             /// Move keyboard focus towards the next page direction.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            PageDown
+            PageDown,
+            /// <summary>
+            /// Move keyboard focus towards the forward direction.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Forward,
+            /// <summary>
+            /// Move keyboard focus towards the backward direction.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Backward,
+            /// <summary>
+            /// Move focus towards the Clockwise direction by rotary wheel.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Clockwise,
+            /// <summary>
+            /// Move focus towards the CounterClockwise direction by rotary wheel.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            CounterClockwise,
         }
+
+        /// <summary>
+        /// Actions property value to update visual property.
+        /// Note : Only few kind of properies can be update. Update with invalid property action is undefined.
+        /// </summary>
+        internal static readonly int ActionUpdateProperty = Interop.Visual.GetActionUpdateProperty();
 
         internal enum PropertyRange
         {
@@ -142,72 +178,94 @@ namespace Tizen.NUI.BaseComponents
 
         internal class Property
         {
-            internal static readonly int TOOLTIP = Interop.ViewProperty.View_Property_TOOLTIP_get();
-            internal static readonly int STATE = Interop.ViewProperty.View_Property_STATE_get();
-            internal static readonly int SUB_STATE = Interop.ViewProperty.View_Property_SUB_STATE_get();
-            internal static readonly int LEFT_FOCUSABLE_VIEW_ID = Interop.ViewProperty.View_Property_LEFT_FOCUSABLE_ACTOR_ID_get();
-            internal static readonly int RIGHT_FOCUSABLE_VIEW_ID = Interop.ViewProperty.View_Property_RIGHT_FOCUSABLE_ACTOR_ID_get();
-            internal static readonly int UP_FOCUSABLE_VIEW_ID = Interop.ViewProperty.View_Property_UP_FOCUSABLE_ACTOR_ID_get();
-            internal static readonly int DOWN_FOCUSABLE_VIEW_ID = Interop.ViewProperty.View_Property_DOWN_FOCUSABLE_ACTOR_ID_get();
-            internal static readonly int STYLE_NAME = Interop.ViewProperty.View_Property_STYLE_NAME_get();
-            internal static readonly int KEY_INPUT_FOCUS = Interop.ViewProperty.View_Property_KEY_INPUT_FOCUS_get();
-            internal static readonly int BACKGROUND = Interop.ViewProperty.View_Property_BACKGROUND_get();
-            internal static readonly int SIBLING_ORDER = Interop.ActorProperty.Actor_Property_SIBLING_ORDER_get();
-            internal static readonly int OPACITY = Interop.ActorProperty.Actor_Property_OPACITY_get();
-            internal static readonly int SCREEN_POSITION = Interop.ActorProperty.Actor_Property_SCREEN_POSITION_get();
-            internal static readonly int POSITION_USES_ANCHOR_POINT = Interop.ActorProperty.Actor_Property_POSITION_USES_ANCHOR_POINT_get();
-            internal static readonly int PARENT_ORIGIN = Interop.ActorProperty.Actor_Property_PARENT_ORIGIN_get();
-            internal static readonly int PARENT_ORIGIN_X = Interop.ActorProperty.Actor_Property_PARENT_ORIGIN_X_get();
-            internal static readonly int PARENT_ORIGIN_Y = Interop.ActorProperty.Actor_Property_PARENT_ORIGIN_Y_get();
-            internal static readonly int PARENT_ORIGIN_Z = Interop.ActorProperty.Actor_Property_PARENT_ORIGIN_Z_get();
-            internal static readonly int ANCHOR_POINT = Interop.ActorProperty.Actor_Property_ANCHOR_POINT_get();
-            internal static readonly int ANCHOR_POINT_X = Interop.ActorProperty.Actor_Property_ANCHOR_POINT_X_get();
-            internal static readonly int ANCHOR_POINT_Y = Interop.ActorProperty.Actor_Property_ANCHOR_POINT_Y_get();
-            internal static readonly int ANCHOR_POINT_Z = Interop.ActorProperty.Actor_Property_ANCHOR_POINT_Z_get();
-            internal static readonly int SIZE = Interop.ActorProperty.Actor_Property_SIZE_get();
-            internal static readonly int SIZE_WIDTH = Interop.ActorProperty.Actor_Property_SIZE_WIDTH_get();
-            internal static readonly int SIZE_HEIGHT = Interop.ActorProperty.Actor_Property_SIZE_HEIGHT_get();
-            internal static readonly int SIZE_DEPTH = Interop.ActorProperty.Actor_Property_SIZE_DEPTH_get();
-            internal static readonly int POSITION = Interop.ActorProperty.Actor_Property_POSITION_get();
-            internal static readonly int POSITION_X = Interop.ActorProperty.Actor_Property_POSITION_X_get();
-            internal static readonly int POSITION_Y = Interop.ActorProperty.Actor_Property_POSITION_Y_get();
-            internal static readonly int POSITION_Z = Interop.ActorProperty.Actor_Property_POSITION_Z_get();
-            internal static readonly int WORLD_POSITION = Interop.ActorProperty.Actor_Property_WORLD_POSITION_get();
-            internal static readonly int WORLD_POSITION_X = Interop.ActorProperty.Actor_Property_WORLD_POSITION_X_get();
-            internal static readonly int WORLD_POSITION_Y = Interop.ActorProperty.Actor_Property_WORLD_POSITION_Y_get();
-            internal static readonly int WORLD_POSITION_Z = Interop.ActorProperty.Actor_Property_WORLD_POSITION_Z_get();
-            internal static readonly int ORIENTATION = Interop.ActorProperty.Actor_Property_ORIENTATION_get();
-            internal static readonly int WORLD_ORIENTATION = Interop.ActorProperty.Actor_Property_WORLD_ORIENTATION_get();
-            internal static readonly int SCALE = Interop.ActorProperty.Actor_Property_SCALE_get();
-            internal static readonly int SCALE_X = Interop.ActorProperty.Actor_Property_SCALE_X_get();
-            internal static readonly int SCALE_Y = Interop.ActorProperty.Actor_Property_SCALE_Y_get();
-            internal static readonly int SCALE_Z = Interop.ActorProperty.Actor_Property_SCALE_Z_get();
-            internal static readonly int WORLD_SCALE = Interop.ActorProperty.Actor_Property_WORLD_SCALE_get();
-            internal static readonly int VISIBLE = Interop.ActorProperty.Actor_Property_VISIBLE_get();
-            internal static readonly int WORLD_COLOR = Interop.ActorProperty.Actor_Property_WORLD_COLOR_get();
-            internal static readonly int WORLD_MATRIX = Interop.ActorProperty.Actor_Property_WORLD_MATRIX_get();
-            internal static readonly int NAME = Interop.ActorProperty.Actor_Property_NAME_get();
-            internal static readonly int SENSITIVE = Interop.ActorProperty.Actor_Property_SENSITIVE_get();
-            internal static readonly int LEAVE_REQUIRED = Interop.ActorProperty.Actor_Property_LEAVE_REQUIRED_get();
-            internal static readonly int INHERIT_ORIENTATION = Interop.ActorProperty.Actor_Property_INHERIT_ORIENTATION_get();
-            internal static readonly int INHERIT_SCALE = Interop.ActorProperty.Actor_Property_INHERIT_SCALE_get();
-            internal static readonly int DRAW_MODE = Interop.ActorProperty.Actor_Property_DRAW_MODE_get();
-            internal static readonly int SIZE_MODE_FACTOR = Interop.ActorProperty.Actor_Property_SIZE_MODE_FACTOR_get();
-            internal static readonly int WIDTH_RESIZE_POLICY = Interop.ActorProperty.Actor_Property_WIDTH_RESIZE_POLICY_get();
-            internal static readonly int HEIGHT_RESIZE_POLICY = Interop.ActorProperty.Actor_Property_HEIGHT_RESIZE_POLICY_get();
-            internal static readonly int SIZE_SCALE_POLICY = Interop.ActorProperty.Actor_Property_SIZE_SCALE_POLICY_get();
-            internal static readonly int WIDTH_FOR_HEIGHT = Interop.ActorProperty.Actor_Property_WIDTH_FOR_HEIGHT_get();
-            internal static readonly int HEIGHT_FOR_WIDTH = Interop.ActorProperty.Actor_Property_HEIGHT_FOR_WIDTH_get();
-            internal static readonly int MINIMUM_SIZE = Interop.ActorProperty.Actor_Property_MINIMUM_SIZE_get();
-            internal static readonly int MAXIMUM_SIZE = Interop.ActorProperty.Actor_Property_MAXIMUM_SIZE_get();
-            internal static readonly int INHERIT_POSITION = Interop.ActorProperty.Actor_Property_INHERIT_POSITION_get();
-            internal static readonly int CLIPPING_MODE = Interop.ActorProperty.Actor_Property_CLIPPING_MODE_get();
-            internal static readonly int INHERIT_LAYOUT_DIRECTION = Interop.ActorProperty.Actor_Property_INHERIT_LAYOUT_DIRECTION_get();
-            internal static readonly int LAYOUT_DIRECTION = Interop.ActorProperty.Actor_Property_LAYOUT_DIRECTION_get();
-            internal static readonly int MARGIN = Interop.ViewProperty.View_Property_MARGIN_get();
-            internal static readonly int PADDING = Interop.ViewProperty.View_Property_PADDING_get();
-            internal static readonly int SHADOW = Interop.ViewProperty.View_Property_SHADOW_get();
-            internal static readonly int CaptureAllTouchAfterStart = Interop.ActorProperty.ActorPropertyCaptureAllTouchAfterStartGet();
+            internal static readonly int TOOLTIP = Interop.ViewProperty.TooltipGet();
+            internal static readonly int STATE = Interop.ViewProperty.StateGet();
+            internal static readonly int SubState = Interop.ViewProperty.SubStateGet();
+            internal static readonly int LeftFocusableViewId = Interop.ViewProperty.LeftFocusableActorIdGet();
+            internal static readonly int RightFocusableViewId = Interop.ViewProperty.RightFocusableActorIdGet();
+            internal static readonly int UpFocusableViewId = Interop.ViewProperty.UpFocusableActorIdGet();
+            internal static readonly int DownFocusableViewId = Interop.ViewProperty.DownFocusableActorIdGet();
+            internal static readonly int ClockwiseFocusableViewId = Interop.ViewProperty.ClockwiseFocusableActorIdGet();
+            internal static readonly int CounterClockwiseFocusableViewId = Interop.ViewProperty.CounterClockwiseFocusableActorIdGet();
+            internal static readonly int StyleName = Interop.ViewProperty.StyleNameGet();
+            internal static readonly int KeyInputFocus = Interop.ViewProperty.KeyInputFocusGet();
+            internal static readonly int BACKGROUND = Interop.ViewProperty.BackgroundGet();
+            internal static readonly int SiblingOrder = Interop.ActorProperty.SiblingOrderGet();
+            internal static readonly int OPACITY = Interop.ActorProperty.OpacityGet();
+            internal static readonly int ScreenPosition = Interop.ActorProperty.ScreenPositionGet();
+            internal static readonly int PositionUsesAnchorPoint = Interop.ActorProperty.PositionUsesAnchorPointGet();
+            internal static readonly int ParentOrigin = Interop.ActorProperty.ParentOriginGet();
+            internal static readonly int ParentOriginX = Interop.ActorProperty.ParentOriginXGet();
+            internal static readonly int ParentOriginY = Interop.ActorProperty.ParentOriginYGet();
+            internal static readonly int ParentOriginZ = Interop.ActorProperty.ParentOriginZGet();
+            internal static readonly int AnchorPoint = Interop.ActorProperty.AnchorPointGet();
+            internal static readonly int AnchorPointX = Interop.ActorProperty.AnchorPointXGet();
+            internal static readonly int AnchorPointY = Interop.ActorProperty.AnchorPointYGet();
+            internal static readonly int AnchorPointZ = Interop.ActorProperty.AnchorPointZGet();
+            internal static readonly int SIZE = Interop.ActorProperty.SizeGet();
+            internal static readonly int SizeWidth = Interop.ActorProperty.SizeWidthGet();
+            internal static readonly int SizeHeight = Interop.ActorProperty.SizeHeightGet();
+            internal static readonly int SizeDepth = Interop.ActorProperty.SizeDepthGet();
+            internal static readonly int POSITION = Interop.ActorProperty.PositionGet();
+            internal static readonly int PositionX = Interop.ActorProperty.PositionXGet();
+            internal static readonly int PositionY = Interop.ActorProperty.PositionYGet();
+            internal static readonly int PositionZ = Interop.ActorProperty.PositionZGet();
+            internal static readonly int WorldPosition = Interop.ActorProperty.WorldPositionGet();
+            internal static readonly int WorldPositionX = Interop.ActorProperty.WorldPositionXGet();
+            internal static readonly int WorldPositionY = Interop.ActorProperty.WorldPositionYGet();
+            internal static readonly int WorldPositionZ = Interop.ActorProperty.WorldPositionZGet();
+            internal static readonly int ORIENTATION = Interop.ActorProperty.OrientationGet();
+            internal static readonly int WorldOrientation = Interop.ActorProperty.WorldOrientationGet();
+            internal static readonly int SCALE = Interop.ActorProperty.ScaleGet();
+            internal static readonly int ScaleX = Interop.ActorProperty.ScaleXGet();
+            internal static readonly int ScaleY = Interop.ActorProperty.ScaleYGet();
+            internal static readonly int ScaleZ = Interop.ActorProperty.ScaleZGet();
+            internal static readonly int WorldScale = Interop.ActorProperty.WorldScaleGet();
+            internal static readonly int VISIBLE = Interop.ActorProperty.VisibleGet();
+            internal static readonly int COLOR = Interop.ActorProperty.ColorGet();
+            internal static readonly int ColorRed = Interop.ActorProperty.ColorRedGet();
+            internal static readonly int ColorGreen = Interop.ActorProperty.ColorGreenGet();
+            internal static readonly int ColorBlue = Interop.ActorProperty.ColorBlueGet();
+            internal static readonly int WorldColor = Interop.ActorProperty.WorldColorGet();
+            internal static readonly int WorldMatrix = Interop.ActorProperty.WorldMatrixGet();
+            internal static readonly int NAME = Interop.ActorProperty.NameGet();
+            internal static readonly int SENSITIVE = Interop.ActorProperty.SensitiveGet();
+            internal static readonly int UserInteractionEnabled = Interop.ActorProperty.UserInteractionEnabledGet();
+            internal static readonly int LeaveRequired = Interop.ActorProperty.LeaveRequiredGet();
+            internal static readonly int InheritOrientation = Interop.ActorProperty.InheritOrientationGet();
+            internal static readonly int InheritScale = Interop.ActorProperty.InheritScaleGet();
+            internal static readonly int DrawMode = Interop.ActorProperty.DrawModeGet();
+            internal static readonly int SizeModeFactor = Interop.ActorProperty.SizeModeFactorGet();
+            internal static readonly int WidthResizePolicy = Interop.ActorProperty.WidthResizePolicyGet();
+            internal static readonly int HeightResizePolicy = Interop.ActorProperty.HeightResizePolicyGet();
+            internal static readonly int SizeScalePolicy = Interop.ActorProperty.SizeScalePolicyGet();
+            internal static readonly int WidthForHeight = Interop.ActorProperty.WidthForHeightGet();
+            internal static readonly int HeightForWidth = Interop.ActorProperty.HeightForWidthGet();
+            internal static readonly int MinimumSize = Interop.ActorProperty.MinimumSizeGet();
+            internal static readonly int MaximumSize = Interop.ActorProperty.MaximumSizeGet();
+            internal static readonly int InheritPosition = Interop.ActorProperty.InheritPositionGet();
+            internal static readonly int ClippingMode = Interop.ActorProperty.ClippingModeGet();
+            internal static readonly int InheritLayoutDirection = Interop.ActorProperty.InheritLayoutDirectionGet();
+            internal static readonly int LayoutDirection = Interop.ActorProperty.LayoutDirectionGet();
+            internal static readonly int MARGIN = Interop.ViewProperty.MarginGet();
+            internal static readonly int PADDING = Interop.ViewProperty.PaddingGet();
+            internal static readonly int SHADOW = Interop.ViewProperty.ShadowGet();
+            internal static readonly int CaptureAllTouchAfterStart = Interop.ActorProperty.CaptureAllTouchAfterStartGet();
+            internal static readonly int AllowOnlyOwnTouch = Interop.ActorProperty.AllowOnlyOwnTouchGet();
+            internal static readonly int BlendEquation = Interop.ActorProperty.BlendEquationGet();
+            internal static readonly int Culled = Interop.ActorProperty.CulledGet();
+            internal static readonly int AccessibilityName = Interop.ViewProperty.AccessibilityNameGet();
+            internal static readonly int AccessibilityDescription = Interop.ViewProperty.AccessibilityDescriptionGet();
+            internal static readonly int AccessibilityTranslationDomain = Interop.ViewProperty.AccessibilityTranslationDomainGet();
+            internal static readonly int AccessibilityRole = Interop.ViewProperty.AccessibilityRoleGet();
+            internal static readonly int AccessibilityHighlightable = Interop.ViewProperty.AccessibilityHighlightableGet();
+            internal static readonly int AccessibilityAttributes = Interop.ViewProperty.AccessibilityAttributesGet();
+            internal static readonly int DispatchKeyEvents = Interop.ViewProperty.DispatchKeyEventsGet();
+            internal static readonly int AccessibilityHidden = Interop.ViewProperty.AccessibilityHiddenGet();
+            internal static readonly int AutomationId = Interop.ViewProperty.AutomationIdGet();
+            internal static readonly int UpdateAreaHint = Interop.ActorProperty.UpdateAreaHintGet();
+            internal static readonly int DispatchTouchMotion = Interop.ActorProperty.DispatchTouchMotionGet();
+            internal static readonly int DispatchHoverMotion = Interop.ActorProperty.DispatchHoverMotionGet();
         }
     }
 }

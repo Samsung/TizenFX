@@ -51,7 +51,12 @@ namespace Tizen.NUI.Samples
             // Init parent of TextView
             parentView[0] = new View();
             parentView[0].Size = new Size(1920, 200);
-            parentView[0].Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Horizontal, LinearAlignment = LinearLayout.Alignment.CenterVertical, CellPadding = new Size2D(180, 0) };
+            parentView[0].Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+                VerticalAlignment = VerticalAlignment.Center,
+                CellPadding = new Size2D(180, 0)
+            };
             root.Add(parentView[0]);
 
             for (int i = 0; i < 2; i++)
@@ -225,6 +230,7 @@ namespace Tizen.NUI.Samples
                 utilitySwitch[i].ApplyStyle(utilitySt);
                 utilitySwitch[i].Size = new Size(96, 60);
                 utilitySwitch[i].Margin = new Extents(100, 0, 20, 0);
+                utilitySwitch[i].Feedback = true;
                 parentView[2].Add(utilitySwitch[i]);
             }
             for (i = 0; i < 4; i++)
@@ -232,6 +238,7 @@ namespace Tizen.NUI.Samples
                 familySwitch[i] = new Switch();
                 familySwitch[i].ApplyStyle(familySt);
                 familySwitch[i].Size = new Size(96, 60);
+                familySwitch[i].Feedback = true;
                 parentView[2].Add(familySwitch[i]);
             }
             for (i = 0; i < 4; i++)
@@ -239,6 +246,7 @@ namespace Tizen.NUI.Samples
                 foodSwitch[i] = new Switch();
                 foodSwitch[i].ApplyStyle(foodSt);
                 foodSwitch[i].Size = new Size(96, 60);
+                foodSwitch[i].Feedback = true;
                 parentView[2].Add(foodSwitch[i]);
             }
             for (i = 0; i < 4; i++)
@@ -246,6 +254,7 @@ namespace Tizen.NUI.Samples
                 kitchenSwitch[i] = new Switch();
                 kitchenSwitch[i].ApplyStyle(kitchenSt);
                 kitchenSwitch[i].Size = new Size(96, 60);
+                kitchenSwitch[i].Feedback = true;
                 parentView[2].Add(kitchenSwitch[i]);
             }
 
@@ -255,6 +264,7 @@ namespace Tizen.NUI.Samples
                 utilitySwitch2[i] = new Switch();
                 utilitySwitch2[i].ApplyStyle(utilitySt);
                 utilitySwitch2[i].Size = new Size(96, 60);
+                utilitySwitch2[i].Feedback = true;
                 parentView[2].Add(utilitySwitch2[i]);
             }
             for (i = 0; i < 4; i++)
@@ -262,6 +272,7 @@ namespace Tizen.NUI.Samples
                 familySwitch2[i] = new Switch();
                 familySwitch2[i].ApplyStyle(familySt);
                 familySwitch2[i].Size = new Size(96, 60);
+                familySwitch2[i].Feedback = true;
                 parentView[2].Add(familySwitch2[i]);
             }
             for (i = 0; i < 4; i++)
@@ -269,6 +280,7 @@ namespace Tizen.NUI.Samples
                 foodSwitch2[i] = new Switch();
                 foodSwitch2[i].ApplyStyle(foodSt);
                 foodSwitch2[i].Size = new Size(96, 60);
+                foodSwitch2[i].Feedback = true;
                 parentView[2].Add(foodSwitch2[i]);
             }
             for (i = 0; i < 4; i++)
@@ -276,6 +288,7 @@ namespace Tizen.NUI.Samples
                 kitchenSwitch2[i] = new Switch();
                 kitchenSwitch2[i].ApplyStyle(kitchenSt);
                 kitchenSwitch2[i].Size = new Size(96, 60);
+                kitchenSwitch2[i].Feedback = true;
                 parentView[2].Add(kitchenSwitch2[i]);
             }
 
@@ -315,52 +328,52 @@ namespace Tizen.NUI.Samples
                 int num = 4;
                 for (int i = 0; i < num; i++)
                 {
-                    utilitySwitch[i].Dispose();
+                    utilitySwitch[i]?.Dispose();
                     utilitySwitch[i] = null;
 
-                    familySwitch[i].Dispose();
+                    familySwitch[i]?.Dispose();
                     familySwitch[i] = null;
 
-                    foodSwitch[i].Dispose();
+                    foodSwitch[i]?.Dispose();
                     foodSwitch[i] = null;
 
-                    kitchenSwitch[i].Dispose();
+                    kitchenSwitch[i]?.Dispose();
                     kitchenSwitch[i] = null;
 
-                    modeText[i].Dispose();
+                    modeText[i]?.Dispose();
                     modeText[i] = null;
 
-                    utilitySwitch2[i].Dispose();
+                    utilitySwitch2[i]?.Dispose();
                     utilitySwitch2[i] = null;
 
-                    familySwitch2[i].Dispose();
+                    familySwitch2[i]?.Dispose();
                     familySwitch2[i] = null;
 
-                    foodSwitch2[i].Dispose();
+                    foodSwitch2[i]?.Dispose();
                     foodSwitch2[i] = null;
 
-                    kitchenSwitch2[i].Dispose();
+                    kitchenSwitch2[i]?.Dispose();
                     kitchenSwitch2[i] = null;
 
-                    modeText2[i].Dispose();
+                    modeText2[i]?.Dispose();
                     modeText2[i] = null;
                 }
 
-                createText[0].Dispose();
+                createText[0]?.Dispose();
                 createText[0] = null;
-                createText[1].Dispose();
+                createText[1]?.Dispose();
                 createText[1] = null;
 
                 for (int j = 0; j < 3; j++)
                 {
                     if (parentView[j] != null)
                     {
-                        parentView[j].Dispose();
+                        parentView[j]?.Dispose();
                         parentView[j] = null;
                     }
                 }
                 NUIApplication.GetDefaultWindow().Remove(root);
-                root.Dispose();
+                root?.Dispose();
                 root = null;
             }
         }

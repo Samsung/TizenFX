@@ -26,12 +26,14 @@ namespace Tizen.NUI.Wearable
     /// The CircualrScrollbar is a wearable NUI component that can be linked to the scrollable objects
     /// indicating the current scroll position of the scrollable object.<br />
     /// </summary>
+    [Obsolete("This has been deprecated in API12")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class CircularScrollbar : ScrollbarBase
     {
         #region Fields
 
         /// <summary>Bindable property of Thickness</summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ThicknessProperty = BindableProperty.Create(nameof(Thickness), typeof(float), typeof(CircularScrollbar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -97,7 +99,6 @@ namespace Tizen.NUI.Wearable
         private Size containerSize = new Size(0, 0);
         private Animation thumbStartAngleAnimation;
         private Animation thumbSweepAngleAnimation;
-        private bool mScrollEnabled = true;
 
         #endregion Fields
 
@@ -107,7 +108,8 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Create an empty CircularScrollbar.
         /// </summary>
-        public CircularScrollbar() : base(new CircularScrollbarStyle())
+        [Obsolete("This has been deprecated in API12")]
+        public CircularScrollbar() : base()
         {
         }
 
@@ -118,8 +120,9 @@ namespace Tizen.NUI.Wearable
         /// <param name="viewportLength">The length of the viewport representing the amount of visible content.</param>
         /// <param name="currentPosition">The current position of the viewport in scrollable content area. This is the viewport's top position if the scroller is vertical, otherwise, left.</param>
         /// <param name="isHorizontal">Whether the direction of scrolling is horizontal or not. It is vertical by default.</param>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public CircularScrollbar(float contentLength, float viewportLength, float currentPosition, bool isHorizontal = false) : base(new CircularScrollbarStyle())
+        public CircularScrollbar(float contentLength, float viewportLength, float currentPosition, bool isHorizontal = false) : base()
         {
             Initialize(contentLength, viewportLength, currentPosition, isHorizontal);
         }
@@ -127,6 +130,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Create an empty CircularScrollbar with a CircularScrollbarStyle instance to set style properties.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CircularScrollbar(CircularScrollbarStyle style) : base(style)
         {
@@ -137,6 +141,7 @@ namespace Tizen.NUI.Wearable
         /// </summary>
         static CircularScrollbar()
         {
+            ThemeManager.AddPackageTheme(DefaultThemeCreator.Instance);
         }
 
         #endregion Constructors
@@ -145,26 +150,9 @@ namespace Tizen.NUI.Wearable
         #region Properties
 
         /// <summary>
-        /// Return a copied Style instance of CircularScrollbar
-        /// </summary>
-        /// <remarks>
-        /// It returns copied Style instance and changing it does not effect to the CircularScrollbar.
-        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
-        /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public CircularScrollbarStyle Style
-        {
-            get
-            {
-                var result = new CircularScrollbarStyle(ViewStyle as CircularScrollbarStyle);
-                result.CopyPropertiesFromView(this);
-                return result;
-            }
-        }
-
-        /// <summary>
         /// The thickness of the scrollbar and track.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float Thickness
         {
@@ -179,6 +167,7 @@ namespace Tizen.NUI.Wearable
         /// Values below 6 degrees are treated as 6 degrees.
         /// Values exceeding 180 degrees are treated as 180 degrees.
         /// </remarks>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float TrackSweepAngle
         {
@@ -189,6 +178,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The color of the track part.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color TrackColor
         {
@@ -199,6 +189,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The color of the thumb part.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color ThumbColor
         {
@@ -214,6 +205,7 @@ namespace Tizen.NUI.Wearable
         #region Methods
 
         /// <inheritdoc/>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Initialize(float contentLength, float viewportLenth, float currentPosition, bool isHorizontal = false)
         {
@@ -283,6 +275,16 @@ namespace Tizen.NUI.Wearable
         }
 
         /// <inheritdoc/>
+        [Obsolete("This has been deprecated in API12")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void Update(float contentLength, float viewportLength, float position, uint durationMs = 0, AlphaFunction alphaFunction = null)
+        {
+            this.visibleLength = viewportLength;
+            Update(contentLength, position, durationMs, alphaFunction);
+        }
+
+        /// <inheritdoc/>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Update(float contentLength, float position, uint durationMs = 0, AlphaFunction alphaFunction = null)
         {
@@ -319,13 +321,14 @@ namespace Tizen.NUI.Wearable
         }
 
         /// <inheritdoc/>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void ScrollTo(float position, uint durationMs = 0, AlphaFunction alphaFunction = null)
         {
             previousPosition = currentPosition;
             currentPosition = position;
 
-            if (mScrollEnabled == false)
+            if (ControlState == ControlState.Disabled)
             {
                 return;
             }
@@ -355,12 +358,18 @@ namespace Tizen.NUI.Wearable
         }
 
         /// <inheritdoc/>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnRelayout(Vector2 size, RelayoutContainer container)
         {
             base.OnRelayout(size, container);
 
-            if (size.Width == containerSize?.Width && size.Height == containerSize.Height)
+            if (size == null || container == null || containerSize == null)
+            {
+                return;
+            }
+
+            if (size.Width == containerSize.Width && size.Height == containerSize.Height)
             {
                 return;
             }
@@ -380,6 +389,19 @@ namespace Tizen.NUI.Wearable
         }
 
         /// <inheritdoc/>
+        [Obsolete("This has been deprecated in API12")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void ApplyStyle(ViewStyle viewStyle)
+        {
+            if (viewStyle == null) return;
+            if (viewStyle.WidthResizePolicy == null) viewStyle.WidthResizePolicy = ResizePolicyType.FillToParent;
+            if (viewStyle.HeightResizePolicy == null) viewStyle.HeightResizePolicy = ResizePolicyType.FillToParent;
+
+            base.ApplyStyle(viewStyle);
+        }
+
+        /// <inheritdoc/>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override ViewStyle CreateViewStyle()
         {
@@ -469,42 +491,20 @@ namespace Tizen.NUI.Wearable
         }
 
         /// <inheritdoc/>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool ScrollEnabled
+        public override float ScrollPosition
         {
-            get
-            {
-                return mScrollEnabled;
-            }
-            set
-            {
-                if (value != mScrollEnabled)
-                {
-                    mScrollEnabled = value;
-                }
-            }
+            get => Math.Min(Math.Max(currentPosition, 0.0f), contentLength - visibleLength);
         }
 
         /// <inheritdoc/>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override Position ScrollPosition
+        public override float ScrollCurrentPosition
         {
             get
             {
-                bool isHorizontal = (directionAlpha == 270.0f) ? true : false;
-                float length = Math.Min(Math.Max(currentPosition, 0.0f), contentLength - visibleLength);
-
-                return (isHorizontal ? new Position(length, 0.0f) : new Position(0.0f, length));
-            }
-        }
-
-        /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override Position ScrollCurrentPosition
-        {
-            get
-            {
-                bool isHorizontal = (directionAlpha == 270.0f) ? true : false;
                 float length = Math.Min(Math.Max(currentPosition, 0.0f), contentLength - visibleLength);
 
                 if (thumbStartAngleAnimation != null)
@@ -515,7 +515,7 @@ namespace Tizen.NUI.Wearable
                     length = ((1.0f - progress) * previousLength) + (progress * length);
                 }
 
-                return (isHorizontal ? new Position(length, 0.0f) : new Position(0.0f, length));
+                return length;
             }
         }
 

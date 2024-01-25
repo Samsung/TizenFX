@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,16 +15,16 @@
  *
  */
 
+using System;
 using System.ComponentModel;
+using System.Diagnostics;
 
 namespace Tizen.NUI
 {
-
     /// <summary>
-    /// The property map class that has transform property for one of its items.
-    /// This class can be used to convert visual properties to map.
+    /// The base class to describe basic shadow.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public abstract class ShadowBase
     {
         private static readonly Vector2 noOffset = new Vector2(0, 0);
@@ -45,38 +45,53 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected ShadowBase(Vector2 offset, Vector2 extents)
         {
-            Offset = new Vector2(offset);
-            Extents = new Vector2(extents);
+            Offset = offset == null ? null : new Vector2(offset);
+            Extents = extents == null ? null : new Vector2(extents);
         }
 
-        /// <summary></summary>
+        /// <summary>
+        /// Create a Shadow from a property map.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal protected ShadowBase(PropertyMap propertyMap)
+        protected ShadowBase(PropertyMap propertyMap)
         {
-            Offset = noOffset;
-            Extents = noExtents;
+            Debug.Assert(propertyMap != null);
 
-            if (propertyMap == null)
+            Offset = new Vector2(noOffset);
+            Extents = new Vector2(noExtents);
+
+            var transformProperty = propertyMap.Find(Visual.Property.Transform);
+
+            if (transformProperty == null)
             {
+                // No transform map
                 return;
             }
 
-            SetPropertyMap(propertyMap);
+            var transformMap = new PropertyMap();
+
+            if (transformProperty.Get(transformMap))
+            {
+                SetTransformMap(transformMap);
+            }
+            transformProperty.Dispose();
+            transformMap.Dispose();
         }
 
         /// <summary>
         /// Copy Constructor
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when other is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected ShadowBase(ShadowBase other) : this(other.Offset, other.Extents)
+        protected ShadowBase(ShadowBase other) : this(other == null ? throw new ArgumentNullException(nameof(other)) : other.Offset, other.Extents)
         {
         }
 
         /// <summary>
         /// The position offset value (x, y) from the top left corner.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2 Offset { get; set; }
+        /// <since_tizen> 9 </since_tizen>
+        public Vector2 Offset { get; internal set; }
 
         /// <summary>
         /// The shadow will extend its size by specified amount of length.<br />
@@ -84,32 +99,36 @@ namespace Tizen.NUI
         /// For example, when View's size is (100, 100) and the Shadow's Extents is (5, -5),
         /// the output shadow will have size (105, 95).
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2 Extents { get; set; }
+        /// <since_tizen> 9 </since_tizen>
+        public Vector2 Extents { get; internal set; }
 
-        /// <summary></summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Equality operator.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public static bool operator ==(ShadowBase shadow1, ShadowBase shadow2)
         {
             return object.ReferenceEquals(shadow1, null) ? object.ReferenceEquals(shadow2, null) : shadow1.Equals(shadow2);
         }
 
-        /// <summary></summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Inequality operator.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
         public static bool operator !=(ShadowBase shadow1, ShadowBase shadow2)
         {
             return !(shadow1 == shadow2);
         }
 
         /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public override bool Equals(object other)
         {
-            if ((other == null) || ! this.GetType().Equals(other.GetType())) 
+            if ((other == null) || !GetType().Equals(other.GetType()))
             {
                 return false;
             }
-            
+
             var otherShadow = (ShadowBase)other;
 
             if (!((Offset == null) ? otherShadow.Offset == null : Offset.Equals(otherShadow.Offset)))
@@ -117,7 +136,7 @@ namespace Tizen.NUI
                 return false;
             }
 
-            return ((Extents == null) ? otherShadow.Extents == null : Extents.Equals(otherShadow.Extents));
+            return (Extents == null) ? otherShadow.Extents == null : Extents.Equals(otherShadow.Extents);
         }
 
         /// <inheritdoc/>
@@ -143,65 +162,41 @@ namespace Tizen.NUI
 
             var map = GetPropertyMap();
 
-            if (attachedView.CornerRadius > 0)
+            if (attachedView.CornerRadius != null)
             {
-                map[Visual.Property.CornerRadius] = new PropertyValue(attachedView.CornerRadius);
+                map[Visual.Property.CornerRadius] = attachedView.CornerRadius == null ? new PropertyValue() : new PropertyValue(attachedView.CornerRadius);
+                map[Visual.Property.CornerRadiusPolicy] = new PropertyValue((int)attachedView.CornerRadiusPolicy);
             }
-
-            map[Visual.Property.Transform] = GetTransformMap();
 
             return new PropertyValue(map);
         }
 
         /// <summary>
+        /// Extract a property map.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual PropertyMap GetPropertyMap()
         {
             PropertyMap map = new PropertyMap();
 
+            map[Visual.Property.Transform] = GetTransformMap();
+
             return map;
-        }
-
-        /// <summary>
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual bool SetPropertyMap(PropertyMap propertyMap)
-        {
-            if (propertyMap == null)
-            {
-                return false;
-            }
-
-            var transformProperty = propertyMap.Find(Visual.Property.Transform);
-
-            if (transformProperty == null)
-            {
-                // No transform map
-                return true;
-            }
-
-            var transformMap = new PropertyMap();
-
-            if (transformProperty.Get(transformMap))
-            {
-                SetTransformMap(transformMap);
-            }
-
-            return true;
         }
 
         private PropertyValue GetTransformMap()
         {
             var transformMap = new PropertyMap();
 
-            if (!Offset.Equals(noOffset))
+            if (!noOffset.Equals(Offset))
             {
-                transformMap[(int)VisualTransformPropertyType.OffsetPolicy] = new PropertyValue(new Vector2((int)VisualTransformPolicyType.Absolute, (int)VisualTransformPolicyType.Absolute));
+                var temp = new Vector2((int)VisualTransformPolicyType.Absolute, (int)VisualTransformPolicyType.Absolute);
+                transformMap[(int)VisualTransformPropertyType.OffsetPolicy] = new PropertyValue(temp);
                 transformMap[(int)VisualTransformPropertyType.Offset] = PropertyValue.CreateWithGuard(Offset);
+                temp.Dispose();
             }
 
-            if (!Extents.Equals(noExtents))
+            if (!noExtents.Equals(Extents))
             {
                 transformMap[(int)VisualTransformPropertyType.ExtraSize] = PropertyValue.CreateWithGuard(Extents);
             }
@@ -209,12 +204,11 @@ namespace Tizen.NUI
             transformMap[(int)VisualTransformPropertyType.Origin] = new PropertyValue((int)Visual.AlignType.Center);
             transformMap[(int)VisualTransformPropertyType.AnchorPoint] = new PropertyValue((int)Visual.AlignType.Center);
 
-            return new PropertyValue(transformMap);
+            var ret = new PropertyValue(transformMap);
+            transformMap.Dispose();
+            return ret;
         }
 
-        /// <summary>
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         private void SetTransformMap(PropertyMap transformMap)
         {
             if (transformMap == null)
@@ -222,10 +216,12 @@ namespace Tizen.NUI
                 return;
             }
 
-            transformMap.Find((int)VisualTransformPropertyType.Offset)?.Get(Offset);
-            transformMap.Find((int)VisualTransformPropertyType.ExtraSize)?.Get(Extents);
+            PropertyValue temp = transformMap.Find((int)VisualTransformPropertyType.Offset);
+            temp?.Get(Offset);
+            temp?.Dispose();
+            temp = transformMap.Find((int)VisualTransformPropertyType.ExtraSize);
+            temp?.Get(Extents);
+            temp?.Dispose();
         }
     }
 }
-
-

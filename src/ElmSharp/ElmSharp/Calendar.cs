@@ -19,13 +19,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 
-
 namespace ElmSharp
 {
     /// <summary>
     /// Enumeration for event periodicity, used to define if a mark should be repeated beyond the event's day. It's set when a mark is added.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum CalendarMarkRepeatType
     {
         /// <summary>
@@ -63,6 +63,7 @@ namespace ElmSharp
     /// Enumeration for the mode, which determines how a user could select a day.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum CalendarSelectMode
     {
         /// <summary>
@@ -90,6 +91,7 @@ namespace ElmSharp
     /// Enumeration for defining which fields of a tm struct will be taken into account.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     [Flags]
     public enum CalendarSelectable
     {
@@ -115,6 +117,7 @@ namespace ElmSharp
     /// The CalendarMark is an item for marking a Calendar's type, date, and repeat type.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class CalendarMark
     {
         internal IntPtr Handle;
@@ -123,18 +126,21 @@ namespace ElmSharp
         /// A string used to define the type of mark.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string Type;
 
         /// <summary>
         /// A time struct to represent the date of inclusion of the mark.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public DateTime Date;
 
         /// <summary>
         /// Repeats the event following this periodicity.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public CalendarMarkRepeatType Repeat;
 
         /// <summary>
@@ -144,6 +150,7 @@ namespace ElmSharp
         /// <param name="date">Date of inclusion of the mark.</param>
         /// <param name="repeat">Repeat type.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public CalendarMark(string type, DateTime date, CalendarMarkRepeatType repeat)
         {
             Handle = IntPtr.Zero;
@@ -157,6 +164,7 @@ namespace ElmSharp
     /// The Calendar is a widget that helps applications to flexibly display a calender with day of the week, date, year, and month.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class Calendar : Layout
     {
         SmartEvent _changed;
@@ -174,6 +182,7 @@ namespace ElmSharp
         /// The EvasObject to which the new calendar will be attached as a child.
         /// </param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Calendar(EvasObject parent) : base(parent)
         {
             _changed = new SmartEvent(this, this.RealHandle, "changed");
@@ -199,12 +208,14 @@ namespace ElmSharp
         /// DateChanged will be triggered when the date in the calendar is changed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<DateChangedEventArgs> DateChanged;
 
         /// <summary>
         /// DisplayedMonthChanged will be triggered when the current month displayed in the calendar is changed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<DisplayedMonthChangedEventArgs> DisplayedMonthChanged;
 
         /// <summary>
@@ -213,12 +224,14 @@ namespace ElmSharp
         /// <param name="time">DateTime</param>
         /// <returns></returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public delegate string DateFormatDelegate(DateTime time);
 
         /// <summary>
         /// Sets or gets the minimum for year.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int MinimumYear
         {
             get
@@ -245,6 +258,7 @@ namespace ElmSharp
         /// Sets or gets the maximum for the year.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int MaximumYear
         {
             get
@@ -267,6 +281,7 @@ namespace ElmSharp
         /// Sets or gets the first day of the week, which is used on the calendar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public DateTime DisplayedTime
         {
             get
@@ -292,6 +307,7 @@ namespace ElmSharp
         /// Sets or gets the first day of the week, which is used on the calendar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public DayOfWeek FirstDayOfWeek
         {
             get
@@ -313,6 +329,7 @@ namespace ElmSharp
         /// Calendar.WeekDayNames = weekDayNames;
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public IReadOnlyList<string> WeekDayNames
         {
             get
@@ -338,6 +355,7 @@ namespace ElmSharp
         /// The selected date changes when the user goes to the next/previous month or selects a day pressing over it on the calendar.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public DateTime SelectedDate
         {
             get
@@ -363,6 +381,7 @@ namespace ElmSharp
         /// hold, on the calendar widgets' month/year selection.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double Interval
         {
             get
@@ -379,6 +398,7 @@ namespace ElmSharp
         /// Gets or sets the select day mode used.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public CalendarSelectMode SelectMode
         {
             get
@@ -395,6 +415,7 @@ namespace ElmSharp
         /// Gets or sets the fields of a datetime that will be taken into account, when SelectedDate set is invoked.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public CalendarSelectable Selectable
         {
             get
@@ -411,6 +432,7 @@ namespace ElmSharp
         /// Gets or sets the date format of the string that will be used to display month and year.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public DateFormatDelegate DateFormat
         {
             get
@@ -439,6 +461,7 @@ namespace ElmSharp
         /// <param name="repeat">Repeat the event following this periodicity. Can be a unique mark (that doesn't repeat), daily, weekly, monthly, or annually.</param>
         /// <returns>Item for a calendar mark.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public CalendarMark AddMark(string type, DateTime date, CalendarMarkRepeatType repeat)
         {
             CalendarMark mark = new CalendarMark(type, date, repeat);
@@ -454,6 +477,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="mark">Item for a calendar mark.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void DeleteMark(CalendarMark mark)
         {
             Interop.Elementary.elm_calendar_mark_del(mark.Handle);
@@ -463,6 +487,7 @@ namespace ElmSharp
         /// Draws the calendar marks.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void DrawMarks()
         {
             Interop.Elementary.elm_calendar_marks_draw(RealHandle);
@@ -472,6 +497,7 @@ namespace ElmSharp
         /// Removes all the calendar's marks.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void ClearMarks()
         {
             Interop.Elementary.elm_calendar_marks_clear(RealHandle);
@@ -483,6 +509,7 @@ namespace ElmSharp
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);

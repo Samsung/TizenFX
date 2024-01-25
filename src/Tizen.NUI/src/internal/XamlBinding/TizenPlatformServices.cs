@@ -1,3 +1,20 @@
+/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 // using ElmSharp;
 using System;
 using System.Collections.Generic;
@@ -15,7 +32,7 @@ namespace Tizen.NUI.Binding
 {
     internal class TizenPlatformServices : IPlatformServices
     {
-        static MD5 checksum = MD5.Create();
+        static SHA256 checksum = SHA256.Create();
 
         static SynchronizationContext s_context;
 
@@ -52,15 +69,15 @@ namespace Tizen.NUI.Binding
                 }
             };
             timer = new System.Threading.Timer(onTimeout, null, Timeout.Infinite, Timeout.Infinite);
-            // set interval separarately to prevent calling onTimeout before `timer' is assigned
+            // set interval separately to prevent calling onTimeout before `timer' is assigned
             timer.Change(interval, interval);
         }
 
         public async Task<Stream> GetStreamAsync(Uri uri, CancellationToken cancellationToken)
         {
             using (var client = new HttpClient())
-            using (HttpResponseMessage response = await client.GetAsync(uri, cancellationToken))
-                return await response.Content.ReadAsStreamAsync();
+            using (HttpResponseMessage response = await client.GetAsync(uri, cancellationToken).ConfigureAwait(false))
+                return await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
         }
 
         public Assembly[] GetAssemblies()
@@ -110,7 +127,7 @@ namespace Tizen.NUI.Binding
         {
             public static AppDomain CurrentDomain { get; private set; }
 
-            List<Assembly> _assemblies;
+            List<Assembly> assemblies;
 
             public static bool IsTizenSpecificAvailable { get; private set; }
 
@@ -121,18 +138,18 @@ namespace Tizen.NUI.Binding
 
             AppDomain()
             {
-                _assemblies = new List<Assembly>();
+                assemblies = new List<Assembly>();
 
                 // Add this renderer assembly to the list
-                _assemblies.Add(GetType().GetTypeInfo().Assembly);
+                assemblies.Add(GetType().GetTypeInfo().Assembly);
             }
 
             internal void RegisterAssemblyRecursively(Assembly asm)
             {
-                if (_assemblies.Contains(asm))
+                if (assemblies.Contains(asm))
                     return;
 
-                _assemblies.Add(asm);
+                assemblies.Add(asm);
 
                 foreach (var refName in asm.GetReferencedAssemblies())
                 {
@@ -163,7 +180,7 @@ namespace Tizen.NUI.Binding
 
             public Assembly[] GetAssemblies()
             {
-                return _assemblies.ToArray();
+                return assemblies.ToArray();
             }
         }
     }

@@ -27,7 +27,7 @@ namespace Tizen.NUI.Components
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     [Obsolete("Deprecated in API8; Will be removed in API10")]
-    public class Tab : Control
+    public partial class Tab : Control
     {
         private const int aniTime = 100; // will be defined in const file later
         private List<TabItem> itemList = new List<TabItem>();
@@ -78,24 +78,17 @@ namespace Tizen.NUI.Components
         public event EventHandler<ItemChangedEventArgs> ItemChangedEvent;
 
         /// <summary>
-        /// Return a copied Style instance of Tab
+        /// Return currently applied style.
         /// </summary>
         /// <remarks>
-        /// It returns copied Style instance and changing it does not effect to the Tab.
-        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
+        /// Modifying contents in style may cause unexpected behaviour.
         /// </remarks>
         /// <since_tizen> 8 </since_tizen>
-        public new TabStyle Style
-        {
-            get
-            {
-                var result = new TabStyle(tabStyle);
-                result.CopyPropertiesFromView(this);
-                result.UnderLine.CopyPropertiesFromView(underline);
-                return result;
-            }
-        }
+        public TabStyle Style => (TabStyle)(ViewStyle as TabStyle)?.Clone();
 
+        /// <summary>
+        /// Get underline of Tab.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View Underline
         {
@@ -128,6 +121,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return (int)GetValue(SelectedItemIndexProperty);
+            }
+            set
+            {
+                SetValue(SelectedItemIndexProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalSelectedItemIndex
+        {
+            get
+            {
                 return curIndex;
             }
             set
@@ -146,6 +151,18 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
         public bool UseTextNaturalSize
+        {
+            get
+            {
+                return (bool)GetValue(UseTextNaturalSizeProperty);
+            }
+            set
+            {
+                SetValue(UseTextNaturalSizeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private bool InternalUseTextNaturalSize
         {
             get
             {
@@ -170,6 +187,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return (int)GetValue(ItemSpaceProperty);
+            }
+            set
+            {
+                SetValue(ItemSpaceProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalItemSpace
+        {
+            get
+            {
                 return tabStyle?.ItemSpace ?? 0;
             }
             set
@@ -191,6 +220,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(SpaceProperty) as Extents;
+            }
+            set
+            {
+                SetValue(SpaceProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Extents InternalSpace
+        {
+            get
+            {
                 return ItemPadding;
             }
             set
@@ -209,11 +250,23 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(ItemPaddingProperty) as Extents;
+            }
+            set
+            {
+                SetValue(ItemPaddingProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Extents InternalItemPadding
+        {
+            get
+            {
                 return space;
             }
             set
             {
-                if(null != value && null != tabStyle?.ItemPadding)
+                if (null != value && null != tabStyle?.ItemPadding)
                 {
                     tabStyle.ItemPadding.CopyFrom(value);
 
@@ -247,6 +300,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(UnderLineSizeProperty) as Size;
+            }
+            set
+            {
+                SetValue(UnderLineSizeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Size InternalUnderLineSize
+        {
+            get
+            {
                 return Underline.Size;
             }
             set
@@ -265,6 +330,18 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
         public Color UnderLineBackgroundColor
+        {
+            get
+            {
+                return GetValue(UnderLineBackgroundColorProperty) as Color;
+            }
+            set
+            {
+                SetValue(UnderLineBackgroundColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Color InternalUnderLineBackgroundColor
         {
             get
             {
@@ -289,6 +366,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return (float)GetValue(PointSizeProperty);
+            }
+            set
+            {
+                SetValue(PointSizeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private float InternalPointSize
+        {
+            get
+            {
                 return tabStyle?.Text?.PointSize?.All ?? 0;
             }
             set
@@ -310,6 +399,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(FontFamilyProperty) as string;
+            }
+            set
+            {
+                SetValue(FontFamilyProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalFontFamily
+        {
+            get
+            {
                 return tabStyle?.Text?.FontFamily?.All;
             }
             set
@@ -317,7 +418,7 @@ namespace Tizen.NUI.Components
                 if (null != tabStyle?.Text)
                 {
                     tabStyle.Text.FontFamily = value;
-					RelayoutRequest();
+                    RelayoutRequest();
                 }
             }
         }
@@ -331,6 +432,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(TextColorProperty) as Color;
+            }
+            set
+            {
+                SetValue(TextColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Color InternalTextColor
+        {
+            get
+            {
                 return tabStyle?.Text?.TextColor?.All;
             }
             set
@@ -338,7 +451,7 @@ namespace Tizen.NUI.Components
                 if (null != tabStyle?.Text)
                 {
                     tabStyle.Text.TextColor = value;
-					RelayoutRequest();
+                    RelayoutRequest();
                 }
             }
         }
@@ -350,6 +463,18 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
         public ColorSelector TextColorSelector
+        {
+            get
+            {
+                return GetValue(TextColorSelectorProperty) as ColorSelector;
+            }
+            set
+            {
+                SetValue(TextColorSelectorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private ColorSelector InternalTextColorSelector
         {
             get
             {
@@ -400,7 +525,7 @@ namespace Tizen.NUI.Components
         [Obsolete("Deprecated in API8; Will be removed in API10")]
         public void DeleteItem(int itemIndex)
         {
-            if(itemList == null || itemIndex < 0 || itemIndex >= itemList.Count)
+            if (itemList == null || itemIndex < 0 || itemIndex >= itemList.Count)
             {
                 return;
             }
@@ -441,7 +566,9 @@ namespace Tizen.NUI.Components
         /// <param name="type">Dispose type.</param>
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
+#pragma warning disable CS0809 // Obsolete member overrides non-obsolete member, It will be removed in API10
         protected override void Dispose(DisposeTypes type)
+#pragma warning restore CS0809 // Obsolete member overrides non-obsolete member, It will be removed in API10
         {
             if (disposed)
             {
@@ -450,9 +577,9 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
-                if(underlineAni != null)
+                if (underlineAni != null)
                 {
-                    if(underlineAni.State == Animation.States.Playing)
+                    if (underlineAni.State == Animation.States.Playing)
                     {
                         underlineAni.Stop();
                     }
@@ -460,9 +587,9 @@ namespace Tizen.NUI.Components
                     underlineAni = null;
                 }
                 Utility.Dispose(underline);
-                if(itemList != null)
+                if (itemList != null)
                 {
-                    for(int i = 0; i < itemList.Count; i++)
+                    for (int i = 0; i < itemList.Count; i++)
                     {
                         Remove(itemList[i]);
                         itemList[i].Dispose();
@@ -498,21 +625,6 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Theme change callback when theme is changed, this callback will be trigger.
-        /// </summary>
-        /// <param name="sender">The sender</param>
-        /// <param name="e">The event data</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
-        {
-            TabStyle tabStyle = StyleManager.Instance.GetViewStyle(StyleName) as TabStyle;
-            if (tabStyle != null)
-            {
-                ApplyStyle(tabStyle);
-            }
-        }
-
-        /// <summary>
         /// Layout child in Tab and it can be override by user.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -542,8 +654,8 @@ namespace Tizen.NUI.Components
                     for (int i = 0; i < totalNum; i++)
                     {
                         preW = (itemList[i].TextItem.NaturalSize2D != null ? itemList[i].TextItem.NaturalSize2D.Width : 0);
-                        itemList[i].Position2D.X = preX;
-                        itemList[i].Size2D.Width = preW;
+                        itemList[i].PositionX = preX;
+                        itemList[i].SizeWidth = preW;
                         preX = itemList[i].Position2D.X + preW + itemSpace;
                         itemList[i].Index = i;
                     }
@@ -553,8 +665,8 @@ namespace Tizen.NUI.Components
                     preW = (Size2D.Width - (int)tabStyle?.ItemPadding.Start - (int)tabStyle?.ItemPadding.End) / totalNum;
                     for (int i = 0; i < totalNum; i++)
                     {
-                        itemList[i].Position2D.X = preX;
-                        itemList[i].Size2D.Width = preW;
+                        itemList[i].PositionX = preX;
+                        itemList[i].SizeWidth = preW;
                         preX = itemList[i].Position2D.X + preW + itemSpace;
                         itemList[i].Index = i;
                     }
@@ -569,8 +681,8 @@ namespace Tizen.NUI.Components
                     for (int i = 0; i < totalNum; i++)
                     {
                         preW = (itemList[i].NaturalSize2D != null ? itemList[i].NaturalSize2D.Width : 0);
-                        itemList[i].Position2D.X = w - preW - preX;
-                        itemList[i].Size2D.Width = preW;
+                        itemList[i].PositionX = w - preW - preX;
+                        itemList[i].SizeWidth = preW;
                         preX = w - itemList[i].Position2D.X + itemSpace;
                         itemList[i].Index = i;
                     }
@@ -580,8 +692,8 @@ namespace Tizen.NUI.Components
                     preW = (Size2D.Width - (int)tabStyle?.ItemPadding.Start - (int)tabStyle?.ItemPadding.End) / totalNum;
                     for (int i = totalNum - 1; i >= 0; i--)
                     {
-                        itemList[i].Position2D.X = preX;
-                        itemList[i].Size2D.Width = preW;
+                        itemList[i].PositionX = preX;
+                        itemList[i].SizeWidth = preW;
                         preX = itemList[i].Position2D.X + preW + itemSpace;
                         itemList[i].Index = i;
                     }
@@ -614,8 +726,8 @@ namespace Tizen.NUI.Components
             item.TextItem.ApplyStyle(tabStyle.Text);
 
             item.Text = itemData.Text;
-            item.Size2D.Height = Size2D.Height - h - topSpace;
-            item.Position2D.Y = topSpace;
+            item.SizeHeight = SizeHeight - h - topSpace;
+            item.PositionY = topSpace;
             item.TouchEvent += ItemTouchEvent;
             Add(item);
 
@@ -655,7 +767,7 @@ namespace Tizen.NUI.Components
                 underlineAni = new Animation(aniTime);
             }
         }
-        
+
         private void UpdateUnderLinePos()
         {
             if (underline == null || Underline.Size == null || itemList == null || itemList.Count <= 0)
@@ -663,7 +775,7 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            Underline.Size.Width = itemList[curIndex].Size2D.Width;
+            Underline.SizeWidth = itemList[curIndex].Size2D.Width;
 
             underline.Size2D = new Size2D(itemList[curIndex].Size2D.Width, (int)Underline.Size.Height);
             underline.BackgroundColor = tabStyle.UnderLine.BackgroundColor.All;
@@ -680,7 +792,7 @@ namespace Tizen.NUI.Components
             }
             else
             {
-                underline.Position2D.X = itemList[curIndex].Position2D.X;
+                underline.PositionX = itemList[curIndex].PositionX;
                 isNeedAnimation = true;
             }
 
@@ -689,7 +801,7 @@ namespace Tizen.NUI.Components
 
         private void UpdateSelectedItem(TabItem item)
         {
-            if(item == null || curIndex == item.Index)
+            if (item == null || curIndex == item.Index)
             {
                 return;
             }
@@ -711,7 +823,7 @@ namespace Tizen.NUI.Components
         private bool ItemTouchEvent(object source, TouchEventArgs e)
         {
             TabItem item = source as TabItem;
-            if(item == null)
+            if (item == null)
             {
                 return false;
             }
@@ -788,6 +900,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class TabItemData
         {
             /// <summary>
@@ -807,14 +920,19 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class ItemChangedEventArgs : EventArgs
         {
             /// <summary> Previous selected index of Tab </summary>
             /// <since_tizen> 6 </since_tizen>
+            /// It will be removed in API10
+            [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
             [Obsolete("Deprecated in API8; Will be removed in API10")]
             public int PreviousIndex;
             /// <summary> Current selected index of Tab </summary>
             /// <since_tizen> 6 </since_tizen>
+            /// It will be removed in API10
+            [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
             [Obsolete("Deprecated in API8; Will be removed in API10")]
             public int CurrentIndex;
         }

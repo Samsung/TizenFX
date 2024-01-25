@@ -27,8 +27,9 @@ namespace Tizen.NUI.Components.Extension
     /// </remark>
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    internal class SlidingSwitchExtension : SwitchExtension
+    internal class SlidingSwitchExtension : SwitchExtension, IDisposable
     {
+        private bool disposed = false;
         private Animation slidingAnimation;
 
         public SlidingSwitchExtension() : base()
@@ -79,6 +80,36 @@ namespace Tizen.NUI.Components.Extension
                 slidingAnimation.Dispose();
                 slidingAnimation = null;
             }
+        }
+
+        /// <inheritdoc />
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnTrackOrThumbResized(Switch switchButton, ImageView track, ImageView thumb)
+        {
+            var destX = switchButton.IsSelected ? switchButton.Track.Size.Width - thumb.Size.Width : 0;
+            if (destX != thumb.PositionX) thumb.PositionX = destX;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                slidingAnimation?.Dispose();
+            }
+            disposed = true;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Dispose()
+        {
+            Dispose(true);
+            global::System.GC.SuppressFinalize(this);
         }
     }
 }

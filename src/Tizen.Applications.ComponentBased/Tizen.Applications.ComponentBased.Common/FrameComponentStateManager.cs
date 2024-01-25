@@ -42,6 +42,7 @@ namespace Tizen.Applications.ComponentBased.Common
             _callbacks.OnResume = new Interop.CBApplication.FrameResumeCallback(OnResumeCallback);
             _callbacks.OnStart = new Interop.CBApplication.FrameStartCallback(OnStartCallback);
             _callbacks.OnStop = new Interop.CBApplication.FrameStopCallback(OnStopCallback);
+            _callbacks.OnTimeZoneChanged = new Interop.CBApplication.FrameTimeZoneChangedCallback(OnTimeZoneChangedCallback);
             Parent = parent;
         }
 
@@ -81,7 +82,7 @@ namespace Tizen.Applications.ComponentBased.Common
             {
                 if (fc.Handle == context)
                 {
-                    SafeAppControlHandle handle = new SafeAppControlHandle(appControl, false);
+                    using SafeAppControlHandle handle = new SafeAppControlHandle(appControl, false);
                     AppControl control = new AppControl(handle);
                     fc.OnStart(control, restarted);
                     break;

@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Tizen.Applications;
 using Tizen.Applications.Exceptions;
@@ -28,22 +29,25 @@ namespace Tizen.NUI
     /// </summary>
     internal abstract class FrameBrokerBase : IDisposable
     {
-        private string LogTag = "NUI";
-        private readonly SafeFrameBrokerHandle _handle;
-        private Dictionary<int, Interop.FrameBroker.AppControlResultCallback> _resultCallbackMaps = new Dictionary<int, Interop.FrameBroker.AppControlResultCallback>();
-        private int _resultId = 0;
-        private Interop.FrameBroker.FrameContextLifecycleCallbacks _callbacks;
-        private IntPtr _context = IntPtr.Zero;
-        private bool _disposed = false;
+        private string logTag = "NUI";
+        private readonly SafeFrameBrokerHandle handle;
+        private Dictionary<int, Interop.FrameBroker.AppControlResultCallback> resultCallbackMaps = new Dictionary<int, Interop.FrameBroker.AppControlResultCallback>();
+        private int resultId = 0;
+        private Interop.FrameBroker.FrameContextLifecycleCallbacks callbacks;
+        private IntPtr context = IntPtr.Zero;
+        private bool disposed = false;
+
+        private Renderer renderer;
+        private TextureSet textureSet;
 
         /// <summary>
         /// Initializes the FrameBroker class.
         /// </summary>
         /// <param name="window">The window instance of Ecore_Wl2_Window pointer.</param>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid parameter.</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when the memory is insufficient.</exception>
+        /// <exception cref="Applications.Exceptions.OutOfMemoryException">Thrown when the memory is insufficient.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed to create the frame broker handle.</exception>
-        /// <remarks>This class is only avaliable for platform level signed applications.</remarks>
+        /// <remarks>This class is only available for platform level signed applications.</remarks>
         internal FrameBrokerBase(Window window)
         {
             Interop.FrameBroker.ErrorCode err;
@@ -53,14 +57,14 @@ namespace Tizen.NUI
                 throw FrameBrokerBaseErrorFactory.GetException(Interop.FrameBroker.ErrorCode.InvalidParameter, "Invalid parameter");
             }
 
-            _callbacks.OnCreate = new Interop.FrameBroker.FrameContextCreateCallback(OnCreateNative);
-            _callbacks.OnResume = new Interop.FrameBroker.FrameContextResumeCallback(OnResumeNavie);
-            _callbacks.OnPause = new Interop.FrameBroker.FrameContextPauseCallback(OnPauseNative);
-            _callbacks.OnDestroy = new Interop.FrameBroker.FrameContextDestroyCallback(OnDestroyNative);
-            _callbacks.OnError = new Interop.FrameBroker.FrameContextErrorCallback(OnErrorNative);
-            _callbacks.OnUpdate = new Interop.FrameBroker.FrameContextUpdateCallback(OnUpdateNative);
+            callbacks.OnCreate = new Interop.FrameBroker.FrameContextCreateCallback(OnCreateNative);
+            callbacks.OnResume = new Interop.FrameBroker.FrameContextResumeCallback(OnResumeNavie);
+            callbacks.OnPause = new Interop.FrameBroker.FrameContextPauseCallback(OnPauseNative);
+            callbacks.OnDestroy = new Interop.FrameBroker.FrameContextDestroyCallback(OnDestroyNative);
+            callbacks.OnError = new Interop.FrameBroker.FrameContextErrorCallback(OnErrorNative);
+            callbacks.OnUpdate = new Interop.FrameBroker.FrameContextUpdateCallback(OnUpdateNative);
 
-            err = Interop.FrameBroker.Create(window.GetNativeWindowHandler(), ref _callbacks, IntPtr.Zero, out _handle);
+            err = Interop.FrameBroker.Create(window.GetNativeWindowHandler(), ref callbacks, IntPtr.Zero, out handle);
             if (err != Interop.FrameBroker.ErrorCode.None)
             {
                 throw FrameBrokerBaseErrorFactory.GetException(err, "Failed to create frame broker handle");
@@ -79,13 +83,12 @@ namespace Tizen.NUI
         /// To launch a service application, an explicit launch request with the application ID given by property ApplicationId MUST be sent.
         /// </remarks>
         /// <param name="appControl">The AppControl.</param>
-        /// <param name="toProvider"> The flag, if it's true, the launch request is sent to the frame provider application.</param>
         /// <returns>A task with the result of the launch request.</returns>
         /// <exception cref="ArgumentException">Thrown when failed because of the argument is invalid.</exception>
         /// <exception cref="AppNotFoundException">Thrown when the application to run is not found.</exception>
         /// <exception cref="LaunchRejectedException">Thrown when the launch request is rejected.</exception>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
-        internal Task<FrameBrokerBaseResult> SendLaunchRequest(AppControl appControl, bool toProvider)
+        internal Task<FrameBrokerBaseResult> SendLaunchRequest(AppControl appControl)
         {
             if (appControl == null)
             {
@@ -95,25 +98,24 @@ namespace Tizen.NUI
             var task = new TaskCompletionSource<FrameBrokerBaseResult>();
             int requestId = 0;
 
-            lock (_resultCallbackMaps)
+            lock (resultCallbackMaps)
             {
-                requestId = _resultId++;
-                _resultCallbackMaps[requestId] = (handle, result, userData) =>
+                requestId = resultId++;
+                resultCallbackMaps[requestId] = (handle, result, userData) =>
                 {
                     task.SetResult((FrameBrokerBaseResult)result);
-                    lock (_resultCallbackMaps)
+                    lock (resultCallbackMaps)
                     {
-                        _resultCallbackMaps.Remove((int)userData);
+                        resultCallbackMaps.Remove((int)userData);
                     }
                 };
             }
 
             Interop.FrameBroker.ErrorCode err;
-            if (toProvider)
-                err = Interop.FrameBroker.SendLaunchRequestToProvider(_handle, appControl.SafeAppControlHandle, _resultCallbackMaps[requestId], null, (IntPtr)requestId);
-            else
-                err = Interop.FrameBroker.SendLaunchRequest(_handle, appControl.SafeAppControlHandle, _resultCallbackMaps[requestId], null, (IntPtr)requestId);
-
+            lock (resultCallbackMaps)
+            {
+                err = Interop.FrameBroker.SendLaunchRequest(handle, appControl.SafeAppControlHandle, resultCallbackMaps[requestId], null, (IntPtr)requestId);
+            }
             if (err != Interop.FrameBroker.ErrorCode.None)
             {
                 throw FrameBrokerBaseErrorFactory.GetException(err, "Failed to send launch request");
@@ -129,7 +131,7 @@ namespace Tizen.NUI
         /// <exception cref="InvalidOperationException">Thrown when failed because of system error.</exception>
         internal void StartAnimation()
         {
-            Interop.FrameBroker.ErrorCode err = Interop.FrameBroker.StartAnimation(_context);
+            Interop.FrameBroker.ErrorCode err = Interop.FrameBroker.StartAnimation(context);
             if (err != Interop.FrameBroker.ErrorCode.None)
             {
                 throw FrameBrokerBaseErrorFactory.GetException(err, "Failed to notify that the animation is started");
@@ -143,7 +145,7 @@ namespace Tizen.NUI
         /// <exception cref="InvalidOperationException">Thrown when failed because of system error.</exception>
         internal void FinishAnimation()
         {
-            Interop.FrameBroker.ErrorCode err = Interop.FrameBroker.FinishAnimation(_context);
+            Interop.FrameBroker.ErrorCode err = Interop.FrameBroker.FinishAnimation(context);
             if (err != Interop.FrameBroker.ErrorCode.None)
             {
                 throw FrameBrokerBaseErrorFactory.GetException(err, "Failed to notify that the animation is finished");
@@ -156,7 +158,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnFrameCreated()
         {
-            Log.Warn(LogTag, "The OnFrameCreated() is not implemented");
+            Log.Warn(logTag, "The OnFrameCreated() is not implemented");
         }
 
         /// <summary>
@@ -171,7 +173,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnFrameResumed(FrameData frame)
         {
-            Log.Warn(LogTag, "The OnFrameResumed() is not implemented");
+            Log.Warn(logTag, "The OnFrameResumed() is not implemented");
         }
 
         /// <summary>
@@ -181,7 +183,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnFrameUpdated(FrameData frame)
         {
-            Log.Warn(LogTag, "The OnFrameUpdated() is not implemented");
+            Log.Warn(logTag, "The OnFrameUpdated() is not implemented");
         }
 
         /// <summary>
@@ -190,7 +192,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnFramePaused()
         {
-            Log.Warn(LogTag, "The OnFramePaused() is not implemented");
+            Log.Warn(logTag, "The OnFramePaused() is not implemented");
         }
 
         /// <summary>
@@ -199,7 +201,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnFrameDestroyed()
         {
-            Log.Warn(LogTag, "The OnFrameDestroyed() is not implemented");
+            Log.Warn(logTag, "The OnFrameDestroyed() is not implemented");
         }
 
         /// <summary>
@@ -209,12 +211,12 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnFrameErred(FrameError error)
         {
-            Log.Warn(LogTag, "The OnFrameErred() is not implemented");
+            Log.Warn(logTag, "The OnFrameErred() is not implemented");
         }
-                
+
         private void OnCreateNative(IntPtr context, IntPtr userData)
         {
-            _context = context;
+            this.context = context;
             OnFrameCreated();
         }
 
@@ -230,13 +232,13 @@ namespace Tizen.NUI
 
         private void OnDestroyNative(IntPtr context, IntPtr userData)
         {
-            _context = IntPtr.Zero;
+            context = IntPtr.Zero;
             OnFrameDestroyed();
         }
 
         private void OnErrorNative(IntPtr context, int error, IntPtr userData)
         {
-            _context = IntPtr.Zero;
+            context = IntPtr.Zero;
             OnFrameErred((FrameError)error);
         }
 
@@ -245,13 +247,136 @@ namespace Tizen.NUI
             OnFrameUpdated(new FrameData(frame));
         }
 
+
+        private Shader CreateShader()
+        {
+            string vertex_shader =
+                "attribute mediump vec2 aPosition;\n" +
+                "varying mediump vec2 vTexCoord;\n" +
+                "uniform highp mat4 uMvpMatrix;\n" +
+                "uniform mediump vec3 uSize;\n" +
+                "varying mediump vec2 sTexCoordRect;\n" +
+                "void main()\n" +
+                "{\n" +
+                "gl_Position = uMvpMatrix * vec4(aPosition * uSize.xy, 0.0, 1.0);\n" +
+                "vTexCoord = aPosition + vec2(0.5);\n" +
+                "}\n";
+
+            string fragment_shader =
+                "#extension GL_OES_EGL_image_external:require\n" +
+                "uniform lowp vec4 uColor;\n" +
+                "varying mediump vec2 vTexCoord;\n" +
+                "uniform samplerExternalOES sTexture;\n" +
+                "void main()\n" +
+                "{\n" +
+                "gl_FragColor = texture2D(sTexture, vTexCoord) * uColor;\n" +
+                "}\n";
+
+            return new Shader(vertex_shader, fragment_shader);
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct Vec2
+        {
+            float x;
+            float y;
+            public Vec2(float xIn, float yIn)
+            {
+                x = xIn;
+                y = yIn;
+            }
+        }
+
+        private struct TexturedQuadVertex
+        {
+            public Vec2 position;
+        };
+
+        private IntPtr RectangleDataPtr()
+        {
+            TexturedQuadVertex vertex1 = new TexturedQuadVertex();
+            TexturedQuadVertex vertex2 = new TexturedQuadVertex();
+            TexturedQuadVertex vertex3 = new TexturedQuadVertex();
+            TexturedQuadVertex vertex4 = new TexturedQuadVertex();
+            vertex1.position = new Vec2(-0.5f, -0.5f);
+            vertex2.position = new Vec2(-0.5f, 0.5f);
+            vertex3.position = new Vec2(0.5f, -0.5f);
+            vertex4.position = new Vec2(0.5f, 0.5f);
+
+            TexturedQuadVertex[] texturedQuadVertexData = new TexturedQuadVertex[4] { vertex1, vertex2, vertex3, vertex4 };
+
+            int lenght = Marshal.SizeOf(vertex1);
+            IntPtr pA = Marshal.AllocHGlobal(lenght * 4);
+
+            for (int i = 0; i < 4; i++)
+            {
+                Marshal.StructureToPtr(texturedQuadVertexData[i], pA + i * lenght, true);
+            }
+
+            return pA;
+        }
+
+        private Geometry CreateQuadGeometry()
+        {
+            /* Create Property buffer */
+            PropertyValue value = new PropertyValue((int)PropertyType.Vector2);
+            PropertyMap vertexFormat = new PropertyMap();
+            vertexFormat.Add("aPosition", value);
+
+            PropertyBuffer vertexBuffer = new PropertyBuffer(vertexFormat);
+            vertexBuffer.SetData(RectangleDataPtr(), 4);
+
+            Geometry geometry = new Geometry();
+            geometry.AddVertexBuffer(vertexBuffer);
+            geometry.SetType(Geometry.Type.TRIANGLE_STRIP);
+
+            value.Dispose();
+            vertexFormat.Dispose();
+            vertexBuffer.Dispose();
+
+            return geometry;
+        }
+
+        internal Renderer GetRenderer(FrameData data)
+        {
+            Geometry geometry = CreateQuadGeometry();
+            Shader shader = CreateShader();
+            Texture texture = null;
+            renderer = new Renderer(geometry, shader);
+            textureSet = new TextureSet();
+
+            switch (data.Type)
+            {
+                case FrameData.FrameType.RemoteSurfaceTbmSurface:
+                    if (data.TbmSurface == IntPtr.Zero)
+                    {
+                        geometry.Dispose();
+                        shader.Dispose();
+                        return null;
+                    }
+                    texture = new Texture(data.TbmSurface);
+                    textureSet.SetTexture(0, texture);
+                    renderer.SetTextures(textureSet);
+                    break;
+                default:
+                    break;
+            }
+
+            texture?.Dispose();
+            geometry.Dispose();
+            shader.Dispose();
+            return renderer;
+        }
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(bool disposing)
         {
-            if (!_disposed)
+            if (!disposed)
             {
-                _handle.Dispose();
-                _disposed = true;
+                handle.Dispose();
+                renderer?.Dispose();
+                textureSet?.Dispose();
+                disposed = true;
             }
         }
 

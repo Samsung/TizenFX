@@ -18,12 +18,14 @@ using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Components;
+using System;
 
 namespace Tizen.NUI.Wearable
 {
     /// <summary>
     /// CircularSliderStyle is a class which saves CircularSlider's ux data.
     /// </summary>
+    [Obsolete("This has been deprecated in API12")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class CircularSliderStyle : ControlStyle
     {
@@ -75,7 +77,7 @@ namespace Tizen.NUI.Wearable
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TrackColorProperty = BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(CircularSliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((CircularSliderStyle)bindable).trackColor = (Color)newValue;
+            ((CircularSliderStyle)bindable).trackColor = newValue == null ? null : new Color((Color)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -86,7 +88,7 @@ namespace Tizen.NUI.Wearable
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ProgressColorProperty = BindableProperty.Create(nameof(ProgressColor), typeof(Color), typeof(CircularSliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((CircularSliderStyle)bindable).progressColor = (Color)newValue;
+            ((CircularSliderStyle)bindable).progressColor = newValue == null ? null : new Color((Color)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -95,7 +97,7 @@ namespace Tizen.NUI.Wearable
 
         /// <summary>Bindable property of ThumbSize</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ThumbSizeProperty = BindableProperty.Create(nameof(ThumbSize), typeof(Size), typeof(CircularSliderStyle), new Size(0,0), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ThumbSizeProperty = BindableProperty.Create(nameof(ThumbSize), typeof(Size), typeof(CircularSliderStyle), new Size(0, 0), propertyChanged: (bindable, oldValue, newValue) =>
         {
             ((CircularSliderStyle)bindable).thumbSize = (Size)newValue;
         },
@@ -108,7 +110,7 @@ namespace Tizen.NUI.Wearable
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ThumbColorProperty = BindableProperty.Create(nameof(ThumbColor), typeof(Color), typeof(CircularSliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((CircularSliderStyle)bindable).thumbColor = (Color)newValue;
+            ((CircularSliderStyle)bindable).thumbColor = newValue == null ? null : new Color((Color)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -117,7 +119,7 @@ namespace Tizen.NUI.Wearable
 
         /// <summary>Bindable property of IsEnabled</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool?), typeof(CircularSliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public new static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool?), typeof(CircularSliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             ((CircularSliderStyle)bindable).isEnabled = (bool?)newValue;
         },
@@ -141,6 +143,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Creates a new instance of a CircularSliderStyle.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CircularSliderStyle() : base()
         {
@@ -151,16 +154,16 @@ namespace Tizen.NUI.Wearable
         /// Creates a new instance of a CircularSliderStyle with style.
         /// </summary>
         /// <param name="style">Create CircularSliderStyle by style customized by user.</param>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CircularSliderStyle(CircularSliderStyle style) : base(style)
         {
-            if (null == style) return;
-            this.CopyFrom(style);
         }
 
         /// <summary>
         /// The thickness of the track and progress.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? Thickness
         {
@@ -177,6 +180,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The property to get/set the maximum value of the CircularSlider.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float MaxValue
         {
@@ -193,6 +197,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The property to get/set the minim value of the CircularSlider.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float MinValue
         {
@@ -209,6 +214,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The property to get/set the current value of the CircularSlider.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float CurrentValue
         {
@@ -225,6 +231,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The property to get/set Track object color of the CircularSlider.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color TrackColor
         {
@@ -241,6 +248,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The property to get/set Progress object color of the CircularSlider.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color ProgressColor
         {
@@ -257,6 +265,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Gets or sets the size of the thumb of Slider.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Size ThumbSize
         {
@@ -273,6 +282,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The property to get/set Thumb object color of the CircularSlider.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color ThumbColor
         {
@@ -290,7 +300,8 @@ namespace Tizen.NUI.Wearable
         /// Flag to be enabled or disabled in CircularSlider.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public bool? IsEnabled
+        [Obsolete("This has been deprecated in API12")]
+        public new bool? IsEnabled
         {
             get
             {
@@ -299,31 +310,6 @@ namespace Tizen.NUI.Wearable
             set
             {
                 SetValue(IsEnabledProperty, value);
-            }
-        }
-
-        /// <summary>
-        /// Style's clone function.
-        /// </summary>
-        /// <param name="bindableObject">The style that need to copy.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void CopyFrom(BindableObject bindableObject)
-        {
-            base.CopyFrom(bindableObject);
-
-            CircularSliderStyle progressStyle = bindableObject as CircularSliderStyle;
-
-            if (null != progressStyle)
-            {
-                isEnabled = progressStyle.isEnabled;
-                thickness = progressStyle.Thickness;
-                maxValue = progressStyle.maxValue;
-                minValue = progressStyle.minValue;
-                currentValue = progressStyle.currentValue;
-                trackColor = progressStyle.trackColor;
-                progressColor = progressStyle.progressColor;
-                thumbSize = progressStyle.thumbSize;
-                thumbColor = progressStyle.thumbColor;
             }
         }
 

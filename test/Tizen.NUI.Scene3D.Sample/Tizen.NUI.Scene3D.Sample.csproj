@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
+        <AssemblyName>Scene3DSample</AssemblyName>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <DebugType>portable</DebugType>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <DebugType>None</DebugType>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Tizen.NET.Sdk" Version="1.0.9" />
+        <ProjectReference Include="../../src/Tizen/Tizen.csproj" />
+        <ProjectReference Include="../../src/Tizen.NUI.Components/Tizen.NUI.Components.csproj" />
+        <ProjectReference Include="../../src/Tizen.NUI.Scene3D/Tizen.NUI.Scene3D.csproj" />
+        <ProjectReference Include="../../src/Tizen.NUI/Tizen.NUI.csproj" />
+    </ItemGroup>
+
+    <PropertyGroup>
+        <NeedInjection>True</NeedInjection>
+    </PropertyGroup>
+</Project>

@@ -25,7 +25,7 @@ namespace Tizen.Sensor
     /// <since_tizen> 7 </since_tizen>
     public sealed class AutoRotationSensor : Sensor
     {
-        private static string AccelerometerKey = "http://tizen.org/feature/sensor.accelerometer";
+        private static string AutoRotationSensorKey = "http://tizen.org/feature/screen.auto_rotation";
 
         private event EventHandler<SensorAccuracyChangedEventArgs> _accuracyChanged;
 
@@ -54,7 +54,7 @@ namespace Tizen.Sensor
             get
             {
                 Log.Info(Globals.LogTag, "Checking if the AutoRotationSensor is supported");
-                return CheckIfSupported(SensorType.AutoRotation, AccelerometerKey);
+                return CheckIfSupported(SensorType.AutoRotation, AutoRotationSensorKey);
             }
         }
 
@@ -62,7 +62,7 @@ namespace Tizen.Sensor
         /// Initializes a new instance of the <see cref="Tizen.Sensor.AutoRotationSensor"/> class.
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
-        /// <feature>http://tizen.org/feature/sensor.accelerometer</feature>
+        /// <feature>http://tizen.org/feature/screen.auto_rotation</feature>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         /// <exception cref="NotSupportedException">Thrown when the sensor is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
@@ -71,6 +71,10 @@ namespace Tizen.Sensor
         /// </param>
         public AutoRotationSensor(uint index = 0) : base(index)
         {
+            if (!IsSupported)
+            {
+                throw new NotSupportedException("Not Supported: " + "AutoRotationSensor is not supported");
+            }
             Log.Info(Globals.LogTag, "Creating AutoRotationSensor object");
         }
 

@@ -14,11 +14,7 @@
  * limitations under the License.
  */
 using System;
-using System.Threading.Tasks;
-using System.Runtime.InteropServices;
 using System.Diagnostics;
-using System.IO;
-using System.Threading;
 using NativeDisplay = Interop.Display;
 using static Interop;
 
@@ -298,6 +294,8 @@ namespace Tizen.Multimedia
 
         private Display _display;
 
+        private bool _uiSync;
+
         private PlayerErrorCode SetDisplay(Display display)
         {
             if (display == null)
@@ -322,7 +320,9 @@ namespace Tizen.Multimedia
         /// <remarks>
         ///     The player must be in the <see cref="PlayerState.Idle"/> state.<br/>
         ///     The raw video feature(http://tizen.org/feature/multimedia.raw_video) is required if
-        ///     the display is created with <see cref="MediaView"/>.
+        ///     the display is created with <see cref="MediaView"/>.<br/>
+        ///     If a user wants to use video and UI sync mode, please use <see cref="Tizen.Multimedia.Display(NUI.Window, bool)"/>.(Since tizen 6.5)<br/>
+        ///     But <see cref="Tizen.Multimedia.Player.DisplaySettings"/> is not supported in UI sync mode.
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentException">The value has already been assigned to another player.</exception>
@@ -354,6 +354,8 @@ namespace Tizen.Multimedia
                     throw new ArgumentException("The display has already been assigned to another.");
                 }
 
+                _uiSync = value?.UiSync ?? false;
+
                 SetDisplay(value).ThrowIfFailed(this, "Failed to configure display of the player");
 
                 ReplaceDisplay(value);
@@ -371,11 +373,14 @@ namespace Tizen.Multimedia
                 type == DisplayType.Overlay ? PlayerDisplayType.Overlay : PlayerDisplayType.Evas, evasObject);
         }
 
-        PlayerErrorCode IDisplayable<PlayerErrorCode>.ApplyEcoreWindow(IntPtr windowHandle)
+        PlayerErrorCode IDisplayable<PlayerErrorCode>.ApplyEcoreWindow(IntPtr windowHandle, Rectangle rect, Rotation rotation)
         {
             Debug.Assert(IsDisposed == false);
 
-            return NativeDisplay.SetEcoreDisplay(Handle, PlayerDisplayType.Overlay, windowHandle);
+            return NativeDisplay.SetEcoreDisplay(Handle,
+                _uiSync ? PlayerDisplayType.OverlayUISync : PlayerDisplayType.Overlay, windowHandle, rect.X, rect.Y,
+                rotation == Rotation.Rotate0 || rotation == Rotation.Rotate180 ? rect.Height : rect.Width,
+                rotation == Rotation.Rotate0 || rotation == Rotation.Rotate180 ? rect.Width : rect.Height);
         }
         #endregion
 
@@ -730,6 +735,48 @@ namespace Tizen.Multimedia
 
                 NativePlayer.SetAudioCodecType(Handle, value).
                     ThrowIfFailed(this, "Failed to set the type of the audio codec");
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the codec type of the video decoder.
+        /// </summary>
+        /// <value>A <see cref="CodecType"/> specifies the type.
+        /// The default codec type could be different depending on the device capability.</value>
+        /// <remarks>
+        /// <para>To set, the player must be in the <see cref="PlayerState.Idle"/> state.</para>
+        /// <para>If H/W video codec type is not supported in some cases, S/W video codec type could be used instead.</para>
+        /// <para>The availability could be changed depending on the codec capability.</para>
+        /// </remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed.</exception>
+        /// <exception cref="ArgumentException">The value is not valid.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The player is not in the valid state.
+        ///     -or-<br/>
+        ///     Operation failed; internal error.
+        /// </exception>
+        /// <exception cref="CodecNotSupportedException">The selected codec is not supported.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        public CodecType VideoCodecType
+        {
+            get
+            {
+                ValidateNotDisposed();
+
+                NativePlayer.GetVideoCodecType(Handle, out var value).
+                    ThrowIfFailed(this, "Failed to get the type of the video codec");
+
+                return value;
+            }
+            set
+            {
+                ValidateNotDisposed();
+                ValidatePlayerState(PlayerState.Idle);
+
+                ValidationUtil.ValidateEnum(typeof(CodecType), value, nameof(value));
+
+                NativePlayer.SetVideoCodecType(Handle, value).
+                    ThrowIfFailed(this, "Failed to set the type of the video codec");
             }
         }
 

@@ -85,31 +85,27 @@ namespace Tizen.NUI.Samples
 
                 // Calculate the size of the folded card (use the minimum of width/height as size)
                 mContactCardLayoutInfo.foldedSize = (mContactCardLayoutInfo.unfoldedSize - (mContactCardLayoutInfo.padding * (MINIMUM_ITEMS_PER_ROW_OR_COLUMN - 1.0f))) / MINIMUM_ITEMS_PER_ROW_OR_COLUMN;
-                mContactCardLayoutInfo.foldedSize.Width = mContactCardLayoutInfo.foldedSize.Height = Math.Min(mContactCardLayoutInfo.foldedSize.Width, mContactCardLayoutInfo.foldedSize.Height);
+                float calculatedSize = Math.Min(mContactCardLayoutInfo.foldedSize.Width, mContactCardLayoutInfo.foldedSize.Height);
+                mContactCardLayoutInfo.foldedSize = new Vector2(calculatedSize, calculatedSize);
 
                 // Set the size and positions of the header
-                mContactCardLayoutInfo.headerSize.Width = mContactCardLayoutInfo.unfoldedSize.Width;
-                mContactCardLayoutInfo.headerSize.Height = mContactCardLayoutInfo.unfoldedSize.Height * HEADER_HEIGHT_TO_UNFOLDED_SIZE_RATIO;
+                mContactCardLayoutInfo.headerSize = new Vector2(mContactCardLayoutInfo.unfoldedSize.Width, mContactCardLayoutInfo.unfoldedSize.Height * HEADER_HEIGHT_TO_UNFOLDED_SIZE_RATIO);
                 mContactCardLayoutInfo.headerFoldedPosition = mContactCardLayoutInfo.headerSize * HEADER_FOLDED_POSITION_AS_RATIO_OF_SIZE;
                 mContactCardLayoutInfo.headerUnfoldedPosition = HEADER_UNFOLDED_POSITION;
 
                 // Set the image size and positions
                 mContactCardLayoutInfo.imageSize = mContactCardLayoutInfo.foldedSize * IMAGE_SIZE_AS_RATIO_TO_FOLDED_SIZE;
                 mContactCardLayoutInfo.imageFoldedPosition = mContactCardLayoutInfo.imageSize * IMAGE_FOLDED_POSITION_AS_RATIO_OF_SIZE;
-                mContactCardLayoutInfo.imageUnfoldedPosition.X = mContactCardLayoutInfo.padding.Width;
-                mContactCardLayoutInfo.imageUnfoldedPosition.Y = mContactCardLayoutInfo.headerSize.Height + mContactCardLayoutInfo.padding.Height;
+                mContactCardLayoutInfo.imageUnfoldedPosition = new Vector2(mContactCardLayoutInfo.padding.Width, mContactCardLayoutInfo.headerSize.Height + mContactCardLayoutInfo.padding.Height);
 
                 // Set the positions of the contact name
-                mContactCardLayoutInfo.textFoldedPosition.X = 0.0f;
-                mContactCardLayoutInfo.textFoldedPosition.Y = mContactCardLayoutInfo.imageFoldedPosition.X + mContactCardLayoutInfo.imageSize.Height * FOLDED_TEXT_POSITION_AS_RATIO_OF_IMAGE_SIZE;
-                mContactCardLayoutInfo.textUnfoldedPosition.X = mContactCardLayoutInfo.padding.Width;
-                mContactCardLayoutInfo.textUnfoldedPosition.Y = mContactCardLayoutInfo.imageUnfoldedPosition.Y + mContactCardLayoutInfo.imageSize.Height + mContactCardLayoutInfo.padding.Height;
+                mContactCardLayoutInfo.textFoldedPosition = new Vector2(0.0f, mContactCardLayoutInfo.imageFoldedPosition.X + mContactCardLayoutInfo.imageSize.Height * FOLDED_TEXT_POSITION_AS_RATIO_OF_IMAGE_SIZE);
+                mContactCardLayoutInfo.textUnfoldedPosition = new Vector2(mContactCardLayoutInfo.padding.Width, mContactCardLayoutInfo.imageUnfoldedPosition.Y + mContactCardLayoutInfo.imageSize.Height + mContactCardLayoutInfo.padding.Height);
 
                 // Figure out the positions of the contact cards
                 mItemsPerRow = (int)((mContactCardLayoutInfo.unfoldedSize.Width + mContactCardLayoutInfo.padding.Width) / (mContactCardLayoutInfo.foldedSize.Width + mContactCardLayoutInfo.padding.Width));
                 mLastPosition = new Vector2(mContactCardLayoutInfo.unfoldedPosition.X, mContactCardLayoutInfo.unfoldedPosition.Y);
-                mPositionIncrementer.X = mContactCardLayoutInfo.foldedSize.Width + mContactCardLayoutInfo.padding.Width;
-                mPositionIncrementer.Y = mContactCardLayoutInfo.foldedSize.Height + mContactCardLayoutInfo.padding.Height;
+                mPositionIncrementer = new Vector2(mContactCardLayoutInfo.foldedSize.Width + mContactCardLayoutInfo.padding.Width, mContactCardLayoutInfo.foldedSize.Height + mContactCardLayoutInfo.padding.Height);
 
                 mInitialized = true;
             }
@@ -124,17 +120,20 @@ namespace Tizen.NUI.Samples
 
             if(currentNumOfCards > 0)
             {
+                float positionX = mLastPosition.X;
+                float positionY = mLastPosition.Y;
                 if(currentNumOfCards % mItemsPerRow != 0)
                 {
-                    mLastPosition.X += mPositionIncrementer.X;
+                    positionX += mPositionIncrementer.X;
                 }
                 else
                 {
-                    mLastPosition.X = mContactCardLayoutInfo.unfoldedPosition.X;
-                    mLastPosition.Y += mPositionIncrementer.Y;
+                    positionX = mContactCardLayoutInfo.unfoldedPosition.X;
+                    positionY += mPositionIncrementer.Y;
                 }
+                mLastPosition = new Vector2(positionX, positionY);
             }
-
+            
             return mLastPosition;
         }
 

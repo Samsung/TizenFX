@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,6 @@
  * limitations under the License.
  *
  */
-using System;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
 
@@ -29,7 +28,7 @@ namespace Tizen.NUI.BaseComponents
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TranslatableTextSelectorProperty = BindableProperty.Create("TranslatableTextSelector", typeof(Selector<string>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TranslatableTextSelectorProperty = BindableProperty.Create(nameof(TranslatableText), typeof(Selector<string>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             ((TextLabelStyle)bindable).translatableTextSelector = ((Selector<string>)newValue)?.Clone();
         },
@@ -39,7 +38,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TextSelectorProperty = BindableProperty.Create("TextSelector", typeof(Selector<string>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TextSelectorProperty = BindableProperty.Create(nameof(Text), typeof(Selector<string>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             ((TextLabelStyle)bindable).textSelector = ((Selector<string>)newValue)?.Clone();
         },
@@ -49,7 +48,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FontFamilySelectorProperty = BindableProperty.Create("FontFamilySelector", typeof(Selector<string>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FontFamilySelectorProperty = BindableProperty.Create(nameof(FontFamily), typeof(Selector<string>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             ((TextLabelStyle)bindable).fontFamilySelector = ((Selector<string>)newValue)?.Clone();
         },
@@ -59,7 +58,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PointSizeSelectorProperty = BindableProperty.Create("PointSizeSelector", typeof(Selector<float?>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PointSizeSelectorProperty = BindableProperty.Create(nameof(PointSize), typeof(Selector<float?>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             ((TextLabelStyle)bindable).pointSizeSelector = ((Selector<float?>)newValue)?.Clone();
         },
@@ -69,7 +68,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TextColorSelectorProperty = BindableProperty.Create("TextColorSelector", typeof(Selector<Color>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TextColorSelectorProperty = BindableProperty.Create(nameof(TextColor), typeof(Selector<Color>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             ((TextLabelStyle)bindable).textColorSelector = ((Selector<Color>)newValue)?.Clone();
         },
@@ -186,6 +185,18 @@ namespace Tizen.NUI.BaseComponents
             var textLabelStyle = (TextLabelStyle)bindable;
             return textLabelStyle.lineSpacing;
         });
+        /// <summary> The bindable property of RelativeLineHeightProperty. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty RelativeLineHeightProperty = BindableProperty.Create(nameof(RelativeLineHeight), typeof(float?), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            textLabelStyle.relativeLineHeight = (float?)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            return textLabelStyle.relativeLineHeight;
+        });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty EmbossProperty = BindableProperty.Create(nameof(Emboss), typeof(string), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
@@ -200,15 +211,13 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PixelSizeProperty = BindableProperty.Create(nameof(PixelSize), typeof(float?), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PixelSizeSelectorProperty = BindableProperty.Create(nameof(PixelSize), typeof(Selector<float?>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var textLabelStyle = (TextLabelStyle)bindable;
-            textLabelStyle.pixelSize = (float?)newValue;
+            ((TextLabelStyle)bindable).pixelSizeSelector = ((Selector<float?>)newValue)?.Clone();
         },
         defaultValueCreator: (bindable) =>
         {
-            var textLabelStyle = (TextLabelStyle)bindable;
-            return textLabelStyle.pixelSize;
+            return ((TextLabelStyle)bindable).pixelSizeSelector;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -270,6 +279,61 @@ namespace Tizen.NUI.BaseComponents
             var textLabelStyle = (TextLabelStyle)bindable;
             return textLabelStyle.verticalLineAlignment;
         });
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty EllipsisPositionProperty = BindableProperty.Create(nameof(EllipsisPosition), typeof(EllipsisPosition?), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            textLabelStyle.ellipsisPosition = (EllipsisPosition?)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            return textLabelStyle.ellipsisPosition;
+        });
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty CharacterSpacingProperty = BindableProperty.Create(nameof(CharacterSpacing), typeof(float?), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            textLabelStyle.characterSpacing = (float?)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            return textLabelStyle.characterSpacing;
+        });
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FontSizeScaleProperty = BindableProperty.Create(nameof(FontSizeScale), typeof(float?), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            textLabelStyle.fontSizeScale = (float?)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            return textLabelStyle.fontSizeScale;
+        });
+        public static readonly BindableProperty AnchorColorProperty = BindableProperty.Create(nameof(AnchorColor), typeof(Color), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            textLabelStyle.anchorColor = (Color)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            return textLabelStyle.anchorColor;
+        });
+        public static readonly BindableProperty AnchorClickedColorProperty = BindableProperty.Create(nameof(AnchorClickedColor), typeof(Color), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            textLabelStyle.anchorClickedColor = (Color)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            return textLabelStyle.anchorClickedColor;
+        });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty MatchSystemLanguageDirectionProperty = BindableProperty.Create(nameof(MatchSystemLanguageDirection), typeof(bool?), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
@@ -284,13 +348,25 @@ namespace Tizen.NUI.BaseComponents
         });
         /// A BindableProperty for ImageShadow
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TextShadowProperty = BindableProperty.Create("TextShadowSelector", typeof(Selector<TextShadow>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TextShadowProperty = BindableProperty.Create(nameof(TextShadow), typeof(Selector<TextShadow>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             ((TextLabelStyle)bindable).textShadow = ((Selector<TextShadow>)newValue)?.Clone();
         },
         defaultValueCreator: (bindable) =>
         {
             return ((TextLabelStyle)bindable).textShadow;
+        });
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FontStyleProperty = BindableProperty.Create(nameof(FontStyle), typeof(PropertyMap), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            textLabelStyle.fontStyle = (PropertyMap)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            return textLabelStyle.fontStyle;
         });
 
         private bool? multiLine;
@@ -302,13 +378,15 @@ namespace Tizen.NUI.BaseComponents
         private int? autoScrollLoopCount;
         private float? autoScrollGap;
         private float? lineSpacing;
+        private float? relativeLineHeight;
         private string emboss;
-        private float? pixelSize;
+        private Selector<float?> pixelSizeSelector;
         private bool? ellipsis;
         private float? autoScrollLoopDelay;
         private AutoScrollStopMode? autoScrollStopMode;
         private LineWrapMode? lineWrapMode;
         private VerticalLineAlignment? verticalLineAlignment;
+        private EllipsisPosition? ellipsisPosition;
         private bool? matchSystemLanguageDirection;
         private Selector<string> translatableTextSelector;
         private Selector<string> fontFamilySelector;
@@ -316,6 +394,11 @@ namespace Tizen.NUI.BaseComponents
         private Selector<Color> textColorSelector;
         private Selector<float?> pointSizeSelector;
         private Selector<TextShadow> textShadow;
+        private PropertyMap fontStyle;
+        private float? characterSpacing;
+        private float? fontSizeScale;
+        private Color anchorColor;
+        private Color anchorClickedColor;
 
         static TextLabelStyle() { }
 
@@ -323,16 +406,7 @@ namespace Tizen.NUI.BaseComponents
         /// Create an empty instance.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabelStyle()
-        {
-        }
-
-        /// <summary>
-        /// Create an instance and set properties from the given TextLabel.
-        /// </summary>
-        /// <param name="textLabel">The TextLabel instance that includes property data.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabelStyle(TextLabel textLabel) : base(textLabel)
+        public TextLabelStyle() : base()
         {
         }
 
@@ -432,6 +506,16 @@ namespace Tizen.NUI.BaseComponents
             set => SetValue(LineSpacingProperty, value);
         }
 
+        /// <summary>
+        /// the relative line height to be used.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float? RelativeLineHeight
+        {
+            get => (float?)GetValue(RelativeLineHeightProperty);
+            set => SetValue(RelativeLineHeightProperty, value);
+        }
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Emboss
@@ -442,10 +526,10 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public float? PixelSize
+        public Selector<float?> PixelSize
         {
-            get => (float?)GetValue(PixelSizeProperty);
-            set => SetValue(PixelSizeProperty, value);
+            get => (Selector<float?>)GetValue(PixelSizeSelectorProperty) ?? (pixelSizeSelector = new Selector<float?>());
+            set => SetValue(PixelSizeSelectorProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -486,6 +570,43 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (VerticalLineAlignment?)GetValue(VerticalLineAlignmentProperty);
             set => SetValue(VerticalLineAlignmentProperty, value);
+        }
+
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public EllipsisPosition? EllipsisPosition
+        {
+            get => (EllipsisPosition?)GetValue(EllipsisPositionProperty);
+            set => SetValue(EllipsisPositionProperty, value);
+        }
+
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float? CharacterSpacing
+        {
+            get => (float?)GetValue(CharacterSpacingProperty);
+            set => SetValue(CharacterSpacingProperty, value);
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float? FontSizeScale
+        {
+            get => (float?)GetValue(FontSizeScaleProperty);
+            set => SetValue(FontSizeScaleProperty, value);
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color AnchorColor
+        {
+            get => (Color)GetValue(AnchorColorProperty);
+            set => SetValue(AnchorColorProperty, value);
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color AnchorClickedColor
+        {
+            get => (Color)GetValue(AnchorClickedColorProperty);
+            set => SetValue(AnchorClickedColorProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -538,6 +659,14 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (Selector<TextShadow>)GetValue(TextShadowProperty);
             set => SetValue(TextShadowProperty, value);
+        }
+
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap FontStyle
+        {
+            get => (PropertyMap)GetValue(FontStyleProperty);
+            set => SetValue(FontStyleProperty, value);
         }
     }
 }

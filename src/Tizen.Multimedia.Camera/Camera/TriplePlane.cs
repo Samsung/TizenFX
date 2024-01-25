@@ -25,14 +25,11 @@ namespace Tizen.Multimedia
     /// <since_tizen> 3 </since_tizen>
     public class TriplePlane : IPreviewPlane
     {
-        internal TriplePlane(TriplePlaneStruct unmanaged)
+        internal TriplePlane(params byte[][] data)
         {
-            Y = new byte[unmanaged.YLength];
-            U = new byte[unmanaged.ULength];
-            V = new byte[unmanaged.VLength];
-            Marshal.Copy(unmanaged.Y, Y, 0, (int)unmanaged.YLength);
-            Marshal.Copy(unmanaged.U, U, 0, (int)unmanaged.ULength);
-            Marshal.Copy(unmanaged.V, V, 0, (int)unmanaged.VLength);
+            Y = data[0];
+            U = data[1];
+            V = data[2];
         }
 
         /// <summary>

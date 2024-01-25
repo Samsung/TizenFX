@@ -72,12 +72,12 @@ namespace Tizen.NUI.Samples
 
         }
 
-        private void SubWin_VisibilityChanged(object sender, Window.VisibilityChangedArgs e)
+        private void SubWin_VisibilityChanged(object sender, Window.VisibilityChangedEventArgs e)
         {
             l.Debug(t, $"sub window visibility changed! e.Visibility={e.Visibility}");
         }
 
-        private void Win_VisibilityChanged(object sender, Window.VisibilityChangedArgs e)
+        private void Win_VisibilityChanged(object sender, Window.VisibilityChangedEventArgs e)
         {
             l.Debug(t, $"main window visibility changed! e.Visibility={e.Visibility}");
         }

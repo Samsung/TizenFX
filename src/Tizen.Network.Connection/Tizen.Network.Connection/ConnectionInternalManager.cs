@@ -70,13 +70,19 @@ namespace Tizen.Network.Connection
 
     internal class ConnectionInternalManager
     {
-        private static readonly Lazy<ConnectionInternalManager> s_instance =
-            new Lazy<ConnectionInternalManager>(() => new ConnectionInternalManager());
+        private static ConnectionInternalManager s_instance = null;
+        private static readonly object _lock = new object();
 
         private EventHandler<ConnectionTypeEventArgs> _ConnectionTypeChanged = null;
         private EventHandler<AddressEventArgs> _IPAddressChanged = null;
         private EventHandler<EthernetCableStateEventArgs> _EthernetCableStateChanged = null;
         private EventHandler<AddressEventArgs> _ProxyAddressChanged = null;
+
+        private static readonly object _ConnectionTypeChangedLock = new object();
+        private static readonly object _IPAddressChangedLock = new object();
+        private static readonly object _EthernetCableStateChangedLock = new object();
+        private static readonly object _ProxyAddressChangedLock = new object();
+
 
         private Interop.Connection.ConnectionAddressChangedCallback _connectionAddressChangedCallback;
         private Interop.Connection.ConnectionTypeChangedCallback _connectionTypeChangedCallback;
@@ -91,8 +97,15 @@ namespace Tizen.Network.Connection
         {
             get
             {
-                Log.Info(Globals.LogTag, "ConnectionInternalManager.Instance");
-                return s_instance.Value;
+                lock (_lock)
+                {
+                    if (s_instance == null)
+                    {
+                        s_instance = new ConnectionInternalManager();
+                    }
+                    Log.Info(Globals.LogTag, "ConnectionInternalManager.Instance");
+                    return s_instance;
+                }
             }
         }
 
@@ -119,32 +132,38 @@ namespace Tizen.Network.Connection
         {
             add
             {
-                if (_ConnectionTypeChanged == null)
+                lock (_ConnectionTypeChangedLock)
                 {
-                    try
+                    if (_ConnectionTypeChanged == null)
                     {
-                        ConnectionTypeChangedStart();
+                        try
+                        {
+                            ConnectionTypeChangedStart();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on adding ConnectionTypeChanged\n" + e.ToString());
+                            return;
+                        }
                     }
-                    catch (Exception e)
-                    {
-                        Log.Error(Globals.LogTag, "Exception on adding ConnectionTypeChanged\n" + e.ToString());
-                        return;
-                    }
+                    _ConnectionTypeChanged += value;
                 }
-                _ConnectionTypeChanged += value;
             }
             remove
             {
-                _ConnectionTypeChanged -= value;
-                if (_ConnectionTypeChanged == null)
+                lock (_ConnectionTypeChangedLock)
                 {
-                    try
+                    _ConnectionTypeChanged -= value;
+                    if (_ConnectionTypeChanged == null)
                     {
-                        ConnectionTypeChangedStop();
-                    }
-                    catch (Exception e)
-                    {
-                        Log.Error(Globals.LogTag, "Exception on removing ConnectionTypeChanged\n" + e.ToString());
+                        try
+                        {
+                            ConnectionTypeChangedStop();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on removing ConnectionTypeChanged\n" + e.ToString());
+                        }
                     }
                 }
             }
@@ -184,32 +203,38 @@ namespace Tizen.Network.Connection
         {
             add
             {
-                if (_EthernetCableStateChanged == null)
+                lock(_EthernetCableStateChangedLock)
                 {
-                    try
+                    if (_EthernetCableStateChanged == null)
                     {
-                        EthernetCableStateChangedStart();
+                        try
+                        {
+                            EthernetCableStateChangedStart();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on adding EthernetCableStateChanged\n" + e.ToString());
+                            return;
+                        }
                     }
-                    catch (Exception e)
-                    {
-                        Log.Error(Globals.LogTag, "Exception on adding EthernetCableStateChanged\n" + e.ToString());
-                        return;
-                    }
+                    _EthernetCableStateChanged += value;
                 }
-                _EthernetCableStateChanged += value;
             }
             remove
             {
-                _EthernetCableStateChanged -= value;
-                if (_EthernetCableStateChanged == null)
+                lock(_EthernetCableStateChangedLock)
                 {
-                    try
+                    _EthernetCableStateChanged -= value;
+                    if (_EthernetCableStateChanged == null)
                     {
-                        EthernetCableStateChangedStop();
-                    }
-                    catch (Exception e)
-                    {
-                        Log.Error(Globals.LogTag, "Exception on removing EthernetCableStateChanged\n" + e.ToString());
+                        try
+                        {
+                            EthernetCableStateChangedStop();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on removing EthernetCableStateChanged\n" + e.ToString());
+                        }
                     }
                 }
             }
@@ -253,33 +278,39 @@ namespace Tizen.Network.Connection
         {
             add
             {
-                if (_IPAddressChanged == null)
+                lock (_IPAddressChangedLock)
                 {
-                    try
+                    if (_IPAddressChanged == null)
                     {
-                        IPAddressChangedStart();
+                        try
+                        {
+                            IPAddressChangedStart();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on adding IPAddressChanged\n" + e.ToString());
+                            return;
+                        }
                     }
-                    catch (Exception e)
-                    {
-                        Log.Error(Globals.LogTag, "Exception on adding IPAddressChanged\n" + e.ToString());
-                        return;
-                    }
+                    _IPAddressChanged += value;
                 }
-                _IPAddressChanged += value;
             }
 
             remove
             {
-                _IPAddressChanged -= value;
-                if (_IPAddressChanged == null)
+                lock (_IPAddressChangedLock)
                 {
-                    try
+                    _IPAddressChanged -= value;
+                    if (_IPAddressChanged == null)
                     {
-                        IPAddressChangedStop();
-                    }
-                    catch (Exception e)
-                    {
-                        Log.Error(Globals.LogTag, "Exception on removing IPAddressChanged\n" + e.ToString());
+                        try
+                        {
+                            IPAddressChangedStop();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on removing IPAddressChanged\n" + e.ToString());
+                        }
                     }
                 }
             }
@@ -323,32 +354,38 @@ namespace Tizen.Network.Connection
         {
             add
             {
-                if (_ProxyAddressChanged == null)
+                lock (_ProxyAddressChangedLock)
                 {
-                    try
+                    if (_ProxyAddressChanged == null)
                     {
-                        ProxyAddressChangedStart();
+                        try
+                        {
+                            ProxyAddressChangedStart();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on adding ProxyAddressChanged\n" + e.ToString());
+                            return;
+                        }
                     }
-                    catch (Exception e)
-                    {
-                        Log.Error(Globals.LogTag, "Exception on adding ProxyAddressChanged\n" + e.ToString());
-                        return;
-                    }
+                    _ProxyAddressChanged += value;
                 }
-                _ProxyAddressChanged += value;
             }
             remove
             {
-                _ProxyAddressChanged -= value;
-                if (_ProxyAddressChanged == null)
+                lock (_ProxyAddressChangedLock)
                 {
-                    try
+                    _ProxyAddressChanged -= value;
+                    if (_ProxyAddressChanged == null)
                     {
-                        ProxyAddressChangedStop();
-                    }
-                    catch (Exception e)
-                    {
-                        Log.Error(Globals.LogTag, "Exception on removing ProxyAddressChanged\n" + e.ToString());
+                        try
+                        {
+                            ProxyAddressChangedStop();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on removing ProxyAddressChanged\n" + e.ToString());
+                        }
                     }
                 }
             }
@@ -442,7 +479,7 @@ namespace Tizen.Network.Connection
             }
 
             string result = Marshal.PtrToStringAnsi(ip);
-            Interop.Libc.Free(ip);
+            Interop.Glib.Free(ip);
             Log.Info(Globals.LogTag, "IPAddress " + result + " (" + result.Length + ")");
             if (result.Length == 0)
             {
@@ -498,7 +535,7 @@ namespace Tizen.Network.Connection
             }
 
             string result = Marshal.PtrToStringAnsi(ip);
-            Interop.Libc.Free(ip);
+            Interop.Glib.Free(ip);
             return result;
         }
 
@@ -516,7 +553,7 @@ namespace Tizen.Network.Connection
             }
 
             string result = Marshal.PtrToStringAnsi(mac);
-            Interop.Libc.Free(mac);
+            Interop.Glib.Free(mac);
             return result;
         }
 

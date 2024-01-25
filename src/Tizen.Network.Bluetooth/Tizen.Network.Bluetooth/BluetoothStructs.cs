@@ -63,8 +63,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The name of the device.
         /// </summary>
-        [MarshalAsAttribute(UnmanagedType.LPStr)]
-        internal string Name;
+        internal IntPtr Name;
 
         /// <summary>
         /// The class of the device.
@@ -116,8 +115,7 @@ namespace Tizen.Network.Bluetooth
         [MarshalAsAttribute(UnmanagedType.LPStr)]
         internal string Address;
 
-        [MarshalAsAttribute(UnmanagedType.LPStr)]
-        internal string Name;
+        internal IntPtr Name;
 
         internal BluetoothClassStruct Class;
 
@@ -136,7 +134,7 @@ namespace Tizen.Network.Bluetooth
 
         internal IntPtr ManufacturerData;
     }
-    
+
     [NativeStruct("bt_device_sdp_info_s", Include="bluetooth_type.h", PkgConfig="capi-network-bluetooth")]
     [StructLayout(LayoutKind.Sequential)]
     internal struct BluetoothDeviceSdpStruct
@@ -225,21 +223,29 @@ namespace Tizen.Network.Bluetooth
         internal IntPtr data;
     }
 
+    [NativeStruct("bt_avrcp_metadata_attributes_info_s", Include="bluetooth_type.h", PkgConfig="capi-network-bluetooth")]
     [StructLayout(LayoutKind.Sequential)]
     internal struct TrackInfoStruct
     {
-        [MarshalAsAttribute(UnmanagedType.LPStr)]
-        internal string Title;
-        [MarshalAsAttribute(UnmanagedType.LPStr)]
-        internal string Artist;
-        [MarshalAsAttribute(UnmanagedType.LPStr)]
-        internal string Album;
-        [MarshalAsAttribute(UnmanagedType.LPStr)]
-        internal string Genre;
+        internal IntPtr Title;
+        internal IntPtr Artist;
+        internal IntPtr Album;
+        internal IntPtr Genre;
         internal uint total_tracks;
         internal uint number;
         internal uint duration;
     }
+
+    [NativeStruct("bt_gatt_client_att_mtu_info_s", Include = "bluetooth_type.h", PkgConfig = "capi-network-bluetooth")]
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct AttMtuInfoStruct
+    {
+        [MarshalAsAttribute(UnmanagedType.LPStr)]
+        internal string RemoteAddress;
+        internal int Mtu;
+        internal int Status;
+    }
+
     internal static class BluetoothUtils
     {
         internal static BluetoothDevice ConvertStructToDeviceClass(BluetoothDeviceStruct device)
@@ -252,14 +258,21 @@ namespace Tizen.Network.Bluetooth
                 IntPtr[] extensionList = new IntPtr[device.ServiceCount];
                 Marshal.Copy (device.ServiceUuidList, extensionList, 0, device.ServiceCount);
                 uuidList = new Collection<string> ();
+                Log.Info(Globals.LogTag, "UUID Count: " + device.ServiceCount);
                 foreach (IntPtr extension in extensionList) {
-                    string uuid = Marshal.PtrToStringAnsi (extension);
-                    uuidList.Add (uuid);
+                    if (extension != IntPtr.Zero) {
+                        string uuid = Marshal.PtrToStringAnsi (extension);
+                        Log.Info(Globals.LogTag, "UUID: " + uuid);
+                        uuidList.Add (uuid);
+                    }
                 }
             }
 
             resultDevice.RemoteDeviceAddress = device.Address;
-            resultDevice.RemoteDeviceName = device.Name;
+            if (device.Name != IntPtr.Zero) {
+                resultDevice.RemoteDeviceName = Marshal.PtrToStringAnsi(device.Name);
+                Log.Info(Globals.LogTag, "Device Name: " + resultDevice.RemoteDeviceName);
+            }
             resultDevice.RemoteDeviceClass = new BluetoothClass();
             resultDevice.Class.MajorType = device.Class.MajorDeviceClassType;
             resultDevice.Class.MinorType = device.Class.MinorDeviceClassType;
@@ -286,14 +299,21 @@ namespace Tizen.Network.Bluetooth
                 IntPtr[] extensionList = new IntPtr[structDevice.ServiceCount];
                 Marshal.Copy (structDevice.ServiceUuidList, extensionList, 0, structDevice.ServiceCount);
                 uuidList = new Collection<string> ();
+                Log.Info(Globals.LogTag, "UUID Count: " + structDevice.ServiceCount);
                 foreach (IntPtr extension in extensionList) {
-                    string uuid = Marshal.PtrToStringAnsi (extension);
-                    uuidList.Add (uuid);
+                    if (extension != IntPtr.Zero) {
+                        string uuid = Marshal.PtrToStringAnsi(extension);
+                        Log.Info(Globals.LogTag, "UUID: " + uuid);
+                        uuidList.Add(uuid);
+                    }
                 }
             }
 
             resultDevice.RemoteDeviceAddress = structDevice.Address;
-            resultDevice.RemoteDeviceName = structDevice.Name;
+            if (structDevice.Name != IntPtr.Zero) {
+                resultDevice.RemoteDeviceName = Marshal.PtrToStringAnsi(structDevice.Name);
+                Log.Info(Globals.LogTag, "Device Name: " + resultDevice.RemoteDeviceName);
+            }
 
             resultDevice.RemoteDeviceClass = new BluetoothClass();
             resultDevice.Class.MajorType = structDevice.Class.MajorDeviceClassType;
@@ -326,8 +346,10 @@ namespace Tizen.Network.Bluetooth
                 IntPtr[] extensionList = new IntPtr[structData.ServiceCount];
                 Marshal.Copy (structData.ServiceUuid, extensionList, 0, structData.ServiceCount);
                 uuidList = new Collection<string> ();
+                Log.Info(Globals.LogTag, "UUID Count: " + structData.ServiceCount);
                 foreach (IntPtr extension in extensionList) {
                     string uuid = Marshal.PtrToStringAnsi (extension);
+                    Log.Info(Globals.LogTag, "UUID: " + uuid);
                     uuidList.Add (uuid);
                 }
             }
@@ -442,6 +464,39 @@ namespace Tizen.Network.Bluetooth
             connectionInfo.ClientSocket = (IBluetoothServerSocket)clientSocket;
 
             return connectionInfo;
+        }
+
+        internal static int ConvertProfileTypeToBtProfile(BluetoothProfileType profileType)
+        {
+            return profileType switch
+            {
+                BluetoothProfileType.Rfcomm => 0x01,
+                BluetoothProfileType.AdvancedAudioDistribution => 0x02,
+                BluetoothProfileType.Headset => 0x04,
+                BluetoothProfileType.HumanInterfaceDevice => 0x08,
+                BluetoothProfileType.NetworkAccessPoint => 0x10,
+                BluetoothProfileType.AudioGateway => 0x20,
+                BluetoothProfileType.GenericAttribute => 0x40,
+                BluetoothProfileType.NapServer => 0x80,
+                BluetoothProfileType.AdvancedAudioDistributionSink => 0x100,
+                _ => -1,
+            };
+        }
+
+        internal static BluetoothProfileType ConvertBtProfileToProfileType(int btProfile)
+        {
+            return btProfile switch
+            {
+                0x01 => BluetoothProfileType.Rfcomm,
+                0x02 => BluetoothProfileType.AdvancedAudioDistribution,
+                0x04 => BluetoothProfileType.Headset,
+                0x08 => BluetoothProfileType.HumanInterfaceDevice,
+                0x10 => BluetoothProfileType.NetworkAccessPoint,
+                0x20 => BluetoothProfileType.AudioGateway,
+                0x40 => BluetoothProfileType.GenericAttribute,
+                0x80 => BluetoothProfileType.NapServer,
+                0x100 => BluetoothProfileType.AdvancedAudioDistributionSink,
+            };
         }
     }
 }

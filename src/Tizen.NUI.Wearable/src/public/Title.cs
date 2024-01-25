@@ -27,7 +27,7 @@ namespace Tizen.NUI.Components
     /// You can also set the color of the fadeout.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
-    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [Obsolete("This has been deprecated in API12")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Title : TextLabel
     {
@@ -65,13 +65,14 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         static Title() { }
 
         /// <summary>
         /// Construct Title with null.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Title() : base()
         {
@@ -79,21 +80,11 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Return a copied Style instance of the Title.
-        /// </summary>
-        /// <remarks>
-        /// It returns copied style instance so that changing it does not effect to the view.
-        /// Style setting is possible by using constructor or the function of <see cref="View.ApplyStyle"/>.
-        /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new TextLabelStyle Style => ViewStyle as TextLabelStyle;
-
-        /// <summary>
         /// The constructor of the Title class with specific Style.
         /// </summary>
         /// <param name="textLabelStyle">Construct Style</param>
         /// <since_tizen> 8 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Title(TextLabelStyle textLabelStyle) : base(textLabelStyle)
         {
@@ -105,7 +96,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="style"> style name </param>
         /// <since_tizen> 8 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Title(string style) : base(style)
         {
@@ -116,7 +107,7 @@ namespace Tizen.NUI.Components
         /// Sets the start and end color of the fadeout.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color FadeOutColor
         {
@@ -136,7 +127,7 @@ namespace Tizen.NUI.Components
         /// Gets or Sets the width of the fadeout effect.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int FadeOutWidth
         {
@@ -156,6 +147,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="type">dispose types.</param>
         /// <since_tizen> 8 </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -183,8 +175,8 @@ namespace Tizen.NUI.Components
 
         private void UpdateImage()
         {
-            leftImage.Size.Width = fadeOutWidth;
-            rightImage.Size.Width = fadeOutWidth;
+            leftImage.SizeWidth = fadeOutWidth;
+            rightImage.SizeWidth = fadeOutWidth;
 
             if (fadeOutWidth > 0)
             {
@@ -257,7 +249,7 @@ namespace Tizen.NUI.Components
 
         private void TitlePropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (isFadeOutColorSet == false  && e.PropertyName.Equals("BackgroundColor") )
+            if (isFadeOutColorSet == false  && e.PropertyName is var propName && propName != null && propName.Equals("BackgroundColor") )
             {
                 fadeOutColor = this.BackgroundColor;
                 UpdateImage();
@@ -280,7 +272,7 @@ namespace Tizen.NUI.Components
             pixelBuffer[6] = (byte)(0xFF * color2.Z);
             pixelBuffer[7] = (byte)(0xFF * color2.W);
 
-            PixelData pixelData = new PixelData(pixelBuffer, size, width, height, PixelFormat.RGBA8888, PixelData.ReleaseFunction.DeleteArray );
+            PixelData pixelData = new PixelData(pixelBuffer, size, width, height, PixelFormat.RGBA8888);
             Texture texture = new Texture(TextureType.TEXTURE_2D, PixelFormat.RGBA8888, width, height);
             texture.Upload(pixelData);
 

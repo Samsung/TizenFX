@@ -24,6 +24,7 @@ namespace Tizen.Maps
     /// Route information, used in Route Search requests.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class Route : IDisposable
     {
         internal Interop.RouteHandle handle;
@@ -45,6 +46,7 @@ namespace Tizen.Maps
         /// Gets an instance of <see cref="Geocoordinates"/> object representing destination coordinates for this route.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public Geocoordinates Destination
         {
             get
@@ -57,6 +59,7 @@ namespace Tizen.Maps
         /// Gets the total distance for this route.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public double Distance
         {
             get
@@ -69,6 +72,7 @@ namespace Tizen.Maps
         /// Get the total duration to cover this route.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public double Duration
         {
             get
@@ -81,6 +85,7 @@ namespace Tizen.Maps
         /// Gets an ID for this route.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Id
         {
             get
@@ -93,6 +98,7 @@ namespace Tizen.Maps
         /// Gets the transport mode for this route.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public TransportMode Mode
         {
             get
@@ -105,6 +111,7 @@ namespace Tizen.Maps
         /// Gets the origin coordinates for this route.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public Geocoordinates Origin
         {
             get
@@ -117,6 +124,7 @@ namespace Tizen.Maps
         /// Gets a coordinates list for this route.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public IEnumerable<Geocoordinates> Path
         {
             get
@@ -131,6 +139,7 @@ namespace Tizen.Maps
         /// Gets a segment list for this route.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public IEnumerable<RouteSegment> Segments
         {
             get
@@ -145,6 +154,7 @@ namespace Tizen.Maps
         /// Gets the distance unit for this route.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public DistanceUnit Unit
         {
             get
@@ -156,6 +166,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets an instance of <see cref="Area"/> object which representing bounding area for this route.
         /// </summary>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         private Area BoundingBox
         {
             get
@@ -172,6 +183,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <param name="disposing">If true, managed and unmanaged resources can be disposed, otherwise only unmanaged resources can be disposed.</param>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposedValue)
@@ -185,6 +197,7 @@ namespace Tizen.Maps
         /// Releases all the resources used by this object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public void Dispose()
         {
             Dispose(true);

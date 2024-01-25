@@ -23,6 +23,7 @@ namespace ElmSharp
     /// Inherits <see cref="Container"/>.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class Table : Container
     {
         int _paddingX = 0;
@@ -35,6 +36,7 @@ namespace ElmSharp
         /// A <see cref="EvasObject"/> to which the new Table instance will be attached.
         /// </param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Table(EvasObject parent) : base(parent)
         {
         }
@@ -44,6 +46,7 @@ namespace ElmSharp
         /// </summary>
         /// <remarks>True for homogeneous, False for no homogeneous.</remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool Homogeneous
         {
             get
@@ -60,6 +63,7 @@ namespace ElmSharp
         /// Sets or gets the horizontal padding between the cells.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int PaddingX
         {
             get
@@ -77,6 +81,7 @@ namespace ElmSharp
         /// Sets or gets the vertical padding between the cells.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int PaddingY
         {
             get
@@ -98,6 +103,7 @@ namespace ElmSharp
         /// <param name="colspan">The column span.</param>
         /// <param name="rowspan">The row span.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Pack(EvasObject obj, int col, int row, int colspan, int rowspan)
         {
             if (obj == null)
@@ -111,6 +117,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="obj">The subobject.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Unpack(EvasObject obj)
         {
             if (obj == null)
@@ -123,6 +130,7 @@ namespace ElmSharp
         /// Removes all the child objects from a table object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Clear()
         {
             Interop.Elementary.elm_table_clear(RealHandle, false);
@@ -135,6 +143,7 @@ namespace ElmSharp
         /// <param name="part">The name of part class.</param>
         /// <param name="color">The color.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override void SetPartColor(string part, Color color)
         {
             Interop.Elementary.elm_object_color_class_color_set(Handle, part, color.R * color.A / 255,
@@ -149,6 +158,7 @@ namespace ElmSharp
         /// <param name="part">The name of part class, it could be 'bg', 'elm.swllow.content'.</param>
         /// <returns>The color of a particular part.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override Color GetPartColor(string part)
         {
             int r, g, b, a;
@@ -162,6 +172,7 @@ namespace ElmSharp
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);

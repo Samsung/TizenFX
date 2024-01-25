@@ -15,4 +15,7 @@
 
 uid: Tizen.Messaging.Messages
 summary: The Tizen.Messaging.Messages namespace contains classes providing the functionality to send, receive, and search messages. 
+
+  > [!NOTE]
+  > All Messages APIs have been deprecated since Tizen 8.0 (API Level 11) which means they are planned to be removed after two releases.
 ---

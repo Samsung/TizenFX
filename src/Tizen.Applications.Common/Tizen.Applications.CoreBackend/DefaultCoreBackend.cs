@@ -61,7 +61,13 @@ namespace Tizen.Applications.CoreBackend
             /// <summary>
             /// The suspended state changed event of the application.
             /// </summary>
-            SuspendedStateChanged
+            SuspendedStateChanged,
+
+            /// <summary>
+            /// The time zone changed event of the application.
+            /// </summary>
+            /// <since_tizen> 11 </since_tizen>
+            TimeZoneChanged = 7,
         }
 
         /// <summary>
@@ -76,7 +82,9 @@ namespace Tizen.Applications.CoreBackend
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
+#pragma warning disable CA1051
         protected IDictionary<EventType, object> Handlers = new Dictionary<EventType, object>();
+#pragma warning restore CA1051
 
         /// <summary>
         /// Constructor of DefaultCoreBackend class.
@@ -131,7 +139,9 @@ namespace Tizen.Applications.CoreBackend
         /// Exits the mainloop of the backend.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+#pragma warning disable CA1716
         public abstract void Exit();
+#pragma warning restore CA1716
 
         /// <summary>
         /// Releases all resources.
@@ -251,7 +261,7 @@ namespace Tizen.Applications.CoreBackend
             ErrorCode err = Interop.AppCommon.AppEventGetDeviceOrientation(infoHandle, out orientation);
             if (err != ErrorCode.None)
             {
-                Log.Error(LogTag, "Failed to get deivce orientation. Err = " + err);
+                Log.Error(LogTag, "Failed to get device orientation. Err = " + err);
             }
             if (Handlers.ContainsKey(EventType.DeviceOrientationChanged))
             {
@@ -273,12 +283,33 @@ namespace Tizen.Applications.CoreBackend
             ErrorCode err = Interop.AppCommon.AppEventGetSuspendedState(infoHandle, out state);
             if (err != ErrorCode.None)
             {
-                Log.Error(LogTag, "Failed to get deivce orientation. Err = " + err);
+                Log.Error(LogTag, "Failed to get device orientation. Err = " + err);
             }
             if (Handlers.ContainsKey(EventType.SuspendedStateChanged))
             {
                 var handler = Handlers[EventType.SuspendedStateChanged] as Action<SuspendedStateEventArgs>;
                 handler?.Invoke(new SuspendedStateEventArgs(state));
+            }
+        }
+
+        /// <summary>
+        /// Default implementation for the time zone changed event.
+        /// </summary>
+        /// <param name="infoHandle"></param>
+        /// <param name="data"></param>
+        /// <since_tizen> 11 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnTimeZoneChangedNative(IntPtr infoHandle, IntPtr data)
+        {
+            ErrorCode err = Interop.AppCommon.AppEventGetTimeZone(infoHandle, out string timeZone, out string timeZoneId);
+            if (err != ErrorCode.None)
+            {
+                Log.Error(LogTag, "Failed to get time zone. Err = " + err);
+            }
+            if (Handlers.ContainsKey(EventType.TimeZoneChanged))
+            {
+                var handler = Handlers[EventType.TimeZoneChanged] as Action<TimeZoneChangedEventArgs>;
+                handler?.Invoke(new TimeZoneChangedEventArgs(timeZone, timeZoneId));
             }
         }
     }

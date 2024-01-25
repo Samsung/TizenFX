@@ -15,23 +15,38 @@
  *
  */
 using System.ComponentModel;
-using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Components;
+using System;
 
 namespace Tizen.NUI.Wearable
 {
     /// <summary>
     /// PopupStyle used to config the Popup represent.
     /// </summary>
+    [Obsolete("This has been deprecated in API12")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class PopupStyle : ControlStyle
     {
+        /// <summary>Bindable property of WrapContent</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty WrapContentProperty = BindableProperty.Create(nameof(WrapContent), typeof(bool?), typeof(PopupStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((PopupStyle)bindable).wrapContent = (bool?)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((PopupStyle)bindable).wrapContent;
+        });
+
+        private bool? wrapContent;
+
         static PopupStyle() { }
 
         /// <summary>
         /// Creates a new instance of a PopupStyle.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PopupStyle() : base()
         {
@@ -41,43 +56,21 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Creates a new instance of a PopupStyle using style.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PopupStyle(PopupStyle style) : base(style)
         {
-            if (null == style)
-            {
-                return;
-            }
-            initSubStyle();
-            CopyFrom(style);
         }
 
         /// <summary>
         /// WrapContent
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? WrapContent
         {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Retrieves a copy of PopupStyle.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void CopyFrom(BindableObject bindableObject)
-        {
-            base.CopyFrom(bindableObject);
-
-            PopupStyle popupStyle = bindableObject as PopupStyle;
-            if (null != popupStyle)
-            {
-                if (null != popupStyle.WrapContent)
-                {
-                    WrapContent = popupStyle.WrapContent;
-                }
-            }
+            get => (bool?)GetValue(WrapContentProperty);
+            set => SetValue(WrapContentProperty, value);            
         }
 
         private void initSubStyle()

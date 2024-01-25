@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<View 
+	xmlns="http://tizen.org/Tizen.NUI/2018/XAML" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	x:Class="Tizen.NUI.Devel.Tests.FindByName"
+	x:Name="root">
+	<View>
+		<TextLabel Text="Foo" x:Name="label0"/>
+	</View>
+</View>

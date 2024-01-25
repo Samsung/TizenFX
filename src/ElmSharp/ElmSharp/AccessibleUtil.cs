@@ -24,6 +24,7 @@ namespace ElmSharp.Accessible
     /// Enumeration for the ReadingStatus.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum ReadingStatus
     {
         /// <summary>
@@ -48,13 +49,14 @@ namespace ElmSharp.Accessible
     /// AccessibleUtil provides a method to set the reading information.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public static class AccessibleUtil
     {
 
         static void AtspiSignalCallback(IntPtr data, string say_signal)
         {
             GCHandle gch = GCHandle.FromIntPtr(data);
-            TaskCompletionSource<ReadingStatus> tcs = (TaskCompletionSource<ReadingStatus>) gch.Target;
+            TaskCompletionSource<ReadingStatus> tcs = (TaskCompletionSource<ReadingStatus>)gch.Target;
             if (say_signal.Equals("ReadingCancelled"))
             {
                 tcs.SetResult(ReadingStatus.Cancelled);
@@ -82,6 +84,7 @@ namespace ElmSharp.Accessible
         /// <param name="discardable">If true, reading can be discarded by subsequent reading requests. If false, reading must be finished before the next reading request can be started.</param>
         /// <returns>Return a task with the reading status.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static Task<ReadingStatus> Say(string text, bool discardable)
         {
             var tcs = new TaskCompletionSource<ReadingStatus>();

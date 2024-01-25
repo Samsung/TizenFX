@@ -20,5 +20,6 @@ internal static partial class Interop
     {
         public const string ScreenMirroring = "libcapi-media-screen-mirroring.so.0";
         public const string MediaController = "libcapi-media-controller.so.0";
+        public const string WebRTC = "libcapi-media-webrtc.so.0";
     }
 }

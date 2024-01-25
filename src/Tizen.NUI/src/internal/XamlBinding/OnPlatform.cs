@@ -1,3 +1,20 @@
+/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 using System;
 using System.Collections.Generic;
 using Tizen.NUI.Xaml;
@@ -15,9 +32,11 @@ namespace Tizen.NUI.Binding
         bool useLegacyFallback;
         T android;
         [Obsolete]
-        public T Android {
+        public T Android
+        {
             get { return android; }
-            set {
+            set
+            {
                 useLegacyFallback = true;
                 android = value;
             }
@@ -25,9 +44,11 @@ namespace Tizen.NUI.Binding
 
         T ios;
         [Obsolete]
-        public T iOS {
+        public T iOS
+        {
             get { return ios; }
-            set {
+            set
+            {
                 useLegacyFallback = true;
                 ios = value;
             }
@@ -35,9 +56,11 @@ namespace Tizen.NUI.Binding
 
         T winPhone;
         [Obsolete]
-        public T WinPhone {
+        public T WinPhone
+        {
             get { return winPhone; }
-            set {
+            set
+            {
                 useLegacyFallback = true;
                 winPhone = value;
             }
@@ -45,9 +68,11 @@ namespace Tizen.NUI.Binding
 
         bool hasDefault;
         T @default;
-        public T Default {
+        public T Default
+        {
             get { return @default; }
-            set {
+            set
+            {
                 hasDefault = true;
                 @default = value;
             }
@@ -61,7 +86,8 @@ namespace Tizen.NUI.Binding
 
         public static implicit operator T(OnPlatform<T> onPlatform)
         {
-            foreach (var onPlat in onPlatform.Platforms) {
+            foreach (var onPlat in onPlatform.Platforms)
+            {
                 if (onPlat.Platform == null)
                     continue;
                 if (null != Device.RuntimePlatform && !onPlat.Platform.Contains(Device.RuntimePlatform))

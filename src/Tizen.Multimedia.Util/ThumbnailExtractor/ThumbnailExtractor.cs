@@ -16,10 +16,9 @@
 
 using System;
 using System.IO;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
-using Handle = Interop.ThumbnailExtractorHandle;
+using System.Runtime.InteropServices;
 using Native = Interop.ThumbnailExtractor;
 
 namespace Tizen.Multimedia.Util
@@ -30,13 +29,6 @@ namespace Tizen.Multimedia.Util
     /// <since_tizen> 4 </since_tizen>
     public static class ThumbnailExtractor
     {
-        private static Handle CreateHandle()
-        {
-            Native.Create(out var handle).ThrowIfError("Failed to extract.");
-
-            return handle;
-        }
-
         /// <summary>
         /// Extracts the thumbnail for the given media with the specified path.
         /// </summary>
@@ -49,6 +41,7 @@ namespace Tizen.Multimedia.Util
         /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller does not have required privilege for accessing the <paramref name="path"/>.</exception>
         /// <exception cref="FileFormatException">The specified file is not supported.</exception>
+        [Obsolete("Deprecated since API10; Will be removed in API12. Please use Extract instead.")]
         public static Task<ThumbnailExtractionResult> ExtractAsync(string path)
         {
             return RunExtractAsync(path, null, CancellationToken.None);
@@ -67,6 +60,7 @@ namespace Tizen.Multimedia.Util
         /// <exception cref="UnauthorizedAccessException">The caller does not have required privilege for accessing the <paramref name="path"/>.</exception>
         /// <exception cref="FileFormatException">The specified file is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10; Will be removed in API12. Please use Extract instead.")]
         public static Task<ThumbnailExtractionResult> ExtractAsync(string path, CancellationToken cancellationToken)
         {
             return RunExtractAsync(path, null, cancellationToken);
@@ -91,6 +85,7 @@ namespace Tizen.Multimedia.Util
         ///     The width or the height of <paramref name="size"/> is less than or equal to zero.
         /// </exception>
         /// <exception cref="FileFormatException">The specified file is not supported.</exception>
+        [Obsolete("Deprecated since API10; Will be removed in API12. Please use Extract instead.")]
         public static Task<ThumbnailExtractionResult> ExtractAsync(string path, Size size)
         {
             return RunExtractAsync(path, size, CancellationToken.None);
@@ -116,6 +111,7 @@ namespace Tizen.Multimedia.Util
         ///     The width or the height of <paramref name="size"/> is less than or equal to zero.
         /// </exception>
         /// <exception cref="FileFormatException">The specified file is not supported.</exception>
+        [Obsolete("Deprecated since API10; Will be removed in API12. Please use Extract instead.")]
         public static Task<ThumbnailExtractionResult> ExtractAsync(string path, Size size,
             CancellationToken cancellationToken)
         {
@@ -130,7 +126,7 @@ namespace Tizen.Multimedia.Util
                 throw new ArgumentNullException(nameof(path));
             }
 
-            if (File.Exists(path) == false)
+            if (!File.Exists(path))
             {
                 throw new FileNotFoundException("File does not exists.", path);
             }
@@ -155,89 +151,50 @@ namespace Tizen.Multimedia.Util
                 ExtractAsyncCore(path, size, cancellationToken);
         }
 
-
         private static async Task<ThumbnailExtractionResult> ExtractAsyncCore(string path, Size? size,
             CancellationToken cancellationToken)
         {
-            using (var handle = CreateHandle())
+            var tcs = new TaskCompletionSource<ThumbnailExtractionResult>();
+
+            Task thumbTask = null;
+
+            if (cancellationToken.CanBeCanceled)
             {
-                Native.SetPath(handle, path).ThrowIfError("Failed to extract; failed to set the path.");
-
-                if (size.HasValue)
+                cancellationToken.Register(() =>
                 {
-                    Native.SetSize(handle, size.Value.Width, size.Value.Height).
-                        ThrowIfError("Failed to extract; failed to set the size");
-                }
+                    if (tcs.Task.IsCompleted)
+                    {
+                        return;
+                    }
 
-                var tcs = new TaskCompletionSource<ThumbnailExtractionResult>();
+                    tcs.TrySetCanceled();
+                });
+            }
 
-                IntPtr id = IntPtr.Zero;
-
+            thumbTask = Task.Factory.StartNew( () =>
+            {
                 try
                 {
-                    var cb = GetCallback(tcs);
-                    using (var cbKeeper = ObjectKeeper.Get(cb))
+                    var result = Extract(path, size.HasValue ? size.Value : new Size(320, 240));
+                    if (result != null)
                     {
-                        Native.Extract(handle, cb, IntPtr.Zero, out id)
-                            .ThrowIfError("Failed to extract.");
-
-                        using (RegisterCancellationToken(tcs, cancellationToken, handle, Marshal.PtrToStringAnsi(id)))
-                        {
-                            return await tcs.Task;
-                        }
+                        tcs.TrySetResult(result);
+                    }
+                    else
+                    {
+                        tcs.TrySetException(new InvalidOperationException("Failed to extract thumbnail"));
                     }
                 }
-                finally
+                catch (Exception e)
                 {
-                    LibcSupport.Free(id);
+                    Log.Error("Tizen.Multimedia.Util", e.ToString());
+                    tcs.TrySetException(e);
                 }
-            }
-        }
+            }, cancellationToken,
+                TaskCreationOptions.DenyChildAttach | TaskCreationOptions.LongRunning,
+                TaskScheduler.Default);
 
-        private static Native.ThumbnailExtractCallback GetCallback(TaskCompletionSource<ThumbnailExtractionResult> tcs)
-        {
-            return (error, requestId, thumbWidth, thumbHeight, thumbData, dataSize, _) =>
-            {
-                if (error == ThumbnailExtractorError.None)
-                {
-                    try
-                    {
-                        tcs.TrySetResult(new ThumbnailExtractionResult(thumbData, thumbWidth, thumbHeight, dataSize));
-                    }
-                    catch (Exception e)
-                    {
-                        tcs.TrySetException(new InvalidOperationException("[" + error + "] Failed to create ThumbnailExtractionResult instance.", e));
-                    }
-                    finally
-                    {
-                        LibcSupport.Free(thumbData);
-                    }
-                }
-                else
-                {
-                    tcs.TrySetException(error.ToException("Failed to extract."));
-                }
-            };
-        }
-
-        private static IDisposable RegisterCancellationToken(TaskCompletionSource<ThumbnailExtractionResult> tcs,
-            CancellationToken cancellationToken, Handle handle, string id)
-        {
-            if (cancellationToken.CanBeCanceled == false)
-            {
-                return null;
-            }
-
-            return cancellationToken.Register(() =>
-            {
-                if (tcs.Task.IsCompleted)
-                {
-                    return;
-                }
-
-                Native.Cancel(handle, id).ThrowIfError("Failed to cancel.");
-                tcs.TrySetCanceled();
-            });
+            return await tcs.Task;
         }
 
         /// <summary>
@@ -334,7 +291,7 @@ namespace Tizen.Multimedia.Util
             {
                 if (thumbData != IntPtr.Zero)
                 {
-                    LibcSupport.Free(thumbData);
+                    Marshal.FreeHGlobal(thumbData);
                 }
             }
         }
@@ -357,7 +314,8 @@ namespace Tizen.Multimedia.Util
         /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
         /// <param name="path">The path of the media file to extract the thumbnail.</param>
         /// <param name="resultThumbnailPath">The path to save the generated thumbnail.</param>
-        /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
+        /// <exception cref="ArgumentException"><paramref name="path"/> or <paramref name="resultThumbnailPath"/> is invalid.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="path"/> or <paramref name="resultThumbnailPath"/> is null.</exception>
         /// <exception cref="FileNotFoundException"><paramref name="path"/> does not exist.</exception>
         /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
         /// <exception cref="FileFormatException">The specified file is not supported.</exception>
@@ -387,7 +345,8 @@ namespace Tizen.Multimedia.Util
         /// <param name="path">The path of the media file to extract the thumbnail.</param>
         /// <param name="size">The size of the thumbnail.</param>
         /// <param name="resultThumbnailPath">The path to save the generated thumbnail.</param>
-        /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
+        /// <exception cref="ArgumentException"><paramref name="path"/> or <paramref name="resultThumbnailPath"/> is invalid.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="path"/> or <paramref name="resultThumbnailPath"/> is null.</exception>
         /// <exception cref="FileNotFoundException"><paramref name="path"/> does not exist.</exception>
         /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
@@ -398,10 +357,8 @@ namespace Tizen.Multimedia.Util
         /// <since_tizen> 6 </since_tizen>
         public static void Extract(string path, Size size, string resultThumbnailPath)
         {
-            if (path == null)
-            {
-                throw new ArgumentNullException(nameof(path));
-            }
+            ValidationUtil.ValidateIsNullOrEmpty(path, nameof(path));
+            ValidationUtil.ValidateIsNullOrEmpty(resultThumbnailPath, nameof(resultThumbnailPath));
 
             if (File.Exists(path) == false)
             {

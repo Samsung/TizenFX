@@ -1,3 +1,19 @@
+/*
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 //
 // XamlLoader.cs
 //
@@ -42,14 +58,15 @@ namespace Tizen.NUI.Xaml.Internals
 {
     /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    [Obsolete ("Replaced by ResourceLoader")]
+    [Obsolete("Replaced by ResourceLoader")]
     public static class XamlLoader
     {
         static Func<Type, string> xamlFileProvider;
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Func<Type, string> XamlFileProvider {
+        public static Func<Type, string> XamlFileProvider
+        {
             get { return xamlFileProvider; }
             internal set
             {
@@ -76,6 +93,7 @@ namespace Tizen.NUI.Xaml
                 if (string.IsNullOrEmpty(xaml))
                     throw new XamlParseException(string.Format("Can't get xaml from type {0}", callingType), new XmlLineInfo());
                 Load(view, xaml);
+                NUIApplication.CurrentLoadedXaml = callingType.FullName;
             }
             catch (XamlParseException e)
             {
@@ -112,11 +130,13 @@ namespace Tizen.NUI.Xaml
 
                     var rootnode = new RuntimeRootNode(new XmlType(reader.NamespaceURI, reader.Name, null), ret, (IXmlNamespaceResolver)reader);
                     XamlParser.ParseXaml(rootnode, reader);
+                    var doNotThrow = ResourceLoader.ExceptionHandler != null || Internals.XamlLoader.DoNotThrowOnExceptions;
+                    void ehandler(Exception e) => ResourceLoader.ExceptionHandler?.Invoke((e, path));
                     Visit(rootnode, new HydrationContext
                     {
                         RootElement = ret,
 #pragma warning disable 0618
-                        ExceptionHandler = ResourceLoader.ExceptionHandler ?? (Internals.XamlLoader.DoNotThrowOnExceptions ? e => { } : (Action<Exception>)null)
+                        ExceptionHandler = doNotThrow ? ehandler : (Action<Exception>)null
 #pragma warning restore 0618
                     });
                     break;
@@ -131,6 +151,14 @@ namespace Tizen.NUI.Xaml
         {
             using (var textReader = new StringReader(xaml))
             using (var reader = XmlReader.Create(textReader))
+            {
+                Load(view, reader);
+            }
+        }
+
+        public static void Load(object view, XmlReader reader)
+        {
+            if (reader != null)
             {
                 while (reader.Read())
                 {
@@ -152,11 +180,13 @@ namespace Tizen.NUI.Xaml
 
                     var rootnode = new RuntimeRootNode(new XmlType(reader.NamespaceURI, reader.Name, null), view, (IXmlNamespaceResolver)reader);
                     XamlParser.ParseXaml(rootnode, reader);
+                    var doNotThrow = ResourceLoader.ExceptionHandler != null || Internals.XamlLoader.DoNotThrowOnExceptions;
+                    void ehandler(Exception e) => ResourceLoader.ExceptionHandler?.Invoke((e, XamlFilePathAttribute.GetFilePathForObject(view)));
                     Visit(rootnode, new HydrationContext
                     {
                         RootElement = view,
 #pragma warning disable 0618
-                        ExceptionHandler = ResourceLoader.ExceptionHandler ?? (Internals.XamlLoader.DoNotThrowOnExceptions ? e => { } : (Action<Exception>)null)
+                        ExceptionHandler = doNotThrow ? ehandler : (Action<Exception>)null
 #pragma warning restore 0618
                     });
                     break;
@@ -164,12 +194,10 @@ namespace Tizen.NUI.Xaml
             }
         }
 
-        [Obsolete("Use the XamlFileProvider to provide xaml files. We will remove this when Cycle 8 hits Stable.")]
-        public static object Create(string xaml, bool doNotThrow = false)
+        public static object Create(XmlReader reader, bool doNotThrow = false)
         {
             object inflatedView = null;
-            using (var textreader = new StringReader(xaml))
-            using (var reader = XmlReader.Create(textreader))
+            if (reader != null)
             {
                 while (reader.Read())
                 {
@@ -393,7 +421,7 @@ namespace Tizen.NUI.Xaml
             {
                 var info = assembly.GetManifestResourceInfo(resource);
 
-                if (!string.IsNullOrEmpty(info.FileName) &&
+                if (info != null && !string.IsNullOrEmpty(info.FileName) &&
                     string.Compare(info.FileName, filename, StringComparison.OrdinalIgnoreCase) == 0)
                     return true;
             }

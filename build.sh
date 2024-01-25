@@ -19,6 +19,8 @@ usage() {
   echo "Commands:"
   echo "    build [module]     Build a specific module"
   echo "    full               Build all modules in src/ directory"
+  echo "    design             Build NUI Design module"
+  echo "    xamlbuild          Build NUI XamlBuild module"
   echo "    dummy              Generate dummy assemblies of all modules"
   echo "    pack [version]     Make a NuGet package with build artifacts"
   echo "    install [target]   Install assemblies to the target device"
@@ -39,6 +41,11 @@ prepare_solution() {
     dotnet sln $SLN_FILE add $SCRIPT_DIR/src/*/*.Design.csproj
   else
     dotnet sln $SLN_FILE remove $SCRIPT_DIR/src/*/*.Design.csproj
+  fi
+  if [ "$target" == "xamlbuild" ]; then
+    dotnet sln $SLN_FILE add $SCRIPT_DIR/src/*/*.XamlBuild.csproj
+  else
+    dotnet sln $SLN_FILE remove $SCRIPT_DIR/src/*/*.XamlBuild.csproj
   fi
 }
 
@@ -146,14 +153,30 @@ cmd_design_build() {
   cleanup_solution
 }
 
+cmd_xamlbuild_build() {
+  prepare_solution xamlbuild
+  restore $SLN_FILE
+  build $SLN_FILE $@
+  projects=$(dirname $(ls -1 $SCRIPT_DIR/src/*/*.XamlBuild.csproj))
+  for proj in $projects; do
+    if [ -d $proj/bin/$CONFIGURATION ]; then
+      cp -f $proj/bin/$CONFIGURATION/*/*.XamlBuild.dll $SCRIPT_DIR/pkg/Tizen.NET.API*/xamlbuild/
+    fi
+  done
+  cleanup_solution
+}
+
 cmd_dummy_build() {
   if [ ! -d $OUTDIR/bin/public/ref  ]; then
     echo "No assemblies to read. Build TizenFX first."
     exit 1
   fi
   mkdir -p $OUTDIR/bin/dummy
+  CACHE=`pwd`
+  cd $OUTDIR/bin/dummy
   dotnet $SCRIPT_DIR/tools/bin/APITool.dll \
          dummy $OUTDIR/bin/public/ref $OUTDIR/bin/dummy
+  cd $CACHE
 }
 
 cmd_pack() {
@@ -204,8 +227,8 @@ cmd_install() {
   nifile_cnt=$(sdb $SDB_OPTIONS shell find $TARGET_ASSEMBLY_DIR -name '*.ni.dll' | wc -l)
   if [ $nifile_cnt -gt 0 ]; then
     sdb $SDB_OPTIONS shell "rm -f $TARGET_ASSEMBLY_DIR/*.ni.dll"
-    sdb $SDB_OPTIONS shell nitool --system
-    sdb $SDB_OPTIONS shell nitool --regen-all-app
+    sdb $SDB_OPTIONS shell dotnettool --ni-system
+    sdb $SDB_OPTIONS shell dotnettool --ni-regen-all-app
   fi
 
   sdb $SDB_OPTIONS shell chsmack -a '_' $TARGET_ASSEMBLY_DIR/*
@@ -216,6 +239,7 @@ case "$cmd" in
   build|--build|-b) cmd_module_build $@ ;;
   full |--full |-f) cmd_full_build $@ ;;
   design|--design)  cmd_design_build $@ ;;
+  xamlbuild|--xamlbuild)  cmd_xamlbuild_build $@ ;;
   dummy|--dummy|-d) cmd_dummy_build $@ ;;
   pack |--pack |-p) cmd_pack $@ ;;
   install |--install |-i) cmd_install $@ ;;

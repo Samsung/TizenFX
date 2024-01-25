@@ -26,52 +26,62 @@ namespace ElmSharp
     /// It includes some predefined instance.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class EcoreEventType
     {
         /// <summary>
         /// Key down Ecore event type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static readonly EcoreEventType KeyDown = new EcoreEventType(Interop.Libraries.EcoreInput, "ECORE_EVENT_KEY_DOWN");
         /// <summary>
         /// Key Up Ecore event type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static readonly EcoreEventType KeyUp = new EcoreEventType(Interop.Libraries.EcoreInput, "ECORE_EVENT_KEY_UP");
         /// <summary>
         /// Mouse Button Down Ecore event type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static readonly EcoreEventType MouseButtonDown = new EcoreEventType(Interop.Libraries.EcoreInput, "ECORE_EVENT_MOUSE_BUTTON_DOWN");
         /// <summary>
         /// Mouse Button Up Ecore event type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static readonly EcoreEventType MouseButtonUp = new EcoreEventType(Interop.Libraries.EcoreInput, "ECORE_EVENT_MOUSE_BUTTON_UP");
         /// <summary>
         /// Mouse Button Cancel Ecore event type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static readonly EcoreEventType MouseButtonCancel = new EcoreEventType(Interop.Libraries.EcoreInput, "ECORE_EVENT_MOUSE_BUTTON_CANCEL");
         /// <summary>
         /// Mouse Move Ecore event type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static readonly EcoreEventType MouseMove = new EcoreEventType(Interop.Libraries.EcoreInput, "ECORE_EVENT_MOUSE_MOVE");
         /// <summary>
         /// Mouse Wheel Ecore event type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static readonly EcoreEventType MouseWheel = new EcoreEventType(Interop.Libraries.EcoreInput, "ECORE_EVENT_MOUSE_WHEEL");
         /// <summary>
         /// Mouse In Ecore event type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static readonly EcoreEventType MouseIn = new EcoreEventType(Interop.Libraries.EcoreInput, "ECORE_EVENT_MOUSE_IN");
         /// <summary>
         /// Mouse Out Ecore event type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static readonly EcoreEventType MouseOut = new EcoreEventType(Interop.Libraries.EcoreInput, "ECORE_EVENT_MOUSE_OUT");
 
         private string _lib;
@@ -90,6 +100,7 @@ namespace ElmSharp
         /// </summary>
         /// <returns>The value of type.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int GetValue()
         {
             if (_typeValue < 0)
@@ -114,6 +125,7 @@ namespace ElmSharp
     /// </summary>
     /// <typeparam name="TEventArgs">Kinds of EventArgs.</typeparam>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class EcoreEvent<TEventArgs> : IDisposable where TEventArgs : EventArgs
     {
         /// <summary>
@@ -124,6 +136,7 @@ namespace ElmSharp
         /// <param name="info">IntPtr</param>
         /// <returns></returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public delegate TEventArgs EventInfoParser(IntPtr data, EcoreEventType type, IntPtr info);
 
         private bool _disposed = false;
@@ -136,6 +149,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="type">EcoreEventType</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public EcoreEvent(EcoreEventType type) : this(type, null)
         {
         }
@@ -146,6 +160,7 @@ namespace ElmSharp
         /// <param name="type">EcoreEventType</param>
         /// <param name="parser">EventInfoParser</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public EcoreEvent(EcoreEventType type, EventInfoParser parser)
         {
             _eventType = type;
@@ -171,6 +186,7 @@ namespace ElmSharp
         /// On Event Handler of the EcoreEvent.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<TEventArgs> On
         {
             add
@@ -188,10 +204,11 @@ namespace ElmSharp
             remove
             {
                 EventHandler<TEventArgs> handler = value;
-                var callbacks = _nativeCallbacks.Where(cb => cb.eventHandler == handler);
+                var callbacks = _nativeCallbacks.Where(cb => cb.eventHandler == handler).ToList();
                 foreach (var cb in callbacks)
                 {
                     Interop.Ecore.ecore_event_handler_del(cb.nativeHandler);
+                    _nativeCallbacks.Remove(cb);
                 }
             }
         }
@@ -204,6 +221,7 @@ namespace ElmSharp
         /// otherwise false.
         /// </param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -225,6 +243,7 @@ namespace ElmSharp
         /// Destroys the current object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Dispose()
         {
             Dispose(true);
@@ -236,6 +255,7 @@ namespace ElmSharp
     /// The event class for EcoreEvent.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class EcoreEvent : EcoreEvent<EventArgs>
     {
         /// <summary>
@@ -243,6 +263,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="type">EcoreEventType</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public EcoreEvent(EcoreEventType type) : base(type)
         {
         }

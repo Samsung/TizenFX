@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2023 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,9 +17,11 @@
 
 extern alias TizenSystemSettings;
 using TizenSystemSettings.Tizen.System;
+
 using System;
 using System.Globalization;
 using System.ComponentModel;
+using Tizen.NUI.Text;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.BaseComponents
@@ -31,7 +33,7 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class TextLabel : View
     {
-        private class TextLayout : LayoutItem
+        internal class TextLabelLayout : LayoutItem
         {
             protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
             {
@@ -49,17 +51,23 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
+                    var minSize = Owner.MinimumSize;
+                    var maxSize = Owner.MaximumSize;
+                    var naturalSize = Owner.GetNaturalSize();
+
                     if (heightMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly)
                     {
                         // GetWidthForHeight is not implemented.
-                        totalWidth = Owner.GetNaturalSize().Width;
+                        float width = naturalSize != null ? naturalSize.Width : 0;
+                        totalWidth = Math.Min(Math.Max(width, minSize.Width), (maxSize.Width < 0 ? Int32.MaxValue : maxSize.Width));
                         widthMeasureSpec = new MeasureSpecification(new LayoutLength(totalWidth), MeasureSpecification.ModeType.Exactly);
                     }
                     else
                     {
-                        Vector3 naturalSize = Owner.GetNaturalSize();
-                        totalWidth = naturalSize.Width;
-                        totalHeight = naturalSize.Height;
+                        float width = naturalSize != null ? naturalSize.Width : 0;
+                        float height = naturalSize != null ? naturalSize.Height : 0;
+                        totalWidth = Math.Min(Math.Max(width, minSize.Width), (maxSize.Width < 0 ? Int32.MaxValue : maxSize.Width));
+                        totalHeight = Math.Min(Math.Max(height, minSize.Height), (maxSize.Height < 0 ? Int32.MaxValue : maxSize.Height));
 
                         heightMeasureSpec = new MeasureSpecification(new LayoutLength(totalHeight), MeasureSpecification.ModeType.Exactly);
                         widthMeasureSpec = new MeasureSpecification(new LayoutLength(totalWidth), MeasureSpecification.ModeType.Exactly);
@@ -76,35 +84,46 @@ namespace Tizen.NUI.BaseComponents
 
         static TextLabel() { }
 
+        static internal new void Preload()
+        {
+            // Do not call View.Preload(), since we already call it
+
+            Property.Preload();
+            // Do nothing. Just call for load static values.
+        }
+
+        private static SystemFontTypeChanged systemFontTypeChanged = new SystemFontTypeChanged();
+        private static SystemLocaleLanguageChanged systemLocaleLanguageChanged = new SystemLocaleLanguageChanged();
+        static private string defaultStyleName = "Tizen.NUI.BaseComponents.TextLabel";
+        static private string defaultFontFamily = "BreezeSans";
         private string textLabelSid = null;
-        private bool systemlangTextFlag = false;
         private TextLabelSelectorData selectorData;
+        private string fontFamily = defaultFontFamily;
+        private float fontSizeScale = 1.0f;
 
-        /// <summary>
-        /// Return a copied Style instance of the TextLabel.
-        /// </summary>
-        /// <remarks>
-        /// It returns copied style instance so that changing it does not effect to the view.
-        /// Style setting is possible by using constructor or the function of <see cref="View.ApplyStyle"/>.
-        /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabelStyle Style => new TextLabelStyle(this);
+        private bool textIsEmpty = true;
+
+        private bool hasSystemLanguageChanged = false;
+        private bool hasSystemFontSizeChanged = false;
+        private bool hasSystemFontTypeChanged = false;
+
+        private Color internalTextColor;
+        private Color internalAnchorColor;
+        private Color internalAnchorClickedColor;
 
         /// <summary>
         /// Creates the TextLabel control.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public TextLabel() : this(Interop.TextLabel.TextLabel_New__SWIG_0(), true)
+        public TextLabel() : this(Interop.TextLabel.New(ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            Layout = new TextLayout();
         }
 
         /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabel(TextLabelStyle viewStyle) : this(Interop.TextLabel.TextLabel_New__SWIG_0(), true, viewStyle)
+        public TextLabel(TextLabelStyle viewStyle) : this(Interop.TextLabel.New(ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true, viewStyle)
         {
-            Layout = new TextLayout();
         }
 
         /// <summary>
@@ -113,10 +132,9 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="shown">false : Not displayed (hidden), true : displayed (shown)</param>
         /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabel(bool shown) : this(Interop.TextLabel.TextLabel_New__SWIG_0(), true)
+        public TextLabel(bool shown) : this(Interop.TextLabel.New(ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            Layout = new TextLayout();
             SetVisible(shown);
         }
 
@@ -125,10 +143,10 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="text">The text to display</param>
         /// <since_tizen> 3 </since_tizen>
-        public TextLabel(string text) : this(Interop.TextLabel.TextLabel_New__SWIG_1(text), true)
+        public TextLabel(string text) : this(Interop.TextLabel.New(text, ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            Layout = new TextLayout();
+            textIsEmpty = string.IsNullOrEmpty(text);
         }
 
         /// <summary>
@@ -138,24 +156,14 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="shown">false : Not displayed (hidden), true : displayed (shown)</param>
         /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabel(string text, bool shown) : this(Interop.TextLabel.TextLabel_New__SWIG_1(text), true)
+        public TextLabel(string text, bool shown) : this(Interop.TextLabel.New(text, ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            Layout = new TextLayout();
+            textIsEmpty = string.IsNullOrEmpty(text);
             SetVisible(shown);
         }
 
-        internal TextLabel(TextLabel handle, bool shown = true) : this(Interop.TextLabel.new_TextLabel__SWIG_1(TextLabel.getCPtr(handle)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            if (!shown)
-            {
-                SetVisible(false);
-            }
-        }
-
-        internal TextLabel(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : base(Interop.TextLabel.TextLabel_SWIGUpcast(cPtr), cMemoryOwn, viewStyle)
+        internal TextLabel(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : base(cPtr, cMemoryOwn, viewStyle)
         {
             if (!shown)
             {
@@ -163,12 +171,17 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal TextLabel(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.TextLabel.TextLabel_SWIGUpcast(cPtr), cMemoryOwn)
+        internal TextLabel(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(cPtr, cMemoryOwn, null)
         {
             if (!shown)
             {
                 SetVisible(false);
             }
+        }
+
+        private bool HasStyle()
+        {
+            return ThemeManager.GetStyle(this.GetType()) == null ? false : true;
         }
 
         /// <summary>
@@ -188,7 +201,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(TranslatableTextProperty, value);
-                selectorData?.TranslatableText.UpdateIfNeeds(this, value);
             }
         }
         private string translatableText
@@ -201,7 +213,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (NUIApplication.MultilingualResourceManager == null)
                 {
-                    throw new ArgumentNullException("ResourceManager about multilingual is null");
+                    throw new ArgumentNullException(null, "ResourceManager about multilingual is null");
                 }
                 string translatableText = null;
                 textLabelSid = value;
@@ -209,10 +221,10 @@ namespace Tizen.NUI.BaseComponents
                 if (translatableText != null)
                 {
                     Text = translatableText;
-                    if (systemlangTextFlag == false)
+                    if (hasSystemLanguageChanged == false)
                     {
-                        SystemSettings.LocaleLanguageChanged += new WeakEventHandler<LocaleLanguageChangedEventArgs>(SystemSettings_LocaleLanguageChanged).Handler;
-                        systemlangTextFlag = true;
+                        systemLocaleLanguageChanged.Add(SystemSettingsLocaleLanguageChanged);
+                        hasSystemLanguageChanged = true;
                     }
                 }
                 else
@@ -237,8 +249,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(TextProperty, value);
-                selectorData?.Text.UpdateIfNeeds(this, value);
-                NotifyPropertyChangedAndRequestLayout();
+                NotifyPropertyChanged();
             }
         }
 
@@ -256,16 +267,67 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(FontFamilyProperty, value);
-                selectorData?.FontFamily.UpdateIfNeeds(this, value);
-                NotifyPropertyChangedAndRequestLayout();
+                NotifyPropertyChanged();
             }
+        }
+
+        private string InternalFontFamily
+        {
+            get
+            {
+                if (HasStyle())
+                    return fontFamily;
+                else
+                    return Object.InternalGetPropertyString(this.SwigCPtr, TextLabel.Property.FontFamily);
+            }
+            set
+            {
+                string newFontFamily;
+
+                if (string.Equals(fontFamily, value)) return;
+
+                fontFamily = value;
+                if (fontFamily == Tizen.NUI.FontFamily.UseSystemSetting)
+                {
+                    try
+                    {
+                        newFontFamily = SystemSettings.FontType;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("{0} Exception caught.", e);
+                        newFontFamily = defaultFontFamily;
+                    }
+                    AddSystemSettingsFontTypeChanged();
+                }
+                else
+                {
+                    newFontFamily = fontFamily;
+                    RemoveSystemSettingsFontTypeChanged();
+                }
+
+                SetInternalFontFamily(newFontFamily);
+            }
+        }
+
+        private void SetInternalFontFamily(string fontFamily)
+        {
+            Object.InternalSetPropertyString(this.SwigCPtr, TextLabel.Property.FontFamily, (string)fontFamily);
+            RequestLayout();
         }
 
         /// <summary>
         /// The FontStyle property.<br />
         /// The requested font style to use.<br />
+        /// The fontStyle map contains the following keys :<br />
+        /// <list type="table">
+        /// <item><term>width (string)</term><description>The width key defines occupied by each glyph. (values: ultraCondensed, extraCondensed, condensed, semiCondensed, normal, semiExpanded, expanded, extraExpanded, ultraExpanded)</description></item>
+        /// <item><term>weight (string)</term><description>The weight key defines the thickness or darkness of the glyphs. (values: thin, ultraLight, extraLight, light, demiLight, semiLight, book, normal, regular, medium, demiBold, semiBold, bold, ultraBold, extraBold, black, heavy, extraBlack)</description></item>
+        /// <item><term>slant (string)</term><description>The slant key defines whether to use italics. (values: normal, roman, italic, oblique)</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap FontStyle
         {
             get
@@ -275,8 +337,52 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(FontStyleProperty, value);
-                NotifyPropertyChangedAndRequestLayout();
+                NotifyPropertyChanged();
             }
+        }
+
+        /// <summary>
+        /// Set FontStyle to TextLabel. <br />
+        /// </summary>
+        /// <param name="fontStyle">The FontStyle</param>
+        /// <remarks>
+        /// SetFontStyle specifies the requested font style through <see cref="Tizen.NUI.Text.FontStyle"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetFontStyle method.
+        /// <code>
+        /// var fontStyle = new Tizen.NUI.Text.FontStyle();
+        /// fontStyle.Width = FontWidthType.Expanded;
+        /// fontStyle.Weight = FontWeightType.Bold;
+        /// fontStyle.Slant = FontSlantType.Italic;
+        /// label.SetFontStyle(fontStyle);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetFontStyle(FontStyle fontStyle)
+        {
+            using (var fontStyleMap = TextMapHelper.GetFontStyleMap(fontStyle))
+            {
+                SetValue(FontStyleProperty, fontStyleMap);
+            }
+        }
+
+        /// <summary>
+        /// Get FontStyle from TextLabel. <br />
+        /// </summary>
+        /// <returns>The FontStyle</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.FontStyle"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public FontStyle GetFontStyle()
+        {
+            FontStyle fontStyle;
+            using (var fontStyleMap = (PropertyMap)GetValue(FontStyleProperty))
+            {
+                fontStyle = TextMapHelper.GetFontStyleStruct(fontStyleMap);
+            }
+            return fontStyle;
         }
 
         /// <summary>
@@ -284,6 +390,7 @@ namespace Tizen.NUI.BaseComponents
         /// The size of font in points.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Binding.TypeConverter(typeof(PointSizeTypeConverter))]
         public float PointSize
         {
             get
@@ -293,8 +400,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(PointSizeProperty, value);
-                selectorData?.PointSize.UpdateIfNeeds(this, value);
-                NotifyPropertyChangedAndRequestLayout();
+                NotifyPropertyChanged();
             }
         }
 
@@ -312,7 +418,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(MultiLineProperty, value);
-                NotifyPropertyChangedAndRequestLayout();
+                NotifyPropertyChanged();
             }
         }
 
@@ -372,7 +478,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(TextColorProperty, value);
-                selectorData?.TextColor.UpdateIfNeeds(this, value);
                 NotifyPropertyChanged();
             }
         }
@@ -386,25 +491,48 @@ namespace Tizen.NUI.BaseComponents
         /// Deprecated.(API Level 6) Use Shadow instead.
         /// The property cascade chaining set is possible. For example, this (textLabel.ShadowOffset.X = 0.1f;) is possible.
         /// </remarks>
-        [Obsolete("Please do not use this ShadowOffset(Deprecated). Please use Shadow instead.")]
+        [Obsolete("Do not use this ShadowOffset(Deprecated). Use Shadow instead.")]
         public Vector2 ShadowOffset
         {
             get
             {
-                Vector2 shadowOffset = new Vector2();
-                Shadow.Find(TextLabel.Property.SHADOW, "offset")?.Get(shadowOffset);
-                return new Vector2(OnShadowOffsetChanged, shadowOffset.X, shadowOffset.Y);
+                return GetValue(ShadowOffsetProperty) as Vector2;
             }
             set
             {
-                PropertyMap temp = new PropertyMap();
-                temp.Insert("offset", new PropertyValue(value));
+                SetValue(ShadowOffsetProperty, value);
+            }
+        }
 
-                PropertyMap shadowMap = Shadow;
-                shadowMap.Merge(temp);
+        private Vector2 InternalShadowOffset
+        {
+            get
+            {
+                float x = 0.0f, y = 0.0f;
+                using (var propertyValue = Shadow.Find(TextLabel.Property.SHADOW, "offset"))
+                using (var shadowOffset = new Vector2())
+                {
+                    if (null != propertyValue)
+                    {
+                        propertyValue.Get(shadowOffset);
+                        x = shadowOffset.X;
+                        y = shadowOffset.Y;
+                    }
+                }
+                return new Vector2(OnShadowOffsetChanged, x, y);
+            }
+            set
+            {
+                using (var map = new PropertyMap())
+                {
+                    map.Add("offset", value);
 
-                SetValue(ShadowProperty, shadowMap);
-                NotifyPropertyChanged();
+                    var shadowMap = Shadow;
+                    shadowMap.Merge(map);
+
+                    SetValue(ShadowProperty, shadowMap);
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -417,25 +545,48 @@ namespace Tizen.NUI.BaseComponents
         /// Deprecated.(API Level 6) Use Shadow instead.
         /// The property cascade chaining set is possible. For example, this (textLabel.ShadowColor.X = 0.1f;) is possible.
         /// </remarks>
-        [Obsolete("Please do not use this ShadowColor(Deprecated). Please use Shadow instead.")]
+        [Obsolete("Do not use this ShadowColor(Deprecated). Use Shadow instead.")]
         public Vector4 ShadowColor
         {
             get
             {
-                Vector4 shadowColor = new Vector4();
-                Shadow.Find(TextLabel.Property.SHADOW, "color")?.Get(shadowColor);
-                return new Vector4(OnShadowColorChanged, shadowColor.X, shadowColor.Y, shadowColor.Z, shadowColor.W);
+                return GetValue(ShadowColorProperty) as Vector4;
             }
             set
             {
-                PropertyMap temp = new PropertyMap();
-                temp.Insert("color", new PropertyValue(value));
+                SetValue(ShadowColorProperty, value);
+            }
+        }
 
-                PropertyMap shadowMap = Shadow;
-                shadowMap.Merge(temp);
-
-                SetValue(ShadowProperty, shadowMap);
-                NotifyPropertyChanged();
+        private Vector4 InternalShadowColor
+        {
+            get
+            {
+                float x = 0.0f, y = 0.0f, z = 0.0f, w = 0.0f;
+                using (var propertyValue = Shadow.Find(TextLabel.Property.SHADOW, "color"))
+                using (var shadowColor = new Vector4())
+                {
+                    if (null != propertyValue)
+                    {
+                        propertyValue.Get(shadowColor);
+                        x = shadowColor.X;
+                        y = shadowColor.Y;
+                        z = shadowColor.Z;
+                        w = shadowColor.W;
+                    }
+                }
+                return new Vector4(OnShadowColorChanged, x, y, z, w);
+            }
+            set
+            {
+                using (var map = new PropertyMap())
+                {
+                    map.Add("color", value);
+                    var shadowMap = Shadow;
+                    shadowMap.Merge(map);
+                    SetValue(ShadowProperty, shadowMap);
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -447,26 +598,43 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// Deprecated.(API Level 6) Use Underline instead.
         /// </remarks>
-        [Obsolete("Please do not use this UnderlineEnabled(Deprecated). Please use Underline instead.")]
+        [Obsolete("Do not use this UnderlineEnabled(Deprecated). Use Underline instead.")]
         public bool UnderlineEnabled
         {
             get
             {
+                return (bool)GetValue(UnderlineEnabledProperty);
+            }
+            set
+            {
+                SetValue(UnderlineEnabledProperty, value);
+            }
+        }
+
+        private bool InternalUnderlineEnabled
+        {
+            get
+            {
                 bool underlineEnabled = false;
-                Underline.Find(TextLabel.Property.UNDERLINE, "enable")?.Get(out underlineEnabled);
+                using (var propertyValue = Underline.Find(TextLabel.Property.UNDERLINE, "enable"))
+                {
+                    if (propertyValue != null)
+                    {
+                        propertyValue.Get(out underlineEnabled);
+                    }
+                }
                 return underlineEnabled;
             }
             set
             {
-                PropertyMap temp = new PropertyMap();
-                temp.Add("enable", new PropertyValue(value));
-
-                PropertyMap undelineMap = Underline;
-                undelineMap.Merge(temp);
-
-                SetValue(UnderlineProperty, undelineMap);
-                NotifyPropertyChanged();
-
+                using (var map = new PropertyMap())
+                {
+                    map.Add("enable", value);
+                    var undelineMap = Underline;
+                    undelineMap.Merge(map);
+                    SetValue(UnderlineProperty, undelineMap);
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -479,25 +647,48 @@ namespace Tizen.NUI.BaseComponents
         /// Deprecated.(API Level 6) Use Underline instead.
         /// The property cascade chaining set is possible. For example, this (textLabel.UnderlineColor.X = 0.1f;) is possible.
         /// </remarks>
-        [Obsolete("Please do not use this UnderlineColor(Deprecated). Please use Underline instead.")]
+        [Obsolete("Do not use this UnderlineColor(Deprecated). Use Underline instead.")]
         public Vector4 UnderlineColor
         {
             get
             {
-                Vector4 underlineColor = new Vector4();
-                Underline.Find(TextLabel.Property.UNDERLINE, "color")?.Get(underlineColor);
-                return new Vector4(OnUnderlineColorChanged, underlineColor.X, underlineColor.Y, underlineColor.Z, underlineColor.W);
+                return GetValue(UnderlineColorProperty) as Vector4;
             }
             set
             {
-                PropertyMap temp = new PropertyMap();
-                temp.Insert("color", new PropertyValue(value));
+                SetValue(UnderlineColorProperty, value);
+            }
+        }
 
-                PropertyMap undelineMap = Underline;
-                undelineMap.Merge(temp);
-
-                SetValue(UnderlineProperty, undelineMap);
-                NotifyPropertyChanged();
+        private Vector4 InternalUnderlineColor
+        {
+            get
+            {
+                float x = 0.0f, y = 0.0f, z = 0.0f, w = 0.0f;
+                using (var propertyValue = Underline.Find(TextLabel.Property.UNDERLINE, "color"))
+                using (var underlineColor = new Vector4())
+                {
+                    if (null != propertyValue)
+                    {
+                        propertyValue.Get(underlineColor);
+                        x = underlineColor.X;
+                        y = underlineColor.Y;
+                        z = underlineColor.Z;
+                        w = underlineColor.W;
+                    }
+                }
+                return new Vector4(OnUnderlineColorChanged, x, y, z, w);
+            }
+            set
+            {
+                using (var map = new PropertyMap())
+                {
+                    map.Add("color", value);
+                    var undelineMap = Underline;
+                    undelineMap.Merge(map);
+                    SetValue(UnderlineProperty, undelineMap);
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -509,25 +700,43 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// Deprecated.(API Level 6) Use Underline instead.
         /// </remarks>
-        [Obsolete("Please do not use this UnderlineHeight(Deprecated). Please use Underline instead.")]
+        [Obsolete("Do not use this UnderlineHeight(Deprecated). Use Underline instead.")]
         public float UnderlineHeight
         {
             get
             {
+                return (float)GetValue(UnderlineHeightProperty);
+            }
+            set
+            {
+                SetValue(UnderlineHeightProperty, value);
+            }
+        }
+
+        private float InternalUnderlineHeight
+        {
+            get
+            {
                 float underlineHeight = 0.0f;
-                Underline.Find(TextLabel.Property.UNDERLINE, "height")?.Get(out underlineHeight);
+                using (var propertyValue = Underline.Find(TextLabel.Property.UNDERLINE, "height"))
+                {
+                    if (null != propertyValue)
+                    {
+                        propertyValue.Get(out underlineHeight);
+                    }
+                }
                 return underlineHeight;
             }
             set
             {
-                PropertyMap temp = new PropertyMap();
-                temp.Insert("height", new PropertyValue(value));
-
-                PropertyMap undelineMap = Underline;
-                undelineMap.Merge(temp);
-
-                SetValue(UnderlineProperty, undelineMap);
-                NotifyPropertyChanged();
+                using (var map = new PropertyMap())
+                {
+                    map.Add("height", value);
+                    var undelineMap = Underline;
+                    undelineMap.Merge(map);
+                    SetValue(UnderlineProperty, undelineMap);
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -635,15 +844,40 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(LineSpacingProperty, value);
-                NotifyPropertyChangedAndRequestLayout();
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The relative height of the line (a factor that will be multiplied by text height). <br />
+        /// If the value is less than 1, the lines could to be overlapped.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float RelativeLineHeight
+        {
+            get
+            {
+                return (float)GetValue(RelativeLineHeightProperty);
+            }
+            set
+            {
+                SetValue(RelativeLineHeightProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
         /// <summary>
         /// The Underline property.<br />
         /// The default underline parameters.<br />
+        /// The underline map contains the following keys :<br />
+        /// <list type="table">
+        /// <item><term>enable (bool)</term><description>Whether the underline is enabled (the default value is false)</description></item>
+        /// <item><term>color (Color)</term><description>The color of the underline (If not provided then the color of the text is used)</description></item>
+        /// <item><term>height (float)</term><description>The height in pixels of the underline (the default value is 1.f)</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap Underline
         {
             get
@@ -658,10 +892,61 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Set Underline to TextLabel. <br />
+        /// </summary>
+        /// <param name="underline">The Underline</param>
+        /// <remarks>
+        /// SetUnderline specifies the underline of the text through <see cref="Tizen.NUI.Text.Underline"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetUnderline method.
+        /// <code>
+        /// var underline = new Tizen.NUI.Text.Underline();
+        /// underline.Enable = true;
+        /// underline.Color = new Color("#3498DB");
+        /// underline.Height = 2.0f;
+        /// label.SetUnderline(underline);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetUnderline(Underline underline)
+        {
+            using (var underlineMap = TextMapHelper.GetUnderlineMap(underline))
+            {
+                SetValue(UnderlineProperty, underlineMap);
+            }
+        }
+
+        /// <summary>
+        /// Get Underline from TextLabel. <br />
+        /// </summary>
+        /// <returns>The Underline</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Underline"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Underline GetUnderline()
+        {
+            Underline underline;
+            using (var underlineMap = (PropertyMap)GetValue(UnderlineProperty))
+            {
+                underline = TextMapHelper.GetUnderlineStruct(underlineMap);
+            }
+            return underline;
+        }
+
+        /// <summary>
         /// The Shadow property.<br />
         /// The default shadow parameters.<br />
+        /// The shadow map contains the following keys :<br />
+        /// <list type="table">
+        /// <item><term>color (Color)</term><description>The color of the shadow (the default color is Color.Black)</description></item>
+        /// <item><term>offset (Vector2)</term><description>The offset in pixels of the shadow (If not provided then the shadow is not enabled)</description></item>
+        /// <item><term>blurRadius (float)</term><description>The radius of the Gaussian blur for the soft shadow (If not provided then the soft shadow is not enabled)</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap Shadow
         {
             get
@@ -673,6 +958,50 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(ShadowProperty, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        /// <summary>
+        /// Set Shadow to TextLabel. <br />
+        /// </summary>
+        /// <param name="shadow">The Shadow</param>
+        /// <remarks>
+        /// SetShadow specifies the shadow of the text through <see cref="Tizen.NUI.Text.Shadow"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetShadow method.
+        /// <code>
+        /// var shadow = new Tizen.NUI.Text.Shadow();
+        /// shadow.Offset = new Vector2(3, 3);
+        /// shadow.Color = new Color("#F1C40F");
+        /// shadow.BlurRadius = 4.0f;
+        /// label.SetShadow(shadow);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetShadow(Tizen.NUI.Text.Shadow shadow)
+        {
+            using (var shadowMap = TextMapHelper.GetShadowMap(shadow))
+            {
+                SetValue(ShadowProperty, shadowMap);
+            }
+        }
+
+        /// <summary>
+        /// Get Shadow from TextLabel. <br />
+        /// </summary>
+        /// <returns>The Shadow</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Shadow"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Tizen.NUI.Text.Shadow GetShadow()
+        {
+            Tizen.NUI.Text.Shadow shadow;
+            using (var shadowMap = (PropertyMap)GetValue(ShadowProperty))
+            {
+                shadow = TextMapHelper.GetShadowStruct(shadowMap);
+            }
+            return shadow;
         }
 
         /// <summary>
@@ -689,7 +1018,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(TextShadowProperty, value);
-                selectorData?.TextShadow.UpdateIfNeeds(this, value);
                 NotifyPropertyChanged();
             }
         }
@@ -715,8 +1043,14 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The Outline property.<br />
         /// The default outline parameters.<br />
+        /// The outline map contains the following keys :<br />
+        /// <list type="table">
+        /// <item><term>color (Color)</term><description>The color of the outline (the default color is Color.White)</description></item>
+        /// <item><term>width (float)</term><description>The width in pixels of the outline (If not provided then the outline is not enabled)</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap Outline
         {
             get
@@ -731,10 +1065,101 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Set Outline to TextLabel. <br />
+        /// </summary>
+        /// <param name="outline">The Outline</param>
+        /// <remarks>
+        /// SetOutline specifies the outline of the text through <see cref="Tizen.NUI.Text.Outline"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetOutline method.
+        /// <code>
+        /// var outline = new Tizen.NUI.Text.Outline();
+        /// outline.Width = 2.0f;
+        /// outline.Color = new Color("#45B39D");
+        /// label.SetOutline(outline);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetOutline(Outline outline)
+        {
+            using (var outlineMap = TextMapHelper.GetOutlineMap(outline))
+            {
+                SetValue(OutlineProperty, outlineMap);
+            }
+        }
+
+        /// <summary>
+        /// Get Outline from TextLabel. <br />
+        /// </summary>
+        /// <returns>The Outline</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Outline"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Outline GetOutline()
+        {
+            Outline outline;
+            using (var outlineMap = (PropertyMap)GetValue(OutlineProperty))
+            {
+                outline = TextMapHelper.GetOutlineStruct(outlineMap);
+            }
+            return outline;
+        }
+
+        /// <summary>
+        /// Set Strikethrough to TextLabel. <br />
+        /// </summary>
+        /// <param name="strikethrough">The Strikethrough</param>
+        /// <remarks>
+        /// SetStrikethrough specifies the strikethrough of the text through <see cref="Tizen.NUI.Text.Strikethrough"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetStrikethrough method.
+        /// <code>
+        /// var strikethrough = new Tizen.NUI.Text.Strikethrough();
+        /// strikethrough.Enable = true;
+        /// strikethrough.Color = new Color("#3498DB");
+        /// strikethrough.Height = 2.0f;
+        /// label.SetStrikethrough(strikethrough);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetStrikethrough(Strikethrough strikethrough)
+        {
+            using (var map = TextMapHelper.GetStrikethroughMap(strikethrough))
+            using (var propertyValue = new PropertyValue(map))
+            {
+                SetProperty(TextLabel.Property.Strikethrough, propertyValue);
+            }
+        }
+
+        /// <summary>
+        /// Get Strikethrough from TextLabel. <br />
+        /// </summary>
+        /// <returns>The Strikethrough</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Strikethrough"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Strikethrough GetStrikethrough()
+        {
+            Strikethrough strikethrough;
+            using (var propertyValue = GetProperty(TextLabel.Property.Strikethrough))
+            using (var map = new PropertyMap())
+            {
+                propertyValue.Get(map);
+                strikethrough = TextMapHelper.GetStrikethroughStruct(map);
+            }
+            return strikethrough;
+        }
+
+        /// <summary>
         /// The PixelSize property.<br />
         /// The size of font in pixels.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Binding.TypeConverter(typeof(FloatGraphicsTypeConverter))]
         public float PixelSize
         {
             get
@@ -744,7 +1169,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(PixelSizeProperty, value);
-                NotifyPropertyChangedAndRequestLayout();
+                NotifyPropertyChanged();
             }
         }
 
@@ -767,8 +1192,26 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The ellipsis position of the text.
+        /// Specifies which portion of the text should be replaced with an ellipsis when the text size exceeds the layout size.<br />
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public EllipsisPosition EllipsisPosition
+        {
+            get
+            {
+                return (EllipsisPosition)GetValue(EllipsisPositionProperty);
+            }
+            set
+            {
+                SetValue(EllipsisPositionProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// The AutoScrollLoopDelay property.<br />
-        /// Do something.<br />
+        /// The amount of time to delay the starting time of auto scrolling and further loops.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float AutoScrollLoopDelay
@@ -786,7 +1229,8 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The AutoScrollStopMode property.<br />
-        /// Do something.<br />
+        /// The auto scrolling stop behaviour.<br />
+        /// The default value is AutoScrollStopMode.FinishLoop. <br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public AutoScrollStopMode AutoScrollStopMode
@@ -810,9 +1254,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                int temp = 0;
-                GetProperty(TextLabel.Property.LINE_COUNT).Get(out temp);
-                return temp;
+                int lineCount = 0;
+                using (var propertyValue = GetProperty(TextLabel.Property.LineCount))
+                {
+                    propertyValue.Get(out lineCount);
+                }
+                return lineCount;
             }
         }
 
@@ -837,24 +1284,25 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The direction of the text such as left to right or right to left.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TextDirection TextDirection
         {
             get
             {
-                int temp = 0;
-                GetProperty(TextLabel.Property.TEXT_DIRECTION).Get(out temp);
-                return (TextDirection)temp;
+                int textDirection = 0;
+                using (var propertyValue = GetProperty(TextLabel.Property.TextDirection))
+                {
+                    propertyValue.Get(out textDirection);
+                }
+                return (TextDirection)textDirection;
             }
         }
 
         /// <summary>
         /// The vertical line alignment of the text.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         public VerticalLineAlignment VerticalLineAlignment
         {
@@ -889,14 +1337,17 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The text fit parameters.<br />
         /// The textFit map contains the following keys :<br />
-        /// - enable (bool type) : True to enable the text fit or false to disable(the default value is false)<br />
-        /// - minSize (float type) : Minimum Size for text fit(the default value is 10.f)<br />
-        /// - maxSize (float type) : Maximum Size for text fit(the default value is 100.f)<br />
-        /// - stepSize (float type) : Step Size for font increase(the default value is 1.f)<br />
-        /// - fontSize (string type) : The size type of font, You can choose between "pointSize" or "pixelSize". (the default value is "pointSize")<br />
+        /// <list type="table">
+        /// <item><term>enable (bool)</term><description>True to enable the text fit or false to disable (the default value is false)</description></item>
+        /// <item><term>minSize (float)</term><description>Minimum Size for text fit (the default value is 10.f)</description></item>
+        /// <item><term>maxSize (float)</term><description>Maximum Size for text fit (the default value is 100.f)</description></item>
+        /// <item><term>stepSize (float)</term><description>Step Size for font increase (the default value is 1.f)</description></item>
+        /// <item><term>fontSize (string)</term><description>The size type of font, You can choose between "pointSize" or "pixelSize". (the default value is "pointSize")</description></item>
+        /// </list>
         /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap TextFit
         {
             get
@@ -911,9 +1362,158 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The MinLineSize property.<br />
+        /// Set TextFit to TextLabel. <br />
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        /// <param name="textFit">The TextFit</param>
+        /// <remarks>
+        /// SetTextFit specifies the textFit of the text through <see cref="Tizen.NUI.Text.TextFit"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetTextFit method.
+        /// <code>
+        /// var textFit = new Tizen.NUI.Text.TextFit();
+        /// textFit.Enable = true;
+        /// textFit.MinSize = 10.0f;
+        /// textFit.MaxSize = 100.0f;
+        /// textFit.StepSize = 5.0f;
+        /// textFit.FontSizeType = FontSizeType.PointSize;
+        /// label.SetTextFit(textFit);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetTextFit(TextFit textFit)
+        {
+            using (var textFitMap = TextMapHelper.GetTextFitMap(textFit))
+            {
+                SetValue(TextFitProperty, textFitMap);
+            }
+        }
+
+        /// <summary>
+        /// Get TextFit from TextLabel. <br />
+        /// </summary>
+        /// <returns>The TextFit</returns>
+        /// <remarks>
+        /// TextFit is always returned based on PointSize. <br />
+        /// If the user sets FontSizeType to PixelSize, then MinSize, MaxSize, and StepSize are converted based on PointSize and returned. <br />
+        /// <see cref="Tizen.NUI.Text.TextFit"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextFit GetTextFit()
+        {
+            TextFit textFit;
+            using (var textFitMap = (PropertyMap)GetValue(TextFitProperty))
+            {
+                textFit = TextMapHelper.GetTextFitStruct(textFitMap);
+            }
+            return textFit;
+        }
+
+        /// <summary>
+        /// Set TextFitArray to TextLabel. <br />
+        /// TextFitArray finds and applies the largest PointSize that fits among OptionList.
+        /// </summary>
+        /// <param name="textFitArray">The TextFitArray</param>
+        /// <remarks>
+        /// TextFitArray tries binary search by default. <br />
+        /// The precondition for TextFitArray to perform binary search is sorting in ascending order of MinLineSize. <br />
+        /// Because if MinLineSize is not sorted in ascending order, <br />
+        /// binary search cannot guarantee that it will always find the best value. <br />
+        /// In this case, the search sequentially starts from the largest PointSize. <br />
+        /// If TextFitArrayOption's MinLineSize is set to null or 0, <br />
+        /// TextFitArray is calculated without applying MinLineSize. <br />
+        /// If TextFitArray is enabled, TextLabel's MinLineSize property is ignored. <br />
+        /// See <see cref="Tizen.NUI.Text.TextFitArray"/> and <see cref="Tizen.NUI.Text.TextFitArrayOption"/>.
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetTextFitArray method. <br />
+        /// <code>
+        /// var textFitArray = new Tizen.NUI.Text.TextFitArray();
+        /// textFitArray.Enable = true;
+        /// textFitArray.OptionList = new List&lt;Tizen.NUI.Text.TextFitArrayOption&gt;()
+        /// {
+        ///     new Tizen.NUI.Text.TextFitArrayOption(12, 18),
+        ///     new Tizen.NUI.Text.TextFitArrayOption(24, 40),
+        ///     new Tizen.NUI.Text.TextFitArrayOption(28, 48),
+        ///     new Tizen.NUI.Text.TextFitArrayOption(32, 56),
+        ///     new Tizen.NUI.Text.TextFitArrayOption(50, 72),
+        /// };
+        /// label.SetTextFitArray(textFitArray);
+        /// </code>
+        /// <br />
+        /// The table below shows cases where binary search is possible and where it is not possible. <br />
+        /// <code>
+        /// [Binary search possible]
+        /// |            | List index  |  0 |  1 |  2 |  3 |
+        /// | OptionList | PointSize   | 24 | 28 | 32 | 48 |
+        /// |            | MinLineSize | 40 | 48 | 48 | 62 | &lt;&lt; MinLineSize sorted in ascending order
+        ///                                    ^    ^
+        ///                                    same values ​are not a problem
+        ///
+        /// [Binary search not possible]
+        /// |            | List index  |  0 |  1 |  2 |  3 |
+        /// | OptionList | PointSize   | 24 | 28 | 32 | 48 |
+        /// |            | MinLineSize | 40 | 48 | 38 | 62 | &lt;&lt; MinLineSize is not sorted in ascending order
+        ///                                         ^
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetTextFitArray(TextFitArray textFitArray)
+        {
+            bool enable = textFitArray.Enable;
+            int optionListSize = textFitArray.OptionList?.Count ?? 0;
+
+            float[] pointSizeArray = new float[optionListSize];
+            float[] minLineSizeArray = new float[optionListSize];
+
+            for (int i = 0 ; i < optionListSize ; i ++)
+            {
+                TextFitArrayOption option = textFitArray.OptionList[i];
+                pointSizeArray[i] = option.PointSize;
+                minLineSizeArray[i] = option.MinLineSize ?? 0;
+            }
+
+            Interop.TextLabel.SetTextFitArray(SwigCPtr, enable, (uint)optionListSize, pointSizeArray, minLineSizeArray);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Get TextFitArray from TextLabel.
+        /// </summary>
+        /// <returns>The TextFitArray</returns>
+        /// <remarks>
+        /// See <see cref="Tizen.NUI.Text.TextFitArray"/> and <see cref="Tizen.NUI.Text.TextFitArrayOption"/>.
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the GetTextFitArray method. <br />
+        /// <code>
+        /// Tizen.NUI.Text.TextFitArray textFitArray = label.GetTextFitArray();
+        /// bool enable = textFitArray.Enable;
+        /// var optionList = textFitArray.OptionList;
+        /// foreach(Tizen.NUI.Text.TextFitArrayOption option in optionList)
+        /// {
+        ///     float pointSize = option.PointSize;
+        ///     float minLinesize = option.MinLineSize;
+        /// }
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextFitArray GetTextFitArray()
+        {
+            using PropertyMap textFitArrayMap = new PropertyMap(Interop.TextLabel.GetTextFitArray(SwigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            TextFitArray textFitArray;
+            textFitArray = TextUtils.GetMapToTextFitArray(textFitArrayMap);
+            return textFitArray;
+        }
+
+        /// <summary>
+        /// The MinLineSize property.<br />
+        /// The height of the line in points. <br />
+        /// If the font size is larger than the line size, it works with the font size. <br />
+        /// </summary>
+        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float MinLineSize
         {
@@ -924,39 +1524,185 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(MinLineSizeProperty, value);
-                NotifyPropertyChangedAndRequestLayout();
+                NotifyPropertyChanged();
             }
         }
 
-        private TextLabelSelectorData SelectorData
+        /// <summary>
+        /// The spaces between characters in Pixels.
+        /// <remarks>
+        /// A positive value will make the characters far apart (expanded) and a negative value will bring them closer (condensed).<br />
+        /// The default value is 0.f which does nothing.
+        ///</remarks>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float CharacterSpacing
         {
             get
             {
-                if (selectorData == null)
-                {
-                    selectorData = new TextLabelSelectorData();
-                }
-                return selectorData;
+                return (float)GetValue(CharacterSpacingProperty);
+            }
+            set
+            {
+                SetValue(CharacterSpacingProperty, value);
+                NotifyPropertyChanged();
             }
         }
+
+        /// <summary>
+        /// The AnchorColor property.<br />
+        /// The color of the anchor.<br />
+        /// This property is used as the default color of the markup anchor tag.<br />
+        /// If there is a color attribute in the markup anchor tag, the markup attribute takes precedence.
+        /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textLabel.AnchorColor.X = 0.1f;) is possible.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color AnchorColor
+        {
+            get
+            {
+                Color color = (Color)GetValue(AnchorColorProperty);
+                return new Color(OnAnchorColorChanged, color.R, color.G, color.B, color.A);
+            }
+            set
+            {
+                SetValue(AnchorColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The AnchorClickedColor property.<br />
+        /// The color of the clicked anchor.<br />
+        /// This property is used as the default clicked color of the markup anchor tag.<br />
+        /// If there is a color attribute in the markup anchor tag, the markup attribute takes precedence.
+        /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textLabel.AnchorClickedColor.X = 0.1f;) is possible.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color AnchorClickedColor
+        {
+            get
+            {
+                Color color = (Color)GetValue(AnchorClickedColorProperty);
+                return new Color(OnAnchorClickedColorChanged, color.R, color.G, color.B, color.A);
+            }
+            set
+            {
+                SetValue(AnchorClickedColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The FontSizeScale property for scaling the specified font size up or down. <br />
+        /// The default value is 1.0. <br />
+        /// The given font size scale value is used for multiplying the specified font size before querying fonts. <br />
+        /// If FontSizeScale.UseSystemSetting, will use the SystemSettings.FontSize internally. <br />
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public float FontSizeScale
+        {
+            get
+            {
+                return (float)GetValue(FontSizeScaleProperty);
+            }
+            set
+            {
+                SetValue(FontSizeScaleProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private float InternalFontSizeScale
+        {
+            get
+            {
+                return fontSizeScale;
+            }
+            set
+            {
+                float newFontSizeScale;
+
+                if (fontSizeScale == value) return;
+
+                fontSizeScale = value;
+                if (fontSizeScale == Tizen.NUI.FontSizeScale.UseSystemSetting)
+                {
+                    SystemSettingsFontSize systemSettingsFontSize;
+
+                    try
+                    {
+                        systemSettingsFontSize = SystemSettings.FontSize;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("{0} Exception caught.", e);
+                        systemSettingsFontSize = SystemSettingsFontSize.Normal;
+                    }
+                    newFontSizeScale = TextUtils.GetFontSizeScale(systemSettingsFontSize);
+                    AddSystemSettingsFontSizeChanged();
+                }
+                else
+                {
+                    newFontSizeScale = fontSizeScale;
+                    RemoveSystemSettingsFontSizeChanged();
+                }
+
+                SetInternalFontSizeScale(newFontSizeScale);
+            }
+        }
+
+        private void SetInternalFontSizeScale(float fontSizeScale)
+        {
+
+            Object.InternalSetPropertyFloat(this.SwigCPtr, TextLabel.Property.FontSizeScale, (float)fontSizeScale);
+            RequestLayout();
+        }
+
+        /// <summary>
+        /// The EnableFontSizeScale property.<br />
+        /// Whether the font size scale is enabled. (The default value is true)
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableFontSizeScale
+        {
+            get
+            {
+                return (bool)GetValue(EnableFontSizeScaleProperty);
+            }
+            set
+            {
+                SetValue(EnableFontSizeScaleProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private TextLabelSelectorData EnsureSelectorData() => selectorData ?? (selectorData = new TextLabelSelectorData());
 
         /// <summary>
         /// Downcasts a handle to textLabel handle
         /// </summary>
         /// <param name="handle"></param>
         /// <returns></returns>
+        /// <exception cref="ArgumentNullException"> Thrown when handle is null. </exception>
         /// <since_tizen> 3 </since_tizen>
-        /// Please do not use! this will be deprecated!
-        /// Instead please use as keyword.
-        [Obsolete("Please do not use! This will be deprecated! Please use as keyword instead! " +
+        /// Do not use this, that will be deprecated. Use as keyword instead.
+        [Obsolete("Do not use this, that will be deprecated. Use as keyword instead. " +
             "Like: " +
             "BaseHandle handle = new TextLabel(\"Hello World!\"); " +
             "TextLabel label = handle as TextLabel")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static TextLabel DownCast(BaseHandle handle)
         {
+            if (null == handle)
+            {
+                throw new ArgumentNullException(nameof(handle));
+            }
             TextLabel ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as TextLabel;
-
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -970,6 +1716,18 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
+            internalTextColor?.Dispose();
+            internalAnchorColor?.Dispose();
+            internalAnchorClickedColor?.Dispose();
+
+            if (hasSystemLanguageChanged)
+            {
+                systemLocaleLanguageChanged.Remove(SystemSettingsLocaleLanguageChanged);
+            }
+
+            RemoveSystemSettingsFontTypeChanged();
+            RemoveSystemSettingsFontSizeChanged();
+
             if (type == DisposeTypes.Explicit)
             {
                 //Called by User
@@ -978,30 +1736,36 @@ namespace Tizen.NUI.BaseComponents
                 selectorData?.Reset(this);
             }
 
-            base.Dispose(type);
-        }
+            if (this.HasBody())
+            {
+                if (textLabelTextFitChangedCallbackDelegate != null)
+                {
+                    TextFitChangedSignal().Disconnect(textLabelTextFitChangedCallbackDelegate);
+                }
+            }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TextLabel obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            base.Dispose(type);
         }
 
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.TextLabel.delete_TextLabel(swigCPtr);
+            Interop.TextLabel.DeleteTextLabel(swigCPtr);
         }
 
         /// <summary>
         /// Get attribues, it is abstract function and must be override.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override ViewStyle GetViewStyle()
+        protected override ViewStyle CreateViewStyle()
         {
             return new TextLabelStyle();
+        }
+
+        internal override LayoutItem CreateDefaultLayout()
+        {
+            return new TextLabelLayout();
         }
 
         /// <summary>
@@ -1012,48 +1776,140 @@ namespace Tizen.NUI.BaseComponents
             base.OnBindingContextChanged();
         }
 
-        private void SystemSettings_LocaleLanguageChanged(object sender, LocaleLanguageChangedEventArgs e)
+        private void SystemSettingsLocaleLanguageChanged(object sender, LocaleLanguageChangedEventArgs e)
         {
             Text = NUIApplication.MultilingualResourceManager?.GetString(textLabelSid, new CultureInfo(e.Value.Replace("_", "-")));
         }
 
-        private void  NotifyPropertyChangedAndRequestLayout()
+        private void SystemSettingsFontSizeChanged(object sender, FontSizeChangedEventArgs e)
         {
-            NotifyPropertyChanged();
+            float newFontSizeScale = TextUtils.GetFontSizeScale(e.Value);
+            SetInternalFontSizeScale(newFontSizeScale);
+        }
+
+        private void AddSystemSettingsFontSizeChanged()
+        {
+            if (hasSystemFontSizeChanged != true)
+            {
+                try
+                {
+                    SystemFontSizeChangedManager.Add(SystemSettingsFontSizeChanged);
+                    hasSystemFontSizeChanged = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0} Exception caught.", e);
+                    hasSystemFontSizeChanged = false;
+                }
+            }
+        }
+
+        private void RemoveSystemSettingsFontSizeChanged()
+        {
+            if (hasSystemFontSizeChanged == true)
+            {
+                try
+                {
+                    SystemFontSizeChangedManager.Remove(SystemSettingsFontSizeChanged);
+                    hasSystemFontSizeChanged = false;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0} Exception caught.", e);
+                    hasSystemFontSizeChanged = true;
+                }
+            }
+        }
+
+        private void SystemSettingsFontTypeChanged(object sender, FontTypeChangedEventArgs e)
+        {
+            SetInternalFontFamily(e.Value);
+        }
+
+        private void AddSystemSettingsFontTypeChanged()
+        {
+            if (HasStyle() && !hasSystemFontTypeChanged)
+            {
+                try
+                {
+                    systemFontTypeChanged.Add(SystemSettingsFontTypeChanged);
+                    hasSystemFontTypeChanged = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0} Exception caught.", e);
+                    hasSystemFontTypeChanged = false;
+                }
+            }
+        }
+        
+        private void RemoveSystemSettingsFontTypeChanged()
+        {
+            if (hasSystemFontTypeChanged)
+            {
+                try
+                {
+                    systemFontTypeChanged.Remove(SystemSettingsFontTypeChanged);
+                    hasSystemFontTypeChanged = false;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0} Exception caught.", e);
+                    hasSystemFontTypeChanged = true;
+                }
+            }
+        }
+
+        private void RequestLayout()
+        {
             Layout?.RequestLayout();
         }
 
         internal new class Property
         {
-            internal static readonly int TEXT = Interop.TextLabel.TextLabel_Property_TEXT_get();
-            internal static readonly int FONT_FAMILY = Interop.TextLabel.TextLabel_Property_FONT_FAMILY_get();
-            internal static readonly int FONT_STYLE = Interop.TextLabel.TextLabel_Property_FONT_STYLE_get();
-            internal static readonly int POINT_SIZE = Interop.TextLabel.TextLabel_Property_POINT_SIZE_get();
-            internal static readonly int MULTI_LINE = Interop.TextLabel.TextLabel_Property_MULTI_LINE_get();
-            internal static readonly int HORIZONTAL_ALIGNMENT = Interop.TextLabel.TextLabel_Property_HORIZONTAL_ALIGNMENT_get();
-            internal static readonly int VERTICAL_ALIGNMENT = Interop.TextLabel.TextLabel_Property_VERTICAL_ALIGNMENT_get();
-            internal static readonly int TEXT_COLOR = Interop.TextLabel.TextLabel_Property_TEXT_COLOR_get();
-            internal static readonly int ENABLE_MARKUP = Interop.TextLabel.TextLabel_Property_ENABLE_MARKUP_get();
-            internal static readonly int ENABLE_AUTO_SCROLL = Interop.TextLabel.TextLabel_Property_ENABLE_AUTO_SCROLL_get();
-            internal static readonly int AUTO_SCROLL_SPEED = Interop.TextLabel.TextLabel_Property_AUTO_SCROLL_SPEED_get();
-            internal static readonly int AUTO_SCROLL_LOOP_COUNT = Interop.TextLabel.TextLabel_Property_AUTO_SCROLL_LOOP_COUNT_get();
-            internal static readonly int AUTO_SCROLL_GAP = Interop.TextLabel.TextLabel_Property_AUTO_SCROLL_GAP_get();
-            internal static readonly int LINE_SPACING = Interop.TextLabel.TextLabel_Property_LINE_SPACING_get();
-            internal static readonly int UNDERLINE = Interop.TextLabel.TextLabel_Property_UNDERLINE_get();
-            internal static readonly int SHADOW = Interop.TextLabel.TextLabel_Property_SHADOW_get();
-            internal static readonly int EMBOSS = Interop.TextLabel.TextLabel_Property_EMBOSS_get();
-            internal static readonly int OUTLINE = Interop.TextLabel.TextLabel_Property_OUTLINE_get();
-            internal static readonly int PIXEL_SIZE = Interop.TextLabel.TextLabel_Property_PIXEL_SIZE_get();
-            internal static readonly int ELLIPSIS = Interop.TextLabel.TextLabel_Property_ELLIPSIS_get();
-            internal static readonly int AUTO_SCROLL_STOP_MODE = Interop.TextLabel.TextLabel_Property_AUTO_SCROLL_STOP_MODE_get();
-            internal static readonly int AUTO_SCROLL_LOOP_DELAY = Interop.TextLabel.TextLabel_Property_AUTO_SCROLL_LOOP_DELAY_get();
-            internal static readonly int LINE_COUNT = Interop.TextLabel.TextLabel_Property_LINE_COUNT_get();
-            internal static readonly int LINE_WRAP_MODE = Interop.TextLabel.TextLabel_Property_LINE_WRAP_MODE_get();
-            internal static readonly int TEXT_DIRECTION = Interop.TextLabel.TextLabel_Property_TEXT_DIRECTION_get();
-            internal static readonly int VERTICAL_LINE_ALIGNMENT = Interop.TextLabel.TextLabel_Property_VERTICAL_LINE_ALIGNMENT_get();
-            internal static readonly int MATCH_SYSTEM_LANGUAGE_DIRECTION = Interop.TextLabel.TextLabel_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get();
-            internal static readonly int TEXT_FIT = Interop.TextLabel.TextLabel_Property_TEXT_FIT_get();
-            internal static readonly int MIN_LINE_SIZE = Interop.TextLabel.TextLabel_Property_MIN_LINE_SIZE_get();
+            internal static readonly int TEXT = Interop.TextLabel.TextGet();
+            internal static readonly int FontFamily = Interop.TextLabel.FontFamilyGet();
+            internal static readonly int FontStyle = Interop.TextLabel.FontStyleGet();
+            internal static readonly int PointSize = Interop.TextLabel.PointSizeGet();
+            internal static readonly int MultiLine = Interop.TextLabel.MultiLineGet();
+            internal static readonly int HorizontalAlignment = Interop.TextLabel.HorizontalAlignmentGet();
+            internal static readonly int VerticalAlignment = Interop.TextLabel.VerticalAlignmentGet();
+            internal static readonly int TextColor = Interop.TextLabel.TextColorGet();
+            internal static readonly int EnableMarkup = Interop.TextLabel.EnableMarkupGet();
+            internal static readonly int EnableAutoScroll = Interop.TextLabel.EnableAutoScrollGet();
+            internal static readonly int AutoScrollSpeed = Interop.TextLabel.AutoScrollSpeedGet();
+            internal static readonly int AutoScrollLoopCount = Interop.TextLabel.AutoScrollLoopCountGet();
+            internal static readonly int AutoScrollGap = Interop.TextLabel.AutoScrollGapGet();
+            internal static readonly int LineSpacing = Interop.TextLabel.LineSpacingGet();
+            internal static readonly int RelativeLineHeight = Interop.TextLabel.RelativeLineHeightGet();
+            internal static readonly int UNDERLINE = Interop.TextLabel.UnderlineGet();
+            internal static readonly int SHADOW = Interop.TextLabel.ShadowGet();
+            internal static readonly int EMBOSS = Interop.TextLabel.EmbossGet();
+            internal static readonly int OUTLINE = Interop.TextLabel.OutlineGet();
+            internal static readonly int PixelSize = Interop.TextLabel.PixelSizeGet();
+            internal static readonly int ELLIPSIS = Interop.TextLabel.EllipsisGet();
+            internal static readonly int AutoScrollStopMode = Interop.TextLabel.AutoScrollStopModeGet();
+            internal static readonly int AutoScrollLoopDelay = Interop.TextLabel.AutoScrollLoopDelayGet();
+            internal static readonly int LineCount = Interop.TextLabel.LineCountGet();
+            internal static readonly int LineWrapMode = Interop.TextLabel.LineWrapModeGet();
+            internal static readonly int TextDirection = Interop.TextLabel.TextDirectionGet();
+            internal static readonly int VerticalLineAlignment = Interop.TextLabel.VerticalLineAlignmentGet();
+            internal static readonly int MatchSystemLanguageDirection = Interop.TextLabel.MatchSystemLanguageDirectionGet();
+            internal static readonly int TextFit = Interop.TextLabel.TextFitGet();
+            internal static readonly int MinLineSize = Interop.TextLabel.MinLineSizeGet();
+            internal static readonly int FontSizeScale = Interop.TextLabel.FontSizeScaleGet();
+            internal static readonly int EnableFontSizeScale = Interop.TextLabel.EnableFontSizeScaleGet();
+            internal static readonly int EllipsisPosition = Interop.TextLabel.EllipsisPositionGet();
+            internal static readonly int Strikethrough = Interop.TextLabel.StrikethroughGet();
+            internal static readonly int CharacterSpacing = Interop.TextLabel.CharacterSpacingGet();
+            internal static readonly int AnchorColor = Interop.TextLabel.AnchorColorGet();
+            internal static readonly int AnchorClickedColor = Interop.TextLabel.AnchorClickedColorGet();
+
+
+            internal static void Preload()
+            {
+                // Do nothing. Just call for load static values.
+            }
         }
 
         private void OnShadowColorChanged(float x, float y, float z, float w)
@@ -1071,6 +1927,14 @@ namespace Tizen.NUI.BaseComponents
         private void OnUnderlineColorChanged(float x, float y, float z, float w)
         {
             UnderlineColor = new Vector4(x, y, z, w);
+        }
+        private void OnAnchorColorChanged(float r, float g, float b, float a)
+        {
+            AnchorColor = new Color(r, g, b, a);
+        }
+        private void OnAnchorClickedColorChanged(float r, float g, float b, float a)
+        {
+            AnchorClickedColor = new Color(r, g, b, a);
         }
     }
 }

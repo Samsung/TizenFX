@@ -25,7 +25,9 @@ namespace Tizen.Applications
         /// <summary>
         /// Prefer to launch an application as a single mode.
         /// </summary>
+#pragma warning disable CA1720
         Single = 0,
+#pragma warning restore CA1720
 
         /// <summary>
         /// Prefer to launch an application as a group mode.

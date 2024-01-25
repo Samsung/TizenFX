@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,9 +14,10 @@
  * limitations under the License.
  *
  */
-using System;
+
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Accessibility;
@@ -26,38 +27,67 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// The Loading class of nui component. It's used to indicate informs users of the ongoing operation.
     /// </summary>
+    /// <remarks>
+    /// The Loading is created as `LottieAnimationView` first.
+    /// When the user sets ImageArray separately, the image is changed to `ImageVisual`.
+    /// </remarks>
     /// <since_tizen> 6 </since_tizen>
     public class Loading : Control
     {
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <summary>
+        /// ImageArrayProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ImageArrayProperty = BindableProperty.Create(nameof(ImageArray), typeof(string[]), typeof(Loading), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Loading)bindable;
             if (newValue != null)
             {
-                instance.loadingStyle.Images = (string[])newValue;
-                instance.imageVisual.URLS = new List<string>((string[])newValue);
+                instance.InternalImageArray = newValue as string[];
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Loading)bindable;
-            return instance.loadingStyle.Images;
+            return instance.InternalImageArray;
         });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>The ImageList bindable property.</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new static readonly BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(Size), typeof(Loading), new Size(0,0), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ImageListProperty = BindableProperty.Create(nameof(ImageList), typeof(IList<string>), typeof(Loading), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            Debug.Assert(((Loading)bindable).imageVisual != null);
+
+            var newList = newValue as List<string>;
+            ((Loading)bindable).imageVisual.URLS = newList == null ? new List<string>() : newList;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            Debug.Assert(((Loading)bindable).imageVisual != null);
+            return ((Loading)bindable).imageVisual.URLS;
+        });
+        /// <summary>The lottie resource url bindable property.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty LottieResourceUrlProperty = BindableProperty.Create(nameof(LottieResourceUrl), typeof(string), typeof(Loading), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Loading)bindable;
+            instance.RemoveImageVisual();
+            instance.EnsureLottieView(newValue as string ?? string.Empty);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var lottie = ((Loading)bindable).defaultLottieView;
+            return lottie == null ? string.Empty : lottie.URL;
+        });
+        /// <summary>The Size bindable property.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new static readonly BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(Size), typeof(Loading), new Size(0, 0), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Loading)bindable;
             if (newValue != null)
             {
                 Size size = (Size)newValue;
                 ((View)bindable).Size = size;
-                if (null != instance.imageVisual)
-                {
-                    instance.imageVisual.Size = new Size2D((int)size.Width, (int)size.Height);
-                }
             }
         },
         defaultValueCreator: (bindable) =>
@@ -65,36 +95,44 @@ namespace Tizen.NUI.Components
             var instance = (View)bindable;
             return instance.Size;
         });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <summary>The FrameRate bindable property.</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FrameRateProperty = BindableProperty.Create(nameof(FrameRate), typeof(int), typeof(Loading), (int)(1000/16.6f), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FrameRateProperty = BindableProperty.Create(nameof(FrameRate), typeof(int), typeof(Loading), (int)(1000 / 16.6f), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Loading)bindable;
-            if (newValue != null)
+            instance.frameRate = (int)newValue;
+            if (0 != instance.frameRate && instance.imageVisual != null) //It will crash if 0
             {
-                int frameRate = (int)newValue;
-                if (0 != frameRate) //It will crash if 0
-                {
-                    instance.loadingStyle.FrameRate.All = frameRate;
-                    instance.imageVisual.FrameDelay = 1000.0f / frameRate;
-                }
+                instance.imageVisual.FrameDelay = instance.frameRate;
             }
         },
         defaultValueCreator: (bindable) =>
         {
-            var instance = (Loading)bindable;
-            return instance.loadingStyle.FrameRate?.All ?? (int)(1000/16.6f);
+            return ((Loading)bindable).frameRate;
         });
 
+        private const string ImageVisualName = "loadingImageVisual";
         private AnimatedImageVisual imageVisual = null;
-        private LoadingStyle loadingStyle => ViewStyle as LoadingStyle;
+        private LottieAnimationView defaultLottieView = null;
+        private int frameRate = (int)(1000 / 16.6f);
+        private const float defaultFrameDelay = 16.6f;
+        private static readonly string lottieResource = FrameworkInformation.ResourcePath + "IoT_loading_circle_light.json";
 
-        internal new class Property
-        {
-            internal static readonly int ACTION_PLAY = Interop.ImageView.ImageView_IMAGE_VISUAL_ACTION_PLAY_get();
-            internal static readonly int ACTION_PAUSE = Interop.ImageView.ImageView_IMAGE_VISUAL_ACTION_PAUSE_get();
-            internal static readonly int ACTION_STOP = Interop.ImageView.ImageView_IMAGE_VISUAL_ACTION_STOP_get();
-        }
+
+        /// <summary>
+        /// Actions value to Play animated images.
+        /// </summary>
+        private static int ActionPlay = Interop.AnimatedImageView.AnimatedImageVisualActionPlayGet();
+
+        /// <summary>
+        /// Actions value to Pause animated images.
+        /// </summary>
+        private static int ActionPause = Interop.AnimatedImageView.AnimatedImageVisualActionPauseGet();
+
+        /// <summary>
+        /// Actions value to Stop animated images.
+        /// </summary>
+        private static int ActionStop = Interop.AnimatedImageView.AnimatedImageVisualActionStopGet();
 
         static Loading() { }
 
@@ -128,38 +166,61 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Get style of loading.
-        /// Return a copied Style instance of Loading
+        /// Return currently applied style.
         /// </summary>
         /// <remarks>
-        /// It returns copied Style instance and changing it does not effect to the Loading.
-        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
-        /// </remarks>>
+        /// Modifying contents in style may cause unexpected behaviour.
+        /// </remarks>
         /// <since_tizen> 8 </since_tizen>
-        public new LoadingStyle Style
-        {
-            get
-            {
-                var result = new LoadingStyle(loadingStyle);
-                result.CopyPropertiesFromView(this);
-                return result;
-            }
-        }
+        public LoadingStyle Style => (LoadingStyle)(ViewStyle as LoadingStyle)?.Clone();
 
         /// <summary>
         /// Gets or sets loading image resource array.
+        /// The mutually exclusive with "LottieResourceUrl".
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public string[] ImageArray
         {
             get
             {
-                return (string[])GetValue(ImageArrayProperty);
+                return GetValue(ImageArrayProperty) as string[];
             }
             set
             {
+                RemoveLottieView();
+                EnsureImageVisual();
+
                 SetValue(ImageArrayProperty, value);
+                NotifyPropertyChanged();
             }
+        }
+        private string[] InternalImageArray
+        {
+            get => (GetValue(ImageListProperty) as List<string>)?.ToArray() ?? null;
+            set => SetValue(ImageListProperty, value == null ? new List<string>() : new List<string>((string[])value));
+        }
+
+        /// <summary>
+        /// Gets loading image resource array.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public IList<string> ImageList
+        {
+            get
+            {
+                return GetValue(ImageListProperty) as List<string>;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets an lottie resource url.
+        /// The mutually exclusive with "ImageArray".
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string LottieResourceUrl
+        {
+            get => GetValue(LottieResourceUrlProperty) as string;
+            set => SetValue(LottieResourceUrlProperty, value);
         }
 
         /// <summary>
@@ -190,7 +251,43 @@ namespace Tizen.NUI.Components
             }
             set
             {
+                if (defaultLottieView != null)
+                {
+                    Tizen.Log.Error("NUI", "Cannot set the frame rate to Lottie Animation. If you want to control it, please set `ImageArray` together.\n");
+                }
                 SetValue(FrameRateProperty, value);
+            }
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+            AccessibilityRole = Role.ProgressBar;
+
+            EnsureLottieView(lottieResource);
+
+            AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "Loading");
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void ApplyStyle(ViewStyle viewStyle)
+        {
+            base.ApplyStyle(viewStyle);
+
+            if (viewStyle is LoadingStyle loadingStyle)
+            {
+                if (loadingStyle.Images != null)
+                {
+                    ImageArray = loadingStyle.Images;
+                }
+
+                if (loadingStyle.LoadingSize != null)
+                {
+                    Size = loadingStyle.LoadingSize;
+                }
             }
         }
 
@@ -222,75 +319,124 @@ namespace Tizen.NUI.Components
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
                 RemoveVisual("loadingImageVisual");
+
+                if (defaultLottieView != null)
+                {
+                    Utility.Dispose(defaultLottieView);
+                    defaultLottieView = null;
+                }
             }
 
             //You must call base.Dispose(type) just before exit.
             base.Dispose(type);
         }
 
-        private void Initialize()
-        {
-            imageVisual = new AnimatedImageVisual()
-            {
-                URLS = new List<string>(),
-                FrameDelay = 16.6f,
-                LoopCount = -1,
-                Position = new Vector2(0, 0),
-                Origin = Visual.AlignType.Center,
-                AnchorPoint = Visual.AlignType.Center
-            };
-
-            UpdateVisual();
-
-            this.AddVisual("loadingImageVisual", imageVisual);
-
-            AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "Loading");
-        }
-
-        private void UpdateVisual()
-        {
-            if (null != loadingStyle.Images)
-            {
-                imageVisual.URLS = new List<string>(loadingStyle.Images);
-            }
-            if (null != loadingStyle.FrameRate?.All && 0 != loadingStyle.FrameRate.All.Value)
-            {
-                imageVisual.FrameDelay = 1000.0f / (float)loadingStyle.FrameRate.All.Value;
-            }
-            if (null != loadingStyle.LoadingSize)
-            {
-                this.Size = new Size2D((int)loadingStyle.LoadingSize.Width, (int)loadingStyle.LoadingSize.Height);
-            }
-        }
-
         /// <summary>
         /// Play Loading Animation.
         /// </summary>
-        /// This may be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public void Play()
         {
-            this.DoAction(imageVisual.VisualIndex, Property.ACTION_PLAY, new PropertyValue(0));
+            if (defaultLottieView != null)
+            {
+                defaultLottieView.Play();
+            }
+            else
+            {
+                PropertyValue attributes = new PropertyValue(0);
+                this.DoAction(imageVisual.VisualIndex, ActionPlay, attributes);
+                attributes.Dispose();
+            }
         }
 
         /// <summary>
         /// Pause Loading Animation.
         /// </summary>
-        /// This may be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public void Pause()
         {
-            this.DoAction(imageVisual.VisualIndex, Property.ACTION_PAUSE, new PropertyValue(0));
+            if (defaultLottieView != null)
+            {
+                defaultLottieView.Pause();
+            }
+            else
+            {
+                PropertyValue attributes = new PropertyValue(0);
+                this.DoAction(imageVisual.VisualIndex, ActionPause, attributes);
+                attributes.Dispose();
+            }
         }
 
         /// <summary>
         /// Stop Loading Animation.
         /// </summary>
-        /// This may be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public void Stop()
         {
-            this.DoAction(imageVisual.VisualIndex, Property.ACTION_STOP, new PropertyValue(0));
+            if (defaultLottieView != null)
+            {
+                defaultLottieView.Stop();
+            }
+            else
+            {
+                PropertyValue attributes = new PropertyValue(0);
+                this.DoAction(imageVisual.VisualIndex, ActionStop, attributes);
+                attributes.Dispose();
+            }
+        }
+
+        private void Initialize()
+        {
+            AccessibilityHighlightable = true;
+        }
+
+        private void EnsureLottieView(string url)
+        {
+            if (defaultLottieView != null)
+            {
+                if (defaultLottieView.URL == url) return;
+                defaultLottieView.Stop();
+            }
+            else Add(defaultLottieView = new LottieAnimationView() { LoopCount = -1 });
+
+            defaultLottieView.URL = url;
+            defaultLottieView.Play();
+        }
+
+        private void RemoveLottieView()
+        {
+            if (defaultLottieView == null) return;
+            defaultLottieView.Stop();
+            defaultLottieView.Dispose();
+            defaultLottieView = null;
+        }
+
+        private void EnsureImageVisual()
+        {
+            if (imageVisual == null)
+            {
+                imageVisual = new AnimatedImageVisual()
+                {
+                    URLS = new List<string>(),
+                    FrameDelay = defaultFrameDelay,
+                    LoopCount = -1,
+                    Position = new Vector2(0, 0),
+                    Origin = Visual.AlignType.Center,
+                    AnchorPoint = Visual.AlignType.Center,
+                    SizePolicy = VisualTransformPolicyType.Relative,
+                    Size = new Size2D(1, 1)
+                };
+
+                AddVisual(ImageVisualName, imageVisual);
+            }
+        }
+
+        private void RemoveImageVisual()
+        {
+            if (imageVisual == null) return;
+            RemoveVisual(ImageVisualName);
+            imageVisual.Dispose();
+            imageVisual = null;
         }
     }
 }

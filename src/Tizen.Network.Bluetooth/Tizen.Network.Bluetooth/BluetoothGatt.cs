@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +40,12 @@ namespace Tizen.Network.Bluetooth
                 e.Server = this;
                 NotificationSent?.Invoke(this, e);
             };
+            _impl.AttMtuChanged += OnAttMtuChanged;
+        }
+
+        private void OnAttMtuChanged(object s, AttMtuChangedEventArgs e)
+        {
+            AttMtuChanged?.Invoke(this, e);
         }
 
         /// <summary>
@@ -209,9 +216,31 @@ namespace Tizen.Network.Bluetooth
             _impl.SendResponse(requestId, (int)type, status, value, offset);
         }
 
+        /// <summary>
+        /// Gets the value of the ATT MTU(Maximum Transmission Unit) for the connection.
+        /// </summary>
+        /// <param name="clientAddress">The remote device address.</param>
+        /// <feature>http://tizen.org/feature/network.bluetooth.le.gatt.server</feature>
+        /// <returns>The MTU value</returns>
+        /// <exception cref="NotSupportedException">Thrown when the BT/BLE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the BT/BLE is not enabled
+        /// or when the remote device is disconnected, or when other specific error occurs.</exception>
+        /// <since_tizen> 9 </since_tizen>
+        public int GetAttMtu(string clientAddress)
+        {
+            return _impl.GetAttMtu(clientAddress);
+        }
+
+        /// <summary>
+        /// The AttMtuChanged event is raised when the MTU value changed.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<AttMtuChangedEventArgs> AttMtuChanged;
+
         internal bool IsValid()
         {
-            return _impl.GetHandle().IsInvalid == false;
+            return _impl?.GetHandle()?.IsInvalid == false;
         }
 
         /// <summary>
@@ -266,6 +295,18 @@ namespace Tizen.Network.Bluetooth
             _impl = new BluetoothGattClientImpl(remoteAddress);
             _remoteAddress = remoteAddress;
             StaticConnectionStateChanged += OnConnectionStateChanged;
+            _impl.AttMtuChanged += OnAttMtuChanged;
+            _impl.ServiceChanged += OnServiceChanged;
+        }
+
+        private void OnAttMtuChanged(object s, AttMtuChangedEventArgs e)
+        {
+            AttMtuChanged?.Invoke(this, e);
+        }
+
+        private void OnServiceChanged(object s, ServiceChangedEventArgs e)
+        {
+            ServiceChanged?.Invoke(this, e);
         }
 
         /// <summary>
@@ -319,10 +360,7 @@ namespace Tizen.Network.Bluetooth
                     _taskForDisconnection = null;
                 }
 
-                if (e.Result == (int)BluetoothError.None)
-                {
-                    ConnectionStateChanged?.Invoke(this, e);
-                }
+                ConnectionStateChanged?.Invoke(this, e);
             }
         }
 
@@ -419,7 +457,7 @@ namespace Tizen.Network.Bluetooth
         [Obsolete("Deprecated since API level 6. Please use Dispose() method on BluetoothGattClient.")]
         public void DestroyClient()
         {
-            _impl.GetHandle().Dispose();
+            _impl?.GetHandle()?.Dispose();
         }
 
         /// <summary>
@@ -517,9 +555,51 @@ namespace Tizen.Network.Bluetooth
             return await _impl.WriteValueAsyncTask(descriptor.GetHandle());
         }
 
+        /// <summary>
+        /// Gets the value of the ATT MTU(Maximum Transmission Unit) for the connection.
+        /// </summary>
+        /// <returns>The MTU value</returns>
+        /// <exception cref="NotSupportedException">Thrown when the BT/BLE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the BT/BLE is not enabled
+        /// or when the remote device is disconnected, or when other specific error occurs.</exception>
+        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int GetAttMtu()
+        {
+            return _impl.GetAttMtu();
+        }
+
+        /// <summary>
+        /// Sets the value of the ATT MTU(Maximum Transmission Unit) for the connection.
+        /// </summary>
+        /// <param name="mtu">The MTU value</param>
+        /// <exception cref="NotSupportedException">Thrown when the BT/BLE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the BT/BLE is not enabled
+        /// or when the remote device is disconnected, or when other specific error occurs.</exception>
+        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetAttMtu(int mtu)
+        {
+            _impl.SetAttMtu(mtu);
+        }
+
+        /// <summary>
+        /// The AttMtuChanged event is raised when the MTU value changed.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<AttMtuChangedEventArgs> AttMtuChanged;
+
+        /// <summary>
+        /// The ServiceChanged event is raised when the service is changed from the remote device(GATT server).
+        /// </summary>
+        /// <feature>http://tizen.org/feature/network.bluetooth.le.gatt.client</feature>
+        /// <since_tizen> 9 </since_tizen>
+        public event EventHandler<ServiceChangedEventArgs> ServiceChanged;
+
         internal bool Isvalid()
         {
-            return _impl.GetHandle().IsInvalid == false;
+            return _impl?.GetHandle()?.IsInvalid == false;
         }
 
         /// <summary>
@@ -977,7 +1057,7 @@ namespace Tizen.Network.Bluetooth
                 _parent = parent;
                 ReleaseHandleOwnership();
             }
-         }
+        }
     }
 
     /// <summary>
@@ -998,7 +1078,7 @@ namespace Tizen.Network.Bluetooth
         /// <remarks>throws in case of internal error.</remarks>
         /// <exception cref="InvalidOperationException">Thrown when the create GATT descriptor procedure fails.</exception>
         /// <since_tizen> 3 </since_tizen>
-        public BluetoothGattDescriptor(string uuid, BluetoothGattPermission permisions, byte[] value) : base (uuid, permisions)
+        public BluetoothGattDescriptor(string uuid, BluetoothGattPermission permisions, byte[] value) : base(uuid, permisions)
         {
             _impl = new BluetoothGattDescriptorImpl(uuid, permisions, value);
         }

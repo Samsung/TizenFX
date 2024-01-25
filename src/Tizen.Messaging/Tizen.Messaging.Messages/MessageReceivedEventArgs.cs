@@ -22,6 +22,7 @@ namespace Tizen.Messaging.Messages
     /// An extended EventArgs class, which contains a received message.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class MessageReceivedEventArgs : EventArgs
     {
         private Message _message;
@@ -35,6 +36,7 @@ namespace Tizen.Messaging.Messages
         /// The received message.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API11. Might be removed in API13.")]
         public Message ReceivedMessage
         {
             get

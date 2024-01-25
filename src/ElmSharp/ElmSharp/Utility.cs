@@ -14,12 +14,15 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace ElmSharp
 {
     /// <summary>
     /// This class is a static class for utility methods.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public static class Utility
     {
         /// <summary>
@@ -27,6 +30,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="path">The new font path.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void AppendGlobalFontPath(string path)
         {
             Interop.Evas.evas_font_path_global_append(path);
@@ -37,6 +41,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="path">The new font path.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void PrependEvasGlobalFontPath(string path)
         {
             Interop.Evas.evas_font_path_global_prepend(path);
@@ -46,9 +51,20 @@ namespace ElmSharp
         /// Removes all font paths loaded into the memory by evas_font_path_app_* APIs for the application.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void ClearEvasGlobalFontPath()
         {
             Interop.Evas.evas_font_path_global_clear();
+        }
+
+        /// <summary>
+        /// Reinitialize FontConfig.
+        /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
+        public static void FontReinit()
+        {
+            Interop.Evas.evas_font_reinit();
         }
 
         /// <summary>
@@ -69,8 +85,9 @@ namespace ElmSharp
         /// <param name="shadowAlpha">Shadow alpha value.</param>
         /// <returns></returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static bool SetEdjeColorClass(string colorClass, int red, int green, int blue, int alpha, int outlineRed, int outlineGreen, int outlineBlue, int outlineAlpha,
-            int shadowRed, int shadowGreen, int shadowBlue, int shadowAlpha)
+                    int shadowRed, int shadowGreen, int shadowBlue, int shadowAlpha)
         {
             return Interop.Elementary.edje_color_class_set(colorClass, red, green, blue, alpha, outlineRed, outlineGreen, outlineBlue, outlineAlpha, shadowRed, shadowGreen, shadowBlue, shadowAlpha);
         }
@@ -93,8 +110,9 @@ namespace ElmSharp
         /// <param name="shadowAlpha">Shadow alpha value.</param>
         /// <returns></returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static bool GetEdjeColorClass(string colorClass, out int red, out int green, out int blue, out int alpha, out int outlineRed, out int outlineGreen, out int outlineBlue,
-            out int outlineAlpha, out int shadowRed, out int shadowGreen, out int shadowBlue, out int shadowAlpha)
+                    out int outlineAlpha, out int shadowRed, out int shadowGreen, out int shadowBlue, out int shadowAlpha)
         {
             return Interop.Elementary.edje_color_class_get(colorClass, out red, out green, out blue, out alpha, out outlineRed, out outlineGreen, out outlineBlue, out outlineAlpha,
                 out shadowRed, out shadowGreen, out shadowBlue, out shadowAlpha);
@@ -105,6 +123,7 @@ namespace ElmSharp
         /// This function triggers the processing of messages addressed to any (alive) edje objects.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void ProcessEdjeMessageSignal()
         {
             Interop.Elementary.edje_message_signal_process();
@@ -118,6 +137,7 @@ namespace ElmSharp
         /// <param name="size">The font size.</param>
         /// <returns>True on success, or False on error.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static bool SetEdjeTextClass(string textClass, string font, int size)
         {
             return Interop.Elementary.edje_text_class_set(textClass, font, size);
@@ -131,6 +151,7 @@ namespace ElmSharp
         /// <param name="size">The font size.</param>
         /// <returns>True on success, or False on error.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static bool GetEdjeTextClass(string textClass, out string font, out int size)
         {
             return Interop.Elementary.edje_text_class_get(textClass, out font, out size);
@@ -141,6 +162,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="textClass">The text class name.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void DeleteEdjeTextClass(string textClass)
         {
             Interop.Elementary.edje_text_class_del(textClass);
@@ -154,6 +176,7 @@ namespace ElmSharp
         /// <param name="green">The green component of the color.</param>
         /// <param name="blue">The blue component of the color.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void PremulityplyEvasColorByAlpha(int alpha, ref int red, ref int green, ref int blue)
         {
             Interop.Evas.evas_color_argb_premul(alpha, ref red, ref green, ref blue);
@@ -167,6 +190,7 @@ namespace ElmSharp
         /// <param name="green">The green component of the color.</param>
         /// <param name="blue">The blue component of the color.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void UnPremulityplyEvasColorByAlpha(int alpha, ref int red, ref int green, ref int blue)
         {
             Interop.Evas.evas_color_argb_unpremul(alpha, ref red, ref green, ref blue);

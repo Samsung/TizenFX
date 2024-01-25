@@ -92,6 +92,16 @@ internal static partial class Interop
         internal static extern int ForgetAP(SafeWiFiManagerHandle wifi, IntPtr ap, VoidCallback callback, IntPtr userData);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_update_ap")]
         internal static extern int UpdateAP(SafeWiFiManagerHandle wifi, IntPtr ap);
+        [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_specific_scan_create")]
+        internal static extern int SpecificScanCreate(SafeWiFiManagerHandle wifi, out IntPtr specificScanHandle);
+        [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_specific_scan_destroy")]
+        internal static extern int SpecificScanDestroy(SafeWiFiManagerHandle wifi, IntPtr specificScanHandle);
+        [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_specific_scan_set_ssid")]
+        internal static extern int SpecificScanSetSsid(IntPtr specificScanHandle, string essid);
+        [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_specific_scan_set_freq")]
+        internal static extern int SpecificScanSetFrequency(IntPtr specificScanHandle, int freq);
+        [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_specific_ap_start_multi_scan")]
+        internal static extern int SpecificApStartMultiScan(SafeWiFiManagerHandle wifi, IntPtr specificScanHandle, VoidCallback callback, IntPtr userData);
 
         //Wi-Fi Monitor
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_get_connection_state")]
@@ -298,6 +308,8 @@ internal static partial class Interop
             internal static extern int GetEapSubjectMatch(SafeWiFiConfigHandle config, out IntPtr subjectMatch);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_config_set_eap_subject_match")]
             internal static extern int SetEapSubjectMatch(SafeWiFiConfigHandle config, string subjectMatch);
+            [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_config_get_frequency")]
+            internal static extern int GetSavedConfigFrequency(IntPtr config, out int freq);
         }
 
         internal sealed class SafeWiFiAPHandle : SafeHandle
@@ -353,9 +365,9 @@ internal static partial class Interop
 
     }
 
-    internal static partial class Libc
+    internal static partial class Glib
     {
-        [DllImport(Libraries.Libc, EntryPoint = "free")]
+        [DllImport(Libraries.Glib, EntryPoint = "g_free", CallingConvention = CallingConvention.Cdecl)]
         public static extern void Free(IntPtr userData);
     }
 }

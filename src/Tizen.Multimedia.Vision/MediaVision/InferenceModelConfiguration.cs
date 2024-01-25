@@ -42,26 +42,29 @@ namespace Tizen.Multimedia.Vision
         private const string _keyModelConfigurationFilePath = "MV_INFERENCE_MODEL_CONFIGURATION_FILE_PATH";
         private const string _keyModelWeightFilePath = "MV_INFERENCE_MODEL_WEIGHT_FILE_PATH";
         private const string _keyModelUserFilePath = "MV_INFERENCE_MODEL_USER_FILE_PATH";
-        private const string _keyModelMeanValue = "MV_INFERENCE_MODEL_MEAN_VALUE";
-        private const string _keyModelStdValue = "MV_INFERENCE_MODEL_STD_VALUE";
+        private const string _keyMetadataFilePath = "MV_INFERENCE_MODEL_META_FILE_PATH";
+        private const string _keyModelMeanValue = "MV_INFERENCE_MODEL_MEAN_VALUE"; // Deprecated
+        private const string _keyModelStdValue = "MV_INFERENCE_MODEL_STD_VALUE"; // Deprecated
         private const string _keyBackendType = "MV_INFERENCE_BACKEND_TYPE";
         private const string _keyTargetType = "MV_INFERENCE_TARGET_TYPE";
         private const string _keyTargetDeviceType = "MV_INFERENCE_TARGET_DEVICE_TYPE";
-        private const string _keyInputTensorWidth = "MV_INFERENCE_INPUT_TENSOR_WIDTH";
-        private const string _keyInputTensorHeight = "MV_INFERENCE_INPUT_TENSOR_HEIGHT";
-        private const string _keyInputTensorChannels = "MV_INFERENCE_INPUT_TENSOR_CHANNELS";
-        private const string _keyDataType = "MV_INFERENCE_INPUT_DATA_TYPE";
-        private const string _keyInputNodeName = "MV_INFERENCE_INPUT_NODE_NAME";
-        private const string _keyOutputNodeNames = "MV_INFERENCE_OUTPUT_NODE_NAMES";
-        private const string _keyOutputMaxNumber = "MV_INFERENCE_OUTPUT_MAX_NUMBER";
-        private const string _keyConfidenceThreshold = "MV_INFERENCE_CONFIDENCE_THRESHOLD";
+        private const string _keyInputTensorWidth = "MV_INFERENCE_INPUT_TENSOR_WIDTH"; // Deprecated
+        private const string _keyInputTensorHeight = "MV_INFERENCE_INPUT_TENSOR_HEIGHT"; // Deprecated
+        private const string _keyInputTensorChannels = "MV_INFERENCE_INPUT_TENSOR_CHANNELS"; // Deprecated
+        private const string _keyDataType = "MV_INFERENCE_INPUT_DATA_TYPE"; // Deprecated
+        private const string _keyInputNodeName = "MV_INFERENCE_INPUT_NODE_NAME"; // Deprecated
+        private const string _keyOutputNodeNames = "MV_INFERENCE_OUTPUT_NODE_NAMES"; // Deprecated
+        private const string _keyOutputMaxNumber = "MV_INFERENCE_OUTPUT_MAX_NUMBER"; // Deprecated
+        private const string _keyConfidenceThreshold = "MV_INFERENCE_CONFIDENCE_THRESHOLD"; // Deprecated
 
         // The following strings are fixed in native and will not be changed.
         private const string _backendTypeOpenCV = "opencv";
         private const string _backendTypeTFLite = "tflite";
-        private const string _backendTypeArmNN = "armnn";
-        private const string _backendTypeMLApi = "mlapi";
+        private const string _backendTypeArmNN = "armnn"; // Deprecated
+        private const string _backendTypeMLApi = "mlapi"; // Deprecated
         private const string _backendTypeOne = "one";
+        private const string _backendTypeNNTrainer = "nntrainer";
+        private const string _backendTypeSnpe = "snpe";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InferenceModelConfiguration"/> class.
@@ -157,13 +160,21 @@ namespace Tizen.Multimedia.Vision
                             supportedBackend.Add(InferenceBackendType.TFLite);
                             break;
                         case _backendTypeArmNN:
-                            supportedBackend.Add(InferenceBackendType.ArmNN);
+                            supportedBackend.Add(InferenceBackendType.ArmNN); // Deprecated
                             break;
                         case _backendTypeMLApi:
-                            supportedBackend.Add(InferenceBackendType.MLApi);
+                            supportedBackend.Add(InferenceBackendType.MLApi); // Deprecated
                             break;
                         case _backendTypeOne:
                             supportedBackend.Add(InferenceBackendType.One);
+                            break;
+                        case _backendTypeNNTrainer:
+                            supportedBackend.Add(InferenceBackendType.NNTrainer);
+                            break;
+                        case _backendTypeSnpe:
+                            supportedBackend.Add(InferenceBackendType.Snpe);
+                            break;
+                        default:
                             break;
                     }
                 }
@@ -247,11 +258,37 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
+        /// Gets or sets the path of inference model's metadata file.
+        /// </summary>
+        /// <remarks>
+        /// This value should be set to use <see cref="ImageClassifier"/> or <see cref="ObjectDetector"/>.
+        /// </remarks>
+        /// <exception cref="ArgumentNullException">Metadata file path is null.</exception>
+        /// <since_tizen> 9 </since_tizen>
+        public string MetadataFilePath
+        {
+            get
+            {
+                return GetString(_keyMetadataFilePath);
+            }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException(nameof(value), "File path is null.");
+                }
+
+                Set(_keyMetadataFilePath, value);
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the inference model's mean value.
         /// </summary>
         /// <remarks>It should be greater than or equal to 0.</remarks>
         /// <exception cref="ArgumentOutOfRangeException">The value is invalid.</exception>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead.")]
         public double MeanValue
         {
             get
@@ -276,6 +313,7 @@ namespace Tizen.Multimedia.Vision
         /// <remarks>It should be greater than or equal to 0.</remarks>
         /// <exception cref="ArgumentOutOfRangeException">The value is invalid.</exception>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead.")]
         public double StdValue
         {
             get
@@ -323,31 +361,6 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Gets or sets the inference model's target.
-        /// </summary>
-        /// <remarks>
-        /// The default target is <see cref="InferenceTargetType.CPU"/>.<br/>
-        /// If target doesn't support <see cref="InferenceTargetType.GPU"/> and <see cref="InferenceTargetType.Custom"/>,
-        /// <see cref="InferenceTargetType.CPU"/> will be used internally, despite the user's choice.
-        /// </remarks>
-        /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
-        /// <since_tizen> 6 </since_tizen>
-        [Obsolete("Deprecated since API8; Will be removed in API10. Please use Device instead.")]
-        public InferenceTargetType Target
-        {
-            get
-            {
-                return (InferenceTargetType)GetInt(_keyTargetType);
-            }
-            set
-            {
-                ValidationUtil.ValidateEnum(typeof(InferenceTargetType), value, nameof(Target));
-
-                Set(_keyTargetType, (int)value);
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the processor type for inference models.
         /// </summary>
         /// <remarks>
@@ -382,6 +395,7 @@ namespace Tizen.Multimedia.Vision
         /// Only one of <paramref name="value.Width"/> or <paramref name="value.Height"/> have -1.</exception>
         /// <exception cref="ArgumentOutOfRangeException">The value is invalid.</exception>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead.")]
         public Size TensorSize
         {
             get
@@ -424,6 +438,7 @@ namespace Tizen.Multimedia.Vision
         /// </remarks>
         /// <exception cref="ArgumentOutOfRangeException">The value is invalid.</exception>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead.")]
         public int TensorChannels
         {
             get
@@ -450,6 +465,7 @@ namespace Tizen.Multimedia.Vision
         /// </remarks>
         /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
         /// <since_tizen> 8 </since_tizen>
+        [Obsolete("Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead.")]
         public InferenceDataType DataType
         {
             get
@@ -469,6 +485,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <exception cref="ArgumentNullException"><paramref name="value"/> is null.</exception>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead.")]
         public string InputNodeName
         {
             get
@@ -491,6 +508,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <exception cref="ArgumentNullException"><paramref name="value"/> is null.</exception>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead.")]
         public IList<string> OutputNodeName
         {
             get
@@ -518,6 +536,7 @@ namespace Tizen.Multimedia.Vision
         /// This value can be used to decide the size of <see cref="Roi"/>, it's length should be the same.
         /// </remarks>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead.")]
         public int MaxOutputNumber
         {
             get
@@ -539,6 +558,7 @@ namespace Tizen.Multimedia.Vision
         /// </remarks>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/>is out of range.</exception>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead.")]
         public double ConfidenceThreshold
         {
             get

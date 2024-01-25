@@ -42,14 +42,15 @@ namespace Tizen.Applications
         private bool _isRemovable;
         private bool _isPreloaded;
         private bool _isAccessible;
-        private IReadOnlyDictionary<CertificateType, PackageCertificate> _certificates;
+        private Lazy<IReadOnlyDictionary<CertificateType, PackageCertificate>> _certificates;
         private List<string> _privileges;
         private int _installedTime;
 
         private Dictionary<IntPtr, Interop.PackageManager.PackageManagerSizeInfoCallback> _packageManagerSizeInfoCallbackDict = new Dictionary<IntPtr, Interop.PackageManager.PackageManagerSizeInfoCallback>();
         private int _callbackId = 0;
         private List<PackageDependencyInformation> _dependencyTo;
-        private List<PackageDependencyInformation> _dependencyFrom;
+        private Lazy<List<PackageDependencyInformation>> _dependencyFrom;
+        private IReadOnlyDictionary<string, IEnumerable<string>> _allowedPackagesAndPrivilegesList;
 
         private Package(string pkgId)
         {
@@ -134,7 +135,7 @@ namespace Tizen.Applications
         /// Certificate information for the package.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public IReadOnlyDictionary<CertificateType, PackageCertificate> Certificates { get { return _certificates; } }
+        public IReadOnlyDictionary<CertificateType, PackageCertificate> Certificates { get { return _certificates.Value; } }
 
         /// <summary>
         /// Requested privilege for the package.
@@ -228,7 +229,7 @@ namespace Tizen.Applications
         /// Packages that require this package
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public IEnumerable<PackageDependencyInformation> DependencyFrom { get { return _dependencyFrom; } }
+        public IEnumerable<PackageDependencyInformation> DependencyFrom { get { return _dependencyFrom.Value; } }
 
         /// <summary>
         /// Gets the package size information.
@@ -288,6 +289,16 @@ namespace Tizen.Applications
             return (CertCompareResultType)compareResult;
         }
 
+        /// <summary>
+        /// The allowed packages and required privileges information.
+        /// </summary>
+        /// <remarks> The dictionary contains application IDs as the keys, and a collection of privileges related to that application as the value.</remarks>
+        /// <since_tizen> 9 </since_tizen>
+        public IReadOnlyDictionary<string, IEnumerable<string>> AllowedPackagesAndPrivileges
+        {
+            get { return _allowedPackagesAndPrivilegesList; }
+        }
+
         // This method assumes that given arguments are already validated and have valid values.
         internal static Package CreatePackage(IntPtr handle, string pkgId)
         {
@@ -329,7 +340,7 @@ namespace Tizen.Applications
             err = Interop.Package.PackageInfoGetTepName(handle, out package._expansionPackageName);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get expansion package name of " + pkgId);
+                // Do not print warning log because most packages do not have tep.
                 package._expansionPackageName = string.Empty;
             }
 
@@ -372,10 +383,11 @@ namespace Tizen.Applications
                 package._installedTime = 0;
             }
 
-            package._certificates = PackageCertificate.GetPackageCertificates(handle);
+            package._certificates = new Lazy<IReadOnlyDictionary<CertificateType, PackageCertificate>>(() => { return PackageCertificate.GetPackageCertificates(pkgId); });
             package._privileges = GetPackagePrivilegeInformation(handle);
             package._dependencyTo = GetPackageDependency(handle);
-            package._dependencyFrom = GetPackageDependencyDependsOn(handle);
+            package._dependencyFrom = new Lazy<List<PackageDependencyInformation>>(() => { return GetPackageDependencyDependsOn(pkgId); });
+            package._allowedPackagesAndPrivilegesList = GetAllowedPackagesAndPrivileges(handle);
             return package;
         }
 
@@ -458,7 +470,7 @@ namespace Tizen.Applications
             return dependencies;
         }
 
-        private static List<PackageDependencyInformation> GetPackageDependencyDependsOn(IntPtr packageInfoHandle)
+        private static List<PackageDependencyInformation> GetPackageDependencyDependsOn(string packageId)
         {
             List<PackageDependencyInformation> dependencies = new List<PackageDependencyInformation>();
             Interop.Package.PackageInfoDependencyInfoCallback dependencyInfoCb = (from, to, type, requiredVersion, userData) =>
@@ -466,13 +478,44 @@ namespace Tizen.Applications
                 dependencies.Add(PackageDependencyInformation.GetPackageDependencyInformation(from, to, type, requiredVersion));
                 return true;
             };
-
-            Interop.PackageManager.ErrorCode err = Interop.Package.PackageInfoForeachDependencyInfoDependsOn(packageInfoHandle, dependencyInfoCb, IntPtr.Zero);
-            if (err != Interop.PackageManager.ErrorCode.None)
+            int err = Interop.PackageManagerInfoInternal.PkgmgrinfoPkginfoForeachDependsOnByPkgId(packageId, dependencyInfoCb, IntPtr.Zero, Interop.PackageManagerInfoInternal.GetUID());
+            if (err != 0)
             {
                 Log.Warn(LogTag, string.Format("Failed to get dependency info. err = {0}", err));
             }
             return dependencies;
+        }
+
+        private static Dictionary<string, IEnumerable<string>> GetAllowedPackagesAndPrivileges(IntPtr packageInfoHandle)
+        {
+            Interop.PackageManager.ErrorCode err;
+            Dictionary<string, IEnumerable<string>> allowedPackagesAndPrivileges = new Dictionary<string, IEnumerable<string>>();
+            Interop.Package.PackageInfoResAllowedPackageCallback allowedPackageCallback = (allowedPackage, requiredPrivileges, userData) =>
+            {
+                List<string> requiredPrivilegesList = new List<string>();
+                Interop.Package.PackageInfoPrivilegeInfoCallback requiredPrivCallback = (priv, requiredPrivCbUserData) =>
+                {
+                    requiredPrivilegesList.Add(priv);
+                    return true;
+                };
+                err = Interop.Package.PackageInfoForeachRequiredPrivilege(requiredPrivileges, requiredPrivCallback, IntPtr.Zero);
+                if (err != Interop.PackageManager.ErrorCode.None)
+                {
+                    Log.Warn(LogTag, string.Format("Failed to get required privileges of allowed packages info. err = {0}", err));
+                }
+                else
+                {
+                    allowedPackagesAndPrivileges.Add(allowedPackage, requiredPrivilegesList);
+                }
+                return true;
+            };
+
+            err = Interop.Package.PackageInfoForeachResAllowedPackage(packageInfoHandle, allowedPackageCallback, IntPtr.Zero);
+            if (err != Interop.PackageManager.ErrorCode.None)
+            {
+                Log.Warn(LogTag, string.Format("Failed to get allowed packages info. err = {0}", err));
+            }
+            return allowedPackagesAndPrivileges;
         }
     }
 }

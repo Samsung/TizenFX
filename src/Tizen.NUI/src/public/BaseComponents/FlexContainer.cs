@@ -16,6 +16,7 @@
  */
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.BaseComponents
@@ -27,111 +28,111 @@ namespace Tizen.NUI.BaseComponents
     /// FlexContainer can expand items to fill available free space, or shrink them to prevent overflow.<br />
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
+    [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
     public class FlexContainer : View
     {
         /// <summary> Property of ContentDirection </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ContentDirectionProperty = BindableProperty.Create("ContentDirection", typeof(ContentDirectionType), typeof(FlexContainer), ContentDirectionType.Inherit, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ContentDirectionProperty = BindableProperty.Create(nameof(ContentDirection), typeof(ContentDirectionType), typeof(FlexContainer), ContentDirectionType.Inherit, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var flexContainer = (FlexContainer)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(flexContainer.swigCPtr, FlexContainer.Property.CONTENT_DIRECTION, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.ContentDirection, new Tizen.NUI.PropertyValue((int)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var flexContainer = (FlexContainer)bindable;
             int temp = 0;
-            Tizen.NUI.Object.GetProperty(flexContainer.swigCPtr, FlexContainer.Property.CONTENT_DIRECTION).Get(out temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.ContentDirection).Get(out temp);
             return (ContentDirectionType)temp;
-        });
+        }));
         /// <summary> Property of FlexDirection </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FlexDirectionProperty = BindableProperty.Create("FlexDirection", typeof(FlexDirectionType), typeof(FlexContainer), FlexDirectionType.Column, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FlexDirectionProperty = BindableProperty.Create(nameof(FlexDirection), typeof(FlexDirectionType), typeof(FlexContainer), FlexDirectionType.Column, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var flexContainer = (FlexContainer)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(flexContainer.swigCPtr, FlexContainer.Property.FLEX_DIRECTION, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.FlexDirection, new Tizen.NUI.PropertyValue((int)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var flexContainer = (FlexContainer)bindable;
             int temp = 0;
-            Tizen.NUI.Object.GetProperty(flexContainer.swigCPtr, FlexContainer.Property.FLEX_DIRECTION).Get(out temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.FlexDirection).Get(out temp);
             return (FlexDirectionType)temp;
-        });
+        }));
         /// <summary> Property of FlexWrap </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FlexWrapProperty = BindableProperty.Create("FlexWrap", typeof(WrapType), typeof(FlexContainer), WrapType.NoWrap, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FlexWrapProperty = BindableProperty.Create(nameof(FlexWrap), typeof(WrapType), typeof(FlexContainer), WrapType.NoWrap, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var flexContainer = (FlexContainer)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(flexContainer.swigCPtr, FlexContainer.Property.FLEX_WRAP, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.FlexWrap, new Tizen.NUI.PropertyValue((int)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var flexContainer = (FlexContainer)bindable;
             int temp = 0;
-            Tizen.NUI.Object.GetProperty(flexContainer.swigCPtr, FlexContainer.Property.FLEX_WRAP).Get(out temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.FlexWrap).Get(out temp);
             return (WrapType)temp;
-        });
+        }));
         /// <summary> Property of JustifyContent </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty JustifyContentProperty = BindableProperty.Create("JustifyContent", typeof(Justification), typeof(FlexContainer), Justification.JustifyFlexStart, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty JustifyContentProperty = BindableProperty.Create(nameof(JustifyContent), typeof(Justification), typeof(FlexContainer), Justification.JustifyFlexStart, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var flexContainer = (FlexContainer)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(flexContainer.swigCPtr, FlexContainer.Property.JUSTIFY_CONTENT, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.JustifyContent, new Tizen.NUI.PropertyValue((int)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var flexContainer = (FlexContainer)bindable;
             int temp = 0;
-            Tizen.NUI.Object.GetProperty(flexContainer.swigCPtr, FlexContainer.Property.JUSTIFY_CONTENT).Get(out temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.JustifyContent).Get(out temp);
             return (Justification)temp;
-        });
+        }));
         /// <summary> Property of AlignItems </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AlignItemsProperty = BindableProperty.Create("AlignItems", typeof(Alignment), typeof(FlexContainer), Alignment.AlignAuto, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AlignItemsProperty = BindableProperty.Create(nameof(AlignItems), typeof(Alignment), typeof(FlexContainer), Alignment.AlignAuto, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var flexContainer = (FlexContainer)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(flexContainer.swigCPtr, FlexContainer.Property.ALIGN_ITEMS, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.AlignItems, new Tizen.NUI.PropertyValue((int)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var flexContainer = (FlexContainer)bindable;
             int temp = 0;
-            Tizen.NUI.Object.GetProperty(flexContainer.swigCPtr, FlexContainer.Property.ALIGN_ITEMS).Get(out temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.AlignItems).Get(out temp);
             return (Alignment)temp;
-        });
+        }));
         /// <summary> Property of AlignContent </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AlignContentProperty = BindableProperty.Create("AlignContent", typeof(Alignment), typeof(FlexContainer), Alignment.AlignAuto, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AlignContentProperty = BindableProperty.Create(nameof(AlignContent), typeof(Alignment), typeof(FlexContainer), Alignment.AlignAuto, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var flexContainer = (FlexContainer)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(flexContainer.swigCPtr, FlexContainer.Property.ALIGN_CONTENT, new Tizen.NUI.PropertyValue((int)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.AlignContent, new Tizen.NUI.PropertyValue((int)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var flexContainer = (FlexContainer)bindable;
             int temp = 0;
-            Tizen.NUI.Object.GetProperty(flexContainer.swigCPtr, FlexContainer.Property.ALIGN_CONTENT).Get(out temp);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)flexContainer.SwigCPtr, FlexContainer.Property.AlignContent).Get(out temp);
             return (Alignment)temp;
-        });
+        }));
 
 
         /// <summary>
@@ -139,13 +140,13 @@ namespace Tizen.NUI.BaseComponents
         /// Calling member functions with an uninitialized handle is not allowed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
-        public FlexContainer() : this(Interop.FlexContainer.FlexContainer_New(), true)
+        [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
+        public FlexContainer() : this(Interop.FlexContainer.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal FlexContainer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.FlexContainer.FlexContainer_SWIGUpcast(cPtr), cMemoryOwn)
+        internal FlexContainer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
@@ -154,32 +155,32 @@ namespace Tizen.NUI.BaseComponents
         /// the direction that flex items are laid out in the flex container.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
+        [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
         public enum FlexDirectionType
         {
             /// <summary>
             /// The flexible items are displayed vertically as a column.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
+            [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             Column,
             /// <summary>
             /// The flexible items are displayed vertically as a column, but in reverse order.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
+            [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             ColumnReverse,
             /// <summary>
             /// The flexible items are displayed horizontally as a row.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
+            [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             Row,
             /// <summary>
             /// The flexible items are displayed horizontally as a row.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
+            [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             RowReverse
         }
 
@@ -188,26 +189,26 @@ namespace Tizen.NUI.BaseComponents
         /// and on which sides the ?�start??and ?�end??are.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
+        [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
         public enum ContentDirectionType
         {
             /// <summary>
             /// Inherits the same direction from the parent.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
+            [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             Inherit,
             /// <summary>
             /// From left to right.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
+            [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             LTR,
             /// <summary>
             /// From right to left.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
+            [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             RTL
         }
 
@@ -216,38 +217,38 @@ namespace Tizen.NUI.BaseComponents
         /// space on the main axis.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
+        [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
         public enum Justification
         {
             /// <summary>
             /// Items are positioned at the beginning of the container.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
+            [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             JustifyFlexStart,
             /// <summary>
             /// Items are positioned at the center of the container.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
+            [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             JustifyCenter,
             /// <summary>
             /// Items are positioned at the end of the container.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
+            [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             JustifyFlexEnd,
             /// <summary>
             /// Items are positioned with equal space between the lines.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
+            [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             JustifySpaceBetween,
             /// <summary>
             /// Items are positioned with equal space before, between, and after the lines.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
+            [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             JustifySpaceAround
         }
 
@@ -256,38 +257,38 @@ namespace Tizen.NUI.BaseComponents
         /// use all the available space on the cross axis.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
+        [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
         public enum Alignment
         {
             /// <summary>
             /// Inherits the same alignment from the parent (only valid for "alignSelf" property).
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
+            [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             AlignAuto,
             /// <summary>
             /// At the beginning of the container.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
+            [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             AlignFlexStart,
             /// <summary>
             /// At the center of the container.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
+            [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             AlignCenter,
             /// <summary>
             /// At the end of the container.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
+            [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             AlignFlexEnd,
             /// <summary>
             /// Stretch to fit the container.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
+            [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             AlignStretch
         }
 
@@ -296,20 +297,20 @@ namespace Tizen.NUI.BaseComponents
         /// all the items on one flex line.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
+        [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
         public enum WrapType
         {
             /// <summary>
             /// Flex items laid out in single line (shrunk to fit the flex container along the main axis).
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
+            [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             NoWrap,
             /// <summary>
             /// Flex items laid out in multiple lines if needed.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
+            [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
             Wrap
         }
 
@@ -317,7 +318,7 @@ namespace Tizen.NUI.BaseComponents
         /// The primary direction in which content is ordered.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
+        [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
         public ContentDirectionType ContentDirection
         {
             get
@@ -335,7 +336,7 @@ namespace Tizen.NUI.BaseComponents
         /// The direction of the main axis which determines the direction that flex items are laid out.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
+        [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
         public FlexDirectionType FlexDirection
         {
             get
@@ -353,7 +354,7 @@ namespace Tizen.NUI.BaseComponents
         /// Whether the flex items should wrap or not if there is no enough room for them on one flex line.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
+        [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
         public WrapType FlexWrap
         {
             get
@@ -371,7 +372,7 @@ namespace Tizen.NUI.BaseComponents
         /// The alignment of flex items when the items do not use all available space on the main axis.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
+        [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
         public Justification JustifyContent
         {
             get
@@ -389,7 +390,7 @@ namespace Tizen.NUI.BaseComponents
         /// The alignment of flex items when the items do not use all available space on the cross axis.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
+        [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
         public Alignment AlignItems
         {
             get
@@ -407,7 +408,7 @@ namespace Tizen.NUI.BaseComponents
         /// Similar to "alignItems", but it aligns flex lines; so only works when there are multiple lines.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API8, will be removed in API10. Please use FlexLayout instead!")]
+        [Obsolete("This has been deprecated in API8 and will be removed in API10. Use FlexLayout instead.")]
         public Alignment AlignContent
         {
             get
@@ -425,31 +426,27 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.FlexContainer.delete_FlexContainer(swigCPtr);
+            Interop.FlexContainer.DeleteFlexContainer(swigCPtr);
         }
 
         /// <summary>
         /// Enumeration for the instance of child properties belonging to the FlexContainer class.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " +
-            "Please use View.Flex, View.AlignSelf, View.FlexMargin instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public class ChildProperty
+        internal class ChildProperty
         {
-            internal static readonly int FLEX = Interop.FlexContainer.FlexContainer_ChildProperty_FLEX_get();
-            internal static readonly int ALIGN_SELF = Interop.FlexContainer.FlexContainer_ChildProperty_ALIGN_SELF_get();
-            internal static readonly int FLEX_MARGIN = Interop.FlexContainer.FlexContainer_ChildProperty_FLEX_MARGIN_get();
+            internal static readonly int FLEX = Interop.FlexContainer.ChildPropertyFlexGet();
+            internal static readonly int AlignSelf = Interop.FlexContainer.ChildPropertyAlignSelfGet();
+            internal static readonly int FlexMargin = Interop.FlexContainer.ChildPropertyFlexMarginGet();
         }
 
         internal new class Property
         {
-            internal static readonly int CONTENT_DIRECTION = Interop.FlexContainer.FlexContainer_Property_CONTENT_DIRECTION_get();
-            internal static readonly int FLEX_DIRECTION = Interop.FlexContainer.FlexContainer_Property_FLEX_DIRECTION_get();
-            internal static readonly int FLEX_WRAP = Interop.FlexContainer.FlexContainer_Property_FLEX_WRAP_get();
-            internal static readonly int JUSTIFY_CONTENT = Interop.FlexContainer.FlexContainer_Property_JUSTIFY_CONTENT_get();
-            internal static readonly int ALIGN_ITEMS = Interop.FlexContainer.FlexContainer_Property_ALIGN_ITEMS_get();
-            internal static readonly int ALIGN_CONTENT = Interop.FlexContainer.FlexContainer_Property_ALIGN_CONTENT_get();
+            internal static readonly int ContentDirection = Interop.FlexContainer.ContentDirectionGet();
+            internal static readonly int FlexDirection = Interop.FlexContainer.FlexDirectionGet();
+            internal static readonly int FlexWrap = Interop.FlexContainer.FlexWrapGet();
+            internal static readonly int JustifyContent = Interop.FlexContainer.JustifyContentGet();
+            internal static readonly int AlignItems = Interop.FlexContainer.AlignItemsGet();
+            internal static readonly int AlignContent = Interop.FlexContainer.AlignContentGet();
         }
     }
 }

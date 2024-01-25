@@ -24,6 +24,7 @@ namespace ElmSharp
     /// It contains Next and Prev properties to get the next and previous item.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class MultiButtonEntryItem : ItemObject
     {
         /// <summary>
@@ -31,6 +32,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="text">The text of the MultiButtonEntryItem's label name.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public MultiButtonEntryItem(string text) : base(IntPtr.Zero)
         {
             Label = text;
@@ -50,12 +52,14 @@ namespace ElmSharp
         /// Gets the label of this item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string Label { get; private set; }
 
         /// <summary>
         /// Gets or sets the selected state of an item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsSelected
         {
             get
@@ -72,6 +76,7 @@ namespace ElmSharp
         /// Get the next item in the MultiButtonEntry.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public MultiButtonEntryItem Next
         {
             get
@@ -85,6 +90,7 @@ namespace ElmSharp
         /// Get the previous item in the MultiButtonEntry.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public MultiButtonEntryItem Prev
         {
             get

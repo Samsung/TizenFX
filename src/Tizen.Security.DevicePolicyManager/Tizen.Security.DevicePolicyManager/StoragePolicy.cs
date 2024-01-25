@@ -23,6 +23,7 @@ namespace Tizen.Security.DevicePolicyManager
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     /// <remarks>The StoragePolicy is created by <seealso cref="DevicePolicyManager.GetPolicy{T}"/>. and the DevicePolicyManager instance must exists when using the StoragePolicy.</remarks>
+    [Obsolete("Deprecated since API level 11.")]
     public class StoragePolicy : DevicePolicy, IDisposable
     {
         /// <summary>
@@ -30,6 +31,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// </summary>
         /// <remarks>This is used in <see cref="PolicyChangedEventArgs.PolicyName"/>.</remarks>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API level 11.")]
         public static readonly string ExternalStoragePolicyName = "ExternalStorage";
 
         private readonly string _externalStoragePolicyName = "external_storage";
@@ -46,6 +48,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <summary>
         /// A Destructor of StoragePolicy.
         /// </summary>
+        [Obsolete("Deprecated since API level 11.")]
         ~StoragePolicy()
         {
             this.Dispose(false);
@@ -56,6 +59,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// </summary>
         /// <value>true if the use of external storage is allowed, false otherwise. The default value is true.</value>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API level 11.")]
         public bool IsExternalStorageAllowed
         {
             get
@@ -75,6 +79,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <summary>
         /// Releases any unmanaged resources used by this object.
         /// </summary>
+        [Obsolete("Deprecated since API level 11.")]
         public void Dispose()
         {
             this.Dispose(true);
@@ -85,6 +90,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        [Obsolete("Deprecated since API level 11.")]
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -115,6 +121,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// </summary>
         /// <remarks>This event will be removed automatically when StoragePolicy is destroyed.</remarks>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API level 11.")]
         public event EventHandler<PolicyChangedEventArgs> ExternalStoragePolicyChanged
         {
             add

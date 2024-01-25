@@ -638,6 +638,9 @@ internal static partial class Interop
         internal static extern void evas_font_path_global_prepend(string path);
 
         [DllImport(Libraries.Evas)]
+        internal static extern void evas_font_reinit();
+
+        [DllImport(Libraries.Evas)]
         internal static extern void evas_color_argb_unpremul(int a, ref int r, ref int g, ref int b);
 
         [DllImport(Libraries.Evas)]

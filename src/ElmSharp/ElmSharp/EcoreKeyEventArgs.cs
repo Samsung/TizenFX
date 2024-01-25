@@ -26,17 +26,20 @@ namespace ElmSharp
     /// The EcoreKeyEventArgs is an EventArgs to record the Ecore event's key name and key code.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class EcoreKeyEventArgs : EventArgs
     {
         /// <summary>
         /// Gets the KeyName property. The return type is string.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string KeyName { get; private set; }
         /// <summary>
         /// Gets the KeyCode property. The return type is int.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int KeyCode { get; private set; }
 
         /// <summary>
@@ -47,13 +50,14 @@ namespace ElmSharp
         /// <param name="info">information</param>
         /// <returns>New instance of the EcoreKeyEventArgs class.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static EcoreKeyEventArgs Create(IntPtr data, EcoreEventType type, IntPtr info)
         {
             var evt = Marshal.PtrToStructure<EcoreEventKey>(info);
             return new EcoreKeyEventArgs { KeyName = evt.keyname, KeyCode = (int)evt.keycode };
         }
 
-        [NativeStruct("Ecore_Event_Key", Include="Elementary.h" , PkgConfig="elementary")]
+        [NativeStruct("Ecore_Event_Key", Include = "Elementary.h", PkgConfig = "elementary")]
         [StructLayout(LayoutKind.Sequential)]
         struct EcoreEventKey
         {

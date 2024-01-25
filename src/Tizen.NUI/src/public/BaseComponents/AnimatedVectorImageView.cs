@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,44 +20,36 @@ using System.ComponentModel;
 
 namespace Tizen.NUI.BaseComponents
 {
-    #if (NUI_DEBUG_ON)
-    using tlog = Tizen.Log;
-    #endif
-
     /// <summary>
     /// AnimatedVectorImageView is a class for displaying a vector resource.
     /// </summary>
-    // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class AnimatedVectorImageView : LottieAnimationView
+    public partial class AnimatedVectorImageView : LottieAnimationView
     {
-        #region Constructor, Distructor, Dispose
+        #region Constructor, Destructor, Dispose
         /// <summary>
         /// Construct VectorAnimationView.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AnimatedVectorImageView() : base()
         {
-            tlog.Fatal(tag, $"[VAV START[ constuctor objId={GetId()} ]VAV END]");
+            NUILog.Debug($"[AnimatedVectorImageView START[ constructor objId={GetId()} ] END]");
         }
 
         /// <summary>
         /// Construct VectorAnimationView.
         /// </summary>
         /// <param name="scale">Set scaling factor for Vector Animation, while creating.</param>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AnimatedVectorImageView(float scale) : base(scale)
         {
-            tlog.Fatal(tag, $"[VAV START[ constuctor scale={scale}) objId={GetId()} ]VAV END]");
+            NUILog.Debug($"[AnimatedVectorImageView START[ constructor scale={scale}) objId={GetId()} ] END]");
         }
 
         /// <summary>
         /// You can override it to clean-up your own resources
         /// </summary>
         /// <param name="type">DisposeTypes</param>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
@@ -65,7 +57,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 return;
             }
-            tlog.Fatal(tag, $"[VAV START[ [{GetId()}] type={type})");
+            NUILog.Debug($"AnimatedVectorImageView START");
 
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
@@ -73,53 +65,78 @@ namespace Tizen.NUI.BaseComponents
 
             base.Dispose(type);
 
-            tlog.Fatal(tag, $"]VAV END]");
+            NUILog.Debug($"AnimatedVectorImageView END");
         }
-        #endregion Constructor, Distructor, Dispose
+        #endregion Constructor, Destructor, Dispose
 
 
         #region Property
         /// <summary>
         /// Set Resource URL
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        // Suppress warning : This has been being used by users, so that the interface can not be changed.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string ResourceURL
         {
+            get
+            {
+                return GetValue(ResourceURLProperty) as string;
+            }
             set
             {
-                tlog.Fatal(tag, $"[VAV START[ [{GetId()}] ResourceURL SET");
+                SetValue(ResourceURLProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
 
-                if (value == mResourceURL)
+        private string InternalResourceURL
+        {
+            set
+            {
+                NUILog.Debug($"[AnimatedVectorImageView START[ [{GetId()}] ResourceURL SET");
+
+                if (value == resourceUrl)
                 {
-                    tlog.Fatal(tag, $"set same URL! ");
+                    NUILog.Debug($"set same URL! ");
                     return;
                 }
-                mResourceURL = (value == null) ? "" : value;
-                URL = mResourceURL;
-                mIsMinMaxSet = minMaxSetTypes.NotSetByUser;
-                mTotalFrameNum = base.TotalFrame;
-                tlog.Fatal(tag, $" [{GetId()}] mResourceURL={mResourceURL}) ]VAV END]");
+                resourceUrl = (value == null) ? "" : value;
+                URL = resourceUrl;
+                isMinMaxFrameSet = minMaxSetTypes.NotSetByUser;
+                NUILog.Debug($" [{GetId()}] resourceUrl={resourceUrl}) ]AnimatedVectorImageView END]");
             }
-            get => mResourceURL;
+            get => resourceUrl;
         }
 
         /// <summary>
         /// Set Resource URL
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        // Suppress warning : This has been being used by users, so that the interface can not be changed.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new string ResourceUrl
         {
+            get
+            {
+                return GetValue(ResourceUrlProperty) as string;
+            }
             set
             {
-                tlog.Fatal(tag, $"[VAV START[ [{GetId()}] ResourceUrl SET");
+                SetValue(ResourceUrlProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private string InternalResourceUrl
+        {
+            set
+            {
+                NUILog.Debug($"[AnimatedVectorImageView START[ [{GetId()}] ResourceUrl SET");
                 this.ResourceURL = value;
-                tlog.Fatal(tag, $" [{GetId()}] value={value}) ]VAV END]");
+                NUILog.Debug($" [{GetId()}] value={value}) ]AnimatedVectorImageView END]");
             }
             get
             {
-                tlog.Fatal(tag, $"[VAV [ [{GetId()}] ResourceUrl GET");
+                NUILog.Debug($"[AnimatedVectorImageView [ [{GetId()}] ResourceUrl GET");
                 return this.ResourceURL;
             }
         }
@@ -132,45 +149,74 @@ namespace Tizen.NUI.BaseComponents
         /// If the RepeatCount is greater than 0, the repeat mode will be taken into account.
         /// If RepeatCount is -1, animation is infinite loops.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int RepeatCount
         {
+            get
+            {
+                return (int)GetValue(RepeatCountProperty);
+            }
             set
             {
-                tlog.Fatal(tag, $"[VAV START[ [{GetId()}] RepeatCount SET");
-
-                mRepeatCount = (value < -1) ? -1 : value;
-                LoopCount = (mRepeatCount < 0) ? mRepeatCount : mRepeatCount + 1;
-
-                tlog.Fatal(tag, $"[{GetId()}] mRepeatCount={mRepeatCount} ]VAV END]");
+                SetValue(RepeatCountProperty, value);
+                NotifyPropertyChanged();
             }
-            get => mRepeatCount;
+        }
+
+        private int InternalRepeatCount
+        {
+            set
+            {
+                NUILog.Debug($"[AnimatedVectorImageView START[ [{GetId()}] RepeatCount SET");
+
+                repeatCnt = (value < -1) ? -1 : value;
+                LoopCount = (repeatCnt < 0) ? repeatCnt : repeatCnt + 1;
+
+                NUILog.Debug($"[{GetId()}] repeatCnt={repeatCnt} ]AnimatedVectorImageView END]");
+            }
+            get => repeatCnt;
         }
 
         /// <summary>
         /// TotalFrame of animation.
+        /// If resouce is still not be loaded, or invalid resource, the value is 0.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new int TotalFrame
         {
-            get => mTotalFrameNum;
+            get => totalFrameNum;
+        }
+
+        private int totalFrameNum
+        {
+            get => base.TotalFrame;
         }
 
         /// <summary>
         /// CurrentFrame of animation.
         /// </summary>
         /// <returns> Returns user set value for the current frame. Cannot provide actual playing current frame. </returns>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new int CurrentFrame
         {
+            get
+            {
+                return (int)GetValue(CurrentFrameProperty);
+            }
             set
             {
-                tlog.Fatal(tag, $"[VAV START[ [{GetId()}] CurrentFrame SET");
+                SetValue(CurrentFrameProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
 
-                if (mResourceURL == null || mResourceURL == String.Empty)
+        private int InternalCurrentFrame
+        {
+            set
+            {
+                NUILog.Debug($"[AnimatedVectorImageView START[ [{GetId()}] CurrentFrame SET");
+
+                if (string.IsNullOrEmpty(resourceUrl))
                 {
                     throw new InvalidOperationException("Resource Url not yet Set");
                 }
@@ -179,35 +225,43 @@ namespace Tizen.NUI.BaseComponents
                 {
                     value = 0;
                 }
-                else if (value >= mTotalFrameNum)
-                {
-                    value = mTotalFrameNum - 1;
-                }
 
-                mCurrentFrame = value;
+                innerCurrentFrame = value;
                 AnimationState = AnimationStates.Paused;
 
-                base.SetMinMaxFrame(0, mTotalFrameNum - 1);
-                base.CurrentFrame = mCurrentFrame;
+                base.SetMinMaxFrame(0, IntegerMaxValue);
+                base.CurrentFrame = innerCurrentFrame;
 
-                tlog.Fatal(tag, $" [{GetId()}] mCurrentFrame={mCurrentFrame}) ]VAV END]");
+                NUILog.Debug($" [{GetId()}] innerCurrentFrame={innerCurrentFrame}) ]AnimatedVectorImageView END]");
             }
-            get => mCurrentFrame;
+            get => innerCurrentFrame;
         }
 
         /// <summary>
         /// RepeatMode of animation.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public RepeatModes RepeatMode
         {
+            get
+            {
+                return (RepeatModes)GetValue(RepeatModeProperty);
+            }
             set
             {
-                tlog.Fatal(tag, $"[VAV START[ [{GetId()}] RepeatMode SET");
-                mRepeatMode = value;
+                SetValue(RepeatModeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
 
-                switch (mRepeatMode)
+        private RepeatModes InternalRepeatMode
+        {
+            set
+            {
+                NUILog.Debug($"[AnimatedVectorImageView START[ [{GetId()}] RepeatMode SET");
+                repeatMode = value;
+
+                switch (repeatMode)
                 {
                     case RepeatModes.Restart:
                         LoopingMode = LoopingModeType.Restart;
@@ -220,20 +274,32 @@ namespace Tizen.NUI.BaseComponents
                         break;
                 }
 
-                tlog.Fatal(tag, $" [{GetId()}] mRepeatMode={mRepeatMode}) ]VAV END]");
+                NUILog.Debug($" [{GetId()}] repeatMode={repeatMode}) ]AnimatedVectorImageView END]");
             }
-            get => mRepeatMode;
+            get => repeatMode;
         }
 
         /// <summary>
         /// Get state of animation.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AnimationStates AnimationState
         {
-            private set;
-            get;
+            private set
+            {
+                CurrentAnimationState = value;
+            }
+            get
+            {
+                if (CurrentAnimationState == AnimationStates.Playing)
+                {
+                    if (PlayState == PlayStateType.Stopped)
+                    {
+                        CurrentAnimationState = AnimationStates.Stopped;
+                    }
+                }
+                return CurrentAnimationState;
+            }
         }
         #endregion Property
 
@@ -244,32 +310,53 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="minFrame">minimum frame.</param>
         /// <param name="maxFrame">maximum frame.</param>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetMinAndMaxFrame(int minFrame, int maxFrame)
         {
-            tlog.Fatal(tag, $"[VAV START[ [{GetId()}] SetMinAndMaxFrame({minFrame}, {maxFrame})");
+            NUILog.Debug($"[AnimatedVectorImageView START[ [{GetId()}] SetMinAndMaxFrame({minFrame}, {maxFrame})");
 
-            mMinFrame = (minFrame) > 0 ? minFrame : 0;
-            mMaxFrame = (maxFrame) > 0 ? maxFrame : 0;
-            mIsMinMaxSet = minMaxSetTypes.SetByMinAndMaxFrameMethod;
+            minimumFrame = (minFrame) > 0 ? minFrame : 0;
+            maximumFrame = (maxFrame) > 0 ? maxFrame : 0;
+            isMinMaxFrameSet = minMaxSetTypes.SetByMinAndMaxFrameMethod;
 
-            if (mMinFrame >= mTotalFrameNum)
+            // Remove marker information.
+            minimumFrameMarker = null;
+            maximumFrameMarker = null;
+
+            if (minimumFrame > maximumFrame)
             {
-                mMinFrame = mTotalFrameNum - 1;
-            }
-
-            if (mMaxFrame >= mTotalFrameNum)
-            {
-                mMaxFrame = mTotalFrameNum - 1;
-            }
-
-            if (mMinFrame > mMaxFrame)
-            {
+                NUILog.Debug($" [{GetId()}] minimumFrame:{minimumFrame} > maximumFrame:{maximumFrame}) ]AnimatedVectorImageView END]");
                 return;
             }
 
-            tlog.Fatal(tag, $" [{GetId()}] mMinFrame:{mMinFrame}, mMaxFrame:{mMaxFrame}) ]VAV END]");
+            NUILog.Debug($" [{GetId()}] minimumFrame:{minimumFrame}, maximumFrame:{maximumFrame}) ]AnimatedVectorImageView END]");
+        }
+
+        /// <summary>
+        /// Set minimum frame and maximum frame by marker.
+        /// Animation will play between the start frame and the end frame of the marker if one marker is specified.
+        /// Or animation will play between the start frame of the first marker and the end frame of the second marker if two markers are specified.
+        /// </summary>
+        /// <remarks>
+        /// If we use invaliad markers, or we load image asynchronous and load is not finished yet,
+        /// CurrentFrame might not be matched with real value.
+        /// </remarks>
+        /// <param name="marker1">First marker</param>
+        /// <param name="marker2">Second marker</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetMinAndMaxFrameByMarker(string marker1, string marker2 = null)
+        {
+            NUILog.Debug($"[AnimatedVectorImageView START[ [{GetId()}] SetMinAndMaxFrameByMarker({marker1}, {marker2})");
+
+            minimumFrameMarker = marker1;
+            maximumFrameMarker = marker2;
+            isMinMaxFrameSet = minMaxSetTypes.SetByMinAndMaxFrameByMarkerMethod;
+
+            // Remove frame information.
+            minimumFrame = -1;
+            maximumFrame = -1;
+
+            NUILog.Debug($" [{GetId()}] minimumFrameMarker:{minimumFrameMarker}, maximumFrameMarker:{maximumFrameMarker}) ]AnimatedVectorImageView END]");
         }
 
         /// <summary>
@@ -277,69 +364,95 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="minFrame"></param>
         /// <param name="maxFrame"></param>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new void SetMinMaxFrame(int minFrame, int maxFrame)
         {
-            tlog.Fatal(tag, $"SetMinMaxFrame({minFrame}, {maxFrame})!!!");
+            NUILog.Debug($"SetMinMaxFrame({minFrame}, {maxFrame})!!!");
 
-            mMinFrame = (minFrame) > 0 ? minFrame : 0;
-            mMaxFrame = (maxFrame) > 0 ? maxFrame : 0;
-            mIsMinMaxSet = minMaxSetTypes.SetByBaseSetMinMaxFrameMethod;
+            minimumFrame = (minFrame) > 0 ? minFrame : 0;
+            maximumFrame = (maxFrame) > 0 ? maxFrame : 0;
+            isMinMaxFrameSet = minMaxSetTypes.SetByBaseSetMinMaxFrameMethod;
 
-            if (mMinFrame >= mTotalFrameNum)
+            // Remove marker information.
+            minimumFrameMarker = null;
+            maximumFrameMarker = null;
+
+            if (minimumFrame >= totalFrameNum)
             {
-                mMinFrame = mTotalFrameNum - 1;
+                minimumFrame = totalFrameNum - 1;
             }
 
-            if (mMaxFrame >= mTotalFrameNum)
+            if (maximumFrame >= totalFrameNum)
             {
-                mMaxFrame = mTotalFrameNum - 1;
+                maximumFrame = totalFrameNum - 1;
             }
 
-            base.SetMinMaxFrame(mMinFrame, mMaxFrame);
+            base.SetMinMaxFrame(minimumFrame, maximumFrame);
         }
 
         /// <summary>
-        /// A marker has its start frame and end frame. 
+        /// A marker has its start frame and end frame.
         /// Animation will play between the start frame and the end frame of the marker if one marker is specified.
-        /// Or animation will play between the start frame of the first marker and the end frame of the second marker if two markers are specified.   *
+        /// Or animation will play between the start frame of the first marker and the end frame of the second marker if two markers are specified.
         /// </summary>
         /// <param name="marker1">First marker</param>
         /// <param name="marker2">Second marker</param>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new void SetMinMaxFrameByMarker(string marker1, string marker2 = null)
         {
-            tlog.Fatal(tag, $"SetMinMaxFrameByMarker({marker1}, {marker2})");
-            mIsMinMaxSet = minMaxSetTypes.SetByMarker;
+            NUILog.Debug($"SetMinMaxFrameByMarker({marker1}, {marker2})");
+
+            minimumFrameMarker = marker1;
+            maximumFrameMarker = marker2;
+            isMinMaxFrameSet = minMaxSetTypes.SetByMarker;
+
+            // Remove frame information.
+            minimumFrame = -1;
+            maximumFrame = -1;
+
             base.SetMinMaxFrameByMarker(marker1, marker2);
         }
 
         /// <summary>
         /// Play Animation.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new void Play()
         {
-            tlog.Fatal(tag, $"[VAV START[ [{GetId()}] AnimationState={AnimationState}, PlayState={PlayState}");
+            NUILog.Debug($"[AnimatedVectorImageView START[ [{GetId()}] AnimationState={AnimationState}, PlayState={PlayState}");
 
-            if (mResourceURL == null || mResourceURL == String.Empty)
+            if (string.IsNullOrEmpty(resourceUrl))
             {
                 throw new InvalidOperationException("Resource Url not yet Set");
             }
 
-            switch (mIsMinMaxSet)
+            switch (isMinMaxFrameSet)
             {
                 case minMaxSetTypes.NotSetByUser:
-                    base.SetMinMaxFrame(0, mTotalFrameNum - 1);
+                    base.SetMinMaxFrame(0, totalFrameNum - 1);
                     base.CurrentFrame = 0;
+                    innerCurrentFrame = 0;
+                    break;
+
+                case minMaxSetTypes.SetByMinAndMaxFrameByMarkerMethod:
+                    base.SetMinMaxFrameByMarker(minimumFrameMarker, maximumFrameMarker);
+                    if (GetFrameValueFromMarkerInfo())
+                    {
+                        base.CurrentFrame = minimumFrame;
+                        innerCurrentFrame = minimumFrame;
+                    }
+                    else
+                    {
+                        Tizen.Log.Error("NUI", $"[Warning] Play with invalid marker! Current frame become 0\n");
+                        base.CurrentFrame = 0;
+                        innerCurrentFrame = 0;
+                    }
                     break;
 
                 case minMaxSetTypes.SetByMinAndMaxFrameMethod:
-                    base.SetMinMaxFrame(mMinFrame, mMaxFrame);
-                    base.CurrentFrame = mMinFrame;
+                    base.SetMinMaxFrame(minimumFrame, maximumFrame);
+                    base.CurrentFrame = minimumFrame;
+                    innerCurrentFrame = minimumFrame;
                     break;
 
                 case minMaxSetTypes.SetByMarker:
@@ -349,26 +462,21 @@ namespace Tizen.NUI.BaseComponents
                     break;
             }
 
-            //temporal fix
-            Extents tmp = base.Margin;
-            base.Margin = tmp;
-
             base.Play();
             AnimationState = AnimationStates.Playing;
 
-            tlog.Fatal(tag, $" [{GetId()}] mIsMinMaxSet={mIsMinMaxSet}) ]VAV END]");
+            NUILog.Debug($" [{GetId()}] isMinMaxFrameSet={isMinMaxFrameSet}) ]AnimatedVectorImageView END]");
         }
 
         /// <summary>
         /// Pause Animation.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new void Pause()
         {
-            tlog.Fatal(tag, $"[VAV START[ [{GetId()}] AnimationState={AnimationState}, PlayState={PlayState}");
+            NUILog.Debug($"[AnimatedVectorImageView START[ [{GetId()}] AnimationState={AnimationState}, PlayState={PlayState}");
 
-            if (mResourceURL == null || mResourceURL == String.Empty)
+            if (string.IsNullOrEmpty(resourceUrl))
             {
                 throw new InvalidOperationException("Resource Url not yet Set");
             }
@@ -376,7 +484,7 @@ namespace Tizen.NUI.BaseComponents
             base.Pause();
             AnimationState = AnimationStates.Paused;
 
-            tlog.Fatal(tag, $" [{GetId()}] ]VAV END]");
+            NUILog.Debug($" [{GetId()}] ]AnimatedVectorImageView END]");
         }
 
         /// <summary>
@@ -387,13 +495,12 @@ namespace Tizen.NUI.BaseComponents
         /// End action is Discard, Animation Stops at the Min Frame
         /// End action is StopFinal, Animation Stops at the Max Frame
         /// </param>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Stop(EndActions endAction = EndActions.Cancel)
         {
-            tlog.Fatal(tag, $"[VAV START[ [{GetId()}] endAction:({endAction}), PlayState={PlayState}");
+            NUILog.Debug($"[AnimatedVectorImageView START[ [{GetId()}] endAction:({endAction}), PlayState={PlayState}");
 
-            if (mResourceURL == null || mResourceURL == String.Empty)
+            if (string.IsNullOrEmpty(resourceUrl))
             {
                 throw new InvalidOperationException("Resource Url not yet Set");
             }
@@ -403,9 +510,9 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            if (mEndAction != endAction)
+            if (innerEndAction != endAction)
             {
-                mEndAction = endAction;
+                innerEndAction = endAction;
                 switch (endAction)
                 {
                     case EndActions.Cancel:
@@ -418,7 +525,7 @@ namespace Tizen.NUI.BaseComponents
                         StopBehavior = StopBehaviorType.MaximumFrame;
                         break;
                     default:
-                        tlog.Fatal(tag, $" [{GetId()}] no endAction : default set");
+                        NUILog.Debug($" [{GetId()}] no endAction : default set");
                         break;
                 }
             }
@@ -426,35 +533,72 @@ namespace Tizen.NUI.BaseComponents
 
             base.Stop();
 
-            if (endAction == EndActions.StopFinal)
-            {
-                switch (mIsMinMaxSet)
-                {
-                    case minMaxSetTypes.NotSetByUser:
-                        if (base.CurrentFrame != mTotalFrameNum - 1)
-                        {
-                            tlog.Fatal(tag, $"mIsMinMaxSet:{mIsMinMaxSet}, CurrentFrameNumber:{base.CurrentFrame}, mTotalFrameNum:{ mTotalFrameNum}");
-                            base.CurrentFrame = mTotalFrameNum - 1;
-                            tlog.Fatal(tag, $"set CurrentFrameNumber({base.CurrentFrame}) as mTotalFrameNum({mMaxFrame}) - 1 !");
-                        }
-                        break;
+            NUILog.Debug($"isMinMaxFrameSet:{isMinMaxFrameSet}, base.CurrentFrame:{base.CurrentFrame}, totalFrameNum:{totalFrameNum}, minimumFrame:{minimumFrame}, maximumFrame:{maximumFrame}, StopBehavior:{StopBehavior}, endAction:{endAction}");
 
-                    case minMaxSetTypes.SetByMinAndMaxFrameMethod:
-                        if (base.CurrentFrame != mMaxFrame)
+            switch (isMinMaxFrameSet)
+            {
+                case minMaxSetTypes.NotSetByUser:
+                    switch (endAction)
+                    {
+                        case EndActions.Cancel:
+                            innerCurrentFrame = base.CurrentFrame;
+                            break;
+                        case EndActions.Discard:
+                            base.CurrentFrame = innerCurrentFrame = 0;
+                            break;
+                        case EndActions.StopFinal:
+                            base.CurrentFrame = innerCurrentFrame = totalFrameNum - 1;
+                            break;
+                    }
+                    break;
+
+                case minMaxSetTypes.SetByMinAndMaxFrameByMarkerMethod:
+                    if (GetFrameValueFromMarkerInfo())
+                    {
+                        goto case minMaxSetTypes.SetByMinAndMaxFrameMethod;
+                    }
+                    else
+                    {
+                        switch (endAction)
                         {
-                            tlog.Fatal(tag, $"mIsMinMaxSet:{mIsMinMaxSet}, CurrentFrameNumber:{base.CurrentFrame}, mMaxFrame:{ mMaxFrame}");
-                            base.CurrentFrame = mMaxFrame;
-                            tlog.Fatal(tag, $"set CurrentFrameNumber({base.CurrentFrame}) as mMaxFrame({mMaxFrame})!!!");
+                            case EndActions.Cancel:
+                                innerCurrentFrame = base.CurrentFrame;
+                                break;
+                            case EndActions.Discard:
+                                Tizen.Log.Error("NUI", $"[Warning] Stop(Discard) with invalid marker! Current frame become 0\n");
+                                base.CurrentFrame = innerCurrentFrame = 0;
+                                break;
+                            case EndActions.StopFinal:
+                                Tizen.Log.Error("NUI", $"[Warning] Stop(StopFinal) with invalid marker! Current frame become {totalFrameNum - 1}\n");
+                                base.CurrentFrame = innerCurrentFrame = totalFrameNum - 1;
+                                break;
                         }
                         break;
-                    case minMaxSetTypes.SetByBaseSetMinMaxFrameMethod:
-                    case minMaxSetTypes.SetByMarker:
-                    default:
-                        //do nothing!
-                        break;
-                }
+                    }
+
+                case minMaxSetTypes.SetByMinAndMaxFrameMethod:
+                    switch (endAction)
+                    {
+                        case EndActions.Cancel:
+                            innerCurrentFrame = base.CurrentFrame;
+                            break;
+                        case EndActions.Discard:
+                            base.CurrentFrame = innerCurrentFrame = minimumFrame;
+                            break;
+                        case EndActions.StopFinal:
+                            base.CurrentFrame = innerCurrentFrame = maximumFrame;
+                            break;
+                    }
+                    break;
+
+                case minMaxSetTypes.SetByMarker:
+                case minMaxSetTypes.SetByBaseSetMinMaxFrameMethod:
+                default:
+                    //do nothing!
+                    break;
             }
-            tlog.Fatal(tag, $" [{GetId()}] ]VAV END]");
+            NUILog.Debug($" [{GetId()}] innerCurrentFrame={innerCurrentFrame}, base.CurrentFrame={base.CurrentFrame}");
+            NUILog.Debug($" [{GetId()}] ]AnimatedVectorImageView END]");
         }
         #endregion Method
 
@@ -463,20 +607,19 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// RepeatMode of animation.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        // Suppress warning : This has been being used by users, so that the interface can not be changed.
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names", Justification = "<Pending>")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum RepeatModes
         {
             /// <summary>
             /// When the animation reaches the end and RepeatCount is nonZero, the animation restarts from the beginning. 
             /// </summary>
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
             [EditorBrowsable(EditorBrowsableState.Never)]
             Restart = LoopingModeType.Restart,
             /// <summary>
             /// When the animation reaches the end and RepeatCount nonZero, the animation reverses direction on every animation cycle. 
             /// </summary>
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
             [EditorBrowsable(EditorBrowsableState.Never)]
             Reverse = LoopingModeType.AutoReverse
         }
@@ -484,20 +627,18 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// EndActions of animation.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        // Suppress warning : This has been being used by users, so that the interface can not be changed.
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names", Justification = "<Pending>")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum EndActions
         {
             /// <summary> End action is Cancel, Animation Stops at the Current Frame.</summary>
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
             [EditorBrowsable(EditorBrowsableState.Never)]
             Cancel = 0,
             /// <summary>  End action is Discard, Animation Stops at the Min Frame</summary>
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
             [EditorBrowsable(EditorBrowsableState.Never)]
             Discard = 1,
             /// <summary> End action is StopFinal, Animation Stops at the Max Frame</summary>
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
             [EditorBrowsable(EditorBrowsableState.Never)]
             StopFinal = 2
         }
@@ -505,20 +646,18 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// AnimationStates of animation.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        // Suppress warning : This has been being used by users, so that the interface can not be changed.
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names", Justification = "<Pending>")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum AnimationStates
         {
             /// <summary> The animation has stopped.</summary>
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
             [EditorBrowsable(EditorBrowsableState.Never)]
             Stopped = PlayStateType.Stopped,
             /// <summary> The animation is playing.</summary>
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
             [EditorBrowsable(EditorBrowsableState.Never)]
             Playing = PlayStateType.Playing,
             /// <summary> The animation is paused.</summary>
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
             [EditorBrowsable(EditorBrowsableState.Never)]
             Paused = PlayStateType.Paused
         }
@@ -526,27 +665,90 @@ namespace Tizen.NUI.BaseComponents
 
 
         #region Internal
+        internal bool GetFrameValueFromMarkerInfo()
+        {
+            bool minimumMarkerFoundSuccess = false;
+            bool maximumMarkerFoundSuccess = false;
+            int foundedMinimumFrame = 0;
+            int foundedMaximumFrame = 0;
+
+            NUILog.Debug($" [{GetId()}] GetFrameValueFromMarkerInfo : marker = (minimumFrameMarker:{minimumFrameMarker}, maximumFrameMarker:{maximumFrameMarker})");
+
+            var markerInfoList = GetMarkerInfo();
+            if (markerInfoList != null)
+            {
+                foreach (var markerInfo in markerInfoList)
+                {
+                    if (markerInfo.Item1 == minimumFrameMarker)
+                    {
+                        if (string.IsNullOrEmpty(maximumFrameMarker))
+                        {
+                            minimumMarkerFoundSuccess = true;
+                            maximumMarkerFoundSuccess = true;
+                            foundedMinimumFrame = markerInfo.Item2;
+                            foundedMaximumFrame = markerInfo.Item3;
+                        }
+                        else
+                        {
+                            minimumMarkerFoundSuccess = true;
+                            foundedMinimumFrame = markerInfo.Item2;
+                        }
+                    }
+                    else if (markerInfo.Item1 == maximumFrameMarker)
+                    {
+                        maximumMarkerFoundSuccess = true;
+                        foundedMaximumFrame = markerInfo.Item2;
+                    }
+                }
+            }
+
+            if (minimumMarkerFoundSuccess && maximumMarkerFoundSuccess)
+            {
+                minimumFrame = (foundedMinimumFrame) > 0 ? foundedMinimumFrame : 0;
+                maximumFrame = (foundedMaximumFrame) > 0 ? foundedMaximumFrame : 0;
+                NUILog.Debug($" [{GetId()}] GetFrameValueFromMarkerInfo Sucess! frame set as {minimumFrame} ~ {maximumFrame} : marker = (minimumFrameMarker:{minimumFrameMarker}, maximumFrameMarker:{maximumFrameMarker})");
+                if (minimumFrame > maximumFrame)
+                {
+                    NUILog.Debug($" [{GetId()}] minimumFrame:{minimumFrame} > maximumFrame:{maximumFrame})");
+                }
+
+                // Note : let we insure to get marker frame value only one time per each frame marker setter
+                minimumFrameMarker = null;
+                maximumFrameMarker = null;
+                isMinMaxFrameSet = minMaxSetTypes.SetByMinAndMaxFrameMethod;
+                return true;
+            }
+            else
+            {
+                Tizen.Log.Error("NUI", $"Fail to get frame from marker = (minimumFrameMarker:{minimumFrameMarker}, maximumFrameMarker:{maximumFrameMarker}). Maybe file is not loaded yet, or invalid marker used. url : {resourceUrl}\n");
+                NUILog.Debug($" [{GetId()}] GetFrameValueFromMarkerInfo Failed! frame set as {minimumFrame} ~ {maximumFrame} : marker = (minimumFrameMarker:{minimumFrameMarker}, maximumFrameMarker:{maximumFrameMarker})");
+                return false;
+            }
+        }
         #endregion Internal
 
 
         #region Private
-        private string mResourceURL = null;
-        private int mRepeatCount = 0;
-        private int mTotalFrameNum = 0;
-        private RepeatModes mRepeatMode = RepeatModes.Restart;
-        private int mMinFrame = -1, mMaxFrame = -1;
-        private minMaxSetTypes mIsMinMaxSet = minMaxSetTypes.NotSetByUser;
-        private int mCurrentFrame = -1;
-        private EndActions mEndAction = EndActions.Cancel;
+        private string resourceUrl = null;
+        private int repeatCnt = 0;
+        private RepeatModes repeatMode = RepeatModes.Restart;
+        private int minimumFrame = -1, maximumFrame = -1;
+        private string minimumFrameMarker = null;
+        private string maximumFrameMarker = null;
+        private minMaxSetTypes isMinMaxFrameSet = minMaxSetTypes.NotSetByUser;
+        private int innerCurrentFrame = -1;
+        private EndActions innerEndAction = EndActions.Cancel;
         private enum minMaxSetTypes
         {
             NotSetByUser,
             SetByMinAndMaxFrameMethod,
+            SetByMinAndMaxFrameByMarkerMethod,
             SetByMarker,
             SetByBaseSetMinMaxFrameMethod,
         }
 
-        private string tag = "NUITEST";
+        private AnimationStates CurrentAnimationState = AnimationStates.Stopped;
+        private const int IntegerMaxValue = 0x7FFFFFFF;
         #endregion Private
     }
 }

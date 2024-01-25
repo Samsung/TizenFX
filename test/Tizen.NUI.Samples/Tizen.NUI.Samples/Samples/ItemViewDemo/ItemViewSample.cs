@@ -210,8 +210,8 @@ namespace Tizen.NUI.Samples
             mContentView.Add(mItemView);
 
             mItemView.Layout = mLayout;
-            mItemView.SetMinimumSwipeDistance(MIN_SWIPE_DISTANCE);
-            mItemView.SetMinimumSwipeSpeed(MIN_SWIPE_SPEED);
+            mItemView.MinimumSwipeDistance = MIN_SWIPE_DISTANCE;
+            mItemView.MinimumSwipeSpeed = MIN_SWIPE_SPEED;
 
             SetLayout((int)mCurrentLayout);
             SetLayoutTitle();
@@ -448,7 +448,8 @@ namespace Tizen.NUI.Samples
             mContentView.Layout = new LinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Horizontal,
-                LinearAlignment = LinearLayout.Alignment.Center
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
             };
             mRootView.Add(mContentView);
         }
@@ -465,7 +466,8 @@ namespace Tizen.NUI.Samples
             mToolBarLayer.Layout = new LinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Horizontal,
-                LinearAlignment = LinearLayout.Alignment.Center
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
             };
             mRootView.Add(mToolBarLayer);
             mToolBarLayer.RaiseToTop();
@@ -575,8 +577,8 @@ namespace Tizen.NUI.Samples
             mDeleteButton.Hide();
             mDeleteButton.Clicked += (obj, e) =>
             {
-                ItemIdContainer removeList = new ItemIdContainer();
-                for (uint i = 0; i < mItemView.GetChildCount(); ++i)
+                ItemIdCollection removeList = new ItemIdCollection();
+                for (uint i = 0; i < mItemView.ChildCount; ++i)
                 {
                     View child = mItemView.GetChildAt(i);
                     if (child != null)
@@ -618,9 +620,9 @@ namespace Tizen.NUI.Samples
             mInsertButton.Hide();
             mInsertButton.Clicked += (obj, e) =>
             {
-                ItemContainer insertList = new ItemContainer();
+                ItemCollection insertList = new ItemCollection();
                 Random random = new Random();
-                for (uint i = 0; i < mItemView.GetChildCount(); ++i)
+                for (uint i = 0; i < mItemView.ChildCount; ++i)
                 {
                     View child = mItemView.GetChildAt(i);
                     if (child != null)
@@ -661,9 +663,9 @@ namespace Tizen.NUI.Samples
             mReplaceButton.Hide();
             mReplaceButton.Clicked += (obj, e) =>
             {
-                ItemContainer replaceList = new ItemContainer();
+                ItemCollection replaceList = new ItemCollection();
                 Random random = new Random();
-                for (uint i = 0; i < mItemView.GetChildCount(); ++i)
+                for (uint i = 0; i < mItemView.ChildCount; ++i)
                 {
                     View child = mItemView.GetChildAt(i);
                     if (child != null)
@@ -752,7 +754,7 @@ namespace Tizen.NUI.Samples
             SetTitle("Edit: Remove");
             mTapDetector = new TapGestureDetector();
 
-            for (uint i = 0; i < mItemView.GetChildCount(); ++i)
+            for (uint i = 0; i < mItemView.ChildCount; ++i)
             {
                 if (mItemView.GetChildAt(i) != null)
                 {
@@ -783,7 +785,7 @@ namespace Tizen.NUI.Samples
 
             mTapDetector = new TapGestureDetector();
 
-            for (uint i = 0; i < mItemView.GetChildCount(); ++i)
+            for (uint i = 0; i < mItemView.ChildCount; ++i)
             {
                 View child = mItemView.GetChildAt(i);
                 if (child != null)
@@ -825,7 +827,7 @@ namespace Tizen.NUI.Samples
 
         void ExitRemoveManyMode()
         {
-            for (uint i = 0; i < mItemView.GetChildCount(); ++i)
+            for (uint i = 0; i < mItemView.ChildCount; ++i)
             {
                 View child = mItemView.GetChildAt(i);
                 if (child != null)
@@ -853,7 +855,7 @@ namespace Tizen.NUI.Samples
             SetTitle("Edit: Insert");
             mTapDetector = new TapGestureDetector();
 
-            for (uint i = 0; i < mItemView.GetChildCount(); ++i)
+            for (uint i = 0; i < mItemView.ChildCount; ++i)
             {
                 if (mItemView.GetChildAt(i) != null)
                 {
@@ -891,7 +893,7 @@ namespace Tizen.NUI.Samples
 
             mTapDetector = new TapGestureDetector();
 
-            for (uint i = 0; i < mItemView.GetChildCount(); ++i)
+            for (uint i = 0; i < mItemView.ChildCount; ++i)
             {
                 View child = mItemView.GetChildAt(i);
                 if (child != null)
@@ -924,7 +926,7 @@ namespace Tizen.NUI.Samples
 
         void ExitInsertManyMode()
         {
-            for (uint i = 0; i < mItemView.GetChildCount(); ++i)
+            for (uint i = 0; i < mItemView.ChildCount; ++i)
             {
                 View child = mItemView.GetChildAt(i);
                 if (child != null)
@@ -952,7 +954,7 @@ namespace Tizen.NUI.Samples
             SetTitle("Edit: Replace");
             mTapDetector = new TapGestureDetector();
 
-            for (uint i = 0; i < mItemView.GetChildCount(); ++i)
+            for (uint i = 0; i < mItemView.ChildCount; ++i)
             {
                 if (mItemView.GetChildAt(i) != null)
                 {
@@ -981,7 +983,7 @@ namespace Tizen.NUI.Samples
 
             mTapDetector = new TapGestureDetector();
 
-            for (uint i = 0; i < mItemView.GetChildCount(); ++i)
+            for (uint i = 0; i < mItemView.ChildCount; ++i)
             {
                 View child = mItemView.GetChildAt(i);
                 View box = child.FindChildByName("CheckBox");
@@ -1011,7 +1013,7 @@ namespace Tizen.NUI.Samples
         }
         void ExitReplaceManyMode()
         {
-            for (uint i = 0; i < mItemView.GetChildCount(); ++i)
+            for (uint i = 0; i < mItemView.ChildCount; ++i)
             {
                 View child = mItemView.GetChildAt(i);
                 View box = child.FindChildByName("CheckBox");

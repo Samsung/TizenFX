@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,8 @@ using TizenSystemSettings.Tizen.System;
 using System;
 using System.Globalization;
 using System.ComponentModel;
+using Tizen.NUI.Text;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -30,18 +32,54 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class TextEditor : View
     {
+        static private string defaultStyleName = "Tizen.NUI.BaseComponents.TextEditor";
+        static private string defaultFontFamily = "TizenSans";
+        private static SystemFontTypeChanged systemFontTypeChanged = new SystemFontTypeChanged();
+        private static SystemLocaleLanguageChanged systemLocaleLanguageChanged = new SystemLocaleLanguageChanged();
         private string textEditorTextSid = null;
         private string textEditorPlaceHolderTextSid = null;
-        private bool systemlangTextFlag = false;
         private InputMethodContext inputMethodContext = null;
+        private string fontFamily = defaultFontFamily;
+        private float fontSizeScale = 1.0f;
+        private bool hasSystemLanguageChanged = false;
+        private bool hasSystemFontSizeChanged = false;
+        private bool hasSystemFontTypeChanged = false;
+        private bool isSettingTextInCSharp = false;
+
+        private Color internalPlaceholderTextColor = null;
+        private Vector4 internalPrimaryCursorColor = null;
+        private Vector4 internalSecondaryCursorColor = null;
+        private Vector4 internalSelectionHighlightColor = null;
+        private Vector4 internalInputColor = null;
+        private Vector4 internalTextColor = null;
+        private Color internalGrabHandleColor = null;
+
+
+        static TextEditor() { }
+
+        static internal new void Preload()
+        {
+            // Do not call View.Preload(), since we already call it
+
+            Property.Preload();
+            // Do nothing. Just call for load static values.
+        }
 
         /// <summary>
         /// Creates the TextEditor control.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public TextEditor() : this(Interop.TextEditor.TextEditor_New(), true)
+        public TextEditor() : this(Interop.TextEditor.New(ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Creates the TextEditor with specified style.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextEditor(TextEditorStyle style) : this(Interop.TextEditor.New(ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true, style: style)
+        {
         }
 
         /// <summary>
@@ -50,28 +88,25 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="shown">false : Not displayed (hidden), true : displayed (shown)</param>
         /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextEditor(bool shown) : this(Interop.TextEditor.TextEditor_New(), true)
+        public TextEditor(bool shown) : this(Interop.TextEditor.New(ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             SetVisible(shown);
         }
 
-        internal TextEditor(TextEditor handle, bool shown = true) : this(Interop.TextEditor.new_TextEditor__SWIG_1(TextEditor.getCPtr(handle)), true)
+        internal TextEditor(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true, TextEditorStyle style = null) : base(cPtr, cMemoryOwn, style)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
             if (!shown)
             {
                 SetVisible(false);
             }
+            Focusable = true;
+            TextChanged += TextEditorTextChanged;
         }
 
-        internal TextEditor(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.TextEditor.TextEditor_SWIGUpcast(cPtr), cMemoryOwn)
+        private bool HasStyle()
         {
-            if (!shown)
-            {
-                SetVisible(false);
-            }
+            return ThemeManager.GetStyle(this.GetType()) == null ? false : true;
         }
 
         /// <summary>
@@ -86,13 +121,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return GetValue(TranslatableTextProperty) as string;
+            }
+            set
+            {
+                SetValue(TranslatableTextProperty, value);
+            }
+        }
+
+        private string InternalTranslatableText
+        {
+            get
+            {
                 return textEditorTextSid;
             }
             set
             {
                 if (NUIApplication.MultilingualResourceManager == null)
                 {
-                    throw new ArgumentNullException("ResourceManager about multilingual is null");
+                    throw new ArgumentNullException(null, "ResourceManager about multilingual is null");
                 }
                 textEditorTextSid = value;
                 Text = SetTranslatable(textEditorTextSid);
@@ -111,13 +158,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return GetValue(TranslatablePlaceholderTextProperty) as string;
+            }
+            set
+            {
+                SetValue(TranslatablePlaceholderTextProperty, value);
+            }
+        }
+
+        private string InternalTranslatablePlaceholderText
+        {
+            get
+            {
                 return textEditorPlaceHolderTextSid;
             }
             set
             {
                 if (NUIApplication.MultilingualResourceManager == null)
                 {
-                    throw new ArgumentNullException("ResourceManager about multilingual is null");
+                    throw new ArgumentNullException(null, "ResourceManager about multilingual is null");
                 }
                 textEditorPlaceHolderTextSid = value;
                 PlaceholderText = SetTranslatable(textEditorPlaceHolderTextSid);
@@ -126,7 +185,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The Text property.
+        /// The Text property.<br />
+        /// The text to display in the UTF-8 format.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string Text
@@ -137,13 +197,14 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetValueAndForceSendChangeSignal(TextProperty, value);
+                SetValue(TextProperty, value);
                 NotifyPropertyChanged();
             }
         }
 
         /// <summary>
-        /// The TextColor property.
+        /// The TextColor property.<br />
+        /// The color of the text.<br />
         /// </summary>
         /// <remarks>
         /// The property cascade chaining set is possible. For example, this (textEditor.TextColor.X = 0.1f;) is possible.
@@ -164,7 +225,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The FontFamily property.
+        /// The FontFamily property.<br />
+        /// The requested font family to use.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string FontFamily
@@ -180,10 +242,62 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        private string InternalFontFamily
+        {
+            get
+            {
+                if (HasStyle())
+                    return fontFamily;
+                else
+                    return Object.InternalGetPropertyString(this.SwigCPtr, TextEditor.Property.FontFamily);
+            }
+            set
+            {
+                string newFontFamily;
+
+                if (string.Equals(fontFamily, value)) return;
+
+                fontFamily = value;
+                if (fontFamily == Tizen.NUI.FontFamily.UseSystemSetting)
+                {
+                    try
+                    {
+                        newFontFamily = SystemSettings.FontType;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("{0} Exception caught.", e);
+                        newFontFamily = defaultFontFamily;
+                    }
+                    AddSystemSettingsFontTypeChanged();
+                }
+                else
+                {
+                    newFontFamily = fontFamily;
+                    RemoveSystemSettingsFontTypeChanged();
+                }
+
+                SetInternalFontFamily(newFontFamily);
+            }
+        }
+
+        private void SetInternalFontFamily(string fontFamily)
+        {
+            Object.InternalSetPropertyString(this.SwigCPtr, TextEditor.Property.FontFamily, (string)fontFamily);
+        }
+
         /// <summary>
-        /// The FontStyle property.
+        /// The FontStyle property.<br />
+        /// The requested font style to use.<br />
+        /// The fontStyle map contains the following keys :<br />
+        /// <list type="table">
+        /// <item><term>width (string)</term><description>The width key defines occupied by each glyph. (values: ultraCondensed, extraCondensed, condensed, semiCondensed, normal, semiExpanded, expanded, extraExpanded, ultraExpanded)</description></item>
+        /// <item><term>weight (string)</term><description>The weight key defines the thickness or darkness of the glyphs. (values: thin, ultraLight, extraLight, light, demiLight, semiLight, book, normal, regular, medium, demiBold, semiBold, bold, ultraBold, extraBold, black, heavy, extraBlack)</description></item>
+        /// <item><term>slant (string)</term><description>The slant key defines whether to use italics. (values: normal, roman, italic, oblique)</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap FontStyle
         {
             get
@@ -198,9 +312,55 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The PointSize property.
+        /// Set FontStyle to TextEditor. <br />
+        /// </summary>
+        /// <param name="fontStyle">The FontStyle</param>
+        /// <remarks>
+        /// SetFontStyle specifies the requested font style through <see cref="Tizen.NUI.Text.FontStyle"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetFontStyle method.
+        /// <code>
+        /// var fontStyle = new Tizen.NUI.Text.FontStyle();
+        /// fontStyle.Width = FontWidthType.Expanded;
+        /// fontStyle.Weight = FontWeightType.Bold;
+        /// fontStyle.Slant = FontSlantType.Italic;
+        /// editor.SetFontStyle(fontStyle);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetFontStyle(FontStyle fontStyle)
+        {
+            using (var fontStyleMap = TextMapHelper.GetFontStyleMap(fontStyle))
+            {
+                SetValue(FontStyleProperty, fontStyleMap);
+            }
+        }
+
+        /// <summary>
+        /// Get FontStyle from TextEditor. <br />
+        /// </summary>
+        /// <returns>The FontStyle</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.FontStyle"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public FontStyle GetFontStyle()
+        {
+            FontStyle fontStyle;
+            using (var fontStyleMap = (PropertyMap)GetValue(FontStyleProperty))
+            {
+                fontStyle = TextMapHelper.GetFontStyleStruct(fontStyleMap);
+            }
+            return fontStyle;
+        }
+
+        /// <summary>
+        /// The PointSize property.<br />
+        /// The size of font in points.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Binding.TypeConverter(typeof(PointSizeTypeConverter))]
         public float PointSize
         {
             get
@@ -215,7 +375,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The HorizontalAlignment property.
+        /// The HorizontalAlignment property.<br />
+        /// The line horizontal alignment.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public HorizontalAlignment HorizontalAlignment
@@ -232,7 +393,26 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The ScrollThreshold property.
+        /// The VerticalAlignment property.<br />
+        /// The line vertical alignment.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public VerticalAlignment VerticalAlignment
+        {
+            get
+            {
+                return (VerticalAlignment)GetValue(VerticalAlignmentProperty);
+            }
+            set
+            {
+                SetValue(VerticalAlignmentProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The ScrollThreshold property.<br />
+        /// Horizontal scrolling will occur if the cursor is this close to the control border.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float ScrollThreshold
@@ -249,7 +429,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The ScrollSpeed property.
+        /// The ScrollSpeed property.<br />
+        /// The scroll speed in pixels per second.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float ScrollSpeed
@@ -266,7 +447,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The PrimaryCursorColor property.
+        /// The PrimaryCursorColor property.<br />
+        /// The color to apply to the primary cursor.<br />
         /// </summary>
         /// <remarks>
         /// The property cascade chaining set is possible. For example, this (textEditor.PrimaryCursorColor.X = 0.1f;) is possible.
@@ -287,7 +469,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The SecondaryCursorColor property.
+        /// The SecondaryCursorColor property.<br />
+        /// The color to apply to the secondary cursor.<br />
         /// </summary>
         /// <remarks>
         /// The property cascade chaining set is possible. For example, this (textEditor.SecondaryCursorColor.X = 0.1f;) is possible.
@@ -308,7 +491,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The EnableCursorBlink property.
+        /// The EnableCursorBlink property.<br />
+        /// Whether the cursor should blink or not.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool EnableCursorBlink
@@ -325,7 +509,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The CursorBlinkInterval property.
+        /// The CursorBlinkInterval property.<br />
+        /// The time interval in seconds between cursor on/off states.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float CursorBlinkInterval
@@ -342,7 +527,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The CursorBlinkDuration property.
+        /// The CursorBlinkDuration property.<br />
+        /// The cursor will stop blinking after this number of seconds (if non-zero).<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float CursorBlinkDuration
@@ -376,7 +562,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The GrabHandleImage property.
+        /// The GrabHandleImage property.<br />
+        /// The image to display for the grab handle.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string GrabHandleImage
@@ -393,7 +580,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The GrabHandlePressedImage property.
+        /// The GrabHandlePressedImage property.<br />
+        /// The image to display when the grab handle is pressed.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string GrabHandlePressedImage
@@ -410,7 +598,30 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The SelectionHandleImageLeft property.
+        /// The SelectionPopupStyle property.<br />
+        /// The style of the text selection popup can be set through SelectionPopupStyle property.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap SelectionPopupStyle
+        {
+            get
+            {
+                return (PropertyMap)GetValue(SelectionPopupStyleProperty);
+            }
+            set
+            {
+                SetValue(SelectionPopupStyleProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The SelectionHandleImageLeft property.<br />
+        /// The image to display for the left selection handle.<br />
+        /// The selectionHandleImageLeft map contains the following key :<br />
+        /// <list type="table">
+        /// <item><term>filename (string)</term><description>The path of image file</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap SelectionHandleImageLeft
@@ -427,7 +638,12 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The SelectionHandleImageRight property.
+        /// The SelectionHandleImageRight property.<br />
+        /// The image to display for the right selection handle.<br />
+        /// The selectionHandleImageRight map contains the following key :<br />
+        /// <list type="table">
+        /// <item><term>filename (string)</term><description>The path of image file</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap SelectionHandleImageRight
@@ -444,7 +660,67 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The SelectionHandlePressedImageLeft property.
+        /// Set SelectionHandleImage to TextEditor. <br />
+        /// </summary>
+        /// <param name="selectionHandleImage">The SelectionHandleImage</param>
+        /// <remarks>
+        /// SetSelectionHandleImage specifies the display image used for the selection handle through <see cref="Tizen.NUI.Text.SelectionHandleImage"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetSelectionHandleImage method.
+        /// <code>
+        /// var selectionHandleImage = new Tizen.NUI.Text.SelectionHandleImage();
+        /// selectionHandleImage.LeftImageUrl = "handle_downleft.png";
+        /// selectionHandleImage.RightImageUrl = "handle_downright.png";
+        /// editor.SetSelectionHandleImage(selectionHandleImage);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetSelectionHandleImage(SelectionHandleImage selectionHandleImage)
+        {
+            if (!String.IsNullOrEmpty(selectionHandleImage.LeftImageUrl))
+            {
+                using (var leftImageMap = TextMapHelper.GetFileNameMap(selectionHandleImage.LeftImageUrl))
+                {
+                    SetValue(SelectionHandleImageLeftProperty, leftImageMap);
+                }
+            }
+
+            if (!String.IsNullOrEmpty(selectionHandleImage.RightImageUrl))
+            {
+                using (var rightImageMap = TextMapHelper.GetFileNameMap(selectionHandleImage.RightImageUrl))
+                {
+                    SetValue(SelectionHandleImageRightProperty, rightImageMap);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get SelectionHandleImage from TextEditor. <br />
+        /// </summary>
+        /// <returns>The SelectionHandleImage</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.SelectionHandleImage"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public SelectionHandleImage GetSelectionHandleImage()
+        {
+            SelectionHandleImage selectionHandleImage;
+            using (var leftImageMap = (PropertyMap)GetValue(SelectionHandleImageLeftProperty))
+            using (var rightImageMap = (PropertyMap)GetValue(SelectionHandleImageRightProperty))
+            {
+                selectionHandleImage = TextMapHelper.GetSelectionHandleImageStruct(leftImageMap, rightImageMap);
+            }
+            return selectionHandleImage;
+        }
+
+        /// <summary>
+        /// The SelectionHandlePressedImageLeft property.<br />
+        /// The image to display when the left selection handle is pressed.<br />
+        /// The selectionHandlePressedImageLeft map contains the following key :<br />
+        /// <list type="table">
+        /// <item><term>filename (string)</term><description>The path of image file</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap SelectionHandlePressedImageLeft
@@ -461,7 +737,12 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The SelectionHandlePressedImageRight property.
+        /// The SelectionHandlePressedImageRight property.<br />
+        /// The image to display when the right selection handle is pressed.<br />
+        /// The selectionHandlePressedImageRight map contains the following key :<br />
+        /// <list type="table">
+        /// <item><term>filename (string)</term><description>The path of image file</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap SelectionHandlePressedImageRight
@@ -478,7 +759,67 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The SelectionHandleMarkerImageLeft property.
+        /// Set SelectionHandlePressedImage to TextEditor. <br />
+        /// </summary>
+        /// <param name="selectionHandlePressedImage">The SelectionHandleImage</param>
+        /// <remarks>
+        /// SetSelectionHandlePressedImage specifies the display image used for the selection handle through <see cref="Tizen.NUI.Text.SelectionHandleImage"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetSelectionHandlePressedImage method.
+        /// <code>
+        /// var selectionHandlePressedImage = new Tizen.NUI.Text.SelectionHandleImage();
+        /// selectionHandlePressedImage.LeftImageUrl = "handle_pressed_downleft.png";
+        /// selectionHandlePressedImage.RightImageUrl = "handle_pressed_downright.png";
+        /// editor.SetSelectionHandlePressedImage(selectionHandlePressedImage);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetSelectionHandlePressedImage(SelectionHandleImage selectionHandlePressedImage)
+        {
+            if (!String.IsNullOrEmpty(selectionHandlePressedImage.LeftImageUrl))
+            {
+                using (var leftImageMap = TextMapHelper.GetFileNameMap(selectionHandlePressedImage.LeftImageUrl))
+                {
+                    SetValue(SelectionHandlePressedImageLeftProperty, leftImageMap);
+                }
+            }
+
+            if (!String.IsNullOrEmpty(selectionHandlePressedImage.RightImageUrl))
+            {
+                using (var rightImageMap = TextMapHelper.GetFileNameMap(selectionHandlePressedImage.RightImageUrl))
+                {
+                    SetValue(SelectionHandlePressedImageRightProperty, rightImageMap);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get SelectionHandlePressedImage from TextEditor. <br />
+        /// </summary>
+        /// <returns>The SelectionHandlePressedImage</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.SelectionHandleImage"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public SelectionHandleImage GetSelectionHandlePressedImage()
+        {
+            SelectionHandleImage selectionHandleImage;
+            using (var leftImageMap = (PropertyMap)GetValue(SelectionHandlePressedImageLeftProperty))
+            using (var rightImageMap = (PropertyMap)GetValue(SelectionHandlePressedImageRightProperty))
+            {
+                selectionHandleImage = TextMapHelper.GetSelectionHandleImageStruct(leftImageMap, rightImageMap);
+            }
+            return selectionHandleImage;
+        }
+
+        /// <summary>
+        /// The SelectionHandleMarkerImageLeft property.<br />
+        /// The image to display for the left selection handle marker.<br />
+        /// The selectionHandleMarkerImageLeft map contains the following key :<br />
+        /// <list type="table">
+        /// <item><term>filename (string)</term><description>The path of image file</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap SelectionHandleMarkerImageLeft
@@ -495,7 +836,12 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The SelectionHandleMarkerImageRight property.
+        /// The SelectionHandleMarkerImageRight property.<br />
+        /// The image to display for the right selection handle marker.<br />
+        /// The selectionHandleMarkerImageRight map contains the following key :<br />
+        /// <list type="table">
+        /// <item><term>filename (string)</term><description>The path of image file</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap SelectionHandleMarkerImageRight
@@ -512,7 +858,63 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The SelectionHighlightColor property.
+        /// Set SelectionHandleMarkerImage to TextEditor. <br />
+        /// </summary>
+        /// <param name="selectionHandleMarkerImage">The SelectionHandleImage</param>
+        /// <remarks>
+        /// SetSelectionHandleMarkerImage specifies the display image used for the selection handle through <see cref="Tizen.NUI.Text.SelectionHandleImage"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetSelectionHandleMarkerImage method.
+        /// <code>
+        /// var selectionHandleMarkerImage = new Tizen.NUI.Text.SelectionHandleImage();
+        /// selectionHandleMarkerImage.LeftImageUrl = "handle_pressed_downleft.png";
+        /// selectionHandleMarkerImage.RightImageUrl = "handle_pressed_downright.png";
+        /// editor.SetSelectionHandleMarkerImage(selectionHandleMarkerImage);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetSelectionHandleMarkerImage(SelectionHandleImage selectionHandleMarkerImage)
+        {
+            if (!String.IsNullOrEmpty(selectionHandleMarkerImage.LeftImageUrl))
+            {
+                using (var leftImageMap = TextMapHelper.GetFileNameMap(selectionHandleMarkerImage.LeftImageUrl))
+                {
+                    SetValue(SelectionHandleMarkerImageLeftProperty, leftImageMap);
+                }
+            }
+
+            if (!String.IsNullOrEmpty(selectionHandleMarkerImage.RightImageUrl))
+            {
+                using (var rightImageMap = TextMapHelper.GetFileNameMap(selectionHandleMarkerImage.RightImageUrl))
+                {
+                    SetValue(SelectionHandleMarkerImageRightProperty, rightImageMap);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get SelectionHandleMarkerImage from TextEditor. <br />
+        /// </summary>
+        /// <returns>The SelectionHandleMarkerImage</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.SelectionHandleImage"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public SelectionHandleImage GetSelectionHandleMarkerImage()
+        {
+            SelectionHandleImage selectionHandleImage;
+            using (var leftImageMap = (PropertyMap)GetValue(SelectionHandleMarkerImageLeftProperty))
+            using (var rightImageMap = (PropertyMap)GetValue(SelectionHandleMarkerImageRightProperty))
+            {
+                selectionHandleImage = TextMapHelper.GetSelectionHandleImageStruct(leftImageMap, rightImageMap);
+            }
+            return selectionHandleImage;
+        }
+
+        /// <summary>
+        /// The SelectionHighlightColor property.<br />
+        /// The color of the selection highlight.<br />
         /// </summary>
         /// <remarks>
         /// The property cascade chaining set is possible. For example, this (textEditor.SelectionHighlightColor.X = 0.1f;) is possible.
@@ -533,7 +935,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The DecorationBoundingBox property.
+        /// The DecorationBoundingBox property.<br />
+        /// The decorations (handles etc) will positioned within this area on-screen.<br />
         /// </summary>
         /// <remarks>
         /// The property cascade chaining set is possible. For example, this (textEditor.DecorationBoundingBox.X = 1;) is possible.
@@ -554,7 +957,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The EnableMarkup property.
+        /// The EnableMarkup property.<br />
+        /// Whether the mark-up processing is enabled.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool EnableMarkup
@@ -571,7 +975,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The InputColor property.
+        /// The InputColor property.<br />
+        /// The color of the new input text.<br />
         /// </summary>
         /// <remarks>
         /// The property cascade chaining set is possible. For example, this (textEditor.InputColor.X = 0.1f;) is possible.
@@ -592,7 +997,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The InputFontFamily property.
+        /// The InputFontFamily property.<br />
+        /// The font's family of the new input text.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string InputFontFamily
@@ -609,9 +1015,17 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The InputFontStyle property.
+        /// The InputFontStyle property.<br />
+        /// The font's style of the new input text.<br />
+        /// The inputFontStyle map contains the following keys :<br />
+        /// <list type="table">
+        /// <item><term>width (string)</term><description>The width key defines occupied by each glyph. (values: ultraCondensed, extraCondensed, condensed, semiCondensed, normal, semiExpanded, expanded, extraExpanded, ultraExpanded)</description></item>
+        /// <item><term>weight (string)</term><description>The weight key defines the thickness or darkness of the glyphs. (values: thin, ultraLight, extraLight, light, demiLight, semiLight, book, normal, regular, medium, demiBold, semiBold, bold, ultraBold, extraBold, black, heavy, extraBlack)</description></item>
+        /// <item><term>slant (string)</term><description>The slant key defines whether to use italics. (values: normal, roman, italic, oblique)</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap InputFontStyle
         {
             get
@@ -626,9 +1040,55 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The InputPointSize property.
+        /// Set InputFontStyle to TextEditor. <br />
+        /// </summary>
+        /// <param name="fontStyle">The FontStyle</param>
+        /// <remarks>
+        /// SetInputFontStyle specifies the requested font style for new input text through <see cref="Tizen.NUI.Text.FontStyle"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetInputFontStyle method.
+        /// <code>
+        /// var fontStyle = new Tizen.NUI.Text.FontStyle();
+        /// fontStyle.Width = FontWidthType.Expanded;
+        /// fontStyle.Weight = FontWeightType.Bold;
+        /// fontStyle.Slant = FontSlantType.Italic;
+        /// editor.SetInputFontStyle(fontStyle);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetInputFontStyle(FontStyle fontStyle)
+        {
+            using (var fontStyleMap = TextMapHelper.GetFontStyleMap(fontStyle))
+            {
+                SetValue(InputFontStyleProperty, fontStyleMap);
+            }
+        }
+
+        /// <summary>
+        /// Get InputFontStyle from TextEditor. <br />
+        /// </summary>
+        /// <returns>The FontStyle</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.FontStyle"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public FontStyle GetInputFontStyle()
+        {
+            FontStyle fontStyle;
+            using (var fontStyleMap = (PropertyMap)GetValue(InputFontStyleProperty))
+            {
+                fontStyle = TextMapHelper.GetFontStyleStruct(fontStyleMap);
+            }
+            return fontStyle;
+        }
+
+        /// <summary>
+        /// The InputPointSize property.<br />
+        /// The font's size of the new input text in points.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Binding.TypeConverter(typeof(PointSizeTypeConverter))]
         public float InputPointSize
         {
             get
@@ -643,7 +1103,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The LineSpacing property.
+        /// The LineSpacing property.<br />
+        /// The default extra space between lines in points.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float LineSpacing
@@ -660,7 +1121,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The InputLineSpacing property.
+        /// The InputLineSpacing property.<br />
+        /// The extra space between lines in points.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float InputLineSpacing
@@ -677,9 +1139,35 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The Underline property.
+        /// The relative height of the line (a factor that will be multiplied by text height). <br />
+        /// If the value is less than 1, the lines could to be overlapped.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float RelativeLineHeight
+        {
+            get
+            {
+                return (float)GetValue(RelativeLineHeightProperty);
+            }
+            set
+            {
+                SetValue(RelativeLineHeightProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The Underline property.<br />
+        /// The default underline parameters.<br />
+        /// The underline map contains the following keys :<br />
+        /// <list type="table">
+        /// <item><term>enable (bool)</term><description>Whether the underline is enabled (the default value is false)</description></item>
+        /// <item><term>color (Color)</term><description>The color of the underline (If not provided then the color of the text is used)</description></item>
+        /// <item><term>height (float)</term><description>The height in pixels of the underline (the default value is 1.f)</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap Underline
         {
             get
@@ -694,7 +1182,52 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The InputUnderline property.
+        /// Set Underline to TextEditor. <br />
+        /// </summary>
+        /// <param name="underline">The Underline</param>
+        /// <remarks>
+        /// SetUnderline specifies the underline of the text through <see cref="Tizen.NUI.Text.Underline"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetUnderline method.
+        /// <code>
+        /// var underline = new Tizen.NUI.Text.Underline();
+        /// underline.Enable = true;
+        /// underline.Color = new Color("#3498DB");
+        /// underline.Height = 2.0f;
+        /// editor.SetUnderline(underline);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetUnderline(Underline underline)
+        {
+            using (var underlineMap = TextMapHelper.GetUnderlineMap(underline))
+            {
+                SetValue(UnderlineProperty, underlineMap);
+            }
+        }
+
+        /// <summary>
+        /// Get Underline from TextEditor. <br />
+        /// </summary>
+        /// <returns>The Underline</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Underline"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Underline GetUnderline()
+        {
+            Underline underline;
+            using (var underlineMap = (PropertyMap)GetValue(UnderlineProperty))
+            {
+                underline = TextMapHelper.GetUnderlineStruct(underlineMap);
+            }
+            return underline;
+        }
+
+        /// <summary>
+        /// The InputUnderline property.<br />
+        /// The underline parameters of the new input text.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string InputUnderline
@@ -711,9 +1244,17 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The Shadow property.
+        /// The Shadow property.<br />
+        /// The default shadow parameters.<br />
+        /// The shadow map contains the following keys :<br />
+        /// <list type="table">
+        /// <item><term>color (Color)</term><description>The color of the shadow (the default color is Color.Black)</description></item>
+        /// <item><term>offset (Vector2)</term><description>The offset in pixels of the shadow (If not provided then the shadow is not enabled)</description></item>
+        /// <item><term>blurRadius (float)</term><description>The radius of the Gaussian blur for the soft shadow (If not provided then the soft shadow is not enabled)</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap Shadow
         {
             get
@@ -728,7 +1269,51 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The InputShadow property.
+        /// Set Shadow to TextEditor. <br />
+        /// </summary>
+        /// <param name="shadow">The Shadow</param>
+        /// <remarks>
+        /// SetShadow specifies the shadow of the text through <see cref="Tizen.NUI.Text.Shadow"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetShadow method.
+        /// <code>
+        /// var shadow = new Tizen.NUI.Text.Shadow();
+        /// shadow.Offset = new Vector2(3, 3);
+        /// shadow.Color = new Color("#F1C40F");
+        /// editor.SetShadow(shadow);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetShadow(Tizen.NUI.Text.Shadow shadow)
+        {
+            using (var shadowMap = TextMapHelper.GetShadowMap(shadow))
+            {
+                SetValue(ShadowProperty, shadowMap);
+            }
+        }
+
+        /// <summary>
+        /// Get Shadow from TextEditor. <br />
+        /// </summary>
+        /// <returns>The Shadow</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Shadow"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Tizen.NUI.Text.Shadow GetShadow()
+        {
+            Tizen.NUI.Text.Shadow shadow;
+            using (var shadowMap = (PropertyMap)GetValue(ShadowProperty))
+            {
+                shadow = TextMapHelper.GetShadowStruct(shadowMap);
+            }
+            return shadow;
+        }
+
+        /// <summary>
+        /// The InputShadow property.<br />
+        /// The shadow parameters of the new input text.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string InputShadow
@@ -745,7 +1330,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The Emboss property.
+        /// The Emboss property.<br />
+        /// The default emboss parameters.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string Emboss
@@ -762,7 +1348,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The InputEmboss property.
+        /// The InputEmboss property.<br />
+        /// The emboss parameters of the new input text.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string InputEmboss
@@ -779,9 +1366,16 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The Outline property.
+        /// The Outline property.<br />
+        /// The default outline parameters.<br />
+        /// The outline map contains the following keys :<br />
+        /// <list type="table">
+        /// <item><term>color (Color)</term><description>The color of the outline (the default color is Color.White)</description></item>
+        /// <item><term>width (float)</term><description>The width in pixels of the outline (If not provided then the outline is not enabled)</description></item>
+        /// </list>
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap Outline
         {
             get
@@ -796,7 +1390,51 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The InputOutline property.
+        /// Set Outline to TextEditor. <br />
+        /// </summary>
+        /// <param name="outline">The Outline</param>
+        /// <remarks>
+        /// SetOutline specifies the outline of the text through <see cref="Tizen.NUI.Text.Outline"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetOutline method.
+        /// <code>
+        /// var outline = new Tizen.NUI.Text.Outline();
+        /// outline.Width = 2.0f;
+        /// outline.Color = new Color("#45B39D");
+        /// editor.SetOutline(outline);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetOutline(Outline outline)
+        {
+            using (var outlineMap = TextMapHelper.GetOutlineMap(outline))
+            {
+                SetValue(OutlineProperty, outlineMap);
+            }
+        }
+
+        /// <summary>
+        /// Get Outline from TextEditor. <br />
+        /// </summary>
+        /// <returns>The Outline</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Outline"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Outline GetOutline()
+        {
+            Outline outline;
+            using (var outlineMap = (PropertyMap)GetValue(OutlineProperty))
+            {
+                outline = TextMapHelper.GetOutlineStruct(outlineMap);
+            }
+            return outline;
+        }
+
+        /// <summary>
+        /// The InputOutline property.<br />
+        /// The outline parameters of the new input text.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string InputOutline
@@ -813,7 +1451,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The SmoothScroll property.
+        /// The SmoothScroll property.<br />
+        /// Enable or disable the smooth scroll animation.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool SmoothScroll
@@ -830,7 +1469,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The SmoothScrollDuration property.
+        /// The SmoothScrollDuration property.<br />
+        /// Sets the duration of smooth scroll animation.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float SmoothScrollDuration
@@ -847,7 +1487,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The EnableScrollBar property.
+        /// The EnableScrollBar property.<br />
+        /// Enable or disable the scroll bar.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool EnableScrollBar
@@ -864,7 +1505,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The ScrollBarShowDuration property.
+        /// The ScrollBarShowDuration property.<br />
+        /// Sets the duration of scroll bar to show.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float ScrollBarShowDuration
@@ -881,7 +1523,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The ScrollBarFadeDuration property.
+        /// The ScrollBarFadeDuration property.<br />
+        /// Sets the duration of scroll bar to fade out.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float ScrollBarFadeDuration
@@ -898,9 +1541,11 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The PixelSize property.
+        /// The PixelSize property.<br />
+        /// The size of font in pixels.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Binding.TypeConverter(typeof(FloatGraphicsTypeConverter))]
         public float PixelSize
         {
             get
@@ -922,9 +1567,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                int temp = 0;
-                GetProperty(TextEditor.Property.LINE_COUNT).Get(out temp);
-                return temp;
+                int lineCount = 0;
+                using (var propertyValue = GetProperty(TextEditor.Property.LineCount))
+                {
+                    propertyValue.Get(out lineCount);
+                }
+                return lineCount;
             }
         }
 
@@ -942,6 +1590,26 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetValue(PlaceholderTextProperty, value);
                 NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The portion of the text that has been selected by the user.
+        /// </summary>
+        /// <remarks>
+        /// Empty string when nothing is selected.
+        /// </remarks>
+        /// <since_tizen> 9 </since_tizen>
+        public string SelectedText
+        {
+            get
+            {
+                string selectedText;
+                using (var propertyValue = GetProperty(TextEditor.Property.SelectedText))
+                {
+                    propertyValue.Get(out selectedText);
+                }
+                return selectedText;
             }
         }
 
@@ -967,7 +1635,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The EnableSelection property.
+        /// The Enable selection property.<br />
+        /// Enables Text selection, such as the cursor, handle, clipboard, and highlight color.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool EnableSelection
@@ -984,8 +1653,327 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The start index for selection.
+        /// </summary>
+        /// <remarks>
+        /// When there is no selection, the index is current cursor position.
+        /// </remarks>
+        /// <since_tizen> 9 </since_tizen>
+        public int SelectedTextStart
+        {
+            get
+            {
+                int selectedTextStart;
+                using (var propertyValue = GetProperty(TextEditor.Property.SelectedTextStart))
+                {
+                    propertyValue.Get(out selectedTextStart);
+                }
+                return selectedTextStart;
+            }
+        }
+
+        /// <summary>
+        /// The end index for selection.
+        /// </summary>
+        /// <remarks>
+        /// When there is no selection, the index is current cursor position.
+        /// </remarks>
+        /// <since_tizen> 9 </since_tizen>
+        public int SelectedTextEnd
+        {
+            get
+            {
+                int selectedTextEnd;
+                using (var propertyValue = GetProperty(TextEditor.Property.SelectedTextEnd))
+                {
+                    propertyValue.Get(out selectedTextEnd);
+                }
+                return selectedTextEnd;
+            }
+        }
+
+        /// <summary>
+        /// Enable editing in text control.
+        /// </summary>
+        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableEditing
+        {
+            get
+            {
+                return (bool)GetValue(EnableEditingProperty);
+            }
+            set
+            {
+                SetValue(EnableEditingProperty, value);
+            }
+        }
+
+        private bool InternalEnableEditing
+        {
+            get
+            {
+                bool enableEditing;
+                using (var propertyValue = GetProperty(TextEditor.Property.EnableEditing))
+                {
+                    propertyValue.Get(out enableEditing);
+                }
+                return enableEditing;
+            }
+            set
+            {
+                using (var propertyValue = new PropertyValue(value))
+                {
+                    SetProperty(TextEditor.Property.EnableEditing, propertyValue);
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Specify horizontal scroll position in text control.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int HorizontalScrollPosition
+        {
+            get
+            {
+                return (int)GetValue(HorizontalScrollPositionProperty);
+            }
+            set
+            {
+                SetValue(HorizontalScrollPositionProperty, value);
+            }
+        }
+
+        private int InternalHorizontalScrollPosition
+        {
+            get
+            {
+                int horizontalScrollPosition;
+                using (var propertyValue = GetProperty(TextEditor.Property.HorizontalScrollPosition))
+                {
+                    propertyValue.Get(out horizontalScrollPosition);
+                }
+                return horizontalScrollPosition;
+            }
+            set
+            {
+                using (var propertyValue = new PropertyValue(value))
+                {
+                    SetProperty(TextEditor.Property.HorizontalScrollPosition, propertyValue);
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Specify vertical scroll position in text control.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int VerticalScrollPosition
+        {
+            get
+            {
+                return (int)GetValue(VerticalScrollPositionProperty);
+            }
+            set
+            {
+                SetValue(VerticalScrollPositionProperty, value);
+            }
+        }
+
+        private int InternalVerticalScrollPosition
+        {
+            get
+            {
+                int verticalScrollPosition;
+                using (var propertyValue = GetProperty(TextEditor.Property.VerticalScrollPosition))
+                {
+                    propertyValue.Get(out verticalScrollPosition);
+                }
+                return verticalScrollPosition;
+            }
+            set
+            {
+                using (var propertyValue = new PropertyValue(value))
+                {
+                    SetProperty(TextEditor.Property.VerticalScrollPosition, propertyValue);
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// PrimaryCursorPosition property.<br />
+        /// Specify the position of the primary cursor (caret) in text control.
+        /// </summary>
+        /// <remarks>
+        /// If the value set is out of range (negative or greater than or equal the number of characters in Text) then the PrimaryCursorPosition is moved to the end of Text (the number of characters in Text).
+        /// </remarks>
+        /// <since_tizen> 10 </since_tizen>
+        public int PrimaryCursorPosition
+        {
+            get
+            {
+                return (int)GetValue(PrimaryCursorPositionProperty);
+            }
+            set
+            {
+                SetValue(PrimaryCursorPositionProperty, value);
+            }
+        }
+
+        private int InternalPrimaryCursorPosition
+        {
+            get
+            {
+                int primaryCursorPosition;
+                using (var propertyValue = GetProperty(TextEditor.Property.PrimaryCursorPosition))
+                {
+                    propertyValue.Get(out primaryCursorPosition);
+                }
+                return primaryCursorPosition;
+            }
+            set
+            {
+                using (var propertyValue = new PropertyValue(value))
+                {
+                    SetProperty(TextEditor.Property.PrimaryCursorPosition, propertyValue);
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// The GrabHandleColor property.
+        /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textEditor.GrabHandleColor.X = 0.1f;) is possible.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color GrabHandleColor
+        {
+            get
+            {
+                Color temp = (Color)GetValue(GrabHandleColorProperty);
+                return new Color(OnGrabHandleColorChanged, temp.R, temp.G, temp.B, temp.A);
+            }
+            set
+            {
+                SetValue(GrabHandleColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Set InputFilter to TextEditor.
+        /// </summary>
+        /// <param name="inputFilter">The InputFilter</param>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.InputFilter"/> filters input based on regular expressions. <br />
+        /// InputFiltered signal is emitted when the input is filtered by InputFilter <br />
+        /// See <see cref="InputFiltered"/>, <see cref="InputFilterType"/> and <see cref="InputFilteredEventArgs"/> for a detailed description.
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetInputFilter method.
+        /// <code>
+        /// var inputFilter = new Tizen.NUI.Text.InputFilter();
+        /// inputFilter.Accepted = @"[\d]"; // accept whole digits
+        /// inputFilter.Rejected = "[0-3]"; // reject 0, 1, 2, 3
+        /// editor.SetInputFilter(inputFilter); // acceptable inputs are 4, 5, 6, 7, 8, 9
+        /// </code>
+        /// </example>
+        /// <since_tizen> 9 </since_tizen>
+        public void SetInputFilter(InputFilter inputFilter)
+        {
+            using (var map = TextMapHelper.GetInputFilterMap(inputFilter))
+            using (var propertyValue = new PropertyValue(map))
+            {
+                SetProperty(TextEditor.Property.InputFilter, propertyValue);
+            }
+        }
+
+        /// <summary>
+        /// Get InputFilter from TextEditor. <br />
+        /// </summary>
+        /// <returns>The InputFilter</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.InputFilter"/>
+        /// </remarks>
+        /// <since_tizen> 9 </since_tizen>
+        public InputFilter GetInputFilter()
+        {
+            InputFilter inputFilter;
+            using (var propertyValue = GetProperty(TextEditor.Property.InputFilter))
+            using (var map = new PropertyMap())
+            {
+                propertyValue.Get(map);
+                inputFilter = TextMapHelper.GetInputFilterStruct(map);
+            }
+            return inputFilter;
+        }
+
+        /// <summary>
+        /// Set Strikethrough to TextEditor. <br />
+        /// </summary>
+        /// <param name="strikethrough">The Strikethrough</param>
+        /// <remarks>
+        /// SetStrikethrough specifies the strikethrough of the text through <see cref="Tizen.NUI.Text.Strikethrough"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetStrikethrough method.
+        /// <code>
+        /// var strikethrough = new Tizen.NUI.Text.Strikethrough();
+        /// strikethrough.Enable = true;
+        /// strikethrough.Color = new Color("#3498DB");
+        /// strikethrough.Height = 2.0f;
+        /// editor.SetStrikethrough(strikethrough);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetStrikethrough(Strikethrough strikethrough)
+        {
+            using (var map = TextMapHelper.GetStrikethroughMap(strikethrough))
+            using (var propertyValue = new PropertyValue(map))
+            {
+                SetProperty(TextEditor.Property.Strikethrough, propertyValue);
+            }
+        }
+
+        /// <summary>
+        /// Get Strikethrough from TextEditor. <br />
+        /// </summary>
+        /// <returns>The Strikethrough</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Strikethrough"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Strikethrough GetStrikethrough()
+        {
+            Strikethrough strikethrough;
+            using (var propertyValue = GetProperty(TextEditor.Property.Strikethrough))
+            using (var map = new PropertyMap())
+            {
+                propertyValue.Get(map);
+                strikethrough = TextMapHelper.GetStrikethroughStruct(map);
+            }
+            return strikethrough;
+        }
+
+        /// <summary>
         /// The Placeholder property.
-        /// Gets or sets the placeholder: text, color, font family, font style, point size, and pixel size.
+        /// The placeholder map contains the following keys :<br />
+        /// <list type="table">
+        /// <item><term>text (string)</term><description>The text to display when the TextEditor is empty and inactive</description></item>
+        /// <item><term>textFocused (string)</term><description>The text to display when the placeholder has focus</description></item>
+        /// <item><term>color (Color)</term><description>The color of the placeholder text</description></item>
+        /// <item><term>fontFamily (string)</term><description>The fontFamily of the placeholder text</description></item>
+        /// <item><term>fontStyle (PropertyMap)</term><description>The fontStyle of the placeholder text</description></item>
+        /// <item><term>pointSize (float)</term><description>The pointSize of the placeholder text</description></item>
+        /// <item><term>pixelSize (float)</term><description>The pixelSize of the placeholder text</description></item>
+        /// <item><term>ellipsis (bool)</term><description>The ellipsis of the placeholder text</description></item>
+        /// </list>
         /// </summary>
         /// <example>
         /// The following example demonstrates how to set the placeholder property.
@@ -1008,15 +1996,149 @@ namespace Tizen.NUI.BaseComponents
         /// </code>
         /// </example>
         /// <since_tizen> 3 </since_tizen>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public Tizen.NUI.PropertyMap Placeholder
         {
             get
             {
-                return (PropertyMap)GetValue(PlaceholderProperty);
+                PropertyMap map = (PropertyMap)GetValue(PlaceholderProperty);
+                string defalutText = "";
+
+                if (TextMapHelper.IsValue(map, 0))
+                    map.Add("text", TextMapHelper.GetStringFromMap(map, 0, defalutText));
+
+                if (TextMapHelper.IsValue(map, 1))
+                    map.Add("textFocused", TextMapHelper.GetStringFromMap(map, 1, defalutText));
+
+                if (TextMapHelper.IsValue(map, 2))
+                {
+                    using (var color = TextMapHelper.GetColorFromMap(map, 2))
+                    {
+                        map.Add("color", color);
+                    }
+                }
+
+                if (TextMapHelper.IsValue(map, 3))
+                    map.Add("fontFamily", TextMapHelper.GetStringFromMap(map, 3, defalutText));
+
+                if (TextMapHelper.IsValue(map, 4))
+                {
+                    using (var properyValue = map.Find(4))
+                    using (var fontStyle = new PropertyMap())
+                    {
+                        properyValue.Get(fontStyle);
+                        using (var fontStyleValue = new PropertyValue(fontStyle))
+                        {
+                            map.Add("fontStyle", fontStyleValue);
+                        }
+                    }
+                }
+
+                if (TextMapHelper.IsValue(map, 5))
+                    map.Add("pointSize", TextMapHelper.GetNullableFloatFromMap(map, 5));
+
+                if (TextMapHelper.IsValue(map, 6))
+                    map.Add("pixelSize", TextMapHelper.GetNullableFloatFromMap(map, 6));
+
+                if (TextMapHelper.IsValue(map, 7))
+                    map.Add("ellipsis", TextMapHelper.GetBoolFromMap(map, 7, false));
+
+                return map;
             }
             set
             {
                 SetValue(PlaceholderProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Set Placeholder to TextEditor. <br />
+        /// </summary>
+        /// <param name="placeholder">The Placeholder</param>
+        /// <remarks>
+        /// SetPlaceholder specifies the attributes of the placeholder property through <see cref="Tizen.NUI.Text.Placeholder"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetPlaceholder method.
+        /// <code>
+        /// var placeholder = new Tizen.NUI.Text.Placeholder();
+        /// placeholder.Text = "placeholder text";
+        /// placeholder.TextFocused = "placeholder textFocused";
+        /// placeholder.Color = new Color("#45B39D");
+        /// placeholder.FontFamily = "BreezeSans";
+        /// placeholder.FontStyle = new Tizen.NUI.Text.FontStyle()
+        /// {
+        ///     Width = FontWidthType.Expanded,
+        ///     Weight = FontWeightType.ExtraLight,
+        ///     Slant = FontSlantType.Italic,
+        /// };
+        /// placeholder.PointSize = 25.0f;
+        /// //placeholder.PixelSize = 50.0f;
+        /// placeholder.Ellipsis = true;
+        /// editor.SetPlaceholder(placeholder);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetPlaceholder(Placeholder placeholder)
+        {
+            using (var placeholderMap = TextMapHelper.GetPlaceholderMap(placeholder))
+            {
+                SetValue(PlaceholderProperty, placeholderMap);
+            }
+        }
+
+        /// <summary>
+        /// Get Placeholder from TextEditor. <br />
+        /// </summary>
+        /// <returns>The Placeholder</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Placeholder"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Placeholder GetPlaceholder()
+        {
+            Placeholder placeholder;
+            using (var placeholderMap = (PropertyMap)GetValue(PlaceholderProperty))
+            {
+                placeholder = TextMapHelper.GetPlaceholderStruct(placeholderMap);
+            }
+            return placeholder;
+        }
+
+        /// <summary>
+        /// The Ellipsis property.<br />
+        /// Enable or disable the ellipsis.<br />
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public bool Ellipsis
+        {
+            get
+            {
+                return (bool)GetValue(EllipsisProperty);
+            }
+            set
+            {
+                SetValue(EllipsisProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+
+        /// <summary>
+        /// The ellipsis position of the text.
+        /// Specifies which portion of the text should be replaced with an ellipsis when the text size exceeds the layout size.<br />
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public EllipsisPosition EllipsisPosition
+        {
+            get
+            {
+                return (EllipsisPosition)GetValue(EllipsisPositionProperty);
+            }
+            set
+            {
+                SetValue(EllipsisPositionProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1042,8 +2164,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Enables Text selection using Shift key.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EnableShiftSelection
         {
@@ -1076,9 +2197,10 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The MaxLength property.
+        /// The MaxLength property.<br />
+        /// The maximum number of characters that can be inserted.<br />
         /// </summary>
-        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int MaxLength
         {
@@ -1093,26 +2215,130 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        /// Only used by the IL of xaml, will never changed to not hidden.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool IsCreateByXaml
+        /// <summary>
+        /// The FontSizeScale property. <br />
+        /// The default value is 1.0. <br />
+        /// The given font size scale value is used for multiplying the specified font size before querying fonts. <br />
+        /// If FontSizeScale.UseSystemSetting, will use the SystemSettings.FontSize internally. <br />
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public float FontSizeScale
         {
             get
             {
-                return base.IsCreateByXaml;
+                return (float)GetValue(FontSizeScaleProperty);
             }
             set
             {
-                base.IsCreateByXaml = value;
-
-                if (value == true)
-                {
-                    this.TextChanged += (obj, e) =>
-                    {
-                        this.Text = this.Text;
-                    };
-                }
+                SetValue(FontSizeScaleProperty, value);
+                NotifyPropertyChanged();
             }
+        }
+
+        private float InternalFontSizeScale
+        {
+            get
+            {
+                return fontSizeScale;
+            }
+            set
+            {
+                float newFontSizeScale;
+
+                if (fontSizeScale == value) return;
+
+                fontSizeScale = value;
+                if (fontSizeScale == Tizen.NUI.FontSizeScale.UseSystemSetting)
+                {
+                    SystemSettingsFontSize systemSettingsFontSize;
+
+                    try
+                    {
+                        systemSettingsFontSize = SystemSettings.FontSize;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("{0} Exception caught.", e);
+                        systemSettingsFontSize = SystemSettingsFontSize.Normal;
+                    }
+                    newFontSizeScale = TextUtils.GetFontSizeScale(systemSettingsFontSize);
+                    AddSystemSettingsFontSizeChanged();
+                }
+                else
+                {
+                    newFontSizeScale = fontSizeScale;
+                    RemoveSystemSettingsFontSizeChanged();
+                }
+
+                SetInternalFontSizeScale(newFontSizeScale);
+            }
+        }
+
+        private void SetInternalFontSizeScale(float fontSizeScale)
+        {
+
+            Object.InternalSetPropertyFloat(this.SwigCPtr, TextEditor.Property.FontSizeScale, (float)fontSizeScale);
+        }
+
+        /// <summary>
+        /// The EnableFontSizeScale property.<br />
+        /// Whether the font size scale is enabled. (The default value is true)
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableFontSizeScale
+        {
+            get
+            {
+                return (bool)GetValue(EnableFontSizeScaleProperty);
+            }
+            set
+            {
+                SetValue(EnableFontSizeScaleProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The InputMethodSettings property.<br />
+        /// The settings to relating to the System's Input Method, Key and Value.<br />
+        /// </summary>
+        /// <remarks>
+        /// <see cref="InputMethod"/> is a class encapsulating the input method map. Use the <see cref="InputMethod"/> class for this property.
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to set the InputMethodSettings property.
+        /// <code>
+        /// InputMethod method = new InputMethod();
+        /// method.PanelLayout = InputMethod.PanelLayoutType.Normal;
+        /// method.ActionButton = InputMethod.ActionButtonTitleType.Default;
+        /// method.AutoCapital = InputMethod.AutoCapitalType.Word;
+        /// method.Variation = 1;
+        /// textEditor.InputMethodSettings = method.OutputMap;
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap InputMethodSettings
+        {
+            get
+            {
+                return (PropertyMap)GetValue(InputMethodSettingsProperty);
+            }
+            set
+            {
+                SetValue(InputMethodSettingsProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Scroll the text control by specific amount..
+        /// </summary>
+        /// <param name="scroll">The amount (in pixels) of scrolling in horizontal &amp; vertical directions.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ScrollBy(Vector2 scroll)
+        {
+            Interop.TextEditor.ScrollBy(SwigCPtr, Vector2.getCPtr(scroll));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1125,22 +2351,137 @@ namespace Tizen.NUI.BaseComponents
             if (inputMethodContext == null)
             {
                 /*Avoid raising InputMethodContext reference count.*/
-                inputMethodContext = new InputMethodContext(Interop.TextEditor.TextEditor_GetInputMethodContext(swigCPtr), true);
+                inputMethodContext = new InputMethodContext(Interop.TextEditor.GetInputMethodContext(SwigCPtr), true);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             return inputMethodContext;
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TextEditor obj)
+        /// <summary>
+        /// Select the whole text.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public void SelectWholeText()
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            Interop.TextEditor.SelectWholeText(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Select text from start to end index. <br />
+        /// The index is valid when 0 or positive.
+        /// </summary>
+        /// <param name="start">The start index for selection.</param>
+        /// <param name="end">The end index for selection.</param>
+        /// <remarks>
+        /// If the end index exceeds the maximum value, it is set to the length of the text.
+        /// </remarks>
+        /// <since_tizen> 9 </since_tizen>
+        public void SelectText(int start, int end)
+        {
+            if (start < 0)
+                throw new global::System.ArgumentOutOfRangeException(nameof(start), "Value is less than zero");
+            if (end < 0)
+                throw new global::System.ArgumentOutOfRangeException(nameof(end), "Value is less than zero");
+
+            Interop.TextEditor.SelectText(SwigCPtr, (uint)start, (uint)end);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Clear selection of the text. <br />
+        /// Valid when selection is activate.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public void SelectNone()
+        {
+            _ = Interop.TextEditor.SelectNone(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// The Enable grab handle property.<br />
+        /// Enables the grab handles for text selection.<br />
+        /// The default value is true, which means the grab handles are enabled by default.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableGrabHandle
+        {
+            get
+            {
+                return (bool)GetValue(EnableGrabHandleProperty);
+            }
+            set
+            {
+                SetValue(EnableGrabHandleProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The Enable grab handle popup property.<br />
+        /// Enables the grab handle popup for text selection.<br />
+        /// The default value is true, which means the grab handle popup is enabled by default.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableGrabHandlePopup
+        {
+            get
+            {
+                return (bool)GetValue(EnableGrabHandlePopupProperty);
+            }
+            set
+            {
+                SetValue(EnableGrabHandlePopupProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Minimum line size to be used.<br />
+        /// The height of the line in points. <br />
+        /// If the font size is larger than the line size, it works with the font size. <br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float MinLineSize
+        {
+            get
+            {
+                return (float)GetValue(MinLineSizeProperty);
+            }
+            set
+            {
+                SetValue(MinLineSizeProperty, value);
+                NotifyPropertyChanged();
+            }
         }
 
         internal SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextEditor_Dali__Toolkit__TextEditor__InputStyle__MaskF_t InputStyleChangedSignal()
         {
-            SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextEditor_Dali__Toolkit__TextEditor__InputStyle__MaskF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextEditor_Dali__Toolkit__TextEditor__InputStyle__MaskF_t(Interop.TextEditor.TextEditor_InputStyleChangedSignal(swigCPtr), false);
+            SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextEditor_Dali__Toolkit__TextEditor__InputStyle__MaskF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextEditor_Dali__Toolkit__TextEditor__InputStyle__MaskF_t(Interop.TextEditor.InputStyleChangedSignal(SwigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// <summary>
+        /// The spaces between characters in Pixels.
+        /// <remarks>
+        /// A positive value will make the characters far apart (expanded) and a negative value will bring them closer (condensed).<br />
+        /// The default value is 0.f which does nothing.
+        ///</remarks>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float CharacterSpacing
+        {
+            get
+            {
+                return (float)GetValue(CharacterSpacingProperty);
+            }
+            set
+            {
+                SetValue(CharacterSpacingProperty, value);
+                NotifyPropertyChanged();
+            }
         }
 
         /// <summary>
@@ -1154,22 +2495,61 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
+            internalPlaceholderTextColor?.Dispose();
+            internalPrimaryCursorColor?.Dispose();
+            internalSecondaryCursorColor?.Dispose();
+            internalSelectionHighlightColor?.Dispose();
+            internalInputColor?.Dispose();
+            internalTextColor?.Dispose();
+            internalGrabHandleColor?.Dispose();
+
+            if (hasSystemLanguageChanged)
+            {
+                systemLocaleLanguageChanged.Remove(SystemSettings_LocaleLanguageChanged);
+            }
+
+            RemoveSystemSettingsFontTypeChanged();
+            RemoveSystemSettingsFontSizeChanged();
+
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
             if (this.HasBody())
             {
-                if(_textEditorTextChangedCallbackDelegate != null)
+                if (textEditorTextChangedCallbackDelegate != null)
                 {
-                    TextChangedSignal().Disconnect(_textEditorTextChangedCallbackDelegate);
+                    TextChangedSignal().Disconnect(textEditorTextChangedCallbackDelegate);
                 }
 
-                if(_textEditorMaxLengthReachedCallbackDelegate != null)
+                if (textEditorMaxLengthReachedCallbackDelegate != null)
                 {
-                    this.MaxLengthReachedSignal().Disconnect(_textEditorMaxLengthReachedCallbackDelegate);
+                    this.MaxLengthReachedSignal().Disconnect(textEditorMaxLengthReachedCallbackDelegate);
+                }
+
+                if (textEditorSelectionStartedCallbackDelegate != null)
+                {
+                    this.SelectionStartedSignal().Disconnect(textEditorSelectionStartedCallbackDelegate);
+                }
+
+                if (textEditorSelectionClearedCallbackDelegate != null)
+                {
+                    this.SelectionClearedSignal().Disconnect(textEditorSelectionClearedCallbackDelegate);
+                }
+
+                if (textEditorCursorPositionChangedCallbackDelegate != null)
+                {
+                    this.CursorPositionChangedSignal().Disconnect(textEditorCursorPositionChangedCallbackDelegate);
+                }
+
+                if (textEditorSelectionChangedCallbackDelegate != null)
+                {
+                    this.SelectionChangedSignal().Disconnect(textEditorSelectionChangedCallbackDelegate);
                 }
             }
+
+            TextChanged -= TextEditorTextChanged;
+            GetInputMethodContext()?.DestroyContext();
 
             base.Dispose(type);
         }
@@ -1178,9 +2558,19 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            // In order to speed up IME hide, temporarily add
-            GetInputMethodContext()?.DestroyContext();
-            Interop.TextEditor.delete_TextEditor(swigCPtr);
+            Interop.TextEditor.DeleteTextEditor(swigCPtr);
+        }
+
+        internal override LayoutItem CreateDefaultLayout()
+        {
+            return new TextEditorLayout();
+        }
+
+        internal void SetTextWithoutTextChanged(string text)
+        {
+            invokeTextChanged = false;
+            Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, TextEditor.Property.TEXT, new Tizen.NUI.PropertyValue(text));
+            invokeTextChanged = true;
         }
 
         private string SetTranslatable(string textEditorSid)
@@ -1189,10 +2579,10 @@ namespace Tizen.NUI.BaseComponents
             translatableText = NUIApplication.MultilingualResourceManager?.GetString(textEditorSid, new CultureInfo(SystemSettings.LocaleLanguage.Replace("_", "-")));
             if (translatableText != null)
             {
-                if (systemlangTextFlag == false)
+                if (hasSystemLanguageChanged == false)
                 {
-                    SystemSettings.LocaleLanguageChanged += new WeakEventHandler<LocaleLanguageChangedEventArgs>(SystemSettings_LocaleLanguageChanged).Handler;
-                    systemlangTextFlag = true;
+                    systemLocaleLanguageChanged.Add(SystemSettings_LocaleLanguageChanged);
+                    hasSystemLanguageChanged = true;
                 }
                 return translatableText;
             }
@@ -1215,62 +2605,176 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        private void SystemSettingsFontSizeChanged(object sender, FontSizeChangedEventArgs e)
+        {
+            float newFontSizeScale = TextUtils.GetFontSizeScale(e.Value);
+            SetInternalFontSizeScale(newFontSizeScale);
+        }
+
+        private void AddSystemSettingsFontSizeChanged()
+        {
+            if (hasSystemFontSizeChanged != true)
+            {
+                try
+                {
+                    SystemFontSizeChangedManager.Add(SystemSettingsFontSizeChanged);
+                    hasSystemFontSizeChanged = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0} Exception caught.", e);
+                    hasSystemFontSizeChanged = false;
+                }
+            }
+        }
+
+        private void RemoveSystemSettingsFontSizeChanged()
+        {
+            if (hasSystemFontSizeChanged == true)
+            {
+                try
+                {
+                    SystemFontSizeChangedManager.Remove(SystemSettingsFontSizeChanged);
+                    hasSystemFontSizeChanged = false;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0} Exception caught.", e);
+                    hasSystemFontSizeChanged = true;
+                }
+            }
+        }
+
+        private void SystemSettingsFontTypeChanged(object sender, FontTypeChangedEventArgs e)
+        {
+            SetInternalFontFamily(e.Value);
+        }
+
+        private void AddSystemSettingsFontTypeChanged()
+        {
+            if (HasStyle() && !hasSystemFontTypeChanged)
+            {
+                try
+                {
+                    systemFontTypeChanged.Add(SystemSettingsFontTypeChanged);
+                    hasSystemFontTypeChanged = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0} Exception caught.", e);
+                    hasSystemFontTypeChanged = false;
+                }
+            }
+        }
+        
+        private void RemoveSystemSettingsFontTypeChanged()
+        {
+            if (hasSystemFontTypeChanged)
+            {
+                try
+                {
+                    systemFontTypeChanged.Remove(SystemSettingsFontTypeChanged);
+                    hasSystemFontTypeChanged = false;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0} Exception caught.", e);
+                    hasSystemFontTypeChanged = true;
+                }
+            }
+        }
+
+        private void TextEditorTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!isSettingTextInCSharp)
+            {
+                EnforceNotifyBindedInstance(TextProperty);
+            }
+        }
+
         internal new class Property
         {
-            internal static readonly int TEXT = Interop.TextEditor.TextEditor_Property_TEXT_get();
-            internal static readonly int TEXT_COLOR = Interop.TextEditor.TextEditor_Property_TEXT_COLOR_get();
-            internal static readonly int FONT_FAMILY = Interop.TextEditor.TextEditor_Property_FONT_FAMILY_get();
-            internal static readonly int FONT_STYLE = Interop.TextEditor.TextEditor_Property_FONT_STYLE_get();
-            internal static readonly int POINT_SIZE = Interop.TextEditor.TextEditor_Property_POINT_SIZE_get();
-            internal static readonly int HORIZONTAL_ALIGNMENT = Interop.TextEditor.TextEditor_Property_HORIZONTAL_ALIGNMENT_get();
-            internal static readonly int SCROLL_THRESHOLD = Interop.TextEditor.TextEditor_Property_SCROLL_THRESHOLD_get();
-            internal static readonly int SCROLL_SPEED = Interop.TextEditor.TextEditor_Property_SCROLL_SPEED_get();
-            internal static readonly int PRIMARY_CURSOR_COLOR = Interop.TextEditor.TextEditor_Property_PRIMARY_CURSOR_COLOR_get();
-            internal static readonly int SECONDARY_CURSOR_COLOR = Interop.TextEditor.TextEditor_Property_SECONDARY_CURSOR_COLOR_get();
-            internal static readonly int ENABLE_CURSOR_BLINK = Interop.TextEditor.TextEditor_Property_ENABLE_CURSOR_BLINK_get();
-            internal static readonly int CURSOR_BLINK_INTERVAL = Interop.TextEditor.TextEditor_Property_CURSOR_BLINK_INTERVAL_get();
-            internal static readonly int CURSOR_BLINK_DURATION = Interop.TextEditor.TextEditor_Property_CURSOR_BLINK_DURATION_get();
-            internal static readonly int CURSOR_WIDTH = Interop.TextEditor.TextEditor_Property_CURSOR_WIDTH_get();
-            internal static readonly int GRAB_HANDLE_IMAGE = Interop.TextEditor.TextEditor_Property_GRAB_HANDLE_IMAGE_get();
-            internal static readonly int GRAB_HANDLE_PRESSED_IMAGE = Interop.TextEditor.TextEditor_Property_GRAB_HANDLE_PRESSED_IMAGE_get();
-            internal static readonly int SELECTION_HANDLE_IMAGE_LEFT = Interop.TextEditor.TextEditor_Property_SELECTION_HANDLE_IMAGE_LEFT_get();
-            internal static readonly int SELECTION_HANDLE_IMAGE_RIGHT = Interop.TextEditor.TextEditor_Property_SELECTION_HANDLE_IMAGE_RIGHT_get();
-            internal static readonly int SELECTION_HANDLE_PRESSED_IMAGE_LEFT = Interop.TextEditor.TextEditor_Property_SELECTION_HANDLE_PRESSED_IMAGE_LEFT_get();
-            internal static readonly int SELECTION_HANDLE_PRESSED_IMAGE_RIGHT = Interop.TextEditor.TextEditor_Property_SELECTION_HANDLE_PRESSED_IMAGE_RIGHT_get();
-            internal static readonly int SELECTION_HANDLE_MARKER_IMAGE_LEFT = Interop.TextEditor.TextEditor_Property_SELECTION_HANDLE_MARKER_IMAGE_LEFT_get();
-            internal static readonly int SELECTION_HANDLE_MARKER_IMAGE_RIGHT = Interop.TextEditor.TextEditor_Property_SELECTION_HANDLE_MARKER_IMAGE_RIGHT_get();
-            internal static readonly int SELECTION_HIGHLIGHT_COLOR = Interop.TextEditor.TextEditor_Property_SELECTION_HIGHLIGHT_COLOR_get();
-            internal static readonly int DECORATION_BOUNDING_BOX = Interop.TextEditor.TextEditor_Property_DECORATION_BOUNDING_BOX_get();
-            internal static readonly int ENABLE_MARKUP = Interop.TextEditor.TextEditor_Property_ENABLE_MARKUP_get();
-            internal static readonly int INPUT_COLOR = Interop.TextEditor.TextEditor_Property_INPUT_COLOR_get();
-            internal static readonly int INPUT_FONT_FAMILY = Interop.TextEditor.TextEditor_Property_INPUT_FONT_FAMILY_get();
-            internal static readonly int INPUT_FONT_STYLE = Interop.TextEditor.TextEditor_Property_INPUT_FONT_STYLE_get();
-            internal static readonly int INPUT_POINT_SIZE = Interop.TextEditor.TextEditor_Property_INPUT_POINT_SIZE_get();
-            internal static readonly int LINE_SPACING = Interop.TextEditor.TextEditor_Property_LINE_SPACING_get();
-            internal static readonly int INPUT_LINE_SPACING = Interop.TextEditor.TextEditor_Property_INPUT_LINE_SPACING_get();
-            internal static readonly int UNDERLINE = Interop.TextEditor.TextEditor_Property_UNDERLINE_get();
-            internal static readonly int INPUT_UNDERLINE = Interop.TextEditor.TextEditor_Property_INPUT_UNDERLINE_get();
-            internal static readonly int SHADOW = Interop.TextEditor.TextEditor_Property_SHADOW_get();
-            internal static readonly int INPUT_SHADOW = Interop.TextEditor.TextEditor_Property_INPUT_SHADOW_get();
-            internal static readonly int EMBOSS = Interop.TextEditor.TextEditor_Property_EMBOSS_get();
-            internal static readonly int INPUT_EMBOSS = Interop.TextEditor.TextEditor_Property_INPUT_EMBOSS_get();
-            internal static readonly int OUTLINE = Interop.TextEditor.TextEditor_Property_OUTLINE_get();
-            internal static readonly int INPUT_OUTLINE = Interop.TextEditor.TextEditor_Property_INPUT_OUTLINE_get();
-            internal static readonly int SMOOTH_SCROLL = Interop.TextEditor.TextEditor_Property_SMOOTH_SCROLL_get();
-            internal static readonly int SMOOTH_SCROLL_DURATION = Interop.TextEditor.TextEditor_Property_SMOOTH_SCROLL_DURATION_get();
-            internal static readonly int ENABLE_SCROLL_BAR = Interop.TextEditor.TextEditor_Property_ENABLE_SCROLL_BAR_get();
-            internal static readonly int SCROLL_BAR_SHOW_DURATION = Interop.TextEditor.TextEditor_Property_SCROLL_BAR_SHOW_DURATION_get();
-            internal static readonly int SCROLL_BAR_FADE_DURATION = Interop.TextEditor.TextEditor_Property_SCROLL_BAR_FADE_DURATION_get();
-            internal static readonly int PIXEL_SIZE = Interop.TextEditor.TextEditor_Property_PIXEL_SIZE_get();
-            internal static readonly int LINE_COUNT = Interop.TextEditor.TextEditor_Property_LINE_COUNT_get();
-            internal static readonly int ENABLE_SELECTION = Interop.TextEditor.TextEditor_Property_ENABLE_SELECTION_get();
-            internal static readonly int PLACEHOLDER = Interop.TextEditor.TextEditor_Property_PLACEHOLDER_get();
-            internal static readonly int LINE_WRAP_MODE = Interop.TextEditor.TextEditor_Property_LINE_WRAP_MODE_get();
-            internal static readonly int PLACEHOLDER_TEXT = Interop.TextEditor.TextEditor_Property_PLACEHOLDER_TEXT_get();
-            internal static readonly int PLACEHOLDER_TEXT_COLOR = Interop.TextEditor.TextEditor_Property_PLACEHOLDER_TEXT_COLOR_get();
-            internal static readonly int ENABLE_SHIFT_SELECTION = Interop.TextEditor.TextEditor_Property_ENABLE_SHIFT_SELECTION_get();
-            internal static readonly int MATCH_SYSTEM_LANGUAGE_DIRECTION = Interop.TextEditor.TextEditor_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get();
-            internal static readonly int MAX_LENGTH = Interop.TextEditor.TextEditor_Property_MAX_LENGTH_get();
+            internal static readonly int TEXT = Interop.TextEditor.TextGet();
+            internal static readonly int TextColor = Interop.TextEditor.TextColorGet();
+            internal static readonly int FontFamily = Interop.TextEditor.FontFamilyGet();
+            internal static readonly int FontStyle = Interop.TextEditor.FontStyleGet();
+            internal static readonly int PointSize = Interop.TextEditor.PointSizeGet();
+            internal static readonly int HorizontalAlignment = Interop.TextEditor.HorizontalAlignmentGet();
+            internal static readonly int VerticalAlignment = Interop.TextEditor.VerticalAlignmentGet();
+            internal static readonly int ScrollThreshold = Interop.TextEditor.ScrollThresholdGet();
+            internal static readonly int ScrollSpeed = Interop.TextEditor.ScrollSpeedGet();
+            internal static readonly int PrimaryCursorColor = Interop.TextEditor.PrimaryCursorColorGet();
+            internal static readonly int SecondaryCursorColor = Interop.TextEditor.SecondaryCursorColorGet();
+            internal static readonly int EnableCursorBlink = Interop.TextEditor.EnableCursorBlinkGet();
+            internal static readonly int CursorBlinkInterval = Interop.TextEditor.CursorBlinkIntervalGet();
+            internal static readonly int CursorBlinkDuration = Interop.TextEditor.CursorBlinkDurationGet();
+            internal static readonly int CursorWidth = Interop.TextEditor.CursorWidthGet();
+            internal static readonly int GrabHandleImage = Interop.TextEditor.GrabHandleImageGet();
+            internal static readonly int GrabHandlePressedImage = Interop.TextEditor.GrabHandlePressedImageGet();
+            internal static readonly int SelectionPopupStyle = Interop.TextEditor.SelectionPopupStyleGet();
+            internal static readonly int SelectionHandleImageLeft = Interop.TextEditor.SelectionHandleImageLeftGet();
+            internal static readonly int SelectionHandleImageRight = Interop.TextEditor.SelectionHandleImageRightGet();
+            internal static readonly int SelectionHandlePressedImageLeft = Interop.TextEditor.SelectionHandlePressedImageLeftGet();
+            internal static readonly int SelectionHandlePressedImageRight = Interop.TextEditor.SelectionHandlePressedImageRightGet();
+            internal static readonly int SelectionHandleMarkerImageLeft = Interop.TextEditor.SelectionHandleMarkerImageLeftGet();
+            internal static readonly int SelectionHandleMarkerImageRight = Interop.TextEditor.SelectionHandleMarkerImageRightGet();
+            internal static readonly int SelectionHighlightColor = Interop.TextEditor.SelectionHighlightColorGet();
+            internal static readonly int DecorationBoundingBox = Interop.TextEditor.DecorationBoundingBoxGet();
+            internal static readonly int EnableMarkup = Interop.TextEditor.EnableMarkupGet();
+            internal static readonly int InputColor = Interop.TextEditor.InputColorGet();
+            internal static readonly int InputFontFamily = Interop.TextEditor.InputFontFamilyGet();
+            internal static readonly int InputFontStyle = Interop.TextEditor.InputFontStyleGet();
+            internal static readonly int InputPointSize = Interop.TextEditor.InputPointSizeGet();
+            internal static readonly int LineSpacing = Interop.TextEditor.LineSpacingGet();
+            internal static readonly int InputLineSpacing = Interop.TextEditor.InputLineSpacingGet();
+            internal static readonly int RelativeLineHeight = Interop.TextEditor.RelativeLineHeightGet();
+            internal static readonly int UNDERLINE = Interop.TextEditor.UnderlineGet();
+            internal static readonly int InputUnderline = Interop.TextEditor.InputUnderlineGet();
+            internal static readonly int SHADOW = Interop.TextEditor.ShadowGet();
+            internal static readonly int InputShadow = Interop.TextEditor.InputShadowGet();
+            internal static readonly int EMBOSS = Interop.TextEditor.EmbossGet();
+            internal static readonly int InputEmboss = Interop.TextEditor.InputEmbossGet();
+            internal static readonly int OUTLINE = Interop.TextEditor.OutlineGet();
+            internal static readonly int InputOutline = Interop.TextEditor.InputOutlineGet();
+            internal static readonly int SmoothScroll = Interop.TextEditor.SmoothScrollGet();
+            internal static readonly int SmoothScrollDuration = Interop.TextEditor.SmoothScrollDurationGet();
+            internal static readonly int EnableScrollBar = Interop.TextEditor.EnableScrollBarGet();
+            internal static readonly int ScrollBarShowDuration = Interop.TextEditor.ScrollBarShowDurationGet();
+            internal static readonly int ScrollBarFadeDuration = Interop.TextEditor.ScrollBarFadeDurationGet();
+            internal static readonly int PixelSize = Interop.TextEditor.PixelSizeGet();
+            internal static readonly int LineCount = Interop.TextEditor.LineCountGet();
+            internal static readonly int EnableSelection = Interop.TextEditor.EnableSelectionGet();
+            internal static readonly int PLACEHOLDER = Interop.TextEditor.PlaceholderGet();
+            internal static readonly int LineWrapMode = Interop.TextEditor.LineWrapModeGet();
+            internal static readonly int PlaceholderText = Interop.TextEditor.PlaceholderTextGet();
+            internal static readonly int PlaceholderTextColor = Interop.TextEditor.PlaceholderTextColorGet();
+            internal static readonly int EnableShiftSelection = Interop.TextEditor.EnableShiftSelectionGet();
+            internal static readonly int MatchSystemLanguageDirection = Interop.TextEditor.MatchSystemLanguageDirectionGet();
+            internal static readonly int MaxLength = Interop.TextEditor.MaxLengthGet();
+            internal static readonly int SelectedTextStart = Interop.TextEditor.SelectedTextStartGet();
+            internal static readonly int SelectedTextEnd = Interop.TextEditor.SelectedTextEndGet();
+            internal static readonly int EnableEditing = Interop.TextEditor.EnableEditingGet();
+            internal static readonly int SelectedText = Interop.TextEditor.SelectedTextGet();
+            internal static readonly int HorizontalScrollPosition = Interop.TextEditor.HorizontalScrollPositionGet();
+            internal static readonly int VerticalScrollPosition = Interop.TextEditor.VerticalScrollPositionGet();
+            internal static readonly int PrimaryCursorPosition = Interop.TextEditor.PrimaryCursorPositionGet();
+            internal static readonly int FontSizeScale = Interop.TextEditor.FontSizeScaleGet();
+            internal static readonly int EnableFontSizeScale = Interop.TextEditor.EnableFontSizeScaleGet();
+            internal static readonly int GrabHandleColor = Interop.TextEditor.GrabHandleColorGet();
+            internal static readonly int EnableGrabHandle = Interop.TextEditor.EnableGrabHandleGet();
+            internal static readonly int EnableGrabHandlePopup = Interop.TextEditor.EnableGrabHandlePopupGet();
+            internal static readonly int InputMethodSettings = Interop.TextEditor.InputMethodSettingsGet();
+            internal static readonly int ELLIPSIS = Interop.TextEditor.EllipsisGet();
+            internal static readonly int EllipsisPosition = Interop.TextEditor.EllipsisPositionGet();
+            internal static readonly int MinLineSize = Interop.TextEditor.MinLineSizeGet();
+            internal static readonly int InputFilter = Interop.TextEditor.InputFilterGet();
+            internal static readonly int Strikethrough = Interop.TextEditor.StrikethroughGet();
+            internal static readonly int CharacterSpacing = Interop.TextEditor.CharacterSpacingGet();
+
+            internal static void Preload()
+            {
+                // Do nothing. Just call for load static values.
+            }
         }
 
         internal class InputStyle
@@ -1318,6 +2822,71 @@ namespace Tizen.NUI.BaseComponents
         {
             TextColor = new Vector4(x, y, z, w);
         }
+        private void OnGrabHandleColorChanged(float r, float g, float b, float a)
+        {
+            GrabHandleColor = new Color(r, g, b, a);
+        }
 
+        internal class TextEditorLayout : LayoutItem
+        {
+            protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
+            {
+                // Padding will be automatically applied by DALi TextEditor.
+                var totalWidth = widthMeasureSpec.Size.AsDecimal();
+                var totalHeight = heightMeasureSpec.Size.AsDecimal();
+                var minSize = Owner.MinimumSize;
+                var maxSize = Owner.MaximumSize;
+                var naturalSize = Owner.GetNaturalSize();
+
+                if (((TextEditor)Owner).Text.Length == 0)
+                {
+                    // Calculate height of TextEditor by setting Text with " ".
+                    // By calling SetTextWithoutTextChanged, TextChanged callback is not called for this.
+                    ((TextEditor)Owner).SetTextWithoutTextChanged(" ");
+
+                    // Store original WidthSpecification to restore it after setting ResizePolicy.
+                    var widthSpecification = Owner.WidthSpecification;
+
+                    // In DALi's Size logic, if Width or Height is set to be 0, then
+                    // ResizePolicy is not changed to Fixed.
+                    // This causes Size changes after NUI Layout's OnMeasure is finished.
+                    // e.g. TextEditor's Width fills to its parent although Text is null and
+                    //      WidthSpecification is WrapContent.
+                    // To prevent the Size changes, WidthResizePolicy is set to be Fixed
+                    // in advance if Text is null.
+                    Owner.WidthResizePolicy = ResizePolicyType.Fixed;
+
+                    // Restore WidthSpecification because ResizePolicy changes WidthSpecification.
+                    Owner.WidthSpecification = widthSpecification;
+
+                    naturalSize = Owner.GetNaturalSize();
+
+                    // Restore TextEditor's Text after calculating height of TextEditor.
+                    // By calling SetTextWithoutTextChanged, TextChanged callback is not called for this.
+                    ((TextEditor)Owner).SetTextWithoutTextChanged("");
+                }
+
+                if (widthMeasureSpec.Mode != MeasureSpecification.ModeType.Exactly)
+                {
+                    float width = naturalSize != null ? naturalSize.Width : 0;
+                    totalWidth = Math.Min(Math.Max(width, minSize.Width), maxSize.Width);
+                }
+
+                if (heightMeasureSpec.Mode != MeasureSpecification.ModeType.Exactly)
+                {
+                    float height = naturalSize != null ? naturalSize.Height : 0;
+                    totalHeight = Math.Min(Math.Max(height, minSize.Height), maxSize.Height);
+                }
+
+                widthMeasureSpec = new MeasureSpecification(new LayoutLength(totalWidth), MeasureSpecification.ModeType.Exactly);
+                heightMeasureSpec = new MeasureSpecification(new LayoutLength(totalHeight), MeasureSpecification.ModeType.Exactly);
+
+                MeasuredSize.StateType childWidthState = MeasuredSize.StateType.MeasuredSizeOK;
+                MeasuredSize.StateType childHeightState = MeasuredSize.StateType.MeasuredSizeOK;
+
+                SetMeasuredDimensions(ResolveSizeAndState(new LayoutLength(totalWidth), widthMeasureSpec, childWidthState),
+                                      ResolveSizeAndState(new LayoutLength(totalHeight), heightMeasureSpec, childHeightState));
+            }
+        }
     }
 }

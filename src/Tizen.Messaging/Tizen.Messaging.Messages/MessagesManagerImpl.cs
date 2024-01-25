@@ -32,7 +32,9 @@ namespace Tizen.Messaging.Messages
 
         private static IntPtr _MessageServiceHandle;
 
-        private Interop.Messages.MessageSentCallback _messageSentCallback;
+        int _requestId = 0;
+        Dictionary<int, TaskCompletionSource<SentResult>> _sendMessageTaskSource = new Dictionary<int, TaskCompletionSource<SentResult>>();
+        Interop.Messages.MessageSentCallback _messageSentCallback;
 
         internal static MessagesManagerImpl Instance
         {
@@ -75,6 +77,7 @@ namespace Tizen.Messaging.Messages
 
         private void initialize()
         {
+            _messageSentCallback = MessageSentCallback;
             int ret;
 
             ret = Interop.Messages.OpenService(out _MessageServiceHandle);
@@ -100,27 +103,34 @@ namespace Tizen.Messaging.Messages
             }
         }
 
+        void MessageSentCallback(int result, IntPtr data) {
+            int requestId = (int)data;
+            if (_sendMessageTaskSource.ContainsKey(requestId))
+            {
+                _sendMessageTaskSource[requestId].SetResult((SentResult)result);
+                _sendMessageTaskSource.Remove(requestId);
+            }
+        }
+
         internal Task<SentResult> SendMessageAsync(Message message, bool saveToSentbox)
         {
-            var task = new TaskCompletionSource<SentResult>();
+            TaskCompletionSource<SentResult> task = new TaskCompletionSource<SentResult>();
+            int requestId = 0;
 
-            _messageSentCallback = (int result, IntPtr data) =>
+            lock (this)
             {
-                task.SetResult((SentResult)result);
-            };
-
+                requestId = _requestId++;
+                _sendMessageTaskSource[requestId] = task;
+            }
             message.FillHandle();
-
-            int ret;
             IntPtr messageHandle = message.GetHandle();
-
-            ret = Interop.Messages.SendMessage(_MessageServiceHandle, messageHandle, saveToSentbox, _messageSentCallback, IntPtr.Zero);
+            int ret = Interop.Messages.SendMessage(_MessageServiceHandle, messageHandle, saveToSentbox, _messageSentCallback, (IntPtr)requestId);
             if (ret != (int)MessagesError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to send message, Error - " + (MessagesError)ret);
+                _sendMessageTaskSource.Remove(requestId);
                 MessagesErrorFactory.ThrowMessagesException(ret, _MessageServiceHandle);
             }
-
             return task.Task;
         }
 

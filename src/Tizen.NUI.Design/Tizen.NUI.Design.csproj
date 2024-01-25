@@ -1,12 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <ExternalLibraryDir Condition="'$(ExternalLibraryDir)' == ''">$(ProjectRootDir)externals\libs\</ExternalLibraryDir>
+    <ArtifactsDirectory>$(OutputBaseDir)bin\design\</ArtifactsDirectory>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <Company>Samsung Inc.</Company>
+    <Description>Provides the design-time metadata for the XAML language service.</Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Tizen.NUI\Tizen.NUI.csproj" />
+    <ProjectReference Include="..\Tizen.NUI\Tizen.NUI.csproj">
+      <GenerateDesignMetadata>true</GenerateDesignMetadata>
+      <Name>Tizen.NUI</Name>
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
 
   <ItemGroup>

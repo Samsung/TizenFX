@@ -20,6 +20,7 @@ internal static partial class Interop
     {
         public const string AppCommon = "libcapi-appfw-app-common.so.0";
         public const string AppControl = "libcapi-appfw-app-control.so.0";
+        public const string AppCoreUI = "libapp-core-ui-cpp.so.1";
         public const string AppEvent = "libcapi-appfw-event.so.0";
         public const string AppManager = "libcapi-appfw-app-manager.so.0";
         public const string Bundle = "libbundle.so.0";
@@ -29,5 +30,6 @@ internal static partial class Interop
         public const string Application = "libcapi-appfw-application.so.0";
         public const string BaseUtilsi18n = "libbase-utils-i18n.so.0";
         public const string RpcPort = "librpc-port.so.1";
+        public const string IniParser = "libiniparser.so.1";
     }
 }

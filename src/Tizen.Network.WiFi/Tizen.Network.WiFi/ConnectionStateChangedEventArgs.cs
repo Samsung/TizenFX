@@ -30,7 +30,9 @@ namespace Tizen.Network.WiFi
         internal ConnectionStateChangedEventArgs(WiFiConnectionState s, IntPtr apHandle)
         {
             _state = s;
-            _ap = new WiFiAP(apHandle);
+            IntPtr clonedHandle;
+            Interop.WiFi.AP.Clone(out clonedHandle, apHandle);
+            _ap = new WiFiAP(clonedHandle);
         }
 
         /// <summary>

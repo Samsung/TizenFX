@@ -18,6 +18,7 @@ using System;
 using Tizen.NUI.BaseComponents;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.NUI.Components
 {
@@ -28,7 +29,7 @@ namespace Tizen.NUI.Components
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     [Obsolete("Deprecated in API8; Will be removed in API10")]
-    public class Toast : Control
+    public partial class Toast : Control
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -57,7 +58,6 @@ namespace Tizen.NUI.Components
             var instance = (Toast)bindable;
             if (newValue != null)
             {
-                instance.toastStyle.Duration = (uint)newValue;
                 if (instance.timer == null)
                 {
                     instance.timer = new Timer(instance.duration);
@@ -68,12 +68,12 @@ namespace Tizen.NUI.Components
         defaultValueCreator: (bindable) =>
         {
             var instance = (Toast)bindable;
-            return instance.toastStyle.Duration ?? instance.duration;
+            return instance.timer == null ? instance.duration : instance.timer.Interval;
         });
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Toast FromText(string text, uint duration) 
+        public static Toast FromText(string text, uint duration)
         {
             Toast toast = new Toast();
             toast.Message = text;
@@ -88,26 +88,7 @@ namespace Tizen.NUI.Components
         private string strText = null;
         private Timer timer = null;
         private readonly uint duration = 3000;
-        private ToastStyle toastStyle => ViewStyle as ToastStyle;
 
-        /// <summary>
-        /// Return a copied Style instance of Toast
-        /// </summary>
-        /// <remarks>
-        /// It returns copied Style instance and changing it does not effect to the Toast.
-        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
-        /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new ToastStyle Style
-        {
-            get
-            {
-                var result = new ToastStyle(toastStyle);
-                result.CopyPropertiesFromView(this);
-                result.Text.CopyPropertiesFromView(textLabel);
-                return result;
-            }
-        }
         static Toast() { }
 
         /// <summary>
@@ -117,7 +98,6 @@ namespace Tizen.NUI.Components
         [Obsolete("Deprecated in API8; Will be removed in API10")]
         public Toast() : base()
         {
-            Initialize();
         }
 
         /// <summary>
@@ -127,7 +107,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Toast(ToastStyle toastStyle) : base(toastStyle)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -137,15 +116,28 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Toast(string style) : base(style)
         {
-            Initialize();
         }
 
         /// <summary>
         /// Gets or sets the text array of toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// It will be removed in API10
+        [SuppressMessage("Microsoft.Performance", "CA1819: Properties should not return arrays")]
         [Obsolete("Deprecated in API8; Will be removed in API10")]
         public string[] TextArray
+        {
+            get
+            {
+                return GetValue(TextArrayProperty) as string[];
+            }
+            set
+            {
+                SetValue(TextArrayProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string[] InternalTextArray
         {
             get;
             set;
@@ -157,6 +149,18 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
         public float PointSize
+        {
+            get
+            {
+                return (float)GetValue(PointSizeProperty);
+            }
+            set
+            {
+                SetValue(PointSizeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private float InternalPointSize
         {
             get
             {
@@ -180,6 +184,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(FontFamilyProperty) as string;
+            }
+            set
+            {
+                SetValue(FontFamilyProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalFontFamily
+        {
+            get
+            {
                 return textLabel?.FontFamily;
             }
             set
@@ -197,6 +213,18 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
         public Color TextColor
+        {
+            get
+            {
+                return GetValue(TextColorProperty) as Color;
+            }
+            set
+            {
+                SetValue(TextColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Color InternalTextColor
         {
             get
             {
@@ -220,6 +248,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return (HorizontalAlignment)GetValue(TextAlignmentProperty);
+            }
+            set
+            {
+                SetValue(TextAlignmentProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private HorizontalAlignment InternalTextAlignment
+        {
+            get
+            {
                 return textLabel?.HorizontalAlignment ?? HorizontalAlignment.Center;
             }
             set
@@ -237,8 +277,8 @@ namespace Tizen.NUI.Components
         {
             window = win;
             window.Add(this);
-            this.Position.X = (window.Size.Width - this.Size.Width) / 2;
-            this.Position.Y = (window.Size.Height - this.Size.Height) / 2;
+            this.PositionX = (window.Size.Width - this.Size.Width) / 2;
+            this.PositionY = (window.Size.Height - this.Size.Height) / 2;
             timer.Start();
         }
 
@@ -269,6 +309,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(TextPaddingProperty) as Extents;
+            }
+            set
+            {
+                SetValue(TextPaddingProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Extents InternalTextPadding
+        {
+            get
+            {
                 return textLabel?.Padding;
             }
             set
@@ -285,14 +337,38 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
-        public uint TextLineHeight { get; set; }
+        public uint TextLineHeight
+        {
+            get
+            {
+                return (UInt32)GetValue(TextLineHeightProperty);
+            }
+            set
+            {
+                SetValue(TextLineHeightProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private uint InternalTextLineHeight { get; set; }
 
         /// <summary>
         /// Gets or sets text line space in toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
-        public uint TextLineSpace { get; set; }
+        public uint TextLineSpace
+        {
+            get
+            {
+                return (uint)GetValue(TextLineSpaceProperty);
+            }
+            set
+            {
+                SetValue(TextLineSpaceProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private uint InternalTextLineSpace { get; set; }
 
         /// <summary>
         /// Gets or sets duration of toast.
@@ -311,6 +387,33 @@ namespace Tizen.NUI.Components
             }
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+
+            WidthResizePolicy = ResizePolicyType.FitToChildren;
+            HeightResizePolicy = ResizePolicyType.FitToChildren;
+
+            textLabel = new TextLabel()
+            {
+                PositionUsesPivotPoint = true,
+                ParentOrigin = Tizen.NUI.ParentOrigin.Center,
+                PivotPoint = Tizen.NUI.PivotPoint.Center,
+                WidthResizePolicy = ResizePolicyType.UseNaturalSize,
+                HeightResizePolicy = ResizePolicyType.UseNaturalSize,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                TextColor = Color.White,
+            };
+            this.Add(textLabel);
+
+            this.VisibilityChanged += OnVisibilityChanged;
+            timer = new Timer(duration);
+            timer.Tick += OnTick;
+        }
+
         /// <summary>
         /// Apply style to toast.
         /// </summary>
@@ -320,15 +423,8 @@ namespace Tizen.NUI.Components
         {
             base.ApplyStyle(viewStyle);
 
-            ToastStyle toastStyle = viewStyle as ToastStyle;
-
-            if (null != toastStyle)
+            if (viewStyle is ToastStyle toastStyle)
             {
-                if (null == textLabel)
-                {
-                    textLabel = new TextLabel();
-                    this.Add(textLabel);
-                }
                 textLabel.ApplyStyle(toastStyle.Text);
             }
         }
@@ -339,7 +435,9 @@ namespace Tizen.NUI.Components
         /// <param name="type">dispose types.</param>
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
+#pragma warning disable CS0809 // Obsolete member overrides non-obsolete member, It will be removed in API10
         protected override void Dispose(DisposeTypes type)
+#pragma warning restore CS0809 // Obsolete member overrides non-obsolete member, It will be removed in API10
         {
             if (disposed)
             {
@@ -373,19 +471,6 @@ namespace Tizen.NUI.Components
         protected override ViewStyle CreateViewStyle()
         {
             return new ToastStyle();
-        }
-
-        private void Initialize()
-        {
-            if (null == textLabel)
-            {
-                textLabel = new TextLabel();
-                this.Add(textLabel);
-            }
-
-            this.VisibilityChanged += OnVisibilityChanged;
-            timer = new Timer(toastStyle.Duration ?? duration);
-            timer.Tick += OnTick;
         }
 
         private bool OnTick(object sender, EventArgs e)

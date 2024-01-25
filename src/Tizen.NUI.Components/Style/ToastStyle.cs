@@ -26,6 +26,19 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ToastStyle : ControlStyle
     {
+        /// <summary>The Duration bindable property.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty DurationProperty = BindableProperty.Create(nameof(Duration), typeof(uint?), typeof(ToastStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((ToastStyle)bindable).duration = (uint?)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((ToastStyle)bindable).duration;
+        });
+
+        private uint? duration;
+
         static ToastStyle() { }
 
         /// <summary>
@@ -34,7 +47,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ToastStyle() : base()
         {
-            InitSubStyle();
         }
 
         /// <summary>
@@ -44,54 +56,34 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ToastStyle(ToastStyle style) : base(style)
         {
-            InitSubStyle();
-            this.CopyFrom(style);
         }
 
         /// <summary>
         /// Gets or sets toast show duration time.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint? Duration { get; set; }
+        public uint? Duration
+        {
+            get => (uint?)GetValue(DurationProperty);
+            set => SetValue(DurationProperty, value);
+        }
 
         /// <summary>
         /// Text's Style.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabelStyle Text { get; set; }
+        public TextLabelStyle Text { get; set; } = new TextLabelStyle();
 
-        /// <summary>
-        /// Style's clone function.
-        /// </summary>
-        /// <param name="bindableObject">The style that need to copy.</param>
+        /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);
-            ToastStyle toastStyle = bindableObject as ToastStyle;
-            if (toastStyle != null)
-            {
-                if (null != toastStyle.Text)
-                {
-                    Text?.CopyFrom(toastStyle.Text);
-                }
-                Duration = toastStyle.Duration;
-            }
-        }
 
-        private void InitSubStyle()
-        {
-            Text = new TextLabelStyle()
+            if (bindableObject is ToastStyle toastStyle)
             {
-                PositionUsesPivotPoint = true,
-                ParentOrigin = Tizen.NUI.ParentOrigin.Center,
-                PivotPoint = Tizen.NUI.PivotPoint.Center,
-                WidthResizePolicy = ResizePolicyType.UseNaturalSize,
-                HeightResizePolicy = ResizePolicyType.UseNaturalSize,
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center,
-                TextColor = Tizen.NUI.Color.White,
-            };
+                Text.CopyFrom(toastStyle.Text);
+            }
         }
     }
 }

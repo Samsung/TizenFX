@@ -1,3 +1,20 @@
+/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -100,13 +117,13 @@ namespace Tizen.NUI.Binding
         /// <param name="value">The default value.</param>
         /// <returns>System.Boolean</returns>
         public delegate bool ValidateValueDelegate<in TPropertyType>(BindableObject bindable, TPropertyType value);
-		
+
         //To confirm the static dictionary will be created before the constructor is called.
         static BindableProperty()
         {
         }
 
-        static readonly Dictionary<Type, TypeConverter> WellKnownConvertTypes = new  Dictionary<Type,TypeConverter>
+        static readonly Dictionary<Type, TypeConverter> WellKnownConvertTypes = new Dictionary<Type, TypeConverter>
         {
             { typeof(Uri), new UriTypeConverter() },
             { typeof(Color), new ColorTypeConverter() },
@@ -150,19 +167,19 @@ namespace Tizen.NUI.Binding
                                  CoerceValueDelegate coerceValue = null, BindablePropertyBindingChanging bindingChanging = null, bool isReadOnly = false, CreateDefaultValueDelegate defaultValueCreator = null)
         {
             if (propertyName == null)
-                throw new ArgumentNullException("propertyName");
+                throw new ArgumentNullException(nameof(propertyName));
             if (ReferenceEquals(returnType, null))
-                throw new ArgumentNullException("returnType");
+                throw new ArgumentNullException(nameof(returnType));
             if (ReferenceEquals(declaringType, null))
-                throw new ArgumentNullException("declaringType");
+                throw new ArgumentNullException(nameof(declaringType));
 
             // don't use Enum.IsDefined as its redonkulously expensive for what it does
             if (defaultBindingMode != BindingMode.Default && defaultBindingMode != BindingMode.OneWay && defaultBindingMode != BindingMode.OneWayToSource && defaultBindingMode != BindingMode.TwoWay && defaultBindingMode != BindingMode.OneTime)
-                throw new ArgumentException("Not a valid type of BindingMode", "defaultBindingMode");
+                throw new ArgumentException("Not a valid type of BindingMode", nameof(defaultBindingMode));
             if (defaultValue == null && Nullable.GetUnderlyingType(returnType) == null && returnType.GetTypeInfo().IsValueType)
-                throw new ArgumentException("Not a valid default value", "defaultValue");
+                throw new ArgumentException("Not a valid default value", nameof(defaultValue));
             if (defaultValue != null && !returnType.IsInstanceOfType(defaultValue))
-                throw new ArgumentException("Default value did not match return type", "defaultValue");
+                throw new ArgumentException("Default value did not match return type", nameof(defaultValue));
             if (defaultBindingMode == BindingMode.Default)
                 defaultBindingMode = BindingMode.OneWay;
 
@@ -179,6 +196,7 @@ namespace Tizen.NUI.Binding
             BindingChanging = bindingChanging;
             IsReadOnly = isReadOnly;
             DefaultValueCreator = defaultValueCreator;
+            ValueGetter = defaultValueCreator;
 
             Dictionary<string, BindableProperty> nameToBindableProperty;
             bindablePropertyOfType.TryGetValue(declaringType, out nameToBindableProperty);
@@ -293,6 +311,8 @@ namespace Tizen.NUI.Binding
 
         internal CreateDefaultValueDelegate DefaultValueCreator { get; }
 
+        internal CreateDefaultValueDelegate ValueGetter { get; }
+
         internal BindingPropertyChangedDelegate PropertyChanged { get; private set; }
 
         internal BindingPropertyChangingDelegate PropertyChanging { get; private set; }
@@ -300,29 +320,6 @@ namespace Tizen.NUI.Binding
         internal System.Reflection.TypeInfo ReturnTypeInfo { get; }
 
         internal ValidateValueDelegate ValidateValue { get; private set; }
-
-        /// <summary>
-        /// Deprecated. Do not use.
-        /// </summary>
-        /// <typeparam name="TDeclarer">The type of the declaring object.</typeparam>
-        /// <typeparam name="TPropertyType">The type of the property.</typeparam>
-        /// <param name="getter">An expression identifying the getter for the property using this BindableProperty as backing store.</param>
-        /// <param name="defaultValue">The default value for the property.</param>
-        /// <param name="defaultBindingMode">The BindingMode to use on SetBinding() if no BindingMode is given. This parameter is optional. Default is BindingMode.OneWay.</param>
-        /// <param name="validateValue">A delegate to be run when a value is set. This parameter is optional. Default is null.</param>
-        /// <param name="propertyChanged">A delegate to be run when the value has changed. This parameter is optional. Default is null.</param>
-        /// <param name="propertyChanging">A delegate to be run when the value will change. This parameter is optional. Default is null.</param>
-        /// <param name="coerceValue">A delegate used to coerce the range of a value. This parameter is optional. Default is null.</param>
-        /// <param name="defaultValueCreator">A Func used to initialize default value for reference types.</param>
-        /// <returns>A newly created BindableProperty.</returns>
-        [Obsolete("Create<> (generic) is obsolete as of version 2.1.0 and is no longer supported.")]
-        public static BindableProperty Create<TDeclarer, TPropertyType>(Expression<Func<TDeclarer, TPropertyType>> getter, TPropertyType defaultValue, BindingMode defaultBindingMode = BindingMode.OneWay,
-                                                                        ValidateValueDelegate<TPropertyType> validateValue = null, BindingPropertyChangedDelegate<TPropertyType> propertyChanged = null,
-                                                                        BindingPropertyChangingDelegate<TPropertyType> propertyChanging = null, CoerceValueDelegate<TPropertyType> coerceValue = null,
-                                                                        CreateDefaultValueDelegate<TDeclarer, TPropertyType> defaultValueCreator = null) where TDeclarer : BindableObject
-        {
-            return Create(getter, defaultValue, defaultBindingMode, validateValue, propertyChanged, propertyChanging, coerceValue, null, defaultValueCreator: defaultValueCreator);
-        }
 
         /// <summary>
         /// Creates a new instance of the BindableProperty class.
@@ -347,29 +344,6 @@ namespace Tizen.NUI.Binding
         }
 
         /// <summary>
-        /// Deprecated. Do not use.
-        /// </summary>
-        /// <typeparam name="TDeclarer">The type of the declaring object.</typeparam>
-        /// <typeparam name="TPropertyType">The type of the property.</typeparam>
-        /// <param name="staticgetter">An expression identifying a static method returning the value of the property using this BindableProperty as backing store.</param>
-        /// <param name="defaultValue">The default value for the property.</param>
-        /// <param name="defaultBindingMode">The BindingMode to use on SetBinding() if no BindingMode is given. This parameter is optional. Default is BindingMode.OneWay.</param>
-        /// <param name="validateValue">A delegate to be run when a value is set. This parameter is optional. Default is null.</param>
-        /// <param name="propertyChanged">A delegate to be run when the value has changed. This parameter is optional. Default is null.</param>
-        /// <param name="propertyChanging">A delegate to be run when the value will change. This parameter is optional. Default is null.</param>
-        /// <param name="coerceValue">A delegate used to coerce the range of a value. This parameter is optional. Default is null.</param>
-        /// <param name="defaultValueCreator">A Func used to initialize default value for reference types.</param>
-        [Obsolete("CreateAttached<> (generic) is obsolete as of version 2.1.0 and is no longer supported.")]
-        public static BindableProperty CreateAttached<TDeclarer, TPropertyType>(Expression<Func<BindableObject, TPropertyType>> staticgetter, TPropertyType defaultValue,
-                                                                                BindingMode defaultBindingMode = BindingMode.OneWay, ValidateValueDelegate<TPropertyType> validateValue = null, BindingPropertyChangedDelegate<TPropertyType> propertyChanged = null,
-                                                                                BindingPropertyChangingDelegate<TPropertyType> propertyChanging = null, CoerceValueDelegate<TPropertyType> coerceValue = null,
-                                                                                CreateDefaultValueDelegate<BindableObject, TPropertyType> defaultValueCreator = null)
-        {
-            return CreateAttached<TDeclarer, TPropertyType>(staticgetter, defaultValue, defaultBindingMode, validateValue, propertyChanged, propertyChanging, coerceValue, null,
-                defaultValueCreator: defaultValueCreator);
-        }
-
-        /// <summary>
         /// Creates a new instance of the BindableProperty class for an attached property.
         /// </summary>
         /// <param name="propertyName">The name of the BindableProperty.</param>
@@ -388,32 +362,6 @@ namespace Tizen.NUI.Binding
                                                       CoerceValueDelegate coerceValue = null, CreateDefaultValueDelegate defaultValueCreator = null)
         {
             return CreateAttached(propertyName, returnType, declaringType, defaultValue, defaultBindingMode, validateValue, propertyChanged, propertyChanging, coerceValue, null, false, defaultValueCreator);
-        }
-
-        /// <summary>
-        /// Deprecated. Do not use.
-        /// </summary>
-        /// <typeparam name="TDeclarer">The type of the declaring object.</typeparam>
-        /// <typeparam name="TPropertyType">The type of the property.</typeparam>
-        /// <param name="staticgetter">An expression identifying a static method returning the value of the property using this BindableProperty as backing store.</param>
-        /// <param name="defaultValue">The default value for the property.</param>
-        /// <param name="defaultBindingMode">The BindingMode to use on SetBinding() if no BindingMode is given. This parameter is optional. Default is BindingMode.OneWay.</param>
-        /// <param name="validateValue">A delegate to be run when a value is set. This parameter is optional. Default is null.</param>
-        /// <param name="propertyChanged">A delegate to be run when the value has changed. This parameter is optional. Default is null.</param>
-        /// <param name="propertyChanging">A delegate to be run when the value will change. This parameter is optional. Default is null.</param>
-        /// <param name="coerceValue">A delegate used to coerce the range of a value. This parameter is optional. Default is null.</param>
-        /// <param name="defaultValueCreator">A Func used to initialize default value for reference types.</param>
-        /// <returns>A newly created attached read-only BindablePropertyKey.</returns>
-        [Obsolete("CreateAttachedReadOnly<> (generic) is obsolete as of version 2.1.0 and is no longer supported.")]
-        public static BindablePropertyKey CreateAttachedReadOnly<TDeclarer, TPropertyType>(Expression<Func<BindableObject, TPropertyType>> staticgetter, TPropertyType defaultValue,
-                                                                                           BindingMode defaultBindingMode = BindingMode.OneWayToSource, ValidateValueDelegate<TPropertyType> validateValue = null,
-                                                                                           BindingPropertyChangedDelegate<TPropertyType> propertyChanged = null, BindingPropertyChangingDelegate<TPropertyType> propertyChanging = null,
-                                                                                           CoerceValueDelegate<TPropertyType> coerceValue = null, CreateDefaultValueDelegate<BindableObject, TPropertyType> defaultValueCreator = null)
-
-        {
-            return
-                new BindablePropertyKey(CreateAttached<TDeclarer, TPropertyType>(staticgetter, defaultValue, defaultBindingMode, validateValue, propertyChanged, propertyChanging, coerceValue, null, true,
-                    defaultValueCreator));
         }
 
         /// <summary>
@@ -440,29 +388,6 @@ namespace Tizen.NUI.Binding
         }
 
         /// <summary>
-        /// Deprecated. Do not use.
-        /// </summary>
-        /// <typeparam name="TDeclarer">The type of the declaring object.</typeparam>
-        /// <typeparam name="TPropertyType">The type of the property.</typeparam>
-        /// <param name="getter">An expression identifying the getter for the property using this BindableProperty as backing store.</param>
-        /// <param name="defaultValue">The default value for the property.</param>
-        /// <param name="defaultBindingMode">The BindingMode to use on SetBinding() if no BindingMode is given. This parameter is optional. Default is BindingMode.OneWay.</param>
-        /// <param name="validateValue">A delegate to be run when a value is set. This parameter is optional. Default is null.</param>
-        /// <param name="propertyChanged">A delegate to be run when the value has changed. This parameter is optional. Default is null.</param>
-        /// <param name="propertyChanging">A delegate to be run when the value will change. This parameter is optional. Default is null.</param>
-        /// <param name="coerceValue">A delegate used to coerce the range of a value. This parameter is optional. Default is null.</param>
-        /// <param name="defaultValueCreator">A Func used to initialize default value for reference types.</param>
-        /// <returns>A newly created BindablePropertyKey.</returns>
-        [Obsolete("CreateReadOnly<> (generic) is obsolete as of version 2.1.0 and is no longer supported.")]
-        public static BindablePropertyKey CreateReadOnly<TDeclarer, TPropertyType>(Expression<Func<TDeclarer, TPropertyType>> getter, TPropertyType defaultValue,
-                                                                                   BindingMode defaultBindingMode = BindingMode.OneWayToSource, ValidateValueDelegate<TPropertyType> validateValue = null,
-                                                                                   BindingPropertyChangedDelegate<TPropertyType> propertyChanged = null, BindingPropertyChangingDelegate<TPropertyType> propertyChanging = null,
-                                                                                   CoerceValueDelegate<TPropertyType> coerceValue = null, CreateDefaultValueDelegate<TDeclarer, TPropertyType> defaultValueCreator = null) where TDeclarer : BindableObject
-        {
-            return new BindablePropertyKey(Create(getter, defaultValue, defaultBindingMode, validateValue, propertyChanged, propertyChanging, coerceValue, null, true, defaultValueCreator));
-        }
-
-        /// <summary>
         /// Creates a new instance of the BindablePropertyKey class.
         /// </summary>
         /// <param name="propertyName">The name of the BindableProperty.</param>
@@ -484,99 +409,12 @@ namespace Tizen.NUI.Binding
                 new BindablePropertyKey(new BindableProperty(propertyName, returnType, declaringType, defaultValue, defaultBindingMode, validateValue, propertyChanged, propertyChanging, coerceValue,
                     isReadOnly: true, defaultValueCreator: defaultValueCreator));
         }
-
-        [Obsolete("Create<> (generic) is obsolete as of version 2.1.0 and is no longer supported.")]
-        internal static BindableProperty Create<TDeclarer, TPropertyType>(Expression<Func<TDeclarer, TPropertyType>> getter, TPropertyType defaultValue, BindingMode defaultBindingMode,
-                                                                          ValidateValueDelegate<TPropertyType> validateValue, BindingPropertyChangedDelegate<TPropertyType> propertyChanged, BindingPropertyChangingDelegate<TPropertyType> propertyChanging,
-                                                                          CoerceValueDelegate<TPropertyType> coerceValue, BindablePropertyBindingChanging bindingChanging, bool isReadOnly = false,
-                                                                          CreateDefaultValueDelegate<TDeclarer, TPropertyType> defaultValueCreator = null) where TDeclarer : BindableObject
-        {
-            if (getter == null)
-                throw new ArgumentNullException("getter");
-
-            Expression expr = getter.Body;
-
-            var unary = expr as UnaryExpression;
-            if (unary != null)
-                expr = unary.Operand;
-
-            var member = expr as MemberExpression;
-            if (member == null)
-                throw new ArgumentException("getter must be a MemberExpression", "getter");
-
-            var property = (PropertyInfo)member.Member;
-
-            ValidateValueDelegate untypedValidateValue = null;
-            BindingPropertyChangedDelegate untypedBindingPropertyChanged = null;
-            BindingPropertyChangingDelegate untypedBindingPropertyChanging = null;
-            CoerceValueDelegate untypedCoerceValue = null;
-            CreateDefaultValueDelegate untypedDefaultValueCreator = null;
-            if (validateValue != null)
-                untypedValidateValue = (bindable, value) => validateValue(bindable, (TPropertyType)value);
-            if (propertyChanged != null)
-                untypedBindingPropertyChanged = (bindable, oldValue, newValue) => propertyChanged(bindable, (TPropertyType)oldValue, (TPropertyType)newValue);
-            if (propertyChanging != null)
-                untypedBindingPropertyChanging = (bindable, oldValue, newValue) => propertyChanging(bindable, (TPropertyType)oldValue, (TPropertyType)newValue);
-            if (coerceValue != null)
-                untypedCoerceValue = (bindable, value) => coerceValue(bindable, (TPropertyType)value);
-            if (defaultValueCreator != null)
-                untypedDefaultValueCreator = o => defaultValueCreator((TDeclarer)o);
-
-            return new BindableProperty(property.Name, property.PropertyType, typeof(TDeclarer), defaultValue, defaultBindingMode, untypedValidateValue, untypedBindingPropertyChanged,
-                untypedBindingPropertyChanging, untypedCoerceValue, bindingChanging, isReadOnly, untypedDefaultValueCreator);
-        }
-
         internal static BindableProperty Create(string propertyName, Type returnType, Type declaringType, object defaultValue, BindingMode defaultBindingMode, ValidateValueDelegate validateValue,
                                                 BindingPropertyChangedDelegate propertyChanged, BindingPropertyChangingDelegate propertyChanging, CoerceValueDelegate coerceValue, BindablePropertyBindingChanging bindingChanging,
                                                 CreateDefaultValueDelegate defaultValueCreator = null)
         {
             return new BindableProperty(propertyName, returnType, declaringType, defaultValue, defaultBindingMode, validateValue, propertyChanged, propertyChanging, coerceValue, bindingChanging,
                 defaultValueCreator: defaultValueCreator);
-        }
-
-        [Obsolete("CreateAttached<> (generic) is obsolete as of version 2.1.0 and is no longer supported.")]
-        internal static BindableProperty CreateAttached<TDeclarer, TPropertyType>(Expression<Func<BindableObject, TPropertyType>> staticgetter, TPropertyType defaultValue, BindingMode defaultBindingMode,
-                                                                                  ValidateValueDelegate<TPropertyType> validateValue, BindingPropertyChangedDelegate<TPropertyType> propertyChanged, BindingPropertyChangingDelegate<TPropertyType> propertyChanging,
-                                                                                  CoerceValueDelegate<TPropertyType> coerceValue, BindablePropertyBindingChanging bindingChanging, bool isReadOnly = false,
-                                                                                  CreateDefaultValueDelegate<BindableObject, TPropertyType> defaultValueCreator = null)
-        {
-            if (staticgetter == null)
-                throw new ArgumentNullException("staticgetter");
-
-            Expression expr = staticgetter.Body;
-
-            var unary = expr as UnaryExpression;
-            if (unary != null)
-                expr = unary.Operand;
-
-            var methodcall = expr as MethodCallExpression;
-            if (methodcall == null)
-                throw new ArgumentException("staticgetter must be a MethodCallExpression", "staticgetter");
-
-            MethodInfo method = methodcall.Method;
-            if (!method.Name.StartsWith("Get", StringComparison.Ordinal))
-                throw new ArgumentException("staticgetter name must start with Get", "staticgetter");
-
-            string propertyname = method.Name.Substring(3);
-
-            ValidateValueDelegate untypedValidateValue = null;
-            BindingPropertyChangedDelegate untypedBindingPropertyChanged = null;
-            BindingPropertyChangingDelegate untypedBindingPropertyChanging = null;
-            CoerceValueDelegate untypedCoerceValue = null;
-            CreateDefaultValueDelegate untypedDefaultValueCreator = null;
-            if (validateValue != null)
-                untypedValidateValue = (bindable, value) => validateValue(bindable, (TPropertyType)value);
-            if (propertyChanged != null)
-                untypedBindingPropertyChanged = (bindable, oldValue, newValue) => propertyChanged(bindable, (TPropertyType)oldValue, (TPropertyType)newValue);
-            if (propertyChanging != null)
-                untypedBindingPropertyChanging = (bindable, oldValue, newValue) => propertyChanging(bindable, (TPropertyType)oldValue, (TPropertyType)newValue);
-            if (coerceValue != null)
-                untypedCoerceValue = (bindable, value) => coerceValue(bindable, (TPropertyType)value);
-            if (defaultValueCreator != null)
-                untypedDefaultValueCreator = o => defaultValueCreator(o);
-
-            return new BindableProperty(propertyname, method.ReturnType, typeof(TDeclarer), defaultValue, defaultBindingMode, untypedValidateValue, untypedBindingPropertyChanged, untypedBindingPropertyChanging,
-                untypedCoerceValue, bindingChanging, isReadOnly, untypedDefaultValueCreator);
         }
 
         internal static BindableProperty CreateAttached(string propertyName, Type returnType, Type declaringType, object defaultValue, BindingMode defaultBindingMode, ValidateValueDelegate validateValue,
@@ -604,6 +442,12 @@ namespace Tizen.NUI.Binding
 
             Type valueType = value.GetType();
             Type type = ReturnType;
+
+            // TODO This is temporary fix before deleting CreateByXaml flag in BindableProperty.
+            if (valueType.IsGenericType && valueType.GetGenericTypeDefinition() == typeof(Tizen.NUI.BaseComponents.Selector<>) && valueType.GetGenericArguments()[0] == ReturnType)
+            {
+                return true;
+            }
 
             // Dont support arbitrary IConvertible by limiting which types can use this
             Type[] convertableTo;

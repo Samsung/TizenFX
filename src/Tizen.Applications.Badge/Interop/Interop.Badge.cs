@@ -31,7 +31,7 @@ internal static partial class Interop
             ServiceReady
         }
 
-        internal delegate void ForeachCallback(string appId, uint count, IntPtr userData);
+        internal delegate bool ForeachCallback(string appId, uint count, IntPtr userData);
 
         internal delegate void ChangedCallback(Action action, string appId, uint count, IntPtr userData);
 

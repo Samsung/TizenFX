@@ -390,7 +390,7 @@ namespace Tizen.NUI.Samples
         private Texture LoadStageFillingTexture(string filepath)
         {
             Size2D dimensions = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height);
-            PixelBuffer pb = ImageLoading.LoadImageFromFile(filepath, dimensions, FittingModeType.ScaleToFill);
+            PixelBuffer pb = ImageLoader.LoadImageFromFile(filepath, dimensions, FittingModeType.ScaleToFill);
             PixelData pd = PixelBuffer.Convert(pb);
 
             Texture texture = new Texture(TextureType.TEXTURE_2D, pd.GetPixelFormat(), pd.GetWidth(), pd.GetHeight());

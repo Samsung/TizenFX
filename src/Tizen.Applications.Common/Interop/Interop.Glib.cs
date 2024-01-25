@@ -29,5 +29,20 @@ internal static partial class Interop
 
         [DllImport(Libraries.Glib, EntryPoint = "g_source_remove", CallingConvention = CallingConvention.Cdecl)]
         internal static extern bool RemoveSource(uint source);
+
+        [DllImport(Libraries.Glib, EntryPoint = "g_idle_source_new", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern IntPtr IdleSourceNew();
+
+        [DllImport(Libraries.Glib, EntryPoint = "g_source_set_callback", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern void SourceSetCallback(IntPtr source, GSourceFunc func, IntPtr data, IntPtr notify);
+
+        [DllImport(Libraries.Glib, EntryPoint = "g_source_attach", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern uint SourceAttach(IntPtr source, IntPtr context);
+
+        [DllImport(Libraries.Glib, EntryPoint = "g_source_unref", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern void SourceUnref(IntPtr source);
+
+        [DllImport(Libraries.Glib, EntryPoint = "g_main_context_get_thread_default", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern IntPtr MainContextGetThreadDefault();
     }
 }

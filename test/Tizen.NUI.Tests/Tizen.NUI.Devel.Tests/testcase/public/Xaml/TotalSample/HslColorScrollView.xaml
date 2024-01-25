@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<View x:Class="Tizen.NUI.Devel.Tests.HslColorScrollView"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:l="clr-namespace:Tizen.NUI.Devel.Tests;assembly=Tizen.NUI.Devel.Tests"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <View.XamlResources>
+        <ResourceDictionary>
+            <l:FloatToIntConverter x:Key="floatToInt" />
+        </ResourceDictionary>
+    </View.XamlResources>
+    <View x:Name="view" BackgroundColor="{Binding Color}" Size2D="440,400" Position2D="20,10" >
+        <View.BindingContext>
+            <l:HslViewModel x:Name="hsl" Color="Red" />
+        </View.BindingContext>
+        
+        <TextLabel Text="{Binding Hue, Converter={StaticResource floatToInt}, ConverterParameter=255, StringFormat='Hue = {0:F2}'}" 
+        Position2D="20,480" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+        <TextLabel Text="{Binding Saturation, StringFormat='Saturation = {0:F2}'}" 
+        Position2D="20,590" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+        <TextLabel Text="{Binding Luminosity, StringFormat='Luminosity = {0:F2}'}" 
+        Position2D="20,690" HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <TextLabel.Text>
+                <Binding Path="Luminosity" StringFormat="Luminosity = {0:X2}" Converter="{StaticResource floatToInt}">
+                    <Binding.ConverterParameter>
+                        <x:Single>255</x:Single>
+                    </Binding.ConverterParameter>
+                </Binding>
+            </TextLabel.Text>
+        </TextLabel>
+    </View>
+</View>

@@ -1,3 +1,20 @@
+/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Xml;
@@ -52,7 +69,7 @@ namespace Tizen.NUI.Xaml
 
             var markupString = markupnode.MarkupString;
             var node =
-                ParseExpression(ref markupString, markupnode.NamespaceResolver, markupnode, markupnode, parentNode) as IElementNode;
+                ParseExpression(ref markupString, markupnode.NamespaceResolver, markupnode) as IElementNode;
             if (node != null)
             {
                 ((IElementNode)parentNode).Properties[propertyName] = node;
@@ -72,8 +89,7 @@ namespace Tizen.NUI.Xaml
         {
         }
 
-        INode ParseExpression(ref string expression, IXmlNamespaceResolver nsResolver, IXmlLineInfo xmlLineInfo, INode node,
-            INode parentNode)
+        INode ParseExpression(ref string expression, IXmlNamespaceResolver nsResolver, INode node)
         {
             if (expression.StartsWith("{}", StringComparison.Ordinal))
                 return new ValueNode(expression.Substring(2), null);
@@ -90,7 +106,7 @@ namespace Tizen.NUI.Xaml
                 throw new Exception("Expression did not end in '}'");
 
             var serviceProvider = new XamlServiceProvider(node, Context);
-            serviceProvider.Add(typeof (IXmlNamespaceResolver), nsResolver);
+            serviceProvider.Add(typeof(IXmlNamespaceResolver), nsResolver);
 
             return new MarkupExpansionParser().Parse(match, ref expression, serviceProvider);
         }
@@ -106,17 +122,17 @@ namespace Tizen.NUI.Xaml
 
             public INode Parse(string match, ref string remaining, IServiceProvider serviceProvider)
             {
-                var nsResolver = serviceProvider.GetService(typeof (IXmlNamespaceResolver)) as IXmlNamespaceResolver;
+                var nsResolver = serviceProvider.GetService(typeof(IXmlNamespaceResolver)) as IXmlNamespaceResolver;
                 if (nsResolver == null)
-                    throw new ArgumentException();
+                    throw new ArgumentException(nameof(nsResolver));
                 IXmlLineInfo xmlLineInfo = null;
-                var xmlLineInfoProvider = serviceProvider.GetService(typeof (IXmlLineInfoProvider)) as IXmlLineInfoProvider;
+                var xmlLineInfoProvider = serviceProvider.GetService(typeof(IXmlLineInfoProvider)) as IXmlLineInfoProvider;
                 if (xmlLineInfoProvider != null)
                     xmlLineInfo = xmlLineInfoProvider.XmlLineInfo;
 
                 var split = match.Split(':');
                 if (split.Length > 2)
-                    throw new ArgumentException();
+                    throw new ArgumentException(nameof(split.Length));
 
                 string prefix; //, name;
                 if (split.Length == 2)
@@ -131,7 +147,7 @@ namespace Tizen.NUI.Xaml
                 }
 
                 Type type;
-                var typeResolver = serviceProvider.GetService(typeof (IXamlTypeResolver)) as IXamlTypeResolver;
+                var typeResolver = serviceProvider.GetService(typeof(IXamlTypeResolver)) as IXamlTypeResolver;
                 if (typeResolver == null)
                     type = null;
                 // Add Binding and StaticResource support, The ordinal code can't find BindingExtension for Binding
@@ -148,7 +164,7 @@ namespace Tizen.NUI.Xaml
                     //The order of lookup is to look for the Extension-suffixed class name first and then look for the class name without the Extension suffix.
                     if (!typeResolver.TryResolve(match + "Extension", out type) && !typeResolver.TryResolve(match, out type))
                     {
-                        var lineInfoProvider = serviceProvider.GetService(typeof (IXmlLineInfoProvider)) as IXmlLineInfoProvider;
+                        var lineInfoProvider = serviceProvider.GetService(typeof(IXmlLineInfoProvider)) as IXmlLineInfoProvider;
                         var lineInfo = (lineInfoProvider != null) ? lineInfoProvider.XmlLineInfo : new XmlLineInfo();
                         throw new XamlParseException(String.Format("MarkupExtension not found for {0}", match), lineInfo);
                     }
@@ -180,7 +196,7 @@ namespace Tizen.NUI.Xaml
 
             protected override void SetPropertyValue(string prop, string strValue, object value, IServiceProvider serviceProvider)
             {
-                var nsResolver = serviceProvider.GetService(typeof (IXmlNamespaceResolver)) as IXmlNamespaceResolver;
+                var nsResolver = serviceProvider.GetService(typeof(IXmlNamespaceResolver)) as IXmlNamespaceResolver;
 
                 var childnode = value as INode ?? new ValueNode(strValue, nsResolver);
                 childnode.Parent = node;

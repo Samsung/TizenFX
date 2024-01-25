@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,58 +15,56 @@
  *
  */
 
+using System;
+using System.Diagnostics;
+
 namespace Tizen.NUI.BaseComponents
 {
     /// <summary>
-    /// The class storing extra data for a View to optimize size of it.
+    /// The class storing extra selector properties of view that is rared used.
     /// </summary>
     internal class ViewSelectorData
     {
-        public TriggerableSelector<Color> BackgroundColor { get; } = new TriggerableSelector<Color>(View.BackgroundColorProperty, delegate(View view)
-        {
-            var background = view.Background;
-            int visualType = 0;
-            background.Find(Visual.Property.Type)?.Get(out visualType);
+        internal ViewSelectorData() { }
 
-            if (visualType == (int)Visual.Type.Color)
-            {
-                Color backgroundColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-                background.Find(ColorVisualProperty.MixColor)?.Get(backgroundColor);
-                return backgroundColor;
-            }
-            return null;
-        });
-        public TriggerableSelector<string> BackgroundImage { get; } = new TriggerableSelector<string>(View.BackgroundImageProperty, delegate(View view)
+        public TriggerableSelector<Color> BackgroundColor{ get; set; }
+        public TriggerableSelector<string> BackgroundImage{ get; set; }
+        public TriggerableSelector<Rectangle> BackgroundImageBorder{ get; set; }
+        public TriggerableSelector<Color> Color{ get; set; }
+        public TriggerableSelector<float?> Opacity{ get; set; }
+        public TriggerableSelector<ImageShadow> ImageShadow{ get; set; }
+        public TriggerableSelector<Shadow> BoxShadow{ get; set; }
+        public TriggerableSelector<Color> BorderlineColor{ get; set; }
+
+        public void ClearBackground(View view)
         {
-            string backgroundImage = null;
-            view.Background.Find(ImageVisualProperty.URL)?.Get(out backgroundImage);
-            return backgroundImage;
-        });
-        public TriggerableSelector<Rectangle> BackgroundImageBorder { get; } = new TriggerableSelector<Rectangle>(View.BackgroundImageBorderProperty);
-        public TriggerableSelector<Color> Color { get; } = new TriggerableSelector<Color>(View.ColorProperty, delegate(View view)
+            BackgroundColor?.Reset(view);
+            BackgroundImage?.Reset(view);
+            BackgroundImageBorder?.Reset(view);
+            BackgroundColor = null;
+            BackgroundImage = null;
+            BackgroundImageBorder = null;
+        }
+        public void ClearShadow(View view)
         {
-            Color color = new Color();
-            if (view.GetProperty(Interop.ActorProperty.Actor_Property_COLOR_get()).Get(color))
-            {
-                return color;
-            }
-            return null;
-        });
-        public TriggerableSelector<float?> Opacity { get; } = new TriggerableSelector<float?>(View.OpacityProperty);
-        public TriggerableSelector<ImageShadow> ImageShadow { get; } = new TriggerableSelector<ImageShadow>(View.ImageShadowProperty);
-        public TriggerableSelector<Shadow> BoxShadow { get; } = new TriggerableSelector<Shadow>(View.BoxShadowProperty);
-        public TriggerableSelector<float?> CornerRadius { get; } = new TriggerableSelector<float?>(View.CornerRadiusProperty);
+            ImageShadow?.Reset(view);
+            BoxShadow?.Reset(view);
+            ImageShadow = null;
+            BoxShadow = null;
+        }
 
         public void Reset(View view)
         {
-            BackgroundColor.Reset(view);
-            BackgroundImage.Reset(view);
-            BackgroundImageBorder.Reset(view);
-            Color.Reset(view);
-            Opacity.Reset(view);
-            ImageShadow.Reset(view);
-            BoxShadow.Reset(view);
-            CornerRadius.Reset(view);
+            BackgroundColor?.Reset(view);
+            BackgroundImage?.Reset(view);
+            BackgroundImageBorder?.Reset(view);
+            Color?.Reset(view);
+            Opacity?.Reset(view);
+            ImageShadow?.Reset(view);
+            BoxShadow?.Reset(view);
+            BorderlineColor?.Reset(view);
         }
     }
 }
+
+

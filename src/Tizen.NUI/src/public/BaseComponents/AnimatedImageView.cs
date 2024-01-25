@@ -18,10 +18,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 
-#if (NUI_DEBUG_ON)
-using tlog = Tizen.Log;
-#endif
-
 namespace Tizen.NUI.BaseComponents
 {
     /// <summary>
@@ -29,9 +25,28 @@ namespace Tizen.NUI.BaseComponents
     /// </summary>
     // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class AnimatedImageView : ImageView
+    public partial class AnimatedImageView : ImageView
     {
-        #region Constructor, Distructor, Dispose
+        #region Internal
+        /// <summary>
+        /// Actions property value to Jump to the specified frame.
+        /// </summary>
+        internal static readonly int ActionJumpTo = Interop.AnimatedImageView.AnimatedImageVisualActionJumpToGet();
+        #endregion Internal
+
+        #region Private
+        // Collection of animated-image-sensitive properties.
+        private static readonly List<int> cachedAnimatedImagePropertyKeyList = new List<int> {
+            ImageVisualProperty.BatchSize,
+            ImageVisualProperty.CacheSize,
+            ImageVisualProperty.FrameDelay,
+            ImageVisualProperty.LoopCount,
+            ImageVisualProperty.StopBehavior,
+        };
+        private List<string> resourceURLs = new List<string>();
+        #endregion Private
+
+        #region Constructor, Destructor, Dispose
         /// <summary>
         /// Construct AnimatedImageView
         /// </summary>
@@ -39,7 +54,6 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AnimatedImageView() : base()
         {
-            mDirtyFlag = true;
         }
 
         /// <summary>
@@ -60,27 +74,9 @@ namespace Tizen.NUI.BaseComponents
             //because the execution order of Finalizes is non-deterministic.
             base.Dispose(type);
         }
-        #endregion Constructor, Distructor, Dispose
+        #endregion Constructor, Destructor, Dispose
 
         #region Property
-        /// <summary>
-        /// Image URL for Animated-GIF
-        /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new string ResourceUrl
-        {
-            get
-            {
-                return mUrl;
-            }
-            set
-            {
-                mDirtyFlag = true;
-                mUrl = value;
-            }
-        }
-
         /// <summary>
         ///  Image URL list for Image-Array
         /// </summary>
@@ -90,12 +86,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return mResourceURLs;
-            }
-            set
-            {
-                mDirtyFlag = true;
-                mResourceURLs = value;
+                return resourceURLs;
             }
         }
 
@@ -109,12 +100,31 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return mBatchSize;
+                return (int)GetValue(BatchSizeProperty);
             }
             set
             {
-                mDirtyFlag = true;
-                mBatchSize = value;
+                SetValue(BatchSizeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private int InternalBatchSize
+        {
+            get
+            {
+                int ret = 1;
+
+                PropertyValue batchSize = GetCachedImageVisualProperty(ImageVisualProperty.BatchSize);
+                batchSize?.Get(out ret);
+                batchSize?.Dispose();
+
+                return ret;
+            }
+            set
+            {
+                using PropertyValue setValue = new PropertyValue(value);
+                UpdateImage(ImageVisualProperty.BatchSize, setValue);
             }
         }
 
@@ -132,12 +142,31 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return mCacheSize;
+                return (int)GetValue(CacheSizeProperty);
             }
             set
             {
-                mDirtyFlag = true;
-                mCacheSize = value;
+                SetValue(CacheSizeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private int InternalCacheSize
+        {
+            get
+            {
+                int ret = 1;
+
+                PropertyValue cacheSize = GetCachedImageVisualProperty(ImageVisualProperty.CacheSize);
+                cacheSize?.Get(out ret);
+                cacheSize?.Dispose();
+
+                return ret;
+            }
+            set
+            {
+                using PropertyValue setValue = new PropertyValue(value);
+                UpdateImage(ImageVisualProperty.CacheSize, setValue);
             }
         }
 
@@ -154,12 +183,31 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return mFrameDelay;
+                return (int)GetValue(FrameDelayProperty);
             }
             set
             {
-                mDirtyFlag = true;
-                mFrameDelay = value;
+                SetValue(FrameDelayProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private int InternalFrameDelay
+        {
+            get
+            {
+                int ret = 0;
+
+                PropertyValue frameDelay = GetCachedImageVisualProperty(ImageVisualProperty.FrameDelay);
+                frameDelay?.Get(out ret);
+                frameDelay?.Dispose();
+
+                return ret;
+            }
+            set
+            {
+                using PropertyValue setValue = new PropertyValue(value);
+                UpdateImage(ImageVisualProperty.FrameDelay, setValue);
             }
         }
 
@@ -172,12 +220,140 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return mLoopCount;
+                return (int)GetValue(LoopCountProperty);
             }
             set
             {
-                mDirtyFlag = true;
-                mLoopCount = value;
+                SetValue(LoopCountProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private int InternalLoopCount
+        {
+            get
+            {
+                int ret = -1;
+
+                PropertyValue loopCount = GetCachedImageVisualProperty(ImageVisualProperty.LoopCount);
+                loopCount?.Get(out ret);
+                loopCount?.Dispose();
+
+                return ret;
+            }
+            set
+            {
+                using PropertyValue setValue = new PropertyValue(value);
+                UpdateImage(ImageVisualProperty.LoopCount, setValue);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the stop behavior.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public StopBehaviorType StopBehavior
+        {
+            get
+            {
+                return (StopBehaviorType)GetValue(StopBehaviorProperty);
+            }
+            set
+            {
+                SetValue(StopBehaviorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private StopBehaviorType InternalStopBehavior
+        {
+            get
+            {
+                int ret = 0;
+
+                PropertyValue stopBehavior = GetCachedImageVisualProperty(ImageVisualProperty.StopBehavior);
+                stopBehavior?.Get(out ret);
+                stopBehavior?.Dispose();
+
+                return (StopBehaviorType)ret;
+            }
+            set
+            {
+                using PropertyValue setValue = new PropertyValue((int)value);
+                UpdateImage(ImageVisualProperty.StopBehavior, setValue);
+            }
+        }
+
+        /// <summary>
+        /// Get the number of total frames
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int TotalFrame
+        {
+            get
+            {
+                int ret = -1;
+                PropertyMap map = base.Image;
+                if (map != null)
+                {
+                    PropertyValue val = map.Find(ImageVisualProperty.TotalFrameNumber);
+                    if (val != null)
+                    {
+                        if (val.Get(out ret))
+                        {
+                            return ret;
+                        }
+                    }
+                }
+                return ret;
+            }
+        }
+
+        /// <summary>
+        /// Set or get the current frame. When setting a specific frame, it is displayed as a still image.
+        /// </summary>
+        /// <remarks>
+        /// Gets the value set by a user. If the setting value is out-ranged, it is reset as a minimum frame or a maximum frame.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int CurrentFrame
+        {
+            get
+            {
+                return (int)GetValue(CurrentFrameProperty);
+            }
+            set
+            {
+                SetValue(CurrentFrameProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private int InternalCurrentFrame
+        {
+            set
+            {
+                // Sync as current properties
+                UpdateImage();
+
+                DoAction(ImageView.Property.IMAGE, ActionJumpTo, new PropertyValue(value));
+            }
+            get
+            {
+                int ret = -1;
+                PropertyMap map = base.Image;
+                if (map != null)
+                {
+                    PropertyValue val = map.Find(ImageVisualProperty.CurrentFrameNumber);
+                    if (val != null)
+                    {
+                        if (val.Get(out ret))
+                        {
+                            return ret;
+                        }
+                    }
+                }
+                return ret;
             }
         }
         #endregion Property
@@ -190,90 +366,109 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetValues()
         {
-            if (mDirtyFlag == false)
-            {
-                return;
-            }
-            mDirtyFlag = false;
+            // This API assume that Animated relative properties setuped forcely.
+            imagePropertyUpdatedFlag = true;
 
-            PropertyMap tMap = new PropertyMap();
-            tMap.Insert(Visual.Property.Type, new PropertyValue((int)Visual.Type.AnimatedImage));
-            if (mResourceURLs?.Count != 0)
+            // Sync as current properties
+            UpdateImage();
+        }
+
+        /// <summary>
+        /// Update animated-image-relative properties synchronously.
+        /// After call this API, All image properties updated.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void UpdateImage()
+        {
+            if (!imagePropertyUpdatedFlag) return;
+
+            // Assume that we are using standard Image at first.
+            // (Since we might cache Visual.Property.Type as Visual.Type.AnimatedImage even we don't use URLs.)
+            using (PropertyValue imageType = new PropertyValue((int)Visual.Type.Image))
             {
-                PropertyArray tArr = new PropertyArray();
-                foreach (var iter in mResourceURLs)
+                UpdateImage(Visual.Property.Type, imageType, false);
+            }
+
+            if (resourceURLs != null && resourceURLs.Count != 0)
+            {
+                using (PropertyArray indexPropertyArray = new PropertyArray())
                 {
-                    tArr.Add(new PropertyValue(iter));
+                    PropertyArray returnedArr = new PropertyArray();
+                    foreach (var iter in resourceURLs)
+                    {
+                        using (PropertyValue index = new PropertyValue(iter))
+                        {
+                            returnedArr = indexPropertyArray.Add(index);
+                        }
+                    }
+                    returnedArr.Dispose();
+                    using PropertyValue arrayProperty = new PropertyValue(indexPropertyArray);
+
+                    // Trigger the ImageView so that we have something update
+                    UpdateImage(ImageVisualProperty.URL, arrayProperty, false);
                 }
-                tMap.Insert(ImageVisualProperty.URL, new PropertyValue(tArr));
-                tMap.Insert(ImageVisualProperty.BatchSize, new PropertyValue(mBatchSize));
-                tMap.Insert(ImageVisualProperty.CacheSize, new PropertyValue(mCacheSize));
-                tMap.Insert(ImageVisualProperty.FrameDelay, new PropertyValue(mFrameDelay));
-                tMap.Insert(ImageVisualProperty.LoopCount, new PropertyValue(mLoopCount));
 
+                // Trick that we are using resourceURLs without ResourceUrl API.
+                using PropertyValue animatiedImage = new PropertyValue((int)Visual.Type.AnimatedImage);
+                UpdateImage(Visual.Property.Type, animatiedImage, false);
             }
-            else
+
+            base.UpdateImage();
+        }
+
+        /// <summary>
+        /// Update NUI cached animated image visual property map by inputed property map.
+        /// And call base.MergeCachedImageVisualProperty()
+        /// </summary>
+        /// <remarks>
+        /// For performance issue, we will collect only "cachedAnimatedImagePropertyKeyList" hold in this class.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void MergeCachedImageVisualProperty(PropertyMap map)
+        {
+            if (map == null) return;
+            if (cachedImagePropertyMap == null)
             {
-                tMap.Insert(ImageVisualProperty.URL, new PropertyValue(mUrl));
+                cachedImagePropertyMap = new PropertyMap();
             }
-
-            mMap = tMap;
-            SetProperty(ImageView.Property.IMAGE, new PropertyValue(mMap));
-        }
-
-        /// <summary>
-        /// Play animation
-        /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new void Play()
-        {
-            SetValues();
-            base.Play();
-        }
-
-        /// <summary>
-        /// Pause animation. Currently pause and stop are same
-        /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new void Pause()
-        {
-            SetValues();
-            base.Pause();
-        }
-
-        /// <summary>
-        /// Stop animation. Currently pause and stop are same
-        /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new void Stop()
-        {
-            SetValues();
-            base.Stop();
+            foreach (var key in cachedAnimatedImagePropertyKeyList)
+            {
+                PropertyValue value = map.Find(key);
+                if (value != null)
+                {
+                    // Update-or-Insert new value
+                    cachedImagePropertyMap[key] = value;
+                }
+            }
+            base.MergeCachedImageVisualProperty(map);
         }
         #endregion Method
 
-
         #region Event, Enum, Struct, ETC
+
+        /// <summary>
+        /// Enumeration for what to do when the animation is stopped.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum StopBehaviorType
+        {
+            /// <summary>
+            /// When the animation is stopped, the current frame is shown.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            CurrentFrame,
+            /// <summary>
+            /// When the animation is stopped, the min frame (first frame) is shown.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            MinimumFrame,
+            /// <summary>
+            /// When the animation is stopped, the max frame (last frame) is shown.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            MaximumFrame
+        }
+
         #endregion Event, Enum, Struct, ETC
-
-
-        #region Internal
-        #endregion Internal
-
-
-        #region Private
-        string mUrl = "";
-        List<string> mResourceURLs = new List<string>();
-        int mBatchSize = 1;
-        int mCacheSize = 1;
-        int mFrameDelay = 0;
-        int mLoopCount = -1;
-        bool mDirtyFlag = false;
-        PropertyMap mMap;
-        const string tag = "NUITEST";
-        #endregion Private
     }
 }

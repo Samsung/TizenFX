@@ -131,7 +131,7 @@ namespace Tizen.Multimedia.Util
             }
             finally
             {
-                Interop.Libc.Free(outBuffer);
+                Marshal.FreeHGlobal(outBuffer);
             }
         }
 
@@ -514,13 +514,59 @@ namespace Tizen.Multimedia.Util
         /// The property determining whether the WebP compression is lossless or lossy.<br/>
         /// The default is false(lossy).</value>
         /// <since_tizen> 8 </since_tizen>
-        public bool Lossless { get; set; }
+        public bool Lossless { get; set; } = false;
 
         internal override void Configure(ImageEncoderHandle handle)
         {
-            NativeEncoder.SetWebPLossless(handle, Lossless).
+            NativeEncoder.SetLossless(handle, Lossless).
                 ThrowIfFailed("Failed to configure encoder; Lossless");
         }
     }
 
+    /// <summary>
+    /// Provides the ability to encode the JPEG(Joint Photographic Experts Group) XL format images.
+    /// </summary>
+    /// <since_tizen> 10 </since_tizen>
+    public class JpegXlEncoder : ImageEncoder
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="JpegXlEncoder"/> class.
+        /// </summary>
+        /// <remarks><see cref="ImageEncoder.OutputFormat"/> will be the <see cref="ImageFormat.JpegXl"/>.</remarks>
+        /// <since_tizen> 10 </since_tizen>
+        public JpegXlEncoder() :
+            base(ImageFormat.JpegXl)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="JpegXlEncoder"/> class for lossless or lossy compression.
+        /// </summary>
+        /// <remarks><see cref="ImageEncoder.OutputFormat"/> will be the <see cref="ImageFormat.JpegXl"/>.</remarks>
+        /// <param name="lossless">
+        /// The flag determining whether the compression is lossless or lossy: true for lossless, false for lossy.<br/>
+        /// The default value is false.
+        /// </param>
+        /// <since_tizen> 10 </since_tizen>
+        public JpegXlEncoder(bool lossless) :
+            base(ImageFormat.JpegXl)
+        {
+            Lossless = lossless;
+        }
+
+        /// <summary>
+        /// Gets or sets the lossless or lossy JpegXl compression.
+        /// </summary>
+        /// <value>
+        /// The property determining whether the JpegXl compression is lossless or lossy.<br/>
+        /// The default is false(lossy).</value>
+        /// <since_tizen> 10 </since_tizen>
+        public bool Lossless { get; set; } = false;
+
+        internal override void Configure(ImageEncoderHandle handle)
+        {
+            NativeEncoder.SetLossless(handle, Lossless).
+                ThrowIfFailed($"Failed to configure encoder; Lossless={Lossless}");
+        }
+    }
 }

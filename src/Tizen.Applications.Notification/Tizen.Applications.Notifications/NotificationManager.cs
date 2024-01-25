@@ -25,6 +25,55 @@ namespace Tizen.Applications.Notifications
     /// <since_tizen> 3 </since_tizen>
     public static class NotificationManager
     {
+        private static event EventHandler<NotificationResponseEventArgs> ResponseEventHandler;
+
+        private static Interop.Notification.ResponseEventCallback responseEventCallback;
+
+        private static void ResponseEventCallback(IntPtr ptr, int type, IntPtr userData)
+        {
+            IntPtr cloned;
+            NotificationError ret = Interop.Notification.Clone(ptr, out cloned);
+            if (ret != NotificationError.None)
+            {
+                Log.Error(Notification.LogTag, "Fail to clone notification : " + ret.ToString());
+                return;
+            }
+
+            NotificationResponseEventArgs eventArgs = new NotificationResponseEventArgs();
+            eventArgs.EventType = (NotificationResponseEventType)type;
+            eventArgs.Notification = new Notification
+            {
+                Handle = new NotificationSafeHandle(cloned, true)
+            }.Build();
+            ResponseEventHandler?.Invoke(null, eventArgs);
+        }
+
+        /// <summary> 
+        /// The event handler for receiving a response event from the notification viewers
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static event EventHandler<NotificationResponseEventArgs> ResponseReceived
+        {
+            add
+            {
+                if (responseEventCallback == null)
+                {
+                    responseEventCallback = new Interop.Notification.ResponseEventCallback(ResponseEventCallback);
+                }
+                
+                ResponseEventHandler += value;
+            }
+
+            remove
+            {
+                if (ResponseEventHandler != null && ResponseEventHandler.GetInvocationList().Length > 0)
+                {
+                    ResponseEventHandler -= value;
+                }
+            }
+        }
+
         /// <summary>
         /// Posts a new notification.
         /// </summary>
@@ -65,11 +114,22 @@ namespace Tizen.Applications.Notifications
 
             notification.Make();
 
-            NotificationError ret = Interop.Notification.Post(notification.Handle);
-            if (ret != NotificationError.None)
+            if (ResponseEventHandler != null && ResponseEventHandler.GetInvocationList().Length > 0)
             {
-                throw NotificationErrorFactory.GetException(ret, "post notification failed");
+                NotificationError ret = Interop.Notification.PostWithEventCallback(notification.Handle, responseEventCallback, IntPtr.Zero);
+                if (ret != NotificationError.None)
+                {
+                    throw NotificationErrorFactory.GetException(ret, "post notification with event callback failed");
+                }
             }
+            else
+            {
+                NotificationError ret = Interop.Notification.Post(notification.Handle);
+                if (ret != NotificationError.None)
+                {
+                    throw NotificationErrorFactory.GetException(ret, "post notification failed");
+                }
+            }   
 
             int priv_id, group_id;
             Interop.Notification.GetID(notification.Handle, out group_id, out priv_id);

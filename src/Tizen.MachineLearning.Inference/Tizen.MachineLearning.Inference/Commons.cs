@@ -177,6 +177,26 @@ namespace Tizen.MachineLearning.Inference
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         SNPE = 10,
+        /// <summary>
+        /// PyTorch (.pt)
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        PyTorch = 11,
+        /// <summary>
+        /// Inference supported from NNTrainer, SR On-device Training Framework
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        NNTrainerInferenceFW = 12,
+        /// <summary>
+        /// Inference framework for Samsung Tizen TV
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        VDAIFW = 13,
+        /// <summary>
+        /// TriXEngine accesses TRIV/TRIA NPU low-level drivers directly (.tvn). You may need to use high-level drivers wrapping this low-level driver in some devices: e.g., AIFW
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        TriXEngine = 14,
     }
 
     /// <summary>
@@ -231,6 +251,11 @@ namespace Tizen.MachineLearning.Inference
         /// <since_tizen> 8 </since_tizen>
         NPUVivante = 0x3003,
         /// <summary>
+        /// Samsung S.LSI NPU
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        NPUSLSI = 0x3004,
+        /// <summary>
         /// Any SR (Samsung Research) made NPU.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
@@ -242,7 +267,7 @@ namespace Tizen.MachineLearning.Inference
         /// <summary>
         /// The maximum rank that NNStreamer supports with Tizen APIs.
         /// </summary>
-        internal const int RankLimit = 4;
+        internal const int RankLimit = 16;
 
         /// <summary>
         /// The maximum number of other/tensor instances that other/tensors may have.

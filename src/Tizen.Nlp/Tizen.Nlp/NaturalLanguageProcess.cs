@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -31,6 +32,7 @@ namespace Tizen.Nlp
     /// This class contains the methods in the NLP processing.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
+    [Obsolete("Deprecated since API11. Will be removed in API13.")]
     public class NaturalLanguageProcess : IDisposable
     {
         private Message _msg;
@@ -64,6 +66,7 @@ namespace Tizen.Nlp
         /// http://tizen.org/feature/nlp
         /// </feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         public NaturalLanguageProcess()
         {
             _noti.Received += ResultReceived;
@@ -81,6 +84,7 @@ namespace Tizen.Nlp
         /// A connection status change event
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         public event EventHandler Disconnected;
         private enum ConnectedState
         {
@@ -116,46 +120,55 @@ namespace Tizen.Nlp
         {
             Log.Debug(LogTag, "OnReceived ");
             MessageReceivedEventArgs e = new MessageReceivedEventArgs();
-            int requestid;
+            int requestid = 0;
             Dictionary<string, string[]> result = new Dictionary<string, string[]>();
-            result.Add("token", (string[])msg.GetItem("return_token"));
-            e.RequestId = requestid = int.Parse((string)msg.GetItem("request_id"));
-            if (msg.GetItem("command").Equals("word_tokenize"))
+            if (msg.Contains("return_token"))
+                result.Add("token", (string[])msg.GetItem("return_token"));
+
+            if (msg.Contains("request_id"))
+                e.RequestId = requestid = int.Parse((string)msg.GetItem("request_id"), NumberStyles.Integer, CultureInfo.InvariantCulture);
+            else
+                return;
+
+            if (msg.Contains("command"))
             {
-                e.Message = result;
-                if (_mapsWordTokenize.ContainsKey(requestid))
+                if (msg.GetItem("command").Equals("word_tokenize"))
                 {
-                    _mapsWordTokenize[requestid]?.Invoke(e);
-                    _mapsWordTokenize.Remove(requestid);
+                    e.Message = result;
+                    if (_mapsWordTokenize.ContainsKey(requestid))
+                    {
+                        _mapsWordTokenize[requestid]?.Invoke(e);
+                        _mapsWordTokenize.Remove(requestid);
+                    }
                 }
-            }
-            else if (msg.GetItem("command").Equals("pos_tag"))
-            {
-                result.Add("tag", (string[])msg.GetItem("return_tag"));
-                e.Message = result;
-                if (_mapsPosTag.ContainsKey(requestid))
+                else if (msg.GetItem("command").Equals("pos_tag"))
                 {
-                    _mapsPosTag[requestid]?.Invoke(e);
-                    _mapsPosTag.Remove(requestid);
+                    result.Add("tag", (string[])msg.GetItem("return_tag"));
+                    e.Message = result;
+                    if (_mapsPosTag.ContainsKey(requestid))
+                    {
+                        _mapsPosTag[requestid]?.Invoke(e);
+                        _mapsPosTag.Remove(requestid);
+                    }
                 }
-            }
-            else if (msg.GetItem("command").Equals("ne_chunk"))
-            {
-                result.Add("tag", (string[])msg.GetItem("return_tag"));
-                e.Message = result;
-                if (_mapsNamedEntity.ContainsKey(requestid))
+                else if (msg.GetItem("command").Equals("ne_chunk"))
                 {
-                    _mapsNamedEntity[requestid]?.Invoke(e);
-                    _mapsNamedEntity.Remove(requestid);
+                    result.Add("tag", (string[])msg.GetItem("return_tag"));
+                    e.Message = result;
+                    if (_mapsNamedEntity.ContainsKey(requestid))
+                    {
+                        _mapsNamedEntity[requestid]?.Invoke(e);
+                        _mapsNamedEntity.Remove(requestid);
+                    }
                 }
-            }
-            else if (msg.GetItem("command").Equals("langdetect"))
-            {
-                e.Message = result;
-                if (_mapsLangDetect.ContainsKey(requestid))
+                else if (msg.GetItem("command").Equals("langdetect"))
                 {
-                    _mapsLangDetect[requestid]?.Invoke(e);
-                    _mapsLangDetect.Remove(requestid);
+                    e.Message = result;
+                    if (_mapsLangDetect.ContainsKey(requestid))
+                    {
+                        _mapsLangDetect[requestid]?.Invoke(e);
+                        _mapsLangDetect.Remove(requestid);
+                    }
                 }
             }
         }
@@ -166,6 +179,7 @@ namespace Tizen.Nlp
         /// <since_tizen> 5 </since_tizen>
         /// <returns>A task representing the asynchronous connect operation.</returns>
         /// <exception cref="InvalidOperationException">Thrown when the connect is rejected.</exception>
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         public Task Connect()
         {
             if (_connectionState == ConnectedState.Connected)
@@ -188,9 +202,18 @@ namespace Tizen.Nlp
             _msg.Connected += (sender, e) =>
             {
                 Log.Debug(LogTag, "start to register");
-                _msg.CoRegister(Application.Current.ApplicationInfo.ApplicationId, _noti);
-                _connectionState = ConnectedState.Connected;
-                tcs.SetResult(true);
+                try
+                {
+                    _msg.CoRegister(Application.Current.ApplicationInfo.ApplicationId, _noti);
+                    _connectionState = ConnectedState.Connected;
+                    tcs.SetResult(true);
+                }
+                catch (InvalidIOException)
+                {
+                    Log.Debug(LogTag, "Exception occurred while CoRegister");
+                    _connectionState = ConnectedState.Disconnected;
+                    tcs.SetException(new InvalidOperationException("invalid Port cause exception", new InvalidIOException()));
+                }
             };
             _msg.Rejected += (sender, e) =>
             {
@@ -205,6 +228,7 @@ namespace Tizen.Nlp
         /// A method to close message connection
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         public void Close()
         {
             if (_connectionState == ConnectedState.Disconnected) return;
@@ -229,6 +253,7 @@ namespace Tizen.Nlp
         /// A method to release resource of library
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         public void Dispose()
         {
             Dispose(true);
@@ -257,6 +282,7 @@ namespace Tizen.Nlp
         /// <param name="sentence">A sentence need to be processed.</param>
         /// <returns>PosTagResult</returns>
         /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         public Task<PosTagResult> PosTagAsync(string sentence)
         {
             int id = _requestIdPos++;
@@ -281,6 +307,7 @@ namespace Tizen.Nlp
         /// <param name="sentence">A sentence need to be processed.</param>
         /// <returns>NamedEntityRecognitionResult</returns>
         /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         public Task<NamedEntityRecognitionResult> NamedEntityRecognitionAsync(string sentence)
         {
             int id = _requestIdNeChunk++;
@@ -305,6 +332,7 @@ namespace Tizen.Nlp
         /// <param name="sentence">A sentence need to be processed.</param>
         /// <returns>LanguageDetectedResult</returns>
         /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         public Task<LanguageDetectedResult> LanguageDetectAsync(string sentence)
         {
             int id = _requestIdLang++;
@@ -327,6 +355,7 @@ namespace Tizen.Nlp
         /// <param name="sentence">A sentence need to be processed.</param>
         /// <returns>ProcessResult</returns>
         /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         public Task<WordTokenizeResult> WordTokenizeAsync(string sentence)
         {
             int id = _requestIdWordTokenize++;

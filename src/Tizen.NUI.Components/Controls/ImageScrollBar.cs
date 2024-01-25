@@ -30,7 +30,7 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 6 </since_tizen>
     /// This will be deprecated
     [Obsolete("Deprecated in API8; Will be removed in API10")]
-    public class ScrollBar : Control
+    public partial class ScrollBar : Control
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -39,14 +39,14 @@ namespace Tizen.NUI.Components
             var instance = (ScrollBar)bindable;
             if (newValue != null)
             {
-                instance.Style.Direction = (DirectionType?)newValue;
+                instance.direction = (DirectionType)newValue;
                 instance.UpdateValue();
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (ScrollBar)bindable;
-            return instance.Style.Direction;
+            return instance.direction;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -112,7 +112,7 @@ namespace Tizen.NUI.Components
             var instance = (ScrollBar)bindable;
             if (newValue != null)
             {
-                instance.Style.Duration = (uint)newValue;
+                instance.duration = (uint)newValue;
                 if (instance.scrollAniPlayer != null)
                 {
                     instance.scrollAniPlayer.Duration = (int)(uint)newValue;
@@ -122,7 +122,7 @@ namespace Tizen.NUI.Components
         defaultValueCreator: (bindable) =>
         {
             var instance = (ScrollBar)bindable;
-            return instance.Style.Duration;
+            return instance.duration;
         });
 
         private ImageView trackImage;
@@ -134,6 +134,8 @@ namespace Tizen.NUI.Components
         private int minValue;
         private int maxValue;
         private int curValue;
+        private DirectionType direction = DirectionType.Horizontal;
+        private uint duration;
         static ScrollBar() { }
 
         /// <summary>
@@ -144,7 +146,6 @@ namespace Tizen.NUI.Components
         [Obsolete("Deprecated in API8; Will be removed in API10")]
         public ScrollBar() : base()
         {
-            Initialize();
         }
 
         /// <summary>
@@ -154,7 +155,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ScrollBar(string style) : base(style)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -164,7 +164,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ScrollBar(ScrollBarStyle scrollBarStyle) : base(scrollBarStyle)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -193,12 +192,6 @@ namespace Tizen.NUI.Components
         }
 
         #region public property 
-        /// <summary>
-        /// Get style of scrollbar.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new ScrollBarStyle Style => ViewStyle as ScrollBarStyle;
-
         /// <summary>
         /// The property to get/set the direction of the ScrollBar.
         /// </summary>
@@ -241,13 +234,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Thumb?.Size;
+                return GetValue(ThumbSizeProperty) as Size;
             }
             set
             {
-                if (null != Style?.Thumb)
+                SetValue(ThumbSizeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Size InternalThumbSize
+        {
+            get
+            {
+                return thumbImage?.Size;
+            }
+            set
+            {
+                if (thumbImage != null)
                 {
-                    Style.Thumb.Size = value;
+                    thumbImage.Size = value;
                     RelayoutRequest();
                 }
             }
@@ -263,13 +268,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Track?.ResourceUrl?.All;
+                return GetValue(TrackImageURLProperty) as string;
             }
             set
             {
-                if (null != Style?.Track)
+                SetValue(TrackImageURLProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalTrackImageURL
+        {
+            get
+            {
+                return trackImage?.ResourceUrl;
+            }
+            set
+            {
+                if (trackImage != null)
                 {
-                    Style.Track.ResourceUrl = value;
+                    trackImage.ResourceUrl = value;
                     RelayoutRequest();
                 }
             }
@@ -285,14 +302,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Track?.BackgroundColor?.All;
+                return GetValue(TrackColorProperty) as Color;
             }
             set
             {
-                if (null != Style?.Track)
+                SetValue(TrackColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Color InternalTrackColor
+        {
+            get
+            {
+                return trackImage?.BackgroundColor;
+            }
+            set
+            {
+                if (trackImage != null)
                 {
-                    Style.Track.BackgroundColor = value;
-                    RelayoutRequest();
+                    trackImage.BackgroundColor = value;
                 }
             }
         }
@@ -307,14 +335,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style?.Thumb?.BackgroundColor?.All;
+                return GetValue(ThumbColorProperty) as Color;
             }
             set
             {
-                if(null != Style?.Thumb)
+                SetValue(ThumbColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Color InternalThumbColor
+        {
+            get
+            {
+                return thumbImage?.BackgroundColor;
+            }
+            set
+            {
+                if (thumbImage != null)
                 {
-                    Style.Thumb.BackgroundColor = value;
-                    RelayoutRequest();
+                    thumbImage.BackgroundColor = value;
                 }
             }
         }
@@ -453,7 +492,9 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be deprecated
         [Obsolete("Deprecated in API8; Will be removed in API10")]
+#pragma warning disable CS0809 // Obsolete member overrides non-obsolete member, It will be removed in API10
         protected override void Dispose(DisposeTypes type)
+#pragma warning restore CS0809 // Obsolete member overrides non-obsolete member, It will be removed in API10
         {
             if (disposed)
             {
@@ -497,24 +538,12 @@ namespace Tizen.NUI.Components
             return new ScrollBarStyle();
         }
 
-        /// <summary>
-        /// Theme change callback when theme is changed, this callback will be trigger.
-        /// </summary>
-        /// <param name="sender">The sender</param>
-        /// <param name="e">The event data</param>
+        /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
+        public override void OnInitialize()
         {
-            ScrollBarStyle tempStyle = StyleManager.Instance.GetViewStyle(StyleName) as ScrollBarStyle;
-            if (tempStyle != null)
-            {
-                Style.CopyFrom(tempStyle);
-                UpdateValue();
-            }
-        }
+            base.OnInitialize();
 
-        private void Initialize()
-        {
             this.Focusable = false;
 
             trackImage = new ImageView
@@ -527,7 +556,7 @@ namespace Tizen.NUI.Components
                 PivotPoint = Tizen.NUI.PivotPoint.CenterLeft
             };
             this.Add(trackImage);
-            trackImage.ApplyStyle(Style.Track);
+            
 
             thumbImage = new ImageView
             {
@@ -539,7 +568,7 @@ namespace Tizen.NUI.Components
                 PivotPoint = Tizen.NUI.PivotPoint.CenterLeft
             };
             this.Add(thumbImage);
-            thumbImage.ApplyStyle(Style.Thumb);
+            
 
             scrollAniPlayer = new Animation(334);
             scrollAniPlayer.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
@@ -547,6 +576,20 @@ namespace Tizen.NUI.Components
             thumbImagePosX = 0;
             thumbImagePosY = 0;
             LayoutDirectionChanged += OnLayoutDirectionChanged;
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void ApplyStyle(ViewStyle style)
+        {
+            base.ApplyStyle(style);
+
+            if (style is ScrollBarStyle scrollBarStyle)
+            {
+                trackImage.ApplyStyle(scrollBarStyle.Track);
+                thumbImage.ApplyStyle(scrollBarStyle.Thumb);
+                UpdateValue();
+            }
         }
 
         private void OnLayoutDirectionChanged(object sender, LayoutDirectionChangedEventArgs e)
@@ -562,18 +605,18 @@ namespace Tizen.NUI.Components
             float height = (float)Size2D.Height;
             float thumbW = 0.0f;
             float thumbH = 0.0f;
-            if (Style.Thumb.Size == null)
+            if (thumbImage == null || thumbImage.Size == null)
             {
                 return;
             }
             else
             {
-                thumbW = Style.Thumb.Size.Width;
-                thumbH = Style.Thumb.Size.Height;
+                thumbW = thumbImage.Size.Width;
+                thumbH = thumbImage.Size.Height;
             }
             float ratio = (float)(curValue - minValue) / (float)(maxValue - minValue);
 
-            if (Style.Direction == DirectionType.Horizontal)
+            if (direction == DirectionType.Horizontal)
             {
                 if (LayoutDirection == ViewLayoutDirectionType.RTL)
                 {
@@ -630,16 +673,6 @@ namespace Tizen.NUI.Components
             }
 
             if (enableAni) enableAni = false;
-        }
-
-        private DirectionType CurrentDirection()
-        {
-            DirectionType dir = DirectionType.Horizontal;
-            if (null != Style.Direction)
-            {
-                dir = Style.Direction.Value;
-            }
-            return dir;
         }
 
         private int CalculateCurrentValue(float offset, DirectionType dir)

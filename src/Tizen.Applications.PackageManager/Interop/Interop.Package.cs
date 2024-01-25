@@ -37,6 +37,9 @@ internal static partial class Interop
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
         internal delegate bool PackageInfoDependencyInfoCallback(string from, string to, string type, string requiredVersion, IntPtr userData);
 
+        [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
+        internal delegate bool PackageInfoResAllowedPackageCallback(string allowedPackage, IntPtr requiredPrivileges, IntPtr userData);
+
         // Any change here might require changes in Tizen.Applications.AppType enum
         internal enum AppType
         {
@@ -60,9 +63,6 @@ internal static partial class Interop
 
         [DllImport(Libraries.PackageManager, EntryPoint = "package_info_foreach_app_from_package")]
         internal static extern ErrorCode PackageInfoForeachAppInfo(IntPtr handle, AppType appType, PackageInfoAppInfoCallback callback, IntPtr userData);
-
-        [DllImport(Libraries.PackageManager, EntryPoint = "package_info_foreach_cert_info")]
-        internal static extern ErrorCode PackageInfoForeachCertificateInfo(IntPtr handle, PackageInfoCertificateInfoCallback callback, IntPtr user_data);
 
         [DllImport(Libraries.PackageManager, EntryPoint = "package_info_foreach_privilege_info")]
         internal static extern ErrorCode PackageInfoForeachPrivilegeInfo(IntPtr handle, PackageInfoPrivilegeInfoCallback callback, IntPtr userData);
@@ -123,5 +123,11 @@ internal static partial class Interop
 
         [DllImport(Libraries.PackageManager, EntryPoint = "package_info_foreach_dependency_info_depends_on")]
         internal static extern ErrorCode PackageInfoForeachDependencyInfoDependsOn(IntPtr handle, PackageInfoDependencyInfoCallback callback, IntPtr userData);
+
+        [DllImport(Libraries.PackageManager, EntryPoint = "package_info_foreach_res_allowed_package")]
+        internal static extern ErrorCode PackageInfoForeachResAllowedPackage(IntPtr handle, PackageInfoResAllowedPackageCallback callback, IntPtr user_data);
+
+        [DllImport(Libraries.PackageManager, EntryPoint = "package_info_foreach_required_privilege")]
+        internal static extern ErrorCode PackageInfoForeachRequiredPrivilege(IntPtr privilegeHandle, PackageInfoPrivilegeInfoCallback callback, IntPtr user_data);
     }
 }

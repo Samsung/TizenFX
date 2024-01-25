@@ -14,22 +14,30 @@
  * limitations under the License.
  *
  */
+using System;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
     /// <summary>
     /// The class storing Background extra properties such as CornerRadius, ImageBorder.
     /// </summary>
-    internal class BackgroundExtraData
+    internal class BackgroundExtraData : IDisposable
     {
+        private bool disposed = false;
         internal BackgroundExtraData()
         {
+            BorderlineColor = Tizen.NUI.Color.Black;
         }
 
         internal BackgroundExtraData(BackgroundExtraData other)
         {
             BackgroundImageBorder = other.BackgroundImageBorder;
             CornerRadius = other.CornerRadius;
+            CornerRadiusPolicy = other.CornerRadiusPolicy;
+            BorderlineWidth = other.BorderlineWidth;
+            BorderlineColor = other.BorderlineColor;
+            BorderlineOffset = other.BorderlineOffset;
         }
 
         private Rectangle backgroundImageBorder;
@@ -42,11 +50,43 @@ namespace Tizen.NUI
         }
 
         /// <summary></summary>
-        internal float CornerRadius { get; set; }
+        internal Vector4 CornerRadius { get; set; }
 
-        internal bool Empty()
+        /// <summary>
+        /// Whether the CornerRadius value is relative (percentage [0.0f to 0.5f] of the view size) or absolute (in world units).
+        /// </summary>
+        internal VisualTransformPolicyType CornerRadiusPolicy { get; set; } = VisualTransformPolicyType.Absolute;
+
+        /// <summary></summary>
+        internal float BorderlineWidth { get; set; }
+
+        /// <summary></summary>
+        internal Color BorderlineColor { get; set; }
+
+        /// <summary></summary>
+        internal float BorderlineOffset { get; set; }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void Dispose(bool disposing)
         {
-            return CornerRadius == 0 && Rectangle.IsNullOrZero(BackgroundImageBorder);
+            if (disposed)
+            {
+                return;
+            }
+            if (disposing)
+            {
+                backgroundImageBorder?.Dispose();
+                CornerRadius?.Dispose();
+                BorderlineColor?.Dispose();
+            }
+            disposed = true;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Dispose()
+        {
+            Dispose(true);
+            global::System.GC.SuppressFinalize(this);
         }
     }
 }

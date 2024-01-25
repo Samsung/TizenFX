@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="5" package="Tizen.NUI.WidgetTest" version="1.0.0">
+  <profile name="common" />
+  <widget-application appid="Tizen.NUI.WidgetTest"
+					exec="Tizen.NUI.WidgetTest.dll"
+					type="dotnet-nui"
+					multiple="false"
+					taskmanage="true"
+					nodisplay="false"
+					launch_mode="single">
+    <label>Tizen.NUI.WidgetTest</label>
+    <icon>Tizen.NUI.WidgetTest.png</icon>
+    <widget-class classid="class1" update-period="0">
+      <support-size preview="Tizen.NUI.WidgetTest.png">4x4</support-size>
+    </widget-class>
+    <widget-class classid="class2" update-period="0">
+      <support-size preview="Tizen.NUI.WidgetTest.png">4x4</support-size>
+    </widget-class>
+    <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+  </widget-application>
+</manifest>

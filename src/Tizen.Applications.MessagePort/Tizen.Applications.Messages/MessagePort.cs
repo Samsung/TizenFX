@@ -174,15 +174,12 @@ namespace Tizen.Applications.Messages
                         return;
                     }
 
-                    if (!String.IsNullOrEmpty(remotePortName) && !String.IsNullOrEmpty(remoteAppId))
+                    args.Remote = new RemoteValues()
                     {
-                        args.Remote = new RemoteValues()
-                        {
-                            AppId = remoteAppId,
-                            PortName = remotePortName,
-                            Trusted = trusted
-                        };
-                    }
+                        AppId = remoteAppId != null ? remoteAppId : String.Empty,
+                        PortName = remotePortName != null ? remotePortName : String.Empty,
+                        Trusted = trusted
+                    };
                     MessageReceived?.Invoke(this, args);
                 };
 

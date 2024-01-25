@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.GridTest4Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="GridTest4Page"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+		<View x:Name="btnView"
+		        HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+				WidthSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+			<View.Layout >
+				<GridLayout Columns="3" Rows="3" ColumnSpacing="3" RowSpacing="3" />
+			</View.Layout>
+
+            <!-- Row 0 -->
+			<Button x:Name="btn1"
+						 Text="Button1"
+						 GridLayout.Column="0"
+						 GridLayout.Row="0"
+						 GridLayout.ColumnSpan="3"
+						 HeightSpecification="100"
+						 WidthSpecification="{Static LayoutParamPolicies.MatchParent}" />
+                <!-- Row 0 Column 1 is expanded by span -->
+                <!-- Row 0 Column 2 is expanded by span -->
+            <!-- Row 1 -->
+			<Button x:Name="btn2"
+						 Text="Button2"
+						 GridLayout.Column="0"
+						 GridLayout.Row="1"
+						 WidthSpecification="550"
+						 HeightSpecification="525" />
+			<Button x:Name="btn3"
+						 Text="Button3"
+						 GridLayout.Column="1"
+						 GridLayout.Row="1"
+						 WidthSpecification="100"
+						 HeightSpecification="525" />
+			<Button x:Name="btn6"
+						 Text="Button6"
+						 GridLayout.Column="2"
+						 GridLayout.Row="1"
+						 GridLayout.RowSpan="2"
+						 WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+						 HeightSpecification="{Static LayoutParamPolicies.MatchParent}" />
+            <!-- Row 2 -->
+			<Button x:Name="btn4"
+						 Text="Button4"
+						 GridLayout.Column="0"
+						 GridLayout.Row="2"
+						 WidthSpecification="550"
+						 HeightSpecification="525"/>
+			<Button x:Name="btn5"
+						 Text="Button5"
+						 GridLayout.Column="1"
+						 GridLayout.Row="2"
+						 WidthSpecification="100"
+						 HeightSpecification="525"/>
+                <!-- Row 2 Column 2 is expanded by span -->
+		</View>
+	</ContentPage.Content>
+</ContentPage>

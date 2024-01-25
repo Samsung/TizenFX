@@ -14,8 +14,7 @@
  * limitations under the License.
  */
 
-using System.Runtime.InteropServices;
-using static Interop.Camera;
+using System.ComponentModel;
 
 namespace Tizen.Multimedia
 {
@@ -25,12 +24,11 @@ namespace Tizen.Multimedia
     /// <since_tizen> 3 </since_tizen>
     public class EncodedPlane : IPreviewPlane
     {
-        internal EncodedPlane(EncodedPlaneStruct unmanagedData)
+        internal EncodedPlane(byte[] data, byte isDeltaFrame, uint usedSize)
         {
-            Data = new byte[unmanagedData.DataLength];
-            Marshal.Copy(unmanagedData.Data, Data, 0, (int)unmanagedData.DataLength);
-
-            IsDeltaFrame = unmanagedData.IsDeltaFrame;
+            Data = data;
+            IsDeltaFrame = isDeltaFrame == 0 ? false : true;
+            UsedSize = usedSize;
         }
 
         /// <summary>
@@ -44,5 +42,11 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         public bool IsDeltaFrame { get; }
+
+        /// <summary>
+        /// The actually used buffer size.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint UsedSize { get; }
     }
 }

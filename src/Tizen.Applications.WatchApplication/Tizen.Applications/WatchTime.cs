@@ -22,6 +22,7 @@ namespace Tizen.Applications
     /// The information of the Watch Time.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API10. Will be removed in API12.")]
     public class WatchTime
     {
         private readonly SafeWatchTimeHandle _handle;
@@ -38,6 +39,7 @@ namespace Tizen.Applications
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public int Year
         {
             get
@@ -62,6 +64,7 @@ namespace Tizen.Applications
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public int Month
         {
             get
@@ -86,6 +89,7 @@ namespace Tizen.Applications
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public int Day
         {
             get
@@ -110,6 +114,7 @@ namespace Tizen.Applications
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public int DayOfWeek
         {
             get
@@ -134,6 +139,7 @@ namespace Tizen.Applications
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public int Hour
         {
             get
@@ -158,6 +164,7 @@ namespace Tizen.Applications
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public int Hour24
         {
             get
@@ -182,6 +189,7 @@ namespace Tizen.Applications
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public int Minute
         {
             get
@@ -206,6 +214,7 @@ namespace Tizen.Applications
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public int Second
         {
             get
@@ -230,6 +239,7 @@ namespace Tizen.Applications
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public int Millisecond
         {
             get
@@ -254,6 +264,7 @@ namespace Tizen.Applications
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public string TimeZone
         {
             get
@@ -278,6 +289,7 @@ namespace Tizen.Applications
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public DateTime UtcTimestamp
         {
             get
@@ -292,7 +304,7 @@ namespace Tizen.Applications
                     else
                         Log.Error(LOGTAG, "Failed to get UtcTimestamp err : " + err);
                 }
-                return (new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).AddSeconds(ts).ToLocalTime();
+                return (new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).AddSeconds(ts).AddMilliseconds(Millisecond);
             }
         }
     }

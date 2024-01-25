@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using System;
 using System.Threading;
 
 namespace ElmSharp
@@ -23,12 +24,14 @@ namespace ElmSharp
     /// Provides a synchronization context for the EFL application.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class EcoreSynchronizationContext : SynchronizationContext
     {
         /// <summary>
         /// Initializes a new instance of the EcoreSynchronizationContext class.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public EcoreSynchronizationContext()
         {
         }
@@ -43,6 +46,7 @@ namespace ElmSharp
         /// </code>
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void Initialize()
         {
             SetSynchronizationContext(new EcoreSynchronizationContext());
@@ -55,6 +59,7 @@ namespace ElmSharp
         /// <param name="state">The object passed to the delegate.</param>
         /// <remarks>The Post method starts an asynchronous request to post a message.</remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override void Post(SendOrPostCallback d, object state)
         {
             EcoreMainloop.PostAndWakeUp(() =>
@@ -71,6 +76,7 @@ namespace ElmSharp
         /// <remarks>
         /// The Send method starts a synchronous request to send a message.</remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override void Send(SendOrPostCallback d, object state)
         {
             EcoreMainloop.Send(() =>

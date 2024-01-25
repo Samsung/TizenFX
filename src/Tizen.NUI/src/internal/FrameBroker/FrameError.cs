@@ -25,14 +25,14 @@ namespace Tizen.NUI
     public enum FrameError
     {
         /// <summary>
-        /// Succsssful.
+        /// Successful.
         /// </summary>
         None = Interop.FrameBroker.FrameContextErrorCode.None,
 
         /// <summary>
         /// Disqualified.
         /// </summary>
-        /// <remarks>After this error is occured, the FrameBroker instance has to be destroyed.</remarks>
+        /// <remarks>After this error is occurred, the FrameBroker instance has to be destroyed.</remarks>
         Disqualified = Interop.FrameBroker.FrameContextErrorCode.Disqualified,
 
         /// <summary>

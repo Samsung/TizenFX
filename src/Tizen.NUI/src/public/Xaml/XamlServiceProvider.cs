@@ -1,8 +1,26 @@
-﻿using System;
+﻿/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
 using System.Xml;
+
 using Tizen.NUI.Binding;
 using Tizen.NUI.Binding.Internals;
 
@@ -45,38 +63,38 @@ namespace Tizen.NUI.Xaml
 
         internal IProvideValueTarget IProvideValueTarget
         {
-            get { return (IProvideValueTarget)GetService(typeof (IProvideValueTarget)); }
-            set { services[typeof (IProvideValueTarget)] = value; }
+            get { return (IProvideValueTarget)GetService(typeof(IProvideValueTarget)); }
+            set { services[typeof(IProvideValueTarget)] = value; }
         }
 
         internal IXamlTypeResolver IXamlTypeResolver
         {
-            get { return (IXamlTypeResolver)GetService(typeof (IXamlTypeResolver)); }
-            set { services[typeof (IXamlTypeResolver)] = value; }
+            get { return (IXamlTypeResolver)GetService(typeof(IXamlTypeResolver)); }
+            set { services[typeof(IXamlTypeResolver)] = value; }
         }
 
         internal IRootObjectProvider IRootObjectProvider
         {
-            get { return (IRootObjectProvider)GetService(typeof (IRootObjectProvider)); }
-            set { services[typeof (IRootObjectProvider)] = value; }
+            get { return (IRootObjectProvider)GetService(typeof(IRootObjectProvider)); }
+            set { services[typeof(IRootObjectProvider)] = value; }
         }
 
         internal IXmlLineInfoProvider IXmlLineInfoProvider
         {
-            get { return (IXmlLineInfoProvider)GetService(typeof (IXmlLineInfoProvider)); }
-            set { services[typeof (IXmlLineInfoProvider)] = value; }
+            get { return (IXmlLineInfoProvider)GetService(typeof(IXmlLineInfoProvider)); }
+            set { services[typeof(IXmlLineInfoProvider)] = value; }
         }
 
         internal INameScopeProvider INameScopeProvider
         {
-            get { return (INameScopeProvider)GetService(typeof (INameScopeProvider)); }
-            set { services[typeof (INameScopeProvider)] = value; }
+            get { return (INameScopeProvider)GetService(typeof(INameScopeProvider)); }
+            set { services[typeof(INameScopeProvider)] = value; }
         }
 
         internal IValueConverterProvider IValueConverterProvider
         {
-            get { return (IValueConverterProvider)GetService(typeof (IValueConverterProvider)); }
-            set { services[typeof (IValueConverterProvider)] = value; }
+            get { return (IValueConverterProvider)GetService(typeof(IValueConverterProvider)); }
+            set { services[typeof(IValueConverterProvider)] = value; }
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -147,8 +165,8 @@ namespace Tizen.NUI.Xaml
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [Obsolete("SimpleValueTargetProvider(object[] objectAndParents) is obsolete as of version 2.3.4. Please use SimpleValueTargetProvider(object[] objectAndParents, object targetProperty) instead.")]
-        public SimpleValueTargetProvider(object[] objectAndParents) : this (objectAndParents, null)
+        [Obsolete("SimpleValueTargetProvider(object[] objectAndParents) is obsolete as of version 2.3.4. Use SimpleValueTargetProvider(object[] objectAndParents, object targetProperty) instead.")]
+        public SimpleValueTargetProvider(object[] objectAndParents) : this(objectAndParents, null)
         {
         }
 
@@ -159,7 +177,7 @@ namespace Tizen.NUI.Xaml
             if (objectAndParents == null)
                 throw new ArgumentNullException(nameof(objectAndParents));
             if (objectAndParents.Length == 0)
-                throw new ArgumentException();
+                throw new ArgumentException(nameof(objectAndParents.Length));
 
             this.objectAndParents = objectAndParents;
             this.targetProperty = targetProperty;
@@ -178,14 +196,15 @@ namespace Tizen.NUI.Xaml
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object FindByName(string name)
         {
-            for (var i = 0; i < objectAndParents.Length; i++) {
-				var bo = objectAndParents[i] as BindableObject;
-				if (bo == null) continue;
-				var ns = NameScope.GetNameScope(bo) as INameScope;
-				if (ns == null) continue;
-				var value = ns.FindByName(name);
-				if (value != null)
-					return value;
+            for (var i = 0; i < objectAndParents.Length; i++)
+            {
+                var bo = objectAndParents[i] as BindableObject;
+                if (bo == null) continue;
+                var ns = NameScope.GetNameScope(bo) as INameScope;
+                if (ns == null) continue;
+                var value = ns.FindByName(name);
+                if (value != null)
+                    return value;
             }
             return null;
         }
@@ -211,9 +230,9 @@ namespace Tizen.NUI.Xaml
         {
             this.currentAssembly = currentAssembly;
             if (namespaceResolver == null)
-                throw new ArgumentNullException();
+                throw new ArgumentNullException(nameof(namespaceResolver));
             if (getTypeFromXmlName == null)
-                throw new ArgumentNullException();
+                throw new ArgumentNullException(nameof(getTypeFromXmlName));
 
             this.namespaceResolver = namespaceResolver;
             this.getTypeFromXmlName = getTypeFromXmlName;
@@ -257,7 +276,7 @@ namespace Tizen.NUI.Xaml
             IXmlLineInfo xmlLineInfo = null;
             if (serviceProvider != null)
             {
-                var lineInfoProvider = serviceProvider.GetService(typeof (IXmlLineInfoProvider)) as IXmlLineInfoProvider;
+                var lineInfoProvider = serviceProvider.GetService(typeof(IXmlLineInfoProvider)) as IXmlLineInfoProvider;
                 if (lineInfoProvider != null)
                     xmlLineInfo = lineInfoProvider.XmlLineInfo;
             }
@@ -312,7 +331,8 @@ namespace Tizen.NUI.Xaml
         {
             var n = _node;
             object value = null;
-            while (n != null) {
+            while (n != null)
+            {
                 if ((value = (n as IElementNode)?.Namescope?.FindByName(name)) != null)
                     return value;
                 n = n.Parent;
@@ -323,7 +343,7 @@ namespace Tizen.NUI.Xaml
 
     /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    [Obsolete]
+    [ObsoleteAttribute(" ", false)]
     public class NameScopeProvider : INameScopeProvider
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.

@@ -9,36 +9,99 @@ namespace Tizen.NUI.Samples
     public class TouchGestureSample : IExample
     {
         private View root;
-        GestureDetectorManager mGestureDetector;
+        private View frontView;
+        private TextLabel backView;
+        private TapGestureDetector tapGestureDetector;
+        private LongPressGestureDetector longPressGestureDetector;
 
         public void Activate()
         {
             Window window = NUIApplication.GetDefaultWindow();
+            root = new View();
 
-            TextLabel frontView = new TextLabel
+            window.WheelEvent += (s, e) =>
+            {
+                Tizen.Log.Error("NUI", $"window WheelEvent!!!!{e.Wheel.Type}\n");
+            };
+
+            frontView = new View
             {
                 Size = new Size(300, 300),
-                Text = "Front View",
                 Position = new Position(150, 170),
-                PointSize = 11,
                 BackgroundColor = new Color(1.0f, 0.0f, 0.0f, 1.0f),
+                Focusable = true,
+                FocusableInTouch = true,
             };
             frontView.TouchEvent += OnFrontTouchEvent;
+            frontView.WheelEvent += (s, e) =>
+            {
+                Tizen.Log.Error("NUI", $"frontView WheelEvent!!!!{e.Wheel.Type}\n");
+                if (e.Wheel.Type == Wheel.WheelType.CustomWheel)
+                {
+                       // rotary event
+                }
+                else if (e.Wheel.Type == Wheel.WheelType.MouseWheel)
+                {
+                      // mouse wheel event
+                }
+                return false;
+            };
 
-            TextLabel backView = new TextLabel
+            var middleView = new View
+            {
+                Size = new Size(300, 300),
+                Position = new Position(110, 120),
+                BackgroundColor = new Color(0.0f, 1.0f, 0.0f, 1.0f),
+                Focusable = true,
+                FocusableInTouch = true,
+            };
+
+
+            // The default the maximum allowed time is 500ms.
+            // If you want to change this time, do as below.
+            // But keep in mind this is a global option. Affects all gestures.
+            GestureOptions.Instance.SetDoubleTapTimeout(300);
+            tapGestureDetector = new TapGestureDetector();
+            tapGestureDetector.Attach(frontView);
+            tapGestureDetector.SetMaximumTapsRequired(2);
+            tapGestureDetector.Detected += (s, e) =>
+            {
+              Tizen.Log.Error("NUI", $"OnTap {e.TapGesture.NumberOfTaps}\n");
+            };
+
+            backView = new TextLabel
             {
                 Size = new Size(300, 300),
                 Text = "Back View",
                 Position = new Position(50, 70),
                 PointSize = 11,
                 BackgroundColor = new Color(1.0f, 1.0f, 0.0f, 1.0f),
+                Focusable = true,
+                FocusableInTouch = true,
+            };
+            backView.TouchEvent += OnBackTouchEvent;
+            backView.WheelEvent += (s, e) =>
+            {
+                Tizen.Log.Error("NUI", $"backView WheelEvent!!!!{e.Wheel.Type}\n");
+                return true;
             };
 
-            mGestureDetector = new GestureDetectorManager(backView, new MyGestureListener());
-            backView.TouchEvent += OnBackTouchEvent;
+            // The default the minimum holding time is 500ms.
+            // If you want to change this time, do as below.
+            // But keep in mind this is a global option. Affects all gestures.
+            GestureOptions.Instance.SetLongPressMinimumHoldingTime(300);
 
-            window.Add(backView);
-            window.Add(frontView);
+            longPressGestureDetector = new LongPressGestureDetector();
+            longPressGestureDetector.Attach(backView);
+            longPressGestureDetector.Detected += (s, e) =>
+            {
+              Tizen.Log.Error("NUI", $"OnLongPress\n");
+            };
+
+            backView.Add(middleView);
+            backView.Add(frontView);
+            root.Add(backView);
+            window.Add(root);
         }
 
         private bool OnFrontTouchEvent(object source, View.TouchEventArgs e)
@@ -51,31 +114,7 @@ namespace Tizen.NUI.Samples
         private bool OnBackTouchEvent(object source, View.TouchEventArgs e)
         {
             Tizen.Log.Error("NUI", $"OnBackTouchEvent {e.Touch.GetState(0)}\n");
-            mGestureDetector.FeedTouchEvent(source, e);
             return false;
-        }
-
-        class MyGestureListener : GestureDetectorManager.GestureListener
-        {
-          public override void OnTap(object sender, TapGestureDetector.DetectedEventArgs e)
-          {
-            Tizen.Log.Error("NUI", $"OnTap \n");
-          }
-
-          public override void OnPan(object sender, PanGestureDetector.DetectedEventArgs e)
-          {
-            Tizen.Log.Error("NUI", $"OnPan \n");
-          }
-
-          public override void OnPinch(object sender, PinchGestureDetector.DetectedEventArgs e)
-          {
-            Tizen.Log.Error("NUI", $"OnPinch \n");
-          }
-
-          public override void OnLongPress(object sender, LongPressGestureDetector.DetectedEventArgs e)
-          {
-            Tizen.Log.Error("NUI", $"OnLongPress \n");
-          }
         }
 
         public void Deactivate()

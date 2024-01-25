@@ -14,8 +14,12 @@
  * limitations under the License.
  *
  */
+
+using System;
 using System.ComponentModel;
 using System.Collections.Generic;
+using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -34,6 +38,14 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class CheckBoxGroup : SelectGroup
     {
+        /// <summary>
+        /// IsGroupHolderProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IsGroupHolderProperty = BindableProperty.CreateAttached("IsGroupHolder", typeof(bool), typeof(View), false, propertyChanged: OnIsGroupHolderChanged);
+
+        private static readonly BindableProperty CheckBoxGroupProperty = BindableProperty.CreateAttached("CheckBoxGroup", typeof(CheckBoxGroup), typeof(View), null, propertyChanged: OnCheckBoxGroupChanged);
+
         static CheckBoxGroup() { }
 
         /// <summary>
@@ -45,6 +57,28 @@ namespace Tizen.NUI.Components
         public CheckBoxGroup() : base()
         {
         }
+
+        /// <summary>
+        /// Gets a CheckBoxGroup.IsGroupHolder property of a view.
+        /// </summary>
+        /// <param name="view">The group holder.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool GetIsGroupHolder(View view) => (bool)view.GetValue(IsGroupHolderProperty);
+
+        /// <summary>
+        /// Sets a CheckBoxGroup.IsGroupHolder property for a view.
+        /// </summary>
+        /// <param name="view">The group holder.</param>
+        /// <param name="value">The value to set.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetIsGroupHolder(View view, bool value) => view.SetValue(IsGroupHolderProperty, value, false, true);
+
+        /// <summary>
+        /// Gets a attached CheckBoxGroup for a view.
+        /// </summary>
+        /// <param name="view">The group holder.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static CheckBoxGroup GetCheckBoxGroup(View view) => view.GetValue(CheckBoxGroupProperty) as CheckBoxGroup;
 
         /// <summary>
         /// Add CheckBox to the end of CheckBoxGroup.
@@ -162,6 +196,57 @@ namespace Tizen.NUI.Components
             foreach (CheckBox cb in ItemGroup)
             {
                 cb.IsSelected = state;
+            }
+        }
+
+        private static void OnIsGroupHolderChanged(Binding.BindableObject bindable, object oldValue, object newValue)
+        {
+            var view = bindable as View;
+
+            if (view == null) return;
+
+            if (!(bool)newValue)
+            {
+                view.SetValue(CheckBoxGroupProperty, null, false, true);
+                return;
+            }
+
+            if (view.GetValue(CheckBoxGroupProperty) == null)
+            {
+                view.SetValue(CheckBoxGroupProperty, new CheckBoxGroup(), false, true);
+            }
+        }
+
+        private static void OnCheckBoxGroupChanged(Binding.BindableObject bindable, object oldValue, object newValue)
+        {
+            var view = bindable as View;
+
+            if (view == null) return;
+
+            if (oldValue is CheckBoxGroup oldGroup)
+            {
+                view.ChildAdded -= oldGroup.OnChildChanged;
+                view.ChildRemoved -= oldGroup.OnChildChanged;
+                oldGroup.RemoveAll();
+            }
+
+            if (newValue is CheckBoxGroup newGroup)
+            {
+                view.ChildAdded += newGroup.OnChildChanged;
+                view.ChildRemoved += newGroup.OnChildChanged;
+                newGroup.OnChildChanged(view, null);
+            }
+        }
+
+        private void OnChildChanged(object sender, EventArgs args)
+        {
+            if (sender is View view)
+            {
+                RemoveAll();
+                foreach (var child in view.Children)
+                {
+                    if (child is CheckBox checkBox) Add(checkBox);
+                }
             }
         }
     }

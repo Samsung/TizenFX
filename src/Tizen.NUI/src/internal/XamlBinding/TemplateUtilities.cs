@@ -1,3 +1,20 @@
+/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,11 +30,11 @@ namespace Tizen.NUI.Binding
             if (element.RealParent is Application)
                 return null;
 
-            element = await GetRealParentAsync(element);
+            element = await GetRealParentAsync(element).ConfigureAwait(false);
             while (!Application.IsApplicationOrNull(element))
             {
                 var controlTemplated = element as IControlTemplated;
-                element = await GetRealParentAsync(element);
+                element = await GetRealParentAsync(element).ConfigureAwait(false);
             }
 
             return null;
@@ -44,12 +61,11 @@ namespace Tizen.NUI.Binding
             return tcs.Task;
         }
 
-        public static void OnContentChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-        }
-
         public static void OnControlTemplateChanged(BindableObject bindable, object oldValue, object newValue)
         {
+            // Unused parameter
+            _ = newValue;
+
             var self = (IControlTemplated)bindable;
 
             // First make sure any old ContentPresenters are no longer bound up. This MUST be

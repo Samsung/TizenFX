@@ -1,3 +1,20 @@
+/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
@@ -13,10 +30,10 @@ namespace Tizen.NUI.Binding
     {
         static readonly ConditionalWeakTable<IEnumerable, CollectionSynchronizationContext> SynchronizedCollections = new ConditionalWeakTable<IEnumerable, CollectionSynchronizationContext>();
 
-        BindingMode _mode = BindingMode.Default;
-        string _stringFormat;
-        object _targetNullValue;
-        object _fallbackValue;
+        BindingMode mode = BindingMode.Default;
+        string stringFormat;
+        object targetNullValue;
+        object fallbackValue;
 
         internal BindingBase()
         {
@@ -29,19 +46,19 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public BindingMode Mode
         {
-            get { return _mode; }
+            get { return mode; }
             set
             {
-                if (   value != BindingMode.Default
+                if (value != BindingMode.Default
                     && value != BindingMode.OneWay
                     && value != BindingMode.OneWayToSource
                     && value != BindingMode.TwoWay
                     && value != BindingMode.OneTime)
-                    throw new ArgumentException("mode is not a valid BindingMode", "mode");
+                    throw new ArgumentException("mode is not a valid BindingMode", nameof(Mode));
 
                 ThrowIfApplied();
 
-                _mode = value;
+                mode = value;
             }
         }
 
@@ -52,37 +69,40 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string StringFormat
         {
-            get { return _stringFormat; }
+            get { return stringFormat; }
             set
             {
                 ThrowIfApplied();
 
-                _stringFormat = value;
+                stringFormat = value;
             }
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object TargetNullValue
-		{
-			get { return _targetNullValue; }
-			set {
-				ThrowIfApplied();
-				_targetNullValue = value;
-			}
-		}
+        {
+            get { return targetNullValue; }
+            set
+            {
+                ThrowIfApplied();
+                targetNullValue = value;
+            }
+        }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public object FallbackValue {
-			get => _fallbackValue;
-			set {
-				ThrowIfApplied();
-				_fallbackValue = value;
-			}
-		}
+        public object FallbackValue
+        {
+            get => fallbackValue;
+            set
+            {
+                ThrowIfApplied();
+                fallbackValue = value;
+            }
+        }
 
-		internal bool AllowChaining { get; set; }
+        internal bool AllowChaining { get; set; }
 
         internal object Context { get; set; }
 

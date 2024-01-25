@@ -47,7 +47,7 @@ namespace Tizen.NUI.Samples
                 {
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
                     CellPadding = new Size(40, 40),
-                    LinearAlignment = LinearLayout.Alignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
                 }
             };
             window.Add(root);
@@ -85,8 +85,14 @@ namespace Tizen.NUI.Samples
 
             for (int i = 0; i < num; i++)
             {
+                int index = i + 1;
+
                 //Create utility radio button.
                 utilityCheckBox[i] = new CheckBox();
+                utilityCheckBox[i].SelectedChanged += (object sender, SelectedChangedEventArgs args) =>
+                {
+                    global::System.Console.WriteLine($"Left {index}th Utility CheckBox's IsSelected is changed to {args.IsSelected}.");
+                };
                 var utilityStyle = utilityCheckBox[i].Style;
                 utilityStyle.Icon.Opacity = new Selector<float?>
                 {
@@ -125,6 +131,10 @@ namespace Tizen.NUI.Samples
                 group[0].Add(utilityCheckBox[i]);
                 //Create family radio button.
                 familyCheckBox[i] = new CheckBox();
+                familyCheckBox[i].SelectedChanged += (object sender, SelectedChangedEventArgs args) =>
+                {
+                    global::System.Console.WriteLine($"Left {index}th Family CheckBox's IsSelected is changed to {args.IsSelected}.");
+                };
                 var familyStyle = familyCheckBox[i].Style;
                 familyStyle.Icon.Opacity = new Selector<float?>
                 {
@@ -149,6 +159,10 @@ namespace Tizen.NUI.Samples
                 group[1].Add(familyCheckBox[i]);
                 //Create food radio button.
                 foodCheckBox[i] = new CheckBox();
+                foodCheckBox[i].SelectedChanged += (object sender, SelectedChangedEventArgs args) =>
+                {
+                    global::System.Console.WriteLine($"Left {index}th Food CheckBox's IsSelected is changed to {args.IsSelected}.");
+                };
                 var foodStyle = foodCheckBox[i].Style;
                 foodStyle.Icon.Opacity = new Selector<float?>
                 {
@@ -173,6 +187,10 @@ namespace Tizen.NUI.Samples
                 group[2].Add(foodCheckBox[i]);
                 //Create kitchen radio button.
                 kitchenCheckBox[i] = new CheckBox();
+                kitchenCheckBox[i].SelectedChanged += (object sender, SelectedChangedEventArgs args) =>
+                {
+                    global::System.Console.WriteLine($"Left {index}th Kitchen CheckBox's IsSelected is changed to {args.IsSelected}.");
+                };
                 var kitchenStyle = kitchenCheckBox[i].Style;
                 kitchenStyle.Icon.Opacity = new Selector<float?>
                 {
@@ -338,22 +356,40 @@ namespace Tizen.NUI.Samples
             };
             for (int i = 0; i < num; i++)
             {
+                int index = i + 1;
+
                 utilityCheckBox2[i] = new CheckBox(utilityStyle2);
+                utilityCheckBox2[i].SelectedChanged += (object sender, SelectedChangedEventArgs args) =>
+                {
+                    global::System.Console.WriteLine($"Right {index}th Utility CheckBox's IsSelected is changed to {args.IsSelected}.");
+                };
                 utilityCheckBox2[i].Size = new Size(48, 48);
                 utilityCheckBox2[i].Margin = new Extents(76, 76, 25, 25);
                 group2[0].Add(utilityCheckBox2[i]);
 
                 familyCheckBox2[i] = new CheckBox(familyStyle2);
+                familyCheckBox2[i].SelectedChanged += (object sender, SelectedChangedEventArgs args) =>
+                {
+                    global::System.Console.WriteLine($"Right {index}th Family CheckBox's IsSelected is changed to {args.IsSelected}.");
+                };
                 familyCheckBox2[i].Size = new Size(48, 48);
                 familyCheckBox2[i].Margin = new Extents(76, 76, 25, 25);
                 group2[1].Add(familyCheckBox2[i]);
 
                 foodCheckBox2[i] = new CheckBox(foodStyle2);
+                foodCheckBox2[i].SelectedChanged += (object sender, SelectedChangedEventArgs args) =>
+                {
+                    global::System.Console.WriteLine($"Right {index}th Food CheckBox's IsSelected is changed to {args.IsSelected}.");
+                };
                 foodCheckBox2[i].Size = new Size(48, 48);
                 foodCheckBox2[i].Margin = new Extents(76, 76, 25, 25);
                 group2[2].Add(foodCheckBox2[i]);
 
                 kitchenCheckBox2[i] = new CheckBox(kitchenStyle2);
+                kitchenCheckBox2[i].SelectedChanged += (object sender, SelectedChangedEventArgs args) =>
+                {
+                    global::System.Console.WriteLine($"Right {index}th Kitchen CheckBox's IsSelected is changed to {args.IsSelected}.");
+                };
                 kitchenCheckBox2[i].Size = new Size(48, 48);
                 kitchenCheckBox2[i].Margin = new Extents(76, 76, 25, 25);
                 group2[3].Add(kitchenCheckBox2[i]);

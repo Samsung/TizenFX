@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,19 +20,6 @@ using System.ComponentModel;
 
 namespace Tizen.NUI.Components
 {
-    /// <summary>
-    /// SelectedChangedEventArgs is a class to record item selected arguments which will sent to user.
-    /// </summary>
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public class SelectedChangedEventArgs : EventArgs
-    {
-        /// <summary> Select state of SelectButton </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IsSelected { get; set; }
-    }
-
     /// <summary>
     /// SelectButton is base class of CheckBox and RadioButton.
     /// It can be used as selector and add into group for single-choice or multiple-choice .
@@ -63,7 +50,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public SelectButton() : base()
         {
-            Initialize();
         }
 
         /// <summary>
@@ -75,7 +61,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public SelectButton(string style) : base(style)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -87,7 +72,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public SelectButton(ButtonStyle buttonStyle) : base(buttonStyle)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -116,6 +100,14 @@ namespace Tizen.NUI.Components
             }
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+            IsSelectable = true;
+        }
+
         /// <summary>
         /// Dispose SelectButton and all children on it.
         /// </summary>
@@ -132,6 +124,7 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
+                RemoveFromGroup();
             }
 
             base.Dispose(type);
@@ -147,20 +140,12 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool OnKey(Key key)
         {
-            if (IsEnabled == false)
+            if ((IsEnabled == false) || (key == null))
             {
                 return false;
             }
-            bool ret = base.OnKey(key);
-            if (key.State == Key.StateType.Up)
-            {
-                if (key.KeyPressedName == "Return")
-                {
-                    OnSelect();
-                }
-            }
 
-            return ret;
+            return base.OnKey(key);
         }
 
         /// <summary>
@@ -181,22 +166,12 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override bool HandleControlStateOnTouch(Touch touch)
         {
-            if (false == IsEnabled)
+            if ((IsEnabled == false) || (touch == null))
             {
                 return false;
             }
 
-            PointStateType state = touch.GetState(0);
-            bool ret = base.HandleControlStateOnTouch(touch);
-            switch (state)
-            {
-                case PointStateType.Up:
-                    OnSelect();
-                    break;
-                default:
-                    break;
-            }
-            return ret;
+            return base.HandleControlStateOnTouch(touch);
         }
 
         /// <summary>
@@ -208,21 +183,35 @@ namespace Tizen.NUI.Components
         {
         }
 
-        private void Initialize()
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnControlStateChanged(ControlStateChangedEventArgs info)
         {
-            IsSelectable = true;
-        }
-
-        private void OnSelect()
-        {    
-            OnSelectedChanged();
-
-            if (SelectedChanged != null)
+            if (info.PreviousState.Contains(ControlState.Selected) != info.CurrentState.Contains(ControlState.Selected))
             {
-                SelectedChangedEventArgs eventArgs = new SelectedChangedEventArgs();
-                eventArgs.IsSelected = IsSelected;
-                SelectedChanged(this, eventArgs);
+                if (Accessibility.Accessibility.IsEnabled && IsHighlighted)
+                {
+                    EmitAccessibilityStateChangedEvent(AccessibilityState.Checked, info.CurrentState.Contains(ControlState.Selected));
+                }
+
+                OnSelectedChanged();
+
+                if (IsSelected != info.CurrentState.Contains(ControlState.Selected))
+                {
+                    IsSelected = info.CurrentState.Contains(ControlState.Selected);
+                }
+
+                if (SelectedChanged != null)
+                {
+                    SelectedChangedEventArgs eventArgs = new SelectedChangedEventArgs();
+                    eventArgs.IsSelected = IsSelected;
+                    SelectedChanged(this, eventArgs);
+                }
             }
         }
+
+        internal void RemoveFromGroup() => itemGroup?.RemoveSelection(this);
+
+        internal void ResetItemGroup() => itemGroup = null;
     }
 }

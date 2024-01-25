@@ -23,15 +23,15 @@ namespace Tizen.Multimedia.Util
     public enum ImageFormat
     {
         /// <summary>
-        /// The Joint Photographic Experts Group format.
+        /// The JPEG(Joint Photographic Experts Group) format.
         /// </summary>
         Jpeg,
         /// <summary>
-        /// The Portable Network Graphics format.
+        /// The PNG(Portable Network Graphics) format.
         /// </summary>
         Png,
         /// <summary>
-        /// The Graphics Interchange Format.
+        /// The GIF(Graphics Interchange) Format.
         /// </summary>
         Gif,
         /// <summary>
@@ -43,5 +43,16 @@ namespace Tizen.Multimedia.Util
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         WebP,
+        /// <summary>
+        /// The HEIF(High Efficiency Image Format) format.
+        /// </summary>
+        /// <remarks>ImageUtil supports Heif decoder only.</remarks>
+        /// <since_tizen> 9 </since_tizen>
+        Heif,
+        /// <summary>
+        /// The JPEG(Joint Photographic Experts Group) XL format.
+        /// </summary>
+        /// <since_tizen> 10 </since_tizen>
+        JpegXl
     }
 }

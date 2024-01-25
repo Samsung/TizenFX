@@ -138,7 +138,10 @@ namespace Tizen.NUI.Components
             {
                 foreach (Button btn in btGroup.itemGroup)
                 {
-                    btn.OverlayImage.BackgroundColor = ((Selector<Color>)newValue).All;
+                    if (btn.OverlayImage != null)
+                    {
+                        btn.OverlayImage.BackgroundColor = ((Selector<Color>)newValue).All;
+                    }
                 }
                 btGroup.overLayBackgroundColorSelector = (Selector<Color>)newValue;
             }
@@ -157,7 +160,7 @@ namespace Tizen.NUI.Components
             if (btGroup.itemGroup != null && newValue != null)
             {
                 foreach (Button btn in btGroup.itemGroup)
-                {   
+                {
                     btn.BackgroundImage = (string)newValue;
                 }
                 btGroup.itemBackgroundImageUrl = (string)newValue;
@@ -177,7 +180,7 @@ namespace Tizen.NUI.Components
             if (btGroup.itemGroup != null && newValue != null)
             {
                 foreach (Button btn in btGroup.itemGroup)
-                {                 
+                {
                     btn.BackgroundImageBorder = (Rectangle)newValue;
                 }
                 btGroup.itemBackgroundBorder = (Rectangle)newValue;
@@ -348,7 +351,7 @@ namespace Tizen.NUI.Components
             if (Count == 0) return;
 
             int buttonWidth = (int)root.Size.Width / Count;
-            int buttonHeight = btStyle.Size.Height > itemheight ? (int)btStyle.Size.Height : (int)itemheight;
+            int buttonHeight = (int)Math.Max(btStyle?.Size?.Height ?? 0.0f, itemheight);
             foreach (Button btnTemp in itemGroup)
             {
                 btnTemp.Size = new Size(buttonWidth, buttonHeight);

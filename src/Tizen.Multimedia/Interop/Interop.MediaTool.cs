@@ -23,6 +23,9 @@ namespace Tizen.Multimedia
     {
         internal static class MediaPacket
         {
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+            internal delegate void DisposedCallback(IntPtr handle, IntPtr userData);
+
             [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_create")]
             internal static extern int Create(IntPtr format, IntPtr finalizeCb, IntPtr cbData, out IntPtr handle);
 
@@ -31,6 +34,18 @@ namespace Tizen.Multimedia
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_destroy")]
             internal static extern int Destroy(IntPtr handle);
+
+            [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_new")]
+            internal static extern int New(IntPtr format, IntPtr disposedCb, IntPtr cbData, out IntPtr handle);
+
+            [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_ref")]
+            internal static extern int Ref(IntPtr handle);
+
+            [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_unref")]
+            internal static extern int Unref(IntPtr handle);
+
+            [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_add_dispose_cb")]
+            internal static extern int AddDisposedCallback(IntPtr handle, DisposedCallback disposedCb, IntPtr userData, out int callbackId);
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_get_format")]
             internal static extern int GetFormat(IntPtr handle, out IntPtr format);
@@ -188,7 +203,7 @@ namespace Tizen.Multimedia
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_format_channel_positions_from_mask")]
             internal static extern int GetChannelPositionFromMask(IntPtr handle, ulong mask,
-                out MediaFormatAudioChannelPosition[] position);
+                ref MediaFormatAudioChannelPosition[] position);
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_format_channel_positions_to_mask")]
             internal static extern int GetMaskFromChannelPosition(IntPtr handle,

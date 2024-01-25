@@ -23,6 +23,7 @@ namespace Tizen.Maps
     /// The marker map object.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class Marker : MapObject, IDisposable
     {
         internal Interop.MarkerHandle handle;
@@ -49,12 +50,14 @@ namespace Tizen.Maps
         /// Gets or sets the clicked event handlers.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public event EventHandler Clicked;
 
         /// <summary>
         /// Gets or sets the marker's visibility.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public override bool IsVisible
         {
             get
@@ -71,6 +74,7 @@ namespace Tizen.Maps
         /// Gets or sets the geographical coordinates for this marker.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public Geocoordinates Coordinates
         {
             get
@@ -90,6 +94,7 @@ namespace Tizen.Maps
         /// Gets or sets a string representing the image file path for this marker.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string ImagePath
         {
             get
@@ -106,6 +111,7 @@ namespace Tizen.Maps
         /// Gets or sets the screen size for this marker.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public Size MarkerSize
         {
             get
@@ -123,6 +129,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The integer value is 0 by default, and must be in the range of -100 to 100.</value>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public int ZOrder
         {
             get
@@ -140,6 +147,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="newSize">New size.</param>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public void Resize(Size newSize)
         {
             MarkerSize = newSize;
@@ -150,6 +158,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="newPosition">New position for the marker.</param>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public void Move(Geocoordinates newPosition)
         {
             Coordinates = newPosition;
@@ -177,6 +186,7 @@ namespace Tizen.Maps
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
         /// <param name="disposing">If true, managed and unmanaged resources can be disposed, otherwise only unmanaged resources can be disposed.</param>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposedValue)
@@ -190,6 +200,7 @@ namespace Tizen.Maps
         /// Releases all the resources used by this object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public void Dispose()
         {
             Dispose(true);
@@ -204,6 +215,7 @@ namespace Tizen.Maps
     /// Pin type the marker map object.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class Pin : Marker
     {
         private const string defaultImagePath = "/usr/share/dotnet.tizen/framework/res/maps_marker_pin_48.png";
@@ -214,6 +226,7 @@ namespace Tizen.Maps
         /// <since_tizen> 3 </since_tizen>
         /// <param name="coordinates">Marker coordinates.</param>
         /// <exception cref="System.ArgumentException">Thrown when input coordinates are invalid.</exception>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public Pin(Geocoordinates coordinates)
             : base(coordinates, defaultImagePath, Interop.ViewMarkerType.Pin)
         {
@@ -232,6 +245,7 @@ namespace Tizen.Maps
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
         /// <exception cref="System.ArgumentException">Thrown when the input coordinates or imagePath is invalid.</exception>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public Pin(Geocoordinates coordinates, string imagePath)
             : base(coordinates, imagePath, Interop.ViewMarkerType.Pin)
         {
@@ -242,6 +256,7 @@ namespace Tizen.Maps
     /// Sticker type marker map object.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class Sticker : Marker
     {
         private const string defaultImagePath = "/usr/share/dotnet.tizen/framework/res/maps_marker_sticker_48.png";
@@ -252,6 +267,7 @@ namespace Tizen.Maps
         /// <since_tizen> 3 </since_tizen>
         /// <param name="coordinates">Marker coordinates.</param>
         /// <exception cref="System.ArgumentException">Thrown when input coordinates are invalid.</exception>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public Sticker(Geocoordinates coordinates)
             : base(coordinates, defaultImagePath, Interop.ViewMarkerType.Sticker)
         {
@@ -270,6 +286,7 @@ namespace Tizen.Maps
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
         /// <exception cref="System.ArgumentException">Thrown when the input coordinates or imagePath is invalid.</exception>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public Sticker(Geocoordinates coordinates, string imagePath)
             : base(coordinates, imagePath, Interop.ViewMarkerType.Sticker)
         {

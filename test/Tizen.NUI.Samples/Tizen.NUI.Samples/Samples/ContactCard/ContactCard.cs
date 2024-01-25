@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.UIComponents;
 
 namespace Tizen.NUI.Samples
 {
@@ -21,7 +20,6 @@ namespace Tizen.NUI.Samples
         private Animation mAnimation;
         private ContactCardLayoutInfo mContactCardLayoutInfo;
         private Vector2 foldedPosition;
-        private int mClippedImagePropertyIndex;
         private bool mFolded;
 
 
@@ -53,7 +51,6 @@ namespace Tizen.NUI.Samples
         {
             mContactCardLayoutInfo = contactCardLayoutInfo;
             foldedPosition = new Vector2(position.X, position.Y);
-            mClippedImagePropertyIndex = -1;
             mFolded = true;
 
             //NUIApplication.GetDefaultWindow().KeyEvent += OnKeyEvent;
@@ -180,7 +177,7 @@ namespace Tizen.NUI.Samples
 
                 // Fade out all the siblings
                 View parent = mContactCard.GetParent() as View;
-                for (uint i = 0; i < parent.GetChildCount(); ++i)
+                for (uint i = 0; i < parent.ChildCount; ++i)
                 {
                     View sibling = parent.GetChildAt(i);
                     if (sibling != mContactCard)
@@ -227,7 +224,7 @@ namespace Tizen.NUI.Samples
 
                 // Slowly fade in all the siblings
                 View parent = mContactCard.GetParent() as View;
-                for (uint i = 0; i < parent.GetChildCount(); ++i)
+                for (uint i = 0; i < parent.ChildCount; ++i)
                 {
                     View sibling = parent.GetChildAt(i);
                     if (sibling != mContactCard)

@@ -407,6 +407,30 @@ namespace Tizen.Applications.NotificationEventListener
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetChecked(NotificationEventArgs eventargs, bool checkedValue)
+        {
+            Interop.NotificationEventListener.ErrorCode err;
+
+            err = Interop.NotificationEventListener.SetCheckedValue(eventargs.Handle, checkedValue);
+            if (err != Interop.NotificationEventListener.ErrorCode.None)
+            {
+                throw NotificationEventListenerErrorFactory.GetException(err, "failed to set checked");
+            }
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SendEventWithNotification(NotificationEventArgs eventargs, UserEventType type)
+        {
+            Interop.NotificationEventListener.ErrorCode err;
+
+            err = Interop.NotificationEventListener.SendEventWithNotification(eventargs.Handle, (int)type);
+            if (err != Interop.NotificationEventListener.ErrorCode.None)
+            {
+                throw NotificationEventListenerErrorFactory.GetException(err, "failed to send event");
+            }
+        }
+
         /// <summary>
         /// Returns NotificationEventArgs by UniqueNumber.
         /// </summary>

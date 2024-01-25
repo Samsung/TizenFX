@@ -1,3 +1,20 @@
+/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 using System;
 using System.ComponentModel;
 using System.Globalization;
@@ -27,7 +44,7 @@ namespace Tizen.NUI.Binding
                     return FromHex(value);
                 }
 
-                string[] parts = value.Split(',');
+                string[] parts = value.Split(TypeConverter.UnifiedDelimiter);
                 if (parts.Length == 1) //like Red or Color.Red
                 {
                     parts = value.Split('.');
@@ -112,24 +129,23 @@ namespace Tizen.NUI.Binding
 
                     return FromRgb((int)t1, (int)t2, (int)t3);
 
-                case 4: //#argb => aarrggbb
+                case 4: //#rgba => rrggbbaa
                     var f1 = ToHexD(hex[idx++]);
                     var f2 = ToHexD(hex[idx++]);
                     var f3 = ToHexD(hex[idx++]);
                     var f4 = ToHexD(hex[idx]);
-                    return FromRgba((int)f2, (int)f3, (int)f4, (int)f1);
+                    return FromRgba((int)f1, (int)f2, (int)f3, (int)f4);
 
                 case 6: //#rrggbb => ffrrggbb
                     return FromRgb((int)(ToHex(hex[idx++]) << 4 | ToHex(hex[idx++])),
                             (int)(ToHex(hex[idx++]) << 4 | ToHex(hex[idx++])),
                             (int)(ToHex(hex[idx++]) << 4 | ToHex(hex[idx])));
 
-                case 8: //#aarrggbb
-                    var a1 = ToHex(hex[idx++]) << 4 | ToHex(hex[idx++]);
+                case 8: //#rrggbbaa
                     return FromRgba((int)(ToHex(hex[idx++]) << 4 | ToHex(hex[idx++])),
                             (int)(ToHex(hex[idx++]) << 4 | ToHex(hex[idx++])),
-                            (int)(ToHex(hex[idx++]) << 4 | ToHex(hex[idx])),
-                            (int)a1);
+                            (int)(ToHex(hex[idx++]) << 4 | ToHex(hex[idx++])),
+                            (int)(ToHex(hex[idx++]) << 4 | ToHex(hex[idx])));
 
                 default: //everything else will result in unexpected results
                     return Color.Black;
@@ -140,8 +156,12 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ConvertToString(object value)
         {
-            Color color = (Color)value;
-            return color.R.ToString() + " " + color.G.ToString() + " " + color.B.ToString() + " " + color.A.ToString();
+            if (value != null)
+            {
+                Color color = (Color)value;
+                return color.R.ToString() + TypeConverter.UnifiedDelimiter + color.G.ToString() + TypeConverter.UnifiedDelimiter + color.B.ToString() + TypeConverter.UnifiedDelimiter + color.A.ToString();
+            }
+            return "";
         }
     }
 }

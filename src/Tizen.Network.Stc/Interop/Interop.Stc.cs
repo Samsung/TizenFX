@@ -56,6 +56,8 @@ internal static partial class Interop
             internal static extern int SetAppId(SafeFilterHandle filter, string appId);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_set_time_interval")]
             internal static extern int SetTimeInterval(SafeFilterHandle filter, Int32 from, Int32 to);
+            [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_set_time_interval")]
+            internal static extern int SetTimeInterval64(SafeFilterHandle filter, Int64 from, Int64 to);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_set_iface_type")]
             internal static extern int SetInterfaceType(SafeFilterHandle filter, NetworkInterface ifaceType);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_set_time_period")]
@@ -73,6 +75,8 @@ internal static partial class Interop
             internal static extern int GetInterfaceName(SafeStatsHandle info, out string IfaceName);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_time_interval")]
             internal static extern int GetTimeInterval(SafeStatsHandle info, out Int32 from, out Int32 to);
+            [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_time_interval")]
+            internal static extern int GetTimeInterval64(SafeStatsHandle info, out Int64 from, out Int64 to);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_iface_type")]
             internal static extern int GetInterfaceType(SafeStatsHandle info, out NetworkInterface ifaceType);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_counter")]
@@ -152,7 +156,19 @@ internal static partial class Interop
         return (Int32)((dateTime.ToUniversalTime() - epoch).TotalSeconds);
     }
 
+    internal static Int64 ConvertDateTimeToTimestamp64(DateTime dateTime)
+    {
+        DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+        return (Int64)((dateTime.ToUniversalTime() - epoch).TotalSeconds);
+    }
+
     internal static DateTime ConvertTimestampToDateTime(Int32 timestamp)
+    {
+        DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+        return epoch.AddSeconds(timestamp).ToLocalTime();
+    }
+
+    internal static DateTime ConvertTimestampToDateTime64(Int64 timestamp)
     {
         DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
         return epoch.AddSeconds(timestamp).ToLocalTime();

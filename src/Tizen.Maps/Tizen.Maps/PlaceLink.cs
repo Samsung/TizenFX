@@ -23,6 +23,7 @@ namespace Tizen.Maps
     /// Place link object information, used in place discovery and search requests.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class PlaceLink
     {
         private string _id;
@@ -42,24 +43,28 @@ namespace Tizen.Maps
         /// Gets a string representing the ID for this place link.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Id { get { return _id; } }
 
         /// <summary>
         /// Gets a string representing the name for this place link.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Name { get { return _name; } }
 
         /// <summary>
         /// Gets a string representing the link for this place link.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Link { get { return _link; } }
 
         /// <summary>
         /// Gets a string representing the type for this place link.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Type { get { return _type; } }
     }
 }

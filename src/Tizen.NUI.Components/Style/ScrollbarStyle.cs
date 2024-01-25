@@ -24,7 +24,7 @@ namespace Tizen.NUI.Components
     /// ScrollbarStyle is a class which saves Scrollbar's style data.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ScrollbarStyle : ViewStyle
+    public class ScrollbarStyle : ControlStyle
     {
         #region Fields
 
@@ -54,7 +54,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TrackColorProperty = BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(ScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((ScrollbarStyle)bindable).trackColor = (Color)newValue;
+            ((ScrollbarStyle)bindable).trackColor = new Color((Color)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -65,7 +65,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ThumbColorProperty = BindableProperty.Create(nameof(ThumbColor), typeof(Color), typeof(ScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((ScrollbarStyle)bindable).thumbColor = (Color)newValue;
+            ((ScrollbarStyle)bindable).thumbColor = new Color((Color)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -76,11 +76,33 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TrackPaddingProperty = BindableProperty.Create(nameof(TrackPadding), typeof(Extents), typeof(ScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((ScrollbarStyle)bindable).trackPadding = (Extents)newValue;
+            ((ScrollbarStyle)bindable).trackPadding = new Extents((Extents)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
             return ((ScrollbarStyle)bindable).trackPadding;
+        });
+
+        /// <summary>Bindable property of ThumbBackgroundImageVertical</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ThumbVerticalImageUrlProperty = BindableProperty.Create(nameof(ThumbVerticalImageUrl), typeof(string), typeof(ScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((ScrollbarStyle)bindable).thumbVerticalImageUrl = ((string)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((ScrollbarStyle)bindable).thumbVerticalImageUrl;
+        });
+
+        /// <summary>Bindable property of ThumbBackgroundImageUrl</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ThumbHorizontalImageUrlProperty = BindableProperty.Create(nameof(ThumbHorizontalImageUrl), typeof(string), typeof(ScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((ScrollbarStyle)bindable).thumbHorizontalImageUrl = ((string)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((ScrollbarStyle)bindable).thumbHorizontalImageUrl;
         });
 
         private float? trackThickness;
@@ -88,6 +110,8 @@ namespace Tizen.NUI.Components
         private Color trackColor;
         private Color thumbColor;
         private Extents trackPadding;
+        private string thumbVerticalImageUrl;
+        private string thumbHorizontalImageUrl;
 
         #endregion Fields
 
@@ -100,7 +124,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ScrollbarStyle() : base()
         {
-            Initialize();
         }
 
         /// <summary>
@@ -110,7 +133,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ScrollbarStyle(ScrollbarStyle style) : base(style)
         {
-            this.CopyFrom(style);
         }
 
         /// <summary>
@@ -175,40 +197,35 @@ namespace Tizen.NUI.Components
             set => SetValue(TrackPaddingProperty, value);
         }
 
-        #endregion Properties
-
-
-        #region Methods
-
-        /// <inheritdoc/>
+        /// <summary>
+        /// The image url of the vertical thumb.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void CopyFrom(BindableObject bindableObject)
+        public string ThumbVerticalImageUrl
         {
-            base.CopyFrom(bindableObject);
-
-            var style = bindableObject as ScrollbarStyle;
-
-            if (null != style)
-            {
-                TrackThickness = style.TrackThickness;
-                ThumbThickness = style.ThumbThickness;
-                TrackColor = style.TrackColor;
-                ThumbColor = style.ThumbColor;
-                TrackPadding = style.TrackPadding;
-            }
+            get => (string)GetValue(ThumbVerticalImageUrlProperty);
+            set => SetValue(ThumbVerticalImageUrlProperty, value);
         }
 
-        private void Initialize()
+        /// <summary>
+        /// The image url of the horizontal thumb.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string ThumbHorizontalImageUrl
         {
-            TrackThickness = 6.0f;
-            ThumbThickness = 6.0f;
-            TrackColor = new Color(1.0f, 1.0f, 1.0f, 0.15f);
-            ThumbColor = new Color(0.6f, 0.6f, 0.6f, 1.0f);
-            TrackPadding = 4;
-            WidthResizePolicy = ResizePolicyType.FillToParent;
-            HeightResizePolicy = ResizePolicyType.FillToParent;
+            get => (string)GetValue(ThumbHorizontalImageUrlProperty);
+            set => SetValue(ThumbHorizontalImageUrlProperty, value);
         }
 
-        #endregion Methods
+        /// <summary>
+        /// The ImageViewStyle of Thumb. internal usage only.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal ImageViewStyle Thumb
+        {
+            get; set;
+        }
+
+        #endregion Properties
     }
 }

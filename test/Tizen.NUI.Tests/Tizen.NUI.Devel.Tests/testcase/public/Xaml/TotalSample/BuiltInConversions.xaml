@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<View xmlns="http://tizen.org/Tizen.NUI/2018/XAML" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	  x:Class="Tizen.NUI.Devel.Tests.BuiltInConversions">
+    <View>
+        <TextLabel x:Name="label0" Text="foobar"/>
+        <TextLabel x:Name="label1">
+            <TextLabel.Text>
+				foobar
+			</TextLabel.Text>
+		</TextLabel>
+        <TextLabel x:Name="label2">
+			foobar
+		</TextLabel>
+	</View>
+</View>

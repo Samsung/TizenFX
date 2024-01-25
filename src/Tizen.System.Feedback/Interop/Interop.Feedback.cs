@@ -55,5 +55,20 @@ internal static partial class Interop
 
         [DllImport(Libraries.Feedback, EntryPoint = "feedback_is_supported_pattern")]
         internal static extern int IsSupportedPattern(FeedbackType type, int pattern, out bool supported);
+
+        [DllImport(Libraries.Feedback, EntryPoint = "feedback_get_count_of_theme_internal")]
+        internal static extern int GetCountOfThemeInternal(FeedbackType type, out uint countOfTheme);
+
+        [DllImport(Libraries.Feedback, EntryPoint = "feedback_get_theme_id_internal")]
+        internal static extern int GetThemeIdInternal(FeedbackType type, out uint idOfTheme);
+
+        [DllImport(Libraries.Feedback, EntryPoint = "feedback_set_theme_id_internal")]
+        internal static extern int SetThemeIdInternal(FeedbackType type, uint idOfTheme);
+
+        [DllImport(Libraries.Feedback, EntryPoint = "feedback_stop_type_internal")]
+        internal static extern int StopTypeInternal(FeedbackType type);
+
+        [DllImport(Libraries.Feedback, EntryPoint = "feedback_get_theme_ids_internal", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int GetThemeIdsInternal(FeedbackType type, out uint coundOfTheme, out IntPtr themeIds);
     }
 }

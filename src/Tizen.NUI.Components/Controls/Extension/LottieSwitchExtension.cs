@@ -28,35 +28,34 @@ namespace Tizen.NUI.Components.Extension
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class LottieSwitchExtension : SwitchExtension
     {
-        /// <summary>
-        /// A constructor that creates LottieButtonExtension with a specified Lottie resource URL
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public LottieSwitchExtension() : base()
-        {
-            LottieView = new LottieAnimationView();
-        }
-
-        /// <summary>
-        /// The Lottie view that will be used as an icon part in a Button.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected LottieAnimationView LottieView { get; set; }
-
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override ImageView OnCreateIcon(Button button, ImageView icon)
+        public override bool ProcessIcon(Button button, ref ImageView icon)
         {
-            LottieButtonExtension.InitializeLottieView(button, LottieView);
+            if (button.Style is ILottieButtonStyle lottieStyle)
+            {
+                var lottieView = LottieExtensionHelper.CreateLottieView(lottieStyle);
+                var parent = icon.GetParent();
 
-            return LottieView;
+                icon.Unparent();
+                icon.Dispose();
+                icon = lottieView;
+                parent?.Add(icon);
+
+                return true;
+            }
+
+            return false;
         }
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnControlStateChanged(Button button, View.ControlStateChangedEventArgs args)
         {
-            LottieButtonExtension.UpdateLottieView(button, args.PreviousState, LottieView);
+            if (button.Style is ILottieButtonStyle lottieStyle && button.Icon is LottieAnimationView lottieView)
+            {
+                LottieExtensionHelper.UpdateLottieView(lottieView, lottieStyle, args.PreviousState, button.ControlState);
+            }
         }
     }
 }

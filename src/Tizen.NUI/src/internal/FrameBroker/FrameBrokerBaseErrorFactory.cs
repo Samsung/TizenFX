@@ -22,11 +22,11 @@ namespace Tizen.NUI
 {
     internal static class FrameBrokerBaseErrorFactory
     {
-        private static string LogTag = "Tizen.NUI";
+        private static string logTag = "NUI";
 
         internal static Exception GetException(Interop.FrameBroker.ErrorCode err, string message, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
         {
-            Log.Error(LogTag, memberName + "(" + lineNumber + ") " + message);
+            Log.Error(logTag, memberName + "(" + lineNumber + ") " + message);
             switch (err)
             {
                 case Interop.FrameBroker.ErrorCode.InvalidParameter:

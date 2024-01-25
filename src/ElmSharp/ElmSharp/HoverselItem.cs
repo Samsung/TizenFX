@@ -22,6 +22,7 @@ namespace ElmSharp
     /// The HoverselItem is the item of Hoversel.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class HoverselItem : ItemObject
     {
         internal HoverselItem() : base(IntPtr.Zero)
@@ -36,12 +37,14 @@ namespace ElmSharp
         /// The HoverselItem's label.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string Label { get; internal set; }
 
         /// <summary>
         /// ItemSelected will be triggered when the HoverselItem is selected.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler ItemSelected;
 
         internal void SendItemSelected()

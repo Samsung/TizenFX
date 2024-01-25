@@ -27,3 +27,6 @@ sed -i -e "s/@nuget_version@/$NUGET_VERSION/g" $RPMSPEC
 
 # Update RID
 python $SCRIPT_DIR/makerid.py
+
+# Update TFM
+python $SCRIPT_DIR/maketfm.py

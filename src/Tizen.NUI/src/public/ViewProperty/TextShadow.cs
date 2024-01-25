@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,8 +24,9 @@ namespace Tizen.NUI
     /// The Text Shadow for TextLabel.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class TextShadow : ICloneable
+    public class TextShadow : ICloneable, IDisposable
     {
+        private bool disposed = false;
         private readonly PropertyMap propertyMap = null;
 
         internal delegate void PropertyChangedCallback(TextShadow instance);
@@ -54,7 +55,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object Clone()
         {
-            return new TextShadow(Color, Offset, BlurRadius);
+            return new TextShadow((Color)Color?.Clone(), Offset, BlurRadius);
         }
 
         /// <summary>
@@ -112,6 +113,29 @@ namespace Tizen.NUI
             }
 
             return new PropertyValue(instance.propertyMap);
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+            if (disposing)
+            {
+                propertyMap?.Dispose();
+                Color?.Dispose();
+                Offset?.Dispose();
+            }
+            disposed = true;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Dispose()
+        {
+            Dispose(true);
+            global::System.GC.SuppressFinalize(this);
         }
     }
 }

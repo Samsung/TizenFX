@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,11 +24,11 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class AnimatedImageVisual : VisualMap
     {
-        private List<string> _urls = null;
-        private int? _batchSize = null;
-        private int? _cacheSize = null;
-        private float? _frameDelay = null;
-        private float? _loopCount = null;
+        private List<string> urls = null;
+        private int? batchSize = null;
+        private int? cacheSize = null;
+        private float? frameDelay = null;
+        private float? loopCount = null;
 
         /// <summary>
         /// Constructor.
@@ -46,9 +46,9 @@ namespace Tizen.NUI
         {
             get
             {
-                if (_urls != null)
+                if (urls != null)
                 {
-                    return _urls[0];
+                    return urls[0];
                 }
                 else
                 {
@@ -57,14 +57,14 @@ namespace Tizen.NUI
             }
             set
             {
-                if (_urls == null)
+                if (urls == null)
                 {
-                    _urls = new List<string>();
-                    _urls.Add(value);
+                    urls = new List<string>();
+                    urls.Add(value);
                 }
                 else
                 {
-                    _urls[0] = value;
+                    urls[0] = value;
                 }
                 UpdateVisual();
             }
@@ -78,11 +78,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _urls;
+                return urls;
             }
             set
             {
-                _urls = value;
+                urls = value;
                 UpdateVisual();
             }
         }
@@ -95,11 +95,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _batchSize ?? 1;
+                return batchSize ?? 1;
             }
             set
             {
-                _batchSize = value;
+                batchSize = value;
                 UpdateVisual();
             }
         }
@@ -112,11 +112,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _cacheSize ?? 1;
+                return cacheSize ?? 1;
             }
             set
             {
-                _cacheSize = value;
+                cacheSize = value;
                 UpdateVisual();
             }
         }
@@ -129,11 +129,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _frameDelay ?? 0.1f;
+                return frameDelay ?? 0.1f;
             }
             set
             {
-                _frameDelay = value;
+                frameDelay = value;
                 UpdateVisual();
             }
         }
@@ -147,11 +147,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _loopCount ?? -1;
+                return loopCount ?? -1;
             }
             set
             {
-                _loopCount = value;
+                loopCount = value;
                 UpdateVisual();
             }
         }
@@ -162,27 +162,54 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override void ComposingPropertyMap()
         {
-            if (_urls != null)
+            if (urls != null)
             {
                 _outputVisualMap = new PropertyMap();
-                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.AnimatedImage));
-                if (_urls.Count == 1)
+                PropertyValue temp = new PropertyValue((int)Visual.Type.AnimatedImage);
+                _outputVisualMap.Add(Visual.Property.Type, temp);
+                temp.Dispose();
+                if (urls.Count == 1)
                 {
-                    _outputVisualMap.Add(ImageVisualProperty.URL, new PropertyValue(_urls[0]));
+                    temp = new PropertyValue(urls[0]);
+                    _outputVisualMap.Add(ImageVisualProperty.URL, temp);
+                    temp.Dispose();
                 }
                 else
                 {
                     var urlArray = new PropertyArray();
-                    foreach (var url in _urls)
+                    foreach (var url in urls)
                     {
                         urlArray.Add(new PropertyValue(url));
                     }
-                    _outputVisualMap.Add(ImageVisualProperty.URL, (new PropertyValue(urlArray)));
+                    temp = new PropertyValue(urlArray);
+                    _outputVisualMap.Add(ImageVisualProperty.URL, temp);
+                    temp.Dispose();
+                    urlArray.Dispose();
                 }
-                if (_batchSize != null) { _outputVisualMap.Add(ImageVisualProperty.BatchSize, new PropertyValue((int)_batchSize)); }
-                if (_cacheSize != null) { _outputVisualMap.Add(ImageVisualProperty.CacheSize, new PropertyValue((int)_cacheSize)); }
-                if (_frameDelay != null) { _outputVisualMap.Add(ImageVisualProperty.FrameDelay, new PropertyValue((float)_frameDelay)); }
-                if (_loopCount != null) { _outputVisualMap.Add(ImageVisualProperty.LoopCount, new PropertyValue((int)_loopCount)); }
+                if (batchSize != null)
+                {
+                    temp = new PropertyValue((int)batchSize);
+                    _outputVisualMap.Add(ImageVisualProperty.BatchSize, temp);
+                    temp.Dispose();
+                }
+                if (cacheSize != null)
+                {
+                    temp = new PropertyValue((int)cacheSize);
+                    _outputVisualMap.Add(ImageVisualProperty.CacheSize, temp);
+                    temp.Dispose();
+                }
+                if (frameDelay != null)
+                {
+                    temp = new PropertyValue((float)frameDelay);
+                    _outputVisualMap.Add(ImageVisualProperty.FrameDelay, temp);
+                    temp.Dispose();
+                }
+                if (loopCount != null)
+                {
+                    temp = new PropertyValue((int)loopCount);
+                    _outputVisualMap.Add(ImageVisualProperty.LoopCount, temp);
+                    temp.Dispose();
+                }
                 base.ComposingPropertyMap();
             }
         }

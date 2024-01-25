@@ -28,8 +28,6 @@ namespace Tizen.Applications
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class RecentApplicationControl
     {
-        private const string LogTag = "Tizen.Applications";
-
         private readonly string _pkgId;
 
         internal RecentApplicationControl(String pkgId)

@@ -22,6 +22,7 @@ namespace ElmSharp
     /// Enumeration for the AnimationView state
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum AnimationViewState
     {
         /// <summary>
@@ -55,6 +56,7 @@ namespace ElmSharp
     /// Currently ElmSharp AnimationView is supporting only json format (known for Lottie file as well).
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class AnimationView : EvasObject
     {
         private SmartEvent _started;
@@ -70,6 +72,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">The parent is a given container, which will be attached by AnimationView as a child. It's <see cref="EvasObject"/> type.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public AnimationView(EvasObject parent) : base(parent)
         {
             _started = new SmartEvent(this, this.Handle, "play,start");
@@ -120,42 +123,49 @@ namespace ElmSharp
         /// It occurs when the animation is just started.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Started;
 
         /// <summary>
         /// It occurs when the animation is just repeated.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Repeated;
 
         /// <summary>
         /// It occurs when the animation is just finished.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Finished;
 
         /// <summary>
         /// It occurs when the animation is just paused.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Paused;
 
         /// <summary>
         /// It occurs when the animation is just resumed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Resumed;
 
         /// <summary>
         /// It occurs when the animation is just stopped.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Stopped;
 
         /// <summary>
         /// It occurs when the animation is updated to the next frame.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Updated;
 
         /// <summary>
@@ -168,6 +178,7 @@ namespace ElmSharp
         /// </remarks>
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool AutoPlay
         {
             get
@@ -188,6 +199,7 @@ namespace ElmSharp
         /// </remarks>
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool AutoRepeat
         {
             get
@@ -210,6 +222,7 @@ namespace ElmSharp
         /// </remarks>
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double Speed
         {
             get
@@ -230,6 +243,7 @@ namespace ElmSharp
         /// If current animation source isn't animatable, it returns zero.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double DurationTime
         {
             get
@@ -247,6 +261,7 @@ namespace ElmSharp
         /// </remarks>
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double Progress
         {
             get
@@ -266,6 +281,7 @@ namespace ElmSharp
         /// </remarks>
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int Frame
         {
             get
@@ -282,6 +298,7 @@ namespace ElmSharp
         /// Get the default view size that specified from vector resource.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Size DefaultSize
         {
             get
@@ -295,6 +312,7 @@ namespace ElmSharp
         /// Get current animation view state.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public AnimationViewState State
         {
             get
@@ -310,6 +328,7 @@ namespace ElmSharp
         /// If AnimationView is not on playing, it will return False.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsReversedPlaying
         {
             get
@@ -325,6 +344,7 @@ namespace ElmSharp
         /// Frame number starts with 0.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int FrameCount
         {
             get
@@ -340,6 +360,7 @@ namespace ElmSharp
         /// Default value is 0.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double MinProgress
         {
             get
@@ -359,6 +380,7 @@ namespace ElmSharp
         /// Default value is 1.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double MaxProgress
         {
             get
@@ -378,6 +400,7 @@ namespace ElmSharp
         /// Default value is 0.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int MinFrame
         {
             get
@@ -397,6 +420,7 @@ namespace ElmSharp
         /// Default value is FrameCount -1.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int MaxFrame
         {
             get
@@ -414,6 +438,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="file">The animation file path.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetAnimation(string file)
         {
             Interop.Elementary.elm_animation_view_file_set(Handle, file, null);
@@ -427,6 +452,7 @@ namespace ElmSharp
         /// </remarks>
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Play()
         {
             Interop.Elementary.elm_animation_view_play(Handle);
@@ -442,6 +468,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="isReverse">Whether the animation play or reverse play.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Play(bool isReverse)
         {
             if (!isReverse)
@@ -462,6 +489,7 @@ namespace ElmSharp
         /// </remarks>
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Pause()
         {
             Interop.Elementary.elm_animation_view_pause(Handle);
@@ -474,6 +502,7 @@ namespace ElmSharp
         /// This resume must be called on animation paused status.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Resume()
         {
             Interop.Elementary.elm_animation_view_resume(Handle);
@@ -488,6 +517,7 @@ namespace ElmSharp
         /// </remarks>
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Stop()
         {
             Interop.Elementary.elm_animation_view_stop(Handle);
@@ -499,6 +529,7 @@ namespace ElmSharp
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_animation_view_add(parent.Handle);

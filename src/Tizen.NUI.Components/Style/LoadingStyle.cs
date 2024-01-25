@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
@@ -26,6 +27,59 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 8 </since_tizen>
     public class LoadingStyle : ControlStyle
     {
+        /// <summary>The FrameRateSelector bindable property.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FrameRateSelectorProperty = BindableProperty.Create("FrameRateSelector", typeof(Selector<int?>), typeof(LoadingStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((LoadingStyle)bindable).frameRate = ((Selector<int?>)newValue)?.Clone();
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((LoadingStyle)bindable).frameRate;
+        });
+
+        /// <summary>The LoadingSize bindable property.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty LoadingSizeProperty = BindableProperty.Create(nameof(LoadingSize), typeof(Size), typeof(LoadingStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((LoadingStyle)bindable).Size = (Size)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((LoadingStyle)bindable).Size;
+        });
+
+        /// <summary>The Images bindable property.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ImagesProperty = BindableProperty.Create(nameof(Images), typeof(string[]), typeof(LoadingStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((LoadingStyle)bindable).images = newValue == null ? null : new List<string>((string[])newValue);
+        },
+        defaultValueCreator: (bindable) => ((LoadingStyle)bindable).images?.ToArray()
+        );
+
+        /// <summary>The Images bindable property.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ImageListProperty = BindableProperty.Create(nameof(ImageList), typeof(IList<string>), typeof(LoadingStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((LoadingStyle)bindable).images = newValue == null ? null : newValue as List<string>;
+        },
+        defaultValueCreator: (bindable) => ((LoadingStyle)bindable).images
+        );
+
+        /// <summary>The lottie resource url bindable property.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty LottieResourceUrlProperty = BindableProperty.Create(nameof(LottieResourceUrl), typeof(string), typeof(LoadingStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((LoadingStyle)bindable).lottieResourceUrl = newValue as string;
+        },
+        defaultValueCreator: (bindable) => ((LoadingStyle)bindable).lottieResourceUrl
+        );
+
+        private Selector<int?> frameRate;
+        private List<string> images;
+        private string lottieResourceUrl;
+
         static LoadingStyle() { }
 
         /// <summary>
@@ -41,57 +95,67 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public LoadingStyle(LoadingStyle style) : base(style)
         {
-            if(null == style)
-            {
-                return;
-            }
-            this.CopyFrom(style);
         }
 
         /// <summary>
         /// Gets or sets loading image resources.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public string[] Images { get; set; }
+        public string[] Images
+        {
+            get => (ImageList as List<string>)?.ToArray();
+            set => SetValue(ImagesProperty, value);
+        }
+
+        /// <summary>
+        /// Gets loading image resources.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public IList<string> ImageList
+        {
+            get
+            {
+                return GetValue(ImageListProperty) as List<string>;
+            }
+            internal set => SetValue(ImageListProperty, value);
+        }
+
+        /// <summary>
+        /// Gets or sets an lottie resource url.
+        /// The mutually exclusive with "ImageArray".
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string LottieResourceUrl
+        {
+            get => GetValue(LottieResourceUrlProperty) as string;
+            set => SetValue(LottieResourceUrlProperty, value);
+        }
 
         /// <summary>
         /// Gets or sets loading image size.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public Size LoadingSize { get; set; }
+        public Size LoadingSize
+        {
+            get => (Size)GetValue(LoadingSizeProperty);
+            set => SetValue(LoadingSizeProperty, value);
+        }
 
         /// <summary>
         /// Gets or sets loading frame per second.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public Selector<int?> FrameRate { get; set; } = new Selector<int?>();
+        public Selector<int?> FrameRate
+        {
+            get => (Selector<int?>)GetValue(FrameRateSelectorProperty);
+            set => SetValue(FrameRateSelectorProperty, value);
+        }
 
-        /// <summary>
-        /// Style's clone function.
-        /// </summary>
-        /// <param name="bindableObject">The style that need to copy.</param>
+        /// <inheritdoc/>
         /// <since_tizen> 8 </since_tizen>
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);
-
-            LoadingStyle loadingStyle = bindableObject as LoadingStyle;
-
-            if (null != loadingStyle)
-            {
-                if (null != loadingStyle.FrameRate)
-                {
-                    FrameRate?.Clone(loadingStyle.FrameRate);
-                }
-                if (null != loadingStyle.LoadingSize)
-                {
-                    LoadingSize = loadingStyle.LoadingSize;
-                }
-                if (null != loadingStyle.Images)
-                {
-                    Images = loadingStyle.Images;
-                }
-            }
         }
     }
 }

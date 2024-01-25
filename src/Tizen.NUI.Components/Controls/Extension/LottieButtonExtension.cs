@@ -29,57 +29,56 @@ namespace Tizen.NUI.Components.Extension
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class LottieButtonExtension : ButtonExtension
     {
-        /// <summary>
-        /// A constructor that creates LottieButtonExtension with a specified Lottie resource URL
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public LottieButtonExtension() : base()
-        {
-            LottieView = new LottieAnimationView();
-        }
-
-        /// <summary>
-        /// The Lottie view that will be used as an icon part in a Button.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected LottieAnimationView LottieView { get; set; }
-
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override ImageView OnCreateIcon(Button button, ImageView icon)
+        public override bool ProcessIcon(Button button, ref ImageView icon)
         {
-            InitializeLottieView(button, LottieView);
+            if (button.Style is ILottieButtonStyle lottieStyle)
+            {
+                var lottieView = LottieExtensionHelper.CreateLottieView(lottieStyle);
+                var parent = icon.GetParent();
 
-            return LottieView;
+                icon.Unparent();
+                icon.Dispose();
+                icon = lottieView;
+                parent?.Add(icon);
+
+                return true;
+            }
+
+            return false;
         }
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnControlStateChanged(Button button, View.ControlStateChangedEventArgs args)
         {
-            UpdateLottieView(button, args.PreviousState, LottieView);
-        }
-
-        internal static void InitializeLottieView(Button button, LottieAnimationView lottieView)
-        {
-            if (button.Style as ILottieButtonStyle == null)
+            if (button.Style is ILottieButtonStyle lottieStyle && button.Icon is LottieAnimationView lottieView)
             {
-                throw new Exception("LottieButtonExtension must be used within a ILottieButtonStyle or derived class.");
+                LottieExtensionHelper.UpdateLottieView(lottieView, lottieStyle, args.PreviousState, button.ControlState);
             }
+        }
+    }
 
-            var lottieStyle = (ILottieButtonStyle)button.Style;
-            lottieView.URL = lottieStyle.LottieUrl;
-            lottieView.StopBehavior = LottieAnimationView.StopBehaviorType.MaximumFrame;
+    internal static class LottieExtensionHelper
+    {
+        internal static LottieAnimationView CreateLottieView(ILottieButtonStyle lottieStyle)
+        {
+            var lottieView = new LottieAnimationView()
+            {
+                URL = lottieStyle.LottieUrl,
+                StopBehavior = LottieAnimationView.StopBehaviorType.MaximumFrame
+            };
             if (lottieStyle.PlayRange != null && lottieStyle.PlayRange.GetValue(ControlState.Normal, out var result))
             {
                 result.Show(lottieView, true);
             }
+            return lottieView;
         }
 
-        internal static void UpdateLottieView(Button button, ControlState previousState, LottieAnimationView lottieView)
+        internal static void UpdateLottieView(LottieAnimationView lottieView, ILottieButtonStyle lottieStyle, ControlState previousState, ControlState currentState)
         {
-            var lottieStyle = ((ILottieButtonStyle)button.Style);
-            if (lottieStyle.PlayRange != null && lottieStyle.PlayRange.GetValue(button.ControlState, out var result))
+            if (lottieStyle.PlayRange != null && lottieStyle.PlayRange.GetValue(currentState, out var result))
             {
                 result.Show(lottieView, !previousState.Contains(ControlState.Pressed));
             }

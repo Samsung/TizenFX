@@ -29,115 +29,115 @@ namespace Tizen.NUI.BaseComponents
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty VideoProperty = BindableProperty.Create("Video", typeof(PropertyMap), typeof(VideoView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty VideoProperty = BindableProperty.Create(nameof(Video), typeof(PropertyMap), typeof(VideoView), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var videoView = (VideoView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(videoView.swigCPtr, VideoView.Property.VIDEO, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.VIDEO, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var videoView = (VideoView)bindable;
             PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(videoView.swigCPtr, VideoView.Property.VIDEO).Get(temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.VIDEO).Get(temp);
             return temp;
-        });
+        }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LoopingProperty = BindableProperty.Create("Looping", typeof(bool), typeof(VideoView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LoopingProperty = BindableProperty.Create(nameof(Looping), typeof(bool), typeof(VideoView), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var videoView = (VideoView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(videoView.swigCPtr, VideoView.Property.LOOPING, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.LOOPING, new Tizen.NUI.PropertyValue((bool)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var videoView = (VideoView)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty(videoView.swigCPtr, VideoView.Property.LOOPING).Get(out temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.LOOPING).Get(out temp);
             return temp;
-        });
+        }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MutedProperty = BindableProperty.Create("Muted", typeof(bool), typeof(VideoView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MutedProperty = BindableProperty.Create(nameof(Muted), typeof(bool), typeof(VideoView), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var videoView = (VideoView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(videoView.swigCPtr, VideoView.Property.MUTED, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.MUTED, new Tizen.NUI.PropertyValue((bool)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var videoView = (VideoView)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty(videoView.swigCPtr, VideoView.Property.MUTED).Get(out temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.MUTED).Get(out temp);
             return temp;
-        });
+        }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty VolumeProperty = BindableProperty.Create("Volume", typeof(PropertyMap), typeof(VideoView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty VolumeProperty = BindableProperty.Create(nameof(Volume), typeof(PropertyMap), typeof(VideoView), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var videoView = (VideoView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(videoView.swigCPtr, VideoView.Property.VOLUME, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.VOLUME, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var videoView = (VideoView)bindable;
             PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(videoView.swigCPtr, VideoView.Property.VOLUME).Get(temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.VOLUME).Get(temp);
             return temp;
-        });
+        }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty UnderlayProperty = BindableProperty.Create("Underlay", typeof(bool), typeof(VideoView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty UnderlayProperty = BindableProperty.Create(nameof(Underlay), typeof(bool), typeof(VideoView), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var videoView = (VideoView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(videoView.swigCPtr, VideoView.Property.UNDERLAY, new Tizen.NUI.PropertyValue((bool)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.UNDERLAY, new Tizen.NUI.PropertyValue((bool)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var videoView = (VideoView)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty(videoView.swigCPtr, VideoView.Property.UNDERLAY).Get(out temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.UNDERLAY).Get(out temp);
             return temp;
-        });
+        }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ResourceUrlProperty = BindableProperty.Create("ResourceUrl", typeof(string), typeof(VideoView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ResourceUrlProperty = BindableProperty.Create(nameof(ResourceUrl), typeof(string), typeof(VideoView), string.Empty, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var videoView = (VideoView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(videoView.swigCPtr, VideoView.Property.VIDEO, new Tizen.NUI.PropertyValue((string)newValue));
+                Tizen.NUI.Object.SetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.VIDEO, new Tizen.NUI.PropertyValue((string)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var videoView = (VideoView)bindable;
             string temp;
-            Tizen.NUI.Object.GetProperty(videoView.swigCPtr, VideoView.Property.VIDEO).Get(out temp);
+            Tizen.NUI.Object.GetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.VIDEO).Get(out temp);
             return temp;
-        });
+        }));
 
-        private FinishedCallbackDelegate _videoViewFinishedCallbackDelegate;
-        private EventHandler<FinishedEventArgs> _videoViewFinishedEventHandler;
+        private FinishedCallbackDelegate videoViewFinishedCallbackDelegate;
+        private EventHandler<FinishedEventArgs> videoViewFinishedEventHandler;
 
         /// <summary>
         /// Creates an initialized VideoView.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public VideoView() : this(Interop.VideoView.VideoView_New__SWIG_0(), true)
+        public VideoView() : this(Interop.VideoView.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -148,7 +148,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="url">The URL of the video resource to display.</param>
         /// <since_tizen> 3 </since_tizen>
-        public VideoView(string url) : this(Interop.VideoView.VideoView_New__SWIG_1(url), true)
+        public VideoView(string url) : this(Interop.VideoView.New(url), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -159,7 +159,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="swCodec">Video rendering by H/W codec if false.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public VideoView(bool swCodec) : this(Interop.VideoView.VideoView_New__SWIG_2(swCodec), true)
+        public VideoView(bool swCodec) : this(Interop.VideoView.New(swCodec), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -171,21 +171,30 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="url">The URL of the video resource to display.</param>
         /// <param name="swCodec">Video rendering by H/W codec if false.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public VideoView(string url, bool swCodec) : this(Interop.VideoView.VideoView_New__SWIG_3(url, swCodec), true)
+        public VideoView(string url, bool swCodec) : this(Interop.VideoView.New(url, swCodec), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal VideoView(VideoView videoView) : this(Interop.VideoView.new_VideoView__SWIG_1(VideoView.getCPtr(videoView)), true)
+        /// <summary>
+        /// Hidden API (Inhouse API).
+        /// Using Uri class to provide safe service and secure API.
+        /// Creates an initialized VideoView.
+        /// If the string is empty, VideoView will not display anything.
+        /// </summary>
+        /// <param name="uri">The URI of the video resource to display.</param>
+        /// <param name="swCodec">Video rendering by H/W codec if false.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public VideoView(Uri uri, bool swCodec) : this(Interop.VideoView.New((uri == null) ? String.Empty : uri.AbsoluteUri, swCodec), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal VideoView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.VideoView.VideoView_SWIGUpcast(cPtr), cMemoryOwn)
+        internal VideoView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void FinishedCallbackDelegate(IntPtr data);
 
         /// <summary>
@@ -197,19 +206,19 @@ namespace Tizen.NUI.BaseComponents
         {
             add
             {
-                if (_videoViewFinishedEventHandler == null)
+                if (videoViewFinishedEventHandler == null)
                 {
-                    _videoViewFinishedCallbackDelegate = (OnFinished);
-                    FinishedSignal().Connect(_videoViewFinishedCallbackDelegate);
+                    videoViewFinishedCallbackDelegate = (OnFinished);
+                    FinishedSignal().Connect(videoViewFinishedCallbackDelegate);
                 }
-                _videoViewFinishedEventHandler += value;
+                videoViewFinishedEventHandler += value;
             }
             remove
             {
-                _videoViewFinishedEventHandler -= value;
-                if (_videoViewFinishedEventHandler == null && FinishedSignal().Empty() == false)
+                videoViewFinishedEventHandler -= value;
+                if (videoViewFinishedEventHandler == null && FinishedSignal().Empty() == false)
                 {
-                    FinishedSignal().Disconnect(_videoViewFinishedCallbackDelegate);
+                    FinishedSignal().Disconnect(videoViewFinishedCallbackDelegate);
                 }
             }
         }
@@ -323,7 +332,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void Play()
         {
-            Interop.VideoView.VideoView_Play(swigCPtr);
+            Interop.VideoView.Play(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -333,7 +342,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void Pause()
         {
-            Interop.VideoView.VideoView_Pause(swigCPtr);
+            Interop.VideoView.Pause(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -343,7 +352,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void Stop()
         {
-            Interop.VideoView.VideoView_Stop(swigCPtr);
+            Interop.VideoView.Stop(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -354,7 +363,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void Forward(int millisecond)
         {
-            Interop.VideoView.VideoView_Forward(swigCPtr, millisecond);
+            Interop.VideoView.Forward(SwigCPtr, millisecond);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -365,20 +374,40 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void Backward(int millisecond)
         {
-            Interop.VideoView.VideoView_Backward(swigCPtr, millisecond);
+            Interop.VideoView.Backward(SwigCPtr, millisecond);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Get native player handle.
+        /// <example>
+        /// How to get native player handle
+        /// <code>
+        /// VideoView videoView = new VideoView();
+        /// videoView.ResourceUrl = "some video path";
+        /// var handle = videoView.NativeHandle;
+        /// if(handle.IsInvalid == false)
+        /// {
+        ///     IntPtr nativeHandle = handle.DangerousGetHandle();
+        ///     // do something with nativeHandle
+        /// }
+        /// </code>
+        /// </example>
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public SafeHandle NativeHandle
+        {
+            get
+            {
+                return new NUI.SafeNativePlayerHandle(this);
+            }
         }
 
         internal VideoViewSignal FinishedSignal()
         {
-            VideoViewSignal ret = new VideoViewSignal(Interop.VideoView.VideoView_FinishedSignal(swigCPtr), false);
+            VideoViewSignal ret = new VideoViewSignal(Interop.VideoView.FinishedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(VideoView obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
         /// <summary>
@@ -397,9 +426,9 @@ namespace Tizen.NUI.BaseComponents
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
-            if (this != null && _videoViewFinishedCallbackDelegate != null)
+            if (this != null && videoViewFinishedCallbackDelegate != null)
             {
-                FinishedSignal().Disconnect(_videoViewFinishedCallbackDelegate);
+                FinishedSignal().Disconnect(videoViewFinishedCallbackDelegate);
             }
 
             base.Dispose(type);
@@ -409,21 +438,20 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.VideoView.delete_VideoView(swigCPtr);
+            Interop.VideoView.DeleteVideoView(swigCPtr);
         }
 
         // Callback for VideoView Finished signal
         private void OnFinished(IntPtr data)
         {
-            FinishedEventArgs e = new FinishedEventArgs();
-
-            // Populate all members of "e" (FinishedEventArgs) with real data
-            e.VideoView = Registry.GetManagedBaseHandleFromNativePtr(data) as VideoView;
-
-            if (_videoViewFinishedEventHandler != null)
+            if (videoViewFinishedEventHandler != null)
             {
+                FinishedEventArgs e = new FinishedEventArgs();
+
+                // Populate all members of "e" (FinishedEventArgs) with real data
+                e.VideoView = Registry.GetManagedBaseHandleFromNativePtr(data) as VideoView;
                 //here we send all data to user event handlers
-                _videoViewFinishedEventHandler(this, e);
+                videoViewFinishedEventHandler(this, e);
             }
         }
 
@@ -433,7 +461,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public class FinishedEventArgs : EventArgs
         {
-            private VideoView _videoView;
+            private VideoView videoView;
 
             /// <summary>
             /// The view for video playback and display.
@@ -443,27 +471,27 @@ namespace Tizen.NUI.BaseComponents
             {
                 get
                 {
-                    return _videoView;
+                    return videoView;
                 }
                 set
                 {
-                    _videoView = value;
+                    videoView = value;
                 }
             }
         }
 
         internal new class Property
         {
-            internal static readonly int VIDEO = Interop.VideoView.VideoView_Property_VIDEO_get();
-            internal static readonly int LOOPING = Interop.VideoView.VideoView_Property_LOOPING_get();
-            internal static readonly int MUTED = Interop.VideoView.VideoView_Property_MUTED_get();
-            internal static readonly int VOLUME = Interop.VideoView.VideoView_Property_VOLUME_get();
-            internal static readonly int UNDERLAY = Interop.VideoView.VideoView_Property_UNDERLAY_get();
+            internal static readonly int VIDEO = Interop.VideoView.VideoGet();
+            internal static readonly int LOOPING = Interop.VideoView.LoopingGet();
+            internal static readonly int MUTED = Interop.VideoView.MutedGet();
+            internal static readonly int VOLUME = Interop.VideoView.VolumeGet();
+            internal static readonly int UNDERLAY = Interop.VideoView.UnderlayGet();
         }
 
         internal System.IntPtr GetNativePlayerHandle()
         {
-            var ret = Interop.VideoView.GetNativePlayerHandle(swigCPtr);
+            var ret = Interop.VideoView.GetNativePlayerHandle(SwigCPtr);
             NUILog.Debug($"NativePlayerHandle=0x{ret:X}");
             return ret;
         }
@@ -473,10 +501,11 @@ namespace Tizen.NUI.BaseComponents
     /// Contains and encapsulates Native Player handle.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
+    [Obsolete("This has been deprecated in API9 and will be removed in API11. Use VideoView.NativeHandle instead.")]
     public class SafeNativePlayerHandle : SafeHandle
     {
         /// <summary>
-        /// Contructor, null handle is set.
+        /// Constructor, null handle is set.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public SafeNativePlayerHandle() : base(global::System.IntPtr.Zero, false)
@@ -484,12 +513,12 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Contructor, Native player handle is set to handle.
+        /// Constructor, Native player handle is set to handle.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public SafeNativePlayerHandle(VideoView videoView) : base(global::System.IntPtr.Zero, false)
         {
-            if(videoView != null)
+            if (videoView != null)
             {
                 SetHandle(videoView.GetNativePlayerHandle());
             }

@@ -141,6 +141,9 @@ internal static partial class Interop
         [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_clear_data_dir")]
         internal static extern ErrorCode PackageManagerClearDataDir(string packageId);
 
+        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_clear_user_data_with_path")]
+        internal static extern ErrorCode PackageManagerClearUserDataWithPath(string packageId, String filePath);
+
         [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_filter_create")]
         internal static extern ErrorCode PackageManagerFilterCreate(out IntPtr handle);
 
@@ -149,6 +152,9 @@ internal static partial class Interop
 
         [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_filter_add_bool")]
         internal static extern ErrorCode PackageManagerFilterAdd(IntPtr handle, string property, bool value);
+
+        [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_filter_add_string")]
+        internal static extern ErrorCode PackageManagerFilterAdd(IntPtr handle, string property, string value);
 
         [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_filter_foreach_package_info")]
         internal static extern ErrorCode PackageManagerFilterForeachPackageInfo(IntPtr handle, PackageManagerPackageInfoCallback callback, IntPtr userData);

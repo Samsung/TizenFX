@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,8 @@ namespace Tizen.NUI
     /// <summary>
     /// Represents a shadow with color and blur radius for a View.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
+    [Tizen.NUI.Binding.TypeConverter(typeof(Tizen.NUI.Binding.ShadowTypeConverter))]
     public class Shadow : ShadowBase, ICloneable
     {
         private static readonly Color noColor = new Color(0, 0, 0, 0);
@@ -34,7 +35,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Create a Shadow with default values.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Shadow() : base()
         {
             BlurRadius = 0;
@@ -44,34 +45,50 @@ namespace Tizen.NUI
         /// <summary>
         /// Create a Shadow with custom values.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Shadow(float blurRadius, Vector2 offset, Color color, Vector2 extents) : base(offset, extents)
+        /// <param name="blurRadius">The blur radius value for the shadow. Bigger value, much blurry.</param>
+        /// <param name="color">The color for the shadow.</param>
+        /// <param name="offset">Optional. The position offset value (x, y) from the top left corner. See <see cref="ShadowBase.Offset"/>.</param>
+        /// <param name="extents">Optional. The shadow will extend its size by specified amount of length. See <see cref="ShadowBase.Extents"/>.</param>
+        /// <since_tizen> 9 </since_tizen>
+        public Shadow(float blurRadius, Color color, Vector2 offset = null, Vector2 extents = null) : base(offset, extents)
         {
             BlurRadius = blurRadius;
-            Color = new Color(color);
+            Color = color == null ? new Color(defaultColor) : new Color(color);
         }
 
         /// <summary>
         /// Copy constructor.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when other is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Shadow(Shadow other) : this(other.BlurRadius, other.Offset, other.Color, other.Extents)
+        public Shadow(Shadow other) : this(other == null ? throw new ArgumentNullException(nameof(other)) : other.BlurRadius, other.Color, other.Offset, other.Extents)
         {
         }
 
         /// <summary>
-        /// Create a Shadow from a propertyMap.
+        /// Create a Shadow from a property map.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         internal Shadow(PropertyMap propertyMap) : base(propertyMap)
         {
+            Color = new Color(noColor);
+            using (PropertyValue mixColorValue = propertyMap.Find(ColorVisualProperty.MixColor))
+            {
+                mixColorValue?.Get(Color);
+            }
+
+            float blurRadius = 0;
+            using (PropertyValue blurRadiusValue = propertyMap.Find(ColorVisualProperty.BlurRadius))
+            {
+                blurRadiusValue?.Get(out blurRadius);
+            }
+            BlurRadius = blurRadius;
         }
 
         /// <summary>
         /// The color for the shadow.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Color Color { get; set; }
+        /// <since_tizen> 9 </since_tizen>
+        public Color Color { get; internal set; }
 
         /// <summary>
         /// The blur radius value for the shadow. Bigger value, much blurry.
@@ -79,8 +96,8 @@ namespace Tizen.NUI
         /// <remark>
         /// Negative value is ignored. (no blur)
         /// </remark>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public float BlurRadius { get; set; }
+        /// <since_tizen> 9 </since_tizen>
+        public float BlurRadius { get; internal set; }
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -136,25 +153,6 @@ namespace Tizen.NUI
             map[ColorVisualProperty.BlurRadius] = new PropertyValue(BlurRadius < 0 ? 0 : BlurRadius);
 
             return map;
-        }
-
-        /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override bool SetPropertyMap(PropertyMap propertyMap)
-        {
-            if (!base.SetPropertyMap(propertyMap))
-            {
-                return false;
-            }
-
-            Color = noColor;
-            propertyMap.Find(ColorVisualProperty.MixColor)?.Get(Color);
-
-            float blurRadius = 0;
-            propertyMap.Find(ColorVisualProperty.BlurRadius)?.Get(out blurRadius);
-            BlurRadius = blurRadius;
-
-            return true;
         }
     }
 }

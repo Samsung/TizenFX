@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.ImageTest5Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+	<ContentPage.AppBar>
+		<AppBar x:Name="appBar" Title="ImageTest5Page"/>
+	</ContentPage.AppBar>
+
+	<ContentPage.Content>
+		<View x:Name="rootView"
+		        WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+				HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+			<View.Layout>
+				<LinearLayout LinearOrientation="Vertical" CellPadding="10,10" LinearAlignment="CenterHorizontal"/>
+			</View.Layout>
+
+			<View x:Name="imageContainer"
+			        WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+					HeightSpecification="650">
+				<ImageView x:Name="imageView"
+				             ResourceUrl="*Resource*/images/a.jpg"
+							 PositionUsesPivotPoint="True"
+                             ParentOrigin="Center"
+                             PivotPoint="Center"/>
+			</View>
+			<TextLabel x:Name="desc1"
+			             Text=""
+						 PointSize="7"
+						 TextColor="Black"
+						 WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+						 HeightSpecification="{Static LayoutParamPolicies.WrapContent}"/>
+			<Button x:Name="image1Btn"
+			          Text="size + 100"
+					  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+					  HeightSpecification="{Static LayoutParamPolicies.MatchParent}" />
+			<Button x:Name="image2Btn"
+			          Text="size - 100"
+					  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+					  HeightSpecification="{Static LayoutParamPolicies.MatchParent}" />
+			<Button x:Name="image3Btn"
+			          Text="height + 100"
+					  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+					  HeightSpecification="{Static LayoutParamPolicies.MatchParent}" />
+			<Button x:Name="image4Btn"
+                      Text="height - 100"
+                      WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                      HeightSpecification="{Static LayoutParamPolicies.MatchParent}" />
+			<Button x:Name="image5Btn"
+                      Text="change mode"
+                      WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                      HeightSpecification="{Static LayoutParamPolicies.MatchParent}" />
+		</View>
+	</ContentPage.Content>
+</ContentPage>
+

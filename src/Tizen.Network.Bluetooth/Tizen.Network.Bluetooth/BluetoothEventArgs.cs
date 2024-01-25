@@ -1045,7 +1045,7 @@ namespace Tizen.Network.Bluetooth
     /// <since_tizen> 8 </since_tizen>
     public class TrackInfoChangedEventArgs : EventArgs
     {
-        private Track _track = new Track();
+        private Track _track;
         internal TrackInfoChangedEventArgs(Track Data)
         {
             _track = Data;
@@ -1212,6 +1212,57 @@ namespace Tizen.Network.Bluetooth
                 return _remoteAddress;
             }
         }
+    }
+
+    /// <summary>
+    /// An extended EventArgs class contains the changed MTU value.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class AttMtuChangedEventArgs : EventArgs
+    {
+        internal AttMtuChangedEventArgs(string remoteAddress, int mtu)
+        {
+            RemoteAddress = remoteAddress;
+            Mtu = mtu;
+        }
+
+        /// <summary>
+        /// The remote address.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public string RemoteAddress { get; }
+
+        /// <summary>
+        /// The MTU value
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public int Mtu { get; }
+    }
+
+    /// <summary>
+    /// An extended EventArgs class contains the service changed information.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
+    public class ServiceChangedEventArgs : EventArgs
+    {
+        internal ServiceChangedEventArgs(BluetoothGattServiceChangeType changeType, string serviceUuid)
+        {
+            ChangeType = changeType;
+            ServiceUuid = serviceUuid;
+        }
+
+        /// <summary>
+        /// The service changed type.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public BluetoothGattServiceChangeType ChangeType { get; }
+
+        /// <summary>
+        /// The service UUID.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public string ServiceUuid { get; }
     }
 
     /// <summary>

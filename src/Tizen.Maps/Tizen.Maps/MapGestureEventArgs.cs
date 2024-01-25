@@ -23,6 +23,7 @@ namespace Tizen.Maps
     /// Event arguments for gesture type map events.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class MapGestureEventArgs : EventArgs
     {
         internal MapGestureEventArgs(IntPtr nativeHandle)
@@ -42,36 +43,42 @@ namespace Tizen.Maps
         /// Gets the type of gesture event.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public GestureType GestureType { get; }
 
         /// <summary>
         /// Gets screen coordinates in the event.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public Point Position { get; }
 
         /// <summary>
         /// Gets the number of fingers detected in the event.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public int TouchCount { get; }
 
         /// <summary>
         /// Gets the zoom factor for zoom gesture event.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public double ZoomFactor { get; }
 
         /// <summary>
         /// Gets the angle of rotation for rotate gesture event.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public double RotationAngle { get; }
 
         /// <summary>
         /// Gets the geographical coordinates for the event.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public Geocoordinates Geocoordinates { get; }
     }
 }

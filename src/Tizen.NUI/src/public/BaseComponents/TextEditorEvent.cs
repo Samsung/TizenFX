@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,23 +27,61 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class TextEditor
     {
-        private EventHandler<TextChangedEventArgs> _textEditorTextChangedEventHandler;
-        private TextChangedCallbackDelegate _textEditorTextChangedCallbackDelegate;
+        private EventHandler<TextChangedEventArgs> textEditorTextChangedEventHandler;
+        private TextChangedCallbackDelegate textEditorTextChangedCallbackDelegate;
 
-        private EventHandler<ScrollStateChangedEventArgs> _textEditorScrollStateChangedEventHandler;
-        private ScrollStateChangedCallbackDelegate _textEditorScrollStateChangedCallbackDelegate;
+        private EventHandler<ScrollStateChangedEventArgs> textEditorScrollStateChangedEventHandler;
+        private ScrollStateChangedCallbackDelegate textEditorScrollStateChangedCallbackDelegate;
 
-        private EventHandler<MaxLengthReachedEventArgs> _textEditorMaxLengthReachedEventHandler;
-        private MaxLengthReachedCallbackDelegate _textEditorMaxLengthReachedCallbackDelegate;
+        private EventHandler textEditorCursorPositionChangedEventHandler;
+        private CursorPositionChangedCallbackDelegate textEditorCursorPositionChangedCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private EventHandler<MaxLengthReachedEventArgs> textEditorMaxLengthReachedEventHandler;
+        private MaxLengthReachedCallbackDelegate textEditorMaxLengthReachedCallbackDelegate;
+
+        private EventHandler<AnchorClickedEventArgs> textEditorAnchorClickedEventHandler;
+        private AnchorClickedCallbackDelegate textEditorAnchorClickedCallbackDelegate;
+
+        private EventHandler textEditorSelectionClearedEventHandler;
+        private SelectionClearedCallbackDelegate textEditorSelectionClearedCallbackDelegate;
+
+        private EventHandler textEditorSelectionStartedEventHandler;
+        private SelectionStartedCallbackDelegate textEditorSelectionStartedCallbackDelegate;
+
+        private EventHandler textEditorSelectionChangedEventHandler;
+        private SelectionChangedCallbackDelegate textEditorSelectionChangedCallbackDelegate;
+
+        private EventHandler<InputFilteredEventArgs> textEditorInputFilteredEventHandler;
+        private InputFilteredCallbackDelegate textEditorInputFilteredCallbackDelegate;
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void TextChangedCallbackDelegate(IntPtr textEditor);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void ScrollStateChangedCallbackDelegate(IntPtr textEditor, ScrollState state);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void CursorPositionChangedCallbackDelegate(IntPtr textEditor, uint oldPosition);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void MaxLengthReachedCallbackDelegate(IntPtr textEditor);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void SelectionClearedCallbackDelegate(IntPtr textEditor);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void SelectionStartedCallbackDelegate(IntPtr textEditor);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void AnchorClickedCallbackDelegate(IntPtr textEditor, IntPtr href, uint hrefLength);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void SelectionChangedCallbackDelegate(IntPtr textEditor, uint oldStart, uint oldEnd);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void InputFilteredCallbackDelegate(IntPtr textEditor, InputFilterType type);
+
+        private bool invokeTextChanged = true;
 
         /// <summary>
         /// An event for the TextChanged signal which can be used to subscribe or unsubscribe the event handler
@@ -54,19 +92,19 @@ namespace Tizen.NUI.BaseComponents
         {
             add
             {
-                if (_textEditorTextChangedEventHandler == null)
+                if (textEditorTextChangedEventHandler == null)
                 {
-                    _textEditorTextChangedCallbackDelegate = (OnTextChanged);
-                    TextChangedSignal().Connect(_textEditorTextChangedCallbackDelegate);
+                    textEditorTextChangedCallbackDelegate = (OnTextChanged);
+                    TextChangedSignal().Connect(textEditorTextChangedCallbackDelegate);
                 }
-                _textEditorTextChangedEventHandler += value;
+                textEditorTextChangedEventHandler += value;
             }
             remove
             {
-                _textEditorTextChangedEventHandler -= value;
-                if (_textEditorTextChangedEventHandler == null && TextChangedSignal().Empty() == false)
+                textEditorTextChangedEventHandler -= value;
+                if (textEditorTextChangedEventHandler == null && TextChangedSignal().Empty() == false)
                 {
-                    TextChangedSignal().Disconnect(_textEditorTextChangedCallbackDelegate);
+                    TextChangedSignal().Disconnect(textEditorTextChangedCallbackDelegate);
                 }
             }
         }
@@ -80,20 +118,45 @@ namespace Tizen.NUI.BaseComponents
         {
             add
             {
-                if (_textEditorScrollStateChangedEventHandler == null)
+                if (textEditorScrollStateChangedEventHandler == null)
                 {
-                    _textEditorScrollStateChangedCallbackDelegate = OnScrollStateChanged;
-                    ScrollStateChangedSignal(this).Connect(_textEditorScrollStateChangedCallbackDelegate);
+                    textEditorScrollStateChangedCallbackDelegate = OnScrollStateChanged;
+                    ScrollStateChangedSignal(this).Connect(textEditorScrollStateChangedCallbackDelegate);
                 }
-                _textEditorScrollStateChangedEventHandler += value;
+                textEditorScrollStateChangedEventHandler += value;
             }
             remove
             {
-                _textEditorScrollStateChangedEventHandler -= value;
-                if (_textEditorScrollStateChangedEventHandler == null && ScrollStateChangedSignal(this).Empty() == false)
+                textEditorScrollStateChangedEventHandler -= value;
+                if (textEditorScrollStateChangedEventHandler == null && ScrollStateChangedSignal(this).Empty() == false)
                 {
-                    ScrollStateChangedSignal(this).Disconnect(_textEditorScrollStateChangedCallbackDelegate);
+                    ScrollStateChangedSignal(this).Disconnect(textEditorScrollStateChangedCallbackDelegate);
                 }
+            }
+        }
+
+        /// <summary>
+        /// The CursorPositionChanged event is emitted whenever the primary cursor position changed.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public event EventHandler CursorPositionChanged
+        {
+            add
+            {
+                if (textEditorCursorPositionChangedEventHandler == null)
+                {
+                    textEditorCursorPositionChangedCallbackDelegate = (OnCursorPositionChanged);
+                    CursorPositionChangedSignal().Connect(textEditorCursorPositionChangedCallbackDelegate);
+                }
+                textEditorCursorPositionChangedEventHandler += value;
+            }
+            remove
+            {
+                if (textEditorCursorPositionChangedEventHandler == null && CursorPositionChangedSignal().Empty() == false)
+                {
+                    this.CursorPositionChangedSignal().Disconnect(textEditorCursorPositionChangedCallbackDelegate);
+                }
+                textEditorCursorPositionChangedEventHandler -= value;
             }
         }
 
@@ -106,88 +169,317 @@ namespace Tizen.NUI.BaseComponents
         {
             add
             {
-                if (_textEditorMaxLengthReachedEventHandler == null)
+                if (textEditorMaxLengthReachedEventHandler == null)
                 {
-                    _textEditorMaxLengthReachedCallbackDelegate = (OnMaxLengthReached);
-                    MaxLengthReachedSignal().Connect(_textEditorMaxLengthReachedCallbackDelegate);
+                    textEditorMaxLengthReachedCallbackDelegate = (OnMaxLengthReached);
+                    MaxLengthReachedSignal().Connect(textEditorMaxLengthReachedCallbackDelegate);
                 }
-                _textEditorMaxLengthReachedEventHandler += value;
+                textEditorMaxLengthReachedEventHandler += value;
             }
             remove
             {
-                if (_textEditorMaxLengthReachedEventHandler == null && MaxLengthReachedSignal().Empty() == false)
+                if (textEditorMaxLengthReachedEventHandler == null && MaxLengthReachedSignal().Empty() == false)
                 {
-                    this.MaxLengthReachedSignal().Disconnect(_textEditorMaxLengthReachedCallbackDelegate);
+                    this.MaxLengthReachedSignal().Disconnect(textEditorMaxLengthReachedCallbackDelegate);
                 }
-                _textEditorMaxLengthReachedEventHandler -= value;
+                textEditorMaxLengthReachedEventHandler -= value;
             }
+        }
+
+        /// <summary>
+        /// The AnchorClicked signal is emitted when the anchor is clicked.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public event EventHandler<AnchorClickedEventArgs> AnchorClicked
+        {
+            add
+            {
+                if (textEditorAnchorClickedEventHandler == null)
+                {
+                    textEditorAnchorClickedCallbackDelegate = (OnAnchorClicked);
+                    AnchorClickedSignal().Connect(textEditorAnchorClickedCallbackDelegate);
+                }
+                textEditorAnchorClickedEventHandler += value;
+            }
+            remove
+            {
+                textEditorAnchorClickedEventHandler -= value;
+                if (textEditorAnchorClickedEventHandler == null && AnchorClickedSignal().Empty() == false)
+                {
+                    AnchorClickedSignal().Disconnect(textEditorAnchorClickedCallbackDelegate);
+                }
+            }
+        }
+
+        /// <summary>
+        /// The SelectionStarted event is emitted when the selection has been started.
+        /// </summary>
+        /// <since_tizen> 10 </since_tizen>
+        public event EventHandler SelectionStarted
+        {
+            add
+            {
+                if (textEditorSelectionStartedEventHandler == null)
+                {
+                    textEditorSelectionStartedCallbackDelegate = (OnSelectionStarted);
+                    SelectionStartedSignal().Connect(textEditorSelectionStartedCallbackDelegate);
+                }
+                textEditorSelectionStartedEventHandler += value;
+            }
+            remove
+            {
+                if (textEditorSelectionStartedEventHandler == null && SelectionStartedSignal().Empty() == false)
+                {
+                    this.SelectionStartedSignal().Disconnect(textEditorSelectionStartedCallbackDelegate);
+                }
+                textEditorSelectionStartedEventHandler -= value;
+            }
+        }
+
+        /// <summary>
+        /// The SelectionCleared signal is emitted when selection is cleared.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public event EventHandler SelectionCleared
+        {
+            add
+            {
+                if (textEditorSelectionClearedEventHandler == null)
+                {
+                    textEditorSelectionClearedCallbackDelegate = (OnSelectionCleared);
+                    SelectionClearedSignal().Connect(textEditorSelectionClearedCallbackDelegate);
+                }
+                textEditorSelectionClearedEventHandler += value;
+            }
+            remove
+            {
+                if (textEditorSelectionClearedEventHandler == null && SelectionClearedSignal().Empty() == false)
+                {
+                    this.SelectionClearedSignal().Disconnect(textEditorSelectionClearedCallbackDelegate);
+                }
+                textEditorSelectionClearedEventHandler -= value;
+            }
+        }
+
+        /// <summary>
+        /// The SelectionChanged event is emitted whenever the selected text is changed.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public event EventHandler SelectionChanged
+        {
+            add
+            {
+                if (textEditorSelectionChangedEventHandler == null)
+                {
+                    textEditorSelectionChangedCallbackDelegate = (OnSelectionChanged);
+                    SelectionChangedSignal().Connect(textEditorSelectionChangedCallbackDelegate);
+                }
+                textEditorSelectionChangedEventHandler += value;
+            }
+            remove
+            {
+                if (textEditorSelectionChangedEventHandler == null && SelectionChangedSignal().Empty() == false)
+                {
+                    this.SelectionChangedSignal().Disconnect(textEditorSelectionChangedCallbackDelegate);
+                }
+                textEditorSelectionChangedEventHandler -= value;
+            }
+        }
+
+        /// <summary>
+        /// The InputFiltered signal is emitted when the input is filtered by InputFilter. <br />
+        /// </summary>
+        /// <remarks>
+        /// See <see cref="InputFilterType"/> and <see cref="InputFilteredEventArgs"/> for a detailed description. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the InputFiltered event.
+        /// <code>
+        /// editor.InputFiltered += (s, e) =>
+        /// {
+        ///     if (e.Type == InputFilterType.Accept)
+        ///     {
+        ///         // If input is filtered by InputFilter of Accept type.
+        ///     }
+        ///     else if (e.Type == InputFilterType.Reject)
+        ///     {
+        ///         // If input is filtered by InputFilter of Reject type.
+        ///     }
+        /// };
+        /// </code>
+        /// </example>
+        /// <since_tizen> 9 </since_tizen>
+        public event EventHandler<InputFilteredEventArgs> InputFiltered
+        {
+            add
+            {
+                if (textEditorInputFilteredEventHandler == null)
+                {
+                    textEditorInputFilteredCallbackDelegate = (OnInputFiltered);
+                    InputFilteredSignal().Connect(textEditorInputFilteredCallbackDelegate);
+                }
+                textEditorInputFilteredEventHandler += value;
+            }
+            remove
+            {
+                textEditorInputFilteredEventHandler -= value;
+                if (textEditorInputFilteredEventHandler == null && InputFilteredSignal().Empty() == false)
+                {
+                    InputFilteredSignal().Disconnect(textEditorInputFilteredCallbackDelegate);
+                }
+            }
+        }
+
+        internal TextEditorSignal SelectionStartedSignal()
+        {
+            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.SelectionStartedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal TextEditorSignal SelectionClearedSignal()
+        {
+            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.SelectionClearedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         internal TextEditorSignal TextChangedSignal()
         {
-            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.TextEditor_TextChangedSignal(swigCPtr), false);
+            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.TextChangedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ScrollStateChangedSignal ScrollStateChangedSignal(TextEditor textEditor)
         {
-            ScrollStateChangedSignal ret = new ScrollStateChangedSignal(Interop.TextEditor.TextEditor_ScrollStateChangedSignal(TextEditor.getCPtr(textEditor)), false);
+            ScrollStateChangedSignal ret = new ScrollStateChangedSignal(Interop.TextEditor.ScrollStateChangedSignal(TextEditor.getCPtr(textEditor)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal TextEditorSignal CursorPositionChangedSignal()
+        {
+            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.CursorPositionChangedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal TextEditorSignal MaxLengthReachedSignal()
         {
-            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.TextEditor_MaxLengthReachedSignal(swigCPtr), false);
+            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.MaxLengthReachedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal TextEditorSignal AnchorClickedSignal()
+        {
+            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.AnchorClickedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal TextEditorSignal SelectionChangedSignal()
+        {
+            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.SelectionChangedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal TextEditorSignal InputFilteredSignal()
+        {
+            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.InputFilteredSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private void OnTextChanged(IntPtr textEditor)
         {
-            TextChangedEventArgs e = new TextChangedEventArgs();
-
-            // Populate all members of "e" (TextChangedEventArgs) with real data
-            e.TextEditor = Registry.GetManagedBaseHandleFromNativePtr(textEditor) as TextEditor;
-
-            if (_textEditorTextChangedEventHandler != null)
+            if (textEditorTextChangedEventHandler != null && invokeTextChanged)
             {
+                TextChangedEventArgs e = new TextChangedEventArgs();
+
+                // Populate all members of "e" (TextChangedEventArgs) with real data
+                e.TextEditor = Registry.GetManagedBaseHandleFromNativePtr(textEditor) as TextEditor;
                 //here we send all data to user event handlers
-                _textEditorTextChangedEventHandler(this, e);
+                textEditorTextChangedEventHandler(this, e);
             }
+        }
+
+        private void OnSelectionStarted(IntPtr textEditor)
+        {
+            //no data to be sent to the user
+            textEditorSelectionStartedEventHandler?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void OnSelectionCleared(IntPtr textEditor)
+        {
+            //no data to be sent to the user
+            textEditorSelectionClearedEventHandler?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnScrollStateChanged(IntPtr textEditor, ScrollState state)
         {
-            ScrollStateChangedEventArgs e = new ScrollStateChangedEventArgs();
-
-            if (textEditor != global::System.IntPtr.Zero)
+            if (textEditorScrollStateChangedEventHandler != null)
             {
-                // Populate all members of "e" (ScrollStateChangedEventArgs) with real data
-                e.TextEditor = Registry.GetManagedBaseHandleFromNativePtr(textEditor) as TextEditor;
-                e.ScrollState = state;
-            }
+                ScrollStateChangedEventArgs e = new ScrollStateChangedEventArgs();
 
-            if (_textEditorScrollStateChangedEventHandler != null)
-            {
+                if (textEditor != global::System.IntPtr.Zero)
+                {
+                    // Populate all members of "e" (ScrollStateChangedEventArgs) with real data
+                    e.TextEditor = Registry.GetManagedBaseHandleFromNativePtr(textEditor) as TextEditor;
+                    e.ScrollState = state;
+                }
                 //here we send all data to user event handlers
-                _textEditorScrollStateChangedEventHandler(this, e);
+                textEditorScrollStateChangedEventHandler(this, e);
             }
+        }
+
+        private void OnCursorPositionChanged(IntPtr textEditor, uint oldPosition)
+        {
+            // no data to be sent to the user, as in NUI there is no event provide old values.
+            textEditorCursorPositionChangedEventHandler?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnMaxLengthReached(IntPtr textEditor)
         {
-            MaxLengthReachedEventArgs e = new MaxLengthReachedEventArgs();
-
-            // Populate all members of "e" (MaxLengthReachedEventArgs) with real data
-            e.TextEditor = Registry.GetManagedBaseHandleFromNativePtr(textEditor) as TextEditor;
-
-            if (_textEditorMaxLengthReachedEventHandler != null)
+            if (textEditorMaxLengthReachedEventHandler != null)
             {
+                MaxLengthReachedEventArgs e = new MaxLengthReachedEventArgs();
+
+                // Populate all members of "e" (MaxLengthReachedEventArgs) with real data
+                e.TextEditor = Registry.GetManagedBaseHandleFromNativePtr(textEditor) as TextEditor;
                 //here we send all data to user event handlers
-                _textEditorMaxLengthReachedEventHandler(this, e);
+                textEditorMaxLengthReachedEventHandler(this, e);
             }
+        }
+
+        private void OnAnchorClicked(IntPtr textEditor, IntPtr href, uint hrefLength)
+        {
+            // Note: hrefLength is useful for get the length of a const char* (href) in dali-toolkit.
+            // But NUI can get the length of string (href), so hrefLength is not necessary in NUI.
+            AnchorClickedEventArgs e = new AnchorClickedEventArgs();
+
+            // Populate all members of "e" (AnchorClickedEventArgs) with real data
+            e.Href = Marshal.PtrToStringAnsi(href);
+            //here we send all data to user event handlers
+            textEditorAnchorClickedEventHandler?.Invoke(this, e);
+        }
+
+        private void OnSelectionChanged(IntPtr textEditor, uint oldStart, uint oldEnd)
+        {
+            // no data to be sent to the user, as in NUI there is no event provide old values.
+            textEditorSelectionChangedEventHandler?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void OnInputFiltered(IntPtr textEditor, InputFilterType type)
+        {
+            InputFilteredEventArgs e = new InputFilteredEventArgs();
+
+            // Populate all members of "e" (InputFilteredEventArgs) with real data
+            e.Type = type;
+            //here we send all data to user event handlers
+            textEditorInputFilteredEventHandler?.Invoke(this, e);
         }
 
         /// <summary>
@@ -196,7 +488,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public class TextChangedEventArgs : EventArgs
         {
-            private TextEditor _textEditor;
+            private TextEditor textEditor;
 
             /// <summary>
             /// TextEditor - is the texteditor control which has the text contents changed.
@@ -206,11 +498,11 @@ namespace Tizen.NUI.BaseComponents
             {
                 get
                 {
-                    return _textEditor;
+                    return textEditor;
                 }
                 set
                 {
-                    _textEditor = value;
+                    textEditor = value;
                 }
             }
         }
@@ -221,8 +513,8 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public class ScrollStateChangedEventArgs : EventArgs
         {
-            private TextEditor _textEditor;
-            private ScrollState _scrollState;
+            private TextEditor textEditor;
+            private ScrollState scrollState;
 
             /// <summary>
             /// TextEditor - is the texteditor control which has the scroll state changed.
@@ -232,11 +524,11 @@ namespace Tizen.NUI.BaseComponents
             {
                 get
                 {
-                    return _textEditor;
+                    return textEditor;
                 }
                 set
                 {
-                    _textEditor = value;
+                    textEditor = value;
                 }
             }
 
@@ -248,11 +540,11 @@ namespace Tizen.NUI.BaseComponents
             {
                 get
                 {
-                    return _scrollState;
+                    return scrollState;
                 }
                 set
                 {
-                    _scrollState = value;
+                    scrollState = value;
                 }
             }
         }
@@ -264,7 +556,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class MaxLengthReachedEventArgs : EventArgs
         {
-            private TextEditor _textEditor;
+            private TextEditor textEditor;
 
             /// <summary>
             /// TextEditor.
@@ -275,11 +567,11 @@ namespace Tizen.NUI.BaseComponents
             {
                 get
                 {
-                    return _textEditor;
+                    return textEditor;
                 }
                 set
                 {
-                    _textEditor = value;
+                    textEditor = value;
                 }
             }
         }

@@ -17,12 +17,14 @@
 using System.ComponentModel;
 using Tizen.NUI.Components;
 using Tizen.NUI.Binding;
+using System;
 
 namespace Tizen.NUI.Wearable
 {
     /// <summary>
     /// CircularScrollbarStyle is a class which saves CircularScrollbar's ux data.
     /// </summary>
+    [Obsolete("This has been deprecated in API12")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class CircularScrollbarStyle : ControlStyle
     {
@@ -54,7 +56,7 @@ namespace Tizen.NUI.Wearable
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TrackColorProperty = BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(CircularScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((CircularScrollbarStyle)bindable).trackColor = (Color)newValue;
+            ((CircularScrollbarStyle)bindable).trackColor = newValue == null ? null : new Color((Color)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -65,7 +67,7 @@ namespace Tizen.NUI.Wearable
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ThumbColorProperty = BindableProperty.Create(nameof(ThumbColor), typeof(Color), typeof(CircularScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((CircularScrollbarStyle)bindable).thumbColor = (Color)newValue;
+            ((CircularScrollbarStyle)bindable).thumbColor = newValue == null ? null : new Color((Color)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -85,20 +87,20 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Creates a new instance of a CircularScrollbarStyle.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CircularScrollbarStyle() : base()
         {
-            Initialize();
         }
 
         /// <summary>
         /// Copy constructor.
         /// </summary>
         /// <param name="style">Create ScrollbarStyle by style customized by user.</param>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CircularScrollbarStyle(CircularScrollbarStyle style) : base(style)
         {
-            this.CopyFrom(style);
         }
 
         /// <summary>
@@ -116,6 +118,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The thickness of the scrollbar and track.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? Thickness
         {
@@ -130,6 +133,7 @@ namespace Tizen.NUI.Wearable
         /// Values below 6 degrees are treated as 6 degrees.
         /// Values exceeding 180 degrees are treated as 180 degrees.
         /// </remarks>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? TrackSweepAngle
         {
@@ -140,6 +144,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The color of the track part.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color TrackColor
         {
@@ -150,6 +155,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The color of the thumb part.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color ThumbColor
         {
@@ -158,37 +164,5 @@ namespace Tizen.NUI.Wearable
         }
 
         #endregion Properties
-
-
-        #region Methods
-
-        /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void CopyFrom(BindableObject bindableObject)
-        {
-            base.CopyFrom(bindableObject);
-
-            var style = bindableObject as CircularScrollbarStyle;
-
-            if (null != style)
-            {
-                Thickness = style.Thickness;
-                TrackSweepAngle = style.TrackSweepAngle;
-                TrackColor = style.TrackColor;
-                ThumbColor = style.ThumbColor;
-            }
-        }
-
-        private void Initialize()
-        {
-            Thickness = 10.0f;
-            TrackSweepAngle = 60.0f;
-            TrackColor = new Color(1.0f, 1.0f, 1.0f, 0.15f);
-            ThumbColor = new Color(0.6f, 0.6f, 0.6f, 1.0f);
-            WidthResizePolicy = ResizePolicyType.FillToParent;
-            HeightResizePolicy = ResizePolicyType.FillToParent;
-        }
-
-        #endregion Methods
     }
 }

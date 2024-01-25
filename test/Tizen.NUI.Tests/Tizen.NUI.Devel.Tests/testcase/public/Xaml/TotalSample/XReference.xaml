@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<View
+	xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="Tizen.NUI.Devel.Tests.XReference">
+
+    <View>
+        <TextLabel x:Name="label0" Text="foo" BindingContext="{x:Reference label1}"/>
+		<TextLabel x:Name="label1" Text="bar" BindingContext="{x:Reference label0}"/>
+        <TextField x:Name="entry" Text="{Binding Text, Source={x:Reference label0}}" PlaceholderText="{Binding Text, Source={x:Reference label1}}"/>
+    </View>
+</View>

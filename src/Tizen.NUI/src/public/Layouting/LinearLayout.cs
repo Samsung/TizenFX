@@ -1,4 +1,4 @@
-/* Copyright (c) 2019 Samsung Electronics Co., Ltd.
+/* Copyright (c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,8 +15,10 @@
  */
 
 using System;
+using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Tizen.NUI
 {
@@ -25,6 +27,8 @@ namespace Tizen.NUI
     /// </summary>
     public class LinearLayout : LayoutGroup
     {
+        private Alignment linearAlignment = Alignment.Top;
+
         /// <summary>
         /// [Draft] Enumeration for the direction in which the content is laid out
         /// </summary>
@@ -45,36 +49,37 @@ namespace Tizen.NUI
         /// [Draft] Enumeration for the alignment of the linear layout items
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("This has been deprecated in API9 and will be removed in API11. Use HorizontalAlignment and VerticalAlignment instead.")]
         public enum Alignment
         {
             /// <summary>
             /// At the left/right edge of the container (maps to LTR/RTL direction for horizontal orientation)
             /// </summary>
-            Begin              = 0x1,
+            Begin = 0x1,
             /// <summary>
             /// At the right/left edge of the container (maps to LTR/RTL direction for horizontal orientation)
             /// </summary>
-            End                = 0x2,
+            End = 0x2,
             /// <summary>
             /// At the horizontal center of the container
             /// </summary>
-            CenterHorizontal   = 0x4,
+            CenterHorizontal = 0x4,
             /// <summary>
             /// At the top edge of the container
             /// </summary>
-            Top                = 0x8,
+            Top = 0x8,
             /// <summary>
             /// At the bottom edge of the container
             /// </summary>
-            Bottom             = 0x10,
+            Bottom = 0x10,
             /// <summary>
             /// At the vertical center of the container
             /// </summary>
-            CenterVertical     = 0x20,
+            CenterVertical = 0x20,
             /// <summary>
             /// At the vertical and horizontal center of the container
             /// </summary>
-            Center             = 0x40
+            Center = 0x40
         }
 
         struct HeightAndWidthState
@@ -82,7 +87,7 @@ namespace Tizen.NUI
             public MeasuredSize.StateType widthState;
             public MeasuredSize.StateType heightState;
 
-            public HeightAndWidthState( MeasuredSize.StateType width, MeasuredSize.StateType height)
+            public HeightAndWidthState(MeasuredSize.StateType width, MeasuredSize.StateType height)
             {
                 widthState = width;
                 heightState = height;
@@ -97,11 +102,11 @@ namespace Tizen.NUI
         {
             get
             {
-                return _linearOrientation;
+                return linearOrientation;
             }
             set
             {
-                _linearOrientation = value;
+                linearOrientation = value;
                 RequestLayout();
             }
         }
@@ -114,11 +119,16 @@ namespace Tizen.NUI
         {
             get
             {
-                return _cellPadding;
+                if (cellPadding == null)
+                {
+                    cellPadding = new Size2D(0, 0);
+                }
+
+                return cellPadding;
             }
             set
             {
-                _cellPadding = value;
+                cellPadding = value;
                 RequestLayout();
             }
         }
@@ -128,11 +138,68 @@ namespace Tizen.NUI
         /// [Draft] Get/Set the alignment in the layout
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public LinearLayout.Alignment LinearAlignment{ get; set; } = Alignment.Top;
+        [Obsolete("This has been deprecated in API9 and will be removed in API11. Use HorizontalAlignment and VerticalAlignment properties instead.")]
+        public LinearLayout.Alignment LinearAlignment
+        {
+            get
+            {
+                return linearAlignment;
+            }
 
-        private float _totalLength = 0.0f;
-        private Size2D _cellPadding  = new Size2D(0,0);
-        private Orientation _linearOrientation = Orientation.Horizontal;
+            set
+            {
+                if (linearAlignment == value)
+                {
+                    return;
+                }
+
+                linearAlignment = value;
+
+                switch (linearAlignment)
+                {
+                    case Alignment.Begin:
+                        HorizontalAlignment = HorizontalAlignment.Begin;
+                        break;
+                    case Alignment.End:
+                        HorizontalAlignment = HorizontalAlignment.End;
+                        break;
+                    case Alignment.CenterHorizontal:
+                        HorizontalAlignment = HorizontalAlignment.Center;
+                        break;
+                    case Alignment.Top:
+                        VerticalAlignment = VerticalAlignment.Top;
+                        break;
+                    case Alignment.Bottom:
+                        VerticalAlignment = VerticalAlignment.Bottom;
+                        break;
+                    case Alignment.CenterVertical:
+                        VerticalAlignment = VerticalAlignment.Center;
+                        break;
+                    case Alignment.Center:
+                        HorizontalAlignment = HorizontalAlignment.Center;
+                        VerticalAlignment = VerticalAlignment.Center;
+                        break;
+                    default:
+                        break;
+                }
+            }
+         }
+
+        /// <summary>
+        /// Get/Set the horizontal alignment in the layout
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public HorizontalAlignment HorizontalAlignment { get; set; } = HorizontalAlignment.Begin;
+
+        /// <summary>
+        /// Get/Set the vertical alignment in the layout
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public VerticalAlignment VerticalAlignment { get; set; } = VerticalAlignment.Top;
+
+        private float totalLength = 0.0f;
+        private Size2D cellPadding = new Size2D(0, 0);
+        private Orientation linearOrientation = Orientation.Horizontal;
 
         /// <summary>
         /// [Draft] Constructor
@@ -150,7 +217,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
-            if (_linearOrientation == Orientation.Horizontal)
+            if (linearOrientation == Orientation.Horizontal)
             {
                 MeasureHorizontal(widthMeasureSpec, heightMeasureSpec);
             }
@@ -171,7 +238,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
-            if (_linearOrientation == Orientation.Horizontal)
+            if (linearOrientation == Orientation.Horizontal)
             {
                 LayoutHorizontal(left, top, right, bottom);
             }
@@ -182,9 +249,9 @@ namespace Tizen.NUI
         }
 
 
-        private void MeasureWeightedChild( LayoutItem childLayout, float remainingExcess, float remainingWeight, float childWeight,
+        private void MeasureWeightedChild(LayoutItem childLayout, float totalWeightLength, float totalWeight, float childWeight,
                                            MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec,
-                                           HeightAndWidthState childState, Orientation orientation )
+                                           HeightAndWidthState childState, Orientation orientation)
         {
             bool horizontal = false;
             if (orientation == Orientation.Horizontal)
@@ -192,45 +259,20 @@ namespace Tizen.NUI
                 horizontal = true;
             }
 
-            float childsShare = ( childWeight * remainingExcess ) / remainingWeight;
-            remainingExcess -= childsShare;
-            remainingWeight -= childWeight;
-
+            float childsShare = totalWeightLength * (childWeight / totalWeight);
             float desiredWidth = childLayout.Owner.WidthSpecification;
             float desiredHeight = childLayout.Owner.HeightSpecification;
-            float childLength = 0;
-
-            // Always lay out weighted elements with intrinsic size regardless of the parent spec.
-            // for consistency between specs.
-            if( ( horizontal && ( desiredWidth == 0 )) || ( !horizontal && ( desiredHeight == 0 )) )
-            {
-                // This child needs to be laid out from scratch using
-                // only its share of excess space.
-                childLength = childsShare;
-            }
-            else
-            {
-                // This child had some intrinsic width to which we
-                // need to add its share of excess space.
-                if (horizontal)
-                {
-                    childLength = childLayout.MeasuredWidth.Size.AsDecimal() + childsShare;
-                }
-                else
-                {
-                    childLength = childLayout.MeasuredHeight.Size.AsDecimal() + childsShare;
-                }
-            }
 
             MeasureSpecification childWidthMeasureSpec;
             MeasureSpecification childHeightMeasureSpec;
 
             if (horizontal)
             {
-                childWidthMeasureSpec = new MeasureSpecification( new LayoutLength(childLength), MeasureSpecification.ModeType.Exactly );
-                childHeightMeasureSpec = GetChildMeasureSpecification( 
+                childWidthMeasureSpec = new MeasureSpecification(new LayoutLength(childsShare - (childLayout.Margin.Start + childLayout.Margin.End)), MeasureSpecification.ModeType.Exactly);
+
+                childHeightMeasureSpec = GetChildMeasureSpecification(
                                             new MeasureSpecification(
-                                                new LayoutLength(heightMeasureSpec.Size - (childLayout.Owner.Margin.Top + childLayout.Owner.Margin.Bottom)),
+                                                new LayoutLength(heightMeasureSpec.Size - (childLayout.Margin.Top + childLayout.Margin.Bottom)),
                                                 heightMeasureSpec.Mode),
                                             new LayoutLength(Padding.Top + Padding.Bottom),
                                             new LayoutLength(desiredHeight));
@@ -239,24 +281,24 @@ namespace Tizen.NUI
             {
                 childWidthMeasureSpec = GetChildMeasureSpecification(
                                             new MeasureSpecification(
-                                                new LayoutLength(widthMeasureSpec.Size - (childLayout.Owner.Margin.Start + childLayout.Owner.Margin.End)),
+                                                new LayoutLength(widthMeasureSpec.Size - (childLayout.Margin.Start + childLayout.Margin.End)),
                                                 widthMeasureSpec.Mode),
                                             new LayoutLength(Padding.Start + Padding.End),
                                             new LayoutLength(desiredWidth));
 
-                childHeightMeasureSpec = new MeasureSpecification( new LayoutLength(childLength), MeasureSpecification.ModeType.Exactly);
+                childHeightMeasureSpec = new MeasureSpecification(new LayoutLength(childsShare - (childLayout.Margin.Top + childLayout.Margin.Bottom)), MeasureSpecification.ModeType.Exactly);
             }
 
-            childLayout.Measure( childWidthMeasureSpec, childHeightMeasureSpec );
+            childLayout.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
 
             // Child may now not fit in horizontal dimension.
-            if( childLayout.MeasuredWidth.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
+            if (childLayout.MeasuredWidth.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
             {
                 childState.widthState = MeasuredSize.StateType.MeasuredSizeTooSmall;
             }
 
             // Child may now not fit in vertical dimension.
-            if( childLayout.MeasuredHeight.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
+            if (childLayout.MeasuredHeight.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
             {
                 childState.heightState = MeasuredSize.StateType.MeasuredSizeTooSmall;
             }
@@ -266,95 +308,71 @@ namespace Tizen.NUI
         {
             var widthMode = widthMeasureSpec.Mode;
             var heightMode = heightMeasureSpec.Mode;
-            bool isExactly = ( widthMode == MeasureSpecification.ModeType.Exactly );
-            bool matchHeight = false;
-            bool allFillParent = true;
+            bool isWidthExactly = (widthMode == MeasureSpecification.ModeType.Exactly);
+            bool isHeightExactly = (heightMode == MeasureSpecification.ModeType.Exactly);
             float maxHeight = 0.0f;
-            float alternativeMaxHeight = 0.0f;
-            float weightedMaxHeight = 0.0f;
             float totalWeight = 0.0f;
+            int childrenCount = IterateLayoutChildren().Count();
 
-            // Reset measure variables
-            _totalLength = 0.0f;
-            float usedExcessSpace = 0.0f;
+            // Child layout, which wants to match its width to its parent's remaining width, is either following 1 or 2.
+            // 1. Child layout whose Owner.WidthSpecification is LayoutParamPolicies.MatchParent.
+            // 2. Child layout whose Owner.WidthSpecification is 0 and Owner.Weight is greater than 0.
+            // The number of child layout which wants to match its width to its parent's remaining width.
+            int childrenMatchParentCount = 0;
+
+            // Reset measure variable
+            totalLength = 0.0f;
+
             HeightAndWidthState childState = new HeightAndWidthState(MeasuredSize.StateType.MeasuredSizeOK,
                                                                      MeasuredSize.StateType.MeasuredSizeOK);
 
-            // 1st phase:
-            // We cycle through all children and measure children with weight 0 (non weighted children) according to their specs
-            // to accumulate total used space in totalLength based on measured sizes and margins.
-            // Weighted children are not measured at this phase.
-            // Available space for weighted children will be calculated in the phase 2 based on totalLength value.
-            // Max height of children is stored.
-            for (int i = 0; i < LayoutChildren.Count; i++)
+            // 1ST PHASE:
+            //
+            // We measure all children whose width specification policy is WrapContent without weight.
+            // After 1st phase, remaining width of parent is accumulated to calculate width of children
+            // whose width specification policy is MatchParent.
+            foreach (var childLayout in LayoutChildren)
             {
-                LayoutItem childLayout = LayoutChildren[i];
+                if (!childLayout.SetPositionByLayout)
+                {
+                    continue;
+                }
+                int childDesiredWidth = childLayout.Owner.WidthSpecification;
                 int childDesiredHeight = childLayout.Owner.HeightSpecification;
                 float childWeight = childLayout.Owner.Weight;
                 Extents childMargin = childLayout.Margin;
-                totalWeight += childWeight;
+                float childMarginWidth = childMargin.Start + childMargin.End;
+                bool useRemainingWidth = (childDesiredWidth == 0) && (childWeight > 0);
 
-                bool useExcessSpace = (childLayout.Owner.WidthSpecification == 0 ) && (childWeight > 0);
-                if( isExactly && useExcessSpace )
+                if ((childDesiredWidth == LayoutParamPolicies.MatchParent) || (useRemainingWidth))
                 {
-                    // Children to be laid out with excess space can be measured later
-                    _totalLength = Math.Max( _totalLength, (_totalLength + childMargin.Start + childMargin.End) );
+                    totalWeight += childWeight;
+                    childrenMatchParentCount++;
                 }
-                else
+
+                // MatchParent child layout's margin is not added to totalLength.
+                // Consequently, MatchParent child layout's margin is added to remaining size,
+                // so the margin is not shared with other MatchParent child layouts.
+                // e.g.
+                // LinearLayout has size 100.
+                // Child layout1 is MatchParent and its margin is 20. (This margin is not ad
+                // Child layout2 is MatchParent and its margin is 0.
+                // Then, child layout1's size is 30 and child layout2's size is 50.
+                if ((childDesiredWidth == LayoutParamPolicies.WrapContent) || ((childDesiredWidth >= 0) && (!useRemainingWidth)))
                 {
-                    if (useExcessSpace)
+                    MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
+
+                    float childMeasuredWidth = childLayout.MeasuredWidth.Size.AsDecimal();
+
+                    if (childMeasuredWidth < 0)
                     {
-                        // Parent is not defiend!!!
-                        // The widthMode is either Unspecified or AtMost, and
-                        // this child is only laid out using excess space. Measure
-                        // using WrapContent so that we can find out the view's
-                        // optimal width.
-                        MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
-                                                new MeasureSpecification(
-                                                    new LayoutLength(widthMeasureSpec.Size - (childLayout.Margin.Start + childLayout.Margin.End)),
-                                                    widthMeasureSpec.Mode),
-                                                new LayoutLength(Padding.Start + Padding.End),
-                                                new LayoutLength(LayoutParamPolicies.WrapContent));
-
-                        MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
-                                                new MeasureSpecification(
-                                                    new LayoutLength(heightMeasureSpec.Size - (childLayout.Margin.Top + childLayout.Margin.Bottom)),
-                                                    heightMeasureSpec.Mode),
-                                                new LayoutLength(Padding.Top + Padding.Bottom),
-                                                new LayoutLength(childDesiredHeight));
-
-                        childLayout.Measure( childWidthMeasureSpec, childHeightMeasureSpec);
-                        usedExcessSpace += childLayout.MeasuredWidth.Size.AsDecimal();
+                        totalLength = Math.Max(totalLength, totalLength + childMarginWidth);
                     }
                     else
                     {
-                        MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
-                    }
-
-                    LayoutLength childWidth = childLayout.MeasuredWidth.Size;
-                    LayoutLength length = childWidth + childMargin.Start + childMargin.End;
-
-                    if (isExactly)
-                    {
-                        _totalLength += length.AsDecimal();
-                    }
-                    else
-                    {
-                        _totalLength = Math.Max(_totalLength, _totalLength + length.AsDecimal() + (i < LayoutChildren.Count - 1 ? CellPadding.Width : 0));
+                        totalLength = Math.Max(totalLength, totalLength + childMeasuredWidth + childMarginWidth);
                     }
                 }
-
-                bool matchHeightLocally = false;
-                if (heightMode != MeasureSpecification.ModeType.Exactly && childDesiredHeight == LayoutParamPolicies.MatchParent)
-                {
-                    // A child has set to MatchParent on it's height.
-                    // Will have to re-measure at least this child when we know exact height.
-                    matchHeight = true;
-                    matchHeightLocally = true;
-                }
-
-                float marginHeight = childMargin.Top + childMargin.Bottom;
-                float childHeight = childLayout.MeasuredHeight.Size.AsDecimal() + marginHeight;
 
                 if (childLayout.MeasuredWidth.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
                 {
@@ -364,198 +382,262 @@ namespace Tizen.NUI
                 {
                     childState.heightState = MeasuredSize.StateType.MeasuredSizeTooSmall;
                 }
+            } // 1ST PHASE foreach
 
-                maxHeight = Math.Max( maxHeight, childHeight);
-                allFillParent = ( allFillParent && childDesiredHeight == LayoutParamPolicies.MatchParent);
-
-                if (childWeight > 0)
-                {
-                  // Heights of weighted Views are invalid if we end up remeasuring, so store them separately.
-                  weightedMaxHeight = Math.Max( weightedMaxHeight, matchHeightLocally ? marginHeight : childHeight);
-                }
-                else
-                {
-                  alternativeMaxHeight = Math.Max( alternativeMaxHeight, matchHeightLocally ? marginHeight : childHeight );
-                }
-            } // foreach
-
-            float widthSize = _totalLength;
-            widthSize = Math.Max( widthSize, SuggestedMinimumWidth.AsDecimal());
-            MeasuredSize widthSizeAndState = ResolveSizeAndState( new LayoutLength(widthSize + Padding.Start + Padding.End), widthMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
+            totalLength = Math.Max(totalLength, totalLength + CellPadding.Width * (childrenCount - 1) + Padding.Start + Padding.End);
+            float widthSize = Math.Max(totalLength, SuggestedMinimumWidth.AsDecimal());
+            MeasuredSize widthSizeAndState = ResolveSizeAndState(new LayoutLength(widthSize), widthMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
             widthSize = widthSizeAndState.Size.AsDecimal();
 
-            // 2nd phase:
-            // Expand children with weight to take up available space
-            // We cycle through weighted children now (children with weight > 0).
-            // The children are measured with exact size equal to their share of the available space based on their weights.
-            // _totalLength is updated to include weighted children measured sizes.
-            float remainingExcess = widthSize - _totalLength + usedExcessSpace - (Padding.Start + Padding.End);
-            if( remainingExcess != 0 && totalWeight > 0 )
+            float remainingWidth = widthSize - totalLength;
+            float totalWeightLength = 0.0f;
+
+            // Up to now, only WrapContent children's sizes are added to the totalLength.
+            // Since the totalLength is used in OnLayout as the sum of all children's sizes,
+            // the layout size is assigned to the totalLength if MatchParent child exists.
+            if (childrenMatchParentCount > 0)
             {
-                float remainingWeight = totalWeight;
-                maxHeight = 0;
-                _totalLength = 0;
+                totalLength = widthSize;
+            }
 
-                int numberOfChildren = LayoutChildren.Count;
-                for( int i = 0; i < numberOfChildren; ++i )
+            // 2ND PHASE:
+            //
+            // We measure all children whose width specification policy is MatchParent without weight.
+            // After 2nd phase, all children's widths are calculated without considering weight.
+            // And the widths of all weighted children are accumulated to calculate weighted width.
+            foreach (var childLayout in LayoutChildren)
+            {
+                if (!childLayout.SetPositionByLayout)
                 {
-                    LayoutItem childLayout = LayoutChildren[i];
+                    continue;
+                }
+                int childDesiredWidth = childLayout.Owner.WidthSpecification;
+                int childDesiredHeight = childLayout.Owner.HeightSpecification;
+                float childWeight = childLayout.Owner.Weight;
+                Extents childMargin = childLayout.Margin;
+                bool useRemainingWidth = (childDesiredWidth == 0) && (childWeight > 0);
+                bool needToMeasure = false;
 
-                    float desiredChildHeight = childLayout.Owner.HeightSpecification;
-
-                    float childWeight = childLayout.Owner.Weight;
-                    Extents childMargin = childLayout.Margin;
-
-                    if( childWeight > 0 )
+                if ((childDesiredHeight == LayoutParamPolicies.MatchParent) || (useRemainingWidth))
+                {
+                    if (isHeightExactly)
                     {
-                        MeasureWeightedChild(childLayout, remainingExcess, remainingWeight, childWeight,
-                                             widthMeasureSpec, heightMeasureSpec, childState,
-                                             Orientation.Horizontal );
+                        needToMeasure = true;
                     }
-
-                    float length = childLayout.MeasuredWidth.Size.AsDecimal() + childMargin.Start + childMargin.End;
-                    float cellPadding = i < numberOfChildren - 1 ? CellPadding.Width : 0;
-                    if( isExactly )
+                    // RelativeLayout's MatchParent children should not fill to the RelativeLayout.
+                    // Because the children's sizes and positions are calculated by RelativeLayout's APIs.
+                    // Therefore, not to fill the RelativeLayout, the mode is changed from Exactly to AtMost.
+                    //
+                    // Not to print the recursive reference error message for this case, Specification is checked if it is WrapContent.
+                    else if (Owner.HeightSpecification == LayoutParamPolicies.WrapContent)
                     {
-                        _totalLength += length;
+                        if (childDesiredHeight == LayoutParamPolicies.MatchParent)
+                        {
+                            Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s HeightSpecification is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s HeightSpecification is MatchParent!");
+                        }
+                        else
+                        {
+                            Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s HeightSpecification is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s HeightSpecification is 0 with positive weight!");
+                        }
+                    }
+                }
+
+                if (remainingWidth > 0)
+                {
+                    if ((childDesiredWidth == LayoutParamPolicies.MatchParent) || (useRemainingWidth))
+                    {
+                        if (isWidthExactly)
+                        {
+                            // In MeasureChildWithMargins(), it is assumed that widthMeasureSpec includes Padding.Start and Padding.End.
+                            // Therefore, Padding.Start and Padding.End are added to widthMeasureSpec.Size before it is passed to MeasureChildWithMargins().
+                            widthMeasureSpec.SetSize(new LayoutLength((int)(remainingWidth / childrenMatchParentCount) + Padding.Start + Padding.End));
+                            needToMeasure = true;
+                        }
+                        // RelativeLayout's MatchParent children should not fill to the RelativeLayout.
+                        // Because the children's sizes and positions are calculated by RelativeLayout's APIs.
+                        // Therefore, not to fill the RelativeLayout, the mode is changed from Exactly to AtMost.
+                        //
+                        // Not to print the recursive reference error message for this case, Specification is checked if it is WrapContent.
+                        else if (Owner.WidthSpecification == LayoutParamPolicies.WrapContent)
+                        {
+                            if (childDesiredWidth == LayoutParamPolicies.MatchParent)
+                            {
+                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s WidthSpecification is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s WidthSpecification is MatchParent!");
+                            }
+                            else
+                            {
+                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s WidthSpecification is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s WidthSpecification is 0 with positive weight!");
+                            }
+                        }
+                    }
+                }
+
+                if (needToMeasure == true)
+                {
+                    MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
+                }
+
+                if ((childWeight > 0) && ((childDesiredWidth == LayoutParamPolicies.MatchParent) || (childDesiredWidth == 0)))
+                {
+                    float childMeasuredWidth = childLayout.MeasuredWidth.Size.AsDecimal();
+
+                    if (childMeasuredWidth < 0)
+                    {
+                        totalWeightLength = Math.Max(totalWeightLength, totalWeightLength + childMargin.Start + childMargin.End);
                     }
                     else
                     {
-                        float totalLength = _totalLength;
-                        _totalLength = Math.Max( _totalLength, _totalLength + length + cellPadding );
+                        totalWeightLength = Math.Max(totalWeightLength, totalWeightLength + childMeasuredWidth + childMargin.Start + childMargin.End);
                     }
+                }
+            } // 2ND PHASE foreach
 
-                    bool matchHeightLocally = (heightMode != MeasureSpecification.ModeType.Exactly) && (desiredChildHeight == LayoutParamPolicies.MatchParent);
-                    float marginHeight = childMargin.Top + childMargin.Bottom;
-                    float childHeight = childLayout.MeasuredHeight.Size.AsDecimal() + marginHeight;
-
-                    maxHeight = Math.Max( maxHeight, childHeight );
-                    alternativeMaxHeight = Math.Max( alternativeMaxHeight, matchHeightLocally ? marginHeight : childHeight );
-                    allFillParent = (allFillParent && desiredChildHeight == LayoutParamPolicies.MatchParent);
-                } // for loop
-            }
-            else
+            // 3RD PHASE:
+            //
+            // We measure all weighted children whose owner has weight greater than 0.
+            // After 3rd phase, all weighted children has width which is proportional to their weights
+            // in remaining width of parent.
+            if (totalWeight > 0.0f)
             {
-                // No excess space or no weighted children
-                alternativeMaxHeight = Math.Max( alternativeMaxHeight, weightedMaxHeight );
-            }
+                foreach (LayoutItem childLayout in LayoutChildren)
+                {
+                    if (!childLayout.SetPositionByLayout)
+                    {
+                        continue;
+                    }
+                    int childDesiredWidth = childLayout.Owner.WidthSpecification;
+                    float childWeight = childLayout.Owner.Weight;
 
-            if (!allFillParent && heightMode != MeasureSpecification.ModeType.Exactly)
+                    if ((childWeight > 0) && ((childDesiredWidth == LayoutParamPolicies.MatchParent) || (childDesiredWidth == 0)))
+                    {
+                        if (isWidthExactly)
+                        {
+                            MeasureWeightedChild(childLayout, totalWeightLength, totalWeight, childWeight,
+                                                 widthMeasureSpec, heightMeasureSpec, childState,
+                                                 Orientation.Horizontal);
+                        }
+                        // RelativeLayout's MatchParent children should not fill to the RelativeLayout.
+                        // Because the children's sizes and positions are calculated by RelativeLayout's APIs.
+                        // Therefore, not to fill the RelativeLayout, the mode is changed from Exactly to AtMost.
+                        //
+                        // Not to print the recursive reference error message for this case, Specification is checked if it is WrapContent.
+                        else if (Owner.WidthSpecification == LayoutParamPolicies.WrapContent)
+                        {
+                            if (childDesiredWidth == LayoutParamPolicies.MatchParent)
+                            {
+                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s WidthSpecification is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s WidthSpecification is MatchParent!");
+                            }
+                            else
+                            {
+                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s WidthSpecification is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s WidthSpecification is 0 with positive weight!");
+                            }
+                        }
+                    }
+                }
+            }
+            // 3RD PHASE foreach
+
+            // Decide the max height among children.
+            foreach (var childLayout in LayoutChildren)
             {
-                maxHeight = alternativeMaxHeight;
+                if (!childLayout.SetPositionByLayout)
+                {
+                    continue;
+                }
+
+                Extents childMargin = childLayout.Margin;
+                float childMarginHeight = childMargin.Top + childMargin.Bottom;
+                float childMeasuredHeight = childLayout.MeasuredHeight.Size.AsDecimal();
+
+                if (childMeasuredHeight < 0)
+                {
+                    maxHeight = Math.Max(maxHeight, childMarginHeight);
+                }
+                else
+                {
+                    maxHeight = Math.Max(maxHeight, childMeasuredHeight + childMarginHeight);
+                }
             }
 
-
-
-            // Padding should be concerned when specification is Wrapcontent.
-            maxHeight += (Owner.HeightSpecification == LayoutParamPolicies.WrapContent)?(Padding.Top + Padding.Bottom):0;
-            maxHeight = Math.Max( maxHeight, SuggestedMinimumHeight.AsRoundedValue() );
+            // Decide the max height compared with paddings and its suggested height.
+            maxHeight = Math.Max(maxHeight, maxHeight + (Padding.Top + Padding.Bottom));
+            maxHeight = Math.Max(maxHeight, SuggestedMinimumHeight.AsRoundedValue());
 
             widthSizeAndState.State = childState.widthState;
 
             SetMeasuredDimensions(widthSizeAndState,
-                                  ResolveSizeAndState( new LayoutLength(maxHeight + Padding.Top + Padding.Bottom), heightMeasureSpec, childState.heightState ));
-
-            if (matchHeight)
-            {
-                ForceUniformHeight(widthMeasureSpec);
-            }
+                                  ResolveSizeAndState(new LayoutLength(maxHeight), heightMeasureSpec, childState.heightState));
         } // MeasureHorizontal
 
-        private void MeasureVertical( MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec )
+        private void MeasureVertical(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
             var widthMode = widthMeasureSpec.Mode;
             var heightMode = heightMeasureSpec.Mode;
-            bool isExactly = ( heightMode == MeasureSpecification.ModeType.Exactly);
-            bool matchWidth = false;
-            bool allFillParent = true;
+            bool isWidthExactly = (widthMode == MeasureSpecification.ModeType.Exactly);
+            bool isHeightExactly = (heightMode == MeasureSpecification.ModeType.Exactly);
             float maxWidth = 0.0f;
-            float alternativeMaxWidth = 0.0f;
-            float weightedMaxWidth = 0.0f;
             float totalWeight = 0.0f;
+            int childrenCount = IterateLayoutChildren().Count();
 
-            // Reset total length
-            _totalLength = 0.0f;
-            float usedExcessSpace =0.0f;
+            // Child layout, which wants to match its height to its parent's remaining height, is either following 1 or 2.
+            // 1. Child layout whose Owner.HeightSpecification is LayoutParamPolicies.MatchParent.
+            // 2. Child layout whose Owner.HeightSpecification is 0 and Owner.Weight is greater than 0.
+            // The number of child layout which wants to match its height to its parent's remaining height.
+            int childrenMatchParentCount = 0;
+
+            // Reset measure variable
+            totalLength = 0.0f;
+
             HeightAndWidthState childState = new HeightAndWidthState(MeasuredSize.StateType.MeasuredSizeOK,
                                                                      MeasuredSize.StateType.MeasuredSizeOK);
 
-
-            // measure children, and determine if further resolution is required
-
-            // 1st phase:
-            // We cycle through all children and measure children with weight 0 (non weighted children) according to their specs
-            // to accumulate total used space in _totalLength.
-            // Weighted children are not measured in this phase.
-            // Available space for weighted children will be calculated in the phase 2 based on _totalLength value.
-            for (int i = 0; i < LayoutChildren.Count; i++)
+            // 1ST PHASE:
+            //
+            // We measure all children whose height specification policy is WrapContent without weight.
+            // After 1st phase, remaining height of parent is accumulated to calculate height of children
+            // whose height specification policy is MatchParent.
+            foreach (var childLayout in LayoutChildren)
             {
-                LayoutItem childLayout = LayoutChildren[i];
+                if (!childLayout.SetPositionByLayout)
+                {
+                    continue;
+                }
                 int childDesiredWidth = childLayout.Owner.WidthSpecification;
+                int childDesiredHeight = childLayout.Owner.HeightSpecification;
                 float childWeight = childLayout.Owner.Weight;
                 Extents childMargin = childLayout.Margin;
-                totalWeight += childWeight;
+                float childMarginHeight = childMargin.Top + childMargin.Bottom;
+                bool useRemainingHeight = (childDesiredHeight == 0) && (childWeight > 0);
 
-                bool useExcessSpace = (childLayout.Owner.HeightSpecification == 0) && (childWeight > 0);
-                if( isExactly && useExcessSpace )
+                if ((childDesiredHeight == LayoutParamPolicies.MatchParent) || (useRemainingHeight))
                 {
-                   _totalLength = Math.Max( _totalLength, (_totalLength + childMargin.Top + childMargin.Bottom) );
+                    totalWeight += childWeight;
+                    childrenMatchParentCount++;
                 }
-                else
+
+                // MatchParent child layout's margin is not added to totalLength.
+                // Consequently, MatchParent child layout's margin is added to remaining size,
+                // so the margin is not shared with other MatchParent child layouts.
+                // e.g.
+                // LinearLayout has size 100.
+                // Child layout1 is MatchParent and its margin is 20. (This margin is not ad
+                // Child layout2 is MatchParent and its margin is 0.
+                // Then, child layout1's size is 30 and child layout2's size is 50.
+                if ((childDesiredHeight == LayoutParamPolicies.WrapContent) || ((childDesiredHeight > 0) && (!useRemainingHeight)))
                 {
-                    if( useExcessSpace )
+                    MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
+
+                    float childMeasuredHeight = childLayout.MeasuredHeight.Size.AsDecimal();
+
+                    if (childMeasuredHeight < 0)
                     {
-                        // The heightMode is either Unspecified or AtMost, and
-                        // this child is only laid out using excess space. Measure
-                        // using WrapContent so that we can find out the view's
-                        // optimal height.
-                        // We'll restore the original height of 0 after measurement.
-                        MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
-                                                new MeasureSpecification(
-                                                    new LayoutLength(widthMeasureSpec.Size - (childLayout.Margin.Start + childLayout.Margin.End)),
-                                                    widthMeasureSpec.Mode),
-                                                new LayoutLength(Padding.Start + Padding.End),
-                                                new LayoutLength(childDesiredWidth));
-
-                        MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
-                                                new MeasureSpecification(
-                                                    new LayoutLength(heightMeasureSpec.Size - (childLayout.Margin.Top + childLayout.Margin.Bottom)),
-                                                    heightMeasureSpec.Mode),
-                                                new LayoutLength(Padding.Top + Padding.Bottom),
-                                                new LayoutLength(LayoutParamPolicies.WrapContent));
-
-                        childLayout.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
-                        usedExcessSpace += childLayout.MeasuredHeight.Size.AsDecimal();
+                        totalLength = Math.Max(totalLength, totalLength + childMarginHeight);
                     }
                     else
                     {
-                        MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
-                    }
-
-                    LayoutLength childHeight = childLayout.MeasuredHeight.Size;
-                    LayoutLength length = childHeight + childMargin.Top + childMargin.Bottom;
-
-
-                    if (isExactly)
-                    {
-                        _totalLength += length.AsDecimal();
-                    }
-                    else
-                    {
-                        _totalLength = Math.Max(_totalLength, _totalLength + length.AsDecimal() + (i < LayoutChildren.Count - 1 ? CellPadding.Height : 0));
+                        totalLength = Math.Max(totalLength, totalLength + childMeasuredHeight + childMarginHeight);
                     }
                 }
-
-                bool matchWidthLocally = false;
-                if( widthMode != MeasureSpecification.ModeType.Exactly && childDesiredWidth ==  LayoutParamPolicies.MatchParent)
-                {
-                    // Will have to re-measure at least this child when we know exact height.
-                    matchWidth = true;
-                    matchWidthLocally = true;
-                }
-
-                float marginWidth = childLayout.Margin.Start + childLayout.Margin.End;
-                float childWidth = childLayout.MeasuredWidth.Size.AsDecimal() + marginWidth;
 
                 if (childLayout.MeasuredWidth.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
                 {
@@ -565,99 +647,190 @@ namespace Tizen.NUI
                 {
                     childState.heightState = MeasuredSize.StateType.MeasuredSizeTooSmall;
                 }
+            } // 1ST PHASE foreach
 
-                maxWidth = Math.Max( maxWidth, childWidth);
-                allFillParent = ( allFillParent && childDesiredWidth == LayoutParamPolicies.MatchParent);
-
-                if (childWeight > 0)
-                {
-                    // Widths of weighted Views are bogus if we end up remeasuring, so keep them separate.
-                    weightedMaxWidth = Math.Max( weightedMaxWidth,  matchWidthLocally ? marginWidth : childWidth);
-                }
-                else
-                {
-                    alternativeMaxWidth = Math.Max( alternativeMaxWidth, matchWidthLocally ? marginWidth : childWidth);
-                }
-            } // foreach
-
-
-            float heightSize = _totalLength;
-            heightSize = Math.Max( heightSize, SuggestedMinimumHeight.AsDecimal());
-            MeasuredSize heightSizeAndState = ResolveSizeAndState( new LayoutLength(heightSize + Padding.Top + Padding.Bottom), heightMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK );
+            totalLength = Math.Max(totalLength, totalLength + CellPadding.Height * (childrenCount - 1) + Padding.Top + Padding.Bottom);
+            float heightSize = Math.Max(totalLength, SuggestedMinimumHeight.AsDecimal());
+            MeasuredSize heightSizeAndState = ResolveSizeAndState(new LayoutLength(heightSize), heightMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
             heightSize = heightSizeAndState.Size.AsDecimal();
 
-            // 2nd phase:
-            // We cycle through weighted children now (children with weight > 0).
-            // The children are measured with exact size equal to their share of the available space based on their weights.
-            // _totalLength is updated to include weighted children measured sizes.
-            float remainingExcess = heightSize - _totalLength + usedExcessSpace - (Padding.Top + Padding.Bottom);
-            if( remainingExcess != 0 && totalWeight > 0.0f )
+            float remainingHeight = heightSize - totalLength;
+            float totalWeightLength = 0.0f;
+
+            // Up to now, only WrapContent children's sizes are added to the totalLength.
+            // Since the totalLength is used in OnLayout as the sum of all children's sizes,
+            // the layout size is assigned to the totalLength if MatchParent child exists.
+            if (childrenMatchParentCount > 0)
             {
-                float remainingWeight = totalWeight;
-                maxWidth = 0;
-                _totalLength = 0;
+                totalLength = heightSize;
+            }
 
-                int numberOfChildren = LayoutChildren.Count;
-                for( int i = 0; i < numberOfChildren; ++i )
+            // 2ND PHASE:
+            //
+            // We measure all children whose height specification policy is MatchParent without weight.
+            // After 2nd phase, all children's heights are calculated without considering weight.
+            // And the heights of all weighted children are accumulated to calculate weighted height.
+            foreach (var childLayout in LayoutChildren)
+            {
+                if (!childLayout.SetPositionByLayout)
                 {
-                    LayoutItem childLayout = LayoutChildren[i];
+                    continue;
+                }
+                int childDesiredWidth = childLayout.Owner.WidthSpecification;
+                int childDesiredHeight = childLayout.Owner.HeightSpecification;
+                float childWeight = childLayout.Owner.Weight;
+                Extents childMargin = childLayout.Margin;
+                bool useRemainingHeight = (childDesiredHeight == 0) && (childWeight > 0);
+                bool needToMeasure = false;
 
-                    float desiredChildWidth = childLayout.Owner.WidthSpecification;
-
-                    float childWeight = childLayout.Owner.Weight;
-                    Extents childMargin = childLayout.Margin;
-
-                    if( childWeight > 0 )
+                if ((childDesiredWidth == LayoutParamPolicies.MatchParent) || (useRemainingHeight))
+                {
+                    if (isWidthExactly)
                     {
-                        MeasureWeightedChild(childLayout, remainingExcess, remainingWeight, childWeight,
-                                                widthMeasureSpec, heightMeasureSpec, childState,
-                                                Orientation.Vertical);
+                        needToMeasure = true;
                     }
-
-                    float length = childLayout.MeasuredHeight.Size.AsDecimal() + childMargin.Top + childMargin.Bottom;
-                    float cellPadding = i < numberOfChildren - 1 ? CellPadding.Height : 0;
-
-                    if( isExactly )
+                    // RelativeLayout's MatchParent children should not fill to the RelativeLayout.
+                    // Because the children's sizes and positions are calculated by RelativeLayout's APIs.
+                    // Therefore, not to fill the RelativeLayout, the mode is changed from Exactly to AtMost.
+                    //
+                    // Not to print the recursive reference error message for this case, Specification is checked if it is WrapContent.
+                    else if (Owner.WidthSpecification == LayoutParamPolicies.WrapContent)
                     {
-                        _totalLength += length;
+                        if (childDesiredWidth == LayoutParamPolicies.MatchParent)
+                        {
+                            Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s WidthSpecification is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s WidthSpecification is MatchParent!");
+                        }
+                        else
+                        {
+                            Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s WidthSpecification is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s WidthSpecification is 0 with positive weight!");
+                        }
+                    }
+                }
+
+                if (remainingHeight > 0)
+                {
+                    if ((childDesiredHeight == LayoutParamPolicies.MatchParent) || (useRemainingHeight))
+                    {
+                        if (isHeightExactly)
+                        {
+                            // In MeasureChildWithMargins(), it is assumed that heightMeasureSpec includes Padding.Top and Padding.Bottom.
+                            // Therefore, Padding.Top and Padding.Bottom are added to heightMeasureSpec.Size before it is passed to MeasureChildWithMargins().
+                            heightMeasureSpec.SetSize(new LayoutLength((int)(remainingHeight / childrenMatchParentCount) + Padding.Top + Padding.Bottom));
+                            needToMeasure = true;
+                        }
+                        // RelativeLayout's MatchParent children should not fill to the RelativeLayout.
+                        // Because the children's sizes and positions are calculated by RelativeLayout's APIs.
+                        // Therefore, not to fill the RelativeLayout, the mode is changed from Exactly to AtMost.
+                        //
+                        // Not to print the recursive reference error message for this case, Specification is checked if it is WrapContent.
+                        else if (Owner.HeightSpecification == LayoutParamPolicies.WrapContent)
+                        {
+                            if (childDesiredHeight == LayoutParamPolicies.MatchParent)
+                            {
+                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s HeightSpecification is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s HeightSpecification is MatchParent!");
+                            }
+                            else
+                            {
+                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s HeightSpecification is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s HeightSpecification is 0 with positive weight!");
+                            }
+                        }
+                    }
+                }
+
+                if (needToMeasure == true)
+                {
+                    MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
+                }
+
+                if ((childWeight > 0) && ((childDesiredHeight == LayoutParamPolicies.MatchParent) || (childDesiredHeight == 0)))
+                {
+                    float childMeasuredHeight = childLayout.MeasuredHeight.Size.AsDecimal();
+
+                    if (childMeasuredHeight < 0)
+                    {
+                        totalWeightLength = Math.Max(totalWeightLength, totalWeightLength + childMargin.Top + childMargin.Bottom);
                     }
                     else
                     {
-                        float totalLength = _totalLength;
-                        _totalLength = Math.Max( _totalLength, _totalLength + length + cellPadding );
+                        totalWeightLength = Math.Max(totalWeightLength, totalWeightLength + childMeasuredHeight + childMargin.Top + childMargin.Bottom);
                     }
+                }
+            } // 2ND PHASE foreach
 
-                    bool matchWidthLocally = (widthMode != MeasureSpecification.ModeType.Exactly) && (desiredChildWidth == LayoutParamPolicies.MatchParent);
-                    float marginWidth = childMargin.Start + childMargin.End;
-                    float childWidth = childLayout.MeasuredWidth.Size.AsDecimal() + marginWidth;
-
-                    maxWidth = Math.Max( maxWidth, childWidth );
-                    alternativeMaxWidth = Math.Max( alternativeMaxWidth, matchWidthLocally ? marginWidth : childWidth );
-                    allFillParent = (allFillParent && desiredChildWidth == LayoutParamPolicies.MatchParent);
-                } // for loop
-            }
-            else
+            // 3RD PHASE:
+            //
+            // We measure all weighted children whose owner has weight greater than 0.
+            // After 3rd phase, all weighted children has height which is proportional to their weights
+            // in remaining height of parent.
+            if (totalWeight > 0)
             {
-                alternativeMaxWidth = Math.Max( alternativeMaxWidth, weightedMaxWidth );
-            }
+                foreach (var childLayout in LayoutChildren)
+                {
+                    if (!childLayout.SetPositionByLayout)
+                    {
+                        continue;
+                    }
+                    int childDesiredHeight = childLayout.Owner.HeightSpecification;
+                    float childWeight = childLayout.Owner.Weight;
 
-            if (!allFillParent && widthMode != MeasureSpecification.ModeType.Exactly)
+                    if ((childWeight > 0) && ((childDesiredHeight == LayoutParamPolicies.MatchParent) || (childDesiredHeight == 0)))
+                    {
+                        if (isHeightExactly)
+                        {
+                            MeasureWeightedChild(childLayout, totalWeightLength, totalWeight, childWeight,
+                                                 widthMeasureSpec, heightMeasureSpec, childState,
+                                                 Orientation.Vertical);
+                        }
+                        // RelativeLayout's MatchParent children should not fill to the RelativeLayout.
+                        // Because the children's sizes and positions are calculated by RelativeLayout's APIs.
+                        // Therefore, not to fill the RelativeLayout, the mode is changed from Exactly to AtMost.
+                        //
+                        // Not to print the recursive reference error message for this case, Specification is checked if it is WrapContent.
+                        else if (Owner.HeightSpecification == LayoutParamPolicies.WrapContent)
+                        {
+                            if (childDesiredHeight == LayoutParamPolicies.MatchParent)
+                            {
+                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s HeightSpecification is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s HeightSpecification is MatchParent!");
+                            }
+                            else
+                            {
+                                Tizen.Log.Error("NUI", "There is a recursive reference! Parent layout(Owner: " + Owner + ")'s HeightSpecification is WrapContent and child layout(Owner: " + childLayout.Owner + ")'s HeightSpecification is 0 with positive weight!");
+                            }
+                        }
+                    }
+                }
+            } // 3RD PHASE foreach
+
+            // Decide the max width among children.
+            foreach (var childLayout in LayoutChildren)
             {
-                maxWidth = alternativeMaxWidth;
+                if (!childLayout.SetPositionByLayout)
+                {
+                    continue;
+                }
+
+                Extents childMargin = childLayout.Margin;
+                float childMarginWidth = childMargin.Start + childMargin.End;
+                float childMeasuredWidth = childLayout.MeasuredWidth.Size.AsDecimal();
+
+                if (childMeasuredWidth < 0)
+                {
+                    maxWidth = Math.Max(maxWidth, childMarginWidth);
+                }
+                else
+                {
+                    maxWidth = Math.Max(maxWidth, childMeasuredWidth + childMarginWidth);
+                }
             }
 
-            maxWidth += (Owner.WidthSpecification == LayoutParamPolicies.WrapContent)?(Padding.Start + Padding.End):0;
-            maxWidth = Math.Max( maxWidth, SuggestedMinimumWidth.AsRoundedValue());
+            // Decide the max width compared with paddings and its suggested width.
+            maxWidth = Math.Max(maxWidth, maxWidth + (Padding.Start + Padding.End));
+            maxWidth = Math.Max(maxWidth, SuggestedMinimumWidth.AsRoundedValue());
 
             heightSizeAndState.State = childState.heightState;
 
-            SetMeasuredDimensions( ResolveSizeAndState( new LayoutLength(maxWidth + Padding.Top + Padding.Bottom), widthMeasureSpec, childState.widthState ),
-                                  heightSizeAndState );
-
-            if (matchWidth)
-            {
-                ForceUniformWidth(heightMeasureSpec );
-            }
+            SetMeasuredDimensions(ResolveSizeAndState(new LayoutLength(maxWidth), widthMeasureSpec, childState.widthState),
+                                  heightSizeAndState);
         } // MeasureVertical
 
         private void LayoutHorizontal(LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
@@ -671,13 +844,14 @@ namespace Tizen.NUI
             LayoutLength height = new LayoutLength(bottom - top);
 
             // Space available for child
-            LayoutLength childSpace = new LayoutLength( height - Padding.Top - Padding.Bottom);
+            LayoutLength childSpace = new LayoutLength(height - Padding.Top - Padding.Bottom);
 
-            int count = LayoutChildren.Count;
+            var LinearChildren = IterateLayoutChildren();
+            int count = LinearChildren.Count<LayoutItem>();
 
-            switch (LinearAlignment)
+            switch (HorizontalAlignment)
             {
-                case Alignment.End:
+                case HorizontalAlignment.End:
                     // totalLength contains the padding already
                     // In case of RTL map END alignment to the left edge
                     if (isLayoutRtl)
@@ -686,21 +860,20 @@ namespace Tizen.NUI
                     }
                     else
                     {
-                        childLeft = new LayoutLength(Padding.Start + right.AsDecimal() - left.AsDecimal() - _totalLength);
+                        childLeft = new LayoutLength(Padding.Start + right.AsDecimal() - left.AsDecimal() - totalLength);
                     }
                     break;
-                case Alignment.CenterHorizontal: // FALL THROUGH
-                case Alignment.Center:
+                case HorizontalAlignment.Center:
                     // totalLength contains the padding already
-                    childLeft = new LayoutLength(Padding.Start + (right.AsDecimal() - left.AsDecimal() - _totalLength) / 2.0f);
+                    childLeft = new LayoutLength(Padding.Start + (right.AsDecimal() - left.AsDecimal() - totalLength) / 2.0f);
                     break;
-                case Alignment.Begin: // FALL THROUGH (default)
+                case HorizontalAlignment.Begin: // FALL THROUGH (default)
                 default:
                     // totalLength contains the padding already
                     // In case of RTL map BEGIN alignment to the right edge
                     if (isLayoutRtl)
                     {
-                        childLeft = new LayoutLength(Padding.Start  + right.AsDecimal() - left.AsDecimal() - _totalLength);
+                        childLeft = new LayoutLength(Padding.Start + right.AsDecimal() - left.AsDecimal() - totalLength);
                     }
                     else
                     {
@@ -719,35 +892,32 @@ namespace Tizen.NUI
                 dir = -1;
             }
 
-            for( int i = 0; i < count; i++)
+            for (int i = 0; i < count; i++)
             {
                 int childIndex = start + dir * i;
                 // Get a reference to the childLayout at the given index
-                LayoutItem childLayout = LayoutChildren[childIndex];
-                if( childLayout != null )
-                {
-                    LayoutLength childWidth = childLayout.MeasuredWidth.Size;
-                    LayoutLength childHeight = childLayout.MeasuredHeight.Size;
-                    Extents childMargin = childLayout.Margin;
+                LayoutItem childLayout = LinearChildren.ElementAt<LayoutItem>(i);
 
-                    switch ( LinearAlignment )
-                    {
-                        case Alignment.Bottom:
-                            childTop = new LayoutLength(height - Padding.Bottom - childHeight - childMargin.Bottom);
-                            break;
-                        case Alignment.CenterVertical:
-                        case Alignment.Center: // FALLTHROUGH
-                            childTop = new LayoutLength(Padding.Top + ( ( childSpace - childHeight ).AsDecimal() / 2.0f ) + childMargin.Top - childMargin.Bottom);
-                            break;
-                        case Alignment.Top: // FALLTHROUGH default
-                        default:
-                            childTop = new LayoutLength(Padding.Top + childMargin.Top);
-                            break;
-                    }
-                    childLeft += childMargin.Start;
-                    childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
-                    childLeft += childWidth + childMargin.End + ((i < count - 1) ? CellPadding.Width : 0);
+                LayoutLength childWidth = childLayout.MeasuredWidth.Size;
+                LayoutLength childHeight = childLayout.MeasuredHeight.Size;
+                Extents childMargin = childLayout.Margin;
+
+                switch (VerticalAlignment)
+                {
+                    case VerticalAlignment.Bottom:
+                        childTop = new LayoutLength(height - Padding.Bottom - childHeight - childMargin.Bottom);
+                        break;
+                    case VerticalAlignment.Center:
+                        childTop = new LayoutLength(Padding.Top + ((childSpace - childHeight).AsDecimal() / 2.0f) + childMargin.Top - childMargin.Bottom);
+                        break;
+                    case VerticalAlignment.Top: // FALLTHROUGH default
+                    default:
+                        childTop = new LayoutLength(Padding.Top + childMargin.Top);
+                        break;
                 }
+                childLeft += (isLayoutRtl ? childMargin.End : childMargin.Start);
+                childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
+                childLeft += childWidth + (isLayoutRtl ? childMargin.Start : childMargin.End) + ((i < count - 1) ? CellPadding.Width : 0);
             }
         } // LayoutHorizontally
 
@@ -760,109 +930,86 @@ namespace Tizen.NUI
             LayoutLength width = new LayoutLength(right - left);
 
             // Space available for child
-            LayoutLength childSpace = new LayoutLength( width - Padding.Start - Padding.End);
+            LayoutLength childSpace = new LayoutLength(width - Padding.Start - Padding.End);
 
-            int count = LayoutChildren.Count;
+            var LinearChildren = IterateLayoutChildren();
+            int count = LinearChildren.Count<LayoutItem>();
 
-            switch (LinearAlignment)
+            switch (VerticalAlignment)
             {
-              case Alignment.Bottom:
-                // totalLength contains the padding already
-                childTop = new LayoutLength( Padding.Top + bottom.AsDecimal() - top.AsDecimal() - _totalLength);
-                break;
-              case Alignment.CenterVertical: // FALL THROUGH
-              case Alignment.Center:
-                // totalLength contains the padding already
-                childTop = new LayoutLength(Padding.Top + ( bottom.AsDecimal() - top.AsDecimal() - _totalLength ) / 2.0f);
-                break;
-              case Alignment.Top:  // FALL THROUGH (default)
-              default:
-                // totalLength contains the padding already
-                childTop = new LayoutLength( Padding.Top );
-                break;
+                case VerticalAlignment.Bottom:
+                    // totalLength contains the padding already
+                    childTop = new LayoutLength(Padding.Top + bottom.AsDecimal() - top.AsDecimal() - totalLength);
+                    break;
+                case VerticalAlignment.Center:
+                    // totalLength contains the padding already
+                    childTop = new LayoutLength(Padding.Top + (bottom.AsDecimal() - top.AsDecimal() - totalLength) / 2.0f);
+                    break;
+                case VerticalAlignment.Top:  // FALL THROUGH (default)
+                default:
+                    // totalLength contains the padding already
+                    childTop = new LayoutLength(Padding.Top);
+                    break;
             }
 
-            for( int i = 0; i < count; i++)
+            for (int i = 0; i < count; i++)
             {
-                LayoutItem childLayout = LayoutChildren[i];
-                if( childLayout != null )
-                {
-                    LayoutLength childWidth = childLayout.MeasuredWidth.Size;
-                    LayoutLength childHeight = childLayout.MeasuredHeight.Size;
-                    Extents childMargin = childLayout.Margin;
+                LayoutItem childLayout = LinearChildren.ElementAt<LayoutItem>(i);
 
-                    childTop += childMargin.Top;
-                    switch ( LinearAlignment )
-                    {
-                      case Alignment.Begin:
-                      default:
-                      {
-                        childLeft = new LayoutLength(Padding.Start + childMargin.Start);
-                        break;
-                      }
-                      case Alignment.End:
-                      {
-                        childLeft = new LayoutLength(width - Padding.End - childWidth - childMargin.End);
-                        break;
-                      }
-                      case Alignment.CenterHorizontal:
-                      case Alignment.Center: // FALL THROUGH
-                      {
-                        childLeft = new LayoutLength(Padding.Start + (( childSpace - childWidth ).AsDecimal() / 2.0f) + childMargin.Start - childMargin.End);
-                        break;
-                      }
-                    }
-                    childLayout.Layout( childLeft, childTop, childLeft + childWidth, childTop + childHeight );
-                    childTop += childHeight + childMargin.Bottom + ((i < count - 1) ? CellPadding.Height : 0);
+                LayoutLength childWidth = childLayout.MeasuredWidth.Size;
+                LayoutLength childHeight = childLayout.MeasuredHeight.Size;
+                Extents childMargin = childLayout.Margin;
+
+                childTop += childMargin.Top;
+                switch (HorizontalAlignment)
+                {
+                    case HorizontalAlignment.Begin:
+                    default:
+                        {
+                            childLeft = new LayoutLength(Padding.Start + childMargin.Start);
+                            break;
+                        }
+                    case HorizontalAlignment.End:
+                        {
+                            childLeft = new LayoutLength(width - Padding.End - childWidth - childMargin.End);
+                            break;
+                        }
+                    case HorizontalAlignment.Center:
+                        {
+                            childLeft = new LayoutLength(Padding.Start + ((childSpace - childWidth).AsDecimal() / 2.0f) + childMargin.Start - childMargin.End);
+                            break;
+                        }
                 }
+                childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
+                childTop += childHeight + childMargin.Bottom + ((i < count - 1) ? CellPadding.Height : 0);
             }
         } // LayoutVertical
 
         private void ForceUniformHeight(MeasureSpecification widthMeasureSpec)
         {
-          // Pretend that the linear layout has an exact size. This is the measured height of
-          // ourselves. The measured height should be the max height of the children, changed
-          // to accommodate the heightMeasureSpec from the parent
-          MeasureSpecification uniformMeasureSpec = new MeasureSpecification( MeasuredHeight.Size, MeasureSpecification.ModeType.Exactly);
-          foreach (LayoutItem childLayout in LayoutChildren)
-          {
-              int desiredChildHeight = childLayout.Owner.HeightSpecification;
-              int desiredChildWidth = childLayout.Owner.WidthSpecification;
-
-              if (desiredChildHeight == LayoutParamPolicies.MatchParent)
-              {
-                  // Temporarily force children to reuse their original measured width
-                  int originalWidth = desiredChildWidth;
-                  childLayout.Owner.WidthSpecification = (int)childLayout.MeasuredWidth.Size.AsRoundedValue();
-                  // Remeasure with new dimensions
-                  MeasureChildWithMargins( childLayout, widthMeasureSpec, new LayoutLength(0),
-                                           uniformMeasureSpec, new LayoutLength(0) );
-                  // Restore width specification
-                  childLayout.Owner.WidthSpecification =  originalWidth;
-              }
-          }
-        }
-
-        private void ForceUniformWidth(MeasureSpecification heightMeasureSpec)
-        {
-            // Pretend that the linear layout has an exact size.
-            MeasureSpecification uniformMeasureSpec = new MeasureSpecification( MeasuredWidth.Size, MeasureSpecification.ModeType.Exactly);
-            foreach (LayoutItem childLayout in LayoutChildren)
+            // Pretend that the linear layout has an exact size. This is the measured height of
+            // ourselves. The measured height should be the max height of the children, changed
+            // to accommodate the heightMeasureSpec from the parent
+            MeasureSpecification uniformMeasureSpec = new MeasureSpecification(MeasuredHeight.Size, MeasureSpecification.ModeType.Exactly);
+            foreach (var childLayout in LayoutChildren)
             {
-                int desiredChildWidth = childLayout.Owner.WidthSpecification;
-                int desiredChildHeight = childLayout.Owner.WidthSpecification;
-
-                if (desiredChildWidth  == LayoutParamPolicies.MatchParent)
+                if (!childLayout.SetPositionByLayout)
                 {
-                    // Temporarily force children to reuse their original measured height
-                    int originalHeight = desiredChildHeight;
-                    childLayout.Owner.HeightSpecification =  (int)childLayout.MeasuredHeight.Size.AsRoundedValue();
+                    continue;
+                }
+                int desiredChildHeight = childLayout.Owner.HeightSpecification;
+                int desiredChildWidth = childLayout.Owner.WidthSpecification;
 
+                if (desiredChildHeight == LayoutParamPolicies.MatchParent)
+                {
+                    // Temporarily force children to reuse their original measured width
+                    int originalWidth = desiredChildWidth;
+                    childLayout.Owner.WidthSpecification = (int)childLayout.MeasuredWidth.Size.AsRoundedValue();
                     // Remeasure with new dimensions
-                    MeasureChildWithMargins( childLayout, uniformMeasureSpec, new LayoutLength(0),
-                                             heightMeasureSpec, new LayoutLength(0));
-                    // Restore height specification
-                    childLayout.Owner.HeightSpecification = originalHeight;
+                    MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0),
+                                             uniformMeasureSpec, new LayoutLength(0));
+                    // Restore width specification
+                    childLayout.Owner.WidthSpecification = originalWidth;
                 }
             }
         }

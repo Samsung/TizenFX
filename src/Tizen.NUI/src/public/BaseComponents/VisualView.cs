@@ -42,10 +42,10 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public class VisualView : CustomView
     {
-        //private LinkedList<VisualBase> _visualList = null;
-        private Dictionary<int, VisualBase> _visualDictionary = null;
-        private Dictionary<int, PropertyMap> _tranformDictionary = null;
-        private PropertyArray _animateArray = null;
+        private Dictionary<int, string> visualNameDictionary = null;
+        private Dictionary<int, VisualBase> visualDictionary = null;
+        private Dictionary<int, PropertyMap> tranformDictionary = null;
+        private PropertyArray animateArray = null;
 
         /// <summary>
         /// Constructor.
@@ -80,7 +80,7 @@ namespace Tizen.NUI.BaseComponents
         // static constructor registers the control type (for user can add kinds of visuals to it)
         static VisualView()
         {
-            // ViewRegistry registers control type with DALi type registery
+            // ViewRegistry registers control type with DALi type registry
             // also uses introspection to find any properties that need to be registered with type registry
             CustomViewRegistry.Instance.Register(CreateInstance, typeof(VisualView));
         }
@@ -93,7 +93,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return _visualDictionary.Count;
+                return visualDictionary.Count;
             }
         }
 
@@ -103,10 +103,13 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public override void OnInitialize()
         {
+            base.OnInitialize();
+
             //Initialize empty
-            _visualDictionary = new Dictionary<int, VisualBase>();
-            _tranformDictionary = new Dictionary<int, PropertyMap>();
-            _animateArray = new PropertyArray();
+            visualNameDictionary = new Dictionary<int, string>();
+            visualDictionary = new Dictionary<int, VisualBase>();
+            tranformDictionary = new Dictionary<int, PropertyMap>();
+            animateArray = new PropertyArray();
         }
 
         /// <summary>
@@ -114,48 +117,49 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="visualName">The name of a visual to add. If a name is added to an existing visual name, the visual will be replaced.</param>
         /// <param name="visualMap">The property map of a visual to create.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when visualMap is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public void AddVisual(string visualName, VisualMap visualMap)
         {
-            VisualBase visual = null;
             int visualIndex = -1;
 
             /* If the visual had added, then replace it using RegisterVusal. */
             //visual.Name = name;
-            foreach (var item in _visualDictionary)
+            foreach (var item in visualNameDictionary)
             {
-                if (item.Value.Name == visualName)
+                if (item.Value == visualName)
                 {
                     /* Find a existed visual, its key also exited. */
                     visualIndex = item.Key;
                     UnregisterVisual(visualIndex);
-                    _visualDictionary.Remove(visualIndex);
-                    _tranformDictionary.Remove(visualIndex);
+                    visualNameDictionary.Remove(visualIndex);
+                    visualDictionary.Remove(visualIndex);
+                    tranformDictionary.Remove(visualIndex);
                     break;
                 }
             }
 
             if (visualIndex == -1) // The visual is a new one, create index for it. */
             {
-                visualIndex = RegisterProperty(visualName, new PropertyValue(visualName), PropertyAccessMode.ReadWrite);
+                using (var temp = new PropertyValue(visualName))
+                {
+                    visualIndex = RegisterProperty(visualName, temp, PropertyAccessMode.ReadWrite);
+                }
             }
 
             if (visualIndex > 0)
             {
-                visual = VisualFactory.Instance.CreateVisual(visualMap.OutputVisualMap); // Create a visual for the new one.
-                visual.Name = visualName;
-                visual.DepthIndex = visualMap.DepthIndex;
-
-                RegisterVisual(visualIndex, visual);
-
-                _visualDictionary.Add(visualIndex, visual);
-                _tranformDictionary.Add(visualIndex, visualMap.OutputTransformMap);
+                if (visualMap == null)
+                {
+                    throw new ArgumentNullException(nameof(visualMap));
+                }
 
                 visualMap.VisualIndex = visualIndex;
                 visualMap.Name = visualName;
                 visualMap.Parent = this;
 
-                RelayoutRequest();
+                // Register index and name
+                UpdateVisual(visualIndex, visualName, visualMap);
             }
         }
 
@@ -166,14 +170,15 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void RemoveVisual(string visualName)
         {
-            foreach (var item in _visualDictionary)
+            foreach (var item in visualNameDictionary)
             {
-                if (item.Value.Name == visualName)
+                if (item.Value == visualName)
                 {
                     EnableVisual(item.Key, false);
                     UnregisterVisual(item.Key);
-                    _tranformDictionary.Remove(item.Key);
-                    _visualDictionary.Remove(item.Key);
+                    tranformDictionary.Remove(item.Key);
+                    visualDictionary.Remove(item.Key);
+                    visualNameDictionary.Remove(item.Key);
 
                     RelayoutRequest();
                     break;
@@ -187,13 +192,14 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void RemoveAll()
         {
-            foreach (var item in _visualDictionary)
+            foreach (var item in visualNameDictionary)
             {
                 EnableVisual(item.Key, false);
                 UnregisterVisual(item.Key);
             }
-            _visualDictionary.Clear();
-            _tranformDictionary.Clear();
+            visualDictionary.Clear();
+            tranformDictionary.Clear();
+            visualNameDictionary.Clear();
             RelayoutRequest();
         }
 
@@ -209,10 +215,13 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public override void OnRelayout(Vector2 size, RelayoutContainer container)
         {
-            foreach (var item in _visualDictionary)
+            foreach (var item in visualDictionary)
             {
-                item.Value.SetTransformAndSize(_tranformDictionary[item.Key], size);
-                EnableVisual(item.Key, true);
+                if(item.Value != null)
+                {
+                    item.Value.SetTransformAndSize(tranformDictionary[item.Key], size);
+                    EnableVisual(item.Key, true);
+                }
             }
         }
 
@@ -227,43 +236,73 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="alphaFunction">The alpha function of visual animation.</param>
         /// <param name="initialValue">The initial property value of visual animation.</param>
         /// <returns>Animation instance</returns>
+        /// <exception cref="ArgumentNullException"> Thrown when target is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public Animation AnimateVisual(VisualMap target, string property, object destinationValue, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialValue = null)
         {
-            string _alphaFunction = alphaFunction?.GetDescription();
-
-            foreach (var item in _visualDictionary.ToList())
+            if (target == null)
             {
-                if (item.Value.Name == target.Name)
+                throw new ArgumentNullException(nameof(target));
+            }
+
+            string strAlpha = alphaFunction?.GetDescription();
+
+            foreach (var item in visualNameDictionary.ToList())
+            {
+                if (item.Value == target.Name)
                 {
-                    PropertyMap _animator = new PropertyMap();
-                    if (_alphaFunction != null) { _animator.Add("alphaFunction", new PropertyValue(_alphaFunction)); }
-
-                    PropertyMap _timePeriod = new PropertyMap();
-                    _timePeriod.Add("duration", new PropertyValue((endTime - startTime) / 1000.0f));
-                    _timePeriod.Add("delay", new PropertyValue(startTime / 1000.0f));
-                    _animator.Add("timePeriod", new PropertyValue(_timePeriod));
-
-                    StringBuilder sb = new StringBuilder(property);
-                    sb[0] = (char)(sb[0] | 0x20);
-                    string _str = sb.ToString();
-                    if (_str == "position") { _str = "offset"; }
-
-                    PropertyValue destVal = PropertyValue.CreateFromObject(destinationValue);
-
-                    PropertyMap _transition = new PropertyMap();
-                    _transition.Add("target", new PropertyValue(target.Name));
-                    _transition.Add("property", new PropertyValue(_str));
-                    if (initialValue != null)
+                    using (PropertyMap animator = new PropertyMap())
+                    using (PropertyMap timePeriod = new PropertyMap())
+                    using (PropertyValue pvDuration = new PropertyValue((endTime - startTime) / 1000.0f))
+                    using (PropertyValue pvDelay = new PropertyValue(startTime / 1000.0f))
+                    using (PropertyValue destVal = PropertyValue.CreateFromObject(destinationValue))
+                    using (PropertyMap transition = new PropertyMap())
+                    using (PropertyValue pvTarget = new PropertyValue(target.Name))
                     {
-                        PropertyValue initVal = PropertyValue.CreateFromObject(initialValue);
-                        _transition.Add("initialValue", new PropertyValue(initVal));
-                    }
-                    _transition.Add("targetValue", destVal);
-                    _transition.Add("animator", new PropertyValue(_animator));
+                        if (strAlpha != null)
+                        {
+                            using (PropertyValue pvAlpha = new PropertyValue(strAlpha))
+                            {
+                                animator.Add("alphaFunction", pvAlpha);
+                            }
+                        }
+                        timePeriod.Add("duration", pvDuration);
+                        timePeriod.Add("delay", pvDelay);
+                        using (PropertyValue pvTimePeriod = new PropertyValue(timePeriod))
+                        {
+                            animator.Add("timePeriod", pvTimePeriod);
+                        }
 
-                    TransitionData _transitionData = new TransitionData(_transition);
-                    return this.CreateTransition(_transitionData);
+                        StringBuilder sb = new StringBuilder(property);
+                        sb[0] = (char)(sb[0] | 0x20);
+                        string _str = sb.ToString();
+                        if (_str == "position") { _str = "offset"; }
+
+                        transition.Add("target", pvTarget);
+                        using (PropertyValue pvStr = new PropertyValue(_str))
+                        {
+                            transition.Add("property", pvStr);
+                        }
+
+                        if (initialValue != null)
+                        {
+                            using (PropertyValue initVal = PropertyValue.CreateFromObject(initialValue))
+                            using (PropertyValue pvInitialValue = new PropertyValue(initVal))
+                            {
+                                transition.Add("initialValue", pvInitialValue);
+                            }
+                        }
+                        transition.Add("targetValue", destVal);
+                        using (PropertyValue pvAnimator = new PropertyValue(animator))
+                        {
+                            transition.Add("animator", pvAnimator);
+                        }
+
+                        using (TransitionData transitionData = new TransitionData(transition))
+                        {
+                            return this.CreateTransition(transitionData);
+                        }
+                    }
                 }
             }
             return null;
@@ -279,42 +318,75 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="endTime">The end time of visual animation.</param>
         /// <param name="alphaFunction">The alpha function of visual animation.</param>
         /// <param name="initialValue">The initial property value of visual animation.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when target is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public void AnimateVisualAdd(VisualMap target, string property, object destinationValue, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialValue = null)
         {
-            string _alphaFunction = alphaFunction?.GetDescription();
-
-            foreach (var item in _visualDictionary.ToList())
+            if (target == null)
             {
-                if (item.Value.Name == target.Name)
+                throw new ArgumentNullException(nameof(target));
+            }
+
+            string strAlpha = alphaFunction?.GetDescription();
+
+            foreach (var item in visualNameDictionary.ToList())
+            {
+                if (item.Value == target.Name)
                 {
-                    PropertyMap _animator = new PropertyMap();
-                    if (_alphaFunction != null) { _animator.Add("alphaFunction", new PropertyValue(_alphaFunction)); }
-
-                    PropertyMap _timePeriod = new PropertyMap();
-                    _timePeriod.Add("duration", new PropertyValue((endTime - startTime) / 1000.0f));
-                    _timePeriod.Add("delay", new PropertyValue(startTime / 1000.0f));
-                    _animator.Add("timePeriod", new PropertyValue(_timePeriod));
-
-                    StringBuilder sb = new StringBuilder(property);
-                    sb[0] = (char)(sb[0] | 0x20);
-                    string _str = sb.ToString();
-                    if (_str == "position") { _str = "offset"; }
-
-                    PropertyValue destVal = PropertyValue.CreateFromObject(destinationValue);
-
-                    PropertyMap _transition = new PropertyMap();
-                    _transition.Add("target", new PropertyValue(target.Name));
-                    _transition.Add("property", new PropertyValue(_str));
-                    if (initialValue != null)
+                    using (PropertyMap animator = new PropertyMap())
+                    using (PropertyMap timePeriod = new PropertyMap())
+                    using (PropertyValue pvDuration = new PropertyValue((endTime - startTime) / 1000.0f))
+                    using (PropertyValue pvDelay = new PropertyValue(startTime / 1000.0f))
+                    using (PropertyValue destVal = PropertyValue.CreateFromObject(destinationValue))
+                    using (PropertyMap transition = new PropertyMap())
+                    using (PropertyValue pvTarget = new PropertyValue(target.Name))
                     {
-                        PropertyValue initVal = PropertyValue.CreateFromObject(initialValue);
-                        _transition.Add("initialValue", new PropertyValue(initVal));
-                    }
-                    _transition.Add("targetValue", destVal);
-                    _transition.Add("animator", new PropertyValue(_animator));
+                        if (strAlpha != null)
+                        {
+                            using (PropertyValue pvStrAlpha = new PropertyValue(strAlpha))
+                            {
+                                animator.Add("alphaFunction", pvStrAlpha);
+                            }
+                        }
 
-                    _animateArray.Add(new PropertyValue(_transition));
+                        timePeriod.Add("duration", pvDuration);
+                        timePeriod.Add("delay", pvDelay);
+                        using (PropertyValue pvTimePeriod = new PropertyValue(timePeriod))
+                        {
+                            animator.Add("timePeriod", pvTimePeriod);
+                        }
+
+                        StringBuilder sb = new StringBuilder(property);
+                        sb[0] = (char)(sb[0] | 0x20);
+                        string _str = sb.ToString();
+                        if (_str == "position") { _str = "offset"; }
+
+                        transition.Add("target", pvTarget);
+                        using (PropertyValue pvStr = new PropertyValue(_str))
+                        {
+                            transition.Add("property", pvStr);
+                        }
+
+                        if (initialValue != null)
+                        {
+                            using (PropertyValue initVal = PropertyValue.CreateFromObject(initialValue))
+                            using (PropertyValue pvInitialValue = new PropertyValue(initVal))
+                            {
+                                transition.Add("initialValue", pvInitialValue);
+                            }
+                        }
+                        transition.Add("targetValue", destVal);
+                        using (PropertyValue pvAnimator = new PropertyValue(animator))
+                        {
+                            transition.Add("animator", pvAnimator);
+                        }
+
+                        using (PropertyValue pvTransition = new PropertyValue(transition))
+                        {
+                            PropertyArray temp = animateArray.Add(pvTransition);
+                            temp.Dispose();
+                        }
+                    }
                 }
             }
         }
@@ -326,28 +398,37 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public Animation AnimateVisualAddFinish()
         {
-            if (_animateArray == null || _animateArray.Empty())
+            if (animateArray == null || animateArray.Empty())
             {
                 Tizen.Log.Fatal("NUI", "animate visual property array is empty!");
                 return null;
             }
-            TransitionData _transitionData = new TransitionData(_animateArray);
-
-            return this.CreateTransition(_transitionData);
+            TransitionData transitionData = new TransitionData(animateArray);
+            Animation ret = this.CreateTransition(transitionData);
+            transitionData.Dispose();
+            return ret;
         }
 
         /// <summary>
         /// temporary fix to pass TCT.
         /// </summary>
+        /// <exception cref="ArgumentNullException"> Thrown when visualMap is null. </exception>
         /// <since_tizen> 3 </since_tizen>
         public Animation VisualAnimate(Tizen.NUI.VisualAnimator visualMap)
         {
-            foreach (var item in _visualDictionary.ToList())
+            if (visualMap == null)
             {
-                if (item.Value.Name == visualMap.Target)
+                throw new ArgumentNullException(nameof(visualMap));
+            }
+
+            foreach (var item in visualNameDictionary.ToList())
+            {
+                if (item.Value == visualMap.Target)
                 {
-                    TransitionData _transitionData = new TransitionData(visualMap.OutputVisualMap);
-                    return this.CreateTransition(_transitionData);
+                    using (TransitionData transitionData = new TransitionData(visualMap.OutputVisualMap))
+                    {
+                        return this.CreateTransition(transitionData);
+                    }
                 }
             }
             return null;
@@ -356,19 +437,26 @@ namespace Tizen.NUI.BaseComponents
 
         internal void UpdateVisual(int visualIndex, string visualName, VisualMap visualMap)
         {
-            VisualBase visual = null;
+            VisualBase visual = VisualFactory.Instance.CreateVisual(visualMap.OutputVisualMap);
 
-            visual = VisualFactory.Instance.CreateVisual(visualMap.OutputVisualMap);
-            visual.Name = visualName;
-            visual.DepthIndex = visualMap.DepthIndex;
+            visualNameDictionary[visualIndex] = visualName;
+            visualDictionary[visualIndex] = visual;
+            tranformDictionary[visualIndex] = visualMap.OutputTransformMap;
 
-            RegisterVisual(visualIndex, visual);
+            if(visual != null)
+            {
+                visual.Name = visualName;
+                visual.DepthIndex = visualMap.DepthIndex;
 
-            _visualDictionary[visualIndex] = visual;
-            _tranformDictionary[visualIndex] = visualMap.OutputTransformMap;
+                RegisterVisual(visualIndex, visual);
 
-            RelayoutRequest();
-            NUILog.Debug("UpdateVisual() name=" + visualName);
+                RelayoutRequest();
+                NUILog.Debug("UpdateVisual() name=" + visualName);
+            }
+            else
+            {
+                NUILog.Debug("UpdateVisual() FAIL! visual create failed name=" + visualName);
+            }
         }
 
         static CustomView CreateInstance()

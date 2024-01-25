@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<View	xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+		x:Class="Tizen.NUI.Devel.Tests.I8"
+		l0="0"
+		l1="2147483647"
+		l2="4294967295"
+		l3="256"
+		l4="-256"
+		l5="127"
+		ul0="0"
+		ul1="2147483647"
+		ul2="256">
+</View>

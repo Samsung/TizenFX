@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,9 +16,9 @@
  */
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
-using Tizen.NUI.Components.Extension;
 using Tizen.NUI.Accessibility;
 
 namespace Tizen.NUI.Components
@@ -29,6 +29,17 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 8 </since_tizen>
     public class ClickedEventArgs : EventArgs
     {
+    }
+
+    /// <summary>
+    /// SelectedChangedEventArgs is a class to record item selected arguments which will sent to user.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
+    public class SelectedChangedEventArgs : EventArgs
+    {
+        /// <summary> Selected state </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public bool IsSelected { get; set; }
     }
 
     /// <summary>
@@ -43,57 +54,44 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty IconRelativeOrientationProperty = BindableProperty.Create(nameof(IconRelativeOrientation), typeof(IconOrientation?), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Button)bindable;
-            if (newValue != null)
+            var newIconOrientation = (IconOrientation?)newValue;
+            if (instance.iconRelativeOrientation != newIconOrientation)
             {
-                if (instance.buttonStyle != null && instance.buttonStyle.IconRelativeOrientation != (IconOrientation?)newValue)
-                {
-                    instance.buttonStyle.IconRelativeOrientation = (IconOrientation?)newValue;
-                    instance.UpdateUIContent();
-                }
+                instance.iconRelativeOrientation = newIconOrientation;
+                instance.LayoutItems();
             }
         },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (Button)bindable;
-            return instance.buttonStyle?.IconRelativeOrientation;
-        });
+        defaultValueCreator: (bindable) => ((Button)bindable).iconRelativeOrientation
+        );
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(Button), true, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IsSelectedProperty = BindableProperty.Create(nameof(IsSelected), typeof(bool), typeof(Button), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Button)bindable;
             if (newValue != null)
             {
-                if (instance.buttonStyle != null && (!instance.styleApplied || instance.buttonStyle.IsEnabled != (bool)newValue))
+                bool newSelected = (bool)newValue;
+                if (instance.isSelected != newSelected)
                 {
-                    instance.buttonStyle.IsEnabled = (bool)newValue;
-                    instance.UpdateState();
+                    instance.isSelected = newSelected;
+
+                    if (instance.isSelectable)
+                    {
+                        instance.UpdateState();
+                    }
+
+                    if (Accessibility.Accessibility.IsEnabled && instance.IsHighlighted)
+                    {
+                        instance.EmitAccessibilityStateChangedEvent(AccessibilityState.Checked, newSelected);
+                    }
                 }
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Button)bindable;
-            return instance.buttonStyle?.IsEnabled ?? true;
-        });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsSelectedProperty = BindableProperty.Create(nameof(IsSelected), typeof(bool), typeof(Button), true, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var instance = (Button)bindable;
-            if (newValue != null)
-            {
-                if (instance.buttonStyle != null && instance.IsSelectable && (!instance.styleApplied || instance.buttonStyle.IsSelected != (bool)newValue))
-                {
-                    instance.buttonStyle.IsSelected = (bool)newValue;
-                    instance.UpdateState();
-                }
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (Button)bindable;
-            return instance.IsSelectable && (instance.buttonStyle.IsSelected ?? false);
+            return instance.isSelectable && instance.isSelected;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -102,49 +100,133 @@ namespace Tizen.NUI.Components
             var instance = (Button)bindable;
             if (newValue != null)
             {
-                if (instance.buttonStyle != null && (!instance.styleApplied || instance.buttonStyle.IsSelectable != (bool)newValue))
+                bool newSelectable = (bool)newValue;
+                if (instance.isSelectable != newSelectable)
                 {
-                    instance.buttonStyle.IsSelectable = (bool)newValue;
+                    instance.isSelectable = newSelectable;
+                    instance.UpdateState();
                 }
             }
         },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (Button)bindable;
-            return instance.buttonStyle?.IsSelectable ?? false;
-        });
+        defaultValueCreator: (bindable) => ((Button)bindable).isSelectable);
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IconPaddingProperty = BindableProperty.Create(nameof(IconPadding), typeof(Extents), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Button)bindable;
-            if (null != newValue && null != instance.buttonStyle?.IconPadding)
+            if (instance.buttonIcon == null)
             {
-                instance.buttonStyle.IconPadding.CopyFrom((Extents)newValue);
-                instance.UpdateUIContent();
+                return;
             }
+            instance.buttonIcon.Padding = (Extents)newValue;
         },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (Button)bindable;
-            return instance.buttonStyle?.IconPadding;
-        });
+        defaultValueCreator: (bindable) => ((Button)bindable).buttonIcon?.Padding);
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TextPaddingProperty = BindableProperty.Create(nameof(TextPadding), typeof(Extents), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Button)bindable;
-            if (null != newValue && null != instance.buttonStyle?.TextPadding)
+            if (instance.buttonText == null)
             {
-                instance.buttonStyle.TextPadding.CopyFrom((Extents)newValue);
-                instance.UpdateUIContent();
+                return;
             }
+            instance.buttonText.Padding = (Extents)newValue;
         },
-        defaultValueCreator: (bindable) =>
+        defaultValueCreator: (bindable) => ((Button)bindable).buttonText?.Padding);
+
+        /// <summary> The bindable property of ItemAlignment. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly BindableProperty ItemAlignmentProperty = BindableProperty.Create(nameof(ItemAlignment), typeof(LinearLayout.Alignment), typeof(Button), LinearLayout.Alignment.Center, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Button)bindable;
-            return instance.buttonStyle?.TextPadding;
-        });
+            var newAlignment = (LinearLayout.Alignment)newValue;
+
+            if (instance.itemAlignment != newAlignment)
+            {
+                instance.itemAlignment = newAlignment;
+
+                switch (newAlignment)
+                {
+                    case LinearLayout.Alignment.Begin:
+                        instance.itemHorizontalAlignment = HorizontalAlignment.Begin;
+                        break;
+                    case LinearLayout.Alignment.End:
+                        instance.itemHorizontalAlignment = HorizontalAlignment.End;
+                        break;
+                    case LinearLayout.Alignment.CenterHorizontal:
+                        instance.itemHorizontalAlignment = HorizontalAlignment.Center;
+                        break;
+                    case LinearLayout.Alignment.Top:
+                        instance.itemVerticalAlignment = VerticalAlignment.Top;
+                        break;
+                    case LinearLayout.Alignment.Bottom:
+                        instance.itemVerticalAlignment = VerticalAlignment.Bottom;
+                        break;
+                    case LinearLayout.Alignment.CenterVertical:
+                        instance.itemVerticalAlignment = VerticalAlignment.Center;
+                        break;
+                    case LinearLayout.Alignment.Center:
+                        instance.itemHorizontalAlignment = HorizontalAlignment.Center;
+                        instance.itemVerticalAlignment = VerticalAlignment.Center;
+                        break;
+                    default:
+                        break;
+                }
+
+                instance.LayoutItems();
+            }
+        },
+        defaultValueCreator: (bindable) => ((Button)bindable).itemAlignment);
+
+        /// <summary> The bindable property of ItemHorizontalAlignment. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly BindableProperty ItemHorizontalAlignmentProperty = BindableProperty.Create(nameof(ItemHorizontalAlignment), typeof(HorizontalAlignment), typeof(Button), HorizontalAlignment.Center, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Button)bindable;
+            var newHorizontalAlignment = (HorizontalAlignment)newValue;
+
+            if (instance.itemHorizontalAlignment != newHorizontalAlignment)
+            {
+                instance.itemHorizontalAlignment = newHorizontalAlignment;
+                instance.LayoutItems();
+            }
+        },
+        defaultValueCreator: (bindable) => ((Button)bindable).itemHorizontalAlignment);
+
+        /// <summary> The bindable property of ItemVerticalAlignment. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly BindableProperty ItemVerticalAlignmentProperty = BindableProperty.Create(nameof(ItemVerticalAlignment), typeof(VerticalAlignment), typeof(Button), VerticalAlignment.Center, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Button)bindable;
+            var newVerticalAlignment = (VerticalAlignment)newValue;
+
+            if (instance.itemVerticalAlignment != newVerticalAlignment)
+            {
+                instance.itemVerticalAlignment = newVerticalAlignment;
+                instance.LayoutItems();
+            }
+        },
+        defaultValueCreator: (bindable) => ((Button)bindable).itemVerticalAlignment);
+
+        /// <summary> The bindable property of ItemSpacing. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly BindableProperty ItemSpacingProperty = BindableProperty.Create(nameof(ItemSpacing), typeof(Size2D), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Button)bindable;
+            instance.itemSpacing = (Size2D)newValue;
+            instance.UpdateSizeAndSpacing();
+        },
+        defaultValueCreator: (bindable) => ((Button)bindable).itemSpacing);
+
+        private IconOrientation? iconRelativeOrientation = IconOrientation.Left;
+        private bool isSelected = false;
+        private bool isSelectable = false;
+        private Size2D itemSpacing;
+        private LinearLayout.Alignment itemAlignment = LinearLayout.Alignment.Center;
+        private HorizontalAlignment itemHorizontalAlignment = HorizontalAlignment.Center;
+        private VerticalAlignment itemVerticalAlignment = VerticalAlignment.Center;
 
         static Button() { }
 
@@ -154,7 +236,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public Button() : base()
         {
-            Initialize();
+            Focusable = true;
         }
 
         /// <summary>
@@ -164,7 +246,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Button(string style) : base(style)
         {
-            Initialize();
+            Focusable = true;
         }
 
         /// <summary>
@@ -174,7 +256,21 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Button(ButtonStyle buttonStyle) : base(buttonStyle)
         {
-            Initialize();
+            Focusable = true;
+        }
+
+        /// <summary>
+        /// Calculates current states for the button<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override AccessibilityStates AccessibilityCalculateStates()
+        {
+            var states = base.AccessibilityCalculateStates();
+
+            states[AccessibilityState.Checked] = this.IsSelected;
+            states[AccessibilityState.Enabled] = this.IsEnabled;
+
+            return states;
         }
 
         /// <summary>
@@ -241,20 +337,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public ImageView Icon
         {
-            get
-            {
-                if (null == buttonIcon)
-                {
-                    buttonIcon = CreateIcon();
-                    if (null != Extension)
-                    {
-                        buttonIcon = Extension.OnCreateIcon(this, buttonIcon);
-                    }
-                    Add(buttonIcon);
-                    buttonIcon.Relayout += OnIconRelayout;
-                }
-                return buttonIcon;
-            }
+            get => buttonIcon;
             internal set
             {
                 buttonIcon = value;
@@ -274,11 +357,13 @@ namespace Tizen.NUI.Components
                     overlayImage = CreateOverlayImage();
                     if (null != Extension)
                     {
-                        overlayImage = Extension.OnCreateOverlayImage(this, overlayImage);
+                        Extension.ProcessOverlayImage(this, ref overlayImage);
                     }
-                    overlayImage.WidthResizePolicy = ResizePolicyType.FillToParent;
-                    overlayImage.HeightResizePolicy = ResizePolicyType.FillToParent;
-                    Add(overlayImage);
+                    if (null != overlayImage)
+                    {
+                        overlayImage.ExcludeLayouting = true;
+                        Add(overlayImage);
+                    }
                 }
                 return overlayImage;
             }
@@ -294,48 +379,21 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public TextLabel TextLabel
         {
-            get
-            {
-                if (null == buttonText)
-                {
-                    buttonText = CreateText();
-                    if (null != Extension)
-                    {
-                        buttonText = Extension.OnCreateText(this, buttonText);
-                    }
-                    buttonText.HorizontalAlignment = HorizontalAlignment.Center;
-                    buttonText.VerticalAlignment = VerticalAlignment.Center;
-                    Add(buttonText);
-                }
-                return buttonText;
-            }
+            get => buttonText;
             internal set
             {
                 buttonText = value;
-                AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Label, buttonText.Text);
             }
         }
 
         /// <summary>
-        /// Return a copied Style instance of Button
+        /// The last applied style object copy.
         /// </summary>
         /// <remarks>
-        /// It returns copied Style instance and changing it does not effect to the Button.
-        /// Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)
+        /// Modifying contents in style may cause unexpected behaviour.
         /// </remarks>
         /// <since_tizen> 8 </since_tizen>
-        public new ButtonStyle Style
-        {
-            get
-            {
-                var result = (ButtonStyle)ViewStyle.Clone();
-                result.CopyPropertiesFromView(this);
-                result.Text.CopyPropertiesFromView(TextLabel);
-                result.Icon.CopyPropertiesFromView(Icon);
-                result.Overlay.CopyPropertiesFromView(OverlayImage);
-                return result;
-            }
-        }
+        public ButtonStyle Style => (ButtonStyle)(ViewStyle as ButtonStyle)?.Clone();
 
         /// <summary>
         /// The text of Button.
@@ -345,11 +403,28 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(TextProperty) as string;
+            }
+            set
+            {
+                SetValue(TextProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalText
+        {
+            get
+            {
                 return TextLabel.Text;
             }
             set
             {
                 TextLabel.Text = value;
+
+                if (Accessibility.Accessibility.IsEnabled && IsHighlighted && String.IsNullOrEmpty(AccessibilityName) && GetAccessibilityNameSignal().Empty())
+                {
+                    EmitAccessibilityEvent(AccessibilityPropertyChangeEvent.Name);
+                }
             }
         }
 
@@ -377,6 +452,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(TranslatableTextProperty) as string;
+            }
+            set
+            {
+                SetValue(TranslatableTextProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalTranslatableText
+        {
+            get
+            {
                 return TextLabel.TranslatableText;
             }
             set
@@ -390,6 +477,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public float PointSize
+        {
+            get
+            {
+                return (float)GetValue(PointSizeProperty);
+            }
+            set
+            {
+                SetValue(PointSizeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private float InternalPointSize
         {
             get
             {
@@ -409,6 +508,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(FontFamilyProperty) as string;
+            }
+            set
+            {
+                SetValue(FontFamilyProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalFontFamily
+        {
+            get
+            {
                 return TextLabel.FontFamily;
             }
             set
@@ -422,6 +533,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public Color TextColor
+        {
+            get
+            {
+                return GetValue(TextColorProperty) as Color;
+            }
+            set
+            {
+                SetValue(TextColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Color InternalTextColor
         {
             get
             {
@@ -441,6 +564,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return (HorizontalAlignment)GetValue(TextAlignmentProperty);
+            }
+            set
+            {
+                SetValue(TextAlignmentProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private HorizontalAlignment InternalTextAlignment
+        {
+            get
+            {
                 return TextLabel.HorizontalAlignment;
             }
             set
@@ -457,12 +592,46 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(IconURLProperty) as string;
+            }
+            set
+            {
+                SetValue(IconURLProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalIconURL
+        {
+            get
+            {
                 return Icon.ResourceUrl;
             }
             set
             {
                 Icon.ResourceUrl = value;
             }
+        }
+
+        /// <summary>
+        /// Icon image's size in Button.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Size IconSize
+        {
+            get
+            {
+                return GetValue(IconSizeProperty) as Size;
+            }
+            set
+            {
+                SetValue(IconSizeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Size InternalIconSize
+        {
+            get => Icon.Size;
+            set => Icon.Size = value;
         }
 
         /// <summary>
@@ -473,7 +642,19 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public StringSelector TextSelector
         {
-            get => buttonText == null ? null : new StringSelector((Selector<string>)buttonText.GetValue(TextLabel.TextSelectorProperty));
+            get
+            {
+                return GetValue(TextSelectorProperty) as StringSelector;
+            }
+            set
+            {
+                SetValue(TextSelectorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private StringSelector InternalTextSelector
+        {
+            get => buttonText?.TextSelector == null ? null : new StringSelector(buttonText.TextSelector);
             set
             {
                 if (value == null || buttonText == null)
@@ -482,20 +663,32 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    buttonText.SetValue(TextLabel.TextSelectorProperty, value);
+                    buttonText.TextSelector = value;
                 }
             }
         }
 
         /// <summary>
-        /// Translateable text string selector in Button.
+        /// Translatable text string selector in Button.
         /// Getter returns copied selector value if exist, null otherwise.
         /// </summary>
         /// <exception cref="NullReferenceException">Thrown when setting null value.</exception>
         /// <since_tizen> 6 </since_tizen>
         public StringSelector TranslatableTextSelector
         {
-            get => buttonText == null ? null : new StringSelector((Selector<string>)buttonText.GetValue(TextLabel.TranslatableTextSelectorProperty));
+            get
+            {
+                return GetValue(TranslatableTextSelectorProperty) as StringSelector;
+            }
+            set
+            {
+                SetValue(TranslatableTextSelectorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private StringSelector InternalTranslatableTextSelector
+        {
+            get => (buttonText?.TranslatableTextSelector == null) ? null : new StringSelector(buttonText.TranslatableTextSelector);
             set
             {
                 if (value == null || buttonText == null)
@@ -504,7 +697,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    buttonText.SetValue(TextLabel.TranslatableTextSelectorProperty, value);
+                    buttonText.TranslatableTextSelector = value;
                 }
             }
         }
@@ -517,7 +710,19 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public ColorSelector TextColorSelector
         {
-            get => buttonText == null ? null : new ColorSelector((Selector<Color>)buttonText.GetValue(TextLabel.TextColorSelectorProperty));
+            get
+            {
+                return GetValue(TextColorSelectorProperty) as ColorSelector;
+            }
+            set
+            {
+                SetValue(TextColorSelectorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private ColorSelector InternalTextColorSelector
+        {
+            get => buttonText?.TextColorSelector == null ? null : new ColorSelector(buttonText.TextColorSelector);
             set
             {
                 if (value == null || buttonText == null)
@@ -526,7 +731,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    buttonText.SetValue(TextLabel.TextColorSelectorProperty, value);
+                    buttonText.TextColorSelector = value;
                 }
             }
         }
@@ -539,7 +744,19 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public FloatSelector PointSizeSelector
         {
-            get => buttonText == null ? null : new FloatSelector((Selector<float?>)buttonText.GetValue(TextLabel.PointSizeSelectorProperty));
+            get
+            {
+                return GetValue(PointSizeSelectorProperty) as FloatSelector;
+            }
+            set
+            {
+                SetValue(PointSizeSelectorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private FloatSelector InternalPointSizeSelector
+        {
+            get => buttonText?.PointSizeSelector == null ? null : new FloatSelector(buttonText.PointSizeSelector);
             set
             {
                 if (value == null || buttonText == null)
@@ -548,7 +765,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    buttonText.SetValue(TextLabel.PointSizeSelectorProperty, value);
+                    buttonText.PointSizeSelector = value;
                 }
             }
         }
@@ -561,7 +778,27 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public StringSelector IconURLSelector
         {
-            get => buttonIcon == null ? null : new StringSelector((Selector<string>)buttonIcon.GetValue(ImageView.ResourceUrlSelectorProperty));
+            get
+            {
+                return GetValue(IconURLSelectorProperty) as StringSelector;
+            }
+            set
+            {
+                SetValue(IconURLSelectorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private StringSelector InternalIconURLSelector
+        {
+            get
+            {
+                Selector<string> resourceUrlSelector = buttonIcon?.ResourceUrlSelector;
+                if(resourceUrlSelector == null)
+                {
+                    return null;
+                }
+                return new StringSelector(resourceUrlSelector);
+            }
             set
             {
                 if (value == null || buttonIcon == null)
@@ -570,7 +807,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    buttonIcon.SetValue(ImageView.ResourceUrlSelectorProperty, value);
+                    buttonIcon.ResourceUrlSelector = value;
                 }
             }
         }
@@ -595,15 +832,12 @@ namespace Tizen.NUI.Components
         /// Flag to decide enable or disable in Button.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public bool IsEnabled
+        public new bool IsEnabled
         {
-            get
-            {
-                return (bool)GetValue(IsEnabledProperty);
-            }
+            get => base.IsEnabled;
             set
             {
-                SetValue(IsEnabledProperty, value);
+                base.IsEnabled = value;
             }
         }
 
@@ -615,7 +849,7 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (IconOrientation?)GetValue(IconRelativeOrientationProperty);
+                return (IconOrientation?)GetValue(IconRelativeOrientationProperty) ?? IconOrientation.Left;
             }
             set
             {
@@ -624,26 +858,66 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Icon padding in Button, work only when show icon and text.
+        /// Icon padding in Button. It is shortcut of Icon.Padding.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public Extents IconPadding
         {
-            get => (Extents)GetValue(IconPaddingProperty);
+            get => (Extents)GetValue(IconPaddingProperty) ?? new Extents();
             set => SetValue(IconPaddingProperty, value);
         }
 
         /// <summary>
-        /// Text padding in Button, work only when show icon and text.
+        /// Text padding in Button. It is shortcut of TextLabel.Padding.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public Extents TextPadding
         {
-            get => (Extents)GetValue(TextPaddingProperty);
+            get => (Extents)GetValue(TextPaddingProperty) ?? new Extents();
             set => SetValue(TextPaddingProperty, value);
         }
 
-        private ButtonStyle buttonStyle => ViewStyle as ButtonStyle;
+        /// <summary>
+        /// The item (text or icon or both) alignment.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public LinearLayout.Alignment ItemAlignment
+        {
+            get => (LinearLayout.Alignment)GetValue(ItemAlignmentProperty);
+            set => SetValue(ItemAlignmentProperty, value);
+        }
+
+        /// <summary>
+        /// The item (text or icon or both) horizontal alignment.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public HorizontalAlignment ItemHorizontalAlignment
+        {
+            get => (HorizontalAlignment)GetValue(ItemHorizontalAlignmentProperty);
+            set => SetValue(ItemHorizontalAlignmentProperty, value);
+        }
+
+        /// <summary>
+        /// The item (text or icon or both) vertical alignment.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public VerticalAlignment ItemVerticalAlignment
+        {
+            get => (VerticalAlignment)GetValue(ItemVerticalAlignmentProperty);
+            set => SetValue(ItemVerticalAlignmentProperty, value);
+        }
+
+        /// <summary>
+        /// The space between icon and text.
+        /// The value is applied when there exist icon and text both.
+        /// The width value is used when the items are arranged horizontally. Otherwise, the height value is used.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public Size2D ItemSpacing
+        {
+            get => (Size2D)GetValue(ItemSpacingProperty);
+            set => SetValue(ItemSpacingProperty, value);
+        }
 
         /// <summary>
         /// Called after a key event is received by the view that has had its focus set.
@@ -653,6 +927,8 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public override bool OnKey(Key key)
         {
+            bool clicked = false;
+
             if (!IsEnabled || null == key)
             {
                 return false;
@@ -670,7 +946,7 @@ namespace Tizen.NUI.Components
             {
                 if (key.KeyPressedName == "Return")
                 {
-                    bool clicked = isPressed && IsEnabled;
+                    clicked = isPressed && IsEnabled;
 
                     isPressed = false;
 
@@ -690,7 +966,7 @@ namespace Tizen.NUI.Components
                     }
                 }
             }
-            return base.OnKey(key);
+            return base.OnKey(key) || clicked;
         }
 
         /// <summary>
@@ -720,7 +996,10 @@ namespace Tizen.NUI.Components
         /// <param name="touch">The touch event.</param>
         /// <returns>True if the event should be consumed.</returns>
         /// <since_tizen> 8 </since_tizen>
+        [Obsolete("Deprecated in API8; Will be removed in API10. Please use OnClicked instead.")]
+#pragma warning disable CS0809 // Obsolete member overrides non-obsolete member, It will be removed in API10
         public override bool OnTouch(Touch touch)
+#pragma warning restore CS0809 // Obsolete member overrides non-obsolete member, It will be removed in API10
         {
             return base.OnTouch(touch);
         }
@@ -732,13 +1011,26 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public override void ApplyStyle(ViewStyle viewStyle)
         {
-            styleApplied = false;
+            Debug.Assert(buttonIcon != null && buttonText != null);
 
             base.ApplyStyle(viewStyle);
 
-            if (null != buttonStyle)
+            if (viewStyle is ButtonStyle buttonStyle)
             {
-                Extension = buttonStyle.CreateExtension();
+                styleApplying++;
+
+                if ((Extension = buttonStyle.CreateExtension()) != null)
+                {
+                    bool needRelayout = false;
+                    needRelayout |= Extension.ProcessIcon(this, ref buttonIcon);
+                    needRelayout |= Extension.ProcessText(this, ref buttonText);
+
+                    if (needRelayout)
+                    {
+                        LayoutItems();
+                    }
+                }
+
                 if (buttonStyle.Overlay != null)
                 {
                     OverlayImage?.ApplyStyle(buttonStyle.Overlay);
@@ -746,16 +1038,19 @@ namespace Tizen.NUI.Components
 
                 if (buttonStyle.Text != null)
                 {
-                    TextLabel?.ApplyStyle(buttonStyle.Text);
+                    buttonText.ThemeChangeSensitive = false;
+                    buttonText.ApplyStyle(buttonStyle.Text);
                 }
 
                 if (buttonStyle.Icon != null)
                 {
-                    Icon?.ApplyStyle(buttonStyle.Icon);
+                    buttonIcon.ApplyStyle(buttonStyle.Icon);
                 }
+
+                styleApplying--;
             }
 
-            styleApplied = true;
+            UpdateState();
         }
 
         /// <summary>
@@ -763,6 +1058,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10. Please use ClickedEventArgs instead.")]
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class ClickEventArgs : EventArgs
         {
         }
@@ -772,58 +1068,21 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10. Please use View.ControlStateChangedEventArgs")]
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
         public class StateChangedEventArgs : EventArgs
         {
             /// <summary> previous state of Button </summary>
             /// <since_tizen> 6 </since_tizen>
+            /// It will be removed in API10
+            [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
             [Obsolete("Deprecated in API8; Will be removed in API10")]
             public ControlStates PreviousState;
             /// <summary> current state of Button </summary>
             /// <since_tizen> 6 </since_tizen>
+            /// It will be removed in API10
+            [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
             [Obsolete("Deprecated in API8; Will be removed in API10")]
             public ControlStates CurrentState;
-        }
-
-        /// <summary>
-        /// Get current text part to the attached ButtonExtension.
-        /// </summary>
-        /// <remarks>
-        /// It returns null if the passed extension is invalid.
-        /// </remarks>
-        /// <param name="extension">The extension instance that is currently attached to this Button.</param>
-        /// <return>The button's text part.</return>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabel GetCurrentText(ButtonExtension extension)
-        {
-            return (extension == Extension) ? TextLabel : null;
-        }
-
-        /// <summary>
-        /// Get current icon part to the attached ButtonExtension.
-        /// </summary>
-        /// <remarks>
-        /// It returns null if the passed extension is invalid.
-        /// </remarks>
-        /// <param name="extension">The extension instance that is currently attached to this Button.</param>
-        /// <return>The button's icon part.</return>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageView GetCurrentIcon(ButtonExtension extension)
-        {
-            return (extension == Extension) ? Icon : null;
-        }
-
-        /// <summary>
-        /// Get current overlay image part to the attached ButtonExtension.
-        /// </summary>
-        /// <remarks>
-        /// It returns null if the passed extension is invalid.
-        /// </remarks>
-        /// <param name="extension">The extension instance that is currently attached to this Button.</param>
-        /// <return>The button's overlay image part.</return>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageView GetCurrentOverlayImage(ButtonExtension extension)
-        {
-            return (extension == Extension) ? OverlayImage : null;
         }
     }
 }

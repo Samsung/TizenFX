@@ -3,6 +3,7 @@ using System.ComponentModel;
 using Microsoft.Windows.Design;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
+using Tizen.NUI.Components;
 
 namespace Tizen.NUI.Design
 {
@@ -16,11 +17,11 @@ namespace Tizen.NUI.Design
                 new XmlnsSupportsValidationAttribute("http://tizen.org/Tizen.NUI/2018/XAML", false));
 
             // Style isn't a view, make it visible
-            AddCallback(typeof(Style), builder => builder.AddCustomAttributes(
-               new EditorBrowsableAttribute(EditorBrowsableState.Always),
-               new global::System.Windows.Markup.ContentPropertyAttribute("Setters"),
+            //AddCallback(typeof(Style), builder => builder.AddCustomAttributes(
+               //new EditorBrowsableAttribute(EditorBrowsableState.Always),
+               //new global::System.Windows.Markup.ContentPropertyAttribute("Setters"),
                // Since the class doesn't have a public parameterless ctor, we need to provide a converter
-               new global::System.ComponentModel.TypeConverterAttribute(typeof(StringConverter))));
+               //new global::System.ComponentModel.TypeConverterAttribute(typeof(StringConverter))));
 
             // The Setter.Value can actually come from an <OnPlatform />, so enable it as Content.
             AddCallback(typeof(Setter), builder => builder.AddCustomAttributes(

@@ -1,9 +1,25 @@
+/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
-using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.Binding
 {
@@ -13,12 +29,12 @@ namespace Tizen.NUI.Binding
     public sealed class EventTrigger : TriggerBase
     {
         static readonly MethodInfo s_handlerinfo = typeof(EventTrigger).GetRuntimeMethods().Single(mi => mi.Name == "OnEventTriggered" && mi.IsPublic == false);
-        readonly List<BindableObject> _associatedObjects = new List<BindableObject>();
+        readonly List<BindableObject> associatedObjects = new List<BindableObject>();
 
-        EventInfo _eventinfo;
+        EventInfo eventinfo;
 
-        string _eventname;
-        Delegate _handlerdelegate;
+        string eventname;
+        Delegate handlerdelegate;
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -35,15 +51,15 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Event
         {
-            get { return _eventname; }
+            get { return eventname; }
             set
             {
-                if (_eventname == value)
+                if (eventname == value)
                     return;
                 if (IsSealed)
                     throw new InvalidOperationException("Event cannot be changed once the Trigger has been applied");
                 OnPropertyChanging();
-                _eventname = value;
+                eventname = value;
                 OnPropertyChanged();
             }
         }
@@ -53,12 +69,12 @@ namespace Tizen.NUI.Binding
             base.OnAttachedTo(bindable);
             if (!string.IsNullOrEmpty(Event))
                 AttachHandlerTo(bindable);
-            _associatedObjects.Add(bindable);
+            associatedObjects.Add(bindable);
         }
 
         internal override void OnDetachingFrom(BindableObject bindable)
         {
-            _associatedObjects.Remove(bindable);
+            associatedObjects.Remove(bindable);
             DetachHandlerFrom(bindable);
             base.OnDetachingFrom(bindable);
         }
@@ -73,21 +89,21 @@ namespace Tizen.NUI.Binding
         {
             try
             {
-                _eventinfo = bindable.GetType().GetRuntimeEvent(Event);
-                _handlerdelegate = s_handlerinfo.CreateDelegate(_eventinfo?.EventHandlerType, this);
+                eventinfo = bindable.GetType().GetRuntimeEvent(Event);
+                handlerdelegate = s_handlerinfo.CreateDelegate(eventinfo?.EventHandlerType, this);
             }
             catch (Exception)
             {
-                Console.WriteLine("EventTrigger", "Can not attach EventTrigger to {0}.{1}. Check if the handler exists and if the signature is right.", bindable.GetType(), Event);
+                Console.WriteLine($"EventTrigger", "Can not attach EventTrigger to {binding.GetType()}.{Event}. Check if the handler exists and if the signature is right.");
             }
-            if (_eventinfo != null && _handlerdelegate != null)
-                _eventinfo.AddEventHandler(bindable, _handlerdelegate);
+            if (eventinfo != null && handlerdelegate != null)
+                eventinfo.AddEventHandler(bindable, handlerdelegate);
         }
 
         void DetachHandlerFrom(BindableObject bindable)
         {
-            if (_eventinfo != null && _handlerdelegate != null)
-                _eventinfo.RemoveEventHandler(bindable, _handlerdelegate);
+            if (eventinfo != null && handlerdelegate != null)
+                eventinfo.RemoveEventHandler(bindable, handlerdelegate);
         }
 
         // [Preserve]

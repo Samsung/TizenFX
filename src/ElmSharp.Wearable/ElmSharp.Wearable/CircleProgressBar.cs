@@ -25,6 +25,7 @@ namespace ElmSharp.Wearable
     /// The Circle ProgressBar is a widget for visually representing the progress status of a given job or task with the circular design.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class CircleProgressBar : Widget, ICircleWidget
     {
         CircleSurface _surface;
@@ -35,6 +36,7 @@ namespace ElmSharp.Wearable
         /// <param name="parent">The parent of the new Circle Progressbar instance.</param>
         /// <param name="surface">The surface for drawing circle features for this widget.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public CircleProgressBar(EvasObject parent, CircleSurface surface) : base()
         {
             Debug.Assert(parent == null || surface == null || parent.IsRealized);
@@ -57,12 +59,14 @@ namespace ElmSharp.Wearable
         /// Gets the handle for the Circle widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public virtual IntPtr CircleHandle => Handle;
 
         /// <summary>
         /// Gets the handle for the circle surface used in this widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public virtual CircleSurface CircleSurface => _surface;
 
         /// <summary>
@@ -81,6 +85,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the state of the widget, which might be enabled or disabled.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override bool IsEnabled
         {
             get
@@ -97,6 +102,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the value of the ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double Value
         {
             get
@@ -113,6 +119,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the maximum value of the ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double Maximum
         {
             get
@@ -133,6 +140,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the minimum value of the ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double Minimum
         {
             get
@@ -153,6 +161,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the angle value of the ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double BarAngle
         {
             get
@@ -169,6 +178,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the angle value of the Background ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double BackgroundAngle
         {
             get
@@ -185,6 +195,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the angle offset value of the ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double BarAngleOffset
         {
             get
@@ -201,6 +212,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the angle offset value of the Background ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double BackgroundAngleOffset
         {
             get
@@ -217,6 +229,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the maximum angle value of the ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double BarAngleMaximum
         {
             get
@@ -237,6 +250,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the minimum angle value of the ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double BarAngleMinimum
         {
             get
@@ -257,6 +271,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the color of the ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Color BarColor
         {
             get
@@ -278,6 +293,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the color of the Background ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override Color BackgroundColor
         {
             get
@@ -299,6 +315,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the line width of the ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int BarLineWidth
         {
             get
@@ -315,6 +332,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the line width of the Background ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int BackgroundLineWidth
         {
             get
@@ -331,6 +349,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the radius of the ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double BarRadius
         {
             get
@@ -347,6 +366,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the radius of the Background ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double BackgroundRadius
         {
             get
@@ -365,6 +385,7 @@ namespace ElmSharp.Wearable
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Eext.eext_circle_object_progressbar_add(parent, CircleSurface.Handle);

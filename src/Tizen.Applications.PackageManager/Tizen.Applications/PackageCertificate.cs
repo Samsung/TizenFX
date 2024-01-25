@@ -57,46 +57,55 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         public string Signer { get { return _signer; } }
 
-        internal static IReadOnlyDictionary<CertificateType, PackageCertificate> GetPackageCertificates(IntPtr packageInfoHandle)
+        internal static IReadOnlyDictionary<CertificateType, PackageCertificate> GetPackageCertificates(string packageId)
         {
-            Dictionary<Interop.Package.CertificateType, string> nativeCertificates = new Dictionary<Interop.Package.CertificateType, string>();
-            Interop.Package.PackageInfoCertificateInfoCallback certificateInfoCb = (handle, certType, certValue, userData) =>
-            {
-                if (certValue == null) certValue = string.Empty;
-                nativeCertificates.Add(certType, certValue);
-                return true;
-            };
+            Dictionary<CertificateType, PackageCertificate> certificates = new Dictionary<CertificateType, PackageCertificate>();
 
-            Interop.PackageManager.ErrorCode err = Interop.Package.PackageInfoForeachCertificateInfo(packageInfoHandle, certificateInfoCb, IntPtr.Zero);
-            if (err != Interop.PackageManager.ErrorCode.None)
+            int ret = Interop.PackageManagerInfoInternal.PkgmgrinfoPkginfoCreateCertinfo(out IntPtr handle);
+            if (ret != 0)
             {
-                Log.Warn(LogTag, string.Format("Failed to get certificate info. err = {0}", err));
+                Log.Error(LogTag, string.Format("Failed to create cert info handle"));
+                return certificates;
             }
 
-            Dictionary<CertificateType, PackageCertificate> certificates = new Dictionary<CertificateType, PackageCertificate>();
-            string authorRootCertificate = GetValue(nativeCertificates, Interop.Package.CertificateType.AuthorRootCertificate);
-            string authorIntermediateCertificate = GetValue(nativeCertificates, Interop.Package.CertificateType.AuthorIntermediateCertificate);
-            string aurthorSignerCertificate = GetValue(nativeCertificates, Interop.Package.CertificateType.AuthorSignerCertificate);
+            ret = Interop.PackageManagerInfoInternal.PkgmgrinfoPkginfoLoadCertinfo(packageId, handle, Interop.PackageManagerInfoInternal.GetUID());
+            if (ret != 0)
+            {
+                Log.Error(LogTag, string.Format("Failed to load cert info of {0}", packageId));
+                return certificates;
+            }
+
+            _ = Interop.PackageManagerInfoInternal.PkgmgrinfoPkginfoGetCertValue(handle, Interop.Package.CertificateType.AuthorRootCertificate, out IntPtr authorRootCertificatePtr);
+            string authorRootCertificate = authorRootCertificatePtr != IntPtr.Zero ? Marshal.PtrToStringAnsi(authorRootCertificatePtr) : string.Empty;
+            _ = Interop.PackageManagerInfoInternal.PkgmgrinfoPkginfoGetCertValue(handle, Interop.Package.CertificateType.AuthorIntermediateCertificate, out IntPtr authorIntermediateCertificatePtr);
+            string authorIntermediateCertificate = authorIntermediateCertificatePtr != IntPtr.Zero ? Marshal.PtrToStringAnsi(authorIntermediateCertificatePtr) : string.Empty;
+            _ = Interop.PackageManagerInfoInternal.PkgmgrinfoPkginfoGetCertValue(handle, Interop.Package.CertificateType.AuthorSignerCertificate, out IntPtr aurthorSignerCertificatePtr);
+            string aurthorSignerCertificate = aurthorSignerCertificatePtr != IntPtr.Zero ? Marshal.PtrToStringAnsi(aurthorSignerCertificatePtr) : string.Empty;
             certificates.Add(CertificateType.Author, new PackageCertificate(authorRootCertificate, authorIntermediateCertificate, aurthorSignerCertificate));
 
-            string distRootCertificate = GetValue(nativeCertificates, Interop.Package.CertificateType.DistributorRootCertificate);
-            string distIntermediateCertificate = GetValue(nativeCertificates, Interop.Package.CertificateType.DistributorIntermediateCertificate);
-            string distSignerCertificate = GetValue(nativeCertificates, Interop.Package.CertificateType.DistributorSignerCertificate);
+            _ = Interop.PackageManagerInfoInternal.PkgmgrinfoPkginfoGetCertValue(handle, Interop.Package.CertificateType.DistributorRootCertificate, out IntPtr distRootCertificatePtr);
+            string distRootCertificate = distRootCertificatePtr != IntPtr.Zero ? Marshal.PtrToStringAnsi(distRootCertificatePtr) : string.Empty;
+            _ = Interop.PackageManagerInfoInternal.PkgmgrinfoPkginfoGetCertValue(handle, Interop.Package.CertificateType.DistributorIntermediateCertificate, out IntPtr distIntermediateCertificatePtr);
+            string distIntermediateCertificate = distIntermediateCertificatePtr != IntPtr.Zero ? Marshal.PtrToStringAnsi(distIntermediateCertificatePtr) : string.Empty;
+            _ = Interop.PackageManagerInfoInternal.PkgmgrinfoPkginfoGetCertValue(handle, Interop.Package.CertificateType.DistributorSignerCertificate, out IntPtr distSignerCertificatePtr);
+            string distSignerCertificate = distSignerCertificatePtr != IntPtr.Zero ? Marshal.PtrToStringAnsi(distSignerCertificatePtr) : string.Empty;
             certificates.Add(CertificateType.Distributor, new PackageCertificate(distRootCertificate, distIntermediateCertificate, distSignerCertificate));
 
-            string dist2RootCertificate = GetValue(nativeCertificates, Interop.Package.CertificateType.Distributor2RootCertificate);
-            string dist2IntermediateCertificate = GetValue(nativeCertificates, Interop.Package.CertificateType.Distributor2IntermediateCertificate);
-            string dist2SignerCertificate = GetValue(nativeCertificates, Interop.Package.CertificateType.Distributor2SignerCertificate);
+            _ = Interop.PackageManagerInfoInternal.PkgmgrinfoPkginfoGetCertValue(handle, Interop.Package.CertificateType.Distributor2RootCertificate, out IntPtr dist2RootCertificatePtr);
+            string dist2RootCertificate = dist2RootCertificatePtr != IntPtr.Zero ? Marshal.PtrToStringAnsi(dist2RootCertificatePtr) : string.Empty;
+            _ = Interop.PackageManagerInfoInternal.PkgmgrinfoPkginfoGetCertValue(handle, Interop.Package.CertificateType.Distributor2IntermediateCertificate, out IntPtr dist2IntermediateCertificatePtr);
+            string dist2IntermediateCertificate = dist2IntermediateCertificatePtr != IntPtr.Zero ? Marshal.PtrToStringAnsi(dist2IntermediateCertificatePtr) : string.Empty;
+            _ = Interop.PackageManagerInfoInternal.PkgmgrinfoPkginfoGetCertValue(handle, Interop.Package.CertificateType.Distributor2SignerCertificate, out IntPtr dist2SignerCertificatePtr);
+            string dist2SignerCertificate = dist2SignerCertificatePtr != IntPtr.Zero ? Marshal.PtrToStringAnsi(dist2SignerCertificatePtr) : string.Empty;
             certificates.Add(CertificateType.Distributor2, new PackageCertificate(dist2RootCertificate, dist2IntermediateCertificate, dist2SignerCertificate));
 
-            return certificates;
-        }
+            ret = Interop.PackageManagerInfoInternal.PkgmgrinfoPkginfoDestroyCertinfo(handle);
+            if (ret != 0)
+            {
+                Log.Warn(LogTag, string.Format("Failed to destroy cert info handle"));
+            }
 
-        private static string GetValue(IDictionary<Interop.Package.CertificateType, string> dict, Interop.Package.CertificateType key)
-        {
-            string value;
-            dict.TryGetValue(key, out value);
-            return value;
+            return certificates;
         }
     }
 }

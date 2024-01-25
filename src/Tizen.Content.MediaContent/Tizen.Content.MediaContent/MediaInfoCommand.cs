@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using Tizen.System;
@@ -144,6 +145,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API11; Will be removed in API13.")]
         public int CountFaceInfo(string mediaId, CountArguments arguments)
         {
             ValidateDatabase();
@@ -164,6 +166,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API11; Will be removed in API13.")]
         public MediaDataReader<FaceInfo> SelectFaceInfo(string mediaId)
         {
             return SelectFaceInfo(mediaId, null);
@@ -181,6 +184,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API11; Will be removed in API13.")]
         public MediaDataReader<FaceInfo> SelectFaceInfo(string mediaId, SelectArguments arguments)
         {
             ValidateDatabase();
@@ -219,6 +223,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public int CountTag(string mediaId, CountArguments arguments)
         {
             ValidateDatabase();
@@ -239,6 +244,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public MediaDataReader<Tag> SelectTag(string mediaId)
         {
             return SelectTag(mediaId, null);
@@ -256,6 +262,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public MediaDataReader<Tag> SelectTag(string mediaId, SelectArguments filter)
         {
             ValidateDatabase();
@@ -468,6 +475,54 @@ namespace Tizen.Content.MediaContent
                 }
 
                 return list;
+            }
+        }
+
+        /// <summary>
+        /// Retrieves all matched ebook paths with given <paramref name="keyword"/>.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
+        /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
+        /// <param name="keyword">The keyword to search.</param>
+        /// <returns>A list of ebook paths which contain <paramref name="keyword"/>.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="keyword"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
+        /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
+        /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
+        /// <since_tizen> 9 </since_tizen>
+        public MediaDataReader<string> SelectEbookPath(string keyword)
+        {
+            ValidateDatabase();
+
+            IntPtr path = IntPtr.Zero;
+            uint length = 0;
+
+            ValidationUtil.ValidateNotNullOrEmpty(keyword, nameof(keyword));
+
+            try
+            {
+                Interop.BookInfo.GetPathByKeyword(keyword, out path, out length).
+                    ThrowIfError("Failed to get path by keyword");
+
+                var list = new List<string>();
+                var current = path;
+                for (int i = 0; i < length; i++)
+                {
+                    list.Add(Marshal.PtrToStringAnsi(Marshal.ReadIntPtr(current)));
+                    current = (IntPtr)((long)current + Marshal.SizeOf(typeof(IntPtr)));
+                }
+
+                return new MediaDataReader<string>(list);
+            }
+            finally
+            {
+                var current = path;
+                for (int i = 0; i < length; i++)
+                {
+                    Marshal.FreeHGlobal(current);
+                    current = (IntPtr)((long)current + Marshal.SizeOf(typeof(IntPtr)));
+                }
             }
         }
 
@@ -693,6 +748,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public bool UpdateFavorite(string mediaId, bool value)
         {
             ValidateDatabase();
@@ -823,9 +879,10 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="UnsupportedContentException">
         ///     The thumbnail is not available for the given media.<br/>
         ///     -or-<br/>
-        ///     The media is in the external USB storage (<see cref="MediaInfo.StorageType"/> is <see cref="StorageType.ExternalUsb"/>).
+        ///     The media is in the external USB storage.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10; Will be removed in API12. Please use CreateThumbnail instead.")]
         public Task<string> CreateThumbnailAsync(string mediaId)
         {
             return CreateThumbnailAsync(mediaId, CancellationToken.None);
@@ -855,9 +912,10 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="UnsupportedContentException">
         ///     The thumbnail is not available for the given media.<br/>
         ///     -or-<br/>
-        ///     The media is in the external USB storage (<see cref="MediaInfo.StorageType"/> is <see cref="StorageType.ExternalUsb"/>).
+        ///     The media is in the external USB storage.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10; Will be removed in API12. Please use CreateThumbnail instead.")]
         public Task<string> CreateThumbnailAsync(string mediaId, CancellationToken cancellationToken)
         {
             ValidateDatabase();
@@ -872,6 +930,92 @@ namespace Tizen.Content.MediaContent
 
             var tcs = new TaskCompletionSource<string>();
 
+            using (var handle = ValidateFile(mediaId))
+            {
+                string thumbnailPath = null;
+                MediaContentError ret = MediaContentError.None;
+                Task thumbTask = null;
+
+                if (cancellationToken.CanBeCanceled)
+                {
+                    cancellationToken.Register(() =>
+                    {
+                        if (tcs.Task.IsCompleted)
+                        {
+                            return;
+                        }
+
+                        tcs.TrySetCanceled();
+                    });
+                }
+
+                thumbTask = Task.Factory.StartNew( () =>
+                {
+                    ret = Interop.MediaInfo.GenerateThumbnail(handle);
+
+                    if (ret != MediaContentError.None)
+                    {
+                        tcs.TrySetException(ret.AsException("Failed to create thumbnail"));
+                    }
+                    else
+                    {
+                        thumbnailPath = InteropHelper.GetString(handle, Interop.MediaInfo.GetThumbnailPath, true);
+                        tcs.TrySetResult(thumbnailPath);
+                    }
+                }, cancellationToken,
+                    TaskCreationOptions.DenyChildAttach | TaskCreationOptions.LongRunning,
+                    TaskScheduler.Default);
+
+                return await tcs.Task;
+            }
+        }
+        #endregion
+
+        /// <summary>
+        /// Creates the thumbnail image for the given media.
+        /// If the thumbnail already exists for the given media, the existing path will be returned.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/content.write</privilege>
+        /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
+        /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
+        /// <param name="mediaId">The ID of the media for which the thumbnail will be created.</param>
+        /// <returns>A created thumbnail path.</returns>
+        /// <exception cref="InvalidOperationException">
+        ///     The <see cref="MediaDatabase"/> is disconnected.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurred while executing.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
+        /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
+        /// <exception cref="RecordNotFoundException"><paramref name="mediaId"/> does not exist in the database.</exception>
+        /// <exception cref="ArgumentException">
+        ///     <paramref name="mediaId"/> is a zero-length string, contains only white space.
+        /// </exception>
+        /// <exception cref="FileNotFoundException">The file of the media does not exists; moved or deleted.</exception>
+        /// <exception cref="UnsupportedContentException">
+        ///     The thumbnail is not available for the given media.<br/>
+        ///     -or-<br/>
+        ///     The media is in the external USB storage.
+        /// </exception>
+        /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        public string CreateThumbnail(string mediaId)
+        {
+            ValidateDatabase();
+
+            ValidationUtil.ValidateNotNullOrEmpty(mediaId, nameof(mediaId));
+
+            using (var handle = ValidateFile(mediaId))
+            {
+                Interop.MediaInfo.GenerateThumbnail(handle).ThrowIfError("Failed to create thumbnail");
+
+                return InteropHelper.GetString(handle, Interop.MediaInfo.GetThumbnailPath, true);
+            }
+        }
+
+        private Interop.MediaInfoHandle ValidateFile(string mediaId)
+        {
             Interop.MediaInfo.GetMediaFromDB(mediaId, out var handle).ThrowIfError("Failed to create thumbnail");
 
             if (handle.IsInvalid)
@@ -879,9 +1023,14 @@ namespace Tizen.Content.MediaContent
                 throw new RecordNotFoundException("Media does not exist.");
             }
 
-            using (handle)
+            try
             {
                 var path = InteropHelper.GetString(handle, Interop.MediaInfo.GetFilePath);
+
+                if (String.IsNullOrEmpty(path) || File.Exists(path) == false)
+                {
+                    throw new FileNotFoundException($"The media file does not exist. Path={path}.", path);
+                }
 
                 foreach (var extendedInternal in StorageManager.Storages.Where(s => s.StorageType == StorageArea.ExtendedInternal))
                 {
@@ -890,58 +1039,15 @@ namespace Tizen.Content.MediaContent
                         throw new UnsupportedContentException("The media is in external usb storage.");
                     }
                 }
-
-                if (File.Exists(path) == false)
-                {
-                    throw new FileNotFoundException($"The media file does not exist. Path={path}.", path);
-                }
-
-                using (RegisterCancelThumbnail(cancellationToken, tcs, handle))
-                using (var cbKeeper = ObjectKeeper.Get(GetCreateThumbnailCallback(tcs)))
-                {
-                    Interop.MediaInfo.CreateThumbnail(handle, cbKeeper.Target).ThrowIfError("Failed to create thumbnail");
-
-                    return await tcs.Task;
-                }
             }
-        }
-
-        private static Interop.MediaInfo.ThumbnailCompletedCallback GetCreateThumbnailCallback(
-            TaskCompletionSource<string> tcs)
-        {
-            return (error, path, _) =>
+            catch (Exception ex)
             {
-                if (error != MediaContentError.None)
-                {
-                    tcs.TrySetException(error.AsException("Failed to create thumbnail"));
-                }
-                else
-                {
-                    tcs.TrySetResult(path);
-                }
-            };
-        }
-
-        private static IDisposable RegisterCancelThumbnail(CancellationToken cancellationToken,
-            TaskCompletionSource<string> tcs, Interop.MediaInfoHandle handle)
-        {
-            if (cancellationToken.CanBeCanceled == false)
-            {
-                return null;
+                handle.Dispose();
+                throw ex;
             }
 
-            return cancellationToken.Register(() =>
-            {
-                if (tcs.Task.IsCompleted)
-                {
-                    return;
-                }
-
-                Interop.MediaInfo.CancelThumbnail(handle).ThrowIfError("Failed to cancel");
-                tcs.TrySetCanceled();
-            });
+            return handle;
         }
-        #endregion
 
         #region DetectFaceAsync
         /// <summary>
@@ -969,6 +1075,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API11; Will be removed in API13.")]
         public Task<int> DetectFaceAsync(string mediaId)
         {
             return DetectFaceAsync(mediaId, CancellationToken.None);
@@ -1003,10 +1110,11 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="UnsupportedContentException">
         ///     Face detection is not available for the given media.<br/>
         ///     -or-<br/>
-        ///     The media is in the external USB storage (<see cref="MediaInfo.StorageType"/> is <see cref="StorageType.ExternalUsb"/>).
+        ///     The media is in the external USB storage.
         /// </exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API11; Will be removed in API13.")]
         public Task<int> DetectFaceAsync(string mediaId, CancellationToken cancellationToken)
         {
             if (Features.IsSupported(Features.FaceRecognition) == false)
@@ -1035,11 +1143,6 @@ namespace Tizen.Content.MediaContent
 
             using (handle)
             {
-                if (InteropHelper.GetValue<StorageType>(handle, Interop.MediaInfo.GetStorageType) == StorageType.ExternalUsb)
-                {
-                    throw new UnsupportedContentException("The media is in external usb storage.");
-                }
-
                 if (InteropHelper.GetValue<MediaType>(handle, Interop.MediaInfo.GetMediaType) != MediaType.Image)
                 {
                     throw new UnsupportedContentException("Only image is supported.");
@@ -1063,7 +1166,13 @@ namespace Tizen.Content.MediaContent
                 using (RegisterCancelFaceDetection(cancellationToken, tcs, handle))
                 using (var cbKeeper = ObjectKeeper.Get(GetFaceDetectionCallback(tcs)))
                 {
-                    Interop.MediaInfo.StartFaceDetection(handle, cbKeeper.Target).ThrowIfError("Failed to detect faces");
+                    var ret = Interop.MediaInfo.StartFaceDetection(handle, cbKeeper.Target);
+                    if (ret == MediaContentError.InvalidParameter)
+                    {
+                        throw new UnsupportedContentException("The media is in external usb storage.");
+                    }
+
+                    ret.ThrowIfError("Failed to detect faces");
 
                     return await tcs.Task;
                 }
