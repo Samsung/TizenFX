@@ -26,6 +26,8 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Security.AccessControl;
 
+using SystemIO = System.IO;
+
 namespace Tizen.NUI
 {
     /// <summary>
@@ -160,9 +162,12 @@ namespace Tizen.NUI
             {
                 lock (info)
                 {
-                    if (!info.Assembly.IsLoaded)
+                    if (info.Assembly == null)
                     {
-                        info.Assembly.Load();
+
+                        Log.Warn("NUIGadgetAssembly.Load(): " + info.ResourcePath + info.ExecutableFile + " ++");
+                        info.Assembly = Assembly.Load(SystemIO.Path.GetFileNameWithoutExtension(info.ExecutableFile));
+                        Log.Warn("NUIGadgetAssembly.Load(): " + info.ResourcePath + info.ExecutableFile + " --");
                     }
                 }
             }
@@ -173,39 +178,6 @@ namespace Tizen.NUI
             catch (BadImageFormatException e)
             {
                 throw new InvalidOperationException(e.Message);
-            }
-        }
-
-        /// <summary>
-        /// Unloads the loaded assembly of the NUIGadget.
-        /// </summary>
-        /// <param name="resourceType">The resource type of the NUIGadget package.</param>
-        /// <exception cref="ArgumentException">Thrown when failed because of a invalid argument.</exception>
-        /// <since_tizen> 11 </since_tizen>
-        public static void Unload(string resourceType)
-        {
-            if (string.IsNullOrEmpty(resourceType))
-            {
-                throw new ArgumentException("Invalid argument");
-            }
-
-            NUIGadgetInfo info = Find(resourceType);
-            Unload(info);
-        }
-
-        private static void Unload(NUIGadgetInfo info)
-        {
-            if (info == null)
-            {
-                throw new ArgumentException("Invalid argument");
-            }
-
-            lock (info)
-            {
-                if (info.Assembly.IsLoaded)
-                {
-                    info.Assembly.Unload();
-                }
             }
         }
 
@@ -228,7 +200,7 @@ namespace Tizen.NUI
             NUIGadgetInfo info = Find(resourceType);
             Load(info);
 
-            NUIGadget gadget = info.Assembly.CreateInstance(className);
+            NUIGadget gadget = info.Assembly.CreateInstance(className, true) as NUIGadget;
             if (gadget == null)
             {
                 throw new InvalidOperationException("Failed to create instance. className: " + className);
