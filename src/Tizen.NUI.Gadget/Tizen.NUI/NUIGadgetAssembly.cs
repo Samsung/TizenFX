@@ -19,6 +19,8 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.Loader;
 
+using SystemIO = System.IO;
+
 namespace Tizen.NUI
 {
     internal class NUIGadgetAssemblyLoadContext : AssemblyLoadContext
@@ -54,10 +56,11 @@ namespace Tizen.NUI
                 Log.Warn("Load(): " + _assemblyPath + " ++");
                 NUIGadgetAssemblyLoadContext context = new NUIGadgetAssemblyLoadContext();
                 _assemblyRef = new WeakReference(context);
-                using (MemoryStream memoryStream = new MemoryStream(File.ReadAllBytes(_assemblyPath)))
-                {
-                    _assembly = context.LoadFromStream(memoryStream);
-                }
+                string directoryPath = SystemIO.Path.GetDirectoryName(_assemblyPath);
+                string fileName = SystemIO.Path.GetFileNameWithoutExtension(_assemblyPath);
+                string nativeImagePath = directoryPath + "/" + fileName + ".ni.dll";
+                Log.Debug("NativeImagePath=" + nativeImagePath + ", AssemblyPath=" + _assemblyPath);
+                _assembly = context.LoadFromNativeImagePath(nativeImagePath, _assemblyPath);
                 Log.Warn("Load(): " + _assemblyPath + " --");
             }
         }
