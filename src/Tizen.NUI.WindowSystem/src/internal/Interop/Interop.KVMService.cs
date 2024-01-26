@@ -25,6 +25,12 @@ namespace Tizen.NUI.WindowSystem.Shell
             [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_kvm_service_receive_drag_data")]
             internal static extern int ReceiveDragData(IntPtr kvmService, string mimeType);
 
+            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_kvm_service_get_source_mimetypes")]
+            internal static extern int GetSourceMimetypes(
+                IntPtr kvmService,
+                out string[] mimeTypes,
+                out int count);
+
             [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_kvm_service_secondary_selection_set")]
             internal static extern int SetSecondarySelection(IntPtr kvmService);
 
