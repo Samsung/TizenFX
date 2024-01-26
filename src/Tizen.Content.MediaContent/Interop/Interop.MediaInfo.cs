@@ -71,7 +71,7 @@ internal static partial class Interop
         internal static extern MediaContentError GetImage(MediaInfoHandle handle, out IntPtr imageHandle);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_video")]
-        internal static extern MediaContentError GetVideo(MediaInfoHandle handle, out IntPtr videoHandle);
+        internal static extern MediaContentError GetVideo(MediaInfoHandle handle, out IntPtr videoHandle); // Deprecated since API12
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_audio")]
         internal static extern MediaContentError GetAudio(MediaInfoHandle handle, out IntPtr audioHandle);
