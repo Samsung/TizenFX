@@ -41,11 +41,17 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_New__SWIG_0")]
             public static extern global::System.IntPtr New();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_New__SWIG_0_With_Behaviour")]
+            public static extern global::System.IntPtr New(int behaviour);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_New__SWIG_1")]
             public static extern global::System.IntPtr New(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_New__SWIG_2")]
             public static extern global::System.IntPtr New(string jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_New__SWIG_2_With_Behaviour")]
+            public static extern global::System.IntPtr New(int behaviour, string jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_New__SWIG_3")]
             public static extern global::System.IntPtr New(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
