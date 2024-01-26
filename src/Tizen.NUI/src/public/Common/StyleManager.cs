@@ -93,6 +93,13 @@ namespace Tizen.NUI
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool Enabled
+        {
+            get;
+            set;
+        } = false;
+
         /// <summary>
         /// Gets the singleton of StyleManager object.
         /// </summary>

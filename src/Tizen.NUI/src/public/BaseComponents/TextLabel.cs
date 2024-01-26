@@ -83,7 +83,6 @@ namespace Tizen.NUI.BaseComponents
 
         private static SystemFontTypeChanged systemFontTypeChanged = new SystemFontTypeChanged();
         private static SystemLocaleLanguageChanged systemLocaleLanguageChanged = new SystemLocaleLanguageChanged();
-        static private string defaultStyleName = "Tizen.NUI.BaseComponents.TextLabel";
         static private string defaultFontFamily = "BreezeSans";
         private string textLabelSid = null;
         private TextLabelSelectorData selectorData;
@@ -101,14 +100,14 @@ namespace Tizen.NUI.BaseComponents
         /// Creates the TextLabel control.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public TextLabel() : this(Interop.TextLabel.New(ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true)
+        public TextLabel() : this(Interop.TextLabel.New(HasStyle()), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabel(TextLabelStyle viewStyle) : this(Interop.TextLabel.New(ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true, viewStyle)
+        public TextLabel(TextLabelStyle viewStyle) : this(Interop.TextLabel.New(HasStyle()), true, viewStyle)
         {
         }
 
@@ -118,7 +117,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="shown">false : Not displayed (hidden), true : displayed (shown)</param>
         /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabel(bool shown) : this(Interop.TextLabel.New(ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true)
+        public TextLabel(bool shown) : this(Interop.TextLabel.New(HasStyle()), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             SetVisible(shown);
@@ -129,7 +128,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="text">The text to display</param>
         /// <since_tizen> 3 </since_tizen>
-        public TextLabel(string text) : this(Interop.TextLabel.New(text, ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true)
+        public TextLabel(string text) : this(Interop.TextLabel.New(text, HasStyle()), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -141,7 +140,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="shown">false : Not displayed (hidden), true : displayed (shown)</param>
         /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabel(string text, bool shown) : this(Interop.TextLabel.New(text, ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true)
+        public TextLabel(string text, bool shown) : this(Interop.TextLabel.New(text, HasStyle()), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             SetVisible(shown);
@@ -173,9 +172,10 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private bool HasStyle()
+        private static bool HasStyle()
         {
-            return ThemeManager.GetStyle(this.GetType()) == null ? false : true;
+            bool ret = (!StyleManager.Enabled && ThemeManager.GetStyle(typeof(TextLabel)) != null);
+            return ret;
         }
 
         /// <summary>
@@ -1525,6 +1525,12 @@ namespace Tizen.NUI.BaseComponents
                 if (fontSizeScale == value) return;
 
                 fontSizeScale = value;
+
+                if (StyleManager.Enabled && fontSizeScale == Tizen.NUI.FontSizeScale.UseSystemSetting)
+                {
+                    fontSizeScale = 1;
+                }
+
                 if (fontSizeScale == Tizen.NUI.FontSizeScale.UseSystemSetting)
                 {
                     SystemSettingsFontSize systemSettingsFontSize;

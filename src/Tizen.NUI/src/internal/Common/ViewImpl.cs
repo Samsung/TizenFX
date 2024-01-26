@@ -50,7 +50,7 @@ namespace Tizen.NUI
 
         public static View New()
         {
-            View ret = new View(Interop.ViewImpl.New(), true);
+            View ret = new View(Interop.ViewImpl.New((int)View.GetDefaultViewBehaviour()), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

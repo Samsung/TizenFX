@@ -21,6 +21,9 @@ namespace Tizen.NUI
     {
         internal static partial class StyleManager
         {
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StyleManager_Enabled")]
+            public static extern void SetEnabled(bool value);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_StyleManager")]
             public static extern global::System.IntPtr NewStyleManager();
 

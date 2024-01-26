@@ -32,7 +32,6 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class TextEditor : View
     {
-        static private string defaultStyleName = "Tizen.NUI.BaseComponents.TextEditor";
         static private string defaultFontFamily = "TizenSans";
         private static SystemFontTypeChanged systemFontTypeChanged = new SystemFontTypeChanged();
         private static SystemLocaleLanguageChanged systemLocaleLanguageChanged = new SystemLocaleLanguageChanged();
@@ -61,7 +60,7 @@ namespace Tizen.NUI.BaseComponents
         /// Creates the TextEditor control.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public TextEditor() : this(Interop.TextEditor.New(ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true)
+        public TextEditor() : this(Interop.TextEditor.New(HasStyle()), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -70,7 +69,7 @@ namespace Tizen.NUI.BaseComponents
         /// Creates the TextEditor with specified style.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextEditor(TextEditorStyle style) : this(Interop.TextEditor.New(ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true, style: style)
+        public TextEditor(TextEditorStyle style) : this(Interop.TextEditor.New(HasStyle()), true, style: style)
         {
         }
 
@@ -80,7 +79,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="shown">false : Not displayed (hidden), true : displayed (shown)</param>
         /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextEditor(bool shown) : this(Interop.TextEditor.New(ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true)
+        public TextEditor(bool shown) : this(Interop.TextEditor.New(HasStyle()), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             SetVisible(shown);
@@ -101,9 +100,9 @@ namespace Tizen.NUI.BaseComponents
             TextChanged += TextEditorTextChanged;
         }
 
-        private bool HasStyle()
+        private static bool HasStyle()
         {
-            return ThemeManager.GetStyle(this.GetType()) == null ? false : true;
+            return (!StyleManager.Enabled && ThemeManager.GetStyle(typeof(TextEditor)) != null);
         }
 
         /// <summary>
@@ -2245,6 +2244,12 @@ namespace Tizen.NUI.BaseComponents
                 if (fontSizeScale == value) return;
 
                 fontSizeScale = value;
+
+                if (StyleManager.Enabled && fontSizeScale == Tizen.NUI.FontSizeScale.UseSystemSetting)
+                {
+                    fontSizeScale = 1;
+                }
+
                 if (fontSizeScale == Tizen.NUI.FontSizeScale.UseSystemSetting)
                 {
                     SystemSettingsFontSize systemSettingsFontSize;

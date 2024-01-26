@@ -144,12 +144,12 @@ namespace Tizen.NUI.BaseComponents
             {
                 case ViewAccessibilityMode.Custom:
                 {
-                    return Interop.View.NewCustom();
+                    return Interop.View.NewCustom((int)GetDefaultViewBehaviour());
                 }
                 case ViewAccessibilityMode.Default:
                 default:
                 {
-                    return Interop.View.New();
+                    return Interop.View.New((int)GetDefaultViewBehaviour());
                 }
             }
         }
@@ -170,7 +170,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public View(ViewStyle viewStyle) : this(Interop.View.New(), true, viewStyle)
+        public View(ViewStyle viewStyle) : this(Interop.View.New((int)GetDefaultViewBehaviour()), true, viewStyle)
         {
         }
 
@@ -180,7 +180,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="shown">false : Not displayed (hidden), true : displayed (shown)</param>
         /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public View(bool shown) : this(Interop.View.New(), true)
+        public View(bool shown) : this(Interop.View.New((int)GetDefaultViewBehaviour()), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             SetVisible(shown);

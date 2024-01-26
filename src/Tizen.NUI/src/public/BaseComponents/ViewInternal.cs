@@ -1043,6 +1043,11 @@ namespace Tizen.NUI.BaseComponents
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
+        internal static CustomViewBehaviour GetDefaultViewBehaviour()
+        {
+            return StyleManager.Enabled ? CustomViewBehaviour.ViewBehaviourDefault : CustomViewBehaviour.DisableStyleChangeSignals;
+        }
+
         internal bool IsTopLevelView()
         {
             if (GetParent() is Layer)

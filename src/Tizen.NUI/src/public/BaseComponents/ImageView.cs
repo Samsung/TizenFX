@@ -72,14 +72,14 @@ namespace Tizen.NUI.BaseComponents
         /// Creates an initialized ImageView.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public ImageView() : this(Interop.ImageView.New(), true)
+        public ImageView() : this(Interop.ImageView.New((int)GetDefaultViewBehaviour()), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageView(ViewStyle viewStyle) : this(Interop.ImageView.New(), true, viewStyle)
+        public ImageView(ViewStyle viewStyle) : this(Interop.ImageView.New((int)GetDefaultViewBehaviour()), true, viewStyle)
         {
         }
 
@@ -89,7 +89,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="shown">false : Not displayed (hidden), true : displayed (shown)</param>
         /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageView(bool shown) : this(Interop.ImageView.New(), true)
+        public ImageView(bool shown) : this(Interop.ImageView.New((int)GetDefaultViewBehaviour()), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             SetVisible(shown);
@@ -101,7 +101,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="url">The URL of the image resource to display.</param>
         /// <since_tizen> 3 </since_tizen>
-        public ImageView(string url) : this(Interop.ImageView.New(url), true)
+        public ImageView(string url) : this(Interop.ImageView.New((int)GetDefaultViewBehaviour(), url), true)
         {
             ResourceUrl = url;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -115,7 +115,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="shown">false : Not displayed (hidden), true : displayed (shown)</param>
         /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageView(string url, bool shown) : this(Interop.ImageView.New(url), true)
+        public ImageView(string url, bool shown) : this(Interop.ImageView.New((int)GetDefaultViewBehaviour(), url), true)
         {
             ResourceUrl = url;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

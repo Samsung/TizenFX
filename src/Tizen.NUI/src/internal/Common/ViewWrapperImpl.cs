@@ -153,7 +153,7 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-        public ViewWrapperImpl(CustomViewBehaviour behaviourFlags) : this(Interop.ViewWrapperImpl.NewViewWrapperImpl((int)behaviourFlags), true)
+        public ViewWrapperImpl(CustomViewBehaviour behaviourFlags) : this(Interop.ViewWrapperImpl.NewViewWrapperImpl((int)(behaviourFlags | View.GetDefaultViewBehaviour())), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             DirectorConnect();

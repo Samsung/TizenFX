@@ -25,6 +25,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_New")]
             public static extern global::System.IntPtr New();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_New_With_Behaviour")]
+            public static extern global::System.IntPtr New(int behaviour);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_SetStyleName")]
             public static extern void SetStyleName(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
