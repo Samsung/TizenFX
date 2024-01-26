@@ -17,6 +17,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace Tizen.NUI.WindowSystem.Shell
 {
@@ -206,6 +207,23 @@ namespace Tizen.NUI.WindowSystem.Shell
         {
             int res = Interop.KVMService.ReceiveDragData(_kvmService, mimeType);
             _tzsh.ErrorCodeThrow(res);
+        }
+
+        /// <summary>
+        /// Requests to receive the mimetype list of drag source.
+        /// </summary>
+        /// <returns>
+        /// The list of mimetype.
+        /// If there are no mimetype, returns null.
+        /// </returns>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        public List<string> GetSourceMimetypes()
+        {
+            int res = Interop.KVMService.GetSourceMimetypes(_kvmService, out string[] mimetypes, out int mimeTypeCount);
+            _tzsh.ErrorCodeThrow(res);
+
+            if (mimetypes == null) return null;
+            return new List<string>(mimetypes);
         }
 
         /// <summary>
