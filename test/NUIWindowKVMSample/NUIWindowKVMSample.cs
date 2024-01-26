@@ -148,9 +148,17 @@ namespace NUIWindowKVMSample
         {
             Log.Debug("KVMSample", "Tizen KVM: Drag started");
 
+            List<string> mimeTypes;
+            mimeTypes = kvmService.GetSourceMimetypes();
+            if (mimeTypes == null)
+                Log.Debug("KVMSample", "Tizen KVM: There're no Source mimetypes");
+            else
+                Log.Debug("KVMSample", "Tizen KVM: Source mimetypes: " + string.Join(", ", mimeTypes));
+            string mimeType = mimeTypes[0];
+
             // Request the drag data to the Display server.
             // The drag data can get at DnD Listener (OnDnDEvent function)
-            kvmService.ReceiveDragData("text/plain");
+            kvmService.ReceiveDragData(mimeType);
         }
 
         private void OnDragEnded(object sender, EventArgs e)
