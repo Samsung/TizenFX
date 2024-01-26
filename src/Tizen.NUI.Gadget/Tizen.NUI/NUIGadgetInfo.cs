@@ -85,7 +85,7 @@ namespace Tizen.NUI
 
         internal string ResourceClassName { get; set; }
 
-        internal NUIGadgetAssembly Assembly { get; private set; }
+        internal Assembly Assembly { get; set; }
 
         internal static NUIGadgetInfo CreateNUIGadgetInfo(string packageId)
         {
@@ -177,7 +177,6 @@ namespace Tizen.NUI
             }
 
             info.ResourcePath = SystemIO.Path.GetDirectoryName(Application.Current.ApplicationInfo.ExecutablePath) + "/";
-            info.Assembly = new NUIGadgetAssembly(info.ResourcePath + info.ExecutableFile);
             return info;
         }
     }
