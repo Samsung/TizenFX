@@ -24,6 +24,7 @@ namespace ElmSharp
     /// Enumeration for the focus direction.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum FocusDirection
     {
         /// <summary>
@@ -62,6 +63,7 @@ namespace ElmSharp
     /// Inherits from <see cref="EvasObject"/>.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public abstract class Widget : AccessibleObject
     {
         Dictionary<string, EvasObject> _partContents = new Dictionary<string, EvasObject>();
@@ -76,6 +78,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of the Widget class.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected Widget()
         {
         }
@@ -85,6 +88,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">The parent of the new Widget instance.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected Widget(EvasObject parent) : base(parent)
         {
         }
@@ -95,6 +99,7 @@ namespace ElmSharp
         /// <param name="content">The content which is put into the part.</param>
         /// <param name="part">The updated part.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected void UpdatePartContents(EvasObject content, string part = "__default__")
         {
             _partContents[part] = content;
@@ -104,18 +109,21 @@ namespace ElmSharp
         /// Focused will be triggered when the widget is focused.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Focused;
 
         /// <summary>
         /// Unfocused will be triggered when the widget is unfocused.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Unfocused;
 
         /// <summary>
         /// Sets or gets the state of the widget, which might be enabled or disabled.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public virtual bool IsEnabled
         {
             get
@@ -132,6 +140,7 @@ namespace ElmSharp
         /// Sets or gets the style of the widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string Style
         {
             get
@@ -148,6 +157,7 @@ namespace ElmSharp
         /// Gets whether this widget is focused.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsFocused
         {
             get
@@ -161,6 +171,7 @@ namespace ElmSharp
         /// </summary>
         /// <remarks>Widgets which are meant to be interacted with by input events, are created able to be focused by default.</remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsFocusAllowed
         {
             get
@@ -174,6 +185,7 @@ namespace ElmSharp
         /// </summary>
         /// <remarks>It could be overridden by special child class.</remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public virtual string Text
         {
             get
@@ -191,6 +203,7 @@ namespace ElmSharp
         /// </summary>
         /// <remarks>It could be overridden by special child class.</remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public virtual Color BackgroundColor
         {
             get
@@ -220,6 +233,7 @@ namespace ElmSharp
         /// </summary>
         /// <remarks>It could be overridden by special child class.</remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public virtual int Opacity
         {
             get
@@ -241,6 +255,7 @@ namespace ElmSharp
         /// Sets or gets whether a widget and its children are focusable or not.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool AllowTreeFocus
         {
             get
@@ -257,6 +272,7 @@ namespace ElmSharp
         /// Sets or gets the widget's mirrored mode.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsMirroredMode
         {
             get
@@ -274,6 +290,7 @@ namespace ElmSharp
         /// When widget is set to automatic mode(true), it follows the system mirrored mode.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsAutoMirroredMode
         {
             get
@@ -291,6 +308,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="isFocus">Whether be focused.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetFocus(bool isFocus)
         {
             if (isFocus)
@@ -308,6 +326,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="isAllowFocus">true if the object can be focused, false if not(and on errors).</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void AllowFocus(bool isAllowFocus)
         {
             Interop.Elementary.elm_object_focus_allow_set(RealHandle, isAllowFocus);
@@ -318,6 +337,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="direction">Direction to move the focus.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void FocusNext(FocusDirection direction)
         {
             Interop.Elementary.elm_object_focus_next(RealHandle, (int)direction);
@@ -329,6 +349,7 @@ namespace ElmSharp
         /// <param name="next">Focus next widget.</param>
         /// <param name="direction">Focus direction.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetNextFocusObject(EvasObject next, FocusDirection direction)
         {
             Interop.Elementary.elm_object_focus_next_object_set(RealHandle, next?.RealHandle ?? IntPtr.Zero, (int)direction);
@@ -341,6 +362,7 @@ namespace ElmSharp
         /// <param name="content">The content.</param>
         /// <seealso cref="SetPartContent(string, EvasObject, bool)"/>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public virtual bool SetPartContent(string part, EvasObject content)
         {
             return SetPartContent(part, content, false);
@@ -354,6 +376,7 @@ namespace ElmSharp
         /// <param name="preserveOldContent">true, preserve old content will be unset and not be deleted. false, preserve old content will be deleted.</param>
         /// <seealso cref="SetPartContent(string, EvasObject)"/>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public virtual bool SetPartContent(string part, EvasObject content, bool preserveOldContent)
         {
             if (preserveOldContent)
@@ -371,6 +394,7 @@ namespace ElmSharp
         /// <param name="content">The content.</param>
         /// <seealso cref="SetContent(EvasObject, bool)"/>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetContent(EvasObject content)
         {
             SetContent(content, false);
@@ -383,6 +407,7 @@ namespace ElmSharp
         /// <param name="preserveOldContent">true, preserve old content will be unset and not be deleted. false, preserve old content will be deleted.</param>
         /// <seealso cref="SetContent(EvasObject)"/>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetContent(EvasObject content, bool preserveOldContent)
         {
             if (preserveOldContent)
@@ -400,6 +425,7 @@ namespace ElmSharp
         /// <param name="part">The name of the particular part.</param>
         /// <param name="text">The text.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public virtual bool SetPartText(string part, string text)
         {
             Interop.Elementary.elm_object_part_text_set(RealHandle, part, text);
@@ -412,6 +438,7 @@ namespace ElmSharp
         /// <param name="part">The name of the particular part.</param>
         /// <returns>Text of the particular part of the widget.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public virtual string GetPartText(string part)
         {
             return Interop.Elementary.elm_object_part_text_get(RealHandle, part);
@@ -424,6 +451,7 @@ namespace ElmSharp
         /// <param name="color">The color to be set to the widget.</param>
         /// <remarks>This method is a virtual method, it could be overridden by special child class.</remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public virtual void SetPartColor(string part, Color color)
         {
             Interop.Elementary.elm_object_color_class_color_set(RealHandle, part, color.R * color.A / 255,
@@ -439,6 +467,7 @@ namespace ElmSharp
         /// <returns>The color of the particular part.</returns>
         /// <remarks>This method is a virtual method, it could be overridden by special child class.</remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public virtual Color GetPartColor(string part)
         {
             int r, g, b, a;
@@ -452,6 +481,7 @@ namespace ElmSharp
         /// <param name="part">The name of the particular part.</param>
         /// <param name="opacity">The opacity of the particular part.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetPartOpacity(string part, int opacity)
         {
             Interop.Elementary.elm_object_color_class_color_set(Handle, part, 255, 255, 255, opacity);
@@ -463,6 +493,7 @@ namespace ElmSharp
         /// <param name="part">The name of the particular part.</param>
         /// <returns>Opacity value of the particular part.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int GetPartOpacity(string part)
         {
             int r, g, b, a;
@@ -470,12 +501,13 @@ namespace ElmSharp
             return a;
         }
 
-	/// <summary>
+        /// <summary>
         /// Sends a signal to the edje object of the widget.
         /// </summary>
         /// <param name="emission">The signal's name.</param>
         /// <param name="source">The signal's source.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SignalEmit(string emission, string source)
         {
             Interop.Elementary.elm_object_signal_emit(Handle, emission, source);
@@ -485,6 +517,7 @@ namespace ElmSharp
         /// The callback of the Realized event.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override void OnRealized()
         {
             base.OnRealized();

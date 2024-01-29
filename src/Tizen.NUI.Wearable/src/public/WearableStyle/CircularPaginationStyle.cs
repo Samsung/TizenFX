@@ -18,6 +18,7 @@ using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Components;
+using System;
 
 namespace Tizen.NUI.Wearable
 {
@@ -25,7 +26,7 @@ namespace Tizen.NUI.Wearable
     /// CircularPaginationStyle used to config the circularPagination represent.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
-    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [Obsolete("This has been deprecated in API12")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class CircularPaginationStyle : ControlStyle
     {
@@ -72,7 +73,7 @@ namespace Tizen.NUI.Wearable
         /// Creates a new instance of a CircularPaginationStyle.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CircularPaginationStyle() : base()
         {
@@ -83,7 +84,7 @@ namespace Tizen.NUI.Wearable
         /// Creates a new instance of a CircularPaginationStyle using style.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CircularPaginationStyle(CircularPaginationStyle style) : base(style)
         {
@@ -93,7 +94,7 @@ namespace Tizen.NUI.Wearable
         /// Gets or sets the size of the indicator.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Size IndicatorSize
         {
@@ -105,7 +106,7 @@ namespace Tizen.NUI.Wearable
         /// Gets or sets the resource of indicator.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<string> IndicatorImageURL
         {
@@ -117,7 +118,7 @@ namespace Tizen.NUI.Wearable
         /// Gets or sets the resource of the center indicator.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<string> CenterIndicatorImageURL
         {

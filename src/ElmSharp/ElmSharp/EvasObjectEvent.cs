@@ -26,12 +26,14 @@ namespace ElmSharp
     /// Inherits IDisposable.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public interface IInvalidatable : IDisposable
     {
         /// <summary>
         /// Makes the current instance invalidate.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         void MakeInvalidate();
     }
 
@@ -39,6 +41,7 @@ namespace ElmSharp
     /// Enumeration for EvasObjectCallbackType.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum EvasObjectCallbackType
     {
         /// <summary>
@@ -227,6 +230,7 @@ namespace ElmSharp
     /// </summary>
     /// <typeparam name="TEventArgs">Kinds of EventArgs.</typeparam>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class EvasObjectEvent<TEventArgs> : IInvalidatable where TEventArgs : EventArgs
     {
         /// <summary>
@@ -237,6 +241,7 @@ namespace ElmSharp
         /// <param name="info">info</param>
         /// <returns>Delegate handle.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public delegate TEventArgs SmartEventInfoParser(IntPtr data, IntPtr obj, IntPtr info);
 
         private bool _disposed = false;
@@ -253,6 +258,7 @@ namespace ElmSharp
         /// <param name="type">EvasObjectCallbackType</param>
         /// <param name="parser">SmartEventInfoParser</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public EvasObjectEvent(EvasObject sender, EvasObjectCallbackType type, SmartEventInfoParser parser) : this(sender, sender.Handle, type, parser)
         {
         }
@@ -265,6 +271,7 @@ namespace ElmSharp
         /// <param name="type">EvasObjectCallbackType</param>
         /// <param name="parser">SmartEventInfoParser</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsableAttribute(EditorBrowsableState.Never)]
         public EvasObjectEvent(EvasObject sender, IntPtr handle, EvasObjectCallbackType type, SmartEventInfoParser parser)
         {
@@ -281,6 +288,7 @@ namespace ElmSharp
         /// <param name="sender">EvasObject class belongs to.</param>
         /// <param name="type">SmartEventInfoParser</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public EvasObjectEvent(EvasObject sender, EvasObjectCallbackType type) : this(sender, type, null)
         {
         }
@@ -303,6 +311,7 @@ namespace ElmSharp
         /// On Event Handler of the EvasObjectEvent.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<TEventArgs> On
         {
             add
@@ -345,6 +354,7 @@ namespace ElmSharp
         /// otherwise, false.
         /// </param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -369,6 +379,7 @@ namespace ElmSharp
         /// Destroys the current object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Dispose()
         {
             Dispose(true);
@@ -379,6 +390,7 @@ namespace ElmSharp
         /// Makes the current instance invalidate.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void MakeInvalidate()
         {
             _sender = null;
@@ -390,6 +402,7 @@ namespace ElmSharp
     /// Event class for EvasObject.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class EvasObjectEvent : IInvalidatable
     {
         private EvasObjectEvent<EventArgs> _evasObjectEvent;
@@ -404,6 +417,7 @@ namespace ElmSharp
         /// <param name="sender">EvasObject class belongs to.</param>
         /// <param name="type">EvasObjectCallbackType</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public EvasObjectEvent(EvasObject sender, EvasObjectCallbackType type) : this(sender, sender.Handle, type)
         {
         }
@@ -415,6 +429,7 @@ namespace ElmSharp
         /// <param name="handle">EvasObject handle.</param>
         /// <param name="type">EvasObjectCallbackType</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsableAttribute(EditorBrowsableState.Never)]
         public EvasObjectEvent(EvasObject sender, IntPtr handle, EvasObjectCallbackType type)
         {
@@ -433,6 +448,7 @@ namespace ElmSharp
         /// On Event Handler of EvasObjectEvent.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler On
         {
             add
@@ -467,6 +483,7 @@ namespace ElmSharp
         /// otherwise, false.
         /// </param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -483,6 +500,7 @@ namespace ElmSharp
         /// Destroys the current object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Dispose()
         {
             Dispose(true);
@@ -493,6 +511,7 @@ namespace ElmSharp
         /// Makes the current instance invalidate.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void MakeInvalidate()
         {
             _evasObjectEvent.MakeInvalidate();

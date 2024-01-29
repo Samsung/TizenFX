@@ -23,6 +23,7 @@ namespace ElmSharp
     /// Inherits Widget.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class Layout : Container
     {
         SmartEvent _languageChanged;
@@ -35,6 +36,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">The parent is a given container, which will be attached by the layout as a child. It's <see cref="EvasObject"/> type.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Layout(EvasObject parent) : base(parent)
         {
         }
@@ -43,6 +45,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of the Layout class.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected Layout() : base()
         {
         }
@@ -51,18 +54,21 @@ namespace ElmSharp
         /// LanguageChanged will be triggered when the program's language is changed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler LanguageChanged;
 
         /// <summary>
         /// ThemeChanged will be triggered when the theme is changed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler ThemeChanged;
 
         /// <summary>
         /// Gets the edje layout.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public EdjeObject EdjeObject
         {
             get
@@ -77,6 +83,7 @@ namespace ElmSharp
         /// Gets or sets the accessibility state of texblock (text) parts in a layout object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool TextBlockAccessibility
         {
             get
@@ -96,6 +103,7 @@ namespace ElmSharp
         /// </summary>
         /// <returns>The frozen state, or 0 if the object is not frozen or on error.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int Freeze()
         {
             return Interop.Elementary.elm_layout_freeze(RealHandle);
@@ -107,6 +115,7 @@ namespace ElmSharp
         /// </summary>
         /// <returns>The frozen state, or 0 if the object is not frozen or on error.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int Thaw()
         {
             return Interop.Elementary.elm_layout_thaw(RealHandle);
@@ -121,6 +130,7 @@ namespace ElmSharp
         /// All of this can change due to state changes, and that's when this function should be called.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Resizing()
         {
             Interop.Elementary.elm_layout_sizing_eval(RealHandle);
@@ -133,6 +143,7 @@ namespace ElmSharp
         /// <param name="width">Restrict minimum size of the current width.</param>
         /// <param name="height">Restrict minimum size of the current height.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Resizing(bool width, bool height)
         {
             Interop.Elementary.elm_layout_sizing_restricted_eval(RealHandle, width, height);
@@ -146,6 +157,7 @@ namespace ElmSharp
         /// <param name="key">The data key.</param>
         /// <returns>The data.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string GetEdjeData(string key)
         {
             return Interop.Elementary.elm_layout_data_get(RealHandle, key);
@@ -157,6 +169,7 @@ namespace ElmSharp
         /// <param name="part">The text part to retrieve the text off.</param>
         /// <returns></returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override string GetPartText(string part)
         {
             return Interop.Elementary.elm_layout_text_get(RealHandle, part);
@@ -169,6 +182,7 @@ namespace ElmSharp
         /// <param name="text">The text to set.</param>
         /// <returns></returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override bool SetPartText(string part, string text)
         {
             return Interop.Elementary.elm_layout_text_set(RealHandle, part, text);
@@ -186,6 +200,7 @@ namespace ElmSharp
         /// <param name="child">The object to append.</param>
         /// <returns>Success is true.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool BoxAppend(string part, EvasObject child)
         {
             AddChild(child);
@@ -204,6 +219,7 @@ namespace ElmSharp
         /// <param name="child">The object to prepend.</param>
         /// <returns>Success is true.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool BoxPrepend(string part, EvasObject child)
         {
             AddChild(child);
@@ -221,6 +237,7 @@ namespace ElmSharp
         /// <param name="child">The object to remove.</param>
         /// <returns>Success if true</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool BoxRemove(string part, EvasObject child)
         {
             RemoveChild(child);
@@ -238,6 +255,7 @@ namespace ElmSharp
         /// <param name="clear">If true, then all the objects will be deleted as well, otherwise they will just be removed and will be dangling on the canvas.</param>
         /// <returns>Success if true.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool BoxRemoveAll(string part, bool clear)
         {
             ClearChildren();
@@ -257,6 +275,7 @@ namespace ElmSharp
         /// <param name="position">The numeric position >=0 to insert the child.</param>
         /// <returns>Success if true.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool BoxInsertAt(string part, EvasObject child, uint position)
         {
             AddChild(child);
@@ -276,6 +295,7 @@ namespace ElmSharp
         /// <param name="reference">Another reference object to insert before the box.</param>
         /// <returns>Success is true.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool BoxInsertBefore(string part, EvasObject child, EvasObject reference)
         {
             AddChild(child);
@@ -289,6 +309,7 @@ namespace ElmSharp
         /// <param name="content">The child that will be added in this layout object.</param>
         /// <returns>TRUE on success, FALSE otherwise.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override bool SetPartContent(string part, EvasObject content)
         {
             return SetPartContent(part, content, false);
@@ -302,6 +323,7 @@ namespace ElmSharp
         /// <param name="preserveOldContent">true, preserve old content will be unset. false, preserve old content will not be unset.</param>
         /// <returns>TRUE on success, FALSE otherwise.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override bool SetPartContent(string part, EvasObject content, bool preserveOldContent)
         {
             if (preserveOldContent)
@@ -319,6 +341,7 @@ namespace ElmSharp
         /// <param name="group">The group.</param>
         /// <param name="style">The style to use.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetTheme(string klass, string group, string style)
         {
             Interop.Elementary.elm_layout_theme_set(RealHandle, klass, group, style);
@@ -330,6 +353,7 @@ namespace ElmSharp
         /// <param name="file">The path to the file (edje) that is used as a layout.</param>
         /// <param name="group">The group that the layout belongs to in the edje file.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetFile(string file, string group)
         {
             Interop.Elementary.elm_layout_file_set(RealHandle, file, group);
@@ -339,6 +363,7 @@ namespace ElmSharp
         /// Sets the background color of a layout.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override Color BackgroundColor
         {
             set
@@ -362,6 +387,7 @@ namespace ElmSharp
         /// API, elm_layout_text_valign_set, is an internal API only in Tizen. Available since Tizen_4.0.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public virtual void SetVerticalTextAlignment(string part, double valign)
         {
             Interop.Elementary.elm_layout_text_valign_set(RealHandle, part, valign);
@@ -374,6 +400,7 @@ namespace ElmSharp
         /// API, elm_layout_text_valign_get, is an internal API only in Tizen. Available since Tizen_4.0.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public virtual double GetVerticalTextAlignment(string part)
         {
             return Interop.Elementary.elm_layout_text_valign_get(RealHandle, part);
@@ -383,6 +410,7 @@ namespace ElmSharp
         /// The callback of the Realized Event.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override void OnRealized()
         {
             base.OnRealized();
@@ -405,6 +433,7 @@ namespace ElmSharp
         /// <param name="parent">The parent is a given container which will be attached by the layout as a child. It's <see cref="EvasObject"/> type.</param>
         /// <returns>The new object, otherwise null if it cannot be created.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_layout_add(parent.Handle);

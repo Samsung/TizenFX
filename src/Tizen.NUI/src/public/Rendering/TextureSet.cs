@@ -60,20 +60,17 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Texture GetTexture(uint index)
         {
-            //to fix memory leak issue, match the handle count with native side.
-            System.IntPtr cPtr = Interop.TextureSet.GetTexture(SwigCPtr, index);
-            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            Texture ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as Texture;
-            if (cPtr != System.IntPtr.Zero && ret == null)
+            global::System.IntPtr cPtr = Interop.TextureSet.GetTexture(SwigCPtr, index);
+            Texture ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Texture;
+            if (ret != null)
             {
-                ret = new Texture(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                Interop.BaseHandle.DeleteBaseHandle(new global::System.Runtime.InteropServices.HandleRef(this, cPtr));
             }
-            Interop.BaseHandle.DeleteBaseHandle(CPtr);
-            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            else
+            {
+                ret = new Texture(cPtr, true);
+            }
+            NDalicPINVOKE.ThrowExceptionIfExists();
             return ret;
         }
 
@@ -97,10 +94,17 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Sampler GetSampler(uint index)
         {
-            //to fix memory leak issue, match the handle count with native side.
-            System.IntPtr cPtr = Interop.TextureSet.GetSampler(SwigCPtr, index);
-            Sampler ret = this.GetInstanceSafely<Sampler>(cPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            global::System.IntPtr cPtr = Interop.TextureSet.GetSampler(SwigCPtr, index);
+            Sampler ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Sampler;
+            if (ret != null)
+            {
+                Interop.BaseHandle.DeleteBaseHandle(new global::System.Runtime.InteropServices.HandleRef(this, cPtr));
+            }
+            else
+            {
+                ret = new Sampler(cPtr, true);
+            }
+            NDalicPINVOKE.ThrowExceptionIfExists();
             return ret;
         }
 

@@ -22,6 +22,7 @@ namespace ElmSharp
     /// The FloatingButton is a widget to add the floating area for buttons.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class FloatingButton : Layout
     {
         /// <summary>
@@ -29,6 +30,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">Created on this parent container.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public FloatingButton(EvasObject parent) : base(parent)
         {
         }
@@ -37,6 +39,7 @@ namespace ElmSharp
         /// Sets or gets the floatingbutton mode.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public FloatingButtonMode Mode
         {
             get
@@ -53,6 +56,7 @@ namespace ElmSharp
         /// Gets the floatingbutton position.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public FloatingButtonPosition Position
         {
             get
@@ -65,6 +69,7 @@ namespace ElmSharp
         /// Sets or gets the movability for a given FloatingButton widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool MovementBlock
         {
             get
@@ -81,6 +86,7 @@ namespace ElmSharp
         /// Gets the opacity's value of the given FloatingButton.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override int Opacity
         {
             get
@@ -100,6 +106,7 @@ namespace ElmSharp
         /// <param name="position">Button position.</param>
         /// <param name="animated">Animation flag.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetPosition(FloatingButtonPosition position, bool animated)
         {
             if (animated)
@@ -118,6 +125,7 @@ namespace ElmSharp
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Eext.eext_floatingbutton_add(parent.Handle);
@@ -128,6 +136,7 @@ namespace ElmSharp
     /// Enumeration for the FloatingButtonMode.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum FloatingButtonMode
     {
         /// <summary>
@@ -145,6 +154,7 @@ namespace ElmSharp
     /// Enumeration for the FloatingButtonPosition.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum FloatingButtonPosition
     {
         /// <summary>

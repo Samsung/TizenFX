@@ -27,6 +27,7 @@ namespace ElmSharp
     /// Inherits Widget.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class Image : Widget
     {
         bool _canScaleUp = true;
@@ -41,6 +42,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">The parent is a given container, which will be attached by the image as a child. It's <see cref="EvasObject"/> type.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Image(EvasObject parent) : base(parent)
         {
             _clicked = new SmartEvent(this, "clicked");
@@ -51,24 +53,28 @@ namespace ElmSharp
         /// Clicked will be triggered when the image is clicked.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Clicked;
 
         /// <summary>
         /// LoadingCompleted will be triggered when the image is loaded completely.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler LoadingCompleted;
 
         /// <summary>
         /// Clicked will be triggered when the image fails to load.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler LoadingFailed;
 
         /// <summary>
         /// Gets the file that is used as an image.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public string File
         {
             get
@@ -81,6 +87,7 @@ namespace ElmSharp
         /// Sets or gets the smooth effect for an image.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsSmooth
         {
             get
@@ -97,6 +104,7 @@ namespace ElmSharp
         /// Sets or gets whether scaling is disabled on the object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsScaling
         {
             get
@@ -113,6 +121,7 @@ namespace ElmSharp
         /// Sets or gets whether the object is down resizable.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool CanScaleDown
         {
             get
@@ -130,6 +139,7 @@ namespace ElmSharp
         /// Sets or gets whether the object is up resizable.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool CanScaleUp
         {
             get
@@ -147,6 +157,7 @@ namespace ElmSharp
         /// Sets or gets whether the image fills the entire object area, when keeping the aspect ratio.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool CanFillOutside
         {
             get
@@ -163,6 +174,7 @@ namespace ElmSharp
         /// Sets or gets the prescale size for the image.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int PrescaleSize
         {
             get
@@ -179,6 +191,7 @@ namespace ElmSharp
         /// Sets or gets whether the original aspect ratio of the image should be kept on resize.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsFixedAspect
         {
             get
@@ -195,6 +208,7 @@ namespace ElmSharp
         /// Sets or gets whether an image object (which supports animation) is to animate itself.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsAnimated
         {
             get
@@ -211,6 +225,7 @@ namespace ElmSharp
         /// Gets whether an image object supports animation.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsAnimatedAvailable
         {
             get
@@ -227,6 +242,7 @@ namespace ElmSharp
         /// To actually start playing any image object's animation, <see cref="IsAnimated"/> should be TRUE before setting this property true.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsAnimationPlaying
         {
             get
@@ -243,6 +259,7 @@ namespace ElmSharp
         /// Sets or gets whether the image is 'editable'.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsEditable
         {
             get
@@ -259,6 +276,7 @@ namespace ElmSharp
         /// Gets the current size of the image.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Size ObjectSize
         {
             get
@@ -272,6 +290,7 @@ namespace ElmSharp
         /// Sets or gets whether the alpha channel data is being used on the given image object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsOpaque
         {
             get
@@ -295,6 +314,7 @@ namespace ElmSharp
         /// Sets or gets the image orientation.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ImageOrientation Orientation
         {
             get
@@ -311,6 +331,7 @@ namespace ElmSharp
         /// Sets or gets the image color.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override Color Color
         {
             get
@@ -338,6 +359,7 @@ namespace ElmSharp
         /// Sets the background color.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override Color BackgroundColor
         {
             set
@@ -360,6 +382,7 @@ namespace ElmSharp
         /// </summary>
         /// <remarks>Be careful not to manipulate it, as it is under the control of the widget.</remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public EvasImage ImageObject
         {
             get
@@ -385,6 +408,7 @@ namespace ElmSharp
         /// <param name="top">The border's top width.</param>
         /// <param name="bottom">The border's bottom width.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void SetBorder(int left, int right, int top, int bottom)
         {
             ImageObject?.SetBorder(left, right, top, bottom);
@@ -399,6 +423,7 @@ namespace ElmSharp
         /// Very useful for frames and decorations.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ImageBorderFillMode BorderCenterFillMode
         {
             get
@@ -428,6 +453,7 @@ namespace ElmSharp
         /// <param name="file">The path to the file that is used as an image source.</param>
         /// <returns>(true = success, false = error)</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool Load(string file)
         {
             if (file == null)
@@ -444,6 +470,7 @@ namespace ElmSharp
         /// <param name="uri">The URI to the file that is used as an image source.</param>
         /// <returns>(true = success, false = error)</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool Load(Uri uri)
         {
             if (uri == null)
@@ -481,6 +508,7 @@ namespace ElmSharp
         /// <param name="stream">The stream that is used as an image source.</param>
         /// <returns>(true = success, false = error)</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool Load(Stream stream)
         {
             if (stream == null)
@@ -507,6 +535,7 @@ namespace ElmSharp
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>(true = success, false = error)</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public async Task<bool> LoadAsync(string file, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (file == null)
@@ -554,7 +583,7 @@ namespace ElmSharp
                     throw new InvalidOperationException("Failed to set file to Image");
                 }
                 // it should be return on main thread, because SmartEvent should be disposed on main thread
-                return await tcs.Task.ConfigureAwait(true); 
+                return await tcs.Task.ConfigureAwait(true);
             }
         }
 
@@ -565,6 +594,7 @@ namespace ElmSharp
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>(true = success, false = error)</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Task<bool> LoadAsync(Uri uri, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (uri == null)
@@ -580,6 +610,7 @@ namespace ElmSharp
         /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>(true = success, false = error)</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public async Task<bool> LoadAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (stream == null)
@@ -647,6 +678,7 @@ namespace ElmSharp
         /// <param name="part">The name of the Color class.</param>
         /// <param name="color">The struct of the Color class.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override void SetPartColor(string part, Color color)
         {
             Interop.Elementary.elm_object_color_class_color_set(Handle, part, color.R * color.A / 255,
@@ -661,6 +693,7 @@ namespace ElmSharp
         /// <param name="part">The name of the Color class.</param>
         /// <returns>The color object.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override Color GetPartColor(string part)
         {
             Interop.Elementary.elm_object_color_class_color_get(Handle, part, out int r, out int g, out int b, out int a);
@@ -673,6 +706,7 @@ namespace ElmSharp
         /// <param name="parent">The parent is a given container, which will be attached by the image as a child. It's <see cref="EvasObject"/> type.</param>
         /// <returns>The new object, otherwise null if it cannot be created.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
@@ -689,6 +723,7 @@ namespace ElmSharp
     /// Enumeration for the fill mode of the image border.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum ImageBorderFillMode
     {
         /// <summary>
@@ -711,6 +746,7 @@ namespace ElmSharp
     /// Enumeration for the possible orientation options.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum ImageOrientation : int
     {
         /// <summary>

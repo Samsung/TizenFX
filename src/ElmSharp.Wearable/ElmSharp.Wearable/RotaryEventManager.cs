@@ -25,6 +25,7 @@ namespace ElmSharp.Wearable
     /// The RotaryEventManager serves functions for the global Rotary event like Galaxy Gear.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public static class RotaryEventManager
     {
         static Dictionary<RotaryEventHandler, Interop.Eext.Eext_Rotary_Handler_Cb> s_rotaryEventHandlers = new Dictionary<RotaryEventHandler, Interop.Eext.Eext_Rotary_Handler_Cb>();
@@ -33,6 +34,7 @@ namespace ElmSharp.Wearable
         /// Rotated will be triggered when the rotatable device like the Galaxy Gear Bezel is rotated.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static event RotaryEventHandler Rotated
         {
             add
@@ -70,6 +72,7 @@ namespace ElmSharp.Wearable
     /// The RotaryEventManager serves extension functions for the Rotary event to EvasObject on a device like Galaxy Gear.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public static class RotaryEventExtensions
     {
         static Dictionary<EvasObject, RotaryEventHandler> s_rotaryObjectEventHandlers = new Dictionary<EvasObject, RotaryEventHandler>();
@@ -81,6 +84,7 @@ namespace ElmSharp.Wearable
         /// <param name="obj">Target EvasObject.</param>
         /// <param name="handler">Event handler for the Rotary event.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void AddRotaryEventHandler(this EvasObject obj, RotaryEventHandler handler)
         {
             EnableRotaryEventHandler(obj);
@@ -101,6 +105,7 @@ namespace ElmSharp.Wearable
         /// <param name="obj">Target EvasObject.</param>
         /// <param name="handler">Event handler for Rotary event.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void RemoveRotaryEventHandler(this EvasObject obj, RotaryEventHandler handler)
         {
             if (s_rotaryObjectEventHandlers.ContainsKey(obj))
@@ -119,6 +124,7 @@ namespace ElmSharp.Wearable
         /// </summary>
         /// <param name="widget">Target the Circle widget.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void Activate(this IRotaryActionWidget widget)
         {
             Interop.Eext.eext_rotary_object_event_activated_set(widget.CircleHandle, true);
@@ -129,6 +135,7 @@ namespace ElmSharp.Wearable
         /// </summary>
         /// <param name="widget">Target the Circle widget.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void Deactivate(this IRotaryActionWidget widget)
         {
             Interop.Eext.eext_rotary_object_event_activated_set(widget.CircleHandle, false);
@@ -139,6 +146,7 @@ namespace ElmSharp.Wearable
         /// </summary>
         /// <param name="obj">Target object.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void Activate(this EvasObject obj)
         {
             Interop.Eext.eext_rotary_object_event_activated_set(obj, true);
@@ -149,6 +157,7 @@ namespace ElmSharp.Wearable
         /// </summary>
         /// <param name="obj">Target object.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static void Deactivate(this EvasObject obj)
         {
             Interop.Eext.eext_rotary_object_event_activated_set(obj, false);
@@ -198,24 +207,28 @@ namespace ElmSharp.Wearable
     /// </summary>
     /// <param name="args">The Rotary event information.</param>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public delegate void RotaryEventHandler(RotaryEventArgs args);
 
     /// <summary>
     /// The RotaryEventArgs serves information for the triggered Rotary event.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class RotaryEventArgs : EventArgs
     {
         /// <summary>
         /// IsClockwise is true when the Rotary device rotated in the clockwise direction, or false on counter clockwise.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsClockwise { get; set; }
 
         /// <summary>
         /// Timestamp of the Rotary event.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public uint Timestamp { get; set; }
     }
 }

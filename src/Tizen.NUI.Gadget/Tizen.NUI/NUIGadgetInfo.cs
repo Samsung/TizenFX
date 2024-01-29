@@ -17,10 +17,11 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using Tizen.Applications;
+
+using SystemIO = System.IO;
 
 namespace Tizen.NUI
 {
@@ -34,21 +35,12 @@ namespace Tizen.NUI
         private const string MetadataUIGadgetDll = "http://tizen.org/metadata/ui-gadget/dll";
         private const string MetadataUIGadgetResourceDll = "http://tizen.org/metadata/ui-gadget/resource/dll";
         private const string MetadataUIGadgetResourceClassName = "http://tizen.org/metadata/ui-gadget/resource/class-name";
-        private string _resourcePath = string.Empty;
 
         internal NUIGadgetInfo(string packageId)
         {
             PackageId = packageId;
             Log.Warn("PackageId: " + PackageId);
-            AllowedPath = Application.Current.DirectoryInfo.Resource + "mount/allowed/";
-            Log.Warn("AllowedPath: " + AllowedPath);
-            GlobalPath = Application.Current.DirectoryInfo.Resource + "mount/global/";
-            Log.Warn("GlobalPath: " + GlobalPath);
         }
-
-        private string AllowedPath { get; set; }
-
-        private string GlobalPath { get; set; }
 
         /// <summary>
         /// Gets the package ID of the gadget.
@@ -74,22 +66,7 @@ namespace Tizen.NUI
         /// <since_tizen> 10 </since_tizen>
         public string ResourcePath
         {
-            get
-            {
-                if (!string.IsNullOrEmpty(_resourcePath))
-                    return _resourcePath;
-
-                if (File.Exists(GlobalPath + ExecutableFile))
-                {
-                    _resourcePath = GlobalPath;
-                }
-                else if (File.Exists(AllowedPath + ExecutableFile))
-                {
-                    _resourcePath = AllowedPath;
-                }
-
-                return _resourcePath;
-            }
+            get; private set;
         }
 
         /// <summary>
@@ -199,6 +176,7 @@ namespace Tizen.NUI
                 Log.Warn("Failed to destroy package info. error = " + errorCode);
             }
 
+            info.ResourcePath = SystemIO.Path.GetDirectoryName(Application.Current.ApplicationInfo.ExecutablePath) + "/";
             return info;
         }
     }

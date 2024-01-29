@@ -25,43 +25,76 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class FrameUpdateCallbackInterface : Disposable
     {
+        private uint onUpdateCallbackVersion = 0u;
+
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal FrameUpdateCallbackInterface(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public FrameUpdateCallbackInterface() : this(Interop.FrameUpdateCallbackInterface.newFrameUpdateCallbackInterface(), true)
+        public FrameUpdateCallbackInterface() : this(0u)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            DirectorConnect();
         }
+
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public FrameUpdateCallbackInterface(uint updateCallbackVersion) : this(Interop.FrameUpdateCallbackInterface.newFrameUpdateCallbackInterface(), true)
+        {
+            onUpdateCallbackVersion = updateCallbackVersion;
+            DirectorConnect();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint UpdateCallbackVersion => onUpdateCallbackVersion;
 
         private void DirectorConnect()
         {
-            Delegate0 = new DelegateFrameUpdateCallbackInterface(DirectorOnUpdate);
-            Interop.FrameUpdateCallbackInterface.FrameUpdateCallbackInterfaceDirectorConnect(SwigCPtr, Delegate0);
+            Delegate1 = new DelegateFrameUpdateCallbackInterfaceV1(DirectorOnUpdate);
+            Interop.FrameUpdateCallbackInterface.FrameUpdateCallbackInterfaceDirectorConnectV1(SwigCPtr, Delegate1);
         }
 
-        private global::System.IntPtr proxyIntPtr;
-        private void DirectorOnUpdate(global::System.IntPtr proxy, float elapsedSeconds)
+        private global::System.IntPtr proxyIntPtr = global::System.IntPtr.Zero;
+
+        private bool DirectorOnUpdate(global::System.IntPtr proxy, float elapsedSeconds)
         {
+            bool ret = false;
+
             proxyIntPtr = proxy;
-            OnUpdate(elapsedSeconds);
-            return;
+            if (onUpdateCallbackVersion == 0u)
+            {
+                OnUpdate(elapsedSeconds);
+            }
+            else if (onUpdateCallbackVersion == 1u)
+            {
+                ret = OnUpdate(this, elapsedSeconds);
+            }
+            proxyIntPtr = global::System.IntPtr.Zero;
+
+            return ret;
         }
 
-        internal delegate void DelegateFrameUpdateCallbackInterface(global::System.IntPtr proxy, float elapsedSeconds);
-        private DelegateFrameUpdateCallbackInterface Delegate0;
-
+        internal delegate bool DelegateFrameUpdateCallbackInterfaceV1(global::System.IntPtr proxy, float elapsedSeconds);
+        private DelegateFrameUpdateCallbackInterfaceV1 Delegate1;
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void OnUpdate(float elapsedSeconds)
         {
+        }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual bool OnUpdate(FrameUpdateCallbackInterface obj, float elapsedSeconds)
+        {
+            // Let we call Versoin 0 API. To keep backward capability.
+            OnUpdate(elapsedSeconds);
+            return false;
         }
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.

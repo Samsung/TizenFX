@@ -24,6 +24,7 @@ namespace ElmSharp.Accessible
     /// <param name="obj">The sender obj.</param>
     /// <returns>Return information for name or description.</returns>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")] 
     public delegate string AccessibleInfoProvider (AccessibleObject obj);
 
     /// <summary>
@@ -32,6 +33,7 @@ namespace ElmSharp.Accessible
     /// There are many relationships between two accessible objects, like <see cref="ChildOf"/>, <see cref="ParentOf"/>, <see cref="FlowsTo"/>, <see cref="FlowsFrom"/>, etc.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")] 
     public abstract class AccessibleObject : EvasObject, IAccessibleObject
     {
 
@@ -199,6 +201,7 @@ namespace ElmSharp.Accessible
         /// </summary>
         /// <param name="parent">Parent EvasObject class.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         protected AccessibleObject(EvasObject parent) : base(parent)
         {
         }
@@ -207,6 +210,7 @@ namespace ElmSharp.Accessible
         /// Creates and initializes a new instance of the AccessibleObject class.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         protected AccessibleObject()
         {
         }
@@ -237,6 +241,7 @@ namespace ElmSharp.Accessible
         /// Highlights the accessible widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public void Highlight()
         {
             Interop.Elementary.elm_atspi_component_highlight_grab(RealHandle);
@@ -246,6 +251,7 @@ namespace ElmSharp.Accessible
         /// Clears the highlight of the accessible widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")] 
         public void Unhighlight()
         {
             Interop.Elementary.elm_atspi_component_highlight_clear(RealHandle);
