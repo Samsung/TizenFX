@@ -22,6 +22,7 @@ namespace ElmSharp
     /// The Check is a widget that allows for toggling a value between true and false.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class Check : Layout
     {
         private SmartEvent _changed;
@@ -34,6 +35,7 @@ namespace ElmSharp
         /// The EvasObject to which the new check will be attached as a child.
         /// </param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Check(EvasObject parent) : base(parent)
         {
             _changed = new SmartEvent(this, this.RealHandle, "changed");
@@ -47,6 +49,7 @@ namespace ElmSharp
         /// StateChanged will be triggered when the IsChecked in the check is changed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<CheckStateChangedEventArgs> StateChanged;
 
         /// <summary>
@@ -56,6 +59,7 @@ namespace ElmSharp
         /// When an object is checked, the value will be set to true. Conversely, will be set to false.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsChecked
         {
             get
@@ -75,6 +79,7 @@ namespace ElmSharp
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);

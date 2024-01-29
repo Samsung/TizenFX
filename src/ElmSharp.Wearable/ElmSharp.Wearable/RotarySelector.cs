@@ -27,6 +27,7 @@ namespace ElmSharp.Wearable
     /// Inherits <see cref="Layout"/>.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class RotarySelector : Layout
     {
         const string IconPartName = "selector,icon";
@@ -40,12 +41,14 @@ namespace ElmSharp.Wearable
         /// Selected will be triggered when selecting an item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<RotarySelectorItemEventArgs> Selected;
 
         /// <summary>
         /// Clicked will be triggered when selecting again the already selected item or selecting a selector.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<RotarySelectorItemEventArgs> Clicked;
 
         SmartEvent<PointerEventArgs> _selectedEvent;
@@ -56,6 +59,7 @@ namespace ElmSharp.Wearable
         /// Gets the rotary selector item list of a rotary selector object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public IList<RotarySelectorItem> Items { get; private set; }
 
         /// <summary>
@@ -63,6 +67,7 @@ namespace ElmSharp.Wearable
         /// </summary>
         /// <param name="parent">The parent of the new Rotary Selector instance.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public RotarySelector(EvasObject parent) : base(parent)
         {
             Items = new RotarySelectorList(this);
@@ -86,6 +91,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the selected item of a rotary selector object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public RotarySelectorItem SelectedItem
         {
             get
@@ -125,6 +131,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the background image of a rotary selector object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Image BackgroundImage { set => setPart(ref _normalBgImage, BgPartName, State.Normal, value); get => _normalBgImage; }
 
         /// <summary>
@@ -133,6 +140,7 @@ namespace ElmSharp.Wearable
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr ptr = Interop.Eext.eext_rotary_selector_add(parent);

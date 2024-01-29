@@ -25,6 +25,7 @@ namespace ElmSharp.Wearable
     /// Inherits <see cref="GenList"/>.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class CircleGenList : GenList, IRotaryActionWidget
     {
         IntPtr _circleHandle;
@@ -36,6 +37,7 @@ namespace ElmSharp.Wearable
         /// <param name="parent">The parent of the new Circle GenList instance.</param>
         /// <param name="surface">The surface for drawing the circle features for this widget.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public CircleGenList(EvasObject parent, CircleSurface surface) : base()
         {
             Debug.Assert(parent == null || surface == null || parent.IsRealized);
@@ -59,12 +61,14 @@ namespace ElmSharp.Wearable
         /// Gets the handle for the Circle widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public virtual IntPtr CircleHandle => _circleHandle;
 
         /// <summary>
         /// Gets the handle for the circle surface used in this widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public virtual CircleSurface CircleSurface => _surface;
 
         /// <summary>
@@ -83,6 +87,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the state of the widget, which might be enabled or disabled.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override bool IsEnabled
         {
             get
@@ -99,6 +104,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the color of the scroll background.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Color VerticalScrollBackgroundColor
         {
             get
@@ -117,6 +123,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the line width of the scroll background.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int VerticalScrollBackgroundLineWidth
         {
             get
@@ -133,6 +140,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the radius of the scroll background.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double VerticalScrollBackgroundRadius
         {
             get
@@ -149,6 +157,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the color of the scrollbar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Color VerticalScrollBarColor
         {
             get
@@ -167,6 +176,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the line width of the scrollbar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int VerticalScrollBarLineWidth
         {
             get
@@ -183,6 +193,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the radius of the scrollbar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double VerticalScrollBarRadius
         {
             get
@@ -203,6 +214,7 @@ namespace ElmSharp.Wearable
         /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public new ScrollBarVisiblePolicy VerticalScrollBarVisiblePolicy
         {
             get
@@ -225,6 +237,7 @@ namespace ElmSharp.Wearable
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             var handle = base.CreateHandle(parent);

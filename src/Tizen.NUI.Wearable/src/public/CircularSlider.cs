@@ -25,6 +25,7 @@ namespace Tizen.NUI.Wearable
     /// <summary>
     /// Value Changed event data.
     /// </summary>
+    [Obsolete("This has been deprecated in API12")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class CircularSliderValueChangedEventArgs : EventArgs
     {
@@ -33,6 +34,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Current value
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float CurrentValue
         {
@@ -45,6 +47,7 @@ namespace Tizen.NUI.Wearable
     /// The CircularSlider class of Wearable is used to let users select a value from a continuous or discrete range of values by moving the slider thumb.
     /// CircularSlider shows the current value with the length of the line.
     /// </summary>
+    [Obsolete("This has been deprecated in API12")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class CircularSlider : Control
     {
@@ -221,6 +224,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The constructor of CircularSlider.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CircularSlider() : base()
         {
@@ -231,6 +235,7 @@ namespace Tizen.NUI.Wearable
         /// The constructor of the CircularSlider class with specific style.
         /// </summary>
         /// <param name="progressStyle">The style object to initialize the CircularSlider.</param>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CircularSlider(CircularSliderStyle progressStyle) : base(progressStyle)
         {
@@ -244,6 +249,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The value changed event handler.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<CircularSliderValueChangedEventArgs> ValueChanged;
 
@@ -254,6 +260,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The thickness of the track and progress.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float Thickness
         {
@@ -271,6 +278,7 @@ namespace Tizen.NUI.Wearable
         /// The property to get/set the maximum value of the CircularSlider.
         /// The default value is 100.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float MaxValue
         {
@@ -288,6 +296,7 @@ namespace Tizen.NUI.Wearable
         /// The property to get/set the minimum value of the CircularSlider.
         /// The default value is 0.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float MinValue
         {
@@ -305,6 +314,7 @@ namespace Tizen.NUI.Wearable
         /// The property to get/set the current value of the CircularSlider.
         /// The default value is 0.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float CurrentValue
         {
@@ -330,6 +340,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The property to get/set Track object color of the CircularSlider.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color TrackColor
         {
@@ -346,6 +357,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The property to get/set Progress object color of the CircularSlider.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color ProgressColor
         {
@@ -362,6 +374,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Gets or sets the size of the thumb of Slider.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Size ThumbSize
         {
@@ -378,6 +391,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// The property to get/set Thumb object color of the CircularSlider.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color ThumbColor
         {
@@ -394,6 +408,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Flag to be enabled or disabled in CircularSlider.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new bool IsEnabled
         {
@@ -437,6 +452,7 @@ namespace Tizen.NUI.Wearable
         /// Dispose Progress and all children on it.
         /// </summary>
         /// <param name="type">Dispose type.</param>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
@@ -458,6 +474,7 @@ namespace Tizen.NUI.Wearable
         /// <summary>
         /// Update progress value
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void UpdateValue()
         {
@@ -480,6 +497,7 @@ namespace Tizen.NUI.Wearable
         /// Get Progress style.
         /// </summary>
         /// <returns>The default progress style.</returns>
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override ViewStyle CreateViewStyle()
         {

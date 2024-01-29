@@ -23,6 +23,7 @@ namespace ElmSharp
     /// The Rect is a struct that represents the rectangular space.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     [StructLayout(LayoutKind.Sequential)]
     public struct Rect : IEquatable<Rect>
     {
@@ -34,6 +35,7 @@ namespace ElmSharp
         /// <param name="w">Width value.</param>
         /// <param name="h">Height value.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Rect(int x, int y, int w, int h)
         {
             X = x;
@@ -46,60 +48,70 @@ namespace ElmSharp
         /// Gets or sets the position of this rectangle on the X-axis.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int X { get; set; }
 
         /// <summary>
         /// Gets or sets the position of this rectangle on the Y-axis.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int Y { get; set; }
 
         /// <summary>
         /// Gets or sets the width of this rectangle.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int Width { get; set; }
 
         /// <summary>
         /// Gets or sets the height of this rectangle.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int Height { get; set; }
 
         /// <summary>
         /// Gets the position of this rectangle on the X-axis.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int Left { get { return X; } }
 
         /// <summary>
         /// Gets the extent along the X-axis.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int Right { get { return X + Width; } }
 
         /// <summary>
         /// Gets the position of this rectangle on the Y-axis.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int Top { get { return Y; } }
 
         /// <summary>
         /// Gets the extent along the Y-axis.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int Bottom { get { return Y + Height; } }
 
         /// <summary>
         /// Gets the point defined by Rectangle.Left and Rectangle.Top.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Point Location { get { return new Point { X = X, Y = Y }; } }
 
         /// <summary>
         /// Gets the extent of the rectangle along its X-axis and Y-axis.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Size Size { get { return new Size { Width = Width, Height = Height }; } }
 
         /// <summary>
@@ -107,6 +119,7 @@ namespace ElmSharp
         /// </summary>
         /// <returns>The string is formatted as "{{X={0} Y={1} Width={2} Height={3}}}".</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override string ToString()
         {
             return string.Format("{{X={0} Y={1} Width={2} Height={3}}}", X, Y, Width, Height);
@@ -117,6 +130,7 @@ namespace ElmSharp
         /// </summary>
         /// <returns>The hash code.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override int GetHashCode()
         {
             unchecked
@@ -138,6 +152,7 @@ namespace ElmSharp
         /// otherwise false.
         /// </returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override bool Equals(object obj)
         {
             if (!(obj is Rect))
@@ -155,6 +170,7 @@ namespace ElmSharp
         /// otherwise, false
         /// </returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool Equals(Rect other)
         {
             return X.Equals(other.X) && Y.Equals(other.Y) && Width.Equals(other.Width) && Height.Equals(other.Height);
@@ -167,6 +183,7 @@ namespace ElmSharp
         /// <param name="r2">A <see cref="Rect"/> on the right hand side.</param>
         /// <returns>True if both <see cref="Rect"/>'s have equal values.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static bool operator ==(Rect r1, Rect r2)
         {
             return r1.Equals(r2);
@@ -179,6 +196,7 @@ namespace ElmSharp
         /// <param name="r2">A <see cref="Rect"/> on the right hand side.</param>
         /// <returns>True if both <see cref="Rect"/>'s do not have equal values.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public static bool operator !=(Rect r1, Rect r2)
         {
             return !r1.Equals(r2);

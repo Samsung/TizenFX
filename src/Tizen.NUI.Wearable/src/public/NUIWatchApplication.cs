@@ -25,32 +25,38 @@ namespace Tizen.NUI
     /// <summary>
     /// Represents an application that can make watch-face.
     /// </summary>
+    [Obsolete("This has been deprecated in API12")]
     public class NUIWatchApplication : CoreApplication
     {
         /// <summary>
         /// Occurs whenever the application is resumed.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Resumed;
 
         /// <summary>
         /// Occurs whenever the application is paused.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Paused;
 
         /// <summary>
         /// Occurs at every second.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler TimeTick;
 
         /// <summary>
         /// Event arguments that passed via time tick event signal.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         public class TimeTickEventArgs : EventArgs
         {
             private WatchTime _watchTime;
             /// <summary>
             /// Default Constructor.
             /// </summary>
+            [Obsolete("This has been deprecated in API12")]
             public TimeTickEventArgs( WatchTime watchTime )
             {
                 _watchTime = watchTime;
@@ -59,6 +65,7 @@ namespace Tizen.NUI
             /// <summary>
             /// WatchTime.
             /// </summary>
+            [Obsolete("This has been deprecated in API12")]
             public WatchTime WatchTime
             {
                 get
@@ -72,17 +79,20 @@ namespace Tizen.NUI
         /// Occurs at each minute in ambient mode.
         /// http://tizen.org/privilege/alarm.set privilege is needed to receive ambient ticks at each minute.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler AmbientTick;
 
         /// <summary>
         /// Event arguments that passed via ambient tick event signal.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         public class AmbientTickEventArgs : EventArgs
         {
             private WatchTime _watchTime;
             /// <summary>
             /// Default Constructor.
             /// </summary>
+            [Obsolete("This has been deprecated in API12")]
             public AmbientTickEventArgs(WatchTime watchTime)
             {
                 _watchTime = watchTime;
@@ -91,6 +101,7 @@ namespace Tizen.NUI
             /// <summary>
             /// WatchTime.
             /// </summary>
+            [Obsolete("This has been deprecated in API12")]
             public WatchTime WatchTime
             {
                 get
@@ -103,17 +114,20 @@ namespace Tizen.NUI
         /// <summary>
         /// Occurs when the device enters or exits ambient mode
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler AmbientChanged;
 
         /// <summary>
         /// Event arguments that passed via ambient tick event signal.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         public class AmbientChangedEventArgs : EventArgs
         {
             private bool _changed;
             /// <summary>
             /// Default Constructor.
             /// </summary>
+            [Obsolete("This has been deprecated in API12")]
             public AmbientChangedEventArgs(bool changed)
             {
                 _changed = changed;
@@ -122,6 +136,7 @@ namespace Tizen.NUI
             /// <summary>
             /// Changed.
             /// </summary>
+            [Obsolete("This has been deprecated in API12")]
             public bool Changed
             {
                 get
@@ -134,6 +149,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The default constructor.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         public NUIWatchApplication() : base(new NUIWatchCoreBackend())
         {
         }
@@ -141,6 +157,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The constructor with stylesheet.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         public NUIWatchApplication(string stylesheet) : base(new NUIWatchCoreBackend(stylesheet))
         {
         }
@@ -148,6 +165,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if want to handle behavior.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         protected override void OnLocaleChanged(LocaleChangedEventArgs e)
         {
             Log.Debug("NUI", "OnLocaleChanged() is called!");
@@ -157,6 +175,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if want to handle behavior.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         protected override void OnLowBattery(LowBatteryEventArgs e)
         {
             Log.Debug("NUI", "OnLowBattery() is called!");
@@ -166,6 +185,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if want to handle behavior.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         protected override void OnLowMemory(LowMemoryEventArgs e)
         {
             Log.Debug("NUI", "OnLowMemory() is called!");
@@ -175,6 +195,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if want to handle behavior.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         protected override void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
         {
             Log.Debug("NUI", "OnRegionFormatChanged() is called!");
@@ -184,6 +205,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if want to handle behavior.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         protected override void OnCreate()
         {
             // This is also required to create DisposeQueue on main thread.
@@ -196,6 +218,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if want to handle behavior.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         protected virtual void OnPreCreate()
         {
             Log.Debug("NUI", "OnPreCreate() is called!");
@@ -204,6 +227,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if want to handle behavior.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         protected override void OnTerminate()
         {
             Log.Debug("NUI", "OnTerminate() is called!");
@@ -213,6 +237,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if want to handle behavior.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
         {
             Log.Debug("NUI", "OnAppControlReceived() is called!");
@@ -227,6 +252,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if want to handle behavior.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         protected virtual void OnPause()
         {
             Log.Debug("NUI", "OnPause() is called!");
@@ -236,6 +262,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if want to handle behavior.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         protected virtual void OnResume()
         {
             Log.Debug("NUI", "OnResume() is called!");
@@ -245,6 +272,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if want to handle behavior.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         protected virtual void OnTimeTick(TimeTickEventArgs e)
         {
             Log.Debug("NUI", "OnTimeTick() is called!");
@@ -255,6 +283,7 @@ namespace Tizen.NUI
         /// Overrides this method if want to handle behavior.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
+        [Obsolete("This has been deprecated in API12")]
         protected virtual void OnAmbientTick(AmbientTickEventArgs e)
         {
             Log.Debug("NUI", "OnAmbientTick() is called!");
@@ -264,6 +293,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if want to handle behavior.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         protected virtual void OnAmbientChanged(AmbientChangedEventArgs e)
         {
             Log.Debug("NUI", "OnAmbientChanged() is called!");
@@ -274,6 +304,7 @@ namespace Tizen.NUI
         /// Run NUIWidgetApplication.
         /// </summary>
         /// <param name="args">Arguments from commandline.</param>
+        [Obsolete("This has been deprecated in API12")]
         public override void Run(string[] args)
         {
             Backend.AddEventHandler(EventType.PreCreated, OnPreCreate);
@@ -290,6 +321,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Exit NUIWidgetApplication.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         public override void Exit()
         {
             Backend.Exit();
@@ -306,6 +338,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Get the window instance.
         /// </summary>
+        [Obsolete("This has been deprecated in API12")]
         public Window Window
         {
             get

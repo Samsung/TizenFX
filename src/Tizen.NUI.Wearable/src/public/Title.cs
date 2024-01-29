@@ -27,7 +27,7 @@ namespace Tizen.NUI.Components
     /// You can also set the color of the fadeout.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
-    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [Obsolete("This has been deprecated in API12")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Title : TextLabel
     {
@@ -65,13 +65,14 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         static Title() { }
 
         /// <summary>
         /// Construct Title with null.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Title() : base()
         {
@@ -83,7 +84,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="textLabelStyle">Construct Style</param>
         /// <since_tizen> 8 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Title(TextLabelStyle textLabelStyle) : base(textLabelStyle)
         {
@@ -95,7 +96,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="style"> style name </param>
         /// <since_tizen> 8 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Title(string style) : base(style)
         {
@@ -106,7 +107,7 @@ namespace Tizen.NUI.Components
         /// Sets the start and end color of the fadeout.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color FadeOutColor
         {
@@ -126,7 +127,7 @@ namespace Tizen.NUI.Components
         /// Gets or Sets the width of the fadeout effect.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [Obsolete("This has been deprecated in API12")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int FadeOutWidth
         {
@@ -146,6 +147,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="type">dispose types.</param>
         /// <since_tizen> 8 </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)

@@ -23,6 +23,7 @@ namespace ElmSharp
     /// Enumeration for setting the genlist item types.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum GenListItemType
     {
         /// <summary>
@@ -45,6 +46,7 @@ namespace ElmSharp
     /// Enumeration for setting the genlist's resizing behavior, transverse axis scrolling, and items cropping.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum GenListMode
     {
         /// <summary>
@@ -79,12 +81,14 @@ namespace ElmSharp
     /// All events of the GenList contain GenListItemEventArgs as a parameter.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class GenListItemEventArgs : EventArgs
     {
         /// <summary>
         /// Gets or sets the genlist item. The return type is <see cref="GenListItem"/>.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenListItem Item { get; set; }
 
         internal static GenListItemEventArgs CreateFromSmartEvent(IntPtr data, IntPtr obj, IntPtr info)
@@ -98,6 +102,7 @@ namespace ElmSharp
     /// Enumeration for defining where to position the item in the genlist.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public enum ScrollToPosition
     {
         /// <summary>
@@ -134,6 +139,7 @@ namespace ElmSharp
     /// If all you want is a simple list with icons and a single text, use <see cref="List"/> widget.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class GenList : Layout
     {
         HashSet<GenListItem> _children = new HashSet<GenListItem>();
@@ -160,6 +166,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">The parent is a given container, which will be attached by GenList as a child. It's <see cref="EvasObject"/> type.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenList(EvasObject parent) : base(parent)
         {
         }
@@ -168,6 +175,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of the GenList class.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected GenList()
         {
         }
@@ -179,6 +187,7 @@ namespace ElmSharp
         /// If true, the genlist items will have the same height and width.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool Homogeneous
         {
             get
@@ -205,6 +214,7 @@ namespace ElmSharp
         /// If so, then some dynamic resizable objects in the genlist would not be diplayed properly.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenListMode ListMode
         {
             get
@@ -221,6 +231,7 @@ namespace ElmSharp
         /// Gets the first item in the genlist.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenListItem FirstItem
         {
             get
@@ -234,6 +245,7 @@ namespace ElmSharp
         /// Gets the last item in the genlist.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenListItem LastItem
         {
             get
@@ -249,6 +261,7 @@ namespace ElmSharp
         /// You can move the item up and down. However, reordering does not work with group items.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool ReorderMode
         {
             get
@@ -265,6 +278,7 @@ namespace ElmSharp
         /// Gets or sets the maximum number of items within an item block.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int BlockCount
         {
             get
@@ -281,6 +295,7 @@ namespace ElmSharp
         /// Gets or sets whether the genlist items should be highlighted when an item is selected.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsHighlight
         {
             get
@@ -297,6 +312,7 @@ namespace ElmSharp
         /// Gets or sets the timeout in seconds for the longpress event.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double LongPressTimeout
         {
             get
@@ -318,6 +334,7 @@ namespace ElmSharp
         /// Clicking on a focusable widget inside an item will couse this particular item to get focus as usual.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool FocusOnSelection
         {
             get
@@ -334,6 +351,7 @@ namespace ElmSharp
         /// Gets or sets whether to enable multi-selection in the genlist.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public bool IsMultiSelection
         {
             get
@@ -350,6 +368,7 @@ namespace ElmSharp
         /// Gets the selected item in a given GenList widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenListItem SelectedItem
         {
             get
@@ -363,6 +382,7 @@ namespace ElmSharp
         /// Gets or sets the genlist select mode by <see cref="GenItemSelectionMode"/>.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenItemSelectionMode SelectionMode
         {
             get
@@ -379,6 +399,7 @@ namespace ElmSharp
         /// Gets the count of items in a this genlist widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int Count
         {
             get
@@ -395,6 +416,7 @@ namespace ElmSharp
         /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ScrollBarVisiblePolicy HorizontalScrollBarVisiblePolicy
         {
             get
@@ -417,6 +439,7 @@ namespace ElmSharp
         /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public ScrollBarVisiblePolicy VerticalScrollBarVisiblePolicy
         {
             get
@@ -435,48 +458,56 @@ namespace ElmSharp
         /// ItemSelected is raised when a new genlist item is selected.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<GenListItemEventArgs> ItemSelected;
 
         /// <summary>
         /// ItemUnselected is raised when the genlist item is unselected.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<GenListItemEventArgs> ItemUnselected;
 
         /// <summary>
         /// ItemPressed is raised when a new genlist item is pressed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<GenListItemEventArgs> ItemPressed;
 
         /// <summary>
         /// ItemReleased is raised when a new genlist item is released.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<GenListItemEventArgs> ItemReleased;
 
         /// <summary>
         /// ItemActivated is raised when a new genlist item is double-clicked or pressed (enter|return|spacebar).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<GenListItemEventArgs> ItemActivated;
 
         /// <summary>
         /// ItemDoubleClicked is raised when a new genlist item is double-clicked.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<GenListItemEventArgs> ItemDoubleClicked;
 
         /// <summary>
         /// ItemExpanded is raised when a new genlist item is indicated to expand.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<GenListItemEventArgs> ItemExpanded;
 
         /// <summary>
         /// ItemRealized is raised when a new genlist item is created as a real object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<GenListItemEventArgs> ItemRealized;
 
         /// <summary>
@@ -484,18 +515,21 @@ namespace ElmSharp
         /// After calling unrealize, the item's content objects are deleted, and the item object itself is deleted or is put into a floating cache.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<GenListItemEventArgs> ItemUnrealized;
 
         /// <summary>
         /// ItemLongPressed is raised when a genlist item is pressed for a certain amount of time. By default, it's 1 second.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<GenListItemEventArgs> ItemLongPressed;
 
         /// <summary>
         /// ItemMoved is raised when a genlist item is moved in the reorder mode.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<GenListItemEventArgs> ItemMoved;
 
         /// <summary>
@@ -503,6 +537,7 @@ namespace ElmSharp
         /// To get the relative previous item, use <see cref="GenListItem.Previous"/>.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<GenListItemEventArgs> ItemMovedAfter;
 
         /// <summary>
@@ -510,12 +545,14 @@ namespace ElmSharp
         /// To get the relative next item, use <see cref="GenListItem.Next"/>.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler<GenListItemEventArgs> ItemMovedBefore;
 
         /// <summary>
         /// Changed is raised when the genlist has changed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler Changed
         {
             add { _changed.On += value; }
@@ -526,6 +563,7 @@ namespace ElmSharp
         /// ScrollAnimationStarted is raised when the scrolling animation has started.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler ScrollAnimationStarted
         {
             add { _scrollAnimationStarted.On += value; }
@@ -536,6 +574,7 @@ namespace ElmSharp
         /// ScrollAnimationStopped is raised when the scrolling animation has stopped.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public event EventHandler ScrollAnimationStopped
         {
             add { _scrollAnimationStopped.On += value; }
@@ -551,6 +590,7 @@ namespace ElmSharp
         /// <seealso cref="GenItemClass"/>
         /// <seealso cref="GenListItem"/>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenListItem Append(GenItemClass itemClass, object data)
         {
             return Append(itemClass, data, GenListItemType.Normal);
@@ -564,6 +604,7 @@ namespace ElmSharp
         /// <param name="type">The genlist item type.</param>
         /// <returns>Return a newly added genlist item that contains the data and itemClass.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenListItem Append(GenItemClass itemClass, object data, GenListItemType type)
         {
             return Append(itemClass, data, type, null);
@@ -578,6 +619,7 @@ namespace ElmSharp
         /// <param name="parent">The parent item, otherwise null if there is no parent item.</param>
         /// <returns>Return a newly added genlist item that contains the data and itemClass.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenListItem Append(GenItemClass itemClass, object data, GenListItemType type, GenListItem parent)
         {
             GenListItem item = new GenListItem(data, itemClass, this);
@@ -593,6 +635,7 @@ namespace ElmSharp
         /// <param name="data">The item data.</param>
         /// <returns>Return a newly added genlist item that contains data and itemClass.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenListItem Prepend(GenItemClass itemClass, object data)
         {
             return Prepend(itemClass, data, GenListItemType.Normal);
@@ -606,6 +649,7 @@ namespace ElmSharp
         /// <param name="type">The genlist item type.</param>
         /// <returns>Return a newly added genlist item that contains data and itemClass.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenListItem Prepend(GenItemClass itemClass, object data, GenListItemType type)
         {
             return Prepend(itemClass, data, type, null);
@@ -620,6 +664,7 @@ namespace ElmSharp
         /// <param name="parent">The parent item, otherwise null if there is no parent item.</param>
         /// <returns>Return a newly added genlist item that contains the data and itemClass.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenListItem Prepend(GenItemClass itemClass, object data, GenListItemType type, GenListItem parent)
         {
             GenListItem item = new GenListItem(data, itemClass, this);
@@ -637,6 +682,7 @@ namespace ElmSharp
         /// <param name="before">The item before which to place this new one.</param>
         /// <returns>Return a newly added genlist item that contains data and itemClass.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenListItem InsertBefore(GenItemClass itemClass, object data, GenListItem before)
         {
             return InsertBefore(itemClass, data, before, GenListItemType.Normal);
@@ -652,6 +698,7 @@ namespace ElmSharp
         /// <param name="type">The genlist item type.</param>
         /// <returns>Return a newly added genlist item that contains data and itemClass.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenListItem InsertBefore(GenItemClass itemClass, object data, GenListItem before, GenListItemType type)
         {
             return InsertBefore(itemClass, data, before, type, null);
@@ -667,6 +714,7 @@ namespace ElmSharp
         /// <param name="parent">The parent item, otherwise null if there is no parent item.</param>
         /// <returns>Return a newly added genlist item that contains data and itemClass.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenListItem InsertBefore(GenItemClass itemClass, object data, GenListItem before, GenListItemType type, GenListItem parent)
         {
             GenListItem item = new GenListItem(data, itemClass, this);
@@ -694,6 +742,7 @@ namespace ElmSharp
         /// <param name="parent">The parent item, otherwise null if there is no parent item.</param>
         /// <returns>Return a newly added genlist item that contains data and itemClass.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenListItem InsertAfter(GenItemClass itemClass, object data, GenListItem after, GenListItemType type, GenListItem parent)
         {
             GenListItem item = new GenListItem(data, itemClass, this);
@@ -721,6 +770,7 @@ namespace ElmSharp
         /// <param name="parent">The parent item, otherwise null if there is no parent item.</param>
         /// <returns>Return a genlist item that contains the data and itemClass.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenListItem InsertSorted(GenItemClass itemClass, object data, Comparison<object> comparison, GenListItemType type, GenListItem parent)
         {
             GenListItem item = new GenListItem(data, itemClass, this);
@@ -754,6 +804,7 @@ namespace ElmSharp
         /// <param name="position">The position to show the given item to <see cref="ScrollToPosition"/>.</param>
         /// <param name="animated">The animated indicates how to display the item, by scrolling or by jumping.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void ScrollTo(GenListItem item, ScrollToPosition position, bool animated)
         {
             if (animated)
@@ -774,6 +825,7 @@ namespace ElmSharp
         /// </summary>
         /// <seealso cref="GenListItem.Update"/>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void UpdateRealizedItems()
         {
             Interop.Elementary.elm_genlist_realized_items_update(RealHandle);
@@ -786,6 +838,7 @@ namespace ElmSharp
         /// </summary>
         /// <seealso cref="ItemObject.Delete"/>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public void Clear()
         {
             Interop.Elementary.elm_genlist_clear(RealHandle);
@@ -801,6 +854,7 @@ namespace ElmSharp
         /// </param>
         /// <returns>The item at the given coordinates.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenListItem GetItemByPosition(int x, int y, out int pos)
         {
             IntPtr handle = Interop.Elementary.elm_genlist_at_xy_item_get(RealHandle, x, y, out pos);
@@ -813,6 +867,7 @@ namespace ElmSharp
         /// <param name="index">The number of the item to grab (0 being the first).</param>
         /// <returns></returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public GenListItem GetItemByIndex(int index)
         {
             IntPtr handle = Interop.Elementary.elm_genlist_nth_item_get(RealHandle, index);
@@ -823,6 +878,7 @@ namespace ElmSharp
         /// The callback of the Unrealized event.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override void OnRealized()
         {
             base.OnRealized();
@@ -836,6 +892,7 @@ namespace ElmSharp
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);

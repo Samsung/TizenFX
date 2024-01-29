@@ -24,6 +24,7 @@ namespace ElmSharp.Wearable
     /// Circle scroller provides the scrollbar with a circular movement, and is scrolled by the Rotary event.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
+    [Obsolete("This has been deprecated in API12")]
     public class CircleScroller : Scroller, IRotaryActionWidget
     {
         IntPtr _circleHandle;
@@ -35,6 +36,7 @@ namespace ElmSharp.Wearable
         /// <param name="parent">The <see cref="EvasObject"/> to which the new CircleScroller will be attached as a child.</param>
         /// <param name="surface">The surface for drawing circle features for this widget.</param>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public CircleScroller(EvasObject parent, CircleSurface surface) : base()
         {
             Debug.Assert(parent == null || surface == null || parent.IsRealized);
@@ -58,12 +60,14 @@ namespace ElmSharp.Wearable
         /// Gets the handle for the Circle widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public virtual IntPtr CircleHandle => _circleHandle;
 
         /// <summary>
         /// Gets the handle for the circle surface used in this widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public virtual CircleSurface CircleSurface => _surface;
 
         /// <summary>
@@ -82,6 +86,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the state of the widget, which might be enabled or disabled.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override bool IsEnabled
         {
             get
@@ -102,6 +107,7 @@ namespace ElmSharp.Wearable
         /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override ScrollBarVisiblePolicy HorizontalScrollBarVisiblePolicy
         {
             get
@@ -125,6 +131,7 @@ namespace ElmSharp.Wearable
         /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public override ScrollBarVisiblePolicy VerticalScrollBarVisiblePolicy
         {
             get
@@ -144,6 +151,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the color of the vertical scroll bar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Color VerticalScrollBarColor
         {
             get
@@ -165,6 +173,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the color of the horizontal scroll bar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Color HorizontalScrollBarColor
         {
             get
@@ -186,6 +195,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the color of the vertical scroll background.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Color VerticalScrollBackgroundColor
         {
             get
@@ -207,6 +217,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the color of the horizontal scroll background.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public Color HorizontalScrollBackgroundColor
         {
             get
@@ -228,6 +239,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the line width of the vertical scroll bar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int VerticalScrollBarLineWidth
         {
             get
@@ -244,6 +256,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the line width of the horizontal scroll bar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int HorizontalScrollBarLineWidth
         {
             get
@@ -260,6 +273,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the line width of the vertical scroll background.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int VerticalScrollBackgroundLineWidth
         {
             get
@@ -276,6 +290,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the line width of the horizontal scroll background.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public int HorizontalScrollBackgroundLineWidth
         {
             get
@@ -292,6 +307,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the radius of the vertical scroll bar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double VerticalScrollBarRadius
         {
             get
@@ -308,6 +324,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the radius of the horizontal scroll bar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double HorizontalScrollBarRadius
         {
             get
@@ -324,6 +341,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the radius of the vertical scroll background.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double VerticalScrollBackgroundRadius
         {
             get
@@ -340,6 +358,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the radius of the horizontal scroll background.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         public double HorizontalScrollBackgroundRadius
         {
             get
@@ -358,6 +377,7 @@ namespace ElmSharp.Wearable
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("This has been deprecated in API12")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = base.CreateHandle(parent);
