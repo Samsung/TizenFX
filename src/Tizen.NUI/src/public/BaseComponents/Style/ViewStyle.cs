@@ -566,6 +566,9 @@ namespace Tizen.NUI.BaseComponents
         {
             var source = other as ViewStyle;
 
+            IncludeDefaultStyle = source.IncludeDefaultStyle;
+            SolidNull = source.SolidNull;
+
             if (source == null || source.DirtyProperties == null || source.DirtyProperties.Count == 0)
             {
                 return;
@@ -594,9 +597,6 @@ namespace Tizen.NUI.BaseComponents
                     InternalSetValue(destinationProperty, sourceValue);
                 }
             }
-
-            IncludeDefaultStyle = source.IncludeDefaultStyle;
-            SolidNull = source.SolidNull;
         }
 
         /// <summary>
