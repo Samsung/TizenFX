@@ -192,9 +192,9 @@ namespace Tizen.NUI
                 newTheme.Id = "NONAME";
             }
 
-            StyleManager.Instance.SetBrokenImageUrl(StyleManager.BrokenImageType.Small, newTheme.SmallBrokenImageUrl ?? "");
-            StyleManager.Instance.SetBrokenImageUrl(StyleManager.BrokenImageType.Normal, newTheme.BrokenImageUrl ?? "");
-            StyleManager.Instance.SetBrokenImageUrl(StyleManager.BrokenImageType.Large, newTheme.LargeBrokenImageUrl ?? "");
+            if (newTheme.SmallBrokenImageUrl != null) StyleManager.Instance.SetBrokenImageUrl(StyleManager.BrokenImageType.Small, newTheme.SmallBrokenImageUrl);
+            if (newTheme.BrokenImageUrl != null) StyleManager.Instance.SetBrokenImageUrl(StyleManager.BrokenImageType.Normal, newTheme.BrokenImageUrl);
+            if (newTheme.LargeBrokenImageUrl != null) StyleManager.Instance.SetBrokenImageUrl(StyleManager.BrokenImageType.Large, newTheme.LargeBrokenImageUrl);
 
             userTheme = newTheme;
             UpdateThemeForInitialize();
@@ -219,19 +219,51 @@ namespace Tizen.NUI
                 newTheme.Id = "NONAME";
             }
 
-            StyleManager.Instance.SetBrokenImageUrl(StyleManager.BrokenImageType.Small, newTheme.SmallBrokenImageUrl ?? "");
-            StyleManager.Instance.SetBrokenImageUrl(StyleManager.BrokenImageType.Normal, newTheme.BrokenImageUrl ?? "");
-            StyleManager.Instance.SetBrokenImageUrl(StyleManager.BrokenImageType.Large, newTheme.LargeBrokenImageUrl ?? "");
+            if (newTheme.SmallBrokenImageUrl != null) StyleManager.Instance.SetBrokenImageUrl(StyleManager.BrokenImageType.Small, newTheme.SmallBrokenImageUrl);
+            if (newTheme.BrokenImageUrl != null) StyleManager.Instance.SetBrokenImageUrl(StyleManager.BrokenImageType.Normal, newTheme.BrokenImageUrl);
+            if (newTheme.LargeBrokenImageUrl != null) StyleManager.Instance.SetBrokenImageUrl(StyleManager.BrokenImageType.Large, newTheme.LargeBrokenImageUrl);
 
-            if (userTheme == null) userTheme = theme;
+            if (userTheme == null) userTheme = newTheme;
             else
             {
                 userTheme = (Theme)userTheme.Clone();
-                userTheme.MergeWithoutClone(theme);
+                userTheme.MergeWithoutClone(newTheme);
             }
 
             UpdateThemeForInitialize();
             UpdateThemeForUpdate();
+            NotifyThemeChanged();
+        }
+
+        /// <summary>
+        /// Append a theme to the current base theme and apply it.
+        /// This will change the appearance of the existing components with property <seealso cref="View.ThemeChangeSensitive"/> on.
+        /// This also affects all components created afterwards.
+        /// </summary>
+        /// <param name="theme">The theme instance to be appended.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the given theme is null.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void AppendBaseTheme(Theme theme)
+        {
+            var newTheme = (Theme)theme?.Clone() ?? throw new ArgumentNullException(nameof(theme));
+
+            if (string.IsNullOrEmpty(newTheme.Id))
+            {
+                newTheme.Id = "NONAME";
+            }
+
+            if (newTheme.SmallBrokenImageUrl != null) StyleManager.Instance.SetBrokenImageUrl(StyleManager.BrokenImageType.Small, newTheme.SmallBrokenImageUrl);
+            if (newTheme.BrokenImageUrl != null) StyleManager.Instance.SetBrokenImageUrl(StyleManager.BrokenImageType.Normal, newTheme.BrokenImageUrl);
+            if (newTheme.LargeBrokenImageUrl != null) StyleManager.Instance.SetBrokenImageUrl(StyleManager.BrokenImageType.Large, newTheme.LargeBrokenImageUrl);
+
+            if (baseTheme == null) baseTheme = newTheme;
+            else
+            {
+                baseTheme = (Theme)baseTheme.Clone();
+                baseTheme.MergeWithoutClone(newTheme);
+            }
+
+            UpdateThemeForInitialize();
             NotifyThemeChanged();
         }
 
