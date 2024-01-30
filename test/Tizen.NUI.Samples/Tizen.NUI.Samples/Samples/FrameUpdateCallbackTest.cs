@@ -65,7 +65,7 @@ namespace Tizen.NUI.Samples
         private const int DEFAULT_SPACE = 9;
         private const int DEVIDE_BAR_SIZE = 4;
 
-        private const uint FRAME_UPDATE_CALLBACK_VERSION = 0u;
+        private const uint FRAME_UPDATE_CALLBACK_VERSION = 1u;
 
         public class FrameUpdateCallback : FrameUpdateCallbackInterface
         {
@@ -594,7 +594,6 @@ namespace Tizen.NUI.Samples
             // compute limit position the container could go.
             leftDirectionLimit = (float)window.Size.Width - (totalSize + (float)(INITIAL_POSITION));
 
-            window.RenderingBehavior = RenderingBehaviorType.Continuously; // make rendering be done for upto 60 fps even though there is no update in main thread.
             animationState = TOUCH_ANIMATION_STATE.ON_ANIMATION; // make rendering state on.
         }
 
@@ -792,7 +791,6 @@ namespace Tizen.NUI.Samples
         {
             if (frameUpdateCallback.IsResetTouchedViewPossible())
             {
-                window.RenderingBehavior = RenderingBehaviorType.IfRequired;
                 window.RemoveFrameUpdateCallback(frameUpdateCallback);
                 animationOffTimer.Stop();
                 animationState = TOUCH_ANIMATION_STATE.END_ANIMATION;
