@@ -37,6 +37,7 @@ namespace Tizen.Applications
 
         private static SafePackageManagerHandle s_handle = new SafePackageManagerHandle();
         private static Interop.PackageManager.EventStatus s_eventStatus = Interop.PackageManager.EventStatus.All;
+        private static Interop.PackageManager.EventStatus s_registered_eventStatus = Interop.PackageManager.EventStatus.All;
         private static event EventHandler<PackageManagerEventArgs> s_installEventHandler;
         private static event EventHandler<PackageManagerEventArgs> s_uninstallEventHandler;
         private static event EventHandler<PackageManagerEventArgs> s_updateEventHandler;
@@ -1396,6 +1397,9 @@ namespace Tizen.Applications
             if (s_installEventHandler != null && s_uninstallEventHandler != null && s_updateEventHandler != null && s_moveEventHandler != null && s_clearDataEventHandler != null)
                 return;
 
+            if ((s_registered_eventStatus & s_eventStatus) == s_eventStatus)
+                return;
+
             var err = Interop.PackageManager.ErrorCode.None;
 
             if (!Handle.IsInvalid)
@@ -1407,8 +1411,11 @@ namespace Tizen.Applications
             }
             if (err != Interop.PackageManager.ErrorCode.None)
             {
+                s_registered_eventStatus = Interop.PackageManager.EventStatus.All;
                 Log.Warn(LogTag, string.Format("Failed to register callback for package manager event. err = {0}", err));
                 throw PackageManagerErrorFactory.GetException(err, "Failed to register package manager event.");
+            } else {
+                s_registered_eventStatus = s_eventStatus;
             }
         }
 
@@ -1467,6 +1474,7 @@ namespace Tizen.Applications
                 {
                     throw PackageManagerErrorFactory.GetException(err, "Failed to unregister package manager event event.");
                 }
+                s_registered_eventStatus = Interop.PackageManager.EventStatus.All;
             }
         }
     }
