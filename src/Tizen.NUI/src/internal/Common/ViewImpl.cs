@@ -616,7 +616,7 @@ namespace Tizen.NUI
 
         private void SwigDirectorOnPropertySet(int index, global::System.IntPtr propertyValue)
         {
-            OnPropertySet(index, new PropertyValue(propertyValue, true));
+            OnPropertySet(index, new PropertyValue(propertyValue, false));
         }
 
         private void SwigDirectorOnSizeSet(global::System.IntPtr targetSize)
@@ -710,7 +710,7 @@ namespace Tizen.NUI
 
         private bool SwigDirectorOnAccessibilityPan(global::System.IntPtr gesture)
         {
-            return OnAccessibilityPan(new PanGesture(gesture, true));
+            return OnAccessibilityPan(new PanGesture(gesture, false));
         }
 
         private bool SwigDirectorOnAccessibilityValueChange(bool isIncrease)
