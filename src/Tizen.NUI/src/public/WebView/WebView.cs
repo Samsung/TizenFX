@@ -1766,6 +1766,16 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Change orientation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ChangeOrientation(Window.WindowOrientation orientation)
+        {
+            Interop.WebView.ChangeOrientation(SwigCPtr, (int)orientation);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Adds custom header.
         /// </summary>
         /// <param name="name">The name of custom header</param>
