@@ -31,7 +31,7 @@ namespace Tizen.Content.MediaContent
 
             try
             {
-                Interop.MediaInfo.GetVideo(handle, out videoHandle).ThrowIfError("Failed to retrieve data");
+                Interop.MediaInfo.GetVideo(handle, out videoHandle).ThrowIfError("Failed to retrieve data"); // Deprecated since API12
 
                 Debug.Assert(videoHandle != IntPtr.Zero);
 
@@ -47,12 +47,12 @@ namespace Tizen.Content.MediaContent
 
                 BitRate = InteropHelper.GetValue<int>(videoHandle, Interop.VideoInfo.GetBitRate); // Deprecated since API12
                 Duration = InteropHelper.GetValue<int>(videoHandle, Interop.VideoInfo.GetDuration); // Deprecated since API12
-                Width = InteropHelper.GetValue<int>(videoHandle, Interop.VideoInfo.GetWidth);
-                Height = InteropHelper.GetValue<int>(videoHandle, Interop.VideoInfo.GetHeight);
+                Width = InteropHelper.GetValue<int>(videoHandle, Interop.VideoInfo.GetWidth); // Deprecated since API12
+                Height = InteropHelper.GetValue<int>(videoHandle, Interop.VideoInfo.GetHeight); // Deprecated since API12
             }
             finally
             {
-                Interop.VideoInfo.Destroy(videoHandle);
+                Interop.VideoInfo.Destroy(videoHandle); // Deprecated since API12
             }
         }
 
@@ -149,6 +149,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The width of the video in pixels.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public int Width { get; }
 
         /// <summary>
@@ -156,6 +157,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The height of the video in pixels.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public int Height { get; }
 
     }
