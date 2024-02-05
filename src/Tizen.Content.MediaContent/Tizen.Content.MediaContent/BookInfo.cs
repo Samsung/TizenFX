@@ -37,8 +37,8 @@ namespace Tizen.Content.MediaContent
 
                 Subject = InteropHelper.GetString(bookHandle, Interop.BookInfo.GetSubject);
                 Author = InteropHelper.GetString(bookHandle, Interop.BookInfo.GetAuthor);
-                DatePublished = InteropHelper.GetString(bookHandle, Interop.BookInfo.GetDate);
-                Publisher = InteropHelper.GetString(bookHandle, Interop.BookInfo.GetPublisher);
+                DatePublished = InteropHelper.GetString(bookHandle, Interop.BookInfo.GetDate); // Deprecated since API12
+                Publisher = InteropHelper.GetString(bookHandle, Interop.BookInfo.GetPublisher); // Deprecated since API12
             }
             finally
             {
@@ -65,6 +65,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The published date.</value>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public string DatePublished { get; }
 
         /// <summary>
@@ -72,6 +73,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The publisher.</value>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("Deprecated since API12; Will be removed in API14.")]
         public string Publisher { get; }
     }
 }
