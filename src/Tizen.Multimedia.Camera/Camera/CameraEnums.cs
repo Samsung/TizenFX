@@ -26,7 +26,7 @@ namespace Tizen.Multimedia
     public enum CameraDevice
     {
         /// <summary>
-        /// The CameraDevice will be decided internally by target policy.
+        /// The CameraDevice will be decided automatically by internal policy, if CameraDeviceManager is supported.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
