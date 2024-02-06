@@ -126,13 +126,16 @@ namespace Tizen.NUI
         {
             window.LayersChildren?.ForEach(layer =>
             {
-                layer?.Children?.ForEach(view =>
+                if(layer?.LayoutCount > 0)
                 {
-                    if (view != null)
+                    layer?.Children?.ForEach(view =>
                     {
-                        FindRootLayouts(view, windowWidth, windowHeight);
-                    }
-                });
+                        if (view != null)
+                        {
+                            FindRootLayouts(view, windowWidth, windowHeight);
+                        }
+                    });
+                }
             });
 
             transitionManager.SetupCoreAndPlayAnimation();
