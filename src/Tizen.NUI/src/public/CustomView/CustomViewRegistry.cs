@@ -252,7 +252,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Register(Func<CustomView> createFunction, System.Type viewType)
         {
-            if (null == viewType)
+            if (null == viewType || null == viewType.ToString())
             {
                 throw new ArgumentNullException(nameof(viewType));
             }
