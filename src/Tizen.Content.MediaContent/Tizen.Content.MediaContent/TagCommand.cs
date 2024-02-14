@@ -25,7 +25,7 @@ namespace Tizen.Content.MediaContent
     /// </summary>
     /// <seealso cref="Tag"/>
     /// <since_tizen> 4 </since_tizen>
-    [Obsolete("Deprecated since API12; Will be removed in API14.")]
+    [Obsolete("Deprecated since API12. Will be removed in API14.")]
     public class TagCommand : MediaCommand
     {
         /// <summary>
@@ -35,7 +35,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentNullException"><paramref name="database"/> is null.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="database"/> has already been disposed.</exception>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public TagCommand(MediaDatabase database) : base(database)
         {
         }
@@ -48,7 +48,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public int Count()
         {
             return Count(arguments: null);
@@ -63,7 +63,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public int Count(CountArguments arguments)
         {
             ValidateDatabase();
@@ -84,7 +84,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="tagId"/> is less than or equal to zero.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public bool Delete(int tagId)
         {
             ValidateDatabase();
@@ -117,7 +117,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentNullException"><paramref name="name"/> is null.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public Tag Insert(string name)
         {
             ValidateDatabase();
@@ -158,7 +158,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="tagId"/> is less than or equal to zero.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public bool UpdateName(int tagId, string name)
         {
             ValidateDatabase();
@@ -204,7 +204,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="tagId"/> is less than or equal to zero.</exception>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public Tag Select(int tagId)
         {
             ValidateDatabase();
@@ -246,7 +246,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public MediaDataReader<Tag> Select()
         {
             return Select(arguments: null);
@@ -261,7 +261,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public MediaDataReader<Tag> Select(SelectArguments arguments)
         {
             ValidateDatabase();
@@ -279,7 +279,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="tagId"/> is less than or equal to zero.</exception>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public int CountMedia(int tagId)
         {
             return CountMedia(tagId, null);
@@ -296,7 +296,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="tagId"/> is less than or equal to zero.</exception>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public int CountMedia(int tagId, CountArguments arguments)
         {
             ValidateDatabase();
@@ -320,7 +320,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="tagId"/> is less than or equal to zero.</exception>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public MediaDataReader<MediaInfo> SelectMedia(int tagId)
         {
             return SelectMedia(tagId, null);
@@ -337,7 +337,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="tagId"/> is less than or equal to zero.</exception>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public MediaDataReader<MediaInfo> SelectMedia(int tagId, SelectArguments filter)
         {
             ValidateDatabase();
@@ -423,7 +423,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="tagId"/> is less than or equal to zero.</exception>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public bool AddMedia(int tagId, string mediaId)
         {
             ValidationUtil.ValidateNotNullOrEmpty(mediaId, nameof(mediaId));
@@ -451,7 +451,7 @@ namespace Tizen.Content.MediaContent
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="tagId"/> is less than or equal to zero.</exception>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public bool AddMedia(int tagId, IEnumerable<string> mediaIds)
         {
             return UpdateMember(tagId, mediaIds, Interop.Tag.AddMedia);
@@ -471,7 +471,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="tagId"/> is less than or equal to zero.</exception>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public bool RemoveMedia(int tagId, string mediaId)
         {
             ValidationUtil.ValidateNotNullOrEmpty(mediaId, nameof(mediaId));
@@ -499,7 +499,7 @@ namespace Tizen.Content.MediaContent
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="tagId"/> is less than or equal to zero.</exception>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public bool RemoveMedia(int tagId, IEnumerable<string> mediaIds)
         {
             return UpdateMember(tagId, mediaIds, Interop.Tag.RemoveMedia);

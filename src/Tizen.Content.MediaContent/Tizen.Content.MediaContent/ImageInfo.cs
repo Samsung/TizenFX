@@ -88,7 +88,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The exposure time from EXIF.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API11; Will be removed in API13.")]
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         public string ExposureTime { get; }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The FNumber from EXIF.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API11; Will be removed in API13.")]
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         public double FNumber { get; }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The iso from EXIF.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API11; Will be removed in API13.")]
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         public int Iso { get; }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The model from EXIF.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API11; Will be removed in API13.")]
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         public string Model { get; }
     }
 }

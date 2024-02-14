@@ -65,7 +65,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The published date.</value>
         /// <since_tizen> 9 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public string DatePublished { get; }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The publisher.</value>
         /// <since_tizen> 9 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public string Publisher { get; }
     }
 }

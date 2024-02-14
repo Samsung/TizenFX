@@ -91,7 +91,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The composer from the metadata.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public string Composer { get; }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The recorded date from the metadata.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public string DateRecorded { get; }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The copyright from the metadata.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public string Copyright { get; }
 
         /// <summary>
@@ -129,7 +129,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The bit rate in bit per second.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public int BitRate { get; }
 
         /// <summary>
@@ -137,7 +137,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The bit per sample.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public int BitPerSample { get; }
 
         /// <summary>
@@ -145,7 +145,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The sample rate in hertz.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public int SampleRate { get; }
 
         /// <summary>
@@ -153,7 +153,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The number of channels.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public int Channels { get; }
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The track duration in milliseconds.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public int Duration { get; }
     }
 }
