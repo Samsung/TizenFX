@@ -120,7 +120,7 @@ namespace Tizen.Content.MediaContent
         /// otherwise the modified date.
         /// </value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public DateTimeOffset Timeline { get; }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The description from the metadata.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public string Description { get; }
 
         /// <summary>
@@ -143,7 +143,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The longitude.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public double Longitude { get; }
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The latitude.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public double Latitude { get; }
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The altitude.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public double Altitude { get; }
 
         /// <summary>
@@ -167,7 +167,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The rating from the metadata.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public int Rating { get; }
 
         /// <summary>
@@ -175,7 +175,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>true if media is set as favorite, otherwise false.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public bool IsFavorite { get; }
 
         /// <summary>
@@ -190,7 +190,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>A bool value indicating whether the media is DRM-protected.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public bool IsDrm { get; }
 
         /// <summary>
