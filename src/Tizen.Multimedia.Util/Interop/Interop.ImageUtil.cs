@@ -30,9 +30,6 @@ internal static partial class Interop
         internal static extern ImageUtilError ForeachSupportedColorspace(ImageFormat type, SupportedColorspaceCallback callback,
             IntPtr userData = default(IntPtr));
 
-        [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_calculate_buffer_size")]
-        internal static extern ImageUtilError CalculateBufferSize(int width, int height, ImageColorSpace colorspace, out uint size);
-
         [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_extract_color_from_memory")]
         internal static extern ImageUtilError ExtractColorFromMemory(byte[] buffer, int width, int height, out byte rgbR, out byte rgbG, out byte rgbB);
 
@@ -42,5 +39,8 @@ internal static partial class Interop
 
         [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_destroy_image")]
         internal static extern ImageUtilError Destroy(IntPtr handle);
+
+        [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_create_image")]
+        internal static extern ImageUtilError Create(uint width, uint height, ImageColorSpace colorSpace, byte[] srcBuffer, int size, out IntPtr handle);
     }
 }
