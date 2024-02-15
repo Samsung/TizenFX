@@ -343,6 +343,17 @@ namespace Tizen.NUI
         {
             return new PixelBuffer(Interop.Capture.GetCapturedBuffer(SwigCPtr), true);
         }
+
+        /// <summary>
+        /// Generate captured image's Url
+        /// </summary>
+        /// <returns>The ImageUrl representing this captured image source</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageUrl GenerateUrl()
+        {
+            ImageUrl ret = new ImageUrl(Interop.Capture.GenerateUrl(this.SwigCPtr.Handle), true);
+            return ret;
+        }
     }
 
     /// <summary>
