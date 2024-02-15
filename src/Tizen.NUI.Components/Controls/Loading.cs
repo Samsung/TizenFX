@@ -424,7 +424,8 @@ namespace Tizen.NUI.Components
                     Origin = Visual.AlignType.Center,
                     AnchorPoint = Visual.AlignType.Center,
                     SizePolicy = VisualTransformPolicyType.Relative,
-                    Size = new Size2D(1, 1)
+                    Size = new Size2D(1, 1),
+                    PremultipliedAlpha = false,
                 };
 
                 AddVisual(ImageVisualName, imageVisual);
