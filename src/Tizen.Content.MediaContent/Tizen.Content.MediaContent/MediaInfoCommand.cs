@@ -207,6 +207,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public int CountTag(string mediaId)
         {
             return CountTag(mediaId, null);
