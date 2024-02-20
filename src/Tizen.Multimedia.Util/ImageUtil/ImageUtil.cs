@@ -48,43 +48,6 @@ namespace Tizen.Multimedia.Util
         }
 
         /// <summary>
-        /// Calculates the size of the image buffer for the specified resolution and color-space.
-        /// </summary>
-        /// <param name="resolution">The resolution of the image.</param>
-        /// <param name="colorSpace"><see cref="ColorSpace"/> of the image.</param>
-        /// <returns>The buffer size.</returns>
-        /// <exception cref="ArgumentOutOfRangeException">
-        ///     width of <paramref name="resolution"/> is less than or equal to zero.<br/>
-        ///     -or-<br/>
-        ///     height of <paramref name="resolution"/> is less than or equal to zero.
-        /// </exception>
-        /// <exception cref="ArgumentException"><paramref name="colorSpace"/> is invalid.</exception>
-        /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated in level 6.")]
-        public static int CalculateBufferSize(Size resolution, ColorSpace colorSpace)
-        {
-            if (resolution.Width <= 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(resolution), resolution.Width,
-                    "width can't be less than or equal to zero.");
-            }
-            if (resolution.Height <= 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(resolution), resolution.Height,
-                    "height can't be less than or equal to zero.");
-            }
-
-            ValidationUtil.ValidateEnum(typeof(ColorSpace), colorSpace, nameof(colorSpace));
-
-            uint bufferSize;
-            global::Interop.ImageUtil.CalculateBufferSize(resolution.Width, resolution.Height,
-                colorSpace.ToImageColorSpace(), out bufferSize)
-                .ThrowIfFailed("Failed to calculate buffer size for given parameter");
-
-            return (int)bufferSize;
-        }
-
-        /// <summary>
         /// Extracts representative color from an image buffer.
         /// </summary>
         /// <param name="buffer">Raw image buffer.</param>
