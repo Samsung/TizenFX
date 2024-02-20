@@ -33,7 +33,7 @@ namespace Tizen.NUI
     [Obsolete("Deprecated in API9, will be removed in API11. Use ThemeManager instead.")]
     public class StyleManager : BaseHandle
     {
-        private static readonly StyleManager instance = StyleManager.Get();
+        private static readonly StyleManager instance = StyleManager.GetInternal();
         private EventHandler<StyleChangedEventArgs> styleManagerStyleChangedEventHandler;
         private StyleChangedCallbackDelegate styleManagerStyleChangedCallbackDelegate;
 
@@ -98,14 +98,27 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>A handle to the StyleManager control.</returns>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API9, will be removed in API11. Use ThemeManager instead.")]
+        [Obsolete("Deprecated in API9, will be removed in API11. Use ThemeManager instead." +
+            "Do not use this, that will be deprecated. Use StyleManager.Instance instead.")]
         public static StyleManager Get()
         {
+            return StyleManager.Instance;
+        }
+
+        private static StyleManager GetInternal()
+        {
             global::System.IntPtr cPtr = Interop.StyleManager.Get();
+
+            if(cPtr == global::System.IntPtr.Zero)
+            {
+                NUILog.ErrorBacktrace("StyleManager.Instance called before Application created, or after Application terminated!");
+                // Do not throw exception until TCT test passed.
+            }
 
             StyleManager ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as StyleManager;
             if (ret != null)
             {
+                NUILog.ErrorBacktrace("StyleManager.GetInternal() Should be called only one time!");
                 object dummyObect = new object();
 
                 HandleRef CPtr = new HandleRef(dummyObect, cPtr);
@@ -119,6 +132,19 @@ namespace Tizen.NUI
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                NUILog.ErrorBacktrace("We should not manually dispose for singleton class!");
+            }
+            else
+            {
+                base.Dispose(disposing);
+            }
         }
 
         /// <summary>
