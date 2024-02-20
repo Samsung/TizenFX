@@ -31,7 +31,7 @@ namespace Tizen.NUI.Accessibility
     [EditorBrowsable(EditorBrowsableState.Never)]
     public partial class AccessibilityManager : BaseHandle
     {
-        private static readonly AccessibilityManager instance = AccessibilityManager.Get();
+        private static readonly AccessibilityManager instance = AccessibilityManager.GetInternal();
 
         internal AccessibilityManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
@@ -698,13 +698,25 @@ namespace Tizen.NUI.Accessibility
             return ret;
         }
 
+        [Obsolete("Do not use this, that will be deprecated. Use AccessibilityManager.Instance instead.")]
         internal static AccessibilityManager Get()
         {
+            return AccessibilityManager.Instance;
+        }
+
+        private static AccessibilityManager GetInternal()
+        {
             global::System.IntPtr cPtr = Interop.AccessibilityManager.Get();
+
+            if(cPtr == global::System.IntPtr.Zero)
+            {
+                NUILog.ErrorBacktrace("AccessibilityManager.Instance called before Application created, or after Application terminated!");
+            }
 
             AccessibilityManager ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as AccessibilityManager;
             if (ret != null)
             {
+                NUILog.ErrorBacktrace("AccessibilityManager.GetInternal() Should be called only one time!");
                 object dummyObect = new object();
 
                 global::System.Runtime.InteropServices.HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(dummyObect, cPtr);
@@ -718,6 +730,19 @@ namespace Tizen.NUI.Accessibility
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                NUILog.ErrorBacktrace("We should not manually dispose for singleton class!");
+            }
+            else
+            {
+                base.Dispose(disposing);
+            }
         }
 
         // Signals - AccessibilityManagerEvent.cs
