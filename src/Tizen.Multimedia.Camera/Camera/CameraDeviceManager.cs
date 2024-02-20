@@ -123,7 +123,7 @@ namespace Tizen.Multimedia
         {
             ValidationUtil.ValidateEnum(typeof(CameraDevice), device, nameof(device));
 
-            Native.GetProductId(Handle, out ushort productId).ThrowIfFailed("failed to get product ID");
+            Native.GetProductId(Handle, device, out ushort productId).ThrowIfFailed("failed to get product ID");
 
             return productId;
         }
@@ -138,7 +138,7 @@ namespace Tizen.Multimedia
         {
             ValidationUtil.ValidateEnum(typeof(CameraDevice), device, nameof(device));
 
-            Native.GetVendorId(Handle, out ushort vendorId).ThrowIfFailed("failed to get vendor ID");
+            Native.GetVendorId(Handle, device, out ushort vendorId).ThrowIfFailed("failed to get vendor ID");
 
             return vendorId;
         }
