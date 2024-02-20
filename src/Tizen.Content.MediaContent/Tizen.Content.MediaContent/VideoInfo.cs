@@ -61,7 +61,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The album name from the metadata.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public string Album { get; }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The artist name from the metadata.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public string Artist { get; }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The album artist name from the metadata.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public string AlbumArtist { get; }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The genre name from the metadata.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public string Genre { get; }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The composer name from the metadata.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public string Composer { get; }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The year from the metadata.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public string Year { get; }
 
         /// <summary>
@@ -109,7 +109,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The recorded date information from the metadata if exists; otherwise, the modified date of the file.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public string DateRecorded { get; }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The copyright notice from the metadata.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public string Copyright { get; }
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The track number from the metadata.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public string TrackNumber { get; }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The bit rate of the video.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public int BitRate { get; }
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The track duration of the video in milliseconds.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public int Duration { get; }
 
         /// <summary>
@@ -149,7 +149,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The width of the video in pixels.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public int Width { get; }
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The height of the video in pixels.</value>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API12; Will be removed in API14.")]
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public int Height { get; }
 
     }
