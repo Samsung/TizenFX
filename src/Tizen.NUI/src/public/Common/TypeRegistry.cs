@@ -26,6 +26,7 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class TypeRegistry : BaseHandle
     {
+        private static readonly TypeRegistry instance = TypeRegistry.GetInternal();
         internal TypeRegistry(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
         {
         }
@@ -42,18 +43,43 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets the singleton of the TypeRegistry object.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static TypeRegistry Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
+        /// <summary>
         /// Gets Type Registry handle.
         /// </summary>
         /// <returns>TypeRegistry handle.</returns>
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [global::System.Obsolete("Do not use this, that will be deprecated. Use TypeRegistry.Instance instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static TypeRegistry Get()
         {
+            return TypeRegistry.Instance;
+        }
+
+        private static TypeRegistry GetInternal()
+        {
             global::System.IntPtr cPtr = Interop.TypeRegistry.Get();
+
+            if(cPtr == global::System.IntPtr.Zero)
+            {
+                NUILog.ErrorBacktrace("TypeRegistry.Instance called before Application created, or after Application terminated!");
+            }
 
             TypeRegistry ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as TypeRegistry;
             if (ret != null)
             {
+                NUILog.ErrorBacktrace("TypeRegistry.GetInternal() Should be called only one time!");
                 object dummyObect = new object();
 
                 global::System.Runtime.InteropServices.HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(dummyObect, cPtr);
@@ -67,6 +93,19 @@ namespace Tizen.NUI
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                NUILog.ErrorBacktrace("We should not manually dispose for singleton class!");
+            }
+            else
+            {
+                base.Dispose(disposing);
+            }
         }
 
         /// <summary>

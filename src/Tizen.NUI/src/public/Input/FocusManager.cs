@@ -30,7 +30,7 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class FocusManager : BaseHandle
     {
-        private static readonly FocusManager instance = FocusManager.Get();
+        private static readonly FocusManager instance = FocusManager.GetInternal();
         private CustomAlgorithmInterfaceWrapper customAlgorithmInterfaceWrapper;
 
         private EventHandlerWithReturnType<object, PreFocusChangeEventArgs, View> preFocusChangeEventHandler;
@@ -602,9 +602,39 @@ namespace Tizen.NUI
             return ret;
         }
 
+        [global::System.Obsolete("Do not use this, that will be deprecated. Use TypeRegistry.Instance instead. " +
+            "Like: " +
+            "TypeRegistry visualFactory = TypeRegistry.Instance; " +
+            "TypeRegistry.CreateVisual(visualMap);")]
         internal static FocusManager Get()
         {
-            FocusManager ret = new FocusManager(Interop.FocusManager.Get(), true);
+            return FocusManager.Instance;
+        }
+
+        private static FocusManager GetInternal()
+        {
+            global::System.IntPtr cPtr = Interop.FocusManager.Get();
+
+            if(cPtr == global::System.IntPtr.Zero)
+            {
+                NUILog.ErrorBacktrace("FocusManager.Instance called before Application created, or after Application terminated!");
+            }
+
+            FocusManager ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as FocusManager;
+            if (ret != null)
+            {
+                NUILog.ErrorBacktrace("FocusManager.GetInternal() Should be called only one time!");
+                object dummyObect = new object();
+
+                global::System.Runtime.InteropServices.HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(dummyObect, cPtr);
+                Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+            else
+            {
+                ret = new FocusManager(cPtr, true);
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
 #if !PROFILE_TV
@@ -612,6 +642,19 @@ namespace Tizen.NUI
             ret.FocusIndicator = ret.GetDefaultFocusIndicator();
 #endif
             return ret;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                NUILog.ErrorBacktrace("We should not manually dispose for singleton class!");
+            }
+            else
+            {
+                base.Dispose(disposing);
+            }
         }
 
         internal void SetFocusGroupLoop(bool enabled)

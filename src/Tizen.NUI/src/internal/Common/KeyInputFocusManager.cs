@@ -21,6 +21,7 @@ namespace Tizen.NUI
 {
     internal class KeyInputFocusManager : BaseHandle
     {
+        private static readonly KeyInputFocusManager instance = KeyInputFocusManager.GetInternal();
         internal KeyInputFocusManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
@@ -35,13 +36,36 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Gets the singleton of the KeyInputFocusManager object.
+        /// </summary>
+        public static KeyInputFocusManager Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
+        [global::System.Obsolete("Do not use this, that will be deprecated. Use KeyInputFocusManager.Instance instead.")]
         public static KeyInputFocusManager Get()
         {
+            return KeyInputFocusManager.Instance;
+        }
+
+        private static KeyInputFocusManager GetInternal()
+        {
             global::System.IntPtr cPtr = Interop.KeyInputFocusManager.Get();
+
+            if(cPtr == global::System.IntPtr.Zero)
+            {
+                NUILog.ErrorBacktrace("KeyInputFocusManager.Instance called before Application created, or after Application terminated!");
+            }
 
             KeyInputFocusManager ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as KeyInputFocusManager;
             if (ret != null)
             {
+                NUILog.ErrorBacktrace("KeyInputFocusManager.GetInternal() Should be called only one time!");
                 object dummyObect = new object();
 
                 global::System.Runtime.InteropServices.HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(dummyObect, cPtr);
@@ -55,6 +79,18 @@ namespace Tizen.NUI
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                NUILog.ErrorBacktrace("We should not manually dispose for singleton class!");
+            }
+            else
+            {
+                base.Dispose(disposing);
+            }
         }
 
         public void SetFocus(View control)

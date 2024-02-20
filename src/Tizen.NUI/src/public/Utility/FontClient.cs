@@ -27,7 +27,7 @@ namespace Tizen.NUI
     /// <since_tizen> 5 </since_tizen>
     public class FontClient : BaseHandle
     {
-        private static readonly FontClient instance = FontClient.Get();
+        private static readonly FontClient instance = FontClient.GetInternal();
 
         internal FontClient(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
@@ -284,13 +284,28 @@ namespace Tizen.NUI
             return fontInfoList;
         }
 
+        [global::System.Obsolete("Do not use this, that will be deprecated. Use FontClient.Instance instead. " +
+            "Like: " +
+            "FontClient fontClient = FontClient.Instance; " +
+            "FontClient.GetSystemFonts();")]
         internal static FontClient Get()
         {
+            return FontClient.Instance;
+        }
+
+        private static FontClient GetInternal()
+        {
             global::System.IntPtr cPtr = Interop.FontClient.Get();
+
+            if(cPtr == global::System.IntPtr.Zero)
+            {
+                NUILog.ErrorBacktrace("FontClient.Instance called before Application created, or after Application terminated!");
+            }
 
             FontClient ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as FontClient;
             if (ret != null)
             {
+                NUILog.ErrorBacktrace("FontClient.GetInternal() Should be called only one time!");
                 object dummyObect = new object();
 
                 global::System.Runtime.InteropServices.HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(dummyObect, cPtr);
@@ -304,6 +319,19 @@ namespace Tizen.NUI
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                NUILog.ErrorBacktrace("We should not manually dispose for singleton class!");
+            }
+            else
+            {
+                base.Dispose(disposing);
+            }
         }
 
         internal FontClient Assign(FontClient handle)

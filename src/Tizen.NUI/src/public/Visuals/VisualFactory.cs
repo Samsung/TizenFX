@@ -29,7 +29,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Instance of the VisualFactory singleton.
         /// </summary>
-        private static VisualFactory instance;
+        private static readonly VisualFactory instance = VisualFactory.GetInternal();
 
         private VisualFactory(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
@@ -48,12 +48,6 @@ namespace Tizen.NUI
         {
             get
             {
-                if (!instance)
-                {
-                    instance = new VisualFactory(Interop.VisualFactory.Get(), true);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                }
-
                 return instance;
             }
         }
@@ -70,6 +64,47 @@ namespace Tizen.NUI
         public static VisualFactory Get()
         {
             return VisualFactory.Instance;
+        }
+
+        private static VisualFactory GetInternal()
+        {
+            global::System.IntPtr cPtr = Interop.VisualFactory.Get();
+
+            if(cPtr == global::System.IntPtr.Zero)
+            {
+                NUILog.ErrorBacktrace("VisualFactory.Instance called before Application created, or after Application terminated!");
+            }
+
+            VisualFactory ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as VisualFactory;
+            if (ret != null)
+            {
+                NUILog.ErrorBacktrace("VisualFactory.GetInternal() Should be called only one time!");
+                object dummyObect = new object();
+
+                global::System.Runtime.InteropServices.HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(dummyObect, cPtr);
+                Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+            else
+            {
+                ret = new VisualFactory(cPtr, true);
+            }
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                NUILog.ErrorBacktrace("We should not manually dispose for singleton class!");
+            }
+            else
+            {
+                base.Dispose(disposing);
+            }
         }
 
         /// <summary>
