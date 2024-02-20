@@ -91,6 +91,18 @@ namespace Tizen.Multimedia.Util
         Level9,
     }
 
+    internal enum AnimationType
+    {
+        /// <summary>
+        /// GIF
+        /// </summary>
+        Gif,
+        /// <summary>
+        /// WebP
+        /// </summary>
+        WebP
+    }
+
     /// <summary>
     /// Specifies how an image is rotated or flipped.
     /// </summary>
