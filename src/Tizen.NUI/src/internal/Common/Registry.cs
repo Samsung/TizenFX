@@ -82,14 +82,14 @@ namespace Tizen.NUI
                     var target = weakReference.Target;
 
                     BaseHandle ret = target as BaseHandle;
-                    if (target == null)
+                    if ((ret == null) || ret.Disposed || ret.IsDisposeQueued)
                     {
-                        // Special case. If WeakReference.Target is null, it might be disposed by GC. just Add forcely.
+                        // Special case. If WeakReference.Target is null or it might be disposed by GC, just remove previous item forcibly.
                         if (Instance._controlMap.TryRemove(refCptr, out weakReference) != true)
                         {
                             Tizen.Log.Error("NUI", $"Something Wrong when we try to remove null target! input type:{baseHandle.GetType()}, registed type:{target?.GetType()}\n");
                         }
-                        if (Instance._controlMap.TryAdd(refCptr, new WeakReference(baseHandle, false)) != true)
+                        if (Instance._controlMap.TryAdd(refCptr, new WeakReference(baseHandle, true)) != true)
                         {
                             Tizen.Log.Error("NUI", $"Something Wrong when we try to replace null target! input type:{baseHandle.GetType()}, registed type:{target?.GetType()}\n");
 
@@ -184,6 +184,11 @@ namespace Tizen.NUI
                 }
 
                 BaseHandle ret = weakReference.Target as BaseHandle;
+                if ((ret == null) || ret.Disposed || ret.IsDisposeQueued)
+                {
+                    // Special case. If WeakReference.Target is null or disposed by GC, just return null.
+                    return null;
+                }
                 return ret;
             }
             else
