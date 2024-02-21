@@ -208,5 +208,11 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal bool Disposed => disposed;
+
+        /// <summary>
+        /// The flag to check if it is disposed by DisposeQueue.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal bool IsDisposeQueued => isDisposeQueued;
     }
 }
