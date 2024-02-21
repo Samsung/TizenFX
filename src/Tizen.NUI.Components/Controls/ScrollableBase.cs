@@ -1205,7 +1205,7 @@ namespace Tizen.NUI.Components
             scrolling = false;
             this.InterceptTouchEvent -= OnInterruptTouchingChildTouched;
 
-            ScrollEventArgs eventArgs = new ScrollEventArgs(ContentContainer.CurrentPosition);
+            ScrollEventArgs eventArgs = new ScrollEventArgs((ContentContainer != null) ? ContentContainer.CurrentPosition : Position.Zero);
             ScrollAnimationEnded?.Invoke(this, eventArgs);
             EmitScrollFinishedEvent();
 
@@ -1388,9 +1388,9 @@ namespace Tizen.NUI.Components
                 mPanGestureDetector?.Dispose();
                 mPanGestureDetector = null;
 
-                if(!(ContentContainer?.Disposed ?? true) && propertyNotification != null)
+                if(ContentContainer != null && propertyNotification != null)
                 {
-                    ContentContainer?.RemovePropertyNotification(propertyNotification);
+                    ContentContainer.RemovePropertyNotification(propertyNotification);
                 }
                 propertyNotification?.Dispose();
                 propertyNotification = null;
@@ -1398,10 +1398,6 @@ namespace Tizen.NUI.Components
 
             WheelEvent -= OnWheelEvent;
 
-            if (type == DisposeTypes.Explicit)
-            {
-
-            }
             base.Dispose(type);
         }
 
