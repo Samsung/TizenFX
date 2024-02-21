@@ -268,10 +268,7 @@ namespace Tizen.NUI
 
             foreach (View child in copiedChildren)
             {
-                if (!(child?.Disposed ?? true))
-                {
-                    child.DisposeRecursively();
-                }
+                child?.DisposeRecursively();
             }
         }
 
