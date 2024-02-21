@@ -59,17 +59,24 @@ namespace Tizen.NUI
 
         private uint onceEventIndex;
         // Double buffered once event processing
-        private EventHandler[] internalProcessorOnceEvent;
+        private WeakEvent<EventHandler>[] internalProcessorOnceEvent;
 
         public event EventHandler ProcessorOnceEvent
         {
             add
             {
-                internalProcessorOnceEvent[onceEventIndex] += value;
+                if(internalProcessorOnceEvent[onceEventIndex] == null)
+                {
+                    internalProcessorOnceEvent[onceEventIndex] = new WeakEvent<EventHandler>();
+                }
+                internalProcessorOnceEvent[onceEventIndex].Add(value);
             }
             remove
             {
-                internalProcessorOnceEvent[onceEventIndex] -= value;
+                if(internalProcessorOnceEvent[onceEventIndex] != null)
+                {
+                    internalProcessorOnceEvent[onceEventIndex].Remove(value);
+                }
             }
         }
         public event EventHandler ProcessorEvent;
@@ -98,7 +105,7 @@ namespace Tizen.NUI
                 Interop.ProcessorController.Initialize(SwigCPtr);
 
                 onceEventIndex = 0u;
-                internalProcessorOnceEvent = new EventHandler[2];
+                internalProcessorOnceEvent = new WeakEvent<EventHandler>[2];
                 internalProcessorOnceEvent[0] = null;
                 internalProcessorOnceEvent[1] = null;
 
