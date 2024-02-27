@@ -380,6 +380,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void UpdateImage()
         {
+            if (Disposed)
+            {
+                return;
+            }
+
             if (!imagePropertyUpdatedFlag) return;
 
             // Assume that we are using standard Image at first.

@@ -1227,6 +1227,11 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         internal virtual void UpdateBackgroundExtraData()
         {
+            if (Disposed)
+            {
+                return;
+            }
+
             if (backgroundExtraData == null)
             {
                 return;
@@ -1457,11 +1462,6 @@ namespace Tizen.NUI.BaseComponents
             }
 
             backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
-            if (backgroundExtraDataUpdateProcessAttachedFlag)
-            {
-                ProcessorController.Instance.ProcessorOnceEvent -= UpdateBackgroundExtraData;
-                backgroundExtraDataUpdateProcessAttachedFlag = false;
-            }
 
             LayoutCount = 0;
 

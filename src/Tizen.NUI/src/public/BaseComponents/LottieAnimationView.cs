@@ -890,6 +890,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void UpdateImage()
         {
+            if (Disposed)
+            {
+                return;
+            }
+
             if (!imagePropertyUpdatedFlag) return;
 
             // Update currentStates properties to cachedImagePropertyMap

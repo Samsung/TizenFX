@@ -293,11 +293,6 @@ namespace Tizen.NUI.BaseComponents
 
                     // Background extra data is not valid anymore. We should ignore lazy UpdateBackgroundExtraData
                     view.backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
-                    if (view.backgroundExtraDataUpdateProcessAttachedFlag)
-                    {
-                        ProcessorController.Instance.ProcessorOnceEvent -= view.UpdateBackgroundExtraData;
-                        view.backgroundExtraDataUpdateProcessAttachedFlag = false;
-                    }
 
                     propertyValue.Dispose();
                     propertyValue = null;
