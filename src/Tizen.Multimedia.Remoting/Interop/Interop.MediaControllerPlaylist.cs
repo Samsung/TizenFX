@@ -121,30 +121,6 @@ internal static partial class Interop
         [DllImport(Libraries.MediaController, EntryPoint = "mc_playlist_get_playlist")]
         internal static extern MediaControllerError GetPlaylistHandle(string serverName, string playlistName, IntPtr handle);
 
-        [Obsolete("Please do not use! This will be deprecated in level 6. Please use ForeachPlaylist instead.")]
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_foreach_server_playlist")]
-        internal static extern MediaControllerError ForeachServerPlaylist(MediaControllerClientHandle handle,
-            string serverName, PlaylistCallback callback, IntPtr userData);
-
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_playlist_item_index")]
-        private static extern MediaControllerError GetPlaylistIndex(IntPtr playbackHandle, out IntPtr index);
-
-        [Obsolete("Please do not use! This will be deprecated. Please use GetPlaylistInfo instead.")]
-        internal static string GetPlaylistIndex(IntPtr playbackHandle)
-        {
-            IntPtr valuePtr = IntPtr.Zero;
-
-            try
-            {
-                GetPlaylistIndex(playbackHandle, out valuePtr).ThrowIfError($"Failed to get playlist.");
-                return Marshal.PtrToStringAnsi(valuePtr);
-            }
-            finally
-            {
-                Marshal.FreeHGlobal(valuePtr);
-            }
-        }
-
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_playlist_item_info")]
         internal static extern MediaControllerError GetPlaylistInfo(IntPtr playbackHandle, out IntPtr playlistName, out IntPtr index);
 
