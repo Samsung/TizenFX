@@ -1447,11 +1447,6 @@ namespace Tizen.NUI.BaseComponents
                 borderSelector?.Reset(this);
                 resourceUrlSelector?.Reset(this);
                 imagePropertyUpdatedFlag = false;
-                if (imagePropertyUpdateProcessAttachedFlag)
-                {
-                    ProcessorController.Instance.ProcessorOnceEvent -= UpdateImage;
-                    imagePropertyUpdateProcessAttachedFlag = false;
-                }
                 cachedImagePropertyMap?.Dispose();
                 cachedImagePropertyMap = null;
             }
@@ -1540,11 +1535,7 @@ namespace Tizen.NUI.BaseComponents
 
                 // Image visual is not exist anymore. We should ignore lazy UpdateImage
                 imagePropertyUpdatedFlag = false;
-                if (imagePropertyUpdateProcessAttachedFlag)
-                {
-                    ProcessorController.Instance.ProcessorOnceEvent -= UpdateImage;
-                    imagePropertyUpdateProcessAttachedFlag = false;
-                }
+
                 // Update resourceUrl as empty value
                 _resourceUrl = "";
                 cachedImagePropertyMap[ImageVisualProperty.URL] = emptyValue;
@@ -1670,6 +1661,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void UpdateImage()
         {
+            if (Disposed)
+            {
+                return;
+            }
+
             if (!imagePropertyUpdatedFlag) return;
 
             imagePropertyUpdatedFlag = false;
