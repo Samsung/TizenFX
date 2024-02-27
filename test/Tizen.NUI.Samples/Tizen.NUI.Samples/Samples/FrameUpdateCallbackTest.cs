@@ -65,7 +65,7 @@ namespace Tizen.NUI.Samples
         private const int DEFAULT_SPACE = 9;
         private const int DEVIDE_BAR_SIZE = 4;
 
-        private const uint FRAME_UPDATE_CALLBACK_VERSION = 0u;
+        private const uint FRAME_UPDATE_CALLBACK_VERSION = 1u;
 
         public class FrameUpdateCallback : FrameUpdateCallbackInterface
         {
@@ -396,6 +396,27 @@ namespace Tizen.NUI.Samples
 
         public void Deactivate()
         {
+            if(contentsView != null)
+            {
+                contentsView.Unparent();
+                contentsView.Dispose();
+            }
+            if(baseView != null)
+            {
+                baseView.Unparent();
+                baseView.Dispose();
+            }
+
+            if(frameUpdateCallback != null)
+            {
+                window.RenderingBehavior = RenderingBehaviorType.IfRequired;
+                window.RemoveFrameUpdateCallback(frameUpdateCallback);
+                animationOffTimer?.Stop();
+                animationState = TOUCH_ANIMATION_STATE.END_ANIMATION;
+
+                frameUpdateCallback = null;
+                animationOffTimer?.Dispose();
+            }
         }
 
         void Initialize()
@@ -564,12 +585,15 @@ namespace Tizen.NUI.Samples
             // Add frame callback on window.
             // OnUpdate callback of frameUpdateCallback will be called before every render frame.
             // We can set root view what given frameUpdateCallback used
+            // Or, we can skip root view as null if we don't want to make frameUpdateCallback don't have dependency with some view.
+            // For this sample, let we use controlView as root view.
+
             window.AddFrameUpdateCallback(frameUpdateCallback, controlView);
+            // window.AddFrameUpdateCallback(frameUpdateCallback, null);
 
             // compute limit position the container could go.
             leftDirectionLimit = (float)window.Size.Width - (totalSize + (float)(INITIAL_POSITION));
 
-            window.RenderingBehavior = RenderingBehaviorType.Continuously; // make rendering be done for upto 60 fps even though there is no update in main thread.
             animationState = TOUCH_ANIMATION_STATE.ON_ANIMATION; // make rendering state on.
         }
 
@@ -767,7 +791,6 @@ namespace Tizen.NUI.Samples
         {
             if (frameUpdateCallback.IsResetTouchedViewPossible())
             {
-                window.RenderingBehavior = RenderingBehaviorType.IfRequired;
                 window.RemoveFrameUpdateCallback(frameUpdateCallback);
                 animationOffTimer.Stop();
                 animationState = TOUCH_ANIMATION_STATE.END_ANIMATION;

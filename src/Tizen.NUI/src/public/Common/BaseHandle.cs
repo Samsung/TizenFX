@@ -28,7 +28,7 @@ namespace Tizen.NUI
     /// <remarks>
     /// Internal Dali resources with BaseHandle has reference count internally.<br/>
     /// And Dali resources will release the object only if reference count become zero.<br/>
-    /// It mean, even we call <see cref="Dispose"/>, the reousrce will not be released if some native has reference count.
+    /// It mean, even we call <see cref="Dispose()"/>, the reousrce will not be released if some native has reference count.
     /// </remarks>
     /// <since_tizen> 3 </since_tizen>
     public class BaseHandle : Element, global::System.IDisposable

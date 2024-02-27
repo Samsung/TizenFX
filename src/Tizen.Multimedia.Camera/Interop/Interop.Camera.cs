@@ -351,10 +351,10 @@ internal static partial class Interop
         internal static extern CameraError UnsetDeviceConnectionChangedCallback(IntPtr handle, int id);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_device_manager_get_product_id")]
-        internal static extern CameraError GetProductId(IntPtr handle, out ushort id);
+        internal static extern CameraError GetProductId(IntPtr handle, CameraDevice  device, out ushort id);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_device_manager_get_vendor_id")]
-        internal static extern CameraError GetVendorId(IntPtr handle, out ushort id);
+        internal static extern CameraError GetVendorId(IntPtr handle, CameraDevice  device, out ushort id);
 
         [NativeStruct("camera_device_s", Include="camera.h", PkgConfig="capi-media-camera")]
         [StructLayout(LayoutKind.Sequential)]

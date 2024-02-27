@@ -427,21 +427,33 @@ namespace Tizen.Network.Connection
 
         private void UnregisterEvents()
         {
-            if (_ConnectionTypeChanged != null)
+            lock (_ConnectionTypeChangedLock)
             {
-                ConnectionTypeChangedStop();
+                if (_ConnectionTypeChanged != null)
+                {
+                    ConnectionTypeChangedStop();
+                }
             }
-            if (_IPAddressChanged != null)
+            lock (_IPAddressChangedLock)
             {
-                IPAddressChangedStop();
+                if (_IPAddressChanged != null)
+                {
+                    IPAddressChangedStop();
+                }
             }
-            if (_EthernetCableStateChanged != null)
+            lock(_EthernetCableStateChangedLock)
             {
-                EthernetCableStateChangedStop();
+                if (_EthernetCableStateChanged != null)
+                {
+                    EthernetCableStateChangedStop();
+                }
             }
-            if (_ProxyAddressChanged != null)
+            lock (_ProxyAddressChangedLock)
             {
-                ProxyAddressChangedStop();
+                if (_ProxyAddressChanged != null)
+                {
+                    ProxyAddressChangedStop();
+                }
             }
         }
 

@@ -2250,20 +2250,20 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddFrameUpdateCallback(FrameUpdateCallbackInterface frameUpdateCallback)
         {
-            frameUpdateCallback?.AddFrameUpdateCallback(stageCPtr, Layer.getCPtr(GetRootLayer()));
+            frameUpdateCallback?.AddFrameUpdateCallback(stageCPtr, new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero));
         }
 
         /// <summary>
         /// Add FrameUpdateCallback with root view.
         /// FrameUpdateCallbackInterface can only detach Views under given view.
         /// </summary>
+        /// <remarks>
+        /// We can give rootView as null if we want to make frameUpdateCallback don't have any dependency with some view.
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddFrameUpdateCallback(FrameUpdateCallbackInterface frameUpdateCallback, View rootView)
         {
-            if(rootView != null)
-            {
-                frameUpdateCallback?.AddFrameUpdateCallback(stageCPtr, View.getCPtr(rootView));
-            }
+            frameUpdateCallback?.AddFrameUpdateCallback(stageCPtr, View.getCPtr(rootView));
         }
 
         /// <summary>

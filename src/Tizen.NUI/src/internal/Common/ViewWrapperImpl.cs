@@ -375,7 +375,7 @@ namespace Tizen.NUI
 
         private void DirectorOnPropertySet(int index, global::System.IntPtr propertyValue)
         {
-            var value = new PropertyValue(propertyValue, true);
+            var value = new PropertyValue(propertyValue, false);
             OnPropertySet?.Invoke(index, value);
             value.Dispose();
         }
@@ -394,15 +394,11 @@ namespace Tizen.NUI
             var ani = Registry.GetManagedBaseHandleFromNativePtr(animation) as Animation;
             if (ani != null)
             {
-                HandleRef CPtr = new HandleRef(this, animation);
-                Interop.BaseHandle.DeleteBaseHandle(CPtr);
-                CPtr = new HandleRef(null, global::System.IntPtr.Zero);
-
                 useRegisterAnimation = true;
             }
             else
             {
-                ani = new Animation(animation, true);
+                ani = new Animation(animation, false);
             }
             var vector3 = new Vector3(targetSize, false);
             OnSizeAnimation?.Invoke(ani, vector3);
@@ -493,15 +489,11 @@ namespace Tizen.NUI
             var nuiStyleManger = Registry.GetManagedBaseHandleFromNativePtr(styleManager) as StyleManager;
             if (nuiStyleManger != null)
             {
-                HandleRef CPtr = new HandleRef(this, styleManager);
-                Interop.BaseHandle.DeleteBaseHandle(CPtr);
-                CPtr = new HandleRef(null, global::System.IntPtr.Zero);
-
                 useRegisterStyleManager = true;
             }
             else
             {
-                nuiStyleManger = new StyleManager(styleManager, true);
+                nuiStyleManger = new StyleManager(styleManager, false);
             }
             OnStyleChange?.Invoke(nuiStyleManger, (StyleChangeType)change);
 
@@ -519,8 +511,7 @@ namespace Tizen.NUI
 
         private bool DirectorOnAccessibilityPan(global::System.IntPtr gesture)
         {
-            // Take memory ownership, but do not register into Registry.
-            var panGesture = new PanGesture(gesture, true, false);
+            var panGesture = new PanGesture(gesture, false);
             var ret = OnAccessibilityPan?.Invoke(panGesture) ?? false;
             panGesture.Dispose();
             return ret;

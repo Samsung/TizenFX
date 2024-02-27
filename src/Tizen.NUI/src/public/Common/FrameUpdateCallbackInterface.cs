@@ -266,6 +266,32 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool GetWorldPositionScaleAndSize(uint id, Vector3 Position, Vector3 Scale, Vector3 Size)
+        {
+            if (proxyIntPtr == IntPtr.Zero)
+            {
+                return false;
+            }
+            bool ret = Interop.FrameUpdateCallbackInterface.FrameCallbackInterfaceGetWorldPositionScaleAndSize(proxyIntPtr, id, Vector3.getCPtr(Position), Vector3.getCPtr(Scale), Vector3.getCPtr(Size));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool GetWorldTransformAndSize(uint id, Vector3 Position, Vector3 Scale, Rotation Orientation, Vector3 Size)
+        {
+            if (proxyIntPtr == IntPtr.Zero)
+            {
+                return false;
+            }
+            bool ret = Interop.FrameUpdateCallbackInterface.FrameCallbackInterfaceGetWorldTransformAndSize(proxyIntPtr, id, Vector3.getCPtr(Position), Vector3.getCPtr(Scale), Rotation.getCPtr(Orientation),Vector3.getCPtr(Size));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal void AddFrameUpdateCallback(global::System.Runtime.InteropServices.HandleRef windowCPtr, global::System.Runtime.InteropServices.HandleRef layerCPtr)
         {
             Interop.FrameUpdateCallbackInterface.FrameCallbackInterfaceAddFrameUpdateCallback(windowCPtr, SwigCPtr, layerCPtr);
