@@ -292,6 +292,32 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool GetUpdateArea(uint id, Vector4 updateArea)
+        {
+            if (proxyIntPtr == IntPtr.Zero)
+            {
+                return false;
+            }
+            bool ret = Interop.FrameUpdateCallbackInterface.FrameCallbackInterfaceGetUpdateArea(proxyIntPtr, id, Vector4.getCPtr(updateArea));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool SetUpdateArea(uint id, Vector4 updateArea)
+        {
+            if (proxyIntPtr == IntPtr.Zero)
+            {
+                return false;
+            }
+            bool ret = Interop.FrameUpdateCallbackInterface.FrameCallbackInterfaceSetUpdateArea(proxyIntPtr, id, Vector4.getCPtr(updateArea));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal void AddFrameUpdateCallback(global::System.Runtime.InteropServices.HandleRef windowCPtr, global::System.Runtime.InteropServices.HandleRef layerCPtr)
         {
             Interop.FrameUpdateCallbackInterface.FrameCallbackInterfaceAddFrameUpdateCallback(windowCPtr, SwigCPtr, layerCPtr);

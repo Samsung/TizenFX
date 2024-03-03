@@ -74,6 +74,7 @@ namespace Tizen.NUI.Samples
             private uint containerId;
             private List<uint> viewId; ///< View ID in the container.
             private List<float> viewPosition;
+            private uint updateAreaViewId;
 
             // Movement is position difference of Container from start position of this animation to current position.
             // Time interval between each containerMovement entry is 16 milliseconds(about 60 fps)
@@ -119,6 +120,9 @@ namespace Tizen.NUI.Samples
             // If some position changed, let we keep rendering for next frame.
             private bool positionChanged;
 
+            private bool updateAreaChanged;
+            private Vector4 updateArea;
+
             // Initialize base class that we will use OnUpdate with return.
             public FrameUpdateCallback() : base(FRAME_UPDATE_CALLBACK_VERSION)
             {
@@ -128,6 +132,8 @@ namespace Tizen.NUI.Samples
                 needUpdateMovementSize = false;
                 isResetTouchedViewPossible = false;
                 positionChanged = true;
+                updateArea = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+                updateAreaChanged = false;
             }
 
             public void ResetAnimationData()
@@ -155,6 +161,7 @@ namespace Tizen.NUI.Samples
             public void SetContainerId(uint id)
             {
                 containerId = id;
+                updateAreaViewId = id;
             }
 
             public void SetContainerStartPosition(float position)
@@ -214,6 +221,19 @@ namespace Tizen.NUI.Samples
             public float GetVelocity()
             {
                 return velocity;
+            }
+
+            public bool GetUpdateAreaFlag()
+            {
+                bool changedFlag = updateAreaChanged;
+                updateAreaChanged = false;
+                return changedFlag;
+            }
+
+            public void SetUpdatedArea(Vector4 newUpdateArea)
+            {
+                updateArea = newUpdateArea;
+                updateAreaChanged = true;
             }
 
             private void ComputeNewPositions(int totalTime)
@@ -343,6 +363,11 @@ namespace Tizen.NUI.Samples
                     int movementNumberToRemove = containerMovement.Count - requiredMovementSize;
                     containerMovement.RemoveRange(0, movementNumberToRemove);
                     totalAnimationTime -= (float)(timeInterval * movementNumberToRemove);
+                }
+
+                if(GetUpdateAreaFlag())
+                {
+                  SetUpdateArea(containerId, updateArea);
                 }
 
                 // Reset flag
@@ -619,6 +644,9 @@ namespace Tizen.NUI.Samples
                 {
                     SetFrameUpdateCallback(position.X);
                 }
+
+                Vector4 updatedArea = new Vector4(position.X - 10.0f, position.Y - 10.0f, 20.0f, 20.0f);
+                frameUpdateCallback.SetUpdatedArea(updatedArea);
 
                 // Set new controlView(container) position
                 // in here, we need to consider the container is not go outside of limits.
