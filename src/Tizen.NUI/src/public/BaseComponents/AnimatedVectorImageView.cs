@@ -80,12 +80,26 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return GetValue(ResourceURLProperty) as string;
+                if(NUIApplication.DisableBindableProperty)
+                {
+                    return this.InternalResourceURL;
+                }
+                else
+                {
+                    return GetValue(GetResourceURLProperty()) as string;
+                }
             }
             set
             {
-                SetValue(ResourceURLProperty, value);
-                NotifyPropertyChanged();
+                if (NUIApplication.DisableBindableProperty)
+                {
+                    this.InternalResourceURL = value;
+                }
+                else
+                {
+                    SetValue(GetResourceURLProperty(), value);
+                    NotifyPropertyChanged();
+                }
             }
         }
 

@@ -218,18 +218,29 @@ namespace Tizen.NUI.BaseComponents
             var textFieldStyle = (TextFieldStyle)bindable;
             return textFieldStyle.cursorBlinkDuration;
         });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CursorWidthProperty = BindableProperty.Create(nameof(CursorWidth), typeof(int?), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        internal static BindableProperty CursorWidthProperty = null;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty GetCursorWidthProperty()
         {
-            var textFieldStyle = (TextFieldStyle)bindable;
-            textFieldStyle.cursorWidth = (int?)newValue;
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var textFieldStyle = (TextFieldStyle)bindable;
-            return textFieldStyle.cursorWidth;
-        });
+            if(CursorWidthProperty == null)
+            {
+                CursorWidthProperty = BindableProperty.Create(nameof(CursorWidth), typeof(int?), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+                {
+                    var textFieldStyle = (TextFieldStyle)bindable;
+                    textFieldStyle.cursorWidth = (int?)newValue;
+                },
+                defaultValueCreator: (bindable) =>
+                {
+                    var textFieldStyle = (TextFieldStyle)bindable;
+                    return textFieldStyle.cursorWidth;
+                });
+            }
+            return CursorWidthProperty;
+        }
+            
         /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty GrabHandleColorProperty = BindableProperty.Create(nameof(GrabHandleColor), typeof(Color), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
@@ -664,8 +675,28 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int? CursorWidth
         {
-            get => (int?)GetValue(CursorWidthProperty);
-            set => SetValue(CursorWidthProperty, value);
+            get
+            {
+                if (NUIApplication.DisableBindableProperty)
+                {
+                    return this.cursorWidth;
+                }
+                else
+                {
+                    return (int?)GetValue(GetCursorWidthProperty());
+                }
+            }
+            set
+            {
+                if (NUIApplication.DisableBindableProperty)
+                {
+                    this.cursorWidth = value;
+                }
+                else
+                {
+                    SetValue(GetCursorWidthProperty(), value);
+                }
+            }
         }
 
         /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
