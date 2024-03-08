@@ -101,9 +101,19 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary> The bindable property of CursorWidth. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly BindableProperty CursorWidthProperty = BindableProperty.Create(nameof(CursorWidth), typeof(int?), typeof(TextEditorStyle), null,
-            propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).cursorWidth = (int?)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).cursorWidth);
+        internal static BindableProperty CursorWidthProperty = null;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static BindableProperty GetCursorWidthProperty()
+        {
+            if(CursorWidthProperty == null)
+            {
+                CursorWidthProperty = BindableProperty.Create(nameof(CursorWidth), typeof(int?), typeof(TextEditorStyle), null,
+                    propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).cursorWidth = (int?)newValue,
+                    defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).cursorWidth);
+            }
+            return CursorWidthProperty;
+        }
 
         /// <summary> The bindable property of GrabHandleColor. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -148,9 +158,19 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary> The bindable property of SelectionHighlightColor. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static readonly BindableProperty SelectionHighlightColorProperty = BindableProperty.Create(nameof(SelectionHighlightColor), typeof(Vector4), typeof(TextEditorStyle), null,
-            propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).selectionHighlightColor = (Vector4)newValue,
-            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).selectionHighlightColor);
+        internal static BindableProperty SelectionHighlightColorProperty = null;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static BindableProperty GetSelectionHighlightColorProperty()
+        {
+            if(SelectionHighlightColorProperty == null)
+            {
+                SelectionHighlightColorProperty = BindableProperty.Create(nameof(SelectionHighlightColor), typeof(Vector4), typeof(TextEditorStyle), null,
+                    propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).selectionHighlightColor = (Vector4)newValue,
+                    defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).selectionHighlightColor);
+            }
+            return SelectionHighlightColorProperty;
+        }
 
         /// <summary> The bindable property of DecorationBoundingBox. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -319,16 +339,26 @@ namespace Tizen.NUI.BaseComponents
         });
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SelectionPopupStyleProperty = BindableProperty.Create(nameof(SelectionPopupStyle), typeof(PropertyMap), typeof(TextEditorStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        internal static BindableProperty SelectionPopupStyleProperty = null;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty GetSelectionPopupStyleProperty()
         {
-            var textEditorStyle = (TextEditorStyle)bindable;
-            textEditorStyle.selectionPopupStyle = (PropertyMap)newValue;
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var textEditorStyle = (TextEditorStyle)bindable;
-            return textEditorStyle.selectionPopupStyle;
-        });
+            if(SelectionPopupStyleProperty == null)
+            {
+                SelectionPopupStyleProperty = BindableProperty.Create(nameof(SelectionPopupStyle), typeof(PropertyMap), typeof(TextEditorStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+                {
+                    var textEditorStyle = (TextEditorStyle)bindable;
+                    textEditorStyle.selectionPopupStyle = (PropertyMap)newValue;
+                },
+                defaultValueCreator: (bindable) =>
+                {
+                    var textEditorStyle = (TextEditorStyle)bindable;
+                    return textEditorStyle.selectionPopupStyle;
+                });
+            }
+            return SelectionPopupStyleProperty;
+        }
 
         private HorizontalAlignment? horizontalAlignment;
         private VerticalAlignment? verticalAlignment;
@@ -462,8 +492,28 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int? CursorWidth
         {
-            get => (int?)GetValue(CursorWidthProperty);
-            set => SetValue(CursorWidthProperty, value);
+            get
+            {
+                if(NUIApplication.DisableBindableProperty)
+                {
+                    return this.cursorWidth;
+                }
+                else
+                {
+                    return (int?)GetValue(GetCursorWidthProperty());
+                }
+            }
+            set
+            {
+                if (NUIApplication.DisableBindableProperty)
+                {
+                    this.cursorWidth = value;
+                }
+                else
+                {
+                    SetValue(GetCursorWidthProperty(), value);
+                }
+            }
         }
 
         /// <summary>
@@ -543,8 +593,28 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 SelectionHighlightColor
         {
-            get => (Vector4)GetValue(SelectionHighlightColorProperty);
-            set => SetValue(SelectionHighlightColorProperty, value);
+            get
+            {
+                if(NUIApplication.DisableBindableProperty)
+                {
+                    return this.selectionHighlightColor;
+                }
+                else
+                {
+                    return (Vector4)GetValue(GetSelectionHighlightColorProperty());
+                }
+            }
+            set
+            {
+                if (NUIApplication.DisableBindableProperty)
+                {
+                    this.selectionHighlightColor = value;
+                }
+                else
+                {
+                    SetValue(GetSelectionHighlightColorProperty(), value);
+                }
+            }
         }
 
         /// <summary>
@@ -820,8 +890,28 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap SelectionPopupStyle
         {
-            get => (PropertyMap)GetValue(SelectionPopupStyleProperty);
-            set => SetValue(SelectionPopupStyleProperty, value);
+            get
+            {
+                if (NUIApplication.DisableBindableProperty)
+                {
+                    return this.selectionPopupStyle;
+                }
+                else
+                {
+                    return (PropertyMap)GetValue(GetSelectionPopupStyleProperty()); 
+                }
+            }
+            set
+            {
+                if (NUIApplication.DisableBindableProperty)
+                {
+                    this.selectionPopupStyle = value;
+                }
+                else
+                {
+                    SetValue(GetSelectionPopupStyleProperty(), value);
+                }
+            }
         }
     }
 }

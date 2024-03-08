@@ -114,6 +114,21 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// The constructor with a stylesheet, window mode and monor operational setting
+        /// </summary>
+        /// <param name="styleSheet">The styleSheet url</param>
+        /// <param name="windowMode">The Window Mode</param>
+        /// <param name="minorSetting">minor operational settings include disabling BindableProperty</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public NUIApplication(string styleSheet, WindowMode windowMode, MinorOperationSetting minorSetting) : base(new NUICoreBackend(styleSheet, windowMode))
+        {
+            if(minorSetting.HasFlag(MinorOperationSetting.DisableBindableProperty))
+            {
+                DisableBindableProperty = true;
+            }
+        }
+
+        /// <summary>
         /// The constructor with a stylesheet, window mode, window size, and position.
         /// </summary>
         /// <param name="styleSheet">The styleSheet URL.</param>
@@ -194,9 +209,14 @@ namespace Tizen.NUI
         /// <param name="windowMode">The windowMode.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
-        public NUIApplication(string styleSheet, Size2D windowSize, Position2D windowPosition, IBorderInterface borderInterface, WindowMode windowMode = WindowMode.Opaque) : base(new NUICoreBackend(styleSheet, windowMode, windowSize, windowPosition))
+        public NUIApplication(string styleSheet, Size2D windowSize, Position2D windowPosition, IBorderInterface borderInterface, WindowMode windowMode = WindowMode.Opaque, MinorOperationSetting minorSetting = MinorOperationSetting.Nothing) : base(new NUICoreBackend(styleSheet, windowMode, windowSize, windowPosition))
         {
             EnableBorder(borderInterface);
+
+            if(minorSetting.HasFlag(MinorOperationSetting.DisableBindableProperty))
+            {
+                DisableBindableProperty = true;
+            }
         }
 
         /// <summary>
@@ -342,6 +362,25 @@ namespace Tizen.NUI
             [EditorBrowsable(EditorBrowsableState.Never)]
             ThemeChangeSensitive = 1 << 1,
         };
+
+        /// <summary>
+        /// minor operational settings
+        /// </summary>
+        [Flags]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum MinorOperationSetting
+        {
+            /// <summary>
+            /// default
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Nothing = 0,
+            /// <summary>
+            /// disable BindableProperty
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            DisableBindableProperty = 1 << 1,
+        }
 
         /// <summary>
         /// Current loaded xaml's full name.
@@ -663,6 +702,12 @@ namespace Tizen.NUI
         /// Check if it is loaded as dotnet-loader-nui.
         /// </summary>
         static internal bool IsPreload { get; set; }
+
+        /// <summary>
+        /// setting for disabling BindableProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static internal bool DisableBindableProperty = false;
 
         private void ApplyThemeOption(ThemeOptions option)
         {

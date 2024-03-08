@@ -89,20 +89,23 @@ namespace Tizen.NUI.BaseComponents
 
         static View()
         {
-            RegisterPropertyGroup(PositionProperty, positionPropertyGroup);
-            RegisterPropertyGroup(Position2DProperty, positionPropertyGroup);
-            RegisterPropertyGroup(PositionXProperty, positionPropertyGroup);
-            RegisterPropertyGroup(PositionYProperty, positionPropertyGroup);
+            if (NUIApplication.DisableBindableProperty == false)
+            {
+                RegisterPropertyGroup(GetPositionProperty(), positionPropertyGroup);
+                RegisterPropertyGroup(GetPosition2DProperty(), positionPropertyGroup);
+                RegisterPropertyGroup(PositionXProperty, positionPropertyGroup);
+                RegisterPropertyGroup(PositionYProperty, positionPropertyGroup);
 
-            RegisterPropertyGroup(SizeProperty, sizePropertyGroup);
-            RegisterPropertyGroup(Size2DProperty, sizePropertyGroup);
-            RegisterPropertyGroup(SizeWidthProperty, sizePropertyGroup);
-            RegisterPropertyGroup(SizeHeightProperty, sizePropertyGroup);
+                RegisterPropertyGroup(GetSizeProperty(), sizePropertyGroup);
+                RegisterPropertyGroup(GetSize2DProperty(), sizePropertyGroup);
+                RegisterPropertyGroup(SizeWidthProperty, sizePropertyGroup);
+                RegisterPropertyGroup(SizeHeightProperty, sizePropertyGroup);
 
-            RegisterPropertyGroup(ScaleProperty, scalePropertyGroup);
-            RegisterPropertyGroup(ScaleXProperty, scalePropertyGroup);
-            RegisterPropertyGroup(ScaleYProperty, scalePropertyGroup);
-            RegisterPropertyGroup(ScaleZProperty, scalePropertyGroup);
+                RegisterPropertyGroup(ScaleProperty, scalePropertyGroup);
+                RegisterPropertyGroup(ScaleXProperty, scalePropertyGroup);
+                RegisterPropertyGroup(ScaleYProperty, scalePropertyGroup);
+                RegisterPropertyGroup(ScaleZProperty, scalePropertyGroup);
+            }
 
             RegisterAccessibilityDelegate();
         }
@@ -523,11 +526,47 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Color)GetValue(BackgroundColorProperty);
+                if (NUIApplication.DisableBindableProperty)
+                {
+                    if (this.internalBackgroundColor == null)
+                    {
+                        this.internalBackgroundColor = new Color(this.OnBackgroundColorChanged, 0, 0, 0, 0);
+                    }
+
+                    int visualType = (int)Visual.Type.Invalid;
+                    Interop.View.InternalRetrievingVisualPropertyInt(this.SwigCPtr, Property.BACKGROUND, Visual.Property.Type, out visualType);
+                    if (visualType == (int)Visual.Type.Color)
+                    {
+                        Interop.View.InternalRetrievingVisualPropertyVector4(this.SwigCPtr, Property.BACKGROUND, ColorVisualProperty.MixColor, Color.getCPtr(this.internalBackgroundColor));
+                    }
+                    return this.internalBackgroundColor;
+                }
+                else
+                {
+                    return (Color)GetValue(GetBackgroundColorProperty());
+                }
             }
             set
             {
-                SetValue(BackgroundColorProperty, value);
+                if (NUIApplication.DisableBindableProperty)
+                {
+                    //VD doesn't use NUI Components and Theme, so the following is not needed.
+                    //view.themeData?.selectorData?.ClearBackground(view);
+                    //if (newValue is Selector<Color> selector)
+                    //{
+                    //    if (selector.HasAll()) view.SetBackgroundColor(selector.All);
+                    //    else view.EnsureSelectorData().BackgroundColor = new TriggerableSelector<Color>(view, selector, view.SetBackgroundColor, true);
+                    //}
+                    //else
+                    //{
+                    //    view.SetBackgroundColor((Color)newValue);
+                    //}
+                    this.SetBackgroundColor(value);
+                }
+                else
+                {
+                    SetValue(GetBackgroundColorProperty(), value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1284,20 +1323,66 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                var temp = (Size2D)GetValue(Size2DProperty);
-
-                if (this.Layout == null)
+                if (NUIApplication.DisableBindableProperty)
                 {
-                    if (temp.Width < 0) { temp.Width = 0; }
-                    if (temp.Height < 0) { temp.Height = 0; }
+                    if (this.internalSize2D == null)
+                    {
+                        this.internalSize2D = new Size2D(this.OnSize2DChanged, 0, 0);
+                    }
+                    Object.InternalRetrievingPropertyVector2ActualVector3(this.SwigCPtr, View.Property.SIZE, this.internalSize2D.SwigCPtr);
+                    return this.internalSize2D;
                 }
+                else
+                {
+                    var temp = (Size2D)GetValue(GetSize2DProperty());
 
-                return temp;
+                    if (this.Layout == null)
+                    {
+                        if (temp.Width < 0) { temp.Width = 0; }
+                        if (temp.Height < 0) { temp.Height = 0; }
+                    }
+
+                    return temp;
+                }
             }
             set
             {
-                SetValue(Size2DProperty, value);
+                if (NUIApplication.DisableBindableProperty)
+                {
+                    if (value != null)
+                    {
+                        // Size property setter is only used by user.
+                        // Framework code uses SetSize() instead of Size property setter.
+                        // Size set by user is returned by GetUserSize2D() for SuggestedMinimumWidth/Height.
+                        // SuggestedMinimumWidth/Height is used by Layout calculation.
+                        int width = value.Width;
+                        int height = value.Height;
+                        this.userSizeWidth = (float)width;
+                        this.userSizeHeight = (float)height;
 
+                        bool relayoutRequired = false;
+                        // To avoid duplicated size setup, change internal policy directly.
+                        if (this.widthPolicy != width)
+                        {
+                            this.widthPolicy = width;
+                            relayoutRequired = true;
+                        }
+                        if (this.heightPolicy != height)
+                        {
+                            this.heightPolicy = height;
+                            relayoutRequired = true;
+                        }
+                        if (relayoutRequired)
+                        {
+                            this.layout?.RequestLayout();
+                        }
+                        Object.InternalSetPropertyVector2ActualVector3(this.SwigCPtr, View.Property.SIZE, value.SwigCPtr);
+                    }
+                }
+                else
+                {
+                    SetValue(GetSize2DProperty(), value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1370,12 +1455,34 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Position2D)GetValue(Position2DProperty);
+                if (NUIApplication.DisableBindableProperty)
+                {
+                    if (this.internalPosition2D == null)
+                    {
+                        this.internalPosition2D = new Position2D(this.OnPosition2DChanged, 0, 0);
+                    }
+                    Object.InternalRetrievingPropertyVector2ActualVector3(this.SwigCPtr, View.Property.POSITION, this.internalPosition2D.SwigCPtr);
+                    return this.internalPosition2D;
+                }
+                else
+                {
+                    return (Position2D)GetValue(GetPosition2DProperty());
+                }
             }
             set
             {
-                SetValue(Position2DProperty, value);
-                NotifyPropertyChanged();
+                if (NUIApplication.DisableBindableProperty)
+                {
+                    if (value != null)
+                    {
+                        Object.InternalSetPropertyVector2ActualVector3(this.SwigCPtr, View.Property.POSITION, value.SwigCPtr);
+                    }
+                }
+                else
+                {
+                    SetValue(GetPosition2DProperty(), value);
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -1420,11 +1527,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(PositionUsesPivotPointProperty);
+                if (NUIApplication.DisableBindableProperty)
+                {
+                    return Object.InternalGetPropertyBool(this.SwigCPtr, View.Property.PositionUsesAnchorPoint);
+                }
+                else
+                {
+                    return (bool)GetValue(GetPositionUsesPivotPointProperty()); 
+                }
             }
             set
             {
-                SetValue(PositionUsesPivotPointProperty, value);
+                if (NUIApplication.DisableBindableProperty)
+                {
+                    Object.InternalSetPropertyBool(this.SwigCPtr, View.Property.PositionUsesAnchorPoint, value);
+                }
+                else
+                {
+                    SetValue(GetPositionUsesPivotPointProperty(), value); 
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1693,12 +1814,34 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Position)GetValue(PositionProperty);
+                if (NUIApplication.DisableBindableProperty)
+                {
+                    if (this.internalPosition == null)
+                    {
+                        this.internalPosition = new Position(this.OnPositionChanged, 0, 0, 0);
+                    }
+                    Object.InternalRetrievingPropertyVector3(this.SwigCPtr, View.Property.POSITION, this.internalPosition.SwigCPtr);
+                    return this.internalPosition;
+                }
+                else
+                {
+                    return (Position)GetValue(GetPositionProperty());
+                }
             }
             set
             {
-                SetValue(PositionProperty, value);
-                NotifyPropertyChanged();
+                if (NUIApplication.DisableBindableProperty)
+                {
+                    if (value != null)
+                    {
+                        Object.InternalSetPropertyVector3(this.SwigCPtr, View.Property.POSITION, value.SwigCPtr);
+                    }
+                }
+                else
+                {
+                    SetValue(GetPositionProperty(), value);
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -2491,12 +2634,66 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Size)GetValue(SizeProperty);
+                if (NUIApplication.DisableBindableProperty)
+                {
+                    if (this.internalSize == null)
+                    {
+                        this.internalSize = new Size(this.OnSizeChanged, 0, 0, 0);
+                    }
+                    Object.InternalRetrievingPropertyVector3(this.SwigCPtr, View.Property.SIZE, this.internalSize.SwigCPtr);
+                    return this.internalSize;
+                }
+                else
+                {
+                    return (Size)GetValue(GetSizeProperty());
+                }
             }
             set
             {
-                SetValue(SizeProperty, value);
-                NotifyPropertyChanged();
+                if (NUIApplication.DisableBindableProperty)
+                {
+                    if (value != null)
+                    {
+                        // Size property setter is only used by user.
+                        // Framework code uses SetSize() instead of Size property setter.
+                        // Size set by user is returned by GetUserSize2D() for SuggestedMinimumWidth/Height.
+                        // SuggestedMinimumWidth/Height is used by Layout calculation.
+                        float width = value.Width;
+                        float height = value.Height;
+                        float depth = value.Depth;
+
+                        this.userSizeWidth = width;
+                        this.userSizeHeight = height;
+
+                        // Set Specification so when layouts measure this View it matches the value set here.
+                        // All Views are currently Layouts.
+                        int widthPolicy = (int)System.Math.Ceiling(width);
+                        int heightPolicy = (int)System.Math.Ceiling(height);
+
+                        bool relayoutRequired = false;
+                        // To avoid duplicated size setup, change internal policy directly.
+                        if (this.widthPolicy != widthPolicy)
+                        {
+                            this.widthPolicy = widthPolicy;
+                            relayoutRequired = true;
+                        }
+                        if (this.heightPolicy != heightPolicy)
+                        {
+                            this.heightPolicy = heightPolicy;
+                            relayoutRequired = true;
+                        }
+                        if (relayoutRequired)
+                        {
+                            this.layout?.RequestLayout();
+                        }
+                        this.SetSize(width, height, depth);
+                    }
+                }
+                else
+                {
+                    SetValue(GetSizeProperty(), value);
+                    NotifyPropertyChanged();
+                }
             }
         }
 
