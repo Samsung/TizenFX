@@ -293,6 +293,42 @@ namespace Tizen.NUI.BaseComponents
             return textLabel.internalAnchorClickedColor;
         }));
 
+        /// <summary>
+        /// RemoveFrontInsetProperty
+        /// </summary>
+        public static readonly BindableProperty RemoveFrontInsetProperty = BindableProperty.Create(nameof(RemoveFrontInset), typeof(bool), typeof(TextLabel), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            if (newValue != null)
+            {
+                Object.InternalSetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.RemoveFrontInset, (bool)newValue);
+            }
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        {
+            var textLabel = (TextLabel)bindable;
+
+            return Object.InternalGetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.RemoveFrontInset);
+        }));
+
+        /// <summary>
+        /// RemoveBackInsetProperty
+        /// </summary>
+        public static readonly BindableProperty RemoveBackInsetProperty = BindableProperty.Create(nameof(RemoveBackInset), typeof(bool), typeof(TextLabel), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            if (newValue != null)
+            {
+                Object.InternalSetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.RemoveBackInset, (bool)newValue);
+            }
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        {
+            var textLabel = (TextLabel)bindable;
+
+            return Object.InternalGetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.RemoveBackInset);
+        }));
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty EnableMarkupProperty = BindableProperty.Create(nameof(EnableMarkup), typeof(bool), typeof(TextLabel), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>

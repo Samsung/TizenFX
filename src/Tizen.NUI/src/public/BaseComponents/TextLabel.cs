@@ -1598,6 +1598,44 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The RemoveFrontInset property.<br />
+        /// </summary>
+        /// <remarks>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool RemoveFrontInset
+        {
+            get
+            {
+                return (bool)GetValue(RemoveFrontInsetProperty);
+            }
+            set
+            {
+                SetValue(RemoveFrontInsetProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The RemoveFrontInset property.<br />
+        /// </summary>
+        /// <remarks>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool RemoveBackInset
+        {
+            get
+            {
+                return (bool)GetValue(RemoveBackInsetProperty);
+            }
+            set
+            {
+                SetValue(RemoveBackInsetProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// The FontSizeScale property for scaling the specified font size up or down. <br />
         /// The default value is 1.0. <br />
         /// The given font size scale value is used for multiplying the specified font size before querying fonts. <br />
@@ -1904,6 +1942,8 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int CharacterSpacing = Interop.TextLabel.CharacterSpacingGet();
             internal static readonly int AnchorColor = Interop.TextLabel.AnchorColorGet();
             internal static readonly int AnchorClickedColor = Interop.TextLabel.AnchorClickedColorGet();
+            internal static readonly int RemoveFrontInset = Interop.TextLabel.RemoveFrontInsetGet();
+            internal static readonly int RemoveBackInset = Interop.TextLabel.RemoveBackInsetGet();
 
 
             internal static void Preload()
