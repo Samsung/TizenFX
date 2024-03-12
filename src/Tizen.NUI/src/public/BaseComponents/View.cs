@@ -89,20 +89,23 @@ namespace Tizen.NUI.BaseComponents
 
         static View()
         {
-            RegisterPropertyGroup(PositionProperty, positionPropertyGroup);
-            RegisterPropertyGroup(Position2DProperty, positionPropertyGroup);
-            RegisterPropertyGroup(PositionXProperty, positionPropertyGroup);
-            RegisterPropertyGroup(PositionYProperty, positionPropertyGroup);
+            if (NUIApplication.DisableBindableProperty == false)
+            {
+                RegisterPropertyGroup(PositionProperty, positionPropertyGroup);
+                RegisterPropertyGroup(Position2DProperty, positionPropertyGroup);
+                RegisterPropertyGroup(PositionXProperty, positionPropertyGroup);
+                RegisterPropertyGroup(PositionYProperty, positionPropertyGroup);
 
-            RegisterPropertyGroup(SizeProperty, sizePropertyGroup);
-            RegisterPropertyGroup(Size2DProperty, sizePropertyGroup);
-            RegisterPropertyGroup(SizeWidthProperty, sizePropertyGroup);
-            RegisterPropertyGroup(SizeHeightProperty, sizePropertyGroup);
+                RegisterPropertyGroup(SizeProperty, sizePropertyGroup);
+                RegisterPropertyGroup(Size2DProperty, sizePropertyGroup);
+                RegisterPropertyGroup(SizeWidthProperty, sizePropertyGroup);
+                RegisterPropertyGroup(SizeHeightProperty, sizePropertyGroup);
 
-            RegisterPropertyGroup(ScaleProperty, scalePropertyGroup);
-            RegisterPropertyGroup(ScaleXProperty, scalePropertyGroup);
-            RegisterPropertyGroup(ScaleYProperty, scalePropertyGroup);
-            RegisterPropertyGroup(ScaleZProperty, scalePropertyGroup);
+                RegisterPropertyGroup(ScaleProperty, scalePropertyGroup);
+                RegisterPropertyGroup(ScaleXProperty, scalePropertyGroup);
+                RegisterPropertyGroup(ScaleYProperty, scalePropertyGroup);
+                RegisterPropertyGroup(ScaleZProperty, scalePropertyGroup);
+            }
 
             RegisterAccessibilityDelegate();
         }
@@ -145,14 +148,14 @@ namespace Tizen.NUI.BaseComponents
             switch (accessibilityMode)
             {
                 case ViewAccessibilityMode.Custom:
-                {
-                    return Interop.View.NewCustom();
-                }
+                    {
+                        return Interop.View.NewCustom();
+                    }
                 case ViewAccessibilityMode.Default:
                 default:
-                {
-                    return Interop.View.New();
-                }
+                    {
+                        return Interop.View.New();
+                    }
             }
         }
 
@@ -412,7 +415,7 @@ namespace Tizen.NUI.BaseComponents
                             }
 
                             if (child.ControlState != newControlState)
-                            child.ControlState = newControlState;
+                                child.ControlState = newControlState;
                         }
                     }
                 }
@@ -523,11 +526,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Color)GetValue(BackgroundColorProperty);
+                if (NUIApplication.DisableBindableProperty)
+                {
+                    return (Color)GetInternalBackgroundColorProperty(this);
+                }
+                else
+                {
+                    return (Color)GetValue(BackgroundColorProperty);
+                }
             }
             set
             {
-                SetValue(BackgroundColorProperty, value);
+                if (NUIApplication.DisableBindableProperty)
+                {
+                    SetInternalBackgroundColorProperty(this, null, value);
+                }
+                else
+                {
+                    SetValue(BackgroundColorProperty, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1284,20 +1301,37 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                var temp = (Size2D)GetValue(Size2DProperty);
-
-                if (this.Layout == null)
+                if (NUIApplication.DisableBindableProperty)
                 {
-                    if (temp.Width < 0) { temp.Width = 0; }
-                    if (temp.Height < 0) { temp.Height = 0; }
+                    var temp = (Size2D)GetInternalSize2DProperty(this);
+                    if (this.Layout == null)
+                    {
+                        if (temp.Width < 0) { temp.Width = 0; }
+                        if (temp.Height < 0) { temp.Height = 0; }
+                    }
+                    return temp;
                 }
-
-                return temp;
+                else
+                {
+                    var temp = (Size2D)GetValue(Size2DProperty);
+                    if (this.Layout == null)
+                    {
+                        if (temp.Width < 0) { temp.Width = 0; }
+                        if (temp.Height < 0) { temp.Height = 0; }
+                    }
+                    return temp;
+                }
             }
             set
             {
-                SetValue(Size2DProperty, value);
-
+                if (NUIApplication.DisableBindableProperty)
+                {
+                    SetInternalSize2DProperty(this, null, value);
+                }
+                else
+                {
+                    SetValue(Size2DProperty, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1370,11 +1404,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Position2D)GetValue(Position2DProperty);
+                if (NUIApplication.DisableBindableProperty)
+                {
+                    return (Position2D)GetInternalPosition2DProperty(this);
+                }
+                else
+                {
+                    return (Position2D)GetValue(Position2DProperty);
+                }
             }
             set
             {
-                SetValue(Position2DProperty, value);
+                if (NUIApplication.DisableBindableProperty)
+                {
+                    SetInternalPosition2DProperty(this, null, value);
+                }
+                else
+                {
+                    SetValue(Position2DProperty, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -3512,5 +3560,20 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static int AliveCount => aliveCount;
 
+        /// <summary>
+        /// Voice interaction name for voice touch.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string VoiceInteractionName
+        {
+            set
+            {
+                AutomationId = value;
+            }
+            get
+            {
+                return AutomationId;
+            }
+        }
     }
 }
