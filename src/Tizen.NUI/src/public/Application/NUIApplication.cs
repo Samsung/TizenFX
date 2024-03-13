@@ -45,6 +45,8 @@ namespace Tizen.NUI
         private bool borderEnabled = false;
         private IBorderInterface borderInterface = null;
 
+        private State currentState = State.Invalid;
+
         /// <summary>
         /// Xaml loaded delegate.
         /// </summary>
@@ -63,6 +65,7 @@ namespace Tizen.NUI
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         public NUIApplication() : base(new NUICoreBackend())
         {
+            currentState = State.Ready;
         }
 
         /// <summary>
@@ -76,6 +79,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend("", NUIApplication.WindowMode.Opaque, windowSize, windowPosition))
         {
+            currentState = State.Ready;
         }
 
         /// <summary>
@@ -86,6 +90,7 @@ namespace Tizen.NUI
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         public NUIApplication(string styleSheet) : base(new NUICoreBackend(styleSheet))
         {
+            currentState = State.Ready;
         }
 
         /// <summary>
@@ -100,6 +105,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(string styleSheet, Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend(styleSheet, WindowMode.Opaque, windowSize, windowPosition))
         {
+            currentState = State.Ready;
         }
 
         /// <summary>
@@ -111,6 +117,7 @@ namespace Tizen.NUI
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         public NUIApplication(string styleSheet, WindowMode windowMode) : base(new NUICoreBackend(styleSheet, windowMode))
         {
+            currentState = State.Ready;
         }
 
         /// <summary>
@@ -126,6 +133,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(string styleSheet, WindowMode windowMode, Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend(styleSheet, windowMode, windowSize, windowPosition))
         {
+            currentState = State.Ready;
         }
 
         /// <summary>
@@ -142,6 +150,7 @@ namespace Tizen.NUI
         public NUIApplication(Graphics.BackendType backend, WindowMode windowMode = WindowMode.Opaque, Size2D windowSize = null, Position2D windowPosition = null, string styleSheet = "") : base(new NUICoreBackend(styleSheet, windowMode, windowSize, windowPosition))
         {
             //windowMode and styleSheet will be added later. currently it's not working as expected.
+            currentState = State.Ready;
             Graphics.Backend = backend;
             Tizen.Log.Error("NUI", "Plaese DO NOT set graphical backend type with this constructor! This will give no effect!");
         }
@@ -154,6 +163,7 @@ namespace Tizen.NUI
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         public NUIApplication(ThemeOptions option) : base(new NUICoreBackend())
         {
+            currentState = State.Ready;
             ApplyThemeOption(option);
         }
 
@@ -167,6 +177,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(Size2D windowSize, Position2D windowPosition, ThemeOptions option) : base(new NUICoreBackend("", NUIApplication.WindowMode.Opaque, windowSize, windowPosition))
         {
+            currentState = State.Ready;
             ApplyThemeOption(option);
         }
 
@@ -181,6 +192,7 @@ namespace Tizen.NUI
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         public NUIApplication(string styleSheet, WindowMode windowMode, WindowType type) : base(new NUICoreBackend(styleSheet, windowMode, type))
         {
+            currentState = State.Ready;
             ExternalThemeManager.Initialize();
         }
 
@@ -196,6 +208,7 @@ namespace Tizen.NUI
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         public NUIApplication(string styleSheet, Size2D windowSize, Position2D windowPosition, IBorderInterface borderInterface, WindowMode windowMode = WindowMode.Opaque) : base(new NUICoreBackend(styleSheet, windowMode, windowSize, windowPosition))
         {
+            currentState = State.Ready;
             EnableBorder(borderInterface);
         }
 
@@ -208,6 +221,7 @@ namespace Tizen.NUI
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         public NUIApplication(ThemeOptions option, IBorderInterface borderInterface) : base(new NUICoreBackend())
         {
+            currentState = State.Ready;
             EnableBorder(borderInterface);
             ApplyThemeOption(option);
         }
@@ -223,6 +237,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(Size2D windowSize, Position2D windowPosition, ThemeOptions option, IBorderInterface borderInterface) : base(new NUICoreBackend("", NUIApplication.WindowMode.Opaque, windowSize, windowPosition))
         {
+            currentState = State.Ready;
             EnableBorder(borderInterface);
             ApplyThemeOption(option);
         }
@@ -247,6 +262,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(string styleSheet, WindowMode windowMode, CoreTask task) : base(new NUICoreBackend(styleSheet, windowMode), task)
         {
+            currentState = State.Ready;
         }
 
         /// <summary>
@@ -261,6 +277,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(string styleSheet, WindowMode windowMode, Size2D windowSize, Position2D windowPosition, CoreTask task) : base(new NUICoreBackend(styleSheet, windowMode, windowSize, windowPosition), task)
         {
+            currentState = State.Ready;
         }
 
         /// <summary>
@@ -272,6 +289,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(ThemeOptions option, WindowData windowData) : base(new NUICoreBackend(windowData))
         {
+            currentState = State.Ready;
             if (windowData.BorderInterface != null)
             {
                 EnableBorder(windowData.BorderInterface);
@@ -405,6 +423,20 @@ namespace Tizen.NUI
                 return Tizen.Applications.Application.Current.ApplicationInfo.ApplicationId;
             }
         }
+
+
+        /// <summary>
+        /// Gets the state of current application.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public State State
+        {
+            get
+            {
+                return currentState;
+            }
+        } 
 
         /// <summary>
         /// Gets the default window.
@@ -569,6 +601,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override void OnTerminate()
         {
+            currentState = State.Terminated;
             base.OnTerminate();
         }
 
@@ -578,6 +611,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnPause()
         {
+            currentState = State.Paused;
             Paused?.Invoke(this, EventArgs.Empty);
         }
 
@@ -587,6 +621,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnResume()
         {
+            currentState = State.Resumed;
             Resumed?.Invoke(this, EventArgs.Empty);
         }
 
@@ -598,11 +633,11 @@ namespace Tizen.NUI
         {
             Tizen.Tracer.Begin("[NUI] OnPreCreate()");
 
+            currentState = State.PreCreated;
             if (borderEnabled && GetDefaultWindow() != null)
             {
                 GetDefaultWindow().EnableBorder(borderInterface, new Window.BorderCloseDelegate(Exit));
             }
-
             Tizen.Tracer.End();
         }
 
@@ -627,6 +662,7 @@ namespace Tizen.NUI
         protected override void OnCreate()
         {
             Tizen.Tracer.Begin("[NUI] OnCreate()");
+            currentState = State.Created;
 
             base.OnCreate();
 
@@ -715,5 +751,56 @@ namespace Tizen.NUI
 
         internal const string GlesCSharpBinder = NDalicPINVOKE.Lib;
         internal const string VulkanCSharpBinder = "libdali-csharp-binder-vk.so";
+    }
+
+    /// <summary>
+    /// Enum of Application status
+    /// </summary>
+    // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum State
+    {
+        /// <summary>
+        /// Invalid
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Invalid = -1,
+        /// <summary>
+        /// Ready
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Ready,
+        /// <summary>
+        /// PreCreated
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        PreCreated,
+        /// <summary>
+        /// Created
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Created,
+        /// <summary>
+        /// Resumed
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Resumed,
+        /// <summary>
+        /// Paused
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Paused,
+        /// <summary>
+        /// Terminated
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Terminated
     }
 }
