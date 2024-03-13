@@ -61,6 +61,18 @@ namespace Tizen.NUI
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+        
+        /// <summary>
+        /// The constructor of Rotation from Euler angles.
+        /// </summary>
+        /// <param name="pitch">Pitch value as Radian.</param>
+        /// <param name="yaw">Yaw value as Radian</param>
+        /// <param name="roll">Roll value as Radian</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Rotation(Radian pitch, Radian yaw, Radian roll) : this(Interop.Rotation.NewRotation3(Radian.getCPtr(pitch), Radian.getCPtr(yaw), Radian.getCPtr(roll)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
         /// <summary>
         /// (0.0f,0.0f,0.0f,1.0f).
