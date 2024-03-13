@@ -96,6 +96,21 @@ namespace Tizen.NUI.Scene3D
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_LoadFacialAnimation_2")]
             public static extern global::System.IntPtr LoadBlendShapeAnimationFromBuffer(global::System.Runtime.InteropServices.HandleRef model, string jsonBuffer, int jsonBufferLength);
             
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_CastShadow")]
+            public static extern void CastShadow(global::System.Runtime.InteropServices.HandleRef model, bool castShadow);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_IsShadowCasting")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool IsShadowCasting(global::System.Runtime.InteropServices.HandleRef model);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_ReceiveShadow")]
+            public static extern void ReceiveShadow(global::System.Runtime.InteropServices.HandleRef model, bool receiveShadow);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_IsShadowReceiving")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool IsShadowReceiving(global::System.Runtime.InteropServices.HandleRef model);
+
+            
             // Signals
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_MeshHitSignal_Connect")]
             public static extern void MeshHitSignalConnect(global::System.Runtime.InteropServices.HandleRef model, global::System.Runtime.InteropServices.HandleRef handler);
