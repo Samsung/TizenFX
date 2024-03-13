@@ -61,6 +61,7 @@ namespace Tizen.NUI
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+        
         /// <summary>
         /// The constructor of Rotation from Euler angles.
         /// </summary>
