@@ -75,7 +75,21 @@ namespace Tizen.NUI.Scene3D
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_ModelNode_SetColliderMesh")]
             public static extern global::System.IntPtr SetColliderMesh(global::System.Runtime.InteropServices.HandleRef modelNode,
                 Vec3[] vPtr,
-                Vec3[] nPtr, int vLength, int[] iPtr, int iLength);            
+                Vec3[] nPtr, int vLength, int[] iPtr, int iLength);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_ModelNode_CastShadow")]
+            public static extern void CastShadow(global::System.Runtime.InteropServices.HandleRef model, bool castShadow);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_ModelNode_IsShadowCasting")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool IsShadowCasting(global::System.Runtime.InteropServices.HandleRef model);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_ModelNode_ReceiveShadow")]
+            public static extern void ReceiveShadow(global::System.Runtime.InteropServices.HandleRef model, bool receiveShadow);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_ModelNode_IsShadowReceiving")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool IsShadowReceiving(global::System.Runtime.InteropServices.HandleRef model);
         }
     }
 }
