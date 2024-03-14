@@ -23,8 +23,9 @@ namespace Tizen.NUI
 {
     internal class WeakEvent<T> where T : Delegate
     {
-        private const int cleanUpThreshold = 100; // Experimetal constant
-        private int cleanUpCount = 0;
+        private const int addThreshold = 1000; // Experimetal constant
+        private const int listLengthThreshold = 1000; // Experimetal constant
+        private int cleanUpAddCount = 0;
         private List<WeakHandler<T>> handlers = new List<WeakHandler<T>>();
 
         protected int Count => handlers.Count;
@@ -46,8 +47,6 @@ namespace Tizen.NUI
                 handlers.RemoveAt(lastIndex);
                 OnCountDicreased();
             }
-
-            CleanUpDeadHandlersIfNeeds();
         }
 
         public void Invoke(object sender, EventArgs args)
@@ -74,7 +73,9 @@ namespace Tizen.NUI
 
         private void CleanUpDeadHandlersIfNeeds()
         {
-            if (++cleanUpCount == cleanUpThreshold)
+            // Once the list count exceed 'listLengthThreshold', do the clean-up every 'addThreshold' add operations.
+            // When list count go below `listLengthThreshold` before clean-up, pause operation counting.
+            if (handlers.Count > listLengthThreshold && ++cleanUpAddCount > addThreshold)
             {
                 CleanUpDeadHandlers();
             }
@@ -82,7 +83,7 @@ namespace Tizen.NUI
 
         private void CleanUpDeadHandlers()
         {
-            cleanUpCount = 0;
+            cleanUpAddCount = 0;
             int count = handlers.Count;
             handlers.RemoveAll(item => !item.IsAlive);
             if (count > handlers.Count) OnCountDicreased();
