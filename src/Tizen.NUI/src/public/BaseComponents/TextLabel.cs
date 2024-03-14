@@ -1599,6 +1599,8 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The RemoveFrontInset property.<br />
+        /// This property is used when the xBearing of first glyph must not be trimmed.<br />
+        /// When set to false, The gap between (0, 0) from the first glyph's leftmost pixel is included in the width of text label.
         /// </summary>
         /// <remarks>
         /// </remarks>
@@ -1617,7 +1619,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The RemoveFrontInset property.<br />
+        /// The RemoveBackInset property.<br />
+        /// This property is used when the advance of last glyph must not be trimmed.<br />
+        /// When set to false, The gap between the last glyph's rightmost pixel and X coordinate that next glyph will be placed is included in the width of text label.
         /// </summary>
         /// <remarks>
         /// </remarks>

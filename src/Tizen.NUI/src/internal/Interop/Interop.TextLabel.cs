@@ -189,12 +189,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_Property_REMOVE_BACK_INSET_get")]
             public static extern int RemoveBackInsetGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_SetRemoveFrontInset")]
-            public static extern void SetRemoveFrontInset(global::System.Runtime.InteropServices.HandleRef textLabel, bool remove);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_SetRemoveBackInset")]
-            public static extern void SetRemoveBackInset(global::System.Runtime.InteropServices.HandleRef textLabel, bool remove);
         }
     }
 }
