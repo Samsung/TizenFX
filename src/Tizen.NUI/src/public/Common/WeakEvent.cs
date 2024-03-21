@@ -70,7 +70,7 @@ namespace Tizen.NUI
         /// Invoke event handlers.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Invoke(object sender, EventArgs args)
+        public void Invoke(object sender, object args)
         {
             // Iterate copied one to prevent addition/removal item in the handler call.
             var copiedArray = handlers.ToArray();
