@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <NoWarn>$(NoWarn);0618;CA1054;CA1056</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <ProjectReference Include="..\Tizen\Tizen.csproj" />
+    <ProjectReference Include="..\Tizen.Log\Tizen.Log.csproj" />
+    <ProjectReference Include="..\Tizen.Uix.Tts\Tizen.Uix.Tts.csproj" />
+    <ProjectReference Include="..\Tizen.NUI\Tizen.NUI.csproj" />
+    <ProjectReference Include="..\Tizen.NUI.Scene3D\Tizen.NUI.Scene3D.csproj" />
+    <ProjectReference Include="..\Tizen.MachineLearning.Inference\Tizen.MachineLearning.Inference.csproj" />
+    <ProjectReference Include="..\Tizen.Multimedia.AudioIO\Tizen.Multimedia.AudioIO.csproj" />
+    <ProjectReference Include="..\Tizen.Security\Tizen.Security.csproj" />
+    <ProjectReference Include="..\Tizen.Security.PrivacyPrivilegeManager\Tizen.Security.PrivacyPrivilegeManager.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Audio2Vowel">
+      <HintPath>lib\lipsync\Audio2Vowel.dll</HintPath>
+    </Reference>
+    <Reference Include="Vowel2Animation">
+      <HintPath>lib\lipsync\Vowel2Animation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+
+</Project>
+
