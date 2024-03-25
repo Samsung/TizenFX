@@ -16,7 +16,9 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
@@ -53,10 +55,59 @@ namespace Tizen.NUI
         {
         }
 
+#if KEY_TEST_1
+        
+        internal static int curNum;
+        internal int id;
+        internal static Dictionary<IntPtr, Key> keyList = new Dictionary<IntPtr, Key>();
+        private const int MAX_LIST_COUNT = 10;
+        private static int cnt;
+        private static bool managedByList = true;
+
+        internal static Key NewKey(IntPtr cPtr)
+        {
+            if (keyList.TryGetValue(cPtr, out Key existKey) && existKey != null)
+            {
+                //already existed. nothing to do.
+                return existKey;
+            }
+            else
+            {
+                if (keyList.Count > MAX_LIST_COUNT)
+                {
+                    managedByList = false;
+                    foreach (KeyValuePair<IntPtr, Key> item in keyList)
+                    {
+                        item.Value.Dispose();
+                    }
+                    keyList.Clear();
+                    managedByList = true;
+                }
+                Key ret = new Key(cPtr, false);
+
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                keyList.Add(cPtr, ret);
+                return ret;
+            }
+        }
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (managedByList) { return; }
+
+            base.Dispose(type);
+        }
+
+        internal Key(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
+        {
+            //Tizen.Log.Fatal("NT", $"[{++cnt}]Key.ctor({++curNum}) cPtr=0x{cPtr.ToInt32():X}, swig=0x{SwigCPtr.Handle.ToString("X8")}, cMemoryOwn={cMemoryOwn}, cRegister={cRegister}");
+            id = cnt;
+        }
+#else
         internal Key(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
         }
-
+#endif
         /// <summary>
         /// Enumeration for specifying the state of the key event.
         /// </summary>
