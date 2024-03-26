@@ -16,7 +16,6 @@
  */
 using Tizen.NUI;
 using Tizen.NUI.Scene3D;
-using Vowel2Animation;
 
 namespace Tizen.AIAvatar
 {

@@ -20,7 +20,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI;
 using Tizen.NUI.Scene3D;
-using Vowel2Animation;
 
 using static Tizen.AIAvatar.AIAvatar;
 
@@ -32,7 +31,7 @@ namespace Tizen.AIAvatar
         private Avatar avatar;
         private Animation lipAnimation = null;
 
-        private VowelConverter vowelConverter;
+        //private VowelConverter vowelConverter;
         private AudioPlayer audioPlayer;
 
         //Mic
@@ -51,7 +50,7 @@ namespace Tizen.AIAvatar
         public override void Init(Animation lipAnimation)
         {
             this.lipAnimation = lipAnimation;
-            vowelConverter = new VowelConverter();
+            //vowelConverter = new VowelConverter();
             audioPlayer = new AudioPlayer();
 
             CurrentMotionState = AvatarMotionState.Ready;
@@ -235,11 +234,11 @@ namespace Tizen.AIAvatar
 
         private Animation CreateLipAnimation(byte[] array, int sampleRate)
         {
-            var lipKeyframes = CreateKeyFrame(array, sampleRate);
+            Animation lipKeyframes = null;// CreateKeyFrame(array, sampleRate);
             if (lipKeyframes != null)
             {
 
-                return CreateLipAnimation(lipKeyframes);
+                return null;// CreateLipAnimation(lipKeyframes);
             }
             return null;
         }
@@ -270,8 +269,8 @@ namespace Tizen.AIAvatar
                 AttachPreviousVowel(vowelPools.Dequeue(), out var newVowels);
                 Log.Info(LogTag, $"vowelRecognition: {String.Join(", ", newVowels)}");
 
-                var lipKeyFrames = vowelConverter?.CreateKeyFrames(newVowels, sampleRate, true);
-                return CreateLipAnimation(lipKeyFrames, true);
+                //var lipKeyFrames = vowelConverter?.CreateKeyFrames(newVowels, sampleRate, true);
+                return null;// CreateLipAnimation(lipKeyFrames, true);
             }
             return null;
         }
@@ -287,7 +286,7 @@ namespace Tizen.AIAvatar
 
         private string[] PredictVowels(byte[] audioData)
         {
-            var vowels = vowelConverter?.PredictVowels(audioData);
+            string[] vowels = null;// vowelConverter?.PredictVowels(audioData);
             return vowels;
         }
 
@@ -299,6 +298,7 @@ namespace Tizen.AIAvatar
             prevVowel = vowels[vowels.Length - 1];
         }
 
+        /*
         private AnimationKeyFrame CreateKeyFrame(byte[] audio, int sampleRate)
         {
             var keyFrames = vowelConverter?.CreateKeyFrames(audio, sampleRate);
@@ -337,7 +337,6 @@ namespace Tizen.AIAvatar
             }
             return lipAnimation;
         }
-
         private KeyFrames CreateKeyTimeFrames(ref KeyFrames keyFrames, List<KeyFrame> keyFrameList, bool isMic = false)
         {
             foreach (var key in keyFrameList)
@@ -348,6 +347,7 @@ namespace Tizen.AIAvatar
 
             return keyFrames;
         }
+        */
 
         internal void OnRecordBufferChanged(byte[] recordBuffer, int sampleRate)
         {

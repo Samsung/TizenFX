@@ -19,14 +19,6 @@
     <ProjectReference Include="..\Tizen.Security.PrivacyPrivilegeManager\Tizen.Security.PrivacyPrivilegeManager.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="Audio2Vowel">
-      <HintPath>lib\lipsync\Audio2Vowel.dll</HintPath>
-    </Reference>
-    <Reference Include="Vowel2Animation">
-      <HintPath>lib\lipsync\Vowel2Animation.dll</HintPath>
-    </Reference>
-  </ItemGroup>
 
 
 </Project>
