@@ -202,6 +202,7 @@ namespace Tizen.AIAvatar
         /// <summary>
         /// <param name=""></param>
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool PlayPreparedTTS()
         {
             if (ttsLipSyncer == null || ttsLipSyncer.TtsHandle == null)

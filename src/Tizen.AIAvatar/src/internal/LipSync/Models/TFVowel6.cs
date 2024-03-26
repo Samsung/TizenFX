@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using Tizen.MachineLearning.Inference;
 using static Tizen.AIAvatar.AIAvatar;
@@ -55,6 +56,7 @@ namespace Tizen.AIAvatar
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Invoke()
         {
             try
@@ -68,6 +70,7 @@ namespace Tizen.AIAvatar
 
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public byte[] GetTensorData(int index)
         {
             return outputData.GetTensorData(index);

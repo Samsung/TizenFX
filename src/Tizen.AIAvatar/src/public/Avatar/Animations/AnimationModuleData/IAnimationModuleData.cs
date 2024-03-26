@@ -25,10 +25,11 @@ namespace Tizen.AIAvatar
     }
 
     [EditorBrowsable(EditorBrowsableState.Never)]
-
     public enum MotionDataType
     {
+        [EditorBrowsable(EditorBrowsableState.Never)]
         AnimationInfo,
+        [EditorBrowsable(EditorBrowsableState.Never)]
         MotionData
     }
 }

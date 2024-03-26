@@ -16,19 +16,26 @@
  */
 
 using System;
+using System.ComponentModel;
 using static Tizen.AIAvatar.AIAvatar;
 
 namespace Tizen.AIAvatar
 {
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class AvatarInfo
     {
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Name { get; private set; }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string ThumbnailPath { get; private set; }
-
+        
+        [EditorBrowsable(EditorBrowsableState.Never)]
         internal string ResourcePath { get; private set; }
+        [EditorBrowsable(EditorBrowsableState.Never)]
         internal AvatarInfoOption avatarInfoOption { get; private set; }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public AvatarInfo(string path, string Name, AvatarInfoOption info = AvatarInfoOption.Thumbnail)
         {
             this.Name = Name;
@@ -52,9 +59,12 @@ namespace Tizen.AIAvatar
         }
     }
 
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public enum AvatarInfoOption
     {
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Thumbnail = 0,
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Resource = 1,
     }
 }

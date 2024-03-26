@@ -88,12 +88,14 @@ namespace Tizen.AIAvatar
             InitAvatar();
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public AvatarProperties AvatarProperties
         {
             get => avatarProperties;
             set => avatarProperties = value;
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public BlendShapePlayer AvatarAnimator
         {
             get => avatarAnimator; 

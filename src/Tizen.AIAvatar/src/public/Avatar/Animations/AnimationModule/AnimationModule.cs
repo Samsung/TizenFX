@@ -114,9 +114,13 @@ namespace Tizen.AIAvatar
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum AnimationModuleType
     {
+        [EditorBrowsable(EditorBrowsableState.Never)]
         EyeBlinker,
+        [EditorBrowsable(EditorBrowsableState.Never)]
         LipSyncer,
+        [EditorBrowsable(EditorBrowsableState.Never)]
         MotionBehavior,
+        [EditorBrowsable(EditorBrowsableState.Never)]
         JointTransformer,
     }
 }

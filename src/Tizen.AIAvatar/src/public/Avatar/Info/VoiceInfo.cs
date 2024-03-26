@@ -19,6 +19,7 @@ using Tizen.Uix.Tts;
 
 namespace Tizen.AIAvatar
 {
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public struct VoiceInfo
     {
         private string lang;

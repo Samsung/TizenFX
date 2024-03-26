@@ -87,12 +87,14 @@ namespace Tizen.AIAvatar
             DestroyLipAnimation();
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected Animation CreateAsyncLipAnimation(byte[] buffer, int sampleRate)
         {
             EnqueueVowels(buffer, false);
             return CreateLipAnimationByVowelsQueue(sampleRate);
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         //TODO : lipAnimation 자체를 Animator안에서 생성하고 관리될 수 있게 수정.
         protected void ResetLipAnimation(Animation lipAnimation)
         {
@@ -104,6 +106,7 @@ namespace Tizen.AIAvatar
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected void PlayLipAnimation()
         {
             if (lipAnimation == null)
@@ -113,6 +116,7 @@ namespace Tizen.AIAvatar
             lipAnimation?.Play();
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected void OnLipAnimationFinished(object sender, EventArgs e)
         {
             CurrentMotionState = AvatarMotionState.Stopped;
