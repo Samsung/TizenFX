@@ -198,6 +198,11 @@ namespace Tizen.NUI.Binding
             DefaultValueCreator = defaultValueCreator;
             ValueGetter = defaultValueCreator;
 
+            if (string.Equals(propertyName, "BindingContext", StringComparison.Ordinal))
+            {
+                UseBinding = true;
+            }
+
             Dictionary<string, BindableProperty> nameToBindableProperty;
             bindablePropertyOfType.TryGetValue(declaringType, out nameToBindableProperty);
             if (null == nameToBindableProperty)
@@ -253,6 +258,10 @@ namespace Tizen.NUI.Binding
         static internal void GetBindablePropertysOfType(Type type, out Dictionary<string, BindableProperty> dictionary)
         {
             dictionary = null;
+            if (null == type)
+            {
+                return;
+            }
 
             bindablePropertyOfType.TryGetValue(type, out dictionary);
 
@@ -275,6 +284,19 @@ namespace Tizen.NUI.Binding
             }
         }
 
+        static internal void SetSourcePropertyUseBinding(Type type, string property, bool value = true)
+        {
+            GetBindablePropertysOfType(type, out var nameToBindableProperty1);
+            if (null != nameToBindableProperty1 && !string.IsNullOrEmpty(property))
+            {
+                nameToBindableProperty1.TryGetValue(property, out var sourceProperty);
+                if (null != sourceProperty)
+                {
+                    sourceProperty.UseBinding = value;
+                }
+            }
+        }
+
         /// <summary>
         /// Gets the type declaring the BindableProperty.
         /// </summary>
@@ -294,6 +316,12 @@ namespace Tizen.NUI.Binding
         /// Gets a value indicating if the BindableProperty is created form a BindablePropertyKey.
         /// </summary>
         public bool IsReadOnly { get; private set; }
+
+        /// <summary>
+        /// Gets a value indicating if the BindableProperty use binding.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool UseBinding { get; set; } = false;
 
         /// <summary>
         /// Gets the property name.
