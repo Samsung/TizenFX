@@ -66,7 +66,7 @@ namespace Tizen.AIAvatar
         /// <param name="mapper">Name mapper for this index</param>
         /// <param name="blendShapeType">Type of blend shape for this motion index</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AvatarBlendShapeIndex(AvatarPropertyMapper blendShapeMapper, BlendShapeType blendShapeType) : this(blendShapeMapper, (uint)blendShapeType)
+        internal AvatarBlendShapeIndex(AvatarPropertyMapper blendShapeMapper, BlendShapeType blendShapeType) : this(blendShapeMapper, (uint)blendShapeType)
         {
         }
 
@@ -88,7 +88,7 @@ namespace Tizen.AIAvatar
         /// <param name="mapper">Name mapper for this index</param>
         /// <param name="blendShapeType">Type of blend shape for this motion index</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AvatarBlendShapeIndex(AvatarPropertyMapper nodeMapper, NodeType nodeType, AvatarPropertyMapper blendShapeMapper, BlendShapeType blendShapeType) : base(new PropertyKey(GetPropertyNameFromMapper(nodeMapper, (uint)nodeType)), new PropertyKey(GetPropertyNameFromMapper(blendShapeMapper, (uint)blendShapeType)))
+        internal AvatarBlendShapeIndex(AvatarPropertyMapper nodeMapper, NodeType nodeType, AvatarPropertyMapper blendShapeMapper, BlendShapeType blendShapeType) : base(new PropertyKey(GetPropertyNameFromMapper(nodeMapper, (uint)nodeType)), new PropertyKey(GetPropertyNameFromMapper(blendShapeMapper, (uint)blendShapeType)))
         {
             nameMapper = blendShapeMapper;
             this.blendShapeType = (uint)blendShapeType;

@@ -27,7 +27,7 @@ using static Tizen.AIAvatar.AIAvatar;
 namespace Tizen.AIAvatar
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class LipSyncer : AnimationModule
+    internal class LipSyncer : AnimationModule
     {
         private Avatar avatar;
         private Animation lipAnimation = null;
@@ -40,7 +40,7 @@ namespace Tizen.AIAvatar
         private string prevVowel = "sil";
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public LipSyncer()
+        internal LipSyncer()
         {
         }
 

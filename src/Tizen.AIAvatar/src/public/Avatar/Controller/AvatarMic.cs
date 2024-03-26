@@ -22,10 +22,10 @@ using static Tizen.AIAvatar.AIAvatar;
 namespace Tizen.AIAvatar
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class AvatarMic
+    internal class AvatarMic
     {
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AvatarMic()
+        internal AvatarMic()
         {
         }
 
@@ -34,7 +34,7 @@ namespace Tizen.AIAvatar
         /// </summary>
         /// <privilege>http://tizen.org/privilege/recorder</privilege>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool InitAvatarMic(Avatar avatar)
+        internal bool InitAvatarMic(Avatar avatar)
         {
             if (AudioRecorder.Instance == null)
             {
@@ -51,7 +51,7 @@ namespace Tizen.AIAvatar
         /// </summary>
         /// <privilege>http://tizen.org/privilege/recorder</privilege>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool DeinitAvatarMIC()
+        internal bool DeinitAvatarMIC()
         {
             AudioRecorder.Instance?.DeinitMic();
 
@@ -63,7 +63,7 @@ namespace Tizen.AIAvatar
         /// </summary>
         /// <privilege>http://tizen.org/privilege/recorder</privilege>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void StartMic()
+        internal void StartMic()
         {
             AudioRecorder.Instance?.StartRecording();
         }
@@ -73,7 +73,7 @@ namespace Tizen.AIAvatar
         /// </summary>
         /// <privilege>http://tizen.org/privilege/recorder</privilege>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void StopMic()
+        internal void StopMic()
         {
             AudioRecorder.Instance?.StopRecording();
         }

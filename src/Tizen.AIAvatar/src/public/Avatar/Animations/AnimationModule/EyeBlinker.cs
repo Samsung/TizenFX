@@ -25,7 +25,7 @@ using static Tizen.AIAvatar.AIAvatar;
 namespace Tizen.AIAvatar
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class EyeBlinker : AnimationModule
+    internal class EyeBlinker : AnimationModule
     {
         private const int blinkIntervalMinimum = 800;
         private const int blinkIntervalMaximum = 3000;
@@ -37,7 +37,7 @@ namespace Tizen.AIAvatar
         private const int blinkDuration = 200;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public EyeBlinker()
+        internal EyeBlinker()
         {
 
         }

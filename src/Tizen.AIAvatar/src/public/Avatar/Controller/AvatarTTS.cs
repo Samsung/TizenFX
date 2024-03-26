@@ -25,7 +25,7 @@ using static Tizen.AIAvatar.AIAvatar;
 namespace Tizen.AIAvatar
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class AvatarTTS
+    internal class AvatarTTS
     {
         private TTSLipSyncer ttsLipSyncer;
 
@@ -33,14 +33,14 @@ namespace Tizen.AIAvatar
         private readonly Object ttsReadyFinishedLock = new Object();
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AvatarTTS()
+        internal AvatarTTS()
         {
         }
 
         /// <summary>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler TTSReadyFinished
+        internal event EventHandler TTSReadyFinished
         {
             add
             {
@@ -69,13 +69,13 @@ namespace Tizen.AIAvatar
         /// <param name=""></param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TtsClient CurrentTTSClient => ttsLipSyncer?.TtsHandle;
+        internal TtsClient CurrentTTSClient => ttsLipSyncer?.TtsHandle;
 
         /// <summary>
         /// <param name=""></param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void InitTTS(Avatar avatar)
+        internal void InitTTS(Avatar avatar)
         {
             if (ttsLipSyncer == null)
             {
@@ -95,7 +95,7 @@ namespace Tizen.AIAvatar
         /// <param name=""></param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void DeinitTTS()
+        internal void DeinitTTS()
         {
             if (ttsLipSyncer != null)
             {
@@ -116,7 +116,7 @@ namespace Tizen.AIAvatar
         /// <param name=""></param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public List<VoiceInfo> GetSupportedVoices()
+        internal List<VoiceInfo> GetSupportedVoices()
         {
             return ttsLipSyncer.GetSupportedVoices();
         }
@@ -125,7 +125,7 @@ namespace Tizen.AIAvatar
         /// <param name=""></param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool PrepareTTS(string text, VoiceInfo voiceInfo, EventHandler ttsReadyFinishedCallback = null)
+        internal bool PrepareTTS(string text, VoiceInfo voiceInfo, EventHandler ttsReadyFinishedCallback = null)
         {
             if (ttsLipSyncer == null || ttsLipSyncer.TtsHandle == null)
             {
@@ -165,7 +165,7 @@ namespace Tizen.AIAvatar
         /// <param name=""></param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool PrepareTTS(string text, string lang = "ko_KR", EventHandler ttsReadyFinishedCallback = null)
+        internal bool PrepareTTS(string text, string lang = "ko_KR", EventHandler ttsReadyFinishedCallback = null)
         {
             if (ttsLipSyncer == null || ttsLipSyncer.TtsHandle == null)
             {
@@ -203,7 +203,7 @@ namespace Tizen.AIAvatar
         /// <param name=""></param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool PlayPreparedTTS()
+        internal bool PlayPreparedTTS()
         {
             if (ttsLipSyncer == null || ttsLipSyncer.TtsHandle == null)
             {
@@ -218,7 +218,7 @@ namespace Tizen.AIAvatar
         /// <param name=""></param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool PlayTTS(string text, VoiceInfo voiceInfo)
+        internal bool PlayTTS(string text, VoiceInfo voiceInfo)
         {
             if (ttsLipSyncer == null || ttsLipSyncer.TtsHandle == null)
             {
@@ -258,7 +258,7 @@ namespace Tizen.AIAvatar
         /// <param name=""></param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool PlayTTS(string text, string lang = "ko_KR")
+        internal bool PlayTTS(string text, string lang = "ko_KR")
         {
             if (ttsLipSyncer == null || ttsLipSyncer.TtsHandle == null)
             {
@@ -296,7 +296,7 @@ namespace Tizen.AIAvatar
         /// <param name=""></param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool PlayTTSAsync(string text, VoiceInfo voiceInfo, EventHandler ttsReadyFinishedCallback = null)
+        internal bool PlayTTSAsync(string text, VoiceInfo voiceInfo, EventHandler ttsReadyFinishedCallback = null)
         {
             if (ttsLipSyncer == null || ttsLipSyncer.TtsHandle == null)
             {
@@ -336,7 +336,7 @@ namespace Tizen.AIAvatar
         /// <param name=""></param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool PlayTTS(string text, string lang = "ko_KR", EventHandler ttsReadyFinishedCallback = null)
+        internal bool PlayTTS(string text, string lang = "ko_KR", EventHandler ttsReadyFinishedCallback = null)
         {
             if (ttsLipSyncer == null || ttsLipSyncer.TtsHandle == null)
             {
@@ -374,7 +374,7 @@ namespace Tizen.AIAvatar
         /// <param name=""></param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void PauseTTS()
+        internal void PauseTTS()
         {
             if (ttsLipSyncer == null || ttsLipSyncer.TtsHandle == null)
             {
@@ -398,7 +398,7 @@ namespace Tizen.AIAvatar
         /// <param name=""></param>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void StopTTS()
+        internal void StopTTS()
         {
             if (ttsLipSyncer == null || ttsLipSyncer.TtsHandle == null)
             {

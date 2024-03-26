@@ -26,7 +26,7 @@ namespace Tizen.AIAvatar
     /// Note : This is temperal name of joints.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public enum BlendShapeType
+    internal enum BlendShapeType
     {
         #region Left Eyes
         /// <summary>

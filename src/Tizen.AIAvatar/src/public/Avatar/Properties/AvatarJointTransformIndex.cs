@@ -69,7 +69,7 @@ namespace Tizen.AIAvatar
         /// <param name="jointType">Type of joint for this motion index</param>
         /// <param name="transformType">Transform property type for this motion index</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AvatarJointTransformIndex(AvatarPropertyMapper mapper, JointType jointType, TransformTypes transformType) : this(mapper, (uint)jointType, transformType)
+        internal AvatarJointTransformIndex(AvatarPropertyMapper mapper, JointType jointType, TransformTypes transformType) : this(mapper, (uint)jointType, transformType)
         {
         }
 

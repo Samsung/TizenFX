@@ -20,7 +20,7 @@ using System.ComponentModel;
 namespace Tizen.AIAvatar
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public enum NodeType
+    internal enum NodeType
     {
         [EditorBrowsable(EditorBrowsableState.Never)]
         HeadGeo,

@@ -25,19 +25,19 @@ using System.ComponentModel;
 namespace Tizen.AIAvatar
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class AvatarLLM
+    internal class AvatarLLM
     {
         private AvatarTTS avatarTTS;
         private IRestClient restClient;
         private const string playgroundURL = "https://playground-api.sec.samsung.net";
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AvatarLLM()
+        internal AvatarLLM()
         {
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void InitAvatarLLM(AvatarTTS avatarTTS)
+        internal void InitAvatarLLM(AvatarTTS avatarTTS)
         {
             this.avatarTTS = avatarTTS;
             // Setup RestClinet
@@ -46,7 +46,7 @@ namespace Tizen.AIAvatar
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public async Task StartTTSWithLLMAsync(string text, string token)
+        internal async Task StartTTSWithLLMAsync(string text, string token)
         {
             var bearerToken = token;
             var jsonData = "{\"messages\": [{\"role\": \"user\", \"content\": \"" + text + "\"}]}";

@@ -25,7 +25,7 @@ using static Tizen.AIAvatar.AIAvatar;
 namespace Tizen.AIAvatar
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class AsyncLipSyncer : LipSyncer
+    internal class AsyncLipSyncer : LipSyncer
     {
         private readonly uint AsyncPlayTime = 160;
         private Queue<Animation> lipAnimations;
@@ -36,7 +36,7 @@ namespace Tizen.AIAvatar
         private bool isFinishAsyncLip = false;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AsyncLipSyncer()
+        internal AsyncLipSyncer()
         {
 
         }
@@ -44,10 +44,10 @@ namespace Tizen.AIAvatar
         internal int SampleRate { get; set; }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IsAsyncInit { get=>isAsyncInit; set=>isAsyncInit = value; }
+        internal bool IsAsyncInit { get=>isAsyncInit; set=>isAsyncInit = value; }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetFinishAsyncLip(bool finished)
+        internal void SetFinishAsyncLip(bool finished)
         {
             isFinishAsyncLip = finished;
         }

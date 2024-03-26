@@ -22,7 +22,7 @@ using Tizen.NUI.Scene3D;
 namespace Tizen.AIAvatar
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class JointTransformer
+    internal class JointTransformer
     {
         [EditorBrowsable(EditorBrowsableState.Never)]
         public JointTransformer() 
