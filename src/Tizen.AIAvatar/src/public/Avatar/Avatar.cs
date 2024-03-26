@@ -96,7 +96,7 @@ namespace Tizen.AIAvatar
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public BlendShapePlayer AvatarAnimator
+        internal BlendShapePlayer AvatarAnimator
         {
             get => avatarAnimator; 
             set => avatarAnimator = value;

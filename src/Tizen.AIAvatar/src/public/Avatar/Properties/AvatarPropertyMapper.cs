@@ -65,6 +65,7 @@ namespace Tizen.AIAvatar
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected uint CustomIndexCounter
         {
             get

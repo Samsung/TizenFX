@@ -19,11 +19,6 @@ using System.ComponentModel;
 
 namespace Tizen.AIAvatar
 {
-    /// <summary>
-    /// 
-    /// 
-    /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
     internal class BlendShapeVisemeInfo
     {
         internal Viseme name;

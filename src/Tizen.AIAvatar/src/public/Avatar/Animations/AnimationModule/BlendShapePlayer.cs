@@ -26,8 +26,7 @@ using static Tizen.AIAvatar.AIAvatar;
 
 namespace Tizen.AIAvatar
 {
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public class BlendShapePlayer
+    internal class BlendShapePlayer
     {
         private Dictionary<AnimationModuleType, AnimationModule> animationModules = new Dictionary<AnimationModuleType, AnimationModule>();
 

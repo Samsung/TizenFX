@@ -43,6 +43,7 @@ namespace Tizen.AIAvatar
 
         internal int SampleRate { get; set; }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsAsyncInit { get=>isAsyncInit; set=>isAsyncInit = value; }
 
         [EditorBrowsable(EditorBrowsableState.Never)]

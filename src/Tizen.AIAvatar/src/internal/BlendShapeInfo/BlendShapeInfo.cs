@@ -21,28 +21,13 @@ using static Tizen.AIAvatar.AIAvatar;
 
 namespace Tizen.AIAvatar
 {
-    /// <summary>
-    /// 
-    /// 
-    /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
     internal class BlendShapeInfo
     {
         internal BlendShapeModelInfo blendShape;
         internal BlendShapeVisemeInfo[] visemes;
 
-        /// <summary>
-        /// 
-        /// 
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         internal BlendShapeInfo() { }
 
-        /// <summary>
-        /// 
-        /// 
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         internal string[] GetNodeNames()
         {
             if (blendShape == null)
@@ -53,21 +38,11 @@ namespace Tizen.AIAvatar
             return blendShape.nodeNames;
         }
 
-        /// <summary>
-        /// 
-        /// 
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         internal int[] GetBlendShapeCounts()
         {
             return blendShape.blendShapeCount;
         }
 
-        /// <summary>
-        /// 
-        /// 
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         internal Dictionary<Viseme, BlendShapeValue[]> GetVisemeMap()
         {
             Dictionary<Viseme, BlendShapeValue[]> visemeMap = new Dictionary<Viseme, BlendShapeValue[]>();

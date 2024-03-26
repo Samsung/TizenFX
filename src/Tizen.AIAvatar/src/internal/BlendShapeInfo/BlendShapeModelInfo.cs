@@ -19,22 +19,12 @@ using System.ComponentModel;
 
 namespace Tizen.AIAvatar
 {
-    /// <summary>
-    /// 
-    /// 
-    /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
     internal class BlendShapeModelInfo
     {
         internal string keyFormat;
         internal string[] nodeNames;
         internal int[] blendShapeCount;
 
-        /// <summary>
-        /// 
-        /// 
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         internal BlendShapeModelInfo(string keyFormat, string[] nodeNames, int[] blendShapeCount)
         {
             this.keyFormat = keyFormat;

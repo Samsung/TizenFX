@@ -43,6 +43,7 @@ namespace Tizen.AIAvatar
         }
 
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetTensorData(int index, byte[] buffer)
         {
             try

@@ -86,12 +86,6 @@ namespace Tizen.AIAvatar
             this.jointType = jointType;
         }
 
-        /// <summary>
-        /// Get the name of given index.
-        /// </summary>
-        /// <param name="mapper">Name mapper for given index</param>
-        /// <param name="id">Target ID what we want to get name</param>
-        /// <returns>Name, or null if invalid</returns>
         private static string GetPropertyNameFromMapper(AvatarPropertyMapper mapper, PropertyKey id)
         {
             if (id == null)
@@ -105,12 +99,6 @@ namespace Tizen.AIAvatar
             return mapper?.GetPropertyName((uint)id.IndexKey) ?? "";
         }
 
-        /// <summary>
-        /// Get the name of given JointType.
-        /// </summary>
-        /// <param name="mapper">Name mapper for given index</param>
-        /// <param name="jointType">Type of joint what we want to get name</param>
-        /// <returns>Name, or null if invalid</returns>
         private static string GetPropertyNameFromMapper(AvatarPropertyMapper mapper, uint jointType)
         {
             return mapper?.GetPropertyName(jointType) ?? "";
