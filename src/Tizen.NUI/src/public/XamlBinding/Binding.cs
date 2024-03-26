@@ -101,6 +101,7 @@ namespace Tizen.NUI.Binding
 
                 path = value;
                 expression = new BindingExpression(this, !string.IsNullOrWhiteSpace(value) ? value : SelfPath);
+                BindableProperty.SetSourcePropertyUseBinding(Source?.GetType(), Path);
             }
         }
 
@@ -118,6 +119,7 @@ namespace Tizen.NUI.Binding
                 {
                     bindableObject.IsBound = true;
                 }
+                BindableProperty.SetSourcePropertyUseBinding(value?.GetType(), Path);
             }
         }
 
