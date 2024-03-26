@@ -121,46 +121,74 @@ namespace Tizen.NUI.Binding
         //To confirm the static dictionary will be created before the constructor is called.
         static BindableProperty()
         {
+            if (NUIApplication.IsUsingXaml)
+            {
+                WellKnownConvertTypes = new Dictionary<Type, TypeConverter>
+                {
+                    { typeof(Uri), new UriTypeConverter() },
+                    { typeof(Color), new ColorTypeConverter() },
+                    { typeof(Size2D), new Size2DTypeConverter() },
+                    { typeof(Position2D), new Position2DTypeConverter() },
+                    { typeof(Size), new SizeTypeConverter() },
+                    { typeof(Position), new PositionTypeConverter() },
+                    { typeof(Rectangle), new RectangleTypeConverter() },
+                    { typeof(Rotation), new RotationTypeConverter() },
+                    { typeof(Vector2), new Vector2TypeConverter() },
+                    { typeof(Vector3), new Vector3TypeConverter() },
+                    { typeof(Vector4), new Vector4TypeConverter() },
+                    { typeof(RelativeVector2), new RelativeVector2TypeConverter() },
+                    { typeof(RelativeVector3), new RelativeVector3TypeConverter() },
+                    { typeof(RelativeVector4), new RelativeVector4TypeConverter() },
+                };
+
+                UserCustomConvertTypes = new Dictionary<Type, TypeConverter>
+                {
+                };
+
+                SimpleConvertTypes = new Dictionary<Type, Type[]>
+                {
+                    { typeof(sbyte), new[] { typeof(string), typeof(short), typeof(int), typeof(long), typeof(float), typeof(double), typeof(decimal) } },
+                    { typeof(byte), new[] { typeof(string), typeof(short), typeof(ushort), typeof(int), typeof(uint), typeof(ulong), typeof(float), typeof(double), typeof(decimal) } },
+                    { typeof(short), new[] { typeof(string), typeof(int), typeof(long), typeof(float), typeof(double), typeof(decimal) } },
+                    { typeof(ushort), new[] { typeof(string), typeof(int), typeof(uint), typeof(long), typeof(ulong), typeof(float), typeof(double), typeof(decimal) } },
+                    { typeof(int), new[] { typeof(string), typeof(long), typeof(float), typeof(double), typeof(decimal) } },
+                    { typeof(uint), new[] { typeof(string), typeof(long), typeof(ulong), typeof(float), typeof(double), typeof(decimal) } },
+                    { typeof(long), new[] { typeof(string), typeof(float), typeof(double), typeof(decimal) } },
+                    { typeof(char), new[] { typeof(string), typeof(ushort), typeof(int), typeof(uint), typeof(long), typeof(ulong), typeof(float), typeof(double), typeof(decimal) } },
+                    { typeof(float), new[] { typeof(string), typeof(double) } },
+                    { typeof(ulong), new[] { typeof(string), typeof(float), typeof(double), typeof(decimal) } }
+                };
+
+                bindablePropertyOfType = new Dictionary<Type, Dictionary<string, BindableProperty>>();
+
+                baseTypePropertyHasBeenAdded = new HashSet<Type>();
+            }
         }
 
-        static readonly Dictionary<Type, TypeConverter> WellKnownConvertTypes = new Dictionary<Type, TypeConverter>
-        {
-            { typeof(Uri), new UriTypeConverter() },
-            { typeof(Color), new ColorTypeConverter() },
-            { typeof(Size2D), new Size2DTypeConverter() },
-            { typeof(Position2D), new Position2DTypeConverter() },
-            { typeof(Size), new SizeTypeConverter() },
-            { typeof(Position), new PositionTypeConverter() },
-            { typeof(Rectangle), new RectangleTypeConverter() },
-            { typeof(Rotation), new RotationTypeConverter() },
-            { typeof(Vector2), new Vector2TypeConverter() },
-            { typeof(Vector3), new Vector3TypeConverter() },
-            { typeof(Vector4), new Vector4TypeConverter() },
-            { typeof(RelativeVector2), new RelativeVector2TypeConverter() },
-            { typeof(RelativeVector3), new RelativeVector3TypeConverter() },
-            { typeof(RelativeVector4), new RelativeVector4TypeConverter() },
-        };
+        static readonly Dictionary<Type, TypeConverter> WellKnownConvertTypes;
 
         //Modification for NUI XAML : user defined converter for DynamicResource can be added
-        static internal Dictionary<Type, TypeConverter> UserCustomConvertTypes = new Dictionary<Type, TypeConverter>
-        {
-        };
+        static internal Dictionary<Type, TypeConverter> UserCustomConvertTypes;
 
         // more or less the encoding of this, without the need to reflect
         // http://msdn.microsoft.com/en-us/library/y5b434w4.aspx
-        static readonly Dictionary<Type, Type[]> SimpleConvertTypes = new Dictionary<Type, Type[]>
+        static readonly Dictionary<Type, Type[]> SimpleConvertTypes;
+
+        BindableProperty(BindingPropertyChangedDelegate propertyChanged, CreateDefaultValueDelegate defaultValueCreator)
         {
-            { typeof(sbyte), new[] { typeof(string), typeof(short), typeof(int), typeof(long), typeof(float), typeof(double), typeof(decimal) } },
-            { typeof(byte), new[] { typeof(string), typeof(short), typeof(ushort), typeof(int), typeof(uint), typeof(ulong), typeof(float), typeof(double), typeof(decimal) } },
-            { typeof(short), new[] { typeof(string), typeof(int), typeof(long), typeof(float), typeof(double), typeof(decimal) } },
-            { typeof(ushort), new[] { typeof(string), typeof(int), typeof(uint), typeof(long), typeof(ulong), typeof(float), typeof(double), typeof(decimal) } },
-            { typeof(int), new[] { typeof(string), typeof(long), typeof(float), typeof(double), typeof(decimal) } },
-            { typeof(uint), new[] { typeof(string), typeof(long), typeof(ulong), typeof(float), typeof(double), typeof(decimal) } },
-            { typeof(long), new[] { typeof(string), typeof(float), typeof(double), typeof(decimal) } },
-            { typeof(char), new[] { typeof(string), typeof(ushort), typeof(int), typeof(uint), typeof(long), typeof(ulong), typeof(float), typeof(double), typeof(decimal) } },
-            { typeof(float), new[] { typeof(string), typeof(double) } },
-            { typeof(ulong), new[] { typeof(string), typeof(float), typeof(double), typeof(decimal) } }
-        };
+            if (null == propertyChanged)
+            {
+                //throw new ArgumentNullException(nameof(propertyChanged));
+            }
+
+            if (null == defaultValueCreator)
+            {
+                //throw new ArgumentNullException(nameof(defaultValueCreator));
+            }
+
+            PropertyChanged = propertyChanged;
+            DefaultValueCreator = defaultValueCreator;
+        }
 
         BindableProperty(string propertyName, Type returnType, Type declaringType, object defaultValue, BindingMode defaultBindingMode = BindingMode.OneWay,
                                  ValidateValueDelegate validateValue = null, BindingPropertyChangedDelegate propertyChanged = null, BindingPropertyChangingDelegate propertyChanging = null,
@@ -247,8 +275,8 @@ namespace Tizen.NUI.Binding
             return ret;
         }
 
-        static internal Dictionary<Type, Dictionary<string, BindableProperty>> bindablePropertyOfType = new Dictionary<Type, Dictionary<string, BindableProperty>>();
-        static private HashSet<Type> baseTypePropertyHasBeenAdded = new HashSet<Type>();
+        static internal Dictionary<Type, Dictionary<string, BindableProperty>> bindablePropertyOfType;
+        static private HashSet<Type> baseTypePropertyHasBeenAdded;
 
         static internal void GetBindablePropertysOfType(Type type, out Dictionary<string, BindableProperty> dictionary)
         {
@@ -339,8 +367,27 @@ namespace Tizen.NUI.Binding
                                               ValidateValueDelegate validateValue = null, BindingPropertyChangedDelegate propertyChanged = null, BindingPropertyChangingDelegate propertyChanging = null,
                                               CoerceValueDelegate coerceValue = null, CreateDefaultValueDelegate defaultValueCreator = null)
         {
-            return new BindableProperty(propertyName, returnType, declaringType, defaultValue, defaultBindingMode, validateValue, propertyChanged, propertyChanging, coerceValue,
-                defaultValueCreator: defaultValueCreator);
+            if (NUIApplication.IsUsingXaml)
+            {
+                return new BindableProperty(propertyName, returnType, declaringType, defaultValue, defaultBindingMode, validateValue, propertyChanged, propertyChanging, coerceValue,
+                    defaultValueCreator: defaultValueCreator);
+            }
+            else
+            {
+                if (null == propertyChanged)
+                {
+                    Tizen.Log.Fatal("BindableProperty", $"Property:{propertyName} hasn't propertyChanged");
+                    //throw new ArgumentNullException(nameof(propertyChanged));
+                }
+
+                if (null == defaultValueCreator)
+                {
+                    Tizen.Log.Fatal("BindableProperty", $"Property:{propertyName} hasn't defaultValueCreator");
+                    //throw new ArgumentNullException(nameof(defaultValueCreator));
+                }
+
+                return new BindableProperty(propertyChanged, defaultValueCreator);
+            }
         }
 
         /// <summary>

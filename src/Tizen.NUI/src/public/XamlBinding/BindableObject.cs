@@ -183,6 +183,11 @@ namespace Tizen.NUI.Binding
             if (property == null)
                 throw new ArgumentNullException(nameof(property));
 
+            if (!NUIApplication.IsUsingXaml && null != property.DefaultValueCreator)
+            {
+                return property.DefaultValueCreator(this);
+            }
+
             if (!IsBound && property.ValueGetter != null)
             {
                 return property.ValueGetter(this);
@@ -292,8 +297,15 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetValue(BindableProperty property, object value)
         {
-            InternalSetValue(property, value);
-            ChangedPropertiesSetExcludingStyle.Add(property);
+            if (null != property && !NUIApplication.IsUsingXaml)
+            {
+                property.PropertyChanged?.Invoke(this, null, value);
+            }
+            else
+            {
+                InternalSetValue(property, value);
+                ChangedPropertiesSetExcludingStyle.Add(property);
+            }
         }
 
         internal void InternalSetValue(BindableProperty property, object value)
