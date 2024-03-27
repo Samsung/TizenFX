@@ -55,12 +55,15 @@ namespace Tizen.System
         private static EventHandler s_ExtendedInternalStorageChangedEventHandler;
         private static Interop.Storage.StorageChangedCallback s_ChangedEventCallback = (int id, Interop.Storage.StorageDevice devicetype, Interop.Storage.StorageState state, string fstype, string fsuuid, string rootDirectory, bool primary, int flags, IntPtr userData) =>
         {
-            Storage storage = new Storage(id, Interop.Storage.StorageArea.External, state, rootDirectory, devicetype, fstype, fsuuid, primary, flags);
-
+            EventHandler eventhandler = null;
             if (devicetype == Interop.Storage.StorageDevice.ExtendedInternalStorage)
-                s_ExtendedInternalStorageChangedEventHandler?.Invoke(storage, EventArgs.Empty);
+                eventhandler = s_ExtendedInternalStorageChangedEventHandler;
             else
-                s_ExternalStorageChangedEventHandler?.Invoke(storage, EventArgs.Empty);
+                eventhandler = s_ExternalStorageChangedEventHandler;
+
+            Storage storage = new Storage(id, Interop.Storage.StorageArea.External,
+			    state, rootDirectory, devicetype, fstype, fsuuid, primary, flags, eventhandler);
+            eventhandler?.Invoke(storage, EventArgs.Empty);
         };
 
         private static void RegisterChangedEvent(StorageArea type)
