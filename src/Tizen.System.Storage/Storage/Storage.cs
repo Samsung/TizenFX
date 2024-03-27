@@ -59,7 +59,10 @@ namespace Tizen.System
             };
         }
 
-        internal Storage(int storageID, Interop.Storage.StorageArea storageType, Interop.Storage.StorageState storagestate, string rootDirectory, Interop.Storage.StorageDevice devicetype, string fstype, string fsuuid, bool primary, int flags)
+        internal Storage(int storageID, Interop.Storage.StorageArea storageType,
+			Interop.Storage.StorageState storagestate, string rootDirectory,
+			Interop.Storage.StorageDevice devicetype, string fstype,
+			string fsuuid, bool primary, int flags, EventHandler eventhandler = null)
         {
             Id = storageID;
             _storagetype = storageType;
@@ -71,6 +74,9 @@ namespace Tizen.System
             _primary = primary;
             _flags = flags;
             information_set = true;
+            s_stateChangedEventHandler = eventhandler;
+            if (s_stateChangedEventHandler == null)
+                Log.Warn(LogTag, string.Format("Can't register event handler"));
 
             Interop.Storage.ErrorCode err = Interop.Storage.StorageGetTotalSpace(Id, out _totalSpace);
             if (err != Interop.Storage.ErrorCode.None)
