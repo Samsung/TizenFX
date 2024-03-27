@@ -16,7 +16,9 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
@@ -30,7 +32,7 @@ namespace Tizen.NUI
         /// The default constructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Key() : this(Interop.Key.New("","",0,0,0u,0), true)
+        public Key() : this(Interop.Key.New("", "", 0, 0, 0u, 0), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -53,9 +55,57 @@ namespace Tizen.NUI
         {
         }
 
+#if KEY_TEST_1
+        static private int cnt;
+        static internal int curNum;
+        internal int id;
+        internal static Dictionary<IntPtr, Key> keyList = new Dictionary<IntPtr, Key>();
+        private const int MAX_LIST_COUNT = 10;
+        private static bool blockingDispose = true;
+
+        internal Key(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
+        {
+            id = cnt;
+        }
+
+        internal static Key NewKey(IntPtr cPtr)
+        {
+            if (keyList.TryGetValue(cPtr, out Key existKey) && existKey != null)
+            {
+                //already existed. nothing to do.
+                return existKey;
+            }
+            else
+            {
+                if (keyList.Count > MAX_LIST_COUNT)
+                {
+                    blockingDispose = false;
+                    foreach (KeyValuePair<IntPtr, Key> item in keyList)
+                    {
+                        item.Value.Dispose();
+                    }
+                    keyList.Clear();
+                    blockingDispose = true;
+                }
+
+                Key ret = new Key(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                keyList.Add(cPtr, ret);
+                return ret;
+            }
+        }
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (blockingDispose) { return; }
+
+            base.Dispose(type);
+        }
+#else
         internal Key(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
         }
+#endif
 
         /// <summary>
         /// Enumeration for specifying the state of the key event.
