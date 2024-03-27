@@ -773,6 +773,43 @@ namespace Tizen.NUI.BaseComponents
             keyInputFocusLostEventHandler?.Invoke(this, null);
         }
 
+#if KEY_TEST_1
+#if OBJECT_POOL
+#else
+        private KeyEventArgs e;
+#endif
+        private bool OnKeyEvent(IntPtr view, IntPtr keyEvent)
+        {
+            if (keyEvent == global::System.IntPtr.Zero)
+            {
+                NUILog.Error("keyEvent should not be null!");
+                return true;
+            }
+#if OBJECT_POOL
+            using var e = ObjectPool.NewKeyEventArgs(keyEvent);
+#else
+            if(e == null)
+            {
+                e = new KeyEventArgs();
+            }
+            e.Key = Key.NewKey(keyEvent);
+#endif
+
+            bool result = false;
+
+            if (keyEventHandler != null)
+            {
+                Delegate[] delegateList = keyEventHandler.GetInvocationList();
+
+                // Oring the result of each callback.
+                foreach (EventHandlerWithReturnType<object, KeyEventArgs, bool> del in delegateList)
+                {
+                    result |= del(this, e);
+                }
+            }
+            return result;
+        }
+#else
         private bool OnKeyEvent(IntPtr view, IntPtr keyEvent)
         {
             if (keyEvent == global::System.IntPtr.Zero)
@@ -800,6 +837,7 @@ namespace Tizen.NUI.BaseComponents
 
             return result;
         }
+#endif
 
         // Callback for View OnRelayout signal
         private void OnRelayout(IntPtr data)
