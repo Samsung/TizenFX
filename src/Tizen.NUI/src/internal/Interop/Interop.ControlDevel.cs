@@ -84,12 +84,12 @@ namespace Tizen.NUI
             public static extern void DaliToolkitDevelControlClearAccessibilityRelations(HandleRef arg1);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_SetAccessibilityReadingInfoType2")]
-            public static extern void DaliToolkitDevelControlSetAccessibilityReadingInfoTypes(HandleRef arg1, int arg2);
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_SetReadingInfoTypes")]
+            public static extern void DaliAccessibilitySetReadingInfoTypes(HandleRef arg1, int arg2);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_GetAccessibilityReadingInfoType2")]
-            public static extern int DaliToolkitDevelControlGetAccessibilityReadingInfoTypes(HandleRef arg1);
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_GetReadingInfoTypes")]
+            public static extern int DaliAccessibilityGetReadingInfoTypes(HandleRef arg1);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_ClearAccessibilityHighlight")]
