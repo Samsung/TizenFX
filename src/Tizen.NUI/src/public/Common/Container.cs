@@ -272,6 +272,29 @@ namespace Tizen.NUI
         [Obsolete("This has been deprecated in API9 and will be removed in API11. Use ChildCount property instead.")]
         public abstract UInt32 GetChildCount();
 
+        /// <summary>
+        /// Sets accessibility reading information.
+        /// </summary>
+        /// <param name="type">Reading information type</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetAccessibilityReadingInfoTypes(AccessibilityReadingInfoTypes type)
+        {
+            Interop.ControlDevel.DaliAccessibilitySetReadingInfoTypes(SwigCPtr, (int)type);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Gets accessibility reading information.
+        /// </summary>
+        /// <returns>Reading information type</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public AccessibilityReadingInfoTypes GetAccessibilityReadingInfoTypes()
+        {
+            AccessibilityReadingInfoTypes result = (AccessibilityReadingInfoTypes)Interop.ControlDevel.DaliAccessibilityGetReadingInfoTypes(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
+
         internal abstract View FindCurrentChildById(uint id);
 
         internal override void OnParentResourcesChanged(IEnumerable<KeyValuePair<string, object>> values)

@@ -198,33 +198,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         ///////////////////////////////////////////////////////////////////
-        // ********************* ReadingInfoType *********************** //
-        ///////////////////////////////////////////////////////////////////
-
-        /// <summary>
-        /// Sets accessibility reading information.
-        /// </summary>
-        /// <param name="type">Reading information type</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetAccessibilityReadingInfoTypes(AccessibilityReadingInfoTypes type)
-        {
-            Interop.ControlDevel.DaliToolkitDevelControlSetAccessibilityReadingInfoTypes(SwigCPtr, (int)type);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Gets accessibility reading information.
-        /// </summary>
-        /// <returns>Reading information type</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public AccessibilityReadingInfoTypes GetAccessibilityReadingInfoTypes()
-        {
-            AccessibilityReadingInfoTypes result = (AccessibilityReadingInfoTypes)Interop.ControlDevel.DaliToolkitDevelControlGetAccessibilityReadingInfoTypes(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return result;
-        }
-
-        ///////////////////////////////////////////////////////////////////
         // ******************** Accessibility States ******************* //
         ///////////////////////////////////////////////////////////////////
 
