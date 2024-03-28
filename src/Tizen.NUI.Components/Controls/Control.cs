@@ -164,12 +164,23 @@ namespace Tizen.NUI.Components
 
         private bool OnTouchPlayFeedback(object source, TouchEventArgs e)
         {
-            if (Feedback && e?.Touch.GetState(0) == PointStateType.Down)
+            try
             {
-                if (feedback != null && feedback.IsSupportedPattern(FeedbackType.Sound, "Tap"))
+                if (Feedback && e?.Touch.GetState(0) == PointStateType.Down)
                 {
-                    feedback.Play(FeedbackType.Sound, "Tap");
+                    if (feedback != null && feedback.IsSupportedPattern(FeedbackType.Sound, "Tap"))
+                    {
+                        feedback.Play(FeedbackType.Sound, "Tap");
+                    }
                 }
+            }
+            catch (NotSupportedException ex)
+            {
+                Log.Error("NUI", $"[ERROR] No support of Feedback: {ex}");
+            }
+            catch (InvalidOperationException ex)
+            {
+                Log.Error("NUI", $"[ERROR] Fail to initialize Feedback: {ex}");
             }
             return false;
         }
