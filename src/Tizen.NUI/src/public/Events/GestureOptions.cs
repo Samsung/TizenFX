@@ -353,5 +353,19 @@ namespace Tizen.NUI
             Interop.GestureOptions.SetTapRecognizerTime(ms);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
+        /// <summary>
+        /// Sets the distance required to be recognized as a tap gesture,
+        /// This distance is from touch down to touch up to recognize the tap gesture.
+        /// If the distance between touch down and touch up is longer than distance, it is not recognized as a tap gesture.
+        /// </summary>
+        /// <remarks>This is a global configuration option. Affects all gestures.</remarks>
+        /// <param name="distance">The distance</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetTapMaximumMotionAllowedDistance(float distance)
+        {
+            Interop.GestureOptions.SetTapMaximumMotionAllowedDistance(distance);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
     }
 }
