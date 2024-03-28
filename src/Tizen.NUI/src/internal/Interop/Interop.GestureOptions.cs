@@ -95,6 +95,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetTapRecognizerTime")]
             public static extern void SetTapRecognizerTime(uint ms);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetTapMaximumMotionAllowedDistance")]
+            public static extern void SetTapMaximumMotionAllowedDistance(float distance);
         }
     }
 }
