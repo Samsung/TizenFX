@@ -61,6 +61,7 @@ namespace Tizen.Multimedia.Vision
                 InteropBarcode.GenerateSource(EngineConfiguration.GetHandle(config),
                     message, type, qrMode, qrEcc, qrVersion, source.Handle).
                     Validate("Failed to generate source");
+                GC.KeepAlive(config);
             }
             catch (Exception)
             {
