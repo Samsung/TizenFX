@@ -1185,7 +1185,7 @@ namespace Tizen.NUI.BaseComponents
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void RootCallbackType(int id, int returnType, uint frameNumber, ref float val1, ref float val2, ref float val3);
 
-        internal RootCallbackType rootCallback = RootCallback;
+        static internal RootCallbackType rootCallback = RootCallback;
 
         static internal void RootCallback(int id, int returnType, uint frameNumber, ref float val1, ref float val2, ref float val3)
         {
@@ -1196,9 +1196,9 @@ namespace Tizen.NUI.BaseComponents
 
             if (weakReferencesOfLottie.TryGetValue(id, out current))
             {
-                if (current.TryGetTarget(out currentView))
+                if (current.TryGetTarget(out currentView) && (currentView != null) && !currentView.Disposed && !currentView.IsDisposeQueued)
                 {
-                    if (currentView != null && currentView.InternalSavedDynamicPropertyCallbacks != null &&
+                    if (currentView.InternalSavedDynamicPropertyCallbacks != null &&
                         currentView.InternalSavedDynamicPropertyCallbacks.TryGetValue(id, out currentCallback))
                     {
                         ret = currentCallback?.Invoke(returnType, frameNumber);
@@ -1232,7 +1232,6 @@ namespace Tizen.NUI.BaseComponents
                         val2 = tmpVector3.Y;
                         val3 = tmpVector3.Z;
                     }
-                    tmpVector3.Dispose();
                     break;
 
                 case (int)(VectorProperty.TransformAnchor):
@@ -1244,7 +1243,6 @@ namespace Tizen.NUI.BaseComponents
                         val1 = tmpVector2.X;
                         val2 = tmpVector2.Y;
                     }
-                    tmpVector2.Dispose();
                     break;
 
                 case (int)(VectorProperty.FillOpacity):
