@@ -296,6 +296,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// RemoveFrontInsetProperty
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty RemoveFrontInsetProperty = BindableProperty.Create(nameof(RemoveFrontInset), typeof(bool), typeof(TextLabel), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var textLabel = (TextLabel)bindable;
@@ -314,6 +315,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// RemoveBackInsetProperty
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty RemoveBackInsetProperty = BindableProperty.Create(nameof(RemoveBackInset), typeof(bool), typeof(TextLabel), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var textLabel = (TextLabel)bindable;
