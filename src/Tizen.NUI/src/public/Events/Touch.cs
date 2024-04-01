@@ -235,6 +235,16 @@ namespace Tizen.NUI
             return (DeviceSubClassType)ret;
         }
 
+        /// <summary>
+        /// sets the time (in ms) that the touch event occurred.
+        /// </summary>
+        /// <param name="time">The time (in ms)</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetTime(uint time)
+        {
+            Interop.Touch.SetTime(SwigCPtr, time);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
         internal static Touch GetTouchFromPtr(global::System.IntPtr cPtr)
         {
