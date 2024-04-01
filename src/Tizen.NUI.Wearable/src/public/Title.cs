@@ -328,16 +328,20 @@ namespace Tizen.NUI.Components
 
             TexturedQuadVertex[] texturedQuadVertexData = new TexturedQuadVertex[4] { vertex1, vertex2, vertex3, vertex4 };
 
-            int length = Marshal.SizeOf(vertex1);
-            IntPtr pA = Marshal.AllocHGlobal(checked(length * 4));
+            int size = Marshal.SizeOf(vertex1);
+            IntPtr pA = Marshal.AllocHGlobal(checked(size * texturedQuadVertexData.Length));
 
             try
             {
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < texturedQuadVertexData.Length; i++)
                 {
-                    Marshal.StructureToPtr(texturedQuadVertexData[i], pA + i * length, true);
+                    Marshal.StructureToPtr(texturedQuadVertexData[i], pA + i * size, true);
                 }
-                vertexData.SetData(pA, 4);
+                vertexData.SetData(pA, (uint)texturedQuadVertexData.Length);
+            }
+            catch(Exception e)
+            {
+                Tizen.Log.Error("NUI", "Exception in Title : " + e.Message);
             }
             finally
             {
