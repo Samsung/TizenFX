@@ -1571,5 +1571,41 @@ namespace Tizen.NUI.BaseComponents
 
             return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.CharacterSpacing);
         }
+
+        /// <summary>
+        /// RemoveFrontInsetProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty RemoveFrontInsetProperty = BindableProperty.Create(nameof(RemoveFrontInset), typeof(bool), typeof(TextEditor), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        {
+            var textEditor = (TextEditor)bindable;
+            if (newValue != null)
+            {
+                Object.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.RemoveFrontInset, (bool)newValue);
+            }
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        {
+            var textEditor = (TextEditor)bindable;
+            return Object.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.RemoveFrontInset);
+        }));
+
+        /// <summary>
+        /// RemoveBackInsetProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty RemoveBackInsetProperty = BindableProperty.Create(nameof(RemoveBackInset), typeof(bool), typeof(TextEditor), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        {
+            var textEditor = (TextEditor)bindable;
+            if (newValue != null)
+            {
+                Object.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.RemoveBackInset, (bool)newValue);
+            }
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        {
+            var textEditor = (TextEditor)bindable;
+            return Object.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.RemoveBackInset);
+        }));
     }
 }

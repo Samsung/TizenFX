@@ -1313,5 +1313,41 @@ namespace Tizen.NUI.BaseComponents
 
             return Object.InternalGetPropertyFloat(textField.SwigCPtr, TextField.Property.CharacterSpacing);
         }
+
+        /// <summary>
+        /// RemoveFrontInsetProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty RemoveFrontInsetProperty = BindableProperty.Create(nameof(RemoveFrontInset), typeof(bool), typeof(TextField), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        {
+            var textField = (TextField)bindable;
+            if (newValue != null)
+            {
+                Object.InternalSetPropertyBool(textField.SwigCPtr, TextField.Property.RemoveFrontInset, (bool)newValue);
+            }
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        {
+            var textField = (TextField)bindable;
+            return Object.InternalGetPropertyBool(textField.SwigCPtr, TextField.Property.RemoveFrontInset);
+        }));
+
+        /// <summary>
+        /// RemoveBackInsetProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty RemoveBackInsetProperty = BindableProperty.Create(nameof(RemoveBackInset), typeof(bool), typeof(TextField), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        {
+            var textField = (TextField)bindable;
+            if (newValue != null)
+            {
+                Object.InternalSetPropertyBool(textField.SwigCPtr, TextField.Property.RemoveBackInset, (bool)newValue);
+            }
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        {
+            var textField = (TextField)bindable;
+            return Object.InternalGetPropertyBool(textField.SwigCPtr, TextField.Property.RemoveBackInset);
+        }));
     }
 }
