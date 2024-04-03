@@ -19,6 +19,8 @@ using System.ComponentModel;
 using Tizen.NUI;
 using Tizen.NUI.Scene3D;
 
+using static Tizen.AIAvatar.AIAvatar;
+
 namespace Tizen.AIAvatar
 {
     internal class MotionPlayer
@@ -34,14 +36,19 @@ namespace Tizen.AIAvatar
         /// <summary>
         /// Play avatar animation by AnimationInfo
         /// </summary>
-        /// <param name="index">index of default avatar animations</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal void PlayAnimation(Animation motionAnimation, int duration = 3000, bool isLooping = false, int loopCount = 1)
         {
             ResetAnimations();
-
-            MotionAnimation = this.motionAnimation;
-            MotionAnimation.Play();
+            if (motionAnimation != null)
+            {
+                MotionAnimation = motionAnimation;
+                MotionAnimation?.Play();
+            }
+            else
+            {
+                Tizen.Log.Error(LogTag, "motionAnimation is null");
+            }
         }
 
         /// <summary>

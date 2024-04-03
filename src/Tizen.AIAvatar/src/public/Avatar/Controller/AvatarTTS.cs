@@ -81,7 +81,7 @@ namespace Tizen.AIAvatar
             {
                 try
                 {
-                    ttsLipSyncer = new TTSLipSyncer(avatar);
+                    ttsLipSyncer = new TTSLipSyncer(avatar?.AvatarAnimator?.LipSyncer);
                 }
                 catch (Exception e)
                 {
