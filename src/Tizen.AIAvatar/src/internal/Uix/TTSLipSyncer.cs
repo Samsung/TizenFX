@@ -58,10 +58,9 @@ namespace Tizen.AIAvatar
         private AsyncLipSyncer lipSyncer;
 
 
-        internal TTSLipSyncer(Avatar avatar)
+        internal TTSLipSyncer(AsyncLipSyncer lipSyncer)
         {
-            currentAvatar = avatar; 
-            lipSyncer = (currentAvatar.AvatarAnimator.GetAnimationModule(AnimationModuleType.LipSyncer) as AsyncLipSyncer);
+            this.lipSyncer = lipSyncer;
             InitTts();
         }
 

@@ -110,12 +110,29 @@ namespace Tizen.AIAvatar
         [EditorBrowsable(EditorBrowsableState.Never)]
         private void PlayAnimation(AnimationInfo animationInfo, int duration = 3000, bool isLooping = false, int loopCount = 1)
         {
+            if (animationInfo == null)
+            {
+                Tizen.Log.Error(LogTag, "animationInfo is null");
+                return;
+            }
+            if (animationInfo.MotionData == null)
+            {
+                Tizen.Log.Error(LogTag, "animationInfo.MotionData is null");
+                return;
+            }
             var motionAnimation = GenerateMotionDataAnimation(animationInfo.MotionData);
-            motionAnimation.Duration = duration;
-            motionAnimation.Looping = isLooping;
-            motionAnimation.LoopCount = loopCount;
-            motionAnimation.BlendPoint = 0.2f;
-            motionPlayer.PlayAnimation(motionAnimation);
+            if (motionAnimation != null)
+            {
+                motionAnimation.Duration = duration;
+                motionAnimation.Looping = isLooping;
+                motionAnimation.LoopCount = loopCount;
+                motionAnimation.BlendPoint = 0.2f;
+                motionPlayer.PlayAnimation(motionAnimation);
+            }
+            else
+            {
+                Tizen.Log.Error(LogTag, "motionAnimation is null");
+            }
         }
 
         /// <summary>
@@ -126,13 +143,24 @@ namespace Tizen.AIAvatar
         private void PlayAnimation(MotionData motionData, int duration = 3000, bool isLooping = false, int loopCount = 1)
         {
 
+            if (motionData == null)
+            {
+                Tizen.Log.Error(LogTag, "motionData is null");
+                return;
+            }
             var motionAnimation = GenerateMotionDataAnimation(motionData);
-            motionAnimation.Duration = duration;
-            motionAnimation.Looping = isLooping;
-            motionAnimation.LoopCount = loopCount;
-            motionAnimation.BlendPoint = 0.2f;
-
-            motionPlayer.PlayAnimation(motionAnimation);
+            if (motionAnimation != null)
+            {
+                motionAnimation.Duration = duration;
+                motionAnimation.Looping = isLooping;
+                motionAnimation.LoopCount = loopCount;
+                motionAnimation.BlendPoint = 0.2f;
+                motionPlayer.PlayAnimation(motionAnimation);
+            }
+            else
+            {
+                Tizen.Log.Error(LogTag, "motionAnimation is null");
+            }
         }
 
         private void PlayAnimation(int index, int duration = 3000, bool isLooping = false, int loopCount = 1)

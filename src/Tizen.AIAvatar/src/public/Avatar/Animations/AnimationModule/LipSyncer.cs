@@ -123,25 +123,23 @@ namespace Tizen.AIAvatar
 
         private void PlayLipSync(byte[] audio)
         {
-
-            Tizen.Log.Error("MYLOG", "Play Lip sync : " + audio.Length);
-            if(audio == null)
+            if (audio == null)
             {
-                Tizen.Log.Error("MYLOG", "audi data is null");
+                Tizen.Log.Error(LogTag, "audi data is null");
+                return;
             }
 
             DestroyLipAnimation();
             var lipAnimation = CreateLipAnimation(audio, CurrentAudioOptions.SampleRate);
             if (lipAnimation != null)
             {
-                Tizen.Log.Error("MYLOG", "lipAnimation is not null");
                 ResetLipAnimation(lipAnimation);
                 PlayLipAnimation();
             }
             else
             {
 
-                Tizen.Log.Error("MYLOG", "lipAnimation is null");
+                Tizen.Log.Error(LogTag, "lipAnimation is null");
             }
             audioPlayer.Play(audio);
             CurrentMotionState = AvatarMotionState.Playing;
