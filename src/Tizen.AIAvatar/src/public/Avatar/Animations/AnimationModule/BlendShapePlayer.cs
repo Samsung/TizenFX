@@ -44,6 +44,9 @@ namespace Tizen.AIAvatar
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
+        public AsyncLipSyncer LipSyncer => lipSyncer;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetBlinkAnimation(Animation blinkerAnimation)
         {
             animationModules[AnimationModuleType.EyeBlinker].Init(blinkerAnimation);
