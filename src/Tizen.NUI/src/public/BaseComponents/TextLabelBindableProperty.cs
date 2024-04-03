@@ -21,6 +21,8 @@ using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.BaseComponents
 {
+    using tempLog = Tizen.Log;
+    
     /// <summary>
     /// A control which renders a short text string.<br />
     /// Text labels are lightweight, non-editable, and do not respond to the user input.<br />
@@ -227,6 +229,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(TextLabel), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
+            tempLog.Fatal("NT", $"TextLabel.TextColorProperty setter");
             var textLabel = (TextLabel)bindable;
 
             if (newValue is Selector<Color> selector)
@@ -241,6 +244,7 @@ namespace Tizen.NUI.BaseComponents
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
+            tempLog.Fatal("NT", $"TextLabel.TextColorProperty getter");
             var textLabel = (TextLabel)bindable;
 
             if (textLabel.internalTextColor == null)

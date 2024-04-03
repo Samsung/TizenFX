@@ -640,6 +640,8 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         static public void Preload()
         {
+            return; //test
+            
             Interop.Application.PreInitialize();
 
             // Initialize some static utility

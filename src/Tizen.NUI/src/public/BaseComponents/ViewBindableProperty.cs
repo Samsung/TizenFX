@@ -21,6 +21,8 @@ using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.BaseComponents
 {
+    using tempLog = Tizen.Log;
+
     /// <summary>
     /// View is the base class for all views.
     /// </summary>
@@ -36,6 +38,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty StyleNameProperty = BindableProperty.Create(nameof(StyleName), typeof(string), typeof(View), string.Empty, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
+            tempLog.Fatal("NT", $"StyleNameProperty setter");
+            
             var view = (View)bindable;
             if (newValue != null)
             {
@@ -57,6 +61,8 @@ namespace Tizen.NUI.BaseComponents
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
+            tempLog.Fatal("NT", $"StyleNameProperty getter");
+
             var view = (View)bindable;
 
             if (!string.IsNullOrEmpty(view.styleName)) return view.styleName;
@@ -70,6 +76,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty KeyInputFocusProperty = BindableProperty.Create(nameof(KeyInputFocus), typeof(bool), typeof(View), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
+            tempLog.Fatal("NT", $"KeyInputFocusProperty setter");
+
             var view = (View)bindable;
             if (newValue != null)
             {
@@ -78,6 +86,8 @@ namespace Tizen.NUI.BaseComponents
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
+            tempLog.Fatal("NT", $"KeyInputFocusProperty getter");
+
             var view = (View)bindable;
             return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.KeyInputFocus);
         }));
@@ -85,6 +95,8 @@ namespace Tizen.NUI.BaseComponents
         // BackgroundColorProperty
         internal static void SetInternalBackgroundColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
+            tempLog.Fatal("NT", $"SetInternalBackgroundColorProperty()");
+
             var view = (View)bindable;
 
             if (NUIApplication.IsUsingXaml)
@@ -110,6 +122,8 @@ namespace Tizen.NUI.BaseComponents
 
         internal static object GetInternalBackgroundColorProperty(BindableObject bindable)
         {
+            tempLog.Fatal("NT", $"GetInternalBackgroundColorProperty()");
+
             var view = (View)bindable;
 
             if (view.internalBackgroundColor == null)
@@ -130,21 +144,8 @@ namespace Tizen.NUI.BaseComponents
         /// BackgroundColorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        public static BindableProperty BackgroundColorProperty = null;
-
-        internal static BindableProperty GetBackgroundColorProperty()
-        {
-            if (BackgroundColorProperty == null)
-            {
-                BackgroundColorProperty = BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(View), null,
-                    propertyChanged: SetInternalBackgroundColorProperty, defaultValueCreator: GetInternalBackgroundColorProperty);
-            }
-            return BackgroundColorProperty;
-        }
-#else
-        public static readonly BindableProperty BackgroundColorProperty = null;
-#endif
+        public static readonly Lazy<BindableProperty> BackgroundColorProperty = new Lazy<BindableProperty>(() => BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(View), null,
+                    propertyChanged: SetInternalBackgroundColorProperty, defaultValueCreator: GetInternalBackgroundColorProperty));
 
         // ColorProperty
         internal static void SetInternalColorProperty(BindableObject bindable, object oldValue, object newValue)
@@ -180,21 +181,9 @@ namespace Tizen.NUI.BaseComponents
         /// ColorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        public static BindableProperty ColorProperty = null;
+        public static readonly Lazy<BindableProperty> ColorProperty = new Lazy<BindableProperty>(() => BindableProperty.Create(nameof(Color), typeof(Color), typeof(View), null,
+                    propertyChanged: SetInternalColorProperty, defaultValueCreator: GetInternalColorProperty));
 
-        internal static BindableProperty GetColorProperty()
-        {
-            if (ColorProperty == null)
-            {
-                ColorProperty = BindableProperty.Create(nameof(Color), typeof(Color), typeof(View), null,
-                    propertyChanged: SetInternalColorProperty, defaultValueCreator: GetInternalColorProperty);
-            }
-            return ColorProperty;
-        }
-#else
-        public static readonly BindableProperty ColorProperty = null;
-#endif
 
         // ColorRedProperty
         internal static void SetInternalColorRedProperty(BindableObject bindable, object oldValue, object newValue)
@@ -213,21 +202,9 @@ namespace Tizen.NUI.BaseComponents
         /// ColorRedProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        public static BindableProperty ColorRedProperty = null;
+        public static readonly Lazy<BindableProperty> ColorRedProperty = new Lazy<BindableProperty>(() => BindableProperty.Create(nameof(ColorRed), typeof(float), typeof(View), default(float),
+                    propertyChanged: SetInternalColorRedProperty, defaultValueCreator: GetInternalColorRedProperty));
 
-        internal static BindableProperty GetColorRedProperty()
-        {
-            if (ColorRedProperty == null)
-            {
-                ColorRedProperty = BindableProperty.Create(nameof(ColorRed), typeof(float), typeof(View), default(float),
-                    propertyChanged: SetInternalColorRedProperty, defaultValueCreator: GetInternalColorRedProperty);
-            }
-            return ColorRedProperty;
-        }
-#else
-        public static readonly BindableProperty ColorRedProperty = null;
-#endif
 
         // ColorGreenProperty
         internal static void SetInternalColorGreenProperty(BindableObject bindable, object oldValue, object newValue)
@@ -248,21 +225,9 @@ namespace Tizen.NUI.BaseComponents
         /// ColorGreenProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        public static BindableProperty ColorGreenProperty = null;
+        public static readonly Lazy<BindableProperty> ColorGreenProperty = new Lazy<BindableProperty>(() => BindableProperty.Create(nameof(ColorGreen), typeof(float), typeof(View), default(float),
+                    propertyChanged: SetInternalColorGreenProperty, defaultValueCreator: GetInternalColorGreenProperty));
 
-        internal static BindableProperty GetColorGreenProperty()
-        {
-            if (ColorGreenProperty == null)
-            {
-                ColorGreenProperty = BindableProperty.Create(nameof(ColorGreen), typeof(float), typeof(View), default(float),
-                    propertyChanged: SetInternalColorGreenProperty, defaultValueCreator: GetInternalColorGreenProperty);
-            }
-            return ColorGreenProperty;
-        }
-#else
-        public static readonly BindableProperty ColorGreenProperty = null;
-#endif
 
         // ColorBlueProperty
         internal static void SetInternalColorBlueProperty(BindableObject bindable, object oldValue, object newValue)
@@ -283,21 +248,9 @@ namespace Tizen.NUI.BaseComponents
         /// ColorBlueProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        public static BindableProperty ColorBlueProperty = null;
+        public static readonly Lazy<BindableProperty> ColorBlueProperty = new Lazy<BindableProperty>(() => BindableProperty.Create(nameof(ColorBlue), typeof(float), typeof(View), default(float),
+                    propertyChanged: SetInternalColorBlueProperty, defaultValueCreator: GetInternalColorBlueProperty));
 
-        internal static BindableProperty GetColorBlueProperty()
-        {
-            if (ColorBlueProperty == null)
-            {
-                ColorBlueProperty = BindableProperty.Create(nameof(ColorBlue), typeof(float), typeof(View), default(float),
-                    propertyChanged: SetInternalColorBlueProperty, defaultValueCreator: GetInternalColorBlueProperty);
-            }
-            return ColorBlueProperty;
-        }
-#else
-        public static readonly BindableProperty ColorBlueProperty = null;
-#endif
 
         /// <summary> BackgroundImageProperty </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -559,21 +512,9 @@ namespace Tizen.NUI.BaseComponents
         /// CellIndexProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        internal static BindableProperty GetCellIndexProperty()
-        {
-            if (CellIndexProperty == null)
-            {
-                CellIndexProperty = BindableProperty.Create(nameof(CellIndex), typeof(Vector2), typeof(View), null,
-                    propertyChanged: SetInternalCellIndexProperty, defaultValueCreator: GetInternalCellIndexProperty);
-            }
-            return CellIndexProperty;
-        }
+        public static readonly Lazy<BindableProperty> CellIndexProperty = new Lazy<BindableProperty>(() => BindableProperty.Create(nameof(CellIndex), typeof(Vector2), typeof(View), null,
+            propertyChanged: SetInternalCellIndexProperty, defaultValueCreator: GetInternalCellIndexProperty));
 
-        public static BindableProperty CellIndexProperty = null;
-#else
-        public static readonly BindableProperty CellIndexProperty = null;
-#endif
 
         /// <summary>
         /// RowSpanProperty
@@ -827,6 +768,7 @@ namespace Tizen.NUI.BaseComponents
         //Size2DProperty
         internal static void SetInternalSize2DProperty(BindableObject bindable, object oldValue, object newValue)
         {
+            tempLog.Fatal("NT", $"SetInternalSize2DProperty()");
             var view = (View)bindable;
             if (newValue != null)
             {
@@ -862,6 +804,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal static object GetInternalSize2DProperty(BindableObject bindable)
         {
+            tempLog.Fatal("NT", $"GetInternalSize2DProperty()");
             var view = (View)bindable;
             if (view.internalSize2D == null)
             {
@@ -876,21 +819,9 @@ namespace Tizen.NUI.BaseComponents
         /// Size2DProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        internal static BindableProperty GetSize2DProperty()
-        {
-            if (Size2DProperty == null)
-            {
-                Size2DProperty = BindableProperty.Create(nameof(Size2D), typeof(Size2D), typeof(View), null,
-                    propertyChanged: SetInternalSize2DProperty, defaultValueCreator: GetInternalSize2DProperty);
-            }
-            return Size2DProperty;
-        }
+        public static readonly Lazy<BindableProperty> Size2DProperty = new Lazy<BindableProperty>(() => BindableProperty.Create(nameof(Size2D), typeof(Size2D), typeof(View), null,
+                    propertyChanged: SetInternalSize2DProperty, defaultValueCreator: GetInternalSize2DProperty));
 
-        public static BindableProperty Size2DProperty = null;
-#else
-        public static readonly BindableProperty Size2DProperty = null;
-#endif
 
         /// <summary>
         /// OpacityProperty
@@ -921,6 +852,7 @@ namespace Tizen.NUI.BaseComponents
         // Position2DProperty
         internal static void SetInternalPosition2DProperty(BindableObject bindable, object oldValue, object newValue)
         {
+            tempLog.Fatal("NT", $"SetInternalPosition2DProperty()");
             var view = (View)bindable;
             if (newValue != null)
             {
@@ -930,6 +862,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal static object GetInternalPosition2DProperty(BindableObject bindable)
         {
+            tempLog.Fatal("NT", $"GetInternalPosition2DProperty()");
             var view = (View)bindable;
             if (view.internalPosition2D == null)
             {
@@ -943,21 +876,9 @@ namespace Tizen.NUI.BaseComponents
         /// Position2DProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        internal static BindableProperty GetPosition2DProperty()
-        {
-            if (Position2DProperty == null)
-            {
-                Position2DProperty = BindableProperty.Create(nameof(Position2D), typeof(Position2D), typeof(View), null,
-                    propertyChanged: SetInternalPosition2DProperty, defaultValueCreator: GetInternalPosition2DProperty);
-            }
-            return Position2DProperty;
-        }
+        public static readonly Lazy<BindableProperty> Position2DProperty = new Lazy<BindableProperty>(() => BindableProperty.Create(nameof(Position2D), typeof(Position2D), typeof(View), null,
+                    propertyChanged: SetInternalPosition2DProperty, defaultValueCreator: GetInternalPosition2DProperty));
 
-        public static BindableProperty Position2DProperty = null;
-#else
-        public static readonly BindableProperty Position2DProperty = null;
-#endif
 
         /// <summary>
         /// PositionUsesPivotPointProperty
@@ -1048,21 +969,9 @@ namespace Tizen.NUI.BaseComponents
         /// ParentOriginProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        internal static BindableProperty GetParentOriginProperty()
-        {
-            if (ParentOriginProperty == null)
-            {
-                ParentOriginProperty = BindableProperty.Create(nameof(ParentOrigin), typeof(Position), typeof(View), null,
-                    propertyChanged: SetInternalParentOriginProperty, defaultValueCreator: GetInternalParentOriginProperty);
-            }
-            return ParentOriginProperty;
-        }
+        public static readonly Lazy<BindableProperty> ParentOriginProperty = new Lazy<BindableProperty>(() => BindableProperty.Create(nameof(ParentOrigin), typeof(Position), typeof(View), null,
+            propertyChanged: SetInternalParentOriginProperty, defaultValueCreator: GetInternalParentOriginProperty));
 
-        public static BindableProperty ParentOriginProperty = null;
-#else
-        public static readonly BindableProperty ParentOriginProperty = null;
-#endif
 
         // PivotPointProperty
         internal static void SetInternalPivotPointProperty(BindableObject bindable, object oldValue, object newValue)
@@ -1089,22 +998,10 @@ namespace Tizen.NUI.BaseComponents
         /// PivotPointProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        internal static BindableProperty GetPivotPointProperty()
-        {
-            if (PivotPointProperty == null)
-            {
-                PivotPointProperty = BindableProperty.Create(nameof(PivotPoint), typeof(Position), typeof(View), null,
-                    propertyChanged: SetInternalPivotPointProperty, defaultValueCreator: GetInternalPivotPointProperty);
-            }
-            return PivotPointProperty;
-        }
+        public static readonly Lazy<BindableProperty> PivotPointProperty = new Lazy<BindableProperty>(() => BindableProperty.Create(nameof(PivotPoint), typeof(Position), typeof(View), null,
+            propertyChanged: SetInternalPivotPointProperty, defaultValueCreator: GetInternalPivotPointProperty));
 
-        public static BindableProperty PivotPointProperty = null;
-#else
-        public static readonly BindableProperty PivotPointProperty = null;
-#endif
-        
+
         // SizeWidthProperty
         internal static void SetInternalSizeWidthProperty(BindableObject bindable, object oldValue, object newValue)
         {
@@ -1140,21 +1037,9 @@ namespace Tizen.NUI.BaseComponents
         /// SizeWidthProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        internal static BindableProperty GetSizeWidthProperty()
-        {
-            if (SizeWidthProperty == null)
-            {
-                SizeWidthProperty = BindableProperty.Create(nameof(SizeWidth), typeof(float), typeof(View), default(float),
-                    propertyChanged: SetInternalSizeWidthProperty, defaultValueCreator: GetInternalSizeWidthProperty);
-            }
-            return SizeWidthProperty;
-        }
+        public static readonly Lazy<BindableProperty> SizeWidthProperty = new Lazy<BindableProperty>(() => BindableProperty.Create(nameof(SizeWidth), typeof(float), typeof(View), default(float),
+            propertyChanged: SetInternalSizeWidthProperty, defaultValueCreator: GetInternalSizeWidthProperty));
 
-        public static BindableProperty SizeWidthProperty = null;
-#else
-        public static readonly BindableProperty SizeWidthProperty = null;
-#endif        
 
         // SizeHeightProperty
         internal static void SetInternalSizeHeightProperty(BindableObject bindable, object oldValue, object newValue)
@@ -1191,21 +1076,9 @@ namespace Tizen.NUI.BaseComponents
         /// SizeHeightProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        internal static BindableProperty GetSizeHeightProperty()
-        {
-            if (SizeHeightProperty == null)
-            {
-                SizeHeightProperty = BindableProperty.Create(nameof(SizeHeight), typeof(float), typeof(View), default(float),
-                    propertyChanged: SetInternalSizeHeightProperty, defaultValueCreator: GetInternalSizeHeightProperty);
-            }
-            return SizeHeightProperty;
-        }
+        public static readonly Lazy<BindableProperty> SizeHeightProperty = new Lazy<BindableProperty>(() => BindableProperty.Create(nameof(SizeHeight), typeof(float), typeof(View), default(float),
+            propertyChanged: SetInternalSizeHeightProperty, defaultValueCreator: GetInternalSizeHeightProperty));
 
-        public static BindableProperty SizeHeightProperty = null;
-#else
-        public static readonly BindableProperty SizeHeightProperty = null;
-#endif
 
         // PositionProperty
         internal static void SetInternalPositionProperty(BindableObject bindable, object oldValue, object newValue)
@@ -1232,22 +1105,10 @@ namespace Tizen.NUI.BaseComponents
         /// PositionProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        internal static BindableProperty GetPositionProperty()
-        {
-            if (PositionProperty == null)
-            {
-                PositionProperty = BindableProperty.Create(nameof(Position), typeof(Position), typeof(View), null,
-                    propertyChanged: SetInternalPositionProperty, defaultValueCreator: GetInternalPositionProperty);
-            }
-            return PositionProperty;
-        }
+        public static readonly Lazy<BindableProperty> PositionProperty = new Lazy<BindableProperty>(() => BindableProperty.Create(nameof(Position), typeof(Position), typeof(View), null,
+            propertyChanged: SetInternalPositionProperty, defaultValueCreator: GetInternalPositionProperty));
 
-        public static BindableProperty PositionProperty = null;
-#else
-        public static readonly BindableProperty PositionProperty = null;
-#endif
-        
+
         // PositionXProperty
         internal static void SetInternalPositionXProperty(BindableObject bindable, object oldValue, object newValue)
         {
@@ -1268,21 +1129,9 @@ namespace Tizen.NUI.BaseComponents
         /// PositionXProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        internal static BindableProperty GetPositionXProperty()
-        {
-            if (PositionXProperty == null)
-            {
-                PositionXProperty = BindableProperty.Create(nameof(PositionX), typeof(float), typeof(View), default(float),
-                    propertyChanged: SetInternalPositionXProperty, defaultValueCreator: GetInternalPositionXProperty);
-            }
-            return PositionXProperty;
-        }
+        public static readonly Lazy<BindableProperty> PositionXProperty = new Lazy<BindableProperty>(() => BindableProperty.Create(nameof(PositionX), typeof(float), typeof(View), default(float),
+            propertyChanged: SetInternalPositionXProperty, defaultValueCreator: GetInternalPositionXProperty));
 
-        public static BindableProperty PositionXProperty = null;
-#else
-        public static readonly BindableProperty PositionXProperty = null;
-#endif
 
         // PositionYProperty
         internal static void SetInternalPositionYProperty(BindableObject bindable, object oldValue, object newValue)
@@ -1304,21 +1153,10 @@ namespace Tizen.NUI.BaseComponents
         /// PositionYProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        internal static BindableProperty GetPositionYProperty()
-        {
-            if (PositionYProperty == null)
-            {
-                PositionYProperty = BindableProperty.Create(nameof(PositionY), typeof(float), typeof(View), default(float),
-                propertyChanged: SetInternalPositionYProperty, defaultValueCreator: GetInternalPositionYProperty);
-            }
-            return PositionYProperty;
-        }
+        public static readonly Lazy<BindableProperty> PositionYProperty = new Lazy<BindableProperty>(() => BindableProperty.Create(nameof(PositionY), typeof(float), typeof(View), default(float),
+            propertyChanged: SetInternalPositionYProperty, defaultValueCreator: GetInternalPositionYProperty));
 
-        public static BindableProperty PositionYProperty = null;
-#else
-        public static readonly BindableProperty PositionYProperty = null;
-#endif
+
         internal static void SetInternalPositionZProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
@@ -1340,21 +1178,10 @@ namespace Tizen.NUI.BaseComponents
         /// PositionZProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        internal static BindableProperty GetPositionZProperty()
-        {
-            if (PositionZProperty == null)
-            {
-                PositionZProperty = BindableProperty.Create(nameof(PositionZ), typeof(float), typeof(View), default(float),
-                    propertyChanged: SetInternalPositionZProperty, defaultValueCreator: GetInternalPositionZProperty);
-            }
-            return PositionZProperty;
-        }
+        public static readonly Lazy<BindableProperty> PositionZProperty = new Lazy<BindableProperty>(() => BindableProperty.Create(nameof(PositionZ), typeof(float), typeof(View), default(float),
+            propertyChanged: SetInternalPositionZProperty, defaultValueCreator: GetInternalPositionZProperty));
 
-        public static BindableProperty PositionZProperty = null;
-#else
-        public static readonly BindableProperty PositionZProperty = null;
-#endif
+
         /// <summary>
         /// OrientationProperty
         /// </summary>
@@ -1401,21 +1228,9 @@ namespace Tizen.NUI.BaseComponents
         /// ScaleProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        internal static BindableProperty GetScaleProperty()
-        {
-            if (ScaleProperty == null)
-            {
-                ScaleProperty = BindableProperty.Create(nameof(Scale), typeof(Vector3), typeof(View), null,
-                    propertyChanged: SetInternalScaleProperty, defaultValueCreator: GetInternalScaleProperty);
-            }
-            return ScaleProperty;
-        }
+        public static readonly Lazy<BindableProperty> ScaleProperty = new Lazy<BindableProperty>(() => BindableProperty.Create(nameof(Scale), typeof(Vector3), typeof(View), null,
+            propertyChanged: SetInternalScaleProperty, defaultValueCreator: GetInternalScaleProperty));
 
-        public static BindableProperty ScaleProperty = null;
-#else
-        public static readonly BindableProperty ScaleProperty = null;
-#endif
 
         // ScaleXProperty
         internal static void SetInternalScaleXProperty(BindableObject bindable, object oldValue, object newValue)
@@ -1437,21 +1252,9 @@ namespace Tizen.NUI.BaseComponents
         /// ScaleXProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        internal static BindableProperty GetScaleXProperty()
-        {
-            if (ScaleXProperty == null)
-            {
-                ScaleXProperty = BindableProperty.Create(nameof(ScaleX), typeof(float), typeof(View), default(float),
-                    propertyChanged: SetInternalScaleXProperty, defaultValueCreator: GetInternalScaleXProperty);
-            }
-            return ScaleXProperty;
-        }
+        public static readonly Lazy<BindableProperty> ScaleXProperty = new Lazy<BindableProperty>(() => BindableProperty.Create(nameof(ScaleX), typeof(float), typeof(View), default(float),
+            propertyChanged: SetInternalScaleXProperty, defaultValueCreator: GetInternalScaleXProperty));
 
-        public static BindableProperty ScaleXProperty = null;
-#else
-        public static readonly BindableProperty ScaleXProperty = null;
-#endif
 
         // ScaleYProperty
         internal static void SetInternalScaleYProperty(BindableObject bindable, object oldValue, object newValue)
@@ -1473,21 +1276,9 @@ namespace Tizen.NUI.BaseComponents
         /// ScaleYProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        internal static BindableProperty GetScaleYProperty()
-        {
-            if (ScaleYProperty == null)
-            {
-                ScaleYProperty = BindableProperty.Create(nameof(ScaleY), typeof(float), typeof(View), default(float),
-                    propertyChanged: SetInternalScaleYProperty, defaultValueCreator: GetInternalScaleYProperty);
-            }
-            return ScaleYProperty;
-        }
+        public static readonly Lazy<BindableProperty> ScaleYProperty = new Lazy<BindableProperty>(() => BindableProperty.Create(nameof(ScaleY), typeof(float), typeof(View), default(float),
+            propertyChanged: SetInternalScaleYProperty, defaultValueCreator: GetInternalScaleYProperty));
 
-        public static BindableProperty ScaleYProperty = null;
-#else
-        public static readonly BindableProperty ScaleYProperty = null;
-#endif
 
         // ScaleZProperty
         internal static void SetInternalScaleZProperty(BindableObject bindable, object oldValue, object newValue)
@@ -1509,22 +1300,10 @@ namespace Tizen.NUI.BaseComponents
         /// ScaleZProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        internal static BindableProperty GetScaleZProperty()
-        {
-            if (ScaleZProperty == null)
-            {
-                ScaleZProperty = BindableProperty.Create(nameof(ScaleZ), typeof(float), typeof(View), default(float),
-                    propertyChanged: SetInternalScaleZProperty, defaultValueCreator: GetInternalScaleZProperty);
-            }
-            return ScaleZProperty;
-        }
+        public static readonly Lazy<BindableProperty> ScaleZProperty = new Lazy<BindableProperty>(() => BindableProperty.Create(nameof(ScaleZ), typeof(float), typeof(View), default(float),
+            propertyChanged: SetInternalScaleZProperty, defaultValueCreator: GetInternalScaleZProperty));
 
-        public static BindableProperty ScaleZProperty = null;
-#else
-        public static readonly BindableProperty ScaleZProperty = null;
-#endif
-        
+
         // NameProperty
         internal static void SetInternalNameProperty(BindableObject bindable, object oldValue, object newValue)
         {
@@ -1546,21 +1325,10 @@ namespace Tizen.NUI.BaseComponents
         /// NameProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        internal static BindableProperty GetNameProperty()
-        {
-            if (NameProperty == null)
-            {
-                NameProperty = BindableProperty.Create(nameof(Name), typeof(string), typeof(View), string.Empty,
-                    propertyChanged: SetInternalNameProperty, defaultValueCreator: GetInternalNameProperty);
-            }
-            return NameProperty;
-        }
+        public static readonly Lazy<BindableProperty> NameProperty = new Lazy<BindableProperty>(() => BindableProperty.Create(nameof(Name), typeof(string), typeof(View), string.Empty,
+            propertyChanged: SetInternalNameProperty, defaultValueCreator: GetInternalNameProperty));
 
-        public static BindableProperty NameProperty = null;
-#else
-        public static readonly BindableProperty NameProperty = null;
-#endif
+
         /// <summary>
         /// SensitiveProperty
         /// </summary>
@@ -1714,21 +1482,10 @@ namespace Tizen.NUI.BaseComponents
         /// SizeModeFactorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        internal static BindableProperty GetSizeModeFactorProperty()
-        {
-            if (SizeModeFactorProperty == null)
-            {
-                SizeModeFactorProperty = BindableProperty.Create(nameof(SizeModeFactor), typeof(Vector3), typeof(View), null,
-                    propertyChanged: SetInternalSizeModeFactorProperty, defaultValueCreator: GetInternalSizeModeFactorProperty);
-            }
-            return SizeModeFactorProperty;
-        }
+        public static readonly Lazy<BindableProperty> SizeModeFactorProperty = new Lazy<BindableProperty>(() => BindableProperty.Create(nameof(SizeModeFactor), typeof(Vector3), typeof(View), null,
+            propertyChanged: SetInternalSizeModeFactorProperty, defaultValueCreator: GetInternalSizeModeFactorProperty));
 
-        public static BindableProperty SizeModeFactorProperty = null;
-#else
-        public static readonly BindableProperty SizeModeFactorProperty = null;
-#endif
+
         /// <summary>
         /// WidthResizePolicyProperty
         /// </summary>
@@ -1968,21 +1725,9 @@ namespace Tizen.NUI.BaseComponents
         /// PaddingProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        internal static BindableProperty GetPaddingProperty()
-        {
-            if (PaddingProperty == null)
-            {
-                PaddingProperty = BindableProperty.Create(nameof(Padding), typeof(Extents), typeof(View), null,
-                    propertyChanged: SetInternalPaddingProperty, defaultValueCreator: GetInternalPaddingProperty);
-            }
-            return PaddingProperty;
-        }
+        public static readonly Lazy<BindableProperty> PaddingProperty = new Lazy<BindableProperty>(() => BindableProperty.Create(nameof(Padding), typeof(Extents), typeof(View), null,
+            propertyChanged: SetInternalPaddingProperty, defaultValueCreator: GetInternalPaddingProperty));
 
-        public static BindableProperty PaddingProperty = null;
-#else
-        public static readonly BindableProperty PaddingProperty = null;
-#endif
 
         // SizeProperty
         internal static void SetInternalSizeProperty(BindableObject bindable, object oldValue, object newValue)
@@ -2044,21 +1789,9 @@ namespace Tizen.NUI.BaseComponents
         /// SizeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        internal static BindableProperty GetSizeProperty()
-        {
-            if (SizeProperty == null)
-            {
-                SizeProperty = BindableProperty.Create(nameof(Size), typeof(Size), typeof(View), null,
-                    propertyChanged: SetInternalSizeProperty, defaultValueCreator: GetInternalSizeProperty);
-            }
-            return SizeProperty;
-        }
+        public static readonly Lazy<BindableProperty> SizeProperty = new Lazy<BindableProperty>(() => BindableProperty.Create(nameof(Size), typeof(Size), typeof(View), null,
+            propertyChanged: SetInternalSizeProperty, defaultValueCreator: GetInternalSizeProperty));
 
-        public static BindableProperty SizeProperty = null;
-#else
-        public static readonly BindableProperty SizeProperty = null;
-#endif
 
         // MinimumSizeProperty
         internal static void SetInternalMinimumSizeProperty(BindableObject bindable, object oldValue, object newValue)
@@ -2087,21 +1820,9 @@ namespace Tizen.NUI.BaseComponents
         /// MinimumSizeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        internal static BindableProperty GetMinimumSizeProperty()
-        {
-            if (MinimumSizeProperty == null)
-            {
-                MinimumSizeProperty = BindableProperty.Create(nameof(MinimumSize), typeof(Size2D), typeof(View), null,
-                    propertyChanged: SetInternalMinimumSizeProperty, defaultValueCreator: GetInternalMinimumSizeProperty);
-            }
-            return MinimumSizeProperty;
-        }
+        public static readonly Lazy<BindableProperty> MinimumSizeProperty = new Lazy<BindableProperty>(() => BindableProperty.Create(nameof(MinimumSize), typeof(Size2D), typeof(View), null,
+            propertyChanged: SetInternalMinimumSizeProperty, defaultValueCreator: GetInternalMinimumSizeProperty));
 
-        public static BindableProperty MinimumSizeProperty = null;
-#else
-        public static readonly BindableProperty MinimumSizeProperty = null;
-#endif
 
         // MaximumSizeProperty
         internal static void SetInternalMaximumSizeProperty(BindableObject bindable, object oldValue, object newValue)
@@ -2130,21 +1851,9 @@ namespace Tizen.NUI.BaseComponents
         /// MaximumSizeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        internal static BindableProperty GetMaximumSizeProperty()
-        {
-            if (MaximumSizeProperty == null)
-            {
-                MaximumSizeProperty = BindableProperty.Create(nameof(MaximumSize), typeof(Size2D), typeof(View), null,
-                    propertyChanged: SetInternalMaximumSizeProperty, defaultValueCreator: GetInternalMaximumSizeProperty);
-            }
-            return MaximumSizeProperty;
-        }
+        public static readonly Lazy<BindableProperty> MaximumSizeProperty = new Lazy<BindableProperty>(() => BindableProperty.Create(nameof(MaximumSize), typeof(Size2D), typeof(View), null,
+            propertyChanged: SetInternalMaximumSizeProperty, defaultValueCreator: GetInternalMaximumSizeProperty));
 
-        public static BindableProperty MaximumSizeProperty = null;
-#else
-        public static readonly BindableProperty MaximumSizeProperty = null;
-#endif
 
         /// <summary>
         /// InheritPositionProperty
@@ -2285,21 +1994,9 @@ namespace Tizen.NUI.BaseComponents
         /// MarginProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        internal static BindableProperty GetMarginProperty()
-        {
-            if (MarginProperty == null)
-            {
-                MarginProperty = BindableProperty.Create(nameof(Margin), typeof(Extents), typeof(View), null,
-                    propertyChanged: SetInternalMarginProperty, defaultValueCreator: GetInternalMarginProperty);
-            }
-            return MarginProperty;
-        }
+        public static readonly Lazy<BindableProperty> MarginProperty = new Lazy<BindableProperty>(() => BindableProperty.Create(nameof(Margin), typeof(Extents), typeof(View), null,
+            propertyChanged: SetInternalMarginProperty, defaultValueCreator: GetInternalMarginProperty));
 
-        public static BindableProperty MarginProperty = null;
-#else
-        public static readonly BindableProperty MarginProperty = null;
-#endif
 
         /// <summary>
         /// UpdateAreaHintProperty
@@ -2768,21 +2465,9 @@ namespace Tizen.NUI.BaseComponents
         /// AnchorPointProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        internal static BindableProperty GetAnchorPointProperty()
-        {
-            if (AnchorPointProperty == null)
-            {
-                AnchorPointProperty = BindableProperty.Create(nameof(AnchorPoint), typeof(Tizen.NUI.Position), typeof(View), null,
-                    propertyChanged: SetInternalAnchorPointProperty, defaultValueCreator: GetInternalAnchorPointProperty);
-            }
-            return AnchorPointProperty;
-        }
+        public static readonly Lazy<BindableProperty> AnchorPointProperty = new Lazy<BindableProperty>(() => BindableProperty.Create(nameof(AnchorPoint), typeof(Tizen.NUI.Position), typeof(View), null,
+            propertyChanged: SetInternalAnchorPointProperty, defaultValueCreator: GetInternalAnchorPointProperty));
 
-        public static BindableProperty AnchorPointProperty = null;
-#else
-        public static readonly BindableProperty AnchorPointProperty = null;
-#endif
 
         /// <summary>
         /// WidthSpecificationProperty
@@ -3101,39 +2786,6 @@ namespace Tizen.NUI.BaseComponents
             return new Size2D((int)userSizeWidth, (int)userSizeHeight);
         }
 
-#if REMOVE_READONLY
-        internal static void CreateBindableProperties()
-        {
-            _ = GetBackgroundColorProperty();
-            _ = GetColorProperty();
-            _ = GetColorRedProperty();
-            _ = GetColorGreenProperty();
-            _ = GetColorBlueProperty();
-            _ = GetCellIndexProperty();
-            _ = GetSize2DProperty();
-            _ = GetPosition2DProperty();
-            _ = GetParentOriginProperty();
-            _ = GetPivotPointProperty();
-            _ = GetSizeWidthProperty();
-            _ = GetSizeHeightProperty();
-            _ = GetPositionProperty();
-            _ = GetPositionXProperty();
-            _ = GetPositionYProperty();
-            _ = GetPositionZProperty();
-            _ = GetScaleProperty();
-            _ = GetScaleXProperty();
-            _ = GetScaleYProperty();
-            _ = GetScaleZProperty();
-            _ = GetNameProperty();
-            _ = GetSizeModeFactorProperty();
-            _ = GetPaddingProperty();
-            _ = GetSizeProperty();
-            _ = GetMinimumSizeProperty();
-            _ = GetMaximumSizeProperty();
-            _ = GetMarginProperty();
-            _ = GetAnchorPointProperty();
-        }
-#endif
 
         private void SetBackgroundImage(string value)
         {

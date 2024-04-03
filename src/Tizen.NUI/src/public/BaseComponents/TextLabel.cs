@@ -26,6 +26,8 @@ using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.BaseComponents
 {
+    using tempLog = Tizen.Log;
+
     /// <summary>
     /// A control which renders a short text string.<br />
     /// Text labels are lightweight, non-editable, and do not respond to the user input.<br />
@@ -82,10 +84,12 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        static TextLabel() { }
+        static TextLabel() { tempLog.Fatal("NT", $"TextLabel() constructor"); }
 
         static internal new void Preload()
         {
+            return; //test
+
             // Do not call View.Preload(), since we already call it
 
             Property.Preload();
@@ -472,11 +476,13 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                tempLog.Fatal("NT", $"TextLabel.TextColor getter");
                 Color temp = (Color)GetValue(TextColorProperty);
                 return new Color(OnTextColorChanged, temp.R, temp.G, temp.B, temp.A);
             }
             set
             {
+                tempLog.Fatal("NT", $"TextLabel.TextColor setter");
                 SetValue(TextColorProperty, value);
                 NotifyPropertyChanged();
             }

@@ -26,6 +26,8 @@ using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.Binding
 {
+    using tempLog = Tizen.Log;
+
     /// <summary>
     /// Provides a mechanism by which application developers can propagate changes that are made to data in one object to another.
     /// </summary>
@@ -37,7 +39,7 @@ namespace Tizen.NUI.Binding
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BindingContextProperty =
-            BindableProperty.Create(nameof(BindingContext), typeof(object), typeof(BindableObject),  default(object), BindingMode.OneWay, null, BindingContextPropertyChanged,
+            BindableProperty.Create(nameof(BindingContext), typeof(object), typeof(BindableObject), default(object), BindingMode.OneWay, null, BindingContextPropertyChanged,
             null, null, BindingContextPropertyBindingChanging);
 
         readonly Dictionary<BindableProperty, BindablePropertyContext> properties = new Dictionary<BindableProperty, BindablePropertyContext>(4);
@@ -196,6 +198,33 @@ namespace Tizen.NUI.Binding
             return context.Value;
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public object GetValue(Lazy<BindableProperty> lazyProperty)
+        {
+            BindableProperty property = lazyProperty?.Value;
+
+            if (property == null)
+            {
+                tempLog.Fatal("NT", $"[ERR] GetValue() property null!");
+            }
+
+            if (property == null)
+                throw new ArgumentNullException(nameof(property));
+
+            if (!IsBound && property.ValueGetter != null)
+            {
+                return property.ValueGetter(this);
+            }
+
+            BindablePropertyContext context = property.DefaultValueCreator != null ? GetOrCreateContext(property) : GetContext(property);
+
+            if (context == null)
+                return property.DefaultValue;
+
+            return context.Value;
+        }
+
+
         /// <summary>
         /// Raised when a property is about to change.
         /// </summary>
@@ -295,6 +324,22 @@ namespace Tizen.NUI.Binding
             InternalSetValue(property, value);
             ChangedPropertiesSetExcludingStyle.Add(property);
         }
+
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetValue(Lazy<BindableProperty> lazyProperty, object value)
+        {
+            BindableProperty property = lazyProperty?.Value;
+
+            if (property == null)
+            {
+                tempLog.Fatal("NT", $"[ERR] SetValue() property null!");
+            }
+
+            InternalSetValue(property, value);
+            ChangedPropertiesSetExcludingStyle.Add(property);
+        }
+
 
         internal void InternalSetValue(BindableProperty property, object value)
         {
@@ -411,6 +456,28 @@ namespace Tizen.NUI.Binding
                 group.Add(property);
             }
         }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void RegisterPropertyGroup(Lazy<BindableProperty> lazyProperty, HashSet<BindableProperty> group)
+        {
+            BindableProperty property = lazyProperty?.Value;
+
+            if (property == null)
+            {
+                tempLog.Fatal("NT", $"[ERR] RegisterPropertyGroup() property null!");
+            }
+
+            if (!PropertyToGroup.ContainsKey(property))
+            {
+                PropertyToGroup.Add(property, group);
+            }
+
+            if (null != group && !(group.Contains(property)))
+            {
+                group.Add(property);
+            }
+        }
+
         /// <summary>
         /// Apply the bindings to BindingContext.
         /// </summary>
@@ -445,7 +512,7 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnPropertyChanging([CallerMemberName] string propertyName = null)
             => PropertyChanging?.Invoke(this, new PropertyChangingEventArgs(propertyName));
-        
+
         /// <summary>
         /// Method that is called when a bound property is changed.
         /// </summary>

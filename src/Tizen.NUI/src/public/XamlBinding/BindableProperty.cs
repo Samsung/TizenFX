@@ -26,6 +26,8 @@ using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Binding
 {
+    using tempLog = Tizen.Log;
+
     /// <summary>
     /// A BindableProperty is a backing store for properties allowing bindings on BindableObject.
     /// </summary>
@@ -339,6 +341,11 @@ namespace Tizen.NUI.Binding
                                               ValidateValueDelegate validateValue = null, BindingPropertyChangedDelegate propertyChanged = null, BindingPropertyChangingDelegate propertyChanging = null,
                                               CoerceValueDelegate coerceValue = null, CreateDefaultValueDelegate defaultValueCreator = null)
         {
+            if(declaringType == typeof(Tizen.NUI.BaseComponents.View) || declaringType == typeof(Tizen.NUI.BaseComponents.TextLabel))
+            {
+                tempLog.Fatal("NT", $"BindableProperty Create(): {propertyName}");
+            }
+            
             return new BindableProperty(propertyName, returnType, declaringType, defaultValue, defaultBindingMode, validateValue, propertyChanged, propertyChanging, coerceValue,
                 defaultValueCreator: defaultValueCreator);
         }
