@@ -48,7 +48,7 @@ namespace Tizen.NUI
         public Vector2 Begin()
         {
             global::System.IntPtr cPtr = Interop.VectorVector2.Begin(SwigCPtr);
-            Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
+            Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : Vector2.New(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -56,14 +56,14 @@ namespace Tizen.NUI
         public Vector2 End()
         {
             global::System.IntPtr cPtr = Interop.VectorVector2.End(SwigCPtr);
-            Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
+            Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : Vector2.New(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public Vector2 ValueOfIndex(uint index)
         {
-            Vector2 ret = new Vector2(Interop.VectorVector2.ValueOfIndex(SwigCPtr, index), false);
+            Vector2 ret = Vector2.New(Interop.VectorVector2.ValueOfIndex(SwigCPtr, index), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -107,7 +107,7 @@ namespace Tizen.NUI
         public Vector2 Erase(Vector2 iterator)
         {
             global::System.IntPtr cPtr = Interop.VectorVector2.Erase(SwigCPtr, Vector2.getCPtr(iterator));
-            Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
+            Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : Vector2.New(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -115,7 +115,7 @@ namespace Tizen.NUI
         public Vector2 Erase(Vector2 first, Vector2 last)
         {
             global::System.IntPtr cPtr = Interop.VectorVector2.Erase(SwigCPtr, Vector2.getCPtr(first), Vector2.getCPtr(last));
-            Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
+            Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : Vector2.New(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

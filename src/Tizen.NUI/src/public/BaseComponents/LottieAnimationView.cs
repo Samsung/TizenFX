@@ -1237,7 +1237,7 @@ namespace Tizen.NUI.BaseComponents
                 case (int)(VectorProperty.TransformAnchor):
                 case (int)(VectorProperty.TransformPosition):
                 case (int)(VectorProperty.TransformScale):
-                    Vector2 tmpVector2 = new Vector2(-1, -1);
+                    Vector2 tmpVector2 = Vector2.New(-1, -1);
                     if ((ret != null) && ret.Get(tmpVector2))
                     {
                         val1 = tmpVector2.X;

@@ -693,7 +693,7 @@ namespace Tizen.NUI.Accessibility
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 GetReadPosition()
         {
-            Vector2 ret = new Vector2(Interop.AccessibilityManager.GetReadPosition(SwigCPtr), true);
+            Vector2 ret = Vector2.New(Interop.AccessibilityManager.GetReadPosition(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

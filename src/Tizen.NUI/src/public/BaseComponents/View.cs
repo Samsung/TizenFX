@@ -707,7 +707,7 @@ namespace Tizen.NUI.BaseComponents
         /// Animatable - This property can be animated using <c>Animation</c> class.
         /// To animate this property, specify a sub-property with separator ".", for example, "ImageShadow.Offset".
         /// <code>
-        /// animation.AnimateTo(view, "ImageShadow.Offset", new Vector2(10, 10));
+        /// animation.AnimateTo(view, "ImageShadow.Offset", Vector2.New(10, 10));
         /// </code>
         /// Animatable sub-property : Offset.
         /// </para>
@@ -1073,7 +1073,7 @@ namespace Tizen.NUI.BaseComponents
         /// This way is recommended for setting the property
         /// <code>
         /// var view = new View();
-        /// view.CellIndex = new Vector2(1, 3);
+        /// view.CellIndex = Vector2.New(1, 3);
         /// </code>
         /// This way to set the property is prohibited
         /// <code>

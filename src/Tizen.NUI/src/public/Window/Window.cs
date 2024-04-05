@@ -1566,7 +1566,7 @@ namespace Tizen.NUI
 
             convertRealWindowSizeToBorderWindowSize(val);
 
-            Vector2 ret = new Vector2(val.GetWidth(), val.GetHeight());
+            Vector2 ret = Vector2.New(val.GetWidth(), val.GetHeight());
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             val.Dispose();
             return ret;
@@ -1649,7 +1649,7 @@ namespace Tizen.NUI
 
         internal Vector2 GetDpi()
         {
-            Vector2 ret = new Vector2(Interop.Stage.GetDpi(stageCPtr), true);
+            Vector2 ret = Vector2.New(Interop.Stage.GetDpi(stageCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

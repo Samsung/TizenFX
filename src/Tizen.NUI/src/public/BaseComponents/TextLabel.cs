@@ -510,7 +510,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 float x = 0.0f, y = 0.0f;
                 using (var propertyValue = Shadow.Find(TextLabel.Property.SHADOW, "offset"))
-                using (var shadowOffset = new Vector2())
+                using (var shadowOffset = Vector2.New())
                 {
                     if (null != propertyValue)
                     {
@@ -519,7 +519,7 @@ namespace Tizen.NUI.BaseComponents
                         y = shadowOffset.Y;
                     }
                 }
-                return new Vector2(OnShadowOffsetChanged, x, y);
+                return Vector2.New(OnShadowOffsetChanged, x, y);
             }
             set
             {
@@ -971,7 +971,7 @@ namespace Tizen.NUI.BaseComponents
         /// The following example demonstrates how to use the SetShadow method.
         /// <code>
         /// var shadow = new Tizen.NUI.Text.Shadow();
-        /// shadow.Offset = new Vector2(3, 3);
+        /// shadow.Offset = Vector2.New(3, 3);
         /// shadow.Color = new Color("#F1C40F");
         /// shadow.BlurRadius = 4.0f;
         /// label.SetShadow(shadow);
@@ -1918,7 +1918,7 @@ namespace Tizen.NUI.BaseComponents
         }
         private void OnShadowOffsetChanged(float x, float y)
         {
-            ShadowOffset = new Vector2(x, y);
+            ShadowOffset = Vector2.New(x, y);
         }
         private void OnTextColorChanged(float r, float g, float b, float a)
         {

@@ -615,7 +615,7 @@ namespace Tizen.NUI
 
         private void SwigDirectorOnRelayout(global::System.IntPtr size, global::System.IntPtr container)
         {
-            OnRelayout(new Vector2(size, false), new RelayoutContainer(container, false));
+            OnRelayout(Vector2.New(size, false), new RelayoutContainer(container, false));
         }
 
         private void SwigDirectorOnSetResizePolicy(int policy, int dimension)

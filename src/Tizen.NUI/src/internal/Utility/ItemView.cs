@@ -627,7 +627,7 @@ namespace Tizen.NUI
         {
             get
             {
-                Vector2 returnValue = new Vector2(0.0f, 0.0f);
+                Vector2 returnValue = Vector2.New(0.0f, 0.0f);
                 PropertyValue scrollDirection = GetProperty(ItemView.Property.ScrollDirection);
                 scrollDirection?.Get(returnValue);
                 scrollDirection?.Dispose();

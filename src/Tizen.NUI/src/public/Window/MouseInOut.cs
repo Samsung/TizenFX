@@ -30,7 +30,7 @@ namespace Tizen.NUI
         /// The default constructor.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public MouseInOut() : this(Interop.MouseInOut.NewMouseInOut((int)MouseInOut.StateType.None, 0, Vector2.getCPtr(new Vector2(0, 0)), 0), true)
+        public MouseInOut() : this(Interop.MouseInOut.NewMouseInOut((int)MouseInOut.StateType.None, 0, Vector2.getCPtr(Vector2.New(0, 0)), 0), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -174,7 +174,7 @@ namespace Tizen.NUI
             get
             {
                 global::System.IntPtr cPtr = Interop.MouseInOut.PointGet(SwigCPtr);
-                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
+                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : Vector2.New(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }

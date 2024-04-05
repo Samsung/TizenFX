@@ -101,6 +101,11 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(bool disposing)
         {
+            //test
+            var me = this.GetType().Name;
+            Console.WriteLine($"Disposable.Dispose(disposing={disposing}) me={me} ");
+
+
             if (disposed)
             {
                 return;
@@ -192,7 +197,11 @@ namespace Tizen.NUI
             }
         }
 
-        internal bool SwigCMemOwn => swigCMemOwn;
+        internal bool SwigCMemOwn
+        {
+            get => swigCMemOwn;
+            set => swigCMemOwn = value;
+        } 
 
         /// <summary>
         /// The flag to check if it is already disposed of.
@@ -205,6 +214,11 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal bool IsDisposeQueued => isDisposeQueued;
+
+        internal void SetSwigCPtr(IntPtr cPtr)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+        }
     }
 
     internal static class DisposableExtension

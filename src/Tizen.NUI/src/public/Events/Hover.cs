@@ -122,7 +122,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Vector2 GetLocalPosition(uint point)
         {
-            Vector2 ret = new Vector2(Interop.Hover.GetLocalPosition(SwigCPtr, point), false);
+            Vector2 ret = Vector2.New(Interop.Hover.GetLocalPosition(SwigCPtr, point), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -135,7 +135,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Vector2 GetScreenPosition(uint point)
         {
-            Vector2 ret = new Vector2(Interop.Hover.GetScreenPosition(SwigCPtr, point), false);
+            Vector2 ret = Vector2.New(Interop.Hover.GetScreenPosition(SwigCPtr, point), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

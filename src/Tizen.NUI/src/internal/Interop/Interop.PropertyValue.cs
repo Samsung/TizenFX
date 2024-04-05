@@ -15,6 +15,8 @@
  *
  */
 
+using global::System.Runtime.InteropServices;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -115,6 +117,19 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_Value_Get__SWIG_5")]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool GetVector2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_Value_Set")]
+            public static extern void Set(HandleRef to, HandleRef vector2, int type);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_Value_Set_Bool")]
+            public static extern void SetBool(HandleRef to, bool value);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_Value_Set_Int")]
+            public static extern void SetInt(HandleRef to, int value);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_Value_Set_Float")]
+            public static extern void SetFloat(HandleRef to, float value);
+
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_Value_Get__SWIG_6")]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]

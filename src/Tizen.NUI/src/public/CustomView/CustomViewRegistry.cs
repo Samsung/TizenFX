@@ -444,7 +444,7 @@ namespace Tizen.NUI
                 }
                 else if (type.Equals(typeof(Vector2)))
                 {
-                    Vector2 value = new Vector2();
+                    Vector2 value = Vector2.New();
                     ok = propValue.Get(value);
                     if (ok)
                     {

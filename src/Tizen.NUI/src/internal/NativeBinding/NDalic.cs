@@ -42,21 +42,21 @@ namespace Tizen.NUI
 
         public static Vector2 Min(Vector2 a, Vector2 b)
         {
-            Vector2 ret = new Vector2(Interop.NDalic.MinVector2(Vector2.getCPtr(a), Vector2.getCPtr(b)), true);
+            Vector2 ret = Vector2.New(Interop.NDalic.MinVector2(Vector2.getCPtr(a), Vector2.getCPtr(b)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Vector2 Max(Vector2 a, Vector2 b)
         {
-            Vector2 ret = new Vector2(Interop.NDalic.MaxVector2(Vector2.getCPtr(a), Vector2.getCPtr(b)), true);
+            Vector2 ret = Vector2.New(Interop.NDalic.MaxVector2(Vector2.getCPtr(a), Vector2.getCPtr(b)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Vector2 Clamp(Vector2 v, float min, float max)
         {
-            Vector2 ret = new Vector2(Interop.NDalic.ClampVector2(Vector2.getCPtr(v), min, max), true);
+            Vector2 ret = Vector2.New(Interop.NDalic.ClampVector2(Vector2.getCPtr(v), min, max), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

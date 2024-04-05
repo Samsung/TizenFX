@@ -108,7 +108,7 @@ namespace Tizen.NUI
             get
             {
                 global::System.IntPtr cPtr = Interop.LongPressGesture.ScreenPointGet(SwigCPtr);
-                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
+                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : Vector2.New(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
@@ -124,7 +124,7 @@ namespace Tizen.NUI
             get
             {
                 global::System.IntPtr cPtr = Interop.LongPressGesture.LocalPointGet(SwigCPtr);
-                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
+                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : Vector2.New(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }

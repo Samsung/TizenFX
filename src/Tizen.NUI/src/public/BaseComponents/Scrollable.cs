@@ -92,7 +92,7 @@ namespace Tizen.NUI.BaseComponents
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var scrollable = (Scrollable)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
+            Vector2 temp = Vector2.New(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.OvershootSize).Get(temp);
             return temp;
         }));
@@ -126,7 +126,7 @@ namespace Tizen.NUI.BaseComponents
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var scrollable = (Scrollable)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
+            Vector2 temp = Vector2.New(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.ScrollRelativePosition).Get(temp);
             return temp;
         }));
@@ -143,7 +143,7 @@ namespace Tizen.NUI.BaseComponents
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var scrollable = (Scrollable)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
+            Vector2 temp = Vector2.New(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.ScrollPositionMin).Get(temp);
             return temp;
         }));
@@ -160,7 +160,7 @@ namespace Tizen.NUI.BaseComponents
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var scrollable = (Scrollable)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
+            Vector2 temp = Vector2.New(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.ScrollPositionMax).Get(temp);
             return temp;
         }));

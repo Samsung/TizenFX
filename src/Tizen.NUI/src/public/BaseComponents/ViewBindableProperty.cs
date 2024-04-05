@@ -548,7 +548,7 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (view.internalCellIndex == null)
             {
-                view.internalCellIndex = new Vector2(view.OnCellIndexChanged, 0, 0);
+                view.internalCellIndex = Vector2.New(view.OnCellIndexChanged, 0, 0);
             }
             Object.InternalRetrievingPropertyVector2(view.SwigCPtr, TableView.ChildProperty.CellIndex, view.internalCellIndex.SwigCPtr);
             return view.internalCellIndex;

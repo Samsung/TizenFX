@@ -339,7 +339,7 @@ namespace Tizen.NUI
             {
                 return null;
             }
-            return new Vector2(position2d.X, position2d.Y);
+            return Vector2.New(position2d.X, position2d.Y);
         }
 
         /// <summary>

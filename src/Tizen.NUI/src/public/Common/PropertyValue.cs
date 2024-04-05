@@ -16,7 +16,9 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Tizen.NUI
 {
@@ -26,6 +28,8 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class PropertyValue : Disposable
     {
+        private static readonly int MaxStackCount = 500;
+        private static Stack<PropertyValue> stack = new Stack<PropertyValue>();
 
         /// <summary>
         /// Creates a Size2D property value.
@@ -86,6 +90,12 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PropertyValue New(bool boolVallue)
+        {
+            return factory(boolVallue, PropertyType.Boolean);
+        }
+
         /// <summary>
         /// Creates an integer property value.
         /// </summary>
@@ -94,6 +104,12 @@ namespace Tizen.NUI
         public PropertyValue(int integerValue) : this(Interop.PropertyValue.NewPropertyValue(integerValue), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PropertyValue New(int intVallue)
+        {
+            return factory(intVallue, PropertyType.Integer);
         }
 
         /// <summary>
@@ -106,6 +122,13 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PropertyValue New(float floatVallue)
+        {
+            return factory(floatVallue, PropertyType.Float);
+        }
+
+
         /// <summary>
         /// Creates a Vector2 property value.
         /// </summary>
@@ -114,6 +137,12 @@ namespace Tizen.NUI
         public PropertyValue(Vector2 vectorValue) : this(Interop.PropertyValue.NewPropertyValueVector2(Vector2.getCPtr(vectorValue)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PropertyValue New(Vector2 vector2)
+        {
+            return factory(vector2, PropertyType.Vector2);
         }
 
         /// <summary>
@@ -126,6 +155,12 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PropertyValue New(Vector3 vector3)
+        {
+            return factory(vector3, PropertyType.Vector3);
+        }
+
         /// <summary>
         /// Creates a Vector4 property value.
         /// </summary>
@@ -136,6 +171,12 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PropertyValue New(Vector4 vector4)
+        {
+            return factory(vector4, PropertyType.Vector4);
+        }
+
         /// <summary>
         /// Creates a Rectangle property value.
         /// </summary>
@@ -144,6 +185,12 @@ namespace Tizen.NUI
         public PropertyValue(Rectangle vectorValue) : this(Interop.PropertyValue.NewPropertyValueRect(Rectangle.getCPtr(vectorValue)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PropertyValue New(Rectangle rect)
+        {
+            return factory(rect, PropertyType.Rectangle);
         }
 
         /// <summary>
@@ -292,6 +339,13 @@ namespace Tizen.NUI
         {
             if (disposed)
             {
+                return;
+            }
+
+            if (stack.Count < MaxStackCount)
+            {
+                stack.Push(this);
+                Console.WriteLine($"PropertyValue.Dispose(disposing={disposing}) count={stack.Count}");
                 return;
             }
 
@@ -859,6 +913,117 @@ namespace Tizen.NUI
         internal static PropertyValue CreateWithGuard(Color value)
         {
             return value == null ? new PropertyValue() : new PropertyValue(value);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static PropertyValue getFromStack()
+        {
+            if (stack.Count > 0 && stack.TryPop(out PropertyValue value))
+            {
+                return value;
+            }
+            return null;
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static PropertyValue factory(object value, NUI.PropertyType type)
+        {
+            var tmp = getFromStack();
+
+            switch (type)
+            {
+                case PropertyType.Boolean:
+                    {
+                        if (tmp == null)
+                        {
+                            tmp = new PropertyValue((bool)value);
+                        }
+                        else
+                        {
+                            Interop.PropertyValue.SetBool(tmp.SwigCPtr, (bool)value);
+                        }
+                    }
+                    break;
+                case PropertyType.Integer:
+                    {
+                        if (tmp == null)
+                        {
+                            tmp = new PropertyValue((int)value);
+                        }
+                        else
+                        {
+                            Interop.PropertyValue.SetInt(tmp.SwigCPtr, (int)value);
+                        }
+                    }
+                    break;
+                case PropertyType.Float:
+                    {
+                        if (tmp == null)
+                        {
+                            tmp = new PropertyValue((float)value);
+                        }
+                        else
+                        {
+                            Interop.PropertyValue.SetFloat(tmp.SwigCPtr, (float)value);
+                        }
+                    }
+                    break;
+                case PropertyType.Vector2:
+                    {
+                        if (tmp == null)
+                        {
+                            tmp = new PropertyValue((Vector2)value);
+                        }
+                        else
+                        {
+                            Interop.PropertyValue.Set(tmp.SwigCPtr, ((Vector2)value).SwigCPtr, (int)type);
+                        }
+                    }
+                    break;
+                case PropertyType.Vector3:
+                    {
+                        if (tmp == null)
+                        {
+                            tmp = new PropertyValue((Vector3)value);
+                        }
+                        else
+                        {
+                            Interop.PropertyValue.Set(tmp.SwigCPtr, ((Vector3)value).SwigCPtr, (int)type);
+                        }
+                    }
+                    break;
+                case PropertyType.Vector4:
+                    {
+                        if (tmp == null)
+                        {
+                            tmp = new PropertyValue((Vector4)value);
+                        }
+                        else
+                        {
+                            Interop.PropertyValue.Set(tmp.SwigCPtr, ((Vector4)value).SwigCPtr, (int)type);
+                        }
+                    }
+                    break;
+                case PropertyType.Rectangle:
+                    {
+                        if (tmp == null)
+                        {
+                            tmp = new PropertyValue((Rectangle)value);
+                        }
+                        else
+                        {
+                            Interop.PropertyValue.Set(tmp.SwigCPtr, ((Rectangle)value).SwigCPtr, (int)type);
+                        }
+                    }
+                    break;
+                default:
+                    {
+                        NUILog.Error("type error! do nothing!");
+                        return null;
+                    }
+            }
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return tmp;
         }
     }
 }

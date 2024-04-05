@@ -425,7 +425,7 @@ namespace Tizen.NUI
 
         private void DirectorOnRelayout(global::System.IntPtr size, global::System.IntPtr container)
         {
-            var vector2 = new Vector2(size, false);
+            var vector2 = Vector2.New(size, false);
             var relayoutContainer = new RelayoutContainer(container, false);
             OnRelayout(vector2, relayoutContainer);
             vector2.Dispose();

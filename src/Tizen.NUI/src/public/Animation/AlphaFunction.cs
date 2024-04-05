@@ -200,8 +200,8 @@ namespace Tizen.NUI
             Vector4 ret = new Vector4(Interop.AlphaFunction.GetBezierControlPoints(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            controlPoint0 = new Vector2(ret.X, ret.Y);
-            controlPoint1 = new Vector2(ret.Z, ret.W);
+            controlPoint0 = Vector2.New(ret.X, ret.Y);
+            controlPoint1 = Vector2.New(ret.Z, ret.W);
         }
 
         /// <summary>

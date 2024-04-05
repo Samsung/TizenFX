@@ -86,7 +86,7 @@ namespace Tizen.NUI
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var scrollView = (ScrollView)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
+            Vector2 temp = Vector2.New(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.WheelScrollDistanceStep).Get(temp);
             return temp;
         }));
@@ -102,7 +102,7 @@ namespace Tizen.NUI
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var scrollView = (ScrollView)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
+            Vector2 temp = Vector2.New(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPosition).Get(temp);
             return temp;
         }));
@@ -118,7 +118,7 @@ namespace Tizen.NUI
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var scrollView = (ScrollView)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
+            Vector2 temp = Vector2.New(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPrePosition).Get(temp);
             return temp;
         }));
@@ -134,7 +134,7 @@ namespace Tizen.NUI
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var scrollView = (ScrollView)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
+            Vector2 temp = Vector2.New(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPrePositionMax).Get(temp);
             return temp;
         }));
@@ -182,7 +182,7 @@ namespace Tizen.NUI
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var scrollView = (ScrollView)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
+            Vector2 temp = Vector2.New(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollFinal).Get(temp);
             return temp;
         }));
@@ -246,7 +246,7 @@ namespace Tizen.NUI
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var scrollView = (ScrollView)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
+            Vector2 temp = Vector2.New(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollDomainSize).Get(temp);
             return temp;
         }));
@@ -262,7 +262,7 @@ namespace Tizen.NUI
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var scrollView = (ScrollView)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
+            Vector2 temp = Vector2.New(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollDomainOffset).Get(temp);
             return temp;
         }));
@@ -278,7 +278,7 @@ namespace Tizen.NUI
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var scrollView = (ScrollView)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
+            Vector2 temp = Vector2.New(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPositionDelta).Get(temp);
             return temp;
         }));

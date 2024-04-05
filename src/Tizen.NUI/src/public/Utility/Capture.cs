@@ -132,7 +132,7 @@ namespace Tizen.NUI
 
             if (source is View || source is Layer)
             {
-                Interop.Capture.Start4(SwigCPtr, source.SwigCPtr, new Vector2(position.X, position.Y).SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr);
+                Interop.Capture.Start4(SwigCPtr, source.SwigCPtr, Vector2.New(position.X, position.Y).SwigCPtr, Vector2.New(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr);
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -176,7 +176,7 @@ namespace Tizen.NUI
 
             if (source is View || source is Layer)
             {
-                Interop.Capture.Start3(SwigCPtr, source.SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr, quality);
+                Interop.Capture.Start3(SwigCPtr, source.SwigCPtr, Vector2.New(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr, quality);
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -215,7 +215,7 @@ namespace Tizen.NUI
 
             if (source is View || source is Layer)
             {
-                Interop.Capture.Start1(SwigCPtr, source.SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr);
+                Interop.Capture.Start1(SwigCPtr, source.SwigCPtr, Vector2.New(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr);
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -252,7 +252,7 @@ namespace Tizen.NUI
 
             if (source is View || source is Layer)
             {
-                Interop.Capture.Start2(SwigCPtr, source.SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path);
+                Interop.Capture.Start2(SwigCPtr, source.SwigCPtr, Vector2.New(size.Width, size.Height).SwigCPtr, path);
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }

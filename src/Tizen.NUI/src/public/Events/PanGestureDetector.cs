@@ -219,7 +219,7 @@ namespace Tizen.NUI
         {
             get
             {
-                Vector2 temp = new Vector2(0.0f, 0.0f);
+                Vector2 temp = Vector2.New(0.0f, 0.0f);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return temp;
             }
@@ -234,7 +234,7 @@ namespace Tizen.NUI
         {
             get
             {
-                Vector2 temp = new Vector2(0.0f, 0.0f);
+                Vector2 temp = Vector2.New(0.0f, 0.0f);
                 var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, PanGestureDetector.Property.ScreenDisplacement);
                 pValue.Get(temp);
                 pValue.Dispose();
@@ -251,7 +251,7 @@ namespace Tizen.NUI
         {
             get
             {
-                Vector2 temp = new Vector2(0.0f, 0.0f);
+                Vector2 temp = Vector2.New(0.0f, 0.0f);
                 var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, PanGestureDetector.Property.ScreenVelocity);
                 pValue.Get(temp);
                 pValue.Dispose();
@@ -268,7 +268,7 @@ namespace Tizen.NUI
         {
             get
             {
-                Vector2 temp = new Vector2(0.0f, 0.0f);
+                Vector2 temp = Vector2.New(0.0f, 0.0f);
                 var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, PanGestureDetector.Property.LocalPosition);
                 pValue.Get(temp);
                 pValue.Dispose();
@@ -285,7 +285,7 @@ namespace Tizen.NUI
         {
             get
             {
-                Vector2 temp = new Vector2(0.0f, 0.0f);
+                Vector2 temp = Vector2.New(0.0f, 0.0f);
                 var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, PanGestureDetector.Property.LocalDisplacement);
                 pValue.Get(temp);
                 pValue.Dispose();
@@ -302,7 +302,7 @@ namespace Tizen.NUI
         {
             get
             {
-                Vector2 temp = new Vector2(0.0f, 0.0f);
+                Vector2 temp = Vector2.New(0.0f, 0.0f);
                 var pValue = Tizen.NUI.Object.GetProperty(SwigCPtr, PanGestureDetector.Property.LocalVelocity);
                 pValue.Get(temp);
                 pValue.Dispose();

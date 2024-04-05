@@ -281,7 +281,7 @@ namespace Tizen.NUI
 
         public Vector2 GetCurrentViewportPosition()
         {
-            Vector2 ret = new Vector2(Interop.RenderTask.GetCurrentViewportPosition(SwigCPtr), true);
+            Vector2 ret = Vector2.New(Interop.RenderTask.GetCurrentViewportPosition(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -294,7 +294,7 @@ namespace Tizen.NUI
 
         public Vector2 GetCurrentViewportSize()
         {
-            Vector2 ret = new Vector2(Interop.RenderTask.GetCurrentViewportSize(SwigCPtr), true);
+            Vector2 ret = Vector2.New(Interop.RenderTask.GetCurrentViewportSize(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -398,7 +398,7 @@ namespace Tizen.NUI
         {
             get
             {
-                Vector2 retVal = new Vector2(0.0f, 0.0f);
+                Vector2 retVal = Vector2.New(0.0f, 0.0f);
                 PropertyValue viewportPos = GetProperty(RenderTask.Property.ViewportPosition);
                 viewportPos?.Get(retVal);
                 viewportPos?.Dispose();
@@ -415,7 +415,7 @@ namespace Tizen.NUI
         {
             get
             {
-                Vector2 retVal = new Vector2(0.0f, 0.0f);
+                Vector2 retVal = Vector2.New(0.0f, 0.0f);
                 PropertyValue viewportSize = GetProperty(RenderTask.Property.ViewportSize);
                 viewportSize?.Get(retVal);
                 viewportSize?.Dispose();

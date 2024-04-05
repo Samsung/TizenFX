@@ -123,7 +123,7 @@ namespace Tizen.NUI.ParticleSystem
             /// <returns>Converted value</returns>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static implicit operator Vector2(StreamView sv) {
-                var ret = sv.mStreamIndex >= 0 ? new Vector2(Interop.Particle.ReadVector2(sv.mEmitterRef, (uint)sv.mStreamIndex, sv.mParticleIndex), true) : Vector2.Zero;
+                var ret = sv.mStreamIndex >= 0 ? Vector2.New(Interop.Particle.ReadVector2(sv.mEmitterRef, (uint)sv.mStreamIndex, sv.mParticleIndex), true) : Vector2.Zero;
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;

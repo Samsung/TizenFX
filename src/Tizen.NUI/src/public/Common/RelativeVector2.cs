@@ -221,7 +221,7 @@ namespace Tizen.NUI
             {
                 return null;
             }
-            return new Vector2(relativeVector2.X, relativeVector2.Y);
+            return Vector2.New(relativeVector2.X, relativeVector2.Y);
         }
 
         /// <summary>

@@ -50,6 +50,36 @@ namespace Tizen.NUI.Samples
             Log.Info("test", $"color: {isBlue}");
 
             window.Add(view1);
+
+            PropertyValue pv1 = new PropertyValue("test");
+            PropertyValue pv2 = PropertyValue.New(true);
+            PropertyValue pv3 = PropertyValue.New(100);
+            PropertyValue pv4 = PropertyValue.New(100.0f);
+            PropertyValue pv5 = PropertyValue.New(Vector2.New(100, 100));
+            PropertyValue pv6 = PropertyValue.New(new Vector3(100, 100, 100));
+            PropertyValue pv7 = PropertyValue.New(new Vector4(100, 100, 100, 100));
+            PropertyValue pv8 = PropertyValue.New(new Rectangle(100, 100, 100, 100));
+
+            var t1 = pv1.GetType();
+            var t2 = pv2.GetType();
+            var t3 = pv3.GetType();
+            var t4 = pv4.GetType();
+            var t5 = pv5.GetType();
+            var t6 = pv6.GetType();
+            var t7 = pv7.GetType();
+            var t8 = pv8.GetType();
+
+            bool b1 = false;
+            pv2.Get(out b1);
+            global::System.Console.WriteLine($"b1={b1} should be true");
+
+            Vector2 tempVec = Vector2.New(-1, -1);
+            pv5.Get(tempVec);
+            global::System.Console.WriteLine($"tempVec X={tempVec.X} Y={tempVec.Y} should be (100, 100)");
+
+            string tempStr = "-1";
+            pv1.Get(out tempStr);
+            global::System.Console.WriteLine($"tempStr={tempStr} should be test");
         }
 
         public void Deactivate()

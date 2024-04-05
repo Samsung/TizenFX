@@ -31,8 +31,8 @@ namespace Tizen.NUI.BaseComponents
     /// VisualView _visualView = new VisualView();
     /// ImageVisualMap imageVisualMap1 = new ImageVisualMap();
     /// imageVisualMap1.URL = "./NUISample/res/images/image-1.jpg";
-    /// imageVisualMap1.VisualSize = new Vector2( 300.0f, 300.0f );
-    /// imageVisualMap1.Offset = new Vector2( 50.0f, 50.0f );
+    /// imageVisualMap1.VisualSize = Vector2.New( 300.0f, 300.0f );
+    /// imageVisualMap1.Offset = Vector2.New( 50.0f, 50.0f );
     /// imageVisualMap1.OffsetSizeMode = new Vector4( 1.0f, 1.0f, 1.0f, 1.0f );
     /// imageVisualMap1.Origin = AlignType.TOP_BEGIN;
     /// imageVisualMap1.AnchorPoint = AlignType.TOP_BEGIN;

@@ -743,7 +743,7 @@ namespace Tizen.NUI.BaseComponents
             }
             get
             {
-                Vector2 ret = new Vector2(Interop.EmbeddedItemInfo.PositionGet(SwigCPtr), SwigCMemOwn);
+                Vector2 ret = Vector2.New(Interop.EmbeddedItemInfo.PositionGet(SwigCPtr), SwigCMemOwn);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
@@ -934,7 +934,7 @@ namespace Tizen.NUI.BaseComponents
             }
             get
             {
-                Vector2 ret = new Vector2(Interop.ShadowParameters.OffsetGet(SwigCPtr), true);
+                Vector2 ret = Vector2.New(Interop.ShadowParameters.OffsetGet(SwigCPtr), true);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }

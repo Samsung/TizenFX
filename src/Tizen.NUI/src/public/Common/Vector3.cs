@@ -686,7 +686,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Vector2 GetVectorXY()
         {
-            Vector2 ret = new Vector2(Interop.Vector3.GetVectorXY(SwigCPtr), false);
+            Vector2 ret = Vector2.New(Interop.Vector3.GetVectorXY(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -698,7 +698,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Vector2 GetVectorYZ()
         {
-            Vector2 ret = new Vector2(Interop.Vector3.GetVectorYZ(SwigCPtr), false);
+            Vector2 ret = Vector2.New(Interop.Vector3.GetVectorYZ(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

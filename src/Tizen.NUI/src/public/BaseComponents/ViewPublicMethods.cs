@@ -981,7 +981,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 CalculateScreenPosition()
         {
-            Vector2 ret = new Vector2(Interop.Actor.CalculateScreenPosition(SwigCPtr), true);
+            Vector2 ret = Vector2.New(Interop.Actor.CalculateScreenPosition(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

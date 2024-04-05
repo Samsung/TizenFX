@@ -448,7 +448,7 @@ namespace Tizen.NUI
             }
             get
             {
-                Vector2 ret = new Vector2(Interop.Animation.GetPlayRange(SwigCPtr), true);
+                Vector2 ret = Vector2.New(Interop.Animation.GetPlayRange(SwigCPtr), true);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
@@ -1581,7 +1581,7 @@ namespace Tizen.NUI
 
         internal Vector2 GetPlayRange()
         {
-            Vector2 ret = new Vector2(Interop.Animation.GetPlayRange(SwigCPtr), true);
+            Vector2 ret = Vector2.New(Interop.Animation.GetPlayRange(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

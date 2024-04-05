@@ -47,7 +47,7 @@ namespace Tizen.NUI
         /// Default ScaleFactor is Vector2(0.0f, 0.0f).
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public Vector2 ScaleFactor { get; set; } = new Vector2(0.0f, 0.0f);
+        public Vector2 ScaleFactor { get; set; } = Vector2.New(0.0f, 0.0f);
 
         internal override TransitionItemBase CreateTransition(View view, bool appearingTransition, TimePeriod timePeriod, AlphaFunction alphaFunction)
         {

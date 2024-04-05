@@ -54,12 +54,12 @@ namespace Tizen.NUI.Binding
 
             if (parts.Length == 2)
             {
-                return new Vector2(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture), Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture));
+                return Vector2.New(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture), Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture));
             }
             else if (parts.Length == 1)
             {
                 var x = Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture);
-                return new Vector2(x, x);
+                return Vector2.New(x, x);
             }
 
             throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(Vector2)}");
@@ -97,7 +97,7 @@ namespace Tizen.NUI.Binding
                 }
                 else if (parts.Length == 2)
                 {
-                    var vector2 = new Vector2(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
+                    var vector2 = Vector2.New(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
                                               Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture));
                     var vector3 = new Vector3(vector2);
                     vector2.Dispose();
@@ -158,7 +158,7 @@ namespace Tizen.NUI.Binding
                 }
                 else if (parts.Length == 2)
                 {
-                    var vector2 = new Vector2(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
+                    var vector2 = Vector2.New(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
                                               Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture));
                     var vector4 = new Vector4(vector2);
                     vector2.Dispose();

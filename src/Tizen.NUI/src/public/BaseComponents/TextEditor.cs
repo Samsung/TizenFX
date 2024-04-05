@@ -1279,7 +1279,7 @@ namespace Tizen.NUI.BaseComponents
         /// The following example demonstrates how to use the SetShadow method.
         /// <code>
         /// var shadow = new Tizen.NUI.Text.Shadow();
-        /// shadow.Offset = new Vector2(3, 3);
+        /// shadow.Offset = Vector2.New(3, 3);
         /// shadow.Color = new Color("#F1C40F");
         /// editor.SetShadow(shadow);
         /// </code>

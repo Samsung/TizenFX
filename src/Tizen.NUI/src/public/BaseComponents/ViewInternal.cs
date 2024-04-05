@@ -681,7 +681,7 @@ namespace Tizen.NUI.BaseComponents
 
             if(internalCurrentScreenPosition == null)
             {
-                internalCurrentScreenPosition = new Vector2(0, 0);
+                internalCurrentScreenPosition = Vector2.New(0, 0);
             }
 
             Object.InternalRetrievingPropertyVector2(SwigCPtr, View.Property.ScreenPosition, internalCurrentScreenPosition.SwigCPtr);
@@ -1767,7 +1767,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnCellIndexChanged(float x, float y)
         {
-            CellIndex = new Vector2(x, y);
+            CellIndex = Vector2.New(x, y);
         }
 
         private void OnFlexMarginChanged(float x, float y, float z, float w)

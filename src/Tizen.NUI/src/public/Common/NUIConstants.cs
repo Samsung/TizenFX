@@ -2222,7 +2222,7 @@ namespace Tizen.NUI
             get
             {
                 global::System.IntPtr cPtr = Interop.SlideTransitionDirection.SlideTransitionDirectionTopGet();
-                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
+                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : Vector2.New(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
@@ -2236,7 +2236,7 @@ namespace Tizen.NUI
             get
             {
                 global::System.IntPtr cPtr = Interop.SlideTransitionDirection.SlideTransitionDirectionBottomGet();
-                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
+                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : Vector2.New(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
@@ -2251,7 +2251,7 @@ namespace Tizen.NUI
             get
             {
                 global::System.IntPtr cPtr = Interop.SlideTransitionDirection.SlideTransitionDirectionRightGet();
-                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
+                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : Vector2.New(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
@@ -2266,7 +2266,7 @@ namespace Tizen.NUI
             get
             {
                 global::System.IntPtr cPtr = Interop.SlideTransitionDirection.SlideTransitionDirectionLeftGet();
-                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
+                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : Vector2.New(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }

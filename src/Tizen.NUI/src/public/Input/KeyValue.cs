@@ -267,7 +267,7 @@ namespace Tizen.NUI
         {
             get
             {
-                Vector2 retrivedValue = new Vector2(0, 0);
+                Vector2 retrivedValue = Vector2.New(0, 0);
                 if (TrueValue.Get(retrivedValue))
                 {
                     return retrivedValue;

@@ -78,7 +78,7 @@ namespace Tizen.NUI.BaseComponents
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var tableView = (TableView)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
+            Vector2 temp = Vector2.New(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty((HandleRef)tableView.SwigCPtr, TableView.Property.CellPadding).Get(temp);
             return temp;
         }));
@@ -413,7 +413,7 @@ namespace Tizen.NUI.BaseComponents
         [Obsolete("This has been deprecated in API9 and will be removed in API11. Use CellPadding property instead.")]
         public Vector2 GetCellPadding()
         {
-            Vector2 ret = new Vector2(Interop.TableView.GetCellPadding(SwigCPtr), true);
+            Vector2 ret = Vector2.New(Interop.TableView.GetCellPadding(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

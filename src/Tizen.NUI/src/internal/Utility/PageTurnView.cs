@@ -413,7 +413,7 @@ namespace Tizen.NUI
         {
             get
             {
-                Vector2 temp = new Vector2(0.0f, 0.0f);
+                Vector2 temp = Vector2.New(0.0f, 0.0f);
                 GetProperty(PageTurnView.Property.ViewPageSize).Get(temp);
                 return temp;
             }
@@ -439,7 +439,7 @@ namespace Tizen.NUI
         {
             get
             {
-                Vector2 temp = new Vector2(0.0f, 0.0f);
+                Vector2 temp = Vector2.New(0.0f, 0.0f);
                 GetProperty(PageTurnView.Property.SpineShadow).Get(temp);
                 return temp;
             }

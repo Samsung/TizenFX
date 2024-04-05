@@ -133,7 +133,7 @@ namespace Tizen.NUI
                 get
                 {
                     global::System.IntPtr cPtr = Interop.ScrollView.SnapEventPositionGet(swigCPtr);
-                    Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
+                    Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : Vector2.New(cPtr, false);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                     return ret;
                 }

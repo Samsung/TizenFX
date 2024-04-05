@@ -67,8 +67,8 @@ namespace Tizen.NUI
                 SelectionHandleImageLeft = new PropertyMap().Add("filename", new PropertyValue(FrameworkInformation.ResourcePath + "IoT_handler_downleftW.png")),
                 SelectionHandleImageRight = new PropertyMap().Add("filename", new PropertyValue(FrameworkInformation.ResourcePath + "IoT_handler_downrightW.png")),
                 SelectionPopupStyle = new PropertyMap()
-                .Add(SelectionPopupStyleProperty.MaxSize, new PropertyValue(new Vector2(1200.0f, 40.0f)))
-                .Add(SelectionPopupStyleProperty.DividerSize, new PropertyValue(new Vector2(0.0f, 0.0f)))
+                .Add(SelectionPopupStyleProperty.MaxSize, new PropertyValue(Vector2.New(1200.0f, 40.0f)))
+                .Add(SelectionPopupStyleProperty.DividerSize, new PropertyValue(Vector2.New(0.0f, 0.0f)))
                 .Add(SelectionPopupStyleProperty.DividerPadding, new PropertyValue(new Vector4(0.0f, 0.0f, 0.0f, 0.0f)))
                 .Add(SelectionPopupStyleProperty.Background, new PropertyValue(new PropertyMap().Add(ImageVisualProperty.URL, new PropertyValue(FrameworkInformation.ResourcePath + "IoT-selection-popup-background.9.png"))))
                 .Add(SelectionPopupStyleProperty.BackgroundBorder, new PropertyValue(new PropertyMap().Add(ImageVisualProperty.URL, new PropertyValue(FrameworkInformation.ResourcePath + "IoT-selection-popup-border.9.png"))))
@@ -77,7 +77,7 @@ namespace Tizen.NUI
                 .Add(SelectionPopupStyleProperty.FadeInDuration, new PropertyValue(0.25f))
                 .Add(SelectionPopupStyleProperty.FadeOutDuration, new PropertyValue(0.25f))
                 .Add(SelectionPopupStyleProperty.EnableScrollBar, new PropertyValue(false))
-                .Add(SelectionPopupStyleProperty.LabelMinimumSize, new PropertyValue(new Vector2(0, 40.0f)))
+                .Add(SelectionPopupStyleProperty.LabelMinimumSize, new PropertyValue(Vector2.New(0, 40.0f)))
                 .Add(SelectionPopupStyleProperty.LabelPadding, new PropertyValue(new Vector4(-4.0f, -4.0f, 0.0f, 0.0f)))
                 .Add(SelectionPopupStyleProperty.LabelTextVisual, new PropertyValue(new PropertyMap()
                     .Add(TextVisualProperty.PointSize, new PropertyValue(6.0f))
@@ -107,8 +107,8 @@ namespace Tizen.NUI
                 SelectionHandleImageLeft = new PropertyMap().Add("filename", new PropertyValue(FrameworkInformation.ResourcePath + "IoT_handler_downleftW.png")),
                 SelectionHandleImageRight = new PropertyMap().Add("filename", new PropertyValue(FrameworkInformation.ResourcePath + "IoT_handler_downrightW.png")),
                 SelectionPopupStyle = new PropertyMap()
-                .Add(SelectionPopupStyleProperty.MaxSize, new PropertyValue(new Vector2(1200.0f, 40.0f)))
-                .Add(SelectionPopupStyleProperty.DividerSize, new PropertyValue(new Vector2(0.0f, 0.0f)))
+                .Add(SelectionPopupStyleProperty.MaxSize, new PropertyValue(Vector2.New(1200.0f, 40.0f)))
+                .Add(SelectionPopupStyleProperty.DividerSize, new PropertyValue(Vector2.New(0.0f, 0.0f)))
                 .Add(SelectionPopupStyleProperty.DividerPadding, new PropertyValue(new Vector4(0.0f, 0.0f, 0.0f, 0.0f)))
                 .Add(SelectionPopupStyleProperty.Background, new PropertyValue(new PropertyMap().Add(ImageVisualProperty.URL, new PropertyValue(FrameworkInformation.ResourcePath + "IoT-selection-popup-background.9.png"))))
                 .Add(SelectionPopupStyleProperty.BackgroundBorder, new PropertyValue(new PropertyMap().Add(ImageVisualProperty.URL, new PropertyValue(FrameworkInformation.ResourcePath + "IoT-selection-popup-border.9.png"))))
@@ -117,7 +117,7 @@ namespace Tizen.NUI
                 .Add(SelectionPopupStyleProperty.FadeInDuration, new PropertyValue(0.25f))
                 .Add(SelectionPopupStyleProperty.FadeOutDuration, new PropertyValue(0.25f))
                 .Add(SelectionPopupStyleProperty.EnableScrollBar, new PropertyValue(false))
-                .Add(SelectionPopupStyleProperty.LabelMinimumSize, new PropertyValue(new Vector2(0, 40.0f)))
+                .Add(SelectionPopupStyleProperty.LabelMinimumSize, new PropertyValue(Vector2.New(0, 40.0f)))
                 .Add(SelectionPopupStyleProperty.LabelPadding, new PropertyValue(new Vector4(-4.0f, -4.0f, 0.0f, 0.0f)))
                 .Add(SelectionPopupStyleProperty.LabelTextVisual, new PropertyValue(new PropertyMap()
                     .Add(TextVisualProperty.PointSize, new PropertyValue(6.0f))

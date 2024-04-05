@@ -15,6 +15,7 @@
  *
  */
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
 
@@ -28,6 +29,9 @@ namespace Tizen.NUI
     [Binding.TypeConverter(typeof(Vector2TypeConverter))]
     public class Vector2 : Disposable, ICloneable
     {
+
+        private static readonly int MaxStackCount = 500;
+        private static Stack<Vector2> stack = new Stack<Vector2>();
 
         /// <summary>
         /// The default constructor initializes the vector to 0.
@@ -115,7 +119,7 @@ namespace Tizen.NUI
             get
             {
                 global::System.IntPtr cPtr = Interop.Vector2.OneGet();
-                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
+                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : Vector2.New(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
@@ -130,7 +134,7 @@ namespace Tizen.NUI
             get
             {
                 global::System.IntPtr cPtr = Interop.Vector2.XaxisGet();
-                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
+                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : Vector2.New(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
@@ -145,7 +149,7 @@ namespace Tizen.NUI
             get
             {
                 global::System.IntPtr cPtr = Interop.Vector2.YaxisGet();
-                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
+                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : Vector2.New(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
@@ -160,7 +164,7 @@ namespace Tizen.NUI
             get
             {
                 global::System.IntPtr cPtr = Interop.Vector2.NegativeXaxisGet();
-                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
+                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : Vector2.New(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
@@ -175,7 +179,7 @@ namespace Tizen.NUI
             get
             {
                 global::System.IntPtr cPtr = Interop.Vector2.NegativeYaxisGet();
-                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
+                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : Vector2.New(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
@@ -190,7 +194,7 @@ namespace Tizen.NUI
             get
             {
                 global::System.IntPtr cPtr = Interop.Vector2.ZeroGet();
-                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
+                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : Vector2.New(cPtr, false);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
@@ -200,20 +204,20 @@ namespace Tizen.NUI
         /// The x component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector2(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use Vector2.New(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
-        /// Vector2 vector2 = new Vector2();
+        /// Vector2 vector2 = Vector2.New();
         /// vector2.X = 0.1f; 
         /// // USE like this
         /// float x = 0.1f, y = 0.5f;
-        /// Vector2 vector2 = new Vector2(x, y);
+        /// Vector2 vector2 = Vector2.New(x, y);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
         public float X
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector2(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use Vector2.New(...) constructor")]
             set
             {
                 Interop.Vector2.XSet(SwigCPtr, value);
@@ -233,20 +237,20 @@ namespace Tizen.NUI
         /// The width.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector2(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use Vector2.New(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
-        /// Vector2 vector2 = new Vector2();
+        /// Vector2 vector2 = Vector2.New();
         /// vector2.Width = 1.0f; 
         /// // USE like this
         /// float width = 1.0f, height = 2.0f;
-        /// Vector2 vector2 = new Vector2(x, y);
+        /// Vector2 vector2 = Vector2.New(x, y);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
         public float Width
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector2(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use Vector2.New(...) constructor")]
             set
             {
                 Interop.Vector2.WidthSet(SwigCPtr, value);
@@ -266,20 +270,20 @@ namespace Tizen.NUI
         /// The y component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector2(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use Vector2.New(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
-        /// Vector2 vector2 = new Vector2();
+        /// Vector2 vector2 = Vector2.New();
         /// vector2.Y = 0.5f; 
         /// // USE like this
         /// float x = 0.1f, y = 0.5f;
-        /// Vector2 vector2 = new Vector2(x, y);
+        /// Vector2 vector2 = Vector2.New(x, y);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
         public float Y
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector2(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use Vector2.New(...) constructor")]
             set
             {
                 Interop.Vector2.YSet(SwigCPtr, value);
@@ -299,20 +303,20 @@ namespace Tizen.NUI
         /// The height.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector2(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use Vector2.New(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
-        /// Vector2 vector2 = new Vector2();
+        /// Vector2 vector2 = Vector2.New();
         /// vector2.Height = 2.0f; 
         /// // USE like this
         /// float width = 1.0f, height = 2.0f;
-        /// Vector2 vector2 = new Vector2(x, y);
+        /// Vector2 vector2 = Vector2.New(x, y);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
         public float Height
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector2(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use Vector2.New(...) constructor")]
             set
             {
                 Interop.Vector2.HeightSet(SwigCPtr, value);
@@ -503,9 +507,68 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// The factory method of constructor.
+        /// </summary>
+        /// <param name="x">The x or width component.</param>
+        /// <param name="y">The y or height component.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Vector2 New(float x = 0, float y = 0)
+        {
+            if (stack.Count > 0 && stack.TryPop(out Vector2 value))
+            {
+                value.X = x;
+                value.Y = y;
+                return value;
+            }
+            return new Vector2(x, y);
+        }
+
+        /// <summary>
+        /// The factory method of copy constructor.
+        /// </summary>
+        /// <param name="other">The copy target.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when other is null. </exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Vector2 New(Vector2 other)
+        {
+            if (other == null) { throw new ArgumentNullException(nameof(other)); }
+
+            if (stack.Count > 0 && stack.TryPop(out Vector2 value))
+            {
+                value.X = other.X;
+                value.Y = other.Y;
+                return value;
+            }
+            return new Vector2(other);
+        }
+
+        internal static Vector2 New(IntPtr cPtr, bool cMemOwn)
+        {
+            if (stack.Count > 0 && stack.TryPop(out Vector2 value))
+            {
+                value.SetSwigCPtr(cPtr);
+                value.SwigCMemOwn = cMemOwn;
+                return value;
+            }
+            return new Vector2(cPtr, cMemOwn);
+        }
+
+        internal static Vector2 New(Vector2ChangedCallback cb, float x = 0, float y = 0)
+        {
+            if (stack.Count > 0 && stack.TryPop(out Vector2 value))
+            {
+                value.callback = cb;
+                value.X = x;
+                value.Y = y;
+                return value;
+            }
+            return new Vector2(cb, x, y);
+        }
+
         internal static Vector2 GetVector2FromPtr(global::System.IntPtr cPtr)
         {
-            Vector2 ret = new Vector2(cPtr, false);
+            Vector2 ret = Vector2.New(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -525,93 +588,120 @@ namespace Tizen.NUI
             Interop.Vector2.DeleteVector2(swigCPtr);
         }
 
+        /// <summary>
+        /// Hidden API(Inhouse API) Dispose. 
+        /// </summary>
+        /// <remarks>
+        /// Following the guide of https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose.
+        /// This will replace "protected virtual void Dispose(DisposeTypes type)" which is exactly same in functionality.
+        /// </remarks>
+        /// <param name="disposing">true in order to free managed objects</param>
+        // Protected implementation of Dispose pattern.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(bool disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (stack.Count < MaxStackCount)
+            {
+                stack.Push(this);
+                Console.WriteLine($"Vector2.Dispose(disposing={disposing}) count={stack.Count}");
+                return;
+            }
+
+            base.Dispose(disposing);
+        }
+
         private Vector2 Add(Vector2 rhs)
         {
-            Vector2 ret = new Vector2(Interop.Vector2.Add(SwigCPtr, Vector2.getCPtr(rhs)), true);
+            Vector2 ret = Vector2.New(Interop.Vector2.Add(SwigCPtr, Vector2.getCPtr(rhs)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Vector2 AddAssign(Vector2 rhs)
         {
-            Vector2 ret = new Vector2(Interop.Vector2.AddAssign(SwigCPtr, Vector2.getCPtr(rhs)), false);
+            Vector2 ret = Vector2.New(Interop.Vector2.AddAssign(SwigCPtr, Vector2.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Vector2 Subtract(Vector2 rhs)
         {
-            Vector2 ret = new Vector2(Interop.Vector2.Subtract(SwigCPtr, Vector2.getCPtr(rhs)), true);
+            Vector2 ret = Vector2.New(Interop.Vector2.Subtract(SwigCPtr, Vector2.getCPtr(rhs)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Vector2 SubtractAssign(Vector2 rhs)
         {
-            Vector2 ret = new Vector2(Interop.Vector2.SubtractAssign(SwigCPtr, Vector2.getCPtr(rhs)), false);
+            Vector2 ret = Vector2.New(Interop.Vector2.SubtractAssign(SwigCPtr, Vector2.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Vector2 Multiply(Vector2 rhs)
         {
-            Vector2 ret = new Vector2(Interop.Vector2.Multiply(SwigCPtr, Vector2.getCPtr(rhs)), true);
+            Vector2 ret = Vector2.New(Interop.Vector2.Multiply(SwigCPtr, Vector2.getCPtr(rhs)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Vector2 Multiply(float rhs)
         {
-            Vector2 ret = new Vector2(Interop.Vector2.Multiply(SwigCPtr, rhs), true);
+            Vector2 ret = Vector2.New(Interop.Vector2.Multiply(SwigCPtr, rhs), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Vector2 MultiplyAssign(Vector2 rhs)
         {
-            Vector2 ret = new Vector2(Interop.Vector2.MultiplyAssign(SwigCPtr, Vector2.getCPtr(rhs)), false);
+            Vector2 ret = Vector2.New(Interop.Vector2.MultiplyAssign(SwigCPtr, Vector2.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Vector2 MultiplyAssign(float rhs)
         {
-            Vector2 ret = new Vector2(Interop.Vector2.MultiplyAssign(SwigCPtr, rhs), false);
+            Vector2 ret = Vector2.New(Interop.Vector2.MultiplyAssign(SwigCPtr, rhs), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Vector2 Divide(Vector2 rhs)
         {
-            Vector2 ret = new Vector2(Interop.Vector2.Divide(SwigCPtr, Vector2.getCPtr(rhs)), true);
+            Vector2 ret = Vector2.New(Interop.Vector2.Divide(SwigCPtr, Vector2.getCPtr(rhs)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Vector2 Divide(float rhs)
         {
-            Vector2 ret = new Vector2(Interop.Vector2.Divide(SwigCPtr, rhs), true);
+            Vector2 ret = Vector2.New(Interop.Vector2.Divide(SwigCPtr, rhs), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Vector2 DivideAssign(Vector2 rhs)
         {
-            Vector2 ret = new Vector2(Interop.Vector2.DivideAssign(SwigCPtr, Vector2.getCPtr(rhs)), false);
+            Vector2 ret = Vector2.New(Interop.Vector2.DivideAssign(SwigCPtr, Vector2.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Vector2 DivideAssign(float rhs)
         {
-            Vector2 ret = new Vector2(Interop.Vector2.DivideAssign(SwigCPtr, rhs), false);
+            Vector2 ret = Vector2.New(Interop.Vector2.DivideAssign(SwigCPtr, rhs), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private Vector2 Subtract()
         {
-            Vector2 ret = new Vector2(Interop.Vector2.Subtract(SwigCPtr), true);
+            Vector2 ret = Vector2.New(Interop.Vector2.Subtract(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

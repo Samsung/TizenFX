@@ -1119,7 +1119,7 @@ namespace Tizen.NUI.BaseComponents
                 if (value != null)
                 {
                     Position pv = value;
-                    Vector2 vpv = new Vector2(pv.X, pv.Y);
+                    Vector2 vpv = Vector2.New(pv.X, pv.Y);
                     SetValue(ScrollPositionProperty, vpv);
                     NotifyPropertyChanged();
                 }
@@ -1421,7 +1421,7 @@ namespace Tizen.NUI.BaseComponents
         defaultValueCreator: (bindable) =>
         {
             var webview = (WebView)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
+            Vector2 temp = Vector2.New(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.ScrollPosition).Get(temp);
             return temp;
         });
@@ -1429,7 +1429,7 @@ namespace Tizen.NUI.BaseComponents
         private static readonly BindableProperty ScrollSizeProperty = BindableProperty.Create(nameof(ScrollSize), typeof(Vector2), typeof(WebView), null, defaultValueCreator: (bindable) =>
         {
             var webview = (WebView)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
+            Vector2 temp = Vector2.New(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.ScrollSize).Get(temp);
             return temp;
         });
@@ -1437,7 +1437,7 @@ namespace Tizen.NUI.BaseComponents
         private static readonly BindableProperty ContentSizeProperty = BindableProperty.Create(nameof(ContentSize), typeof(Vector2), typeof(WebView), null, defaultValueCreator: (bindable) =>
         {
             var webview = (WebView)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
+            Vector2 temp = Vector2.New(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.ContentSize).Get(temp);
             return temp;
         });

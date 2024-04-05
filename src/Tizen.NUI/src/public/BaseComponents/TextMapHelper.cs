@@ -719,7 +719,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal static Vector2 GetVector2FromMap(PropertyMap map, string key)
         {
-            Vector2 value = new Vector2();
+            Vector2 value = Vector2.New();
             using (var propertyValue = map.Find(0, key))
             {
                 if (null != propertyValue) propertyValue.Get(value);

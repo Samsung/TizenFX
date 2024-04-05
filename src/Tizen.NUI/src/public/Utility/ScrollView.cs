@@ -623,7 +623,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 GetMinimumDistanceForFlick()
         {
-            Vector2 ret = new Vector2(Interop.ScrollView.GetMinimumDistanceForFlick(SwigCPtr), true);
+            Vector2 ret = Vector2.New(Interop.ScrollView.GetMinimumDistanceForFlick(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -695,7 +695,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 GetCurrentScrollPosition()
         {
-            Vector2 ret = new Vector2(Interop.ScrollView.GetCurrentScrollPosition(SwigCPtr), true);
+            Vector2 ret = Vector2.New(Interop.ScrollView.GetCurrentScrollPosition(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

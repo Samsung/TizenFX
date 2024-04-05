@@ -266,7 +266,7 @@ namespace Tizen.NUI
             {
                 return null;
             }
-            return new Vector2(size.Width, size.Height);
+            return Vector2.New(size.Width, size.Height);
         }
 
         /// <summary>

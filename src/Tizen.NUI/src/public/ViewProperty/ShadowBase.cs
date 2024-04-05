@@ -27,9 +27,9 @@ namespace Tizen.NUI
     /// <since_tizen> 9 </since_tizen>
     public abstract class ShadowBase
     {
-        private static readonly Vector2 noOffset = new Vector2(0, 0);
+        private static readonly Vector2 noOffset = Vector2.New(0, 0);
 
-        private static readonly Vector2 noExtents = new Vector2(0, 0);
+        private static readonly Vector2 noExtents = Vector2.New(0, 0);
 
         /// <summary>
         /// Constructor
@@ -45,8 +45,8 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected ShadowBase(Vector2 offset, Vector2 extents)
         {
-            Offset = offset == null ? null : new Vector2(offset);
-            Extents = extents == null ? null : new Vector2(extents);
+            Offset = offset == null ? null : Vector2.New(offset);
+            Extents = extents == null ? null : Vector2.New(extents);
         }
 
         /// <summary>
@@ -57,8 +57,8 @@ namespace Tizen.NUI
         {
             Debug.Assert(propertyMap != null);
 
-            Offset = new Vector2(noOffset);
-            Extents = new Vector2(noExtents);
+            Offset = Vector2.New(noOffset);
+            Extents = Vector2.New(noExtents);
 
             var transformProperty = propertyMap.Find(Visual.Property.Transform);
 
@@ -190,7 +190,7 @@ namespace Tizen.NUI
 
             if (!noOffset.Equals(Offset))
             {
-                var temp = new Vector2((int)VisualTransformPolicyType.Absolute, (int)VisualTransformPolicyType.Absolute);
+                var temp = Vector2.New((int)VisualTransformPolicyType.Absolute, (int)VisualTransformPolicyType.Absolute);
                 transformMap[(int)VisualTransformPropertyType.OffsetPolicy] = new PropertyValue(temp);
                 transformMap[(int)VisualTransformPropertyType.Offset] = PropertyValue.CreateWithGuard(Offset);
                 temp.Dispose();
