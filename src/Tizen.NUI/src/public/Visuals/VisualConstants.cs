@@ -994,10 +994,22 @@ namespace Tizen.NUI
         /// If this property is true, animated image visual uses fixed cache for loading and keeps loaded frame
         /// until the visual is removed. It reduces CPU cost when the animated image will be looping.
         /// But it can spend a lot of memory if the resource has high resolution image or many frame count.
-        /// @note It is used in the AnimatedImageVisual. The default is false
+        /// @note It is used in the AnimatedVectorImageVisual. The default is false
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly int EnableFrameCache = NDalic.ImageVisualOrientationCorrection + 16;
+
+        /// <summary>
+        /// @brief Whether notify AnimatedVectorImageVisual to render thread after every rasterization or not.
+        /// @details type Property::BOOLEAN.
+        /// If this property is true, AnimatedVectorImageVisual send notify to render thread after every rasterization.
+        /// If false, AnimatedVectorImageVisual set Renderer's Behaviour as Continouly (mean, always update the render thread.)
+        ///
+        /// This flag is useful if given resource has low fps, so we don't need to render every frame.
+        /// @note It is used in the AnimatedVectorImageVisual. The default is false.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int NotifyAfterRasterization = NDalic.ImageVisualOrientationCorrection + 17;
     }
 
     /// <summary>
