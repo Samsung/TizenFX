@@ -23,9 +23,9 @@ namespace Tizen.NUI.Components.Devel.Tests
             public LottieSwitchExtensionImpl() : base()
             { }
 
-            public override ImageView OnCreateIcon(Button button, ImageView icon)
+            public override bool ProcessIcon(Button button,ref ImageView icon)
             {
-                return base.OnCreateIcon(button, icon);
+                return base.ProcessIcon(button, ref icon);
             }
 
             public override void OnControlStateChanged(Button button, View.ControlStateChangedEventArgs args)
@@ -88,17 +88,17 @@ namespace Tizen.NUI.Components.Devel.Tests
             };
 
             ImageView icon = new ImageView()
-            { 
+            {
                 ResourceUrl = image_path,
             };
 
-            var result = testingTarget.OnCreateIcon(button, icon);
+            var result = testingTarget.ProcessIcon(button,ref icon);
             Assert.IsNotNull(result, "null handle");
             Assert.IsInstanceOf<ImageView>(result, "Should return LottieSwitchExtension instance.");
 
             icon.Dispose();
             button.Dispose();
-            result.Dispose();
+
             tlog.Debug(tag, $"LottieSwitchExtensionOnCreateIcon END (OK)");
         }
 

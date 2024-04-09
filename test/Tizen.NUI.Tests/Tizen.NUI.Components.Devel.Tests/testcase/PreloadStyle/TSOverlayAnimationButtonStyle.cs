@@ -99,12 +99,10 @@ namespace Tizen.NUI.Components.Devel.Tests
             {
                 using (Button button = new Button() { Size = new Size(80, 50) })
                 {
-                    using (ImageView view = new ImageView(image_path))
-                    {
-                        testingTarget.OnCreateOverlayImage(button, view);
-                    }
+                    ImageView view = new ImageView(image_path);
+                    testingTarget.ProcessOverlayImage(button, ref view);
                 }
-                    
+
             }
             catch (Exception e)
             {
@@ -137,12 +135,10 @@ namespace Tizen.NUI.Components.Devel.Tests
 
                 try
                 {
-                    using (ImageView view = new ImageView(image_path))
-                    {
-                        testingTarget.OnCreateOverlayImage(button, view);
-                        testingTarget.OnControlStateChanged(button, args);
-                        testingTarget.OnDispose(button);
-                    }
+                    ImageView view = new ImageView(image_path);
+                    testingTarget.ProcessOverlayImage(button, ref view);
+                    testingTarget.OnControlStateChanged(button, args);
+                    testingTarget.OnDispose(button);
                 }
                 catch (Exception e)
                 {
