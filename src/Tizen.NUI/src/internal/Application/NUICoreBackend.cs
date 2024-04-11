@@ -390,7 +390,13 @@ namespace Tizen.NUI
         {
             Tizen.Tracer.Begin("[NUI] OnInitialized()");
 
-            Log.Info("NUI", $"NUICorebackend OnPreCreated Called IsUsingXaml={NUIApplication.IsUsingXaml}");
+            Log.Info("NUI", "NUICorebackend OnPreCreated Called");
+
+            if (NUIApplication.IsUsingXaml)
+            {
+                Tizen.Log.Fatal("NT", $"NUICoreBackend.OnInitialized() XAML ON, IsUsingXaml={NUIApplication.IsUsingXaml}");
+            }
+
 
             Tizen.Tracer.Begin("[NUI] OnInitialized(): OnPreCreated event handler");
             var preCreateHandler = Handlers[EventType.PreCreated] as Action;

@@ -5,7 +5,7 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI.Samples
 {
     using tlog = Tizen.Log;
-    public class IsUsingXamlTest : IExample
+    public class DisableBindablePropertyTest : IExample
     {
         private const int NUMBER_OF_VIEW = 300;
         private const int MIN_SIZE = 100;

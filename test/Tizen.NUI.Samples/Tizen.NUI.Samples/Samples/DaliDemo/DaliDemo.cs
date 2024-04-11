@@ -12,6 +12,7 @@ namespace Tizen.NUI.Samples
     {
         public DaliDemo(string styleSheet) : base(styleSheet)
         {
+            //DisableBindableProperty = true;
         }
 
         private IExample curExample = null;

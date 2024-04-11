@@ -89,95 +89,10 @@ namespace Tizen.NUI.BaseComponents
 
         static View()
         {
+            Tizen.Log.Fatal("NT", $"static View construct IsUsingXaml={NUIApplication.IsUsingXaml}");
             if (NUIApplication.IsUsingXaml)
             {
-#if REMOVE_READONLY
                 CreateBindableProperties();
-#else
-                BackgroundColorProperty = BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(View), null,
-                    propertyChanged: SetInternalBackgroundColorProperty, defaultValueCreator: GetInternalBackgroundColorProperty);
-
-                ColorProperty = BindableProperty.Create(nameof(Color), typeof(Color), typeof(View), null,
-                    propertyChanged: SetInternalColorProperty, defaultValueCreator: GetInternalColorProperty);
-
-                ColorRedProperty = BindableProperty.Create(nameof(ColorRed), typeof(float), typeof(View), default(float),
-                    propertyChanged: SetInternalColorRedProperty, defaultValueCreator: GetInternalColorRedProperty);
-
-                ColorGreenProperty = BindableProperty.Create(nameof(ColorGreen), typeof(float), typeof(View), default(float),
-                    propertyChanged: SetInternalColorGreenProperty, defaultValueCreator: GetInternalColorGreenProperty);
-
-                ColorBlueProperty = BindableProperty.Create(nameof(ColorBlue), typeof(float), typeof(View), default(float),
-                    propertyChanged: SetInternalColorBlueProperty, defaultValueCreator: GetInternalColorBlueProperty);
-
-                CellIndexProperty = BindableProperty.Create(nameof(CellIndex), typeof(Vector2), typeof(View), null,
-                    propertyChanged: SetInternalCellIndexProperty, defaultValueCreator: GetInternalCellIndexProperty);
-
-                Size2DProperty = BindableProperty.Create(nameof(Size2D), typeof(Size2D), typeof(View), null,
-                    propertyChanged: SetInternalSize2DProperty, defaultValueCreator: GetInternalSize2DProperty);
-
-                Position2DProperty = BindableProperty.Create(nameof(Position2D), typeof(Position2D), typeof(View), null,
-                    propertyChanged: SetInternalPosition2DProperty, defaultValueCreator: GetInternalPosition2DProperty);
-
-                ParentOriginProperty = BindableProperty.Create(nameof(ParentOrigin), typeof(Position), typeof(View), null,
-                    propertyChanged: SetInternalParentOriginProperty, defaultValueCreator: GetInternalParentOriginProperty);
-
-                PivotPointProperty = BindableProperty.Create(nameof(PivotPoint), typeof(Position), typeof(View), null,
-                    propertyChanged: SetInternalPivotPointProperty, defaultValueCreator: GetInternalPivotPointProperty);
-
-                SizeWidthProperty = BindableProperty.Create(nameof(SizeWidth), typeof(float), typeof(View), default(float),
-                    propertyChanged: SetInternalSizeWidthProperty, defaultValueCreator: GetInternalSizeWidthProperty);
-
-                SizeHeightProperty = BindableProperty.Create(nameof(SizeHeight), typeof(float), typeof(View), default(float),
-                    propertyChanged: SetInternalSizeHeightProperty, defaultValueCreator: GetInternalSizeHeightProperty);
-
-                PositionProperty = BindableProperty.Create(nameof(Position), typeof(Position), typeof(View), null,
-                    propertyChanged: SetInternalPositionProperty, defaultValueCreator: GetInternalPositionProperty);
-
-                PositionXProperty = BindableProperty.Create(nameof(PositionX), typeof(float), typeof(View), default(float),
-                    propertyChanged: SetInternalPositionXProperty, defaultValueCreator: GetInternalPositionXProperty);
-
-                PositionYProperty = BindableProperty.Create(nameof(PositionY), typeof(float), typeof(View), default(float),
-                    propertyChanged: SetInternalPositionYProperty, defaultValueCreator: GetInternalPositionYProperty);
-
-                PositionZProperty = BindableProperty.Create(nameof(PositionZ), typeof(float), typeof(View), default(float),
-                    propertyChanged: SetInternalPositionZProperty, defaultValueCreator: GetInternalPositionZProperty);
-
-                ScaleProperty = BindableProperty.Create(nameof(Scale), typeof(Vector3), typeof(View), null,
-                    propertyChanged: SetInternalScaleProperty, defaultValueCreator: GetInternalScaleProperty);
-
-                ScaleXProperty = BindableProperty.Create(nameof(ScaleX), typeof(float), typeof(View), default(float),
-                    propertyChanged: SetInternalScaleXProperty, defaultValueCreator: GetInternalScaleXProperty);
-
-                ScaleYProperty = BindableProperty.Create(nameof(ScaleY), typeof(float), typeof(View), default(float),
-                    propertyChanged: SetInternalScaleYProperty, defaultValueCreator: GetInternalScaleYProperty);
-
-                ScaleZProperty = BindableProperty.Create(nameof(ScaleZ), typeof(float), typeof(View), default(float),
-                    propertyChanged: SetInternalScaleZProperty, defaultValueCreator: GetInternalScaleZProperty);
-
-                NameProperty = BindableProperty.Create(nameof(Name), typeof(string), typeof(View), string.Empty,
-                    propertyChanged: SetInternalNameProperty, defaultValueCreator: GetInternalNameProperty);
-
-                SizeModeFactorProperty = BindableProperty.Create(nameof(SizeModeFactor), typeof(Vector3), typeof(View), null,
-                    propertyChanged: SetInternalSizeModeFactorProperty, defaultValueCreator: GetInternalSizeModeFactorProperty);
-
-                PaddingProperty = BindableProperty.Create(nameof(Padding), typeof(Extents), typeof(View), null,
-                    propertyChanged: SetInternalPaddingProperty, defaultValueCreator: GetInternalPaddingProperty);
-
-                SizeProperty = BindableProperty.Create(nameof(Size), typeof(Size), typeof(View), null,
-                    propertyChanged: SetInternalSizeProperty, defaultValueCreator: GetInternalSizeProperty);
-
-                MinimumSizeProperty = BindableProperty.Create(nameof(MinimumSize), typeof(Size2D), typeof(View), null,
-                    propertyChanged: SetInternalMinimumSizeProperty, defaultValueCreator: GetInternalMinimumSizeProperty);
-
-                MaximumSizeProperty = BindableProperty.Create(nameof(MaximumSize), typeof(Size2D), typeof(View), null,
-                    propertyChanged: SetInternalMaximumSizeProperty, defaultValueCreator: GetInternalMaximumSizeProperty);
-
-                MarginProperty = BindableProperty.Create(nameof(Margin), typeof(Extents), typeof(View), null,
-                    propertyChanged: SetInternalMarginProperty, defaultValueCreator: GetInternalMarginProperty);
-
-                AnchorPointProperty = BindableProperty.Create(nameof(AnchorPoint), typeof(Tizen.NUI.Position), typeof(View), null,
-                    propertyChanged: SetInternalAnchorPointProperty, defaultValueCreator: GetInternalAnchorPointProperty);
-#endif
 
                 RegisterPropertyGroup(PositionProperty, positionPropertyGroup);
                 RegisterPropertyGroup(Position2DProperty, positionPropertyGroup);

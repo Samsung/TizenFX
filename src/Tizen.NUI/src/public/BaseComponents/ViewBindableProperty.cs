@@ -82,12 +82,15 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.KeyInputFocus);
         }));
 
-        // BackgroundColorProperty
         internal static void SetInternalBackgroundColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
 
-            if (NUIApplication.IsUsingXaml)
+            if (!NUIApplication.IsUsingXaml)
+            {
+                view.SetBackgroundColor((Color)newValue);
+            }
+            else
             {
                 view.themeData?.selectorData?.ClearBackground(view);
 
@@ -100,11 +103,6 @@ namespace Tizen.NUI.BaseComponents
                 {
                     view.SetBackgroundColor((Color)newValue);
                 }
-
-            }
-            else
-            {
-                view.SetBackgroundColor((Color)newValue);
             }
         }
 
@@ -130,7 +128,6 @@ namespace Tizen.NUI.BaseComponents
         /// BackgroundColorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
         public static BindableProperty BackgroundColorProperty = null;
 
         internal static BindableProperty GetBackgroundColorProperty()
@@ -142,11 +139,8 @@ namespace Tizen.NUI.BaseComponents
             }
             return BackgroundColorProperty;
         }
-#else
-        public static readonly BindableProperty BackgroundColorProperty = null;
-#endif
 
-        // ColorProperty
+
         internal static void SetInternalColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
@@ -162,6 +156,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 view.SetColor((Color)newValue);
             }
+
         }
 
         internal static object GetInternalColorProperty(BindableObject bindable)
@@ -174,14 +169,8 @@ namespace Tizen.NUI.BaseComponents
             }
             Object.InternalRetrievingPropertyVector4(view.SwigCPtr, View.Property.COLOR, view.internalColor.SwigCPtr);
             return view.internalColor;
-        }
 
-        /// <summary>
-        /// ColorProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        public static BindableProperty ColorProperty = null;
+        }
 
         internal static BindableProperty GetColorProperty()
         {
@@ -192,29 +181,26 @@ namespace Tizen.NUI.BaseComponents
             }
             return ColorProperty;
         }
-#else
-        public static readonly BindableProperty ColorProperty = null;
-#endif
 
-        // ColorRedProperty
+        /// <summary>
+        /// ColorProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty ColorProperty = null;
+
         internal static void SetInternalColorRedProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
             view.SetColorRed((float?)newValue);
+
         }
 
         internal static object GetInternalColorRedProperty(BindableObject bindable)
         {
             var view = (View)bindable;
             return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.ColorRed);
-        }
 
-        /// <summary>
-        /// ColorRedProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        public static BindableProperty ColorRedProperty = null;
+        }
 
         internal static BindableProperty GetColorRedProperty()
         {
@@ -225,11 +211,14 @@ namespace Tizen.NUI.BaseComponents
             }
             return ColorRedProperty;
         }
-#else
-        public static readonly BindableProperty ColorRedProperty = null;
-#endif
 
-        // ColorGreenProperty
+        /// <summary>
+        /// ColorRedProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty ColorRedProperty = null;
+
+
         internal static void SetInternalColorGreenProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
@@ -244,13 +233,6 @@ namespace Tizen.NUI.BaseComponents
 
         }
 
-        /// <summary>
-        /// ColorGreenProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        public static BindableProperty ColorGreenProperty = null;
-
         internal static BindableProperty GetColorGreenProperty()
         {
             if (ColorGreenProperty == null)
@@ -260,11 +242,17 @@ namespace Tizen.NUI.BaseComponents
             }
             return ColorGreenProperty;
         }
-#else
-        public static readonly BindableProperty ColorGreenProperty = null;
-#endif
 
-        // ColorBlueProperty
+
+        /// <summary>
+        /// ColorGreenProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty ColorGreenProperty = null;
+
+
+
+
         internal static void SetInternalColorBlueProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
@@ -279,13 +267,6 @@ namespace Tizen.NUI.BaseComponents
 
         }
 
-        /// <summary>
-        /// ColorBlueProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
-        public static BindableProperty ColorBlueProperty = null;
-
         internal static BindableProperty GetColorBlueProperty()
         {
             if (ColorBlueProperty == null)
@@ -295,9 +276,13 @@ namespace Tizen.NUI.BaseComponents
             }
             return ColorBlueProperty;
         }
-#else
-        public static readonly BindableProperty ColorBlueProperty = null;
-#endif
+
+
+        /// <summary>
+        /// ColorBlueProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty ColorBlueProperty = null;
 
         /// <summary> BackgroundImageProperty </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -532,7 +517,7 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         }));
 
-        // CellIndexProperty
+
         internal static void SetInternalCellIndexProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
@@ -555,11 +540,6 @@ namespace Tizen.NUI.BaseComponents
 
         }
 
-        /// <summary>
-        /// CellIndexProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
         internal static BindableProperty GetCellIndexProperty()
         {
             if (CellIndexProperty == null)
@@ -570,10 +550,11 @@ namespace Tizen.NUI.BaseComponents
             return CellIndexProperty;
         }
 
+        /// <summary>
+        /// CellIndexProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static BindableProperty CellIndexProperty = null;
-#else
-        public static readonly BindableProperty CellIndexProperty = null;
-#endif
 
         /// <summary>
         /// RowSpanProperty
@@ -824,7 +805,6 @@ namespace Tizen.NUI.BaseComponents
             return view.IsFocusableInTouch();
         });
 
-        //Size2DProperty
         internal static void SetInternalSize2DProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
@@ -876,7 +856,8 @@ namespace Tizen.NUI.BaseComponents
         /// Size2DProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
+        public static BindableProperty Size2DProperty = null;
+
         internal static BindableProperty GetSize2DProperty()
         {
             if (Size2DProperty == null)
@@ -886,11 +867,6 @@ namespace Tizen.NUI.BaseComponents
             }
             return Size2DProperty;
         }
-
-        public static BindableProperty Size2DProperty = null;
-#else
-        public static readonly BindableProperty Size2DProperty = null;
-#endif
 
         /// <summary>
         /// OpacityProperty
@@ -918,7 +894,6 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.OPACITY);
         }));
 
-        // Position2DProperty
         internal static void SetInternalPosition2DProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
@@ -943,7 +918,8 @@ namespace Tizen.NUI.BaseComponents
         /// Position2DProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
+        public static BindableProperty Position2DProperty = null;
+
         internal static BindableProperty GetPosition2DProperty()
         {
             if (Position2DProperty == null)
@@ -953,11 +929,6 @@ namespace Tizen.NUI.BaseComponents
             }
             return Position2DProperty;
         }
-
-        public static BindableProperty Position2DProperty = null;
-#else
-        public static readonly BindableProperty Position2DProperty = null;
-#endif
 
         /// <summary>
         /// PositionUsesPivotPointProperty
@@ -1026,7 +997,7 @@ namespace Tizen.NUI.BaseComponents
             return 0;
         });
 
-        // ParentOriginProperty
+
         internal static void SetInternalParentOriginProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
@@ -1034,6 +1005,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 Object.InternalSetPropertyVector3(view.SwigCPtr, View.Property.ParentOrigin, ((Position)newValue).SwigCPtr);
             }
+
         }
 
         internal static object GetInternalParentOriginProperty(BindableObject bindable)
@@ -1042,13 +1014,9 @@ namespace Tizen.NUI.BaseComponents
             Position temp = new Position(0.0f, 0.0f, 0.0f);
             Object.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.ParentOrigin, temp.SwigCPtr);
             return temp;
+
         }
 
-        /// <summary>
-        /// ParentOriginProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
         internal static BindableProperty GetParentOriginProperty()
         {
             if (ParentOriginProperty == null)
@@ -1059,12 +1027,12 @@ namespace Tizen.NUI.BaseComponents
             return ParentOriginProperty;
         }
 
+        /// <summary>
+        /// ParentOriginProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static BindableProperty ParentOriginProperty = null;
-#else
-        public static readonly BindableProperty ParentOriginProperty = null;
-#endif
 
-        // PivotPointProperty
         internal static void SetInternalPivotPointProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
@@ -1072,6 +1040,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 view.SetAnchorPoint((Position)newValue);
             }
+
         }
 
         internal static object GetInternalPivotPointProperty(BindableObject bindable)
@@ -1083,13 +1052,9 @@ namespace Tizen.NUI.BaseComponents
             }
             Object.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.AnchorPoint, view.internalPivotPoint.SwigCPtr);
             return view.internalPivotPoint;
+
         }
 
-        /// <summary>
-        /// PivotPointProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
         internal static BindableProperty GetPivotPointProperty()
         {
             if (PivotPointProperty == null)
@@ -1100,12 +1065,12 @@ namespace Tizen.NUI.BaseComponents
             return PivotPointProperty;
         }
 
+        /// <summary>
+        /// PivotPointProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static BindableProperty PivotPointProperty = null;
-#else
-        public static readonly BindableProperty PivotPointProperty = null;
-#endif
-        
-        // SizeWidthProperty
+
         internal static void SetInternalSizeWidthProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
@@ -1136,11 +1101,6 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.SizeWidth);
         }
 
-        /// <summary>
-        /// SizeWidthProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
         internal static BindableProperty GetSizeWidthProperty()
         {
             if (SizeWidthProperty == null)
@@ -1151,12 +1111,12 @@ namespace Tizen.NUI.BaseComponents
             return SizeWidthProperty;
         }
 
+        /// <summary>
+        /// SizeWidthProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static BindableProperty SizeWidthProperty = null;
-#else
-        public static readonly BindableProperty SizeWidthProperty = null;
-#endif        
 
-        // SizeHeightProperty
         internal static void SetInternalSizeHeightProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
@@ -1179,19 +1139,16 @@ namespace Tizen.NUI.BaseComponents
 
                 Object.InternalSetPropertyFloat(view.SwigCPtr, View.Property.SizeHeight, height);
             }
+
         }
 
         internal static object GetInternalSizeHeightProperty(BindableObject bindable)
         {
             var view = (View)bindable;
             return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.SizeHeight);
+
         }
 
-        /// <summary>
-        /// SizeHeightProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
         internal static BindableProperty GetSizeHeightProperty()
         {
             if (SizeHeightProperty == null)
@@ -1202,12 +1159,13 @@ namespace Tizen.NUI.BaseComponents
             return SizeHeightProperty;
         }
 
+        /// <summary>
+        /// SizeHeightProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static BindableProperty SizeHeightProperty = null;
-#else
-        public static readonly BindableProperty SizeHeightProperty = null;
-#endif
 
-        // PositionProperty
+
         internal static void SetInternalPositionProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
@@ -1228,11 +1186,6 @@ namespace Tizen.NUI.BaseComponents
             return view.internalPosition;
         }
 
-        /// <summary>
-        /// PositionProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
         internal static BindableProperty GetPositionProperty()
         {
             if (PositionProperty == null)
@@ -1243,12 +1196,12 @@ namespace Tizen.NUI.BaseComponents
             return PositionProperty;
         }
 
+        /// <summary>
+        /// PositionProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static BindableProperty PositionProperty = null;
-#else
-        public static readonly BindableProperty PositionProperty = null;
-#endif
-        
-        // PositionXProperty
+
         internal static void SetInternalPositionXProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
@@ -1256,6 +1209,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 Object.InternalSetPropertyFloat(view.SwigCPtr, View.Property.PositionX, (float)newValue);
             }
+
         }
 
         internal static object GetInternalPositionXProperty(BindableObject bindable)
@@ -1264,11 +1218,6 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.PositionX);
         }
 
-        /// <summary>
-        /// PositionXProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
         internal static BindableProperty GetPositionXProperty()
         {
             if (PositionXProperty == null)
@@ -1279,12 +1228,12 @@ namespace Tizen.NUI.BaseComponents
             return PositionXProperty;
         }
 
+        /// <summary>
+        /// PositionXProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static BindableProperty PositionXProperty = null;
-#else
-        public static readonly BindableProperty PositionXProperty = null;
-#endif
 
-        // PositionYProperty
         internal static void SetInternalPositionYProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
@@ -1300,11 +1249,6 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.PositionY);
         }
 
-        /// <summary>
-        /// PositionYProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
         internal static BindableProperty GetPositionYProperty()
         {
             if (PositionYProperty == null)
@@ -1315,10 +1259,12 @@ namespace Tizen.NUI.BaseComponents
             return PositionYProperty;
         }
 
+        /// <summary>
+        /// PositionYProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static BindableProperty PositionYProperty = null;
-#else
-        public static readonly BindableProperty PositionYProperty = null;
-#endif
+
         internal static void SetInternalPositionZProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
@@ -1329,18 +1275,13 @@ namespace Tizen.NUI.BaseComponents
 
         }
 
-        // PositionZProperty
         internal static object GetInternalPositionZProperty(BindableObject bindable)
         {
             var view = (View)bindable;
             return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.PositionZ);
+
         }
 
-        /// <summary>
-        /// PositionZProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
         internal static BindableProperty GetPositionZProperty()
         {
             if (PositionZProperty == null)
@@ -1351,10 +1292,12 @@ namespace Tizen.NUI.BaseComponents
             return PositionZProperty;
         }
 
+        /// <summary>
+        /// PositionZProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static BindableProperty PositionZProperty = null;
-#else
-        public static readonly BindableProperty PositionZProperty = null;
-#endif
+
         /// <summary>
         /// OrientationProperty
         /// </summary>
@@ -1385,7 +1328,6 @@ namespace Tizen.NUI.BaseComponents
 
         }
 
-        // ScaleProperty
         internal static object GetInternalScaleProperty(BindableObject bindable)
         {
             var view = (View)bindable;
@@ -1395,13 +1337,9 @@ namespace Tizen.NUI.BaseComponents
             }
             Object.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.SCALE, view.internalScale.SwigCPtr);
             return view.internalScale;
+
         }
 
-        /// <summary>
-        /// ScaleProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
         internal static BindableProperty GetScaleProperty()
         {
             if (ScaleProperty == null)
@@ -1412,12 +1350,14 @@ namespace Tizen.NUI.BaseComponents
             return ScaleProperty;
         }
 
-        public static BindableProperty ScaleProperty = null;
-#else
-        public static readonly BindableProperty ScaleProperty = null;
-#endif
 
-        // ScaleXProperty
+        /// <summary>
+        /// ScaleProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static BindableProperty ScaleProperty = null;
+
+
         internal static void SetInternalScaleXProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
@@ -1425,19 +1365,16 @@ namespace Tizen.NUI.BaseComponents
             {
                 Object.InternalSetPropertyFloat(view.SwigCPtr, View.Property.ScaleX, (float)newValue);
             }
+
         }
 
         internal static object GetInternalScaleXProperty(BindableObject bindable)
         {
             var view = (View)bindable;
             return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.ScaleX);
+
         }
 
-        /// <summary>
-        /// ScaleXProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
         internal static BindableProperty GetScaleXProperty()
         {
             if (ScaleXProperty == null)
@@ -1448,12 +1385,12 @@ namespace Tizen.NUI.BaseComponents
             return ScaleXProperty;
         }
 
+        /// <summary>
+        /// ScaleXProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static BindableProperty ScaleXProperty = null;
-#else
-        public static readonly BindableProperty ScaleXProperty = null;
-#endif
 
-        // ScaleYProperty
         internal static void SetInternalScaleYProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
@@ -1461,19 +1398,16 @@ namespace Tizen.NUI.BaseComponents
             {
                 Object.InternalSetPropertyFloat(view.SwigCPtr, View.Property.ScaleY, (float)newValue);
             }
+
         }
 
         internal static object GetInternalScaleYProperty(BindableObject bindable)
         {
             var view = (View)bindable;
             return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.ScaleY);
+
         }
 
-        /// <summary>
-        /// ScaleYProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
         internal static BindableProperty GetScaleYProperty()
         {
             if (ScaleYProperty == null)
@@ -1484,12 +1418,13 @@ namespace Tizen.NUI.BaseComponents
             return ScaleYProperty;
         }
 
+        /// <summary>
+        /// ScaleYProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static BindableProperty ScaleYProperty = null;
-#else
-        public static readonly BindableProperty ScaleYProperty = null;
-#endif
 
-        // ScaleZProperty
+
         internal static void SetInternalScaleZProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
@@ -1497,19 +1432,16 @@ namespace Tizen.NUI.BaseComponents
             {
                 Object.InternalSetPropertyFloat(view.SwigCPtr, View.Property.ScaleZ, (float)newValue);
             }
+
         }
 
         internal static object GetInternalScaleZProperty(BindableObject bindable)
         {
             var view = (View)bindable;
             return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.ScaleZ);
+
         }
 
-        /// <summary>
-        /// ScaleZProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
         internal static BindableProperty GetScaleZProperty()
         {
             if (ScaleZProperty == null)
@@ -1520,12 +1452,12 @@ namespace Tizen.NUI.BaseComponents
             return ScaleZProperty;
         }
 
+        /// <summary>
+        /// ScaleZProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static BindableProperty ScaleZProperty = null;
-#else
-        public static readonly BindableProperty ScaleZProperty = null;
-#endif
-        
-        // NameProperty
+
         internal static void SetInternalNameProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
@@ -1534,19 +1466,16 @@ namespace Tizen.NUI.BaseComponents
                 view.internalName = (string)newValue;
                 Object.InternalSetPropertyString(view.SwigCPtr, View.Property.NAME, (string)newValue);
             }
+
         }
 
         internal static object GetInternalNameProperty(BindableObject bindable)
         {
             var view = (View)bindable;
             return view.internalName;
+
         }
 
-        /// <summary>
-        /// NameProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
         internal static BindableProperty GetNameProperty()
         {
             if (NameProperty == null)
@@ -1557,10 +1486,12 @@ namespace Tizen.NUI.BaseComponents
             return NameProperty;
         }
 
+        /// <summary>
+        /// NameProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static BindableProperty NameProperty = null;
-#else
-        public static readonly BindableProperty NameProperty = null;
-#endif
+
         /// <summary>
         /// SensitiveProperty
         /// </summary>
@@ -1698,7 +1629,6 @@ namespace Tizen.NUI.BaseComponents
 
         }
 
-        // SizeModeFactorProperty
         internal static object GetInternalSizeModeFactorProperty(BindableObject bindable)
         {
             var view = (View)bindable;
@@ -1708,13 +1638,9 @@ namespace Tizen.NUI.BaseComponents
             }
             Object.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.SizeModeFactor, view.internalSizeModeFactor.SwigCPtr);
             return view.internalSizeModeFactor;
+
         }
 
-        /// <summary>
-        /// SizeModeFactorProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
         internal static BindableProperty GetSizeModeFactorProperty()
         {
             if (SizeModeFactorProperty == null)
@@ -1725,10 +1651,12 @@ namespace Tizen.NUI.BaseComponents
             return SizeModeFactorProperty;
         }
 
+        /// <summary>
+        /// SizeModeFactorProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static BindableProperty SizeModeFactorProperty = null;
-#else
-        public static readonly BindableProperty SizeModeFactorProperty = null;
-#endif
+
         /// <summary>
         /// WidthResizePolicyProperty
         /// </summary>
@@ -1909,7 +1837,6 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.HeightForWidth);
         }));
 
-        // PaddingProperty
         internal static void SetInternalPaddingProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
@@ -1933,6 +1860,7 @@ namespace Tizen.NUI.BaseComponents
                     tmp?.Dispose();
                 }
             }
+
         }
 
         internal static object GetInternalPaddingProperty(BindableObject bindable)
@@ -1962,13 +1890,9 @@ namespace Tizen.NUI.BaseComponents
             }
 
             return view.internalPadding;
+
         }
 
-        /// <summary>
-        /// PaddingProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
         internal static BindableProperty GetPaddingProperty()
         {
             if (PaddingProperty == null)
@@ -1979,12 +1903,12 @@ namespace Tizen.NUI.BaseComponents
             return PaddingProperty;
         }
 
+        /// <summary>
+        /// PaddingProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static BindableProperty PaddingProperty = null;
-#else
-        public static readonly BindableProperty PaddingProperty = null;
-#endif
 
-        // SizeProperty
         internal static void SetInternalSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
@@ -2040,11 +1964,6 @@ namespace Tizen.NUI.BaseComponents
             return view.internalSize;
         }
 
-        /// <summary>
-        /// SizeProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
         internal static BindableProperty GetSizeProperty()
         {
             if (SizeProperty == null)
@@ -2055,12 +1974,13 @@ namespace Tizen.NUI.BaseComponents
             return SizeProperty;
         }
 
+        /// <summary>
+        /// SizeProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static BindableProperty SizeProperty = null;
-#else
-        public static readonly BindableProperty SizeProperty = null;
-#endif
 
-        // MinimumSizeProperty
+
         internal static void SetInternalMinimumSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
@@ -2069,6 +1989,7 @@ namespace Tizen.NUI.BaseComponents
 
                 Object.InternalSetPropertyVector2(view.SwigCPtr, View.Property.MinimumSize, ((Size2D)newValue).SwigCPtr);
             }
+
         }
 
         internal static object GetInternalMinimumSizeProperty(BindableObject bindable)
@@ -2081,13 +2002,9 @@ namespace Tizen.NUI.BaseComponents
             }
             Object.InternalRetrievingPropertyVector2(view.SwigCPtr, View.Property.MinimumSize, view.internalMinimumSize.SwigCPtr);
             return view.internalMinimumSize;
+
         }
 
-        /// <summary>
-        /// MinimumSizeProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
         internal static BindableProperty GetMinimumSizeProperty()
         {
             if (MinimumSizeProperty == null)
@@ -2098,12 +2015,12 @@ namespace Tizen.NUI.BaseComponents
             return MinimumSizeProperty;
         }
 
+        /// <summary>
+        /// MinimumSizeProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static BindableProperty MinimumSizeProperty = null;
-#else
-        public static readonly BindableProperty MinimumSizeProperty = null;
-#endif
 
-        // MaximumSizeProperty
         internal static void SetInternalMaximumSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
@@ -2112,6 +2029,7 @@ namespace Tizen.NUI.BaseComponents
 
                 Object.InternalSetPropertyVector2(view.SwigCPtr, View.Property.MaximumSize, ((Size2D)newValue).SwigCPtr);
             }
+
         }
 
         internal static object GetInternalMaximumSizeProperty(BindableObject bindable)
@@ -2124,13 +2042,9 @@ namespace Tizen.NUI.BaseComponents
             }
             Object.InternalRetrievingPropertyVector2(view.SwigCPtr, View.Property.MaximumSize, view.internalMaximumSize.SwigCPtr);
             return view.internalMaximumSize;
+
         }
 
-        /// <summary>
-        /// MaximumSizeProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
         internal static BindableProperty GetMaximumSizeProperty()
         {
             if (MaximumSizeProperty == null)
@@ -2141,10 +2055,11 @@ namespace Tizen.NUI.BaseComponents
             return MaximumSizeProperty;
         }
 
+        /// <summary>
+        /// MaximumSizeProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static BindableProperty MaximumSizeProperty = null;
-#else
-        public static readonly BindableProperty MaximumSizeProperty = null;
-#endif
 
         /// <summary>
         /// InheritPositionProperty
@@ -2225,7 +2140,6 @@ namespace Tizen.NUI.BaseComponents
             return (ViewLayoutDirectionType)Object.InternalGetPropertyInt(view.SwigCPtr, View.Property.LayoutDirection);
         }));
 
-        // MarginProperty
         internal static void SetInternalMarginProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var view = (View)bindable;
@@ -2249,6 +2163,7 @@ namespace Tizen.NUI.BaseComponents
                     tmp?.Dispose();
                 }
             }
+
         }
 
         internal static object GetInternalMarginProperty(BindableObject bindable)
@@ -2279,13 +2194,9 @@ namespace Tizen.NUI.BaseComponents
             }
 
             return view.internalMargin;
+
         }
 
-        /// <summary>
-        /// MarginProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
         internal static BindableProperty GetMarginProperty()
         {
             if (MarginProperty == null)
@@ -2296,10 +2207,11 @@ namespace Tizen.NUI.BaseComponents
             return MarginProperty;
         }
 
+        /// <summary>
+        /// MarginProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static BindableProperty MarginProperty = null;
-#else
-        public static readonly BindableProperty MarginProperty = null;
-#endif
 
         /// <summary>
         /// UpdateAreaHintProperty
@@ -2748,7 +2660,6 @@ namespace Tizen.NUI.BaseComponents
             return instance.InternalPositionUsesAnchorPoint;
         });
 
-        // AnchorPointProperty
         internal static void SetInternalAnchorPointProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
@@ -2756,19 +2667,16 @@ namespace Tizen.NUI.BaseComponents
             {
                 instance.InternalAnchorPoint = (Tizen.NUI.Position)newValue;
             }
+
         }
 
         internal static object GetInternalAnchorPointProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalAnchorPoint;
+
         }
 
-        /// <summary>
-        /// AnchorPointProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-#if REMOVE_READONLY
         internal static BindableProperty GetAnchorPointProperty()
         {
             if (AnchorPointProperty == null)
@@ -2779,10 +2687,11 @@ namespace Tizen.NUI.BaseComponents
             return AnchorPointProperty;
         }
 
+        /// <summary>
+        /// AnchorPointProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static BindableProperty AnchorPointProperty = null;
-#else
-        public static readonly BindableProperty AnchorPointProperty = null;
-#endif
 
         /// <summary>
         /// WidthSpecificationProperty
@@ -3101,9 +3010,11 @@ namespace Tizen.NUI.BaseComponents
             return new Size2D((int)userSizeWidth, (int)userSizeHeight);
         }
 
-#if REMOVE_READONLY
+
         internal static void CreateBindableProperties()
         {
+            Tizen.Log.Fatal("NT", $"CreateBindableProperties() START  IsUsingXaml={NUIApplication.IsUsingXaml}");
+
             _ = GetBackgroundColorProperty();
             _ = GetColorProperty();
             _ = GetColorRedProperty();
@@ -3132,8 +3043,8 @@ namespace Tizen.NUI.BaseComponents
             _ = GetMaximumSizeProperty();
             _ = GetMarginProperty();
             _ = GetAnchorPointProperty();
+            Tizen.Log.Fatal("NT", $"CreateBindableProperties() END");
         }
-#endif
 
         private void SetBackgroundImage(string value)
         {
