@@ -89,11 +89,8 @@ namespace Tizen.NUI.BaseComponents
 
         static View()
         {
-            Tizen.Log.Fatal("NT", $"static View construct IsUsingXaml={NUIApplication.IsUsingXaml}");
-            if (NUIApplication.IsUsingXaml)
+            if (NUIApplication.DisableBindableProperty == false)
             {
-                CreateBindableProperties();
-
                 RegisterPropertyGroup(PositionProperty, positionPropertyGroup);
                 RegisterPropertyGroup(Position2DProperty, positionPropertyGroup);
                 RegisterPropertyGroup(PositionXProperty, positionPropertyGroup);
@@ -117,13 +114,10 @@ namespace Tizen.NUI.BaseComponents
         {
             Container.Preload();
 
-            if (NUIApplication.IsUsingXaml)
-            {
-                // Do nothing. Just call for load static values.
-                var temporalPositionPropertyGroup = positionPropertyGroup;
-                var temporalSizePropertyGroup = sizePropertyGroup;
-                var temporalScalePropertyGroup = scalePropertyGroup;
-            }
+            // Do nothing. Just call for load static values.
+            var temporalPositionPropertyGroup = positionPropertyGroup;
+            var temporalSizePropertyGroup = sizePropertyGroup;
+            var temporalScalePropertyGroup = scalePropertyGroup;
         }
 
         /// <summary>
@@ -532,24 +526,24 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
+                if (NUIApplication.DisableBindableProperty)
                 {
-                    return (Color)GetValue(BackgroundColorProperty);
+                    return (Color)GetInternalBackgroundColorProperty(this);
                 }
                 else
                 {
-                    return (Color)GetInternalBackgroundColorProperty(this);
+                    return (Color)GetValue(BackgroundColorProperty);
                 }
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
+                if (NUIApplication.DisableBindableProperty)
                 {
-                    SetValue(BackgroundColorProperty, value);
+                    SetInternalBackgroundColorProperty(this, null, value);
                 }
                 else
                 {
-                    SetInternalBackgroundColorProperty(this, null, value);
+                    SetValue(BackgroundColorProperty, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -1000,29 +994,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (Vector2)GetValue(CellIndexProperty);
-                }
-                else
-                {
-                    return (Vector2)GetInternalCellIndexProperty(this);
-                }
-
-
+                return (Vector2)GetValue(CellIndexProperty);
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(CellIndexProperty, value);
-                }
-                else
-                {
-                    SetInternalCellIndexProperty(this, null, value);
-                }
-
-
+                SetValue(CellIndexProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1325,9 +1301,9 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
+                if (NUIApplication.DisableBindableProperty)
                 {
-                    var temp = (Size2D)GetValue(Size2DProperty);
+                    var temp = (Size2D)GetInternalSize2DProperty(this);
                     if (this.Layout == null)
                     {
                         if (temp.Width < 0) { temp.Width = 0; }
@@ -1337,7 +1313,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    var temp = (Size2D)GetInternalSize2DProperty(this);
+                    var temp = (Size2D)GetValue(Size2DProperty);
                     if (this.Layout == null)
                     {
                         if (temp.Width < 0) { temp.Width = 0; }
@@ -1348,13 +1324,13 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
+                if (NUIApplication.DisableBindableProperty)
                 {
-                    SetValue(Size2DProperty, value);
+                    SetInternalSize2DProperty(this, null, value);
                 }
                 else
                 {
-                    SetInternalSize2DProperty(this, null, value);
+                    SetValue(Size2DProperty, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -1428,26 +1404,24 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
+                if (NUIApplication.DisableBindableProperty)
                 {
-                    return (Position2D)GetValue(Position2DProperty);
+                    return (Position2D)GetInternalPosition2DProperty(this);
                 }
                 else
                 {
-                    return (Position2D)GetInternalPosition2DProperty(this);
-
+                    return (Position2D)GetValue(Position2DProperty);
                 }
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
+                if (NUIApplication.DisableBindableProperty)
                 {
-                    SetValue(Position2DProperty, value);
+                    SetInternalPosition2DProperty(this, null, value);
                 }
                 else
                 {
-                    SetInternalPosition2DProperty(this, null, value);
-
+                    SetValue(Position2DProperty, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -1641,27 +1615,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    var tmp = (Position)GetValue(ParentOriginProperty);
-                    return new Position(OnParentOriginChanged, tmp.X, tmp.Y, tmp.Z);
-                }
-                else
-                {
-                    var tmp = (Position)GetInternalParentOriginProperty(this);
-                    return new Position(OnParentOriginChanged, tmp.X, tmp.Y, tmp.Z);
-                }
+                Position tmp = (Position)GetValue(ParentOriginProperty);
+                return new Position(OnParentOriginChanged, tmp.X, tmp.Y, tmp.Z);
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(ParentOriginProperty, value);
-                }
-                else
-                {
-                    SetInternalParentOriginProperty(this, null, value);
-                }
+                SetValue(ParentOriginProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1693,28 +1652,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (Position)GetValue(PivotPointProperty);
-                }
-                else
-                {
-                    return (Position)GetInternalPivotPointProperty(this);
-                }
-
-
+                return (Position)GetValue(PivotPointProperty);
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(PivotPointProperty, value);
-                }
-                else
-                {
-                    SetInternalPivotPointProperty(this, null, value);
-                }
-
+                SetValue(PivotPointProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1735,28 +1677,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (float)GetValue(SizeWidthProperty);
-                }
-                else
-                {
-                    return (float)GetInternalSizeWidthProperty(this);
-                }
-
-
+                return (float)GetValue(SizeWidthProperty);
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(SizeWidthProperty, value);
-                }
-                else
-                {
-                    SetInternalSizeWidthProperty(this, null, value);
-                }
-
+                SetValue(SizeWidthProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1777,29 +1702,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (float)GetValue(SizeHeightProperty);
-                }
-                else
-                {
-                    return (float)GetInternalSizeHeightProperty(this);
-                }
-
-
+                return (float)GetValue(SizeHeightProperty);
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(SizeHeightProperty, value);
-                }
-                else
-                {
-                    SetInternalSizeHeightProperty(this, null, value);
-                }
-
-
+                SetValue(SizeHeightProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1834,25 +1741,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (Position)GetValue(PositionProperty);
-                }
-                else
-                {
-                    return (Position2D)GetInternalPositionProperty(this);
-                }
+                return (Position)GetValue(PositionProperty);
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(PositionProperty, value);
-                }
-                else
-                {
-                    SetInternalPositionProperty(this, null, value);
-                }
+                SetValue(PositionProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1873,25 +1766,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (float)GetValue(PositionXProperty);
-                }
-                else
-                {
-                    return (float)GetInternalPositionXProperty(this);
-                }
+                return (float)GetValue(PositionXProperty);
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(PositionXProperty, value);
-                }
-                else
-                {
-                    SetInternalPositionXProperty(this, null, value);
-                }
+                SetValue(PositionXProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1912,25 +1791,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (float)GetValue(PositionYProperty);
-                }
-                else
-                {
-                    return (float)GetInternalPositionYProperty(this);
-                }
+                return (float)GetValue(PositionYProperty);
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(PositionYProperty, value);
-                }
-                else
-                {
-                    SetInternalPositionYProperty(this, null, value);
-                }
+                SetValue(PositionYProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1951,28 +1816,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (float)GetValue(PositionZProperty);
-                }
-                else
-                {
-                    return (float)GetInternalPositionZProperty(this);
-                }
-
-
+                return (float)GetValue(PositionZProperty);
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(PositionZProperty, value);
-                }
-                else
-                {
-                    SetInternalPositionZProperty(this, null, value);
-                }
-
+                SetValue(PositionZProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -2062,29 +1910,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (Vector3)GetValue(ScaleProperty);
-                }
-                else
-                {
-                    return (Vector3)GetInternalScaleProperty(this);
-                }
-
-
+                return (Vector3)GetValue(ScaleProperty);
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(ScaleProperty, value);
-                }
-                else
-                {
-                    SetInternalScaleProperty(this, null, value);
-                }
-
-
+                SetValue(ScaleProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -2105,29 +1935,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (float)GetValue(ScaleXProperty);
-                }
-                else
-                {
-                    return (float)GetInternalScaleXProperty(this);
-                }
-
-
+                return (float)GetValue(ScaleXProperty);
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(ScaleXProperty, value);
-                }
-                else
-                {
-                    SetInternalScaleXProperty(this, null, value);
-                }
-
-
+                SetValue(ScaleXProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -2148,29 +1960,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (float)GetValue(ScaleYProperty);
-                }
-                else
-                {
-                    return (float)GetInternalScaleYProperty(this);
-                }
-
-
+                return (float)GetValue(ScaleYProperty);
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(ScaleYProperty, value);
-                }
-                else
-                {
-                    SetInternalScaleYProperty(this, null, value);
-                }
-
-
+                SetValue(ScaleYProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -2191,29 +1985,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (float)GetValue(ScaleZProperty);
-                }
-                else
-                {
-                    return (float)GetInternalScaleZProperty(this);
-                }
-
-
+                return (float)GetValue(ScaleZProperty);
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(ScaleZProperty, value);
-                }
-                else
-                {
-                    SetInternalScaleZProperty(this, null, value);
-                }
-
-
+                SetValue(ScaleZProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -2274,29 +2050,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (string)GetValue(NameProperty);
-                }
-                else
-                {
-                    return (string)GetInternalNameProperty(this);
-                }
-
-
+                return (string)GetValue(NameProperty);
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(NameProperty, value);
-                }
-                else
-                {
-                    SetInternalNameProperty(this, null, value);
-                }
-
-
+                SetValue(NameProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -2460,29 +2218,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (Vector3)GetValue(SizeModeFactorProperty);
-                }
-                else
-                {
-                    return (Vector3)GetInternalSizeModeFactorProperty(this);
-                }
-
-
+                return (Vector3)GetValue(SizeModeFactorProperty);
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(SizeModeFactorProperty, value);
-                }
-                else
-                {
-                    SetInternalSizeModeFactorProperty(this, null, value);
-                }
-
-
+                SetValue(SizeModeFactorProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -2595,29 +2335,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (Extents)GetValue(PaddingProperty);
-                }
-                else
-                {
-                    return (Extents)GetInternalPaddingProperty(this);
-                }
-
-
+                return (Extents)GetValue(PaddingProperty);
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(PaddingProperty, value);
-                }
-                else
-                {
-                    SetInternalPaddingProperty(this, null, value);
-                }
-
-
+                SetValue(PaddingProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -2645,15 +2367,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (Size2D)GetValue(MinimumSizeProperty);
-                }
-                else
-                {
-                    return (Size2D)GetInternalMinimumSizeProperty(this);
-                }
-
+                return (Size2D)GetValue(MinimumSizeProperty);
             }
             set
             {
@@ -2669,15 +2383,7 @@ namespace Tizen.NUI.BaseComponents
                     layout.MinimumHeight = new Tizen.NUI.LayoutLength(value.Height);
                     layout.RequestLayout();
                 }
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(MinimumSizeProperty, value);
-                }
-                else
-                {
-                    SetInternalMinimumSizeProperty(this, null, value);
-                }
-
+                SetValue(MinimumSizeProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -2701,14 +2407,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (Size2D)GetValue(MaximumSizeProperty);
-                }
-                else
-                {
-                    return (Size2D)GetInternalMaximumSizeProperty(this);
-                }
+                return (Size2D)GetValue(MaximumSizeProperty);
             }
             set
             {
@@ -2718,16 +2417,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     layout.RequestLayout();
                 }
-
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(MaximumSizeProperty, value);
-                }
-                else
-                {
-                    SetInternalMaximumSizeProperty(this, null, value);
-                }
-
+                SetValue(MaximumSizeProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -2797,28 +2487,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (Position)GetValue(AnchorPointProperty);
-                }
-                else
-                {
-                    return (Position)GetInternalAnchorPointProperty(this);
-                }
-
-
+                return GetValue(AnchorPointProperty) as Position;
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(AnchorPointProperty, value);
-                }
-                else
-                {
-                    SetInternalAnchorPointProperty(this, null, value);
-                }
-
+                SetValue(AnchorPointProperty, value);
             }
         }
 
@@ -2866,25 +2539,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (Size)GetValue(SizeProperty);
-                }
-                else
-                {
-                    return (Size)GetInternalSizeProperty(this);
-                }
+                return (Size)GetValue(SizeProperty);
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(SizeProperty, value);
-                }
-                else
-                {
-                    SetInternalSizeProperty(this, null, value);
-                }
+                SetValue(SizeProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -2984,27 +2643,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (Extents)GetValue(MarginProperty);
-                }
-                else
-                {
-                    return (Extents)GetInternalMarginProperty(this);
-                }
-
+                return (Extents)GetValue(MarginProperty);
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(MarginProperty, value);
-                }
-                else
-                {
-                    SetInternalMarginProperty(this, null, value);
-                }
-
+                SetValue(MarginProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -3249,29 +2892,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (Color)GetValue(ColorProperty);
-                }
-                else
-                {
-                    return (Color)GetInternalColorProperty(this);
-                }
-
-
+                return (Color)GetValue(ColorProperty);
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(ColorProperty, value);
-                }
-                else
-                {
-                    SetInternalColorProperty(this, null, value);
-                }
-
-
+                SetValue(ColorProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -3289,29 +2914,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (float)GetValue(ColorRedProperty);
-                }
-                else
-                {
-                    return (float)GetInternalColorRedProperty(this);
-                }
-
-
+                return (float)GetValue(ColorRedProperty);
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(ColorRedProperty, value);
-                }
-                else
-                {
-                    SetInternalColorRedProperty(this, null, value);
-                }
-
-
+                SetValue(ColorRedProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -3329,29 +2936,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (float)GetValue(ColorGreenProperty);
-                }
-                else
-                {
-                    return (float)GetInternalColorGreenProperty(this);
-                }
-
-
+                return (float)GetValue(ColorGreenProperty);
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(ColorGreenProperty, value);
-                }
-                else
-                {
-                    SetInternalColorGreenProperty(this, null, value);
-                }
-
-
+                SetValue(ColorGreenProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -3369,29 +2958,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    return (float)GetValue(ColorBlueProperty);
-                }
-                else
-                {
-                    return (float)GetInternalColorBlueProperty(this);
-                }
-
-
+                return (float)GetValue(ColorBlueProperty);
             }
             set
             {
-                if (NUIApplication.IsUsingXaml)
-                {
-                    SetValue(ColorBlueProperty, value);
-                }
-                else
-                {
-                    SetInternalColorBlueProperty(this, null, value);
-                }
-
-
+                SetValue(ColorBlueProperty, value);
                 NotifyPropertyChanged();
             }
         }

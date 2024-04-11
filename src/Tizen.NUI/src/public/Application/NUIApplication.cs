@@ -23,7 +23,6 @@ using System.Reflection;
 using Tizen.Applications;
 using Tizen.Applications.CoreBackend;
 using Tizen.NUI.Xaml;
-using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
@@ -64,7 +63,6 @@ namespace Tizen.NUI
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         public NUIApplication() : base(new NUICoreBackend())
         {
-            Tizen.Log.Fatal("NT", $"NUIApplication constructor #1");
         }
 
         /// <summary>
@@ -78,7 +76,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend("", NUIApplication.WindowMode.Opaque, windowSize, windowPosition))
         {
-            Tizen.Log.Fatal("NT", $"NUIApplication constructor #2");
         }
 
         /// <summary>
@@ -89,7 +86,6 @@ namespace Tizen.NUI
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         public NUIApplication(string styleSheet) : base(new NUICoreBackend(styleSheet))
         {
-            Tizen.Log.Fatal("NT", $"NUIApplication constructor #3 IsUsingXaml={IsUsingXaml}");
         }
 
         /// <summary>
@@ -104,7 +100,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(string styleSheet, Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend(styleSheet, WindowMode.Opaque, windowSize, windowPosition))
         {
-            Tizen.Log.Fatal("NT", $"NUIApplication constructor #4");
         }
 
         /// <summary>
@@ -116,8 +111,6 @@ namespace Tizen.NUI
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         public NUIApplication(string styleSheet, WindowMode windowMode) : base(new NUICoreBackend(styleSheet, windowMode))
         {
-            Tizen.Log.Fatal("NT", $"NUIApplication constructor #5");
-            Tizen.Log.Fatal("NT", $"IsUsingXaml={IsUsingXaml}");
         }
 
         /// <summary>
@@ -133,7 +126,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(string styleSheet, WindowMode windowMode, Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend(styleSheet, windowMode, windowSize, windowPosition))
         {
-            Tizen.Log.Fatal("NT", $"NUIApplication constructor #6");
         }
 
         /// <summary>
@@ -149,8 +141,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(Graphics.BackendType backend, WindowMode windowMode = WindowMode.Opaque, Size2D windowSize = null, Position2D windowPosition = null, string styleSheet = "") : base(new NUICoreBackend(styleSheet, windowMode, windowSize, windowPosition))
         {
-            Tizen.Log.Fatal("NT", $"NUIApplication constructor #7");
-
             //windowMode and styleSheet will be added later. currently it's not working as expected.
             Graphics.Backend = backend;
             Tizen.Log.Error("NUI", "Plaese DO NOT set graphical backend type with this constructor! This will give no effect!");
@@ -164,8 +154,6 @@ namespace Tizen.NUI
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         public NUIApplication(ThemeOptions option) : base(new NUICoreBackend())
         {
-            Tizen.Log.Fatal("NT", $"NUIApplication constructor #8");
-
             ApplyThemeOption(option);
         }
 
@@ -179,8 +167,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(Size2D windowSize, Position2D windowPosition, ThemeOptions option) : base(new NUICoreBackend("", NUIApplication.WindowMode.Opaque, windowSize, windowPosition))
         {
-            Tizen.Log.Fatal("NT", $"NUIApplication constructor #9");
-
             ApplyThemeOption(option);
         }
 
@@ -195,8 +181,6 @@ namespace Tizen.NUI
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         public NUIApplication(string styleSheet, WindowMode windowMode, WindowType type) : base(new NUICoreBackend(styleSheet, windowMode, type))
         {
-            Tizen.Log.Fatal("NT", $"NUIApplication constructor #10");
-
             ExternalThemeManager.Initialize();
         }
 
@@ -212,8 +196,6 @@ namespace Tizen.NUI
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         public NUIApplication(string styleSheet, Size2D windowSize, Position2D windowPosition, IBorderInterface borderInterface, WindowMode windowMode = WindowMode.Opaque) : base(new NUICoreBackend(styleSheet, windowMode, windowSize, windowPosition))
         {
-            Tizen.Log.Fatal("NT", $"NUIApplication constructor #11");
-
             EnableBorder(borderInterface);
         }
 
@@ -226,8 +208,6 @@ namespace Tizen.NUI
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         public NUIApplication(ThemeOptions option, IBorderInterface borderInterface) : base(new NUICoreBackend())
         {
-            Tizen.Log.Fatal("NT", $"NUIApplication constructor #12");
-
             EnableBorder(borderInterface);
             ApplyThemeOption(option);
         }
@@ -243,8 +223,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(Size2D windowSize, Position2D windowPosition, ThemeOptions option, IBorderInterface borderInterface) : base(new NUICoreBackend("", NUIApplication.WindowMode.Opaque, windowSize, windowPosition))
         {
-            Tizen.Log.Fatal("NT", $"NUIApplication constructor #13");
-
             EnableBorder(borderInterface);
             ApplyThemeOption(option);
         }
@@ -269,8 +247,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(string styleSheet, WindowMode windowMode, CoreTask task) : base(new NUICoreBackend(styleSheet, windowMode), task)
         {
-            Tizen.Log.Fatal("NT", $"NUIApplication constructor #14");
-
         }
 
         /// <summary>
@@ -285,8 +261,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(string styleSheet, WindowMode windowMode, Size2D windowSize, Position2D windowPosition, CoreTask task) : base(new NUICoreBackend(styleSheet, windowMode, windowSize, windowPosition), task)
         {
-            Tizen.Log.Fatal("NT", $"NUIApplication constructor #15");
-
         }
 
         /// <summary>
@@ -298,8 +272,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(ThemeOptions option, WindowData windowData) : base(new NUICoreBackend(windowData))
         {
-            Tizen.Log.Fatal("NT", $"NUIApplication constructor #16");
-
             if (windowData.BorderInterface != null)
             {
                 EnableBorder(windowData.BorderInterface);
@@ -673,9 +645,6 @@ namespace Tizen.NUI
             var disposalbeQueue = DisposeQueue.Instance;
             var registry = Registry.Instance;
 
-            // no need to be enable XAML when preload
-            NUIApplication.IsUsingXaml = false;
-
             // Initialize some BaseComponent static variables now
             BaseComponents.View.Preload();
             BaseComponents.ImageView.Preload();
@@ -691,15 +660,15 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Set to true if XAML is used. 
-        /// This must be called before or immediately after the NUIApplication constructor is called.
-        /// The default value is true.
+        /// Set to true if BindableProperty is not used. 
+        /// This must be called immediately after the NUIApplication constructor is called.
+        /// The default value is false.        
         /// </summary>
         /// <remarks>
-        /// This must be called before or immediately after the NUIApplication constructor is called.
+        /// This must be called immediately after the NUIApplication constructor is called.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public bool IsUsingXaml { get; set; } = true;
+        static public bool DisableBindableProperty { get; set; } = false;
 
         /// <summary>
         /// Check if it is loaded as dotnet-loader-nui.
