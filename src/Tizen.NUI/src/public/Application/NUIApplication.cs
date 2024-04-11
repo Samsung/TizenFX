@@ -660,17 +660,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Set to true if BindableProperty is not used. 
-        /// This must be called immediately after the NUIApplication constructor is called.
-        /// The default value is false.        
-        /// </summary>
-        /// <remarks>
-        /// This must be called immediately after the NUIApplication constructor is called.
-        /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        static public bool DisableBindableProperty { get; set; } = false;
-
-        /// <summary>
         /// Check if it is loaded as dotnet-loader-nui.
         /// </summary>
         static internal bool IsPreload { get; set; }
