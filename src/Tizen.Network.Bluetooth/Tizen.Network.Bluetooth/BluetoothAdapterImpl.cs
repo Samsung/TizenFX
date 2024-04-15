@@ -37,6 +37,7 @@ namespace Tizen.Network.Bluetooth
         private event EventHandler<VisibilityModeChangedEventArgs> _visibilityModeChanged;
         private event EventHandler<VisibilityDurationChangedEventArgs> _visibilityDurationChanged;
         private event EventHandler<DiscoveryStateChangedEventArgs> _discoveryStateChanged;
+        private event EventHandler<AuthenticationRequestedEventArgs> _authenticationRequested;
 
         private Interop.Bluetooth.StateChangedCallback _stateChangedCallback;
         private Interop.Bluetooth.NameChangedCallback _nameChangedCallback;
@@ -44,6 +45,7 @@ namespace Tizen.Network.Bluetooth
         private Interop.Bluetooth.VisibilityDurationChangedCallback _visibilitydurationChangedCallback;
         private Interop.Bluetooth.DiscoveryStateChangedCallback _discoveryStateChangedCallback;
         private Interop.Bluetooth.BondedDeviceCallback _bondedDeviceCallback;
+        private Interop.Bluetooth.AuthenticationRequestedCallback _authenticationRequestedCallback;
 
         private static readonly BluetoothAdapterImpl _instance = new BluetoothAdapterImpl();
         private bool disposed = false;
@@ -64,6 +66,26 @@ namespace Tizen.Network.Bluetooth
                 if (_stateChanged == null)
                 {
                     UnregisterStateChangedEvent();
+                }
+            }
+        }
+
+        internal event EventHandler<AuthenticationRequestedEventArgs> AuthenticationChanged
+        {
+            add
+            {
+                if (_authenticationRequested == null)
+                {
+                    RegisterAuthenticationRequestedEvent();
+                }
+                _authenticationRequested += value;
+            }
+            remove
+            {
+                _authenticationRequested -= value;
+                if (_stateChanged == null)
+                {
+                    UnregisterAuthenticationRequestedEvent();
                 }
             }
         }
@@ -172,6 +194,33 @@ namespace Tizen.Network.Bluetooth
             if (ret != (int)BluetoothError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to unset state changed callback, Error - " + (BluetoothError)ret);
+            }
+        }
+
+        private void RegisterAuthenticationRequestedEvent()
+        {
+            _authenticationRequestedCallback = (int result, AuthenticationInfoType authType, string deviceName, string remoteAddr, string passKey, IntPtr userData) =>
+            {
+                if (_authenticationRequested != null)
+                {
+                    AuthenticationInfoType at = authType;
+                    BluetoothError res = (BluetoothError)result;
+                    _authenticationRequested(null, new AuthenticationRequestedEventArgs(res, at, deviceName, remoteAddr, passKey));
+                }
+            };
+            int ret = Interop.Bluetooth.SetAuthenticationRequestedCallback(_authenticationRequestedCallback, IntPtr.Zero);
+            if (ret != (int)BluetoothError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to set authentication request callback, Error - " + (BluetoothError)ret);
+            }
+        }
+
+        private void UnregisterAuthenticationRequestedEvent()
+        {
+            int ret = Interop.Bluetooth.UnsetAuthenticationRequestedCallback();
+            if (ret != (int)BluetoothError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to unset authentication request callback, Error - " + (BluetoothError)ret);
             }
         }
 
@@ -573,6 +622,16 @@ namespace Tizen.Network.Bluetooth
             if(ret != (int)BluetoothError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to remove the remote oob data, Error - " + (BluetoothError)ret);
+                BluetoothErrorFactory.ThrowBluetoothException(ret);
+            }
+        }
+
+        internal void PasskeyConfirmationReply(bool confirmationReply)
+        {
+            int ret = Interop.Bluetooth.PasskeyConfirmationReply(confirmationReply);
+            if (ret != (int)BluetoothError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to passkey confirmation reply, Error - " + (BluetoothError)ret);
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }

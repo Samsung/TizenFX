@@ -1384,4 +1384,25 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         Output
     }
+
+    /// <summary>
+    /// Enumeration for the authentication info type.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum AuthenticationInfoType
+    {
+        /// <summary>
+        /// PIN display event to user for entering PIN in keyboard
+        /// </summary>
+        AuthKeyboardPasskeyDisplay = 0,
+        /// <summary>
+        /// Legacy PIN or PASSKEY request event
+        /// </summary>
+        AuthPinRequest,
+        /// <summary>
+        /// PASSKEY confirmation event to match PASSKEY in remote device
+        /// </summary>
+        AuthPasskeyConfirmRequest,
+    }
 }

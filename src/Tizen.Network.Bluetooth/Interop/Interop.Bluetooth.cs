@@ -24,6 +24,8 @@ internal static partial class Interop
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void StateChangedCallback(int result, int state, IntPtr userData);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void AuthenticationRequestedCallback(int result, AuthenticationInfoType authType, string deviceName, string remoteAddr, string passKey, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void NameChangedCallback(string deviceName, IntPtr userData);
@@ -168,6 +170,12 @@ internal static partial class Interop
         internal static extern int SetDiscoveryStateChangedCallback(DiscoveryStateChangedCallback discoveryChangedCb, IntPtr userData);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_unset_device_discovery_state_changed_cb")]
         internal static extern int UnsetDiscoveryStateChangedCallback();
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_passkey_confirmation_reply")]
+        internal static extern int PasskeyConfirmationReply(bool confirmationReply);
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_set_authentication_req_cb")]
+        internal static extern int SetAuthenticationRequestedCallback(AuthenticationRequestedCallback stateChangedCb, IntPtr userData);
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_unset_authentication_req_cb")]
+        internal static extern int UnsetAuthenticationRequestedCallback();
 
         //Bluetooth Device
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_device_create_bond")]

@@ -213,6 +213,38 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
+        /// The AuthenticationChanged event is raised when the Bluetooth adapter authentication is changed.
+        /// </summary>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
+        /// <since_tizen> 9 </since_tizen>
+        static public event EventHandler<AuthenticationRequestedEventArgs> AuthenticationChanged
+        {
+            add
+            {
+                try
+                {
+                    BluetoothAdapterImpl.Instance.AuthenticationChanged += value;
+                }
+                catch (TypeInitializationException e)
+                {
+                    throw e.InnerException;
+                }
+            }
+            remove
+            {
+                try
+                {
+                    BluetoothAdapterImpl.Instance.AuthenticationChanged -= value;
+                }
+                catch (TypeInitializationException e)
+                {
+                    throw e.InnerException;
+                }
+            }
+        }
+
+        /// <summary>
         /// The NameChanged event is raised when the Bluetooth adapter name is changed.
         /// </summary>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
