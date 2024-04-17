@@ -329,6 +329,11 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         FitWidth,
+        /// <summary>
+        /// The visual should not use fitting mode.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        DontCare,
     }
 
     /// <summary>
