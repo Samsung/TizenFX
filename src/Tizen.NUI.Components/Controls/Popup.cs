@@ -738,17 +738,21 @@ namespace Tizen.NUI.Components
                     ButtonHeight = (int)ppStyle.Buttons.SizeHeight;
                 }
 
-                buttonStyle = (ButtonStyle)ppStyle.Buttons?.Clone();
-                if (buttonStyle.PositionUsesPivotPoint == null) buttonStyle.PositionUsesPivotPoint = true;
-                if (buttonStyle.ParentOrigin == null) buttonStyle.ParentOrigin = Tizen.NUI.ParentOrigin.BottomLeft;
-                if (buttonStyle.PivotPoint == null) buttonStyle.PivotPoint = Tizen.NUI.PivotPoint.BottomLeft;
-
-                if (btGroup != null)
+                if (ppStyle.Buttons?.Clone() is ButtonStyle newButtonStyle)
                 {
-                    for (int i = 0; i < btGroup.Count; i++)
+                    buttonStyle = newButtonStyle;
+
+                    if (buttonStyle.PositionUsesPivotPoint == null) buttonStyle.PositionUsesPivotPoint = true;
+                    if (buttonStyle.ParentOrigin == null) buttonStyle.ParentOrigin = Tizen.NUI.ParentOrigin.BottomLeft;
+                    if (buttonStyle.PivotPoint == null) buttonStyle.PivotPoint = Tizen.NUI.PivotPoint.BottomLeft;
+
+                    if (btGroup != null)
                     {
-                        var button = GetButton(i);
-                        button.ApplyStyle(buttonStyle);
+                        for (int i = 0; i < btGroup.Count; i++)
+                        {
+                            var button = GetButton(i);
+                            button.ApplyStyle(buttonStyle);
+                        }
                     }
                 }
 
