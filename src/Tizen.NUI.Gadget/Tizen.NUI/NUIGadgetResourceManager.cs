@@ -93,6 +93,11 @@ namespace Tizen.NUI
             try
             {
                 var resourceManager = GetResourceManager(cultureInfo.Name);
+                if (resourceManager == null)
+                {
+                    resourceManager = GetResourceManager(cultureInfo.TwoLetterISOLanguageName);
+                }
+
                 if (resourceManager != null)
                 {
                     result = resourceManager.GetString(name, cultureInfo);
