@@ -99,10 +99,7 @@ namespace Tizen.NUI
             }
             set
             {
-                using (PropertyKey pKey = new PropertyKey(key))
-                {
-                    SetValue(pKey, value);
-                }
+                SetValue(key, value);
             }
         }
 
@@ -121,10 +118,7 @@ namespace Tizen.NUI
             }
             set
             {
-                using (PropertyKey pKey = new PropertyKey(key))
-                {
-                    SetValue(pKey, value);
-                }
+                SetValue(key, value);
             }
         }
 
@@ -278,6 +272,17 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Removes the element by the specified integer key.
+        /// </summary>
+        /// <param name="key">The index key to find.</param>
+        /// <returns>True if the element is removed, false otherwise.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Remove(int key)
+        {
+            return Interop.PropertyMap.Remove(SwigCPtr, key);
+        }
+
+        /// <summary>
         /// Determines whether the PropertyMap contains the specified key.
         /// </summary>
         /// <param name="key">The index key to find.</param>
@@ -416,7 +421,19 @@ namespace Tizen.NUI
             {
                 Interop.PropertyMap.SetValueStringKey(SwigCPtr, key.StringKey, PropertyValue.getCPtr(value));
             }
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        internal void SetValue(int key, PropertyValue value)
+        {
+            Interop.PropertyMap.SetValueIntKey(SwigCPtr, key, PropertyValue.getCPtr(value));
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        internal void SetValue(string key, PropertyValue value)
+        {
+            Interop.PropertyMap.SetValueStringKey(SwigCPtr, key, PropertyValue.getCPtr(value));
+            NDalicPINVOKE.ThrowExceptionIfExists();
         }
 
         /// This will not be public opened.
