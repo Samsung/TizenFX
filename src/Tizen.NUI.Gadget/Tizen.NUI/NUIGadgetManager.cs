@@ -193,6 +193,7 @@ namespace Tizen.NUI
                 if (info.NUIGadgetAssembly != null && info.NUIGadgetAssembly.IsLoaded)
                 {
                     info.NUIGadgetAssembly.Unload();
+                    info.NUIGadgetAssembly = null;
                 }
             }
         }
