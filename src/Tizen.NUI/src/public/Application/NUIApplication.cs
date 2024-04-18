@@ -33,6 +33,8 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class NUIApplication : CoreApplication
     {
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static public bool IsUsingXaml { get; set; } = true;
         /// <summary>
         /// The instance of ResourceManager.
         /// </summary>
