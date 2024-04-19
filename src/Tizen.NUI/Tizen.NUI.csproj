@@ -5,7 +5,7 @@
         <LangVersion>8.0</LangVersion>
     </PropertyGroup>
     <PropertyGroup>
-        <DefineConstants>$(DefineConstants);NUI_DEBUG_OFF</DefineConstants>
+        <DefineConstants>$(DefineConstants);NUI_DEBUG_OFF;REMOVE_READONLY_FOR_BINDABLE_PROPERTY;</DefineConstants>
     </PropertyGroup>
 
     <ItemGroup>
