@@ -17,7 +17,6 @@
 
 using global::System;
 using System.ComponentModel;
-using Tizen.NUI;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.BaseComponents
@@ -32,6 +31,8 @@ namespace Tizen.NUI.BaseComponents
 
         static AnimatedVectorImageView()
         {
+            //to get "IsUsingXaml" feature working at preload, we need to remove readonly for BindableProperty.
+            //this AnimatedVectorImageView is not preloaded.
             if (NUIApplication.IsUsingXaml)
             {
                 ResourceURLProperty = BindableProperty.Create(nameof(ResourceURL), typeof(string), typeof(AnimatedVectorImageView), string.Empty,
