@@ -52,7 +52,9 @@ namespace Tizen.NUI.Components
         {
             Layout = new AbsoluteLayout();
 
-            this.Relayout += OnRelayout;
+            Relayout += OnRelayout;
+            AddedToWindow += OnAddedToWindow;
+            RemovedFromWindow += OnRemovedFromWindow;
         }
 
         /// <summary>
@@ -92,6 +94,9 @@ namespace Tizen.NUI.Components
             {
                 return;
             }
+
+            AddedToWindow -= OnAddedToWindow;
+            RemovedFromWindow -= OnRemovedFromWindow;
 
             if (type == DisposeTypes.Explicit)
             {
@@ -159,7 +164,16 @@ namespace Tizen.NUI.Components
         {
             base.OnInitialize();
             AccessibilityRole = Role.Dialog;
+        }
+
+        private void OnAddedToWindow(object sender, EventArgs e)
+        {
             Show(); // calls RegisterDefaultLabel(); Hide() will call UnregisterDefaultLabel()
+        }
+
+        private void OnRemovedFromWindow(object sender, EventArgs e)
+        {
+            Hide();
         }
 
         /// <summary>
