@@ -20,6 +20,8 @@ using global::System.Runtime.InteropServices;
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Globalization;
+using Tizen.NUI;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -29,6 +31,22 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 7 </since_tizen>
     public partial class LottieAnimationView : ImageView
     {
+        static LottieAnimationView()
+        {
+            URLProperty = BindableProperty.Create(nameof(URL), typeof(string), typeof(Tizen.NUI.BaseComponents.LottieAnimationView), string.Empty, propertyChanged: SetInternalURLProperty, defaultValueCreator: GetInternalURLProperty);
+
+            CurrentFrameProperty = BindableProperty.Create(nameof(CurrentFrame), typeof(int), typeof(Tizen.NUI.BaseComponents.LottieAnimationView), 0, propertyChanged: SetInternalCurrentFrameProperty, defaultValueCreator: GetInternalCurrentFrameProperty);
+
+            LoopingModeProperty = BindableProperty.Create(nameof(LoopingMode), typeof(LoopingModeType), typeof(LottieAnimationView), default(LoopingModeType), propertyChanged: SetInternalLoopingModeProperty, defaultValueCreator: GetInternalLoopingModeProperty);
+
+            LoopCountProperty = BindableProperty.Create(nameof(LoopCount), typeof(int), typeof(Tizen.NUI.BaseComponents.LottieAnimationView), 0, propertyChanged: SetInternalLoopCountProperty, defaultValueCreator: GetInternalLoopCountProperty);
+
+            StopBehaviorProperty = BindableProperty.Create(nameof(StopBehavior), typeof(StopBehaviorType), typeof(LottieAnimationView), default(StopBehaviorType), propertyChanged: SetInternalStopBehaviorProperty, defaultValueCreator: GetInternalStopBehaviorProperty);
+                    
+            RedrawInScalingDownProperty = BindableProperty.Create(nameof(RedrawInScalingDown), typeof(bool), typeof(Tizen.NUI.BaseComponents.LottieAnimationView), false, propertyChanged: SetInternalRedrawInScalingDownProperty, defaultValueCreator: GetInternalRedrawInScalingDownProperty);
+
+            EnableFrameCacheProperty = BindableProperty.Create(nameof(EnableFrameCache), typeof(bool), typeof(Tizen.NUI.BaseComponents.LottieAnimationView), false, propertyChanged: SetInternalEnableFrameCacheProperty, defaultValueCreator: GetInternalEnableFrameCacheProperty);
+        }
 
         #region Constructor, Destructor, Dispose
         /// <summary>
@@ -123,11 +141,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return GetValue(URLProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(URLProperty) as string;
+                }
+                else
+                {
+                    return GetInternalURLProperty(this) as string;
+                }
             }
             set
             {
-                SetValue(URLProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(URLProperty, value);
+                }
+                else
+                {
+                    SetInternalURLProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -349,11 +381,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (int)GetValue(CurrentFrameProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (int)GetValue(CurrentFrameProperty);
+                }
+                else
+                {
+                    return (int) GetInternalCurrentFrameProperty(this);
+                }
             }
             set
             {
-                SetValue(CurrentFrameProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(CurrentFrameProperty, value);
+                }
+                else
+                {
+                    SetInternalCurrentFrameProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -385,11 +431,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (LoopingModeType)GetValue(LoopingModeProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (LoopingModeType)GetValue(LoopingModeProperty);
+                }
+                else
+                {
+                    return (LoopingModeType)GetInternalLoopingModeProperty(this);
+                }
             }
             set
             {
-                SetValue(LoopingModeProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(LoopingModeProperty, value);
+                }
+                else
+                {
+                    SetInternalLoopingModeProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -438,11 +498,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (int)GetValue(LoopCountProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (int)GetValue(LoopCountProperty);
+                }
+                else
+                {
+                    return (int)GetInternalLoopCountProperty(this);
+                }
             }
             set
             {
-                SetValue(LoopCountProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(LoopCountProperty, value);
+                }
+                else
+                {
+                    SetInternalLoopCountProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -476,11 +550,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (StopBehaviorType)GetValue(StopBehaviorProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (StopBehaviorType)GetValue(StopBehaviorProperty);
+                }
+                else
+                {
+                    return (StopBehaviorType)GetInternalStopBehaviorProperty(this);
+                }
             }
             set
             {
-                SetValue(StopBehaviorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(StopBehaviorProperty, value);
+                }
+                else
+                {
+                    SetInternalStopBehaviorProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -518,11 +606,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(RedrawInScalingDownProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(RedrawInScalingDownProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalRedrawInScalingDownProperty(this);
+                }
             }
             set
             {
-                SetValue(RedrawInScalingDownProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(RedrawInScalingDownProperty, value);
+                }
+                else
+                {
+                    SetInternalRedrawInScalingDownProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -554,11 +656,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(EnableFrameCacheProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(EnableFrameCacheProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalEnableFrameCacheProperty(this);
+                }
             }
             set
             {
-                SetValue(EnableFrameCacheProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(EnableFrameCacheProperty, value);
+                }
+                else
+                {
+                    SetInternalEnableFrameCacheProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
