@@ -17,6 +17,7 @@
 
 using global::System;
 using System.ComponentModel;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -27,6 +28,30 @@ namespace Tizen.NUI.BaseComponents
     public partial class AnimatedVectorImageView : LottieAnimationView
     {
         #region Constructor, Destructor, Dispose
+
+        static AnimatedVectorImageView()
+        {
+            //to get "IsUsingXaml" feature working at preload, we need to remove readonly for BindableProperty.
+            //this AnimatedVectorImageView is not preloaded.
+            if (NUIApplication.IsUsingXaml)
+            {
+                ResourceURLProperty = BindableProperty.Create(nameof(ResourceURL), typeof(string), typeof(AnimatedVectorImageView), string.Empty,
+                    propertyChanged: SetInternalResourceURLProperty, defaultValueCreator: GetInternalResourceURLProperty);
+
+                ResourceUrlProperty = BindableProperty.Create(nameof(ResourceUrl), typeof(string), typeof(AnimatedVectorImageView), string.Empty,
+                    propertyChanged: SetInternalResourceUrlProperty, defaultValueCreator: GetInternalResourceUrlProperty);
+
+                RepeatCountProperty = BindableProperty.Create(nameof(RepeatCount), typeof(int), typeof(AnimatedVectorImageView), 0,
+                    propertyChanged: SetInternalRepeatCountProperty, defaultValueCreator: GetInternalRepeatCountProperty);
+
+                CurrentFrameProperty = BindableProperty.Create(nameof(CurrentFrame), typeof(int), typeof(AnimatedVectorImageView), 0,
+                    propertyChanged: SetInternalCurrentFrameProperty, defaultValueCreator: GetInternalCurrentFrameProperty);
+
+                RepeatModeProperty = BindableProperty.Create(nameof(RepeatMode), typeof(RepeatModes), typeof(AnimatedVectorImageView), default(RepeatModes),
+                    propertyChanged: SetInternalRepeatModeProperty, defaultValueCreator: GetInternalRepeatModeProperty);
+            }
+        }
+
         /// <summary>
         /// Construct VectorAnimationView.
         /// </summary>
@@ -80,11 +105,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return GetValue(ResourceURLProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ResourceURLProperty) as string;
+                }
+                else
+                {
+                    return GetInternalResourceURLProperty(this) as string;
+                }
             }
             set
             {
-                SetValue(ResourceURLProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ResourceURLProperty, value);
+                }
+                else
+                {
+                    SetInternalResourceURLProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -117,11 +156,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return GetValue(ResourceUrlProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ResourceUrlProperty) as string;
+                }
+                else
+                {
+                    return GetInternalResourceUrlProperty(this) as string;
+                }
             }
             set
             {
-                SetValue(ResourceUrlProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ResourceUrlProperty, value);
+                }
+                else
+                {
+                    SetInternalResourceUrlProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -154,11 +207,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (int)GetValue(RepeatCountProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (int)GetValue(RepeatCountProperty);
+                }
+                else
+                {
+                    return (int)GetInternalRepeatCountProperty(this);
+                }
             }
             set
             {
-                SetValue(RepeatCountProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(RepeatCountProperty, value);
+                }
+                else
+                {
+                    SetInternalRepeatCountProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -201,11 +268,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (int)GetValue(CurrentFrameProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (int)GetValue(CurrentFrameProperty);
+                }
+                else
+                {
+                    return (int)GetInternalCurrentFrameProperty(this);
+                }
             }
             set
             {
-                SetValue(CurrentFrameProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(CurrentFrameProperty, value);
+                }
+                else
+                {
+                    SetInternalCurrentFrameProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -245,11 +326,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (RepeatModes)GetValue(RepeatModeProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (RepeatModes)GetValue(RepeatModeProperty);
+                }
+                else
+                {
+                    return (RepeatModes)GetInternalRepeatModeProperty(this);
+                }
             }
             set
             {
-                SetValue(RepeatModeProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(RepeatModeProperty, value);
+                }
+                else
+                {
+                    SetInternalRepeatModeProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
