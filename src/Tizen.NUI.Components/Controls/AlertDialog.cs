@@ -79,6 +79,9 @@ namespace Tizen.NUI.Components
                 return;
             }
 
+            AddedToWindow -= OnAddedToWindow;
+            RemovedFromWindow -= OnRemovedFromWindow;
+
             if (type == DisposeTypes.Explicit)
             {
                 if (titleContent != null)
@@ -461,7 +464,14 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override string AccessibilityGetDescription()
         {
-            return Message;
+            if (!String.IsNullOrEmpty(Title))
+            {
+                return Message;
+            }
+            else
+            {
+                return "";
+            }
         }
 
         /// <summary>
@@ -472,8 +482,18 @@ namespace Tizen.NUI.Components
         {
             base.OnInitialize();
             AccessibilityRole = Role.Dialog;
+        }
+
+        private void OnAddedToWindow(object sender, EventArgs e)
+        {
             Show(); // calls RegisterDefaultLabel(); Hide() will call UnregisterDefaultLabel()
         }
+
+        private void OnRemovedFromWindow(object sender, EventArgs e)
+        {
+            Hide();
+        }
+
 
         /// <summary>
         /// Informs AT-SPI bridge about the set of AT-SPI states associated with this object.
@@ -558,7 +578,9 @@ namespace Tizen.NUI.Components
                 linearLayout.CellPadding = new Size2D(alertDialogStyle.ItemSpacing.Width, alertDialogStyle.ItemSpacing.Height);
             }
 
-            this.Relayout += OnRelayout;
+            Relayout += OnRelayout;
+            AddedToWindow += OnAddedToWindow;
+            RemovedFromWindow += OnRemovedFromWindow;
 
             TitleContent = DefaultTitleContent;
 
