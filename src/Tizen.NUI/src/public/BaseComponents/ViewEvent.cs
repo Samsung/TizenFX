@@ -1042,7 +1042,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnResourcesLoaded(IntPtr view)
         {
-            if(!CheckResourceReady())
+            if (!CheckResourceReady())
             {
                 return;
             }
@@ -1376,11 +1376,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Offset)GetValue(TouchAreaOffsetProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (Offset)GetValue(TouchAreaOffsetProperty);
+                }
+                else
+                {
+                    return (Offset)GetInternalTouchAreaOffsetProperty(this);
+                }
             }
             set
             {
-                SetValue(TouchAreaOffsetProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TouchAreaOffsetProperty, value);
+                }
+                else
+                {
+                    SetInternalTouchAreaOffsetProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1412,11 +1426,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(DispatchKeyEventsProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(DispatchKeyEventsProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalDispatchKeyEventsProperty(this);
+                }
             }
             set
             {
-                SetValue(DispatchKeyEventsProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(DispatchKeyEventsProperty, value);
+                }
+                else
+                {
+                    SetInternalDispatchKeyEventsProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1747,11 +1775,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(DispatchTouchMotionProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(DispatchTouchMotionProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalDispatchTouchMotionProperty(this);
+                }
             }
             set
             {
-                SetValue(DispatchTouchMotionProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(DispatchTouchMotionProperty, value);
+                }
+                else
+                {
+                    SetInternalDispatchTouchMotionProperty(this, null, value);
+                }
             }
         }
 
@@ -1777,11 +1819,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(DispatchHoverMotionProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(DispatchHoverMotionProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalDispatchHoverMotionProperty(this);
+                }
             }
             set
             {
-                SetValue(DispatchHoverMotionProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(DispatchHoverMotionProperty, value);
+                }
+                else
+                {
+                    SetInternalDispatchHoverMotionProperty(this, null, value);
+                }
             }
         }
 
