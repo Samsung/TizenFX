@@ -35,14 +35,15 @@ namespace Tizen.NUI
     {
         /// <summary>
         /// Set to true if XAML is used. 
-        /// This must be called before or immediately after the NUIWidgetApplication constructor is called.
+        /// This must be called before or immediately after the NUIApplication constructor is called.
         /// The default value is true.
         /// </summary>
         /// <remarks>
-        /// This must be called before or immediately after the NUIWidgetApplication constructor is called.
+        /// This must be called before or immediately after the NUIApplication constructor is called.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         static public bool IsUsingXaml { get; set; } = true;
+
         /// <summary>
         /// The instance of ResourceManager.
         /// </summary>
