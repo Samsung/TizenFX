@@ -95,6 +95,17 @@ namespace Tizen.NUI
             core?.AddWidgetInfo(widgetTypes);
         }
 
+        /// <summary>
+        /// Set to true if XAML is used. 
+        /// This must be called before or immediately after the NUIWidgetApplication constructor is called.
+        /// The default value is true.
+        /// </summary>
+        /// <remarks>
+        /// This must be called before or immediately after the NUIWidgetApplication constructor is called.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static public bool IsUsingXaml { get; set; } = true;
+
         internal WidgetApplication ApplicationHandle
         {
             get
