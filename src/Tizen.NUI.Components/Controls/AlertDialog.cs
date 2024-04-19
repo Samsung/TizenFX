@@ -461,7 +461,14 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override string AccessibilityGetDescription()
         {
-            return Message;
+            if (!String.IsNullOrEmpty(Title))
+            {
+                return Message;
+            }
+            else
+            {
+                return "";
+            }
         }
 
         /// <summary>
@@ -472,7 +479,18 @@ namespace Tizen.NUI.Components
         {
             base.OnInitialize();
             AccessibilityRole = Role.Dialog;
+        }
+
+        public override void OnSceneConnection(int depth)
+        {
+            base.OnSceneConnection(depth);
             Show(); // calls RegisterDefaultLabel(); Hide() will call UnregisterDefaultLabel()
+        }
+
+        public override void OnSceneDisconnection()
+        {
+            base.OnSceneDisconnection();
+            Hide();
         }
 
         /// <summary>
