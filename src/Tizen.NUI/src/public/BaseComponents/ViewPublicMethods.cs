@@ -70,11 +70,19 @@ namespace Tizen.NUI.BaseComponents
         public Animation AnimateColor(string targetVisual, object destinationColor, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialColor = null)
         {
             Animation animation = null;
+#if OBJECT_POOL
+            using (PropertyMap animator = ObjectPool.NewPropertyMap())
+            using (PropertyMap timePeriod = ObjectPool.NewPropertyMap())
+            using (PropertyValue pvDuration = new PropertyValue((endTime - startTime) / 1000.0f))
+            using (PropertyValue pvDelay = new PropertyValue(startTime / 1000.0f))
+            using (PropertyMap transition = ObjectPool.NewPropertyMap())
+#else
             using (PropertyMap animator = new PropertyMap())
             using (PropertyMap timePeriod = new PropertyMap())
             using (PropertyValue pvDuration = new PropertyValue((endTime - startTime) / 1000.0f))
             using (PropertyValue pvDelay = new PropertyValue(startTime / 1000.0f))
             using (PropertyMap transition = new PropertyMap())
+#endif
             using (PropertyValue pvTarget = new PropertyValue(targetVisual))
             using (PropertyValue pvProperty = new PropertyValue("mixColor"))
             using (PropertyValue destValue = PropertyValue.CreateFromObject(destinationColor))

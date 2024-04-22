@@ -559,7 +559,11 @@ namespace Tizen.NUI
             set
             {
                 arrowImage = value;
+#if OBJECT_POOL
+                using PropertyMap ptMap = ObjectPool.NewPropertyMap();
+#else
                 var ptMap = new PropertyMap();
+#endif
                 var temp = new PropertyValue((int)Visual.Type.Image);
                 ptMap.Add(Visual.Property.Type, temp);
                 temp.Dispose();
@@ -611,7 +615,11 @@ namespace Tizen.NUI
             arrowVisualPropertyIndex = RegisterProperty("ArrowImage", temp, Tizen.NUI.PropertyAccessMode.ReadWrite);
             temp.Dispose();
 
+#if OBJECT_POOL
+            using PropertyMap ptMap = ObjectPool.NewPropertyMap();
+#else
             var ptMap = new PropertyMap();
+#endif
             temp = new PropertyValue((int)Visual.Type.Image);
             ptMap.Add(Visual.Property.Type, temp);
             temp.Dispose();

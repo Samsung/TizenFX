@@ -296,7 +296,11 @@ namespace Tizen.NUI
         {
             /* Create Property buffer */
             PropertyValue value = new PropertyValue((int)PropertyType.Vector2);
+#if OBJECT_POOL
+            using PropertyMap vertexFormat = ObjectPool.NewPropertyMap();
+#else
             PropertyMap vertexFormat = new PropertyMap();
+#endif
             vertexFormat.Add("aPosition", value);
 
             PropertyBuffer vertexBuffer = new PropertyBuffer(vertexFormat);

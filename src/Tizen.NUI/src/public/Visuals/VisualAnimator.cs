@@ -142,12 +142,20 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override void ComposingPropertyMap()
         {
+#if OBJECT_POOL
+            using PropertyMap animator = ObjectPool.NewPropertyMap();
+#else
             PropertyMap animator = new PropertyMap();
+#endif
             PropertyValue temp = new PropertyValue(alphaFunction);
             animator.Add("alphaFunction", temp);
             temp.Dispose();
 
+#if OBJECT_POOL
+            using PropertyMap timePeriod = ObjectPool.NewPropertyMap();
+#else
             PropertyMap timePeriod = new PropertyMap();
+#endif
             temp = new PropertyValue((endTime - startTime) / 1000.0f);
             timePeriod.Add("duration", temp);
             temp.Dispose();

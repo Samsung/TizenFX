@@ -598,7 +598,11 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+#if OBJECT_POOL
+                using (PropertyMap map = ObjectPool.NewPropertyMap())
+#else
                 using (var map = new PropertyMap())
+#endif
                 {
                     map.Add("offset", value);
                     var shadowMap = Shadow;
@@ -651,7 +655,11 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+#if OBJECT_POOL
+                using (PropertyMap map = ObjectPool.NewPropertyMap())
+#else
                 using (var map = new PropertyMap())
+#endif
                 {
                     map.Add("color", value);
                     var shadowMap = Shadow;
@@ -2079,7 +2087,11 @@ namespace Tizen.NUI.BaseComponents
         {
             InputFilter inputFilter;
             using (var propertyValue = GetProperty(TextField.Property.InputFilter))
+#if OBJECT_POOL
+            using (PropertyMap map = ObjectPool.NewPropertyMap())
+#else
             using (var map = new PropertyMap())
+#endif
             {
                 propertyValue.Get(map);
                 inputFilter = TextMapHelper.GetInputFilterStruct(map);
@@ -2126,7 +2138,11 @@ namespace Tizen.NUI.BaseComponents
         {
             Strikethrough strikethrough;
             using (var propertyValue = GetProperty(TextField.Property.Strikethrough))
+#if OBJECT_POOL
+            using (PropertyMap map = ObjectPool.NewPropertyMap())
+#else
             using (var map = new PropertyMap())
+#endif
             {
                 propertyValue.Get(map);
                 strikethrough = TextMapHelper.GetStrikethroughStruct(map);
@@ -2197,7 +2213,11 @@ namespace Tizen.NUI.BaseComponents
                 if (TextMapHelper.IsValue(map, 4))
                 {
                     using (var properyValue = map.Find(4))
+#if OBJECT_POOL
+                    using (PropertyMap fontStyle = ObjectPool.NewPropertyMap())
+#else
                     using (var fontStyle = new PropertyMap())
+#endif
                     {
                         properyValue.Get(fontStyle);
                         using (var fontStyleValue = new PropertyValue(fontStyle))
@@ -2674,7 +2694,7 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
         }
-        
+
         private void RemoveSystemSettingsFontTypeChanged()
         {
             if (hasSystemFontTypeChanged)

@@ -780,12 +780,13 @@ namespace Tizen.NUI.BaseComponents
                 NUILog.Error("keyEvent should not be null!");
                 return true;
             }
-
+#if OBJECT_POOL
+            using var e = ObjectPool.NewKeyEventArgs(keyEvent);
+#else
             KeyEventArgs e = new KeyEventArgs();
-
-            bool result = false;
-
             e.Key = Tizen.NUI.Key.GetKeyFromPtr(keyEvent);
+#endif
+            bool result = false;
 
             if (keyEventHandler != null)
             {

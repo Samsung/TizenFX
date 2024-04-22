@@ -2156,7 +2156,11 @@ namespace Tizen.NUI.BaseComponents
         private void UpdateImageMap()
         {
             // Note : We can't use ImageView.Image property here. Because That property call UpdateImage internally.
+#if OBJECT_POOL
+            using (PropertyMap imageMap = ObjectPool.NewPropertyMap())
+#else
             using (PropertyMap imageMap = new PropertyMap())
+#endif
             {
                 using (PropertyValue returnValue = Tizen.NUI.Object.GetProperty(SwigCPtr, ImageView.Property.IMAGE))
                 {

@@ -67,9 +67,11 @@ namespace Tizen.NUI
                 // No transform map
                 return;
             }
-
+#if OBJECT_POOL
+            using PropertyMap transformMap = ObjectPool.NewPropertyMap();
+#else
             var transformMap = new PropertyMap();
-
+#endif
             if (transformProperty.Get(transformMap))
             {
                 SetTransformMap(transformMap);
@@ -186,8 +188,11 @@ namespace Tizen.NUI
 
         private PropertyValue GetTransformMap()
         {
+#if OBJECT_POOL
+            using PropertyMap transformMap = ObjectPool.NewPropertyMap();
+#else
             var transformMap = new PropertyMap();
-
+#endif
             if (!noOffset.Equals(Offset))
             {
                 var temp = new Vector2((int)VisualTransformPolicyType.Absolute, (int)VisualTransformPolicyType.Absolute);

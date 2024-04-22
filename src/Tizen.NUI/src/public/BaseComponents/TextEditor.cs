@@ -2876,7 +2876,11 @@ namespace Tizen.NUI.BaseComponents
         {
             InputFilter inputFilter;
             using (var propertyValue = GetProperty(TextEditor.Property.InputFilter))
+#if OBJECT_POOL
+            using (var map = ObjectPool.NewPropertyMap())
+#else
             using (var map = new PropertyMap())
+#endif
             {
                 propertyValue.Get(map);
                 inputFilter = TextMapHelper.GetInputFilterStruct(map);
@@ -2923,7 +2927,11 @@ namespace Tizen.NUI.BaseComponents
         {
             Strikethrough strikethrough;
             using (var propertyValue = GetProperty(TextEditor.Property.Strikethrough))
+#if OBJECT_POOL
+            using (var map = ObjectPool.NewPropertyMap())
+#else
             using (var map = new PropertyMap())
+#endif
             {
                 propertyValue.Get(map);
                 strikethrough = TextMapHelper.GetStrikethroughStruct(map);
@@ -3002,7 +3010,11 @@ namespace Tizen.NUI.BaseComponents
                 if (TextMapHelper.IsValue(map, 4))
                 {
                     using (var properyValue = map.Find(4))
+#if OBJECT_POOL
+                    using (var fontStyle = ObjectPool.NewPropertyMap())
+#else
                     using (var fontStyle = new PropertyMap())
+#endif
                     {
                         properyValue.Get(fontStyle);
                         using (var fontStyleValue = new PropertyValue(fontStyle))
