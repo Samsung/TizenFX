@@ -61,7 +61,11 @@ namespace Tizen.NUI.BaseComponents
                     PropertyValue urlValue = map.Find(NDalic.ImageVisualUrl);
                     bool ret = false;
                     if (urlValue != null) ret = urlValue.Get(out url);
+#if OBJECT_POOL
+                    using PropertyMap mmap = ObjectPool.NewPropertyMap();
+#else
                     PropertyMap mmap = new PropertyMap();
+#endif
                     if (ret && url.StartsWith("*Resource*"))
                     {
                         url = url.Replace("*Resource*", resource);

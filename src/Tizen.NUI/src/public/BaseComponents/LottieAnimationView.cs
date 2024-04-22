@@ -168,7 +168,11 @@ namespace Tizen.NUI.BaseComponents
                 NUILog.Debug($"<[{GetId()}]SET url={currentStates.url}");
 
                 // TODO : Could create new Image without additional creation?
+#if OBJECT_POOL
+                using PropertyMap map = ObjectPool.NewPropertyMap();
+#else
                 using PropertyMap map = new PropertyMap();
+#endif
                 using PropertyValue type = new PropertyValue((int)Visual.Type.AnimatedVectorImage);
                 using PropertyValue url = new PropertyValue(currentStates.url);
                 using PropertyValue loopCnt = new PropertyValue(currentStates.loopCount);
@@ -668,7 +672,11 @@ namespace Tizen.NUI.BaseComponents
                 if (TotalFrame > 0) // Check whether image file loaded successfuly.
                 {
                     PropertyValue val = imageMap.Find(ImageVisualProperty.ContentInfo);
+#if OBJECT_POOL
+                    PropertyMap contentMap = ObjectPool.NewPropertyMap();
+#else
                     PropertyMap contentMap = new PropertyMap();
+#endif
                     if (val?.Get(ref contentMap) == true)
                     {
                         currentStates.contentInfo = new List<Tuple<string, int, int>>();

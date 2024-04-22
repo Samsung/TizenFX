@@ -168,7 +168,11 @@ namespace Tizen.NUI
         {
             if (headers == null)
                 return false;
+#if OBJECT_POOL
+            using PropertyMap headerMap = ObjectPool.NewPropertyMap();
+#else
             PropertyMap headerMap = new PropertyMap();
+#endif
             foreach (KeyValuePair<string, string> kvp in headers)
             {
                 using (PropertyValue value = new PropertyValue(kvp.Value))

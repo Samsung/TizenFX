@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -333,5 +334,53 @@ namespace Tizen.NUI
         {
             Interop.Key.DeleteKey(swigCPtr);
         }
+
+#if OBJECT_POOL
+        //static private int cnt;
+        static internal int curNum;
+        internal int id;
+        internal static Dictionary<IntPtr, Key> keyList = new Dictionary<IntPtr, Key>();
+        private const int MAX_LIST_COUNT = 100;
+        private const float DISPOSE_RATIO = 0.3f;
+        //private static bool blockingDispose = true;
+
+        internal static Key NewKey(IntPtr cPtr)
+        {
+            if (keyList.TryGetValue(cPtr, out Key existKey) && existKey != null)
+            {
+                //already existed. nothing to do.
+                return existKey;
+            }
+            else
+            {
+                if (keyList.Count > MAX_LIST_COUNT)
+                {
+                    //Tizen.Log.Fatal("NT", $"keyList.Count={keyList.Count}, MAX_LIST_COUNT={MAX_LIST_COUNT}, dispose START!");
+                    var cnt = 0;
+                    //blockingDispose = false;
+                    foreach (KeyValuePair<IntPtr, Key> item in keyList)
+                    {
+                        keyList.Remove(item.Key);
+                        item.Value.Dispose();
+                        if (++cnt > MAX_LIST_COUNT * DISPOSE_RATIO)
+                        { 
+                            break;
+                        }
+                    }
+                    //keyList.Clear();
+                    //blockingDispose = true;
+                    //Tizen.Log.Fatal("NT", $"keyList.Count={keyList.Count}, dispose END!");
+                }
+
+                Key ret = new Key(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                keyList.Add(cPtr, ret);
+                return ret;
+            }
+        }
+
+#endif
+
     }
 }

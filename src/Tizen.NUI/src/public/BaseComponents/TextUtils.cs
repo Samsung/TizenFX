@@ -1098,7 +1098,11 @@ namespace Tizen.NUI.BaseComponents
             {
                 for (uint i = 0 ; i < fontArray.Count(); i ++)
                 {
+#if OBJECT_POOL
+                    using (PropertyMap fontInfoMap = ObjectPool.NewPropertyMap())
+#else
                     using (var fontInfoMap = new PropertyMap())
+#endif
                     using (var propertyValue = fontArray[i])
                     {
                         propertyValue.Get(fontInfoMap);

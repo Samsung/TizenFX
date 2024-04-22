@@ -523,7 +523,11 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+#if OBJECT_POOL
+                using (PropertyMap map = ObjectPool.NewPropertyMap())
+#else
                 using (var map = new PropertyMap())
+#endif
                 {
                     map.Add("offset", value);
 
@@ -579,7 +583,11 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+#if OBJECT_POOL
+                using (PropertyMap map = ObjectPool.NewPropertyMap())
+#else
                 using (var map = new PropertyMap())
+#endif
                 {
                     map.Add("color", value);
                     var shadowMap = Shadow;
@@ -627,7 +635,11 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+#if OBJECT_POOL
+                using (PropertyMap map = ObjectPool.NewPropertyMap())
+#else
                 using (var map = new PropertyMap())
+#endif
                 {
                     map.Add("enable", value);
                     var undelineMap = Underline;
@@ -681,7 +693,11 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+#if OBJECT_POOL
+                using (PropertyMap map = ObjectPool.NewPropertyMap())
+#else
                 using (var map = new PropertyMap())
+#endif
                 {
                     map.Add("color", value);
                     var undelineMap = Underline;
@@ -729,7 +745,11 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+#if OBJECT_POOL
+                using (PropertyMap map = ObjectPool.NewPropertyMap())
+#else
                 using (var map = new PropertyMap())
+#endif
                 {
                     map.Add("height", value);
                     var undelineMap = Underline;
@@ -1146,7 +1166,11 @@ namespace Tizen.NUI.BaseComponents
         {
             Strikethrough strikethrough;
             using (var propertyValue = GetProperty(TextLabel.Property.Strikethrough))
+#if OBJECT_POOL
+            using (PropertyMap map = ObjectPool.NewPropertyMap())
+#else
             using (var map = new PropertyMap())
+#endif
             {
                 propertyValue.Get(map);
                 strikethrough = TextMapHelper.GetStrikethroughStruct(map);

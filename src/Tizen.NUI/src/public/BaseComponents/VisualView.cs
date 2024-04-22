@@ -251,12 +251,21 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (item.Value == target.Name)
                 {
+#if OBJECT_POOL
+                    using (PropertyMap animator = ObjectPool.NewPropertyMap())
+                    using (PropertyMap timePeriod = ObjectPool.NewPropertyMap())
+                    using (PropertyValue pvDuration = new PropertyValue((endTime - startTime) / 1000.0f))
+                    using (PropertyValue pvDelay = new PropertyValue(startTime / 1000.0f))
+                    using (PropertyValue destVal = PropertyValue.CreateFromObject(destinationValue))
+                    using (PropertyMap transition = ObjectPool.NewPropertyMap())
+#else
                     using (PropertyMap animator = new PropertyMap())
                     using (PropertyMap timePeriod = new PropertyMap())
                     using (PropertyValue pvDuration = new PropertyValue((endTime - startTime) / 1000.0f))
                     using (PropertyValue pvDelay = new PropertyValue(startTime / 1000.0f))
                     using (PropertyValue destVal = PropertyValue.CreateFromObject(destinationValue))
                     using (PropertyMap transition = new PropertyMap())
+#endif
                     using (PropertyValue pvTarget = new PropertyValue(target.Name))
                     {
                         if (strAlpha != null)
@@ -333,12 +342,21 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (item.Value == target.Name)
                 {
+#if OBJECT_POOL
+                    using (PropertyMap animator = ObjectPool.NewPropertyMap())
+                    using (PropertyMap timePeriod = ObjectPool.NewPropertyMap())
+                    using (PropertyValue pvDuration = new PropertyValue((endTime - startTime) / 1000.0f))
+                    using (PropertyValue pvDelay = new PropertyValue(startTime / 1000.0f))
+                    using (PropertyValue destVal = PropertyValue.CreateFromObject(destinationValue))
+                    using (PropertyMap transition = ObjectPool.NewPropertyMap())
+#else
                     using (PropertyMap animator = new PropertyMap())
                     using (PropertyMap timePeriod = new PropertyMap())
                     using (PropertyValue pvDuration = new PropertyValue((endTime - startTime) / 1000.0f))
                     using (PropertyValue pvDelay = new PropertyValue(startTime / 1000.0f))
                     using (PropertyValue destVal = PropertyValue.CreateFromObject(destinationValue))
                     using (PropertyMap transition = new PropertyMap())
+#endif
                     using (PropertyValue pvTarget = new PropertyValue(target.Name))
                     {
                         if (strAlpha != null)

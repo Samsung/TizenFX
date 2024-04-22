@@ -971,13 +971,21 @@ namespace Tizen.NUI.BaseComponents
             {
                 using (var propertyValue = GetProperty(Property.TOOLTIP))
                 {
+#if OBJECT_POOL
+                    using PropertyMap propertyMap = ObjectPool.NewPropertyMap();
+#else
                     using var propertyMap = new PropertyMap();
+#endif
                     if (propertyValue != null && propertyValue.Get(propertyMap))
                     {
                         using var retrivedContentValue = propertyMap?.Find(NDalic.TooltipContent);
                         if (retrivedContentValue != null)
                         {
+#if OBJECT_POOL
+                            using PropertyMap contextPropertyMap = ObjectPool.NewPropertyMap();
+#else
                             using var contextPropertyMap = new PropertyMap();
+#endif
                             if (retrivedContentValue.Get(contextPropertyMap))
                             {
                                 using var retrivedTextValue = contextPropertyMap?.Find(NDalic.TextVisualText);

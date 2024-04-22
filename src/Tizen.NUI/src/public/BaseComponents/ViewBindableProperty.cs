@@ -2349,8 +2349,11 @@ namespace Tizen.NUI.BaseComponents
 
             // Sync as current properties
             view.UpdateBackgroundExtraData();
-
+#if OBJECT_POOL
+            using PropertyMap map = ObjectPool.NewPropertyMap();
+#else
             PropertyMap map = new PropertyMap();
+#endif
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SHADOW).Get(map);
 
             var shadow = new ImageShadow(map);
@@ -2383,8 +2386,11 @@ namespace Tizen.NUI.BaseComponents
 
             // Sync as current properties
             view.UpdateBackgroundExtraData();
-
+#if OBJECT_POOL
+            using PropertyMap map = ObjectPool.NewPropertyMap();
+#else
             PropertyMap map = new PropertyMap();
+#endif
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SHADOW).Get(map);
 
             var shadow = new Shadow(map);
@@ -3162,7 +3168,11 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
+#if OBJECT_POOL
+            using PropertyMap map = ObjectPool.NewPropertyMap();
+#else
             var map = new PropertyMap();
+#endif
             var url = new PropertyValue(value);
             var cornerRadiusValue = backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius);
             var cornerRadius = new PropertyValue(cornerRadiusValue);
@@ -3277,8 +3287,11 @@ namespace Tizen.NUI.BaseComponents
                 Object.InternalSetPropertyVector4(SwigCPtr, View.Property.BACKGROUND, ((Color)value).SwigCPtr);
                 return;
             }
-
+#if OBJECT_POOL
+            using PropertyMap map = ObjectPool.NewPropertyMap();
+#else
             var map = new PropertyMap();
+#endif
             var colorType = new PropertyValue((int)Visual.Type.Color);
             var mixColor = new PropertyValue(value);
             var cornerRadiusValue = backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius);

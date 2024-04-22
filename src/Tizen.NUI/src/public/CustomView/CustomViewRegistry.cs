@@ -508,7 +508,11 @@ namespace Tizen.NUI
                 }
                 else if (type.Equals(typeof(PropertyMap)))
                 {
+#if OBJECT_POOL
+                    using PropertyMap map = ObjectPool.NewPropertyMap();
+#else
                     PropertyMap map = new PropertyMap();
+#endif
                     ok = propValue.Get(map);
                     if (ok)
                     {
