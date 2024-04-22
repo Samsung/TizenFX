@@ -393,6 +393,15 @@ namespace Tizen.NUI
 
             Log.Info("NUI", $"NUICorebackend OnPreCreated Called IsUsingXaml={NUIApplication.IsUsingXaml}");
 
+#if TEST1
+            var id = Tizen.Applications.Application.Current.ApplicationInfo.ApplicationId;
+            if(id == "com.samsung.tv.csfs")
+            {
+                NUIApplication.IsUsingXaml = NUIApplication.flagIsUsingXamlOnlyForCsfs;
+            }
+            Tizen.Log.Fatal("NT", $"TEST1 id={id} IsUsingXaml={NUIApplication.IsUsingXaml} flagIsUsingXamlOnlyForCsfs={NUIApplication.flagIsUsingXamlOnlyForCsfs}");
+#endif
+
 #if REMOVE_READONLY_FOR_BINDABLE_PROPERTY
             if(NUIApplication.IsUsingXaml)
             {

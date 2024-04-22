@@ -24,6 +24,9 @@ using Tizen.Applications;
 using Tizen.Applications.CoreBackend;
 using Tizen.NUI.Xaml;
 using Tizen.NUI.BaseComponents;
+#if TEST1
+using System.IO;
+#endif
 
 namespace Tizen.NUI
 {
@@ -52,8 +55,72 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void XamlLoadedHandler(string xamlName);
 
+#if TEST1
+        static internal bool flagIsUsingXamlOnlyForCsfs = true;
+#endif
         static NUIApplication()
         {
+#if TEST1
+            string filePath = "/opt/usr/TEST1";
+            if(File.Exists(filePath))
+            {
+                string fileContent = File.ReadAllText(filePath);
+
+                if(fileContent.Contains("XAML_ON"))
+                {
+                    IsUsingXaml = true;
+                    Tizen.Log.Fatal("NT", $"NUIApplication cctor IsUsingXaml = true");
+                }
+                else if (fileContent.Contains("XAML_OFF"))
+                {
+                    IsUsingXaml = false;
+                    Tizen.Log.Fatal("NT", $"NUIApplication cctor IsUsingXaml = false");
+                }
+                else
+                {
+                    Tizen.Log.Fatal("NT", $"NUIApplication cctor IsUsingXaml ERROR!");
+                    throw new Exception("xaml flag wrong!");
+                }
+
+                if(fileContent.Contains("ONLY_FOR_CSFS_XAML_ON"))
+                {
+                    flagIsUsingXamlOnlyForCsfs = true;
+                    Tizen.Log.Fatal("NT", $"only for csfs IsUsingXaml = true");
+                }
+                else if (fileContent.Contains("ONLY_FOR_CSFS_XAML_OFF"))
+                {
+                    flagIsUsingXamlOnlyForCsfs = false;
+                    Tizen.Log.Fatal("NT", $"only for csfs IsUsingXaml = false");
+                }
+                else
+                {
+                    Tizen.Log.Fatal("NT", $"only for csfs IsUsingXaml Wrong!");
+                    throw new Exception("only for csfs xaml flag wrong!");
+                }
+
+                // if(fileContent.Contains("OBJECT_POOL_ON"))
+                // {
+                //     Tizen.Log.Fatal("NT", $"NUIApplication cctor flagObjectPoolOn = true");
+                //     flagObjectPoolOn = true;
+                // }
+                // else if (fileContent.Contains("OBJECT_POOL_OFF"))
+                // {
+                //     Tizen.Log.Fatal("NT", $"NUIApplication cctor flagObjectPoolOn = false");
+                //     flagObjectPoolOn = false;
+                // }
+                // else
+                // {
+                //     Tizen.Log.Fatal("NT", $"NUIApplication cctor flagObjectPoolOn ERROR!");
+                //     throw new Exception("object pool flag wrong!");
+                // }
+            }
+            else
+            {
+                //no file! throw exception
+                Tizen.Log.Fatal("NT", $"NUIApplication cctor No TEST1 file!");
+                throw new Exception("No TEST1 file!");
+            }
+#endif
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
         }
 
