@@ -23,6 +23,8 @@ using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Reflection;
 
+using SystemIO = System.IO;
+
 namespace Tizen.NUI
 {
     /// <summary>
@@ -155,6 +157,10 @@ namespace Tizen.NUI
             {
                 throw new InvalidOperationException(e.Message);
             }
+            catch (BadImageFormatException e)
+            {
+                throw new InvalidOperationException(e.Message);
+            }
         }
 
         private static void Load(NUIGadgetInfo info)
@@ -168,9 +174,9 @@ namespace Tizen.NUI
             {
                 if (info.Assembly == null)
                 {
-                    Log.Warn("NUIGadgetAssembly.Load(): " + info.ResourcePath + info.ExecutableFile + " ++");
-                    info.Assembly = Assembly.Load(File.ReadAllBytes(info.ResourcePath + info.ExecutableFile));
-                    Log.Warn("NUIGadgetAssembly.Load(): " + info.ResourcePath + info.ExecutableFile + " --");
+                    Log.Warn("Assembly.Load(): " + info.ResourcePath + info.ExecutableFile + " ++");
+                    info.Assembly = Assembly.Load(SystemIO.Path.GetFileNameWithoutExtension(info.ExecutableFile));
+                    Log.Warn("Assembly.Load(): " + info.ResourcePath + info.ExecutableFile + " --");
                 }
             }
         }
