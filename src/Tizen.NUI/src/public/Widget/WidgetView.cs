@@ -32,13 +32,23 @@ namespace Tizen.NUI
     {
         static WidgetView()
         {
-            PreviewProperty = BindableProperty.Create(nameof(Preview), typeof(bool), typeof(Tizen.NUI.WidgetView), false, propertyChanged: SetInternalPreviewProperty, defaultValueCreator: GetInternalPreviewProperty);
-            LoadingTextProperty = BindableProperty.Create(nameof(LoadingText), typeof(bool), typeof(Tizen.NUI.WidgetView), false, propertyChanged: SetInternalLoadingTextProperty, defaultValueCreator: GetInternalLoadingTextProperty);
-            WidgetStateFaultedProperty = BindableProperty.Create(nameof(WidgetStateFaulted), typeof(bool), typeof(Tizen.NUI.WidgetView), false, propertyChanged: SetInternalWidgetStateFaultedProperty, defaultValueCreator: GetInternalWidgetStateFaultedProperty);
-            PermanentDeleteProperty = BindableProperty.Create(nameof(PermanentDelete), typeof(bool), typeof(Tizen.NUI.WidgetView), false, propertyChanged: SetInternalPermanentDeleteProperty, defaultValueCreator: GetInternalPermanentDeleteProperty);
-            RetryTextProperty = BindableProperty.Create(nameof(RetryText), typeof(Tizen.NUI.PropertyMap), typeof(Tizen.NUI.WidgetView), null, propertyChanged: SetInternalRetryTextProperty, defaultValueCreator: GetInternalRetryTextProperty);
-            EffectProperty = BindableProperty.Create(nameof(Effect), typeof(Tizen.NUI.PropertyMap), typeof(Tizen.NUI.WidgetView), null, propertyChanged: SetInternalEffectProperty, defaultValueCreator: GetInternalEffectProperty);
-            KeepWidgetSizeProperty = BindableProperty.Create(nameof(KeepWidgetSize), typeof(bool), typeof(Tizen.NUI.WidgetView), false, propertyChanged: SetInternalKeepWidgetSizeProperty, defaultValueCreator: GetInternalKeepWidgetSizeProperty);
+            if(NUIApplication.IsUsingXaml)
+            {
+                PreviewProperty = BindableProperty.Create(nameof(Preview), typeof(bool), typeof(Tizen.NUI.WidgetView), false, propertyChanged: SetInternalPreviewProperty, defaultValueCreator: GetInternalPreviewProperty);
+                
+                LoadingTextProperty = BindableProperty.Create(nameof(LoadingText), typeof(bool), typeof(Tizen.NUI.WidgetView), false, propertyChanged: SetInternalLoadingTextProperty, defaultValueCreator: GetInternalLoadingTextProperty);
+                
+                WidgetStateFaultedProperty = BindableProperty.Create(nameof(WidgetStateFaulted), typeof(bool), typeof(Tizen.NUI.WidgetView), false, propertyChanged: SetInternalWidgetStateFaultedProperty, defaultValueCreator: GetInternalWidgetStateFaultedProperty);
+                
+                PermanentDeleteProperty = BindableProperty.Create(nameof(PermanentDelete), typeof(bool), typeof(Tizen.NUI.WidgetView), false, propertyChanged: SetInternalPermanentDeleteProperty, defaultValueCreator: GetInternalPermanentDeleteProperty);
+                
+                RetryTextProperty = BindableProperty.Create(nameof(RetryText), typeof(Tizen.NUI.PropertyMap), typeof(Tizen.NUI.WidgetView), null, propertyChanged: SetInternalRetryTextProperty, defaultValueCreator: GetInternalRetryTextProperty);
+                
+                EffectProperty = BindableProperty.Create(nameof(Effect), typeof(Tizen.NUI.PropertyMap), typeof(Tizen.NUI.WidgetView), null, propertyChanged: SetInternalEffectProperty, defaultValueCreator: GetInternalEffectProperty);
+                
+                KeepWidgetSizeProperty = BindableProperty.Create(nameof(KeepWidgetSize), typeof(bool), typeof(Tizen.NUI.WidgetView), false, propertyChanged: SetInternalKeepWidgetSizeProperty, defaultValueCreator: GetInternalKeepWidgetSizeProperty);
+                
+            }
         }
         /// <summary>
         /// PreviewProperty
