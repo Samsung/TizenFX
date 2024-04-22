@@ -31,7 +31,7 @@ namespace Tizen.NUI
             public static extern uint GetTime(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_SetTime")]
-            public static extern void SetTime(global::System.Runtime.InteropServices.HandleRef touchEvent, ulong time);
+            public static extern void SetTime(global::System.Runtime.InteropServices.HandleRef touchEvent, uint time);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetPointCount")]
             public static extern uint GetPointCount(global::System.Runtime.InteropServices.HandleRef jarg1);
