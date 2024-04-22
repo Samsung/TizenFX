@@ -337,6 +337,12 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_CHARACTER_SPACING_get")]
             public static extern int CharacterSpacingGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_REMOVE_FRONT_INSET_get")]
+            public static extern int RemoveFrontInsetGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_REMOVE_BACK_INSET_get")]
+            public static extern int RemoveBackInsetGet();
         }
     }
 }
