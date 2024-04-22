@@ -30,13 +30,16 @@ namespace Tizen.NUI
     {
         static DefaultBorder()
         {
-            BorderLineThicknessProperty = BindableProperty.Create(nameof(BorderLineThickness), typeof(uint), typeof(DefaultBorder), default(uint), propertyChanged: SetInternalBorderLineThicknessProperty, defaultValueCreator: GetInternalBorderLineThicknessProperty);
-            
-            MinSizeProperty = BindableProperty.Create(nameof(MinSize), typeof(Size2D), typeof(DefaultBorder), default(Size2D), propertyChanged: SetInternalMinSizeProperty, defaultValueCreator: GetInternalMinSizeProperty);
-            
-            MaxSizeProperty = BindableProperty.Create(nameof(MaxSize), typeof(Size2D), typeof(DefaultBorder), default(Size2D), propertyChanged: SetInternalMaxSizeProperty, defaultValueCreator: GetInternalMaxSizeProperty);
-            
-            ResizePolicyProperty = BindableProperty.Create(nameof(ResizePolicy), typeof(Window.BorderResizePolicyType), typeof(DefaultBorder), default(Window.BorderResizePolicyType), propertyChanged: SetInternalResizePolicyProperty, defaultValueCreator: GetInternalResizePolicyProperty);
+            if(NUIApplication.IsUsingXaml)
+            {
+                BorderLineThicknessProperty = BindableProperty.Create(nameof(BorderLineThickness), typeof(uint), typeof(DefaultBorder), default(uint), propertyChanged: SetInternalBorderLineThicknessProperty, defaultValueCreator: GetInternalBorderLineThicknessProperty);
+                
+                MinSizeProperty = BindableProperty.Create(nameof(MinSize), typeof(Size2D), typeof(DefaultBorder), default(Size2D), propertyChanged: SetInternalMinSizeProperty, defaultValueCreator: GetInternalMinSizeProperty);
+                
+                MaxSizeProperty = BindableProperty.Create(nameof(MaxSize), typeof(Size2D), typeof(DefaultBorder), default(Size2D), propertyChanged: SetInternalMaxSizeProperty, defaultValueCreator: GetInternalMaxSizeProperty);
+                
+                ResizePolicyProperty = BindableProperty.Create(nameof(ResizePolicy), typeof(Window.BorderResizePolicyType), typeof(DefaultBorder), default(Window.BorderResizePolicyType), propertyChanged: SetInternalResizePolicyProperty, defaultValueCreator: GetInternalResizePolicyProperty);
+            }
         }
         #region Constant Fields
         private static readonly string ResourcePath = FrameworkInformation.ResourcePath;
