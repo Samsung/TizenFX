@@ -31,25 +31,28 @@ namespace Tizen.NUI.BaseComponents
     {
         static Scrollable()
         {
-            OvershootEffectColorProperty = BindableProperty.Create(nameof(OvershootEffectColor), typeof(Vector4), typeof(Scrollable), null, propertyChanged: SetInternalOvershootEffectColorProperty, defaultValueCreator: GetInternalOvershootEffectColorProperty);
+            if(NUIApplication.IsUsingXaml)
+            {
+                OvershootEffectColorProperty = BindableProperty.Create(nameof(OvershootEffectColor), typeof(Vector4), typeof(Scrollable), null, propertyChanged: SetInternalOvershootEffectColorProperty, defaultValueCreator: GetInternalOvershootEffectColorProperty);
 
-            OvershootAnimationSpeedProperty = BindableProperty.Create(nameof(OvershootAnimationSpeed), typeof(float), typeof(Scrollable), default(float), propertyChanged: SetInternalOvershootAnimationSpeedProperty, defaultValueCreator: GetInternalOvershootAnimationSpeedProperty);
+                OvershootAnimationSpeedProperty = BindableProperty.Create(nameof(OvershootAnimationSpeed), typeof(float), typeof(Scrollable), default(float), propertyChanged: SetInternalOvershootAnimationSpeedProperty, defaultValueCreator: GetInternalOvershootAnimationSpeedProperty);
 
-            OvershootEnabledProperty = BindableProperty.Create(nameof(OvershootEnabled), typeof(bool), typeof(Scrollable), false, propertyChanged: SetInternalOvershootEnabledProperty, defaultValueCreator: GetInternalOvershootEnabledProperty);
+                OvershootEnabledProperty = BindableProperty.Create(nameof(OvershootEnabled), typeof(bool), typeof(Scrollable), false, propertyChanged: SetInternalOvershootEnabledProperty, defaultValueCreator: GetInternalOvershootEnabledProperty);
 
-            OvershootSizeProperty = BindableProperty.Create(nameof(OvershootSize), typeof(Vector2), typeof(Scrollable), null, propertyChanged: SetInternalOvershootSizeProperty, defaultValueCreator: GetInternalOvershootSizeProperty );
+                OvershootSizeProperty = BindableProperty.Create(nameof(OvershootSize), typeof(Vector2), typeof(Scrollable), null, propertyChanged: SetInternalOvershootSizeProperty, defaultValueCreator: GetInternalOvershootSizeProperty );
 
-            ScrollToAlphaFunctionProperty = BindableProperty.Create(nameof(ScrollToAlphaFunction), typeof(int), typeof(Scrollable), default(int), propertyChanged: SetInternalScrollToAlphaFunctionProperty, defaultValueCreator: GetInternalScrollToAlphaFunctionProperty);
+                ScrollToAlphaFunctionProperty = BindableProperty.Create(nameof(ScrollToAlphaFunction), typeof(int), typeof(Scrollable), default(int), propertyChanged: SetInternalScrollToAlphaFunctionProperty, defaultValueCreator: GetInternalScrollToAlphaFunctionProperty);
 
-            ScrollRelativePositionProperty = BindableProperty.Create(nameof(ScrollRelativePosition), typeof(Vector2), typeof(Scrollable), null, propertyChanged: SetInternalScrollRelativePositionProperty, defaultValueCreator: GetInternalScrollRelativePositionProperty);
+                ScrollRelativePositionProperty = BindableProperty.Create(nameof(ScrollRelativePosition), typeof(Vector2), typeof(Scrollable), null, propertyChanged: SetInternalScrollRelativePositionProperty, defaultValueCreator: GetInternalScrollRelativePositionProperty);
 
-            ScrollPositionMinProperty = BindableProperty.Create(nameof(ScrollPositionMin), typeof(Vector2), typeof(Scrollable), null, propertyChanged: SetInternalScrollPositionMinProperty, defaultValueCreator: GetInternalScrollPositionMinProperty);
+                ScrollPositionMinProperty = BindableProperty.Create(nameof(ScrollPositionMin), typeof(Vector2), typeof(Scrollable), null, propertyChanged: SetInternalScrollPositionMinProperty, defaultValueCreator: GetInternalScrollPositionMinProperty);
 
-            ScrollPositionMaxProperty = BindableProperty.Create(nameof(ScrollPositionMax), typeof(Vector2), typeof(Scrollable), null, propertyChanged: SetInternalScrollPositionMaxProperty, defaultValueCreator: GetInternalScrollPositionMaxProperty);
+                ScrollPositionMaxProperty = BindableProperty.Create(nameof(ScrollPositionMax), typeof(Vector2), typeof(Scrollable), null, propertyChanged: SetInternalScrollPositionMaxProperty, defaultValueCreator: GetInternalScrollPositionMaxProperty);
 
-            CanScrollVerticalProperty = BindableProperty.Create(nameof(CanScrollVertical), typeof(bool), typeof(Scrollable), false, propertyChanged: SetInternalCanScrollVerticalProperty, defaultValueCreator: GetInternalCanScrollVerticalProperty);
+                CanScrollVerticalProperty = BindableProperty.Create(nameof(CanScrollVertical), typeof(bool), typeof(Scrollable), false, propertyChanged: SetInternalCanScrollVerticalProperty, defaultValueCreator: GetInternalCanScrollVerticalProperty);
 
-            CanScrollHorizontalProperty = BindableProperty.Create(nameof(CanScrollHorizontal), typeof(bool), typeof(Scrollable), false, propertyChanged: SetInternalCanScrollHorizontalProperty, defaultValueCreator: GetInternalCanScrollHorizontalProperty);
+                CanScrollHorizontalProperty = BindableProperty.Create(nameof(CanScrollHorizontal), typeof(bool), typeof(Scrollable), false, propertyChanged: SetInternalCanScrollHorizontalProperty, defaultValueCreator: GetInternalCanScrollHorizontalProperty);
+            }
         }
 
 
