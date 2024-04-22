@@ -37,10 +37,10 @@ namespace Tizen.NUI
 
         static NUIGadgetManager()
         {
-            IntPtr resPkgIds = Interop.Libc.GetEnviornmentVariable("RES_PKGIDS");
-            if (resPkgIds != IntPtr.Zero)
+            IntPtr gadgetPkgIds = Interop.Libc.GetEnviornmentVariable("GADGET_PKGIDS");
+            if (gadgetPkgIds != IntPtr.Zero)
             {
-                string packages = Marshal.PtrToStringAnsi(resPkgIds);
+                string packages = Marshal.PtrToStringAnsi(gadgetPkgIds);
                 if (string.IsNullOrEmpty(packages))
                 {
                     Log.Warn("There is no resource packages");
@@ -53,6 +53,10 @@ namespace Tizen.NUI
                         if (info != null)
                         {
                             _gadgetInfos.Add(info.ResourceType, info);
+                        }
+                        else
+                        {
+                            Log.Error("Failed to create NUIGadgetInfo. package=" + packageId);
                         }
                     }
                 }
