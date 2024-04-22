@@ -3653,6 +3653,48 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The RemoveFrontInset property.<br />
+        /// This property is used when the xBearing of first glyph must not be trimmed.<br />
+        /// When set to false, The gap between (0, 0) from the first glyph's leftmost pixel is included in the width of text label.
+        /// </summary>
+        /// <remarks>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool RemoveFrontInset
+        {
+            get
+            {
+                return (bool)GetValue(RemoveFrontInsetProperty);
+            }
+            set
+            {
+                SetValue(RemoveFrontInsetProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The RemoveBackInset property.<br />
+        /// This property is used when the advance of last glyph must not be trimmed.<br />
+        /// When set to false, The gap between the last glyph's rightmost pixel and X coordinate that next glyph will be placed is included in the width of text label.
+        /// </summary>
+        /// <remarks>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool RemoveBackInset
+        {
+            get
+            {
+                return (bool)GetValue(RemoveBackInsetProperty);
+            }
+            set
+            {
+                SetValue(RemoveBackInsetProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Dispose.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -3938,6 +3980,8 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int InputFilter = Interop.TextEditor.InputFilterGet();
             internal static readonly int Strikethrough = Interop.TextEditor.StrikethroughGet();
             internal static readonly int CharacterSpacing = Interop.TextEditor.CharacterSpacingGet();
+            internal static readonly int RemoveFrontInset = Interop.TextEditor.RemoveFrontInsetGet();
+            internal static readonly int RemoveBackInset = Interop.TextEditor.RemoveBackInsetGet();
 
             internal static void Preload()
             {
