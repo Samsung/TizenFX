@@ -206,6 +206,10 @@ namespace Tizen.NUI
             {
                 throw new InvalidOperationException(e.Message);
             }
+            catch (BadImageFormatException e)
+            {
+                throw new InvalidOperationException(e.Message);
+            }
 
             NUIGadget gadget = info.Assembly.CreateInstance(className, true) as NUIGadget;
             if (gadget == null)
