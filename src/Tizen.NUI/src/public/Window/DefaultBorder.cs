@@ -18,6 +18,7 @@
 using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
