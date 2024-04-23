@@ -23,6 +23,8 @@ using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Reflection;
 
+using SystemIO = System.IO;
+
 namespace Tizen.NUI
 {
     /// <summary>
@@ -37,10 +39,10 @@ namespace Tizen.NUI
 
         static NUIGadgetManager()
         {
-            IntPtr resPkgIds = Interop.Libc.GetEnviornmentVariable("RES_PKGIDS");
-            if (resPkgIds != IntPtr.Zero)
+            IntPtr gadgetPkgIds = Interop.Libc.GetEnviornmentVariable("GADGET_PKGIDS");
+            if (gadgetPkgIds != IntPtr.Zero)
             {
-                string packages = Marshal.PtrToStringAnsi(resPkgIds);
+                string packages = Marshal.PtrToStringAnsi(gadgetPkgIds);
                 if (string.IsNullOrEmpty(packages))
                 {
                     Log.Warn("There is no resource packages");
@@ -53,6 +55,10 @@ namespace Tizen.NUI
                         if (info != null)
                         {
                             _gadgetInfos.Add(info.ResourceType, info);
+                        }
+                        else
+                        {
+                            Log.Error("Failed to create NUIGadgetInfo. package=" + packageId);
                         }
                     }
                 }
@@ -151,6 +157,10 @@ namespace Tizen.NUI
             {
                 throw new InvalidOperationException(e.Message);
             }
+            catch (BadImageFormatException e)
+            {
+                throw new InvalidOperationException(e.Message);
+            }
         }
 
         private static void Load(NUIGadgetInfo info)
@@ -164,9 +174,9 @@ namespace Tizen.NUI
             {
                 if (info.Assembly == null)
                 {
-                    Log.Warn("NUIGadgetAssembly.Load(): " + info.ResourcePath + info.ExecutableFile + " ++");
-                    info.Assembly = Assembly.Load(File.ReadAllBytes(info.ResourcePath + info.ExecutableFile));
-                    Log.Warn("NUIGadgetAssembly.Load(): " + info.ResourcePath + info.ExecutableFile + " --");
+                    Log.Warn("Assembly.Load(): " + info.ResourcePath + info.ExecutableFile + " ++");
+                    info.Assembly = Assembly.Load(SystemIO.Path.GetFileNameWithoutExtension(info.ExecutableFile));
+                    Log.Warn("Assembly.Load(): " + info.ResourcePath + info.ExecutableFile + " --");
                 }
             }
         }
@@ -193,6 +203,10 @@ namespace Tizen.NUI
                 Load(info);
             }
             catch (FileLoadException e)
+            {
+                throw new InvalidOperationException(e.Message);
+            }
+            catch (BadImageFormatException e)
             {
                 throw new InvalidOperationException(e.Message);
             }
