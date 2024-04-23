@@ -19,6 +19,7 @@ using System;
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Tizen.NUI;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.BaseComponents
