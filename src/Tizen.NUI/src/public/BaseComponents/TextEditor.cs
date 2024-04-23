@@ -55,9 +55,9 @@ namespace Tizen.NUI.BaseComponents
         private Color internalGrabHandleColor = null;
 
 
-        static TextEditor() 
-        { 
-            if(NUIApplication.IsUsingXaml)
+        static TextEditor()
+        {
+            if (NUIApplication.IsUsingXaml)
             {
                 TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(TextEditor), string.Empty, propertyChanged: SetInternalTextProperty, defaultValueCreator: GetInternalTextProperty);
 
@@ -202,6 +202,10 @@ namespace Tizen.NUI.BaseComponents
                 PrimaryCursorPositionProperty = BindableProperty.Create(nameof(PrimaryCursorPosition), typeof(int), typeof(Tizen.NUI.BaseComponents.TextEditor), 0, propertyChanged: SetInternalPrimaryCursorPositionProperty, defaultValueCreator: GetInternalPrimaryCursorPositionProperty);
 
                 CharacterSpacingProperty = BindableProperty.Create(nameof(CharacterSpacing), typeof(float), typeof(TextEditor), default(float), propertyChanged: SetInternalCharacterSpacingProperty, defaultValueCreator: GetInternalCharacterSpacingProperty);
+
+                RemoveFrontInsetProperty = BindableProperty.Create(nameof(RemoveFrontInset), typeof(bool), typeof(TextEditor), false, propertyChanged: SetInternalRemoveFrontInsetProperty, defaultValueCreator: GetInternalRemoveFrontInsetProperty);
+
+                RemoveBackInsetProperty = BindableProperty.Create(nameof(RemoveBackInset), typeof(bool), typeof(TextEditor), false, propertyChanged: SetInternalRemoveBackInsetProperty, defaultValueCreator: GetInternalRemoveBackInsetProperty);
             }
         }
 
@@ -1098,7 +1102,7 @@ namespace Tizen.NUI.BaseComponents
                 if (NUIApplication.IsUsingXaml)
                 {
                     return (PropertyMap)GetValue(SelectionHandleImageRightProperty);
-                    
+
                 }
                 else
                 {
@@ -1110,7 +1114,7 @@ namespace Tizen.NUI.BaseComponents
                 if (NUIApplication.IsUsingXaml)
                 {
                     SetValue(SelectionHandleImageRightProperty, value);
-                    
+
                 }
                 else
                 {
@@ -2830,7 +2834,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalGrabHandleColorProperty(this, null, value);  
+                    SetInternalGrabHandleColorProperty(this, null, value);
                 }
                 NotifyPropertyChanged();
             }
@@ -3103,7 +3107,7 @@ namespace Tizen.NUI.BaseComponents
                 if (NUIApplication.IsUsingXaml)
                 {
                     return (bool)GetValue(EllipsisProperty);
-                    
+
                 }
                 else
                 {
@@ -3664,11 +3668,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(RemoveFrontInsetProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(RemoveFrontInsetProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalRemoveFrontInsetProperty(this);
+                }
             }
             set
             {
-                SetValue(RemoveFrontInsetProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(RemoveFrontInsetProperty, value);
+                }
+                else
+                {
+                    SetInternalRemoveFrontInsetProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -3685,11 +3703,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(RemoveBackInsetProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(RemoveBackInsetProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalRemoveBackInsetProperty(this);
+                }
             }
             set
             {
-                SetValue(RemoveBackInsetProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(RemoveBackInsetProperty, value);
+                }
+                else
+                {
+                    SetInternalRemoveBackInsetProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -3876,7 +3908,7 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
         }
-        
+
         private void RemoveSystemSettingsFontTypeChanged()
         {
             if (hasSystemFontTypeChanged)
