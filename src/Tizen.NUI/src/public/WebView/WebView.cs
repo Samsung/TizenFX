@@ -32,30 +32,55 @@ namespace Tizen.NUI.BaseComponents
     {
         static WebView()
         {
-            UrlProperty = BindableProperty.Create(nameof(Url), typeof(string), typeof(WebView), string.Empty, propertyChanged: SetInternalUrlProperty, defaultValueCreator: GetInternalUrlProperty);
-            UserAgentProperty = BindableProperty.Create(nameof(UserAgent), typeof(string), typeof(WebView), string.Empty, propertyChanged: SetInternalUserAgentProperty, defaultValueCreator: GetInternalUserAgentProperty);
-            ScrollPositionProperty = BindableProperty.Create(nameof(ScrollPosition), typeof(Vector2), typeof(WebView), null, propertyChanged: SetInternalScrollPositionProperty, defaultValueCreator: GetInternalScrollPositionProperty);
-            ScrollSizeProperty = BindableProperty.Create(nameof(ScrollSize), typeof(Vector2), typeof(WebView), null, defaultValueCreator: GetInternalScrollSizeProperty);
-            ContentSizeProperty = BindableProperty.Create(nameof(ContentSize), typeof(Vector2), typeof(WebView), null, defaultValueCreator: GetInternalContentSizeProperty);
-            TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(WebView), string.Empty, defaultValueCreator: GetInternalTitleProperty);
-            VideoHoleEnabledProperty = BindableProperty.Create(nameof(VideoHoleEnabled), typeof(bool), typeof(WebView), true, propertyChanged: SetInternalVideoHoleEnabledProperty, defaultValueCreator: GetInternalVideoHoleEnabledProperty);
-            MouseEventsEnabledProperty = BindableProperty.Create(nameof(MouseEventsEnabled), typeof(bool), typeof(WebView), true, propertyChanged: SetInternalMouseEventsEnabledProperty, defaultValueCreator: GetInternalMouseEventsEnabledProperty);
-            KeyEventsEnabledProperty = BindableProperty.Create(nameof(KeyEventsEnabled), typeof(bool), typeof(WebView), true, propertyChanged: SetInternalKeyEventsEnabledProperty, defaultValueCreator: GetInternalKeyEventsEnabledProperty);
-            ContentBackgroundColorProperty = BindableProperty.Create(nameof(ContentBackgroundColor), typeof(Color), typeof(WebView), null, propertyChanged: SetInternalContentBackgroundColorProperty, defaultValueCreator: GetInternalContentBackgroundColorProperty);
-            TilesClearedWhenHiddenProperty = BindableProperty.Create(nameof(TilesClearedWhenHidden), typeof(bool), typeof(WebView), true, propertyChanged: SetInternalTilesClearedWhenHiddenProperty, defaultValueCreator: GetInternalTilesClearedWhenHiddenProperty);
-            TileCoverAreaMultiplierProperty = BindableProperty.Create(nameof(TileCoverAreaMultiplier), typeof(float), typeof(WebView), 0.0f, propertyChanged: SetInternalTileCoverAreaMultiplierProperty, defaultValueCreator: GetInternalTileCoverAreaMultiplierProperty);
-            CursorEnabledByClientProperty = BindableProperty.Create(nameof(CursorEnabledByClient), typeof(bool), typeof(WebView), true, propertyChanged: SetInternalCursorEnabledByClientProperty, defaultValueCreator: GetInternalCursorEnabledByClientProperty);
-            SelectedTextProperty = BindableProperty.Create(nameof(SelectedText), typeof(string), typeof(WebView), string.Empty, defaultValueCreator: GetInternalSelectedTextProperty);
-            PageZoomFactorProperty = BindableProperty.Create(nameof(PageZoomFactor), typeof(float), typeof(WebView), 0.0f, propertyChanged: SetInternalPageZoomFactorProperty, defaultValueCreator: GetInternalPageZoomFactorProperty);
-            TextZoomFactorProperty = BindableProperty.Create(nameof(TextZoomFactor), typeof(float), typeof(WebView), 0.0f, propertyChanged: SetInternalTextZoomFactorProperty, defaultValueCreator: GetInternalTextZoomFactorProperty);
-            LoadProgressPercentageProperty = BindableProperty.Create(nameof(LoadProgressPercentage), typeof(float), typeof(WebView), 0.0f, defaultValueCreator: GetInternalLoadProgressPercentageProperty);
+            if(NUIApplication.IsUsingXaml)
+            {
+                UrlProperty = BindableProperty.Create(nameof(Url), typeof(string), typeof(WebView), string.Empty, propertyChanged: SetInternalUrlProperty, defaultValueCreator: GetInternalUrlProperty);
 
-            CacheModelProperty = BindableProperty.Create(nameof(CacheModel), typeof(CacheModel), typeof(WebView), default(CacheModel), propertyChanged: SetInternalCacheModelProperty, defaultValueCreator: GetInternalCacheModelProperty);
-            CookieAcceptPolicyProperty = BindableProperty.Create(nameof(CookieAcceptPolicy), typeof(CookieAcceptPolicy), typeof(WebView), default(CookieAcceptPolicy), propertyChanged: SetInternalCookieAcceptPolicyProperty, defaultValueCreator: GetInternalCookieAcceptPolicyProperty);
-            EnableJavaScriptProperty = BindableProperty.Create(nameof(EnableJavaScript), typeof(bool), typeof(WebView), false, propertyChanged: SetInternalEnableJavaScriptProperty, defaultValueCreator: GetInternalEnableJavaScriptProperty);
-            LoadImagesAutomaticallyProperty = BindableProperty.Create(nameof(LoadImagesAutomatically), typeof(bool), typeof(WebView), false, propertyChanged: SetInternalLoadImagesAutomaticallyProperty, defaultValueCreator: GetInternalLoadImagesAutomaticallyProperty);
-            DefaultTextEncodingNameProperty = BindableProperty.Create(nameof(DefaultTextEncodingName), typeof(string), typeof(WebView), string.Empty, propertyChanged: SetInternalDefaultTextEncodingNameProperty, defaultValueCreator: GetInternalDefaultTextEncodingNameProperty);
-            DefaultFontSizeProperty = BindableProperty.Create(nameof(DefaultFontSize), typeof(int), typeof(WebView), 0, propertyChanged: SetInternalDefaultFontSizeProperty, defaultValueCreator: GetInternalDefaultFontSizeProperty);
+                UserAgentProperty = BindableProperty.Create(nameof(UserAgent), typeof(string), typeof(WebView), string.Empty, propertyChanged: SetInternalUserAgentProperty, defaultValueCreator: GetInternalUserAgentProperty);
+
+                ScrollPositionProperty = BindableProperty.Create(nameof(ScrollPosition), typeof(Vector2), typeof(WebView), null, propertyChanged: SetInternalScrollPositionProperty, defaultValueCreator: GetInternalScrollPositionProperty);
+
+                ScrollSizeProperty = BindableProperty.Create(nameof(ScrollSize), typeof(Vector2), typeof(WebView), null, defaultValueCreator: GetInternalScrollSizeProperty);
+
+                ContentSizeProperty = BindableProperty.Create(nameof(ContentSize), typeof(Vector2), typeof(WebView), null, defaultValueCreator: GetInternalContentSizeProperty);
+
+                TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(WebView), string.Empty, defaultValueCreator: GetInternalTitleProperty);
+
+                VideoHoleEnabledProperty = BindableProperty.Create(nameof(VideoHoleEnabled), typeof(bool), typeof(WebView), true, propertyChanged: SetInternalVideoHoleEnabledProperty, defaultValueCreator: GetInternalVideoHoleEnabledProperty);
+
+                MouseEventsEnabledProperty = BindableProperty.Create(nameof(MouseEventsEnabled), typeof(bool), typeof(WebView), true, propertyChanged: SetInternalMouseEventsEnabledProperty, defaultValueCreator: GetInternalMouseEventsEnabledProperty);
+
+                KeyEventsEnabledProperty = BindableProperty.Create(nameof(KeyEventsEnabled), typeof(bool), typeof(WebView), true, propertyChanged: SetInternalKeyEventsEnabledProperty, defaultValueCreator: GetInternalKeyEventsEnabledProperty);
+
+                ContentBackgroundColorProperty = BindableProperty.Create(nameof(ContentBackgroundColor), typeof(Color), typeof(WebView), null, propertyChanged: SetInternalContentBackgroundColorProperty, defaultValueCreator: GetInternalContentBackgroundColorProperty);
+
+                TilesClearedWhenHiddenProperty = BindableProperty.Create(nameof(TilesClearedWhenHidden), typeof(bool), typeof(WebView), true, propertyChanged: SetInternalTilesClearedWhenHiddenProperty, defaultValueCreator: GetInternalTilesClearedWhenHiddenProperty);
+
+                TileCoverAreaMultiplierProperty = BindableProperty.Create(nameof(TileCoverAreaMultiplier), typeof(float), typeof(WebView), 0.0f, propertyChanged: SetInternalTileCoverAreaMultiplierProperty, defaultValueCreator: GetInternalTileCoverAreaMultiplierProperty);
+
+                CursorEnabledByClientProperty = BindableProperty.Create(nameof(CursorEnabledByClient), typeof(bool), typeof(WebView), true, propertyChanged: SetInternalCursorEnabledByClientProperty, defaultValueCreator: GetInternalCursorEnabledByClientProperty);
+
+                SelectedTextProperty = BindableProperty.Create(nameof(SelectedText), typeof(string), typeof(WebView), string.Empty, defaultValueCreator: GetInternalSelectedTextProperty);
+
+                PageZoomFactorProperty = BindableProperty.Create(nameof(PageZoomFactor), typeof(float), typeof(WebView), 0.0f, propertyChanged: SetInternalPageZoomFactorProperty, defaultValueCreator: GetInternalPageZoomFactorProperty);
+
+                TextZoomFactorProperty = BindableProperty.Create(nameof(TextZoomFactor), typeof(float), typeof(WebView), 0.0f, propertyChanged: SetInternalTextZoomFactorProperty, defaultValueCreator: GetInternalTextZoomFactorProperty);
+
+                LoadProgressPercentageProperty = BindableProperty.Create(nameof(LoadProgressPercentage), typeof(float), typeof(WebView), 0.0f, defaultValueCreator: GetInternalLoadProgressPercentageProperty);
+
+                CacheModelProperty = BindableProperty.Create(nameof(CacheModel), typeof(CacheModel), typeof(WebView), default(CacheModel), propertyChanged: SetInternalCacheModelProperty, defaultValueCreator: GetInternalCacheModelProperty);
+
+                CookieAcceptPolicyProperty = BindableProperty.Create(nameof(CookieAcceptPolicy), typeof(CookieAcceptPolicy), typeof(WebView), default(CookieAcceptPolicy), propertyChanged: SetInternalCookieAcceptPolicyProperty, defaultValueCreator: GetInternalCookieAcceptPolicyProperty);
+
+                EnableJavaScriptProperty = BindableProperty.Create(nameof(EnableJavaScript), typeof(bool), typeof(WebView), false, propertyChanged: SetInternalEnableJavaScriptProperty, defaultValueCreator: GetInternalEnableJavaScriptProperty);
+
+                LoadImagesAutomaticallyProperty = BindableProperty.Create(nameof(LoadImagesAutomatically), typeof(bool), typeof(WebView), false, propertyChanged: SetInternalLoadImagesAutomaticallyProperty, defaultValueCreator: GetInternalLoadImagesAutomaticallyProperty);
+
+                DefaultTextEncodingNameProperty = BindableProperty.Create(nameof(DefaultTextEncodingName), typeof(string), typeof(WebView), string.Empty, propertyChanged: SetInternalDefaultTextEncodingNameProperty, defaultValueCreator: GetInternalDefaultTextEncodingNameProperty);
+
+                DefaultFontSizeProperty = BindableProperty.Create(nameof(DefaultFontSize), typeof(int), typeof(WebView), 0, propertyChanged: SetInternalDefaultFontSizeProperty, defaultValueCreator: GetInternalDefaultFontSizeProperty);
+
+            }
         }
 
         private static readonly WebContext context = new WebContext(Interop.WebView.GetWebContext(), false);
