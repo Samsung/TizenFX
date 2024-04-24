@@ -18,6 +18,7 @@
 using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
@@ -28,6 +29,19 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class DefaultBorder : BindableObject, IDisposable, IBorderInterface
     {
+        static DefaultBorder()
+        {
+            if(NUIApplication.IsUsingXaml)
+            {
+                BorderLineThicknessProperty = BindableProperty.Create(nameof(BorderLineThickness), typeof(uint), typeof(DefaultBorder), default(uint), propertyChanged: SetInternalBorderLineThicknessProperty, defaultValueCreator: GetInternalBorderLineThicknessProperty);
+                
+                MinSizeProperty = BindableProperty.Create(nameof(MinSize), typeof(Size2D), typeof(DefaultBorder), default(Size2D), propertyChanged: SetInternalMinSizeProperty, defaultValueCreator: GetInternalMinSizeProperty);
+                
+                MaxSizeProperty = BindableProperty.Create(nameof(MaxSize), typeof(Size2D), typeof(DefaultBorder), default(Size2D), propertyChanged: SetInternalMaxSizeProperty, defaultValueCreator: GetInternalMaxSizeProperty);
+                
+                ResizePolicyProperty = BindableProperty.Create(nameof(ResizePolicy), typeof(Window.BorderResizePolicyType), typeof(DefaultBorder), default(Window.BorderResizePolicyType), propertyChanged: SetInternalResizePolicyProperty, defaultValueCreator: GetInternalResizePolicyProperty);
+            }
+        }
         #region Constant Fields
         private static readonly string ResourcePath = FrameworkInformation.ResourcePath;
         private static readonly string MinimalizeIcon = ResourcePath + "minimalize.png";
@@ -86,7 +100,9 @@ namespace Tizen.NUI
         #region Methods
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BorderLineThicknessProperty = BindableProperty.Create(nameof(BorderLineThickness), typeof(uint), typeof(DefaultBorder), default(uint), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BorderLineThicknessProperty = null;
+        
+        internal static void SetInternalBorderLineThicknessProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (DefaultBorder)bindable;
             if (newValue != null)
@@ -94,15 +110,18 @@ namespace Tizen.NUI
                 instance.borderLineThickness = (uint)newValue;
                 instance.UpdateProperty();
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        
+        internal static object GetInternalBorderLineThicknessProperty(BindableObject bindable)
         {
             var instance = (DefaultBorder)bindable;
             return instance.borderLineThickness;
-        });
+        }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MinSizeProperty = BindableProperty.Create(nameof(MinSize), typeof(Size2D), typeof(DefaultBorder), default(Size2D), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MinSizeProperty = null;
+        
+        internal static void SetInternalMinSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (DefaultBorder)bindable;
             if (newValue != null)
@@ -110,15 +129,18 @@ namespace Tizen.NUI
                 instance.minSize = (Size2D)newValue;
                 instance.UpdateProperty();
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        
+        internal static object GetInternalMinSizeProperty(BindableObject bindable)
         {
             var instance = (DefaultBorder)bindable;
             return instance.minSize;
-        });
+        }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MaxSizeProperty = BindableProperty.Create(nameof(MaxSize), typeof(Size2D), typeof(DefaultBorder), default(Size2D), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MaxSizeProperty = null;
+        
+        internal static void SetInternalMaxSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (DefaultBorder)bindable;
             if (newValue != null)
@@ -126,15 +148,18 @@ namespace Tizen.NUI
                 instance.maxSize = (Size2D)newValue;
                 instance.UpdateProperty();
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        
+        internal static object GetInternalMaxSizeProperty(BindableObject bindable)
         {
             var instance = (DefaultBorder)bindable;
             return instance.maxSize;
-        });
+        }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ResizePolicyProperty = BindableProperty.Create(nameof(ResizePolicy), typeof(Window.BorderResizePolicyType), typeof(DefaultBorder), default(Window.BorderResizePolicyType), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ResizePolicyProperty = null;
+        
+        internal static void SetInternalResizePolicyProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (DefaultBorder)bindable;
             if (newValue != null)
@@ -142,12 +167,13 @@ namespace Tizen.NUI
                 instance.resizePolicy = (Window.BorderResizePolicyType)newValue;
                 instance.UpdateProperty();
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        
+        internal static object GetInternalResizePolicyProperty(BindableObject bindable)
         {
             var instance = (DefaultBorder)bindable;
             return instance.resizePolicy;
-        });
+        }
 
 
         /// <summary>
@@ -158,11 +184,25 @@ namespace Tizen.NUI
         {
             get
             {
-                return (uint)GetValue(BorderLineThicknessProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (uint)GetValue(BorderLineThicknessProperty);
+                }
+                else
+                {
+                    return (uint)GetInternalBorderLineThicknessProperty(this);
+                }
             }
             set
             {
-                SetValue(BorderLineThicknessProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(BorderLineThicknessProperty, value);
+                }
+                else
+                {
+                    SetInternalBorderLineThicknessProperty(this, null, value);
+                }
             }
         }
 
@@ -187,11 +227,25 @@ namespace Tizen.NUI
         {
             get
             {
-                return (Size2D)GetValue(MinSizeProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (Size2D)GetValue(MinSizeProperty);
+                }
+                else
+                {
+                    return (Size2D)GetInternalMinSizeProperty(this);
+                }
             }
             set
             {
-                SetValue(MinSizeProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(MinSizeProperty, value);
+                }
+                else
+                {
+                    SetInternalMinSizeProperty(this, null, value);
+                }
             }
         }
 
@@ -203,11 +257,25 @@ namespace Tizen.NUI
         {
             get
             {
-                return (Size2D)GetValue(MaxSizeProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (Size2D)GetValue(MaxSizeProperty);
+                }
+                else
+                {
+                    return (Size2D)GetInternalMaxSizeProperty(this);
+                }
             }
             set
             {
-                SetValue(MaxSizeProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(MaxSizeProperty, value);
+                }
+                else
+                {
+                    SetInternalMaxSizeProperty(this, null, value); 
+                }
             }
         }
 
@@ -235,11 +303,25 @@ namespace Tizen.NUI
         {
             get
             {
-                return (Window.BorderResizePolicyType)GetValue(ResizePolicyProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (Window.BorderResizePolicyType)GetValue(ResizePolicyProperty);
+                }
+                else
+                {
+                    return (Window.BorderResizePolicyType)GetInternalResizePolicyProperty(this);
+                }
             }
             set
             {
-                SetValue(ResizePolicyProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ResizePolicyProperty, value);
+                }
+                else
+                {
+                    SetInternalResizePolicyProperty(this, null, value);
+                }
             }
         }
 
