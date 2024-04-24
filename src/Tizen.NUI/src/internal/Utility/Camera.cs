@@ -16,7 +16,9 @@
  */
 using System;
 using System.ComponentModel;
+using System.Net;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -24,6 +26,47 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public partial class Camera : View
     {
+        static Camera()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                TypeProperty = BindableProperty.Create(nameof(Type), typeof(string), typeof(Tizen.NUI.Camera), string.Empty,
+                    propertyChanged: SetInternalTypeProperty, defaultValueCreator: GetInternalTypeProperty);
+
+                ProjectionModeProperty = BindableProperty.Create(nameof(ProjectionMode), typeof(string), typeof(Tizen.NUI.Camera), string.Empty,
+                    propertyChanged: SetInternalProjectionModeProperty, defaultValueCreator: GetInternalProjectionModeProperty);
+
+                FieldOfViewProperty = BindableProperty.Create(nameof(FieldOfView), typeof(float), typeof(Tizen.NUI.Camera), default(float),
+                    propertyChanged: SetInternalFieldOfViewProperty, defaultValueCreator: GetInternalFieldOfViewProperty);
+
+                AspectRatioProperty = BindableProperty.Create(nameof(AspectRatio), typeof(float), typeof(Tizen.NUI.Camera), default(float),
+                    propertyChanged: SetInternalAspectRatioProperty, defaultValueCreator: GetInternalAspectRatioProperty);
+
+                NearPlaneDistanceProperty = BindableProperty.Create(nameof(NearPlaneDistance), typeof(float), typeof(Tizen.NUI.Camera), default(float),
+                    propertyChanged: SetInternalNearPlaneDistanceProperty, defaultValueCreator: GetInternalNearPlaneDistanceProperty);
+
+                FarPlaneDistanceProperty = BindableProperty.Create(nameof(FarPlaneDistance), typeof(float), typeof(Tizen.NUI.Camera), default(float),
+                    propertyChanged: SetInternalFarPlaneDistanceProperty, defaultValueCreator: GetInternalFarPlaneDistanceProperty);
+
+                LeftPlaneDistanceProperty = BindableProperty.Create(nameof(LeftPlaneDistance), typeof(float), typeof(Tizen.NUI.Camera), default(float),
+                    propertyChanged: SetInternalLeftPlaneDistanceProperty, defaultValueCreator: GetInternalLeftPlaneDistanceProperty);
+
+                RightPlaneDistanceProperty = BindableProperty.Create(nameof(RightPlaneDistance), typeof(float), typeof(Tizen.NUI.Camera), default(float),
+                    propertyChanged: SetInternalRightPlaneDistanceProperty, defaultValueCreator: GetInternalRightPlaneDistanceProperty);
+
+                TopPlaneDistanceProperty = BindableProperty.Create(nameof(TopPlaneDistance), typeof(float), typeof(Tizen.NUI.Camera), default(float),
+                    propertyChanged: SetInternalTopPlaneDistanceProperty, defaultValueCreator: GetInternalTopPlaneDistanceProperty);
+
+                BottomPlaneDistanceProperty = BindableProperty.Create(nameof(BottomPlaneDistance), typeof(float), typeof(Tizen.NUI.Camera), default(float),
+                    propertyChanged: SetInternalBottomPlaneDistanceProperty, defaultValueCreator: GetInternalBottomPlaneDistanceProperty);
+
+                TargetPositionProperty = BindableProperty.Create(nameof(TargetPosition), typeof(Tizen.NUI.Vector3), typeof(Tizen.NUI.Camera), null,
+                    propertyChanged: SetInternalTargetPositionProperty, defaultValueCreator: GetInternalTargetPositionProperty);
+
+                InvertYAxisProperty = BindableProperty.Create(nameof(InvertYAxis), typeof(bool), typeof(Tizen.NUI.Camera), false,
+                    propertyChanged: SetInternalInvertYAxisProperty, defaultValueCreator: GetInternalInvertYAxisProperty);
+            }
+        }
 
         internal Camera(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
@@ -221,11 +264,25 @@ namespace Tizen.NUI
         {
             get
             {
-                return GetValue(TypeProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(TypeProperty) as string;
+                }
+                else
+                {
+                    return GetInternalTypeProperty(this) as string;
+                }
             }
             set
             {
-                SetValue(TypeProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TypeProperty, value);
+                }
+                else
+                {
+                    SetInternalTypeProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -254,11 +311,25 @@ namespace Tizen.NUI
         {
             get
             {
-                return GetValue(ProjectionModeProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ProjectionModeProperty) as string;
+                }
+                else
+                {
+                    return GetInternalProjectionModeProperty(this) as string;
+                }
             }
             set
             {
-                SetValue(ProjectionModeProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ProjectionModeProperty, value);
+                }
+                else
+                {
+                    SetInternalProjectionModeProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -285,11 +356,25 @@ namespace Tizen.NUI
         {
             get
             {
-                return (float)GetValue(FieldOfViewProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(FieldOfViewProperty);
+                }
+                else
+                {
+                    return (float)GetInternalFieldOfViewProperty(this);
+                }
             }
             set
             {
-                SetValue(FieldOfViewProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(FieldOfViewProperty, value);
+                }
+                else
+                {
+                    SetInternalFieldOfViewProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -316,11 +401,25 @@ namespace Tizen.NUI
         {
             get
             {
-                return (float)GetValue(AspectRatioProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(AspectRatioProperty);
+                }
+                else
+                {
+                    return (float)GetInternalAspectRatioProperty(this);
+                }
             }
             set
             {
-                SetValue(AspectRatioProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(AspectRatioProperty, value);
+                }
+                else
+                {
+                    SetInternalAspectRatioProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -347,15 +446,29 @@ namespace Tizen.NUI
         {
             get
             {
-                return (float)GetValue(NearPlaneDistanceProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(NearPlaneDistanceProperty);
+                }
+                else
+                {
+                    return (float)GetInternalNearPlaneDistanceProperty(this);
+                }
             }
             set
             {
-                SetValue(NearPlaneDistanceProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(NearPlaneDistanceProperty, value);
+                }
+                else
+                {
+                    SetInternalNearPlaneDistanceProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
-        
+
         private float InternalNearPlaneDistance
         {
             get
@@ -378,15 +491,29 @@ namespace Tizen.NUI
         {
             get
             {
-                return (float)GetValue(FarPlaneDistanceProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(FarPlaneDistanceProperty);
+                }
+                else
+                {
+                    return (float)GetInternalFarPlaneDistanceProperty(this);
+                }
             }
             set
             {
-                SetValue(FarPlaneDistanceProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(FarPlaneDistanceProperty, value);
+                }
+                else
+                {
+                    SetInternalFarPlaneDistanceProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
-        
+
         private float InternalFarPlaneDistance
         {
             get
@@ -409,15 +536,29 @@ namespace Tizen.NUI
         {
             get
             {
-                return (float)GetValue(LeftPlaneDistanceProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(LeftPlaneDistanceProperty);
+                }
+                else
+                {
+                    return (float)GetInternalLeftPlaneDistanceProperty(this);
+                }
             }
             set
             {
-                SetValue(LeftPlaneDistanceProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(LeftPlaneDistanceProperty, value);
+                }
+                else
+                {
+                    SetInternalLeftPlaneDistanceProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
-        
+
         private float InternalLeftPlaneDistance
         {
             get
@@ -440,15 +581,29 @@ namespace Tizen.NUI
         {
             get
             {
-                return (float)GetValue(RightPlaneDistanceProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(RightPlaneDistanceProperty);
+                }
+                else
+                {
+                    return (float)GetInternalRightPlaneDistanceProperty(this);
+                }
             }
             set
             {
-                SetValue(RightPlaneDistanceProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(RightPlaneDistanceProperty, value);
+                }
+                else
+                {
+                    SetInternalRightPlaneDistanceProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
-        
+
         private float InternalRightPlaneDistance
         {
             get
@@ -471,15 +626,29 @@ namespace Tizen.NUI
         {
             get
             {
-                return (float)GetValue(TopPlaneDistanceProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(TopPlaneDistanceProperty);
+                }
+                else
+                {
+                    return (float)GetInternalTopPlaneDistanceProperty(this);
+                }
             }
             set
             {
-                SetValue(TopPlaneDistanceProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TopPlaneDistanceProperty, value);
+                }
+                else
+                {
+                    SetInternalTopPlaneDistanceProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
-        
+
         private float InternalTopPlaneDistance
         {
             get
@@ -502,15 +671,29 @@ namespace Tizen.NUI
         {
             get
             {
-                return (float)GetValue(BottomPlaneDistanceProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(BottomPlaneDistanceProperty);
+                }
+                else
+                {
+                    return (float)GetInternalBottomPlaneDistanceProperty(this);
+                }
             }
             set
             {
-                SetValue(BottomPlaneDistanceProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(BottomPlaneDistanceProperty, value);
+                }
+                else
+                {
+                    SetInternalBottomPlaneDistanceProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
-        
+
         private float InternalBottomPlaneDistance
         {
             get
@@ -533,15 +716,29 @@ namespace Tizen.NUI
         {
             get
             {
-                return GetValue(TargetPositionProperty) as Vector3;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(TargetPositionProperty) as Vector3;
+                }
+                else
+                {
+                    return GetInternalTargetPositionProperty(this) as Vector3;
+                }
             }
             set
             {
-                SetValue(TargetPositionProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TargetPositionProperty, value);
+                }
+                else
+                {
+                    SetInternalTargetPositionProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
-        
+
         private Vector3 InternalTargetPosition
         {
             get
@@ -586,15 +783,29 @@ namespace Tizen.NUI
         {
             get
             {
-                return (bool)GetValue(InvertYAxisProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(InvertYAxisProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalInvertYAxisProperty(this);
+                }
             }
             set
             {
-                SetValue(InvertYAxisProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(InvertYAxisProperty, value);
+                }
+                else
+                {
+                    SetInternalInvertYAxisProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
-        
+
         private bool InternalInvertYAxis
         {
             get
