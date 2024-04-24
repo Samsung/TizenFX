@@ -30,23 +30,34 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class GaussianBlurView : View
     {
+        static GaussianBlurView()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                BlurStrengthProperty = BindableProperty.Create(nameof(BlurStrength), typeof(float), typeof(GaussianBlurView), default(float),
+                    propertyChanged: SetInternalBlurStrengthProperty, defaultValueCreator: GetInternalBlurStrengthProperty);
+
+            }
+        }
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BlurStrengthProperty = BindableProperty.Create(nameof(BlurStrength), typeof(float), typeof(GaussianBlurView), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static BindableProperty BlurStrengthProperty = null;
+        internal static void SetInternalBlurStrengthProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var gaussianBlurView = (GaussianBlurView)bindable;
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty(gaussianBlurView.SwigCPtr, gaussianBlurView.GetBlurStrengthPropertyIndex(), new Tizen.NUI.PropertyValue((float)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalBlurStrengthProperty(BindableObject bindable)
         {
             var gaussianBlurView = (GaussianBlurView)bindable;
             float temp;
             Tizen.NUI.Object.GetProperty(gaussianBlurView.SwigCPtr, gaussianBlurView.GetBlurStrengthPropertyIndex()).Get(out temp);
             return temp;
-        });
+        }
 
         internal GaussianBlurView(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
         {
@@ -141,11 +152,25 @@ namespace Tizen.NUI
         {
             get
             {
-                return (float)GetValue(BlurStrengthProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(BlurStrengthProperty);
+                }
+                else
+                {
+                    return (float)GetInternalBlurStrengthProperty(this);
+                }
             }
             set
             {
-                SetValue(BlurStrengthProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(BlurStrengthProperty, value);
+                }
+                else
+                {
+                    SetInternalBlurStrengthProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
