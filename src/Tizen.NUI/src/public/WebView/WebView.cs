@@ -19,6 +19,7 @@ using System;
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using Tizen.NUI;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.BaseComponents
@@ -29,6 +30,59 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 9 </since_tizen>
     public partial class WebView : View
     {
+        static WebView()
+        {
+            if(NUIApplication.IsUsingXaml)
+            {
+                UrlProperty = BindableProperty.Create(nameof(Url), typeof(string), typeof(WebView), string.Empty, propertyChanged: SetInternalUrlProperty, defaultValueCreator: GetInternalUrlProperty);
+
+                UserAgentProperty = BindableProperty.Create(nameof(UserAgent), typeof(string), typeof(WebView), string.Empty, propertyChanged: SetInternalUserAgentProperty, defaultValueCreator: GetInternalUserAgentProperty);
+
+                ScrollPositionProperty = BindableProperty.Create(nameof(ScrollPosition), typeof(Vector2), typeof(WebView), null, propertyChanged: SetInternalScrollPositionProperty, defaultValueCreator: GetInternalScrollPositionProperty);
+
+                ScrollSizeProperty = BindableProperty.Create(nameof(ScrollSize), typeof(Vector2), typeof(WebView), null, defaultValueCreator: GetInternalScrollSizeProperty);
+
+                ContentSizeProperty = BindableProperty.Create(nameof(ContentSize), typeof(Vector2), typeof(WebView), null, defaultValueCreator: GetInternalContentSizeProperty);
+
+                TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(WebView), string.Empty, defaultValueCreator: GetInternalTitleProperty);
+
+                VideoHoleEnabledProperty = BindableProperty.Create(nameof(VideoHoleEnabled), typeof(bool), typeof(WebView), true, propertyChanged: SetInternalVideoHoleEnabledProperty, defaultValueCreator: GetInternalVideoHoleEnabledProperty);
+
+                MouseEventsEnabledProperty = BindableProperty.Create(nameof(MouseEventsEnabled), typeof(bool), typeof(WebView), true, propertyChanged: SetInternalMouseEventsEnabledProperty, defaultValueCreator: GetInternalMouseEventsEnabledProperty);
+
+                KeyEventsEnabledProperty = BindableProperty.Create(nameof(KeyEventsEnabled), typeof(bool), typeof(WebView), true, propertyChanged: SetInternalKeyEventsEnabledProperty, defaultValueCreator: GetInternalKeyEventsEnabledProperty);
+
+                ContentBackgroundColorProperty = BindableProperty.Create(nameof(ContentBackgroundColor), typeof(Color), typeof(WebView), null, propertyChanged: SetInternalContentBackgroundColorProperty, defaultValueCreator: GetInternalContentBackgroundColorProperty);
+
+                TilesClearedWhenHiddenProperty = BindableProperty.Create(nameof(TilesClearedWhenHidden), typeof(bool), typeof(WebView), true, propertyChanged: SetInternalTilesClearedWhenHiddenProperty, defaultValueCreator: GetInternalTilesClearedWhenHiddenProperty);
+
+                TileCoverAreaMultiplierProperty = BindableProperty.Create(nameof(TileCoverAreaMultiplier), typeof(float), typeof(WebView), 0.0f, propertyChanged: SetInternalTileCoverAreaMultiplierProperty, defaultValueCreator: GetInternalTileCoverAreaMultiplierProperty);
+
+                CursorEnabledByClientProperty = BindableProperty.Create(nameof(CursorEnabledByClient), typeof(bool), typeof(WebView), true, propertyChanged: SetInternalCursorEnabledByClientProperty, defaultValueCreator: GetInternalCursorEnabledByClientProperty);
+
+                SelectedTextProperty = BindableProperty.Create(nameof(SelectedText), typeof(string), typeof(WebView), string.Empty, defaultValueCreator: GetInternalSelectedTextProperty);
+
+                PageZoomFactorProperty = BindableProperty.Create(nameof(PageZoomFactor), typeof(float), typeof(WebView), 0.0f, propertyChanged: SetInternalPageZoomFactorProperty, defaultValueCreator: GetInternalPageZoomFactorProperty);
+
+                TextZoomFactorProperty = BindableProperty.Create(nameof(TextZoomFactor), typeof(float), typeof(WebView), 0.0f, propertyChanged: SetInternalTextZoomFactorProperty, defaultValueCreator: GetInternalTextZoomFactorProperty);
+
+                LoadProgressPercentageProperty = BindableProperty.Create(nameof(LoadProgressPercentage), typeof(float), typeof(WebView), 0.0f, defaultValueCreator: GetInternalLoadProgressPercentageProperty);
+
+                CacheModelProperty = BindableProperty.Create(nameof(CacheModel), typeof(CacheModel), typeof(WebView), default(CacheModel), propertyChanged: SetInternalCacheModelProperty, defaultValueCreator: GetInternalCacheModelProperty);
+
+                CookieAcceptPolicyProperty = BindableProperty.Create(nameof(CookieAcceptPolicy), typeof(CookieAcceptPolicy), typeof(WebView), default(CookieAcceptPolicy), propertyChanged: SetInternalCookieAcceptPolicyProperty, defaultValueCreator: GetInternalCookieAcceptPolicyProperty);
+
+                EnableJavaScriptProperty = BindableProperty.Create(nameof(EnableJavaScript), typeof(bool), typeof(WebView), false, propertyChanged: SetInternalEnableJavaScriptProperty, defaultValueCreator: GetInternalEnableJavaScriptProperty);
+
+                LoadImagesAutomaticallyProperty = BindableProperty.Create(nameof(LoadImagesAutomatically), typeof(bool), typeof(WebView), false, propertyChanged: SetInternalLoadImagesAutomaticallyProperty, defaultValueCreator: GetInternalLoadImagesAutomaticallyProperty);
+
+                DefaultTextEncodingNameProperty = BindableProperty.Create(nameof(DefaultTextEncodingName), typeof(string), typeof(WebView), string.Empty, propertyChanged: SetInternalDefaultTextEncodingNameProperty, defaultValueCreator: GetInternalDefaultTextEncodingNameProperty);
+
+                DefaultFontSizeProperty = BindableProperty.Create(nameof(DefaultFontSize), typeof(int), typeof(WebView), 0, propertyChanged: SetInternalDefaultFontSizeProperty, defaultValueCreator: GetInternalDefaultFontSizeProperty);
+
+            }
+        }
+
         private static readonly WebContext context = new WebContext(Interop.WebView.GetWebContext(), false);
         private static readonly WebCookieManager cookieManager = new WebCookieManager(Interop.WebView.GetWebCookieManager(), false);
 
@@ -890,11 +944,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (string)GetValue(UrlProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (string)GetValue(UrlProperty);
+                }
+                else
+                {
+                    return (string)GetInternalUrlProperty(this);
+                }
             }
             set
             {
-                SetValue(UrlProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(UrlProperty, value);
+                }
+                else
+                {
+                    SetInternalUrlProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -907,11 +975,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (CacheModel)GetValue(CacheModelProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (CacheModel)GetValue(CacheModelProperty);
+                }
+                else
+                {
+                    return (CacheModel)GetInternalCacheModelProperty(this);
+                }
             }
             set
             {
-                SetValue(CacheModelProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(CacheModelProperty, value);
+                }
+                else
+                {
+                    SetInternalCacheModelProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -936,11 +1018,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (CookieAcceptPolicy)GetValue(CookieAcceptPolicyProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (CookieAcceptPolicy)GetValue(CookieAcceptPolicyProperty);
+                }
+                else
+                {
+                    return (CookieAcceptPolicy)GetInternalCookieAcceptPolicyProperty(this);
+                }
             }
             set
             {
-                SetValue(CookieAcceptPolicyProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(CookieAcceptPolicyProperty, value);
+                }
+                else
+                {
+                    SetInternalCookieAcceptPolicyProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -965,11 +1061,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (string)GetValue(UserAgentProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (string)GetValue(UserAgentProperty);
+                }
+                else
+                {
+                    return (string)GetInternalUserAgentProperty(this);
+                }
             }
             set
             {
-                SetValue(UserAgentProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(UserAgentProperty, value);
+                }
+                else
+                {
+                    SetInternalUserAgentProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -982,11 +1092,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(EnableJavaScriptProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(EnableJavaScriptProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalEnableJavaScriptProperty(this);
+                }
             }
             set
             {
-                SetValue(EnableJavaScriptProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(EnableJavaScriptProperty, value);
+                }
+                else
+                {
+                    SetInternalEnableJavaScriptProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1011,11 +1135,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(LoadImagesAutomaticallyProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(LoadImagesAutomaticallyProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalLoadImagesAutomaticallyProperty(this);
+                }
             }
             set
             {
-                SetValue(LoadImagesAutomaticallyProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(LoadImagesAutomaticallyProperty, value);
+                }
+                else
+                {
+                    SetInternalLoadImagesAutomaticallyProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1041,11 +1179,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return GetValue(DefaultTextEncodingNameProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(DefaultTextEncodingNameProperty) as string;
+                }
+                else
+                {
+                    return GetInternalDefaultTextEncodingNameProperty(this) as string;
+                }
             }
             set
             {
-                SetValue(DefaultTextEncodingNameProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(DefaultTextEncodingNameProperty, value);
+                }
+                else
+                {
+                    SetInternalDefaultTextEncodingNameProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1070,11 +1222,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (int)GetValue(DefaultFontSizeProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (int)GetValue(DefaultFontSizeProperty);
+                }
+                else
+                {
+                    return (int)GetInternalDefaultFontSizeProperty(this);
+                }
             }
             set
             {
-                SetValue(DefaultFontSizeProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(DefaultFontSizeProperty, value);
+                }
+                else
+                {
+                    SetInternalDefaultFontSizeProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1099,11 +1265,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return GetValue(ScrollPositionProperty) as Position;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ScrollPositionProperty) as Position;
+                }
+                else
+                {
+                    return GetInternalScrollPositionProperty(this) as Position;
+                }
             }
             set
             {
-                SetValue(ScrollPositionProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ScrollPositionProperty, value);
+                }
+                else
+                {
+                    SetInternalScrollPositionProperty(this, null, value);
+                }
             }
         }
 
@@ -1134,7 +1314,15 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Vector2 sv = (Vector2)GetValue(ScrollSizeProperty);
+                Vector2 sv;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    sv = (Vector2)GetValue(ScrollSizeProperty);
+                }
+                else
+                {
+                    sv = (Vector2)GetInternalScrollSizeProperty(this);
+                }
                 return new Size(sv.Width, sv.Height);
             }
         }
@@ -1147,7 +1335,15 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Vector2 sv = (Vector2)GetValue(ContentSizeProperty);
+                Vector2 sv;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    sv = (Vector2)GetValue(ContentSizeProperty);
+                }
+                else
+                {
+                    sv = (Vector2)GetInternalContentSizeProperty(this);
+                }
                 return new Size(sv.Width, sv.Height);
             }
         }
@@ -1160,11 +1356,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(VideoHoleEnabledProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(VideoHoleEnabledProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalVideoHoleEnabledProperty(this);
+                }
             }
             set
             {
-                SetValue(VideoHoleEnabledProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(VideoHoleEnabledProperty, value);
+                }
+                else
+                {
+                    SetInternalVideoHoleEnabledProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1177,11 +1387,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(MouseEventsEnabledProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(MouseEventsEnabledProperty);
+                }
+                else
+                {
+                     return (bool)GetInternalMouseEventsEnabledProperty(this);
+                }
             }
             set
             {
-                SetValue(MouseEventsEnabledProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(MouseEventsEnabledProperty, value);
+                }
+                else
+                {
+                    SetInternalMouseEventsEnabledProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1194,11 +1418,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(KeyEventsEnabledProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(KeyEventsEnabledProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalKeyEventsEnabledProperty(this);
+                }
             }
             set
             {
-                SetValue(KeyEventsEnabledProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(KeyEventsEnabledProperty, value);
+                }
+                else
+                {
+                    SetInternalKeyEventsEnabledProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1212,11 +1450,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Color)GetValue(ContentBackgroundColorProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (Color)GetValue(ContentBackgroundColorProperty);
+                }
+                else
+                {
+                    return (Color)GetInternalContentBackgroundColorProperty(this);
+                }
             }
             set
             {
-                SetValue(ContentBackgroundColorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ContentBackgroundColorProperty, value);
+                }
+                else
+                {
+                    SetInternalContentBackgroundColorProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1229,11 +1481,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(TilesClearedWhenHiddenProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(TilesClearedWhenHiddenProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalTilesClearedWhenHiddenProperty(this);
+                }
             }
             set
             {
-                SetValue(TilesClearedWhenHiddenProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TilesClearedWhenHiddenProperty, value);
+                }
+                else
+                {
+                    SetInternalTilesClearedWhenHiddenProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1246,11 +1512,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (float)GetValue(TileCoverAreaMultiplierProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(TileCoverAreaMultiplierProperty);
+                }
+                else
+                {
+                    return (float)GetInternalTileCoverAreaMultiplierProperty(this);
+                }
             }
             set
             {
-                SetValue(TileCoverAreaMultiplierProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TileCoverAreaMultiplierProperty, value);
+                }
+                else
+                {
+                    SetInternalTileCoverAreaMultiplierProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1263,11 +1543,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(CursorEnabledByClientProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(CursorEnabledByClientProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalCursorEnabledByClientProperty(this);
+                }
             }
             set
             {
-                SetValue(CursorEnabledByClientProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(CursorEnabledByClientProperty, value);
+                }
+                else
+                {
+                    SetInternalCursorEnabledByClientProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1280,7 +1574,14 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (string)GetValue(SelectedTextProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (string)GetValue(SelectedTextProperty);
+                }
+                else
+                {
+                    return (string)GetInternalSelectedTextProperty(this);
+                }
             }
         }
 
@@ -1292,7 +1593,14 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (string)GetValue(TitleProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (string)GetValue(TitleProperty);
+                }
+                else
+                {
+                    return (string)GetInternalTitleProperty(this);
+                }
             }
         }
 
@@ -1319,11 +1627,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (float)GetValue(PageZoomFactorProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(PageZoomFactorProperty);
+                }
+                else
+                {
+                    return (float)GetInternalPageZoomFactorProperty(this);
+                }
             }
             set
             {
-                SetValue(PageZoomFactorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(PageZoomFactorProperty, value);
+                }
+                else
+                {
+                    SetInternalPageZoomFactorProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1336,11 +1658,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (float)GetValue(TextZoomFactorProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(TextZoomFactorProperty);
+                }
+                else
+                {
+                    return (float)GetInternalTextZoomFactorProperty(this);
+                }
             }
             set
             {
-                SetValue(TextZoomFactorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TextZoomFactorProperty, value);
+                }
+                else
+                {
+                    SetInternalTextZoomFactorProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -1353,7 +1689,14 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (float)GetValue(LoadProgressPercentageProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(LoadProgressPercentageProperty);
+                }
+                else
+                {
+                    return (float)GetInternalLoadProgressPercentageProperty(this);
+                }
             }
         }
 
@@ -1378,127 +1721,153 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int LoadProgressPercentage = Interop.WebView.LoadProgressPercentageGet();
         }
 
-        private static readonly BindableProperty UrlProperty = BindableProperty.Create(nameof(Url), typeof(string), typeof(WebView), string.Empty, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        private static readonly BindableProperty UrlProperty = null;
+        
+        internal static void SetInternalUrlProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var webview = (WebView)bindable;
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.Url, new Tizen.NUI.PropertyValue((string)newValue));
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        
+        internal static object GetInternalUrlProperty(BindableObject bindable)
         {
             var webview = (WebView)bindable;
             string temp;
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.Url).Get(out temp);
             return temp;
-        }));
+        }
 
-        private static readonly BindableProperty UserAgentProperty = BindableProperty.Create(nameof(UserAgent), typeof(string), typeof(WebView), string.Empty, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        private static readonly BindableProperty UserAgentProperty = null;
+        
+        internal static void SetInternalUserAgentProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var webview = (WebView)bindable;
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty((HandleRef)webview.SwigCPtr, WebView.Property.UserAgent, new Tizen.NUI.PropertyValue((string)newValue));
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        
+        internal static object GetInternalUserAgentProperty(BindableObject bindable)
         {
             var webview = (WebView)bindable;
             string temp;
             Tizen.NUI.Object.GetProperty((HandleRef)webview.SwigCPtr, WebView.Property.UserAgent).Get(out temp);
             return temp;
-        }));
+        }
 
-        private static readonly BindableProperty ScrollPositionProperty = BindableProperty.Create(nameof(ScrollPosition), typeof(Vector2), typeof(WebView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        private static readonly BindableProperty ScrollPositionProperty = null;
+        
+        internal static void SetInternalScrollPositionProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var webview = (WebView)bindable;
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.ScrollPosition, new Tizen.NUI.PropertyValue((Vector2)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        
+        internal static object GetInternalScrollPositionProperty(BindableObject bindable)
         {
             var webview = (WebView)bindable;
             Vector2 temp = new Vector2(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.ScrollPosition).Get(temp);
             return temp;
-        });
+        }
 
-        private static readonly BindableProperty ScrollSizeProperty = BindableProperty.Create(nameof(ScrollSize), typeof(Vector2), typeof(WebView), null, defaultValueCreator: (bindable) =>
+        private static readonly BindableProperty ScrollSizeProperty = null;
+        
+        internal static object GetInternalScrollSizeProperty(BindableObject bindable)
         {
             var webview = (WebView)bindable;
             Vector2 temp = new Vector2(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.ScrollSize).Get(temp);
             return temp;
-        });
+        }
 
-        private static readonly BindableProperty ContentSizeProperty = BindableProperty.Create(nameof(ContentSize), typeof(Vector2), typeof(WebView), null, defaultValueCreator: (bindable) =>
+        private static readonly BindableProperty ContentSizeProperty = null;
+
+        internal static object GetInternalContentSizeProperty(BindableObject bindable)
         {
             var webview = (WebView)bindable;
             Vector2 temp = new Vector2(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.ContentSize).Get(temp);
             return temp;
-        });
+        }
 
-        private static readonly BindableProperty TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(WebView), string.Empty, defaultValueCreator: (bindable) =>
+        private static readonly BindableProperty TitleProperty = null;
+
+        internal static object GetInternalTitleProperty(BindableObject bindable)
         {
             var webview = (WebView)bindable;
             string title;
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.Title).Get(out title);
             return title;
-        });
+        }
 
-        private static readonly BindableProperty VideoHoleEnabledProperty = BindableProperty.Create(nameof(VideoHoleEnabled), typeof(bool), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
+        private static readonly BindableProperty VideoHoleEnabledProperty = null;
+        
+        internal static void SetInternalVideoHoleEnabledProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var webview = (WebView)bindable;
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.VideoHoleEnabled, new Tizen.NUI.PropertyValue((bool)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        
+        internal static object GetInternalVideoHoleEnabledProperty(BindableObject bindable)
         {
             var webview = (WebView)bindable;
             bool temp;
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.VideoHoleEnabled).Get(out temp);
             return temp;
-        });
+        }
 
-        private static readonly BindableProperty MouseEventsEnabledProperty = BindableProperty.Create(nameof(MouseEventsEnabled), typeof(bool), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
+        private static readonly BindableProperty MouseEventsEnabledProperty = null;
+        
+        internal static void SetInternalMouseEventsEnabledProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var webview = (WebView)bindable;
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.MouseEventsEnabled, new Tizen.NUI.PropertyValue((bool)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        
+        internal static object GetInternalMouseEventsEnabledProperty(BindableObject bindable)
         {
             var webview = (WebView)bindable;
             bool temp;
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.MouseEventsEnabled).Get(out temp);
             return temp;
-        });
+        }
 
-        private static readonly BindableProperty KeyEventsEnabledProperty = BindableProperty.Create(nameof(KeyEventsEnabled), typeof(bool), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
+        private static readonly BindableProperty KeyEventsEnabledProperty = null;
+        
+        internal static void SetInternalKeyEventsEnabledProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var webview = (WebView)bindable;
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.KeyEventsEnabled, new Tizen.NUI.PropertyValue((bool)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        
+        internal static object GetInternalKeyEventsEnabledProperty(BindableObject bindable)
         {
             var webview = (WebView)bindable;
             bool temp;
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.KeyEventsEnabled).Get(out temp);
             return temp;
-        });
+        }
 
-        private static readonly BindableProperty ContentBackgroundColorProperty = BindableProperty.Create(nameof(ContentBackgroundColor), typeof(Color), typeof(WebView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        private static readonly BindableProperty ContentBackgroundColorProperty = null;
+        
+        internal static void SetInternalContentBackgroundColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var webview = (WebView)bindable;
             if (newValue != null)
@@ -1506,14 +1875,17 @@ namespace Tizen.NUI.BaseComponents
                 webview.contentBackgroundColor = (Color)newValue;
                 Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.DocumentBackgroundColor, new Tizen.NUI.PropertyValue((Color)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        
+        internal static object GetInternalContentBackgroundColorProperty(BindableObject bindable)
         {
             var webview = (WebView)bindable;
             return webview.contentBackgroundColor;
-        });
+        }
 
-        private static readonly BindableProperty TilesClearedWhenHiddenProperty = BindableProperty.Create(nameof(TilesClearedWhenHidden), typeof(bool), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
+        private static readonly BindableProperty TilesClearedWhenHiddenProperty = null;
+        
+        internal static void SetInternalTilesClearedWhenHiddenProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var webview = (WebView)bindable;
             if (newValue != null)
@@ -1521,14 +1893,17 @@ namespace Tizen.NUI.BaseComponents
                 webview.tilesClearedWhenHidden = (bool)newValue;
                 Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.TilesClearedWhenHidden, new Tizen.NUI.PropertyValue((bool)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        
+        internal static object GetInternalTilesClearedWhenHiddenProperty(BindableObject bindable)
         {
             var webview = (WebView)bindable;
             return webview.tilesClearedWhenHidden;
-        });
+        }
 
-        private static readonly BindableProperty TileCoverAreaMultiplierProperty = BindableProperty.Create(nameof(TileCoverAreaMultiplier), typeof(float), typeof(WebView), 0.0f, propertyChanged: (bindable, oldValue, newValue) =>
+        private static readonly BindableProperty TileCoverAreaMultiplierProperty = null;
+        
+        internal static void SetInternalTileCoverAreaMultiplierProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var webview = (WebView)bindable;
             if (newValue != null)
@@ -1536,14 +1911,17 @@ namespace Tizen.NUI.BaseComponents
                 webview.tileCoverAreaMultiplier = (float)newValue;
                 Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.TileCoverAreaMultiplier, new Tizen.NUI.PropertyValue((float)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        
+        internal static object GetInternalTileCoverAreaMultiplierProperty(BindableObject bindable)
         {
             var webview = (WebView)bindable;
             return webview.tileCoverAreaMultiplier;
-        });
+        }
 
-        private static readonly BindableProperty CursorEnabledByClientProperty = BindableProperty.Create(nameof(CursorEnabledByClient), typeof(bool), typeof(WebView), true, propertyChanged: (bindable, oldValue, newValue) =>
+        private static readonly BindableProperty CursorEnabledByClientProperty = null;
+        
+        internal static void SetInternalCursorEnabledByClientProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var webview = (WebView)bindable;
             if (newValue != null)
@@ -1551,60 +1929,71 @@ namespace Tizen.NUI.BaseComponents
                 webview.cursorEnabledByClient = (bool)newValue;
                 Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.CursorEnabledByClient, new Tizen.NUI.PropertyValue((bool)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        
+        internal static object GetInternalCursorEnabledByClientProperty(BindableObject bindable)
         {
             var webview = (WebView)bindable;
             return webview.cursorEnabledByClient;
-        });
+        }
 
-        private static readonly BindableProperty SelectedTextProperty = BindableProperty.Create(nameof(SelectedText), typeof(string), typeof(WebView), string.Empty, defaultValueCreator: (bindable) =>
+        private static readonly BindableProperty SelectedTextProperty = null;
+        
+        internal static object GetInternalSelectedTextProperty(BindableObject bindable)
         {
             var webview = (WebView)bindable;
             string text;
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.SelectedText).Get(out text);
             return text;
-        });
+        }
 
-        private static readonly BindableProperty PageZoomFactorProperty = BindableProperty.Create(nameof(PageZoomFactor), typeof(float), typeof(WebView), 0.0f, propertyChanged: (bindable, oldValue, newValue) =>
+        private static readonly BindableProperty PageZoomFactorProperty = null;
+        
+        internal static void SetInternalPageZoomFactorProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var webview = (WebView)bindable;
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.PageZoomFactor, new Tizen.NUI.PropertyValue((float)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        
+        internal static object GetInternalPageZoomFactorProperty(BindableObject bindable)
         {
             var webview = (WebView)bindable;
             float temp;
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.PageZoomFactor).Get(out temp);
             return temp;
-        });
+        }
 
-        private static readonly BindableProperty TextZoomFactorProperty = BindableProperty.Create(nameof(TextZoomFactor), typeof(float), typeof(WebView), 0.0f, propertyChanged: (bindable, oldValue, newValue) =>
+        private static readonly BindableProperty TextZoomFactorProperty = null;
+        
+        internal static void SetInternalTextZoomFactorProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var webview = (WebView)bindable;
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty(webview.SwigCPtr, WebView.Property.TextZoomFactor, new Tizen.NUI.PropertyValue((float)newValue));
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        
+        internal static object GetInternalTextZoomFactorProperty(BindableObject bindable)
         {
             var webview = (WebView)bindable;
             float temp;
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.TextZoomFactor).Get(out temp);
             return temp;
-        });
+        }
 
-        private static readonly BindableProperty LoadProgressPercentageProperty = BindableProperty.Create(nameof(LoadProgressPercentage), typeof(float), typeof(WebView), 0.0f, defaultValueCreator: (bindable) =>
+        private static readonly BindableProperty LoadProgressPercentageProperty = null;
+        
+        internal static object GetInternalLoadProgressPercentageProperty(BindableObject bindable)
         {
             var webview = (WebView)bindable;
             float percentage;
             Tizen.NUI.Object.GetProperty(webview.SwigCPtr, WebView.Property.LoadProgressPercentage).Get(out percentage);
             return percentage;
-        });
+        }
 
         // For rooting handlers
         internal Dictionary<string, JavaScriptMessageHandler> handlerRootMap = new Dictionary<string, JavaScriptMessageHandler>();
