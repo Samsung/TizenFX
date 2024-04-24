@@ -28,35 +28,48 @@ namespace Tizen.NUI.BaseComponents
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FocusNavigationSupportProperty = BindableProperty.Create(nameof(FocusNavigationSupport), typeof(bool), typeof(CustomView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static BindableProperty FocusNavigationSupportProperty = null;
+        internal static void SetInternalFocusNavigationSupportProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var customView = (CustomView)bindable;
             if (newValue != null)
             {
                 customView.SetKeyboardNavigationSupport((bool)newValue);
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalFocusNavigationSupportProperty(BindableObject bindable)
         {
             var customView = (CustomView)bindable;
             return customView.IsKeyboardNavigationSupported();
-        });
+        }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FocusGroupProperty = BindableProperty.Create(nameof(FocusGroup), typeof(bool), typeof(CustomView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static BindableProperty FocusGroupProperty = null;
+        internal static void SetInternalFocusGroupProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var customView = (CustomView)bindable;
             if (newValue != null)
             {
                 customView.SetAsKeyboardFocusGroup((bool)newValue);
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalFocusGroupProperty(BindableObject bindable)
         {
             var customView = (CustomView)bindable;
             return customView.IsKeyboardFocusGroup();
-        });
+        }
+
+        static CustomView()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                FocusNavigationSupportProperty = BindableProperty.Create(nameof(FocusNavigationSupport), typeof(bool), typeof(CustomView), false,
+                    propertyChanged: SetInternalFocusNavigationSupportProperty, defaultValueCreator: GetInternalFocusNavigationSupportProperty);
+                FocusGroupProperty = BindableProperty.Create(nameof(FocusGroup), typeof(bool), typeof(CustomView), false,
+                    propertyChanged: SetInternalFocusGroupProperty, defaultValueCreator: GetInternalFocusGroupProperty);
+            }
+        }
 
         /// <summary>
         /// Create an instance of customView.
@@ -91,11 +104,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(FocusNavigationSupportProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(FocusNavigationSupportProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalFocusNavigationSupportProperty(this);
+                }
             }
             set
             {
-                SetValue(FocusNavigationSupportProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(FocusNavigationSupportProperty, value);
+                }
+                else
+                {
+                    SetInternalFocusNavigationSupportProperty(this, null, value);
+                }
             }
         }
 
@@ -108,11 +135,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(FocusGroupProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(FocusGroupProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalFocusGroupProperty(this);
+                }
             }
             set
             {
-                SetValue(FocusGroupProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(FocusGroupProperty, value);
+                }
+                else
+                {
+                    SetInternalFocusGroupProperty(this, null, value);
+                }
             }
         }
 
