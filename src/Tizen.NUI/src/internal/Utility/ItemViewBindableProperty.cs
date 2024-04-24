@@ -26,216 +26,228 @@ namespace Tizen.NUI
         /// LayoutProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static new readonly BindableProperty LayoutProperty = BindableProperty.Create(nameof(Layout), typeof(Tizen.NUI.PropertyArray), typeof(ItemView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static BindableProperty LayoutProperty = null;
+        internal static void SetInternalLayoutProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             if (newValue != null)
             {
                 instance.InternalLayout = (Tizen.NUI.PropertyArray)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalLayoutProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             return instance.InternalLayout;
-        });
+        }
 
         /// <summary>
         /// MinimumSwipeSpeedProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MinimumSwipeSpeedProperty = BindableProperty.Create(nameof(MinimumSwipeSpeed), typeof(float), typeof(ItemView), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static BindableProperty MinimumSwipeSpeedProperty = null;
+        internal static void SetInternalMinimumSwipeSpeedProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             if (newValue != null)
             {
                 instance.InternalMinimumSwipeSpeed = (float)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalMinimumSwipeSpeedProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             return instance.InternalMinimumSwipeSpeed;
-        });
+        }
 
         /// <summary>
         /// MinimumSwipeDistanceProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MinimumSwipeDistanceProperty = BindableProperty.Create(nameof(MinimumSwipeDistance), typeof(float), typeof(ItemView), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static BindableProperty MinimumSwipeDistanceProperty = null;
+        internal static void SetInternalMinimumSwipeDistanceProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             if (newValue != null)
             {
                 instance.InternalMinimumSwipeDistance = (float)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalMinimumSwipeDistanceProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             return instance.InternalMinimumSwipeDistance;
-        });
+        }
 
         /// <summary>
         /// WheelScrollDistanceStepProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty WheelScrollDistanceStepProperty = BindableProperty.Create(nameof(WheelScrollDistanceStep), typeof(float), typeof(ItemView), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static BindableProperty WheelScrollDistanceStepProperty = null;
+        internal static void SetInternalWheelScrollDistanceStepProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             if (newValue != null)
             {
                 instance.InternalWheelScrollDistanceStep = (float)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalWheelScrollDistanceStepProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             return instance.InternalWheelScrollDistanceStep;
-        });
+        }
 
         /// <summary>
         /// SnapToItemEnabledProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SnapToItemEnabledProperty = BindableProperty.Create(nameof(SnapToItemEnabled), typeof(bool), typeof(ItemView), true, propertyChanged: (bindable, oldValue, newValue) =>
+        public static BindableProperty SnapToItemEnabledProperty = null;
+        internal static void SetInternalSnapToItemEnabledProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             if (newValue != null)
             {
                 instance.InternalSnapToItemEnabled = (bool)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalSnapToItemEnabledProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             return instance.InternalSnapToItemEnabled;
-        });
+        }
 
         /// <summary>
         /// RefreshIntervalProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RefreshIntervalProperty = BindableProperty.Create(nameof(RefreshInterval), typeof(float), typeof(ItemView), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static BindableProperty RefreshIntervalProperty = null;
+        internal static void SetInternalRefreshIntervalProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             if (newValue != null)
             {
                 instance.InternalRefreshInterval = (float)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalRefreshIntervalProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             return instance.InternalRefreshInterval;
-        });
+        }
 
         /// <summary>
         /// LayoutPositionProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LayoutPositionProperty = BindableProperty.Create(nameof(LayoutPosition), typeof(float), typeof(ItemView), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static BindableProperty LayoutPositionProperty = null;
+        internal static void SetInternalLayoutPositionProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             if (newValue != null)
             {
                 instance.InternalLayoutPosition = (float)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalLayoutPositionProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             return instance.InternalLayoutPosition;
-        });
+        }
 
         /// <summary>
         /// ScrollSpeedProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollSpeedProperty = BindableProperty.Create(nameof(ScrollSpeed), typeof(float), typeof(ItemView), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static BindableProperty ScrollSpeedProperty = null;
+        internal static void SetInternalScrollSpeedProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             if (newValue != null)
             {
                 instance.InternalScrollSpeed = (float)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalScrollSpeedProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             return instance.InternalScrollSpeed;
-        });
+        }
 
         /// <summary>
         /// OvershootProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty OvershootProperty = BindableProperty.Create(nameof(Overshoot), typeof(float), typeof(ItemView), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static BindableProperty OvershootProperty = null;
+        internal static void SetInternalOvershootProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             if (newValue != null)
             {
                 instance.InternalOvershoot = (float)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalOvershootProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             return instance.InternalOvershoot;
-        });
+        }
 
         /// <summary>
         /// ScrollDirectionProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollDirectionProperty = BindableProperty.Create(nameof(ScrollDirection), typeof(Tizen.NUI.Vector2), typeof(ItemView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static BindableProperty ScrollDirectionProperty = null;
+        internal static void SetInternalScrollDirectionProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             if (newValue != null)
             {
                 instance.InternalScrollDirection = (Tizen.NUI.Vector2)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalScrollDirectionProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             return instance.InternalScrollDirection;
-        });
+        }
 
         /// <summary>
         /// LayoutOrientationProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LayoutOrientationProperty = BindableProperty.Create(nameof(LayoutOrientation), typeof(int), typeof(ItemView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static BindableProperty LayoutOrientationProperty = null;
+        internal static void SetInternalLayoutOrientationProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             if (newValue != null)
             {
                 instance.InternalLayoutOrientation = (int)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalLayoutOrientationProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             return instance.InternalLayoutOrientation;
-        });
+        }
 
         /// <summary>
         /// ScrollContentSizeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollContentSizeProperty = BindableProperty.Create(nameof(ScrollContentSize), typeof(float), typeof(ItemView), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static BindableProperty ScrollContentSizeProperty = null;
+        internal static void SetInternalScrollContentSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             if (newValue != null)
             {
                 instance.InternalScrollContentSize = (float)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalScrollContentSizeProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             return instance.InternalScrollContentSize;
-        });
+        }
     }
 }

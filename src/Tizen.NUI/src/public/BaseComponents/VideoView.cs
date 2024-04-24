@@ -29,109 +29,145 @@ namespace Tizen.NUI.BaseComponents
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty VideoProperty = BindableProperty.Create(nameof(Video), typeof(PropertyMap), typeof(VideoView), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static BindableProperty VideoProperty = null;
+        internal static void SetInternalVideoProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var videoView = (VideoView)bindable;
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.VIDEO, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalVideoProperty(BindableObject bindable)
         {
             var videoView = (VideoView)bindable;
             PropertyMap temp = new PropertyMap();
             Tizen.NUI.Object.GetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.VIDEO).Get(temp);
             return temp;
-        }));
+        }
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LoopingProperty = BindableProperty.Create(nameof(Looping), typeof(bool), typeof(VideoView), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static BindableProperty LoopingProperty = null;
+        internal static void SetInternalLoopingProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var videoView = (VideoView)bindable;
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.LOOPING, new Tizen.NUI.PropertyValue((bool)newValue));
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalLoopingProperty(BindableObject bindable)
         {
             var videoView = (VideoView)bindable;
             bool temp = false;
             Tizen.NUI.Object.GetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.LOOPING).Get(out temp);
             return temp;
-        }));
+        }
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MutedProperty = BindableProperty.Create(nameof(Muted), typeof(bool), typeof(VideoView), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static BindableProperty MutedProperty = null;
+        internal static void SetInternalMutedProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var videoView = (VideoView)bindable;
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.MUTED, new Tizen.NUI.PropertyValue((bool)newValue));
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalMutedProperty(BindableObject bindable)
         {
             var videoView = (VideoView)bindable;
             bool temp = false;
             Tizen.NUI.Object.GetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.MUTED).Get(out temp);
             return temp;
-        }));
+        }
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty VolumeProperty = BindableProperty.Create(nameof(Volume), typeof(PropertyMap), typeof(VideoView), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static BindableProperty VolumeProperty = null;
+        internal static void SetInternalVolumeProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var videoView = (VideoView)bindable;
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.VOLUME, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalVolumeProperty(BindableObject bindable)
         {
             var videoView = (VideoView)bindable;
             PropertyMap temp = new PropertyMap();
             Tizen.NUI.Object.GetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.VOLUME).Get(temp);
             return temp;
-        }));
+        }
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty UnderlayProperty = BindableProperty.Create(nameof(Underlay), typeof(bool), typeof(VideoView), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static BindableProperty UnderlayProperty = null;
+        internal static void SetInternalUnderlayProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var videoView = (VideoView)bindable;
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.UNDERLAY, new Tizen.NUI.PropertyValue((bool)newValue));
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalUnderlayProperty(BindableObject bindable)
         {
             var videoView = (VideoView)bindable;
             bool temp = false;
             Tizen.NUI.Object.GetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.UNDERLAY).Get(out temp);
             return temp;
-        }));
+        }
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ResourceUrlProperty = BindableProperty.Create(nameof(ResourceUrl), typeof(string), typeof(VideoView), string.Empty, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static BindableProperty ResourceUrlProperty = null;
+        internal static void SetInternalResourceUrlProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var videoView = (VideoView)bindable;
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.VIDEO, new Tizen.NUI.PropertyValue((string)newValue));
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalResourceUrlProperty(BindableObject bindable)
         {
             var videoView = (VideoView)bindable;
             string temp;
             Tizen.NUI.Object.GetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.VIDEO).Get(out temp);
             return temp;
-        }));
+        }
 
         private FinishedCallbackDelegate videoViewFinishedCallbackDelegate;
         private EventHandler<FinishedEventArgs> videoViewFinishedEventHandler;
+
+
+        static VideoView()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                VideoProperty = BindableProperty.Create(nameof(Video), typeof(PropertyMap), typeof(VideoView), null,
+                    propertyChanged: SetInternalVideoProperty, defaultValueCreator: GetInternalVideoProperty);
+
+                LoopingProperty = BindableProperty.Create(nameof(Looping), typeof(bool), typeof(VideoView), false,
+                    propertyChanged: SetInternalLoopingProperty, defaultValueCreator: GetInternalLoopingProperty);
+
+                MutedProperty = BindableProperty.Create(nameof(Muted), typeof(bool), typeof(VideoView), false,
+                    propertyChanged: SetInternalMutedProperty, defaultValueCreator: GetInternalMutedProperty);
+
+                VolumeProperty = BindableProperty.Create(nameof(Volume), typeof(PropertyMap), typeof(VideoView), null,
+                    propertyChanged: SetInternalVolumeProperty, defaultValueCreator: GetInternalVolumeProperty);
+
+                UnderlayProperty = BindableProperty.Create(nameof(Underlay), typeof(bool), typeof(VideoView), false,
+                    propertyChanged: SetInternalUnderlayProperty, defaultValueCreator: GetInternalUnderlayProperty);
+
+                ResourceUrlProperty = BindableProperty.Create(nameof(ResourceUrl), typeof(string), typeof(VideoView), string.Empty,
+                    propertyChanged: SetInternalResourceUrlProperty, defaultValueCreator: GetInternalResourceUrlProperty);
+            }
+        }
 
         /// <summary>
         /// Creates an initialized VideoView.
@@ -231,11 +267,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (PropertyMap)GetValue(VideoProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (PropertyMap)GetValue(VideoProperty);
+                }
+                else
+                {
+                    return (PropertyMap)GetInternalVideoProperty(this);
+                }
             }
             set
             {
-                SetValue(VideoProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(VideoProperty, value);
+                }
+                else
+                {
+                    SetInternalVideoProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -248,11 +298,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(LoopingProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(LoopingProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalLoopingProperty(this);
+                }
             }
             set
             {
-                SetValue(LoopingProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(LoopingProperty, value);
+                }
+                else
+                {
+                    SetInternalLoopingProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -265,11 +329,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(MutedProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(MutedProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalMutedProperty(this);
+                }
             }
             set
             {
-                SetValue(MutedProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(MutedProperty, value);
+                }
+                else
+                {
+                    SetInternalMutedProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -282,11 +360,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (PropertyMap)GetValue(VolumeProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (PropertyMap)GetValue(VolumeProperty);
+                }
+                else
+                {
+                    return (PropertyMap)GetInternalVolumeProperty(this);
+                }
             }
             set
             {
-                SetValue(VolumeProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(VolumeProperty, value);
+                }
+                else
+                {
+                    SetInternalVolumeProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -300,11 +392,26 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(UnderlayProperty);
+
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(UnderlayProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalUnderlayProperty(this);
+                }
             }
             set
             {
-                SetValue(UnderlayProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(UnderlayProperty, value);
+                }
+                else
+                {
+                    SetInternalUnderlayProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -317,11 +424,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (string)GetValue(ResourceUrlProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (string)GetValue(ResourceUrlProperty);
+                }
+                else
+                {
+                    return (string)GetInternalResourceUrlProperty(this);
+                }
             }
             set
             {
-                SetValue(ResourceUrlProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ResourceUrlProperty, value);
+                }
+                else
+                {
+                    SetInternalResourceUrlProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
