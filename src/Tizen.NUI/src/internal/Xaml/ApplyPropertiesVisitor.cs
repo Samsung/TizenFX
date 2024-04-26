@@ -393,7 +393,15 @@ namespace Tizen.NUI.Xaml
 
             if (exception == null)
             {
-                return bindableFieldInfo.GetValue(null) as BindableProperty;
+                var ret = bindableFieldInfo.GetValue(null);
+                if (ret is BindableProperty)
+                {
+                    return ret as BindableProperty;
+                }
+                else if (ret is Lazy<BindableProperty>)
+                {
+                    return (bindableFieldInfo.GetValue(null) as Lazy<BindableProperty>).Value;
+                }
             }
 
             if (throwOnError)

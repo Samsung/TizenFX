@@ -89,20 +89,20 @@ namespace Tizen.NUI.BaseComponents
 
         static View()
         {
-            RegisterPropertyGroup(PositionProperty, positionPropertyGroup);
-            RegisterPropertyGroup(Position2DProperty, positionPropertyGroup);
-            RegisterPropertyGroup(PositionXProperty, positionPropertyGroup);
-            RegisterPropertyGroup(PositionYProperty, positionPropertyGroup);
+            RegisterPropertyGroup(PositionProperty.Value, positionPropertyGroup);
+            RegisterPropertyGroup(Position2DProperty.Value, positionPropertyGroup);
+            RegisterPropertyGroup(PositionXProperty.Value, positionPropertyGroup);
+            RegisterPropertyGroup(PositionYProperty.Value, positionPropertyGroup);
 
-            RegisterPropertyGroup(SizeProperty, sizePropertyGroup);
-            RegisterPropertyGroup(Size2DProperty, sizePropertyGroup);
-            RegisterPropertyGroup(SizeWidthProperty, sizePropertyGroup);
-            RegisterPropertyGroup(SizeHeightProperty, sizePropertyGroup);
+            RegisterPropertyGroup(SizeProperty.Value, sizePropertyGroup);
+            RegisterPropertyGroup(Size2DProperty.Value, sizePropertyGroup);
+            RegisterPropertyGroup(SizeWidthProperty.Value, sizePropertyGroup);
+            RegisterPropertyGroup(SizeHeightProperty.Value, sizePropertyGroup);
 
-            RegisterPropertyGroup(ScaleProperty, scalePropertyGroup);
-            RegisterPropertyGroup(ScaleXProperty, scalePropertyGroup);
-            RegisterPropertyGroup(ScaleYProperty, scalePropertyGroup);
-            RegisterPropertyGroup(ScaleZProperty, scalePropertyGroup);
+            RegisterPropertyGroup(ScaleProperty.Value, scalePropertyGroup);
+            RegisterPropertyGroup(ScaleXProperty.Value, scalePropertyGroup);
+            RegisterPropertyGroup(ScaleYProperty.Value, scalePropertyGroup);
+            RegisterPropertyGroup(ScaleZProperty.Value, scalePropertyGroup);
 
             RegisterAccessibilityDelegate();
         }

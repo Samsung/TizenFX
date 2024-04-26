@@ -30,7 +30,7 @@ namespace Tizen.NUI.Components
         /// Property of boolean Enable flag.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public new static readonly BindableProperty IsEnabledProperty = View.IsEnabledProperty;
+        public new static readonly BindableProperty IsEnabledProperty = View.IsEnabledProperty.Value;
 
         /// <summary>
         /// Property of boolean Selected flag.

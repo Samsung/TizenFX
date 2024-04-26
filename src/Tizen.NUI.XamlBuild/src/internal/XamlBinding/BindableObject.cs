@@ -33,9 +33,8 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Implements the bound property whose interface is provided by the BindingContext property.
         /// </summary>
-        public static readonly BindableProperty BindingContextProperty =
-            BindableProperty.Create("BindingContext", typeof(object), typeof(BindableObject), default(object),
-                                    BindingMode.OneWay, null, BindingContextPropertyChanged, null, null, BindingContextPropertyBindingChanging);
+        public static readonly Lazy<BindableProperty> BindingContextProperty = new Lazy<BindableProperty>(() => BindableProperty.Create("BindingContext",
+            typeof(object), typeof(BindableObject), default(object), BindingMode.OneWay, null, BindingContextPropertyChanged, null, null, BindingContextPropertyBindingChanging));
 
         readonly List<BindablePropertyContext> _properties = new List<BindablePropertyContext>(4);
 
@@ -134,6 +133,22 @@ namespace Tizen.NUI.Binding
         }
 
         /// <summary>
+        /// Returns the value that is contained the BindableProperty.
+        /// </summary>
+        /// <param name="lazyProperty">The lazy BindableProperty for which to get the value.</param>
+        /// <returns>The value that is contained the BindableProperty</returns>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public object GetValue(Lazy<BindableProperty> lazyProperty)
+        {
+            if (lazyProperty == null)
+                throw new ArgumentNullException(nameof(lazyProperty));
+            var property = lazyProperty.Value;
+
+            return GetValue(property);
+        }
+
+        /// <summary>
         /// Raised when a property is about to change.
         /// </summary>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -166,6 +181,16 @@ namespace Tizen.NUI.Binding
             SetBinding(targetProperty, binding, false);
         }
 
+        /// <summary>
+        /// Assigns a binding to a lazy property.
+        /// </summary>
+        /// <param name="targetProperty">The lazy BindableProperty on which to set a binding.</param>
+        /// <param name="binding">The binding to set.</param>
+        /// This will be public opened in tizen_8.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetBinding(Lazy<BindableProperty> targetProperty, BindingBase binding) => SetBinding(targetProperty?.Value, binding, false);
+
+
         private bool isCreateByXaml = false;
         internal virtual bool IsCreateByXaml
         {
@@ -197,6 +222,24 @@ namespace Tizen.NUI.Binding
             //{
             //    property.PropertyChanged?.Invoke(this, null, value);
             //}
+        }
+
+        /// <summary>
+        /// Sets the value of the specified property.
+        /// </summary>
+        /// <param name="lazyProperty">The lazy BindableProperty on which to assign a value.</param>
+        /// <param name="value">The value to set.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when property is null. </exception>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetValue(Lazy<BindableProperty> lazyProperty, object value)
+        {
+            if (null == lazyProperty)
+            {
+                throw new ArgumentNullException(nameof(lazyProperty));
+            }
+            var property = lazyProperty.Value;
+            SetValue(property, value);
         }
 
         internal void SetValueAndForceSendChangeSignal(BindableProperty property, object value)
@@ -247,7 +290,7 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetInheritedBindingContext(BindableObject bindable, object value)
         {
-            BindablePropertyContext bpContext = bindable.GetContext(BindingContextProperty);
+            BindablePropertyContext bpContext = bindable.GetContext(BindingContextProperty.Value);
             if (bpContext != null && ((bpContext.Attributes & BindableContextAttributes.IsManuallySet) != 0))
                 return;
 
@@ -626,7 +669,7 @@ namespace Tizen.NUI.Binding
                 if (binding == null)
                     continue;
 
-                if (skipBindingContext && ReferenceEquals(context.Property, BindingContextProperty))
+                if (skipBindingContext && ReferenceEquals(context.Property, BindingContextProperty.Value))
                     continue;
 
                 binding.Unapply(fromBindingContextChanged: fromBindingContextChanged);
@@ -772,7 +815,7 @@ namespace Tizen.NUI.Binding
             bool clearOneWayBindings = (attributes & SetValueFlags.ClearOneWayBindings) != 0;
             bool clearTwoWayBindings = (attributes & SetValueFlags.ClearTwoWayBindings) != 0;
 
-            bool same = ReferenceEquals(context.Property, BindingContextProperty) ? ReferenceEquals(value, original) : Equals(value, original);
+            bool same = ReferenceEquals(context.Property, BindingContextProperty.Value) ? ReferenceEquals(value, original) : Equals(value, original);
             if (!silent && (!same || raiseOnEqual))
             {
                 property.PropertyChanging?.Invoke(this, original, value);

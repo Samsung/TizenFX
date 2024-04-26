@@ -38,5 +38,19 @@ namespace Tizen.NUI.Binding
             var binding = new Binding(path, mode, converter, stringFormat: stringFormat);
             self.SetBinding(targetProperty, binding);
         }
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetBinding(this BindableObject self, Lazy<BindableProperty> targetProperty, string path, BindingMode mode = BindingMode.Default, IValueConverter converter = null,
+                                      string stringFormat = null)
+        {
+            if (self == null)
+                throw new ArgumentNullException(nameof(self));
+            if (targetProperty == null)
+                throw new ArgumentNullException(nameof(targetProperty));
+
+            var binding = new Binding(path, mode, converter, stringFormat: stringFormat);
+            self.SetBinding(targetProperty, binding);
+        }
     }
 }
