@@ -105,7 +105,7 @@ namespace Tizen.NUI.BaseComponents
 
                 ColorProperty = BindableProperty.Create(nameof(Color), typeof(Color), typeof(View), null,
                     propertyChanged: SetInternalColorProperty, defaultValueCreator: GetInternalColorProperty);
-
+                
                 ColorRedProperty = BindableProperty.Create(nameof(ColorRed), typeof(float), typeof(View), default(float),
                     propertyChanged: SetInternalColorRedProperty, defaultValueCreator: GetInternalColorRedProperty);
 
@@ -372,7 +372,7 @@ namespace Tizen.NUI.BaseComponents
 
                 AnchorPointProperty = BindableProperty.Create(nameof(AnchorPoint), typeof(Tizen.NUI.Position), typeof(View), null,
                     propertyChanged: SetInternalAnchorPointProperty, defaultValueCreator: GetInternalAnchorPointProperty);
-
+                
                 WidthSpecificationProperty = BindableProperty.Create(nameof(WidthSpecification), typeof(int), typeof(View), 0,
                     propertyChanged: SetInternalWidthSpecificationProperty, defaultValueCreator: GetInternalWidthSpecificationProperty);
 
@@ -424,6 +424,7 @@ namespace Tizen.NUI.BaseComponents
                 DispatchHoverMotionProperty = BindableProperty.Create(nameof(DispatchHoverMotion), typeof(bool), typeof(View), false,
                     propertyChanged: SetInternalDispatchHoverMotionProperty, defaultValueCreator: GetInternalDispatchHoverMotionProperty);
 
+
                 RegisterPropertyGroup(PositionProperty, positionPropertyGroup);
                 RegisterPropertyGroup(Position2DProperty, positionPropertyGroup);
                 RegisterPropertyGroup(PositionXProperty, positionPropertyGroup);
@@ -440,6 +441,7 @@ namespace Tizen.NUI.BaseComponents
                 RegisterPropertyGroup(ScaleZProperty, scalePropertyGroup);
             }
 #endif
+            RegisterAccessibilityDelegate();
         }
 
         static internal new void Preload()
