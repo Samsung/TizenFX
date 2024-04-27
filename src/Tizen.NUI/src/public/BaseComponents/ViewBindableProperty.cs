@@ -3141,350 +3141,354 @@ namespace Tizen.NUI.BaseComponents
 #if REMOVE_READONLY_FOR_BINDABLE_PROPERTY
         internal static void CreateBindableProperties()
         {
-            StyleNameProperty = BindableProperty.Create(nameof(StyleName), typeof(string), typeof(View), string.Empty,
-                propertyChanged: SetInternalStyleNameProperty, defaultValueCreator: GetInternalStyleNameProperty);
+            if (NUIApplication.IsUsingXaml)
+            {
+                StyleNameProperty = BindableProperty.Create(nameof(StyleName), typeof(string), typeof(View), string.Empty,
+                    propertyChanged: SetInternalStyleNameProperty, defaultValueCreator: GetInternalStyleNameProperty);
 
-            KeyInputFocusProperty = BindableProperty.Create(nameof(KeyInputFocus), typeof(bool), typeof(View), false,
-                propertyChanged: SetInternalKeyInputFocusProperty, defaultValueCreator: GetInternalKeyInputFocusProperty);
+                KeyInputFocusProperty = BindableProperty.Create(nameof(KeyInputFocus), typeof(bool), typeof(View), false,
+                    propertyChanged: SetInternalKeyInputFocusProperty, defaultValueCreator: GetInternalKeyInputFocusProperty);
 
-            BackgroundColorProperty = BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(View), null,
-                propertyChanged: SetInternalBackgroundColorProperty, defaultValueCreator: GetInternalBackgroundColorProperty);
+                BackgroundColorProperty = BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(View), null,
+                    propertyChanged: SetInternalBackgroundColorProperty, defaultValueCreator: GetInternalBackgroundColorProperty);
 
-            ColorProperty = BindableProperty.Create(nameof(Color), typeof(Color), typeof(View), null,
-                propertyChanged: SetInternalColorProperty, defaultValueCreator: GetInternalColorProperty);
+                ColorProperty = BindableProperty.Create(nameof(Color), typeof(Color), typeof(View), null,
+                    propertyChanged: SetInternalColorProperty, defaultValueCreator: GetInternalColorProperty);
+                
+                ColorRedProperty = BindableProperty.Create(nameof(ColorRed), typeof(float), typeof(View), default(float),
+                    propertyChanged: SetInternalColorRedProperty, defaultValueCreator: GetInternalColorRedProperty);
 
-            ColorRedProperty = BindableProperty.Create(nameof(ColorRed), typeof(float), typeof(View), default(float),
-                propertyChanged: SetInternalColorRedProperty, defaultValueCreator: GetInternalColorRedProperty);
+                ColorGreenProperty = BindableProperty.Create(nameof(ColorGreen), typeof(float), typeof(View), default(float),
+                    propertyChanged: SetInternalColorGreenProperty, defaultValueCreator: GetInternalColorGreenProperty);
 
-            ColorGreenProperty = BindableProperty.Create(nameof(ColorGreen), typeof(float), typeof(View), default(float),
-                propertyChanged: SetInternalColorGreenProperty, defaultValueCreator: GetInternalColorGreenProperty);
+                ColorBlueProperty = BindableProperty.Create(nameof(ColorBlue), typeof(float), typeof(View), default(float),
+                    propertyChanged: SetInternalColorBlueProperty, defaultValueCreator: GetInternalColorBlueProperty);
 
-            ColorBlueProperty = BindableProperty.Create(nameof(ColorBlue), typeof(float), typeof(View), default(float),
-                propertyChanged: SetInternalColorBlueProperty, defaultValueCreator: GetInternalColorBlueProperty);
+                BackgroundImageProperty = BindableProperty.Create(nameof(BackgroundImage), typeof(string), typeof(View), default(string),
+                    propertyChanged: SetInternalBackgroundImageProperty, defaultValueCreator: GetInternalBackgroundImageProperty);
 
-            BackgroundImageProperty = BindableProperty.Create(nameof(BackgroundImage), typeof(string), typeof(View), default(string),
-                propertyChanged: SetInternalBackgroundImageProperty, defaultValueCreator: GetInternalBackgroundImageProperty);
+                BackgroundImageBorderProperty = BindableProperty.Create(nameof(BackgroundImageBorder), typeof(Rectangle), typeof(View), default(Rectangle),
+                    propertyChanged: SetInternalBackgroundImageBorderProperty, defaultValueCreator: GetInternalBackgroundImageBorderProperty);
 
-            BackgroundImageBorderProperty = BindableProperty.Create(nameof(BackgroundImageBorder), typeof(Rectangle), typeof(View), default(Rectangle),
-                propertyChanged: SetInternalBackgroundImageBorderProperty, defaultValueCreator: GetInternalBackgroundImageBorderProperty);
+                BackgroundProperty = BindableProperty.Create(nameof(Background), typeof(PropertyMap), typeof(View), null,
+                    propertyChanged: SetInternalBackgroundProperty, defaultValueCreator: GetInternalBackgroundProperty);
 
-            BackgroundProperty = BindableProperty.Create(nameof(Background), typeof(PropertyMap), typeof(View), null,
-                propertyChanged: SetInternalBackgroundProperty, defaultValueCreator: GetInternalBackgroundProperty);
+                StateProperty = BindableProperty.Create(nameof(State), typeof(States), typeof(View), States.Normal,
+                    propertyChanged: SetInternalStateProperty, defaultValueCreator: GetInternalStateProperty);
 
-            StateProperty = BindableProperty.Create(nameof(State), typeof(States), typeof(View), States.Normal,
-                propertyChanged: SetInternalStateProperty, defaultValueCreator: GetInternalStateProperty);
+                SubStateProperty = BindableProperty.Create(nameof(SubState), typeof(States), typeof(View), States.Normal,
+                    propertyChanged: SetInternalSubStateProperty, defaultValueCreator: GetInternalSubStateProperty);
 
-            SubStateProperty = BindableProperty.Create(nameof(SubState), typeof(States), typeof(View), States.Normal,
-                propertyChanged: SetInternalSubStateProperty, defaultValueCreator: GetInternalSubStateProperty);
+                TooltipProperty = BindableProperty.Create(nameof(Tooltip), typeof(PropertyMap), typeof(View), null,
+                    propertyChanged: SetInternalTooltipProperty, defaultValueCreator: GetInternalTooltipProperty);
 
-            TooltipProperty = BindableProperty.Create(nameof(Tooltip), typeof(PropertyMap), typeof(View), null,
-                propertyChanged: SetInternalTooltipProperty, defaultValueCreator: GetInternalTooltipProperty);
+                FlexProperty = BindableProperty.Create(nameof(Flex), typeof(float), typeof(View), default(float),
+                    propertyChanged: SetInternalFlexProperty, defaultValueCreator: GetInternalFlexProperty);
 
-            FlexProperty = BindableProperty.Create(nameof(Flex), typeof(float), typeof(View), default(float),
-                propertyChanged: SetInternalFlexProperty, defaultValueCreator: GetInternalFlexProperty);
+                AlignSelfProperty = BindableProperty.Create(nameof(AlignSelf), typeof(int), typeof(View), default(int),
+                    propertyChanged: SetInternalAlignSelfProperty, defaultValueCreator: GetInternalAlignSelfProperty);
 
-            AlignSelfProperty = BindableProperty.Create(nameof(AlignSelf), typeof(int), typeof(View), default(int),
-                propertyChanged: SetInternalAlignSelfProperty, defaultValueCreator: GetInternalAlignSelfProperty);
+                FlexMarginProperty = BindableProperty.Create(nameof(FlexMargin), typeof(Vector4), typeof(View), null,
+                    propertyChanged: SetInternalFlexMarginProperty, defaultValueCreator: GetInternalFlexMarginProperty);
 
-            FlexMarginProperty = BindableProperty.Create(nameof(FlexMargin), typeof(Vector4), typeof(View), null,
-                propertyChanged: SetInternalFlexMarginProperty, defaultValueCreator: GetInternalFlexMarginProperty);
+                CellIndexProperty = BindableProperty.Create(nameof(CellIndex), typeof(Vector2), typeof(View), null,
+                    propertyChanged: SetInternalCellIndexProperty, defaultValueCreator: GetInternalCellIndexProperty);
 
-            CellIndexProperty = BindableProperty.Create(nameof(CellIndex), typeof(Vector2), typeof(View), null,
-                propertyChanged: SetInternalCellIndexProperty, defaultValueCreator: GetInternalCellIndexProperty);
+                RowSpanProperty = BindableProperty.Create(nameof(RowSpan), typeof(float), typeof(View), default(float),
+                    propertyChanged: SetInternalRowSpanProperty, defaultValueCreator: GetInternalRowSpanProperty);
 
-            RowSpanProperty = BindableProperty.Create(nameof(RowSpan), typeof(float), typeof(View), default(float),
-                propertyChanged: SetInternalRowSpanProperty, defaultValueCreator: GetInternalRowSpanProperty);
+                ColumnSpanProperty = BindableProperty.Create(nameof(ColumnSpan), typeof(float), typeof(View), default(float),
+                    propertyChanged: SetInternalColumnSpanProperty, defaultValueCreator: GetInternalColumnSpanProperty);
 
-            ColumnSpanProperty = BindableProperty.Create(nameof(ColumnSpan), typeof(float), typeof(View), default(float),
-                propertyChanged: SetInternalColumnSpanProperty, defaultValueCreator: GetInternalColumnSpanProperty);
+                CellHorizontalAlignmentProperty = BindableProperty.Create(nameof(CellHorizontalAlignment), typeof(HorizontalAlignmentType), typeof(View), HorizontalAlignmentType.Left,
+                    propertyChanged: SetInternalCellHorizontalAlignmentProperty, defaultValueCreator: GetInternalCellHorizontalAlignmentProperty);
 
-            CellHorizontalAlignmentProperty = BindableProperty.Create(nameof(CellHorizontalAlignment), typeof(HorizontalAlignmentType), typeof(View), HorizontalAlignmentType.Left,
-                propertyChanged: SetInternalCellHorizontalAlignmentProperty, defaultValueCreator: GetInternalCellHorizontalAlignmentProperty);
+                CellVerticalAlignmentProperty = BindableProperty.Create(nameof(CellVerticalAlignment), typeof(VerticalAlignmentType), typeof(View), VerticalAlignmentType.Top,
+                    propertyChanged: SetInternalCellVerticalAlignmentProperty, defaultValueCreator: GetInternalCellVerticalAlignmentProperty);
 
-            CellVerticalAlignmentProperty = BindableProperty.Create(nameof(CellVerticalAlignment), typeof(VerticalAlignmentType), typeof(View), VerticalAlignmentType.Top,
-                propertyChanged: SetInternalCellVerticalAlignmentProperty, defaultValueCreator: GetInternalCellVerticalAlignmentProperty);
+                WeightProperty = BindableProperty.Create(nameof(Weight), typeof(float), typeof(View), default(float),
+                    propertyChanged: SetInternalWeightProperty, defaultValueCreator: GetInternalWeightProperty);
 
-            WeightProperty = BindableProperty.Create(nameof(Weight), typeof(float), typeof(View), default(float),
-                propertyChanged: SetInternalWeightProperty, defaultValueCreator: GetInternalWeightProperty);
+                LeftFocusableViewProperty = BindableProperty.Create(nameof(View.LeftFocusableView), typeof(View), typeof(View), null,
+                    propertyChanged: SetInternalLeftFocusableViewProperty, defaultValueCreator: GetInternalLeftFocusableViewProperty);
 
-            LeftFocusableViewProperty = BindableProperty.Create(nameof(View.LeftFocusableView), typeof(View), typeof(View), null,
-                propertyChanged: SetInternalLeftFocusableViewProperty, defaultValueCreator: GetInternalLeftFocusableViewProperty);
+                RightFocusableViewProperty = BindableProperty.Create(nameof(View.RightFocusableView), typeof(View), typeof(View), null,
+                    propertyChanged: SetInternalRightFocusableViewProperty, defaultValueCreator: GetInternalRightFocusableViewProperty);
 
-            RightFocusableViewProperty = BindableProperty.Create(nameof(View.RightFocusableView), typeof(View), typeof(View), null,
-                propertyChanged: SetInternalRightFocusableViewProperty, defaultValueCreator: GetInternalRightFocusableViewProperty);
+                UpFocusableViewProperty = BindableProperty.Create(nameof(View.UpFocusableView), typeof(View), typeof(View), null,
+                    propertyChanged: SetInternalUpFocusableViewProperty, defaultValueCreator: GetInternalUpFocusableViewProperty);
 
-            UpFocusableViewProperty = BindableProperty.Create(nameof(View.UpFocusableView), typeof(View), typeof(View), null,
-                propertyChanged: SetInternalUpFocusableViewProperty, defaultValueCreator: GetInternalUpFocusableViewProperty);
+                DownFocusableViewProperty = BindableProperty.Create(nameof(View.DownFocusableView), typeof(View), typeof(View), null,
+                    propertyChanged: SetInternalDownFocusableViewProperty, defaultValueCreator: GetInternalDownFocusableViewProperty);
 
-            DownFocusableViewProperty = BindableProperty.Create(nameof(View.DownFocusableView), typeof(View), typeof(View), null,
-                propertyChanged: SetInternalDownFocusableViewProperty, defaultValueCreator: GetInternalDownFocusableViewProperty);
+                ClockwiseFocusableViewProperty = BindableProperty.Create(nameof(View.ClockwiseFocusableView), typeof(View), typeof(View), null,
+                    propertyChanged: SetInternalClockwiseFocusableViewProperty, defaultValueCreator: GetInternalClockwiseFocusableViewProperty);
 
-            ClockwiseFocusableViewProperty = BindableProperty.Create(nameof(View.ClockwiseFocusableView), typeof(View), typeof(View), null,
-                propertyChanged: SetInternalClockwiseFocusableViewProperty, defaultValueCreator: GetInternalClockwiseFocusableViewProperty);
+                CounterClockwiseFocusableViewProperty = BindableProperty.Create(nameof(View.CounterClockwiseFocusableView), typeof(View), typeof(View), null,
+                    propertyChanged: SetInternalCounterClockwiseFocusableViewProperty, defaultValueCreator: GetInternalCounterClockwiseFocusableViewProperty);
 
-            CounterClockwiseFocusableViewProperty = BindableProperty.Create(nameof(View.CounterClockwiseFocusableView), typeof(View), typeof(View), null,
-                propertyChanged: SetInternalCounterClockwiseFocusableViewProperty, defaultValueCreator: GetInternalCounterClockwiseFocusableViewProperty);
+                FocusableProperty = BindableProperty.Create(nameof(Focusable), typeof(bool), typeof(View), false,
+                    propertyChanged: SetInternalFocusableProperty, defaultValueCreator: GetInternalFocusableProperty);
 
-            FocusableProperty = BindableProperty.Create(nameof(Focusable), typeof(bool), typeof(View), false,
-                propertyChanged: SetInternalFocusableProperty, defaultValueCreator: GetInternalFocusableProperty);
+                FocusableChildrenProperty = BindableProperty.Create(nameof(FocusableChildren), typeof(bool), typeof(View), true,
+                    propertyChanged: SetInternalFocusableChildrenProperty, defaultValueCreator: GetInternalFocusableChildrenProperty);
 
-            FocusableChildrenProperty = BindableProperty.Create(nameof(FocusableChildren), typeof(bool), typeof(View), true,
-                propertyChanged: SetInternalFocusableChildrenProperty, defaultValueCreator: GetInternalFocusableChildrenProperty);
+                FocusableInTouchProperty = BindableProperty.Create(nameof(FocusableInTouch), typeof(bool), typeof(View), false,
+                    propertyChanged: SetInternalFocusableInTouchProperty, defaultValueCreator: GetInternalFocusableInTouchProperty);
 
-            FocusableInTouchProperty = BindableProperty.Create(nameof(FocusableInTouch), typeof(bool), typeof(View), false,
-                propertyChanged: SetInternalFocusableInTouchProperty, defaultValueCreator: GetInternalFocusableInTouchProperty);
+                Size2DProperty = BindableProperty.Create(nameof(Size2D), typeof(Size2D), typeof(View), null,
+                    propertyChanged: SetInternalSize2DProperty, defaultValueCreator: GetInternalSize2DProperty);
 
-            Size2DProperty = BindableProperty.Create(nameof(Size2D), typeof(Size2D), typeof(View), null,
-                propertyChanged: SetInternalSize2DProperty, defaultValueCreator: GetInternalSize2DProperty);
+                OpacityProperty = BindableProperty.Create(nameof(Opacity), typeof(float), typeof(View), default(float),
+                    propertyChanged: SetInternalOpacityProperty, defaultValueCreator: GetInternalOpacityProperty);
 
-            OpacityProperty = BindableProperty.Create(nameof(Opacity), typeof(float), typeof(View), default(float),
-                propertyChanged: SetInternalOpacityProperty, defaultValueCreator: GetInternalOpacityProperty);
+                Position2DProperty = BindableProperty.Create(nameof(Position2D), typeof(Position2D), typeof(View), null,
+                    propertyChanged: SetInternalPosition2DProperty, defaultValueCreator: GetInternalPosition2DProperty);
 
-            Position2DProperty = BindableProperty.Create(nameof(Position2D), typeof(Position2D), typeof(View), null,
-                propertyChanged: SetInternalPosition2DProperty, defaultValueCreator: GetInternalPosition2DProperty);
+                PositionUsesPivotPointProperty = BindableProperty.Create(nameof(PositionUsesPivotPoint), typeof(bool), typeof(View), true,
+                    propertyChanged: SetInternalPositionUsesPivotPointProperty, defaultValueCreator: GetInternalPositionUsesPivotPointProperty);
 
-            PositionUsesPivotPointProperty = BindableProperty.Create(nameof(PositionUsesPivotPoint), typeof(bool), typeof(View), true,
-                propertyChanged: SetInternalPositionUsesPivotPointProperty, defaultValueCreator: GetInternalPositionUsesPivotPointProperty);
+                SiblingOrderProperty = BindableProperty.Create(nameof(SiblingOrder), typeof(int), typeof(View), default(int),
+                    propertyChanged: SetInternalSiblingOrderProperty, defaultValueCreator: GetInternalSiblingOrderProperty);
 
-            SiblingOrderProperty = BindableProperty.Create(nameof(SiblingOrder), typeof(int), typeof(View), default(int),
-                propertyChanged: SetInternalSiblingOrderProperty, defaultValueCreator: GetInternalSiblingOrderProperty);
+                ParentOriginProperty = BindableProperty.Create(nameof(ParentOrigin), typeof(Position), typeof(View), null,
+                    propertyChanged: SetInternalParentOriginProperty, defaultValueCreator: GetInternalParentOriginProperty);
 
-            ParentOriginProperty = BindableProperty.Create(nameof(ParentOrigin), typeof(Position), typeof(View), null,
-                propertyChanged: SetInternalParentOriginProperty, defaultValueCreator: GetInternalParentOriginProperty);
+                PivotPointProperty = BindableProperty.Create(nameof(PivotPoint), typeof(Position), typeof(View), null,
+                    propertyChanged: SetInternalPivotPointProperty, defaultValueCreator: GetInternalPivotPointProperty);
 
-            PivotPointProperty = BindableProperty.Create(nameof(PivotPoint), typeof(Position), typeof(View), null,
-                propertyChanged: SetInternalPivotPointProperty, defaultValueCreator: GetInternalPivotPointProperty);
+                SizeWidthProperty = BindableProperty.Create(nameof(SizeWidth), typeof(float), typeof(View), default(float),
+                    propertyChanged: SetInternalSizeWidthProperty, defaultValueCreator: GetInternalSizeWidthProperty);
 
-            SizeWidthProperty = BindableProperty.Create(nameof(SizeWidth), typeof(float), typeof(View), default(float),
-                propertyChanged: SetInternalSizeWidthProperty, defaultValueCreator: GetInternalSizeWidthProperty);
+                SizeHeightProperty = BindableProperty.Create(nameof(SizeHeight), typeof(float), typeof(View), default(float),
+                    propertyChanged: SetInternalSizeHeightProperty, defaultValueCreator: GetInternalSizeHeightProperty);
 
-            SizeHeightProperty = BindableProperty.Create(nameof(SizeHeight), typeof(float), typeof(View), default(float),
-                propertyChanged: SetInternalSizeHeightProperty, defaultValueCreator: GetInternalSizeHeightProperty);
+                PositionProperty = BindableProperty.Create(nameof(Position), typeof(Position), typeof(View), null,
+                    propertyChanged: SetInternalPositionProperty, defaultValueCreator: GetInternalPositionProperty);
 
-            PositionProperty = BindableProperty.Create(nameof(Position), typeof(Position), typeof(View), null,
-                propertyChanged: SetInternalPositionProperty, defaultValueCreator: GetInternalPositionProperty);
+                PositionXProperty = BindableProperty.Create(nameof(PositionX), typeof(float), typeof(View), default(float),
+                    propertyChanged: SetInternalPositionXProperty, defaultValueCreator: GetInternalPositionXProperty);
 
-            PositionXProperty = BindableProperty.Create(nameof(PositionX), typeof(float), typeof(View), default(float),
-                propertyChanged: SetInternalPositionXProperty, defaultValueCreator: GetInternalPositionXProperty);
+                PositionYProperty = BindableProperty.Create(nameof(PositionY), typeof(float), typeof(View), default(float),
+                    propertyChanged: SetInternalPositionYProperty, defaultValueCreator: GetInternalPositionYProperty);
 
-            PositionYProperty = BindableProperty.Create(nameof(PositionY), typeof(float), typeof(View), default(float),
-                propertyChanged: SetInternalPositionYProperty, defaultValueCreator: GetInternalPositionYProperty);
+                PositionZProperty = BindableProperty.Create(nameof(PositionZ), typeof(float), typeof(View), default(float),
+                    propertyChanged: SetInternalPositionZProperty, defaultValueCreator: GetInternalPositionZProperty);
 
-            PositionZProperty = BindableProperty.Create(nameof(PositionZ), typeof(float), typeof(View), default(float),
-                propertyChanged: SetInternalPositionZProperty, defaultValueCreator: GetInternalPositionZProperty);
+                OrientationProperty = BindableProperty.Create(nameof(Orientation), typeof(Rotation), typeof(View), null,
+                    propertyChanged: SetInternalOrientationProperty, defaultValueCreator: GetInternalOrientationProperty);
 
-            OrientationProperty = BindableProperty.Create(nameof(Orientation), typeof(Rotation), typeof(View), null,
-                propertyChanged: SetInternalOrientationProperty, defaultValueCreator: GetInternalOrientationProperty);
+                ScaleProperty = BindableProperty.Create(nameof(Scale), typeof(Vector3), typeof(View), null,
+                    propertyChanged: SetInternalScaleProperty, defaultValueCreator: GetInternalScaleProperty);
 
-            ScaleProperty = BindableProperty.Create(nameof(Scale), typeof(Vector3), typeof(View), null,
-                propertyChanged: SetInternalScaleProperty, defaultValueCreator: GetInternalScaleProperty);
+                ScaleXProperty = BindableProperty.Create(nameof(ScaleX), typeof(float), typeof(View), default(float),
+                    propertyChanged: SetInternalScaleXProperty, defaultValueCreator: GetInternalScaleXProperty);
 
-            ScaleXProperty = BindableProperty.Create(nameof(ScaleX), typeof(float), typeof(View), default(float),
-                propertyChanged: SetInternalScaleXProperty, defaultValueCreator: GetInternalScaleXProperty);
+                ScaleYProperty = BindableProperty.Create(nameof(ScaleY), typeof(float), typeof(View), default(float),
+                    propertyChanged: SetInternalScaleYProperty, defaultValueCreator: GetInternalScaleYProperty);
 
-            ScaleYProperty = BindableProperty.Create(nameof(ScaleY), typeof(float), typeof(View), default(float),
-                propertyChanged: SetInternalScaleYProperty, defaultValueCreator: GetInternalScaleYProperty);
+                ScaleZProperty = BindableProperty.Create(nameof(ScaleZ), typeof(float), typeof(View), default(float),
+                    propertyChanged: SetInternalScaleZProperty, defaultValueCreator: GetInternalScaleZProperty);
 
-            ScaleZProperty = BindableProperty.Create(nameof(ScaleZ), typeof(float), typeof(View), default(float),
-                propertyChanged: SetInternalScaleZProperty, defaultValueCreator: GetInternalScaleZProperty);
+                NameProperty = BindableProperty.Create(nameof(Name), typeof(string), typeof(View), string.Empty,
+                    propertyChanged: SetInternalNameProperty, defaultValueCreator: GetInternalNameProperty);
 
-            NameProperty = BindableProperty.Create(nameof(Name), typeof(string), typeof(View), string.Empty,
-                propertyChanged: SetInternalNameProperty, defaultValueCreator: GetInternalNameProperty);
+                SensitiveProperty = BindableProperty.Create(nameof(Sensitive), typeof(bool), typeof(View), false,
+                    propertyChanged: SetInternalSensitiveProperty, defaultValueCreator: GetInternalSensitiveProperty);
 
-            SensitiveProperty = BindableProperty.Create(nameof(Sensitive), typeof(bool), typeof(View), false,
-                propertyChanged: SetInternalSensitiveProperty, defaultValueCreator: GetInternalSensitiveProperty);
+                IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(View), false,
+                    propertyChanged: SetInternalIsEnabledProperty, defaultValueCreator: GetInternalIsEnabledProperty);
 
-            IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(View), false,
-                propertyChanged: SetInternalIsEnabledProperty, defaultValueCreator: GetInternalIsEnabledProperty);
+                DispatchKeyEventsProperty = BindableProperty.Create(nameof(DispatchKeyEvents), typeof(bool), typeof(View), false,
+                    propertyChanged: SetInternalDispatchKeyEventsProperty, defaultValueCreator: GetInternalDispatchKeyEventsProperty);
 
-            DispatchKeyEventsProperty = BindableProperty.Create(nameof(DispatchKeyEvents), typeof(bool), typeof(View), false,
-                propertyChanged: SetInternalDispatchKeyEventsProperty, defaultValueCreator: GetInternalDispatchKeyEventsProperty);
+                LeaveRequiredProperty = BindableProperty.Create(nameof(LeaveRequired), typeof(bool), typeof(View), false,
+                    propertyChanged: SetInternalLeaveRequiredProperty, defaultValueCreator: GetInternalLeaveRequiredProperty);
 
-            LeaveRequiredProperty = BindableProperty.Create(nameof(LeaveRequired), typeof(bool), typeof(View), false,
-                propertyChanged: SetInternalLeaveRequiredProperty, defaultValueCreator: GetInternalLeaveRequiredProperty);
+                InheritOrientationProperty = BindableProperty.Create(nameof(InheritOrientation), typeof(bool), typeof(View), false,
+                    propertyChanged: SetInternalInheritOrientationProperty, defaultValueCreator: GetInternalInheritOrientationProperty);
 
-            InheritOrientationProperty = BindableProperty.Create(nameof(InheritOrientation), typeof(bool), typeof(View), false,
-                propertyChanged: SetInternalInheritOrientationProperty, defaultValueCreator: GetInternalInheritOrientationProperty);
+                InheritScaleProperty = BindableProperty.Create(nameof(InheritScale), typeof(bool), typeof(View), false,
+                    propertyChanged: SetInternalInheritScaleProperty, defaultValueCreator: GetInternalInheritScaleProperty);
 
-            InheritScaleProperty = BindableProperty.Create(nameof(InheritScale), typeof(bool), typeof(View), false,
-                propertyChanged: SetInternalInheritScaleProperty, defaultValueCreator: GetInternalInheritScaleProperty);
+                DrawModeProperty = BindableProperty.Create(nameof(DrawMode), typeof(DrawModeType), typeof(View), DrawModeType.Normal,
+                    propertyChanged: SetInternalDrawModeProperty, defaultValueCreator: GetInternalDrawModeProperty);
 
-            DrawModeProperty = BindableProperty.Create(nameof(DrawMode), typeof(DrawModeType), typeof(View), DrawModeType.Normal,
-                propertyChanged: SetInternalDrawModeProperty, defaultValueCreator: GetInternalDrawModeProperty);
+                SizeModeFactorProperty = BindableProperty.Create(nameof(SizeModeFactor), typeof(Vector3), typeof(View), null,
+                    propertyChanged: SetInternalSizeModeFactorProperty, defaultValueCreator: GetInternalSizeModeFactorProperty);
 
-            SizeModeFactorProperty = BindableProperty.Create(nameof(SizeModeFactor), typeof(Vector3), typeof(View), null,
-                propertyChanged: SetInternalSizeModeFactorProperty, defaultValueCreator: GetInternalSizeModeFactorProperty);
+                WidthResizePolicyProperty = BindableProperty.Create(nameof(WidthResizePolicy), typeof(ResizePolicyType), typeof(View), ResizePolicyType.Fixed,
+                    propertyChanged: SetInternalWidthResizePolicyProperty, defaultValueCreator: GetInternalWidthResizePolicyProperty);
 
-            WidthResizePolicyProperty = BindableProperty.Create(nameof(WidthResizePolicy), typeof(ResizePolicyType), typeof(View), ResizePolicyType.Fixed,
-                propertyChanged: SetInternalWidthResizePolicyProperty, defaultValueCreator: GetInternalWidthResizePolicyProperty);
+                HeightResizePolicyProperty = BindableProperty.Create(nameof(HeightResizePolicy), typeof(ResizePolicyType), typeof(View), ResizePolicyType.Fixed,
+                    propertyChanged: SetInternalHeightResizePolicyProperty, defaultValueCreator: GetInternalHeightResizePolicyProperty);
 
-            HeightResizePolicyProperty = BindableProperty.Create(nameof(HeightResizePolicy), typeof(ResizePolicyType), typeof(View), ResizePolicyType.Fixed,
-                propertyChanged: SetInternalHeightResizePolicyProperty, defaultValueCreator: GetInternalHeightResizePolicyProperty);
+                SizeScalePolicyProperty = BindableProperty.Create(nameof(SizeScalePolicy), typeof(SizeScalePolicyType), typeof(View), SizeScalePolicyType.UseSizeSet,
+                    propertyChanged: SetInternalSizeScalePolicyProperty, defaultValueCreator: GetInternalSizeScalePolicyProperty);
 
-            SizeScalePolicyProperty = BindableProperty.Create(nameof(SizeScalePolicy), typeof(SizeScalePolicyType), typeof(View), SizeScalePolicyType.UseSizeSet,
-                propertyChanged: SetInternalSizeScalePolicyProperty, defaultValueCreator: GetInternalSizeScalePolicyProperty);
+                WidthForHeightProperty = BindableProperty.Create(nameof(WidthForHeight), typeof(bool), typeof(View), false,
+                    propertyChanged: SetInternalWidthForHeightProperty, defaultValueCreator: GetInternalWidthForHeightProperty);
 
-            WidthForHeightProperty = BindableProperty.Create(nameof(WidthForHeight), typeof(bool), typeof(View), false,
-                propertyChanged: SetInternalWidthForHeightProperty, defaultValueCreator: GetInternalWidthForHeightProperty);
+                HeightForWidthProperty = BindableProperty.Create(nameof(HeightForWidth), typeof(bool), typeof(View), false,
+                    propertyChanged: SetInternalHeightForWidthProperty, defaultValueCreator: GetInternalHeightForWidthProperty);
 
-            HeightForWidthProperty = BindableProperty.Create(nameof(HeightForWidth), typeof(bool), typeof(View), false,
-                propertyChanged: SetInternalHeightForWidthProperty, defaultValueCreator: GetInternalHeightForWidthProperty);
+                PaddingProperty = BindableProperty.Create(nameof(Padding), typeof(Extents), typeof(View), null,
+                    propertyChanged: SetInternalPaddingProperty, defaultValueCreator: GetInternalPaddingProperty);
 
-            PaddingProperty = BindableProperty.Create(nameof(Padding), typeof(Extents), typeof(View), null,
-                propertyChanged: SetInternalPaddingProperty, defaultValueCreator: GetInternalPaddingProperty);
+                SizeProperty = BindableProperty.Create(nameof(Size), typeof(Size), typeof(View), null,
+                    propertyChanged: SetInternalSizeProperty, defaultValueCreator: GetInternalSizeProperty);
 
-            SizeProperty = BindableProperty.Create(nameof(Size), typeof(Size), typeof(View), null,
-                propertyChanged: SetInternalSizeProperty, defaultValueCreator: GetInternalSizeProperty);
+                MinimumSizeProperty = BindableProperty.Create(nameof(MinimumSize), typeof(Size2D), typeof(View), null,
+                    propertyChanged: SetInternalMinimumSizeProperty, defaultValueCreator: GetInternalMinimumSizeProperty);
 
-            MinimumSizeProperty = BindableProperty.Create(nameof(MinimumSize), typeof(Size2D), typeof(View), null,
-                propertyChanged: SetInternalMinimumSizeProperty, defaultValueCreator: GetInternalMinimumSizeProperty);
+                MaximumSizeProperty = BindableProperty.Create(nameof(MaximumSize), typeof(Size2D), typeof(View), null,
+                    propertyChanged: SetInternalMaximumSizeProperty, defaultValueCreator: GetInternalMaximumSizeProperty);
 
-            MaximumSizeProperty = BindableProperty.Create(nameof(MaximumSize), typeof(Size2D), typeof(View), null,
-                propertyChanged: SetInternalMaximumSizeProperty, defaultValueCreator: GetInternalMaximumSizeProperty);
+                InheritPositionProperty = BindableProperty.Create(nameof(InheritPosition), typeof(bool), typeof(View), false,
+                    propertyChanged: SetInternalInheritPositionProperty, defaultValueCreator: GetInternalInheritPositionProperty);
 
-            InheritPositionProperty = BindableProperty.Create(nameof(InheritPosition), typeof(bool), typeof(View), false,
-                propertyChanged: SetInternalInheritPositionProperty, defaultValueCreator: GetInternalInheritPositionProperty);
+                ClippingModeProperty = BindableProperty.Create(nameof(ClippingMode), typeof(ClippingModeType), typeof(View), ClippingModeType.Disabled,
+                    propertyChanged: SetInternalClippingModeProperty, defaultValueCreator: GetInternalClippingModeProperty);
 
-            ClippingModeProperty = BindableProperty.Create(nameof(ClippingMode), typeof(ClippingModeType), typeof(View), ClippingModeType.Disabled,
-                propertyChanged: SetInternalClippingModeProperty, defaultValueCreator: GetInternalClippingModeProperty);
+                InheritLayoutDirectionProperty = BindableProperty.Create(nameof(InheritLayoutDirection), typeof(bool), typeof(View), false,
+                    propertyChanged: SetInternalInheritLayoutDirectionProperty, defaultValueCreator: GetInternalInheritLayoutDirectionProperty);
 
-            InheritLayoutDirectionProperty = BindableProperty.Create(nameof(InheritLayoutDirection), typeof(bool), typeof(View), false,
-                propertyChanged: SetInternalInheritLayoutDirectionProperty, defaultValueCreator: GetInternalInheritLayoutDirectionProperty);
+                LayoutDirectionProperty = BindableProperty.Create(nameof(LayoutDirection), typeof(ViewLayoutDirectionType), typeof(View), ViewLayoutDirectionType.LTR,
+                    propertyChanged: SetInternalLayoutDirectionProperty, defaultValueCreator: GetInternalLayoutDirectionProperty);
 
-            LayoutDirectionProperty = BindableProperty.Create(nameof(LayoutDirection), typeof(ViewLayoutDirectionType), typeof(View), ViewLayoutDirectionType.LTR,
-                propertyChanged: SetInternalLayoutDirectionProperty, defaultValueCreator: GetInternalLayoutDirectionProperty);
+                MarginProperty = BindableProperty.Create(nameof(Margin), typeof(Extents), typeof(View), null,
+                    propertyChanged: SetInternalMarginProperty, defaultValueCreator: GetInternalMarginProperty);
 
-            MarginProperty = BindableProperty.Create(nameof(Margin), typeof(Extents), typeof(View), null,
-                propertyChanged: SetInternalMarginProperty, defaultValueCreator: GetInternalMarginProperty);
+                UpdateAreaHintProperty = BindableProperty.Create(nameof(UpdateAreaHint), typeof(Vector4), typeof(View), null,
+                    propertyChanged: SetInternalUpdateAreaHintProperty, defaultValueCreator: GetInternalUpdateAreaHintProperty);
 
-            UpdateAreaHintProperty = BindableProperty.Create(nameof(UpdateAreaHint), typeof(Vector4), typeof(View), null,
-                propertyChanged: SetInternalUpdateAreaHintProperty, defaultValueCreator: GetInternalUpdateAreaHintProperty);
+                ImageShadowProperty = BindableProperty.Create(nameof(ImageShadow), typeof(ImageShadow), typeof(View), null,
+                    propertyChanged: SetInternalImageShadowProperty, defaultValueCreator: GetInternalImageShadowProperty);
 
-            ImageShadowProperty = BindableProperty.Create(nameof(ImageShadow), typeof(ImageShadow), typeof(View), null,
-                propertyChanged: SetInternalImageShadowProperty, defaultValueCreator: GetInternalImageShadowProperty);
+                BoxShadowProperty = BindableProperty.Create(nameof(BoxShadow), typeof(Shadow), typeof(View), null,
+                    propertyChanged: SetInternalBoxShadowProperty, defaultValueCreator: GetInternalBoxShadowProperty);
 
-            BoxShadowProperty = BindableProperty.Create(nameof(BoxShadow), typeof(Shadow), typeof(View), null,
-                propertyChanged: SetInternalBoxShadowProperty, defaultValueCreator: GetInternalBoxShadowProperty);
+                CornerRadiusProperty = BindableProperty.Create(nameof(CornerRadius), typeof(Vector4), typeof(View), null,
+                    propertyChanged: SetInternalCornerRadiusProperty, defaultValueCreator: GetInternalCornerRadiusProperty);
 
-            CornerRadiusProperty = BindableProperty.Create(nameof(CornerRadius), typeof(Vector4), typeof(View), null,
-                propertyChanged: SetInternalCornerRadiusProperty, defaultValueCreator: GetInternalCornerRadiusProperty);
+                CornerRadiusPolicyProperty = BindableProperty.Create(nameof(CornerRadiusPolicy), typeof(VisualTransformPolicyType), typeof(View), VisualTransformPolicyType.Absolute,
+                    propertyChanged: SetInternalCornerRadiusPolicyProperty, defaultValueCreator: GetInternalCornerRadiusPolicyProperty);
 
-            CornerRadiusPolicyProperty = BindableProperty.Create(nameof(CornerRadiusPolicy), typeof(VisualTransformPolicyType), typeof(View), VisualTransformPolicyType.Absolute,
-                propertyChanged: SetInternalCornerRadiusPolicyProperty, defaultValueCreator: GetInternalCornerRadiusPolicyProperty);
+                BorderlineWidthProperty = BindableProperty.Create(nameof(BorderlineWidth), typeof(float), typeof(View), default(float),
+                    propertyChanged: SetInternalBorderlineWidthProperty, defaultValueCreator: GetInternalBorderlineWidthProperty);
 
-            BorderlineWidthProperty = BindableProperty.Create(nameof(BorderlineWidth), typeof(float), typeof(View), default(float),
-                propertyChanged: SetInternalBorderlineWidthProperty, defaultValueCreator: GetInternalBorderlineWidthProperty);
+                BorderlineColorProperty = BindableProperty.Create(nameof(BorderlineColor), typeof(Color), typeof(View), null,
+                    propertyChanged: SetInternalBorderlineColorProperty, defaultValueCreator: GetInternalBorderlineColorProperty);
 
-            BorderlineColorProperty = BindableProperty.Create(nameof(BorderlineColor), typeof(Color), typeof(View), null,
-                propertyChanged: SetInternalBorderlineColorProperty, defaultValueCreator: GetInternalBorderlineColorProperty);
+                BorderlineColorSelectorProperty = BindableProperty.Create(nameof(BorderlineColorSelector), typeof(Selector<Color>), typeof(View), null,
+                    propertyChanged: SetInternalBorderlineColorSelectorProperty, defaultValueCreator: GetInternalBorderlineColorSelectorProperty);
 
-            BorderlineColorSelectorProperty = BindableProperty.Create(nameof(BorderlineColorSelector), typeof(Selector<Color>), typeof(View), null,
-                propertyChanged: SetInternalBorderlineColorSelectorProperty, defaultValueCreator: GetInternalBorderlineColorSelectorProperty);
+                BorderlineOffsetProperty = BindableProperty.Create(nameof(BorderlineOffset), typeof(float), typeof(View), default(float),
+                    propertyChanged: SetInternalBorderlineOffsetProperty, defaultValueCreator: GetInternalBorderlineOffsetProperty);
 
-            BorderlineOffsetProperty = BindableProperty.Create(nameof(BorderlineOffset), typeof(float), typeof(View), default(float),
-                propertyChanged: SetInternalBorderlineOffsetProperty, defaultValueCreator: GetInternalBorderlineOffsetProperty);
+                EnableControlStateProperty = BindableProperty.Create(nameof(EnableControlState), typeof(bool), typeof(View), false,
+                    propertyChanged: SetInternalEnableControlStateProperty, defaultValueCreator: GetInternalEnableControlStateProperty);
 
-            EnableControlStateProperty = BindableProperty.Create(nameof(EnableControlState), typeof(bool), typeof(View), false,
-                propertyChanged: SetInternalEnableControlStateProperty, defaultValueCreator: GetInternalEnableControlStateProperty);
+                ThemeChangeSensitiveProperty = BindableProperty.Create(nameof(ThemeChangeSensitive), typeof(bool), typeof(View), false,
+                    propertyChanged: SetInternalThemeChangeSensitiveProperty, defaultValueCreator: GetInternalThemeChangeSensitiveProperty);
 
-            ThemeChangeSensitiveProperty = BindableProperty.Create(nameof(ThemeChangeSensitive), typeof(bool), typeof(View), false,
-                propertyChanged: SetInternalThemeChangeSensitiveProperty, defaultValueCreator: GetInternalThemeChangeSensitiveProperty);
+                AccessibilityNameProperty = BindableProperty.Create(nameof(AccessibilityName), typeof(string), typeof(View), string.Empty,
+                    propertyChanged: SetInternalAccessibilityNameProperty, defaultValueCreator: GetInternalAccessibilityNameProperty);
 
-            AccessibilityNameProperty = BindableProperty.Create(nameof(AccessibilityName), typeof(string), typeof(View), string.Empty,
-                propertyChanged: SetInternalAccessibilityNameProperty, defaultValueCreator: GetInternalAccessibilityNameProperty);
+                AccessibilityDescriptionProperty = BindableProperty.Create(nameof(AccessibilityDescription), typeof(string), typeof(View), string.Empty,
+                    propertyChanged: SetInternalAccessibilityDescriptionProperty, defaultValueCreator: GetInternalAccessibilityDescriptionProperty);
 
-            AccessibilityDescriptionProperty = BindableProperty.Create(nameof(AccessibilityDescription), typeof(string), typeof(View), string.Empty,
-                propertyChanged: SetInternalAccessibilityDescriptionProperty, defaultValueCreator: GetInternalAccessibilityDescriptionProperty);
+                AccessibilityTranslationDomainProperty = BindableProperty.Create(nameof(AccessibilityTranslationDomain), typeof(string), typeof(View), string.Empty,
+                    propertyChanged: SetInternalAccessibilityTranslationDomainProperty, defaultValueCreator: GetInternalAccessibilityTranslationDomainProperty);
 
-            AccessibilityTranslationDomainProperty = BindableProperty.Create(nameof(AccessibilityTranslationDomain), typeof(string), typeof(View), string.Empty,
-                propertyChanged: SetInternalAccessibilityTranslationDomainProperty, defaultValueCreator: GetInternalAccessibilityTranslationDomainProperty);
+                AccessibilityRoleProperty = BindableProperty.Create(nameof(AccessibilityRole), typeof(Role), typeof(View), default(Role),
+                    propertyChanged: SetInternalAccessibilityRoleProperty, defaultValueCreator: GetInternalAccessibilityRoleProperty);
 
-            AccessibilityRoleProperty = BindableProperty.Create(nameof(AccessibilityRole), typeof(Role), typeof(View), default(Role),
-                propertyChanged: SetInternalAccessibilityRoleProperty, defaultValueCreator: GetInternalAccessibilityRoleProperty);
+                AccessibilityHighlightableProperty = BindableProperty.Create(nameof(AccessibilityHighlightable), typeof(bool), typeof(View), false,
+                    propertyChanged: SetInternalAccessibilityHighlightableProperty, defaultValueCreator: GetInternalAccessibilityHighlightableProperty);
 
-            AccessibilityHighlightableProperty = BindableProperty.Create(nameof(AccessibilityHighlightable), typeof(bool), typeof(View), false,
-                propertyChanged: SetInternalAccessibilityHighlightableProperty, defaultValueCreator: GetInternalAccessibilityHighlightableProperty);
+                AccessibilityHiddenProperty = BindableProperty.Create(nameof(AccessibilityHidden), typeof(bool), typeof(View), false,
+                    propertyChanged: SetInternalAccessibilityHiddenProperty, defaultValueCreator: GetInternalAccessibilityHiddenProperty);
 
-            AccessibilityHiddenProperty = BindableProperty.Create(nameof(AccessibilityHidden), typeof(bool), typeof(View), false,
-                propertyChanged: SetInternalAccessibilityHiddenProperty, defaultValueCreator: GetInternalAccessibilityHiddenProperty);
+                ExcludeLayoutingProperty = BindableProperty.Create(nameof(ExcludeLayouting), typeof(bool), typeof(View), false,
+                    propertyChanged: SetInternalExcludeLayoutingProperty, defaultValueCreator: GetInternalExcludeLayoutingProperty);
 
-            ExcludeLayoutingProperty = BindableProperty.Create(nameof(ExcludeLayouting), typeof(bool), typeof(View), false,
-                propertyChanged: SetInternalExcludeLayoutingProperty, defaultValueCreator: GetInternalExcludeLayoutingProperty);
+                TooltipTextProperty = BindableProperty.Create(nameof(TooltipText), typeof(string), typeof(View), string.Empty,
+                    propertyChanged: SetInternalTooltipTextProperty, defaultValueCreator: GetInternalTooltipTextProperty);
 
-            TooltipTextProperty = BindableProperty.Create(nameof(TooltipText), typeof(string), typeof(View), string.Empty,
-                propertyChanged: SetInternalTooltipTextProperty, defaultValueCreator: GetInternalTooltipTextProperty);
+                PositionUsesAnchorPointProperty = BindableProperty.Create(nameof(PositionUsesAnchorPoint), typeof(bool), typeof(View), false,
+                    propertyChanged: SetInternalPositionUsesAnchorPointProperty, defaultValueCreator: GetInternalPositionUsesAnchorPointProperty);
 
-            PositionUsesAnchorPointProperty = BindableProperty.Create(nameof(PositionUsesAnchorPoint), typeof(bool), typeof(View), false,
-                propertyChanged: SetInternalPositionUsesAnchorPointProperty, defaultValueCreator: GetInternalPositionUsesAnchorPointProperty);
+                AnchorPointProperty = BindableProperty.Create(nameof(AnchorPoint), typeof(Tizen.NUI.Position), typeof(View), null,
+                    propertyChanged: SetInternalAnchorPointProperty, defaultValueCreator: GetInternalAnchorPointProperty);
+                
+                WidthSpecificationProperty = BindableProperty.Create(nameof(WidthSpecification), typeof(int), typeof(View), 0,
+                    propertyChanged: SetInternalWidthSpecificationProperty, defaultValueCreator: GetInternalWidthSpecificationProperty);
 
-            AnchorPointProperty = BindableProperty.Create(nameof(AnchorPoint), typeof(Tizen.NUI.Position), typeof(View), null,
-                propertyChanged: SetInternalAnchorPointProperty, defaultValueCreator: GetInternalAnchorPointProperty);
+                HeightSpecificationProperty = BindableProperty.Create(nameof(HeightSpecification), typeof(int), typeof(View), 0,
+                    propertyChanged: SetInternalHeightSpecificationProperty, defaultValueCreator: GetInternalHeightSpecificationProperty);
 
-            WidthSpecificationProperty = BindableProperty.Create(nameof(WidthSpecification), typeof(int), typeof(View), 0,
-                propertyChanged: SetInternalWidthSpecificationProperty, defaultValueCreator: GetInternalWidthSpecificationProperty);
+                LayoutTransitionProperty = BindableProperty.Create(nameof(LayoutTransition), typeof(Tizen.NUI.LayoutTransition), typeof(View), null,
+                    propertyChanged: SetInternalLayoutTransitionProperty, defaultValueCreator: GetInternalLayoutTransitionProperty);
 
-            HeightSpecificationProperty = BindableProperty.Create(nameof(HeightSpecification), typeof(int), typeof(View), 0,
-                propertyChanged: SetInternalHeightSpecificationProperty, defaultValueCreator: GetInternalHeightSpecificationProperty);
+                PaddingEXProperty = BindableProperty.Create(nameof(PaddingEX), typeof(Tizen.NUI.Extents), typeof(View), null,
+                    propertyChanged: SetInternalPaddingEXProperty, defaultValueCreator: GetInternalPaddingEXProperty);
 
-            LayoutTransitionProperty = BindableProperty.Create(nameof(LayoutTransition), typeof(Tizen.NUI.LayoutTransition), typeof(View), null,
-                propertyChanged: SetInternalLayoutTransitionProperty, defaultValueCreator: GetInternalLayoutTransitionProperty);
+                LayoutProperty = BindableProperty.Create(nameof(Layout), typeof(Tizen.NUI.LayoutItem), typeof(View), null,
+                    propertyChanged: SetInternalLayoutProperty, defaultValueCreator: GetInternalLayoutProperty);
 
-            PaddingEXProperty = BindableProperty.Create(nameof(PaddingEX), typeof(Tizen.NUI.Extents), typeof(View), null,
-                propertyChanged: SetInternalPaddingEXProperty, defaultValueCreator: GetInternalPaddingEXProperty);
+                BackgroundImageSynchronosLoadingProperty = BindableProperty.Create(nameof(BackgroundImageSynchronosLoading), typeof(bool), typeof(View), false,
+                    propertyChanged: SetInternalBackgroundImageSynchronosLoadingProperty, defaultValueCreator: GetInternalBackgroundImageSynchronosLoadingProperty);
 
-            LayoutProperty = BindableProperty.Create(nameof(Layout), typeof(Tizen.NUI.LayoutItem), typeof(View), null,
-                propertyChanged: SetInternalLayoutProperty, defaultValueCreator: GetInternalLayoutProperty);
+                BackgroundImageSynchronousLoadingProperty = BindableProperty.Create(nameof(BackgroundImageSynchronousLoading), typeof(bool), typeof(View), false,
+                    propertyChanged: SetInternalBackgroundImageSynchronousLoadingProperty, defaultValueCreator: GetInternalBackgroundImageSynchronousLoadingProperty);
 
-            BackgroundImageSynchronosLoadingProperty = BindableProperty.Create(nameof(BackgroundImageSynchronosLoading), typeof(bool), typeof(View), false,
-                propertyChanged: SetInternalBackgroundImageSynchronosLoadingProperty, defaultValueCreator: GetInternalBackgroundImageSynchronosLoadingProperty);
+                EnableControlStatePropagationProperty = BindableProperty.Create(nameof(EnableControlStatePropagation), typeof(bool), typeof(View), false,
+                    propertyChanged: SetInternalEnableControlStatePropagationProperty, defaultValueCreator: GetInternalEnableControlStatePropagationProperty);
 
-            BackgroundImageSynchronousLoadingProperty = BindableProperty.Create(nameof(BackgroundImageSynchronousLoading), typeof(bool), typeof(View), false,
-                propertyChanged: SetInternalBackgroundImageSynchronousLoadingProperty, defaultValueCreator: GetInternalBackgroundImageSynchronousLoadingProperty);
+                PropagatableControlStatesProperty = BindableProperty.Create(nameof(PropagatableControlStates), typeof(ControlState), typeof(View), ControlState.All,
+                    propertyChanged: SetInternalPropagatableControlStatesProperty, defaultValueCreator: GetInternalPropagatableControlStatesProperty);
 
-            EnableControlStatePropagationProperty = BindableProperty.Create(nameof(EnableControlStatePropagation), typeof(bool), typeof(View), false,
-                propertyChanged: SetInternalEnableControlStatePropagationProperty, defaultValueCreator: GetInternalEnableControlStatePropagationProperty);
+                GrabTouchAfterLeaveProperty = BindableProperty.Create(nameof(GrabTouchAfterLeave), typeof(bool), typeof(View), false,
+                    propertyChanged: SetInternalGrabTouchAfterLeaveProperty, defaultValueCreator: GetInternalGrabTouchAfterLeaveProperty);
 
-            PropagatableControlStatesProperty = BindableProperty.Create(nameof(PropagatableControlStates), typeof(ControlState), typeof(View), ControlState.All,
-                propertyChanged: SetInternalPropagatableControlStatesProperty, defaultValueCreator: GetInternalPropagatableControlStatesProperty);
+                AllowOnlyOwnTouchProperty = BindableProperty.Create(nameof(AllowOnlyOwnTouch), typeof(bool), typeof(View), false,
+                    propertyChanged: SetInternalAllowOnlyOwnTouchProperty, defaultValueCreator: GetInternalAllowOnlyOwnTouchProperty);
 
-            GrabTouchAfterLeaveProperty = BindableProperty.Create(nameof(GrabTouchAfterLeave), typeof(bool), typeof(View), false,
-                propertyChanged: SetInternalGrabTouchAfterLeaveProperty, defaultValueCreator: GetInternalGrabTouchAfterLeaveProperty);
+                BlendEquationProperty = BindableProperty.Create(nameof(BlendEquation), typeof(BlendEquationType), typeof(View), default(BlendEquationType),
+                    propertyChanged: SetInternalBlendEquationProperty, defaultValueCreator: GetInternalBlendEquationProperty);
 
-            AllowOnlyOwnTouchProperty = BindableProperty.Create(nameof(AllowOnlyOwnTouch), typeof(bool), typeof(View), false,
-                propertyChanged: SetInternalAllowOnlyOwnTouchProperty, defaultValueCreator: GetInternalAllowOnlyOwnTouchProperty);
+                TransitionOptionsProperty = BindableProperty.Create(nameof(TransitionOptions), typeof(TransitionOptions), typeof(View), default(TransitionOptions),
+                    propertyChanged: SetInternalTransitionOptionsProperty, defaultValueCreator: GetInternalTransitionOptionsProperty);
 
-            BlendEquationProperty = BindableProperty.Create(nameof(BlendEquation), typeof(BlendEquationType), typeof(View), default(BlendEquationType),
-                propertyChanged: SetInternalBlendEquationProperty, defaultValueCreator: GetInternalBlendEquationProperty);
+                AutomationIdProperty = BindableProperty.Create(nameof(AutomationId), typeof(string), typeof(View), string.Empty,
+                    propertyChanged: SetInternalAutomationIdProperty, defaultValueCreator: GetInternalAutomationIdProperty);
 
-            TransitionOptionsProperty = BindableProperty.Create(nameof(TransitionOptions), typeof(TransitionOptions), typeof(View), default(TransitionOptions),
-                propertyChanged: SetInternalTransitionOptionsProperty, defaultValueCreator: GetInternalTransitionOptionsProperty);
+                TouchAreaOffsetProperty = BindableProperty.Create(nameof(TouchAreaOffset), typeof(Offset), typeof(View), default(Offset),
+                    propertyChanged: SetInternalTouchAreaOffsetProperty, defaultValueCreator: GetInternalTouchAreaOffsetProperty);
 
-            AutomationIdProperty = BindableProperty.Create(nameof(AutomationId), typeof(string), typeof(View), string.Empty,
-                propertyChanged: SetInternalAutomationIdProperty, defaultValueCreator: GetInternalAutomationIdProperty);
+                DispatchTouchMotionProperty = BindableProperty.Create(nameof(DispatchTouchMotion), typeof(bool), typeof(View), false,
+                    propertyChanged: SetInternalDispatchTouchMotionProperty, defaultValueCreator: GetInternalDispatchTouchMotionProperty);
 
-            TouchAreaOffsetProperty = BindableProperty.Create(nameof(TouchAreaOffset), typeof(Offset), typeof(View), default(Offset),
-                propertyChanged: SetInternalTouchAreaOffsetProperty, defaultValueCreator: GetInternalTouchAreaOffsetProperty);
+                DispatchHoverMotionProperty = BindableProperty.Create(nameof(DispatchHoverMotion), typeof(bool), typeof(View), false,
+                    propertyChanged: SetInternalDispatchHoverMotionProperty, defaultValueCreator: GetInternalDispatchHoverMotionProperty);
 
-            DispatchTouchMotionProperty = BindableProperty.Create(nameof(DispatchTouchMotion), typeof(bool), typeof(View), false,
-                propertyChanged: SetInternalDispatchTouchMotionProperty, defaultValueCreator: GetInternalDispatchTouchMotionProperty);
 
-            DispatchHoverMotionProperty = BindableProperty.Create(nameof(DispatchHoverMotion), typeof(bool), typeof(View), false,
-                propertyChanged: SetInternalDispatchHoverMotionProperty, defaultValueCreator: GetInternalDispatchHoverMotionProperty);
+                RegisterPropertyGroup(PositionProperty, positionPropertyGroup);
+                RegisterPropertyGroup(Position2DProperty, positionPropertyGroup);
+                RegisterPropertyGroup(PositionXProperty, positionPropertyGroup);
+                RegisterPropertyGroup(PositionYProperty, positionPropertyGroup);
 
-            RegisterPropertyGroup(PositionProperty, positionPropertyGroup);
-            RegisterPropertyGroup(Position2DProperty, positionPropertyGroup);
-            RegisterPropertyGroup(PositionXProperty, positionPropertyGroup);
-            RegisterPropertyGroup(PositionYProperty, positionPropertyGroup);
+                RegisterPropertyGroup(SizeProperty, sizePropertyGroup);
+                RegisterPropertyGroup(Size2DProperty, sizePropertyGroup);
+                RegisterPropertyGroup(SizeWidthProperty, sizePropertyGroup);
+                RegisterPropertyGroup(SizeHeightProperty, sizePropertyGroup);
 
-            RegisterPropertyGroup(SizeProperty, sizePropertyGroup);
-            RegisterPropertyGroup(Size2DProperty, sizePropertyGroup);
-            RegisterPropertyGroup(SizeWidthProperty, sizePropertyGroup);
-            RegisterPropertyGroup(SizeHeightProperty, sizePropertyGroup);
-
-            RegisterPropertyGroup(ScaleProperty, scalePropertyGroup);
-            RegisterPropertyGroup(ScaleXProperty, scalePropertyGroup);
-            RegisterPropertyGroup(ScaleYProperty, scalePropertyGroup);
-            RegisterPropertyGroup(ScaleZProperty, scalePropertyGroup);
+                RegisterPropertyGroup(ScaleProperty, scalePropertyGroup);
+                RegisterPropertyGroup(ScaleXProperty, scalePropertyGroup);
+                RegisterPropertyGroup(ScaleYProperty, scalePropertyGroup);
+                RegisterPropertyGroup(ScaleZProperty, scalePropertyGroup);
+            }
         }
 #else
         // keep readonly for BindableProperty
