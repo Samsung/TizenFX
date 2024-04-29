@@ -393,12 +393,6 @@ namespace Tizen.NUI
 
             Log.Info("NUI", $"NUICorebackend OnPreCreated Called IsUsingXaml={NUIApplication.IsUsingXaml}");
 
-#if REMOVE_READONLY_FOR_BINDABLE_PROPERTY
-            if(NUIApplication.IsUsingXaml)
-            {
-                View.CreateBindableProperties();
-            }
-#endif
             Tizen.Tracer.Begin("[NUI] OnInitialized(): OnPreCreated event handler");
             var preCreateHandler = Handlers[EventType.PreCreated] as Action;
             preCreateHandler?.Invoke();
