@@ -690,9 +690,16 @@ namespace Tizen.NUI
             ProcessorController.Instance.Initialize();
             Tizen.Tracer.End();
 
+#if REMOVE_READONLY_FOR_BINDABLE_PROPERTY
+            if(NUIApplication.IsUsingXaml)
+            {
+                Tizen.NUI.BaseComponents.View.CreateBindableProperties();
+            }
+#endif
             Log.Info("NUI", "[NUI] OnApplicationInit: GetWindow");
             Tizen.Tracer.Begin("[NUI] OnApplicationInit: GetWindow");
             Window.Instance = GetWindow();
+
 #if !PROFILE_TV
             //tv profile never use default focus indicator, so this is not needed!
             _ = FocusManager.Instance;
