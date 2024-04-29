@@ -96,15 +96,15 @@ namespace Tizen.NUI.Components.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("LottieButtonExtension OnCreateIcon.")]
-        [Property("SPEC", "Tizen.NUI.Components.LottieButtonExtension.OnCreateIcon M")]
+        [Description("LottieButtonExtension ProcessIcon.")]
+        [Property("SPEC", "Tizen.NUI.Components.LottieButtonExtension.ProcessIcon M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void LottieButtonExtensionOnCreateIcon()
+        public void LottieButtonExtensionProcessIcon()
         {
-            tlog.Debug(tag, $"LottieButtonExtensionOnCreateIcon START");
+            tlog.Debug(tag, $"LottieButtonExtensionProcessIcon START");
 
             var testingTarget = new LottieButtonExtension();
             Assert.IsNotNull(testingTarget, "null handle");
@@ -122,14 +122,12 @@ namespace Tizen.NUI.Components.Devel.Tests
 
             using (Button button = new Button(style))
             {
-                using (ImageView view = new ImageView(image_path))
-                {
-                    var result = testingTarget.OnCreateIcon(button, view);
-                    tlog.Debug(tag, "OnCreateIcon : " + result);
-                }
+                ImageView view = new ImageView(image_path);
+                var result = testingTarget.ProcessIcon(button, ref view);
+                tlog.Debug(tag, "ProcessIcon : " + result);
             }
 
-            tlog.Debug(tag, $"LottieButtonExtensionOnCreateIcon END (OK)");
+            tlog.Debug(tag, $"LottieButtonExtensionProcessIcon END (OK)");
         }
     }
 }

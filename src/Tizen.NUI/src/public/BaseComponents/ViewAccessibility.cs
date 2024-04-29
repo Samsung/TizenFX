@@ -539,7 +539,6 @@ namespace Tizen.NUI.BaseComponents
 
             states[AccessibilityState.Focused] = this.State == States.Focused;
             states[AccessibilityState.Enabled] = this.State != States.Disabled;
-            states[AccessibilityState.Sensitive] = this.Sensitive;
 
             return states;
         }
