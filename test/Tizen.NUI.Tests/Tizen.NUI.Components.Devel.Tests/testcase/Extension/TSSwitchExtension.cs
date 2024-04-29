@@ -21,7 +21,17 @@ namespace Tizen.NUI.Components.Devel.Tests
         internal class SwitchExtensionImpl : SwitchExtension
         {
             public SwitchExtensionImpl() : base()
-            {  }
+            { }
+
+            public override void OnSelectedChanged(Switch switchButton)
+            {
+                base.OnSelectedChanged(switchButton);
+            }
+
+            public override void OnTrackOrThumbResized(Switch switchButton, ImageView track, ImageView thumb)
+            {
+                base.OnTrackOrThumbResized(switchButton, track, thumb);
+            }
         }
 
         [SetUp]
@@ -38,30 +48,32 @@ namespace Tizen.NUI.Components.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("SwitchExtension OnCreateTrack.")]
-        [Property("SPEC", "Tizen.NUI.Components.SwitchExtension.OnCreateTrack M")]
+        [Description("SwitchExtension ProcessThumb.")]
+        [Property("SPEC", "Tizen.NUI.Components.SwitchExtension.ProcessThumb M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void SlidingSwitchExtensionOnSelectedChanged()
+        public void SlidingSwitchExtensionProcessThumb()
         {
-            tlog.Debug(tag, $"SlidingSwitchExtensionOnSelectedChanged START");
+            tlog.Debug(tag, $"SlidingSwitchExtensionProcessThumb START");
 
             var testingTarget = new SwitchExtensionImpl();
             Assert.IsNotNull(testingTarget, "null handle");
             Assert.IsInstanceOf<SwitchExtension>(testingTarget, "Should return SwitchExtension instance.");
 
-            using (Switch button = new Switch() { IsEnabled = true, IsSelected = true } )
+            using (Switch button = new Switch() { IsEnabled = true, IsSelected = true })
             {
-                var result = testingTarget.OnCreateTrack(button, new ImageView(image_path));
-                tlog.Debug(tag, "OnCreateTrack : " + result);
+                var thumb = new ImageView(image_path);
+                var truck = new ImageView(image_path);
+                testingTarget.OnSelectedChanged(button);
+                testingTarget.OnTrackOrThumbResized(button, thumb, truck);
 
-                result = testingTarget.OnCreateThumb(button, new ImageView(image_path));
-                tlog.Debug(tag, "OnCreateThumb : " + result);
+                var result = testingTarget.ProcessThumb(button, ref thumb);
+                tlog.Debug(tag, "ProcessThumb : " + result);
             }
 
-            tlog.Debug(tag, $"SlidingSwitchExtensionOnSelectedChanged END (OK)");
+            tlog.Debug(tag, $"SlidingSwitchExtensionProcessThumb END (OK)");
         }
     }
 }

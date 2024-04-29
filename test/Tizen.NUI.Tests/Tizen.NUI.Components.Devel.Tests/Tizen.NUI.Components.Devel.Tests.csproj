@@ -3,7 +3,8 @@
   <!-- Property Group for .NET Core Project -->
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0-tizen8.0</TargetFramework>
+    <DisableImplicitTizenReferences>True</DisableImplicitTizenReferences>
     <TargetFrameworkIdentifier>Tizen</TargetFrameworkIdentifier>
   </PropertyGroup>
 
@@ -25,10 +26,9 @@
 
   <Import Project="..\Common\dependencies.props" />
   <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="10.0.0.*">
+    <PackageReference Include="Tizen.NET" Version="11.0.0.*">
       <ExcludeAssets>Runtime</ExcludeAssets>
     </PackageReference>
-    <PackageReference Include="Tizen.NET.Sdk" Version="1.1.6" />
   </ItemGroup>
 
   <!-- Include Nuget Package for Tizen Project building -->
