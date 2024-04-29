@@ -64,6 +64,7 @@ namespace Tizen.Network.Bluetooth
     /// An extended EventArgs class contains the changed Bluetooth authentication.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class AuthenticationRequestedEventArgs : EventArgs
     {
         private AuthenticationInfoType _authType;
