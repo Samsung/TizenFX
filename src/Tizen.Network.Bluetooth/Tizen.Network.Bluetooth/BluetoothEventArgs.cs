@@ -61,6 +61,89 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
+    /// An extended EventArgs class contains the changed Bluetooth authentication.
+    /// </summary>
+    /// <since_tizen> 9 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class AuthenticationRequestedEventArgs : EventArgs
+    {
+        private AuthenticationInfoType _authType;
+        private BluetoothError _result;
+        private string _deviceName;
+        private string _remoteAddr;
+        private string _passKey;
+
+        internal AuthenticationRequestedEventArgs(BluetoothError result, AuthenticationInfoType type, string deviceName, string remoteAddr, string passKey)
+        {
+            _authType = type;
+            _result = result;
+            _deviceName = deviceName;
+            _remoteAddr = remoteAddr;
+            _passKey = passKey;
+        }
+
+        /// <summary>
+        /// The authentication of Bluetooth.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public AuthenticationInfoType Authentication
+        {
+            get
+            {
+                return _authType;
+            }
+        }
+
+        /// <summary>
+        /// The BluetoothError result.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public BluetoothError Result
+        {
+            get
+            {
+                return _result;
+            }
+        }
+
+        /// <summary>
+        /// The name of the device.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public string DeviceName
+        {
+            get
+            {
+                return _deviceName;
+            }
+        }
+
+        /// <summary>
+        /// The Remote address of the device.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public string RemoteAddr
+        {
+            get
+            {
+                return _remoteAddr;
+            }
+        }
+
+        /// <summary>
+        /// The pass key of the device.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public string PassKey
+        {
+            get
+            {
+                return _passKey;
+            }
+        }
+    }
+
+    /// <summary>
     /// An extended EventArgs class contains the changed Bluetooth name.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
