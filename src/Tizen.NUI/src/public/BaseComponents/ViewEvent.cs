@@ -18,6 +18,7 @@
 using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
+using System.Collections.Generic;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -781,11 +782,16 @@ namespace Tizen.NUI.BaseComponents
                 return true;
             }
 
+#if OBJECT_POOL
+            using var e = KeyEventArgs.New(keyEvent);
+            bool result = false;
+#else
             KeyEventArgs e = new KeyEventArgs();
 
             bool result = false;
 
             e.Key = Tizen.NUI.Key.GetKeyFromPtr(keyEvent);
+#endif
 
             if (keyEventHandler != null)
             {
@@ -1094,6 +1100,64 @@ namespace Tizen.NUI.BaseComponents
         /// Event arguments that passed via the KeyEvent signal.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+#if OBJECT_POOL
+        public class KeyEventArgs : EventArgs, IDisposable
+        {
+            private Key _key;
+            private static Stack<KeyEventArgs> pool = new Stack<KeyEventArgs>();
+            private const int MAX_STACK_COUNT = 10; //this would be an actual testing-based tuning value
+            //private static int maxStackCount = -1;
+
+            public static KeyEventArgs New(IntPtr nativeHandle)
+            {
+                //Tizen.Log.Fatal("NT", $"static KeyEventArgs New({nativeHandle.ToString("X8")}) pool.Count={pool.Count} maxStackCount={maxStackCount} START");
+                if(pool.Count > 0 && pool.TryPop(out KeyEventArgs args))
+                {
+                    args.Key = Key.NewKey(nativeHandle);
+                    //Tizen.Log.Fatal("NT", $"Poped! pool.Count={pool.Count} END");
+                    return args;
+                }
+                else
+                {
+                    var tmp = new KeyEventArgs();
+                    tmp.Key = Key.NewKey(nativeHandle);
+                    //Tizen.Log.Fatal("NT", $"new KeyEventArgs(); pool.Count={pool.Count} END");
+                    return tmp;
+                }
+            }
+
+            public void Dispose()
+            {
+                //Tizen.Log.Fatal("NT", $"public void Dispose() pool.Count={pool.Count} START");
+                if(pool.Count < MAX_STACK_COUNT)
+                {
+                    pool.Push(this);
+                }
+
+                // if(maxStackCount < pool.Count)
+                // {
+                //     maxStackCount = pool.Count;
+                // }
+                //Tizen.Log.Fatal("NT", $"public void Dispose() pool.Count={pool.Count} maxStackCount={maxStackCount} END");
+            }
+
+            /// <summary>
+            /// Key - is the key sent to the view.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            public Key Key
+            {
+                get
+                {
+                    return _key;
+                }
+                set
+                {
+                    _key = value;
+                }
+            }
+        }
+#else
         public class KeyEventArgs : EventArgs
         {
             private Key _key;
@@ -1114,6 +1178,7 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
         }
+#endif
 
         /// <summary>
         /// Event arguments that passed via the touch signal.
