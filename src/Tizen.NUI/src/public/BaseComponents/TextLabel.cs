@@ -214,6 +214,9 @@ namespace Tizen.NUI.BaseComponents
 
                 UnderlineHeightProperty = BindableProperty.Create(nameof(UnderlineHeight), typeof(float), typeof(TextLabel), 0.0f, 
                     propertyChanged: SetInternalUnderlineHeightProperty, defaultValueCreator: GetInternalUnderlineHeightProperty);
+
+                CutoutProperty = BindableProperty.Create(nameof(Cutout), typeof(bool), typeof(TextLabel), false,
+                    propertyChanged: SetInternalCutoutProperty, defaultValueCreator: GetInternalCutoutProperty);
             }
         }
 
@@ -2461,6 +2464,38 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// The Cutout property.<br />
+        /// Whether the Cutout is enabled. (The default value is false)
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Cutout
+        {
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(CutoutProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalCutoutProperty(this);
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(CutoutProperty, value);
+                }
+                else
+                {
+                    SetInternalCutoutProperty(this, null, value);
+                }
+                NotifyPropertyChanged();
+            }
+        }
+
         private TextLabelSelectorData EnsureSelectorData() => selectorData ?? (selectorData = new TextLabelSelectorData());
 
         /// <summary>
@@ -2686,6 +2721,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int AnchorClickedColor = Interop.TextLabel.AnchorClickedColorGet();
             internal static readonly int RemoveFrontInset = Interop.TextLabel.RemoveFrontInsetGet();
             internal static readonly int RemoveBackInset = Interop.TextLabel.RemoveBackInsetGet();
+            internal static readonly int Cutout = Interop.TextLabel.CutoutGet();
 
 
             internal static void Preload()
