@@ -931,6 +931,24 @@ namespace Tizen.NUI.BaseComponents
             return instance.InternalUnderlineHeight;
         }
 
+        /// <summary>
+        /// CutoutProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty CutoutProperty = BindableProperty.Create(nameof(Cutout), typeof(bool), typeof(TextLabel), false, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.TextLabel)bindable;
+            if (newValue != null)
+            {
+                instance.InternalUnderlineHeight = (float)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.TextLabel)bindable;
+            return instance.InternalUnderlineHeight;
+        });
+
         internal Selector<string> TranslatableTextSelector
         {
             get => GetSelector<string>(selectorData?.TranslatableText, TextLabel.TranslatableTextProperty);
