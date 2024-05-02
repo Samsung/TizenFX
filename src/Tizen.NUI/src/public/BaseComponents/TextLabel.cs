@@ -2427,6 +2427,24 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// The Cutout property.<br />
+        /// Whether the Cutout is enabled. (The default value is false)
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Cutout
+        {
+            get
+            {
+                return (bool)GetValue(Cutout);
+            }
+            set
+            {
+                SetValue(Cutout, value);
+                NotifyPropertyChanged();
+            }
+        }
+
         private TextLabelSelectorData EnsureSelectorData() => selectorData ?? (selectorData = new TextLabelSelectorData());
 
         /// <summary>
@@ -2652,6 +2670,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int AnchorClickedColor = Interop.TextLabel.AnchorClickedColorGet();
             internal static readonly int RemoveFrontInset = Interop.TextLabel.RemoveFrontInsetGet();
             internal static readonly int RemoveBackInset = Interop.TextLabel.RemoveBackInsetGet();
+            internal static readonly int Cutout = Interop.TextLabel.CutoutGet();
 
 
             internal static void Preload()
