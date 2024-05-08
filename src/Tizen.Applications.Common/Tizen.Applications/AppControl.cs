@@ -574,7 +574,11 @@ namespace Tizen.Applications
         /// </remarks>
         /// <param name="launchRequest">The AppControl.</param>
         /// <exception cref="ArgumentNullException">Thrown when failed because of a null argument.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
+        /// <exception cref="Exceptions.AppNotFoundException">Thrown when the application to run is not found.</exception>
+        /// <exception cref="Exceptions.LaunchFailedException">Thrown when the request failed to launch the application.</exception>
+        /// <exception cref="Exceptions.LaunchRejectedException">Thrown when the launch request is rejected.</exception>
+        /// <exception cref="Exceptions.OutOfMemoryException">Thrown when the memory is insufficient.</exception>
+        /// <exception cref="Exceptions.PermissionDeniedException">Thrown when the permission is denied.</exception>
         /// <exception cref="TimeoutException">Thrown when failed because of timeout.</exception>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
         /// <example>
@@ -604,7 +608,11 @@ namespace Tizen.Applications
         /// <param name="launchRequest">The AppControl.</param>
         /// <param name="timeout">The timeout in milliseconds, the timeout range is 5000 to 30000.</param>
         /// <exception cref="ArgumentNullException">Thrown when failed because of a null argument.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
+        /// <exception cref="Exceptions.AppNotFoundException">Thrown when the application to run is not found.</exception>
+        /// <exception cref="Exceptions.LaunchFailedException">Thrown when the request failed to launch the application.</exception>
+        /// <exception cref="Exceptions.LaunchRejectedException">Thrown when the launch request is rejected.</exception>
+        /// <exception cref="Exceptions.OutOfMemoryException">Thrown when the memory is insufficient.</exception>
+        /// <exception cref="Exceptions.PermissionDeniedException">Thrown when the permission is denied.</exception>
         /// <exception cref="TimeoutException">Thrown when failed because of timeout.</exception>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
         /// <example>
