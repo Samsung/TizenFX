@@ -282,11 +282,8 @@ namespace Tizen.NUI.BaseComponents
         internal static object GetInternalBackgroundImageProperty(BindableObject bindable)
         {
             var view = (View)bindable;
-            string backgroundImage = "";
 
-            Interop.View.InternalRetrievingVisualPropertyString(view.SwigCPtr, Property.BACKGROUND, ImageVisualProperty.URL, out backgroundImage);
-
-            return backgroundImage;
+            return (string)view.backgroundImageUrl;
         }
 
 
@@ -336,21 +333,31 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                var propertyValue = new PropertyValue((PropertyMap)newValue);
-                Object.SetProperty(view.SwigCPtr, Property.BACKGROUND, propertyValue);
-
-                view.backgroundExtraData = null;
+                PropertyMap map = (PropertyMap)newValue;
 
                 // Background extra data is not valid anymore. We should ignore lazy UpdateBackgroundExtraData
+                view.backgroundExtraData = null;
                 view.backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
-                if (view.backgroundExtraDataUpdateProcessAttachedFlag)
+
+                // Update backgroundImageUrl and backgroundImageSynchronousLoading from Map
+                foreach (int key in cachedNUIViewBackgroundImagePropertyKeyList)
                 {
-                    ProcessorController.Instance.ProcessorOnceEvent -= view.UpdateBackgroundExtraData;
-                    view.backgroundExtraDataUpdateProcessAttachedFlag = false;
+                    using PropertyValue propertyValue = map.Find(key);
+                    if (propertyValue != null)
+                    {
+                        if (key == ImageVisualProperty.URL)
+                        {
+                            propertyValue.Get(out view.backgroundImageUrl);
+                        }
+                        else if (key == ImageVisualProperty.SynchronousLoading)
+                        {
+                            propertyValue.Get(out view.backgroundImageSynchronousLoading);
+                        }
+                    }
                 }
 
-                propertyValue.Dispose();
-                propertyValue = null;
+                using var mapValue = new PropertyValue(map);
+                Object.SetProperty(view.SwigCPtr, Property.BACKGROUND, mapValue);
             }
         }
         internal static object GetInternalBackgroundProperty(BindableObject bindable)
@@ -3508,6 +3515,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Background;
 
+                backgroundImageUrl = null;
+
                 var empty = new PropertyValue();
                 // Clear background
                 Object.SetProperty(SwigCPtr, Property.BACKGROUND, empty);
@@ -3520,6 +3529,8 @@ namespace Tizen.NUI.BaseComponents
                 string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
                 value = value.Replace("*Resource*", resource);
             }
+
+            backgroundImageUrl = value;
 
             // Fast return for usual cases.
             if (backgroundExtraData == null && !backgroundImageSynchronousLoading)
@@ -3627,9 +3638,11 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
+            // Background property will be Color after now. Remove background image url information.
+            backgroundImageUrl = null;
+
             if (backgroundExtraData == null)
             {
-
                 Object.InternalSetPropertyVector4(SwigCPtr, View.Property.BACKGROUND, ((Color)value).SwigCPtr);
                 return;
             }
