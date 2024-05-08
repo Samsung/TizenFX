@@ -61,6 +61,7 @@ namespace Tizen.Multimedia.Vision
                 InteropBarcode.GenerateSource(EngineConfiguration.GetHandle(config),
                     message, type, qrMode, qrEcc, qrVersion, source.Handle).
                     Validate("Failed to generate source");
+                GC.KeepAlive(config);
             }
             catch (Exception)
             {
@@ -128,6 +129,8 @@ namespace Tizen.Multimedia.Vision
         public static MediaVisionSource GenerateSource(string message, QrConfiguration qrConfig,
             BarcodeGenerationConfiguration config)
         {
+            BarcodeGenerationConfiguration config_ = null;
+
             if (qrConfig == null)
             {
                 throw new ArgumentNullException(nameof(qrConfig));
@@ -145,14 +148,18 @@ namespace Tizen.Multimedia.Vision
                 if (qrConfig.DataShape != QrShape.Rectangular || qrConfig.FinderShape != QrShape.Rectangular ||
                     qrConfig.EmbedImagePath != null)
                 {
-                    config = new BarcodeGenerationConfiguration();
+                    // Design QR case. The config_ for legacy QR will be null.
+                    config_ = new BarcodeGenerationConfiguration();
                 }
             }
 
-            SetDesignQrOptions(qrConfig, config);
+            SetDesignQrOptions(qrConfig, config ?? config_);
 
-            return GenerateSource(config, message, BarcodeType.QR, (int)qrConfig.Mode,
+            var mediaVisionSource = GenerateSource(config ?? config_, message, BarcodeType.QR, (int)qrConfig.Mode,
                 (int)qrConfig.ErrorCorrectionLevel, qrConfig.Version);
+            config_?.Dispose();
+
+            return mediaVisionSource;
         }
 
         /// <summary>

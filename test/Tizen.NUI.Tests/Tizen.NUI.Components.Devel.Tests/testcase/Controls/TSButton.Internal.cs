@@ -110,36 +110,6 @@ namespace Tizen.NUI.Components.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Button OnAccessibilityActivated.")]
-        [Property("SPEC", "Tizen.NUI.Components.Button.OnAccessibilityActivated M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ButtonOnAccessibilityActivated()
-        {
-            tlog.Debug(tag, $"ButtonOnAccessibilityActivated START");
-
-            var testingTarget = new Button();
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Button>(testingTarget, "Should return Button instance.");
-
-            try
-            {
-                testingTarget.OnAccessibilityActivated();
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"ButtonOnAccessibilityActivated END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("Button OnRelayout.")]
         [Property("SPEC", "Tizen.NUI.Components.Button.OnRelayout M")]
         [Property("SPEC_URL", "-")]

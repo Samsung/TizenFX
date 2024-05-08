@@ -46,6 +46,7 @@ namespace Tizen.AIAvatar
             }
 
             HttpResponseMessage response = await client.SendAsync(request);
+            request?.Dispose();
             return await HandleResponse(response);
         }
 
