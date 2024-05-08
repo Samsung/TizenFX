@@ -4780,15 +4780,18 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                backgroundImageSynchronousLoading = value;
-
-                if (!string.IsNullOrEmpty(BackgroundImage))
+                if (backgroundImageSynchronousLoading != value)
                 {
-                    PropertyMap bgMap = this.Background;
-                    var temp = new PropertyValue(backgroundImageSynchronousLoading);
-                    bgMap[ImageVisualProperty.SynchronousLoading] = temp;
-                    temp.Dispose();
-                    Background = bgMap;
+                    backgroundImageSynchronousLoading = value;
+
+                    if (!string.IsNullOrEmpty(BackgroundImage))
+                    {
+                        PropertyMap bgMap = this.Background;
+                        var temp = new PropertyValue(backgroundImageSynchronousLoading);
+                        bgMap[ImageVisualProperty.SynchronousLoading] = temp;
+                        temp.Dispose();
+                        Background = bgMap;
+                    }
                 }
             }
         }
