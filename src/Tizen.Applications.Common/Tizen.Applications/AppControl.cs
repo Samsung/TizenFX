@@ -622,7 +622,7 @@ namespace Tizen.Applications
         /// AppControl.SendLaunchRequest(appControl, 10000);
         /// </code>
         /// </example>
-        /// <since_tizen> 7.5 </since_tizen>
+        /// <since_tizen> 11 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SendLaunchRequest(AppControl launchRequest, uint timeout)
         {
@@ -740,7 +740,7 @@ namespace Tizen.Applications
         /// });
         /// </code>
         /// </example>
-        /// <since_tizen> 7.5 </since_tizen>
+        /// <since_tizen> 11 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SendLaunchRequest(AppControl launchRequest, uint timeout, AppControlReplyCallback replyAfterLaunching)
         {
