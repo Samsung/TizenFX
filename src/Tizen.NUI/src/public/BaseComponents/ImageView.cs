@@ -82,6 +82,8 @@ namespace Tizen.NUI.BaseComponents
                 TransitionEffectProperty = BindableProperty.Create(nameof(TransitionEffect), typeof(bool), typeof(ImageView), false, propertyChanged: SetInternalTransitionEffectProperty, defaultValueCreator: GetInternalTransitionEffectProperty);
 
                 ImageColorProperty = BindableProperty.Create(nameof(ImageColor), typeof(Color), typeof(ImageView), null, propertyChanged: SetInternalImageColorProperty, defaultValueCreator: GetInternalImageColorProperty);
+
+                TransitionEffectOptionProperty = BindableProperty.Create(nameof(TransitionEffectOption), typeof(Tizen.NUI.PropertyMap), typeof(ImageView), null, propertyChanged: SetInternalTransitionEffectOptionProperty, defaultValueCreator: GetInternalTransitionEffectOptionProperty);
             }
         }
 
@@ -161,6 +163,8 @@ namespace Tizen.NUI.BaseComponents
         private TriggerableSelector<Rectangle> borderSelector;
 
         private RelativeVector4 internalPixelArea;
+
+        internal PropertyMap transitionEffectPropertyMap;
 
         /// <summary>
         /// Creates an initialized ImageView.
@@ -1263,6 +1267,63 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// This method allows users to configure the blending of two images(previous and currnet) using alpha values.
+        /// </summary>
+        /// <param name="initialImageAlpha">The initial alpha value of the first image.</param>
+        /// <param name="destinationImageAlpha">The final alpha value of the second image.</param>
+        /// <param name="delay">The amount of time (in seconds) to wait before applying the blend.</param>
+        /// <param name="speed">The total time (in seconds) taken for the animation to finish</param>
+        /// <param name="alphaFunction">An optional built-in alpha function to apply during the blend. If not specified, defaults to no alpha function applied.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetTransitionEffectOption(object initialImageAlpha,object destinationImageAlpha, float delay, float speed, AlphaFunction.BuiltinFunctions? alphaFunction = null)
+        {
+            using (PropertyMap animator = new PropertyMap())
+            using (PropertyMap timePeriod = new PropertyMap())
+            using (PropertyValue initValue = PropertyValue.CreateFromObject(initialImageAlpha))
+            using (PropertyValue destValue = PropertyValue.CreateFromObject(destinationImageAlpha))
+            using (PropertyValue pvDelay = new PropertyValue(delay))
+            using (PropertyValue pvSpeed = new PropertyValue(speed))
+            using (PropertyValue pvProperty = new PropertyValue("opacity"))
+            using (PropertyValue pvAnimationType = new PropertyValue("BETWEEN"))
+            using (PropertyMap transition = new PropertyMap())
+            {
+                if (alphaFunction != null)
+                {
+                    using (PropertyValue pvAlpha = new PropertyValue(AlphaFunction.BuiltinToPropertyKey(alphaFunction)))
+                    {
+                        animator.Add("alphaFunction", pvAlpha);
+                    }
+                }
+
+                timePeriod.Add("duration", pvSpeed);
+                timePeriod.Add("delay", pvDelay);
+                using (PropertyValue pvTimePeriod = new PropertyValue(timePeriod))
+                {
+                    animator.Add("timePeriod", pvTimePeriod);
+                }
+
+                animator.Add("animationType", pvAnimationType);
+
+                using (PropertyValue pvAnimator = new PropertyValue(animator))
+                {
+                    transition.Add("animator", pvAnimator);
+                }
+                using(PropertyValue pvTarget = new PropertyValue("image"))
+                {
+                    transition.Add("target", pvTarget);
+                }
+
+                transition.Add("property", pvProperty);
+                transition.Add("initialValue", initValue);
+                transition.Add("targetValue", destValue);
+
+                SetProperty(ImageView.Property.TransitionEffectOption, new Tizen.NUI.PropertyValue(transition));
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the desired image width.<br />
         /// If not specified, the actual image width is used.<br />
         /// For normal quad images only.<br />
@@ -1654,6 +1715,55 @@ namespace Tizen.NUI.BaseComponents
                     SetInternalTransitionEffectProperty(this, null, value);
                 }
                 NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether the image use TransitionEffect or not<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap TransitionEffectOption
+        {
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (PropertyMap)GetValue(TransitionEffectOptionProperty);
+                }
+                else
+                {
+                    return GetInternalTransitionEffectOptionProperty(this) as PropertyMap;
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TransitionEffectOptionProperty, value);
+                }
+                else
+                {
+                    SetInternalTransitionEffectOptionProperty(this, null, value);
+                }
+                NotifyPropertyChanged();
+            }
+        }
+
+        private PropertyMap InternalTransitionEffectOption
+        {
+            get
+            {
+                PropertyMap retValue = new PropertyMap();
+                PropertyValue transitionEffect = GetProperty(ImageView.Property.TransitionEffectOption);
+                transitionEffect?.Get(retValue);
+                transitionEffect?.Dispose();
+                return retValue;
+            }
+            set
+            {
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(ImageView.Property.TransitionEffectOption, setValue);
+                setValue?.Dispose();
             }
         }
 
@@ -2307,6 +2417,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int PixelArea = Interop.ImageView.PixelAreaGet();
             internal static readonly int PlaceHolderUrl = Interop.ImageView.PlaceHolderImageGet();
             internal static readonly int TransitionEffect = Interop.ImageView.TransitionEffectGet();
+            internal static readonly int TransitionEffectOption = Interop.ImageView.TransitionEffectOptionGet();
 
             internal static void Preload()
             {

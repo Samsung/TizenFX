@@ -35,6 +35,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_Property_TRANSITION_EFFECT_get")]
             public static extern int TransitionEffectGet();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_Property_TRANSITION_EFFECT_OPTION_get")]
+            public static extern int TransitionEffectOptionGet();
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_New__SWIG_0")]
             public static extern global::System.IntPtr New();
 
