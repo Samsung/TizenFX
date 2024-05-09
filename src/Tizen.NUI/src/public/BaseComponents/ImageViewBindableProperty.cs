@@ -668,5 +668,26 @@ namespace Tizen.NUI.BaseComponents
 
             return ret;
         }
+
+        /// <summary>
+        /// TransitionEffectOptionProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TransitionEffectOptionProperty = null;
+
+        internal static void SetInternalTransitionEffectOptionProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
+            if (newValue != null)
+            {
+                instance.InternalTransitionEffectOption = (Tizen.NUI.PropertyMap)newValue;
+            }
+        }
+
+        internal static object GetInternalTransitionEffectOptionProperty(BindableObject bindable)
+        {
+            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
+            return instance.InternalTransitionEffectOption;
+        }
     }
 }
