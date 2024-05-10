@@ -2436,11 +2436,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(Cutout);
+                return (bool)GetValue(CutoutProperty);
             }
             set
             {
-                SetValue(Cutout, value);
+                SetValue(CutoutProperty, value);
                 NotifyPropertyChanged();
             }
         }
