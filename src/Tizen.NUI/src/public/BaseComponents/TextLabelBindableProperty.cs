@@ -935,20 +935,20 @@ namespace Tizen.NUI.BaseComponents
         /// CutoutProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CutoutProperty = BindableProperty.Create(nameof(Cutout), typeof(bool), typeof(TextLabel), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CutoutProperty = BindableProperty.Create(nameof(Cutout), typeof(bool), typeof(TextLabel), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
-            var instance = (Tizen.NUI.BaseComponents.TextLabel)bindable;
+            var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
                 Object.InternalSetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.Cutout, (bool)newValue);
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textLabel = (TextLabel)bindable;
 
             return Object.InternalGetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.Cutout);
-        });
+        }));
 
         internal Selector<string> TranslatableTextSelector
         {
