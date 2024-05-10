@@ -1572,7 +1572,7 @@ namespace Tizen.NUI.BaseComponents
             return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.CharacterSpacing);
         }
 
-                /// <summary>
+        /// <summary>
         /// RemoveFrontInsetProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
