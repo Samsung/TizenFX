@@ -15,11 +15,21 @@
  *
  */
 
-using Tizen.NUI.Scene3D;
+using Tizen.NUI;
 
 namespace Tizen.AIAvatar
 {
-    internal class AvatarScene : SceneView
+    internal interface IBlendShapeModule
     {
+        public void Init(Animation animation);
+
+        public void Play();
+
+        public void Stop();
+
+        public void Pause();
+
+        public void Destroy();
     }
+
 }

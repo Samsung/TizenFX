@@ -15,27 +15,19 @@
  *
  */
 
+using System;
 using System.Collections.Generic;
-using System.IO;
-
-using static Tizen.AIAvatar.AIAvatar;
+using System.Linq;
 
 namespace Tizen.AIAvatar
 {
-    public static class AvatarExtension
+    internal static class SoftmaxLinqExtension
     {
-        public static List<AvatarInfo> GetDefaultAvatarList()
+        internal static IEnumerable<float> SoftMax(this IEnumerable<float> source)
         {
-            var list = new List<AvatarInfo>();
-            var avatarModelFolders = Directory.GetDirectories(ApplicationResourcePath + EmojiAvatarResourcePath);
-            foreach (var directoryInfo in avatarModelFolders)
-            {
-                Log.Info(LogTag, $"Directory Path : {directoryInfo}");
-                var avatarInfo = new AvatarInfo(directoryInfo);
-                list.Add(avatarInfo);
-            }
-
-            return list;
+            var exp = source.Select(x => MathF.Exp(x)).ToArray();
+            var sum = exp.Sum();
+            return exp.Select(x => x / sum);
         }
     }
 }

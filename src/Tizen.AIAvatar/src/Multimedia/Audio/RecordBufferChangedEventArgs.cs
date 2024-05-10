@@ -15,27 +15,20 @@
  *
  */
 
-using System.Collections.Generic;
-using System.IO;
-
-using static Tizen.AIAvatar.AIAvatar;
+using System;
 
 namespace Tizen.AIAvatar
 {
-    public static class AvatarExtension
+    internal class RecordBufferChangedEventArgs : EventArgs
     {
-        public static List<AvatarInfo> GetDefaultAvatarList()
-        {
-            var list = new List<AvatarInfo>();
-            var avatarModelFolders = Directory.GetDirectories(ApplicationResourcePath + EmojiAvatarResourcePath);
-            foreach (var directoryInfo in avatarModelFolders)
-            {
-                Log.Info(LogTag, $"Directory Path : {directoryInfo}");
-                var avatarInfo = new AvatarInfo(directoryInfo);
-                list.Add(avatarInfo);
-            }
+        public byte[] RecordedBuffer { get; set; }
+        public int SampleRate { get; set; }
 
-            return list;
+        public RecordBufferChangedEventArgs(byte[] recordedBuffer, int SampleRate)
+        {
+            this.RecordedBuffer = recordedBuffer;
+            this.SampleRate = SampleRate;
         }
     }
+
 }

@@ -15,27 +15,37 @@
  *
  */
 
-using System.Collections.Generic;
-using System.IO;
-
-using static Tizen.AIAvatar.AIAvatar;
+using System;
+using System.Linq;
 
 namespace Tizen.AIAvatar
 {
-    public static class AvatarExtension
+    internal class Window
     {
-        public static List<AvatarInfo> GetDefaultAvatarList()
-        {
-            var list = new List<AvatarInfo>();
-            var avatarModelFolders = Directory.GetDirectories(ApplicationResourcePath + EmojiAvatarResourcePath);
-            foreach (var directoryInfo in avatarModelFolders)
-            {
-                Log.Info(LogTag, $"Directory Path : {directoryInfo}");
-                var avatarInfo = new AvatarInfo(directoryInfo);
-                list.Add(avatarInfo);
-            }
+        private float[] _window;
 
-            return list;
+        public Window(int size)
+        {
+            _window = Hamming(size);
+        }
+
+        public void Apply(float[] block)
+        {
+            if (block.Length < _window.Length) return;
+
+            for (int i = 0; i < _window.Length; i++)
+            {
+                block[i] *= _window[i];
+            }
+        }
+
+        public static float[] Hamming(int length)
+        {
+            var n = 2 * Math.PI / (length - 1);
+            return Enumerable.Range(0, length)
+                             .Select(i => 0.54f - 0.46f * Math.Cos(i * n))
+                             .Select(v => (float)v)
+                             .ToArray();
         }
     }
 }

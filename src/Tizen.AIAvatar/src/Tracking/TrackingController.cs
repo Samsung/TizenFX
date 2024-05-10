@@ -15,27 +15,26 @@
  *
  */
 
-using System.Collections.Generic;
-using System.IO;
-
-using static Tizen.AIAvatar.AIAvatar;
-
 namespace Tizen.AIAvatar
 {
-    public static class AvatarExtension
+    internal class TrackingController
     {
-        public static List<AvatarInfo> GetDefaultAvatarList()
+        internal TrackingController()
         {
-            var list = new List<AvatarInfo>();
-            var avatarModelFolders = Directory.GetDirectories(ApplicationResourcePath + EmojiAvatarResourcePath);
-            foreach (var directoryInfo in avatarModelFolders)
-            {
-                Log.Info(LogTag, $"Directory Path : {directoryInfo}");
-                var avatarInfo = new AvatarInfo(directoryInfo);
-                list.Add(avatarInfo);
-            }
+        }
 
-            return list;
+        internal void Initialize(TrackingOptions options)
+        {
+        }
+
+        internal void StartMotionTracking()
+        {
+
+        }
+
+        internal void StopMotionTracking()
+        {
+
         }
     }
 }

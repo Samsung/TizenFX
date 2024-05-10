@@ -15,27 +15,20 @@
  *
  */
 
-using System.Collections.Generic;
-using System.IO;
-
-using static Tizen.AIAvatar.AIAvatar;
-
 namespace Tizen.AIAvatar
 {
-    public static class AvatarExtension
+    internal class PreEmphasis
     {
-        public static List<AvatarInfo> GetDefaultAvatarList()
+        internal static void PreEmphasize(ref float[] block, float value)
         {
-            var list = new List<AvatarInfo>();
-            var avatarModelFolders = Directory.GetDirectories(ApplicationResourcePath + EmojiAvatarResourcePath);
-            foreach (var directoryInfo in avatarModelFolders)
-            {
-                Log.Info(LogTag, $"Directory Path : {directoryInfo}");
-                var avatarInfo = new AvatarInfo(directoryInfo);
-                list.Add(avatarInfo);
-            }
+            float prevSample = block[0];
 
-            return list;
+            for (int i = 0; i < block.Length; i++)
+            {
+                var result = block[i] - prevSample * value;
+                prevSample = block[i];
+                block[i] = result;
+            }
         }
     }
 }

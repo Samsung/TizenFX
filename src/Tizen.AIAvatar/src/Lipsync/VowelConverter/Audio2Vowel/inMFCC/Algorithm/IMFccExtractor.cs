@@ -16,26 +16,12 @@
  */
 
 using System.Collections.Generic;
-using System.IO;
-
-using static Tizen.AIAvatar.AIAvatar;
 
 namespace Tizen.AIAvatar
 {
-    public static class AvatarExtension
+    internal interface IMfccExtractor
     {
-        public static List<AvatarInfo> GetDefaultAvatarList()
-        {
-            var list = new List<AvatarInfo>();
-            var avatarModelFolders = Directory.GetDirectories(ApplicationResourcePath + EmojiAvatarResourcePath);
-            foreach (var directoryInfo in avatarModelFolders)
-            {
-                Log.Info(LogTag, $"Directory Path : {directoryInfo}");
-                var avatarInfo = new AvatarInfo(directoryInfo);
-                list.Add(avatarInfo);
-            }
-
-            return list;
-        }
+        List<float[]> ComputeFrom(float[] samples, int samplingRate);
     }
 }
+

@@ -15,27 +15,18 @@
  *
  */
 
-using System.Collections.Generic;
-using System.IO;
-
-using static Tizen.AIAvatar.AIAvatar;
+using System.ComponentModel;
 
 namespace Tizen.AIAvatar
 {
-    public static class AvatarExtension
+    internal interface ISingleShotModel
     {
-        public static List<AvatarInfo> GetDefaultAvatarList()
-        {
-            var list = new List<AvatarInfo>();
-            var avatarModelFolders = Directory.GetDirectories(ApplicationResourcePath + EmojiAvatarResourcePath);
-            foreach (var directoryInfo in avatarModelFolders)
-            {
-                Log.Info(LogTag, $"Directory Path : {directoryInfo}");
-                var avatarInfo = new AvatarInfo(directoryInfo);
-                list.Add(avatarInfo);
-            }
 
-            return list;
-        }
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetTensorData(int index, byte[] buffer);
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public byte[] GetTensorData(int index);
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Invoke();
     }
 }
