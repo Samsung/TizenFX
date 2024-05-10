@@ -940,13 +940,14 @@ namespace Tizen.NUI.BaseComponents
             var instance = (Tizen.NUI.BaseComponents.TextLabel)bindable;
             if (newValue != null)
             {
-                instance.InternalUnderlineHeight = (float)newValue;
+                Object.InternalSetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.Cutout, (bool)newValue);
             }
         },
         defaultValueCreator: (bindable) =>
         {
-            var instance = (Tizen.NUI.BaseComponents.TextLabel)bindable;
-            return instance.InternalUnderlineHeight;
+            var textLabel = (TextLabel)bindable;
+
+            return Object.InternalGetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.Cutout);
         });
 
         internal Selector<string> TranslatableTextSelector
