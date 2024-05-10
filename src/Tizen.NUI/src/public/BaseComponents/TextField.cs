@@ -256,6 +256,12 @@ namespace Tizen.NUI.BaseComponents
                     
                 CharacterSpacingProperty = BindableProperty.Create(nameof(CharacterSpacing), typeof(float), typeof(TextField), default(float), 
                     propertyChanged: SetInternalCharacterSpacingProperty, defaultValueCreator: GetInternalCharacterSpacingProperty);
+
+                RemoveFrontInsetProperty = BindableProperty.Create(nameof(RemoveFrontInset), typeof(bool), typeof(TextField), 0.0f,
+                    propertyChanged: SetInternalRemoveFrontInsetProperty, defaultValueCreator: GetInternalRemoveFrontInsetProperty);
+
+                RemoveBackInsetProperty = BindableProperty.Create(nameof(RemoveBackInset), typeof(bool), typeof(TextField), 0.0f,
+                    propertyChanged: SetInternalRemoveBackInsetProperty, defaultValueCreator: GetInternalRemoveBackInsetProperty);
             }
         }
 
@@ -3629,11 +3635,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(RemoveFrontInsetProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(RemoveFrontInsetProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalRemoveFrontInsetProperty(this);
+                }
             }
             set
             {
-                SetValue(RemoveFrontInsetProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(RemoveFrontInsetProperty, value);
+                }
+                else
+                {
+                    SetInternalRemoveFrontInsetProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -3650,11 +3670,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(RemoveBackInsetProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(RemoveBackInsetProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalRemoveBackInsetProperty(this);
+                }
             }
             set
             {
-                SetValue(RemoveBackInsetProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(RemoveBackInsetProperty, value);
+                }
+                else
+                {
+                    SetInternalRemoveBackInsetProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }

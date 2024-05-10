@@ -208,6 +208,15 @@ namespace Tizen.NUI.BaseComponents
 
                 UnderlineHeightProperty = BindableProperty.Create(nameof(UnderlineHeight), typeof(float), typeof(TextLabel), 0.0f, 
                     propertyChanged: SetInternalUnderlineHeightProperty, defaultValueCreator: GetInternalUnderlineHeightProperty);
+
+                RemoveFrontInsetProperty = BindableProperty.Create(nameof(RemoveFrontInset), typeof(bool), typeof(TextLabel), 0.0f,
+                    propertyChanged: SetInternalRemoveFrontInsetProperty, defaultValueCreator: GetInternalRemoveFrontInsetProperty);
+
+                RemoveBackInsetProperty = BindableProperty.Create(nameof(RemoveBackInset), typeof(bool), typeof(TextLabel), 0.0f,
+                    propertyChanged: SetInternalRemoveBackInsetProperty, defaultValueCreator: GetInternalRemoveBackInsetProperty);
+
+                CutoutProperty = BindableProperty.Create(nameof(Cutout), typeof(bool), typeof(TextLabel), 0.0f,
+                    propertyChanged: SetInternalCutoutProperty, defaultValueCreator: GetInternalCutoutProperty);
             }
         }
 
@@ -2285,11 +2294,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(RemoveFrontInsetProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(RemoveFrontInsetProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalRemoveFrontInsetProperty(this);
+                }
             }
             set
             {
-                SetValue(RemoveFrontInsetProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(RemoveFrontInsetProperty, value);
+                }
+                else
+                {
+                    SetInternalRemoveFrontInsetProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -2306,11 +2329,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(RemoveBackInsetProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(RemoveBackInsetProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalRemoveBackInsetProperty(this);
+                }
             }
             set
             {
-                SetValue(RemoveBackInsetProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(RemoveBackInsetProperty, value);
+                }
+                else
+                {
+                    SetInternalRemoveBackInsetProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -2436,11 +2473,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(CutoutProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(CutoutProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalCutoutProperty(this);
+                }
             }
             set
             {
-                SetValue(CutoutProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(CutoutProperty, value);
+                }
+                else
+                {
+                    SetInternalCutoutProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }

@@ -316,39 +316,41 @@ namespace Tizen.NUI.BaseComponents
         /// RemoveFrontInsetProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RemoveFrontInsetProperty = BindableProperty.Create(nameof(RemoveFrontInset), typeof(bool), typeof(TextLabel), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty RemoveFrontInsetProperty = null;
+        internal static void SetInternalRemoveFrontInsetProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
                 Object.InternalSetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.RemoveFrontInset, (bool)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalRemoveFrontInsetProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
 
             return Object.InternalGetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.RemoveFrontInset);
-        }));
+        }
 
         /// <summary>
         /// RemoveBackInsetProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RemoveBackInsetProperty = BindableProperty.Create(nameof(RemoveBackInset), typeof(bool), typeof(TextLabel), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty RemoveBackInsetProperty = null;
+        internal static void SetInternalRemoveBackInsetProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
                 Object.InternalSetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.RemoveBackInset, (bool)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalRemoveBackInsetProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
 
             return Object.InternalGetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.RemoveBackInset);
-        }));
+        }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -935,20 +937,21 @@ namespace Tizen.NUI.BaseComponents
         /// CutoutProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CutoutProperty = BindableProperty.Create(nameof(Cutout), typeof(bool), typeof(TextLabel), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CutoutProperty = null;
+        internal static void SetInternalCutoutProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
                 Object.InternalSetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.Cutout, (bool)newValue);
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        }
+        internal static object GetInternalCutoutProperty(BindableObject bindable)
         {
             var textLabel = (TextLabel)bindable;
 
             return Object.InternalGetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.Cutout);
-        }));
+        }
 
         internal Selector<string> TranslatableTextSelector
         {
