@@ -202,6 +202,10 @@ namespace Tizen.NUI.BaseComponents
                 PrimaryCursorPositionProperty = BindableProperty.Create(nameof(PrimaryCursorPosition), typeof(int), typeof(Tizen.NUI.BaseComponents.TextEditor), 0, propertyChanged: SetInternalPrimaryCursorPositionProperty, defaultValueCreator: GetInternalPrimaryCursorPositionProperty);
 
                 CharacterSpacingProperty = BindableProperty.Create(nameof(CharacterSpacing), typeof(float), typeof(TextEditor), default(float), propertyChanged: SetInternalCharacterSpacingProperty, defaultValueCreator: GetInternalCharacterSpacingProperty);
+
+                RemoveFrontInsetProperty = BindableProperty.Create(nameof(RemoveFrontInset), typeof(bool), typeof(TextEditor), 0.0f, propertyChanged: SetInternalRemoveFrontInsetProperty, defaultValueCreator: GetInternalRemoveFrontInsetProperty);
+
+                RemoveBackInsetProperty = BindableProperty.Create(nameof(RemoveBackInset), typeof(bool), typeof(TextEditor), 0.0f, propertyChanged: SetInternalRemoveBackInsetProperty, defaultValueCreator: GetInternalRemoveBackInsetProperty);
             }
         }
 
@@ -3664,11 +3668,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(RemoveFrontInsetProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(RemoveFrontInsetProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalRemoveFrontInsetProperty(this);
+                }
             }
             set
             {
-                SetValue(RemoveFrontInsetProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(RemoveFrontInsetProperty, value);
+                }
+                else
+                {
+                    SetInternalRemoveFrontInsetProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -3685,11 +3703,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(RemoveBackInsetProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(RemoveBackInsetProperty);
+                }
+                else
+                {
+                    return (bool)GetInternalRemoveBackInsetProperty(this);
+                }
             }
             set
             {
-                SetValue(RemoveBackInsetProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(RemoveBackInsetProperty, value);
+                }
+                else
+                {
+                    SetInternalRemoveBackInsetProperty(this, null, value);
+                }
                 NotifyPropertyChanged();
             }
         }
