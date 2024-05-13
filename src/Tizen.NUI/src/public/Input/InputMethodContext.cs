@@ -377,6 +377,50 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Enumeration for align of the input panel.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum InputPanelAlign
+        {
+            /// <summary>
+            /// The top-left corner.
+            /// </summary>
+            TopLeft,
+            /// <summary>
+            /// The top-center position.
+            /// </summary>
+            TopCenter,
+            /// <summary>
+            /// The top-right corner.
+            /// </summary>
+            TopRight,
+            /// <summary>
+            /// The middle-left position.
+            /// </summary>
+            MiddleLeft,
+            /// <summary>
+            /// The middle-center position.
+            /// </summary>
+            MiddleCenter,
+            /// <summary>
+            /// The middle-right position.
+            /// </summary>
+            MiddleRight,
+            /// <summary>
+            /// The bottom-left corner.
+            /// </summary>
+            BottomLeft,
+            /// <summary>
+            /// The bottom-center position.
+            /// </summary>
+            BottomCenter,
+            /// <summary>
+            /// The bottom-right corner.
+            /// </summary>
+            BottomRight
+        }
+
+        /// <summary>
         /// Gets or sets whether the IM context allows to use the text prediction.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
@@ -679,6 +723,26 @@ namespace Tizen.NUI
         {
             Interop.InputMethodContext.SetInputPanelPosition(SwigCPtr, x, y);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Sets the alignment and its x,y coordinates of the input panel.<br/>
+        /// Regardless of the rotation degree, the x, y values of the top-left corner on the screen are based on 0, 0.<br/>
+        /// When the IME size is changed, its size will change according to the set alignment.
+        /// </summary>
+        /// <remarks>
+        /// This API can be used to set the alignment of a floating IME.
+        /// </remarks>
+        /// <param name="x">The x coordinate of the InputPanelAlign value.</param>
+        /// <param name="y">The y coordinate of the InputPanelAlign value.</param>
+        /// <param name="align">one of the InputPanelAlign values specifying the desired alignment.</param>
+        /// <returns>True on success, false otherwise.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool SetInputPanelPositionAlign(int x, int y, InputMethodContext.InputPanelAlign align)
+        {
+            bool ret = Interop.InputMethodContext.SetInputPanelPositionAlign(SwigCPtr, x, y, (int)align);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         /// <summary>
