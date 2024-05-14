@@ -464,6 +464,14 @@ namespace Tizen.Network.Connection
         /// EAP
         /// </summary>
         Eap = 4,
+        /// <summary>
+        /// WPA3-SAE
+        /// </summary>
+        Wpa3Sae = 6,
+        /// <summary>
+        /// WPA3-OWE
+        /// </summary>
+        Wpa3Owe = 7,
     }
 
     /// <summary>
